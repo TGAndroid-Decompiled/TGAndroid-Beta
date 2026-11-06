@@ -1,20 +1,60 @@
 package org.telegram.ui.Components;
-public final class nv implements Runnable {
-    public final int f36626a;
-    public final sx f36627b;
 
-    public nv(sx sxVar, int i3) {
-        this.f36626a = i3;
-        this.f36627b = sxVar;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class nv extends FrameLayout {
+    public final boolean f36495a;
+    public final gy f36496b;
+
+    public nv(gy gyVar, Context context, boolean z9) {
+        super(context);
+        this.f36496b = gyVar;
+        this.f36495a = z9;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36626a) {
-            case 0:
-            default:
-                this.f36627b.d();
-                return;
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        gy gyVar = this.f36496b;
+        tv tvVar = gyVar.B0;
+        pv pvVar = gyVar.D0;
+        sv svVar = gyVar.G0;
+        if (!this.f36495a && (view == pvVar || view == svVar)) {
+            canvas.save();
+            float y10 = tvVar.getY() + tvVar.getMeasuredHeight() + 1.0f;
+            if (view == pvVar) {
+                y10 = Math.max(y10, svVar.getY() + svVar.getMeasuredHeight() + 1.0f);
+            }
+            canvas.clipRect(0.0f, y10 - (org.telegram.messenger.g0.L(16.0f) * gyVar.f34066a.f55370e), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        gy gyVar = this.f36496b;
+        gyVar.K0 = true;
+        gyVar.Z();
+        jg.e1 e1Var = gyVar.T0;
+        if (e1Var != null) {
+            e1Var.a();
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        gy gyVar = this.f36496b;
+        gyVar.K0 = false;
+        gyVar.Z();
+        jg.e1 e1Var = gyVar.T0;
+        if (e1Var != null) {
+            e1Var.a();
         }
     }
 }

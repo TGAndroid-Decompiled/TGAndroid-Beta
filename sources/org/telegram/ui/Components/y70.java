@@ -1,110 +1,91 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.ComposeShader;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-public final class y70 extends Drawable {
-    public final Bitmap f40643a;
-    public final Paint f40644b = new Paint(2);
-    public long f40645c;
-    public LinearGradient d;
-    public final Matrix f40646e;
-    public float f40647f;
-    public float f40648g;
-    public final k9 h;
-    public int f40649i;
-    public int f40650j;
+import android.view.View;
+public final class y70 extends View {
+    public final Drawable f40541a;
+    public final Paint f40542b;
+    public final Paint f40543c;
+    public final w5 d;
+    public boolean f40544e;
 
-    public y70(k9 k9Var, String str, int i3, int i10) {
-        Bitmap bitmap;
-        try {
-            Path b10 = org.telegram.messenger.kz.b(str);
-            bitmap = Bitmap.createBitmap(i3, i10, Bitmap.Config.ARGB_8888);
-            Canvas canvas = new Canvas(bitmap);
-            float f10 = 512;
-            canvas.scale(i3 / f10, i10 / f10);
-            Paint paint = new Paint();
-            paint.setColor(-1);
-            canvas.drawPath(b10, paint);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-            bitmap = null;
+    public y70(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f40542b = paint;
+        Paint paint2 = new Paint(1);
+        this.f40543c = paint2;
+        this.d = new w5(this, 0L, 320L, xq.h);
+        c8.ka.a(this);
+        this.f40541a = context.getResources().getDrawable(2131231747).mutate();
+        Paint.Style style = Paint.Style.STROKE;
+        paint2.setStyle(style);
+        paint2.setColor(-65536);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint.setStyle(style);
+        paint.setColor(-1);
+    }
+
+    public final void a(boolean z9, boolean z10) {
+        if (this.f40544e == z9) {
+            return;
         }
-        this.f40643a = bitmap;
-        this.h = k9Var;
-        this.f40646e = new Matrix();
+        this.f40544e = z9;
+        if (!z10) {
+            this.d.a(z9);
+        }
+        invalidate();
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Bitmap bitmap = this.f40643a;
-        if (bitmap == null) {
-            return;
-        }
-        int i3 = org.telegram.ui.ActionBar.k6.f27954h5;
-        int i10 = org.telegram.ui.ActionBar.k6.f27971i5;
-        int x02 = org.telegram.ui.ActionBar.k6.x0(null, i3, false);
-        int x03 = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
-        int i11 = this.f40649i;
-        Paint paint = this.f40644b;
-        Matrix matrix = this.f40646e;
-        if (i11 != x02 || this.f40650j != x03) {
-            this.f40649i = x02;
-            this.f40650j = x03;
-            int w02 = org.telegram.messenger.g0.w0(x03, x02);
-            paint.setColor(x03);
-            float L = org.telegram.messenger.g0.L(500.0f);
-            this.f40648g = L;
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, L, 0.0f, new int[]{x03, w02, x03}, new float[]{0.0f, 0.18f, 0.36f}, Shader.TileMode.REPEAT);
-            this.d = linearGradient;
-            linearGradient.setLocalMatrix(matrix);
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            paint.setShader(new ComposeShader(this.d, new BitmapShader(bitmap, tileMode, tileMode), PorterDuff.Mode.MULTIPLY));
-        }
-        Rect bounds = getBounds();
-        canvas.drawRect(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long abs = Math.abs(this.f40645c - elapsedRealtime);
-        if (abs > 17) {
-            abs = 16;
-        }
-        this.f40645c = elapsedRealtime;
-        this.f40647f = a1.g.e((float) abs, this.f40648g, 1800.0f, this.f40647f);
-        while (true) {
-            float f10 = this.f40647f;
-            float f11 = this.f40648g * 2.0f;
-            if (f10 >= f11) {
-                this.f40647f = f10 - f11;
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float d = this.d.d(!this.f40544e);
+        int width = getWidth();
+        Drawable drawable = this.f40541a;
+        drawable.setBounds((width - drawable.getIntrinsicWidth()) / 2, (getHeight() - drawable.getIntrinsicHeight()) / 2, (drawable.getIntrinsicWidth() + getWidth()) / 2, (drawable.getIntrinsicHeight() + getHeight()) / 2);
+        Rect bounds = drawable.getBounds();
+        float width2 = (bounds.width() * 0.325f) + bounds.left;
+        float height = (bounds.height() * 0.152f) + bounds.top;
+        float height2 = bounds.bottom - (bounds.height() * 0.152f);
+        float width3 = bounds.right - (bounds.width() * 0.101f);
+        int i7 = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
+        if (i7 > 0) {
+            Paint paint = this.f40543c;
+            paint.setStrokeWidth(org.telegram.messenger.g0.L(4.0f));
+            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
+            drawable.draw(canvas);
+            if (this.f40544e) {
+                canvas.drawLine(width3 - org.telegram.messenger.g0.L(4.0f), height2 - org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.T1(width3 - org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f) + width2, d), org.telegram.messenger.g0.T1(height2 - org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f) + height, d), paint);
+                canvas2 = canvas;
             } else {
-                matrix.setTranslate(f10, 0.0f);
-                this.d.setLocalMatrix(matrix);
-                this.h.invalidate();
-                return;
+                canvas2 = canvas;
+                canvas2.drawLine(width2 + org.telegram.messenger.g0.L(4.0f), height + org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.T1(org.telegram.messenger.g0.L(4.0f) + width2, width3 - org.telegram.messenger.g0.L(4.0f), d), org.telegram.messenger.g0.T1(org.telegram.messenger.g0.L(4.0f) + height, height2 - org.telegram.messenger.g0.L(4.0f), d), paint);
+            }
+            canvas2.restore();
+        } else {
+            canvas2 = canvas;
+            drawable.draw(canvas2);
+        }
+        if (i7 > 0) {
+            Paint paint2 = this.f40542b;
+            paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+            if (this.f40544e) {
+                canvas2.drawLine(width3, height2, org.telegram.messenger.g0.T1(width3, width2, d), org.telegram.messenger.g0.T1(height2, height, d), paint2);
+            } else {
+                canvas.drawLine(width2, height, org.telegram.messenger.g0.T1(width2, width3, d), org.telegram.messenger.g0.T1(height, height2, d), paint2);
             }
         }
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i3) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(45.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(45.0f), 1073741824));
     }
 }

@@ -1,24 +1,21 @@
 package org.telegram.messenger;
-public final class ft implements fd.c {
-    public final zs f22553a;
 
-    public ft(zs zsVar) {
-        this.f22553a = zsVar;
-    }
+import java.util.HashSet;
+public abstract class ft {
+    public static final HashSet f22442a;
 
-    @Override
-    public final fd.h getContext() {
-        return fd.i.f11567a;
-    }
-
-    @Override
-    public final void resumeWith(Object obj) {
-        boolean z10 = obj instanceof dd.f;
-        zs zsVar = this.f22553a;
-        if (z10) {
-            zsVar.a(null, ((dd.f) obj).f8792a);
-        } else {
-            zsVar.a(obj, null);
-        }
+    static {
+        HashSet hashSet = new HashSet();
+        f22442a = hashSet;
+        hashSet.add("com.google.android.projection.gearhead");
+        hashSet.add("com.google.android.mediasimulator");
+        hashSet.add("com.android.car.media");
+        hashSet.add("com.android.car.carlauncher");
+        hashSet.add("com.google.android.car.kitchensink");
+        hashSet.add("com.google.android.wearable.app");
+        hashSet.add("com.google.android.wearable.media.sessions");
+        hashSet.add("com.google.android.googlequicksearchbox");
+        hashSet.add("com.google.android.apps.gsa.staticplugins");
+        hashSet.add("com.google.android.bluetooth");
     }
 }

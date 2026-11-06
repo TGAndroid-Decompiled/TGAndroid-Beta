@@ -1,7 +1,7 @@
 package org.telegram.ui.Components;
-public final class t3 extends cb0 {
+public final class t3 extends hb0 {
     @Override
-    public final CharSequence d(int i3) {
-        return org.telegram.messenger.bd.G(i3, "Minutes", new Object[0]);
+    public final CharSequence d(int i7) {
+        return org.telegram.messenger.hd.G(i7, "Minutes", new Object[0]);
     }
 }

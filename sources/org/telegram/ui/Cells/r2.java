@@ -4,14 +4,14 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.style.ReplacementSpan;
 public final class r2 extends ReplacementSpan {
-    public final int f30260a;
+    public final int f30178a;
 
-    public r2(int i3) {
-        this.f30260a = i3;
+    public r2(int i7) {
+        this.f30178a = i7;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i3, int i10, Paint.FontMetricsInt fontMetricsInt) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
         if (fontMetricsInt == null) {
             fontMetricsInt = paint.getFontMetricsInt();
         }
@@ -22,10 +22,10 @@ public final class r2 extends ReplacementSpan {
             fontMetricsInt.ascent = -1;
             fontMetricsInt.top = -1;
         }
-        return this.f30260a;
+        return this.f30178a;
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i3, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
     }
 }

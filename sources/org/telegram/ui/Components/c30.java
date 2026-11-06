@@ -1,37 +1,22 @@
 package org.telegram.ui.Components;
+public enum c30 {
+    f32394c(-15431455, "BLUE"),
+    EF4(-15497247, "BLUE_ALT"),
+    d(-13276952, "BLUE_DEEP"),
+    f32395e(-15431455, "BLUE_LIGHT"),
+    f32396f(-1996271, "ORANGE"),
+    h(-1940716, "ORANGE_DEEP"),
+    f32397n(-14175180, "GREEN"),
+    f32398r(-2148011, "RED"),
+    f32399s(-14836538, "CYAN"),
+    f32400w(-6335009, "PURPLE"),
+    f32401x(-9534569, "GRAY");
+    
+    public final int f32403a;
+    public final int f32404b;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class c30 extends org.telegram.ui.eq0 {
-    public final ArrayList f32519a;
-    public final f30 f32520b;
-
-    public c30(f30 f30Var, ArrayList arrayList) {
-        this.f32520b = f30Var;
-        this.f32519a = arrayList;
-    }
-
-    @Override
-    public final org.telegram.ui.mq0 E(org.telegram.messenger.zi ziVar, TLRPC.FileLocation fileLocation, int i3, boolean z10, boolean z11) {
-        e30 e30Var = this.f32520b.f33682b;
-        if (e30Var == null) {
-            return null;
-        }
-        return e30Var.getCloseIntoObject();
-    }
-
-    @Override
-    public final boolean T() {
-        return false;
-    }
-
-    @Override
-    public final void o(int i3, org.telegram.messenger.b20 b20Var, boolean z10, int i10, int i11, boolean z11) {
-        this.f32520b.s((org.telegram.messenger.ye) this.f32519a.get(0));
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
+    c30(int i7, String str) {
+        this.f32403a = r2;
+        this.f32404b = i7;
     }
 }

@@ -1,96 +1,23 @@
 package g1;
 
-import android.content.Intent;
-import android.credentials.CreateCredentialException;
-import android.credentials.CreateCredentialResponse;
-import android.credentials.Credential;
-import android.credentials.GetCredentialException;
-import android.credentials.GetCredentialResponse;
-import android.graphics.Rect;
-import android.os.Bundle;
-import android.view.VelocityTracker;
-import android.view.ViewConfiguration;
-import android.view.accessibility.AccessibilityNodeInfo;
+import android.content.Context;
+import android.os.CancellationSignal;
+import android.os.Handler;
+import android.os.Looper;
+import b1.d;
+import java.util.concurrent.Executor;
 import kotlin.jvm.internal.j;
-import v0.c;
-import v0.n;
-import w0.d;
-import w0.i;
-import x7.g5;
-import x7.h5;
-import x7.q6;
-public abstract class a {
-    public static d a(Intent intent) {
-        CreateCredentialException serializableExtra = intent.getSerializableExtra("android.service.credentials.extra.CREATE_CREDENTIAL_EXCEPTION", CreateCredentialException.class);
-        if (serializableExtra == null) {
-            return null;
-        }
-        String type = serializableExtra.getType();
-        j.d(type, "getType(...)");
-        return q6.a(serializableExtra.getMessage(), type);
-    }
+import v0.g;
+public final class a extends d {
+    public final Context f13410e;
+    public g f13411f;
+    public Executor f13412g;
+    public CancellationSignal h;
+    public final c1.d f13413i;
 
-    public static c b(String str, Intent intent) {
-        CreateCredentialResponse createCredentialResponse = (CreateCredentialResponse) intent.getParcelableExtra("android.service.credentials.extra.CREATE_CREDENTIAL_RESPONSE", CreateCredentialResponse.class);
-        if (createCredentialResponse == null) {
-            return null;
-        }
-        Bundle data = createCredentialResponse.getData();
-        j.d(data, "getData(...)");
-        return g5.a(str, data);
-    }
-
-    public static i c(Intent intent) {
-        j.e(intent, "intent");
-        GetCredentialException serializableExtra = intent.getSerializableExtra("android.service.credentials.extra.GET_CREDENTIAL_EXCEPTION", GetCredentialException.class);
-        if (serializableExtra == null) {
-            return null;
-        }
-        String type = serializableExtra.getType();
-        j.d(type, "getType(...)");
-        return q6.b(serializableExtra.getMessage(), type);
-    }
-
-    public static n d(Intent intent) {
-        j.e(intent, "intent");
-        GetCredentialResponse getCredentialResponse = (GetCredentialResponse) intent.getParcelableExtra("android.service.credentials.extra.GET_CREDENTIAL_RESPONSE", GetCredentialResponse.class);
-        if (getCredentialResponse == null) {
-            return null;
-        }
-        Credential credential = getCredentialResponse.getCredential();
-        j.d(credential, "getCredential(...)");
-        String type = credential.getType();
-        j.d(type, "getType(...)");
-        Bundle data = credential.getData();
-        j.d(data, "getData(...)");
-        return new n(h5.a(type, data));
-    }
-
-    public static AccessibilityNodeInfo.AccessibilityAction e() {
-        return AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_IN_DIRECTION;
-    }
-
-    public static float f(VelocityTracker velocityTracker, int i3) {
-        return velocityTracker.getAxisVelocity(i3);
-    }
-
-    public static void g(AccessibilityNodeInfo accessibilityNodeInfo, Rect rect) {
-        accessibilityNodeInfo.getBoundsInWindow(rect);
-    }
-
-    public static CharSequence h(AccessibilityNodeInfo accessibilityNodeInfo) {
-        return accessibilityNodeInfo.getContainerTitle();
-    }
-
-    public static int i(ViewConfiguration viewConfiguration, int i3, int i10, int i11) {
-        return viewConfiguration.getScaledMaximumFlingVelocity(i3, i10, i11);
-    }
-
-    public static int j(ViewConfiguration viewConfiguration, int i3, int i10, int i11) {
-        return viewConfiguration.getScaledMinimumFlingVelocity(i3, i10, i11);
-    }
-
-    public static boolean k(AccessibilityNodeInfo accessibilityNodeInfo) {
-        return accessibilityNodeInfo.isAccessibilityDataSensitive();
+    public a(Context context) {
+        j.e(context, "context");
+        this.f13410e = context;
+        this.f13413i = new c1.d(this, new Handler(Looper.getMainLooper()), 4);
     }
 }

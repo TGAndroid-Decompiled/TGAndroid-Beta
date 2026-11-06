@@ -1,30 +1,30 @@
 package v9;
 
-import android.os.Bundle;
-import android.util.Log;
-import androidx.emoji2.text.f;
-import java.util.ArrayList;
-import z9.j;
-public final class a implements x9.a {
-    public final f f56484a;
+import android.os.StrictMode;
+import java.util.Locale;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicLong;
+import ti.p;
+public final class a implements ThreadFactory {
+    public static final ThreadFactory f57137e = Executors.defaultThreadFactory();
+    public final AtomicLong f57138a = new AtomicLong();
+    public final String f57139b;
+    public final int f57140c;
+    public final StrictMode.ThreadPolicy d;
 
-    public a(f fVar) {
-        this.f56484a = fVar;
-    }
-
-    public void a(j jVar) {
-        f fVar = this.f56484a;
-        synchronized (fVar) {
-            ((ArrayList) fVar.f1723b).add(jVar);
-            ((nb.a) fVar.f1724c).getClass();
-            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                Log.d("FirebaseCrashlytics", "Could not register handler for breadcrumbs events.", null);
-            }
-        }
+    public a(String str, int i7, StrictMode.ThreadPolicy threadPolicy) {
+        this.f57139b = str;
+        this.f57140c = i7;
+        this.d = threadPolicy;
     }
 
     @Override
-    public void t(Bundle bundle) {
-        ((nb.a) this.f56484a.f1722a).t(bundle);
+    public final Thread newThread(Runnable runnable) {
+        Thread newThread = f57137e.newThread(new p(14, this, runnable));
+        Locale locale = Locale.ROOT;
+        long andIncrement = this.f57138a.getAndIncrement();
+        newThread.setName(this.f57139b + " Thread #" + andIncrement);
+        return newThread;
     }
 }

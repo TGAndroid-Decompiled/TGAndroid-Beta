@@ -1,136 +1,96 @@
 package h1;
 
-import android.database.Cursor;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Filter;
-import android.widget.Filterable;
-import android.widget.ImageView;
-import b5.i;
-import com.google.android.gms.internal.clearcut.c;
-import k2.p1;
-import m.x2;
-import m.y2;
-public abstract class a extends BaseAdapter implements Filterable {
-    public boolean f14094a;
-    public boolean f14095b;
-    public Cursor f14096c;
-    public int d;
-    public c f14097e;
-    public i f14098f;
-    public b h;
-
-    public abstract void a(View view, Cursor cursor);
-
-    public void b(Cursor cursor) {
-        Cursor cursor2 = this.f14096c;
-        if (cursor == cursor2) {
-            cursor2 = null;
-        } else {
-            if (cursor2 != null) {
-                c cVar = this.f14097e;
-                if (cVar != null) {
-                    cursor2.unregisterContentObserver(cVar);
-                }
-                i iVar = this.f14098f;
-                if (iVar != null) {
-                    cursor2.unregisterDataSetObserver(iVar);
-                }
-            }
-            this.f14096c = cursor;
-            if (cursor != null) {
-                c cVar2 = this.f14097e;
-                if (cVar2 != null) {
-                    cursor.registerContentObserver(cVar2);
-                }
-                i iVar2 = this.f14098f;
-                if (iVar2 != null) {
-                    cursor.registerDataSetObserver(iVar2);
-                }
-                this.d = cursor.getColumnIndexOrThrow("_id");
-                this.f14094a = true;
-                notifyDataSetChanged();
-            } else {
-                this.d = -1;
-                this.f14094a = false;
-                notifyDataSetInvalidated();
-            }
+import android.content.Intent;
+import android.credentials.CreateCredentialException;
+import android.credentials.CreateCredentialResponse;
+import android.credentials.Credential;
+import android.credentials.GetCredentialException;
+import android.credentials.GetCredentialResponse;
+import android.graphics.Rect;
+import android.os.Bundle;
+import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
+import android.view.accessibility.AccessibilityNodeInfo;
+import c8.fe;
+import c8.uc;
+import c8.vc;
+import kotlin.jvm.internal.j;
+import v0.c;
+import v0.o;
+import w0.d;
+import w0.i;
+public abstract class a {
+    public static d a(Intent intent) {
+        CreateCredentialException serializableExtra = intent.getSerializableExtra("android.service.credentials.extra.CREATE_CREDENTIAL_EXCEPTION", CreateCredentialException.class);
+        if (serializableExtra == null) {
+            return null;
         }
-        if (cursor2 != null) {
-            cursor2.close();
-        }
+        String type = serializableExtra.getType();
+        j.d(type, "getType(...)");
+        return fe.a(serializableExtra.getMessage(), type);
     }
 
-    public abstract String c(Cursor cursor);
-
-    @Override
-    public final int getCount() {
-        Cursor cursor;
-        if (this.f14094a && (cursor = this.f14096c) != null) {
-            return cursor.getCount();
+    public static c b(String str, Intent intent) {
+        CreateCredentialResponse createCredentialResponse = (CreateCredentialResponse) intent.getParcelableExtra("android.service.credentials.extra.CREATE_CREDENTIAL_RESPONSE", CreateCredentialResponse.class);
+        if (createCredentialResponse == null) {
+            return null;
         }
-        return 0;
+        Bundle data = createCredentialResponse.getData();
+        j.d(data, "getData(...)");
+        return uc.a(str, data);
     }
 
-    @Override
-    public View getDropDownView(int i3, View view, ViewGroup viewGroup) {
-        if (this.f14094a) {
-            this.f14096c.moveToPosition(i3);
-            if (view == null) {
-                y2 y2Var = (y2) this;
-                view = y2Var.f18789s.inflate(y2Var.f18788r, viewGroup, false);
-            }
-            a(view, this.f14096c);
-            return view;
+    public static i c(Intent intent) {
+        j.e(intent, "intent");
+        GetCredentialException serializableExtra = intent.getSerializableExtra("android.service.credentials.extra.GET_CREDENTIAL_EXCEPTION", GetCredentialException.class);
+        if (serializableExtra == null) {
+            return null;
         }
-        return null;
+        String type = serializableExtra.getType();
+        j.d(type, "getType(...)");
+        return fe.b(serializableExtra.getMessage(), type);
     }
 
-    @Override
-    public final Filter getFilter() {
-        if (this.h == null) {
-            ?? filter = new Filter();
-            filter.f14099a = this;
-            this.h = filter;
+    public static o d(Intent intent) {
+        j.e(intent, "intent");
+        GetCredentialResponse getCredentialResponse = (GetCredentialResponse) intent.getParcelableExtra("android.service.credentials.extra.GET_CREDENTIAL_RESPONSE", GetCredentialResponse.class);
+        if (getCredentialResponse == null) {
+            return null;
         }
-        return this.h;
+        Credential credential = getCredentialResponse.getCredential();
+        j.d(credential, "getCredential(...)");
+        String type = credential.getType();
+        j.d(type, "getType(...)");
+        Bundle data = credential.getData();
+        j.d(data, "getData(...)");
+        return new o(vc.a(type, data));
     }
 
-    @Override
-    public final Object getItem(int i3) {
-        Cursor cursor;
-        if (this.f14094a && (cursor = this.f14096c) != null) {
-            cursor.moveToPosition(i3);
-            return this.f14096c;
-        }
-        return null;
+    public static AccessibilityNodeInfo.AccessibilityAction e() {
+        return AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_IN_DIRECTION;
     }
 
-    @Override
-    public final long getItemId(int i3) {
-        Cursor cursor;
-        if (!this.f14094a || (cursor = this.f14096c) == null || !cursor.moveToPosition(i3)) {
-            return 0L;
-        }
-        return this.f14096c.getLong(this.d);
+    public static float f(VelocityTracker velocityTracker, int i7) {
+        return velocityTracker.getAxisVelocity(i7);
     }
 
-    @Override
-    public View getView(int i3, View view, ViewGroup viewGroup) {
-        if (this.f14094a) {
-            if (this.f14096c.moveToPosition(i3)) {
-                if (view == null) {
-                    y2 y2Var = (y2) this;
-                    view = y2Var.f18789s.inflate(y2Var.f18787n, viewGroup, false);
-                    view.setTag(new x2(view));
-                    ((ImageView) view.findViewById(2131296420)).setImageResource(y2Var.F);
-                }
-                a(view, this.f14096c);
-                return view;
-            }
-            throw new IllegalStateException(p1.i(i3, "couldn't move cursor to position "));
-        }
-        throw new IllegalStateException("this should only be called when the cursor is valid");
+    public static void g(AccessibilityNodeInfo accessibilityNodeInfo, Rect rect) {
+        accessibilityNodeInfo.getBoundsInWindow(rect);
+    }
+
+    public static CharSequence h(AccessibilityNodeInfo accessibilityNodeInfo) {
+        return accessibilityNodeInfo.getContainerTitle();
+    }
+
+    public static int i(ViewConfiguration viewConfiguration, int i7, int i10, int i11) {
+        return viewConfiguration.getScaledMaximumFlingVelocity(i7, i10, i11);
+    }
+
+    public static int j(ViewConfiguration viewConfiguration, int i7, int i10, int i11) {
+        return viewConfiguration.getScaledMinimumFlingVelocity(i7, i10, i11);
+    }
+
+    public static boolean k(AccessibilityNodeInfo accessibilityNodeInfo) {
+        return accessibilityNodeInfo.isAccessibilityDataSensitive();
     }
 }

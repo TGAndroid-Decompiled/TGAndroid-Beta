@@ -1,29 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-public final class k10 extends AnimatorListenerAdapter {
-    public final View f35239a;
-    public final View f35240b;
-    public final WindowManager f35241c;
-    public final View d;
-    public final View f35242e;
-    public final l10 f35243f;
+import android.animation.ValueAnimator;
+public final class k10 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f35142a;
+    public final p10 f35143b;
 
-    public k10(l10 l10Var, j10 j10Var, ai.o2 o2Var, WindowManager windowManager, FrameLayout frameLayout, org.telegram.ui.x7 x7Var) {
-        this.f35243f = l10Var;
-        this.f35239a = j10Var;
-        this.f35240b = o2Var;
-        this.f35241c = windowManager;
-        this.d = frameLayout;
-        this.f35242e = x7Var;
+    public k10(p10 p10Var, int i7) {
+        this.f35142a = i7;
+        this.f35143b = p10Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        org.telegram.messenger.hs.f(this.f35243f.h).d(new org.telegram.ui.lq(this.f35239a, this.f35240b, this.f35241c, this.d, this.f35242e, 1));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f35142a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p10 p10Var = this.f35143b;
+                p10Var.f36858s.x = (int) floatValue;
+                p10Var.i();
+                n10 n10Var = p10Var.f36847a;
+                if (n10Var.getParent() != null) {
+                    p10Var.f36856n.updateViewLayout(n10Var, p10Var.f36858s);
+                    return;
+                }
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p10 p10Var2 = this.f35143b;
+                p10Var2.f36858s.y = (int) floatValue2;
+                n10 n10Var2 = p10Var2.f36847a;
+                if (n10Var2.getParent() != null) {
+                    p10Var2.f36856n.updateViewLayout(n10Var2, p10Var2.f36858s);
+                    return;
+                }
+                return;
+        }
     }
 }

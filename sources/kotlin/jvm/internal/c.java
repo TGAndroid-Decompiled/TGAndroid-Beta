@@ -4,21 +4,21 @@ import java.io.Serializable;
 import java.lang.annotation.Annotation;
 import java.util.List;
 import java.util.Map;
-public abstract class c implements sd.b, Serializable {
-    public static final Object NO_RECEIVER = b.f17350a;
+public abstract class c implements vd.b, Serializable {
+    public static final Object NO_RECEIVER = b.f17601a;
     private final boolean isTopLevel;
     private final String name;
     private final Class owner;
     protected final Object receiver;
-    private transient sd.b reflected;
+    private transient vd.b reflected;
     private final String signature;
 
-    public c(Object obj, Class cls, String str, String str2, boolean z10) {
+    public c(Object obj, Class cls, String str, String str2, boolean z9) {
         this.receiver = obj;
         this.owner = cls;
         this.name = str;
         this.signature = str2;
-        this.isTopLevel = z10;
+        this.isTopLevel = z9;
     }
 
     @Override
@@ -31,17 +31,17 @@ public abstract class c implements sd.b, Serializable {
         return getReflected().callBy(map);
     }
 
-    public sd.b compute() {
-        sd.b bVar = this.reflected;
+    public vd.b compute() {
+        vd.b bVar = this.reflected;
         if (bVar == null) {
-            sd.b computeReflected = computeReflected();
+            vd.b computeReflected = computeReflected();
             this.reflected = computeReflected;
             return computeReflected;
         }
         return bVar;
     }
 
-    public abstract sd.b computeReflected();
+    public abstract vd.b computeReflected();
 
     @Override
     public List<Annotation> getAnnotations() {
@@ -56,13 +56,13 @@ public abstract class c implements sd.b, Serializable {
         return this.name;
     }
 
-    public sd.d getOwner() {
+    public vd.d getOwner() {
         Class cls = this.owner;
         if (cls == null) {
             return null;
         }
         if (this.isTopLevel) {
-            s.f17362a.getClass();
+            s.f17613a.getClass();
             return new l(cls);
         }
         return s.a(cls);
@@ -73,10 +73,10 @@ public abstract class c implements sd.b, Serializable {
         return getReflected().getParameters();
     }
 
-    public abstract sd.b getReflected();
+    public abstract vd.b getReflected();
 
     @Override
-    public sd.h getReturnType() {
+    public vd.h getReturnType() {
         getReflected().getReturnType();
         return null;
     }
@@ -91,7 +91,7 @@ public abstract class c implements sd.b, Serializable {
     }
 
     @Override
-    public sd.i getVisibility() {
+    public vd.i getVisibility() {
         return getReflected().getVisibility();
     }
 

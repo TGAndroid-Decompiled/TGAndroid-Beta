@@ -1,19 +1,40 @@
 package ud;
 
-import java.io.Serializable;
-import java.util.regex.Pattern;
-public final class c implements Serializable {
-    public final Pattern f55812a;
+import kotlin.jvm.internal.j;
+public final class c extends a {
+    static {
+        new a((char) 1, (char) 0);
+    }
 
-    public c(String str) {
-        Pattern compile = Pattern.compile(str);
-        kotlin.jvm.internal.j.d(compile, "compile(...)");
-        this.f55812a = compile;
+    public final boolean equals(Object obj) {
+        if (obj instanceof c) {
+            char c10 = this.f56395a;
+            char c11 = this.f56396b;
+            if (j.f(c10, c11) > 0) {
+                c cVar = (c) obj;
+                if (j.f(cVar.f56395a, cVar.f56396b) > 0) {
+                    return true;
+                }
+            }
+            c cVar2 = (c) obj;
+            if (c10 == cVar2.f56395a && c11 == cVar2.f56396b) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        char c10 = this.f56395a;
+        char c11 = this.f56396b;
+        if (j.f(c10, c11) > 0) {
+            return -1;
+        }
+        return (c10 * 31) + c11;
     }
 
     public final String toString() {
-        String pattern = this.f55812a.toString();
-        kotlin.jvm.internal.j.d(pattern, "toString(...)");
-        return pattern;
+        return this.f56395a + ".." + this.f56396b;
     }
 }

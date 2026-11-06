@@ -14,37 +14,37 @@ public abstract class AbstractSerializedData implements InputSerializedData, Out
     public abstract int length();
 
     @Override
-    public abstract boolean readBool(boolean z10);
+    public abstract boolean readBool(boolean z9);
 
     @Override
-    public abstract byte readByte(boolean z10);
+    public abstract byte readByte(boolean z9);
 
     @Override
-    public abstract byte[] readByteArray(boolean z10);
+    public abstract byte[] readByteArray(boolean z9);
 
     @Override
-    public abstract NativeByteBuffer readByteBuffer(boolean z10);
+    public abstract NativeByteBuffer readByteBuffer(boolean z9);
 
     @Override
-    public abstract void readBytes(byte[] bArr, boolean z10);
+    public abstract void readBytes(byte[] bArr, boolean z9);
 
     @Override
-    public abstract byte[] readData(int i3, boolean z10);
+    public abstract byte[] readData(int i7, boolean z9);
 
     @Override
-    public abstract double readDouble(boolean z10);
+    public abstract double readDouble(boolean z9);
 
     @Override
-    public abstract float readFloat(boolean z10);
+    public abstract float readFloat(boolean z9);
 
     @Override
-    public abstract int readInt32(boolean z10);
+    public abstract int readInt32(boolean z9);
 
     @Override
-    public abstract long readInt64(boolean z10);
+    public abstract long readInt64(boolean z9);
 
     @Override
-    public abstract String readString(boolean z10);
+    public abstract String readString(boolean z9);
 
     @Override
     public abstract int remaining();
@@ -54,22 +54,22 @@ public abstract class AbstractSerializedData implements InputSerializedData, Out
     }
 
     @Override
-    public abstract void skip(int i3);
+    public abstract void skip(int i7);
 
     @Override
-    public abstract void writeBool(boolean z10);
+    public abstract void writeBool(boolean z9);
 
     @Override
     public abstract void writeByte(byte b10);
 
     @Override
-    public abstract void writeByte(int i3);
+    public abstract void writeByte(int i7);
 
     @Override
     public abstract void writeByteArray(byte[] bArr);
 
     @Override
-    public abstract void writeByteArray(byte[] bArr, int i3, int i10);
+    public abstract void writeByteArray(byte[] bArr, int i7, int i10);
 
     @Override
     public abstract void writeByteBuffer(NativeByteBuffer nativeByteBuffer);
@@ -78,7 +78,7 @@ public abstract class AbstractSerializedData implements InputSerializedData, Out
     public abstract void writeBytes(byte[] bArr);
 
     @Override
-    public abstract void writeBytes(byte[] bArr, int i3, int i10);
+    public abstract void writeBytes(byte[] bArr, int i7, int i10);
 
     @Override
     public abstract void writeDouble(double d);
@@ -87,10 +87,10 @@ public abstract class AbstractSerializedData implements InputSerializedData, Out
     public abstract void writeFloat(float f10);
 
     @Override
-    public abstract void writeInt32(int i3);
+    public abstract void writeInt32(int i7);
 
     @Override
-    public abstract void writeInt64(long j10);
+    public abstract void writeInt64(long j3);
 
     @Override
     public abstract void writeString(String str);

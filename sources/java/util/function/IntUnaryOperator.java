@@ -1,4 +1,4 @@
 package java.util.function;
 public interface IntUnaryOperator {
-    int applyAsInt(int i3);
+    int applyAsInt(int i7);
 }

@@ -65,9 +65,9 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     }
 
     @Override
-    public synchronized void changeCaptureFormat(int i3, int i10, int i11) {
+    public synchronized void changeCaptureFormat(int i7, int i10, int i11) {
         checkNotDisposed();
-        this.width = i3;
+        this.width = i7;
         this.height = i10;
         if (this.virtualDisplay == null) {
             return;
@@ -121,10 +121,10 @@ public class ScreenCapturerAndroid implements VideoCapturer, VideoSink {
     }
 
     @Override
-    public synchronized void startCapture(int i3, int i10, int i11) {
+    public synchronized void startCapture(int i7, int i10, int i11) {
         if (this.mediaProjection == null && this.mediaProjectionManager != null) {
             checkNotDisposed();
-            this.width = i3;
+            this.width = i7;
             this.height = i10;
             MediaProjection mediaProjection = this.mediaProjectionManager.getMediaProjection(-1, this.mediaProjectionPermissionResultData);
             this.mediaProjection = mediaProjection;

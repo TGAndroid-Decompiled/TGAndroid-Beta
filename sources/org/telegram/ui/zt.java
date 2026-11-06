@@ -1,55 +1,29 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.content.Context;
-public final class zt implements Runnable {
-    public final int f52748a;
-    public final Context f52749b;
+import android.widget.FrameLayout;
+public final class zt extends FrameLayout {
+    public org.telegram.ui.ActionBar.f2 f52646a;
+    public FrameLayout f52647b;
+    public org.telegram.ui.ActionBar.k f52648c;
+    public org.telegram.ui.Components.pj0 d;
+    public bi.q1 f52649e;
+    public int f52650f;
+    public final au h;
 
-    public zt(Context context, int i3) {
-        this.f52748a = i3;
-        this.f52749b = context;
+    public zt(au auVar, Context context) {
+        super(context);
+        this.h = auVar;
     }
 
     @Override
-    public final void run() {
-        int i3 = this.f52748a;
-        Context context = this.f52749b;
-        switch (i3) {
-            case 0:
-                org.telegram.ui.ActionBar.k6.K(context, false);
-                return;
-            case 1:
-                Activity W = org.telegram.messenger.g0.W(context);
-                if (W == null) {
-                    W = LaunchActivity.K1;
-                }
-                if (W != null && !W.isFinishing()) {
-                    W.moveTaskToBack(true);
-                    return;
-                }
-                return;
-            case 2:
-                sf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            case 3:
-                sf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            case 4:
-                sf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            case 5:
-                sf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            case 6:
-                sf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            case 7:
-                sf.c.t(context, "https://promote.telegram.org/guidelines");
-                return;
-            default:
-                sf.c.t(context, org.telegram.messenger.bd.M0(2131742953, null));
-                return;
+    public final void setTranslationX(float f10) {
+        zt ztVar;
+        super.setTranslationX(f10);
+        au auVar = this.h;
+        zt[] ztVarArr = auVar.f44078f;
+        if (auVar.f44079n && (ztVar = ztVarArr[0]) == this) {
+            auVar.f44077e.i(Math.abs(ztVar.getTranslationX()) / ztVarArr[0].getMeasuredWidth(), ztVarArr[1].f52650f);
         }
     }
 }

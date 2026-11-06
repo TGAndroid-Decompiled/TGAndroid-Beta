@@ -1,45 +1,20 @@
 package org.telegram.ui.Components;
+public final class yj0 {
+    public final float f40621a;
+    public final float f40622b;
+    public final float f40623c;
+    public final float d;
+    public final boolean f40624e;
 
-import android.view.View;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-public final class yj0 extends FrameLayout {
-    public View f40757a;
-
-    @Override
-    public final void onMeasure(int i3, int i10) {
-        View view = this.f40757a;
-        if (view == null) {
-            ViewParent parent = getParent();
-            while (true) {
-                if (parent instanceof View) {
-                    if (parent instanceof RecyclerView) {
-                        view = (RecyclerView) parent;
-                        break;
-                    }
-                    parent = parent.getParent();
-                } else {
-                    view = null;
-                    break;
-                }
-            }
-        }
-        int i11 = 0;
-        if (view != null) {
-            i11 = Math.max(0, (view.getMeasuredHeight() - view.getPaddingTop()) - view.getPaddingBottom());
-        }
-        if (i11 > 0) {
-            i10 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
-        }
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), i10);
+    public yj0(float f10, float f11, float f12, float f13, int i7) {
+        this(f10, f11, f12, f13);
+        this.f40624e = true;
     }
 
-    public void setViewportView(View view) {
-        if (this.f40757a == view) {
-            return;
-        }
-        this.f40757a = view;
-        requestLayout();
+    public yj0(float f10, float f11, float f12, float f13) {
+        this.f40621a = f10;
+        this.f40622b = f11;
+        this.f40623c = f12;
+        this.d = f13;
     }
 }

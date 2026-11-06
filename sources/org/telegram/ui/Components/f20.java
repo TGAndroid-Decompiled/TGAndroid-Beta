@@ -1,50 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class f20 extends AnimatorListenerAdapter {
-    public final int f33664a;
-    public final h20 f33665b;
+import java.util.ArrayList;
+public final class f20 implements jg.y1 {
+    public final g20 f33459a;
 
-    public f20(h20 h20Var, int i3) {
-        this.f33664a = i3;
-        this.f33665b = h20Var;
+    public f20(g20 g20Var) {
+        this.f33459a = g20Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f33664a) {
-            case 0:
-                h20 h20Var = this.f33665b;
-                if (h20Var.f34273c0 == animator) {
-                    h20Var.f34273c0 = null;
-                    h20Var.b();
-                    return;
-                }
-                return;
-            default:
-                h20 h20Var2 = this.f33665b;
-                if (h20Var2.f34271b0 == animator) {
-                    h20Var2.f34271b0 = null;
-                    return;
-                }
-                return;
+    public final a0.h X0() {
+        return null;
+    }
+
+    @Override
+    public final boolean k1(int i7) {
+        return true;
+    }
+
+    @Override
+    public final void q(int i7) {
+        g20 g20Var = this.f33459a;
+        h20 h20Var = g20Var.f33810x;
+        if (i7 >= 0 && i7 == g20Var.f33806n && !g20Var.h) {
+            boolean z9 = true;
+            int i10 = g20Var.f33805f - 1;
+            if (h20Var.f39837q1.getVisibility() != 0) {
+                z9 = false;
+            }
+            g20Var.f();
+            if (g20Var.f33805f > i10) {
+                h20Var.O0(i10);
+            }
+            if (!g20Var.d.e() && h20Var.f39833k1.R0()) {
+                h20Var.f39837q1.e(false, z9);
+            }
         }
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f33664a) {
-            case 1:
-                g20 g20Var = this.f33665b.f34269a0;
-                if (g20Var != null) {
-                    ((org.telegram.ui.ko0) g20Var).f46994a.f41420f0.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public final a0.h v0() {
+        return this.f33459a.f33810x.V1;
+    }
+
+    @Override
+    public final void m1(ArrayList arrayList) {
     }
 }

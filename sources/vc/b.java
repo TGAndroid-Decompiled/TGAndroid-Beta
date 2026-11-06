@@ -1,37 +1,181 @@
 package vc;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class b {
-    public static final Pattern d = Pattern.compile("[ |\t]*([^/^ ^;^,]+/[^ ^;^,]+)", 2);
-    public static final Pattern f56519e = Pattern.compile("[ |\t]*(charset)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
-    public static final Pattern f56520f = Pattern.compile("[ |\t]*(boundary)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
-    public final String f56521a;
-    public final String f56522b;
-    public final String f56523c;
+import c8.nd;
+import g9.l;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import javax.net.ssl.HttpsURLConnection;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.telegram.ui.Cells.f1;
+import tc.g;
+public abstract class b {
+    public static final c f57201a = new c();
 
-    public b(String str) {
-        String str2;
-        this.f56521a = str;
-        if (str != null) {
-            Matcher matcher = d.matcher(str);
-            this.f56522b = matcher.find() ? matcher.group(1) : "";
-            Matcher matcher2 = f56519e.matcher(str);
-            if (matcher2.find()) {
-                str2 = matcher2.group(2);
+    public static HttpURLConnection a(String str, l lVar) {
+        Throwable th2;
+        OutputStream outputStream;
+        HttpURLConnection httpURLConnection = (HttpURLConnection) new URL("https://api.stripe.com/v1/tokens").openConnection();
+        httpURLConnection.setConnectTimeout(30000);
+        httpURLConnection.setReadTimeout(80000);
+        httpURLConnection.setUseCaches(false);
+        HashMap hashMap = new HashMap();
+        hashMap.put("Accept-Charset", "UTF-8");
+        hashMap.put("Accept", "application/json");
+        hashMap.put("User-Agent", "Stripe/v1 JavaBindings/3.5.0");
+        String str2 = lVar.f13591a;
+        hashMap.put("Authorization", "Bearer " + str2);
+        String[] strArr = {"os.name", "os.version", "os.arch", "java.version", "java.vendor", "java.vm.version", "java.vm.vendor"};
+        HashMap hashMap2 = new HashMap();
+        for (int i7 = 0; i7 < 7; i7++) {
+            String str3 = strArr[i7];
+            hashMap2.put(str3, System.getProperty(str3));
+        }
+        hashMap2.put("bindings.version", "3.5.0");
+        hashMap2.put("lang", "Java");
+        hashMap2.put("publisher", "Stripe");
+        hashMap.put("X-Stripe-Client-User-Agent", new JSONObject(hashMap2).toString());
+        for (Map.Entry entry : hashMap.entrySet()) {
+            httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
+        }
+        if (httpURLConnection instanceof HttpsURLConnection) {
+            ((HttpsURLConnection) httpURLConnection).setSSLSocketFactory(f57201a);
+        }
+        httpURLConnection.setDoOutput(true);
+        httpURLConnection.setRequestMethod("POST");
+        httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=UTF-8");
+        try {
+            outputStream = httpURLConnection.getOutputStream();
+            try {
+                outputStream.write(str.getBytes("UTF-8"));
+                outputStream.close();
+                return httpURLConnection;
+            } catch (Throwable th3) {
+                th2 = th3;
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+                throw th2;
+            }
+        } catch (Throwable th4) {
+            th2 = th4;
+            outputStream = null;
+        }
+    }
+
+    public static String b(HashMap hashMap) {
+        String encode;
+        String encode2;
+        StringBuilder sb2 = new StringBuilder();
+        for (a aVar : d(null, hashMap)) {
+            if (sb2.length() > 0) {
+                sb2.append("&");
+            }
+            String str = aVar.f57199a;
+            String str2 = aVar.f57200b;
+            if (str == null) {
+                encode = null;
             } else {
-                str2 = null;
+                encode = URLEncoder.encode(str, "UTF-8");
             }
-            this.f56523c = str2;
+            if (str2 == null) {
+                encode2 = null;
+            } else {
+                encode2 = URLEncoder.encode(str2, "UTF-8");
+            }
+            sb2.append(encode + "=" + encode2);
+        }
+        return sb2.toString();
+    }
+
+    public static org.telegram.ui.hy0 c(java.util.HashMap r7, g9.l r8) {
+        throw new UnsupportedOperationException("Method not decompiled: vc.b.c(java.util.HashMap, g9.l):org.telegram.ui.hy0");
+    }
+
+    public static LinkedList d(String str, Map map) {
+        LinkedList linkedList = new LinkedList();
+        if (map != null) {
+            for (Map.Entry entry : map.entrySet()) {
+                String str2 = (String) entry.getKey();
+                Object value = entry.getValue();
+                if (str != null) {
+                    str2 = str + "[" + str2 + "]";
+                }
+                linkedList.addAll(e(value, str2));
+            }
+        }
+        return linkedList;
+    }
+
+    public static List e(Object obj, String str) {
+        if (obj instanceof Map) {
+            return d(str, (Map) obj);
+        }
+        if (obj instanceof List) {
+            List<Object> list = (List) obj;
+            LinkedList linkedList = new LinkedList();
+            String q10 = rf.b.q(str, "[]");
+            if (list.isEmpty()) {
+                linkedList.add(new a(str, ""));
+                return linkedList;
+            }
+            for (Object obj2 : list) {
+                linkedList.addAll(e(obj2, q10));
+            }
+            return linkedList;
+        } else if (!"".equals(obj)) {
+            if (obj == null) {
+                LinkedList linkedList2 = new LinkedList();
+                linkedList2.add(new a(str, ""));
+                return linkedList2;
+            }
+            LinkedList linkedList3 = new LinkedList();
+            linkedList3.add(new a(str, obj.toString()));
+            return linkedList3;
         } else {
-            this.f56522b = "";
-            this.f56523c = "UTF-8";
+            throw new g(f1.m("You cannot set '", str, "' to an empty string. We interpret empty strings as null in requests. You may set '", str, "' to null to delete the property."), null, null);
         }
-        if ("multipart/form-data".equalsIgnoreCase(this.f56522b)) {
-            Matcher matcher3 = f56520f.matcher(str);
-            if (matcher3.find()) {
-                matcher3.group(2);
+    }
+
+    public static a8.wa f(java.util.HashMap r7, g9.l r8) {
+        throw new UnsupportedOperationException("Method not decompiled: vc.b.f(java.util.HashMap, g9.l):a8.wa");
+    }
+
+    public static void g(int i7, String str, String str2) {
+        String str3;
+        try {
+            JSONObject jSONObject = new JSONObject(str).getJSONObject("error");
+            nd.a(jSONObject.optString("charge"));
+            nd.a(jSONObject.optString("code"));
+            nd.a(jSONObject.optString("decline_code"));
+            str3 = nd.a(jSONObject.optString("message"));
+            nd.a(jSONObject.optString("param"));
+            nd.a(jSONObject.optString("type"));
+        } catch (JSONException unused) {
+            str3 = "An improperly formatted error response was found.";
+        }
+        if (i7 != 429) {
+            switch (i7) {
+                case 400:
+                    throw new g(str3, str2, null);
+                case 401:
+                    throw new g(str3, str2);
+                case 402:
+                    throw new g(str3, str2, null);
+                case 403:
+                    throw new g(str3, str2);
+                case 404:
+                    throw new g(str3, str2, null);
+                default:
+                    throw new g(str3, str2, null);
             }
         }
+        throw new g(str3, str2, null);
     }
 }

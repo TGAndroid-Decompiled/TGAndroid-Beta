@@ -2,5 +2,5 @@ package kotlin.jvm.internal;
 
 import java.io.Serializable;
 public final class b implements Serializable {
-    public static final b f17350a = new Object();
+    public static final b f17601a = new Object();
 }

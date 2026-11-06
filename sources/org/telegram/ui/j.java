@@ -4,7 +4,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-public final class j extends sg.b {
+public final class j extends rg.b {
     public final k d;
 
     public j(k kVar) {
@@ -12,9 +12,9 @@ public final class j extends sg.b {
     }
 
     @Override
-    public final boolean D(u4.d1 d1Var) {
-        int i3 = d1Var.f55544f;
-        if (i3 != 2 && i3 != 0) {
+    public final boolean D(v4.d1 d1Var) {
+        int i7 = d1Var.f56931f;
+        if (i7 != 2 && i7 != 0) {
             return true;
         }
         return false;
@@ -26,11 +26,11 @@ public final class j extends sg.b {
     }
 
     @Override
-    public final int d(int i3) {
-        if (i3 >= 0) {
+    public final int d(int i7) {
+        if (i7 >= 0) {
             k kVar = this.d;
-            if (i3 < kVar.h.size()) {
-                return ((i) kVar.h.get(i3)).f54715a;
+            if (i7 < kVar.h.size()) {
+                return ((i) kVar.h.get(i7)).f54415a;
             }
             return 0;
         }
@@ -38,68 +38,68 @@ public final class j extends sg.b {
     }
 
     @Override
-    public final void t(u4.d1 d1Var, int i3) {
+    public final void t(v4.d1 d1Var, int i7) {
+        boolean z9;
         boolean z10;
-        boolean z11;
         k kVar = this.d;
         ArrayList arrayList = kVar.h;
-        if (i3 >= 0 && i3 < arrayList.size()) {
-            i iVar = (i) arrayList.get(i3);
-            int i10 = i3 + 1;
+        if (i7 >= 0 && i7 < arrayList.size()) {
+            i iVar = (i) arrayList.get(i7);
+            int i10 = i7 + 1;
             int i11 = 0;
-            if (i10 < arrayList.size() && ((i) arrayList.get(i10)).f54715a == iVar.f54715a) {
-                z10 = true;
+            if (i10 < arrayList.size() && ((i) arrayList.get(i10)).f54415a == iVar.f54415a) {
+                z9 = true;
             } else {
-                z10 = false;
+                z9 = false;
             }
-            int i12 = d1Var.f55544f;
-            View view = d1Var.f55540a;
+            int i12 = d1Var.f56931f;
+            View view = d1Var.f56927a;
             if (i12 == 0) {
-                ((org.telegram.ui.Cells.n4) view).setText(iVar.f46019c);
+                ((org.telegram.ui.Cells.n4) view).setText(iVar.f46526c);
             } else if (i12 == 2) {
-                org.telegram.ui.Cells.y8 y8Var = (org.telegram.ui.Cells.y8) view;
-                if (TextUtils.isEmpty(iVar.f46019c)) {
-                    y8Var.setFixedSize(12);
-                    y8Var.setText(null);
+                org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
+                if (TextUtils.isEmpty(iVar.f46526c)) {
+                    z8Var.setFixedSize(12);
+                    z8Var.setText(null);
                     return;
                 }
-                y8Var.setFixedSize(0);
-                y8Var.setText(iVar.f46019c);
+                z8Var.setFixedSize(0);
+                z8Var.setText(iVar.f46526c);
             } else if (i12 == 1) {
-                org.telegram.ui.Cells.q8 q8Var = (org.telegram.ui.Cells.q8) view;
+                org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
                 int i13 = iVar.d;
                 if (i13 == 1) {
-                    z11 = kVar.d.keep_archived_unmuted;
-                    q8Var.setCheckBoxIcon(0);
+                    z10 = kVar.d.keep_archived_unmuted;
+                    r8Var.setCheckBoxIcon(0);
                 } else if (i13 == 4) {
-                    z11 = kVar.d.keep_archived_folders;
-                    q8Var.setCheckBoxIcon(0);
+                    z10 = kVar.d.keep_archived_folders;
+                    r8Var.setCheckBoxIcon(0);
                 } else if (i13 == 7) {
-                    boolean z12 = kVar.d.archive_and_mute_new_noncontact_peers;
-                    if (!kVar.getUserConfig().q() && !kVar.getMessagesController().Z3) {
+                    boolean z11 = kVar.d.archive_and_mute_new_noncontact_peers;
+                    if (!kVar.getUserConfig().q() && !kVar.getMessagesController().Y3) {
                         i11 = 2131232513;
                     }
-                    q8Var.setCheckBoxIcon(i11);
-                    z11 = z12;
+                    r8Var.setCheckBoxIcon(i11);
+                    z10 = z11;
                 } else {
                     return;
                 }
-                q8Var.f(iVar.f46019c, z11, z10);
+                r8Var.f(iVar.f46526c, z10, z9);
             }
         }
     }
 
     @Override
-    public final u4.d1 x(ViewGroup viewGroup, int i3) {
-        View y8Var;
+    public final v4.d1 x(ViewGroup viewGroup, int i7) {
+        View z8Var;
         k kVar = this.d;
-        if (i3 == 0) {
-            y8Var = new org.telegram.ui.Cells.n4(kVar.getParentActivity());
-        } else if (i3 == 1) {
-            y8Var = new org.telegram.ui.Cells.q8(kVar.getParentActivity());
+        if (i7 == 0) {
+            z8Var = new org.telegram.ui.Cells.n4(kVar.getParentActivity());
+        } else if (i7 == 1) {
+            z8Var = new org.telegram.ui.Cells.r8(kVar.getParentActivity());
         } else {
-            y8Var = new org.telegram.ui.Cells.y8(kVar.getParentActivity());
+            z8Var = new org.telegram.ui.Cells.z8(kVar.getParentActivity());
         }
-        return new u4.d1(y8Var);
+        return new v4.d1(z8Var);
     }
 }

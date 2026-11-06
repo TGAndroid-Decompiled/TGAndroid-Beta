@@ -1,103 +1,315 @@
 package i6;
 
-import android.os.Parcel;
-public abstract class g extends com.google.android.gms.internal.cast.o implements h {
-    public g() {
-        super("com.google.android.gms.cast.internal.ICastDeviceControllerListener", 0);
+import android.content.Intent;
+import android.support.v4.media.session.a0;
+import android.support.v4.media.session.s;
+import android.view.KeyEvent;
+import f6.p;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MusicPlayerService;
+import org.telegram.messenger.ij;
+import org.telegram.messenger.iz;
+import org.telegram.ui.Components.b8;
+import q6.m;
+public final class g extends s {
+    public final int f15374g;
+    public final Object h;
+
+    public g(Object obj, int i7) {
+        super(0);
+        this.f15374g = i7;
+        this.h = obj;
     }
 
     @Override
-    public final boolean K0(int i3, Parcel parcel, Parcel parcel2) {
-        boolean z10 = false;
-        switch (i3) {
-            case 1:
-                int readInt = parcel.readInt();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                N(readInt);
-                return true;
-            case 2:
-                e6.d dVar = (e6.d) com.google.android.gms.internal.cast.u.a(parcel, e6.d.CREATOR);
-                String readString = parcel.readString();
-                String readString2 = parcel.readString();
-                if (parcel.readInt() != 0) {
-                    z10 = true;
+    public final void G(long j3) {
+        int i7 = this.f15374g;
+        Object obj = this.h;
+        switch (i7) {
+            case 0:
+                h.v.b("onSeekTo %d", Long.valueOf(j3));
+                h6.h hVar = ((h) obj).f15386n;
+                if (hVar != null) {
+                    hVar.q(new p(j3));
+                    return;
                 }
-                com.google.android.gms.internal.cast.u.b(parcel);
-                b0(dVar, readString, readString2, z10);
-                return true;
-            case 3:
-                int readInt2 = parcel.readInt();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                U(readInt2);
-                return true;
-            case 4:
-                parcel.readString();
-                parcel.readDouble();
-                int i10 = com.google.android.gms.internal.cast.u.f7057a;
-                parcel.readInt();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                zzn();
-                return true;
-            case 5:
-                String readString3 = parcel.readString();
-                String readString4 = parcel.readString();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                Q(readString3, readString4);
-                return true;
-            case 6:
-                String readString5 = parcel.readString();
-                byte[] createByteArray = parcel.createByteArray();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                C0(readString5, createByteArray);
-                return true;
-            case 7:
-                int readInt3 = parcel.readInt();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                d(readInt3);
-                return true;
-            case 8:
-                int readInt4 = parcel.readInt();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                zzg(readInt4);
-                return true;
-            case 9:
-                int readInt5 = parcel.readInt();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                zzd(readInt5);
-                return true;
-            case 10:
-                parcel.readString();
-                long readLong = parcel.readLong();
-                int readInt6 = parcel.readInt();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                zzm(readInt6, readLong);
-                return true;
-            case 11:
-                parcel.readString();
-                long readLong2 = parcel.readLong();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                V(readLong2);
-                return true;
-            case 12:
-                com.google.android.gms.internal.cast.u.b(parcel);
-                T((c) com.google.android.gms.internal.cast.u.a(parcel, c.CREATOR));
-                return true;
-            case 13:
-                com.google.android.gms.internal.cast.u.b(parcel);
-                D0((d) com.google.android.gms.internal.cast.u.a(parcel, d.CREATOR));
-                return true;
-            case 14:
-                int readInt7 = parcel.readInt();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                g(readInt7);
-                return true;
-            case 15:
-                int readInt8 = parcel.readInt();
-                com.google.android.gms.internal.cast.u.b(parcel);
-                x0(readInt8);
+                return;
+            default:
+                ij ijVar = MediaController.B().f21292u0;
+                if (ijVar != null) {
+                    MediaController.B().i0(ijVar, ((float) (j3 / 1000)) / ((float) ijVar.L0()));
+                    boolean z9 = MusicPlayerService.f21307w;
+                    ((MusicPlayerService) obj).f(j3);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void M(int i7) {
+        switch (this.f15374g) {
+            case 1:
+                MusicPlayerService musicPlayerService = (MusicPlayerService) this.h;
+                int i10 = 2;
+                if (i7 != 1) {
+                    if (i7 != 2 && i7 != 3) {
+                        i10 = 0;
+                    } else {
+                        i10 = 1;
+                    }
+                }
+                iz.E(i10);
+                boolean z9 = MusicPlayerService.f21307w;
+                musicPlayerService.g();
+                ij ijVar = MediaController.B().f21292u0;
+                if (ijVar != null) {
+                    musicPlayerService.a(ijVar, false);
+                    return;
+                }
+                return;
+            default:
+                super.M(i7);
+                return;
+        }
+    }
+
+    @Override
+    public void P(int i7) {
+        switch (this.f15374g) {
+            case 1:
+                MusicPlayerService musicPlayerService = (MusicPlayerService) this.h;
+                if (i7 != 1 && i7 != 2) {
+                    if (iz.N0) {
+                        MediaController.B().l0(0);
+                    }
+                } else if (!iz.N0) {
+                    MediaController.B().l0(2);
+                }
+                boolean z9 = MusicPlayerService.f21307w;
+                a0 a0Var = musicPlayerService.f21310c;
+                if (a0Var != null) {
+                    a0Var.x(iz.N0 ? 1 : 0);
+                }
+                ij ijVar = MediaController.B().f21292u0;
+                if (ijVar != null) {
+                    musicPlayerService.a(ijVar, false);
+                    return;
+                }
+                return;
+            default:
+                super.P(i7);
+                return;
+        }
+    }
+
+    @Override
+    public final void S() {
+        switch (this.f15374g) {
+            case 0:
+                h.v.b("onSkipToNext", new Object[0]);
+                h6.h hVar = ((h) this.h).f15386n;
+                if (hVar != null) {
+                    m.d("Must be called from the main thread.");
+                    if (!hVar.w()) {
+                        h6.h.t();
+                        return;
+                    } else {
+                        h6.h.x(new h6.i(hVar, 2));
+                        return;
+                    }
+                }
+                return;
+            default:
+                ij ijVar = MediaController.B().f21292u0;
+                if (ijVar != null && ijVar.J3()) {
+                    MediaController.B().U(false);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void V() {
+        switch (this.f15374g) {
+            case 0:
+                h.v.b("onSkipToPrevious", new Object[0]);
+                h6.h hVar = ((h) this.h).f15386n;
+                if (hVar != null) {
+                    m.d("Must be called from the main thread.");
+                    if (!hVar.w()) {
+                        h6.h.t();
+                        return;
+                    } else {
+                        h6.h.x(new h6.i(hVar, 1));
+                        return;
+                    }
+                }
+                return;
+            default:
+                ij ijVar = MediaController.B().f21292u0;
+                if (ijVar != null && ijVar.J3()) {
+                    MediaController.B().V();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void f(String str) {
+        int i7 = this.f15374g;
+        Object obj = this.h;
+        switch (i7) {
+            case 0:
+                h hVar = (h) obj;
+                h.v.b("onCustomAction with action = %s", str);
+                switch (str.hashCode()) {
+                    case -1699820260:
+                        if (str.equals("com.google.android.gms.cast.framework.action.REWIND")) {
+                            long j3 = -hVar.f15378e.f14237c;
+                            h6.h hVar2 = hVar.f15386n;
+                            if (hVar2 != null) {
+                                long min = Math.min(hVar2.g(), Math.max(0L, hVar2.a() + j3));
+                                h6.h hVar3 = hVar.f15386n;
+                                if (hVar3 != null) {
+                                    hVar3.q(new p(min));
+                                    return;
+                                }
+                                return;
+                            }
+                            return;
+                        }
+                        break;
+                    case -668151673:
+                        if (str.equals("com.google.android.gms.cast.framework.action.STOP_CASTING")) {
+                            g6.g gVar = hVar.d;
+                            if (gVar != null) {
+                                gVar.b(true);
+                                return;
+                            }
+                            return;
+                        }
+                        break;
+                    case -124479363:
+                        if (str.equals("com.google.android.gms.cast.framework.action.DISCONNECT")) {
+                            g6.g gVar2 = hVar.d;
+                            if (gVar2 != null) {
+                                gVar2.b(false);
+                                return;
+                            }
+                            return;
+                        }
+                        break;
+                    case 1362116196:
+                        if (str.equals("com.google.android.gms.cast.framework.action.FORWARD")) {
+                            long j10 = hVar.f15378e.f14237c;
+                            h6.h hVar4 = hVar.f15386n;
+                            if (hVar4 != null) {
+                                long min2 = Math.min(hVar4.g(), Math.max(0L, hVar4.a() + j10));
+                                h6.h hVar5 = hVar.f15386n;
+                                if (hVar5 != null) {
+                                    hVar5.q(new p(min2));
+                                    return;
+                                }
+                                return;
+                            }
+                            return;
+                        }
+                        break;
+                }
+                Intent intent = new Intent(str);
+                intent.setComponent(hVar.f15380g);
+                hVar.f15375a.sendBroadcast(intent);
+                return;
+            default:
+                MusicPlayerService musicPlayerService = (MusicPlayerService) obj;
+                if ("org.telegram.android.musicplayer.repeat".equals(str)) {
+                    iz.E((iz.S0 + 1) % 3);
+                    boolean z9 = MusicPlayerService.f21307w;
+                    musicPlayerService.g();
+                    b8 b8Var = b8.P2;
+                    if (b8Var != null) {
+                        b8Var.c1();
+                    }
+                } else if ("org.telegram.android.musicplayer.shuffle".equals(str)) {
+                    if (iz.N0) {
+                        MediaController.B().l0(0);
+                    } else {
+                        MediaController.B().l0(2);
+                    }
+                    boolean z10 = MusicPlayerService.f21307w;
+                    a0 a0Var = musicPlayerService.f21310c;
+                    if (a0Var != null) {
+                        a0Var.x(iz.N0 ? 1 : 0);
+                    }
+                    b8 b8Var2 = b8.P2;
+                    if (b8Var2 != null) {
+                        b8Var2.c1();
+                    }
+                }
+                ij ijVar = MediaController.B().f21292u0;
+                if (ijVar != null) {
+                    boolean z11 = MusicPlayerService.f21307w;
+                    musicPlayerService.a(ijVar, false);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public boolean i(Intent intent) {
+        h6.h hVar;
+        switch (this.f15374g) {
+            case 0:
+                h.v.b("onMediaButtonEvent", new Object[0]);
+                KeyEvent keyEvent = (KeyEvent) intent.getParcelableExtra("android.intent.extra.KEY_EVENT");
+                if (keyEvent != null) {
+                    if ((keyEvent.getKeyCode() == 127 || keyEvent.getKeyCode() == 126) && (hVar = ((h) this.h).f15386n) != null) {
+                        hVar.r();
+                        return true;
+                    }
+                    return true;
+                }
                 return true;
             default:
-                return false;
+                return super.i(intent);
+        }
+    }
+
+    @Override
+    public final void k() {
+        switch (this.f15374g) {
+            case 0:
+                h.v.b("onPause", new Object[0]);
+                h6.h hVar = ((h) this.h).f15386n;
+                if (hVar != null) {
+                    hVar.r();
+                    return;
+                }
+                return;
+            default:
+                MediaController.B().R(MediaController.B().f21292u0, true);
+                return;
+        }
+    }
+
+    @Override
+    public final void n() {
+        switch (this.f15374g) {
+            case 0:
+                h.v.b("onPlay", new Object[0]);
+                h6.h hVar = ((h) this.h).f15386n;
+                if (hVar != null) {
+                    hVar.r();
+                    return;
+                }
+                return;
+            default:
+                MediaController.B().S(MediaController.B().f21292u0);
+                return;
         }
     }
 }

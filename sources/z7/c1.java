@@ -1,3 +1,17 @@
 package z7;
-public abstract class c1 {
+public final class c1 implements na.d {
+    public static final c1 f59610a = new Object();
+
+    static {
+        rf.b.p(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, new a(1)), 2)), 3)), 4)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            na.e eVar = (na.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

@@ -1,15 +1,15 @@
 package z7;
-public final class i4 implements ma.d {
-    public static final i4 f59915a = new Object();
+public final class i4 implements na.d {
+    public static final i4 f59709a = new Object();
 
     static {
-        t4.c.o(t4.c.k(b0.class, t4.c.n(t4.c.k(b0.class, new y(1)), 2)));
+        rf.b.p(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, new a(1)), 2)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ma.e eVar = (ma.e) obj2;
+            na.e eVar = (na.e) obj2;
             throw null;
         }
         throw new ClassCastException();

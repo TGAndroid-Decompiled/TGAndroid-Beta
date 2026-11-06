@@ -1,160 +1,130 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-import android.graphics.Bitmap;
+import a8.b8;
+import android.app.Activity;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-import java.util.ArrayList;
-import org.telegram.ui.Cells.w9;
-public final class x0 {
-    public final l2.e f39704a;
-    public final l2.e f39705b;
-    public l2.e f39706c;
-    public l2.e d;
-    public boolean f39707e;
-    public int f39708f;
-    public int f39709g;
-    public int h;
-    public boolean f39710i;
-    public final Paint f39711j;
-    public final Paint f39712k;
-    public final Paint f39713l;
-    public final ArrayList f39714m;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.hd;
+import org.telegram.ui.Components.qa0;
+import org.telegram.ui.yb1;
+public final class x0 extends TextView {
+    public final int f39558a = 1;
+    public final Object f39559b;
+    public final Object f39560c;
+    public final FrameLayout d;
 
-    public x0() {
-        l2.e eVar = new l2.e(80, 80);
-        this.f39704a = eVar;
-        l2.e eVar2 = new l2.e(80, 80);
-        this.f39705b = eVar2;
-        this.f39708f = 0;
-        this.f39709g = 0;
-        Paint paint = new Paint(1);
-        this.f39711j = paint;
-        Paint paint2 = new Paint(1);
-        this.f39712k = paint2;
-        Paint paint3 = new Paint(1);
-        this.f39713l = paint3;
-        this.f39714m = new ArrayList();
-        eVar2.m(0.0f, 0.0f, 80.0f, 80.0f);
-        eVar.m(0.0f, 0.0f, 80.0f, 80.0f);
+    public x0(h2 h2Var, Activity activity, i1 i1Var) {
+        super(activity);
+        this.d = h2Var;
+        this.f39560c = i1Var;
+        this.f39559b = new RectF();
+        i1Var.a(this);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i7;
+        int i10 = this.f39558a;
+        Object obj = this.f39560c;
+        FrameLayout frameLayout = this.d;
+        Object obj2 = this.f39559b;
+        switch (i10) {
+            case 0:
+                Paint paint = (Paint) obj2;
+                yb1 yb1Var = (yb1) frameLayout;
+                x0 x0Var = yb1Var.f39615c;
+                yb1Var.P.k(-getX(), -getY(), yb1Var.getWidth() - getX(), yb1Var.getHeight() - getY());
+                yb1Var.Q.k(-getX(), -getY(), yb1Var.getWidth() - getX(), yb1Var.getHeight() - getY());
+                RectF rectF = org.telegram.messenger.g0.P;
+                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                Paint[] paintArr = (Paint[]) obj;
+                paintArr[yb1Var.f39621w].setAlpha(255);
+                float L = org.telegram.messenger.g0.L(8.0f) + ((int) ((1.0f - yb1Var.D) * (org.telegram.messenger.g0.L(26.0f) - org.telegram.messenger.g0.L(8.0f))));
+                canvas.drawRoundRect(rectF, L, L, paintArr[yb1Var.f39621w]);
+                float f10 = yb1Var.f39620s;
+                if (f10 > 0.0f && (i7 = yb1Var.f39621w + 1) < paintArr.length) {
+                    paintArr[i7].setAlpha((int) (f10 * 255.0f));
+                    canvas.drawRoundRect(rectF, L, L, paintArr[yb1Var.f39621w + 1]);
+                }
+                float f11 = yb1Var.D;
+                if (f11 < 1.0f) {
+                    paint.setAlpha((int) ((1.0f - f11) * 255.0f));
+                    canvas.drawRoundRect(rectF, L, L, paint);
+                }
+                super.onDraw(canvas);
+                if (yb1Var.O) {
+                    canvas.drawText(hd.M0(2131743241, null), getWidth() / 2, (int) ((getHeight() / 2) - ((x0Var.getPaint().ascent() + x0Var.getPaint().descent()) / 2.0f)), x0Var.getPaint());
+                    return;
+                }
+                return;
+            default:
+                RectF rectF2 = (RectF) obj2;
+                rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
+                h2 h2Var = (h2) frameLayout;
+                i1 i1Var = (i1) obj;
+                i1Var.d(((View) h2Var.getParent()).getX() + h2Var.getX() + ((View) getParent()).getX() + getX(), ((View) h2Var.getParent()).getY() + h2Var.getY() + ((View) getParent()).getY() + getY());
+                canvas.drawRoundRect(rectF2, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), i1Var.b());
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onSizeChanged(int i7, int i10, int i11, int i12) {
+        switch (this.f39558a) {
+            case 0:
+                yb1 yb1Var = (yb1) this.d;
+                b8 b8Var = yb1Var.P;
+                super.onSizeChanged(i7, i10, i11, i12);
+                int i13 = 0;
+                while (true) {
+                    Paint[] paintArr = (Paint[]) this.f39560c;
+                    if (i13 < paintArr.length) {
+                        if (i13 == 0) {
+                            paintArr[i13] = (Paint) b8Var.f335a;
+                        } else if (i13 == 1) {
+                            paintArr[i13] = (Paint) yb1Var.Q.f335a;
+                        } else {
+                            paintArr[i13] = (Paint) b8Var.f335a;
+                        }
+                        i13++;
+                    } else {
+                        return;
+                    }
+                }
+            default:
+                super.onSizeChanged(i7, i10, i11, i12);
+                return;
+        }
+    }
+
+    public x0(yb1 yb1Var, Context context) {
+        super(context);
+        this.d = yb1Var;
+        Paint paint = new Paint();
+        this.f39559b = paint;
+        this.f39560c = new Paint[yb1Var.f39616e.length];
+        qa0 qa0Var = yb1Var.R;
+        qa0Var.setBounds(0, 0, 80, 80);
+        qa0 qa0Var2 = yb1Var.S;
+        qa0Var2.setBounds(0, 0, 80, 80);
+        b8 b8Var = yb1Var.P;
+        b8Var.k(0.0f, 0.0f, 80.0f, 80.0f);
+        b8 b8Var2 = yb1Var.Q;
+        b8Var2.k(0.0f, 0.0f, 80.0f, 80.0f);
+        qa0Var.setAlpha(255);
+        qa0Var2.setAlpha(255);
+        PorterDuff.Mode mode = PorterDuff.Mode.CLEAR;
+        ((Canvas) b8Var.f336b).drawColor(0, mode);
+        ((Canvas) b8Var2.f336b).drawColor(0, mode);
+        qa0Var.draw((Canvas) b8Var.f336b);
+        qa0Var2.draw((Canvas) b8Var2.f336b);
         paint.setColor(-1);
-        paint.setAlpha(35);
-        paint2.setColor(-16777216);
-        paint2.setAlpha(102);
-        paint3.setColor(-16777216);
-        paint3.setAlpha(35);
-        ((Paint) eVar2.f17689a).setAlpha(180);
-    }
-
-    public final void a(View view) {
-        this.f39714m.add(view);
-    }
-
-    public final Paint b() {
-        if (this.f39710i) {
-            return this.f39712k;
-        }
-        return (Paint) this.f39705b.f17689a;
-    }
-
-    public final void c() {
-        ArrayList arrayList = this.f39714m;
-        int size = arrayList.size();
-        int i3 = 0;
-        while (i3 < size) {
-            Object obj = arrayList.get(i3);
-            i3++;
-            ((View) obj).invalidate();
-        }
-    }
-
-    public final void d(float f10, float f11) {
-        float f12 = this.f39709g * 1.12f;
-        l2.e eVar = this.f39705b;
-        float f13 = -f10;
-        float f14 = -f11;
-        eVar.o(f13 - ((f12 - this.f39708f) / 2.0f), f14 - ((f12 - this.f39709g) / 2.0f), f12 / ((Bitmap) eVar.f17691c).getHeight(), this.h);
-        this.d.m(f13, f14, this.f39708f - f10, this.f39709g - f11);
-    }
-
-    public final void e(boolean z10) {
-        if (this.f39710i && !z10) {
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final x0 f39661b;
-
-                {
-                    this.f39661b = this;
-                }
-
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    switch (r2) {
-                        case 0:
-                            x0 x0Var = this.f39661b;
-                            x0Var.getClass();
-                            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            int i3 = (int) (35.0f * floatValue);
-                            x0Var.f39713l.setAlpha(i3);
-                            x0Var.f39712k.setAlpha((int) (floatValue * 102.0f));
-                            x0Var.f39711j.setAlpha(i3);
-                            x0Var.c();
-                            return;
-                        default:
-                            x0 x0Var2 = this.f39661b;
-                            x0Var2.getClass();
-                            float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            ((Paint) x0Var2.f39705b.f17689a).setAlpha((int) (180.0f * floatValue2));
-                            ((Paint) x0Var2.f39704a.f17689a).setAlpha((int) (floatValue2 * 255.0f));
-                            x0Var2.c();
-                            return;
-                    }
-                }
-            });
-            ofFloat.setInterpolator(new LinearInterpolator());
-            ofFloat.setDuration(80L);
-            ofFloat.addListener(new w9(this, 14));
-            ofFloat.start();
-            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(0.0f, 1.0f);
-            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
-                public final x0 f39661b;
-
-                {
-                    this.f39661b = this;
-                }
-
-                @Override
-                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-                    switch (r2) {
-                        case 0:
-                            x0 x0Var = this.f39661b;
-                            x0Var.getClass();
-                            float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            int i3 = (int) (35.0f * floatValue);
-                            x0Var.f39713l.setAlpha(i3);
-                            x0Var.f39712k.setAlpha((int) (floatValue * 102.0f));
-                            x0Var.f39711j.setAlpha(i3);
-                            x0Var.c();
-                            return;
-                        default:
-                            x0 x0Var2 = this.f39661b;
-                            x0Var2.getClass();
-                            float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                            ((Paint) x0Var2.f39705b.f17689a).setAlpha((int) (180.0f * floatValue2));
-                            ((Paint) x0Var2.f39704a.f17689a).setAlpha((int) (floatValue2 * 255.0f));
-                            x0Var2.c();
-                            return;
-                    }
-                }
-            });
-            ofFloat2.setInterpolator(new LinearInterpolator());
-            ofFloat2.setStartDelay(80L);
-            ofFloat2.setDuration(80L);
-            ofFloat2.start();
-        } else {
-            this.f39710i = z10;
-        }
-        c();
     }
 }

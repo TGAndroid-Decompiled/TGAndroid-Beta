@@ -1,17 +1,10 @@
 package y7;
-public final class t3 implements ma.d {
-    public static final t3 f59276a = new Object();
-
-    static {
-        t4.c.o(t4.c.j(d.class, t4.c.m(t4.c.j(d.class, new a(1)), 2)));
-    }
+public final class t3 implements na.d {
+    public static final t3 f59042a = new Object();
+    public static final na.c f59043b = new na.c("identifiedLanguage", jg.g.q(rf.b.k(h.class, new e(1))));
 
     @Override
     public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ma.e eVar = (ma.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        ((na.e) obj2).a(f59043b, ((j7) obj).f58956a);
     }
 }

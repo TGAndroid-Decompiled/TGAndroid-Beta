@@ -1,7 +1,16 @@
 package org.telegram.ui;
-public final class g71 extends org.telegram.messenger.zi {
+
+import android.widget.EditText;
+public final class g71 extends org.telegram.ui.ActionBar.n0 {
     @Override
-    public final boolean l5() {
-        return false;
+    public final void l(EditText editText) {
+    }
+
+    @Override
+    public final void h() {
+    }
+
+    @Override
+    public final void i() {
     }
 }

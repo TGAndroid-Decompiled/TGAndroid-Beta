@@ -1,14 +1,7 @@
 package qe;
-public interface d {
-    void G();
-
-    void a();
-
-    void o(boolean z10);
-
-    void s1();
-
-    boolean t();
-
-    boolean x(float f10);
+public final class d extends ke.d {
+    public d(String message) {
+        super(message);
+        kotlin.jvm.internal.j.e(message, "message");
+    }
 }

@@ -1,29 +1,25 @@
 package org.telegram.ui;
 
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class me0 implements Runnable {
-    public final int f47666a;
-    public final xe0 f47667b;
-    public final TLRPC.TL_error f47668c;
-    public final TLObject d;
+public final class me0 implements RequestDelegate {
+    public final int f47766a;
+    public final cf0 f47767b;
 
-    public me0(xe0 xe0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i3) {
-        this.f47666a = i3;
-        this.f47667b = xe0Var;
-        this.f47668c = tL_error;
-        this.d = tLObject;
+    public me0(cf0 cf0Var, int i7) {
+        this.f47766a = i7;
+        this.f47767b = cf0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f47666a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f47766a) {
             case 0:
-                xe0 xe0Var = this.f47667b;
-                xe0Var.getNotificationCenter().d(new me0(xe0Var, this.f47668c, this.d, 1));
+                org.telegram.messenger.g0.h3(new re0(this.f47767b, tL_error, tLObject, 0));
                 return;
             default:
-                xe0.a0(this.f47667b, this.f47668c, this.d);
+                org.telegram.messenger.g0.h3(new zc0(8, this.f47767b, tL_error));
                 return;
         }
     }

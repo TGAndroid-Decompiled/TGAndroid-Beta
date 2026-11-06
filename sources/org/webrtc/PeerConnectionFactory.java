@@ -54,7 +54,7 @@ public class PeerConnectionFactory {
             VideoEncoderFactory videoEncoderFactory = this.videoEncoderFactory;
             VideoDecoderFactory videoDecoderFactory = this.videoDecoderFactory;
             AudioProcessingFactory audioProcessingFactory = this.audioProcessingFactory;
-            long j10 = 0;
+            long j3 = 0;
             if (audioProcessingFactory == null) {
                 createNative = 0;
             } else {
@@ -80,9 +80,9 @@ public class PeerConnectionFactory {
             }
             NetEqFactoryFactory netEqFactoryFactory = this.neteqFactoryFactory;
             if (netEqFactoryFactory != null) {
-                j10 = netEqFactoryFactory.createNativeNetEqFactory();
+                j3 = netEqFactoryFactory.createNativeNetEqFactory();
             }
-            return PeerConnectionFactory.nativeCreatePeerConnectionFactory(applicationContext, options, nativeAudioDeviceModulePointer, createNativeAudioEncoderFactory, createNativeAudioDecoderFactory, videoEncoderFactory, videoDecoderFactory, createNative, createNative2, createNativeNetworkControllerFactory, createNativeNetworkStatePredictorFactory, j10);
+            return PeerConnectionFactory.nativeCreatePeerConnectionFactory(applicationContext, options, nativeAudioDeviceModulePointer, createNativeAudioEncoderFactory, createNativeAudioDecoderFactory, videoEncoderFactory, videoDecoderFactory, createNative, createNative2, createNativeNetworkControllerFactory, createNativeNetworkStatePredictorFactory, j3);
         }
 
         public Builder setAudioDecoderFactoryFactory(AudioDecoderFactoryFactory audioDecoderFactoryFactory) {
@@ -181,8 +181,8 @@ public class PeerConnectionFactory {
                 return new InitializationOptions(this.applicationContext, this.fieldTrials, this.enableInternalTracer, this.nativeLibraryLoader, this.nativeLibraryName, this.loggable, this.loggableSeverity);
             }
 
-            public Builder setEnableInternalTracer(boolean z10) {
-                this.enableInternalTracer = z10;
+            public Builder setEnableInternalTracer(boolean z9) {
+                this.enableInternalTracer = z9;
                 return this;
             }
 
@@ -212,10 +212,10 @@ public class PeerConnectionFactory {
             return new Builder(context);
         }
 
-        private InitializationOptions(Context context, String str, boolean z10, NativeLibraryLoader nativeLibraryLoader, String str2, Loggable loggable, Logging.Severity severity) {
+        private InitializationOptions(Context context, String str, boolean z9, NativeLibraryLoader nativeLibraryLoader, String str2, Loggable loggable, Logging.Severity severity) {
             this.applicationContext = context;
             this.fieldTrials = str;
-            this.enableInternalTracer = z10;
+            this.enableInternalTracer = z9;
             this.nativeLibraryLoader = nativeLibraryLoader;
             this.nativeLibraryName = str2;
             this.loggable = loggable;
@@ -252,9 +252,9 @@ public class PeerConnectionFactory {
         final Thread thread;
         final int tid;
 
-        private ThreadInfo(Thread thread, int i3) {
+        private ThreadInfo(Thread thread, int i7) {
             this.thread = thread;
-            this.tid = i3;
+            this.tid = i7;
         }
 
         public static ThreadInfo getCurrent() {
@@ -262,10 +262,10 @@ public class PeerConnectionFactory {
         }
     }
 
-    public PeerConnectionFactory(long j10) {
+    public PeerConnectionFactory(long j3) {
         checkInitializeHasBeenCalled();
-        if (j10 != 0) {
-            this.nativeFactory = j10;
+        if (j3 != 0) {
+            this.nativeFactory = j3;
             return;
         }
         throw new RuntimeException("Failed to initialize PeerConnectionFactory!");
@@ -325,31 +325,31 @@ public class PeerConnectionFactory {
         nativeInitializeInternalTracer();
     }
 
-    private static native long nativeCreateAudioSource(long j10, MediaConstraints mediaConstraints);
+    private static native long nativeCreateAudioSource(long j3, MediaConstraints mediaConstraints);
 
-    private static native long nativeCreateAudioTrack(long j10, String str, long j11);
+    private static native long nativeCreateAudioTrack(long j3, String str, long j10);
 
-    private static native long nativeCreateLocalMediaStream(long j10, String str);
+    private static native long nativeCreateLocalMediaStream(long j3, String str);
 
-    private static native long nativeCreatePeerConnection(long j10, PeerConnection.RTCConfiguration rTCConfiguration, MediaConstraints mediaConstraints, long j11, SSLCertificateVerifier sSLCertificateVerifier);
+    private static native long nativeCreatePeerConnection(long j3, PeerConnection.RTCConfiguration rTCConfiguration, MediaConstraints mediaConstraints, long j10, SSLCertificateVerifier sSLCertificateVerifier);
 
-    public static native PeerConnectionFactory nativeCreatePeerConnectionFactory(Context context, Options options, long j10, long j11, long j12, VideoEncoderFactory videoEncoderFactory, VideoDecoderFactory videoDecoderFactory, long j13, long j14, long j15, long j16, long j17);
+    public static native PeerConnectionFactory nativeCreatePeerConnectionFactory(Context context, Options options, long j3, long j10, long j11, VideoEncoderFactory videoEncoderFactory, VideoDecoderFactory videoDecoderFactory, long j12, long j13, long j14, long j15, long j16);
 
-    private static native long nativeCreateVideoSource(long j10, boolean z10, boolean z11);
+    private static native long nativeCreateVideoSource(long j3, boolean z9, boolean z10);
 
-    private static native long nativeCreateVideoTrack(long j10, String str, long j11);
+    private static native long nativeCreateVideoTrack(long j3, String str, long j10);
 
     private static native void nativeDeleteLoggable();
 
     private static native String nativeFindFieldTrialsFullName(String str);
 
-    private static native void nativeFreeFactory(long j10);
+    private static native void nativeFreeFactory(long j3);
 
-    private static native long nativeGetNativePeerConnectionFactory(long j10);
+    private static native long nativeGetNativePeerConnectionFactory(long j3);
 
-    private static native RtpCapabilities nativeGetRtpReceiverCapabilities(long j10, MediaStreamTrack.MediaType mediaType);
+    private static native RtpCapabilities nativeGetRtpReceiverCapabilities(long j3, MediaStreamTrack.MediaType mediaType);
 
-    private static native RtpCapabilities nativeGetRtpSenderCapabilities(long j10, MediaStreamTrack.MediaType mediaType);
+    private static native RtpCapabilities nativeGetRtpSenderCapabilities(long j3, MediaStreamTrack.MediaType mediaType);
 
     private static native void nativeInitializeAndroidGlobals();
 
@@ -357,17 +357,17 @@ public class PeerConnectionFactory {
 
     private static native void nativeInitializeInternalTracer();
 
-    private static native void nativeInjectLoggable(JNILogging jNILogging, int i3);
+    private static native void nativeInjectLoggable(JNILogging jNILogging, int i7);
 
-    private static native void nativePrintStackTrace(int i3);
+    private static native void nativePrintStackTrace(int i7);
 
     private static native void nativeShutdownInternalTracer();
 
-    private static native boolean nativeStartAecDump(long j10, int i3, int i10);
+    private static native boolean nativeStartAecDump(long j3, int i7, int i10);
 
     private static native boolean nativeStartInternalTracingCapture(String str);
 
-    private static native void nativeStopAecDump(long j10);
+    private static native void nativeStopAecDump(long j3);
 
     private static native void nativeStopInternalTracingCapture();
 
@@ -389,7 +389,7 @@ public class PeerConnectionFactory {
         Logging.d("PeerConnectionFactory", "onWorkerThreadReady");
     }
 
-    private static void printStackTrace(ThreadInfo threadInfo, boolean z10) {
+    private static void printStackTrace(ThreadInfo threadInfo, boolean z9) {
         if (threadInfo != null) {
             String name = threadInfo.thread.getName();
             StackTraceElement[] stackTrace = threadInfo.thread.getStackTrace();
@@ -399,7 +399,7 @@ public class PeerConnectionFactory {
                     Logging.w("PeerConnectionFactory", stackTraceElement.toString());
                 }
             }
-            if (z10) {
+            if (z9) {
                 Logging.w("PeerConnectionFactory", "*** *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***");
                 Logging.w("PeerConnectionFactory", "pid: " + Process.myPid() + ", tid: " + threadInfo.tid + ", name: " + name + "  >>> WebRTC <<<");
                 nativePrintStackTrace(threadInfo.tid);
@@ -460,9 +460,9 @@ public class PeerConnectionFactory {
         return new PeerConnection(nativeCreatePeerConnection);
     }
 
-    public VideoSource createVideoSource(boolean z10, boolean z11) {
+    public VideoSource createVideoSource(boolean z9, boolean z10) {
         checkPeerConnectionFactoryExists();
-        return new VideoSource(nativeCreateVideoSource(this.nativeFactory, z10, z11));
+        return new VideoSource(nativeCreateVideoSource(this.nativeFactory, z9, z10));
     }
 
     public VideoTrack createVideoTrack(String str, VideoSource videoSource) {
@@ -499,15 +499,15 @@ public class PeerConnectionFactory {
         return nativeGetRtpSenderCapabilities(this.nativeFactory, mediaType);
     }
 
-    public void printInternalStackTraces(boolean z10) {
-        printStackTrace(this.signalingThread, z10);
-        printStackTrace(this.workerThread, z10);
-        printStackTrace(this.networkThread, z10);
+    public void printInternalStackTraces(boolean z9) {
+        printStackTrace(this.signalingThread, z9);
+        printStackTrace(this.workerThread, z9);
+        printStackTrace(this.networkThread, z9);
     }
 
-    public boolean startAecDump(int i3, int i10) {
+    public boolean startAecDump(int i7, int i10) {
         checkPeerConnectionFactoryExists();
-        return nativeStartAecDump(this.nativeFactory, i3, i10);
+        return nativeStartAecDump(this.nativeFactory, i7, i10);
     }
 
     public void stopAecDump() {
@@ -522,8 +522,8 @@ public class PeerConnectionFactory {
         return createPeerConnection(rTCConfiguration, mediaConstraints, observer);
     }
 
-    public VideoSource createVideoSource(boolean z10) {
-        return createVideoSource(z10, true);
+    public VideoSource createVideoSource(boolean z9) {
+        return createVideoSource(z9, true);
     }
 
     public PeerConnection createPeerConnection(List<PeerConnection.IceServer> list, PeerConnection.Observer observer) {

@@ -1,0 +1,159 @@
+package bi;
+
+import android.content.Context;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.messenger.m20;
+import org.telegram.messenger.qp;
+import org.telegram.messenger.t10;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.r31;
+import org.telegram.ui.q50;
+public final class vc extends q31 {
+    public static final int f4927b = 0;
+
+    static {
+        q31.h(new q31());
+    }
+
+    @Override
+    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
+        String p10;
+        boolean z10;
+        float f10;
+        int i7;
+        org.telegram.ui.ActionBar.k5 k5Var;
+        wc wcVar = (wc) view;
+        TL_stars.StarsSubscription starsSubscription = (TL_stars.StarsSubscription) r31Var.G;
+        org.telegram.ui.ActionBar.k5 k5Var2 = wcVar.d;
+        org.telegram.ui.Components.l9 l9Var = wcVar.f4993c;
+        org.telegram.ui.ActionBar.f6 f6Var = wcVar.f4992b;
+        TextView textView = wcVar.h;
+        TextView textView2 = wcVar.f4995f;
+        TextView textView3 = wcVar.f4994e;
+        int i10 = wcVar.f4991a;
+        TextView textView4 = wcVar.f4996n;
+        long o4 = org.telegram.messenger.m5.o(starsSubscription.peer);
+        wcVar.f4997r = !TextUtils.isEmpty(starsSubscription.title);
+        if (o4 < 0) {
+            TLRPC.Chat M0 = qp.s1(i10).M0(Long.valueOf(-o4));
+            org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.f6) null);
+            w8Var.q(M0);
+            l9Var.e(M0, w8Var);
+            if (M0 != null) {
+                p10 = M0.title;
+            } else {
+                p10 = null;
+            }
+            z10 = false;
+        } else {
+            TLRPC.User a22 = qp.s1(i10).a2(Long.valueOf(o4));
+            org.telegram.ui.Components.w8 w8Var2 = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.f6) null);
+            w8Var2.r(a22);
+            l9Var.e(a22, w8Var2);
+            p10 = t10.p(a22);
+            z10 = !t10.t(a22);
+        }
+        long currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
+        boolean z11 = z10;
+        k5Var2.l(org.telegram.messenger.i6.m(p10, k5Var2.getPaint().getFontMetricsInt(), false, null, 0), false);
+        if (!TextUtils.isEmpty(starsSubscription.title)) {
+            textView3.setVisibility(0);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+            if (starsSubscription.photo != null) {
+                q50 q50Var = new q50(14.0f, i10, textView3);
+                q50Var.a(4.0f);
+                q50Var.f49086f = false;
+                SpannableString spannableString = new SpannableString("x");
+                k5Var = k5Var2;
+                spannableString.setSpan(q50Var, 0, 1, 33);
+                q50Var.f49083b.q0(org.telegram.messenger.hc.p(m20.c(starsSubscription.photo)), "14_14", null, null, 0, 0);
+                spannableStringBuilder.append((CharSequence) spannableString).append((CharSequence) " ");
+            } else {
+                k5Var = k5Var2;
+            }
+            spannableStringBuilder.append(org.telegram.messenger.i6.m(starsSubscription.title, k5Var.getPaint().getFontMetricsInt(), false, null, 0));
+            textView3.setText(spannableStringBuilder);
+        } else {
+            textView3.setVisibility(8);
+        }
+        if (wcVar.f4997r) {
+            f10 = 13.0f;
+        } else {
+            f10 = 14.0f;
+        }
+        textView2.setTextSize(1, f10);
+        int i11 = 2131744991;
+        if (!starsSubscription.canceled && !starsSubscription.bot_canceled) {
+            long j3 = starsSubscription.until_date;
+            if (j3 < currentTime) {
+                textView2.setText(org.telegram.messenger.hd.a0(null, null, 2131744991, org.telegram.messenger.hd.u(j3, false)));
+                textView.setVisibility(8);
+                org.telegram.messenger.camera.q.o(textView4, org.telegram.ui.ActionBar.k6.kk, f6Var, null, 2131744973);
+            } else {
+                textView2.setText(org.telegram.messenger.hd.a0(null, null, 2131744978, org.telegram.messenger.hd.u(j3, false)));
+                textView.setVisibility(0);
+                textView.setText(dd.a1(false, "⭐️ " + Long.toString(starsSubscription.pricing.amount), 0.8f, null));
+                org.telegram.ui.ActionBar.r6.V(textView4, org.telegram.ui.ActionBar.k6.f28258z6, f6Var);
+                int i12 = starsSubscription.pricing.period;
+                if (i12 == 2592000) {
+                    textView4.setText(org.telegram.messenger.hd.M0(2131745057, null));
+                } else if (i12 == 60) {
+                    textView4.setText("per minute");
+                } else if (i12 == 300) {
+                    textView4.setText("per 5 minutes");
+                }
+            }
+        } else {
+            long j10 = starsSubscription.until_date;
+            if (j10 >= currentTime) {
+                i11 = 2131744985;
+            }
+            textView2.setText(org.telegram.messenger.hd.a0(null, null, i11, org.telegram.messenger.hd.u(j10, false)));
+            textView.setVisibility(8);
+            org.telegram.ui.ActionBar.r6.V(textView4, org.telegram.ui.ActionBar.k6.kk, f6Var);
+            if (starsSubscription.bot_canceled) {
+                if (z11) {
+                    i7 = 2131744976;
+                } else {
+                    i7 = 2131744975;
+                }
+            } else {
+                i7 = 2131744974;
+            }
+            textView4.setText(org.telegram.messenger.hd.M0(i7, null));
+        }
+        wcVar.f4998s = z9;
+        wcVar.setWillNotDraw(!z9);
+    }
+
+    @Override
+    public final View d(Context context, pj0 pj0Var, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new wc(i7, context, f6Var);
+    }
+
+    @Override
+    public final boolean e(r31 r31Var, r31 r31Var2) {
+        if (r31Var2 != null) {
+            Object obj = r31Var.G;
+            if (obj instanceof TL_stars.StarsSubscription) {
+                Object obj2 = r31Var2.G;
+                if (obj2 instanceof TL_stars.StarsSubscription) {
+                    return TextUtils.equals(((TL_stars.StarsSubscription) obj).f27182id, ((TL_stars.StarsSubscription) obj2).f27182id);
+                }
+                return false;
+            }
+            return false;
+        }
+        return false;
+    }
+}

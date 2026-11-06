@@ -1,67 +1,56 @@
 package org.telegram.ui;
+public final class jq implements org.telegram.ui.Cells.z4, org.telegram.ui.Components.ut0 {
+    public final int f46999a;
+    public final kq f47000b;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class jq implements Runnable {
-    public final int f46668a;
-    public final mq f46669b;
-    public final String f46670c;
-
-    public jq(mq mqVar, String str, int i3) {
-        this.f46668a = i3;
-        this.f46669b = mqVar;
-        this.f46670c = str;
+    public jq(kq kqVar, int i7) {
+        this.f46999a = i7;
+        this.f47000b = kqVar;
     }
 
     @Override
-    public final void run() {
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        o4.b1 b1Var;
-        boolean z10;
-        long j10;
-        switch (this.f46668a) {
-            case 0:
-                mq mqVar = this.f46669b;
-                mqVar.getClass();
-                org.telegram.messenger.g0.h3(new jq(mqVar, this.f46670c, 1));
+    public boolean b(org.telegram.ui.Cells.a5 a5Var, boolean z9) {
+        oq oqVar = this.f47000b.d;
+        return oqVar.m0(oqVar.f48441a.E(((Integer) a5Var.getTag()).intValue()), !z9, a5Var);
+    }
+
+    @Override
+    public void m(int i7) {
+        boolean z9;
+        switch (this.f46999a) {
+            case 1:
+                oq oqVar = this.f47000b.d;
+                if (oqVar.f48478r != null) {
+                    int i10 = oqVar.f48473o1;
+                    if ((i10 > 0 && i7 == 0) || (i10 == 0 && i7 > 0)) {
+                        z9 = true;
+                    } else {
+                        z9 = false;
+                    }
+                    oqVar.f48473o1 = i7;
+                    if (z9) {
+                        iq B0 = oqVar.B0();
+                        oqVar.G0();
+                        oqVar.F0(B0);
+                    }
+                    oqVar.f48441a.g(oqVar.O0);
+                    return;
+                }
                 return;
             default:
-                mq mqVar2 = this.f46669b;
-                mqVar2.f47745n = null;
-                nq nqVar = mqVar2.E;
-                TLRPC.Chat chat = nqVar.f48074n;
-                int i3 = nqVar.f48059e1;
-                if (!org.telegram.messenger.t3.T(chat) && nqVar.f48083r != null) {
-                    arrayList = new ArrayList(nqVar.f48083r.participants.participants);
-                } else {
-                    arrayList = null;
-                }
-                if (i3 == 1) {
-                    arrayList2 = new ArrayList(nqVar.getContactsController().f22653f0);
-                } else {
-                    arrayList2 = null;
-                }
-                String str = this.f46670c;
-                if (arrayList == null && arrayList2 == null) {
-                    mqVar2.f47747s = false;
-                    b1Var = null;
-                } else {
-                    b1Var = new o4.b1(mqVar2, str, arrayList, arrayList2, 19);
-                }
-                kg.v1 v1Var = mqVar2.h;
-                if (i3 != 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (org.telegram.messenger.t3.T(nqVar.f48074n)) {
-                    j10 = nqVar.N;
-                } else {
-                    j10 = 0;
-                }
-                v1Var.h(str, z10, false, true, false, false, j10, false, nqVar.O, 1, 0L, b1Var);
+                this.f47000b.d.f48480r1 = i7 + 1;
                 return;
         }
+    }
+
+    @Override
+    public void n() {
+        int i7 = this.f46999a;
+    }
+
+    private final void a() {
+    }
+
+    private final void c() {
     }
 }

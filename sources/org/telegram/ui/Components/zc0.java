@@ -1,3 +1,5 @@
 package org.telegram.ui.Components;
-public interface zc0 {
+
+import android.widget.LinearLayout;
+public final class zc0 extends LinearLayout {
 }

@@ -1,30 +1,25 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class hu implements ValueAnimator.AnimatorUpdateListener {
-    public final int f45987a;
-    public final uw f45988b;
+import org.telegram.tgnet.tl.TL_account;
+public final class hu implements org.telegram.messenger.c20 {
+    public final int f46487a;
+    public final ww f46488b;
 
-    public hu(uw uwVar, int i3) {
-        this.f45987a = i3;
-        this.f45988b = uwVar;
+    public hu(ww wwVar, int i7) {
+        this.f46487a = i7;
+        this.f46488b = wwVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f45987a) {
+    public final void a(Object obj) {
+        switch (this.f46487a) {
             case 0:
-                this.f45988b.P4(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                uw uwVar = this.f45988b;
-                uwVar.getClass();
-                uwVar.R4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ww wwVar = this.f46488b;
+                wwVar.O1 = (Long) obj;
+                wwVar.g5();
                 return;
             default:
-                uw uwVar2 = this.f45988b;
-                uwVar2.getClass();
-                uwVar2.L4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ww.f0(this.f46488b, (TL_account.TL_birthday) obj);
                 return;
         }
     }

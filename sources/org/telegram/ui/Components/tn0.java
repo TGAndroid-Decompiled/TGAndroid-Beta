@@ -1,111 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import android.widget.FrameLayout;
-public final class tn0 extends FrameLayout {
-    public final int f38522a;
-    public final oo0 f38523b;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+public final class tn0 implements TextWatcher {
+    public final int f38388a;
+    public final mo0 f38389b;
 
-    public tn0(oo0 oo0Var, Context context, int i3) {
-        super(context);
-        this.f38522a = i3;
-        this.f38523b = oo0Var;
+    public tn0(mo0 mo0Var, int i7) {
+        this.f38388a = i7;
+        this.f38389b = mo0Var;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f38522a) {
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f38388a) {
             case 0:
-                oo0 oo0Var = this.f38523b;
-                oo0Var.P2.setBounds(0, (int) oo0Var.f36890n2, getMeasuredWidth(), getMeasuredHeight());
-                oo0Var.P2.draw(canvas);
-                canvas.save();
-                canvas.clipRect(0.0f, oo0Var.f36890n2, getMeasuredWidth(), getMeasuredHeight());
-                super.dispatchDraw(canvas);
-                canvas.restore();
+                org.telegram.messenger.g0.h3(new ob0(this, 25));
                 return;
             default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f38522a) {
-            case 0:
-                oo0 oo0Var = this.f38523b;
-                tn0 tn0Var = oo0Var.k1;
-                float f10 = oo0Var.f36892o2;
-                if (f10 != 0.0f && f10 != tn0Var.getTop() + oo0Var.f36892o2) {
-                    ValueAnimator valueAnimator = oo0Var.f36894p2;
-                    if (valueAnimator != null) {
-                        valueAnimator.cancel();
-                    }
-                    float top = oo0Var.f36892o2 - (tn0Var.getTop() + oo0Var.f36890n2);
-                    oo0Var.f36890n2 = top;
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                    oo0Var.f36894p2 = ofFloat;
-                    ofFloat.addUpdateListener(new y50(this, 17));
-                    oo0Var.f36894p2.setInterpolator(xq.f40452f);
-                    oo0Var.f36894p2.setDuration(200L);
-                    oo0Var.f36894p2.start();
-                    oo0Var.f36892o2 = 0.0f;
+                mo0 mo0Var = this.f38389b;
+                fo0 fo0Var = mo0Var.C1;
+                av0 av0Var = mo0Var.I1;
+                r00 r00Var = mo0Var.f36076q2;
+                if (!TextUtils.isEmpty(r00Var.f37557r.getText())) {
+                    mo0Var.K0(false);
                 }
-                oo0Var.L1[1].setTranslationY((-(tn0Var.getMeasuredHeight() - org.telegram.messenger.g0.L(48.0f))) + oo0Var.f36890n2 + oo0Var.f36888m2 + ((1.0f - getAlpha()) * (tn0Var.getMeasuredHeight() - org.telegram.messenger.g0.L(48.0f))));
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f38522a) {
-            case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(org.telegram.messenger.bd.G(this.f38523b.N1.m(), "AccDescrShareInChats", new Object[0]));
-                accessibilityNodeInfo.setClassName(Button.class.getName());
-                accessibilityNodeInfo.setLongClickable(true);
-                accessibilityNodeInfo.setClickable(true);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public void setAlpha(float f10) {
-        switch (this.f38522a) {
-            case 0:
-                super.setAlpha(f10);
-                invalidate();
-                return;
-            default:
-                super.setAlpha(f10);
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i3) {
-        switch (this.f38522a) {
-            case 0:
-                super.setVisibility(i3);
-                if (i3 != 0) {
-                    this.f38523b.L1[1].setTranslationY(0.0f);
+                if (mo0Var.f36080s2) {
+                    String obj = r00Var.f37557r.getText().toString();
+                    if (obj.length() != 0) {
+                        if (av0Var != null) {
+                            av0Var.d.setText(org.telegram.messenger.hd.M0(2131748166, null));
+                        }
+                    } else if (mo0Var.f36089x1.getAdapter() != fo0Var) {
+                        int J0 = mo0.J0(mo0Var);
+                        av0Var.d.setText(org.telegram.messenger.hd.M0(2131748166, null));
+                        av0Var.e(false, true);
+                        mo0Var.K0(false);
+                        fo0Var.f();
+                        if (J0 > 0) {
+                            mo0Var.f36093z1.h1(0, -J0);
+                        }
+                    }
+                    jo0 jo0Var = mo0Var.E1;
+                    if (jo0Var != null) {
+                        jo0Var.E(obj);
+                        return;
+                    }
                     return;
                 }
                 return;
-            default:
-                super.setVisibility(i3);
-                return;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f38388a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f38388a;
+    }
+
+    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

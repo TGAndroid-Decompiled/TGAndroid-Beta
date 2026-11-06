@@ -1,50 +1,55 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_fragment;
-public final class uv0 extends ClickableSpan {
-    public final TLRPC.TL_username f50196a;
-    public final String f50197b;
-    public final bw0 f50198c;
+import android.view.ViewGroup;
+public final class uv0 implements fi.ma {
+    public final ProfileActivity f50498a;
 
-    public uv0(bw0 bw0Var, TLRPC.TL_username tL_username, String str) {
-        this.f50198c = bw0Var;
-        this.f50196a = tL_username;
-        this.f50197b = str;
+    public uv0(ProfileActivity profileActivity) {
+        this.f50498a = profileActivity;
     }
 
     @Override
-    public final void onClick(View view) {
-        ProfileActivity profileActivity = this.f50198c.f44157e;
-        TLRPC.TL_username tL_username = this.f50196a;
-        if (!tL_username.editable) {
-            if (profileActivity.f41790j5 != this) {
-                profileActivity.e5(this);
-                TL_fragment.TL_getCollectibleInfo tL_getCollectibleInfo = new TL_fragment.TL_getCollectibleInfo();
-                TL_fragment.TL_inputCollectibleUsername tL_inputCollectibleUsername = new TL_fragment.TL_inputCollectibleUsername();
-                tL_inputCollectibleUsername.username = tL_username.username;
-                tL_getCollectibleInfo.collectible = tL_inputCollectibleUsername;
-                profileActivity.getConnectionsManager().bindRequestToGuid(profileActivity.getConnectionsManager().sendRequest(tL_getCollectibleInfo, new xy(27, this, tL_username)), profileActivity.getClassGuid());
-                return;
+    public final fi.qa d(long j3) {
+        float f10;
+        ProfileActivity profileActivity = this.f50498a;
+        if (j3 == profileActivity.a()) {
+            profileActivity.f41694e0.setRoundRadiusForExpand((int) org.telegram.messenger.g0.T1(profileActivity.q4(), 0.0f, profileActivity.f41732j2));
+            yu0 yu0Var = profileActivity.f41694e0;
+            boolean c02 = org.telegram.messenger.t3.c0(profileActivity.D2);
+            if (yu0Var != null && yu0Var.getRootView() != null) {
+                float scaleX = ((View) yu0Var.getParent()).getScaleX();
+                float f11 = yu0Var.getImageReceiver().M0 * scaleX;
+                if (c02) {
+                    f10 = 0.32f * f11;
+                } else {
+                    f10 = f11;
+                }
+                fi.oa oaVar = new fi.oa(yu0Var, 0);
+                int[] iArr = new int[2];
+                float[] fArr = new float[2];
+                yu0Var.getRootView().getLocationOnScreen(iArr);
+                org.telegram.messenger.g0.r1(yu0Var, (ViewGroup) yu0Var.getRootView(), fArr);
+                float f12 = (yu0Var.getImageReceiver().K0 * scaleX) + iArr[0] + fArr[0];
+                float f13 = (yu0Var.getImageReceiver().L0 * scaleX) + iArr[1] + fArr[1];
+                oaVar.f12687c.set(f12, f13, f12 + f11, f11 + f13);
+                oaVar.f12688e = yu0Var.getImageReceiver();
+                oaVar.f12686b = f10;
+                return oaVar;
             }
-            return;
+            return null;
         }
-        profileActivity.e5(null);
-        String str = profileActivity.getMessagesController().V2 + "/" + this.f50197b;
-        TLRPC.Chat chat = profileActivity.E2;
-        if (chat != null && chat.noforwards) {
-            return;
-        }
-        org.telegram.messenger.g0.g(str);
-        profileActivity.M.j(56, 0L, null);
+        return null;
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
-        textPaint.setColor(textPaint.linkColor);
+    public final void g(long j3, bi.r3 r3Var) {
+        ProfileActivity profileActivity = this.f50498a;
+        profileActivity.f41694e0.setHasStories(profileActivity.x4());
+        if (j3 == profileActivity.a() && profileActivity.f41757n2 && profileActivity.f41732j2 > 0.0f) {
+            profileActivity.f41679c.h1(0, profileActivity.j4() - profileActivity.f41663a.getPaddingTop());
+            profileActivity.f41663a.post(new j90(profileActivity, 16));
+        }
+        org.telegram.messenger.g0.i3(r3Var, 30L);
     }
 }

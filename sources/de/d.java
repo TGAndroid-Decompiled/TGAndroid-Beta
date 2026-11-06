@@ -1,39 +1,32 @@
 package de;
 
-import be.u;
-import java.util.concurrent.Executor;
-import wd.u0;
-import wd.x;
-public final class d extends u0 implements Executor {
-    public static final d f8823c = new x();
-    public static final x d;
+import rd.p;
+public final class d implements id.h {
+    public final id.h f8676a;
+    public final Throwable f8677b;
 
-    static {
-        l lVar = l.f8834c;
-        int i3 = u.f3286a;
-        if (64 >= i3) {
-            i3 = 64;
-        }
-        d = lVar.f(be.a.j(i3, 12, "kotlinx.coroutines.io.parallelism"));
+    public d(id.h hVar, Throwable th2) {
+        this.f8676a = hVar;
+        this.f8677b = th2;
     }
 
     @Override
-    public final void c(fd.h hVar, Runnable runnable) {
-        d.c(hVar, runnable);
+    public final Object fold(Object obj, p pVar) {
+        return this.f8676a.fold(obj, pVar);
     }
 
     @Override
-    public final void close() {
-        throw new IllegalStateException("Cannot be invoked on Dispatchers.IO");
+    public final id.f get(id.g gVar) {
+        return this.f8676a.get(gVar);
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        c(fd.i.f11567a, runnable);
+    public final id.h minusKey(id.g gVar) {
+        return this.f8676a.minusKey(gVar);
     }
 
     @Override
-    public final String toString() {
-        return "Dispatchers.IO";
+    public final id.h plus(id.h hVar) {
+        return this.f8676a.plus(hVar);
     }
 }

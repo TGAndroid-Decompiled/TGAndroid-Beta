@@ -1,42 +1,50 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-public final class h0 extends AnimatorListenerAdapter {
-    public final int f39381a;
-    public final l0 f39382b;
+import android.animation.ValueAnimator;
+import org.telegram.ui.ec1;
+public final class h0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f39185a;
+    public final float f39186b;
+    public final float f39187c;
+    public final float d;
+    public final Object f39188e;
 
-    public h0(l0 l0Var, int i3) {
-        this.f39381a = i3;
-        this.f39382b = l0Var;
+    public h0(Object obj, float f10, float f11, float f12, int i7) {
+        this.f39185a = i7;
+        this.f39188e = obj;
+        this.f39186b = f10;
+        this.f39187c = f11;
+        this.d = f12;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f39381a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f39185a) {
             case 0:
-                super.onAnimationEnd(animator);
-                l0 l0Var = this.f39382b;
-                if (l0Var.getParent() != null) {
-                    ((ViewGroup) l0Var.getParent()).removeView(l0Var);
-                    return;
-                }
+                k0 k0Var = (k0) this.f39188e;
+                k0Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k0Var.f39272y0 = com.google.android.recaptcha.internal.a.z(1.0f, floatValue, 1.0f, this.f39186b * floatValue);
+                k0Var.f39261r0 = this.f39187c * floatValue;
+                k0Var.f39263s0 = this.d * floatValue;
+                k0Var.invalidate();
                 return;
             case 1:
-                l0 l0Var2 = this.f39382b;
-                if (l0Var2.getParent() != null) {
-                    ((ViewGroup) l0Var2.getParent()).removeView(l0Var2);
-                    return;
-                }
+                ec1 ec1Var = (ec1) this.f39188e;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ec1Var.f45255e1 = com.google.android.recaptcha.internal.a.z(1.0f, floatValue2, 1.0f, this.f39186b * floatValue2);
+                ec1Var.X0 = this.f39187c * floatValue2;
+                ec1Var.Y0 = this.d * floatValue2;
+                ec1Var.f45277s.invalidate();
                 return;
             default:
-                super.onAnimationEnd(animator);
-                l0 l0Var3 = this.f39382b;
-                if (l0Var3.getParent() != null) {
-                    ((ViewGroup) l0Var3.getParent()).removeView(l0Var3);
-                    return;
-                }
+                vg.m mVar = (vg.m) this.f39188e;
+                mVar.getClass();
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                vg.f fVar = mVar.f57295b;
+                fVar.d = this.f39186b * floatValue3;
+                fVar.f57260e = this.f39187c * floatValue3;
+                fVar.f57263i = floatValue3 * this.d;
                 return;
         }
     }

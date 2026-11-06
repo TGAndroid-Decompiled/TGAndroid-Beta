@@ -1,12 +1,17 @@
 package z7;
-public final class s0 {
-    public final r0 f60029a;
-    public final Integer f60030b;
-    public final z6 f60031c;
+public final class s0 implements na.d {
+    public static final s0 f59817a = new Object();
 
-    public s0(p7.d dVar) {
-        this.f60029a = (r0) dVar.f53345b;
-        this.f60030b = (Integer) dVar.d;
-        this.f60031c = (z6) dVar.f53346c;
+    static {
+        rf.b.p(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, rf.b.n(rf.b.l(d.class, new a(1)), 2)), 3)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            na.e eVar = (na.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

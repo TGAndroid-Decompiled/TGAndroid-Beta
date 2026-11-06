@@ -1,41 +1,50 @@
 package x7;
-public final class e implements h {
-    public final int f58268a;
 
-    public e(int i3) {
-        this.f58268a = i3;
+import c8.kd;
+import j$.util.Objects;
+public final class e extends d {
+    public static final e f58533e = new e(0, new Object[0]);
+    public final transient Object[] f58534c;
+    public final transient int d;
+
+    public e(int i7, Object[] objArr) {
+        this.f58534c = objArr;
+        this.d = i7;
     }
 
     @Override
-    public final Class annotationType() {
-        return h.class;
+    public final int f(Object[] objArr) {
+        Object[] objArr2 = this.f58534c;
+        int i7 = this.d;
+        System.arraycopy(objArr2, 0, objArr, 0, i7);
+        return i7;
     }
 
     @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof h) {
-                if (this.f58268a == ((e) ((h) obj)).f58268a) {
-                    Object obj2 = g.f58296a;
-                    if (obj2.equals(obj2)) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
+    public final Object get(int i7) {
+        kd.a(i7, this.d);
+        Object obj = this.f58534c[i7];
+        Objects.requireNonNull(obj);
+        return obj;
     }
 
     @Override
-    public final int hashCode() {
-        return (this.f58268a ^ 14552422) + (g.f58296a.hashCode() ^ 2041407134);
+    public final int i() {
+        return this.d;
     }
 
     @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f58268a + "intEncoding=" + g.f58296a + ')';
+    public final int j() {
+        return 0;
+    }
+
+    @Override
+    public final Object[] k() {
+        return this.f58534c;
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

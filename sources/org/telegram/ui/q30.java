@@ -1,53 +1,52 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class q30 extends org.telegram.ui.Components.voip.k {
-    public final int h = 1;
-    public final org.telegram.ui.Components.sj0 f48743n;
+import android.animation.ValueAnimator;
+import java.util.HashSet;
+public final class q30 extends v4.k {
+    public float F;
+    public ValueAnimator G;
+    public final HashSet H = new HashSet();
+    public final HashSet I = new HashSet();
+    public float J;
+    public float K;
+    public final c40 L;
 
-    public q30(a40 a40Var, Context context) {
-        super(context, true);
-        this.f48743n = a40Var;
+    public q30(c40 c40Var) {
+        this.L = c40Var;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        switch (this.h) {
-            case 0:
-                super.onAttachedToWindow();
-                x30 x30Var = ((r30) this.f48743n).N;
-                if (x30Var.I1.getVisibility() == 0 && x30Var.H4) {
-                    x30.J0(x30Var, this, true);
-                    return;
-                }
-                return;
-            default:
-                super.onAttachedToWindow();
-                a40 a40Var = (a40) this.f48743n;
-                if (a40Var.f43592r && getParticipant() != null) {
-                    a40Var.E(this, true);
-                    return;
-                }
-                return;
-        }
+    public final void g() {
+        super.g();
+        this.I.clear();
+        this.H.clear();
+        this.K = Float.MAX_VALUE;
+        this.L.H1.invalidate();
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        switch (this.h) {
-            case 0:
-                super.onDetachedFromWindow();
-                x30.J0(((r30) this.f48743n).N, this, false);
-                return;
-            default:
-                super.onDetachedFromWindow();
-                ((a40) this.f48743n).E(this, false);
-                return;
+    public final void m() {
+        boolean isEmpty = this.f56984p.isEmpty();
+        boolean isEmpty2 = this.f56986r.isEmpty();
+        boolean isEmpty3 = this.f56985q.isEmpty();
+        ValueAnimator valueAnimator = this.G;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.G = null;
         }
-    }
-
-    public q30(r30 r30Var, Context context) {
-        super(context, false);
-        this.f48743n = r30Var;
+        if (!isEmpty || !isEmpty2 || !isEmpty3) {
+            this.F = 0.0f;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.G = ofFloat;
+            ofFloat.addUpdateListener(new a3(this, 14));
+            this.G.addListener(new d30(this, 1));
+            this.G.setDuration(350L);
+            this.G.setInterpolator(org.telegram.ui.Components.xq.f40310f);
+            this.G.start();
+            c40 c40Var = this.L;
+            c40Var.H1.invalidate();
+            c40Var.R3.invalidate();
+        }
+        super.m();
     }
 }

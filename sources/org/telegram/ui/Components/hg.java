@@ -1,73 +1,34 @@
 package org.telegram.ui.Components;
+public final class hg {
+    public static final hg f34323a;
+    public static final hg f34324b;
+    public static final hg f34325c;
+    public static final hg d;
+    public static final hg f34326e;
+    public static final hg f34327f;
+    public static final hg[] h;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-public class hg extends fh0 {
-    public final u5 E;
-    public final eg F;
-    public fg f34381r;
-    public gg f34382s;
-    public final int f34383w;
-    public boolean f34384x;
-    public Drawable f34385y;
-
-    public hg(Context context, int i3) {
-        super(context);
-        this.E = new u5(this, 0L, 320L, xq.h);
-        this.F = new eg(this, 0);
-        this.f34383w = i3;
+    static {
+        ?? r02 = new Enum("VOICE", 0);
+        f34323a = r02;
+        ?? r12 = new Enum("VIDEO", 1);
+        f34324b = r12;
+        ?? r32 = new Enum("STICKER", 2);
+        f34325c = r32;
+        ?? r52 = new Enum("KEYBOARD", 3);
+        d = r52;
+        ?? r72 = new Enum("SMILE", 4);
+        f34326e = r72;
+        ?? r92 = new Enum("GIF", 5);
+        f34327f = r92;
+        h = new hg[]{r02, r12, r32, r52, r72, r92};
     }
 
-    public fg getCurrentState() {
-        return this.f34381r;
+    public static hg valueOf(String str) {
+        return (hg) Enum.valueOf(hg.class, str);
     }
 
-    public final void j(org.telegram.ui.Components.fg r13, boolean r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.hg.j(org.telegram.ui.Components.fg, boolean):void");
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float d = this.E.d(this.f34384x);
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        if (d < 1.0f) {
-            if (d > 0.0f) {
-                canvas2 = canvas;
-                canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) ((1.0f - d) * 255.0f), 31);
-            } else {
-                canvas2 = canvas;
-                canvas2.save();
-            }
-            float y9 = com.google.android.recaptcha.internal.a.y(1.0f, d, 0.6f, 0.4f);
-            canvas2.scale(y9, y9, width, height);
-            super.onDraw(canvas);
-            canvas2.restore();
-        } else {
-            canvas2 = canvas;
-        }
-        if (d > 0.0f) {
-            if (this.f34385y == null) {
-                this.f34385y = getContext().getResources().getDrawable(2131232116).mutate();
-            }
-            int intrinsicWidth = this.f34385y.getIntrinsicWidth() / 2;
-            int intrinsicHeight = this.f34385y.getIntrinsicHeight() / 2;
-            int i3 = (int) width;
-            int i10 = (int) height;
-            this.f34385y.setBounds(i3 - intrinsicWidth, i10 - intrinsicHeight, i3 + intrinsicWidth, i10 + intrinsicHeight);
-            this.f34385y.setColorFilter(getColorFilter());
-            this.f34385y.setAlpha((int) (255.0f * d));
-            canvas2.save();
-            float f10 = (d * 0.6f) + 0.4f;
-            canvas2.scale(f10, f10, width, height);
-            this.f34385y.draw(canvas2);
-            canvas2.restore();
-        }
-    }
-
-    public hg(Context context) {
-        this(context, 32);
+    public static hg[] values() {
+        return (hg[]) h.clone();
     }
 }

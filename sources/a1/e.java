@@ -1,51 +1,28 @@
 package a1;
 
-import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
+import aa.u;
+import java.util.Collections;
+import java.util.Map;
 public final class e implements Runnable {
-    public final int f44a;
-    public final v0.h f45b;
+    public final int f43a;
+    public final Object f44b;
+    public final Object f45c;
 
-    public e(v0.h hVar, int i3) {
-        this.f44a = i3;
-        this.f45b = hVar;
+    public e(int i7, Object obj, Object obj2) {
+        this.f43a = i7;
+        this.f44b = obj;
+        this.f45c = obj2;
     }
 
     @Override
     public final void run() {
-        switch (this.f44a) {
-            case 0:
-                CredentialProviderPlayServicesImpl.$r8$lambda$33t67ADGbdHQ3I8DmDG2pssxk8c(this.f45b);
-                return;
-            case 1:
-                CredentialProviderPlayServicesImpl.m0$r8$lambda$AHEPAGD45gIS5fVQxoF8ULIdY(this.f45b);
-                return;
-            case 2:
-                CredentialProviderPlayServicesImpl.m1$r8$lambda$CzTvhVIglA1BRk85Mc5RmIPn9A(this.f45b);
-                return;
-            case 3:
-                CredentialProviderPlayServicesImpl.$r8$lambda$5b_NZniORttBMkbFQZx_nT7Z9tM(this.f45b);
-                return;
-            case 4:
-                CredentialProviderPlayServicesImpl.m3$r8$lambda$VaWGKHMq8i7ItapkClFK107fk(this.f45b);
-                return;
-            case 5:
-                CredentialProviderPlayServicesImpl.$r8$lambda$DfT1zIu2fR0eiSNwtnuBSJy7kq8(this.f45b);
-                return;
-            case 6:
-                CredentialProviderPlayServicesImpl.$r8$lambda$4jXvrTRoERmCISXRfwXYkLdVeEA(this.f45b);
-                return;
-            case 7:
-                this.f45b.a(new w0.h(2, "No provider data returned."));
-                return;
-            case 8:
-                this.f45b.a(new w0.c(2, (CharSequence) null));
-                return;
-            case 9:
-                this.f45b.a(new w0.c(2, (CharSequence) null));
-                return;
-            default:
-                this.f45b.a(new w0.h(2, "Failed to launch the selector UI. Hint: ensure the `context` parameter is an Activity-based context."));
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: a1.e.run():void");
+    }
+
+    public e(u uVar, Throwable th2) {
+        this.f43a = 4;
+        Map map = Collections.EMPTY_MAP;
+        this.f44b = uVar;
+        this.f45c = th2;
     }
 }

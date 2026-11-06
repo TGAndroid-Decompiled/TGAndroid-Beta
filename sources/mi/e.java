@@ -1,45 +1,35 @@
 package mi;
 
-import java.util.ArrayList;
-import org.telegram.messenger.zi;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.bi;
-import org.telegram.ui.Components.ki;
-import org.telegram.ui.Components.tk;
-public final class e implements tk, ki {
-    public final p f19566a;
-    public final bi f19567b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.ui.Cells.q1;
+import org.telegram.ui.Components.pn;
+public final class e extends AnimatorListenerAdapter {
+    public final q1 f20064a;
+    public final float f20065b;
+    public final float f20066c;
+    public final float d;
+    public final float f20067e;
+    public final l f20068f;
 
-    public e(p pVar, bi biVar) {
-        this.f19566a = pVar;
-        this.f19567b = biVar;
+    public e(l lVar, q1 q1Var, float f10, float f11, float f12, float f13) {
+        this.f20068f = lVar;
+        this.f20064a = q1Var;
+        this.f20065b = f10;
+        this.f20066c = f11;
+        this.d = f12;
+        this.f20067e = f13;
     }
 
     @Override
-    public void d(TLRPC.MessageMedia messageMedia, int i3, boolean z10, int i10, long j10) {
-        p pVar = this.f19566a;
-        pVar.getClass();
-        bi biVar = this.f19567b;
-        if (messageMedia != null && messageMedia.geo != null) {
-            TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
-            pageblockmap.geo = messageMedia.geo;
-            pageblockmap.zoom = 15;
-            pageblockmap.f27226w = 600;
-            pageblockmap.h = 400;
-            pVar.f19793r.V1(pageblockmap);
-            pVar.a0(true);
-            biVar.a(true);
-            return;
+    public final void onAnimationEnd(Animator animator) {
+        q1 q1Var = this.f20064a;
+        q1Var.getTransitionParams().e();
+        q1Var.getPhotoImage().y0(this.f20065b, this.f20066c, this.d, this.f20067e);
+        pn pnVar = this.f20068f.P;
+        if (pnVar != null) {
+            pnVar.h.setAlpha(1.0f);
         }
-        biVar.a(true);
-    }
-
-    @Override
-    public void h(ArrayList arrayList, CharSequence charSequence, boolean z10, int i3, int i10, long j10, boolean z11, long j11) {
-        if (!arrayList.isEmpty()) {
-            this.f19566a.f19793r.e2((zi) arrayList.get(0));
-        }
-        this.f19567b.a(true);
+        q1Var.invalidate();
     }
 }

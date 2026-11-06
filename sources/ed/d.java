@@ -1,195 +1,51 @@
 package ed;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-public abstract class d implements List, Collection {
-    @Override
-    public final void add(int i3, Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
+import kf.p;
+import kf.s;
+public final class d extends h {
+    public final int f10740e;
 
     @Override
-    public final boolean addAll(int i3, Collection collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final void clear() {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public boolean contains(Object obj) {
-        if (isEmpty()) {
-            return false;
+    public final p b() {
+        switch (this.f10740e) {
+            case 0:
+                int i7 = this.d + 1;
+                this.d = i7;
+                if (c() == '[') {
+                    this.d++;
+                    s f10 = f("![");
+                    i iVar = this.f10744a;
+                    gf.d dVar = iVar.f10758i;
+                    gf.d dVar2 = new gf.d(f10, i7, dVar, iVar.h, true);
+                    if (dVar != null) {
+                        dVar.d = true;
+                    }
+                    iVar.f10758i = dVar2;
+                    return f10;
+                }
+                return null;
+            default:
+                int i10 = this.d;
+                this.d = i10 + 1;
+                s f11 = f("[");
+                i iVar2 = this.f10744a;
+                gf.d dVar3 = iVar2.f10758i;
+                gf.d dVar4 = new gf.d(f11, i10, dVar3, iVar2.h, false);
+                if (dVar3 != null) {
+                    dVar3.d = true;
+                }
+                iVar2.f10758i = dVar4;
+                return f11;
         }
-        for (Object obj2 : this) {
-            if (kotlin.jvm.internal.j.a(obj2, obj)) {
-                return true;
-            }
+    }
+
+    @Override
+    public final char d() {
+        switch (this.f10740e) {
+            case 0:
+                return '!';
+            default:
+                return '[';
         }
-        return false;
-    }
-
-    @Override
-    public final boolean containsAll(Collection elements) {
-        kotlin.jvm.internal.j.e(elements, "elements");
-        Collection<Object> collection = elements;
-        if (collection.isEmpty()) {
-            return true;
-        }
-        for (Object obj : collection) {
-            if (!contains(obj)) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof List)) {
-            return false;
-        }
-        Collection collection = (Collection) obj;
-        if (size() != collection.size()) {
-            return false;
-        }
-        Iterator it = collection.iterator();
-        for (Object obj2 : this) {
-            if (!kotlin.jvm.internal.j.a(obj2, it.next())) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public abstract int h();
-
-    @Override
-    public final int hashCode() {
-        int i3;
-        int i10 = 1;
-        for (Object obj : this) {
-            int i11 = i10 * 31;
-            if (obj != null) {
-                i3 = obj.hashCode();
-            } else {
-                i3 = 0;
-            }
-            i10 = i11 + i3;
-        }
-        return i10;
-    }
-
-    @Override
-    public int indexOf(Object obj) {
-        int i3 = 0;
-        for (Object obj2 : this) {
-            if (kotlin.jvm.internal.j.a(obj2, obj)) {
-                return i3;
-            }
-            i3++;
-        }
-        return -1;
-    }
-
-    @Override
-    public final boolean isEmpty() {
-        if (h() == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public Iterator iterator() {
-        return new a(this);
-    }
-
-    @Override
-    public int lastIndexOf(Object obj) {
-        ListIterator listIterator = listIterator(size());
-        while (listIterator.hasPrevious()) {
-            if (kotlin.jvm.internal.j.a(listIterator.previous(), obj)) {
-                return listIterator.nextIndex();
-            }
-        }
-        return -1;
-    }
-
-    @Override
-    public final ListIterator listIterator() {
-        return new b(this, 0);
-    }
-
-    @Override
-    public final Object remove(int i3) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean removeAll(Collection collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean retainAll(Collection collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final Object set(int i3, Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final int size() {
-        return h();
-    }
-
-    @Override
-    public final List subList(int i3, int i10) {
-        return new c(this, i3, i10);
-    }
-
-    @Override
-    public Object[] toArray() {
-        return kotlin.jvm.internal.j.i(this);
-    }
-
-    public final String toString() {
-        return g.g(this, ", ", "[", "]", new c1.b(this, 4), 24);
-    }
-
-    @Override
-    public final boolean add(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final boolean addAll(Collection collection) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public final ListIterator listIterator(int i3) {
-        return new b(this, i3);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
-    }
-
-    @Override
-    public Object[] toArray(Object[] array) {
-        kotlin.jvm.internal.j.e(array, "array");
-        return kotlin.jvm.internal.j.j(this, array);
     }
 }

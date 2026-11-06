@@ -1,44 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-import java.io.File;
-import java.io.IOException;
-public final class he0 {
-    public final SharedPreferences f34373a;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.animation.AnimationUtils;
+public final class he0 extends Drawable {
+    public final Paint f34307a;
+    public final int f34308b;
+    public boolean f34309c;
+    public float d;
+    public long f34310e;
+    public View f34311f;
+    public int f34312g = 255;
+    public float h = 300.0f;
 
-    public he0(Context context) {
-        boolean isEmpty;
-        SharedPreferences sharedPreferences = context.getSharedPreferences("com.google.android.gms.appid", 0);
-        this.f34373a = sharedPreferences;
-        File file = new File(context.getNoBackupFilesDir(), "com.google.android.gms.appid-no-backup");
-        if (file.exists()) {
-            return;
-        }
-        try {
-            if (file.createNewFile()) {
-                synchronized (this) {
-                    isEmpty = sharedPreferences.getAll().isEmpty();
+    public he0(int i7) {
+        this.f34308b = org.telegram.messenger.g0.L(i7);
+        Paint paint = new Paint(1);
+        this.f34307a = paint;
+        paint.setColor(-1);
+    }
+
+    public final void a(boolean z9, boolean z10) {
+        float f10;
+        if (this.f34309c != z9) {
+            this.f34309c = z9;
+            if (!z10) {
+                if (z9) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
                 }
-                if (isEmpty) {
-                    return;
-                }
-                Log.i("FirebaseMessaging", "App restored, clearing state");
-                a();
+                this.d = f10;
             }
-        } catch (IOException e10) {
-            if (Log.isLoggable("FirebaseMessaging", 3)) {
-                Log.d("FirebaseMessaging", "Error creating file in no backup dir: " + e10.getMessage());
-            }
+            this.f34310e = AnimationUtils.currentAnimationTimeMillis();
+            invalidateSelf();
         }
     }
 
-    public synchronized void a() {
-        this.f34373a.edit().clear().commit();
+    @Override
+    public final void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.he0.draw(android.graphics.Canvas):void");
     }
 
-    public he0(int i3, int i10) {
-        this.f34373a = org.telegram.messenger.t0.f25457b.getSharedPreferences(a1.g.n(i3, i10, "pip_layout_", "_"), 0);
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f34308b;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f34308b;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f34312g = i7;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f34307a.setColorFilter(colorFilter);
     }
 }

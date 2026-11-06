@@ -1,7 +1,16 @@
 package org.telegram.ui;
-public final class p0 extends org.telegram.ui.Components.zt0 {
+
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class p0 extends AnimatorListenerAdapter {
+    public final g4 f48587a;
+
+    public p0(g4 g4Var) {
+        this.f48587a = g4Var;
+    }
+
     @Override
-    public final int p() {
-        return -1;
+    public final void onAnimationEnd(Animator animator) {
+        org.telegram.messenger.g0.h3(new fq0(this, 6));
     }
 }

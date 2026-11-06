@@ -1,72 +1,159 @@
 package v0;
 
-import android.credentials.CreateCredentialException;
-import android.credentials.CreateCredentialResponse;
-import android.credentials.Credential;
-import android.credentials.GetCredentialException;
-import android.credentials.GetCredentialResponse;
-import android.os.Bundle;
-import android.os.OutcomeReceiver;
+import a8.r7;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Base64;
 import android.util.Log;
-import org.telegram.messenger.et;
-import x7.g5;
-import x7.h5;
-import x7.q6;
-public final class j implements OutcomeReceiver {
-    public final int f56428a = 0;
-    public final h f56429b;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.firebase.concurrent.ExecutorsRegistrar;
+import com.google.firebase.installations.FirebaseInstallationsRegistrar;
+import e2.m1;
+import h9.i0;
+import java.util.ArrayList;
+import java.util.concurrent.ScheduledExecutorService;
+import org.telegram.messenger.t0;
+import org.telegram.ui.ActionBar.r1;
+import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.Components.db0;
+import x2.e0;
+import x2.z0;
+public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, db0, g9.k, h2.j, t3.g {
+    public final int f56853a;
 
-    public j(et etVar, k kVar) {
-        this.f56429b = etVar;
+    public j(int i7) {
+        this.f56853a = i7;
     }
 
-    public final void onError(Throwable th2) {
-        switch (this.f56428a) {
-            case 0:
-                CreateCredentialException error = (CreateCredentialException) th2;
-                kotlin.jvm.internal.j.e(error, "error");
-                Log.i("CredManProvService", "CreateCredentialResponse error returned from framework");
-                String type = error.getType();
-                kotlin.jvm.internal.j.d(type, "getType(...)");
-                ((ge.b) this.f56429b).a(q6.a(error.getMessage(), type));
+    @Override
+    public void accept(Object obj) {
+        ((z0) obj).f58418b.release();
+    }
+
+    @Override
+    public Object apply(Object obj) {
+        byte[] decode;
+        switch (this.f56853a) {
+            case 4:
+                Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
+                try {
+                    ArrayList arrayList = new ArrayList();
+                    while (rawQuery.moveToNext()) {
+                        h6.m a10 = o5.i.a();
+                        a10.F(rawQuery.getString(1));
+                        a10.d = y5.a.b(rawQuery.getInt(2));
+                        String string = rawQuery.getString(3);
+                        if (string == null) {
+                            decode = null;
+                        } else {
+                            decode = Base64.decode(string, 0);
+                        }
+                        a10.f14265c = decode;
+                        arrayList.add(a10.h());
+                    }
+                    return arrayList;
+                } finally {
+                    rawQuery.close();
+                }
+            case 21:
+                return ((f3.o) obj).a().getClass().getSimpleName();
+            case 22:
+                return i0.q(h9.o.y(((e0) obj).o().f58330b, new j(24)));
+            case 24:
+                return Integer.valueOf(((m1) obj).f10375c);
+            case 27:
+                return Long.valueOf(((c4.a) obj).f5270b);
+            case 28:
+                return Long.valueOf(((c4.a) obj).f5271c);
+            default:
+                return (z3.q) obj;
+        }
+    }
+
+    @Override
+    public boolean b(int i7, int i10, int i11, int i12, int i13) {
+        if (i10 != 67 || i11 != 79 || i12 != 77 || (i13 != 77 && i7 != 2)) {
+            if (i10 == 77 && i11 == 76 && i12 == 76) {
+                if (i13 == 84 || i7 == 2) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public void c(ua.b bVar) {
+        switch (this.f56853a) {
+            case 10:
+                if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                    Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
+                }
+                bVar.get().getClass();
+                throw new ClassCastException();
+            default:
+                bVar.get().getClass();
+                throw new ClassCastException();
+        }
+    }
+
+    @Override
+    public j2.h createDataSource() {
+        return new j2.b(t0.f25555b);
+    }
+
+    @Override
+    public Object e(r7 r7Var) {
+        switch (this.f56853a) {
+            case 5:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7877a.get();
+            case 6:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7879c.get();
+            case 7:
+                return (ScheduledExecutorService) ExecutorsRegistrar.f7878b.get();
+            case 8:
+                u9.m mVar = ExecutorsRegistrar.f7877a;
+                return v9.j.f57163a;
+            default:
+                return FirebaseInstallationsRegistrar.a(r7Var);
+        }
+    }
+
+    @Override
+    public void g(u1 u1Var, int i7) {
+        switch (this.f56853a) {
+            case 14:
+                return;
+            case 17:
+                u1Var.dismiss();
                 return;
             default:
-                GetCredentialException error2 = (GetCredentialException) th2;
-                kotlin.jvm.internal.j.e(error2, "error");
-                Log.i("CredManProvService", "GetCredentialResponse error returned from framework");
-                String type2 = error2.getType();
-                kotlin.jvm.internal.j.d(type2, "getType(...)");
-                ((et) this.f56429b).a(q6.b(error2.getMessage(), type2));
+                u1Var.dismiss();
                 return;
         }
     }
 
-    public final void onResult(Object obj) {
-        switch (this.f56428a) {
-            case 0:
-                CreateCredentialResponse response = (CreateCredentialResponse) obj;
-                kotlin.jvm.internal.j.e(response, "response");
-                Log.i("CredManProvService", "Create Result returned from framework: ");
-                Bundle data = response.getData();
-                kotlin.jvm.internal.j.d(data, "getData(...)");
-                ((ge.b) this.f56429b).onResult(g5.a("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL", data));
-                return;
+    @Override
+    public String h(int i7) {
+        switch (this.f56853a) {
+            case 15:
+                return String.valueOf(i7);
             default:
-                GetCredentialResponse response2 = (GetCredentialResponse) obj;
-                kotlin.jvm.internal.j.e(response2, "response");
-                Log.i("CredManProvService", "GetCredentialResponse returned from framework");
-                Credential credential = response2.getCredential();
-                kotlin.jvm.internal.j.d(credential, "getCredential(...)");
-                String type = credential.getType();
-                kotlin.jvm.internal.j.d(type, "getType(...)");
-                Bundle data2 = credential.getData();
-                kotlin.jvm.internal.j.d(data2, "getData(...)");
-                ((et) this.f56429b).onResult(new n(h5.a(type, data2)));
-                return;
+                return String.format("%02d", Integer.valueOf(i7 * 5));
         }
     }
 
-    public j(ge.b bVar, e eVar, k kVar) {
-        this.f56429b = bVar;
+    @Override
+    public void onFailure(Exception exc) {
+        Log.e("FirebaseCrashlytics", "Error fetching settings.", exc);
+    }
+
+    public j(androidx.emoji2.text.f fVar) {
+        this.f56853a = 10;
+    }
+
+    private final void d(u1 u1Var, int i7) {
     }
 }

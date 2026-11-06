@@ -1,85 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.content.SharedPreferences;
-import org.telegram.messenger.Utilities;
-public final class v20 {
-    public static final v20 d;
-    public static final v20 f38961e;
-    public static final v20 f38962f;
-    public static final v20 h;
-    public static final v20 f38963n;
-    public static final v20 f38964r;
-    public static final v20 f38965s;
-    public static final v20 f38966w;
-    public static final v20 f38967x;
-    public static final v20[] f38968y;
-    public final String f38969a;
-    public final int f38970b;
-    public final float f38971c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.text.TextPaint;
+import android.util.TypedValue;
+public class v20 extends EditTextBoldCursor {
+    public final TextPaint G1;
+    public String H1;
+    public final Rect I1;
 
-    static {
-        v20 v20Var = new v20("RoundHint2", 0, "needShowRoundHint2", 3, 0.2f);
-        d = v20Var;
-        v20 v20Var2 = new v20("RoundHintChannel2", 1, "needShowRoundHintChannel2", 3, 0.2f);
-        f38961e = v20Var2;
-        v20 v20Var3 = new v20("ChannelSuggestHint", 2, "channelsuggesthint", 3, 0.2f);
-        f38962f = v20Var3;
-        v20 v20Var4 = new v20("ChannelGiftHint", 3, "channelgifthint", 3, 0.2f);
-        h = v20Var4;
-        v20 v20Var5 = new v20("GroupEmojiPackHintShown", 4, "groupEmojiPackShownHint", 1, 1.0f);
-        f38963n = v20Var5;
-        v20 v20Var6 = new v20("AccountSwitchHint", 5, "accountswitchhint", 3, 1.0f);
-        f38964r = v20Var6;
-        v20 v20Var7 = new v20("GiftMessageHint", 6, "giftMessaheHint", 3, 1.0f);
-        f38965s = v20Var7;
-        v20 v20Var8 = new v20("PlaybackSpeedHint", 7, "playbackspeedhint", 3, 0.2f);
-        f38966w = v20Var8;
-        v20 v20Var9 = new v20();
-        f38967x = v20Var9;
-        f38968y = new v20[]{v20Var, v20Var2, v20Var3, v20Var4, v20Var5, v20Var6, v20Var7, v20Var8, v20Var9};
+    public v20(Context context) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.G1 = textPaint;
+        this.I1 = new Rect();
+        textPaint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.H6, false));
     }
 
-    public v20() {
-        this.f38969a = "hints_controller_" + this;
-        this.f38970b = 3;
-        this.f38971c = 1.0f;
+    public String getHintText() {
+        return this.H1;
     }
 
-    public static v20 valueOf(String str) {
-        return (v20) Enum.valueOf(v20.class, str);
-    }
-
-    public static v20[] values() {
-        return (v20[]) f38968y.clone();
-    }
-
-    public final void a() {
-        org.telegram.messenger.hp.e1().edit().putInt(this.f38969a, this.f38970b).apply();
-    }
-
-    public final void b() {
-        SharedPreferences e12 = org.telegram.messenger.hp.e1();
-        String str = this.f38969a;
-        org.telegram.messenger.hp.e1().edit().putInt(str, e12.getInt(str, 0) + 1).apply();
-    }
-
-    public final boolean c() {
-        if (org.telegram.messenger.hp.e1().getInt(this.f38969a, 0) < this.f38970b) {
-            float f10 = this.f38971c;
-            if (f10 < 1.0f) {
-                if (f10 > 0.0f && Utilities.f21386c.nextFloat() < f10) {
-                    return true;
+    @Override
+    public void onDraw(Canvas canvas) {
+        float measureText;
+        Rect rect;
+        Canvas canvas2;
+        if (this.H1 != null && length() < this.H1.length()) {
+            int i7 = 0;
+            float f10 = 0.0f;
+            while (i7 < this.H1.length()) {
+                int length = length();
+                TextPaint textPaint = this.G1;
+                if (i7 < length) {
+                    measureText = getPaint().measureText(getText(), i7, i7 + 1);
+                } else {
+                    measureText = textPaint.measureText(this.H1, i7, i7 + 1);
                 }
-            } else {
-                return true;
+                if (i7 < length()) {
+                    f10 += measureText;
+                    canvas2 = canvas;
+                } else {
+                    int color = textPaint.getColor();
+                    canvas.save();
+                    String str = this.H1;
+                    textPaint.getTextBounds(str, 0, str.length(), this.I1);
+                    z(i7);
+                    canvas2 = canvas;
+                    canvas2.drawText(this.H1, i7, i7 + 1, f10, (rect.height() + getHeight()) / 2.0f, (Paint) textPaint);
+                    f10 += measureText;
+                    canvas2.restore();
+                    textPaint.setColor(color);
+                }
+                i7++;
+                canvas = canvas2;
             }
         }
-        return false;
+        super.onDraw(canvas);
     }
 
-    public v20(String str, int i3, String str2, int i10, float f10) {
-        this.f38969a = str2;
-        this.f38970b = i10;
-        this.f38971c = f10;
+    @Override
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        super.onLayout(z9, i7, i10, i11, i12);
+        invalidate();
+    }
+
+    public void setHintText(String str) {
+        this.H1 = str;
+        invalidate();
+        setText(getText());
+    }
+
+    @Override
+    public void setTextSize(int i7, float f10) {
+        super.setTextSize(i7, f10);
+        this.G1.setTextSize(TypedValue.applyDimension(i7, f10, getResources().getDisplayMetrics()));
+    }
+
+    public void z(int i7) {
     }
 }

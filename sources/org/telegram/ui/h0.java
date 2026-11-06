@@ -1,46 +1,46 @@
 package org.telegram.ui;
+public final class h0 extends org.telegram.ui.ActionBar.u4 {
+    public final int f46155r;
+    public final Object f46156s;
 
-import android.content.Context;
-import android.net.Uri;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class h0 implements RequestDelegate {
-    public final int f45764a = 0;
-    public final int f45765b;
-    public final boolean f45766c;
-    public final Object d;
-    public final Object f45767e;
-    public final Object f45768f;
-    public final Object f45769g;
-
-    public h0(i4 i4Var, int i3, TLRPC.WebPage webPage, org.telegram.messenger.zi ziVar, boolean z10, String str) {
-        this.d = i4Var;
-        this.f45765b = i3;
-        this.f45767e = webPage;
-        this.f45768f = ziVar;
-        this.f45766c = z10;
-        this.f45769g = str;
+    public h0(Object obj, int i7) {
+        this.f46155r = i7;
+        this.f46156s = obj;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f45764a) {
-            case 0:
-                org.telegram.messenger.g0.h3(new x((i4) this.d, tLObject, this.f45765b, (TLRPC.WebPage) this.f45767e, (org.telegram.messenger.zi) this.f45768f, this.f45766c, (String) this.f45769g));
+    public void v() {
+        switch (this.f46155r) {
+            case 1:
+                ((org.telegram.ui.Components.mo0) this.f46156s).Q1 = true;
                 return;
             default:
-                org.telegram.messenger.g0.h3(new x((sf.b) this.d, (org.telegram.ui.ActionBar.s1[]) this.f45767e, tLObject, this.f45765b, (Uri) this.f45768f, (Context) this.f45769g, this.f45766c));
                 return;
         }
     }
 
-    public h0(sf.b bVar, org.telegram.ui.ActionBar.s1[] s1VarArr, int i3, Uri uri, Context context, boolean z10) {
-        this.d = bVar;
-        this.f45767e = s1VarArr;
-        this.f45765b = i3;
-        this.f45768f = uri;
-        this.f45769g = context;
-        this.f45766c = z10;
+    @Override
+    public boolean x() {
+        boolean z9;
+        switch (this.f46155r) {
+            case 0:
+                g4 g4Var = (g4) this.f46156s;
+                org.telegram.ui.Cells.i9 i9Var = g4Var.Q0;
+                if (i9Var != null && i9Var.x()) {
+                    g4Var.Q0.f(false);
+                    return false;
+                }
+                return true;
+            case 1:
+            default:
+                return super.x();
+            case 2:
+                z9 = ((org.telegram.ui.Wallet.b2) this.f46156s).f42107m;
+                break;
+            case 3:
+                z9 = ((org.telegram.ui.Wallet.u2) this.f46156s).d;
+                break;
+        }
+        return !z9;
     }
 }

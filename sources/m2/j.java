@@ -1,14 +1,32 @@
 package m2;
-public final class j {
-    public int f18893a = 0;
-    public boolean f18894b;
-    public boolean f18895c;
-    public boolean d;
 
-    public k a() {
-        if (!this.f18894b && (this.f18895c || this.d)) {
-            throw new IllegalStateException("Secondary offload attribute fields are true but primary isFormatSupportedForOffload is false");
+import android.media.metrics.LogSessionId;
+import android.os.Build;
+public final class j {
+    public static final j f19558c;
+    public final String f19559a;
+    public final i f19560b;
+
+    static {
+        new j("");
+        f19558c = new j("preload");
+    }
+
+    public j(String str) {
+        i iVar;
+        this.f19559a = str;
+        if (Build.VERSION.SDK_INT >= 31) {
+            iVar = new i();
+        } else {
+            iVar = null;
         }
-        return new k(this);
+        this.f19560b = iVar;
+    }
+
+    public final synchronized LogSessionId a() {
+        i iVar;
+        iVar = this.f19560b;
+        iVar.getClass();
+        return (LogSessionId) iVar.f19557b;
     }
 }

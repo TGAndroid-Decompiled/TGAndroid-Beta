@@ -1,50 +1,118 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.TextView;
-public final class u10 extends TextView {
-    public final Paint[] f38609a;
-    public final org.telegram.ui.x20 f38610b;
+import android.graphics.Matrix;
+import android.graphics.RadialGradient;
+import android.graphics.Shader;
+import java.security.SecureRandom;
+import org.telegram.messenger.Utilities;
+public final class u10 {
+    public float f38486c;
+    public float d;
+    public float f38487e;
+    public float f38488f;
+    public RadialGradient f38489g;
+    public final int f38490i;
+    public int f38491j;
+    public int f38492k;
+    public int f38493l;
+    public float f38484a = -1.0f;
+    public float f38485b = -1.0f;
+    public final Matrix h = new Matrix();
 
-    public u10(org.telegram.ui.x20 x20Var, Context context) {
-        super(context);
-        this.f38610b = x20Var;
-        this.f38609a = new Paint[x20Var.m1.length];
-        int i3 = 0;
-        while (true) {
-            Paint[] paintArr = this.f38609a;
-            if (i3 < paintArr.length) {
-                paintArr[i3] = new Paint(1);
-                i3++;
-            } else {
-                return;
+    public u10(int i7) {
+        this.f38490i = i7;
+    }
+
+    public final void a(float f10) {
+        float f11;
+        int i7 = this.f38490i;
+        if (i7 == 0) {
+            int i10 = this.f38491j;
+            int i11 = org.telegram.ui.ActionBar.k6.Hh;
+            if (i10 != org.telegram.ui.ActionBar.k6.x0(null, i11, false) || this.f38492k != org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ih, false)) {
+                int x02 = org.telegram.ui.ActionBar.k6.x0(null, i11, false);
+                this.f38491j = x02;
+                int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ih, false);
+                this.f38492k = x03;
+                this.f38489g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x02, x03}, (float[]) null, Shader.TileMode.CLAMP);
             }
+        } else if (i7 == 1) {
+            int i12 = this.f38491j;
+            int i13 = org.telegram.ui.ActionBar.k6.Jh;
+            if (i12 != org.telegram.ui.ActionBar.k6.x0(null, i13, false) || this.f38492k != org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Kh, false)) {
+                int x04 = org.telegram.ui.ActionBar.k6.x0(null, i13, false);
+                this.f38491j = x04;
+                int x05 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Kh, false);
+                this.f38492k = x05;
+                this.f38489g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x04, x05}, (float[]) null, Shader.TileMode.CLAMP);
+            }
+        } else if (i7 == 3) {
+            int i14 = this.f38491j;
+            int i15 = org.telegram.ui.ActionBar.k6.Wh;
+            if (i14 != org.telegram.ui.ActionBar.k6.x0(null, i15, false) || this.f38492k != org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Xh, false) || this.f38493l != org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Yh, false)) {
+                int x06 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Xh, false);
+                this.f38492k = x06;
+                int x07 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Yh, false);
+                this.f38493l = x07;
+                int x08 = org.telegram.ui.ActionBar.k6.x0(null, i15, false);
+                this.f38491j = x08;
+                this.f38489g = new RadialGradient(200.0f, 200.0f, 200.0f, new int[]{x06, x07, x08}, (float[]) null, Shader.TileMode.CLAMP);
+            }
+        } else {
+            return;
         }
+        int L = org.telegram.messenger.g0.L(130.0f);
+        float f12 = this.f38487e;
+        if (f12 == 0.0f || this.f38488f >= f12) {
+            this.f38487e = Utilities.f21331b.nextInt(700) + 500;
+            this.f38488f = 0.0f;
+            if (this.f38484a == -1.0f) {
+                b();
+            }
+            this.f38486c = this.f38484a;
+            this.d = this.f38485b;
+            b();
+        }
+        float f13 = (float) 16;
+        float f14 = (f13 * 0.02f * f10) + (1.0f * f13) + this.f38488f;
+        this.f38488f = f14;
+        float f15 = this.f38487e;
+        if (f14 > f15) {
+            this.f38488f = f15;
+        }
+        float interpolation = xq.f40311g.getInterpolation(this.f38488f / f15);
+        float f16 = L;
+        float f17 = this.f38486c;
+        float f18 = ((((this.f38484a - f17) * interpolation) + f17) * f16) - 200.0f;
+        float f19 = this.d;
+        float f20 = ((((this.f38485b - f19) * interpolation) + f19) * f16) - 200.0f;
+        if (i7 == 3) {
+            f11 = 2.0f;
+        } else {
+            f11 = 1.5f;
+        }
+        float f21 = (f16 / 400.0f) * f11;
+        Matrix matrix = this.h;
+        matrix.reset();
+        matrix.postTranslate(f18, f20);
+        matrix.postScale(f21, f21, f18 + 200.0f, f20 + 200.0f);
+        this.f38489g.setLocalMatrix(matrix);
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int i3;
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        org.telegram.ui.x20 x20Var = this.f38610b;
-        int i10 = x20Var.f40195o1;
-        Paint[] paintArr = this.f38609a;
-        paintArr[i10].setAlpha(255);
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), paintArr[x20Var.f40195o1]);
-        float f10 = x20Var.f40194n1;
-        if (f10 > 0.0f && (i3 = x20Var.f40195o1 + 1) < paintArr.length) {
-            paintArr[i3].setAlpha((int) (f10 * 255.0f));
-            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), paintArr[x20Var.f40195o1 + 1]);
+    public final void b() {
+        int i7 = this.f38490i;
+        if (i7 == 0) {
+            SecureRandom secureRandom = Utilities.f21331b;
+            this.f38484a = a8.p0.f(secureRandom.nextInt(100), 0.1f, 100.0f, 0.2f);
+            this.f38485b = a8.p0.f(secureRandom.nextInt(100), 0.1f, 100.0f, 0.7f);
+        } else if (i7 == 3) {
+            SecureRandom secureRandom2 = Utilities.f21331b;
+            this.f38484a = a8.p0.f(secureRandom2.nextInt(100), 0.1f, 100.0f, 0.6f);
+            this.f38485b = (secureRandom2.nextInt(100) * 0.1f) / 100.0f;
+        } else {
+            SecureRandom secureRandom3 = Utilities.f21331b;
+            this.f38484a = com.google.android.recaptcha.internal.a.c(secureRandom3.nextInt(100), 100.0f, 0.2f, 0.8f);
+            this.f38485b = secureRandom3.nextInt(100) / 100.0f;
         }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onSizeChanged(int r12, int r13, int r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u10.onSizeChanged(int, int, int, int):void");
     }
 }

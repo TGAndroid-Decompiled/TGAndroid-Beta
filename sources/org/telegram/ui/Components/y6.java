@@ -1,47 +1,63 @@
 package org.telegram.ui.Components;
 
+import android.net.Uri;
 import android.widget.FrameLayout;
-public final class y6 implements Runnable {
-    public final int f40632a;
-    public final z7 f40633b;
-    public final f60 f40634c;
+import java.io.File;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class y6 implements org.telegram.messenger.c20 {
+    public final int f40531a;
+    public final b8 f40532b;
 
-    public y6(z7 z7Var, f60 f60Var, int i3) {
-        this.f40632a = i3;
-        this.f40633b = z7Var;
-        this.f40634c = f60Var;
+    public y6(b8 b8Var, int i7) {
+        this.f40531a = i7;
+        this.f40532b = b8Var;
     }
 
     @Override
-    public final void run() {
-        int i3 = this.f40632a;
-        f60 f60Var = this.f40634c;
-        z7 z7Var = this.f40633b;
-        switch (i3) {
+    public final void a(Object obj) {
+        TLRPC.Document F0;
+        switch (this.f40531a) {
             case 0:
-                z7Var.getClass();
-                f60Var.u();
-                z7Var.P0(1);
-                return;
-            case 1:
-                z7Var.getClass();
-                f60Var.u();
-                z7Var.P0(2);
-                return;
-            case 2:
-                z7Var.getClass();
-                f60Var.u();
-                z7Var.P0(4);
-                return;
-            case 3:
-                z7Var.getClass();
-                f60Var.u();
-                z7Var.P0(7);
+                org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) obj;
+                if (ijVar != null) {
+                    b8 b8Var = this.f40532b;
+                    if (b8Var.f32049m2 != null && (F0 = ijVar.F0()) != null) {
+                        if (F0.f26958id != 0) {
+                            TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
+                            TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+                            tL_account_saveMusic.f26980id = tL_inputDocument;
+                            tL_inputDocument.f26964id = F0.f26958id;
+                            tL_inputDocument.access_hash = F0.access_hash;
+                            tL_inputDocument.file_reference = F0.file_reference;
+                            org.telegram.messenger.kp kpVar = b8Var.f32049m2;
+                            if (kpVar != null) {
+                                kpVar.f23734c.add(0, kpVar.d(F0));
+                                kpVar.e();
+                            }
+                            b8Var.f32050n2.clear();
+                            b8Var.f32050n2.addAll(b8Var.f32049m2.f23734c);
+                            b8Var.f32055q1.f();
+                            ConnectionsManager.getInstance(b8Var.f28612a).sendRequest(tL_account_saveMusic, null);
+                            return;
+                        }
+                        org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, b8Var.getContext(), null);
+                        u1Var.r(180L);
+                        File file = new File(ijVar.f23237k.attachPath);
+                        if (file.exists()) {
+                            org.telegram.messenger.w7.G(b8Var.f28612a).g0(file.getAbsolutePath(), new bi.v3(b8Var, u1Var, F0, 6));
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
                 return;
             default:
-                z7Var.U0(true);
-                org.telegram.messenger.k5.o(null, 2131753912, new fc((FrameLayout) z7Var.f28586b, z7Var.J0), 2131624190, 36);
-                f60Var.u();
+                Uri uri = (Uri) obj;
+                b8 b8Var2 = this.f40532b;
+                org.telegram.ui.ActionBar.f6 f6Var = b8Var2.I0;
+                new hc((FrameLayout) b8Var2.f28615b, f6Var).o(gc.F, f6Var).j();
                 return;
         }
     }

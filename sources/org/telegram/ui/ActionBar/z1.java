@@ -1,34 +1,99 @@
 package org.telegram.ui.ActionBar;
 
-import android.app.Dialog;
-import android.view.View;
-import org.telegram.ui.Components.fc;
-public interface z1 {
-    void a(boolean z10);
+import org.telegram.ui.Components.ab;
+import org.telegram.ui.Components.cc;
+public final class z1 implements ab {
+    public final int f28821a;
+    public final f2 f28822b;
 
-    void b(boolean z10);
+    public z1(int i7, f2 f2Var) {
+        this.f28821a = i7;
+        this.f28822b = f2Var;
+    }
 
-    View d();
+    @Override
+    public final boolean a() {
+        switch (this.f28821a) {
+            case 0:
+                return true;
+            default:
+                return true;
+        }
+    }
 
-    void dismiss();
+    @Override
+    public final void b(cc ccVar) {
+        int i7 = this.f28821a;
+    }
 
-    int e(int i3);
+    @Override
+    public final void c(float f10) {
+        int i7 = this.f28821a;
+    }
 
-    boolean f();
+    @Override
+    public final void d(cc ccVar) {
+        int i7 = this.f28821a;
+    }
 
-    void h(int i3);
+    @Override
+    public final boolean e() {
+        switch (this.f28821a) {
+            case 0:
+                return true;
+            default:
+                return true;
+        }
+    }
 
-    boolean j();
+    @Override
+    public final int f(int i7) {
+        switch (this.f28821a) {
+            case 0:
+                if (this.f28822b.isSupportEdgeToEdge()) {
+                    return org.telegram.messenger.g0.f22532n;
+                }
+                return 0;
+            default:
+                return this.f28822b.getBottomInset();
+        }
+    }
 
-    fc k();
+    @Override
+    public final boolean g(int i7) {
+        switch (this.f28821a) {
+            case 0:
+                return false;
+            default:
+                return false;
+        }
+    }
 
-    void n(Runnable runnable);
+    @Override
+    public final int h(int i7) {
+        switch (this.f28821a) {
+            case 0:
+                return 0;
+            default:
+                return 0;
+        }
+    }
 
-    void p();
+    private final void i(float f10) {
+    }
 
-    boolean s();
+    private final void j(float f10) {
+    }
 
-    boolean t(Dialog dialog);
+    private final void k(cc ccVar) {
+    }
 
-    boolean y();
+    private final void l(cc ccVar) {
+    }
+
+    private final void m(cc ccVar) {
+    }
+
+    private final void n(cc ccVar) {
+    }
 }

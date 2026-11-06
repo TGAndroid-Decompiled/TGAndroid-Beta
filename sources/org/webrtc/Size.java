@@ -3,8 +3,8 @@ public class Size {
     public int height;
     public int width;
 
-    public Size(int i3, int i10) {
-        this.width = i3;
+    public Size(int i7, int i10) {
+        this.width = i7;
         this.height = i10;
     }
 

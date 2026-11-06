@@ -1,12 +1,15 @@
 package org.telegram.ui.Components;
-public final class ef extends org.telegram.messenger.zi {
+
+import android.util.Property;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class ef extends Property {
     @Override
-    public final boolean Q3() {
-        return true;
+    public final Object get(Object obj) {
+        return Float.valueOf(((ChatActivityEnterView.RecordCircle) obj).getControlsScale());
     }
 
     @Override
-    public final boolean p5() {
-        return false;
+    public final void set(Object obj, Object obj2) {
+        ((ChatActivityEnterView.RecordCircle) obj).setControlsScale(((Float) obj2).floatValue());
     }
 }

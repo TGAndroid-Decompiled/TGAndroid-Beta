@@ -1,4 +1,45 @@
 package vg;
-public abstract class l {
-    public static final String[] f56699a = {"Hello", "Привіт", "Привет", "Bonjour", "Hola", "Ciao", "Olá", "여보세요", "你好", "Salve", "Sveiki", "Halo", "გამარჯობა", "Hallå", "Salam", "Tere", "Dia dhuit", "こんにちは", "Сайн уу", "Bongu", "Ahoj", "γεια", "Zdravo", "नमस्ते", "Habari", "Hallo", "ជំរាបសួរ", "مرحبًا", "ನಮಸ್ಕಾರ", "Салам", "Silav li wir", "سڵاو", "Kif inti", "Talofa", "Thobela", "हॅलो", "ሰላም", "Здраво", "ഹലോ", "ہیلو", "ꯍꯦꯜꯂꯣ", "Alô", "வணக்கம்", "Mhoro", "Moni", "Alo", "สวัสดี", "Salom", "Բարեւ"};
+
+import android.graphics.SurfaceTexture;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.g0;
+public final class l extends Thread {
+    public final SurfaceTexture f57290a;
+    public volatile boolean f57291b;
+    public boolean f57292c;
+    public final m d;
+
+    public l(m mVar, SurfaceTexture surfaceTexture) {
+        this.d = mVar;
+        this.f57290a = surfaceTexture;
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: vg.l.a():void");
+    }
+
+    @Override
+    public final void run() {
+        synchronized (this.d.d) {
+            try {
+                if (this.f57291b) {
+                    return;
+                }
+                m mVar = this.d;
+                mVar.f57297c = this.f57290a;
+                mVar.H = true;
+                try {
+                    a();
+                } catch (Exception e10) {
+                    if (!this.f57291b) {
+                        a8.g(e10, true);
+                        g0.h3(new k(this, 0));
+                    }
+                }
+                m.b(this.d);
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
 }

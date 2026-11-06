@@ -1,13 +1,15 @@
 package org.telegram.ui;
-public final class p80 extends org.telegram.ui.Components.gz {
+
+import j$.util.function.Consumer$CC;
+import java.util.function.Consumer;
+public final class p80 implements Consumer {
     @Override
-    public final void b() {
-        setVisibility(8);
+    public final void accept(Object obj) {
+        ((Boolean) obj).getClass();
+        String str = LaunchActivity.B1;
     }
 
-    @Override
-    public final void c(boolean z10) {
-        setVisibility(0);
-        super.c(z10);
+    public Consumer andThen(Consumer consumer) {
+        return Consumer$CC.$default$andThen(this, consumer);
     }
 }

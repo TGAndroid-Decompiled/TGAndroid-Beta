@@ -46,11 +46,11 @@ public final class a {
         resultReceiver.send(Integer.MAX_VALUE, bundle);
     }
 
-    public static void d(ResultReceiver resultReceiver, int i3, int i10, Intent intent) {
+    public static void d(ResultReceiver resultReceiver, int i7, int i10, Intent intent) {
         j.e(resultReceiver, "<this>");
         Bundle bundle = new Bundle();
         bundle.putBoolean("FAILURE_RESPONSE", false);
-        bundle.putInt("ACTIVITY_REQUEST_CODE", i3);
+        bundle.putInt("ACTIVITY_REQUEST_CODE", i7);
         bundle.putParcelable("RESULT_DATA", intent);
         resultReceiver.send(i10, bundle);
     }

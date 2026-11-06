@@ -1,18 +1,17 @@
 package ab;
-public enum c implements pa.b {
-    UNKNOWN_OS(0),
-    ANDROID(1),
-    IOS(2),
-    WEB(3);
-    
-    public final int f297a;
+public final class c implements na.d {
+    public static final c f910a = new Object();
 
-    c(int i3) {
-        this.f297a = i3;
+    static {
+        na.c.c("messagingClientEventExtension");
     }
 
     @Override
-    public final int a() {
-        return this.f297a;
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            na.e eVar = (na.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

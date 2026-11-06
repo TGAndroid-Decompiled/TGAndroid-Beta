@@ -1,0 +1,16 @@
+package c8;
+
+import android.util.Log;
+public abstract class hc {
+    public static void a(String str) {
+        boolean isLoggable;
+        if (Log.isLoggable("FirebaseAppIndex", 3)) {
+            isLoggable = true;
+        } else {
+            isLoggable = Log.isLoggable("FirebaseAppIndex", 3);
+        }
+        if (isLoggable) {
+            Log.d("FirebaseAppIndex", str);
+        }
+    }
+}

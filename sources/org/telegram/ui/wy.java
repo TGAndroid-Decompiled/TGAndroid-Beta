@@ -1,26 +1,83 @@
 package org.telegram.ui;
-public final class wy implements Runnable {
-    public final int f51630a;
-    public final yy f51631b;
 
-    public wy(yy yyVar, int i3) {
-        this.f51630a = i3;
-        this.f51631b = yyVar;
+import android.view.ViewPropertyAnimator;
+import android.widget.TextView;
+public final class wy extends org.telegram.ui.Cells.n4 {
+    public final gz D;
+    public final TextView f51657r;
+    public final bi.rc f51658s;
+    public int f51659w;
+    public final org.telegram.ui.Components.z4 f51660x;
+    public boolean f51661y;
+
+    public wy(org.telegram.ui.gz r13, android.content.Context r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wy.<init>(org.telegram.ui.gz, android.content.Context):void");
     }
 
-    @Override
-    public final void run() {
-        switch (this.f51630a) {
-            case 0:
-                this.f51631b.d();
-                return;
-            case 1:
-                this.f51631b.a();
-                return;
-            default:
-                yy yyVar = this.f51631b;
-                yyVar.b(yyVar.E);
-                return;
+    public final void d(int i7, boolean z9) {
+        int i10;
+        boolean z10;
+        float f10;
+        gz gzVar = this.D;
+        if (gzVar.getUserConfig().q()) {
+            i10 = 2131750621;
+        } else {
+            i10 = 2131750620;
         }
+        String M0 = org.telegram.messenger.hd.M0(i10, null);
+        TextView textView = this.f51657r;
+        textView.setText(M0);
+        int i11 = 0;
+        if (i7 < 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (!z10) {
+            int[] iArr = org.telegram.ui.ActionBar.k6.f28109r8;
+            i11 = gzVar.getThemedColor(iArr[i7 % iArr.length]);
+        }
+        this.f51659w = i11;
+        bi.rc rcVar = this.f51658s;
+        if (!z10) {
+            rcVar.setEmojiColor(i11);
+        }
+        if (!z9) {
+            this.f51660x.a(this.f51659w, true);
+        }
+        if (z10 != this.f51661y) {
+            this.f51661y = z10;
+            ViewPropertyAnimator animate = textView.animate();
+            float f11 = 0.0f;
+            if (z10) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            ViewPropertyAnimator duration = animate.alpha(f10).setDuration(320L);
+            org.telegram.ui.Components.xq xqVar = org.telegram.ui.Components.xq.h;
+            duration.setInterpolator(xqVar).start();
+            ViewPropertyAnimator animate2 = rcVar.animate();
+            if (!z10) {
+                f11 = 1.0f;
+            }
+            animate2.alpha(f11).setDuration(320L).setInterpolator(xqVar).start();
+        }
+    }
+
+    public final void e(CharSequence charSequence, boolean z9) {
+        if (charSequence == null) {
+            charSequence = "";
+        }
+        boolean z10 = false;
+        if (charSequence.length() > 12) {
+            charSequence = charSequence.subSequence(0, 12);
+        }
+        bi.rc rcVar = this.f51658s;
+        CharSequence m10 = org.telegram.messenger.i6.m(charSequence, rcVar.getPaint().getFontMetricsInt(), false, null, 0);
+        if (z9 && !org.telegram.messenger.hd.f22871a0) {
+            z10 = true;
+        }
+        rcVar.c(m10, z10, true);
     }
 }

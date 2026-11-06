@@ -43,8 +43,8 @@ public class RtpCapabilities {
             return this.preferredPayloadType;
         }
 
-        public CodecCapability(int i3, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, String str2, Map<String, String> map) {
-            this.preferredPayloadType = i3;
+        public CodecCapability(int i7, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, String str2, Map<String, String> map) {
+            this.preferredPayloadType = i7;
             this.name = str;
             this.kind = mediaType;
             this.clockRate = num;
@@ -59,10 +59,10 @@ public class RtpCapabilities {
         private final int preferredId;
         private final String uri;
 
-        public HeaderExtensionCapability(String str, int i3, boolean z10) {
+        public HeaderExtensionCapability(String str, int i7, boolean z9) {
             this.uri = str;
-            this.preferredId = i3;
-            this.preferredEncrypted = z10;
+            this.preferredId = i7;
+            this.preferredEncrypted = z9;
         }
 
         public boolean getPreferredEncrypted() {

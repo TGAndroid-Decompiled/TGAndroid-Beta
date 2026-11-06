@@ -1,17 +1,17 @@
 package kotlin.jvm.internal;
-public abstract class n extends c implements sd.g {
-    public final boolean f17357a;
+public abstract class n extends c implements vd.g {
+    public final boolean f17608a;
 
     public n(java.lang.Object r9, java.lang.Class r10, java.lang.String r11, java.lang.String r12, int r13) {
         throw new UnsupportedOperationException("Method not decompiled: kotlin.jvm.internal.n.<init>(java.lang.Object, java.lang.Class, java.lang.String, java.lang.String, int):void");
     }
 
     @Override
-    public final sd.g getReflected() {
-        if (!this.f17357a) {
-            sd.b compute = compute();
+    public final vd.g getReflected() {
+        if (!this.f17608a) {
+            vd.b compute = compute();
             if (compute != this) {
-                return (sd.g) compute;
+                return (vd.g) compute;
             }
             throw new Error("Kotlin reflection implementation is not found at runtime. Make sure you have kotlin-reflect.jar in the classpath");
         }
@@ -19,8 +19,8 @@ public abstract class n extends c implements sd.g {
     }
 
     @Override
-    public final sd.b compute() {
-        if (this.f17357a) {
+    public final vd.b compute() {
+        if (this.f17608a) {
             return this;
         }
         return super.compute();
@@ -36,7 +36,7 @@ public abstract class n extends c implements sd.g {
                 return true;
             }
             return false;
-        } else if (!(obj instanceof sd.g)) {
+        } else if (!(obj instanceof vd.g)) {
             return false;
         } else {
             return obj.equals(compute());
@@ -49,7 +49,7 @@ public abstract class n extends c implements sd.g {
     }
 
     public final String toString() {
-        sd.b compute = compute();
+        vd.b compute = compute();
         if (compute != this) {
             return compute.toString();
         }

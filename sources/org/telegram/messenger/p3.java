@@ -4,54 +4,54 @@ import android.os.SystemClock;
 import android.util.Log;
 import org.telegram.tgnet.TLRPC;
 public final class p3 implements Runnable {
-    public final r3 f24697a;
+    public final r3 f24500a;
 
     public p3(r3 r3Var) {
-        this.f24697a = r3Var;
+        this.f24500a = r3Var;
     }
 
     @Override
     public final void run() {
-        int i3;
-        r3 r3Var = this.f24697a;
+        int i7;
+        r3 r3Var = this.f24500a;
         a0.h hVar = r3Var.P;
         long uptimeMillis = SystemClock.uptimeMillis();
         int i10 = 0;
-        boolean z10 = false;
+        boolean z9 = false;
         while (i10 < hVar.m()) {
-            long j10 = hVar.j(i10);
-            if (uptimeMillis - ((TLRPC.GroupCallParticipant) hVar.f(j10)).lastSpeakTime >= 500) {
-                hVar.l(j10);
+            long j3 = hVar.j(i10);
+            if (uptimeMillis - ((TLRPC.GroupCallParticipant) hVar.f(j3)).lastSpeakTime >= 500) {
+                hVar.l(j3);
                 String str = null;
-                if (j10 > 0) {
-                    TLRPC.User a22 = hp.s1(r3Var.C.f21919a).a2(Long.valueOf(j10));
-                    StringBuilder t10 = a1.g.t(j10, "remove from speaking ", " ");
+                if (j3 > 0) {
+                    TLRPC.User a22 = qp.s1(r3Var.C.f21723a).a2(Long.valueOf(j3));
+                    StringBuilder t6 = a8.p0.t(j3, "remove from speaking ", " ");
                     if (a22 != null) {
                         str = a22.first_name;
                     }
-                    t10.append(str);
-                    Log.d("GroupCall", t10.toString());
-                    i3 = i10;
+                    t6.append(str);
+                    Log.d("GroupCall", t6.toString());
+                    i7 = i10;
                 } else {
-                    i3 = i10;
-                    TLRPC.Chat M0 = hp.s1(r3Var.C.f21919a).M0(Long.valueOf(-j10));
-                    StringBuilder t11 = a1.g.t(j10, "remove from speaking ", " ");
+                    i7 = i10;
+                    TLRPC.Chat M0 = qp.s1(r3Var.C.f21723a).M0(Long.valueOf(-j3));
+                    StringBuilder t10 = a8.p0.t(j3, "remove from speaking ", " ");
                     if (M0 != null) {
                         str = M0.title;
                     }
-                    t11.append(str);
-                    Log.d("GroupCall", t11.toString());
+                    t10.append(str);
+                    Log.d("GroupCall", t10.toString());
                 }
-                i10 = i3 - 1;
-                z10 = true;
+                i10 = i7 - 1;
+                z9 = true;
             }
             i10++;
         }
         if (hVar.m() > 0) {
             g0.i3(r3Var.Q, 550L);
         }
-        if (z10) {
-            hs.f(r3Var.C.f21919a).k(hs.f23342y2, Long.valueOf(r3Var.f25050c), Long.valueOf(r3Var.f25049b.f27011id), Boolean.FALSE);
+        if (z9) {
+            qs.f(r3Var.C.f21723a).k(qs.f25096y2, Long.valueOf(r3Var.f25202c), Long.valueOf(r3Var.f25201b.f26962id), Boolean.FALSE);
         }
     }
 }

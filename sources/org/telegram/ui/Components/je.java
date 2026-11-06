@@ -1,84 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.ImageView;
-public final class je extends AnimatorListenerAdapter {
-    public final int f35047a;
-    public final boolean f35048b;
-    public final ChatActivityEnterView f35049c;
+import android.animation.AnimatorSet;
+public final class je implements Runnable {
+    public final int f34959a;
+    public final ChatActivityEnterView f34960b;
 
-    public je(ChatActivityEnterView chatActivityEnterView, boolean z10, int i3) {
-        this.f35047a = i3;
-        this.f35049c = chatActivityEnterView;
-        this.f35048b = z10;
+    public je(ChatActivityEnterView chatActivityEnterView, int i7) {
+        this.f34959a = i7;
+        this.f34960b = chatActivityEnterView;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f35047a) {
-            case 1:
-                ChatActivityEnterView chatActivityEnterView = this.f35049c;
-                if (animator.equals(chatActivityEnterView.f31200t2)) {
-                    chatActivityEnterView.f31200t2 = null;
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i3;
-        ge geVar;
-        float f10;
-        switch (this.f35047a) {
+    public final void run() {
+        switch (this.f34959a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f35049c;
-                if (chatActivityEnterView.f31184q5) {
-                    ImageView imageView = chatActivityEnterView.f31221x1;
-                    if (this.f35048b) {
-                        i3 = 0;
-                    } else {
-                        i3 = 8;
+                ChatActivityEnterView chatActivityEnterView = this.f34960b;
+                je jeVar = chatActivityEnterView.f31114r3;
+                if ((!chatActivityEnterView.g0() || !chatActivityEnterView.s()) && !org.telegram.ui.ActionBar.f2.hasSheets(chatActivityEnterView.P2) && !chatActivityEnterView.Y1 && chatActivityEnterView.E0 != null && chatActivityEnterView.f31074k3 && !chatActivityEnterView.f31158z2 && !org.telegram.messenger.g0.D && !org.telegram.messenger.g0.E) {
+                    wf wfVar = chatActivityEnterView.Z2;
+                    if (wfVar != null) {
+                        wfVar.f1();
                     }
-                    imageView.setVisibility(i3);
+                    chatActivityEnterView.E0.requestFocus();
+                    org.telegram.messenger.g0.K3(chatActivityEnterView.E0);
+                    org.telegram.messenger.g0.r(jeVar);
+                    org.telegram.messenger.g0.i3(jeVar, 100L);
                     return;
                 }
                 return;
             case 1:
-                ChatActivityEnterView chatActivityEnterView2 = this.f35049c;
-                if (animator.equals(chatActivityEnterView2.f31200t2)) {
-                    chatActivityEnterView2.f31180q1.setVisibility(8);
-                    if (this.f35048b && (geVar = chatActivityEnterView2.K1) != null) {
-                        geVar.setVisibility(8);
-                    }
-                    chatActivityEnterView2.f31200t2 = null;
-                    return;
-                }
-                return;
-            case 2:
-                ChatActivityEnterView chatActivityEnterView3 = this.f35049c;
-                chatActivityEnterView3.N1 = null;
-                if (!this.f35048b) {
-                    chatActivityEnterView3.K1.setVisibility(8);
+                wf wfVar2 = this.f34960b.Z2;
+                if (wfVar2 != null) {
+                    wfVar2.Z1(0, 0, 0, 0L, 0L, true);
                     return;
                 }
                 return;
             default:
-                if (this.f35048b) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                ChatActivityEnterView chatActivityEnterView4 = this.f35049c;
-                chatActivityEnterView4.f31220x0 = f10;
-                kf kfVar = chatActivityEnterView4.V0;
-                if (kfVar != null) {
-                    kfVar.Z();
+                ChatActivityEnterView chatActivityEnterView2 = this.f34960b;
+                AnimatorSet animatorSet = chatActivityEnterView2.V0;
+                if (animatorSet != null && !animatorSet.isRunning()) {
+                    chatActivityEnterView2.V0.start();
                     return;
                 }
                 return;

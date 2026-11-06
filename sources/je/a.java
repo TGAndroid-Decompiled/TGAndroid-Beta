@@ -1,5 +1,11 @@
 package je;
 
-import b8.jd;
-public abstract class a extends jd {
+import java.util.concurrent.Executor;
+public final class a implements Executor {
+    public static final a f16651a = new Object();
+
+    @Override
+    public final void execute(Runnable runnable) {
+        runnable.run();
+    }
 }

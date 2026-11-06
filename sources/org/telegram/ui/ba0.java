@@ -1,57 +1,46 @@
 package org.telegram.ui;
+public final class ba0 implements Runnable {
+    public final int f44218a;
+    public final pa0 f44219b;
+    public final org.telegram.messenger.za f44220c;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class ba0 extends u4.t0 {
-    public final int f44007a;
-    public final la0 f44008b;
-
-    public ba0(la0 la0Var, int i3) {
-        this.f44007a = i3;
-        this.f44008b = la0Var;
+    public ba0(pa0 pa0Var, org.telegram.messenger.za zaVar, int i7) {
+        this.f44218a = i7;
+        this.f44219b = pa0Var;
+        this.f44220c = zaVar;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i3) {
-        boolean z10;
-        switch (this.f44007a) {
+    public final void run() {
+        switch (this.f44218a) {
             case 0:
-                if (i3 == 1) {
-                    la0 la0Var = this.f44008b;
-                    if (la0Var.f47266u0 && la0Var.f47267v0) {
-                        org.telegram.messenger.g0.v1(la0Var.getParentActivity().getCurrentFocus());
+                pa0 pa0Var = this.f44219b;
+                org.telegram.messenger.za zaVar = this.f44220c;
+                if (pa0Var.G != null && pa0Var.getParentActivity() != null) {
+                    try {
+                        ((a8.r7) zaVar).u();
+                        ((nb.a) org.telegram.messenger.t0.k()).initializeMaps(org.telegram.messenger.t0.f25555b);
+                        ((a8.r7) pa0Var.G).p(new da0(pa0Var, 0));
+                        pa0Var.f48764w0 = true;
+                        if (pa0Var.f48766x0) {
+                            ((a8.r7) pa0Var.G).z();
+                            return;
+                        }
+                        return;
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
                         return;
                     }
-                    return;
                 }
                 return;
             default:
-                if (i3 != 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
+                pa0 pa0Var2 = this.f44219b;
+                org.telegram.messenger.za zaVar2 = this.f44220c;
+                try {
+                    ((a8.r7) zaVar2).u();
+                } catch (Exception unused) {
                 }
-                la0 la0Var2 = this.f44008b;
-                la0Var2.N = z10;
-                if (!z10 && la0Var2.I != null) {
-                    la0Var2.I = null;
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void b(RecyclerView recyclerView, int i3, int i10) {
-        switch (this.f44007a) {
-            case 1:
-                la0 la0Var = this.f44008b;
-                la0Var.K0(false);
-                if (la0Var.I != null) {
-                    la0Var.K += i10;
-                    return;
-                }
-                return;
-            default:
+                org.telegram.messenger.g0.h3(new ba0(pa0Var2, zaVar2, 0));
                 return;
         }
     }

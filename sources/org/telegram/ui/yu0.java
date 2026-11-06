@@ -1,15 +1,32 @@
 package org.telegram.ui;
-public final class yu0 extends x01 {
-    public final ProfileActivity f52414e;
 
-    public yu0(ProfileActivity profileActivity, xu0 xu0Var) {
-        super(xu0Var);
-        this.f52414e = profileActivity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class yu0 extends wv0 {
+    public yu0(Context context) {
+        super(context);
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.f52414e.O5 = null;
+    public final void dispatchDraw(Canvas canvas) {
+        di.z2 z2Var;
+        super.dispatchDraw(canvas);
+        org.telegram.ui.Components.i5 i5Var = this.f35560e;
+        if (i5Var != null && (z2Var = i5Var.f34505k) != null) {
+            z2Var.P0(false);
+        }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (getImageReceiver().L()) {
+            accessibilityNodeInfo.setText(org.telegram.messenger.hd.M0(2131754798, null));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, org.telegram.messenger.hd.M0(2131747816, null)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, org.telegram.messenger.hd.M0(2131754818, null)));
+            return;
+        }
+        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

@@ -1,20 +1,8 @@
 package org.telegram.ui;
-public final class wa extends org.telegram.ui.ActionBar.f1 {
-    public final kb f50758o;
+public final class wa {
+    public final mb f51033a;
 
-    public wa(kb kbVar, va vaVar) {
-        super(vaVar, -2, -2);
-        this.f50758o = kbVar;
-    }
-
-    @Override
-    public final void dismiss() {
-        d(true);
-        kb kbVar = this.f50758o;
-        if (kbVar.G0 != this) {
-            return;
-        }
-        org.telegram.ui.Components.ac.e();
-        kbVar.G0 = null;
+    public wa(mb mbVar) {
+        this.f51033a = mbVar;
     }
 }

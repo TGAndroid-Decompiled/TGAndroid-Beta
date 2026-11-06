@@ -1,61 +1,66 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-public final class tx extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public Paint f49910a;
-    public float[] f49911b;
-    public Path f49912c;
-    public float d;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class tx implements RequestDelegate {
+    public final int f50154a;
+    public final gy f50155b;
 
-    public final void a(float f10, float f11) {
-        float[] fArr = this.f49911b;
-        fArr[7] = f10;
-        fArr[6] = f10;
-        fArr[1] = f10;
-        fArr[0] = f10;
-        fArr[5] = f11;
-        fArr[4] = f11;
-        fArr[3] = f11;
-        fArr[2] = f11;
+    public tx(gy gyVar, int i7) {
+        this.f50154a = i7;
+        this.f50155b = gyVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        float measuredWidth = getMeasuredWidth() / 2.0f;
-        Path path = this.f49912c;
-        path.rewind();
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(0.0f, 0.0f, measuredWidth - org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), getMeasuredHeight());
-        a(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(8.0f)));
-        float[] fArr = this.f49911b;
-        Path.Direction direction = Path.Direction.CW;
-        path.addRoundRect(rectF, fArr, direction);
-        Paint paint = this.f49910a;
-        canvas.drawPath(path, paint);
-        path.rewind();
-        rectF.set(measuredWidth + org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        a(org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(8.0f)), org.telegram.messenger.g0.L(8.0f));
-        path.addRoundRect(rectF, fArr, direction);
-        canvas.drawPath(path, paint);
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            this.f49910a.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false));
-            invalidate();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f50154a) {
+            case 0:
+                final gy gyVar = this.f50155b;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r3;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        gy gyVar2 = gyVar;
+                        switch (i7) {
+                            case 0:
+                                gyVar2.E = 0;
+                                if (tL_error2 == null) {
+                                    org.telegram.messenger.k5.o(null, 2131750743, org.telegram.ui.Components.hc.a0(gyVar2), 2131623989, 36);
+                                    return;
+                                }
+                                return;
+                            default:
+                                gy.Z(gyVar2, tL_error2);
+                                return;
+                        }
+                    }
+                });
+                return;
+            default:
+                final gy gyVar2 = this.f50155b;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        int i7 = r3;
+                        TLRPC.TL_error tL_error2 = tL_error;
+                        gy gyVar22 = gyVar2;
+                        switch (i7) {
+                            case 0:
+                                gyVar22.E = 0;
+                                if (tL_error2 == null) {
+                                    org.telegram.messenger.k5.o(null, 2131750743, org.telegram.ui.Components.hc.a0(gyVar22), 2131623989, 36);
+                                    return;
+                                }
+                                return;
+                            default:
+                                gy.Z(gyVar22, tL_error2);
+                                return;
+                        }
+                    }
+                });
+                return;
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -15,11 +15,11 @@ class WebRtcAudioManager {
         return (AudioManager) context.getSystemService("audio");
     }
 
-    public static int getInputBufferSize(Context context, AudioManager audioManager, int i3, int i10) {
+    public static int getInputBufferSize(Context context, AudioManager audioManager, int i7, int i10) {
         if (isLowLatencyInputSupported(context)) {
             return getLowLatencyFramesPerBuffer(audioManager);
         }
-        return getMinInputFrameSize(i3, i10);
+        return getMinInputFrameSize(i7, i10);
     }
 
     private static int getLowLatencyFramesPerBuffer(AudioManager audioManager) {
@@ -30,7 +30,7 @@ class WebRtcAudioManager {
         return Integer.parseInt(property);
     }
 
-    private static int getMinInputFrameSize(int i3, int i10) {
+    private static int getMinInputFrameSize(int i7, int i10) {
         int i11;
         int i12 = i10 * 2;
         if (i10 == 1) {
@@ -38,10 +38,10 @@ class WebRtcAudioManager {
         } else {
             i11 = 12;
         }
-        return AudioRecord.getMinBufferSize(i3, i11, 2) / i12;
+        return AudioRecord.getMinBufferSize(i7, i11, 2) / i12;
     }
 
-    private static int getMinOutputFrameSize(int i3, int i10) {
+    private static int getMinOutputFrameSize(int i7, int i10) {
         int i11;
         int i12 = i10 * 2;
         if (i10 == 1) {
@@ -49,14 +49,14 @@ class WebRtcAudioManager {
         } else {
             i11 = 12;
         }
-        return AudioTrack.getMinBufferSize(i3, i11, 2) / i12;
+        return AudioTrack.getMinBufferSize(i7, i11, 2) / i12;
     }
 
-    public static int getOutputBufferSize(Context context, AudioManager audioManager, int i3, int i10) {
+    public static int getOutputBufferSize(Context context, AudioManager audioManager, int i7, int i10) {
         if (isLowLatencyOutputSupported(context)) {
             return getLowLatencyFramesPerBuffer(audioManager);
         }
-        return getMinOutputFrameSize(i3, i10);
+        return getMinOutputFrameSize(i7, i10);
     }
 
     public static int getSampleRate(AudioManager audioManager) {

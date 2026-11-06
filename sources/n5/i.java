@@ -1,65 +1,28 @@
 package n5;
+public final class i implements na.d {
+    public static final i f20429a = new Object();
+    public static final na.c f20430b = na.c.c("eventTimeMs");
+    public static final na.c f20431c = na.c.c("eventCode");
+    public static final na.c d = na.c.c("complianceData");
+    public static final na.c f20432e = na.c.c("eventUptimeMs");
+    public static final na.c f20433f = na.c.c("sourceExtension");
+    public static final na.c f20434g = na.c.c("sourceExtensionJsonProto3");
+    public static final na.c h = na.c.c("timezoneOffsetSeconds");
+    public static final na.c f20435i = na.c.c("networkConnectionInfo");
+    public static final na.c f20436j = na.c.c("experimentIds");
 
-import android.util.Base64;
-import java.util.Arrays;
-public final class i {
-    public final String f20245a;
-    public final byte[] f20246b;
-    public final k5.d f20247c;
-
-    public i(String str, byte[] bArr, k5.d dVar) {
-        this.f20245a = str;
-        this.f20246b = bArr;
-        this.f20247c = dVar;
-    }
-
-    public static k4.j a() {
-        ?? obj = new Object();
-        obj.f16871c = k5.d.f16877a;
-        return obj;
-    }
-
-    public final i b(k5.d dVar) {
-        k4.j a10 = a();
-        a10.I(this.f20245a);
-        if (dVar != null) {
-            a10.f16871c = dVar;
-            a10.f16870b = this.f20246b;
-            return a10.l();
-        }
-        throw new NullPointerException("Null priority");
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof i) {
-            i iVar = (i) obj;
-            if (this.f20245a.equals(iVar.f20245a) && Arrays.equals(this.f20246b, iVar.f20246b) && this.f20247c.equals(iVar.f20247c)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return ((((this.f20245a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f20246b)) * 1000003) ^ this.f20247c.hashCode();
-    }
-
-    public final String toString() {
-        String encodeToString;
-        byte[] bArr = this.f20246b;
-        if (bArr == null) {
-            encodeToString = "";
-        } else {
-            encodeToString = Base64.encodeToString(bArr, 2);
-        }
-        StringBuilder sb2 = new StringBuilder("TransportContext(");
-        sb2.append(this.f20245a);
-        sb2.append(", ");
-        sb2.append(this.f20247c);
-        sb2.append(", ");
-        return a1.g.s(sb2, encodeToString, ")");
+    @Override
+    public final void a(Object obj, Object obj2) {
+        na.e eVar = (na.e) obj2;
+        s sVar = (s) ((e0) obj);
+        eVar.e(f20430b, sVar.f20465a);
+        eVar.a(f20431c, sVar.f20466b);
+        eVar.a(d, sVar.f20467c);
+        eVar.e(f20432e, sVar.d);
+        eVar.a(f20433f, sVar.f20468e);
+        eVar.a(f20434g, sVar.f20469f);
+        eVar.e(h, sVar.f20470g);
+        eVar.a(f20435i, sVar.h);
+        eVar.a(f20436j, sVar.f20471i);
     }
 }

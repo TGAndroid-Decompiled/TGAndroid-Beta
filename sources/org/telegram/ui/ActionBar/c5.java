@@ -1,42 +1,42 @@
 package org.telegram.ui.ActionBar;
-public final class c5 implements qe.d, l0 {
-    public final e5 f27450a;
+public final class c5 implements te.d, m0 {
+    public final e5 f27397a;
 
     public c5(e5 e5Var) {
-        this.f27450a = e5Var;
+        this.f27397a = e5Var;
     }
 
     @Override
-    public void i(int i3) {
-        j jVar = this.f27450a.f27477a.W;
+    public boolean A() {
+        return false;
+    }
+
+    @Override
+    public boolean B(float f10) {
+        return false;
+    }
+
+    @Override
+    public void Y0() {
+        e5 e5Var = this.f27397a;
+        e5Var.e();
+        e5Var.f27449a.invalidate();
+    }
+
+    @Override
+    public void i(int i7) {
+        j jVar = this.f27397a.f27449a.V;
         if (jVar != null) {
-            jVar.b(i3);
+            jVar.b(i7);
         }
     }
 
     @Override
-    public void s1() {
-        e5 e5Var = this.f27450a;
-        e5Var.e();
-        e5Var.f27477a.invalidate();
+    public void l(boolean z9) {
     }
 
     @Override
-    public boolean t() {
-        return false;
-    }
-
-    @Override
-    public boolean x(float f10) {
-        return false;
-    }
-
-    @Override
-    public void o(boolean z10) {
-    }
-
-    @Override
-    public void G() {
+    public void D() {
     }
 
     @Override

@@ -1,4 +1,82 @@
 package org.telegram.messenger;
-public interface d9 {
-    boolean run();
+
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.security.keystore.KeyGenParameterSpec;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.KeyPairGenerator;
+import java.util.Iterator;
+import java.util.Locale;
+public final class d9 implements Runnable {
+    public final int f21977a;
+    public final boolean f21978b;
+
+    public d9(int i7, boolean z9) {
+        this.f21977a = i7;
+        this.f21978b = z9;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f21977a) {
+            case 0:
+                boolean z9 = this.f21978b;
+                KeyPairGenerator keyPairGenerator = as.f21496f;
+                if (keyPairGenerator == null) {
+                    try {
+                        keyPairGenerator = KeyPairGenerator.getInstance("RSA", "AndroidKeyStore");
+                        as.f21496f = keyPairGenerator;
+                    } catch (Exception e10) {
+                        a8.g(e10, true);
+                        keyPairGenerator = null;
+                    }
+                }
+                if (keyPairGenerator != null) {
+                    try {
+                        Locale locale = Locale.getDefault();
+                        Locale locale2 = Locale.ENGLISH;
+                        Locale.setDefault(locale2);
+                        Resources resources = t0.f25555b.getResources();
+                        Configuration configuration = resources.getConfiguration();
+                        configuration.setLocale(locale2);
+                        resources.updateConfiguration(configuration, resources.getDisplayMetrics());
+                        keyPairGenerator.initialize(new KeyGenParameterSpec.Builder("tmessages_passcode", 3).setDigests("SHA-256", "SHA-512").setEncryptionPaddings("OAEPPadding").setUserAuthenticationRequired(true).build());
+                        keyPairGenerator.generateKeyPair();
+                        Locale.setDefault(locale);
+                        Resources resources2 = t0.f25555b.getResources();
+                        Configuration configuration2 = resources2.getConfiguration();
+                        configuration2.setLocale(locale);
+                        resources2.updateConfiguration(configuration2, resources2.getDisplayMetrics());
+                        g0.h3(new d9(1, z9));
+                        return;
+                    } catch (InvalidAlgorithmParameterException e11) {
+                        a8.g(e11, true);
+                        return;
+                    } catch (Exception e12) {
+                        if (!e12.getClass().getName().equals("android.security.KeyStoreException")) {
+                            a8.g(e12, true);
+                            return;
+                        }
+                        return;
+                    }
+                }
+                return;
+            case 1:
+                qs.e().k(132, Boolean.valueOf(this.f21978b));
+                return;
+            case 2:
+                boolean z10 = this.f21978b;
+                Iterator it = rc.f25264n.iterator();
+                while (it.hasNext()) {
+                    c20 c20Var = (c20) it.next();
+                    if (c20Var != null) {
+                        c20Var.a(Boolean.valueOf(z10));
+                    }
+                }
+                return;
+            default:
+                qs.e().k(264, Boolean.FALSE, Boolean.valueOf(this.f21978b));
+                return;
+        }
+    }
 }

@@ -1,42 +1,98 @@
 package org.telegram.ui.Components;
-public final class wf implements Runnable {
-    public final int f39994a;
-    public final yf f39995b;
-    public final gi.l3 f39996c;
 
-    public wf(yf yfVar, gi.l3 l3Var, int i3) {
-        this.f39994a = i3;
-        this.f39995b = yfVar;
-        this.f39996c = l3Var;
-    }
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public interface wf {
+    void B(boolean z9);
 
-    @Override
-    public final void run() {
-        switch (this.f39994a) {
-            case 0:
-                yf yfVar = this.f39995b;
-                gi.l3 l3Var = this.f39996c;
-                yfVar.removeView(l3Var);
-                if (yfVar.f40695b == l3Var) {
-                    yfVar.f40695b = null;
-                    return;
-                }
-                return;
-            case 1:
-                this.f39995b.removeView(this.f39996c);
-                return;
-            case 2:
-                this.f39995b.removeView(this.f39996c);
-                return;
-            default:
-                yf yfVar2 = this.f39995b;
-                gi.l3 l3Var2 = this.f39996c;
-                yfVar2.removeView(l3Var2);
-                if (yfVar2.f40693a == l3Var2) {
-                    yfVar2.f40693a = null;
-                    return;
-                }
-                return;
-        }
-    }
+    void C0();
+
+    void D();
+
+    void E();
+
+    void F(CharSequence charSequence, boolean z9, int i7, int i10, long j3);
+
+    TLRPC.TL_channels_sendAsPeers I();
+
+    void I0();
+
+    void M(float f10, int i7);
+
+    void R0(int i7);
+
+    int S0();
+
+    TL_stories.StoryItem T0();
+
+    void T1();
+
+    boolean V0(long j3);
+
+    void V1(int i7);
+
+    void W();
+
+    boolean X0();
+
+    void X1();
+
+    void Y(boolean z9);
+
+    void Y1(boolean z9);
+
+    void Z1(int i7, int i10, int i11, long j3, long j10, boolean z9);
+
+    void a();
+
+    void a1(CharSequence charSequence, boolean z9, boolean z10);
+
+    void b();
+
+    boolean c();
+
+    void c1();
+
+    boolean d1();
+
+    void d2();
+
+    void e1();
+
+    void f1();
+
+    void h1();
+
+    void h2();
+
+    void i1(View view, CharSequence charSequence, boolean z9);
+
+    void j0();
+
+    void k1(CharSequence charSequence);
+
+    int l();
+
+    boolean l1();
+
+    void l2();
+
+    void m1();
+
+    org.telegram.ui.qm o0();
+
+    void r0();
+
+    TLRPC.Peer s();
+
+    void t();
+
+    void t1();
+
+    boolean v0();
+
+    void w(float f10);
+
+    void w0();
 }

@@ -1,89 +1,185 @@
 package org.telegram.ui.Cells;
 
-import android.location.Address;
-import android.location.Geocoder;
-import android.text.TextUtils;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.graphics.Paint;
+import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import org.telegram.messenger.bd;
-import org.telegram.messenger.ld;
-import org.telegram.ui.Components.uk;
-public final class p7 implements Runnable {
-    public final int f29812a;
-    public final FrameLayout f29813b;
-    public final double f29814c;
-    public final double d;
+import org.telegram.messenger.ij;
+import org.telegram.ui.Components.wo;
+public final class p7 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
+    public m7[] f29733a;
+    public ij[] f29734b;
+    public int[] f29735c;
+    public n7 d;
+    public int f29736e;
+    public boolean f29737f;
+    public boolean h;
+    public Paint f29738n;
+    public int f29739r;
+    public int f29740s;
 
-    public p7(FrameLayout frameLayout, double d, double d10, int i3) {
-        this.f29812a = i3;
-        this.f29813b = frameLayout;
-        this.f29814c = d;
-        this.d = d10;
+    public static int a(int i7) {
+        if (org.telegram.messenger.g0.Q1()) {
+            return (org.telegram.messenger.g0.L(490.0f) - (org.telegram.messenger.g0.L(2.0f) * (i7 - 1))) / i7;
+        }
+        return (org.telegram.messenger.g0.f22537q.x - (org.telegram.messenger.g0.L(2.0f) * (i7 - 1))) / i7;
+    }
+
+    public final void b(int i7, boolean z9, boolean z10) {
+        float f10;
+        m7 m7Var = this.f29733a[i7];
+        FrameLayout frameLayout = m7Var.f29560f;
+        wo woVar = m7Var.f29559e;
+        if (woVar.getVisibility() != 0) {
+            woVar.setVisibility(0);
+        }
+        woVar.a(z9, true);
+        AnimatorSet animatorSet = m7Var.h;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            m7Var.h = null;
+        }
+        AnimatorSet animatorSet2 = new AnimatorSet();
+        m7Var.h = animatorSet2;
+        float f11 = 0.81f;
+        if (z9) {
+            f10 = 0.81f;
+        } else {
+            f10 = 1.0f;
+        }
+        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(frameLayout, View.SCALE_X, f10);
+        if (!z9) {
+            f11 = 1.0f;
+        }
+        animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(frameLayout, View.SCALE_Y, f11));
+        m7Var.h.setDuration(200L);
+        m7Var.h.addListener(new m.a(m7Var, 27));
+        m7Var.h.start();
+    }
+
+    public final void c(int i7, int i10, ij ijVar) {
+        m7[] m7VarArr = this.f29733a;
+        ij[] ijVarArr = this.f29734b;
+        ijVarArr[i7] = ijVar;
+        this.f29735c[i7] = i10;
+        if (ijVar != null) {
+            m7VarArr[i7].setVisibility(0);
+            m7VarArr[i7].setMessageObject(ijVar);
+            return;
+        }
+        m7VarArr[i7].clearAnimation();
+        m7VarArr[i7].setVisibility(4);
+        ijVarArr[i7] = null;
+    }
+
+    public n7 getDelegate() {
+        return this.d;
     }
 
     @Override
-    public final void run() {
-        switch (this.f29812a) {
-            case 0:
-                q7 q7Var = (q7) this.f29813b;
-                double d = this.f29814c;
-                double d10 = this.d;
-                try {
-                    List<Address> fromLocation = new Geocoder(org.telegram.messenger.t0.f25457b, bd.E0().f21812y).getFromLocation(d, d10, 1);
-                    if (fromLocation.isEmpty()) {
-                        String c2 = ld.c(d10, d);
-                        q7Var.L = c2;
-                        if (c2 == null) {
-                            q7Var.L = "";
-                        } else {
-                            q7Var.L = "🌊 " + ((Object) q7Var.L);
-                        }
-                    } else {
-                        Address address = fromLocation.get(0);
-                        StringBuilder sb2 = new StringBuilder();
-                        HashSet hashSet = new HashSet();
-                        hashSet.add(address.getSubAdminArea());
-                        hashSet.add(address.getAdminArea());
-                        hashSet.add(address.getLocality());
-                        hashSet.add(address.getCountryName());
-                        Iterator it = hashSet.iterator();
-                        while (it.hasNext()) {
-                            String str = (String) it.next();
-                            if (!TextUtils.isEmpty(str)) {
-                                if (sb2.length() > 0) {
-                                    sb2.append(", ");
-                                }
-                                sb2.append(str);
-                            }
-                        }
-                        q7Var.L = sb2.toString();
-                        String b10 = ld.b(address.getCountryCode());
-                        if (b10 != null && org.telegram.messenger.i6.g(b10) != null) {
-                            q7Var.L = b10 + " " + ((Object) q7Var.L);
-                        }
-                    }
-                } catch (Exception unused) {
-                }
-                org.telegram.messenger.g0.h3(new p7(q7Var, d, d10, 1));
-                return;
-            case 1:
-                q7 q7Var2 = (q7) this.f29813b;
-                double d11 = this.f29814c;
-                double d12 = this.d;
-                q7Var2.I = d11;
-                q7Var2.J = d12;
-                q7Var2.H = false;
-                CharSequence charSequence = q7Var2.L;
-                org.telegram.ui.ActionBar.k5 k5Var = q7Var2.d;
-                CharSequence m10 = org.telegram.messenger.i6.m(charSequence, k5Var.getPaint().getFontMetricsInt(), false, null, 0);
-                q7Var2.L = m10;
-                k5Var.l(m10, false);
-                return;
-            default:
-                ((uk) this.f29813b).h0(this.f29814c, this.d);
-                return;
+    public final void invalidate() {
+        for (int i7 = 0; i7 < 6; i7++) {
+            this.f29733a[i7].invalidate();
         }
+        super.invalidate();
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int a10;
+        int L;
+        View[] viewArr = this.f29733a;
+        if (this.f29739r == 1) {
+            a10 = org.telegram.messenger.camera.q.A(2.0f, this.f29736e - 1, View.MeasureSpec.getSize(i7)) / this.f29736e;
+        } else {
+            a10 = a(this.f29736e);
+        }
+        this.h = true;
+        int i11 = 0;
+        for (int i12 = 0; i12 < this.f29736e; i12++) {
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i12].getLayoutParams();
+            if (this.f29737f) {
+                L = 0;
+            } else {
+                L = org.telegram.messenger.g0.L(2.0f);
+            }
+            layoutParams.topMargin = L;
+            layoutParams.leftMargin = (org.telegram.messenger.g0.L(2.0f) + a10) * i12;
+            if (i12 == this.f29736e - 1) {
+                if (org.telegram.messenger.g0.Q1()) {
+                    layoutParams.width = org.telegram.messenger.g0.L(490.0f) - ((org.telegram.messenger.g0.L(2.0f) + a10) * (this.f29736e - 1));
+                } else {
+                    layoutParams.width = org.telegram.messenger.g0.f22537q.x - ((org.telegram.messenger.g0.L(2.0f) + a10) * (this.f29736e - 1));
+                }
+            } else {
+                layoutParams.width = a10;
+            }
+            layoutParams.height = a10;
+            layoutParams.gravity = 51;
+            viewArr[i12].setLayoutParams(layoutParams);
+        }
+        this.h = false;
+        if (!this.f29737f) {
+            i11 = org.telegram.messenger.g0.L(2.0f);
+        }
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(i11 + a10, 1073741824));
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.h) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    public void setDelegate(n7 n7Var) {
+        this.d = n7Var;
+    }
+
+    public void setIsFirst(boolean z9) {
+        this.f29737f = z9;
+    }
+
+    public void setItemsCount(int i7) {
+        int i10;
+        m7[] m7VarArr = this.f29733a;
+        for (int i11 = 0; i11 < m7VarArr.length; i11++) {
+            m7VarArr[i11].clearAnimation();
+            m7 m7Var = m7VarArr[i11];
+            if (i11 < i7) {
+                i10 = 0;
+            } else {
+                i10 = 4;
+            }
+            m7Var.setVisibility(i10);
+        }
+        this.f29736e = i7;
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.f29738n.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.zi, false));
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

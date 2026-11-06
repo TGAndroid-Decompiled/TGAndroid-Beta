@@ -5,24 +5,24 @@ import java.io.File;
 import java.io.IOException;
 import org.telegram.SQLite.SQLiteDatabase;
 public final class f8 {
-    public p5 f22461a;
-    public final int f22462b;
-    public SQLiteDatabase f22463c;
+    public p5 f22352a;
+    public final int f22353b;
+    public SQLiteDatabase f22354c;
     public File d;
-    public File f22464e;
-    public final ConcurrentHashMap f22465f = new ConcurrentHashMap();
-    public final e8 f22466g = new Object();
+    public File f22355e;
+    public final ConcurrentHashMap f22356f = new ConcurrentHashMap();
+    public final e8 f22357g = new Object();
     public boolean h;
 
-    public f8(int i3) {
-        this.f22462b = i3;
+    public f8(int i7) {
+        this.f22353b = i7;
     }
 
     public final void a() {
         File h = t0.h();
-        int i3 = this.f22462b;
-        if (i3 != 0) {
-            File file = new File(h, k2.p1.j(i3, "account", "/"));
+        int i7 = this.f22353b;
+        if (i7 != 0) {
+            File file = new File(h, jg.g.k(i7, "account", "/"));
             file.mkdirs();
             h = file;
         }
@@ -41,16 +41,16 @@ public final class f8 {
 
     public final void c() {
         if (!this.h) {
-            if (!sr.f25403a) {
-                int i3 = 0;
-                while (!sr.f25403a) {
+            if (!as.f21492a) {
+                int i7 = 0;
+                while (!as.f21492a) {
                     try {
                         Thread.sleep(1000L);
                     } catch (InterruptedException e10) {
                         e10.printStackTrace();
                     }
-                    i3++;
-                    if (i3 > 5) {
+                    i7++;
+                    if (i7 > 5) {
                         break;
                     }
                 }
@@ -61,12 +61,12 @@ public final class f8 {
     }
 
     public final void d() {
-        if (this.f22461a == null) {
+        if (this.f22352a == null) {
             synchronized (this) {
                 try {
-                    if (this.f22461a == null) {
-                        p5 p5Var = new p5("files_database_queue_" + this.f22462b);
-                        this.f22461a = p5Var;
+                    if (this.f22352a == null) {
+                        p5 p5Var = new p5("files_database_queue_" + this.f22353b);
+                        this.f22352a = p5Var;
                         p5Var.setPriority(10);
                     }
                 } catch (Throwable th2) {
@@ -84,36 +84,36 @@ public final class f8 {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.f8.f(int, int, long, boolean):java.lang.String");
     }
 
-    public final void g(int i3) {
-        if (i3 == 1) {
-            k2.p1.y(this.f22463c, "CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);");
-            k2.p1.y(this.f22463c, "PRAGMA user_version = 2");
-            i3 = 2;
+    public final void g(int i7) {
+        if (i7 == 1) {
+            jg.g.z(this.f22354c, "CREATE INDEX IF NOT EXISTS path_in_paths ON paths(path);");
+            jg.g.z(this.f22354c, "PRAGMA user_version = 2");
+            i7 = 2;
         }
-        if (i3 == 2) {
-            k2.p1.y(this.f22463c, "CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER);");
-            k2.p1.y(this.f22463c, "PRAGMA user_version = 3");
-            i3 = 3;
+        if (i7 == 2) {
+            jg.g.z(this.f22354c, "CREATE TABLE paths_by_dialog_id(path TEXT PRIMARY KEY, dialog_id INTEGER);");
+            jg.g.z(this.f22354c, "PRAGMA user_version = 3");
+            i7 = 3;
         }
-        if (i3 == 3) {
-            k2.p1.y(this.f22463c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_id INTEGER default 0");
-            k2.p1.y(this.f22463c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_type INTEGER default 0");
-            k2.p1.y(this.f22463c, "PRAGMA user_version = 4");
-            i3 = 4;
+        if (i7 == 3) {
+            jg.g.z(this.f22354c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_id INTEGER default 0");
+            jg.g.z(this.f22354c, "ALTER TABLE paths_by_dialog_id ADD COLUMN message_type INTEGER default 0");
+            jg.g.z(this.f22354c, "PRAGMA user_version = 4");
+            i7 = 4;
         }
-        if (i3 != 4 && i3 != 5 && i3 != 6) {
+        if (i7 != 4 && i7 != 5 && i7 != 6) {
             return;
         }
         try {
-            this.f22463c.executeFast("ALTER TABLE paths ADD COLUMN flags INTEGER default 0").stepThis().dispose();
+            this.f22354c.executeFast("ALTER TABLE paths ADD COLUMN flags INTEGER default 0").stepThis().dispose();
         } catch (Throwable th2) {
             a8.g(th2, true);
         }
-        k2.p1.y(this.f22463c, "PRAGMA user_version = 7");
+        jg.g.z(this.f22354c, "PRAGMA user_version = 7");
     }
 
     public final void h(Runnable runnable) {
         d();
-        this.f22461a.c(runnable);
+        this.f22352a.c(runnable);
     }
 }

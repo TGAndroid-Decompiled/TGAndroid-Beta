@@ -1,3 +1,6 @@
 package org.telegram.ui.Components;
-public final class bj0 extends u4.d1 {
+
+import android.view.View;
+public interface bj0 {
+    void c(int i7, View view);
 }

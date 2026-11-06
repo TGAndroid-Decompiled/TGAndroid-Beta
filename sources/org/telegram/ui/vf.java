@@ -1,55 +1,43 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class vf implements View.OnKeyListener {
-    public final int f50470a;
-    public final Object f50471b;
+import android.content.DialogInterface;
+import com.google.android.gms.tasks.CancellationTokenSource;
+public final class vf implements DialogInterface.OnCancelListener {
+    public final int f50706a;
+    public final Object f50707b;
 
-    public vf(Object obj, int i3) {
-        this.f50470a = i3;
-        this.f50471b = obj;
+    public vf(Object obj, int i7) {
+        this.f50706a = i7;
+        this.f50707b = obj;
     }
 
     @Override
-    public final boolean onKey(View view, int i3, KeyEvent keyEvent) {
-        switch (this.f50470a) {
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f50706a) {
             case 0:
-                wm wmVar = (wm) this.f50471b;
-                wmVar.getClass();
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) view;
-                if (i3 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor.length() == 0) {
-                    wmVar.Sa();
-                    return true;
-                }
-                return false;
+                an anVar = (an) this.f50707b;
+                anVar.f43893p9 = true;
+                anVar.f43868n9 = 0;
+                anVar.Qb = 0;
+                anVar.Z4 = 0;
+                anVar.M9();
+                anVar.qc(false);
+                return;
             case 1:
-                yj0 yj0Var = (yj0) this.f50471b;
-                if (i3 == 67) {
-                    if (yj0Var.Z[2].length() == 0) {
-                        yj0Var.Z[1].requestFocus();
-                        EditTextBoldCursor editTextBoldCursor2 = yj0Var.Z[1];
-                        editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                        yj0Var.Z[1].dispatchKeyEvent(keyEvent);
-                        return true;
-                    }
-                } else {
-                    yj0Var.getClass();
-                }
-                return false;
+                pn pnVar = (pn) this.f50707b;
+                pnVar.M0 = false;
+                pnVar.f48864b = null;
+                pnVar.N0 = false;
+                return;
+            case 2:
+                ((so) this.f50707b).f49781n = null;
+                return;
+            case 3:
+                ((p90) this.f50707b).b();
+                return;
             default:
-                cr0 cr0Var = (cr0) this.f50471b;
-                EditTextBoldCursor editTextBoldCursor3 = (EditTextBoldCursor) view;
-                if (i3 == 67 && keyEvent.getAction() == 0 && editTextBoldCursor3.length() == 0) {
-                    ImageView imageView = cr0Var.f31049f;
-                    if (imageView != null) {
-                        imageView.callOnClick();
-                    }
-                    return true;
-                }
-                return false;
+                ((CancellationTokenSource) this.f50707b).cancel();
+                return;
         }
     }
 }

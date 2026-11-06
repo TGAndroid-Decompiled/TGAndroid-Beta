@@ -1,79 +1,85 @@
 package org.telegram.ui.Components;
-public final class q6 implements org.telegram.ui.ActionBar.s6 {
-    public final int f37356a;
-    public final Object f37357b;
 
-    public q6(Object obj, int i3) {
-        this.f37356a = i3;
-        this.f37357b = obj;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class q6 extends View {
+    public final ImageReceiver f37274a;
+    public final Drawable f37275b;
+    public final Paint f37276c;
+    public final Paint d;
+
+    public q6(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f37276c = paint;
+        this.d = new Paint(1);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f37274a = imageReceiver;
+        imageReceiver.setAlpha(0.0f);
+        imageReceiver.f21192g1 = new u(this, 12);
+        this.f37275b = context.getDrawable(2131231495).mutate().getConstantState().newDrawable();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
-    public final void a(float f10) {
-        int i3 = this.f37356a;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f37274a.P();
     }
 
     @Override
-    public final void b() {
-        switch (this.f37356a) {
-            case 0:
-                ((z7) this.f37357b).K0();
-                return;
-            case 1:
-                ((uk) this.f37357b).b0();
-                return;
-            case 2:
-                vp vpVar = (vp) this.f37357b;
-                org.telegram.ui.ActionBar.q0 q0Var = vpVar.J;
-                q0Var.setIconColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G6, vpVar.f39757e0));
-                org.telegram.ui.ActionBar.k6.C1(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.I5, vpVar.f39757e0), q0Var.getBackground());
-                q0Var.O(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.E8, vpVar.f39757e0), false);
-                q0Var.O(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.F8, vpVar.f39757e0), true);
-                q0Var.H(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G8, vpVar.f39757e0));
-                return;
-            case 3:
-                ((se0) this.f37357b).M0();
-                return;
-            case 4:
-                fm0 fm0Var = ((im0) this.f37357b).A0;
-                if (fm0Var != null) {
-                    fm0Var.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28275y8, false));
-                    return;
-                }
-                return;
-            case 5:
-                ((Runnable) this.f37357b).run();
-                return;
-            case 6:
-                ((xv0) this.f37357b).X0(false);
-                return;
-            default:
-                ((n31) this.f37357b).d();
-                return;
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f37274a.R();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(0.0f, 0.0f, getWidth(), org.telegram.messenger.g0.L(10.0f) + getHeight());
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), this.d);
+        ImageReceiver imageReceiver = this.f37274a;
+        imageReceiver.y0((getWidth() / 2.0f) - org.telegram.messenger.g0.L(66.0f), (getHeight() / 2.0f) - (org.telegram.messenger.g0.L(42.0f) / 2.0f), org.telegram.messenger.g0.L(42.0f), org.telegram.messenger.g0.L(42.0f));
+        imageReceiver.h(canvas, null);
+        Paint paint = this.f37276c;
+        canvas.drawLine((getWidth() / 2.0f) - org.telegram.messenger.g0.L(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + org.telegram.messenger.g0.L(8.0f), getHeight() / 2.0f, paint);
+        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - org.telegram.messenger.g0.L(8.0f), getWidth() / 2.0f, org.telegram.messenger.g0.L(8.0f) + (getHeight() / 2.0f), paint);
+        int L = org.telegram.messenger.g0.L(24.0f) + (getWidth() / 2);
+        int height = (getHeight() / 2) - (org.telegram.messenger.g0.L(42.0f) / 2);
+        int L2 = org.telegram.messenger.g0.L(66.0f) + (getWidth() / 2);
+        int L3 = (org.telegram.messenger.g0.L(42.0f) / 2) + (getHeight() / 2);
+        Drawable drawable = this.f37275b;
+        drawable.setBounds(L, height, L2, L3);
+        drawable.draw(canvas);
+    }
+
+    public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+        TLRPC.TL_attachMenuBotIcon k02 = org.telegram.messenger.ui.k0(tL_attachMenuBot);
+        if (k02 != null) {
+            this.f37274a.q0(org.telegram.messenger.hc.b(k02.icon), "42_42", org.telegram.messenger.t5.f(k02.icon, org.telegram.ui.ActionBar.k6.f28087q5, 1.0f, null), "svg", tL_attachMenuBot, 0);
         }
     }
 
-    private final void c(float f10) {
+    @Override
+    public void setBackgroundColor(int i7) {
+        this.d.setColor(i7);
     }
 
-    private final void d(float f10) {
-    }
-
-    private final void e(float f10) {
-    }
-
-    private final void f(float f10) {
-    }
-
-    private final void g(float f10) {
-    }
-
-    private final void h(float f10) {
-    }
-
-    private final void i(float f10) {
-    }
-
-    private final void j(float f10) {
+    public void setColor(int i7) {
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        this.f37275b.setColorFilter(i7, mode);
+        this.f37276c.setColor(i7);
+        this.f37274a.f21206o1 = new PorterDuffColorFilter(i7, mode);
     }
 }

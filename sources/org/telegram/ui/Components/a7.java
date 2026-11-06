@@ -1,44 +1,48 @@
 package org.telegram.ui.Components;
 
 import android.widget.FrameLayout;
-import org.telegram.tgnet.TLRPC;
 public final class a7 implements Runnable {
-    public final int f31744a;
-    public final z7 f31745b;
-    public final TLRPC.TL_error f31746c;
+    public final int f31701a;
+    public final b8 f31702b;
+    public final k60 f31703c;
 
-    public a7(z7 z7Var, TLRPC.TL_error tL_error, int i3) {
-        this.f31744a = i3;
-        this.f31745b = z7Var;
-        this.f31746c = tL_error;
+    public a7(b8 b8Var, k60 k60Var, int i7) {
+        this.f31701a = i7;
+        this.f31702b = b8Var;
+        this.f31703c = k60Var;
     }
 
     @Override
     public final void run() {
-        FrameLayout frameLayout;
-        org.telegram.ui.ActionBar.e6 e6Var;
-        switch (this.f31744a) {
+        int i7 = this.f31701a;
+        k60 k60Var = this.f31703c;
+        b8 b8Var = this.f31702b;
+        switch (i7) {
             case 0:
-                z7 z7Var = this.f31745b;
-                frameLayout = (FrameLayout) z7Var.f28586b;
-                e6Var = z7Var.J0;
-                break;
+                b8Var.getClass();
+                k60Var.u();
+                b8Var.P0(1);
+                return;
             case 1:
-                z7 z7Var2 = this.f31745b;
-                frameLayout = (FrameLayout) z7Var2.f28586b;
-                e6Var = z7Var2.J0;
-                break;
+                b8Var.getClass();
+                k60Var.u();
+                b8Var.P0(2);
+                return;
             case 2:
-                z7 z7Var3 = this.f31745b;
-                frameLayout = (FrameLayout) z7Var3.f28586b;
-                e6Var = z7Var3.J0;
-                break;
+                b8Var.getClass();
+                k60Var.u();
+                b8Var.P0(4);
+                return;
+            case 3:
+                b8Var.getClass();
+                k60Var.u();
+                b8Var.P0(7);
+                return;
             default:
-                z7 z7Var4 = this.f31745b;
-                frameLayout = (FrameLayout) z7Var4.f28586b;
-                e6Var = z7Var4.J0;
-                break;
+                b8Var.U0(true);
+                org.telegram.messenger.k5.o(null, 2131753912, new hc((FrameLayout) b8Var.f28615b, b8Var.I0), 2131624190, 36);
+                k60Var.u();
+                return;
         }
-        org.telegram.ui.Cells.f1.v(frameLayout, e6Var, this.f31746c, false);
     }
 }

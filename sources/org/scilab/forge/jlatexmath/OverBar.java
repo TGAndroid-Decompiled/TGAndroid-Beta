@@ -10,8 +10,8 @@ public class OverBar extends VerticalBox {
     }
 
     @Override
-    public void add(int i3, Box box) {
-        super.add(i3, box);
+    public void add(int i7, Box box) {
+        super.add(i7, box);
     }
 
     @Override

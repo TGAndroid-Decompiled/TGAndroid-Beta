@@ -1,28 +1,35 @@
 package org.telegram.ui.Components;
-public final class o90 implements Runnable {
-    public final int f36787a;
-    public final x90 f36788b;
 
-    public o90(x90 x90Var, int i3) {
-        this.f36787a = i3;
-        this.f36788b = x90Var;
+import android.content.Context;
+import android.view.View;
+public final class o90 extends h61 {
+    public final Context f36680a;
+    public final ia0 f36681b;
+
+    public o90(ia0 ia0Var, Context context) {
+        this.f36681b = ia0Var;
+        this.f36680a = context;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36787a) {
-            case 0:
-                x90 x90Var = this.f36788b;
-                ci.j1 j1Var = x90Var.f40293f;
-                if (x90Var.f40291d0.d.f22212r) {
-                    j1Var.x0(-j1Var.computeVerticalScrollOffset(), 250, ni.l.V);
-                    return;
-                }
-                j1Var.x0(j1Var.computeVerticalScrollRange() - (j1Var.computeVerticalScrollExtent() + j1Var.computeVerticalScrollOffset()), 250, ni.l.V);
-                return;
-            default:
-                this.f36788b.h(true, false);
-                return;
-        }
+    public final void b(View view, int i7, int i10) {
+        ca0 ca0Var = (ca0) view;
+        ca0Var.i();
+        ca0Var.l(false);
+    }
+
+    @Override
+    public final View d(int i7) {
+        return new ca0(this.f36681b, this.f36680a, i7);
+    }
+
+    @Override
+    public final int e() {
+        return this.f36681b.f34578e.f33922a.size();
+    }
+
+    @Override
+    public final int h(int i7) {
+        return ((fa0) this.f36681b.f34578e.f33922a.get(i7)).f33548a;
     }
 }

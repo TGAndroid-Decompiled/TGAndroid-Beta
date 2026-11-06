@@ -1,39 +1,52 @@
 package org.telegram.ui.web;
-public final class f1 implements Runnable {
-    public final int f50844a;
-    public final org.telegram.ui.m0 f50845b;
 
-    public f1(org.telegram.ui.m0 m0Var, int i3) {
-        this.f50844a = i3;
-        this.f50845b = m0Var;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.iz;
+public final class f1 {
+    public static ArrayList d;
+    public final String f51117a;
+    public final String f51118b;
+    public final String f51119c;
+
+    public f1(String str, String str2, String str3) {
+        this.f51117a = str;
+        this.f51118b = str2;
+        this.f51119c = str3;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f50844a) {
-            case 0:
-                org.telegram.ui.m0 m0Var = this.f50845b;
-                m0Var.B0 = true;
-                if (m0Var.getParent() != null) {
-                    m0Var.getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                try {
-                    m0Var.performHapticFeedback(0, 1);
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            default:
-                org.telegram.ui.m0 m0Var2 = this.f50845b;
-                ci.s sVar = m0Var2.f50875c0;
-                if (m0Var2.f50871a0) {
-                    sVar.requestFocus();
-                    org.telegram.messenger.g0.K3(sVar);
-                    return;
-                }
-                sVar.clearFocus();
-                org.telegram.messenger.g0.v1(sVar);
-                return;
+    public static f1 a() {
+        ArrayList b10 = b();
+        if (b10.isEmpty()) {
+            return new f1("Google", "https://www.google.com/search?q=", "https://suggestqueries.google.com/complete/search?client=chrome&amp;q=");
         }
+        return (f1) b10.get(Utilities.j(iz.f23398p0, b10.size() - 1, 0));
+    }
+
+    public static ArrayList b() {
+        if (d == null) {
+            d = new ArrayList();
+            int i7 = 1;
+            while (true) {
+                String c10 = c(hd.N0("SearchEngine" + i7 + "Name"));
+                if (c10 == null) {
+                    break;
+                }
+                String c11 = c(hd.N0("SearchEngine" + i7 + "SearchURL"));
+                String c12 = c(hd.N0("SearchEngine" + i7 + "AutocompleteURL"));
+                c(hd.N0("SearchEngine" + i7 + "PrivacyPolicyURL"));
+                d.add(new f1(c10, c11, c12));
+                i7++;
+            }
+        }
+        return d;
+    }
+
+    public static String c(String str) {
+        if (str != null && !str.startsWith("LOC_ERR") && !"reserved".equals(str)) {
+            return str;
+        }
+        return null;
     }
 }

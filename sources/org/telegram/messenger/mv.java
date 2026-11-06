@@ -1,76 +1,65 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
+import java.util.IdentityHashMap;
+import org.telegram.tgnet.tl.TL_iv;
 public final class mv {
-    public long f24264a;
-    public boolean f24265b;
-    public int f24266c;
-    public zi d;
-    public int f24267e;
-    public long f24268f;
-    public long f24269g;
-    public long h;
-    public boolean f24270i;
-    public int f24271j;
-    public int f24272k;
+    public final kv f24075a;
+    public final ArrayList f24076b;
+    public final int f24077c;
+    public final int d;
+    public final nv f24078e;
+    public int f24079f;
+    public int f24080g;
+    public nv h;
 
-    public static mv a(int i3, TLRPC.Message message) {
-        ?? obj = new Object();
-        obj.f24264a = zi.R1(h10.i(i3).e(), message);
-        obj.f24265b = false;
-        obj.f24266c = message.f27022id;
-        obj.d = new zi(i3, message, null, null, null, null, null, false, false, 0L, false, false, true, 0);
-        return obj;
+    public mv(kv kvVar, ArrayList arrayList, int i7, int i10, nv nvVar, int i11, int i12, nv nvVar2) {
+        this.f24075a = kvVar;
+        this.f24076b = arrayList;
+        this.f24077c = i7;
+        this.d = i10;
+        this.f24078e = nvVar;
+        this.f24079f = i11;
+        this.f24080g = i12;
+        this.h = nvVar2;
     }
 
-    public static mv b(int i3, TLRPC.savedDialog saveddialog, ArrayList arrayList) {
-        TLRPC.Message message;
-        ?? obj = new Object();
-        obj.f24264a = m5.o(saveddialog.peer);
-        obj.f24265b = saveddialog.pinned;
-        obj.f24266c = saveddialog.top_message;
-        obj.f24268f = saveddialog.unread_count;
-        obj.f24269g = saveddialog.read_inbox_max_id;
-        obj.h = saveddialog.read_outbox_max_id;
-        int i10 = 0;
-        while (true) {
-            if (i10 < arrayList.size()) {
-                message = (TLRPC.Message) arrayList.get(i10);
-                if (obj.f24266c == message.f27022id) {
-                    break;
-                }
-                i10++;
-            } else {
-                message = null;
-                break;
+    public final TL_iv.RichText a(int i7) {
+        int i10;
+        int i11;
+        if (i7 == this.f24077c) {
+            i10 = this.d;
+        } else {
+            i10 = 0;
+        }
+        if (i7 == this.f24079f) {
+            i11 = this.f24080g;
+        } else {
+            i11 = Integer.MAX_VALUE;
+        }
+        if (i10 == 0 && i11 == Integer.MAX_VALUE) {
+            return (TL_iv.RichText) this.f24076b.get(i7);
+        }
+        return b(i7).b(i10, i11);
+    }
+
+    public final nv b(int i7) {
+        if (i7 == this.f24077c) {
+            return this.f24078e;
+        }
+        int i10 = this.f24079f;
+        ArrayList arrayList = this.f24076b;
+        kv kvVar = this.f24075a;
+        if (i7 == i10) {
+            if (this.h == null) {
+                TL_iv.RichText richText = (TL_iv.RichText) arrayList.get(i7);
+                IdentityHashMap identityHashMap = new IdentityHashMap();
+                this.h = new nv(richText, identityHashMap, kvVar.o(richText, 0, identityHashMap).length(), 0);
             }
+            return this.h;
         }
-        TLRPC.Message message2 = message;
-        if (message2 != null) {
-            obj.d = new zi(i3, message2, null, null, null, null, null, false, false, 0L, false, false, true, 0);
-        }
-        return obj;
-    }
-
-    public final int c() {
-        TLRPC.Message message;
-        zi ziVar = this.d;
-        if (ziVar != null && (message = ziVar.f26868k) != null) {
-            if ((message.flags & 32768) != 0) {
-                return message.edit_date;
-            }
-            return message.date;
-        }
-        return this.f24271j;
-    }
-
-    public final boolean d() {
-        TLRPC.Message message;
-        zi ziVar = this.d;
-        if (ziVar != null && (message = ziVar.f26868k) != null && (message.action instanceof TLRPC.TL_messageActionHistoryClear)) {
-            return true;
-        }
-        return false;
+        TL_iv.RichText richText2 = (TL_iv.RichText) arrayList.get(i7);
+        IdentityHashMap identityHashMap2 = new IdentityHashMap();
+        return new nv(richText2, identityHashMap2, kvVar.o(richText2, 0, identityHashMap2).length(), 0);
     }
 }

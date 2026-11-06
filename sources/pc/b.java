@@ -1,13 +1,35 @@
 package pc;
 
-import p7.d;
-import qc.g;
-public final class b {
-    public final d f53442a;
-    public final Exception f53443b;
+import java.nio.ByteBuffer;
+import java.nio.channels.ByteChannel;
+public final class b implements ByteChannel {
+    public ByteBuffer f53445a;
 
-    public b(d dVar, g gVar) {
-        this.f53443b = gVar;
-        this.f53442a = dVar;
+    @Override
+    public final boolean isOpen() {
+        return true;
+    }
+
+    @Override
+    public final int read(ByteBuffer byteBuffer) {
+        int remaining = byteBuffer.remaining();
+        ByteBuffer byteBuffer2 = this.f53445a;
+        if (byteBuffer2.remaining() <= 0) {
+            return -1;
+        }
+        byteBuffer.put((ByteBuffer) byteBuffer2.duplicate().limit(byteBuffer.remaining() + byteBuffer2.position()));
+        byteBuffer2.position(byteBuffer2.position() + remaining);
+        return remaining;
+    }
+
+    @Override
+    public final int write(ByteBuffer byteBuffer) {
+        int remaining = byteBuffer.remaining();
+        this.f53445a.put(byteBuffer);
+        return remaining;
+    }
+
+    @Override
+    public final void close() {
     }
 }

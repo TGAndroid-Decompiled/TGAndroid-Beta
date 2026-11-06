@@ -1,30 +1,82 @@
 package org.telegram.ui;
-public final class pa implements Runnable {
-    public final int f48499a;
-    public final kb f48500b;
 
-    public pa(kb kbVar, int i3) {
-        this.f48499a = i3;
-        this.f48500b = kbVar;
+import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class pa implements RequestDelegate {
+    public final int f48732a;
+    public final mb f48733b;
+
+    public pa(mb mbVar, int i7) {
+        this.f48732a = i7;
+        this.f48733b = mbVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f48499a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f48732a) {
             case 0:
-                kb kbVar = this.f48500b;
-                kbVar.H0 = Integer.MAX_VALUE;
-                kbVar.I0 = -1;
-                kbVar.i1();
-                kbVar.J0 = null;
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final mb mbVar = this.f48733b;
+                    org.telegram.messenger.g0.h3(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    mb.Z(mbVar, tL_channels_adminLogResults);
+                                    return;
+                                default:
+                                    mb.d0(mbVar, tL_channels_adminLogResults);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
                 return;
             case 1:
-                kb kbVar2 = this.f48500b;
-                kbVar2.b1(false);
-                kbVar2.F.f();
+                mb mbVar2 = this.f48733b;
+                mbVar2.getClass();
+                if (tLObject instanceof Vector) {
+                    ArrayList<T> arrayList = ((Vector) tLObject).objects;
+                    ArrayList arrayList2 = new ArrayList();
+                    for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                        if (arrayList.get(i7) instanceof TLRPC.User) {
+                            arrayList2.add((TLRPC.User) arrayList.get(i7));
+                        }
+                    }
+                    mbVar2.getMessagesController().Y3(arrayList2, false);
+                    return;
+                }
+                return;
+            case 2:
+                org.telegram.messenger.g0.h3(new org.telegram.ui.ActionBar.p(20, this.f48733b, tLObject));
+                return;
+            case 3:
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final mb mbVar3 = this.f48733b;
+                    org.telegram.messenger.g0.h3(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    mb.Z(mbVar3, tL_channels_adminLogResults2);
+                                    return;
+                                default:
+                                    mb.d0(mbVar3, tL_channels_adminLogResults2);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
                 return;
             default:
-                this.f48500b.a1();
+                org.telegram.messenger.g0.h3(new o1(this.f48733b, tL_error, tLObject, 9));
                 return;
         }
     }

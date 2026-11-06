@@ -1,42 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class k0 implements DialogInterface.OnDismissListener {
-    public final int f35220a;
-    public final Runnable f35221b;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+public final class k0 implements org.telegram.ui.ActionBar.r1 {
+    public final int f35130a;
+    public final Context f35131b;
 
-    public k0(int i3, Runnable runnable) {
-        this.f35220a = i3;
-        this.f35221b = runnable;
+    public k0(Context context, int i7) {
+        this.f35130a = i7;
+        this.f35131b = context;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f35220a) {
+    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f35130a) {
             case 0:
-                Runnable runnable = this.f35221b;
-                if (runnable != null) {
-                    runnable.run();
+                Context context = this.f35131b;
+                try {
+                    context.startActivity(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + context.getPackageName())));
+                    return;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
                     return;
                 }
-                return;
             case 1:
-                Runnable runnable2 = this.f35221b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
-                return;
-            case 2:
-                Runnable runnable3 = this.f35221b;
-                if (runnable3 != null) {
-                    runnable3.run();
-                    return;
-                }
+                vf.c.t(this.f35131b, org.telegram.messenger.r2.f25196g);
                 return;
             default:
-                this.f35221b.run();
-                return;
+                Context context2 = this.f35131b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25555b.getPackageName()));
+                    context2.startActivity(intent);
+                    return;
+                } catch (Exception e11) {
+                    org.telegram.messenger.a8.g(e11, true);
+                    return;
+                }
         }
     }
 }

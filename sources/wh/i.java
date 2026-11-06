@@ -1,79 +1,94 @@
 package wh;
 
 import android.app.Activity;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.bd;
-import org.telegram.messenger.g0;
-import org.telegram.messenger.hp;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.x;
-import org.telegram.ui.Components.f41;
-import org.telegram.ui.Components.ma;
-import org.telegram.ui.Components.sj0;
-import org.telegram.ui.Components.tj0;
-import org.telegram.ui.d41;
-import org.telegram.ui.r41;
-public final class i extends ma {
-    public f41 Q1;
-    public final d41 R1;
-    public boolean S1;
-    public int T1;
+import android.content.res.Configuration;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import org.telegram.messenger.ij;
+import org.telegram.messenger.p10;
+import org.telegram.ui.Cells.q1;
+public final class i extends View {
+    public final HashMap f57793a;
+    public final ArrayList f57794b;
+    public final ArrayList f57795c;
+    public final int d;
 
-    public i(Activity activity, e6 e6Var, TL_stats.TL_statsPollStats tL_statsPollStats) {
-        super(activity, null, true, false, 2, e6Var);
-        v0(k6.w0(k6.f27824a7, e6Var));
-        this.f28622x = true;
-        this.f28608n = false;
-        this.D1 = false;
-        this.C1 = g0.L(12.0f);
-        this.R1 = r41.i0(tL_statsPollStats.votes_graph, bd.M0(2131747127, null), 2, false);
-        tj0 tj0Var = this.f36102l1;
-        int i3 = this.f28618u0;
-        tj0Var.setPadding(i3, 0, i3, g0.f22603n);
-        this.f36102l1.setClipToPadding(false);
-        this.f36102l1.setSections(true);
-        x q10 = this.m1.q();
-        q10.a(-1, 2131231269);
-        q10.setTranslationX(-g0.L(5.0f));
-        this.Q1.O(false);
+    public i(Activity activity) {
+        super(activity);
+        this.f57793a = new HashMap();
+        this.f57794b = new ArrayList();
+        this.f57795c = new ArrayList();
+        this.d = p10.f24459s0;
     }
 
-    public static int d1(int i3, long j10, int i10, mi.f fVar) {
-        TL_stats.TL_statsGetPollStats tL_statsGetPollStats = new TL_stats.TL_statsGetPollStats();
-        tL_statsGetPollStats.peer = hp.s1(i3).j1(j10);
-        tL_statsGetPollStats.msg_id = i10;
-        return ConnectionsManager.getInstance(i3).sendRequestTyped(tL_statsGetPollStats, new c3.b(1), new org.telegram.ui.web.b(fVar, 4));
+    public static String b(q1 q1Var) {
+        ij messageObject = q1Var.getMessageObject();
+        if (messageObject == null) {
+            return null;
+        }
+        return messageObject.x0() + "_" + messageObject.f1();
     }
 
-    @Override
-    public final sj0 L0(tj0 tj0Var) {
-        f41 f41Var = new f41(tj0Var, getContext(), this.f28583a, 0, true, new org.telegram.ui.web.b(this, 3), this.J0);
-        this.Q1 = f41Var;
-        f41Var.f33698r = false;
-        return f41Var;
-    }
-
-    @Override
-    public final CharSequence O0() {
-        return bd.M0(2131747128, null);
-    }
-
-    @Override
-    public final void s0() {
-        super.s0();
-        try {
-            int w02 = k6.w0(k6.f27824a7, this.J0);
-            if (this.S1 && w02 == this.T1) {
-                return;
+    public final boolean a() {
+        for (Map.Entry entry : this.f57793a.entrySet()) {
+            if (!((h) entry.getValue()).O) {
+                return true;
             }
-            this.S1 = true;
-            this.T1 = w02;
-            v0(w02);
-        } catch (Exception e10) {
-            a8.g(e10, true);
+        }
+        return false;
+    }
+
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        super.invalidateDrawable(drawable);
+        if (drawable instanceof h) {
+            invalidate();
+        }
+    }
+
+    @Override
+    public final void onConfigurationChanged(Configuration configuration) {
+        super.onConfigurationChanged(configuration);
+        HashMap hashMap = this.f57793a;
+        for (Map.Entry entry : hashMap.entrySet()) {
+            ((h) entry.getValue()).d();
+        }
+        hashMap.clear();
+        this.f57794b.clear();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        HashMap hashMap = this.f57793a;
+        for (Map.Entry entry : hashMap.entrySet()) {
+            ((h) entry.getValue()).draw(canvas);
+        }
+        ArrayList arrayList = this.f57794b;
+        if (!arrayList.isEmpty()) {
+            int size = arrayList.size();
+            int i7 = 0;
+            while (i7 < size) {
+                Object obj = arrayList.get(i7);
+                i7++;
+                h hVar = (h) hashMap.remove((String) obj);
+                if (hVar != null) {
+                    hVar.d();
+                }
+            }
+            arrayList.clear();
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        super.onLayout(z9, i7, i10, i11, i12);
+        for (Map.Entry entry : this.f57793a.entrySet()) {
+            ((h) entry.getValue()).setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
         }
     }
 }

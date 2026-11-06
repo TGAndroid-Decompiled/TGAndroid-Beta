@@ -37,16 +37,16 @@ public class TLJsonBuilder {
         }
     }
 
-    public void writeBoolean(String str, boolean z10) {
-        write(str, Boolean.valueOf(z10));
+    public void writeBoolean(String str, boolean z9) {
+        write(str, Boolean.valueOf(z9));
     }
 
-    public void writeInt32(String str, int i3) {
-        writeString(str, Integer.toString(i3, 10));
+    public void writeInt32(String str, int i7) {
+        writeString(str, Integer.toString(i7, 10));
     }
 
-    public void writeInt64(String str, long j10) {
-        writeString(str, Long.toString(j10, 10));
+    public void writeInt64(String str, long j3) {
+        writeString(str, Long.toString(j3, 10));
     }
 
     public void writeObject(String str, Serializable serializable) {
@@ -59,8 +59,8 @@ public class TLJsonBuilder {
 
     public <T extends Serializable> void writeVector(String str, List<T> list) {
         JSONArray jSONArray = new JSONArray();
-        for (T t10 : list) {
-            JSONObject serialize = serialize(t10);
+        for (T t6 : list) {
+            JSONObject serialize = serialize(t6);
             if (serialize != null) {
                 jSONArray.put(serialize);
             }

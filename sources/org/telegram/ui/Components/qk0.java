@@ -1,15 +1,22 @@
 package org.telegram.ui.Components;
-public final class qk0 implements Runnable {
-    public final int f37484a;
-    public final vk0 f37485b;
+public final class qk0 {
+    public static final qk0 f37436a;
+    public static final qk0 f37437b;
+    public static final qk0[] f37438c;
 
-    public qk0(vk0 vk0Var, int i3) {
-        this.f37484a = i3;
-        this.f37485b = vk0Var;
+    static {
+        ?? r02 = new Enum("LINE", 0);
+        f37436a = r02;
+        ?? r12 = new Enum("TAB", 1);
+        f37437b = r12;
+        f37438c = new qk0[]{r02, r12};
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.qk0.run():void");
+    public static qk0 valueOf(String str) {
+        return (qk0) Enum.valueOf(qk0.class, str);
+    }
+
+    public static qk0[] values() {
+        return (qk0[]) f37438c.clone();
     }
 }

@@ -1,73 +1,53 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class cd implements Runnable {
-    public final int f44318a;
-    public final xd f44319b;
+import android.view.View;
+import java.io.Serializable;
+public final class cd implements org.telegram.ui.Components.dt0, org.telegram.ui.ActionBar.r1, org.telegram.messenger.a20 {
+    public final zd f44730a;
 
-    public cd(xd xdVar, int i3) {
-        this.f44318a = i3;
-        this.f44319b = xdVar;
+    public cd(zd zdVar) {
+        this.f44730a = zdVar;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        int i3 = this.f44318a;
-        boolean z11 = false;
-        xd xdVar = this.f44319b;
-        switch (i3) {
-            case 0:
-                sf.c.t(xdVar.getContext(), org.telegram.messenger.bd.M0(2131748412, null));
-                return;
-            case 1:
-                sf.c.t(xdVar.getContext(), org.telegram.messenger.bd.M0(2131748378, null));
-                return;
-            case 2:
-                org.telegram.ui.Components.l41 l41Var = xdVar.Y0;
-                if (l41Var != null) {
-                    boolean z12 = xdVar.f34196f0;
-                    if (xdVar.S0 != -1) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    org.telegram.ui.Components.f41 f41Var = l41Var.f35594g3;
-                    if (z10 == xdVar.f51915b1.a()) {
-                        z11 = true;
-                    }
-                    f41Var.O(z11);
-                    if (z12 && xdVar.S0 != -1) {
-                        xdVar.a();
-                        return;
-                    }
+    public int b() {
+        return this.f44730a.R0;
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        this.f44730a.m0.presentFragment(new ya1(6, null));
+    }
+
+    @Override
+    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        zd zdVar = this.f44730a;
+        dd ddVar = zdVar.f52546s1;
+        int i7 = zdVar.f52537o0;
+        long j3 = zdVar.f52539p0;
+        int i10 = ((org.telegram.ui.Components.r31) obj).d;
+        if (i10 == 1) {
+            if (zdVar.f52543r0 < org.telegram.messenger.qp.s1(i7).f24943z4) {
+                if (zdVar.f52541q0 != null) {
+                    c51 c51Var = zdVar.m0;
+                    ug.i0 i0Var = new ug.i0(30, zdVar.f52537o0, zdVar.getContext(), c51Var, zdVar.f52536n0);
+                    i0Var.B1(j3);
+                    i0Var.z1(zdVar.f52541q0, true);
+                    org.telegram.messenger.qp.s1(i7).G0().b(j3, zdVar.f52541q0, new org.telegram.messenger.voip.k(8, zdVar, i0Var));
                     return;
                 }
                 return;
-            case 3:
-                xdVar.f51924l1 = xdVar.k1;
-                return;
-            case 4:
-                xdVar.K0.setLoading(false);
-                return;
-            case 5:
-                xdVar.Z0.setVisibility(8);
-                return;
-            case 6:
-                xdVar.Z0.setVisibility(8);
-                return;
-            default:
-                int i10 = xdVar.f51929p0;
-                org.telegram.messenger.g0.r(xdVar.f51938t1);
-                if (xdVar.k1 != xdVar.f51924l1) {
-                    TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
-                    tL_channels_restrictSponsoredMessages.channel = org.telegram.messenger.hp.s1(i10).h1(-xdVar.f51931q0);
-                    tL_channels_restrictSponsoredMessages.restricted = xdVar.k1;
-                    ConnectionsManager.getInstance(i10).sendRequest(tL_channels_restrictSponsoredMessages, new jd(xdVar, 0));
-                    return;
-                }
-                return;
+            }
+            zdVar.f52533j1 = !zdVar.f52533j1;
+            org.telegram.messenger.g0.r(ddVar);
+            org.telegram.messenger.g0.i3(ddVar, 1000L);
+            zdVar.X0.f35167f3.O(true);
+        } else if (i10 == 4) {
+            zdVar.m0.presentFragment(new hi.q3(j3));
         }
     }
 }

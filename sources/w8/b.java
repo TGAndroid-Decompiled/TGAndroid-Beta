@@ -1,96 +1,111 @@
 package w8;
 
-import android.os.Parcelable;
-import com.google.android.gms.vision.face.internal.client.FaceParcel;
-import com.google.android.gms.vision.face.internal.client.LandmarkParcel;
-import com.google.android.gms.wallet.FullWallet;
-import com.google.android.gms.wallet.MaskedWallet;
-import com.google.android.gms.wallet.wobs.CommonWalletObject;
-import x8.h;
-import x8.i;
-import x8.j;
-import x8.k;
-import x8.l;
-import x8.m;
-import x8.n;
-import x8.q;
-import x8.r;
-import x8.s;
-public final class b implements Parcelable.Creator {
-    public final int f57413a;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.util.Log;
+import android.util.SparseArray;
+import bi.b1;
+import com.google.android.gms.internal.vision.f3;
+import com.google.android.gms.internal.vision.t2;
+import java.nio.ByteBuffer;
+import java.util.HashSet;
+import org.telegram.ui.hy0;
+import q6.m;
+public final class b extends b1 {
+    public final t8.a f57498b;
+    public final t2 f57499c;
+    public final Object d;
+    public boolean f57500e;
 
-    public b(int i3) {
-        this.f57413a = i3;
+    public b(t2 t2Var) {
+        super(7);
+        this.f57498b = new t8.a();
+        this.d = new Object();
+        this.f57500e = true;
+        this.f57499c = t2Var;
     }
 
     @Override
-    public final java.lang.Object createFromParcel(android.os.Parcel r27) {
-        throw new UnsupportedOperationException("Method not decompiled: w8.b.createFromParcel(android.os.Parcel):java.lang.Object");
+    public final void X0() {
+        super.X0();
+        synchronized (this.d) {
+            try {
+                if (!this.f57500e) {
+                    return;
+                }
+                this.f57499c.l();
+                this.f57500e = false;
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
     }
 
-    @Override
-    public final Object[] newArray(int i3) {
-        switch (this.f57413a) {
-            case 0:
-                return new a[i3];
-            case 1:
-                return new FaceParcel[i3];
-            case 2:
-                return new c[i3];
-            case 3:
-                return new LandmarkParcel[i3];
-            case 4:
-                return new i[i3];
-            case 5:
-                return new j[i3];
-            case 6:
-                return new k[i3];
-            case 7:
-                return new l[i3];
-            case 8:
-                return new r[i3];
-            case 9:
-                return new m[i3];
-            case 10:
-                return new n[i3];
-            case 11:
-                return new s[i3];
-            case 12:
-                return new q[i3];
-            case 13:
-                return new x8.b[i3];
-            case 14:
-                return new x8.c[i3];
-            case 15:
-                return new FullWallet[i3];
-            case 16:
-                return new x8.d[i3];
-            case 17:
-                return new x8.e[i3];
-            case 18:
-                return new x8.f[i3];
-            case 19:
-                return new MaskedWallet[i3];
-            case 20:
-                return new x8.g[i3];
-            case 21:
-                return new h[i3];
-            case 22:
-                return new CommonWalletObject[i3];
-            case 23:
-                return new y8.a[i3];
-            case 24:
-                return new y8.b[i3];
-            case 25:
-                return new y8.d[i3];
-            case 26:
-                return new y8.c[i3];
-            case 27:
-                return new y8.e[i3];
-            case 28:
-                return new y8.f[i3];
-            default:
-                return new y8.g[i3];
+    public final SparseArray e1(hy0 hy0Var) {
+        ByteBuffer y10;
+        a[] n10;
+        Bitmap bitmap = (Bitmap) hy0Var.d;
+        if (bitmap != null) {
+            int width = bitmap.getWidth();
+            int height = bitmap.getHeight();
+            int i7 = width * height;
+            y10 = ByteBuffer.allocateDirect(((((height + 1) / 2) * ((width + 1) / 2)) << 1) + i7);
+            int i10 = i7;
+            for (int i11 = 0; i11 < i7; i11++) {
+                int i12 = i11 % width;
+                int i13 = i11 / width;
+                int pixel = bitmap.getPixel(i12, i13);
+                float red = Color.red(pixel);
+                float green = Color.green(pixel);
+                float blue = Color.blue(pixel);
+                y10.put(i11, (byte) ((0.114f * blue) + (0.587f * green) + (0.299f * red)));
+                if (i13 % 2 == 0 && i12 % 2 == 0) {
+                    float d = rf.b.d(blue, 0.5f, ((-0.331f) * green) + ((-0.169f) * red), 128.0f);
+                    float d2 = rf.b.d(blue, -0.081f, (green * (-0.419f)) + (red * 0.5f), 128.0f);
+                    int i14 = i10 + 1;
+                    y10.put(i10, (byte) d);
+                    i10 += 2;
+                    y10.put(i14, (byte) d2);
+                }
+            }
+        } else {
+            y10 = hy0Var.y();
+        }
+        synchronized (this.d) {
+            if (this.f57500e) {
+                t2 t2Var = this.f57499c;
+                m.g(y10);
+                n10 = t2Var.n(y10, f3.b(hy0Var));
+            } else {
+                throw new IllegalStateException("Cannot use detector after release()");
+            }
+        }
+        HashSet hashSet = new HashSet();
+        SparseArray sparseArray = new SparseArray(n10.length);
+        int i15 = 0;
+        for (a aVar : n10) {
+            int i16 = aVar.f57495a;
+            i15 = Math.max(i15, i16);
+            if (hashSet.contains(Integer.valueOf(i16))) {
+                i16 = i15 + 1;
+                i15 = i16;
+            }
+            hashSet.add(Integer.valueOf(i16));
+            sparseArray.append(this.f57498b.a(i16), aVar);
+        }
+        return sparseArray;
+    }
+
+    public final void finalize() {
+        try {
+            synchronized (this.d) {
+                if (this.f57500e) {
+                    Log.w("FaceDetector", "FaceDetector was not released with FaceDetector.release()");
+                    X0();
+                }
+            }
+        } finally {
+            super.finalize();
         }
     }
 }

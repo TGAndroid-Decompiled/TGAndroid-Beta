@@ -2,15 +2,27 @@ package d8;
 
 import android.os.IBinder;
 import android.os.IInterface;
+import android.os.Parcel;
 public final class c implements IInterface {
-    public final IBinder f8588a;
+    public final IBinder f8213a;
 
     public c(IBinder iBinder) {
-        this.f8588a = iBinder;
+        this.f8213a = iBinder;
+    }
+
+    public final void H0(Parcel parcel, int i7) {
+        Parcel obtain = Parcel.obtain();
+        try {
+            this.f8213a.transact(i7, parcel, obtain, 0);
+            obtain.readException();
+        } finally {
+            parcel.recycle();
+            obtain.recycle();
+        }
     }
 
     @Override
     public final IBinder asBinder() {
-        return this.f8588a;
+        return this.f8213a;
     }
 }

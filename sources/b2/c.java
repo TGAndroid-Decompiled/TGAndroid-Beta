@@ -1,21 +1,3 @@
 package b2;
-
-import android.app.Notification;
-import android.os.Build;
-import android.support.v4.media.session.MediaSessionCompat$Token;
-import e0.e0;
-import e0.y;
-public final class c extends y {
-    public int[] f2341e;
-    public MediaSessionCompat$Token f2342f;
-
-    @Override
-    public final void b(e0 e0Var) {
-        Notification.Builder builder = (Notification.Builder) e0Var.d;
-        if (Build.VERSION.SDK_INT >= 34) {
-            a.d(builder, a.b(b.a(a.a(), null, 0, null, Boolean.FALSE), this.f2341e, this.f2342f));
-        } else {
-            a.d(builder, a.b(a.a(), this.f2341e, this.f2342f));
-        }
-    }
+public final class c extends d {
 }

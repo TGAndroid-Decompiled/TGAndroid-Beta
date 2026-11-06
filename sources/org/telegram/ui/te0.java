@@ -1,34 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class te0 extends org.telegram.ui.Components.oo0 {
-    public final ue0 S2;
+public final class te0 implements g90 {
+    public final cf0 f50018a;
 
-    public te0(ue0 ue0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, null, str, false, str2, false, e6Var);
-        this.S2 = ue0Var;
+    public te0(cf0 cf0Var) {
+        this.f50018a = cf0Var;
     }
 
     @Override
-    public final void R0(a0.h hVar, int i3, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        String a02;
-        xe0 xe0Var = this.S2.L;
-        if (!z10) {
-            return;
-        }
-        if (hVar != null && hVar.m() == 1) {
-            long j10 = ((TLRPC.Dialog) hVar.n(0)).f27005id;
-            if (j10 != 0 && j10 != xe0Var.getUserConfig().e()) {
-                a02 = org.telegram.messenger.bd.a0(null, null, 2131749192, xe0Var.getMessagesController().B1(j10, true));
-            } else {
-                a02 = org.telegram.messenger.bd.M0(2131749193, null);
+    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+        this.f50018a.k0(tL_chatInviteExported);
+    }
+
+    @Override
+    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
+        if (tLObject instanceof TLRPC.TL_messages_exportedChatInvite) {
+            TLRPC.TL_chatInviteExported tL_chatInviteExported2 = (TLRPC.TL_chatInviteExported) ((TLRPC.TL_messages_exportedChatInvite) tLObject).invite;
+            cf0 cf0Var = this.f50018a;
+            cf0Var.i0(tL_chatInviteExported2);
+            for (int i7 = 0; i7 < cf0Var.f44785i0.size(); i7++) {
+                if (((TLRPC.TL_chatInviteExported) cf0Var.f44785i0.get(i7)).link.equals(tL_chatInviteExported.link)) {
+                    if (tL_chatInviteExported2.revoked) {
+                        ue0 l02 = cf0Var.l0();
+                        cf0Var.f44785i0.remove(i7);
+                        cf0Var.f44786j0.add(0, tL_chatInviteExported2);
+                        cf0Var.n0(l02);
+                        return;
+                    }
+                    cf0Var.f44785i0.set(i7, tL_chatInviteExported2);
+                    cf0Var.o0(true);
+                    return;
+                }
             }
-        } else {
-            a02 = org.telegram.messenger.bd.a0(null, null, 2131749195, org.telegram.messenger.bd.G(i3, "Chats", new Object[0]));
         }
-        org.telegram.ui.Components.ac Q = org.telegram.ui.Components.fc.a0(xe0Var).Q(2131624028, 36, org.telegram.messenger.g0.X2(a02));
-        Q.f31800r = false;
-        Q.k(true);
+    }
+
+    @Override
+    public final void c(TLObject tLObject) {
+        if (tLObject instanceof TLRPC.TL_chatInviteExported) {
+            org.telegram.messenger.g0.i3(new zc0(9, this, tLObject), 200L);
+        }
     }
 }

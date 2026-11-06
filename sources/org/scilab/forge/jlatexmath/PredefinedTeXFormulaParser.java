@@ -34,8 +34,8 @@ public class PredefinedTeXFormulaParser {
     public void parse(Map map) {
         if ("true".equals(getAttrValueAndCheckIfNotNull("enabled", this.root))) {
             NodeList elementsByTagName = this.root.getElementsByTagName(this.type);
-            for (int i3 = 0; i3 < elementsByTagName.getLength(); i3++) {
-                Element element = (Element) elementsByTagName.item(i3);
+            for (int i7 = 0; i7 < elementsByTagName.getLength(); i7++) {
+                Element element = (Element) elementsByTagName.item(i7);
                 if ("true".equals(getAttrValueAndCheckIfNotNull("enabled", element))) {
                     String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element);
                     if ("TeXFormula".equals(this.type)) {

@@ -17,8 +17,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void configure(MediaFormat mediaFormat, Surface surface, MediaCrypto mediaCrypto, int i3) {
-            this.mediaCodec.configure(mediaFormat, surface, mediaCrypto, i3);
+        public void configure(MediaFormat mediaFormat, Surface surface, MediaCrypto mediaCrypto, int i7) {
+            this.mediaCodec.configure(mediaFormat, surface, mediaCrypto, i7);
         }
 
         @Override
@@ -27,13 +27,13 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public int dequeueInputBuffer(long j10) {
-            return this.mediaCodec.dequeueInputBuffer(j10);
+        public int dequeueInputBuffer(long j3) {
+            return this.mediaCodec.dequeueInputBuffer(j3);
         }
 
         @Override
-        public int dequeueOutputBuffer(MediaCodec.BufferInfo bufferInfo, long j10) {
-            return this.mediaCodec.dequeueOutputBuffer(bufferInfo, j10);
+        public int dequeueOutputBuffer(MediaCodec.BufferInfo bufferInfo, long j3) {
+            return this.mediaCodec.dequeueOutputBuffer(bufferInfo, j3);
         }
 
         @Override
@@ -47,8 +47,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public ByteBuffer getInputBuffer(int i3) {
-            return this.mediaCodec.getInputBuffer(i3);
+        public ByteBuffer getInputBuffer(int i7) {
+            return this.mediaCodec.getInputBuffer(i7);
         }
 
         @Override
@@ -57,8 +57,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public ByteBuffer getOutputBuffer(int i3) {
-            return this.mediaCodec.getOutputBuffer(i3);
+        public ByteBuffer getOutputBuffer(int i7) {
+            return this.mediaCodec.getOutputBuffer(i7);
         }
 
         @Override
@@ -67,8 +67,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void queueInputBuffer(int i3, int i10, int i11, long j10, int i12) {
-            this.mediaCodec.queueInputBuffer(i3, i10, i11, j10, i12);
+        public void queueInputBuffer(int i7, int i10, int i11, long j3, int i12) {
+            this.mediaCodec.queueInputBuffer(i7, i10, i11, j3, i12);
         }
 
         @Override
@@ -77,8 +77,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public void releaseOutputBuffer(int i3, boolean z10) {
-            this.mediaCodec.releaseOutputBuffer(i3, z10);
+        public void releaseOutputBuffer(int i7, boolean z9) {
+            this.mediaCodec.releaseOutputBuffer(i7, z9);
         }
 
         @Override
@@ -97,8 +97,8 @@ class MediaCodecWrapperFactoryImpl implements MediaCodecWrapperFactory {
         }
 
         @Override
-        public MediaFormat getOutputFormat(int i3) {
-            return this.mediaCodec.getOutputFormat(i3);
+        public MediaFormat getOutputFormat(int i7) {
+            return this.mediaCodec.getOutputFormat(i7);
         }
     }
 

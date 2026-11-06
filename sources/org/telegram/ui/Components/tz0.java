@@ -6,94 +6,94 @@ import android.view.ViewPropertyAnimator;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class tz0 implements TextWatcher {
-    public final uz0 f38585a;
+    public final uz0 f38457a;
 
     public tz0(uz0 uz0Var) {
-        this.f38585a = uz0Var;
+        this.f38457a = uz0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
+        boolean z9;
         boolean z10;
-        boolean z11;
         float f10;
-        if (this.f38585a.f38914b.length() > 0) {
+        if (this.f38457a.f38775b.length() > 0) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        float f11 = 0.0f;
+        if (this.f38457a.f38774a.getAlpha() != 0.0f) {
             z10 = true;
         } else {
             z10 = false;
         }
-        float f11 = 0.0f;
-        if (this.f38585a.f38913a.getAlpha() != 0.0f) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (z10 != z11) {
-            ViewPropertyAnimator animate = this.f38585a.f38913a.animate();
+        if (z9 != z10) {
+            ViewPropertyAnimator animate = this.f38457a.f38774a.animate();
             float f12 = 1.0f;
-            if (z10) {
+            if (z9) {
                 f11 = 1.0f;
             }
             ViewPropertyAnimator duration = animate.alpha(f11).setDuration(150L);
-            if (z10) {
+            if (z9) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.1f;
             }
             ViewPropertyAnimator scaleX = duration.scaleX(f10);
-            if (!z10) {
+            if (!z9) {
                 f12 = 0.1f;
             }
             scaleX.scaleY(f12).start();
         }
-        String obj = this.f38585a.f38914b.getText().toString();
+        String obj = this.f38457a.f38775b.getText().toString();
         if (obj.length() != 0) {
-            gy gyVar = this.f38585a.f38915c.m1;
-            if (gyVar != null) {
-                gyVar.setText(org.telegram.messenger.bd.M0(2131748175, null));
+            iy iyVar = this.f38457a.f38776c.l1;
+            if (iyVar != null) {
+                iyVar.setText(org.telegram.messenger.hd.M0(2131748166, null));
             }
         } else {
-            u4.h0 adapter = this.f38585a.f38915c.k1.getAdapter();
-            ThemeEditorView.EditorAlert editorAlert = this.f38585a.f38915c;
-            if (adapter != editorAlert.f31658p1) {
+            v4.g0 adapter = this.f38457a.f38776c.f31576j1.getAdapter();
+            ThemeEditorView.EditorAlert editorAlert = this.f38457a.f38776c;
+            if (adapter != editorAlert.f31579o1) {
                 int J0 = ThemeEditorView.EditorAlert.J0(editorAlert);
-                this.f38585a.f38915c.m1.setText(org.telegram.messenger.bd.M0(2131748238, null));
-                this.f38585a.f38915c.m1.c();
-                ThemeEditorView.EditorAlert editorAlert2 = this.f38585a.f38915c;
-                editorAlert2.k1.setAdapter(editorAlert2.f31658p1);
-                this.f38585a.f38915c.f31658p1.f();
+                this.f38457a.f38776c.l1.setText(org.telegram.messenger.hd.M0(2131748229, null));
+                this.f38457a.f38776c.l1.c();
+                ThemeEditorView.EditorAlert editorAlert2 = this.f38457a.f38776c;
+                editorAlert2.f31576j1.setAdapter(editorAlert2.f31579o1);
+                this.f38457a.f38776c.f31579o1.f();
                 if (J0 > 0) {
-                    this.f38585a.f38915c.f31657o1.h1(0, -J0);
+                    this.f38457a.f38776c.n1.h1(0, -J0);
                 }
             }
         }
-        qz0 qz0Var = this.f38585a.f38915c.f31659q1;
-        if (qz0Var != null && !obj.equals(qz0Var.f37576n)) {
-            qz0Var.f37576n = obj;
+        qz0 qz0Var = this.f38457a.f38776c.f31580p1;
+        if (qz0Var != null && !obj.equals(qz0Var.f37543n)) {
+            qz0Var.f37543n = obj;
             if (qz0Var.h != null) {
-                Utilities.f21389g.a(qz0Var.h);
+                Utilities.f21335g.a(qz0Var.h);
                 qz0Var.h = null;
             }
             if (obj.length() == 0) {
-                qz0Var.f37574e.clear();
-                ThemeEditorView.EditorAlert editorAlert3 = qz0Var.f37577r;
-                editorAlert3.f31666x1 = ThemeEditorView.EditorAlert.J0(editorAlert3);
+                qz0Var.f37541e.clear();
+                ThemeEditorView.EditorAlert editorAlert3 = qz0Var.f37544r;
+                editorAlert3.f31587w1 = ThemeEditorView.EditorAlert.J0(editorAlert3);
                 qz0Var.d = -1;
                 qz0Var.f();
                 return;
             }
-            int i3 = qz0Var.d + 1;
-            qz0Var.d = i3;
-            qz0Var.h = new org.telegram.ui.f4(qz0Var, obj, i3, 26);
-            Utilities.f21389g.e(qz0Var.h, 300L);
+            int i7 = qz0Var.d + 1;
+            qz0Var.d = i7;
+            qz0Var.h = new org.telegram.ui.q8((Object) qz0Var, obj, i7, 25);
+            Utilities.f21335g.d(qz0Var.h, 300L);
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

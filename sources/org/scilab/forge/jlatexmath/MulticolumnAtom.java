@@ -5,63 +5,63 @@ public class MulticolumnAtom extends Atom {
     protected int beforeVlines;
     protected int col;
     protected Atom cols;
-    protected int f21189n;
+    protected int f21136n;
     protected int row;
-    protected float f21190w = 0.0f;
+    protected float f21137w = 0.0f;
 
-    public MulticolumnAtom(int i3, String str, Atom atom) {
-        this.f21189n = i3 < 1 ? 1 : i3;
+    public MulticolumnAtom(int i7, String str, Atom atom) {
+        this.f21136n = i7 < 1 ? 1 : i7;
         this.cols = atom;
         this.align = parseAlign(str);
     }
 
     private int parseAlign(String str) {
         int length = str.length();
-        int i3 = 0;
+        int i7 = 0;
         int i10 = 2;
-        boolean z10 = true;
-        while (i3 < length) {
-            char charAt = str.charAt(i3);
+        boolean z9 = true;
+        while (i7 < length) {
+            char charAt = str.charAt(i7);
             if (charAt != 'c') {
                 if (charAt != 'l') {
                     if (charAt != 'r') {
                         if (charAt == '|') {
-                            if (z10) {
+                            if (z9) {
                                 this.beforeVlines = 1;
                             } else {
                                 this.afterVlines = 1;
                             }
                             while (true) {
-                                int i11 = i3 + 1;
+                                int i11 = i7 + 1;
                                 if (i11 < length) {
                                     if (str.charAt(i11) != '|') {
                                         break;
                                     }
-                                    if (z10) {
+                                    if (z9) {
                                         this.beforeVlines++;
                                     } else {
                                         this.afterVlines++;
                                     }
-                                    i3 = i11;
+                                    i7 = i11;
                                 } else {
-                                    i3 = i11;
+                                    i7 = i11;
                                     break;
                                 }
                             }
                         }
                     } else {
-                        z10 = false;
+                        z9 = false;
                         i10 = 1;
                     }
                 } else {
                     i10 = 0;
-                    z10 = false;
+                    z9 = false;
                 }
             } else {
-                z10 = false;
+                z9 = false;
                 i10 = 2;
             }
-            i3++;
+            i7++;
         }
         return i10;
     }
@@ -69,10 +69,10 @@ public class MulticolumnAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         Box horizontalBox;
-        if (this.f21190w == 0.0f) {
+        if (this.f21137w == 0.0f) {
             horizontalBox = this.cols.createBox(teXEnvironment);
         } else {
-            horizontalBox = new HorizontalBox(this.cols.createBox(teXEnvironment), this.f21190w, this.align);
+            horizontalBox = new HorizontalBox(this.cols.createBox(teXEnvironment), this.f21137w, this.align);
         }
         horizontalBox.type = 12;
         return horizontalBox;
@@ -87,7 +87,7 @@ public class MulticolumnAtom extends Atom {
     }
 
     public int getSkipped() {
-        return this.f21189n;
+        return this.f21136n;
     }
 
     public boolean hasRightVline() {
@@ -97,12 +97,12 @@ public class MulticolumnAtom extends Atom {
         return false;
     }
 
-    public void setRowColumn(int i3, int i10) {
-        this.row = i3;
+    public void setRowColumn(int i7, int i10) {
+        this.row = i7;
         this.col = i10;
     }
 
     public void setWidth(float f10) {
-        this.f21190w = f10;
+        this.f21137w = f10;
     }
 }

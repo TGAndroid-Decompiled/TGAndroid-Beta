@@ -1,46 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class xk0 extends o5 {
-    public final u5 d;
-    public final int f40387e;
-    public final ScrollSlidingTextTabStrip f40388f;
+import java.util.ArrayList;
+public final class xk0 implements Runnable {
+    public final int f40276a = 1;
+    public final dl0 f40277b;
+    public final String f40278c;
+    public final ArrayList d;
+    public final ArrayList f40279e;
 
-    public xk0(ScrollSlidingTextTabStrip scrollSlidingTextTabStrip, Context context, int i3) {
-        super(context);
-        this.f40388f = scrollSlidingTextTabStrip;
-        this.f40387e = i3;
-        this.d = new u5(this, 360L, xq.h);
+    public xk0(dl0 dl0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
+        this.f40277b = dl0Var;
+        this.f40278c = str;
+        this.d = arrayList;
+        this.f40279e = arrayList2;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float d = this.d.d(this.f40388f.f31612o0);
-        int i3 = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
-        if (i3 > 0) {
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (org.telegram.messenger.g0.T1(1.0f, 0.5f, d) * 255.0f));
-        } else {
-            canvas2 = canvas;
-        }
-        super.onDraw(canvas2);
-        if (i3 > 0) {
-            canvas2.restore();
+    public final void run() {
+        int i7 = this.f40276a;
+        ArrayList arrayList = this.f40279e;
+        ArrayList arrayList2 = this.d;
+        String str = this.f40278c;
+        dl0 dl0Var = this.f40277b;
+        switch (i7) {
+            case 0:
+                int i10 = dl0Var.d;
+                ArrayList arrayList3 = new ArrayList();
+                ArrayList arrayList4 = new ArrayList();
+                for (int i11 = 0; i11 < arrayList2.size(); i11++) {
+                    String B = org.telegram.messenger.w7.B(((org.telegram.messenger.ij) arrayList2.get(i11)).F0());
+                    if (B != null && B.toLowerCase().contains(str)) {
+                        org.telegram.messenger.ij ijVar = new org.telegram.messenger.ij(i10, ((org.telegram.messenger.ij) arrayList2.get(i11)).f23237k, false, false);
+                        ijVar.f23286x0 = ((org.telegram.messenger.ij) arrayList2.get(i11)).f23286x0;
+                        ijVar.L5(dl0Var.K, true);
+                        arrayList3.add(ijVar);
+                    }
+                }
+                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                    String B2 = org.telegram.messenger.w7.B(((org.telegram.messenger.ij) arrayList.get(i12)).F0());
+                    if (B2 != null && B2.toLowerCase().contains(str)) {
+                        org.telegram.messenger.ij ijVar2 = new org.telegram.messenger.ij(i10, ((org.telegram.messenger.ij) arrayList.get(i12)).f23237k, false, false);
+                        ijVar2.f23286x0 = ((org.telegram.messenger.ij) arrayList.get(i12)).f23286x0;
+                        ijVar2.L5(dl0Var.K, true);
+                        arrayList4.add(ijVar2);
+                    }
+                }
+                org.telegram.messenger.g0.h3(new xk0(dl0Var, str, arrayList3, arrayList4));
+                return;
+            default:
+                av0 av0Var = dl0Var.f32985a;
+                if (str.equals(dl0Var.L)) {
+                    if (dl0Var.f32991r == 0) {
+                        dl0Var.N.b(0);
+                    }
+                    dl0Var.e(arrayList2, arrayList, true);
+                    if (dl0Var.f32991r == 0) {
+                        av0Var.e(false, true);
+                        w70 w70Var = av0Var.f31917e;
+                        av0Var.d.setText(org.telegram.messenger.hd.M0(2131745801, null));
+                        w70Var.setVisibility(0);
+                        w70Var.setText(org.telegram.messenger.hd.M0(2131745808, null));
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        boolean z10;
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.f40388f.f31613r == this.f40387e) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        accessibilityNodeInfo.setSelected(z10);
+    public xk0(dl0 dl0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
+        this.f40277b = dl0Var;
+        this.d = arrayList;
+        this.f40278c = str;
+        this.f40279e = arrayList2;
     }
 }

@@ -2,79 +2,77 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.MotionEvent;
-import android.view.WindowManager;
-public final class jb extends li0 {
-    public final int f35013n1 = 0;
-    public final Object f35014o1;
+import android.view.View;
+import android.widget.TextView;
+public final class jb extends w70 {
+    public final int L;
 
-    public jb(org.telegram.ui.is isVar, Context context, int i3, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(4, i3, context, null, e6Var);
-        this.f35014o1 = isVar;
+    public jb(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        this.L = i7;
+    }
+
+    @Override
+    public int a() {
+        switch (this.L) {
+            case 4:
+                return 3;
+            default:
+                return super.a();
+        }
     }
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        ac acVar;
-        switch (this.f35013n1) {
-            case 0:
-                lb lbVar = (lb) this.f35014o1;
-                if (motionEvent.getAction() == 0) {
-                    ac acVar2 = lbVar.f35675n;
-                    if (acVar2 != null) {
-                        acVar2.i(false);
-                    }
-                } else if (motionEvent.getAction() == 1 && (acVar = lbVar.f35675n) != null) {
-                    acVar.i(true);
+        switch (this.L) {
+            case 3:
+                if (getAlpha() < 0.9f) {
+                    return false;
                 }
                 return super.dispatchTouchEvent(motionEvent);
+            case 4:
             default:
+                return super.dispatchTouchEvent(motionEvent);
+            case 5:
+                if (getAlpha() < 0.95f) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            case 6:
+                if (getAlpha() < 0.95f) {
+                    return false;
+                }
                 return super.dispatchTouchEvent(motionEvent);
         }
     }
 
     @Override
-    public void j() {
-        switch (this.f35013n1) {
+    public void onMeasure(int i7, int i10) {
+        switch (this.L) {
+            case 7:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                return;
+        }
+    }
+
+    @Override
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        switch (this.L) {
+            case 0:
+                super.setText(org.telegram.messenger.i6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+                return;
             case 1:
-                super.j();
-                org.telegram.ui.is isVar = (org.telegram.ui.is) this.f35014o1;
-                if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = isVar.f46407x;
-                    layoutParams.flags &= -131073;
-                    layoutParams.softInputMode = 16;
-                } else {
-                    isVar.f46407x.flags |= 131072;
-                }
-                try {
-                    ((WindowManager) isVar.f46406w.getSystemService("window")).updateViewLayout(isVar.f46408y, isVar.f46407x);
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
-                    return;
-                }
-            default:
-                super.j();
+                super.setText(org.telegram.messenger.i6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
                 return;
-        }
-    }
-
-    @Override
-    public void m() {
-        switch (this.f35013n1) {
-            case 0:
-                ac acVar = ac.f31784w;
-                if (acVar != null) {
-                    acVar.i(false);
-                }
-                ((lb) this.f35014o1).d.getReactionsWindow().f8933c.setOnClickListener(new f0(this, 3));
+            case 2:
+                super.setText(org.telegram.messenger.i6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
                 return;
             default:
+                super.setText(charSequence, bufferType);
                 return;
         }
-    }
-
-    public jb(lb lbVar, org.telegram.ui.ActionBar.d2 d2Var, Context context, int i3, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(3, i3, context, d2Var, e6Var);
-        this.f35014o1 = lbVar;
     }
 }

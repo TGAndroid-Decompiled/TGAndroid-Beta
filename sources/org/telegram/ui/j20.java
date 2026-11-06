@@ -3,40 +3,57 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.widget.TextView;
-public final class j20 extends TextView {
-    public final RectF f46487a;
-    public final Paint f46488b;
+import android.os.Build;
+import android.widget.FrameLayout;
+public final class j20 extends FrameLayout {
+    public final RectF f46792a;
+    public final RectF f46793b;
+    public final RectF f46794c;
+    public final Paint d;
+    public final c40 f46795e;
 
-    public j20(LaunchActivity launchActivity) {
+    public j20(c40 c40Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f46487a = new RectF();
-        Paint paint = new Paint(1);
-        this.f46488b = paint;
-        paint.setStyle(Paint.Style.FILL);
-        paint.setColor(-16711936);
+        this.f46795e = c40Var;
+        this.f46792a = new RectF();
+        this.f46793b = new RectF();
+        this.f46794c = new RectF();
+        this.d = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        RectF rectF = this.f46487a;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), this.f46488b);
+        c40 c40Var = this.f46795e;
+        k20 k20Var = c40Var.f44619w1;
+        float y10 = k20Var.getY() + k20Var.getMeasuredHeight();
+        te.c cVar = c40Var.s5;
+        RectF rectF = this.f46792a;
+        rectF.set(0.0f, y10 - cVar.f55376f, getMeasuredWidth(), getMeasuredHeight());
+        RectF rectF2 = this.f46793b;
+        rectF2.set(0.0f, k20Var.getY() + k20Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
+        float y11 = k20Var.getY() + k20Var.getMeasuredHeight();
+        RectF rectF3 = this.f46794c;
+        rectF3.set(0.0f, (k20Var.getY() + k20Var.getMeasuredHeight()) - cVar.f55376f, getMeasuredWidth(), y11);
+        int i7 = Build.VERSION.SDK_INT;
+        Paint paint = this.d;
+        if (i7 >= 29 && c40Var.H4 != null && canvas.isHardwareAccelerated()) {
+            paint.setColor(-14933463);
+            canvas.drawRect(rectF, paint);
+            canvas.save();
+            canvas.clipRect(rectF);
+            canvas.translate(-getX(), -getY());
+            float f10 = c40Var.I4;
+            canvas.scale(f10, f10);
+            canvas.drawRenderNode(c40Var.H4);
+            canvas.restore();
+            paint.setColor(234881023);
+            canvas.drawRect(rectF2, paint);
+        } else {
+            paint.setColor(-14933463);
+            canvas.drawRect(rectF3, paint);
+            paint.setColor(i0.a.k(234881023, -14933463));
+            canvas.drawRect(rectF2, paint);
+        }
         super.dispatchDraw(canvas);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        Paint paint = this.f46488b;
-        paint.setColor(-16711936);
-        RectF rectF = this.f46487a;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f), paint);
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(i3, i10);
     }
 }

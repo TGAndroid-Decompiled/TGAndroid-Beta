@@ -1,25 +1,33 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.LinearLayout;
-public final class ym0 extends LinearLayout {
-    public final int f40784a;
-    public final int f40785b;
+import android.widget.FrameLayout;
+public final class ym0 extends FrameLayout {
+    public final ne f40653a;
 
-    public ym0(Context context, int i3, int i10) {
+    public ym0(ne neVar, Context context) {
         super(context);
-        this.f40784a = i3;
-        this.f40785b = i10;
+        this.f40653a = neVar;
     }
 
     @Override
-    public final int getSuggestedMinimumWidth() {
-        return org.telegram.messenger.g0.L(260.0f);
-    }
-
-    @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i3), this.f40784a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f40785b), View.MeasureSpec.getMode(i10)));
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        ne neVar = this.f40653a;
+        View contentView = neVar.getContentView();
+        contentView.getLocationInWindow(r3);
+        int[] iArr = {iArr[0] + neVar.E, iArr[1] + neVar.F};
+        int[] iArr2 = new int[2];
+        getLocationInWindow(iArr2);
+        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
+            motionEvent.offsetLocation(iArr2[0] - iArr[0], (org.telegram.messenger.g0.f22531m + iArr2[1]) - iArr[1]);
+            return contentView.dispatchTouchEvent(motionEvent);
+        }
+        if (!neVar.A && !neVar.D) {
+            neVar.D = true;
+            neVar.l(new r1.g[0]);
+        }
+        return true;
     }
 }

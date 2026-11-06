@@ -1,57 +1,75 @@
 package pg;
 
-import android.animation.ValueAnimator;
-public final class g implements ValueAnimator.AnimatorUpdateListener {
-    public final int f53482a;
-    public final m f53483b;
-    public final float f53484c;
-    public final float[] d;
-    public final float f53485e;
-    public final float f53486f;
+import android.util.DisplayMetrics;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import org.telegram.messenger.g0;
+public final class g extends GestureDetector.SimpleOnGestureListener {
+    public float f53494a;
+    public float f53495b;
+    public final j f53496c;
 
-    public g(m mVar, float f10, float[] fArr, float f11, float f12, int i3) {
-        this.f53482a = i3;
-        this.f53483b = mVar;
-        this.f53484c = f10;
-        this.d = fArr;
-        this.f53485e = f11;
-        this.f53486f = f12;
+    public g(j jVar) {
+        this.f53496c = jVar;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f53482a) {
-            case 0:
-                m mVar = this.f53483b;
-                mVar.getClass();
-                float y9 = com.google.android.recaptcha.internal.a.y(this.f53484c, 1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue(), 1.0f);
-                float[] fArr = this.d;
-                float f10 = fArr[0];
-                float f11 = y9 / f10;
-                fArr[0] = f10 * f11;
-                k.g(mVar.M, f11, this.f53485e, this.f53486f);
-                mVar.r(false);
-                return;
-            default:
-                m mVar2 = this.f53483b;
-                mVar2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float[] fArr2 = this.d;
-                float f12 = fArr2[1];
-                float f13 = (this.f53484c * floatValue) - f12;
-                fArr2[1] = f12 + f13;
-                float f14 = fArr2[2];
-                float f15 = (this.f53485e * floatValue) - f14;
-                fArr2[2] = f14 + f15;
-                k kVar = mVar2.M;
-                float f16 = fArr2[0];
-                k.f(kVar, f13 * f16, f15 * f16);
-                float f17 = fArr2[0];
-                float f18 = (((this.f53486f - 1.0f) * floatValue) + 1.0f) / f17;
-                fArr2[0] = f17 * f18;
-                k.g(mVar2.M, f18, 0.0f, 0.0f);
-                mVar2.r(false);
-                return;
+    public final boolean onDown(MotionEvent motionEvent) {
+        return true;
+    }
+
+    @Override
+    public final boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        DisplayMetrics displayMetrics;
+        float f12;
+        j jVar = this.f53496c;
+        if (jVar.f53510f && !jVar.f53511n) {
+            r1.h hVar = jVar.f53508c.f54150m;
+            if ((f10 / 7.0f) + ((float) hVar.f54158i) >= jVar.getWidth() / 2.0f) {
+                displayMetrics = jVar.getResources().getDisplayMetrics();
+                f12 = 2.1474836E9f;
+            } else {
+                displayMetrics = jVar.getResources().getDisplayMetrics();
+                f12 = -2.1474836E9f;
+            }
+            hVar.f54158i = j.a(displayMetrics, f12);
+            jVar.d.f54150m.f54158i = j.b(jVar.getResources().getDisplayMetrics(), (f11 / 10.0f) + ((float) jVar.d.f54150m.f54158i));
+            jVar.f53508c.h();
+            jVar.d.h();
+            jVar.h = true;
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
+        j jVar = this.f53496c;
+        int i7 = jVar.F;
+        if (!jVar.f53511n) {
+            g0.r(jVar.f53512r);
+        }
+        if (!jVar.f53510f && (Math.abs(f10) >= i7 || Math.abs(f11) >= i7)) {
+            this.f53494a = (float) jVar.f53508c.f54150m.f54158i;
+            this.f53495b = (float) jVar.d.f54150m.f54158i;
+            jVar.f53510f = true;
+        }
+        if (jVar.f53510f && !jVar.f53511n) {
+            jVar.f53508c.f54150m.f54158i = (motionEvent2.getRawX() + this.f53494a) - motionEvent.getRawX();
+            jVar.d.f54150m.f54158i = (motionEvent2.getRawY() + this.f53495b) - motionEvent.getRawY();
+            jVar.f53508c.h();
+            jVar.d.h();
+        }
+        return jVar.f53510f;
+    }
+
+    @Override
+    public final boolean onSingleTapUp(MotionEvent motionEvent) {
+        j jVar = this.f53496c;
+        if (!jVar.f53511n && !jVar.f53513s) {
+            jVar.c(true);
+            return true;
+        }
+        return false;
     }
 }

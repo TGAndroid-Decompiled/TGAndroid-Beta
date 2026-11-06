@@ -5,80 +5,80 @@ import java.util.Arrays;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kr {
-    public final int f35462a;
-    public String f35463b;
-    public final ArrayList f35464c;
+    public final int f35395a;
+    public String f35396b;
+    public final ArrayList f35397c;
     public final boolean[] d;
-    public boolean[] f35465e;
-    public boolean f35466f;
-    public final int f35467g;
+    public boolean[] f35398e;
+    public boolean f35399f;
+    public final int f35400g;
     public int h;
-    public int f35468i;
-    public final lr f35469j;
+    public int f35401i;
+    public final lr f35402j;
 
-    public kr(lr lrVar, int i3, ArrayList arrayList) {
-        this.f35469j = lrVar;
-        this.f35462a = i3;
+    public kr(lr lrVar, int i7, ArrayList arrayList) {
+        this.f35402j = lrVar;
+        this.f35395a = i7;
         int size = arrayList.size();
-        this.f35467g = size;
-        this.f35468i = 0;
+        this.f35400g = size;
+        this.f35401i = 0;
         if (size > 0) {
-            this.f35464c = arrayList;
+            this.f35397c = arrayList;
             this.d = new boolean[size];
-            this.f35466f = true;
+            this.f35399f = true;
             i();
         }
     }
 
     public final boolean a() {
         boolean[] zArr;
-        for (int i3 = 0; i3 < this.f35467g; i3++) {
-            if (!this.d[i3] || ((zArr = this.f35465e) != null && !zArr[i3])) {
+        for (int i7 = 0; i7 < this.f35400g; i7++) {
+            if (!this.d[i7] || ((zArr = this.f35398e) != null && !zArr[i7])) {
                 return false;
             }
         }
         return true;
     }
 
-    public final void b(org.telegram.messenger.x10 x10Var) {
-        for (int i3 = 0; i3 < this.f35467g; i3++) {
-            boolean[] zArr = this.f35465e;
-            if (zArr == null || zArr[i3]) {
-                x10Var.a(i3, (TLObject) this.f35464c.get(i3));
+    public final void b(org.telegram.messenger.f20 f20Var) {
+        for (int i7 = 0; i7 < this.f35400g; i7++) {
+            boolean[] zArr = this.f35398e;
+            if (zArr == null || zArr[i7]) {
+                f20Var.a(i7, (TLObject) this.f35397c.get(i7));
             }
         }
     }
 
-    public final void c(org.telegram.messenger.x10 x10Var) {
+    public final void c(org.telegram.messenger.f20 f20Var) {
         boolean[] zArr;
-        for (int i3 = 0; i3 < this.f35467g; i3++) {
-            if (this.d[i3] && ((zArr = this.f35465e) == null || zArr[i3])) {
-                x10Var.a(i3, (TLObject) this.f35464c.get(i3));
+        for (int i7 = 0; i7 < this.f35400g; i7++) {
+            if (this.d[i7] && ((zArr = this.f35398e) == null || zArr[i7])) {
+                f20Var.a(i7, (TLObject) this.f35397c.get(i7));
             }
         }
     }
 
     public final boolean d() {
-        int i3;
-        if (this.f35465e != null) {
-            i3 = this.h;
+        int i7;
+        if (this.f35398e != null) {
+            i7 = this.h;
         } else {
-            i3 = this.f35467g;
+            i7 = this.f35400g;
         }
-        if (i3 > 1) {
+        if (i7 > 1) {
             return true;
         }
         return false;
     }
 
     public final boolean e() {
-        int i3;
-        if (this.f35465e != null) {
-            i3 = this.h;
+        int i7;
+        if (this.f35398e != null) {
+            i7 = this.h;
         } else {
-            i3 = this.f35467g;
+            i7 = this.f35400g;
         }
-        if (i3 > 0) {
+        if (i7 > 0) {
             return true;
         }
         return false;
@@ -87,53 +87,53 @@ public final class kr {
     public final void f() {
         boolean[] zArr;
         boolean[] zArr2;
-        boolean z10 = false;
-        int i3 = 0;
+        boolean z9 = false;
+        int i7 = 0;
         while (true) {
-            int i10 = this.f35467g;
+            int i10 = this.f35400g;
             zArr = this.d;
-            if (i3 >= i10) {
+            if (i7 >= i10) {
                 break;
-            } else if (!zArr[i3] || ((zArr2 = this.f35465e) != null && !zArr2[i3])) {
-                i3++;
+            } else if (!zArr[i7] || ((zArr2 = this.f35398e) != null && !zArr2[i7])) {
+                i7++;
             }
         }
-        z10 = true;
-        Arrays.fill(zArr, !z10);
+        z9 = true;
+        Arrays.fill(zArr, !z9);
         h();
-        this.f35469j.Q1.O(true);
+        this.f35402j.P1.O(true);
     }
 
-    public final void g(int i3) {
-        boolean[] zArr = this.f35465e;
-        if (zArr != null && !zArr[i3]) {
+    public final void g(int i7) {
+        boolean[] zArr = this.f35398e;
+        if (zArr != null && !zArr[i7]) {
             return;
         }
         boolean[] zArr2 = this.d;
-        boolean z10 = zArr2[i3];
-        zArr2[i3] = !z10;
-        if (!z10) {
-            this.f35468i++;
+        boolean z9 = zArr2[i7];
+        zArr2[i7] = !z9;
+        if (!z9) {
+            this.f35401i++;
         } else {
-            this.f35468i--;
+            this.f35401i--;
         }
-        this.f35469j.Q1.O(true);
+        this.f35402j.P1.O(true);
     }
 
     public final void h() {
-        this.f35468i = 0;
+        this.f35401i = 0;
         this.h = 0;
-        for (int i3 = 0; i3 < this.f35467g; i3++) {
-            boolean[] zArr = this.f35465e;
+        for (int i7 = 0; i7 < this.f35400g; i7++) {
+            boolean[] zArr = this.f35398e;
             boolean[] zArr2 = this.d;
             if (zArr == null) {
-                if (zArr2[i3]) {
-                    this.f35468i++;
+                if (zArr2[i7]) {
+                    this.f35401i++;
                 }
-            } else if (zArr[i3]) {
+            } else if (zArr[i7]) {
                 this.h++;
-                if (zArr2[i3]) {
-                    this.f35468i++;
+                if (zArr2[i7]) {
+                    this.f35401i++;
                 }
             }
         }
@@ -141,59 +141,59 @@ public final class kr {
 
     public final void i() {
         TLObject tLObject;
-        String o10;
+        String o4;
         String a02;
         String a03;
         String a04;
         String a05;
-        int i3 = this.f35467g;
-        if (i3 != 0) {
-            for (int i10 = 0; i10 < i3; i10++) {
-                boolean[] zArr = this.f35465e;
+        int i7 = this.f35400g;
+        if (i7 != 0) {
+            for (int i10 = 0; i10 < i7; i10++) {
+                boolean[] zArr = this.f35398e;
                 if (zArr == null || zArr[i10]) {
-                    tLObject = (TLObject) this.f35464c.get(i10);
+                    tLObject = (TLObject) this.f35397c.get(i10);
                     break;
                 }
             }
             tLObject = null;
             if (tLObject instanceof TLRPC.User) {
-                o10 = org.telegram.messenger.l10.k((TLRPC.User) tLObject);
+                o4 = org.telegram.messenger.t10.k((TLRPC.User) tLObject);
             } else {
-                o10 = org.telegram.messenger.g5.o(tLObject);
+                o4 = org.telegram.messenger.g5.o(tLObject);
             }
-            int i11 = this.f35462a;
+            int i11 = this.f35395a;
             if (i11 == 0) {
-                this.f35463b = org.telegram.messenger.bd.M0(2131751503, null);
+                this.f35396b = org.telegram.messenger.hd.M0(2131751503, null);
             } else if (i11 == 1) {
                 if (d()) {
-                    a05 = org.telegram.messenger.bd.M0(2131751583, null);
+                    a05 = org.telegram.messenger.hd.M0(2131751583, null);
                 } else {
-                    a05 = org.telegram.messenger.bd.a0(null, null, 2131751588, o10);
+                    a05 = org.telegram.messenger.hd.a0(null, null, 2131751588, o4);
                 }
-                this.f35463b = a05;
+                this.f35396b = a05;
             } else if (i11 == 3) {
                 if (d()) {
-                    a04 = org.telegram.messenger.bd.M0(2131751578, null);
+                    a04 = org.telegram.messenger.hd.M0(2131751578, null);
                 } else {
-                    a04 = org.telegram.messenger.bd.a0(null, null, 2131751579, o10);
+                    a04 = org.telegram.messenger.hd.a0(null, null, 2131751579, o4);
                 }
-                this.f35463b = a04;
+                this.f35396b = a04;
             } else if (i11 == 2) {
-                if (this.f35469j.Z1) {
+                if (this.f35402j.Y1) {
                     if (d()) {
-                        a03 = org.telegram.messenger.bd.M0(2131751501, null);
+                        a03 = org.telegram.messenger.hd.M0(2131751501, null);
                     } else {
-                        a03 = org.telegram.messenger.bd.a0(null, null, 2131751502, o10);
+                        a03 = org.telegram.messenger.hd.a0(null, null, 2131751502, o4);
                     }
-                    this.f35463b = a03;
+                    this.f35396b = a03;
                     return;
                 }
                 if (d()) {
-                    a02 = org.telegram.messenger.bd.M0(2131751568, null);
+                    a02 = org.telegram.messenger.hd.M0(2131751568, null);
                 } else {
-                    a02 = org.telegram.messenger.bd.a0(null, null, 2131751569, o10);
+                    a02 = org.telegram.messenger.hd.a0(null, null, 2131751569, o4);
                 }
-                this.f35463b = a02;
+                this.f35396b = a02;
             }
         }
     }

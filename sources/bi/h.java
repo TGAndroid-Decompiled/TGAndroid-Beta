@@ -1,43 +1,29 @@
 package bi;
 
-import android.view.ViewGroup;
-import b8.of;
-import gi.m1;
-import org.telegram.ui.g11;
-public final class h extends of {
-    public final int f3744a;
-    public final ViewGroup f3745b;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class h implements Runnable {
+    public final int f3967a;
+    public final z f3968b;
+    public final TwoStepVerificationActivity f3969c;
 
-    public h(ViewGroup viewGroup, int i3) {
-        this.f3744a = i3;
-        this.f3745b = viewGroup;
+    public h(z zVar, TwoStepVerificationActivity twoStepVerificationActivity, int i7) {
+        this.f3967a = i7;
+        this.f3968b = zVar;
+        this.f3969c = twoStepVerificationActivity;
     }
 
     @Override
-    public final void a() {
-        switch (this.f3744a) {
+    public final void run() {
+        switch (this.f3967a) {
             case 0:
-                ((h0) this.f3745b).f3846w = false;
-                return;
-            case 1:
-                ((m1) this.f3745b).f13185j3 = false;
-                return;
-            default:
-                ((g11) this.f3745b).f45492y1 = false;
-                return;
-        }
-    }
-
-    @Override
-    public void b() {
-        switch (this.f3744a) {
-            case 1:
-                ((m1) this.f3745b).f13185j3 = true;
-                return;
-            case 2:
-                ((g11) this.f3745b).f45492y1 = true;
+                z zVar = this.f3968b;
+                zVar.f5120h0.setLoading(false);
+                zVar.presentFragment(this.f3969c);
                 return;
             default:
+                z zVar2 = this.f3968b;
+                zVar2.f5109a0.setLoading(false);
+                zVar2.presentFragment(this.f3969c);
                 return;
         }
     }

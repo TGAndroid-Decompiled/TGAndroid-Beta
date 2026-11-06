@@ -1,25 +1,224 @@
 package org.telegram.ui;
-public final class kj implements Runnable {
-    public final wm f46960a;
 
-    public kj(wm wmVar) {
-        this.f46960a = wmVar;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class kj implements is {
+    public final an f47177a;
+
+    public kj(an anVar) {
+        this.f47177a = anVar;
     }
 
     @Override
-    public final void run() {
-        String G;
-        wm wmVar = this.f46960a;
-        org.telegram.messenger.zi ziVar = wmVar.f51500u5;
-        if (ziVar != null && wmVar.f51354i9 != null) {
-            int max = Math.max(0, ziVar.f26868k.ttl_period - (wmVar.getConnectionsManager().getCurrentTime() - wmVar.f51500u5.f26868k.date));
-            if (max < 86400) {
-                G = org.telegram.messenger.g0.g0(max, false, true);
-            } else {
-                G = org.telegram.messenger.bd.G(Math.round(max / 86400.0f), "Days", new Object[0]);
+    public final org.telegram.messenger.ij A() {
+        return null;
+    }
+
+    @Override
+    public final boolean B() {
+        return false;
+    }
+
+    @Override
+    public final boolean D() {
+        return false;
+    }
+
+    @Override
+    public final boolean E(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final String G(boolean z9) {
+        return null;
+    }
+
+    @Override
+    public final boolean I() {
+        return false;
+    }
+
+    @Override
+    public final boolean J() {
+        return false;
+    }
+
+    @Override
+    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z9) {
+        if (inputStickerSet != null) {
+            an anVar = this.f47177a;
+            if (anVar.getParentActivity() != null) {
+                TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
+                tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
+                tL_inputStickerSetID.f26972id = inputStickerSet.f26972id;
+                org.telegram.ui.Components.yv0 yv0Var = new org.telegram.ui.Components.yv0(anVar.getParentActivity(), anVar, tL_inputStickerSetID, null, anVar.Z, anVar.f43998xa);
+                boolean T9 = anVar.T9();
+                yv0Var.f28631h0 = T9;
+                yv0Var.f28636n = T9;
+                yv0Var.Z1 = z9;
+                anVar.showDialog(yv0Var);
             }
-            wmVar.f51354i9.setSubtext(org.telegram.messenger.bd.a0(null, null, 2131753853, G));
-            org.telegram.messenger.g0.i3(wmVar.f51368j9, 1000L);
         }
+    }
+
+    @Override
+    public final boolean N(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final Boolean P(TLRPC.Document document) {
+        return null;
+    }
+
+    @Override
+    public final boolean Q() {
+        return true;
+    }
+
+    @Override
+    public final long a() {
+        return this.f47177a.f43818j6;
+    }
+
+    @Override
+    public final boolean b() {
+        return this.f47177a.R6();
+    }
+
+    @Override
+    public final boolean c() {
+        if (this.f47177a.f43766f4 == 1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final TLRPC.TL_messageMediaPoll d() {
+        return null;
+    }
+
+    @Override
+    public final boolean e(TLRPC.Document document) {
+        return false;
+    }
+
+    @Override
+    public final boolean f() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PollAnswer g() {
+        return null;
+    }
+
+    @Override
+    public final boolean h() {
+        return true;
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k(int i7) {
+        return true;
+    }
+
+    @Override
+    public final void l(TLRPC.Document document, String str, Object obj, boolean z9, int i7, int i10) {
+        this.f47177a.Z.a(document, str, obj, null, true, z9, i7, i10);
+    }
+
+    @Override
+    public final org.telegram.ui.Components.k60 m(bi.x5 x5Var) {
+        return null;
+    }
+
+    @Override
+    public final boolean p() {
+        return false;
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
+    }
+
+    @Override
+    public final void C(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void F(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void H(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void O(String str) {
+    }
+
+    @Override
+    public final void i(org.telegram.messenger.zy zyVar) {
+    }
+
+    @Override
+    public final void n(String str) {
+    }
+
+    @Override
+    public final void o(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void q(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void v(TLRPC.Document document) {
+    }
+
+    @Override
+    public final void z(String str) {
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void L() {
+    }
+
+    @Override
+    public final void r() {
+    }
+
+    @Override
+    public final void t() {
+    }
+
+    @Override
+    public final void w(TLRPC.StickerSet stickerSet, String str) {
+    }
+
+    @Override
+    public final void x(TLObject tLObject, Object obj) {
+    }
+
+    @Override
+    public final void u(CharSequence charSequence, String str, org.telegram.ui.Components.ex exVar) {
+    }
+
+    @Override
+    public final void s(int i7, int i10, Object obj, TLObject tLObject, boolean z9) {
     }
 }

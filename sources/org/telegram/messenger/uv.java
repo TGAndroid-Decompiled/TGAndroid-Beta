@@ -1,44 +1,76 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.InputSerializedData;
-import org.telegram.tgnet.OutputSerializedData;
-import org.telegram.tgnet.TLObject;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class uv extends TLObject {
-    public int f25781a;
-    public TLRPC.TL_decryptedMessageLayer f25782b;
-    public TLRPC.EncryptedFile f25783c;
-    public boolean d;
-    public int f25784e;
+public final class uv {
+    public long f25886a;
+    public boolean f25887b;
+    public int f25888c;
+    public ij d;
+    public int f25889e;
+    public long f25890f;
+    public long f25891g;
+    public long h;
+    public boolean f25892i;
+    public int f25893j;
+    public int f25894k;
 
-    @Override
-    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
-        inputSerializedData.readInt64(z10);
-        this.f25781a = inputSerializedData.readInt32(z10);
-        this.f25782b = TLRPC.TL_decryptedMessageLayer.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-        if (inputSerializedData.readBool(z10)) {
-            this.f25783c = TLRPC.EncryptedFile.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-        }
-        this.d = inputSerializedData.readBool(z10);
+    public static uv a(int i7, TLRPC.Message message) {
+        ?? obj = new Object();
+        obj.f25886a = ij.R1(p10.i(i7).e(), message);
+        obj.f25887b = false;
+        obj.f25888c = message.f26973id;
+        obj.d = new ij(i7, message, null, null, null, null, null, false, false, 0L, false, false, true, 0);
+        return obj;
     }
 
-    @Override
-    public final void serializeToStream(OutputSerializedData outputSerializedData) {
-        boolean z10;
-        outputSerializedData.writeInt32(1431655929);
-        outputSerializedData.writeInt64(0L);
-        outputSerializedData.writeInt32(this.f25781a);
-        this.f25782b.serializeToStream(outputSerializedData);
-        if (this.f25783c != null) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public static uv b(int i7, TLRPC.savedDialog saveddialog, ArrayList arrayList) {
+        TLRPC.Message message;
+        ?? obj = new Object();
+        obj.f25886a = m5.o(saveddialog.peer);
+        obj.f25887b = saveddialog.pinned;
+        obj.f25888c = saveddialog.top_message;
+        obj.f25890f = saveddialog.unread_count;
+        obj.f25891g = saveddialog.read_inbox_max_id;
+        obj.h = saveddialog.read_outbox_max_id;
+        int i10 = 0;
+        while (true) {
+            if (i10 < arrayList.size()) {
+                message = (TLRPC.Message) arrayList.get(i10);
+                if (obj.f25888c == message.f26973id) {
+                    break;
+                }
+                i10++;
+            } else {
+                message = null;
+                break;
+            }
         }
-        outputSerializedData.writeBool(z10);
-        TLRPC.EncryptedFile encryptedFile = this.f25783c;
-        if (encryptedFile != null) {
-            encryptedFile.serializeToStream(outputSerializedData);
+        TLRPC.Message message2 = message;
+        if (message2 != null) {
+            obj.d = new ij(i7, message2, null, null, null, null, null, false, false, 0L, false, false, true, 0);
         }
-        outputSerializedData.writeBool(this.d);
+        return obj;
+    }
+
+    public final int c() {
+        TLRPC.Message message;
+        ij ijVar = this.d;
+        if (ijVar != null && (message = ijVar.f23237k) != null) {
+            if ((message.flags & 32768) != 0) {
+                return message.edit_date;
+            }
+            return message.date;
+        }
+        return this.f25893j;
+    }
+
+    public final boolean d() {
+        TLRPC.Message message;
+        ij ijVar = this.d;
+        if (ijVar != null && (message = ijVar.f23237k) != null && (message.action instanceof TLRPC.TL_messageActionHistoryClear)) {
+            return true;
+        }
+        return false;
     }
 }

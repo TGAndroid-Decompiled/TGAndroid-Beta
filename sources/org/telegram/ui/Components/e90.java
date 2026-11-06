@@ -1,64 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class e90 extends Drawable {
-    public Paint f33317a;
-    public Paint f33318b;
-    public long f33319c;
-    public float d;
-    public boolean f33320e;
-    public boolean f33321f;
-    public float f33322g;
-    public float h;
-    public float f33323i;
-    public float f33324j;
-    public float f33325k;
-    public long f33326l;
-    public org.telegram.ui.Cells.q1 f33327m;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class e90 extends v4.m0 {
+    public final f90 f33183a;
 
-    public final void a() {
-        int i3;
-        int i10;
-        Rect bounds = getBounds();
-        float centerX = bounds.centerX();
-        float centerY = bounds.centerY();
-        float f10 = bounds.left - centerX;
-        float f11 = bounds.top - centerY;
-        this.f33322g = (float) Math.ceil(Math.sqrt(com.google.android.recaptcha.internal.a.y(i10, centerY, f11, f10 * (i3 - centerX))));
+    public e90(f90 f90Var) {
+        this.f33183a = f90Var;
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.e90.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i3) {
-        this.f33317a.setAlpha(i3);
-    }
-
-    @Override
-    public final void setBounds(int i3, int i10, int i11, int i12) {
-        super.setBounds(i3, i10, i11, i12);
-        a();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f33317a.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setBounds(Rect rect) {
-        super.setBounds(rect);
-        a();
+    public final void e(Rect rect, View view, RecyclerView recyclerView, v4.a1 a1Var) {
+        int R;
+        int i7 = 0;
+        rect.left = 0;
+        rect.right = 0;
+        rect.top = 0;
+        rect.bottom = 0;
+        v4.n0 layoutManager = recyclerView.getLayoutManager();
+        g90 g90Var = this.f33183a.f33546i3;
+        if (layoutManager == g90Var.d && (R = RecyclerView.R(view)) != 0 && !g90Var.f33915f.N()) {
+            if (g90Var.f33915f.I() == null && g90Var.f33915f.U == null) {
+                rect.top = org.telegram.messenger.g0.L(2.0f);
+            } else if (R != 0) {
+                R--;
+                z80 z80Var = g90Var.d;
+                z80Var.B1();
+                if (R > z80Var.U) {
+                    rect.top = org.telegram.messenger.g0.L(2.0f);
+                }
+            } else {
+                return;
+            }
+            if (!g90Var.d.E1(R)) {
+                i7 = org.telegram.messenger.g0.L(2.0f);
+            }
+            rect.right = i7;
+        }
     }
 }

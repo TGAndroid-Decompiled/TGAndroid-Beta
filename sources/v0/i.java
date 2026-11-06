@@ -6,7 +6,7 @@ import java.util.concurrent.Executor;
 public interface i {
     boolean isAvailableOnDevice();
 
-    void onCreateCredential(Context context, b bVar, CancellationSignal cancellationSignal, Executor executor, h hVar);
+    void onCreateCredential(Context context, b bVar, CancellationSignal cancellationSignal, Executor executor, g gVar);
 
-    void onGetCredential(Context context, m mVar, CancellationSignal cancellationSignal, Executor executor, h hVar);
+    void onGetCredential(Context context, n nVar, CancellationSignal cancellationSignal, Executor executor, g gVar);
 }

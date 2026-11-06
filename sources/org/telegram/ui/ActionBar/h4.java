@@ -1,122 +1,103 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.util.Log;
-import java.util.List;
-public final class h4 {
-    public int f27573a;
-    public int f27574b;
-    public Object f27575c;
-    public Object d;
-    public Object f27576e;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Shader;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.animation.PathInterpolator;
+import android.widget.ListView;
+public final class h4 extends ListView {
+    public final i4 f27505a;
+    public final LinearGradient f27506b;
+    public final Paint f27507c;
+    public final Paint d;
+    public final Matrix f27508e;
 
-    public static String b(n9.h hVar) {
-        hVar.a();
-        n9.k kVar = hVar.f20298c;
-        String str = kVar.f20312e;
-        if (str != null) {
-            return str;
-        }
-        hVar.a();
-        String str2 = kVar.f20310b;
-        if (!str2.startsWith("1:")) {
-            return str2;
-        }
-        String[] split = str2.split(":");
-        if (split.length < 2) {
-            return null;
-        }
-        String str3 = split[1];
-        if (str3.isEmpty()) {
-            return null;
-        }
-        return str3;
+    public h4(i4 i4Var) {
+        super(i4Var.f27563a);
+        int[] iArr = new int[8];
+        PathInterpolator pathInterpolator = bg.c0.f3259i;
+        bg.c0.a(pathInterpolator, -16777216, iArr);
+        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+        LinearGradient linearGradient = new LinearGradient(0.0f, org.telegram.messenger.g0.L(16.0f), 0.0f, 0.0f, iArr, (float[]) null, tileMode);
+        int[] iArr2 = new int[8];
+        bg.c0.a(pathInterpolator, -16777216, iArr2);
+        LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, org.telegram.messenger.g0.L(16.0f), iArr2, (float[]) null, tileMode);
+        this.f27506b = linearGradient2;
+        Paint paint = new Paint(1);
+        this.f27507c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.f27508e = new Matrix();
+        paint.setShader(linearGradient);
+        PorterDuff.Mode mode = PorterDuff.Mode.DST_IN;
+        paint.setXfermode(new PorterDuffXfermode(mode));
+        paint2.setShader(linearGradient2);
+        paint2.setXfermode(new PorterDuffXfermode(mode));
+        this.f27505a = i4Var;
+        setVerticalScrollBarEnabled(false);
     }
 
-    public synchronized String a() {
-        try {
-            if (((String) this.f27575c) == null) {
-                f();
-            }
-        } catch (Throwable th2) {
-            throw th2;
-        }
-        return (String) this.f27575c;
+    @Override
+    public final boolean awakenScrollBars() {
+        return super.awakenScrollBars();
     }
 
-    public synchronized int c() {
-        PackageInfo d;
-        try {
-            if (this.f27573a == 0 && (d = d("com.google.android.gms")) != null) {
-                this.f27573a = d.versionCode;
-            }
-        } catch (Throwable th2) {
-            throw th2;
-        }
-        return this.f27573a;
-    }
-
-    public PackageInfo d(String str) {
-        try {
-            return ((Context) this.d).getPackageManager().getPackageInfo(str, 0);
-        } catch (PackageManager.NameNotFoundException e10) {
-            Log.w("FirebaseMessaging", "Failed to find package " + e10);
-            return null;
-        }
-    }
-
-    public boolean e() {
-        int i3;
-        synchronized (this) {
-            i3 = this.f27574b;
-            if (i3 == 0) {
-                PackageManager packageManager = ((Context) this.d).getPackageManager();
-                if (packageManager.checkPermission("com.google.android.c2dm.permission.SEND", "com.google.android.gms") == -1) {
-                    Log.e("FirebaseMessaging", "Google Play services missing or without correct permission.");
-                    i3 = 0;
-                } else {
-                    if (!w6.b.d()) {
-                        Intent intent = new Intent("com.google.android.c2dm.intent.REGISTER");
-                        intent.setPackage("com.google.android.gms");
-                        List<ResolveInfo> queryIntentServices = packageManager.queryIntentServices(intent, 0);
-                        if (queryIntentServices != null && queryIntentServices.size() > 0) {
-                            this.f27574b = 1;
-                            i3 = 1;
-                        }
-                    }
-                    Intent intent2 = new Intent("com.google.iid.TOKEN_REQUEST");
-                    intent2.setPackage("com.google.android.gms");
-                    List<ResolveInfo> queryBroadcastReceivers = packageManager.queryBroadcastReceivers(intent2, 0);
-                    if (queryBroadcastReceivers != null && queryBroadcastReceivers.size() > 0) {
-                        this.f27574b = 2;
-                        i3 = 2;
-                    } else {
-                        Log.w("FirebaseMessaging", "Failed to resolve IID implementation package, falling back");
-                        if (w6.b.d()) {
-                            this.f27574b = 2;
-                        } else {
-                            this.f27574b = 1;
-                        }
-                        i3 = this.f27574b;
-                    }
-                }
-            }
-        }
-        if (i3 != 0) {
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (i4.b(this.f27505a)) {
             return true;
         }
-        return false;
+        return super.dispatchTouchEvent(motionEvent);
     }
 
-    public synchronized void f() {
-        PackageInfo d = d(((Context) this.d).getPackageName());
-        if (d != null) {
-            this.f27575c = Integer.toString(d.versionCode);
-            this.f27576e = d.versionName;
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        boolean z9;
+        boolean z10;
+        float y10 = view.getY();
+        float height = y10 + view.getHeight();
+        if (y10 < org.telegram.messenger.g0.L(16.0f)) {
+            z9 = true;
+        } else {
+            z9 = false;
         }
+        if (height > getHeight() - org.telegram.messenger.g0.L(16.0f)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (!z9 && !z10) {
+            return super.drawChild(canvas, view, j3);
+        }
+        canvas.saveLayer(0.0f, y10, getWidth(), height, null);
+        boolean drawChild = super.drawChild(canvas, view, j3);
+        if (z9) {
+            canvas.drawRect(0.0f, 0.0f, getWidth(), org.telegram.messenger.g0.L(16.0f), this.f27507c);
+        }
+        if (z10) {
+            canvas.drawRect(0.0f, getHeight() - org.telegram.messenger.g0.L(16.0f), getWidth(), getHeight(), this.d);
+        }
+        canvas.restore();
+        return drawChild;
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        i4 i4Var = this.f27505a;
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(i4Var.I.getHeight() - i4Var.H.getHeight(), 1073741824));
+    }
+
+    @Override
+    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
+        Matrix matrix = this.f27508e;
+        matrix.reset();
+        matrix.postTranslate(0.0f, i10 - org.telegram.messenger.g0.L(16.0f));
+        this.f27506b.setLocalMatrix(matrix);
     }
 }

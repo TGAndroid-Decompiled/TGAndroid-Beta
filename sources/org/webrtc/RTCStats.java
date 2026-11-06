@@ -2,15 +2,15 @@ package org.webrtc;
 
 import java.util.Map;
 public class RTCStats {
-    private final String f53003id;
+    private final String f52912id;
     private final Map<String, Object> members;
     private final long timestampUs;
     private final String type;
 
-    public RTCStats(long j10, String str, String str2, Map<String, Object> map) {
-        this.timestampUs = j10;
+    public RTCStats(long j3, String str, String str2, Map<String, Object> map) {
+        this.timestampUs = j3;
         this.type = str;
-        this.f53003id = str2;
+        this.f52912id = str2;
         this.members = map;
     }
 
@@ -18,11 +18,11 @@ public class RTCStats {
         if (obj instanceof Object[]) {
             Object[] objArr = (Object[]) obj;
             sb2.append('[');
-            for (int i3 = 0; i3 < objArr.length; i3++) {
-                if (i3 != 0) {
+            for (int i7 = 0; i7 < objArr.length; i7++) {
+                if (i7 != 0) {
                     sb2.append(", ");
                 }
-                appendValue(sb2, objArr[i3]);
+                appendValue(sb2, objArr[i7]);
             }
             sb2.append(']');
         } else if (obj instanceof String) {
@@ -34,12 +34,12 @@ public class RTCStats {
         }
     }
 
-    public static RTCStats create(long j10, String str, String str2, Map map) {
-        return new RTCStats(j10, str, str2, map);
+    public static RTCStats create(long j3, String str, String str2, Map map) {
+        return new RTCStats(j3, str, str2, map);
     }
 
     public String getId() {
-        return this.f53003id;
+        return this.f52912id;
     }
 
     public Map<String, Object> getMembers() {
@@ -55,19 +55,19 @@ public class RTCStats {
     }
 
     public String toString() {
-        StringBuilder l10 = com.google.android.recaptcha.internal.a.l("{ timestampUs: ");
-        l10.append(this.timestampUs);
-        l10.append(", type: ");
-        l10.append(this.type);
-        l10.append(", id: ");
-        l10.append(this.f53003id);
+        StringBuilder m10 = com.google.android.recaptcha.internal.a.m("{ timestampUs: ");
+        m10.append(this.timestampUs);
+        m10.append(", type: ");
+        m10.append(this.type);
+        m10.append(", id: ");
+        m10.append(this.f52912id);
         for (Map.Entry<String, Object> entry : this.members.entrySet()) {
-            l10.append(", ");
-            l10.append(entry.getKey());
-            l10.append(": ");
-            appendValue(l10, entry.getValue());
+            m10.append(", ");
+            m10.append(entry.getKey());
+            m10.append(": ");
+            appendValue(m10, entry.getValue());
         }
-        l10.append(" }");
-        return l10.toString();
+        m10.append(" }");
+        return m10.toString();
     }
 }

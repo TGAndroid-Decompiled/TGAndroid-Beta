@@ -32,12 +32,12 @@ public class RefCountDelegate implements RefCounted {
     }
 
     public boolean safeRetain() {
-        int i3 = this.refCount.get();
-        while (i3 != 0) {
-            if (this.refCount.weakCompareAndSet(i3, i3 + 1)) {
+        int i7 = this.refCount.get();
+        while (i7 != 0) {
+            if (this.refCount.weakCompareAndSet(i7, i7 + 1)) {
                 return true;
             }
-            i3 = this.refCount.get();
+            i7 = this.refCount.get();
         }
         return false;
     }

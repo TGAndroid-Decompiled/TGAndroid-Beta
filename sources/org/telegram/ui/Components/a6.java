@@ -1,48 +1,110 @@
 package org.telegram.ui.Components;
 
+import android.animation.ObjectAnimator;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
 import java.util.ArrayList;
-public final class a6 extends q1.e {
-    public final int f31729a;
-    public final Object f31730b;
+import java.util.Locale;
+public final class a6 {
+    public static final org.telegram.ui.Cells.o8 h = new org.telegram.ui.Cells.o8("progress", 3);
+    public final TextPaint f31687c;
+    public ObjectAnimator d;
+    public final org.telegram.ui.Cells.q1 f31690g;
+    public final ArrayList f31685a = new ArrayList();
+    public final ArrayList f31686b = new ArrayList();
+    public float f31688e = 0.0f;
+    public int f31689f = 1;
 
-    public a6(Object obj, int i3) {
-        this.f31729a = i3;
-        this.f31730b = obj;
+    public a6(org.telegram.ui.Cells.q1 q1Var, TextPaint textPaint) {
+        this.f31687c = textPaint;
+        this.f31690g = q1Var;
     }
 
-    @Override
-    public final float a(Object obj) {
-        switch (this.f31729a) {
-            case 0:
-                Integer num = (Integer) obj;
-                int intValue = num.intValue();
-                ArrayList arrayList = ((AnimatedPhoneNumberEditText) this.f31730b).R1;
-                if (intValue < arrayList.size()) {
-                    return ((Float) arrayList.get(num.intValue())).floatValue() * 100.0f;
-                }
-                return 0.0f;
-            default:
-                return ((q1.f) this.f31730b).f53635a;
+    public final int a() {
+        ArrayList arrayList = this.f31685a;
+        int size = arrayList.size();
+        float f10 = 0.0f;
+        for (int i7 = 0; i7 < size; i7++) {
+            f10 += ((StaticLayout) arrayList.get(i7)).getLineWidth(0);
         }
+        return (int) Math.ceil(f10);
     }
 
-    @Override
-    public final void b(Object obj, float f10) {
-        switch (this.f31729a) {
-            case 0:
-                Integer num = (Integer) obj;
-                int intValue = num.intValue();
-                AnimatedPhoneNumberEditText animatedPhoneNumberEditText = (AnimatedPhoneNumberEditText) this.f31730b;
-                ArrayList arrayList = animatedPhoneNumberEditText.R1;
-                if (intValue < arrayList.size()) {
-                    arrayList.set(num.intValue(), Float.valueOf(f10 / 100.0f));
-                    animatedPhoneNumberEditText.invalidate();
-                    return;
-                }
-                return;
-            default:
-                ((q1.f) this.f31730b).f53635a = f10;
-                return;
+    public final void b(int i7, boolean z9) {
+        boolean z10;
+        float f10;
+        String str;
+        TextPaint textPaint;
+        float f11;
+        ArrayList arrayList;
+        int i10 = this.f31689f;
+        ArrayList arrayList2 = this.f31685a;
+        if (i10 == i7 && !arrayList2.isEmpty()) {
+            return;
         }
+        ObjectAnimator objectAnimator = this.d;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+            this.d = null;
+        }
+        ArrayList arrayList3 = this.f31686b;
+        arrayList3.clear();
+        arrayList3.addAll(arrayList2);
+        arrayList2.clear();
+        Locale locale = Locale.US;
+        int i11 = this.f31689f;
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(i11);
+        String sb3 = sb2.toString();
+        StringBuilder sb4 = new StringBuilder();
+        sb4.append(i7);
+        String sb5 = sb4.toString();
+        if (i7 > this.f31689f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f31689f = i7;
+        float f12 = 0.0f;
+        this.f31688e = 0.0f;
+        int i12 = 0;
+        while (i12 < sb5.length()) {
+            int i13 = i12 + 1;
+            String substring = sb5.substring(i12, i13);
+            if (!arrayList3.isEmpty() && i12 < sb3.length()) {
+                str = sb3.substring(i12, i13);
+            } else {
+                str = null;
+            }
+            if (str != null && str.equals(substring)) {
+                arrayList2.add((StaticLayout) arrayList3.get(i12));
+                arrayList3.set(i12, null);
+                f11 = f12;
+                arrayList = arrayList3;
+            } else {
+                f11 = f12;
+                arrayList = arrayList3;
+                arrayList2.add(new StaticLayout(substring, this.f31687c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+            }
+            f12 = f11;
+            i12 = i13;
+            arrayList3 = arrayList;
+        }
+        float f13 = f12;
+        ArrayList arrayList4 = arrayList3;
+        if (z9 && !arrayList4.isEmpty()) {
+            if (z10) {
+                f10 = -1.0f;
+            } else {
+                f10 = 1.0f;
+            }
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, h, f10, f13);
+            this.d = ofFloat;
+            ofFloat.setDuration(150L);
+            this.d.addListener(new z5(this, 0));
+            this.d.start();
+        }
+        this.f31690g.invalidate();
     }
 }

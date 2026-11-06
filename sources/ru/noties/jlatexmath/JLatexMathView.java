@@ -9,9 +9,9 @@ import android.util.AttributeSet;
 import android.view.View;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import rf.b;
 import ru.noties.jlatexmath.android.R;
 import ru.noties.jlatexmath.awt.Color;
-import t4.c;
 public class JLatexMathView extends View {
     public static final int ALIGN_CENTER = 1;
     public static final int ALIGN_END = 2;
@@ -35,11 +35,11 @@ public class JLatexMathView extends View {
         init(context, null);
     }
 
-    private static float alignment(int i3, float f10) {
-        if (i3 == 0) {
+    private static float alignment(int i7, float f10) {
+        if (i7 == 0) {
             return 0.0f;
         }
-        if (1 == i3) {
+        if (1 == i7) {
             return f10 / 2.0f;
         }
         return f10;
@@ -67,7 +67,7 @@ public class JLatexMathView extends View {
             obtainStyledAttributes.recycle();
             if (isInEditMode()) {
                 JLatexMathAndroid.init(context);
-                String q10 = c.q(c.q(c.q(c.q("\\begin{array}{l}\\forall\\varepsilon\\in\\mathbb{R}_+^*\\ \\exists\\eta>0\\ |x-x_0|\\leq\\eta\\Longrightarrow|f(x)-f(x_0)|\\leq\\varepsilon\\\\\\det\\begin{bmatrix}a_{11}&a_{12}&\\cdots&a_{1n}\\\\a_{21}&\\ddots&&\\vdots\\\\\\vdots&&\\ddots&\\vdots\\\\a_{n1}&\\cdots&\\cdots&a_{nn}\\end{bmatrix}\\overset{\\mathrm{def}}{=}\\sum_{\\sigma\\in\\mathfrak{S}_n}\\varepsilon(\\sigma)\\prod_{k=1}^n a_{k\\sigma(k)}\\\\\\sideset{_\\alpha^\\beta}{_\\gamma^\\delta}{\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}}\\\\\\int_0^\\infty{x^{2n} e^{-a x^2}\\,dx} = \\frac{2n-1}{2a} \\int_0^\\infty{x^{2(n-1)} e^{-a x^2}\\,dx} = \\frac{(2n-1)!!}{2^{n+1}} \\sqrt{\\frac{\\pi}{a^{2n+1}}}\\\\", "\\int_a^b{f(x)\\,dx} = (b - a) \\sum\\limits_{n = 1}^\\infty  {\\sum\\limits_{m = 1}^{2^n  - 1} {\\left( { - 1} \\right)^{m + 1} } } 2^{ - n} f(a + m\\left( {b - a} \\right)2^{-n} )\\\\"), "\\int_{-\\pi}^{\\pi} \\sin(\\alpha x) \\sin^n(\\beta x) dx = \\textstyle{\\left \\{ \\begin{array}{cc} (-1)^{(n+1)/2} (-1)^m \\frac{2 \\pi}{2^n} \\binom{n}{m} & n \\mbox{ odd},\\ \\alpha = \\beta (2m-n) \\\\ 0 & \\mbox{otherwise} \\\\ \\end{array} \\right .}\\\\"), "L = \\int_a^b \\sqrt{ \\left|\\sum_{i,j=1}^ng_{ij}(\\gamma(t))\\left(\\frac{d}{dt}x^i\\circ\\gamma(t)\\right)\\left(\\frac{d}{dt}x^j\\circ\\gamma(t)\\right)\\right|}\\,dt\\\\"), "\\begin{array}{rl} s &= \\int_a^b\\left\\|\\frac{d}{dt}\\vec{r}\\,(u(t),v(t))\\right\\|\\,dt \\\\ &= \\int_a^b \\sqrt{u'(t)^2\\,\\vec{r}_u\\cdot\\vec{r}_u + 2u'(t)v'(t)\\, \\vec{r}_u\\cdot\\vec{r}_v+ v'(t)^2\\,\\vec{r}_v\\cdot\\vec{r}_v}\\,\\,\\, dt. \\end{array}\\\\");
+                String q10 = b.q(b.q(b.q(b.q("\\begin{array}{l}\\forall\\varepsilon\\in\\mathbb{R}_+^*\\ \\exists\\eta>0\\ |x-x_0|\\leq\\eta\\Longrightarrow|f(x)-f(x_0)|\\leq\\varepsilon\\\\\\det\\begin{bmatrix}a_{11}&a_{12}&\\cdots&a_{1n}\\\\a_{21}&\\ddots&&\\vdots\\\\\\vdots&&\\ddots&\\vdots\\\\a_{n1}&\\cdots&\\cdots&a_{nn}\\end{bmatrix}\\overset{\\mathrm{def}}{=}\\sum_{\\sigma\\in\\mathfrak{S}_n}\\varepsilon(\\sigma)\\prod_{k=1}^n a_{k\\sigma(k)}\\\\\\sideset{_\\alpha^\\beta}{_\\gamma^\\delta}{\\begin{pmatrix}a&b\\\\c&d\\end{pmatrix}}\\\\\\int_0^\\infty{x^{2n} e^{-a x^2}\\,dx} = \\frac{2n-1}{2a} \\int_0^\\infty{x^{2(n-1)} e^{-a x^2}\\,dx} = \\frac{(2n-1)!!}{2^{n+1}} \\sqrt{\\frac{\\pi}{a^{2n+1}}}\\\\", "\\int_a^b{f(x)\\,dx} = (b - a) \\sum\\limits_{n = 1}^\\infty  {\\sum\\limits_{m = 1}^{2^n  - 1} {\\left( { - 1} \\right)^{m + 1} } } 2^{ - n} f(a + m\\left( {b - a} \\right)2^{-n} )\\\\"), "\\int_{-\\pi}^{\\pi} \\sin(\\alpha x) \\sin^n(\\beta x) dx = \\textstyle{\\left \\{ \\begin{array}{cc} (-1)^{(n+1)/2} (-1)^m \\frac{2 \\pi}{2^n} \\binom{n}{m} & n \\mbox{ odd},\\ \\alpha = \\beta (2m-n) \\\\ 0 & \\mbox{otherwise} \\\\ \\end{array} \\right .}\\\\"), "L = \\int_a^b \\sqrt{ \\left|\\sum_{i,j=1}^ng_{ij}(\\gamma(t))\\left(\\frac{d}{dt}x^i\\circ\\gamma(t)\\right)\\left(\\frac{d}{dt}x^j\\circ\\gamma(t)\\right)\\right|}\\,dt\\\\"), "\\begin{array}{rl} s &= \\int_a^b\\left\\|\\frac{d}{dt}\\vec{r}\\,(u(t),v(t))\\right\\|\\,dt \\\\ &= \\int_a^b \\sqrt{u'(t)^2\\,\\vec{r}_u\\cdot\\vec{r}_u + 2u'(t)v'(t)\\, \\vec{r}_u\\cdot\\vec{r}_v+ v'(t)^2\\,\\vec{r}_v\\cdot\\vec{r}_v}\\,\\,\\, dt. \\end{array}\\\\");
                 setLatex(q10 + "\\end{array}");
             }
         } catch (Throwable th2) {
@@ -76,8 +76,8 @@ public class JLatexMathView extends View {
         }
     }
 
-    public JLatexMathView align(int i3, int i10) {
-        this.alignVertical = i3;
+    public JLatexMathView align(int i7, int i10) {
+        this.alignVertical = i7;
         this.alignHorizontal = i10;
         return this;
     }
@@ -122,14 +122,14 @@ public class JLatexMathView extends View {
     }
 
     @Override
-    public void onMeasure(int i3, int i10) {
+    public void onMeasure(int i7, int i10) {
         float min;
         if (this.drawable == null) {
-            super.onMeasure(i3, i10);
+            super.onMeasure(i7, i10);
             return;
         }
-        int mode = View.MeasureSpec.getMode(i3);
-        int size = View.MeasureSpec.getSize(i3);
+        int mode = View.MeasureSpec.getMode(i7);
+        int size = View.MeasureSpec.getSize(i7);
         int mode2 = View.MeasureSpec.getMode(i10);
         int size2 = View.MeasureSpec.getSize(i10);
         int intrinsicWidth = this.drawable.getIntrinsicWidth();
@@ -184,13 +184,13 @@ public class JLatexMathView extends View {
         requestLayout();
     }
 
-    public JLatexMathView textColor(int i3) {
-        this.textColor = i3;
+    public JLatexMathView textColor(int i7) {
+        this.textColor = i7;
         return this;
     }
 
-    public JLatexMathView textSize(int i3) {
-        this.textSize = i3;
+    public JLatexMathView textSize(int i7) {
+        this.textSize = i7;
         return this;
     }
 

@@ -3,40 +3,40 @@ package org.telegram.messenger;
 import com.android.billingclient.api.Purchase;
 import java.lang.reflect.Field;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.cj0;
-import org.telegram.ui.Components.tj0;
-public final class i implements cj0, e5.g {
-    public final Object f23410a;
-    public final Object f23411b;
-    public final Object f23412c;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.yi0;
+public final class i implements yi0, f5.g {
+    public final Object f23000a;
+    public final Object f23001b;
+    public final Object f23002c;
 
     public i(Object obj, Object obj2, Object obj3) {
-        this.f23410a = obj;
-        this.f23411b = obj2;
-        this.f23412c = obj3;
+        this.f23000a = obj;
+        this.f23001b = obj2;
+        this.f23002c = obj3;
     }
 
     @Override
-    public void a(e5.f fVar) {
+    public void a(f5.f fVar) {
         Object valueOf;
-        Purchase purchase = (Purchase) this.f23411b;
-        Runnable runnable = (Runnable) this.f23412c;
+        Purchase purchase = (Purchase) this.f23001b;
+        Runnable runnable = (Runnable) this.f23002c;
         StringBuilder sb2 = new StringBuilder("BillingController consumeGiftPurchase ");
-        sb2.append((TLRPC.InputStorePaymentPurpose) this.f23410a);
+        sb2.append((TLRPC.InputStorePaymentPurpose) this.f23000a);
         sb2.append(" ");
         sb2.append(purchase.a());
         sb2.append(" ");
         sb2.append(purchase.c());
         sb2.append(" done: ");
-        int i3 = fVar.f9593a;
-        if (i3 == 0) {
+        int i7 = fVar.f11151a;
+        if (i7 == 0) {
             valueOf = "OK";
         } else {
-            valueOf = Integer.valueOf(i3);
+            valueOf = Integer.valueOf(i7);
         }
         sb2.append(valueOf);
         sb2.append(" ");
-        k2.p1.w(fVar.f9595c, sb2);
+        org.telegram.ui.Cells.f1.u(fVar.f11153c, sb2);
         if (runnable != null) {
             runnable.run();
         }
@@ -44,19 +44,19 @@ public final class i implements cj0, e5.g {
 
     @Override
     public int run() {
-        org.telegram.ui.ActionBar.d2 d2Var = (org.telegram.ui.ActionBar.d2) this.f23410a;
-        String str = (String) this.f23411b;
-        tj0 tj0Var = (tj0) this.f23412c;
-        int i3 = -1;
+        org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f23000a;
+        String str = (String) this.f23001b;
+        pj0 pj0Var = (pj0) this.f23002c;
+        int i7 = -1;
         try {
-            Field declaredField = d2Var.getClass().getDeclaredField(str);
+            Field declaredField = f2Var.getClass().getDeclaredField(str);
             declaredField.setAccessible(true);
-            i3 = declaredField.getInt(d2Var);
-            ((u4.b0) tj0Var.getLayoutManager()).h1(i3, g0.L(60.0f));
+            i7 = declaredField.getInt(f2Var);
+            ((v4.b0) pj0Var.getLayoutManager()).h1(i7, g0.L(60.0f));
             declaredField.setAccessible(false);
-            return i3;
+            return i7;
         } catch (Throwable unused) {
-            return i3;
+            return i7;
         }
     }
 }

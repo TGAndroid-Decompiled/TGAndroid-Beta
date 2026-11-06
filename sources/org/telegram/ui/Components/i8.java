@@ -1,31 +1,33 @@
 package org.telegram.ui.Components;
-public final class i8 extends org.telegram.ui.ActionBar.j {
-    public final int f34632a;
-    public final r8 f34633b;
 
-    public i8(r8 r8Var, int i3) {
-        this.f34632a = i3;
-        this.f34633b = r8Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class i8 extends AnimatorListenerAdapter {
+    public final int f34555a;
+    public final t8 f34556b;
+
+    public i8(t8 t8Var, int i7) {
+        this.f34555a = i7;
+        this.f34556b = t8Var;
     }
 
     @Override
-    public final void b(int i3) {
-        switch (this.f34632a) {
+    public final void onAnimationEnd(Animator animator) {
+        float f10;
+        switch (this.f34555a) {
             case 0:
-                if (i3 == -1) {
-                    r8.Z(this.f34633b);
-                    return;
-                }
+                super.onAnimationEnd(animator);
+                this.f34556b.f38290f = false;
                 return;
             default:
-                r8 r8Var = this.f34633b;
-                if (i3 == -1) {
-                    r8.Z(r8Var);
+                t8 t8Var = this.f34556b;
+                if (t8Var.F) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
                 }
-                if (i3 == 1) {
-                    r8Var.k0();
-                    return;
-                }
+                t8Var.n0(false, f10);
+                t8Var.F = false;
                 return;
         }
     }

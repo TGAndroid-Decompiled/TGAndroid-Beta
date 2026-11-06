@@ -1,58 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.graphics.RectF;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ProfileActivity;
-public final class md implements r4, org.telegram.messenger.jc {
-    public final String f36124a;
-    public final boolean f36125b;
-    public final org.telegram.messenger.cs f36126c;
-    public final Object d;
-    public final Object f36127e;
-    public final Object f36128f;
+import org.telegram.tgnet.tl.TL_iv;
+public final class md implements org.telegram.messenger.z10 {
+    public final int f35989a;
+    public final ChatActivityEnterView f35990b;
+    public final long f35991c;
+    public final org.telegram.ui.ActionBar.f6 d;
 
-    public md(ChatActivityEnterView chatActivityEnterView, TLRPC.Document document, String str, Object obj, org.telegram.messenger.vi viVar, boolean z10) {
-        this.f36126c = chatActivityEnterView;
-        this.d = document;
-        this.f36124a = str;
-        this.f36127e = obj;
-        this.f36128f = viVar;
-        this.f36125b = z10;
+    public md(ChatActivityEnterView chatActivityEnterView, long j3, org.telegram.ui.ActionBar.f6 f6Var, int i7) {
+        this.f35989a = i7;
+        this.f35990b = chatActivityEnterView;
+        this.f35991c = j3;
+        this.d = f6Var;
     }
 
     @Override
-    public void L(int i3, int i10, boolean z10) {
-        ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f36126c;
-        TLRPC.Document document = (TLRPC.Document) this.d;
-        org.telegram.messenger.vi viVar = (org.telegram.messenger.vi) this.f36128f;
-        int i11 = ChatActivityEnterView.f31082t5;
-        chatActivityEnterView.a(document, this.f36124a, this.f36127e, viVar, this.f36125b, z10, i3, i10);
-    }
-
-    @Override
-    public void a(String str) {
-        boolean z10;
-        TLRPC.Chat chat;
-        ProfileActivity profileActivity = (ProfileActivity) this.f36126c;
-        boolean[] zArr = (boolean[]) this.f36127e;
-        ai.d3 d3Var = (ai.d3) this.f36128f;
-        RectF rectF = ProfileActivity.T6;
-        ((String[]) this.d)[0] = str;
-        if (str != null && ((!str.equals(this.f36124a) || str.equals("und")) && ((this.f36125b && !org.telegram.ui.gy0.d0().contains(str)) || ((chat = profileActivity.E2) != null && ((chat.has_link || org.telegram.messenger.t3.t0(chat)) && ("uk".equals(str) || "ru".equals(str))))))) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void a(Object obj, Object obj2, Object obj3, Object obj4) {
+        int i7 = this.f35989a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.d;
+        long j3 = this.f35991c;
+        switch (i7) {
+            case 0:
+                Integer num = (Integer) obj2;
+                Integer num2 = (Integer) obj3;
+                Boolean bool = (Boolean) obj4;
+                int i10 = ChatActivityEnterView.s5;
+                ChatActivityEnterView chatActivityEnterView = this.f35990b;
+                chatActivityEnterView.Q0((TL_iv.RichMessage) obj);
+                if (chatActivityEnterView.c() && num.intValue() == 0) {
+                    v4.J(chatActivityEnterView.O2, j3, new zd(chatActivityEnterView, 0), f6Var);
+                    return;
+                } else {
+                    chatActivityEnterView.T0(bool.booleanValue(), num.intValue(), num2.intValue(), 0L, true);
+                    return;
+                }
+            default:
+                Integer num3 = (Integer) obj2;
+                Integer num4 = (Integer) obj3;
+                Boolean bool2 = (Boolean) obj4;
+                ChatActivityEnterView chatActivityEnterView2 = this.f35990b;
+                chatActivityEnterView2.E0.setText((CharSequence) obj);
+                if (chatActivityEnterView2.Z1 != null) {
+                    chatActivityEnterView2.a0();
+                    return;
+                } else if (chatActivityEnterView2.c() && num3.intValue() == 0) {
+                    v4.J(chatActivityEnterView2.O2, j3, new ae(chatActivityEnterView2, 0), f6Var);
+                    return;
+                } else {
+                    chatActivityEnterView2.T0(bool2.booleanValue(), num3.intValue(), num4.intValue(), 0L, true);
+                    return;
+                }
         }
-        zArr[0] = z10;
-        d3Var.run();
-    }
-
-    public md(ProfileActivity profileActivity, String[] strArr, boolean[] zArr, String str, boolean z10, ai.d3 d3Var) {
-        this.f36126c = profileActivity;
-        this.d = strArr;
-        this.f36127e = zArr;
-        this.f36124a = str;
-        this.f36125b = z10;
-        this.f36128f = d3Var;
     }
 }

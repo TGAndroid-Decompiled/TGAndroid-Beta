@@ -1,66 +1,295 @@
 package org.telegram.messenger;
 
-import android.net.Uri;
+import android.media.SoundPool;
+import android.os.PowerManager;
+import android.os.SystemClock;
+import android.util.Pair;
+import android.util.SparseArray;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Iterator;
+import java.util.Map;
 import org.telegram.tgnet.TLRPC;
-public final class rs {
-    public final int f25215a;
-    public final long f25216b;
-    public final boolean f25217c;
-    public final String d;
-    public final TLRPC.User f25218e;
-    public final TLRPC.Chat f25219f;
-    public final e0.q f25220g;
-    public final long h;
-    public final String f25221i;
-    public final long[] f25222j;
-    public final int f25223k;
-    public final Uri f25224l;
-    public final int f25225m;
-    public final boolean f25226n;
-    public final boolean f25227o;
-    public final boolean f25228p;
-    public final int f25229q;
-    public final us f25230r;
+public final class rs implements Runnable {
+    public final int f25322a;
+    public final dt f25323b;
 
-    public rs(us usVar, int i3, long j10, boolean z10, String str, TLRPC.User user, TLRPC.Chat chat, e0.q qVar, long j11, String str2, long[] jArr, int i10, Uri uri, int i11, boolean z11, boolean z12, boolean z13, int i12) {
-        this.f25230r = usVar;
-        this.h = j11;
-        this.f25221i = str2;
-        this.f25222j = jArr;
-        this.f25223k = i10;
-        this.f25224l = uri;
-        this.f25225m = i11;
-        this.f25226n = z11;
-        this.f25227o = z12;
-        this.f25228p = z13;
-        this.f25229q = i12;
-        this.f25215a = i3;
-        this.d = str;
-        this.f25218e = user;
-        this.f25219f = chat;
-        this.f25220g = qVar;
-        this.f25216b = j10;
-        this.f25217c = z10;
+    public rs(dt dtVar, int i7) {
+        this.f25322a = i7;
+        this.f25323b = dtVar;
     }
 
-    public final void a() {
-        e0.q qVar = this.f25220g;
-        boolean z10 = r2.f25040a;
-        int i3 = this.f25215a;
-        if (z10) {
-            StringBuilder m10 = k2.p1.m(i3, "show dialog notification with id ", " ");
-            m10.append(this.f25216b);
-            m10.append(" user=");
-            m10.append(this.f25218e);
-            m10.append(" chat=");
-            m10.append(this.f25219f);
-            a8.l(m10.toString());
-        }
-        try {
-            us.m0.e(null, i3, qVar.b());
-        } catch (SecurityException e10) {
-            a8.g(e10, true);
-            this.f25230r.P(qVar, this.f25216b, this.h, this.f25221i, this.f25222j, this.f25223k, this.f25224l, this.f25225m, this.f25226n, this.f25227o, this.f25228p, this.f25229q);
+    @Override
+    public final void run() {
+        switch (this.f25322a) {
+            case 0:
+                dt dtVar = this.f25323b;
+                ArrayList arrayList = dtVar.f22058a;
+                ArrayList arrayList2 = new ArrayList();
+                for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                    ij ijVar = (ij) arrayList.get(i7);
+                    long B0 = ij.B0(ijVar.f23237k);
+                    TLRPC.Message message = ijVar.f23237k;
+                    if ((!message.mentioned || !(message.action instanceof TLRPC.TL_messageActionPinMessage)) && !m5.C(B0) && (ijVar.f23237k.peer_id.channel_id == 0 || ijVar.B4())) {
+                        arrayList2.add(0, ijVar);
+                    }
+                }
+                if (!arrayList2.isEmpty() && !g0.p2(false) && !iz.C) {
+                    g0.h3(new ts(dtVar, arrayList2, 0));
+                    return;
+                }
+                return;
+            case 1:
+                dt dtVar2 = this.f25323b;
+                dtVar2.getClass();
+                int i10 = Calendar.getInstance().get(11);
+                if (i10 >= 11 && i10 <= 22) {
+                    dt.f22052l0.b(dtVar2.f22064d0, null);
+                    dtVar2.Z(true);
+                    return;
+                }
+                dtVar2.R();
+                return;
+            case 2:
+                dt dtVar3 = this.f25323b;
+                try {
+                    if (Math.abs(SystemClock.elapsedRealtime() - dtVar3.W) > 100) {
+                        dtVar3.W = SystemClock.elapsedRealtime();
+                        if (dtVar3.X == null) {
+                            SoundPool soundPool = new SoundPool(3, 1, 0);
+                            dtVar3.X = soundPool;
+                            soundPool.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                                @Override
+                                public final void onLoadComplete(SoundPool soundPool2, int i11, int i12) {
+                                    switch (r1) {
+                                        case 0:
+                                            if (i12 == 0) {
+                                                try {
+                                                    soundPool2.play(i11, 1.0f, 1.0f, 1, 0, 1.0f);
+                                                    return;
+                                                } catch (Exception e10) {
+                                                    a8.g(e10, true);
+                                                    return;
+                                                }
+                                            }
+                                            return;
+                                        default:
+                                            if (i12 == 0) {
+                                                try {
+                                                    soundPool2.play(i11, 1.0f, 1.0f, 1, 0, 1.0f);
+                                                    return;
+                                                } catch (Exception e11) {
+                                                    a8.g(e11, true);
+                                                    return;
+                                                }
+                                            }
+                                            return;
+                                    }
+                                }
+                            });
+                        }
+                        if (dtVar3.Z == 0 && !dtVar3.f22061b0) {
+                            dtVar3.f22061b0 = true;
+                            dtVar3.Z = dtVar3.X.load(t0.f25555b, 2131624203, 1);
+                        }
+                        int i11 = dtVar3.Z;
+                        if (i11 != 0) {
+                            try {
+                                dtVar3.X.play(i11, 1.0f, 1.0f, 1, 0, 1.0f);
+                                return;
+                            } catch (Exception e10) {
+                                a8.g(e10, true);
+                                return;
+                            }
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Exception e11) {
+                    a8.g(e11, true);
+                    return;
+                }
+            case 3:
+                this.f25323b.Z(false);
+                return;
+            case 4:
+                dt.c(this.f25323b);
+                return;
+            case 5:
+                dt dtVar4 = this.f25323b;
+                a0.h hVar = dtVar4.h;
+                dt.f22052l0.b(dtVar4.f22064d0, null);
+                dtVar4.f22072n.b();
+                for (int i12 = 0; i12 < hVar.m(); i12++) {
+                    dt.f22052l0.b(((Integer) hVar.n(i12)).intValue(), null);
+                }
+                hVar.b();
+                return;
+            case 6:
+                dt dtVar5 = this.f25323b;
+                a0.h hVar2 = dtVar5.f22062c;
+                ArrayList arrayList3 = dtVar5.f22058a;
+                int i13 = 0;
+                boolean z9 = false;
+                while (i13 < arrayList3.size()) {
+                    ij ijVar2 = (ij) arrayList3.get(i13);
+                    if (ijVar2 != null && ijVar2.J) {
+                        arrayList3.remove(i13);
+                        i13--;
+                        SparseArray sparseArray = (SparseArray) hVar2.f(ij.B0(ijVar2.f23237k));
+                        if (sparseArray != null) {
+                            sparseArray.remove(ijVar2.f1());
+                        }
+                        if (sparseArray != null && sparseArray.size() <= 0) {
+                            hVar2.l(ij.B0(ijVar2.f23237k));
+                        }
+                        z9 = true;
+                    }
+                    i13++;
+                }
+                yr messagesStorage = dtVar5.getMessagesStorage();
+                messagesStorage.f26688a.c(new qq(messagesStorage, 18));
+                if (z9) {
+                    dtVar5.Z(false);
+                    return;
+                }
+                return;
+            case 7:
+                dt dtVar6 = this.f25323b;
+                dtVar6.S(dtVar6.z());
+                return;
+            case 8:
+                dt dtVar7 = this.f25323b;
+                if (Math.abs(SystemClock.elapsedRealtime()) > 500) {
+                    try {
+                        if (dtVar7.X == null) {
+                            SoundPool soundPool2 = new SoundPool(3, 1, 0);
+                            dtVar7.X = soundPool2;
+                            soundPool2.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                                @Override
+                                public final void onLoadComplete(SoundPool soundPool22, int i112, int i122) {
+                                    switch (r1) {
+                                        case 0:
+                                            if (i122 == 0) {
+                                                try {
+                                                    soundPool22.play(i112, 1.0f, 1.0f, 1, 0, 1.0f);
+                                                    return;
+                                                } catch (Exception e102) {
+                                                    a8.g(e102, true);
+                                                    return;
+                                                }
+                                            }
+                                            return;
+                                        default:
+                                            if (i122 == 0) {
+                                                try {
+                                                    soundPool22.play(i112, 1.0f, 1.0f, 1, 0, 1.0f);
+                                                    return;
+                                                } catch (Exception e112) {
+                                                    a8.g(e112, true);
+                                                    return;
+                                                }
+                                            }
+                                            return;
+                                    }
+                                }
+                            });
+                        }
+                        if (dtVar7.Y == 0 && !dtVar7.f22059a0) {
+                            dtVar7.f22059a0 = true;
+                            dtVar7.Y = dtVar7.X.load(t0.f25555b, 2131624200, 1);
+                        }
+                        int i14 = dtVar7.Y;
+                        if (i14 != 0) {
+                            try {
+                                dtVar7.X.play(i14, 1.0f, 1.0f, 1, 0, 1.0f);
+                                return;
+                            } catch (Exception e12) {
+                                a8.g(e12, true);
+                                return;
+                            }
+                        }
+                        return;
+                    } catch (Exception e13) {
+                        a8.g(e13, true);
+                        return;
+                    }
+                }
+                return;
+            case 9:
+                dt.b(this.f25323b);
+                return;
+            case 10:
+                dt dtVar8 = this.f25323b;
+                ArrayList arrayList4 = dtVar8.D;
+                boolean isEmpty = arrayList4.isEmpty();
+                arrayList4.clear();
+                dtVar8.E.b();
+                yr messagesStorage2 = dtVar8.getMessagesStorage();
+                messagesStorage2.f26688a.c(new qq(messagesStorage2, 15));
+                if (!isEmpty) {
+                    dtVar8.Z(false);
+                    return;
+                }
+                return;
+            case 11:
+                dt dtVar9 = this.f25323b;
+                ArrayList arrayList5 = dtVar9.D;
+                long currentTimeMillis = System.currentTimeMillis();
+                int i15 = 0;
+                boolean z10 = false;
+                while (i15 < arrayList5.size()) {
+                    ct ctVar = (ct) arrayList5.get(i15);
+                    Iterator it = ctVar.f21898c.entrySet().iterator();
+                    while (it.hasNext()) {
+                        if (currentTimeMillis >= ((Long) ((Pair) ((Map.Entry) it.next()).getValue()).second).longValue()) {
+                            it.remove();
+                            z10 = true;
+                        }
+                    }
+                    if (z10) {
+                        if (ctVar.f21898c.isEmpty()) {
+                            yr messagesStorage3 = dtVar9.getMessagesStorage();
+                            messagesStorage3.f26688a.c(new xp(messagesStorage3, ctVar.f21896a, 4));
+                            arrayList5.remove(i15);
+                            i15--;
+                        } else {
+                            yr messagesStorage4 = dtVar9.getMessagesStorage();
+                            messagesStorage4.f26688a.c(new yq(5, messagesStorage4, ctVar));
+                        }
+                    }
+                    i15++;
+                }
+                if (z10) {
+                    dtVar9.Z(false);
+                }
+                dtVar9.d0();
+                return;
+            case 12:
+                dt dtVar10 = this.f25323b;
+                PowerManager.WakeLock wakeLock = dtVar10.V;
+                ArrayList arrayList6 = dtVar10.f22060b;
+                if (r2.f25191a) {
+                    a8.b("delay reached");
+                }
+                if (!arrayList6.isEmpty()) {
+                    dtVar10.Z(true);
+                    arrayList6.clear();
+                }
+                try {
+                    if (wakeLock.isHeld()) {
+                        wakeLock.release();
+                        return;
+                    }
+                    return;
+                } catch (Exception e14) {
+                    a8.g(e14, true);
+                    return;
+                }
+            default:
+                dt dtVar11 = this.f25323b;
+                dtVar11.getNotificationCenter().b(dtVar11, 142);
+                return;
         }
     }
 }

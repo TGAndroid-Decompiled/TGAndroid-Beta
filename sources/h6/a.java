@@ -1,6 +1,76 @@
 package h6;
 
-import android.graphics.Bitmap;
-public interface a {
-    void z(Bitmap bitmap);
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.RemoteException;
+import c8.wb;
+import f7.t0;
+public final class a extends r6.a {
+    public final String f14213a;
+    public final String f14214b;
+    public final k f14215c;
+    public final f d;
+    public final boolean f14216e;
+    public final boolean f14217f;
+    public static final j6.b h = new j6.b("CastMediaOptions", null);
+    public static final Parcelable.Creator<a> CREATOR = new t0(17);
+
+    public a(String str, String str2, IBinder iBinder, f fVar, boolean z9, boolean z10) {
+        k aVar;
+        this.f14213a = str;
+        this.f14214b = str2;
+        if (iBinder == null) {
+            aVar = 0;
+        } else {
+            IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cast.framework.media.IImagePicker");
+            if (queryLocalInterface instanceof k) {
+                aVar = (k) queryLocalInterface;
+            } else {
+                aVar = new a8.a(iBinder, "com.google.android.gms.cast.framework.media.IImagePicker", 2);
+            }
+        }
+        this.f14215c = aVar;
+        this.d = fVar;
+        this.f14216e = z9;
+        this.f14217f = z10;
+    }
+
+    public final void b() {
+        k kVar = this.f14215c;
+        if (kVar != null) {
+            try {
+                Parcel R0 = kVar.R0(kVar.P0(), 2);
+                a7.a M0 = a7.b.M0(R0.readStrongBinder());
+                R0.recycle();
+                if (a7.b.N0(M0) != null) {
+                    throw new ClassCastException();
+                }
+            } catch (RemoteException e10) {
+                h.a(e10, "Unable to call %s on %s.", "getWrappedClientObject", k.class.getSimpleName());
+            }
+        }
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i7) {
+        IBinder iBinder;
+        int r10 = wb.r(parcel, 20293);
+        wb.l(parcel, 2, this.f14213a);
+        wb.l(parcel, 3, this.f14214b);
+        k kVar = this.f14215c;
+        if (kVar == null) {
+            iBinder = null;
+        } else {
+            iBinder = kVar.f306b;
+        }
+        wb.f(parcel, 4, iBinder);
+        wb.k(parcel, 5, this.d, i7);
+        wb.q(parcel, 6, 4);
+        parcel.writeInt(this.f14216e ? 1 : 0);
+        wb.q(parcel, 7, 4);
+        parcel.writeInt(this.f14217f ? 1 : 0);
+        wb.s(parcel, r10);
+    }
 }

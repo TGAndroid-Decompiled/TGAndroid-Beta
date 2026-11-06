@@ -1,22 +1,21 @@
 package org.telegram.ui;
-public final class u01 implements Runnable {
-    public final int f49935a;
-    public final ai.z f49936b;
 
-    public u01(ai.z zVar, int i3) {
-        this.f49935a = i3;
-        this.f49936b = zVar;
-    }
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class u01 extends FrameLayout {
+    public FrameLayout f50170a;
+    public org.telegram.ui.Cells.w3 f50171b;
+    public ug.p0 f50172c;
+    public String d;
+    public ValueAnimator f50173e;
+    public float f50174f;
+    public Boolean h;
+    public ValueAnimator f50175n;
 
     @Override
-    public final void run() {
-        switch (this.f49935a) {
-            case 0:
-                org.telegram.messenger.g0.K3(((yz0) this.f49936b.f1121a2).h);
-                return;
-            default:
-                this.f49936b.requestFocus();
-                return;
-        }
+    public final void onMeasure(int i7, int i10) {
+        setPadding(org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(8.0f));
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + org.telegram.messenger.g0.L(44.0f), 1073741824));
     }
 }

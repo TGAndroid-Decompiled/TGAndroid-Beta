@@ -1,47 +1,52 @@
 package u3;
 
-import a1.g;
-import g2.y;
-public final class a extends b {
-    public final int f55474a;
-    public final long f55475b;
-    public final long f55476c;
+import a8.ia;
+import a8.p0;
+import h2.m0;
+import j$.util.Objects;
+import java.util.Locale;
+public final class a {
+    public final long f56196a;
+    public final long f56197b;
+    public final int f56198c;
 
-    public a(long j10, int i3, long j11) {
-        this.f55474a = i3;
-        switch (i3) {
-            case 1:
-                this.f55475b = j10;
-                this.f55476c = j11;
-                return;
-            default:
-                this.f55475b = j11;
-                this.f55476c = j10;
-                return;
+    public a(long j3, int i7, long j10) {
+        boolean z9;
+        if (j3 < j10) {
+            z9 = true;
+        } else {
+            z9 = false;
         }
+        ia.f(z9);
+        this.f56196a = j3;
+        this.f56197b = j10;
+        this.f56198c = i7;
     }
 
-    public static long d(long j10, y yVar) {
-        long A = yVar.A();
-        if ((128 & A) != 0) {
-            return 8589934591L & ((((A & 1) << 32) | yVar.C()) + j10);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        return -9223372036854775807L;
+        if (obj != null && a.class == obj.getClass()) {
+            a aVar = (a) obj;
+            if (this.f56196a == aVar.f56196a && this.f56197b == aVar.f56197b && this.f56198c == aVar.f56198c) {
+                return true;
+            }
+        }
+        return false;
     }
 
-    @Override
+    public final int hashCode() {
+        return Objects.hash(Long.valueOf(this.f56196a), Long.valueOf(this.f56197b), Integer.valueOf(this.f56198c));
+    }
+
     public final String toString() {
-        switch (this.f55474a) {
-            case 0:
-                StringBuilder sb2 = new StringBuilder("SCTE-35 PrivateCommand { ptsAdjustment=");
-                sb2.append(this.f55475b);
-                sb2.append(", identifier= ");
-                return g.r(sb2, this.f55476c, " }");
-            default:
-                StringBuilder sb3 = new StringBuilder("SCTE-35 TimeSignalCommand { ptsTime=");
-                sb3.append(this.f55475b);
-                sb3.append(", playbackPositionUs= ");
-                return g.r(sb3, this.f55476c, " }");
-        }
+        String str = m0.f14112a;
+        Locale locale = Locale.US;
+        StringBuilder t6 = p0.t(this.f56196a, "Segment: startTimeMs=", ", endTimeMs=");
+        t6.append(this.f56197b);
+        t6.append(", speedDivisor=");
+        t6.append(this.f56198c);
+        return t6.toString();
     }
 }

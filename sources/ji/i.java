@@ -1,45 +1,28 @@
 package ji;
 
+import android.content.Context;
 import android.view.View;
-import java.io.Serializable;
-import org.telegram.messenger.hs;
-import org.telegram.messenger.ir;
-import org.telegram.messenger.s10;
-import org.telegram.messenger.t10;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.q31;
 import org.telegram.ui.Components.r31;
-import r0.k1;
-public final class i implements s10, t10, r0.m, ir {
-    public final n f16312a;
+public final class i extends q31 {
+    public static final int f17095b = 0;
 
-    public i(n nVar) {
-        this.f16312a = nVar;
+    static {
+        q31.h(new q31());
     }
 
     @Override
-    public k1 R0(View view, k1 k1Var) {
-        i0.b f10 = k1Var.f54026a.f(519);
-        this.f16312a.f16345e.setPadding(0, f10.f14496b, 0, f10.d);
-        return k1.f54025b;
+    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
+        long j3 = r31Var.B;
+        ((j) view).a((int) j3, (int) (j3 >>> 32), r31Var.f37597k, r31Var.f37598l, r31Var.f37600n, r31Var.f37603q);
     }
 
     @Override
-    public Boolean a(r31 r31Var, View view, Integer num, Float f10, Float f11) {
-        return Boolean.valueOf(n.Z(this.f16312a, r31Var, view));
-    }
-
-    @Override
-    public void j(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        n.a0(this.f16312a, (r31) obj);
-    }
-
-    @Override
-    public void o(boolean z10) {
-        n nVar = this.f16312a;
-        nVar.finishFragment();
-        nVar.getNotificationCenter().k(hs.K2, Long.valueOf(-nVar.f16344c), null, nVar.J, Boolean.valueOf(z10));
+    public final View d(Context context, pj0 pj0Var, int i7, f6 f6Var) {
+        return new j(context, f6Var, false);
     }
 }

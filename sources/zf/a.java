@@ -1,24 +1,40 @@
 package zf;
 
-import org.telegram.messenger.hs;
+import android.os.Bundle;
 public final class a implements Runnable {
-    public final int f60446a;
-    public final c f60447b;
+    public final int f60021a;
+    public final b f60022b;
 
-    public a(c cVar, int i3) {
-        this.f60446a = i3;
-        this.f60447b = cVar;
+    public a(b bVar, String str, Bundle bundle, int i7) {
+        this.f60021a = i7;
+        this.f60022b = bVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f60446a) {
+        switch (this.f60021a) {
             case 0:
-                this.f60447b.g(false);
+                this.f60022b.f60024b.getClass();
+                return;
+            case 1:
+                this.f60022b.f60024b.getClass();
+                return;
+            case 2:
+                this.f60022b.f60024b.getClass();
                 return;
             default:
-                hs.f(this.f60447b.f60455c).k(307, new Object[0]);
+                this.f60022b.f60024b.getClass();
                 return;
         }
+    }
+
+    public a(b bVar, int i7, Bundle bundle) {
+        this.f60021a = 0;
+        this.f60022b = bVar;
+    }
+
+    public a(b bVar, Bundle bundle) {
+        this.f60021a = 2;
+        this.f60022b = bVar;
     }
 }

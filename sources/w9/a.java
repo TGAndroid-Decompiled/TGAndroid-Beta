@@ -1,50 +1,30 @@
 package w9;
 
+import a3.l;
+import android.os.Bundle;
 import android.util.Log;
-import ca.p1;
-import ci.i;
-import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.ui.ActionBar.e3;
-import t9.p;
-public final class a {
-    public static final c f57420c = new Object();
-    public final p f57421a;
-    public final AtomicReference f57422b = new AtomicReference(null);
+import androidx.emoji2.text.f;
+import java.util.ArrayList;
+public final class a implements y9.a {
+    public final f f57503a;
 
-    public a(p pVar) {
-        this.f57421a = pVar;
-        pVar.a(new e3(this, 28));
+    public a(f fVar) {
+        this.f57503a = fVar;
     }
 
-    public final c a(String str) {
-        a aVar = (a) this.f57422b.get();
-        if (aVar == null) {
-            return f57420c;
+    public void a(l lVar) {
+        f fVar = this.f57503a;
+        synchronized (fVar) {
+            ((ArrayList) fVar.f2300b).add(lVar);
+            ((qb.a) fVar.f2301c).getClass();
+            if (Log.isLoggable("FirebaseCrashlytics", 3)) {
+                Log.d("FirebaseCrashlytics", "Could not register handler for breadcrumbs events.", null);
+            }
         }
-        return aVar.a(str);
     }
 
-    public final boolean b() {
-        a aVar = (a) this.f57422b.get();
-        if (aVar != null && aVar.b()) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean c(String str) {
-        a aVar = (a) this.f57422b.get();
-        if (aVar != null && aVar.c(str)) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d(String str, long j10, p1 p1Var) {
-        String f10 = t4.c.f("Deferring native open session: ", str);
-        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-            Log.v("FirebaseCrashlytics", f10, null);
-        }
-        this.f57421a.a(new i(str, j10, p1Var, 11));
+    @Override
+    public void a2(Bundle bundle) {
+        ((qb.a) this.f57503a.f2299a).a2(bundle);
     }
 }

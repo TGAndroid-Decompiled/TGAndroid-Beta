@@ -1,6 +1,10 @@
 package org.telegram.ui;
+public final class n40 {
+    public final int f47931a;
+    public final Object f47932b;
 
-import java.util.ArrayList;
-public interface n40 {
-    void a(ArrayList arrayList, boolean z10, boolean z11);
+    public n40(Object obj, int i7) {
+        this.f47931a = i7;
+        this.f47932b = obj;
+    }
 }

@@ -57,7 +57,7 @@ public final class Instance {
         public final String component;
         public final String foundation;
         public final String generation;
-        public final String f25969id;
+        public final String f26070id;
         public final String ip;
         public final String network;
         public final String port;
@@ -73,7 +73,7 @@ public final class Instance {
             this.protocol = str2;
             this.network = str3;
             this.generation = str4;
-            this.f25969id = str5;
+            this.f26070id = str5;
             this.component = str6;
             this.foundation = str7;
             this.priority = str8;
@@ -85,7 +85,7 @@ public final class Instance {
         }
 
         public String toString() {
-            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f25969id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
+            return "Candidate{port=" + this.port + ", protocol=" + this.protocol + ", network=" + this.network + ", generation=" + this.generation + ", id=" + this.f26070id + ", component=" + this.component + ", foundation=" + this.foundation + ", priority=" + this.priority + ", ip=" + this.ip + ", type=" + this.type + ", tcpType=" + this.tcpType + ", relAddr=" + this.relAddr + ", relPort=" + this.relPort + '}';
         }
     }
 
@@ -104,19 +104,19 @@ public final class Instance {
         public final double receiveTimeout;
         public final String statsLogPath;
 
-        public Config(double d, double d10, int i3, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, boolean z15, String str, String str2, int i10, String str3) {
+        public Config(double d, double d2, int i7, boolean z9, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, String str, String str2, int i10, String str3) {
             this.initializationTimeout = d;
-            this.receiveTimeout = d10;
-            this.dataSaving = i3;
-            this.enableP2p = z10;
-            this.enableAec = z11;
-            this.enableNs = z12;
-            this.enableAgc = z13;
-            this.enableCallUpgrade = z14;
+            this.receiveTimeout = d2;
+            this.dataSaving = i7;
+            this.enableP2p = z9;
+            this.enableAec = z10;
+            this.enableNs = z11;
+            this.enableAgc = z12;
+            this.enableCallUpgrade = z13;
             this.logPath = str;
             this.statsLogPath = str2;
             this.maxApiLayer = i10;
-            this.enableSm = z15;
+            this.enableSm = z14;
             this.customParameters = str3;
         }
 
@@ -129,9 +129,9 @@ public final class Instance {
         public final boolean isOutgoing;
         public final byte[] value;
 
-        public EncryptionKey(byte[] bArr, boolean z10) {
+        public EncryptionKey(byte[] bArr, boolean z9) {
             this.value = bArr;
-            this.isOutgoing = z10;
+            this.isOutgoing = z9;
         }
 
         public String toString() {
@@ -140,7 +140,7 @@ public final class Instance {
     }
 
     public static final class Endpoint {
-        public final long f25970id;
+        public final long f26071id;
         public final String ipv4;
         public final String ipv6;
         public final boolean isRtc;
@@ -154,31 +154,31 @@ public final class Instance {
         public final int type;
         public final String username;
 
-        public Endpoint(boolean z10, long j10, String str, String str2, int i3, int i10, byte[] bArr, boolean z11, boolean z12, String str3, String str4, boolean z13) {
-            this.isRtc = z10;
-            this.f25970id = j10;
+        public Endpoint(boolean z9, long j3, String str, String str2, int i7, int i10, byte[] bArr, boolean z10, boolean z11, String str3, String str4, boolean z12) {
+            this.isRtc = z9;
+            this.f26071id = j3;
             this.ipv4 = str;
             this.ipv6 = str2;
-            this.port = i3;
+            this.port = i7;
             this.type = i10;
             this.peerTag = bArr;
-            this.turn = z11;
-            this.stun = z12;
-            if (z10) {
+            this.turn = z10;
+            this.stun = z11;
+            if (z9) {
                 this.username = str3;
                 this.password = str4;
             } else if (bArr != null) {
                 this.username = "reflector";
-                this.password = g2.n0.f0(bArr);
+                this.password = h2.m0.f0(bArr);
             } else {
                 this.username = null;
                 this.password = null;
             }
-            this.tcp = z13;
+            this.tcp = z12;
         }
 
         public String toString() {
-            return "Endpoint{id=" + this.f25970id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
+            return "Endpoint{id=" + this.f26071id + ", ipv4='" + this.ipv4 + "', ipv6='" + this.ipv6 + "', port=" + this.port + ", type=" + this.type + ", peerTag=" + Arrays.toString(this.peerTag) + ", turn=" + this.turn + ", stun=" + this.stun + ", username=" + this.username + ", password=" + this.password + ", tcp=" + this.tcp + '}';
         }
     }
 
@@ -188,11 +188,11 @@ public final class Instance {
         public final byte[] persistentState;
         public final TrafficStats trafficStats;
 
-        public FinalState(byte[] bArr, String str, TrafficStats trafficStats, boolean z10) {
+        public FinalState(byte[] bArr, String str, TrafficStats trafficStats, boolean z9) {
             this.persistentState = bArr;
             this.debugLog = str;
             this.trafficStats = trafficStats;
-            this.isRatingSuggested = z10;
+            this.isRatingSuggested = z9;
         }
 
         public String toString() {
@@ -217,11 +217,11 @@ public final class Instance {
     }
 
     public interface OnRemoteMediaStateUpdatedListener {
-        void onMediaStateUpdated(int i3, int i10);
+        void onMediaStateUpdated(int i7, int i10);
     }
 
     public interface OnSignalBarsUpdatedListener {
-        void onSignalBarsUpdated(int i3);
+        void onSignalBarsUpdated(int i7);
     }
 
     public interface OnSignalingDataListener {
@@ -229,7 +229,7 @@ public final class Instance {
     }
 
     public interface OnStateUpdatedListener {
-        void onStateUpdated(int i3, boolean z10);
+        void onStateUpdated(int i7, boolean z9);
     }
 
     public static final class Proxy {
@@ -238,9 +238,9 @@ public final class Instance {
         public final String password;
         public final int port;
 
-        public Proxy(String str, int i3, String str2, String str3) {
+        public Proxy(String str, int i7, String str2, String str3) {
             this.host = str;
-            this.port = i3;
+            this.port = i7;
             this.login = str2;
             this.password = str3;
         }
@@ -253,7 +253,7 @@ public final class Instance {
             sb2.append(", login='");
             sb2.append(this.login);
             sb2.append("', password='");
-            return a1.g.s(sb2, this.password, "'}");
+            return a8.p0.s(sb2, this.password, "'}");
         }
     }
 
@@ -303,11 +303,11 @@ public final class Instance {
         public final long bytesSentMobile;
         public final long bytesSentWifi;
 
-        public TrafficStats(long j10, long j11, long j12, long j13) {
-            this.bytesSentWifi = j10;
-            this.bytesReceivedWifi = j11;
-            this.bytesSentMobile = j12;
-            this.bytesReceivedMobile = j13;
+        public TrafficStats(long j3, long j10, long j11, long j12) {
+            this.bytesSentWifi = j3;
+            this.bytesReceivedWifi = j10;
+            this.bytesSentMobile = j11;
+            this.bytesReceivedMobile = j12;
         }
 
         public String toString() {
@@ -337,21 +337,21 @@ public final class Instance {
         return globalServerConfig;
     }
 
-    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i3, EncryptionKey encryptionKey, VideoSink videoSink, long j10, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
+    public static NativeInstance makeInstance(String str, Config config, String str2, Endpoint[] endpointArr, Proxy proxy, int i7, EncryptionKey encryptionKey, VideoSink videoSink, long j3, NativeInstance.AudioLevelsCallback audioLevelsCallback) {
         if (!"2.4.4".equals(str)) {
-            ContextUtils.initialize(org.telegram.messenger.t0.f25457b);
+            ContextUtils.initialize(org.telegram.messenger.t0.f25555b);
         }
-        instance = NativeInstance.make(str, config, str2, endpointArr, proxy, i3, encryptionKey, videoSink, j10, audioLevelsCallback);
+        instance = NativeInstance.make(str, config, str2, endpointArr, proxy, i7, encryptionKey, videoSink, j3, audioLevelsCallback);
         setGlobalServerConfig(globalServerConfig.jsonObject.toString());
         setBufferSize(bufferSize);
         return instance;
     }
 
-    public static void setBufferSize(int i3) {
-        bufferSize = i3;
+    public static void setBufferSize(int i7) {
+        bufferSize = i7;
         NativeInstance nativeInstance = instance;
         if (nativeInstance != null) {
-            nativeInstance.setBufferSize(i3);
+            nativeInstance.setBufferSize(i7);
         }
     }
 
@@ -363,7 +363,7 @@ public final class Instance {
                 nativeInstance.setGlobalServerConfig(str);
             }
         } catch (JSONException e10) {
-            if (r2.f25040a) {
+            if (r2.f25191a) {
                 a8.e("failed to parse tgvoip server config", e10);
             }
         }

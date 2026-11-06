@@ -1,27 +1,25 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLObject;
-public final class lh0 implements Runnable {
-    public final int f35729a;
-    public final uh0 f35730b;
-    public final TLObject f35731c;
+import androidx.recyclerview.widget.RecyclerView;
+public final class lh0 extends v4.s0 {
+    public final v4.b0 f35657a;
+    public final rh0 f35658b;
 
-    public lh0(uh0 uh0Var, TLObject tLObject, int i3) {
-        this.f35729a = i3;
-        this.f35730b = uh0Var;
-        this.f35731c = tLObject;
+    public lh0(rh0 rh0Var, v4.b0 b0Var) {
+        this.f35658b = rh0Var;
+        this.f35657a = b0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35729a) {
-            case 0:
-                uh0 uh0Var = this.f35730b;
-                org.telegram.messenger.hs.f(uh0Var.f38749b).d(new lh0(uh0Var, this.f35731c, 1));
-                return;
-            default:
-                uh0.a(this.f35730b, this.f35731c);
-                return;
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        int loadCount;
+        rh0 rh0Var = this.f35658b;
+        if (rh0Var.f37745x && rh0Var.f37746y && !rh0Var.f37744w) {
+            int N0 = this.f35657a.N0();
+            loadCount = rh0Var.getLoadCount();
+            if (N0 >= (rh0Var.f37740f.b() - 1) - loadCount) {
+                rh0Var.c();
+            }
         }
     }
 }

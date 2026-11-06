@@ -4,5 +4,5 @@ public abstract class j {
         return true;
     }
 
-    public abstract void b(int i3);
+    public abstract void b(int i7);
 }

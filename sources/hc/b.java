@@ -1,47 +1,117 @@
 package hc;
 
-import java.nio.ByteBuffer;
-import org.telegram.ui.Components.i9;
-public final class b extends a {
-    public static final i9 f14389n;
-    public static final i9 f14390r;
+import java.util.ArrayList;
+public final class b {
+    public final cc.b f14456a;
+    public final int f14458c;
+    public final int d;
+    public final int f14459e;
+    public final int f14460f;
+    public final float f14461g;
+    public final ArrayList f14457b = new ArrayList(5);
+    public final int[] h = new int[3];
 
-    static {
-        we.a aVar = new we.a(b.class, "ESDescriptorBox.java");
-        aVar.e(aVar.d("getEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor"));
-        aVar.e(aVar.d("setEsDescriptor", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.ESDescriptor", "esDescriptor", "void"));
-        f14389n = aVar.e(aVar.d("equals", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "java.lang.Object", "o", "boolean"));
-        f14390r = aVar.e(aVar.d("hashCode", "com.googlecode.mp4parser.boxes.mp4.ESDescriptorBox", "", "", "int"));
+    public b(cc.b bVar, int i7, int i10, int i11, int i12, float f10) {
+        this.f14456a = bVar;
+        this.f14458c = i7;
+        this.d = i10;
+        this.f14459e = i11;
+        this.f14460f = i12;
+        this.f14461g = f10;
     }
 
-    public final boolean equals(Object obj) {
-        com.google.android.recaptcha.internal.a.t(we.a.c(f14389n, this, this, obj));
-        if (this != obj) {
-            if (obj != null && b.class == obj.getClass()) {
-                ByteBuffer byteBuffer = this.f14388e;
-                ByteBuffer byteBuffer2 = ((b) obj).f14388e;
-                if (byteBuffer != null) {
-                    if (byteBuffer.equals(byteBuffer2)) {
-                        return true;
-                    }
-                    return false;
-                } else if (byteBuffer2 == null) {
-                    return true;
-                } else {
-                    return false;
-                }
+    public final boolean a(int[] iArr) {
+        float f10 = this.f14461g;
+        float f11 = f10 / 2.0f;
+        for (int i7 = 0; i7 < 3; i7++) {
+            if (Math.abs(f10 - iArr[i7]) >= f11) {
+                return false;
             }
-            return false;
         }
         return true;
     }
 
-    public final int hashCode() {
-        com.google.android.recaptcha.internal.a.t(we.a.b(f14390r, this, this));
-        ByteBuffer byteBuffer = this.f14388e;
-        if (byteBuffer != null) {
-            return byteBuffer.hashCode();
+    public final a b(int i7, int i10, int[] iArr) {
+        int i11;
+        int i12 = 0;
+        int i13 = iArr[0];
+        int i14 = iArr[1];
+        int i15 = i13 + i14 + iArr[2];
+        float f10 = (i10 - i11) - (i14 / 2.0f);
+        int i16 = (int) f10;
+        int i17 = i14 * 2;
+        cc.b bVar = this.f14456a;
+        int i18 = bVar.f6045b;
+        int[] iArr2 = this.h;
+        iArr2[0] = 0;
+        iArr2[1] = 0;
+        iArr2[2] = 0;
+        int i19 = i7;
+        while (i19 >= 0 && bVar.b(i16, i19)) {
+            int i20 = iArr2[1];
+            if (i20 > i17) {
+                break;
+            }
+            iArr2[1] = i20 + 1;
+            i19--;
         }
-        return 0;
+        float f11 = Float.NaN;
+        if (i19 >= 0 && iArr2[1] <= i17) {
+            while (i19 >= 0 && !bVar.b(i16, i19)) {
+                int i21 = iArr2[0];
+                if (i21 > i17) {
+                    break;
+                }
+                iArr2[0] = i21 + 1;
+                i19--;
+            }
+            if (iArr2[0] <= i17) {
+                int i22 = i7 + 1;
+                while (i22 < i18 && bVar.b(i16, i22)) {
+                    int i23 = iArr2[1];
+                    if (i23 > i17) {
+                        break;
+                    }
+                    iArr2[1] = i23 + 1;
+                    i22++;
+                }
+                if (i22 != i18 && iArr2[1] <= i17) {
+                    while (i22 < i18 && !bVar.b(i16, i22)) {
+                        int i24 = iArr2[2];
+                        if (i24 > i17) {
+                            break;
+                        }
+                        iArr2[2] = i24 + 1;
+                        i22++;
+                    }
+                    int i25 = iArr2[2];
+                    if (i25 <= i17 && Math.abs(((iArr2[0] + iArr2[1]) + i25) - i15) * 5 < i15 * 2 && a(iArr2)) {
+                        f11 = (i22 - iArr2[2]) - (iArr2[1] / 2.0f);
+                    }
+                }
+            }
+        }
+        if (!Float.isNaN(f11)) {
+            float f12 = ((iArr[0] + iArr[1]) + iArr[2]) / 3.0f;
+            ArrayList arrayList = this.f14457b;
+            int size = arrayList.size();
+            while (i12 < size) {
+                Object obj = arrayList.get(i12);
+                i12++;
+                a aVar = (a) obj;
+                float f13 = aVar.f14455c;
+                float f14 = aVar.f3180a;
+                float f15 = aVar.f3181b;
+                if (Math.abs(f11 - f15) <= f12 && Math.abs(f10 - f14) <= f12) {
+                    float abs = Math.abs(f12 - f13);
+                    if (abs <= 1.0f || abs <= f13) {
+                        return new a((f14 + f10) / 2.0f, (f15 + f11) / 2.0f, (aVar.f14455c + f12) / 2.0f);
+                    }
+                }
+            }
+            arrayList.add(new a(f10, f11, f12));
+            return null;
+        }
+        return null;
     }
 }

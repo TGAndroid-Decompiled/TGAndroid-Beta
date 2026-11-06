@@ -1,37 +1,52 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_update;
+import org.telegram.tgnet.TLRPC;
 public final class bw implements Runnable {
-    public final int f21898a;
-    public final yy f21899b;
-    public final TL_update.TL_updateNewChannelMessage f21900c;
-    public final long d;
+    public final int f21701a;
+    public final dw f21702b;
+    public final ArrayList f21703c;
 
-    public bw(yy yyVar, TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage, long j10, int i3) {
-        this.f21898a = i3;
-        this.f21899b = yyVar;
-        this.f21900c = tL_updateNewChannelMessage;
-        this.d = j10;
+    public bw(dw dwVar, ArrayList arrayList, int i7) {
+        this.f21701a = i7;
+        this.f21702b = dwVar;
+        this.f21703c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f21898a) {
+        switch (this.f21701a) {
             case 0:
-                yy yyVar = this.f21899b;
-                yyVar.getClass();
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(Integer.valueOf(this.f21900c.message.f27022id));
-                yyVar.getMessagesStorage().c2(-this.d, arrayList, true, -1, 0, false, null);
-                return;
+                dw dwVar = this.f21702b;
+                dwVar.getClass();
+                int i7 = 0;
+                while (true) {
+                    ArrayList arrayList = this.f21703c;
+                    if (i7 < arrayList.size()) {
+                        ij ijVar = new ij(dwVar.currentAccount, (TLRPC.Message) arrayList.get(i7), false, true);
+                        ijVar.A0 = true;
+                        dwVar.getSendMessagesHelper().k0(0L, ijVar, true);
+                        i7++;
+                    } else {
+                        return;
+                    }
+                }
             default:
-                yy yyVar2 = this.f21899b;
-                yyVar2.getClass();
-                ArrayList arrayList2 = new ArrayList();
-                arrayList2.add(Integer.valueOf(this.f21900c.message.f27022id));
-                yyVar2.getMessagesStorage().c2(-this.d, arrayList2, true, -1, 0, false, null);
-                return;
+                dw dwVar2 = this.f21702b;
+                dwVar2.getClass();
+                int i10 = 0;
+                while (true) {
+                    ArrayList arrayList2 = this.f21703c;
+                    if (i10 < arrayList2.size()) {
+                        ij ijVar2 = (ij) dwVar2.getMessagesController().S.f(((Long) arrayList2.get(i10)).longValue());
+                        if (ijVar2 != null) {
+                            ijVar2.Z = true;
+                        }
+                        i10++;
+                    } else {
+                        return;
+                    }
+                }
         }
     }
 }

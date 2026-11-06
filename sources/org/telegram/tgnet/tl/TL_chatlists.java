@@ -1,7 +1,7 @@
 package org.telegram.tgnet.tl;
 
 import java.util.ArrayList;
-import o4.v0;
+import org.telegram.messenger.ch;
 import org.telegram.tgnet.InputSerializedData;
 import org.telegram.tgnet.OutputSerializedData;
 import org.telegram.tgnet.TLObject;
@@ -21,30 +21,30 @@ public class TL_chatlists {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int readInt32 = inputSerializedData.readInt32(z10);
+        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
+            int readInt32 = inputSerializedData.readInt32(z9);
             this.flags = readInt32;
             this.title_noanimate = TLObject.hasFlag(readInt32, 2);
-            this.title = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+            this.title = TLRPC.TL_textWithEntities.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
             if ((this.flags & 1) > 0) {
-                this.emoticon = inputSerializedData.readString(z10);
+                this.emoticon = inputSerializedData.readString(z9);
             }
-            this.peers = Vector.deserialize(inputSerializedData, new v0(29), z10);
-            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
-            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
+            this.peers = Vector.deserialize(inputSerializedData, new ch(2), z9);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z9);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z9);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            int i3;
+            int i7;
             outputSerializedData.writeInt32(-250687953);
             if (this.title_noanimate) {
-                i3 = this.flags | 2;
+                i7 = this.flags | 2;
             } else {
-                i3 = this.flags & (-3);
+                i7 = this.flags & (-3);
             }
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
+            this.flags = i7;
+            outputSerializedData.writeInt32(i7);
             this.title.serializeToStream(outputSerializedData);
             if ((this.flags & 1) > 0) {
                 outputSerializedData.writeString(this.emoticon);
@@ -64,12 +64,12 @@ public class TL_chatlists {
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.filter_id = inputSerializedData.readInt32(z10);
-            this.missing_peers = Vector.deserialize(inputSerializedData, new v0(29), z10);
-            this.already_peers = Vector.deserialize(inputSerializedData, new v0(29), z10);
-            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
-            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
+        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
+            this.filter_id = inputSerializedData.readInt32(z9);
+            this.missing_peers = Vector.deserialize(inputSerializedData, new ch(2), z9);
+            this.already_peers = Vector.deserialize(inputSerializedData, new ch(2), z9);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z9);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z9);
         }
 
         @Override
@@ -87,17 +87,17 @@ public class TL_chatlists {
         public static final int constructor = 500007837;
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.flags = inputSerializedData.readInt32(z10);
+        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
+            this.flags = inputSerializedData.readInt32(z9);
             TLRPC.TL_textWithEntities tL_textWithEntities = new TLRPC.TL_textWithEntities();
             this.title = tL_textWithEntities;
-            tL_textWithEntities.text = inputSerializedData.readString(z10);
+            tL_textWithEntities.text = inputSerializedData.readString(z9);
             if ((this.flags & 1) > 0) {
-                this.emoticon = inputSerializedData.readString(z10);
+                this.emoticon = inputSerializedData.readString(z9);
             }
-            this.peers = Vector.deserialize(inputSerializedData, new v0(29), z10);
-            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
-            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
+            this.peers = Vector.deserialize(inputSerializedData, new ch(2), z9);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z9);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z9);
         }
 
         @Override
@@ -120,21 +120,21 @@ public class TL_chatlists {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_chatlists_chatlistUpdates TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
+        public static TL_chatlists_chatlistUpdates TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
             TL_chatlists_chatlistUpdates tL_chatlists_chatlistUpdates;
-            if (-1816295539 != i3) {
+            if (-1816295539 != i7) {
                 tL_chatlists_chatlistUpdates = null;
             } else {
                 tL_chatlists_chatlistUpdates = new TL_chatlists_chatlistUpdates();
             }
-            return (TL_chatlists_chatlistUpdates) TLObject.TLdeserialize(TL_chatlists_chatlistUpdates.class, tL_chatlists_chatlistUpdates, inputSerializedData, i3, z10);
+            return (TL_chatlists_chatlistUpdates) TLObject.TLdeserialize(TL_chatlists_chatlistUpdates.class, tL_chatlists_chatlistUpdates, inputSerializedData, i7, z9);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.missing_peers = Vector.deserialize(inputSerializedData, new v0(29), z10);
-            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
-            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
+        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
+            this.missing_peers = Vector.deserialize(inputSerializedData, new ch(2), z9);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z9);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z9);
         }
 
         @Override
@@ -151,8 +151,8 @@ public class TL_chatlists {
         public String slug;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
-            return chatlist_ChatlistInvite.TLdeserialize(inputSerializedData, i3, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
+            return chatlist_ChatlistInvite.TLdeserialize(inputSerializedData, i7, z9);
         }
 
         @Override
@@ -168,8 +168,8 @@ public class TL_chatlists {
         public String slug;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i3, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i7, z9);
         }
 
         @Override
@@ -190,8 +190,8 @@ public class TL_chatlists {
         public String title;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
-            return TL_exportedChatlistInvite.TLdeserialize(inputSerializedData, i3, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
+            return TL_exportedChatlistInvite.TLdeserialize(inputSerializedData, i7, z9);
         }
 
         @Override
@@ -218,8 +218,8 @@ public class TL_chatlists {
         public String title;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
-            return TL_chatlists_exportedChatlistInvite.TLdeserialize(inputSerializedData, i3, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
+            return TL_chatlists_exportedChatlistInvite.TLdeserialize(inputSerializedData, i7, z9);
         }
 
         @Override
@@ -236,20 +236,20 @@ public class TL_chatlists {
         public TLRPC.DialogFilter filter;
         public TL_exportedChatlistInvite invite;
 
-        public static TL_chatlists_exportedChatlistInvite TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
+        public static TL_chatlists_exportedChatlistInvite TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
             TL_chatlists_exportedChatlistInvite tL_chatlists_exportedChatlistInvite;
-            if (283567014 != i3) {
+            if (283567014 != i7) {
                 tL_chatlists_exportedChatlistInvite = null;
             } else {
                 tL_chatlists_exportedChatlistInvite = new TL_chatlists_exportedChatlistInvite();
             }
-            return (TL_chatlists_exportedChatlistInvite) TLObject.TLdeserialize(TL_chatlists_exportedChatlistInvite.class, tL_chatlists_exportedChatlistInvite, inputSerializedData, i3, z10);
+            return (TL_chatlists_exportedChatlistInvite) TLObject.TLdeserialize(TL_chatlists_exportedChatlistInvite.class, tL_chatlists_exportedChatlistInvite, inputSerializedData, i7, z9);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.filter = TLRPC.DialogFilter.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-            this.invite = TL_exportedChatlistInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
+            this.filter = TLRPC.DialogFilter.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
+            this.invite = TL_exportedChatlistInvite.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z9), z9);
         }
 
         @Override
@@ -266,21 +266,21 @@ public class TL_chatlists {
         public ArrayList<TLRPC.Chat> chats = new ArrayList<>();
         public ArrayList<TLRPC.User> users = new ArrayList<>();
 
-        public static TL_chatlists_exportedInvites TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
+        public static TL_chatlists_exportedInvites TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
             TL_chatlists_exportedInvites tL_chatlists_exportedInvites;
-            if (279670215 != i3) {
+            if (279670215 != i7) {
                 tL_chatlists_exportedInvites = null;
             } else {
                 tL_chatlists_exportedInvites = new TL_chatlists_exportedInvites();
             }
-            return (TL_chatlists_exportedInvites) TLObject.TLdeserialize(TL_chatlists_exportedInvites.class, tL_chatlists_exportedInvites, inputSerializedData, i3, z10);
+            return (TL_chatlists_exportedInvites) TLObject.TLdeserialize(TL_chatlists_exportedInvites.class, tL_chatlists_exportedInvites, inputSerializedData, i7, z9);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.invites = Vector.deserialize(inputSerializedData, new c(20), z10);
-            this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
-            this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
+        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
+            this.invites = Vector.deserialize(inputSerializedData, new c(20), z9);
+            this.chats = Vector.deserialize(inputSerializedData, new m(10), z9);
+            this.users = Vector.deserialize(inputSerializedData, new m(4), z9);
         }
 
         @Override
@@ -297,8 +297,8 @@ public class TL_chatlists {
         public TL_inputChatlistDialogFilter chatlist;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
-            return TL_chatlists_chatlistUpdates.TLdeserialize(inputSerializedData, i3, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
+            return TL_chatlists_chatlistUpdates.TLdeserialize(inputSerializedData, i7, z9);
         }
 
         @Override
@@ -313,8 +313,8 @@ public class TL_chatlists {
         public TL_inputChatlistDialogFilter chatlist;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
-            return TL_chatlists_exportedInvites.TLdeserialize(inputSerializedData, i3, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
+            return TL_chatlists_exportedInvites.TLdeserialize(inputSerializedData, i7, z9);
         }
 
         @Override
@@ -329,8 +329,8 @@ public class TL_chatlists {
         public TL_inputChatlistDialogFilter chatlist;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
-            return Vector.TLDeserialize(inputSerializedData, i3, z10, new v0(29));
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
+            return Vector.TLDeserialize(inputSerializedData, i7, z9, new ch(2));
         }
 
         @Override
@@ -345,8 +345,8 @@ public class TL_chatlists {
         public TL_inputChatlistDialogFilter chatlist;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
-            return TLRPC.Bool.TLdeserialize(inputSerializedData, i3, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
+            return TLRPC.Bool.TLdeserialize(inputSerializedData, i7, z9);
         }
 
         @Override
@@ -362,8 +362,8 @@ public class TL_chatlists {
         public String slug;
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i3, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i7, z9);
         }
 
         @Override
@@ -380,8 +380,8 @@ public class TL_chatlists {
         public ArrayList<TLRPC.InputPeer> peers = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i3, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i7, z9);
         }
 
         @Override
@@ -398,8 +398,8 @@ public class TL_chatlists {
         public ArrayList<TLRPC.InputPeer> peers = new ArrayList<>();
 
         @Override
-        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i3, boolean z10) {
-            return TLRPC.Updates.TLdeserialize(inputSerializedData, i3, z10);
+        public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i7, boolean z9) {
+            return TLRPC.Updates.TLdeserialize(inputSerializedData, i7, z9);
         }
 
         @Override
@@ -418,37 +418,37 @@ public class TL_chatlists {
         public String title;
         public String url;
 
-        public static TL_exportedChatlistInvite TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
+        public static TL_exportedChatlistInvite TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
             TL_exportedChatlistInvite tL_exportedChatlistInvite;
-            if (206668204 != i3) {
+            if (206668204 != i7) {
                 tL_exportedChatlistInvite = null;
             } else {
                 tL_exportedChatlistInvite = new TL_exportedChatlistInvite();
             }
-            return (TL_exportedChatlistInvite) TLObject.TLdeserialize(TL_exportedChatlistInvite.class, tL_exportedChatlistInvite, inputSerializedData, i3, z10);
+            return (TL_exportedChatlistInvite) TLObject.TLdeserialize(TL_exportedChatlistInvite.class, tL_exportedChatlistInvite, inputSerializedData, i7, z9);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            int readInt32 = inputSerializedData.readInt32(z10);
+        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
+            int readInt32 = inputSerializedData.readInt32(z9);
             this.flags = readInt32;
             this.revoked = TLObject.hasFlag(readInt32, 1);
-            this.title = inputSerializedData.readString(z10);
-            this.url = inputSerializedData.readString(z10);
-            this.peers = Vector.deserialize(inputSerializedData, new v0(29), z10);
+            this.title = inputSerializedData.readString(z9);
+            this.url = inputSerializedData.readString(z9);
+            this.peers = Vector.deserialize(inputSerializedData, new ch(2), z9);
         }
 
         @Override
         public void serializeToStream(OutputSerializedData outputSerializedData) {
-            int i3;
+            int i7;
             outputSerializedData.writeInt32(206668204);
             if (this.revoked) {
-                i3 = this.flags | 1;
+                i7 = this.flags | 1;
             } else {
-                i3 = this.flags & (-2);
+                i7 = this.flags & (-2);
             }
-            this.flags = i3;
-            outputSerializedData.writeInt32(i3);
+            this.flags = i7;
+            outputSerializedData.writeInt32(i7);
             outputSerializedData.writeString(this.title);
             outputSerializedData.writeString(this.url);
             Vector.serialize(outputSerializedData, this.peers);
@@ -459,19 +459,19 @@ public class TL_chatlists {
         public static final int constructor = -203367885;
         public int filter_id;
 
-        public static TL_inputChatlistDialogFilter TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
+        public static TL_inputChatlistDialogFilter TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
             TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter;
-            if (-203367885 != i3) {
+            if (-203367885 != i7) {
                 tL_inputChatlistDialogFilter = null;
             } else {
                 tL_inputChatlistDialogFilter = new TL_inputChatlistDialogFilter();
             }
-            return (TL_inputChatlistDialogFilter) TLObject.TLdeserialize(TL_inputChatlistDialogFilter.class, tL_inputChatlistDialogFilter, inputSerializedData, i3, z10);
+            return (TL_inputChatlistDialogFilter) TLObject.TLdeserialize(TL_inputChatlistDialogFilter.class, tL_inputChatlistDialogFilter, inputSerializedData, i7, z9);
         }
 
         @Override
-        public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.filter_id = inputSerializedData.readInt32(z10);
+        public void readParams(InputSerializedData inputSerializedData, boolean z9) {
+            this.filter_id = inputSerializedData.readInt32(z9);
         }
 
         @Override
@@ -482,11 +482,11 @@ public class TL_chatlists {
     }
 
     public static abstract class chatlist_ChatlistInvite extends TLObject {
-        public static chatlist_ChatlistInvite TLdeserialize(InputSerializedData inputSerializedData, int i3, boolean z10) {
+        public static chatlist_ChatlistInvite TLdeserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
             TLObject tL_chatlists_chatlistInvite;
-            if (i3 != -250687953) {
-                if (i3 != -91752871) {
-                    if (i3 != 500007837) {
+            if (i7 != -250687953) {
+                if (i7 != -91752871) {
+                    if (i7 != 500007837) {
                         tL_chatlists_chatlistInvite = null;
                     } else {
                         tL_chatlists_chatlistInvite = new TL_chatlists_chatlistInvite_layer195();
@@ -497,7 +497,7 @@ public class TL_chatlists {
             } else {
                 tL_chatlists_chatlistInvite = new TL_chatlists_chatlistInvite();
             }
-            return (chatlist_ChatlistInvite) TLObject.TLdeserialize(chatlist_ChatlistInvite.class, tL_chatlists_chatlistInvite, inputSerializedData, i3, z10);
+            return (chatlist_ChatlistInvite) TLObject.TLdeserialize(chatlist_ChatlistInvite.class, tL_chatlists_chatlistInvite, inputSerializedData, i7, z9);
         }
     }
 }

@@ -1,61 +1,58 @@
 package m4;
 
-import e3.i0;
-import e3.o;
-import e3.p;
-import e3.q;
-import g9.g0;
-import g9.s1;
+import h9.i0;
+import h9.t1;
 import java.util.List;
-public final class c implements o {
-    public q f19078a;
-    public i0 f19079b;
-    public int f19080c;
-    public long d;
-    public b f19081e;
-    public int f19082f;
-    public long f19083g;
+public final class c implements f3.o {
+    public final b f19592a = new b(0, 1, null, "audio/ac4");
+    public final h2.x f19593b = new h2.x(16384);
+    public boolean f19594c;
 
     @Override
-    public final boolean b(p pVar) {
-        return d.a(pVar);
+    public final boolean b(f3.p r15) {
+        throw new UnsupportedOperationException("Method not decompiled: m4.c.b(f3.p):boolean");
     }
 
     @Override
-    public final void c(q qVar) {
-        this.f19078a = qVar;
-        this.f19079b = qVar.i0(0, 1);
-        qVar.L();
+    public final void c(f3.q qVar) {
+        this.f19592a.g(qVar, new g0(0, 1));
+        qVar.U0();
+        qVar.f(new f3.t(-9223372036854775807L));
     }
 
     @Override
-    public final void d(long j10, long j11) {
-        int i3;
-        if (j10 == 0) {
-            i3 = 0;
-        } else {
-            i3 = 4;
-        }
-        this.f19080c = i3;
-        b bVar = this.f19081e;
-        if (bVar != null) {
-            bVar.a(j11);
-        }
+    public final void d(long j3, long j10) {
+        this.f19594c = false;
+        this.f19592a.d();
     }
 
     @Override
     public final List e() {
-        g0 g0Var = g9.i0.f12083b;
-        return s1.f12146e;
+        h9.g0 g0Var = i0.f14329b;
+        return t1.f14397e;
     }
 
     @Override
-    public final int f(e3.p r21, e3.s r22) {
-        throw new UnsupportedOperationException("Method not decompiled: m4.c.f(e3.p, e3.s):int");
+    public final int f(f3.p pVar, f3.s sVar) {
+        h2.x xVar = this.f19593b;
+        int read = pVar.read(xVar.f14162a, 0, 16384);
+        if (read == -1) {
+            return -1;
+        }
+        xVar.N(0);
+        xVar.M(read);
+        boolean z9 = this.f19594c;
+        b bVar = this.f19592a;
+        if (!z9) {
+            bVar.f19586o = 0L;
+            this.f19594c = true;
+        }
+        bVar.c(xVar);
+        return 0;
     }
 
     @Override
-    public final o a() {
+    public final f3.o a() {
         return this;
     }
 

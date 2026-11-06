@@ -1,28 +1,32 @@
 package o8;
 
 import android.os.Parcel;
-import android.os.ParcelFileDescriptor;
 import android.os.Parcelable;
-import com.google.android.gms.common.data.DataHolder;
-public final class b extends q6.a {
-    public static final Parcelable.Creator<b> CREATOR = new n8.g(8);
-    public String f20929a;
-    public DataHolder f20930b;
-    public ParcelFileDescriptor f20931c;
-    public long d;
-    public byte[] f20932e;
+import c8.wb;
+import java.util.Arrays;
+import q6.m;
+public final class b extends r6.a {
+    public static final Parcelable.Creator<b> CREATOR = new m6.e(14);
+    public String f20856a;
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof b) {
+            return m.k(this.f20856a, ((b) obj).f20856a);
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f20856a});
+    }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i3) {
-        int s6 = j8.a.s(parcel, 20293);
-        j8.a.m(parcel, 2, this.f20929a);
-        j8.a.l(parcel, 3, this.f20930b, i3);
-        j8.a.l(parcel, 4, this.f20931c, i3);
-        long j10 = this.d;
-        j8.a.r(parcel, 5, 8);
-        parcel.writeLong(j10);
-        j8.a.d(parcel, 6, this.f20932e);
-        j8.a.t(parcel, s6);
-        this.f20931c = null;
+    public final void writeToParcel(Parcel parcel, int i7) {
+        int r10 = wb.r(parcel, 20293);
+        wb.l(parcel, 1, this.f20856a);
+        wb.s(parcel, r10);
     }
 }

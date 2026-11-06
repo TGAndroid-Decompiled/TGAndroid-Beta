@@ -1,35 +1,35 @@
 package org.telegram.ui;
-public final class gk implements Runnable {
-    public final int f45674a;
-    public final hk f45675b;
 
-    public gk(hk hkVar, int i3) {
-        this.f45674a = i3;
-        this.f45675b = hkVar;
+import android.animation.LayoutTransition;
+import android.view.View;
+import android.view.ViewGroup;
+public final class gk implements LayoutTransition.TransitionListener {
+    public fk f45992a;
+    public int f45993b;
+    public final org.telegram.ui.ActionBar.y f45994c;
+    public final an d;
+
+    public gk(an anVar, org.telegram.ui.ActionBar.y yVar) {
+        this.d = anVar;
+        this.f45994c = yVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f45674a) {
-            case 0:
-                mj mjVar = this.f45675b.I.f51237a0;
-                if (mjVar != null) {
-                    mjVar.G0();
-                    return;
-                }
-                return;
-            default:
-                mj mjVar2 = this.f45675b.I.f51237a0;
-                if (mjVar2 != null) {
-                    mjVar2.U0 = false;
-                    org.telegram.ui.Components.kf kfVar = mjVar2.V0;
-                    if (kfVar != null) {
-                        kfVar.u(false);
-                        return;
-                    }
-                    return;
-                }
-                return;
+    public final void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i7) {
+        int i10 = this.f45993b - 1;
+        this.f45993b = i10;
+        if (i10 == 0 && this.f45992a != null) {
+            this.f45994c.getViewTreeObserver().removeOnPreDrawListener(this.f45992a);
+            this.f45992a = null;
         }
+    }
+
+    @Override
+    public final void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i7) {
+        if (this.f45993b == 0 && this.f45992a == null) {
+            this.f45992a = new fk(this, 0);
+            this.f45994c.getViewTreeObserver().addOnPreDrawListener(this.f45992a);
+        }
+        this.f45993b++;
     }
 }

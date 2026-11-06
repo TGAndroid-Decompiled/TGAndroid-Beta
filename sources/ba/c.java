@@ -1,38 +1,39 @@
 package ba;
 
-import java.util.Map;
-public final class c {
-    public final String f3174a;
-    public final long f3175b;
-    public final Map f3176c;
+import aa.o;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+public final class c implements Executor {
+    public final ExecutorService f3132a;
+    public final Object f3133b = new Object();
+    public Task f3134c = Tasks.forResult(null);
 
-    public c(String str, long j10, Map additionalCustomKeys) {
-        kotlin.jvm.internal.j.e(additionalCustomKeys, "additionalCustomKeys");
-        this.f3174a = str;
-        this.f3175b = j10;
-        this.f3176c = additionalCustomKeys;
+    public c(ExecutorService executorService) {
+        this.f3132a = executorService;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final Task a(Runnable runnable) {
+        Task continueWithTask;
+        synchronized (this.f3133b) {
+            continueWithTask = this.f3134c.continueWithTask(this.f3132a, new b(runnable));
+            this.f3134c = continueWithTask;
         }
-        if (!(obj instanceof c)) {
-            return false;
-        }
-        c cVar = (c) obj;
-        if (kotlin.jvm.internal.j.a(this.f3174a, cVar.f3174a) && this.f3175b == cVar.f3175b && kotlin.jvm.internal.j.a(this.f3176c, cVar.f3176c)) {
-            return true;
-        }
-        return false;
+        return continueWithTask;
     }
 
-    public final int hashCode() {
-        long j10 = this.f3175b;
-        return this.f3176c.hashCode() + (((this.f3174a.hashCode() * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31);
+    public final Task b(o oVar) {
+        Task continueWithTask;
+        synchronized (this.f3133b) {
+            continueWithTask = this.f3134c.continueWithTask(this.f3132a, new a1.c(oVar, 8));
+            this.f3134c = continueWithTask;
+        }
+        return continueWithTask;
     }
 
-    public final String toString() {
-        return "EventMetadata(sessionId=" + this.f3174a + ", timestamp=" + this.f3175b + ", additionalCustomKeys=" + this.f3176c + ')';
+    @Override
+    public final void execute(Runnable runnable) {
+        this.f3132a.execute(runnable);
     }
 }

@@ -1,16 +1,10 @@
 package fg;
 
 import java.nio.ShortBuffer;
-import mb.b;
-import ra.e;
-import v7.s;
+import sa.d;
 public interface a {
-    public static final e f11592m = new e(7);
-    public static final b f11593o = new b(8);
-    public static final s f11594p = new s(7);
-    public static final kb.a f11595q = new kb.a(8);
+    public static final d f11479u = new d(9);
+    public static final nb.a v = new nb.a(10);
 
-    void H0(ShortBuffer shortBuffer, int i3, ShortBuffer shortBuffer2, int i10);
-
-    int v1(int i3, int i10, int i11);
+    void q0(ShortBuffer shortBuffer, int i7, ShortBuffer shortBuffer2, int i10, int i11);
 }

@@ -5,50 +5,50 @@ import android.content.Context;
 import android.content.Intent;
 import org.telegram.tgnet.ConnectionsManager;
 public final class q0 extends BroadcastReceiver {
-    public final int f24843a;
+    public final int f24647a;
 
-    public q0(int i3) {
-        this.f24843a = i3;
+    public q0(int i7) {
+        this.f24647a = i7;
     }
 
     @Override
     public final void onReceive(Context context, Intent intent) {
-        switch (this.f24843a) {
+        switch (this.f24647a) {
             case 0:
                 try {
-                    t0.f25458c = t0.f25459e.getActiveNetworkInfo();
+                    t0.f25556c = t0.f25557e.getActiveNetworkInfo();
                 } catch (Throwable unused) {
                 }
                 boolean p10 = t0.p();
-                for (int i3 = 0; i3 < 4; i3++) {
-                    ConnectionsManager.getInstance(i3).checkConnection();
-                    w7.K.c(new g10(1, w7.G(i3), p10));
+                for (int i7 = 0; i7 < 4; i7++) {
+                    ConnectionsManager.getInstance(i7).checkConnection();
+                    w7.J.c(new o10(1, w7.G(i7), p10));
                 }
                 return;
             case 1:
-                lc.h(intent);
+                rc.h(intent);
                 return;
             case 2:
                 if ("android.media.AUDIO_BECOMING_NOISY".equals(intent.getAction())) {
-                    MediaController.B().R(MediaController.B().f21348v0, true);
+                    MediaController.B().R(MediaController.B().f21292u0, true);
                     return;
                 }
                 return;
             default:
                 if (intent.getAction().equals("android.intent.action.SCREEN_OFF")) {
-                    if (r2.f25040a) {
+                    if (r2.f25191a) {
                         a8.b("screen off");
                     }
-                    ConnectionsManager.getInstance(h10.f22829t0).setAppPaused(true, true);
-                    t0.f25464w = false;
+                    ConnectionsManager.getInstance(p10.f24459s0).setAppPaused(true, true);
+                    t0.f25562w = false;
                 } else if (intent.getAction().equals("android.intent.action.SCREEN_ON")) {
-                    if (r2.f25040a) {
+                    if (r2.f25191a) {
                         a8.b("screen on");
                     }
-                    ConnectionsManager.getInstance(h10.f22829t0).setAppPaused(false, true);
-                    t0.f25464w = true;
+                    ConnectionsManager.getInstance(p10.f24459s0).setAppPaused(false, true);
+                    t0.f25562w = true;
                 }
-                hs.e().k(287, new Object[0]);
+                qs.e().k(287, new Object[0]);
                 return;
         }
     }

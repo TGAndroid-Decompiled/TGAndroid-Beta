@@ -10,17 +10,17 @@ public class ContactsWidgetService extends RemoteViewsService {
     public final RemoteViewsService.RemoteViewsFactory onGetViewFactory(Intent intent) {
         Context applicationContext = getApplicationContext();
         ?? obj = new Object();
-        obj.f23440a = new ArrayList();
-        obj.f23445g = new a0.h();
-        obj.f23441b = applicationContext;
+        obj.f23049a = new ArrayList();
+        obj.f23054g = new a0.h();
+        obj.f23050b = applicationContext;
         org.telegram.ui.ActionBar.k6.T(applicationContext);
-        boolean z10 = false;
+        boolean z9 = false;
         int intExtra = intent.getIntExtra("appWidgetId", 0);
-        obj.f23442c = intExtra;
+        obj.f23051c = intExtra;
         SharedPreferences sharedPreferences = applicationContext.getSharedPreferences("shortcut_widget", 0);
-        int i3 = sharedPreferences.getInt("account" + intExtra, -1);
-        if (i3 >= 0) {
-            obj.d = c.a(i3);
+        int i7 = sharedPreferences.getInt("account" + intExtra, -1);
+        if (i7 >= 0) {
+            obj.d = c.a(i7);
         }
         StringBuilder sb2 = new StringBuilder("deleted");
         sb2.append(intExtra);

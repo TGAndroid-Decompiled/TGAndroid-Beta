@@ -9,87 +9,87 @@ import java.util.HashMap;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.lc1;
-public final class mo implements zh {
-    public final bi f36216a;
-    public final TL_stories.TL_premium_boostsStatus f36217b;
-    public final org.telegram.ui.ActionBar.e6 f36218c;
+import org.telegram.ui.pc1;
+public final class mo implements bi {
+    public final di f36049a;
+    public final TL_stories.TL_premium_boostsStatus f36050b;
+    public final org.telegram.ui.ActionBar.f6 f36051c;
     public final org.telegram.ui.f d;
-    public final long f36219e;
-    public final org.telegram.ui.ub f36220f;
-    public final org.telegram.ui.pc h;
+    public final long f36052e;
+    public final org.telegram.ui.wb f36053f;
+    public final org.telegram.ui.rc h;
 
-    public mo(bi biVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.f fVar, long j10, org.telegram.ui.ub ubVar, org.telegram.ui.pc pcVar) {
-        this.f36216a = biVar;
-        this.f36217b = tL_premium_boostsStatus;
-        this.f36218c = e6Var;
+    public mo(di diVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.f fVar, long j3, org.telegram.ui.wb wbVar, org.telegram.ui.rc rcVar) {
+        this.f36049a = diVar;
+        this.f36050b = tL_premium_boostsStatus;
+        this.f36051c = f6Var;
         this.d = fVar;
-        this.f36219e = j10;
-        this.f36220f = ubVar;
-        this.h = pcVar;
+        this.f36052e = j3;
+        this.f36053f = wbVar;
+        this.h = rcVar;
     }
 
     @Override
-    public final void I0(Object obj) {
-        lo loVar = new lo(obj, null, true, 1);
-        loVar.X1 = this.f36217b;
-        loVar.f47141a.f47115a = this.f36218c;
-        loVar.f47191r1 = this.d;
-        loVar.h1(this.f36219e);
-        loVar.K1 = new ko(this.f36216a, this.f36220f, 1);
-        ?? obj2 = new Object();
-        obj2.f27395a = true;
-        obj2.f27398e = true;
-        this.h.showAsSheet(loVar, obj2);
-    }
-
-    @Override
-    public final boolean L1() {
+    public final boolean G1() {
         System.currentTimeMillis();
         return true;
     }
 
     @Override
-    public final void Y(ng ngVar) {
-        ngVar.run();
+    public final void M0(Object obj) {
+        lo loVar = new lo(obj, null, true, 1);
+        loVar.W1 = this.f36050b;
+        loVar.f50244a.f50574a = this.f36051c;
+        loVar.f50290q1 = this.d;
+        loVar.h1(this.f36052e);
+        loVar.J1 = new ko(this.f36049a, this.f36053f, 1);
+        ?? obj2 = new Object();
+        obj2.f27420a = true;
+        obj2.f27423e = true;
+        this.h.showAsSheet(loVar, obj2);
     }
 
     @Override
-    public final boolean g0() {
+    public final void c0(qg qgVar) {
+        qgVar.run();
+    }
+
+    @Override
+    public final boolean f0() {
         return false;
     }
 
     @Override
-    public final void o1(int i3, boolean z10, boolean z11, int i10, int i11, long j10, boolean z12, boolean z13, long j11) {
-        bi biVar = this.f36216a;
+    public final void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
+        di diVar = this.f36049a;
         try {
-            HashMap<Object, Object> selectedPhotos = biVar.f32215b2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = diVar.f32882a2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
-                org.telegram.messenger.ye yeVar = (org.telegram.messenger.ye) selectedPhotos.values().iterator().next();
-                String str = yeVar.h;
+                org.telegram.messenger.gf gfVar = (org.telegram.messenger.gf) selectedPhotos.values().iterator().next();
+                String str = gfVar.h;
                 if (str == null) {
-                    str = yeVar.I;
+                    str = gfVar.I;
                 }
                 if (str != null) {
-                    File z14 = org.telegram.messenger.w7.z(4);
-                    File file = new File(z14, Utilities.f21385b.nextInt() + ".jpg");
+                    File z13 = org.telegram.messenger.w7.z(4);
+                    File file = new File(z13, Utilities.f21331b.nextInt() + ".jpg");
                     Point c12 = org.telegram.messenger.g0.c1();
-                    Bitmap K = org.telegram.messenger.zb.K(str, null, (float) c12.x, (float) c12.y, true);
+                    Bitmap K = org.telegram.messenger.gc.K(str, null, (float) c12.x, (float) c12.y, true);
                     K.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    lo loVar = new lo(new lc1(file, file, ""), K, false, 0);
-                    loVar.X1 = this.f36217b;
-                    loVar.f47141a.f47115a = this.f36218c;
-                    loVar.f47191r1 = this.d;
-                    loVar.H1 = false;
+                    lo loVar = new lo(new pc1(file, file, ""), K, false, 0);
+                    loVar.W1 = this.f36050b;
+                    loVar.f50244a.f50574a = this.f36051c;
+                    loVar.f50290q1 = this.d;
                     loVar.G1 = false;
-                    loVar.f47186p1 = 0.2f;
-                    loVar.h1(this.f36219e);
-                    loVar.K1 = new ko(biVar, this.f36220f, 0);
+                    loVar.F1 = false;
+                    loVar.f50286o1 = 0.2f;
+                    loVar.h1(this.f36052e);
+                    loVar.J1 = new ko(diVar, this.f36053f, 0);
                     ?? obj = new Object();
-                    obj.f27395a = true;
-                    obj.f27398e = true;
+                    obj.f27420a = true;
+                    obj.f27423e = true;
                     this.h.showAsSheet(loVar, obj);
-                    biVar.dismiss();
+                    diVar.dismiss();
                 }
             }
         } catch (Throwable th2) {
@@ -98,18 +98,18 @@ public final class mo implements zh {
     }
 
     @Override
-    public final void a1(TLRPC.User user) {
+    public final void Y0(TLRPC.User user) {
     }
 
     @Override
-    public final void r0() {
+    public final void F0() {
     }
 
     @Override
-    public final void v0() {
+    public final void t0() {
     }
 
     @Override
-    public final void R1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i3, int i10, long j10, boolean z11, long j11) {
+    public final void M1(ArrayList arrayList, CharSequence charSequence, boolean z9, int i7, int i10, long j3, boolean z10, long j10) {
     }
 }

@@ -1,24 +1,17 @@
 package org.telegram.ui;
+public final class zc0 implements Runnable {
+    public final int f52519a;
+    public final Object f52520b;
+    public final Object f52521c;
 
-import android.content.DialogInterface;
-public final class zc0 implements DialogInterface.OnDismissListener {
-    public final int f52653a;
-    public final dd0 f52654b;
-
-    public zc0(dd0 dd0Var, int i3) {
-        this.f52653a = i3;
-        this.f52654b = dd0Var;
+    public zc0(int i7, Object obj, Object obj2) {
+        this.f52519a = i7;
+        this.f52520b = obj;
+        this.f52521c = obj2;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f52653a) {
-            case 0:
-                this.f52654b.f44663v0.finishFragment();
-                return;
-            default:
-                this.f52654b.f44663v0.finishFragment();
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.zc0.run():void");
     }
 }

@@ -1,72 +1,30 @@
 package mf;
 
-import a1.g;
-import java.util.ArrayList;
-public final class a {
-    public String f19280a;
-    public ArrayList f19281b;
-    public ArrayList f19282c;
-    public ArrayList d;
+import gf.b;
+import gf.h;
+public abstract class a {
+    public boolean b(kf.a aVar) {
+        return this instanceof b;
+    }
 
-    public final String a(String str) {
-        String str2;
-        String str3;
-        String str4;
-        String str5 = null;
-        if (str.startsWith(this.f19280a)) {
-            str4 = this.f19280a;
-            str3 = str.substring(str4.length());
-        } else {
-            ArrayList arrayList = this.f19281b;
-            int size = arrayList.size();
-            int i3 = 0;
-            while (true) {
-                if (i3 < size) {
-                    Object obj = arrayList.get(i3);
-                    i3++;
-                    str2 = (String) obj;
-                    if (str.startsWith(str2)) {
-                        break;
-                    }
-                } else {
-                    str2 = null;
-                    break;
-                }
-            }
-            if (str2 != null) {
-                str3 = str.substring(str2.length());
-                str4 = null;
-                str5 = str2;
-            } else {
-                str3 = str;
-                str4 = null;
-            }
-        }
-        ArrayList arrayList2 = this.d;
-        int size2 = arrayList2.size();
-        int i10 = 0;
-        while (i10 < size2) {
-            Object obj2 = arrayList2.get(i10);
-            i10++;
-            String a10 = ((d) obj2).a(str3, str4, str5, true);
-            if (a10 != null) {
-                return a10;
-            }
-        }
-        ArrayList arrayList3 = this.d;
-        int size3 = arrayList3.size();
-        int i11 = 0;
-        while (i11 < size3) {
-            Object obj3 = arrayList3.get(i11);
-            i11++;
-            String a11 = ((d) obj3).a(str3, str4, str5, false);
-            if (a11 != null) {
-                return a11;
-            }
-        }
-        if (str4 != null && str3.length() != 0) {
-            return g.C(str4, " ", str3);
-        }
-        return str;
+    public boolean c() {
+        return this instanceof ff.b;
+    }
+
+    public abstract kf.a e();
+
+    public boolean f() {
+        return this instanceof b;
+    }
+
+    public abstract gf.a h(h hVar);
+
+    public void d() {
+    }
+
+    public void a(CharSequence charSequence) {
+    }
+
+    public void g(lf.a aVar) {
     }
 }

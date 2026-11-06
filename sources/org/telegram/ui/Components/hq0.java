@@ -2,57 +2,57 @@ package org.telegram.ui.Components;
 
 import android.os.Bundle;
 import java.util.ArrayList;
-public final class hq0 extends org.telegram.ui.wm {
-    public boolean f34482sd;
-    public final int f34483td;
-    public final ws0 f34484ud;
+public final class hq0 extends org.telegram.ui.an {
+    public boolean f34402rd;
+    public final int f34403sd;
+    public final xs0 f34404td;
 
-    public hq0(ws0 ws0Var, Bundle bundle, int i3) {
+    public hq0(xs0 xs0Var, Bundle bundle, int i7) {
         super(bundle);
-        this.f34484ud = ws0Var;
-        this.f34483td = i3;
-        this.f34482sd = true;
+        this.f34404td = xs0Var;
+        this.f34403sd = i7;
+        this.f34402rd = true;
     }
 
     @Override
-    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
-        ws0 ws0Var = this.f34484ud;
-        is0 is0Var = ws0Var.V;
-        if (this.f34482sd) {
-            if (this.f51371k0 != null) {
+    public final void onTransitionAnimationStart(boolean z9, boolean z10) {
+        xs0 xs0Var = this.f34404td;
+        js0 js0Var = xs0Var.U;
+        if (this.f34402rd) {
+            if (this.f43813j0 != null) {
                 La("");
-                this.f51371k0.P(is0Var.f34823x, false);
+                this.f43813j0.P(js0Var.f35081x, false);
             }
-            org.telegram.ui.wj wjVar = this.D1;
-            if (wjVar != null) {
-                wjVar.e(is0Var.f34824y, false);
+            org.telegram.ui.ak akVar = this.C1;
+            if (akVar != null) {
+                akVar.e(js0Var.f35082y, false);
             }
-            org.telegram.messenger.li mediaDataController = ws0Var.f40142y1.getMediaDataController();
+            org.telegram.messenger.ui mediaDataController = xs0Var.f40405x1.getMediaDataController();
             int classGuid = getClassGuid();
-            dh.n0 n0Var = is0Var.f34824y;
-            String str = is0Var.f34823x;
-            ArrayList arrayList = is0Var.f34819n;
-            ArrayList arrayList2 = is0Var.h;
-            int i3 = is0Var.f34822w;
-            boolean z12 = is0Var.f34821s;
-            mediaDataController.R0 = n0Var;
-            mediaDataController.f24021e1 = str;
-            boolean[] zArr = mediaDataController.Y0;
-            zArr[0] = z12;
+            ch.o0 o0Var = js0Var.f35082y;
+            String str = js0Var.f35081x;
+            ArrayList arrayList = js0Var.f35077n;
+            ArrayList arrayList2 = js0Var.h;
+            int i7 = js0Var.f35080w;
+            boolean z11 = js0Var.f35079s;
+            mediaDataController.Q0 = o0Var;
+            mediaDataController.f25798d1 = str;
+            boolean[] zArr = mediaDataController.X0;
+            zArr[0] = z11;
             zArr[1] = true;
-            ArrayList arrayList3 = mediaDataController.f24010a1;
+            ArrayList arrayList3 = mediaDataController.Z0;
             arrayList3.clear();
             arrayList3.addAll(arrayList2);
-            mediaDataController.f24013b1.clear();
-            mediaDataController.f24013b1.addAll(arrayList);
+            mediaDataController.f25790a1.clear();
+            mediaDataController.f25790a1.addAll(arrayList);
             mediaDataController.k2();
-            int[] iArr = mediaDataController.X0;
-            iArr[0] = i3;
+            int[] iArr = mediaDataController.W0;
+            iArr[0] = i7;
             iArr[1] = 0;
-            mediaDataController.f24024f1 = this.f34483td;
-            mediaDataController.getNotificationCenter().k(org.telegram.messenger.hs.H0, Integer.valueOf(classGuid), 0, Integer.valueOf(mediaDataController.c0()), Long.valueOf(mediaDataController.getUserConfig().e()), Integer.valueOf(mediaDataController.f24024f1), Integer.valueOf(mediaDataController.j0()), Boolean.TRUE);
-            this.f34482sd = false;
+            mediaDataController.f25801e1 = this.f34403sd;
+            mediaDataController.getNotificationCenter().k(org.telegram.messenger.qs.H0, Integer.valueOf(classGuid), 0, Integer.valueOf(mediaDataController.c0()), Long.valueOf(mediaDataController.getUserConfig().e()), Integer.valueOf(mediaDataController.f25801e1), Integer.valueOf(mediaDataController.j0()), Boolean.TRUE);
+            this.f34402rd = false;
         }
-        super.onTransitionAnimationStart(z10, z11);
+        super.onTransitionAnimationStart(z9, z10);
     }
 }

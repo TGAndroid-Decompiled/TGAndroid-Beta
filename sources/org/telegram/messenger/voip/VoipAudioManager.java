@@ -3,9 +3,10 @@ package org.telegram.messenger.voip;
 import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
-import ci.e1;
+import bi.k1;
+import li.j3;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.n10;
+import org.telegram.messenger.v10;
 public class VoipAudioManager {
     private Boolean isSpeakerphoneOn;
 
@@ -21,7 +22,7 @@ public class VoipAudioManager {
     }
 
     private AudioManager getAudioManager() {
-        return (AudioManager) org.telegram.messenger.t0.f25457b.getSystemService("audio");
+        return (AudioManager) org.telegram.messenger.t0.f25555b.getSystemService("audio");
     }
 
     public static boolean isBluetoothDevice(AudioDeviceInfo audioDeviceInfo) {
@@ -32,22 +33,22 @@ public class VoipAudioManager {
         if (type == 7) {
             return true;
         }
-        int i3 = Build.VERSION.SDK_INT;
-        if (i3 >= 28 && type == 23) {
+        int i7 = Build.VERSION.SDK_INT;
+        if (i7 >= 28 && type == 23) {
             return true;
         }
-        if (i3 < 31 || (type != 26 && type != 27)) {
+        if (i7 < 31 || (type != 26 && type != 27)) {
             return false;
         }
         return true;
     }
 
-    public static void lambda$isBluetoothAndSpeakerOnAsync$3(n10 n10Var, boolean z10, boolean z11) {
-        n10Var.a(Boolean.valueOf(z10), Boolean.valueOf(z11));
+    public static void lambda$isBluetoothAndSpeakerOnAsync$3(v10 v10Var, boolean z9, boolean z10) {
+        v10Var.a(Boolean.valueOf(z9), Boolean.valueOf(z10));
     }
 
-    public void lambda$isBluetoothAndSpeakerOnAsync$4(n10 n10Var) {
-        org.telegram.messenger.g0.h3(new g2.o0(n10Var, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), 3));
+    public void lambda$isBluetoothAndSpeakerOnAsync$4(v10 v10Var) {
+        org.telegram.messenger.g0.h3(new h2.n0(v10Var, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), 3));
     }
 
     public static void lambda$stopBluetooth$2(AudioManager audioManager) {
@@ -68,8 +69,8 @@ public class VoipAudioManager {
         return null;
     }
 
-    public void isBluetoothAndSpeakerOnAsync(n10 n10Var) {
-        Utilities.f21387e.c(new l0(2, this, n10Var));
+    public void isBluetoothAndSpeakerOnAsync(v10 v10Var) {
+        Utilities.f21333e.c(new j3(27, this, v10Var));
     }
 
     public boolean isBluetoothOn() {
@@ -88,9 +89,9 @@ public class VoipAudioManager {
         return bool.booleanValue();
     }
 
-    public void setBluetoothOn(boolean z10) {
+    public void setBluetoothOn(boolean z9) {
         if (Build.VERSION.SDK_INT >= 31) {
-            if (z10) {
+            if (z9) {
                 startBluetooth();
                 return;
             } else {
@@ -98,12 +99,12 @@ public class VoipAudioManager {
                 return;
             }
         }
-        getAudioManager().setBluetoothScoOn(z10);
+        getAudioManager().setBluetoothScoOn(z9);
     }
 
-    public void setSpeakerphoneOn(boolean z10) {
-        this.isSpeakerphoneOn = Boolean.valueOf(z10);
-        Utilities.f21387e.c(new e1(16, getAudioManager(), z10));
+    public void setSpeakerphoneOn(boolean z9) {
+        this.isSpeakerphoneOn = Boolean.valueOf(z9);
+        Utilities.f21333e.c(new k1(16, getAudioManager(), z9));
     }
 
     public void startBluetooth() {
@@ -114,7 +115,7 @@ public class VoipAudioManager {
                 return;
             }
             this.isSpeakerphoneOn = Boolean.FALSE;
-            Utilities.f21387e.c(new l0(1, audioManager, findBluetoothDevice));
+            Utilities.f21333e.c(new j3(26, audioManager, findBluetoothDevice));
             return;
         }
         audioManager.startBluetoothSco();
@@ -123,7 +124,7 @@ public class VoipAudioManager {
     public void stopBluetooth() {
         AudioManager audioManager = getAudioManager();
         if (Build.VERSION.SDK_INT >= 31) {
-            Utilities.f21387e.c(new q0(audioManager, 2));
+            Utilities.f21333e.c(new q0(audioManager, 2));
         } else {
             audioManager.stopBluetoothSco();
         }

@@ -1,46 +1,30 @@
 package org.telegram.ui;
+public final class mi extends org.telegram.ui.ActionBar.g1 {
+    public final an f47786o;
 
-import org.telegram.tgnet.TLRPC;
-public final class mi implements org.telegram.messenger.kr {
-    public final int f47676a;
-    public final boolean f47677b;
-    public final Object f47678c;
-
-    public mi(int i3, Object obj, boolean z10) {
-        this.f47676a = i3;
-        this.f47678c = obj;
-        this.f47677b = z10;
+    public mi(an anVar, ki kiVar) {
+        super(kiVar, -2, -2);
+        this.f47786o = anVar;
     }
 
     @Override
-    public final void a(int i3) {
-        org.telegram.ui.Components.ec ecVar;
-        switch (this.f47676a) {
-            case 0:
-                wm wmVar = ((oi) this.f47678c).f48298b;
-                if (i3 > 0 && wmVar.getParentActivity() != null) {
-                    org.telegram.ui.Components.fc a02 = org.telegram.ui.Components.fc.a0(wmVar);
-                    if (this.f47677b) {
-                        ecVar = org.telegram.ui.Components.ec.H;
-                    } else {
-                        ecVar = org.telegram.ui.Components.ec.J;
-                    }
-                    a02.m(ecVar, i3, 0, 0, wmVar.f51557ya).j();
-                    return;
-                }
-                return;
-            default:
-                ni niVar = (ni) this.f47678c;
-                wm wmVar2 = niVar.f48010b.f48298b;
-                if (i3 >= 50) {
-                    TLRPC.Chat chat = wmVar2.f51292e;
-                    TLRPC.User user = wmVar2.f51306f;
-                    boolean z10 = this.f47677b;
-                    org.telegram.ui.Components.t4.r(wmVar2, true, chat, user, false, false, false, z10, new x0(niVar, z10));
-                    return;
-                }
-                wmVar2.Qa(wmVar2.f51475s4, true);
-                return;
+    public final void dismiss() {
+        d(true);
+        an anVar = this.f47786o;
+        if (anVar.f43757e9 == this) {
+            anVar.f43757e9 = null;
+            anVar.f43796h9 = null;
+            anVar.f43783g9 = null;
+            anVar.B0.R = true;
+            if (anVar.f43771f9) {
+                anVar.v8(false, true, 0.0f);
+            } else {
+                anVar.f43771f9 = true;
+            }
+            qj qjVar = anVar.Z;
+            if (qjVar != null && qjVar.getEditField() != null) {
+                anVar.Z.getEditField().setAllowDrawCursor(true);
+            }
         }
     }
 }

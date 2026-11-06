@@ -19,8 +19,8 @@ public class RtpParameters {
         public Map<String, String> parameters;
         public int payloadType;
 
-        public Codec(int i3, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, Map<String, String> map) {
-            this.payloadType = i3;
+        public Codec(int i7, String str, MediaStreamTrack.MediaType mediaType, Integer num, Integer num2, Map<String, String> map) {
+            this.payloadType = i7;
             this.name = str;
             this.kind = mediaType;
             this.clockRate = num;
@@ -59,20 +59,20 @@ public class RtpParameters {
         MAINTAIN_RESOLUTION,
         BALANCED;
 
-        public static DegradationPreference fromNativeIndex(int i3) {
-            return values()[i3];
+        public static DegradationPreference fromNativeIndex(int i7) {
+            return values()[i7];
         }
     }
 
     public static class HeaderExtension {
         private final boolean encrypted;
-        private final int f53004id;
+        private final int f52913id;
         private final String uri;
 
-        public HeaderExtension(String str, int i3, boolean z10) {
+        public HeaderExtension(String str, int i7, boolean z9) {
             this.uri = str;
-            this.f53004id = i3;
-            this.encrypted = z10;
+            this.f52913id = i7;
+            this.encrypted = z9;
         }
 
         public boolean getEncrypted() {
@@ -80,7 +80,7 @@ public class RtpParameters {
         }
 
         public int getId() {
-            return this.f53004id;
+            return this.f52913id;
         }
 
         public String getUri() {
@@ -92,9 +92,9 @@ public class RtpParameters {
         private final String cname;
         private final boolean reducedSize;
 
-        public Rtcp(String str, boolean z10) {
+        public Rtcp(String str, boolean z9) {
             this.cname = str;
-            this.reducedSize = z10;
+            this.reducedSize = z9;
         }
 
         public String getCname() {
@@ -152,11 +152,11 @@ public class RtpParameters {
         public Double scaleResolutionDownBy;
         public Long ssrc;
 
-        public Encoding(String str, boolean z10, Double d) {
+        public Encoding(String str, boolean z9, Double d) {
             this.bitratePriority = 1.0d;
             this.networkPriority = 0;
             this.rid = str;
-            this.active = z10;
+            this.active = z9;
             this.scaleResolutionDownBy = d;
         }
 
@@ -204,18 +204,18 @@ public class RtpParameters {
             return this.ssrc;
         }
 
-        public Encoding(String str, boolean z10, double d, int i3, Integer num, Integer num2, Integer num3, Integer num4, Double d10, Long l10, boolean z11) {
+        public Encoding(String str, boolean z9, double d, int i7, Integer num, Integer num2, Integer num3, Integer num4, Double d2, Long l10, boolean z10) {
             this.rid = str;
-            this.active = z10;
+            this.active = z9;
             this.bitratePriority = d;
-            this.networkPriority = i3;
+            this.networkPriority = i7;
             this.maxBitrateBps = num;
             this.minBitrateBps = num2;
             this.maxFramerate = num3;
             this.numTemporalLayers = num4;
-            this.scaleResolutionDownBy = d10;
+            this.scaleResolutionDownBy = d2;
             this.ssrc = l10;
-            this.adaptiveAudioPacketTime = z11;
+            this.adaptiveAudioPacketTime = z10;
         }
     }
 }

@@ -9,7 +9,7 @@ public abstract class e0 {
         return view.getAccessibilityDelegate();
     }
 
-    public static void b(View view, Context context, int[] iArr, AttributeSet attributeSet, TypedArray typedArray, int i3, int i10) {
-        view.saveAttributeDataForStyleable(context, iArr, attributeSet, typedArray, i3, i10);
+    public static void b(View view, Context context, int[] iArr, AttributeSet attributeSet, TypedArray typedArray, int i7, int i10) {
+        view.saveAttributeDataForStyleable(context, iArr, attributeSet, typedArray, i7, i10);
     }
 }

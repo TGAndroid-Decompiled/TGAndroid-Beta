@@ -1,26 +1,35 @@
 package o2;
 
-import d2.v;
-import g9.i0;
-import java.util.ArrayList;
-public final class d {
-    public final v f20523a;
-    public final i0 f20524b;
-    public final s f20525c;
-    public final String d;
-    public final ArrayList f20526e;
-    public final ArrayList f20527f;
-    public final ArrayList f20528g;
-    public final ArrayList h;
+import java.io.IOException;
+public final class d implements b3.p {
+    public final h f20725a;
 
-    public d(v vVar, ArrayList arrayList, s sVar, String str, ArrayList arrayList2, ArrayList arrayList3, ArrayList arrayList4, ArrayList arrayList5) {
-        this.f20523a = vVar;
-        this.f20524b = i0.q(arrayList);
-        this.f20525c = sVar;
-        this.d = str;
-        this.f20526e = arrayList2;
-        this.f20527f = arrayList3;
-        this.f20528g = arrayList4;
-        this.h = arrayList5;
+    @Override
+    public void a() {
+        h hVar = this.f20725a;
+        hVar.A.a();
+        IOException iOException = hVar.C;
+        if (iOException == null) {
+            return;
+        }
+        throw iOException;
+    }
+
+    public void b() {
+        long j3;
+        h hVar = this.f20725a;
+        synchronized (c3.b.f5263b) {
+            try {
+                if (c3.b.f5264c) {
+                    j3 = c3.b.d;
+                } else {
+                    j3 = -9223372036854775807L;
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        hVar.K = j3;
+        hVar.z(true);
     }
 }

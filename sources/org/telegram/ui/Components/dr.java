@@ -1,11 +1,11 @@
 package org.telegram.ui.Components;
-public final class dr implements org.telegram.messenger.n10 {
-    public final int f33181a;
-    public final lr f33182b;
+public final class dr implements org.telegram.messenger.v10 {
+    public final int f33023a;
+    public final lr f33024b;
 
-    public dr(lr lrVar, int i3) {
-        this.f33181a = i3;
-        this.f33182b = lrVar;
+    public dr(lr lrVar, int i7) {
+        this.f33023a = i7;
+        this.f33024b = lrVar;
     }
 
     @Override

@@ -1,17 +1,17 @@
 package org.telegram.messenger;
+public final class lo implements Runnable {
+    public final int f23908a;
+    public final int f23909b;
+    public final v2 f23910c;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-public final class lo {
-    public final TL_communities.CommunityPeer f24091a;
-    public final TLRPC.Chat f24092b;
-    public final TLRPC.User f24093c;
-    public final TLRPC.Dialog d;
+    public lo(int i7, v2 v2Var, int i10) {
+        this.f23908a = i10;
+        this.f23909b = i7;
+        this.f23910c = v2Var;
+    }
 
-    public lo(TLRPC.Chat chat, TLRPC.Dialog dialog, TLRPC.User user, TL_communities.CommunityPeer communityPeer) {
-        this.f24091a = communityPeer;
-        this.f24092b = chat;
-        this.f24093c = user;
-        this.d = dialog;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.lo.run():void");
     }
 }

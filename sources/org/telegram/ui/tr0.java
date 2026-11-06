@@ -1,39 +1,66 @@
 package org.telegram.ui;
 
+import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
-public final class tr0 extends RelativeLayout {
-    public final PopupNotificationActivity f49876a;
+import android.widget.LinearLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class tr0 implements View.OnClickListener {
+    public final jf0 f50099a;
+    public final an f50100b;
+    public final org.telegram.ui.Components.pj0 f50101c;
+    public final LinearLayout d;
+    public final org.telegram.ui.Components.k60 f50102e;
+    public final org.telegram.ui.Components.k60 f50103f;
+    public final yr0 h;
 
-    public tr0(PopupNotificationActivity popupNotificationActivity, PopupNotificationActivity popupNotificationActivity2) {
-        super(popupNotificationActivity2);
-        this.f49876a = popupNotificationActivity;
+    public tr0(yr0 yr0Var, jf0 jf0Var, an anVar, org.telegram.ui.Components.pj0 pj0Var, LinearLayout linearLayout, org.telegram.ui.Components.k60 k60Var, org.telegram.ui.Components.k60 k60Var2) {
+        this.h = yr0Var;
+        this.f50099a = jf0Var;
+        this.f50100b = anVar;
+        this.f50101c = pj0Var;
+        this.d = linearLayout;
+        this.f50102e = k60Var;
+        this.f50103f = k60Var2;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
-        super.onLayout(z10, i3, i10, i11, i12);
-        for (int i13 = 0; i13 < getChildCount(); i13++) {
-            View childAt = getChildAt(i13);
-            if (childAt.getTag() instanceof String) {
-                int left = childAt.getLeft();
-                PopupNotificationActivity popupNotificationActivity = this.f49876a;
-                childAt.layout(left, org.telegram.messenger.g0.L(3.0f) + popupNotificationActivity.f41621b.getTop(), childAt.getRight(), popupNotificationActivity.f41621b.getBottom());
+    public final void onClick(View view) {
+        jf0 jf0Var = this.f50099a;
+        ArrayList arrayList = jf0Var.f46927b;
+        ArrayList arrayList2 = jf0Var.f46928c;
+        if (!arrayList2.isEmpty()) {
+            int size = arrayList2.size();
+            yr0 yr0Var = this.h;
+            an anVar = this.f50100b;
+            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
+                TLObject tLObject = (TLObject) arrayList2.get(0);
+                if (tLObject == null) {
+                    return;
+                }
+                Bundle bundle = new Bundle();
+                if (tLObject instanceof TLRPC.User) {
+                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f27101id);
+                } else if (tLObject instanceof TLRPC.Chat) {
+                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f26952id);
+                }
+                anVar.presentFragment(new ProfileActivity(bundle, null));
+                yr0Var.c(false);
+                return;
             }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(i3, i10);
-        PopupNotificationActivity popupNotificationActivity = this.f49876a;
-        int measuredWidth = popupNotificationActivity.f41621b.getMeasuredWidth();
-        int measuredHeight = popupNotificationActivity.f41621b.getMeasuredHeight();
-        for (int i11 = 0; i11 < getChildCount(); i11++) {
-            View childAt = getChildAt(i11);
-            if (childAt.getTag() instanceof String) {
-                childAt.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight - org.telegram.messenger.g0.L(3.0f), 1073741824));
+            if (org.telegram.messenger.iz.f23365c1 > 0 && anVar.l1.getKeyboardHeight() < org.telegram.messenger.g0.L(20.0f)) {
+                org.telegram.ui.Components.cc t6 = new org.telegram.ui.Components.hc(org.telegram.ui.Components.xa.a(yr0Var.getContext()), yr0Var.f52299b).t(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(2131748487, null)), null);
+                anVar.B1 = t6;
+                t6.f32523j = 4000;
+                t6.j();
+                org.telegram.messenger.iz.S(org.telegram.messenger.iz.f23365c1 - 1);
             }
+            org.telegram.ui.Components.pj0 pj0Var = this.f50101c;
+            pj0Var.requestLayout();
+            this.d.requestLayout();
+            pj0Var.getAdapter().f();
+            this.f50102e.K(this.f50103f);
         }
     }
 }

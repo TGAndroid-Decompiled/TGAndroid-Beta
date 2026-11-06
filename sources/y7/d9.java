@@ -1,3 +1,6 @@
 package y7;
-public abstract class d9 {
+
+import a8.wa;
+public interface d9 {
+    void a(wa waVar);
 }

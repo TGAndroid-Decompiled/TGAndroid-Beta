@@ -2,11 +2,11 @@ package r0;
 
 import android.view.WindowInsets;
 public abstract class j1 {
-    public static int a(int i3) {
+    public static int a(int i7) {
         int statusBars;
         int i10 = 0;
         for (int i11 = 1; i11 <= 512; i11 <<= 1) {
-            if ((i3 & i11) != 0) {
+            if ((i7 & i11) != 0) {
                 if (i11 != 1) {
                     if (i11 != 2) {
                         if (i11 != 4) {

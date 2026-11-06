@@ -1,72 +1,173 @@
 package org.telegram.ui;
 
+import android.graphics.RectF;
 import android.os.Bundle;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.tgnet.tl.TL_update;
-public final class j90 extends r40 {
-    public j90(m90 m90Var, Bundle bundle) {
-        super(bundle);
-    }
+public final class j90 implements Runnable {
+    public final int f46883a;
+    public final ProfileActivity f46884b;
 
-    public static void z0(j90 j90Var, TLObject tLObject, HashSet hashSet, TLRPC.TL_error tL_error) {
-        int i3 = 0;
-        if (tLObject instanceof TLRPC.Updates) {
-            TLRPC.Updates updates = (TLRPC.Updates) tLObject;
-            org.telegram.messenger.hp.s1(j90Var.currentAccount).Y3(updates.users, false);
-            org.telegram.messenger.hp.s1(j90Var.currentAccount).S3(updates.chats, false);
-            ArrayList z02 = org.telegram.messenger.hp.z0(updates, TL_update.TL_updateGroupCall.class);
-            int size = z02.size();
-            TLRPC.GroupCall groupCall = null;
-            while (i3 < size) {
-                Object obj = z02.get(i3);
-                i3++;
-                groupCall = ((TL_update.TL_updateGroupCall) obj).call;
-            }
-            if (LaunchActivity.K1 != null && groupCall != null) {
-                TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.f27018id = groupCall.f27011id;
-                tL_inputGroupCall.access_hash = groupCall.access_hash;
-                org.telegram.ui.Components.voip.n1.g(LaunchActivity.K1, j90Var.currentAccount, tL_inputGroupCall, false, groupCall, hashSet);
-            }
-        } else if (tLObject instanceof TL_phone.groupCall) {
-            TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-            org.telegram.messenger.hp.s1(j90Var.currentAccount).Y3(groupcall.users, false);
-            org.telegram.messenger.hp.s1(j90Var.currentAccount).S3(groupcall.chats, false);
-            if (LaunchActivity.K1 != null) {
-                TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
-                TLRPC.GroupCall groupCall2 = groupcall.call;
-                tL_inputGroupCall2.f27018id = groupCall2.f27011id;
-                tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-                org.telegram.ui.Components.voip.n1.g(LaunchActivity.K1, j90Var.currentAccount, tL_inputGroupCall2, false, groupCall2, hashSet);
-            }
-        } else if (tL_error != null) {
-            m90.d().f0(tL_error, false);
-        }
+    public j90(ProfileActivity profileActivity, int i7) {
+        this.f46883a = i7;
+        this.f46884b = profileActivity;
     }
 
     @Override
-    public final void s0(HashSet hashSet) {
-        if (hashSet.size() == 1) {
-            TLRPC.User a22 = getMessagesController().a2((Long) hashSet.iterator().next());
-            TLRPC.UserFull b22 = getMessagesController().b2(a22.f27150id);
-            if (b22 == null) {
-                TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                tL_users_getFullUser.f27143id = getMessagesController().o1(a22.f27150id);
-                getConnectionsManager().sendRequest(tL_users_getFullUser, new xy(8, this, a22));
+    public final void run() {
+        jw0 jw0Var;
+        int i7 = this.f46883a;
+        ProfileActivity profileActivity = this.f46884b;
+        switch (i7) {
+            case 0:
+                vv0 vv0Var = profileActivity.N;
+                if (vv0Var != null) {
+                    vv0Var.i1(14);
+                    profileActivity.U4(false);
+                    return;
+                }
                 return;
-            }
-            org.telegram.ui.Components.voip.n1.m(a22, false, b22.video_calls_available, getParentActivity(), b22, getAccountInstance());
-        } else {
-            TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-            createconferencecall.random_id = Utilities.f21385b.nextInt();
-            ConnectionsManager.getInstance(this.currentAccount).sendRequest(createconferencecall, new xy(9, this, hashSet));
+            case 1:
+                vv0 vv0Var2 = profileActivity.N;
+                if (vv0Var2 != null) {
+                    vv0Var2.i1(14);
+                    profileActivity.U4(false);
+                    return;
+                }
+                return;
+            case 2:
+                org.telegram.messenger.g0.i3(new j90(profileActivity, 0), 200L);
+                return;
+            case 3:
+                org.telegram.messenger.g0.i3(new j90(profileActivity, 1), 200L);
+                return;
+            case 4:
+                TLRPC.UserFull userFull = profileActivity.f41805u2;
+                if (userFull != null) {
+                    org.telegram.messenger.g0.g(org.telegram.messenger.ij.h0(userFull.note, false));
+                    org.telegram.messenger.camera.q.r(null, 2131744195, org.telegram.ui.Components.hc.a0(profileActivity));
+                    return;
+                }
+                return;
+            case 5:
+                RectF rectF = ProfileActivity.S6;
+                profileActivity.getClass();
+                Bundle bundle = new Bundle();
+                bundle.putLong("user_id", profileActivity.f41688d1);
+                bundle.putBoolean("focus_notes", true);
+                profileActivity.presentFragment(new nr(bundle, profileActivity.f41841z0));
+                return;
+            case 6:
+                RectF rectF2 = ProfileActivity.S6;
+                profileActivity.getSendMessagesHelper().r0(org.telegram.messenger.ez.b("/start", profileActivity.f41688d1, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 7:
+                RectF rectF3 = ProfileActivity.S6;
+                profileActivity.N4(false);
+                return;
+            case 8:
+                RectF rectF4 = ProfileActivity.S6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new UserInfoActivity());
+                return;
+            case 9:
+                RectF rectF5 = ProfileActivity.S6;
+                profileActivity.N4(true);
+                return;
+            case 10:
+                RectF rectF6 = ProfileActivity.S6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new kg.c1());
+                return;
+            case 11:
+                RectF rectF7 = ProfileActivity.S6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new kg.a1());
+                return;
+            case 12:
+                RectF rectF8 = ProfileActivity.S6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new la(null));
+                return;
+            case 13:
+                RectF rectF9 = ProfileActivity.S6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new UserInfoActivity());
+                return;
+            case 14:
+                RectF rectF10 = ProfileActivity.S6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new g(3));
+                return;
+            case 15:
+                RectF rectF11 = ProfileActivity.S6;
+                ?? obj = new Object();
+                obj.f27420a = true;
+                profileActivity.showAsSheet(new PrivacyControlActivity(11, false), obj);
+                return;
+            case 16:
+                RectF rectF12 = ProfileActivity.S6;
+                profileActivity.y4(true);
+                if (profileActivity.f41725i2.isRunning()) {
+                    profileActivity.f41725i2.cancel();
+                }
+                profileActivity.X4(1.0f);
+                return;
+            case 17:
+                RectF rectF13 = ProfileActivity.S6;
+                profileActivity.D5(false, false);
+                return;
+            case 18:
+                RectF rectF14 = ProfileActivity.S6;
+                profileActivity.U3();
+                return;
+            case 19:
+                vv0 vv0Var3 = profileActivity.N;
+                if (vv0Var3 != null) {
+                    vv0Var3.N1(true);
+                    profileActivity.N.C1();
+                    return;
+                }
+                return;
+            case 20:
+                RectF rectF15 = ProfileActivity.S6;
+                profileActivity.getMessagesController().c4(profileActivity.a());
+                return;
+            case 21:
+                if (!profileActivity.f41663a.c0() && (jw0Var = profileActivity.d) != null) {
+                    jw0Var.f();
+                    return;
+                }
+                return;
+            case 22:
+                RectF rectF16 = ProfileActivity.S6;
+                profileActivity.H3();
+                return;
+            case 23:
+                RectF rectF17 = ProfileActivity.S6;
+                profileActivity.D5(false, false);
+                return;
+            case 24:
+                RectF rectF18 = ProfileActivity.S6;
+                profileActivity.getClass();
+                Bundle bundle2 = new Bundle();
+                bundle2.putLong("chat_id", profileActivity.f41695e1);
+                bundle2.putLong("user_id", profileActivity.f41688d1);
+                profileActivity.presentFragment(new ai.s0(bundle2));
+                return;
+            case 25:
+                profileActivity.f41839y5.setVisibility(8);
+                return;
+            case 26:
+                RectF rectF19 = ProfileActivity.S6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(new la(null));
+                return;
+            case 27:
+                ProfileActivity.g0(profileActivity);
+                return;
+            default:
+                profileActivity.U4(true);
+                return;
         }
-        finishFragment();
     }
 }

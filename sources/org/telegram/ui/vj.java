@@ -1,16 +1,16 @@
 package org.telegram.ui;
 
-import android.widget.FrameLayout;
-public final class vj extends fx {
-    public final wm O;
+import android.content.Context;
+public final class vj extends org.telegram.ui.Components.l41 {
+    public final an N;
 
-    public vj(wm wmVar, wm wmVar2, FrameLayout frameLayout, wi wiVar, int i3, long j10, long j11) {
-        super(wmVar2, frameLayout, wiVar, i3, j10, j11);
-        this.O = wmVar;
+    public vj(an anVar, Context context) {
+        super(context);
+        this.N = anVar;
     }
 
     @Override
-    public final void h() {
-        this.O.Yc();
+    public final org.telegram.ui.ActionBar.f6 getResourceProvider() {
+        return this.N.f43998xa;
     }
 }

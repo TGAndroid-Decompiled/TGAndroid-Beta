@@ -1,0 +1,30 @@
+package c8;
+public abstract class a0 {
+    public static gb.f1 f5367a;
+
+    public static final void a() {
+        try {
+            if (f5367a == null) {
+                gb.f1 f1Var = (gb.f1) ((gb.i) ((gb.s) o9.g.c().b(gb.s.class))).f13708o.mo24get();
+                kotlin.jvm.internal.j.e(f1Var, "<set-?>");
+                f5367a = f1Var;
+            }
+            gb.f1 f1Var2 = f5367a;
+            if (f1Var2 != null) {
+                if (f1Var2.f13682i) {
+                    if (f1Var2 != null) {
+                        f1Var2.b();
+                        return;
+                    } else {
+                        kotlin.jvm.internal.j.h("sharedSessionRepository");
+                        throw null;
+                    }
+                }
+                return;
+            }
+            kotlin.jvm.internal.j.h("sharedSessionRepository");
+            throw null;
+        } catch (Exception unused) {
+        }
+    }
+}

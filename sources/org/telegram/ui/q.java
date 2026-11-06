@@ -2,55 +2,55 @@ package org.telegram.ui;
 
 import android.net.Uri;
 import android.text.TextUtils;
-public final class q implements org.telegram.messenger.u10 {
-    public final int f48712a;
-    public final i4 f48713b;
+public final class q implements org.telegram.messenger.c20 {
+    public final int f48966a;
+    public final g4 f48967b;
 
-    public q(i4 i4Var, int i3) {
-        this.f48712a = i3;
-        this.f48713b = i4Var;
+    public q(g4 g4Var, int i7) {
+        this.f48966a = i7;
+        this.f48967b = g4Var;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f48712a) {
+        switch (this.f48966a) {
             case 0:
-                i4 i4Var = this.f48713b;
-                ai.d2 d2Var = i4Var.f46096r0;
+                g4 g4Var = this.f48967b;
+                di.a4 a4Var = g4Var.f45812q0;
                 float f10 = -((Integer) obj).intValue();
-                i4Var.f46095q0 = f10;
-                d2Var.setTranslationY(((1.0f - i4Var.f46078a1) * org.telegram.messenger.g0.L(51.0f)) + f10);
+                g4Var.f45811p0 = f10;
+                a4Var.setTranslationY(((1.0f - g4Var.Z0) * org.telegram.messenger.g0.L(51.0f)) + f10);
                 return;
             case 1:
                 String str = (String) obj;
                 if (!TextUtils.isEmpty(str)) {
-                    i4 i4Var2 = this.f48713b;
-                    i4Var2.f46088i0.f50875c0.setText(str);
-                    ci.s sVar = i4Var2.f46088i0.f50875c0;
-                    sVar.setSelection(sVar.getText().length());
-                    org.telegram.messenger.g0.K3(i4Var2.f46088i0.f50875c0);
+                    g4 g4Var2 = this.f48967b;
+                    g4Var2.f45804h0.f51177b0.setText(str);
+                    bi.v vVar = g4Var2.f45804h0.f51177b0;
+                    vVar.setSelection(vVar.getText().length());
+                    org.telegram.messenger.g0.K3(g4Var2.f45804h0.f51177b0);
                     return;
                 }
                 return;
             case 2:
                 String str2 = (String) obj;
-                i4 i4Var3 = this.f48713b;
-                if (i4Var3.M != null && str2 != null) {
-                    i4Var3.f46088i0.k(false);
-                    if (sf.c.g(Uri.parse(str2), false, null)) {
-                        u3 u3Var = i4Var3.L;
-                        if (u3Var != null) {
-                            u3Var.a(true);
+                g4 g4Var3 = this.f48967b;
+                if (g4Var3.L != null && str2 != null) {
+                    g4Var3.f45804h0.k(false);
+                    if (vf.c.g(Uri.parse(str2), false, null)) {
+                        t3 t3Var = g4Var3.K;
+                        if (t3Var != null) {
+                            t3Var.a(true);
                         }
-                        sf.c.l(i4Var3.M, str2, false, false, null);
+                        vf.c.l(g4Var3.L, str2, false, false, null);
                         return;
-                    } else if (!sf.c.m(i4Var3.M, str2, false)) {
-                        l3 l3Var = i4Var3.f46100v0[0];
-                        if (l3Var != null && l3Var.getWebView() != null) {
-                            i4Var3.f46100v0[0].getWebView().loadUrl(str2);
+                    } else if (!vf.c.m(g4Var3.L, str2, false)) {
+                        k3 k3Var = g4Var3.f45816u0[0];
+                        if (k3Var != null && k3Var.getWebView() != null) {
+                            g4Var3.f45816u0[0].getWebView().loadUrl(str2);
                             return;
                         } else {
-                            sf.c.o(str2);
+                            vf.c.o(str2);
                             return;
                         }
                     } else {
@@ -59,16 +59,16 @@ public final class q implements org.telegram.messenger.u10 {
                 }
                 return;
             default:
-                org.telegram.ui.web.x0 x0Var = (org.telegram.ui.web.x0) obj;
-                i4 i4Var4 = this.f48713b;
-                if (i4Var4.M != null && x0Var != null) {
-                    i4Var4.f46088i0.k(false);
-                    l3 l3Var2 = i4Var4.f46100v0[0];
-                    if (l3Var2 != null && l3Var2.getWebView() != null) {
-                        i4Var4.f46100v0[0].getWebView().e(x0Var.f51104c, x0Var.d);
+                org.telegram.ui.web.y0 y0Var = (org.telegram.ui.web.y0) obj;
+                g4 g4Var4 = this.f48967b;
+                if (g4Var4.L != null && y0Var != null) {
+                    g4Var4.f45804h0.k(false);
+                    k3 k3Var2 = g4Var4.f45816u0[0];
+                    if (k3Var2 != null && k3Var2.getWebView() != null) {
+                        g4Var4.f45816u0[0].getWebView().e(y0Var.f51392c, y0Var.d);
                         return;
                     } else {
-                        sf.c.o(x0Var.f51104c);
+                        vf.c.o(y0Var.f51392c);
                         return;
                     }
                 }

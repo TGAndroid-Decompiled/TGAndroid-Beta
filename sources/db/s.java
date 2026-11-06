@@ -1,5 +1,4 @@
 package db;
-public abstract class s {
-    public static final t f8723a = new t(0);
-    public static final t f8724b = new t(1);
+public abstract class s extends a8.q implements t {
+    public static final int f8594b = 0;
 }

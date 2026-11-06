@@ -1,52 +1,51 @@
 package org.telegram.ui;
+public final class ke implements Runnable {
+    public final int f47151a;
+    public final an f47152b;
+    public final org.telegram.ui.Components.jk0 f47153c;
+    public final String d;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
-public final class ke implements org.telegram.messenger.n10 {
-    public final int f46914a;
-    public final wm f46915b;
-
-    public ke(wm wmVar, int i3) {
-        this.f46914a = i3;
-        this.f46915b = wmVar;
+    public ke(an anVar, org.telegram.ui.Components.jk0 jk0Var, String str, int i7) {
+        this.f47151a = i7;
+        this.f47152b = anVar;
+        this.f47153c = jk0Var;
+        this.d = str;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f46914a) {
+    public final void run() {
+        org.telegram.ui.Components.hc a02;
+        int i7;
+        int i10 = this.f47151a;
+        String str = this.d;
+        org.telegram.ui.Components.jk0 jk0Var = this.f47153c;
+        an anVar = this.f47152b;
+        switch (i10) {
             case 0:
-                wm.g1(this.f46915b, (Integer) obj, (Boolean) obj2);
-                return;
+                jk0Var.dismiss();
+                org.telegram.messenger.g0.g(str);
+                a02 = org.telegram.ui.Components.hc.a0(anVar);
+                i7 = 2131746334;
+                break;
             case 1:
-                wm.t1(this.f46915b, (Long) obj, (Boolean) obj2);
-                return;
+                jk0Var.dismiss();
+                org.telegram.messenger.g0.g(str);
+                a02 = org.telegram.ui.Components.hc.a0(anVar);
+                i7 = 2131743202;
+                break;
             case 2:
-                Bitmap bitmap = (Bitmap) obj;
-                wm wmVar = this.f46915b;
-                si.b bVar = wmVar.O8;
-                bVar.a((Bitmap) obj2);
-                jh.d.c(bVar, wmVar.fragmentView);
-                wmVar.P8.d();
-                return;
+                jk0Var.dismiss();
+                org.telegram.messenger.g0.g(str);
+                a02 = org.telegram.ui.Components.hc.a0(anVar);
+                i7 = 2131752553;
+                break;
             default:
-                wm wmVar2 = this.f46915b;
-                wmVar2.Q8 = (Bitmap) obj;
-                Paint paint = new Paint(1);
-                wmVar2.S8 = paint;
-                Bitmap bitmap2 = wmVar2.Q8;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(bitmap2, tileMode, tileMode);
-                wmVar2.R8 = bitmapShader;
-                paint.setShader(bitmapShader);
-                wmVar2.T8 = new Matrix();
-                si.b bVar2 = wmVar2.O8;
-                bVar2.a((Bitmap) obj2);
-                jh.d.c(bVar2, wmVar2.fragmentView);
-                wmVar2.P8.d();
-                return;
+                jk0Var.dismiss();
+                org.telegram.messenger.g0.g("@" + str);
+                a02 = org.telegram.ui.Components.hc.a0(anVar);
+                i7 = 2131743666;
+                break;
         }
+        org.telegram.messenger.camera.q.r(null, i7, a02);
     }
 }

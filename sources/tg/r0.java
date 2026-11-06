@@ -1,43 +1,127 @@
 package tg;
 
-import android.os.Looper;
-import org.telegram.ui.Components.lt;
-public final class r0 implements Runnable {
-    public final int f55300a;
-    public final s0 f55301b;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.TextureView;
+import fi.e5;
+import fi.x5;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.ui.Components.ca;
+public final class r0 extends org.telegram.ui.Cells.q1 {
+    public final ca f55804kd;
+    public final float[] f55805ld;
+    public final Path f55806md;
+    public final Paint f55807nd;
+    public final Rect f55808od;
+    public final RectF f55809pd;
+    public final s0 f55810qd;
 
-    public r0(s0 s0Var, int i3) {
-        this.f55300a = i3;
-        this.f55301b = s0Var;
+    public r0(s0 s0Var, Context context, int i7, t0 t0Var) {
+        super(context, i7, false, null, t0Var);
+        this.f55810qd = s0Var;
+        this.f55804kd = new ca(s0Var.d, this, 10, false);
+        this.f55805ld = new float[8];
+        this.f55806md = new Path();
+        Paint paint = new Paint();
+        this.f55807nd = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        this.f55808od = new Rect();
+        this.f55809pd = new RectF();
     }
 
     @Override
-    public final void run() {
-        switch (this.f55300a) {
-            case 0:
-                s0 s0Var = this.f55301b;
-                lt ltVar = s0Var.f55313x;
-                r0 r0Var = s0Var.f55311s;
-                if (r0Var != null) {
-                    s0Var.cancelRunnable(r0Var);
-                    s0Var.f55311s = null;
-                }
-                s0Var.cancelRunnable(ltVar);
-                s0Var.postRunnable(ltVar);
-                return;
-            case 1:
-                s0 s0Var2 = this.f55301b;
-                s0Var2.f55311s = null;
-                s0Var2.f55313x.run();
-                return;
-            default:
-                this.f55301b.finish();
-                Looper myLooper = Looper.myLooper();
-                if (myLooper != null) {
-                    myLooper.quit();
-                    return;
-                }
-                return;
+    public final Paint Z1(String str) {
+        if ("paintChatActionBackground".equals(str)) {
+            this.f55810qd.h.f55850v0 = true;
+            Paint c10 = this.f55804kd.c(1.0f);
+            if (c10 != null) {
+                return c10;
+            }
         }
+        return super.Z1(str);
+    }
+
+    @Override
+    public final boolean l1(Canvas canvas) {
+        x5 x5Var;
+        float[] fArr;
+        ImageReceiver photoImage = getPhotoImage();
+        s0 s0Var = this.f55810qd;
+        e5 e5Var = s0Var.h;
+        if (s0Var.f55826f && photoImage != null && (((x5Var = s0Var.f55825e) != null && x5Var.f13085g && x5Var.d && e5Var.f55852x0) || e5Var.f55849u0 || (e5Var.f55851w0 != null && e5Var.M0.f12543r0))) {
+            int i7 = 0;
+            while (true) {
+                int[] iArr = photoImage.W0;
+                int length = iArr.length;
+                fArr = this.f55805ld;
+                if (i7 >= length) {
+                    break;
+                }
+                int i10 = i7 * 2;
+                float f10 = iArr[i7];
+                fArr[i10] = f10;
+                fArr[i10 + 1] = f10;
+                i7++;
+            }
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(photoImage.K0, photoImage.L0, photoImage.y(), photoImage.A());
+            Path path = this.f55806md;
+            path.rewind();
+            path.addRoundRect(rectF, fArr, Path.Direction.CW);
+            TextureView textureView = e5Var.f55851w0;
+            if (textureView != null && e5Var.M0.f12543r0) {
+                Bitmap bitmap = textureView.getBitmap();
+                if (bitmap != null) {
+                    canvas.save();
+                    canvas.clipPath(path);
+                    canvas.translate(-getX(), -getY());
+                    float max = Math.max(photoImage.M0 / e5Var.f55853y0, photoImage.N0 / e5Var.f55854z0);
+                    canvas.translate(photoImage.r() - ((e5Var.f55853y0 * max) / 2.0f), photoImage.s() - ((e5Var.f55854z0 * max) / 2.0f));
+                    canvas.scale((e5Var.f55853y0 / e5Var.f55851w0.getWidth()) * max, (e5Var.f55854z0 / e5Var.f55851w0.getHeight()) * max);
+                    int width = bitmap.getWidth();
+                    int height = bitmap.getHeight();
+                    Rect rect = this.f55808od;
+                    rect.set(0, 0, width, height);
+                    RectF rectF2 = this.f55809pd;
+                    rectF2.set(0.0f, 0.0f, e5Var.f55851w0.getWidth(), e5Var.f55851w0.getHeight());
+                    canvas.drawBitmap(bitmap, rect, rectF2, (Paint) null);
+                    canvas.restore();
+                    return true;
+                }
+                return super.l1(canvas);
+            }
+            canvas.drawPath(path, this.f55807nd);
+            return true;
+        }
+        return super.l1(canvas);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        s0 s0Var = this.f55810qd;
+        x5 x5Var = s0Var.f55825e;
+        if ((x5Var != null && x5Var.f13085g && x5Var.d) || s0Var.h.f55849u0) {
+            canvas2 = canvas;
+            canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
+        } else {
+            canvas2 = canvas;
+            canvas2.save();
+        }
+        d1(canvas2);
+        canvas2.restore();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 }

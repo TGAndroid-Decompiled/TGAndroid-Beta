@@ -1,55 +1,56 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class np implements org.telegram.ui.ActionBar.p1, org.telegram.ui.Components.r4 {
-    public final String f48038a;
-    public final boolean f48039b;
-    public final Object f48040c;
-    public final Object d;
-    public final Object f48041e;
-    public final Object f48042f;
-    public final Object h;
+public final class np implements org.telegram.messenger.tr, org.telegram.ui.ActionBar.r1, org.telegram.ui.Components.cj0, org.telegram.ui.Components.dj0 {
+    public final int f48073a;
+    public final oq f48074b;
 
-    public np(nq nqVar, TLRPC.User user, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10) {
-        this.f48040c = nqVar;
-        this.d = user;
-        this.f48041e = tLObject;
-        this.f48042f = tL_chatAdminRights;
-        this.h = tL_chatBannedRights;
-        this.f48038a = str;
-        this.f48039b = z10;
+    public np(oq oqVar, int i7) {
+        this.f48073a = i7;
+        this.f48074b = oqVar;
     }
 
     @Override
-    public void L(int i3, int i10, boolean z10) {
-        boolean z11 = this.f48039b;
-        ((org.telegram.ui.Components.nf) this.f48040c).B((View) this.d, this.f48041e, this.f48038a, this.f48042f, z10, i3, i10, (org.telegram.messenger.ye) this.h, z11);
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        nq nqVar = (nq) this.f48040c;
-        TLObject tLObject = (TLObject) this.f48041e;
-        TLRPC.TL_chatAdminRights tL_chatAdminRights = (TLRPC.TL_chatAdminRights) this.f48042f;
-        TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) this.h;
-        nqVar.getClass();
-        long j10 = ((TLRPC.User) this.d).f27150id;
-        int i10 = 1;
-        if (nqVar.f48059e1 == 1) {
-            i10 = 0;
+    public boolean c(int i7, View view) {
+        oq oqVar = this.f48074b;
+        if (oqVar.getParentActivity() != null) {
+            v4.g0 adapter = oqVar.f48447c.getAdapter();
+            kq kqVar = oqVar.f48441a;
+            if (adapter == kqVar) {
+                return oqVar.m0(kqVar.E(i7), false, view);
+            }
         }
-        nqVar.y0(j10, tLObject, tL_chatAdminRights, tL_chatBannedRights, this.f48038a, this.f48039b, i10, false);
+        return false;
     }
 
-    public np(org.telegram.ui.Components.nf nfVar, View view, Object obj, String str, Object obj2, org.telegram.messenger.ye yeVar, boolean z10) {
-        this.f48040c = nfVar;
-        this.d = view;
-        this.f48041e = obj;
-        this.f48038a = str;
-        this.f48042f = obj2;
-        this.h = yeVar;
-        this.f48039b = z10;
+    @Override
+    public void f(float f10, float f11, int i7, View view) {
+        oq.a0(this.f48074b, view, i7);
+    }
+
+    @Override
+    public boolean f1(View view) {
+        return false;
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f48073a) {
+            case 1:
+                this.f48074b.z0();
+                return;
+            default:
+                this.f48074b.finishFragment();
+                return;
+        }
+    }
+
+    @Override
+    public void run(long j3) {
+        oq.Z(this.f48074b, j3);
+    }
+
+    @Override
+    public void r0(View view, float f10, float f11) {
     }
 }

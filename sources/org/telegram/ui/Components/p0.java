@@ -3,62 +3,62 @@ package org.telegram.ui.Components;
 import android.content.DialogInterface;
 import android.view.View;
 public final class p0 implements DialogInterface.OnDismissListener {
-    public final int f37001a;
-    public final Object f37002b;
+    public final int f36827a;
+    public final Object f36828b;
 
-    public p0(Object obj, int i3) {
-        this.f37001a = i3;
-        this.f37002b = obj;
+    public p0(Object obj, int i7) {
+        this.f36827a = i7;
+        this.f36828b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i3 = this.f37001a;
-        Object obj = this.f37002b;
-        switch (i3) {
+        int i7 = this.f36827a;
+        Object obj = this.f36828b;
+        switch (i7) {
             case 0:
-                ((org.telegram.ui.tf) obj).run();
+                ((org.telegram.ui.xf) obj).run();
                 return;
             case 1:
-                org.telegram.messenger.g0.v1((s4) obj);
+                org.telegram.messenger.g0.v1((u4) obj);
                 return;
             case 2:
-                org.telegram.messenger.g0.v1((z3) obj);
+                org.telegram.messenger.g0.v1((b4) obj);
                 return;
             case 3:
-                ((ChatActivityEnterView) obj).M0 = null;
+                ((ChatActivityEnterView) obj).L0 = null;
                 return;
             case 4:
-                ((bi) obj).f32293x4 = false;
+                ((di) obj).f32960w4 = false;
                 return;
             case 5:
-                hk hkVar = (hk) obj;
-                hkVar.U0 = null;
-                hkVar.T.post(new bk(hkVar, 2));
+                ik ikVar = (ik) obj;
+                ikVar.T0 = null;
+                ikVar.S.post(new ck(ikVar, 2));
                 return;
             case 6:
-                xs xsVar = (xs) obj;
-                xsVar.W1 = null;
-                xsVar.requestFocus();
+                ys ysVar = (ys) obj;
+                ysVar.V1 = null;
+                ysVar.requestFocus();
                 return;
             case 7:
-                float[] fArr = FragmentContextView.X0;
+                float[] fArr = FragmentContextView.W0;
                 ((FragmentContextView) obj).c(false);
                 return;
             case 8:
-                tl0.I = null;
+                ql0.H = null;
                 ((View) obj).requestFocus();
                 return;
             case 9:
-                org.telegram.messenger.g0.v1((nl0) obj);
+                org.telegram.messenger.g0.v1((kl0) obj);
                 return;
             default:
                 ThemeEditorView themeEditorView = ((dz0) obj).d;
-                themeEditorView.f31652n = null;
+                themeEditorView.f31573n = null;
                 if (themeEditorView.d != null) {
-                    org.telegram.messenger.g0.y3(themeEditorView.f31648j, themeEditorView.f31643c, themeEditorView.f31647i);
+                    org.telegram.messenger.g0.y3(themeEditorView.f31569j, themeEditorView.f31564c, themeEditorView.f31568i);
                     try {
-                        themeEditorView.f31648j.addView(themeEditorView.f31643c, themeEditorView.f31647i);
+                        themeEditorView.f31569j.addView(themeEditorView.f31564c, themeEditorView.f31568i);
                         themeEditorView.e();
                         return;
                     } catch (Exception unused) {

@@ -1,227 +1,124 @@
 package th;
 
-import ai.z;
-import android.app.Activity;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-import b8.mf;
-import b8.pf;
-import ei.e3;
-import java.util.HashSet;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.bd;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.j0;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.k5;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.ActionBar.z5;
-import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Cells.w1;
-import org.telegram.ui.Cells.y;
-import org.telegram.ui.Components.ai;
-import org.telegram.ui.Components.l00;
-import org.telegram.ui.Components.xq;
-import org.telegram.ui.Wallet.ma;
-import org.telegram.ui.tf;
-import org.telegram.ui.wm;
-import org.telegram.ui.yg0;
-public final class b extends FrameLayout implements ViewTreeObserver.OnPreDrawListener, z5 {
-    public final int[] E;
-    public final Rect F;
-    public ViewTreeObserver G;
-    public int H;
-    public final qe.a I;
-    public final qe.a J;
-    public final z f55387a;
-    public final e3 f55388b;
-    public final ai f55389c;
-    public final wm d;
-    public final FrameLayout.LayoutParams f55390e;
-    public final k5 f55391f;
-    public c h;
-    public q1 f55392n;
-    public int f55393r;
-    public tf f55394s;
-    public final yg0 f55395w;
-    public final yg0 f55396x;
-    public final int f55397y;
+import org.telegram.ui.Components.RadialProgress2;
+public final class b extends Drawable {
+    public final TextPaint f55918a;
+    public final TextPaint f55919b;
+    public RadialProgress2 f55920c;
+    public boolean d;
+    public StaticLayout f55923g;
+    public StaticLayout h;
+    public CharSequence f55921e = "";
+    public CharSequence f55922f = "";
+    public int f55928m = -1;
+    public final int f55924i = g0.L(64.0f);
+    public final int f55925j = g0.L(10.66f);
+    public final int f55926k = g0.L(12.0f);
+    public final int f55927l = g0.L(4.0f);
 
-    public b(Activity activity, e6 e6Var, wm wmVar) {
-        super(activity);
-        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(0, -2);
-        this.f55390e = layoutParams;
-        this.E = new int[2];
-        this.F = new Rect();
-        org.telegram.ui.ActionBar.e3 e3Var = new org.telegram.ui.ActionBar.e3(this, 17);
-        xq xqVar = xq.h;
-        this.I = new qe.a(0, e3Var, xqVar, 380L, false);
-        this.J = new qe.a(0, new org.telegram.ui.ActionBar.e3(this, 17), xqVar, 380L, false);
-        this.d = wmVar;
-        this.f55397y = ((j0) wmVar.getMessagesController().f23167x7.I.f13798b).f23620c;
-        z zVar = new z(this, activity, e6Var, 3);
-        this.f55387a = zVar;
-        zVar.setAllowTextEntitiesIntersection(true);
-        r6.V(zVar, k6.G6, e6Var);
-        r6.H(zVar, k6.Uc, e6Var);
-        r6.E(zVar, k6.H6, e6Var);
-        zVar.setHint(bd.M0(2131747191, null));
-        zVar.setTextSize(1, 15.0f);
-        zVar.setMaxLines(Integer.MAX_VALUE);
-        zVar.setBackground(null);
-        zVar.setImeOptions(268435462);
-        zVar.setInputType(zVar.getInputType() | 16384);
-        zVar.addTextChangedListener(new ma(this, 2));
-        e3 e3Var2 = new e3(activity, 7);
-        this.f55388b = e3Var2;
-        int i3 = k6.Ji;
-        y h02 = k6.h0(k6.w0(i3, e6Var), 1, -1);
-        n6 N = r6.N(i3);
-        e3Var2.setBackground(h02);
-        r6.k(e3Var2, h02, null, N, e6Var);
-        pf.a(e3Var2);
-        ai aiVar = new ai(getContext(), 36);
-        this.f55389c = aiVar;
-        y h03 = k6.h0(k6.w0(i3, e6Var), 1, -1);
-        n6 N2 = r6.N(i3);
-        aiVar.setBackground(h03);
-        r6.k(aiVar, h03, null, N2, e6Var);
-        aiVar.setOnClickListener(new org.telegram.ui.web.d(2, this, wmVar));
-        pf.a(aiVar);
-        k5 k5Var = new k5(getContext());
-        this.f55391f = k5Var;
-        k5Var.setTextSize(13);
-        k5Var.setGravity(17);
-        k5Var.setTranslationY(g0.L(44.0f));
-        k5Var.setVisibility(8);
-        yg0 yg0Var = new yg0(activity, 18);
-        this.f55396x = yg0Var;
-        addView(yg0Var, layoutParams);
-        yg0 yg0Var2 = new yg0(activity, 17);
-        this.f55395w = yg0Var2;
-        yg0Var.addView(yg0Var2, mf.c(-2.0f, -1));
-        yg0Var2.addView(k5Var, mf.e(54, 24, 53));
-        yg0Var2.addView(e3Var2, mf.e(44, 44, 51));
-        yg0Var2.addView(aiVar, mf.d(44, 44.0f, 53, 0.0f, 0.0f, 5.0f, 0.0f));
-        yg0Var2.addView(zVar, mf.d(-1, -2.0f, 119, 39.0f, 0.0f, 47.0f, 0.0f));
-        zVar.setPadding(g0.L(5.0f), g0.L(11.0f), g0.L(5.0f), g0.L(11.0f));
-    }
-
-    public static void a(b bVar) {
-        k5 k5Var = bVar.f55391f;
-        l00.d(k5Var, bVar.I.f53840e);
-        int i3 = k6.A6;
-        wm wmVar = bVar.d;
-        k5Var.setTextColor(i0.a.f(bVar.J.f53840e, k6.w0(i3, wmVar.getResourceProvider()), k6.w0(k6.f28102p7, wmVar.getResourceProvider())));
+    public b() {
+        TextPaint textPaint = new TextPaint(1);
+        this.f55918a = textPaint;
+        textPaint.setTextSize(g0.L(15.0f));
+        textPaint.setTypeface(g0.o());
+        TextPaint textPaint2 = new TextPaint(1);
+        this.f55919b = textPaint2;
+        textPaint2.setTextSize(g0.L(13.0f));
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.A6));
-        hashSet.add(Integer.valueOf(k6.f28102p7));
-    }
-
-    public c getAttachedMedia() {
-        return this.h;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ViewTreeObserver viewTreeObserver = getViewTreeObserver();
-        this.G = viewTreeObserver;
-        viewTreeObserver.addOnPreDrawListener(this);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        ViewTreeObserver viewTreeObserver = this.G;
-        if (viewTreeObserver != null && viewTreeObserver.isAlive()) {
-            this.G.removeOnPreDrawListener(this);
+    public final void draw(Canvas canvas) {
+        boolean z9 = this.d;
+        TextPaint textPaint = this.f55919b;
+        TextPaint textPaint2 = this.f55918a;
+        if (z9) {
+            int alpha = textPaint2.getAlpha();
+            int alpha2 = textPaint.getAlpha();
+            textPaint2.setColor(k6.x0(null, k6.G6, false));
+            textPaint2.setAlpha(alpha);
+            textPaint.setColor(k6.x0(null, k6.f28240y6, false));
+            textPaint.setAlpha(alpha2);
         }
-        this.G = null;
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final boolean onPreDraw() {
-        w1 w1Var;
-        vh.a aVar;
-        q1 q1Var = this.f55392n;
-        if (q1Var != null) {
-            int f12 = q1Var.getMessageObject().f1();
-            if (this.f55392n.isAttachedToWindow() && this.f55393r == f12 && (w1Var = this.f55392n.f30122w2) != null && (aVar = w1Var.f30784l) != null && w1Var.f30791s) {
-                Rect bounds = aVar.getBounds();
-                Rect rect = this.F;
-                rect.set(bounds);
-                q1 q1Var2 = this.f55392n;
-                int[] iArr = this.E;
-                q1Var2.getLocationInWindow(iArr);
-                int i3 = iArr[0];
-                int i10 = iArr[1];
-                getLocationInWindow(iArr);
-                rect.offset(i3 - iArr[0], i10 - iArr[1]);
-                int width = rect.width();
-                FrameLayout.LayoutParams layoutParams = this.f55390e;
-                int i11 = layoutParams.width;
-                yg0 yg0Var = this.f55396x;
-                if (i11 != width) {
-                    layoutParams.width = width;
-                    yg0Var.setLayoutParams(layoutParams);
-                }
-                yg0Var.setTranslationX(rect.left);
-                yg0Var.setTranslationY(g0.L(0.66f) + rect.top);
-                return true;
-            }
-            tf tfVar = this.f55394s;
-            if (tfVar != null) {
-                tfVar.run();
-                this.f55394s = null;
+        int width = getBounds().width();
+        int i7 = this.f55924i;
+        if (width > 0 && (width != this.f55928m || this.f55923g == null || this.h == null)) {
+            this.f55928m = width;
+            int i10 = (width - i7) - this.f55926k;
+            if (i10 <= 0) {
+                this.f55923g = null;
+                this.h = null;
+            } else {
+                float f10 = i10;
+                CharSequence ellipsize = TextUtils.ellipsize(this.f55921e, textPaint2, f10, TextUtils.TruncateAt.MIDDLE);
+                CharSequence ellipsize2 = TextUtils.ellipsize(this.f55922f, textPaint, f10, TextUtils.TruncateAt.END);
+                Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+                this.f55923g = new StaticLayout(ellipsize, textPaint2, i10, alignment, 1.0f, 0.0f, false);
+                this.h = new StaticLayout(ellipsize2, textPaint, i10, alignment, 1.0f, 0.0f, false);
             }
         }
-        return true;
-    }
-
-    public void setAnimatedVisibility(float f10) {
-        this.f55395w.setAlpha(f10);
-    }
-
-    public void setCellToWatch(q1 q1Var) {
-        this.f55392n = q1Var;
-        this.f55393r = q1Var.getMessageObject().f1();
-    }
-
-    public void setColor(int i3) {
-        if (this.H != i3) {
-            this.H = i3;
-            PorterDuffColorFilter porterDuffColorFilter = new PorterDuffColorFilter(i3, PorterDuff.Mode.SRC_IN);
-            e3 e3Var = this.f55388b;
-            ((Drawable) e3Var.f10222c).setColorFilter(porterDuffColorFilter);
-            ((Drawable) e3Var.d).setColorFilter(porterDuffColorFilter);
-            ((Drawable) this.f55389c.f31850c).setColorFilter(porterDuffColorFilter);
-            z zVar = this.f55387a;
-            zVar.setCursorColor(i3);
-            zVar.setHandlesColor(i3);
-            zVar.setHintTextColor(i3);
+        if (this.f55923g != null && this.h != null) {
+            Rect bounds = getBounds();
+            float f11 = bounds.left + i7;
+            float f12 = bounds.top + this.f55925j;
+            this.f55920c.r(g0.L(10.0f) + bounds.left, g0.L(9.0f) + bounds.top, g0.L(42.0f) + g0.L(10.0f) + bounds.left, g0.L(42.0f) + g0.L(9.0f) + bounds.top);
+            canvas.save();
+            canvas.translate(f11, f12);
+            this.f55923g.draw(canvas);
+            canvas.restore();
+            canvas.save();
+            canvas.translate(f11, this.f55923g.getHeight() + f12 + this.f55927l);
+            this.h.draw(canvas);
+            canvas.restore();
+            this.f55920c.draw(canvas);
         }
     }
 
     @Override
-    public final void updateColors() {
-        wm wmVar;
-        try {
-            k5 k5Var = this.f55391f;
-            if (k5Var != null && (wmVar = this.d) != null) {
-                k5Var.setTextColor(i0.a.f(this.J.f53840e, k6.w0(k6.A6, wmVar.getResourceProvider()), k6.w0(k6.f28102p7, wmVar.getResourceProvider())));
-            }
-        } catch (Exception e10) {
-            a8.g(e10, true);
-        }
+    public final int getIntrinsicHeight() {
+        Paint.FontMetricsInt fontMetricsInt = this.f55918a.getFontMetricsInt();
+        int i7 = fontMetricsInt.descent - fontMetricsInt.ascent;
+        int i10 = this.f55925j;
+        int i11 = i7 + i10 + this.f55927l;
+        Paint.FontMetricsInt fontMetricsInt2 = this.f55919b.getFontMetricsInt();
+        return (fontMetricsInt2.descent - fontMetricsInt2.ascent) + i11 + i10;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f55928m = -1;
+        this.f55923g = null;
+        this.h = null;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f55920c.E = i7 / 255.0f;
+        this.f55918a.setAlpha(i7);
+        this.f55919b.setAlpha(i7);
+        invalidateSelf();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f55918a.setColorFilter(colorFilter);
+        this.f55919b.setColorFilter(colorFilter);
+        invalidateSelf();
     }
 }

@@ -1,52 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-public final class d31 extends tj0 {
-    public final k31 f32927f3;
-    public final n31 f32928g3;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class d31 extends ky {
+    public final n31 Y;
 
-    public d31(n31 n31Var, Context context, k31 k31Var) {
-        super(context, null);
-        this.f32928g3 = n31Var;
-        this.f32927f3 = k31Var;
+    public d31(n31 n31Var, int i7, c31 c31Var) {
+        super(5, i7, c31Var);
+        this.Y = n31Var;
     }
 
     @Override
-    public final boolean E0(float f10) {
-        if (f10 >= org.telegram.messenger.g0.L(58.0f) + this.f32928g3.F) {
+    public final boolean D1() {
+        n31 n31Var = this.Y;
+        if (n31Var.f36236n.getAdapter() == n31Var.f36239w) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        this.f32928g3.G = true;
-        return super.dispatchTouchEvent(motionEvent);
+    public final boolean Y0() {
+        return org.telegram.messenger.hd.f22871a0;
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        boolean d = this.f32927f3.d(this, motionEvent);
-        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
-            return false;
+    public final int o0(int i7, v4.v0 v0Var, v4.a1 a1Var) {
+        int i10;
+        View m10;
+        n31 n31Var = this.Y;
+        if (n31Var.N) {
+            return super.o0(i7, v0Var, a1Var);
         }
-        return true;
+        int i11 = 0;
+        if (n31Var.L != null) {
+            return 0;
+        }
+        if (n31Var.M) {
+            while (true) {
+                i10 = 1;
+                if (i11 >= r()) {
+                    break;
+                }
+                c31 c31Var = n31Var.f36236n;
+                View q10 = q(i11);
+                c31Var.getClass();
+                int R = RecyclerView.R(q10);
+                if (R < 1) {
+                    i10 = R;
+                    break;
+                }
+                i11++;
+            }
+            if (i10 == 0 && (m10 = n31Var.f36237r.m(i10)) != null && m10.getTop() - i7 > org.telegram.messenger.g0.L(58.0f)) {
+                i7 = m10.getTop() - org.telegram.messenger.g0.L(58.0f);
+            }
+        }
+        return super.o0(i7, v0Var, a1Var);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (this.f32928g3.M != null) {
-            return false;
-        }
-        return super.onTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (!this.f32928g3.I) {
-            super.requestLayout();
-        }
+    public final boolean y0() {
+        return false;
     }
 }

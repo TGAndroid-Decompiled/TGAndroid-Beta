@@ -1,5 +1,6 @@
 package m;
 
+import a8.wa;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
@@ -8,77 +9,76 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.net.Uri;
 import android.util.AttributeSet;
+import android.widget.ImageButton;
 import android.widget.ImageView;
-import b8.kg;
-import b8.oc;
-public class v extends ImageView {
-    public final g2.d f18743a;
-    public final kg f18744b;
-    public boolean f18745c;
+public class v extends ImageButton {
+    public final h2.c f19262a;
+    public final wa f19263b;
+    public boolean f19264c;
 
-    public v(Context context, AttributeSet attributeSet, int i3) {
-        super(context, attributeSet, i3);
-        a3.a(context);
-        this.f18745c = false;
-        z2.a(this, getContext());
-        g2.d dVar = new g2.d(this);
-        this.f18743a = dVar;
-        dVar.x(attributeSet, i3);
-        kg kgVar = new kg(this);
-        this.f18744b = kgVar;
-        kgVar.t(attributeSet, i3);
+    public v(Context context, AttributeSet attributeSet, int i7) {
+        super(context, attributeSet, i7);
+        b3.a(context);
+        this.f19264c = false;
+        a3.a(this, getContext());
+        h2.c cVar = new h2.c(this);
+        this.f19262a = cVar;
+        cVar.x(attributeSet, i7);
+        wa waVar = new wa(this);
+        this.f19263b = waVar;
+        waVar.s(attributeSet, i7);
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        g2.d dVar = this.f18743a;
-        if (dVar != null) {
-            dVar.b();
+        h2.c cVar = this.f19262a;
+        if (cVar != null) {
+            cVar.b();
         }
-        kg kgVar = this.f18744b;
-        if (kgVar != null) {
-            kgVar.d();
+        wa waVar = this.f19263b;
+        if (waVar != null) {
+            waVar.c();
         }
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        g2.d dVar = this.f18743a;
-        if (dVar != null) {
-            return dVar.v();
+        h2.c cVar = this.f19262a;
+        if (cVar != null) {
+            return cVar.v();
         }
         return null;
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        g2.d dVar = this.f18743a;
-        if (dVar != null) {
-            return dVar.w();
+        h2.c cVar = this.f19262a;
+        if (cVar != null) {
+            return cVar.w();
         }
         return null;
     }
 
     public ColorStateList getSupportImageTintList() {
-        b3 b3Var;
-        kg kgVar = this.f18744b;
-        if (kgVar == null || (b3Var = (b3) kgVar.d) == null) {
+        c3 c3Var;
+        wa waVar = this.f19263b;
+        if (waVar == null || (c3Var = (c3) waVar.d) == null) {
             return null;
         }
-        return (ColorStateList) b3Var.f18547c;
+        return (ColorStateList) c3Var.f19074c;
     }
 
     public PorterDuff.Mode getSupportImageTintMode() {
-        b3 b3Var;
-        kg kgVar = this.f18744b;
-        if (kgVar == null || (b3Var = (b3) kgVar.d) == null) {
+        c3 c3Var;
+        wa waVar = this.f19263b;
+        if (waVar == null || (c3Var = (c3) waVar.d) == null) {
             return null;
         }
-        return (PorterDuff.Mode) b3Var.d;
+        return (PorterDuff.Mode) c3Var.d;
     }
 
     @Override
     public final boolean hasOverlappingRendering() {
-        if (!(((ImageView) this.f18744b.f2723c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
+        if (!(((ImageView) this.f19263b.f701c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
             return true;
         }
         return false;
@@ -87,118 +87,116 @@ public class v extends ImageView {
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        g2.d dVar = this.f18743a;
-        if (dVar != null) {
-            dVar.y();
+        h2.c cVar = this.f19262a;
+        if (cVar != null) {
+            cVar.y();
         }
     }
 
     @Override
-    public void setBackgroundResource(int i3) {
-        super.setBackgroundResource(i3);
-        g2.d dVar = this.f18743a;
-        if (dVar != null) {
-            dVar.z(i3);
+    public void setBackgroundResource(int i7) {
+        super.setBackgroundResource(i7);
+        h2.c cVar = this.f19262a;
+        if (cVar != null) {
+            cVar.z(i7);
         }
     }
 
     @Override
     public void setImageBitmap(Bitmap bitmap) {
         super.setImageBitmap(bitmap);
-        kg kgVar = this.f18744b;
-        if (kgVar != null) {
-            kgVar.d();
+        wa waVar = this.f19263b;
+        if (waVar != null) {
+            waVar.c();
         }
     }
 
     @Override
     public void setImageDrawable(Drawable drawable) {
-        kg kgVar = this.f18744b;
-        if (kgVar != null && drawable != null && !this.f18745c) {
-            kgVar.f2722b = drawable.getLevel();
+        wa waVar = this.f19263b;
+        if (waVar != null && drawable != null && !this.f19264c) {
+            waVar.f700b = drawable.getLevel();
         }
         super.setImageDrawable(drawable);
-        if (kgVar != null) {
-            kgVar.d();
-            if (!this.f18745c) {
-                ImageView imageView = (ImageView) kgVar.f2723c;
+        if (waVar != null) {
+            waVar.c();
+            if (!this.f19264c) {
+                ImageView imageView = (ImageView) waVar.f701c;
                 if (imageView.getDrawable() != null) {
-                    imageView.getDrawable().setLevel(kgVar.f2722b);
+                    imageView.getDrawable().setLevel(waVar.f700b);
                 }
             }
         }
     }
 
     @Override
-    public void setImageLevel(int i3) {
-        super.setImageLevel(i3);
-        this.f18745c = true;
+    public void setImageLevel(int i7) {
+        super.setImageLevel(i7);
+        this.f19264c = true;
     }
 
     @Override
-    public void setImageResource(int i3) {
-        kg kgVar = this.f18744b;
-        if (kgVar != null) {
-            ImageView imageView = (ImageView) kgVar.f2723c;
-            if (i3 != 0) {
-                Drawable b10 = oc.b(imageView.getContext(), i3);
-                if (b10 != null) {
-                    l1.a(b10);
-                }
-                imageView.setImageDrawable(b10);
-            } else {
-                imageView.setImageDrawable(null);
+    public void setImageResource(int i7) {
+        wa waVar = this.f19263b;
+        ImageView imageView = (ImageView) waVar.f701c;
+        if (i7 != 0) {
+            Drawable b10 = b5.a.b(imageView.getContext(), i7);
+            if (b10 != null) {
+                m1.a(b10);
             }
-            kgVar.d();
+            imageView.setImageDrawable(b10);
+        } else {
+            imageView.setImageDrawable(null);
         }
+        waVar.c();
     }
 
     @Override
     public void setImageURI(Uri uri) {
         super.setImageURI(uri);
-        kg kgVar = this.f18744b;
-        if (kgVar != null) {
-            kgVar.d();
+        wa waVar = this.f19263b;
+        if (waVar != null) {
+            waVar.c();
         }
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        g2.d dVar = this.f18743a;
-        if (dVar != null) {
-            dVar.D(colorStateList);
+        h2.c cVar = this.f19262a;
+        if (cVar != null) {
+            cVar.D(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        g2.d dVar = this.f18743a;
-        if (dVar != null) {
-            dVar.E(mode);
+        h2.c cVar = this.f19262a;
+        if (cVar != null) {
+            cVar.E(mode);
         }
     }
 
     public void setSupportImageTintList(ColorStateList colorStateList) {
-        kg kgVar = this.f18744b;
-        if (kgVar != null) {
-            if (((b3) kgVar.d) == null) {
-                kgVar.d = new Object();
+        wa waVar = this.f19263b;
+        if (waVar != null) {
+            if (((c3) waVar.d) == null) {
+                waVar.d = new Object();
             }
-            b3 b3Var = (b3) kgVar.d;
-            b3Var.f18547c = colorStateList;
-            b3Var.f18546b = true;
-            kgVar.d();
+            c3 c3Var = (c3) waVar.d;
+            c3Var.f19074c = colorStateList;
+            c3Var.f19073b = true;
+            waVar.c();
         }
     }
 
     public void setSupportImageTintMode(PorterDuff.Mode mode) {
-        kg kgVar = this.f18744b;
-        if (kgVar != null) {
-            if (((b3) kgVar.d) == null) {
-                kgVar.d = new Object();
+        wa waVar = this.f19263b;
+        if (waVar != null) {
+            if (((c3) waVar.d) == null) {
+                waVar.d = new Object();
             }
-            b3 b3Var = (b3) kgVar.d;
-            b3Var.d = mode;
-            b3Var.f18545a = true;
-            kgVar.d();
+            c3 c3Var = (c3) waVar.d;
+            c3Var.d = mode;
+            c3Var.f19072a = true;
+            waVar.c();
         }
     }
 }

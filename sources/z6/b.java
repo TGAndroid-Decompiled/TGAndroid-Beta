@@ -1,61 +1,33 @@
 package z6;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import com.google.android.gms.internal.cast.o;
-import java.lang.reflect.Field;
-import p6.m;
-public final class b extends o implements a {
-    public final Object f59790b;
+import android.content.Context;
+import androidx.biometric.t;
+public final class b {
+    public static final b f59589b;
+    public t f59590a;
 
-    public b(Object obj) {
-        super("com.google.android.gms.dynamic.IObjectWrapper", 7);
-        this.f59790b = obj;
+    static {
+        ?? obj = new Object();
+        obj.f59590a = null;
+        f59589b = obj;
     }
 
-    public static a M0(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
-        }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.dynamic.IObjectWrapper");
-        if (queryLocalInterface instanceof a) {
-            return (a) queryLocalInterface;
-        }
-        return new b8.a(iBinder, "com.google.android.gms.dynamic.IObjectWrapper", 8);
-    }
-
-    public static Object N0(a aVar) {
-        if (aVar instanceof b) {
-            return ((b) aVar).f59790b;
-        }
-        IBinder asBinder = aVar.asBinder();
-        Field[] declaredFields = asBinder.getClass().getDeclaredFields();
-        Field field = null;
-        int i3 = 0;
-        for (Field field2 : declaredFields) {
-            if (!field2.isSynthetic()) {
-                i3++;
-                field = field2;
-            }
-        }
-        if (i3 == 1) {
-            m.g(field);
-            if (!field.isAccessible()) {
-                field.setAccessible(true);
-                try {
-                    return field.get(asBinder);
-                } catch (IllegalAccessException e10) {
-                    throw new IllegalArgumentException("Could not access the field in remoteBinder.", e10);
-                } catch (NullPointerException e11) {
-                    throw new IllegalArgumentException("Binder object is null.", e11);
+    public static t a(Context context) {
+        t tVar;
+        b bVar = f59589b;
+        synchronized (bVar) {
+            try {
+                if (bVar.f59590a == null) {
+                    if (context.getApplicationContext() != null) {
+                        context = context.getApplicationContext();
+                    }
+                    bVar.f59590a = new t(context, 4);
                 }
+                tVar = bVar.f59590a;
+            } catch (Throwable th2) {
+                throw th2;
             }
-            throw new IllegalArgumentException("IObjectWrapper declared field not private!");
         }
-        int length = declaredFields.length;
-        StringBuilder sb2 = new StringBuilder(String.valueOf(length).length() + 53);
-        sb2.append("Unexpected number of IObjectWrapper declared fields: ");
-        sb2.append(length);
-        throw new IllegalArgumentException(sb2.toString());
+        return tVar;
     }
 }

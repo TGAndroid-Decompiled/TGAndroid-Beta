@@ -1,14 +1,23 @@
 package zd;
-public final class q extends hd.c {
-    public kotlin.jvm.internal.r f60429a;
-    public p f60430b;
-    public Object f60431c;
-    public int d;
+public final class q extends e1 implements p {
+    public final r f59983e;
+
+    public q(r rVar) {
+        this.f59983e = rVar;
+    }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f60431c = obj;
-        this.d |= Integer.MIN_VALUE;
-        return v.d(null, this);
+    public final boolean a(Throwable th2) {
+        return h().n(th2);
+    }
+
+    @Override
+    public final boolean i() {
+        return true;
+    }
+
+    @Override
+    public final void j(Throwable th2) {
+        ((n1) this.f59983e).j(h());
     }
 }

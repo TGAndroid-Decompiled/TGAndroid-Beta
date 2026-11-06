@@ -1,16 +1,124 @@
 package tf;
 
-import android.net.Uri;
-import e6.l;
+import java.io.EOFException;
+import org.telegram.ui.Components.uy;
+import org.telegram.ui.hy0;
 public final class f {
-    public final String f55113a;
-    public final l f55114b;
-    public final Uri f55115c;
-    public final String d;
-    public final int f55116e;
-    public final int f55117f;
+    public final String f55413a;
+    public final int f55414b;
+    public final int f55415c;
+    public final boolean d;
+    public final boolean f55416e;
+    public final boolean f55417f;
+    public final int f55418g;
 
-    public f(tf.e r8) {
-        throw new UnsupportedOperationException("Method not decompiled: tf.f.<init>(tf.e):void");
+    public f(hy0 hy0Var) {
+        byte b10;
+        byte b11;
+        boolean z9;
+        boolean z10;
+        uf.a aVar = (uf.a) hy0Var.f46519b;
+        long j3 = aVar.f915b;
+        uy uyVar = (uy) hy0Var.d;
+        h hVar = (h) hy0Var.f46520c;
+        int i7 = hVar.f55421a;
+        int i10 = hVar.f55421a;
+        byte b12 = 2;
+        if (i7 == 2) {
+            uyVar.getClass();
+            byte[] bArr = new byte[3];
+            int i11 = 0;
+            while (i11 < 3) {
+                int read = ((ab.d) uyVar.f38766b).read(bArr, i11, 3 - i11);
+                if (read > 0) {
+                    i11 += read;
+                } else {
+                    throw new EOFException();
+                }
+            }
+            this.f55413a = new String(bArr, "ISO-8859-1");
+        } else {
+            uyVar.getClass();
+            byte[] bArr2 = new byte[4];
+            int i12 = 0;
+            while (i12 < 4) {
+                int read2 = ((ab.d) uyVar.f38766b).read(bArr2, i12, 4 - i12);
+                if (read2 > 0) {
+                    i12 += read2;
+                } else {
+                    throw new EOFException();
+                }
+            }
+            this.f55413a = new String(bArr2, "ISO-8859-1");
+        }
+        byte b13 = 8;
+        if (i10 == 2) {
+            this.f55415c = ((uyVar.M() & 255) << 16) | ((uyVar.M() & 255) << 8) | (uyVar.M() & 255);
+        } else if (i10 == 3) {
+            this.f55415c = uyVar.O();
+        } else {
+            this.f55415c = uyVar.P();
+        }
+        if (i10 > 2) {
+            uyVar.M();
+            byte M = uyVar.M();
+            byte b14 = 64;
+            if (i10 == 3) {
+                b13 = 128;
+                b11 = 0;
+                b10 = 32;
+                b12 = 0;
+            } else {
+                b10 = 64;
+                b11 = 1;
+                b14 = 4;
+            }
+            if ((b13 & M) != 0) {
+                z9 = true;
+            } else {
+                z9 = false;
+            }
+            this.f55416e = z9;
+            if ((b12 & M) != 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            this.d = z10;
+            boolean z11 = (M & b14) != 0;
+            this.f55417f = z11;
+            if (i10 == 3) {
+                if (z9) {
+                    this.f55418g = uyVar.O();
+                    this.f55415c -= 4;
+                }
+                if (z11) {
+                    uyVar.M();
+                    this.f55415c--;
+                }
+                if ((M & b10) != 0) {
+                    uyVar.M();
+                    this.f55415c--;
+                }
+            } else {
+                if ((M & b10) != 0) {
+                    uyVar.M();
+                    this.f55415c--;
+                }
+                if (z11) {
+                    uyVar.M();
+                    this.f55415c--;
+                }
+                if ((M & b11) != 0) {
+                    this.f55418g = uyVar.P();
+                    this.f55415c -= 4;
+                }
+            }
+        }
+        this.f55414b = (int) (aVar.f915b - j3);
+    }
+
+    public final String toString() {
+        return String.format("%s[id=%s, bodysize=%d]", f.class.getSimpleName(), this.f55413a, Integer.valueOf(this.f55415c));
     }
 }

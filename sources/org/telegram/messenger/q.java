@@ -3,31 +3,31 @@ package org.telegram.messenger;
 import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.Window;
-import org.telegram.ui.Components.m51;
+import org.telegram.ui.Components.n51;
 public final class q implements ValueAnimator.AnimatorUpdateListener {
-    public final int f24840a;
-    public final Object f24841b;
-    public final Object f24842c;
+    public final int f24644a;
+    public final Object f24645b;
+    public final Object f24646c;
 
-    public q(int i3, Object obj, Object obj2) {
-        this.f24840a = i3;
-        this.f24841b = obj;
-        this.f24842c = obj2;
+    public q(int i7, Object obj, Object obj2) {
+        this.f24644a = i7;
+        this.f24645b = obj;
+        this.f24646c = obj2;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
         float f10;
-        switch (this.f24840a) {
+        switch (this.f24644a) {
             case 0:
-                org.telegram.ui.Components.kg kgVar = (org.telegram.ui.Components.kg) this.f24841b;
-                Window window = (Window) this.f24842c;
+                org.telegram.ui.Components.mg mgVar = (org.telegram.ui.Components.mg) this.f24645b;
+                Window window = (Window) this.f24646c;
                 int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                if (kgVar != null) {
-                    org.telegram.ui.Components.bi biVar = kgVar.f35396b;
-                    biVar.G0 = -1;
-                    biVar.H0 = intValue;
-                    biVar.f28586b.invalidate();
+                if (mgVar != null) {
+                    org.telegram.ui.Components.di diVar = mgVar.f35998b;
+                    diVar.F0 = -1;
+                    diVar.G0 = intValue;
+                    diVar.f28615b.invalidate();
                 }
                 try {
                     window.setNavigationBarColor(intValue);
@@ -36,19 +36,19 @@ public final class q implements ValueAnimator.AnimatorUpdateListener {
                     return;
                 }
             case 1:
-                m51 m51Var = (m51) this.f24842c;
-                if (((MediaController) this.f24841b).Y != 1) {
+                n51 n51Var = (n51) this.f24646c;
+                if (((MediaController) this.f24645b).X != 1) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.2f;
                 }
-                m51Var.B0(((Float) valueAnimator.getAnimatedValue()).floatValue() * f10);
+                n51Var.B0(((Float) valueAnimator.getAnimatedValue()).floatValue() * f10);
                 return;
             default:
-                xu xuVar = (xu) this.f24841b;
-                View view = (View) this.f24842c;
-                xuVar.getClass();
-                xuVar.f26445a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                fv fvVar = (fv) this.f24645b;
+                View view = (View) this.f24646c;
+                fvVar.getClass();
+                fvVar.f22454a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 if (view != null) {
                     view.invalidate();
                     return;

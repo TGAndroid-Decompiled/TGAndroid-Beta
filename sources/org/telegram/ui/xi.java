@@ -1,42 +1,78 @@
 package org.telegram.ui;
-public final class xi implements Runnable {
-    public final int f52028a;
-    public final yi f52029b;
 
-    public xi(yi yiVar, int i3) {
-        this.f52028a = i3;
-        this.f52029b = yiVar;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+public final class xi implements org.telegram.ui.Components.xn {
+    public final an f51862a;
+
+    public xi(an anVar) {
+        this.f51862a = anVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f52028a) {
-            case 0:
-                yi yiVar = this.f52029b;
-                yiVar.W = null;
-                wm wmVar = yiVar.X;
-                if (wmVar.f51261ba != -1) {
-                    wmVar.getNotificationCenter().j(wmVar.f51261ba);
-                    wmVar.f51261ba = -1;
-                }
-                if (org.telegram.messenger.r2.f25040a) {
-                    org.telegram.messenger.a8.b("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
-            default:
-                yi yiVar2 = this.f52029b;
-                yiVar2.W = null;
-                wm wmVar2 = yiVar2.X;
-                if (wmVar2.f51261ba != -1) {
-                    wmVar2.getNotificationCenter().j(wmVar2.f51261ba);
-                    wmVar2.f51261ba = -1;
-                }
-                if (org.telegram.messenger.r2.f25040a) {
-                    org.telegram.messenger.a8.b("chatItemAnimator enable notifications");
-                    return;
-                }
-                return;
+    public final void L() {
+        int i7;
+        an anVar = this.f51862a;
+        i7 = ((org.telegram.ui.ActionBar.f2) anVar).currentAccount;
+        SharedPreferences sharedPreferences = org.telegram.messenger.qp.s1(i7).f24749d7;
+        boolean z9 = sharedPreferences.getBoolean("sound_enabled_" + org.telegram.messenger.dt.v(anVar.f43818j6, anVar.b(), false), true);
+        boolean z10 = !z9 ? 1 : 0;
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean("sound_enabled_" + org.telegram.messenger.dt.v(anVar.f43818j6, anVar.b(), false), z10).apply();
+        if (org.telegram.ui.Components.hc.a(anVar)) {
+            org.telegram.ui.Components.hc.S(z9 ? 1 : 0, anVar, anVar.getResourceProvider()).j();
         }
+        anVar.ud(false);
+    }
+
+    @Override
+    public final void R(int i7) {
+        an anVar = this.f51862a;
+        if (i7 == 0) {
+            if (anVar.getMessagesController().r2(anVar.f43818j6, anVar.b(), null)) {
+                anVar.Ec(true);
+            }
+            if (org.telegram.ui.Components.hc.a(anVar)) {
+                org.telegram.ui.Components.hc.z(anVar, 4, i7, anVar.getResourceProvider()).j();
+                return;
+            }
+            return;
+        }
+        anVar.getNotificationsController().H(anVar.f43818j6, i7, anVar.b());
+        if (org.telegram.ui.Components.hc.a(anVar)) {
+            org.telegram.ui.Components.hc.z(anVar, 5, i7, anVar.getResourceProvider()).j();
+        }
+    }
+
+    @Override
+    public final void dismiss() {
+        this.f51862a.f43801i0.U(null, null);
+    }
+
+    @Override
+    public final void p() {
+        an anVar = this.f51862a;
+        anVar.Ec(true);
+        org.telegram.ui.Components.hc.A(anVar, anVar.getMessagesController().r2(anVar.f43818j6, anVar.b(), null), anVar.f43998xa).j();
+    }
+
+    @Override
+    public final void y() {
+        an anVar = this.f51862a;
+        if (anVar.f43818j6 != 0 && anVar.f43766f4 != 3) {
+            if (anVar.f43761f != null) {
+                anVar.getMessagesController().X3(anVar.f43761f, true, false);
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("dialog_id", anVar.f43818j6);
+            if (anVar.b() != 0) {
+                bundle.putLong("topic_id", anVar.b());
+            }
+            anVar.presentFragment(new gx0(bundle, anVar.f43998xa));
+        }
+    }
+
+    @Override
+    public final void n() {
     }
 }

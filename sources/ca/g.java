@@ -1,10 +1,30 @@
 package ca;
-public final class g implements ma.d {
-    public static final g f4382a = new Object();
-    public static final ma.c f4383b = ma.c.c("profilingTrigger");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ((ma.e) obj2).a(f4383b, ((k0) ((z1) obj)).f4423a);
+import org.json.JSONObject;
+import org.telegram.ui.hl0;
+public final class g extends JSONObject {
+    public g(hl0 hl0Var, int i7) {
+        switch (i7) {
+            case 4:
+                put("type", "PAYMENT_GATEWAY");
+                Object obj = hl0Var.M0;
+                if (obj != null) {
+                    put("parameters", obj);
+                    return;
+                }
+                JSONObject jSONObject = new JSONObject();
+                jSONObject.put("gateway", "stripe");
+                jSONObject.put("stripe:publishableKey", hl0Var.f46407j0);
+                jSONObject.put("stripe:version", "3.5.0");
+                put("parameters", jSONObject);
+                return;
+            default:
+                put("type", "DIRECT");
+                JSONObject jSONObject2 = new JSONObject();
+                jSONObject2.put("protocolVersion", "ECv2");
+                jSONObject2.put("publicKey", hl0Var.K0);
+                put("parameters", jSONObject2);
+                return;
+        }
     }
 }

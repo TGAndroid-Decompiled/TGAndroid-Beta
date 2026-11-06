@@ -1,27 +1,21 @@
 package db;
 
-import android.app.Application;
 import android.content.Context;
-import android.util.Log;
-public final class n {
-    public final n9.h f8704a;
-    public final gb.l f8705b;
+import c8.m0;
+import org.telegram.messenger.d1;
+import zd.c1;
+import zd.j0;
+public final class n implements a {
+    public static final d1 f8589b = new d1("fpnvsdk", "FirebasePhoneNumberVerificationImpl");
+    public final d f8590a;
 
-    public n(n9.h firebaseApp, gb.l settings, fd.h backgroundDispatcher, x0 sessionsActivityLifecycleCallbacks) {
-        kotlin.jvm.internal.j.e(firebaseApp, "firebaseApp");
-        kotlin.jvm.internal.j.e(settings, "settings");
-        kotlin.jvm.internal.j.e(backgroundDispatcher, "backgroundDispatcher");
-        kotlin.jvm.internal.j.e(sessionsActivityLifecycleCallbacks, "sessionsActivityLifecycleCallbacks");
-        this.f8704a = firebaseApp;
-        this.f8705b = settings;
-        Log.d("FirebaseSessions", "Initializing Firebase Sessions 3.0.8.");
-        firebaseApp.a();
-        Context applicationContext = firebaseApp.f20296a.getApplicationContext();
-        if (applicationContext instanceof Application) {
-            ((Application) applicationContext).registerActivityLifecycleCallbacks(sessionsActivityLifecycleCallbacks);
-            wd.b0.q(wd.b0.b(backgroundDispatcher), new ae.d(this, sessionsActivityLifecycleCallbacks, null, 3));
-            return;
-        }
-        Log.e("FirebaseSessions", "Failed to register lifecycle callbacks, unexpected context " + applicationContext.getClass() + '.');
+    public n(Context context, d dVar, k0.b bVar, h hVar, String appId, String apiKey) {
+        kotlin.jvm.internal.j.e(context, "context");
+        kotlin.jvm.internal.j.e(appId, "appId");
+        kotlin.jvm.internal.j.e(apiKey, "apiKey");
+        this.f8590a = dVar;
+        c1 c1Var = new c1();
+        ge.e eVar = j0.f59960a;
+        m0.c(c1Var, ee.n.f10792a);
     }
 }

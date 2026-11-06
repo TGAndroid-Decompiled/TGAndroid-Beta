@@ -1,4 +1,8 @@
 package zd;
-public interface b {
-    Object U(c cVar, hd.c cVar2);
+public final class b implements q1 {
+    public static final b f59919a = new Object();
+
+    public final String toString() {
+        return "Active";
+    }
 }

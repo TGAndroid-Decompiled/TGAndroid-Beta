@@ -1,17 +1,70 @@
 package org.telegram.ui;
-public final class hj0 extends org.telegram.ui.ActionBar.j {
-    public final yj0 f45928a;
 
-    public hj0(yj0 yj0Var) {
-        this.f45928a = yj0Var;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class hj0 extends AnimatorListenerAdapter {
+    public final int f46374a;
+    public final boolean f46375b;
+    public final bk0 f46376c;
+
+    public hj0(bk0 bk0Var, boolean z9, int i7) {
+        this.f46374a = i7;
+        this.f46376c = bk0Var;
+        this.f46375b = z9;
     }
 
     @Override
-    public final void b(int r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hj0.b(int):void");
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f46374a) {
+            case 0:
+                bk0 bk0Var = this.f46376c;
+                AnimatorSet animatorSet = bk0Var.M;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    bk0Var.M = null;
+                    return;
+                }
+                return;
+            default:
+                bk0 bk0Var2 = this.f46376c;
+                AnimatorSet animatorSet2 = bk0Var2.M;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    bk0Var2.M = null;
+                    return;
+                }
+                return;
+        }
     }
 
-    public final boolean c(org.telegram.ui.sg0 r34, m2.t r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hj0.c(org.telegram.ui.sg0, m2.t):boolean");
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f46374a) {
+            case 0:
+                bk0 bk0Var = this.f46376c;
+                AnimatorSet animatorSet = bk0Var.M;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f46375b) {
+                        bk0Var.N.setVisibility(4);
+                        return;
+                    } else {
+                        bk0Var.L.getContentView().setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+            default:
+                bk0 bk0Var2 = this.f46376c;
+                AnimatorSet animatorSet2 = bk0Var2.M;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!this.f46375b) {
+                        bk0Var2.P.setVisibility(4);
+                        return;
+                    } else {
+                        bk0Var2.O.setVisibility(4);
+                        return;
+                    }
+                }
+                return;
+        }
     }
 }

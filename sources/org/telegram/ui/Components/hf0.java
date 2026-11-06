@@ -1,94 +1,203 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import java.math.BigDecimal;
-import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
-import java.util.Locale;
-public final class hf0 extends cg0 {
-    public final Drawable R;
-    public final Drawable S;
-    public final ly0 T;
-    public ly0 U;
-    public final Paint V;
-    public final Path W;
-    public float f34379a0;
-    public final DecimalFormat f34380b0;
+import android.graphics.RadialGradient;
+import android.graphics.RectF;
+import android.graphics.Shader;
+public final class hf0 implements ri.a, dh.b, pi.a {
+    public final ri.a f34318a;
+    public final Paint f34319b = new Paint(1);
+    public final Paint f34320c = new Paint();
+    public RadialGradient d;
+    public int f34321e;
+    public float f34322f;
+    public final if0 h;
 
-    public hf0(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.V = paint;
-        Path path = new Path();
-        this.W = path;
-        this.f34380b0 = new DecimalFormat("#,##0.#########", new DecimalFormatSymbols(Locale.US));
-        this.R = k2.p1.g(context, 2131232578);
-        this.S = k2.p1.g(context, 2131232579);
-        this.T = new ly0(org.telegram.messenger.bd.M0(2131745165, null) + ":", 11.0f, null);
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(org.telegram.messenger.g0.N(1.16f));
-        path.moveTo(0.0f, -org.telegram.messenger.g0.N(3.33f));
-        path.lineTo(org.telegram.messenger.g0.N(3.16f), 0.0f);
-        path.lineTo(0.0f, org.telegram.messenger.g0.N(3.33f));
-        setBalance(0L);
+    public hf0(if0 if0Var, gf0 gf0Var) {
+        this.h = if0Var;
+        this.f34318a = gf0Var;
     }
 
     @Override
-    public final void b(Canvas canvas, float f10) {
-        Drawable drawable;
-        float height = getHeight() / 2.0f;
-        canvas.translate(0.0f, (-org.telegram.messenger.g0.L(20.0f)) * this.f34379a0);
-        float f11 = f10 * 0.85f;
-        this.T.c(0.0f, height, f11, this.F, canvas);
-        canvas.translate(this.T.k() + org.telegram.messenger.g0.L(4.0f), 0.0f);
-        if (!this.G && this.H < 0.8f) {
-            drawable = this.R;
+    public final int a() {
+        return j().a();
+    }
+
+    @Override
+    public final fh.g b() {
+        return new fh.g(this, this, this);
+    }
+
+    @Override
+    public final void d(float f10, float f11, int i7, Canvas canvas, RectF rectF) {
+        float f12;
+        float f13;
+        int i10;
+        Canvas canvas2;
+        RectF rectF2;
+        if0 if0Var = this.h;
+        ri.a aVar = this.f34318a;
+        if (aVar != null) {
+            f12 = if0Var.f34620l;
         } else {
-            drawable = this.S;
+            f12 = 0.0f;
         }
-        int L = org.telegram.messenger.g0.L(13.0f);
-        int i3 = ((int) height) - (L / 2);
-        drawable.setBounds(0, i3, L, i3 + L);
-        drawable.setAlpha((int) (255.0f * f10));
-        drawable.draw(canvas);
-        canvas.translate(org.telegram.messenger.g0.L(2.0f) + L, 0.0f);
-        this.U.c(0.0f, height, f10, this.F, canvas);
-        canvas.translate(org.telegram.messenger.g0.N(4.8f) + this.U.k(), height);
-        int r12 = org.telegram.ui.ActionBar.k6.r1(f11, this.F);
-        Paint paint = this.V;
-        paint.setColor(r12);
-        canvas.drawPath(this.W, paint);
+        int i11 = (f12 > 1.0f ? 1 : (f12 == 1.0f ? 0 : -1));
+        pi.a aVar2 = null;
+        if (i11 < 0) {
+            oi.c cVar = if0Var.f34612b;
+            if (cVar == null) {
+                cVar = null;
+            }
+            cVar.d(f10, f11, i7, canvas, rectF);
+            i10 = i7;
+            canvas2 = canvas;
+            rectF2 = rectF;
+            float f14 = 1.0f - if0Var.f34619k;
+            if (f14 > 0.0f) {
+                canvas2.save();
+                float f15 = 1.0f / i10;
+                canvas2.scale(f15, f15);
+                f13 = f10;
+                canvas2.translate(-f13, -f11);
+                i(canvas2, rectF2.left, rectF2.top, rectF2.right, rectF2.bottom, f14, i10 * 2);
+                canvas2.restore();
+            } else {
+                f13 = f10;
+            }
+        } else {
+            f13 = f10;
+            i10 = i7;
+            canvas2 = canvas;
+            rectF2 = rectF;
+        }
+        if (f12 > 0.0f) {
+            if (i11 < 0) {
+                canvas2.saveLayerAlpha(null, (int) (f12 * 255.0f));
+            }
+            if (aVar instanceof pi.a) {
+                aVar2 = (pi.a) aVar;
+            }
+            aVar2.d(f13, f11, i10, canvas2, rectF2);
+            if (i11 < 0) {
+                canvas.restore();
+            }
+        }
     }
 
     @Override
-    public final float c(float f10) {
-        ly0 ly0Var = this.T;
-        ly0Var.f35929p = -1.0f;
-        this.U.f35929p = -1.0f;
-        float max = Math.max(0.0f, f10 - org.telegram.messenger.g0.L(43.0f));
-        ly0Var.f35929p = Math.max(0.0f, max - this.U.k());
-        this.U.f35929p = Math.max(0.0f, max - ly0Var.k());
-        return this.U.k() + ly0Var.k() + org.telegram.messenger.g0.L(27.0f);
+    public final void e(Canvas canvas, float f10, float f11, float f12, float f13) {
+        float f14;
+        ri.a aVar = this.f34318a;
+        if0 if0Var = this.h;
+        if (aVar != null) {
+            f14 = if0Var.f34620l;
+        } else {
+            f14 = 0.0f;
+        }
+        int i7 = (f14 > 1.0f ? 1 : (f14 == 1.0f ? 0 : -1));
+        if (i7 < 0) {
+            if (if0Var.f34612b != null && canvas.isHardwareAccelerated()) {
+                if0Var.f34612b.e(canvas, f10, f11, f12, f13);
+            } else {
+                float f15 = if0Var.f34619k;
+                if (f15 > 0.0f) {
+                    int r12 = org.telegram.ui.ActionBar.k6.r1(f15 * 0.5f, -16777216);
+                    Paint paint = this.f34320c;
+                    paint.setColor(r12);
+                    canvas.drawRect(f10, f11, f12, f13, paint);
+                }
+            }
+            float f16 = 1.0f - if0Var.f34619k;
+            if (f16 > 0.0f) {
+                i(canvas, f10, f11, f12, f13, f16, 0.0f);
+            }
+        }
+        if (f14 > 0.0f) {
+            if (i7 < 0) {
+                canvas.saveLayerAlpha(f10, f11, f12, f13, (int) (f14 * 255.0f));
+            }
+            this.f34318a.e(canvas, f10, f11, f12, f13);
+            if (i7 < 0) {
+                canvas.restore();
+            }
+        }
     }
 
-    public void setBalance(long j10) {
-        String format = this.f34380b0.format(new BigDecimal(org.telegram.ui.Wallet.k0.p(j10, false)));
-        this.U = new ly0(format, 11.0f, org.telegram.messenger.g0.o());
-        setContentDescription(org.telegram.messenger.bd.M0(2131745165, null) + ": " + format);
-        invalidate();
+    @Override
+    public final int f() {
+        return j().f();
     }
 
-    public void setEjectProgress(float f10) {
-        if (this.f34379a0 == f10) {
+    @Override
+    public final int g() {
+        return j().g();
+    }
+
+    @Override
+    public final boolean h() {
+        oi.c cVar = this.h.f34612b;
+        pi.a aVar = null;
+        if (cVar == null) {
+            cVar = null;
+        }
+        ri.a aVar2 = this.f34318a;
+        if (aVar2 instanceof pi.a) {
+            aVar = (pi.a) aVar2;
+        }
+        if (cVar != null && cVar.f() > 1) {
+            if (aVar2 == null || (aVar != null && aVar.h())) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void i(Canvas canvas, float f10, float f11, float f12, float f13, float f14, float f15) {
+        if0 if0Var = this.h;
+        boolean z9 = if0Var.f34618j;
+        Paint paint = this.f34319b;
+        if (z9) {
+            float f16 = f12 - f10;
+            float max = Math.max(1.0f, 0.65f * f16);
+            if (this.d == null || this.f34321e != if0Var.f34617i || this.f34322f != max) {
+                this.f34321e = if0Var.f34617i;
+                this.f34322f = max;
+                this.d = new RadialGradient(0.0f, 0.0f, max, org.telegram.ui.ActionBar.k6.r1(0.8f, if0Var.f34617i), if0Var.f34617i, Shader.TileMode.CLAMP);
+            }
+            canvas.save();
+            canvas.translate((f10 + f12) / 2.0f, (f11 + f13) / 2.0f);
+            paint.setShader(this.d);
+            paint.setColor(-16777216);
+            paint.setAlpha((int) (f14 * 255.0f));
+            canvas.drawRect(((f10 - f12) / 2.0f) - f15, ((f11 - f13) / 2.0f) - f15, (f16 / 2.0f) + f15, com.google.android.recaptcha.internal.a.A(f13, f11, 2.0f, f15), paint);
+            canvas.restore();
             return;
         }
-        this.f34379a0 = f10;
-        invalidate();
+        paint.setShader(null);
+        paint.setColor(org.telegram.ui.ActionBar.k6.r1(f14, if0Var.f34617i));
+        canvas.drawRect(f10 - f15, f11 - f15, f12 + f15, f13 + f15, paint);
+    }
+
+    public final pi.a j() {
+        oi.c cVar = this.h.f34612b;
+        pi.a aVar = null;
+        if (cVar == null) {
+            cVar = null;
+        }
+        ri.a aVar2 = this.f34318a;
+        if (aVar2 instanceof pi.a) {
+            aVar = (pi.a) aVar2;
+        }
+        if (aVar != null && cVar.f() >= aVar.f()) {
+            return aVar;
+        }
+        return cVar;
+    }
+
+    @Override
+    public final void c(fh.g gVar) {
     }
 }

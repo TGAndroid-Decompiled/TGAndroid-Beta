@@ -1,10 +1,11 @@
 package org.telegram.messenger;
-public final class bs {
-    public final int f21878a;
-    public final Object[] f21879b;
 
-    public bs(int i3, Object[] objArr) {
-        this.f21878a = i3;
-        this.f21879b = objArr;
-    }
+import android.graphics.Path;
+import android.graphics.RectF;
+public final class bs {
+    public int f21689a;
+    public boolean f21690b;
+    public boolean f21691c;
+    public Path d;
+    public RectF f21692e;
 }

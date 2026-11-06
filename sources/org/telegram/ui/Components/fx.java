@@ -1,60 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public interface fx {
-    boolean A();
+import java.util.LinkedHashSet;
+public final class fx implements ux {
+    public final gx f33708a;
 
-    long a();
+    public fx(gx gxVar) {
+        this.f33708a = gxVar;
+    }
 
-    boolean b();
+    @Override
+    public final void e() {
+        gx gxVar = this.f33708a;
+        if (gxVar.F.V.F) {
+            return;
+        }
+        ArrayList arrayList = new ArrayList();
+        gxVar.F.V.e(true);
+        gx.E(gxVar, new fq(13, this, arrayList), arrayList, true);
+    }
 
-    boolean c();
-
-    void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10);
-
-    void e(Object obj, Object obj2);
-
-    int f();
-
-    boolean g();
-
-    void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    void i(int i3);
-
-    boolean j();
-
-    boolean k();
-
-    void l(String str);
-
-    void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.vi viVar, boolean z10, int i3);
-
-    void n();
-
-    void o(n31 n31Var);
-
-    float p();
-
-    void q();
-
-    void r(TLRPC.StickerSetCovered stickerSetCovered);
-
-    void s(int i3);
-
-    void t(ArrayList arrayList);
-
-    void u();
-
-    void v(View view, Object obj, String str, Object obj2, boolean z10, int i3, int i10);
-
-    void w();
-
-    void x(long j10, TLRPC.Document document, String str, boolean z10);
-
-    void y(long j10);
-
-    boolean z();
+    @Override
+    public final void run() {
+        LinkedHashSet linkedHashSet = new LinkedHashSet();
+        String str = this.f33708a.f34061w;
+        fq fqVar = new fq(12, this, str);
+        if (org.telegram.messenger.i6.d(str)) {
+            yu0.F3.c(org.telegram.messenger.p10.f24459s0, str, new org.telegram.messenger.voip.k(28, linkedHashSet, fqVar));
+        } else {
+            fqVar.run();
+        }
+    }
 }

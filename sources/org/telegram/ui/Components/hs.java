@@ -3,65 +3,65 @@ package org.telegram.ui.Components;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 public final class hs implements Runnable {
-    public final int f34489a;
-    public final is f34490b;
+    public final int f34409a;
+    public final is f34410b;
 
-    public hs(is isVar, int i3) {
-        this.f34489a = i3;
-        this.f34490b = isVar;
+    public hs(is isVar, int i7) {
+        this.f34409a = i7;
+        this.f34410b = isVar;
     }
 
     @Override
     public final void run() {
-        int i3;
+        int i7;
         Bitmap bitmap;
-        switch (this.f34489a) {
+        switch (this.f34409a) {
             case 0:
-                is isVar = this.f34490b;
+                is isVar = this.f34410b;
                 try {
-                    i3 = isVar.f34814x + 0;
-                    bitmap = isVar.f34806b;
+                    i7 = isVar.f34774x + 0;
+                    bitmap = isVar.f34766b;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
-                    isVar.F = true;
+                    isVar.E = true;
                 }
                 if (bitmap != null) {
-                    if (bitmap.getWidth() == isVar.f34815y) {
-                        if (isVar.f34806b.getHeight() != i3) {
+                    if (bitmap.getWidth() == isVar.f34775y) {
+                        if (isVar.f34766b.getHeight() != i7) {
                         }
-                        isVar.f34806b.eraseColor(0);
-                        isVar.f34807c.save();
-                        isVar.f34807c.translate(0.0f, 0);
-                        isVar.c(isVar.f34807c);
-                        isVar.f34807c.restore();
-                        isVar.f34806b.prepareToDraw();
-                        org.telegram.messenger.g0.h3(isVar.I);
+                        isVar.f34766b.eraseColor(0);
+                        isVar.f34767c.save();
+                        isVar.f34767c.translate(0.0f, 0);
+                        isVar.c(isVar.f34767c);
+                        isVar.f34767c.restore();
+                        isVar.f34766b.prepareToDraw();
+                        org.telegram.messenger.g0.h3(isVar.H);
                         return;
                     }
                 }
-                Bitmap bitmap2 = isVar.f34806b;
+                Bitmap bitmap2 = isVar.f34766b;
                 if (bitmap2 != null) {
                     bitmap2.recycle();
                 }
-                isVar.f34806b = Bitmap.createBitmap(isVar.f34815y, i3, Bitmap.Config.ARGB_8888);
-                isVar.f34807c = new Canvas(isVar.f34806b);
-                isVar.f34806b.eraseColor(0);
-                isVar.f34807c.save();
-                isVar.f34807c.translate(0.0f, 0);
-                isVar.c(isVar.f34807c);
-                isVar.f34807c.restore();
-                isVar.f34806b.prepareToDraw();
-                org.telegram.messenger.g0.h3(isVar.I);
+                isVar.f34766b = Bitmap.createBitmap(isVar.f34775y, i7, Bitmap.Config.ARGB_8888);
+                isVar.f34767c = new Canvas(isVar.f34766b);
+                isVar.f34766b.eraseColor(0);
+                isVar.f34767c.save();
+                isVar.f34767c.translate(0.0f, 0);
+                isVar.c(isVar.f34767c);
+                isVar.f34767c.restore();
+                isVar.f34766b.prepareToDraw();
+                org.telegram.messenger.g0.h3(isVar.H);
                 return;
             default:
-                is isVar2 = this.f34490b;
-                isVar2.f34809f = false;
+                is isVar2 = this.f34410b;
+                isVar2.f34769f = false;
                 isVar2.g();
-                if (!isVar2.f34805a) {
+                if (!isVar2.f34765a) {
                     isVar2.j();
                     return;
-                } else if (isVar2.f34813w == isVar2.K) {
-                    isVar2.H = true;
+                } else if (isVar2.f34773w == isVar2.J) {
+                    isVar2.G = true;
                     return;
                 } else {
                     return;

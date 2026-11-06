@@ -1,4 +1,5 @@
 package cf;
-public final class a {
-    public final int f4600a;
+
+import kf.e;
+public final class a extends e {
 }

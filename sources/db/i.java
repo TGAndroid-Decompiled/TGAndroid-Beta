@@ -1,19 +1,30 @@
 package db;
-public final class i implements r {
-    public e.a f8672a;
-    public e.a f8673b;
-    public fb.c f8674c;
-    public fb.c d;
-    public e.a f8675e;
-    public fb.c f8676f;
-    public e.a f8677g;
-    public fb.c h;
-    public e.a f8678i;
-    public fb.c f8679j;
-    public fb.c f8680k;
-    public fb.c f8681l;
-    public fb.c f8682m;
-    public fb.c f8683n;
-    public fb.c f8684o;
-    public fb.c f8685p;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import c8.wb;
+public final class i extends r6.a {
+    public static final Parcelable.Creator<i> CREATOR = new k(0);
+    public final int f8581a;
+    public final String f8582b;
+    public final int f8583c;
+
+    public i(int i7, int i10, String simOperatorName) {
+        kotlin.jvm.internal.j.e(simOperatorName, "simOperatorName");
+        this.f8581a = i7;
+        this.f8582b = simOperatorName;
+        this.f8583c = i10;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel dest, int i7) {
+        kotlin.jvm.internal.j.e(dest, "dest");
+        int r10 = wb.r(dest, 20293);
+        wb.q(dest, 1, 4);
+        dest.writeInt(this.f8581a);
+        wb.l(dest, 2, this.f8582b);
+        wb.q(dest, 3, 4);
+        dest.writeInt(this.f8583c);
+        wb.s(dest, r10);
+    }
 }

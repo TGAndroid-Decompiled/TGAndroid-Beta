@@ -1,203 +1,139 @@
 package kg;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.widget.TextView;
+import di.s2;
 import java.util.ArrayList;
-import java.util.WeakHashMap;
-import org.telegram.messenger.r2;
-import org.telegram.ui.Components.tj0;
-public final class j1 extends u4.j0 {
-    public final int f17059a;
-    public final Object f17060b;
+import org.telegram.messenger.c20;
+import org.telegram.messenger.dp;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.qp;
+import org.telegram.messenger.t10;
+import org.telegram.messenger.xr;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.qw;
+import org.telegram.ui.v91;
+import org.telegram.ui.ww;
+public final class j1 implements org.telegram.ui.ActionBar.r1, qw {
+    public final int f17409a;
+    public final KeyEvent.Callback f17410b;
+    public final Object f17411c;
+    public final Object d;
+    public final Object f17412e;
+    public final Object f17413f;
 
-    public j1(Object obj, int i3) {
-        this.f17059a = i3;
-        this.f17060b = obj;
+    public j1(x0 x0Var, s2 s2Var, int i7, s1 s1Var, TextView textView, c20 c20Var) {
+        this.f17410b = x0Var;
+        this.f17411c = s2Var;
+        this.f17409a = i7;
+        this.d = s1Var;
+        this.f17412e = textView;
+        this.f17413f = c20Var;
     }
 
     @Override
-    public final void a() {
-        int i3 = this.f17059a;
-        Object obj = this.f17060b;
-        switch (i3) {
-            case 0:
-                ((k1) obj).f();
-                return;
-            case 1:
-                tj0 tj0Var = (tj0) obj;
-                tj0Var.K0(true);
-                if (tj0Var.f38466r2) {
-                    tj0Var.f38465r1 = -1;
-                    if (tj0Var.U1 == null) {
-                        tj0Var.F1.setEmpty();
-                    }
-                }
-                tj0Var.invalidate();
-                return;
-            default:
-                RecyclerView recyclerView = (RecyclerView) obj;
-                recyclerView.l(null);
-                recyclerView.f2300v0.f55494f = true;
-                boolean z10 = r2.f25040a;
-                recyclerView.d.h("notifyDataSetChanged()");
-                recyclerView.n0(true);
-                if (!recyclerView.d.g()) {
-                    recyclerView.requestLayout();
-                    return;
-                }
-                return;
-        }
+    public boolean G() {
+        return false;
     }
 
     @Override
-    public void b(int i3, int i10) {
-        switch (this.f17059a) {
-            case 0:
-                ((k1) this.f17060b).k(i3 + 1, i10);
-                return;
-            default:
-                return;
-        }
+    public boolean N(ww wwVar) {
+        return false;
     }
 
     @Override
-    public void c(int i3, int i10, Object obj) {
-        switch (this.f17059a) {
-            case 2:
-                RecyclerView recyclerView = (RecyclerView) this.f17060b;
-                recyclerView.l(null);
-                u4.b bVar = recyclerView.d;
-                ArrayList arrayList = (ArrayList) bVar.d;
-                if (i10 >= 1) {
-                    boolean z10 = r2.f25040a;
-                    StringBuilder m10 = com.google.android.recaptcha.internal.a.m("onItemRangeChanged(", i3, ", ", i10, ", ");
-                    m10.append(obj);
-                    m10.append(")");
-                    bVar.h(m10.toString());
-                    arrayList.add(bVar.i(4, i3, obj, i10));
-                    bVar.f55504b |= 4;
-                    if (arrayList.size() == 1) {
-                        g();
-                        return;
-                    }
-                    return;
-                }
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        int i10;
+        x0 x0Var = (x0) this.f17410b;
+        s2 s2Var = (s2) this.f17411c;
+        s1 s1Var = (s1) this.d;
+        TextView textView = (TextView) this.f17412e;
+        c20 c20Var = (c20) this.f17413f;
+        String obj = x0Var.getText().toString();
+        if (obj.length() > 0 && obj.length() <= 32) {
+            t1 f10 = t1.f(this.f17409a);
+            if (s1Var == null) {
+                i10 = -1;
+            } else {
+                i10 = s1Var.f17529a;
+            }
+            s1 d = f10.d(obj);
+            if (d != null && d.f17529a != i10) {
+                org.telegram.messenger.g0.F3(x0Var);
+                textView.setText(hd.M0(2131752662, null));
+                s2Var.a(Boolean.TRUE);
                 return;
-            default:
-                super.c(i3, i10, obj);
-                return;
-        }
-    }
-
-    @Override
-    public final void d(int i3, int i10) {
-        int i11 = this.f17059a;
-        Object obj = this.f17060b;
-        switch (i11) {
-            case 0:
-                ((k1) obj).o(i3 + 1, i10);
-                return;
-            case 1:
-                tj0 tj0Var = (tj0) obj;
-                tj0Var.K0(true);
-                View view = tj0Var.f38463q1;
-                if (view != null && view.getAlpha() == 0.0f) {
-                    tj0Var.f38465r1 = -1;
-                    tj0Var.g1();
-                    return;
-                }
-                return;
-            default:
-                RecyclerView recyclerView = (RecyclerView) obj;
-                recyclerView.l(null);
-                u4.b bVar = recyclerView.d;
-                ArrayList arrayList = (ArrayList) bVar.d;
-                if (i10 >= 1) {
-                    boolean z10 = r2.f25040a;
-                    bVar.h("onItemRangeInserted(" + i3 + ", " + i10 + ")");
-                    arrayList.add(bVar.i(1, i3, null, i10));
-                    bVar.f55504b = bVar.f55504b | 1;
-                    if (arrayList.size() == 1) {
-                        g();
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public void e(int i3, int i10) {
-        int i11 = this.f17059a;
-        Object obj = this.f17060b;
-        switch (i11) {
-            case 0:
-                ((k1) obj).k(i3 + 1, i10 + 2);
-                return;
-            case 1:
-            default:
-                return;
-            case 2:
-                RecyclerView recyclerView = (RecyclerView) obj;
-                recyclerView.l(null);
-                u4.b bVar = recyclerView.d;
-                ArrayList arrayList = (ArrayList) bVar.d;
-                if (i3 != i10) {
-                    boolean z10 = r2.f25040a;
-                    bVar.h("onItemRangeMoved(" + i3 + ", " + i10 + ", 1)");
-                    arrayList.add(bVar.i(8, i3, null, i10));
-                    bVar.f55504b = bVar.f55504b | 8;
-                    if (arrayList.size() == 1) {
-                        g();
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void f(int i3, int i10) {
-        int i11 = this.f17059a;
-        Object obj = this.f17060b;
-        switch (i11) {
-            case 0:
-                ((k1) obj).p(i3 + 1, i10);
-                return;
-            case 1:
-                ((tj0) obj).K0(true);
-                return;
-            default:
-                RecyclerView recyclerView = (RecyclerView) obj;
-                recyclerView.l(null);
-                u4.b bVar = recyclerView.d;
-                ArrayList arrayList = (ArrayList) bVar.d;
-                if (i10 >= 1) {
-                    boolean z10 = r2.f25040a;
-                    bVar.h("onItemRangeRemoved(" + i3 + ", " + i10 + ")");
-                    arrayList.add(bVar.i(2, i3, null, i10));
-                    bVar.f55504b = bVar.f55504b | 2;
-                    if (arrayList.size() == 1) {
-                        g();
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
-    }
-
-    public void g() {
-        int[] iArr = RecyclerView.R0;
-        RecyclerView recyclerView = (RecyclerView) this.f17060b;
-        if (recyclerView.I && recyclerView.H) {
-            u4.f0 f0Var = recyclerView.f2289n;
-            WeakHashMap weakHashMap = r0.i0.f54015a;
-            recyclerView.postOnAnimation(f0Var);
+            }
+            c20Var.a(obj);
+            u1Var.dismiss();
             return;
         }
-        recyclerView.requestLayout();
+        org.telegram.messenger.g0.F3(x0Var);
+        s2Var.a(Boolean.FALSE);
+    }
+
+    @Override
+    public boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, v91 v91Var) {
+        String str;
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        final LaunchActivity launchActivity = (LaunchActivity) this.f17410b;
+        final TLRPC.User user = (TLRPC.User) this.f17411c;
+        final String str2 = (String) this.d;
+        final String str3 = (String) this.f17412e;
+        final ww wwVar2 = (ww) this.f17413f;
+        String str4 = LaunchActivity.B1;
+        final long j3 = ((xr) arrayList.get(0)).f26505a;
+        final TLRPC.Chat M0 = qp.s1(launchActivity.O).M0(Long.valueOf(-j3));
+        final int i11 = this.f17409a;
+        if (M0 != null && (M0.creator || ((tL_chatAdminRights = M0.admin_rights) != null && tL_chatAdminRights.add_admins))) {
+            qp.s1(i11).K(M0, user, new dp() {
+                @Override
+                public final void a(boolean z11, TLRPC.TL_chatAdminRights tL_chatAdminRights2, String str5) {
+                    String str6 = LaunchActivity.B1;
+                    org.telegram.messenger.g0.h3(new org.telegram.messenger.gi(LaunchActivity.this, str2, tL_chatAdminRights2, z11, str3, i11, M0, wwVar2, user, j3, str5));
+                }
+            });
+        } else {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
+            String M02 = hd.M0(2131754463, null);
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+            u1Var.R = M02;
+            if (M0 == null) {
+                str = "";
+            } else {
+                str = M0.title;
+            }
+            u1Var.T = org.telegram.messenger.g0.X2(hd.a0("AddMembersAlertNamesText", null, 2131754399, t10.p(user), str));
+            alertDialog$Builder.h(hd.M0(2131752589, null), null);
+            alertDialog$Builder.k(hd.M0(2131754463, null), new org.telegram.ui.ActionBar.r1() {
+                @Override
+                public final void g(org.telegram.ui.ActionBar.u1 u1Var2, int i12) {
+                    String str5 = LaunchActivity.B1;
+                    Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
+                    long j10 = -j3;
+                    k10.putLong("chat_id", j10);
+                    an anVar = new an(k10);
+                    int i13 = i11;
+                    org.telegram.messenger.qs.f(i13).k(org.telegram.messenger.qs.f25059t, new Object[0]);
+                    org.telegram.messenger.qp.s1(i13).n(j10, user, str3, anVar, null);
+                    ((ActionBarLayout) LaunchActivity.this.M()).V(anVar, true, false);
+                }
+            });
+            alertDialog$Builder.p();
+        }
+        return true;
+    }
+
+    public j1(LaunchActivity launchActivity, int i7, TLRPC.User user, String str, String str2, ww wwVar) {
+        this.f17410b = launchActivity;
+        this.f17409a = i7;
+        this.f17411c = user;
+        this.d = str;
+        this.f17412e = str2;
+        this.f17413f = wwVar;
     }
 }

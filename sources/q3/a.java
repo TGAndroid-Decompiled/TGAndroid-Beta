@@ -1,59 +1,80 @@
 package q3;
 
-import d2.p0;
-import d2.r0;
-import d2.u0;
-import d2.v;
-import g2.y;
-import java.nio.charset.StandardCharsets;
+import e2.n0;
+import e2.p0;
+import e2.s0;
+import e2.t;
+import e2.u;
+import j$.util.Objects;
 import java.util.Arrays;
-public final class a implements r0 {
-    public final int f53783a;
-    public final String f53784b;
-    public final String f53785c;
-    public final int d;
-    public final int f53786e;
-    public final int f53787f;
-    public final int f53788g;
-    public final byte[] h;
+public final class a implements p0 {
+    public static final u f53641g;
+    public static final u h;
+    public final String f53642a;
+    public final String f53643b;
+    public final long f53644c;
+    public final long d;
+    public final byte[] f53645e;
+    public int f53646f;
 
-    public a(int i3, String str, String str2, int i10, int i11, int i12, int i13, byte[] bArr) {
-        this.f53783a = i3;
-        this.f53784b = str;
-        this.f53785c = str2;
-        this.d = i10;
-        this.f53786e = i11;
-        this.f53787f = i12;
-        this.f53788g = i13;
-        this.h = bArr;
+    static {
+        t tVar = new t();
+        tVar.f10563r = s0.n("application/id3");
+        f53641g = new u(tVar);
+        t tVar2 = new t();
+        tVar2.f10563r = s0.n("application/x-scte35");
+        h = new u(tVar2);
     }
 
-    public static a d(y yVar) {
-        int m10 = yVar.m();
-        String n4 = u0.n(yVar.y(yVar.m(), StandardCharsets.US_ASCII));
-        String y9 = yVar.y(yVar.m(), StandardCharsets.UTF_8);
-        int m11 = yVar.m();
-        int m12 = yVar.m();
-        int m13 = yVar.m();
-        int m14 = yVar.m();
-        int m15 = yVar.m();
-        byte[] bArr = new byte[m15];
-        yVar.k(0, m15, bArr);
-        return new a(m10, n4, y9, m11, m12, m13, m14, bArr);
+    public a(String str, String str2, long j3, long j10, byte[] bArr) {
+        this.f53642a = str;
+        this.f53643b = str2;
+        this.f53644c = j3;
+        this.d = j10;
+        this.f53645e = bArr;
     }
 
     @Override
-    public final void a(p0 p0Var) {
-        p0Var.a(this.f53783a, this.h);
-    }
-
-    @Override
-    public final v b() {
-        return null;
+    public final u a() {
+        String str = this.f53642a;
+        str.getClass();
+        char c10 = 65535;
+        switch (str.hashCode()) {
+            case -1468477611:
+                if (str.equals("urn:scte:scte35:2014:bin")) {
+                    c10 = 0;
+                    break;
+                }
+                break;
+            case -795945609:
+                if (str.equals("https://aomedia.org/emsg/ID3")) {
+                    c10 = 1;
+                    break;
+                }
+                break;
+            case 1303648457:
+                if (str.equals("https://developer.apple.com/streaming/emsg-id3")) {
+                    c10 = 2;
+                    break;
+                }
+                break;
+        }
+        switch (c10) {
+            case 0:
+                return h;
+            case 1:
+            case 2:
+                return f53641g;
+            default:
+                return null;
+        }
     }
 
     @Override
     public final byte[] c() {
+        if (a() != null) {
+            return this.f53645e;
+        }
         return null;
     }
 
@@ -63,7 +84,7 @@ public final class a implements r0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f53783a == aVar.f53783a && this.f53784b.equals(aVar.f53784b) && this.f53785c.equals(aVar.f53785c) && this.d == aVar.d && this.f53786e == aVar.f53786e && this.f53787f == aVar.f53787f && this.f53788g == aVar.f53788g && Arrays.equals(this.h, aVar.h)) {
+            if (this.f53644c == aVar.f53644c && this.d == aVar.d && Objects.equals(this.f53642a, aVar.f53642a) && Objects.equals(this.f53643b, aVar.f53643b) && Arrays.equals(this.f53645e, aVar.f53645e)) {
                 return true;
             }
         }
@@ -71,10 +92,32 @@ public final class a implements r0 {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(this.h) + ((((((((com.google.android.recaptcha.internal.a.g(com.google.android.recaptcha.internal.a.g((527 + this.f53783a) * 31, 31, this.f53784b), 31, this.f53785c) + this.d) * 31) + this.f53786e) * 31) + this.f53787f) * 31) + this.f53788g) * 31);
+        int i7;
+        if (this.f53646f == 0) {
+            int i10 = 0;
+            String str = this.f53642a;
+            if (str != null) {
+                i7 = str.hashCode();
+            } else {
+                i7 = 0;
+            }
+            int i11 = (527 + i7) * 31;
+            String str2 = this.f53643b;
+            if (str2 != null) {
+                i10 = str2.hashCode();
+            }
+            long j3 = this.f53644c;
+            long j10 = this.d;
+            this.f53646f = Arrays.hashCode(this.f53645e) + ((((((i11 + i10) * 31) + ((int) (j3 ^ (j3 >>> 32)))) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31);
+        }
+        return this.f53646f;
     }
 
     public final String toString() {
-        return "Picture: mimeType=" + this.f53784b + ", description=" + this.f53785c;
+        return "EMSG: scheme=" + this.f53642a + ", id=" + this.d + ", durationMs=" + this.f53644c + ", value=" + this.f53643b;
+    }
+
+    @Override
+    public final void b(n0 n0Var) {
     }
 }

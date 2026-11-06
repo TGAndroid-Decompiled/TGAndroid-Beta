@@ -1,33 +1,144 @@
 package org.telegram.ui.Components;
-public final class pl0 extends u4.o {
-    public final tl0 f37177b;
 
-    public pl0(tl0 tl0Var) {
-        this.f37177b = tl0Var;
-    }
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+public final class pl0 extends View {
+    public ol0 f37088a;
+    public final w5 f37089b;
+    public final fh.g f37090c;
+    public ch.o0 d;
+    public boolean f37091e;
+    public final Path f37092f;
+    public final RectF h;
+    public final RectF f37093n;
+    public boolean f37094r;
+    public final ql0 f37095s;
 
-    @Override
-    public final boolean a(int i3, int i10) {
-        tl0 tl0Var = this.f37177b;
-        return ((ql0) tl0Var.f38490n.get(i3)).equals(tl0Var.f38491r.get(i10));
-    }
-
-    @Override
-    public final boolean b(int i3, int i10) {
-        tl0 tl0Var = this.f37177b;
-        if (((ql0) tl0Var.f38490n.get(i3)).f37490a.h == ((ql0) tl0Var.f38491r.get(i10)).f37490a.h) {
-            return true;
+    public pl0(ql0 ql0Var, Context context) {
+        super(context);
+        this.f37095s = ql0Var;
+        this.f37089b = new w5(this, 0L, 260L, xq.h);
+        this.f37092f = new Path();
+        this.h = new RectF();
+        this.f37093n = new RectF();
+        c8.ka.a(this);
+        dh.c cVar = ql0Var.f37450w;
+        if (cVar != null) {
+            fh.g c10 = cVar.c(this, null, false);
+            c10.p(ql0Var.f37451x);
+            c10.u(org.telegram.messenger.g0.L(5.0f));
+            c10.f11538s = false;
+            fh.e eVar = c10.f11535f0;
+            if (eVar != null) {
+                eVar.g(false);
+            }
+            org.telegram.messenger.camera.q.p(c10, org.telegram.messenger.g0.L(6.0f), 4.0f);
+            this.f37090c = c10;
         }
-        return false;
+    }
+
+    public final void a(boolean z9, boolean z10) {
+        if (this.f37091e == z9) {
+            return;
+        }
+        this.f37091e = z9;
+        ol0 ol0Var = this.f37088a;
+        if (ol0Var != null) {
+            ol0Var.f6327o = z9;
+            w5 w5Var = this.f37089b;
+            if (z10) {
+                ol0Var.h = ol0Var.M;
+                ol0Var.f6318f = ol0Var.N;
+                ol0Var.f6320g = ol0Var.O;
+                w5Var.e(true, 0.0f);
+            } else {
+                w5Var.e(true, 1.0f);
+            }
+            invalidate();
+        }
     }
 
     @Override
-    public final int d() {
-        return this.f37177b.f38491r.size();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (!this.f37094r) {
+            ol0 ol0Var = this.f37088a;
+            if (ol0Var != null) {
+                ol0Var.a();
+            }
+            this.f37094r = true;
+        }
     }
 
     @Override
-    public final int e() {
-        return this.f37177b.f38490n.size();
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f37094r) {
+            ol0 ol0Var = this.f37088a;
+            if (ol0Var != null) {
+                ol0Var.b();
+            }
+            this.f37094r = false;
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i7;
+        ql0 ql0Var = this.f37095s;
+        Paint paint = ql0Var.f37452y;
+        int width = (getWidth() - this.f37088a.f6337z) / 2;
+        int height = getHeight();
+        ol0 ol0Var = this.f37088a;
+        int i10 = ol0Var.A;
+        int i11 = (height - i10) / 2;
+        fh.g gVar = this.f37090c;
+        if (gVar != null) {
+            Rect rect = org.telegram.messenger.g0.Q;
+            rect.set(width, i11, ol0Var.f6337z + width, i10 + i11);
+            RectF rectF = this.f37093n;
+            rectF.set(rect);
+            RectF rectF2 = this.h;
+            boolean equals = rectF.equals(rectF2);
+            Path path = this.f37092f;
+            if (!equals) {
+                rectF2.set(rectF);
+                ch.p0.h(rectF2, rectF, path);
+            }
+            rect.inset(-org.telegram.messenger.g0.L(4.0f), -org.telegram.messenger.g0.L(4.0f));
+            rect.right = org.telegram.messenger.g0.L(1.0f) + rect.right;
+            gVar.setBounds(rect);
+            canvas.save();
+            canvas.clipPath(path);
+            gVar.draw(canvas);
+            org.telegram.ui.ActionBar.f6 f6Var = ql0Var.f37444c;
+            if (f6Var == null ? org.telegram.ui.ActionBar.k6.I.q() : f6Var.a()) {
+                i7 = 687865855;
+            } else {
+                i7 = -1;
+            }
+            paint.setColor(i7);
+            canvas.drawPath(path, paint);
+            canvas.restore();
+        }
+        this.f37088a.d(canvas, width, i11, this.f37089b.e(false, 1.0f), 1.0f, false, false, 0.0f);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int L;
+        int L2 = org.telegram.messenger.g0.L(8.67f);
+        ol0 ol0Var = this.f37088a;
+        if (ol0Var != null) {
+            L = ol0Var.f6337z;
+        } else {
+            L = org.telegram.messenger.g0.L(44.33f);
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(L2 + L, 1073741824), i10);
     }
 }

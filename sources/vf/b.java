@@ -1,14 +1,44 @@
 package vf;
-public interface b {
-    void a();
 
-    void b();
+import org.telegram.messenger.k7;
+public class b {
+    public Runnable f57206a;
+    public Runnable f57207b;
+    public Runnable f57208c;
 
-    void c();
+    public b(Runnable runnable, Runnable runnable2) {
+        this.f57206a = runnable;
+        this.f57208c = runnable2;
+    }
 
-    void d();
+    public final void a(boolean z9) {
+        Runnable runnable = this.f57207b;
+        if (runnable != null) {
+            runnable.run();
+        }
+        c(z9);
+    }
 
-    void e();
+    public void b() {
+        c(false);
+    }
 
-    void f();
+    public void c(boolean z9) {
+        Runnable runnable = this.f57208c;
+        if (runnable != null) {
+            runnable.run();
+        }
+    }
+
+    public void d() {
+        Runnable runnable = this.f57206a;
+        if (runnable != null) {
+            runnable.run();
+            this.f57206a = null;
+        }
+    }
+
+    public final void e(k7 k7Var) {
+        this.f57207b = k7Var;
+    }
 }

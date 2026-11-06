@@ -1,21 +1,43 @@
 package t1;
-public final class d {
-    public final int f54782a;
-    public final String f54783b;
-    public final int f54784c;
-    public final int d;
 
-    public d(String str, int i3, int i10) {
-        this.f54783b = str;
-        this.f54782a = i3;
-        this.f54784c = i10;
-        this.d = -1;
+import android.text.InputFilter;
+import android.text.Spanned;
+import android.widget.TextView;
+import androidx.emoji2.text.l;
+public final class d implements InputFilter {
+    public final TextView f55242a;
+    public c f55243b;
+
+    public d(TextView textView) {
+        this.f55242a = textView;
     }
 
-    public d(int i3, int i10, int i11, String str) {
-        this.f54783b = str;
-        this.f54782a = i3;
-        this.f54784c = i10;
-        this.d = i11;
+    @Override
+    public final CharSequence filter(CharSequence charSequence, int i7, int i10, Spanned spanned, int i11, int i12) {
+        TextView textView = this.f55242a;
+        if (!textView.isInEditMode()) {
+            int b10 = l.a().b();
+            if (b10 != 0) {
+                if (b10 != 1) {
+                    if (b10 != 3) {
+                        return charSequence;
+                    }
+                } else if ((i12 != 0 || i11 != 0 || spanned.length() != 0 || charSequence != textView.getText()) && charSequence != null) {
+                    if (i7 != 0 || i10 != charSequence.length()) {
+                        charSequence = charSequence.subSequence(i7, i10);
+                    }
+                    return l.a().e(0, charSequence.length(), charSequence);
+                } else {
+                    return charSequence;
+                }
+            }
+            l a10 = l.a();
+            if (this.f55243b == null) {
+                this.f55243b = new c(textView, this);
+            }
+            a10.f(this.f55243b);
+            return charSequence;
+        }
+        return charSequence;
     }
 }

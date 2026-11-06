@@ -6,11 +6,11 @@ public class RendererCommon {
     private static float BALANCED_VISIBLE_FRACTION = 0.5625f;
 
     public interface GlDrawer {
-        void drawOes(int i3, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10);
+        void drawOes(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z9);
 
-        void drawRgb(int i3, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z10);
+        void drawRgb(int i7, int i10, int i11, int i12, int i13, float[] fArr, int i14, int i15, int i16, int i17, int i18, int i19, boolean z9);
 
-        void drawYuv(int[] iArr, int i3, int i10, int i11, int i12, float[] fArr, int i13, int i14, int i15, int i16, int i17, int i18, boolean z10);
+        void drawYuv(int[] iArr, int i7, int i10, int i11, int i12, float[] fArr, int i13, int i14, int i15, int i16, int i17, int i18, boolean z9);
 
         void release();
     }
@@ -18,7 +18,7 @@ public class RendererCommon {
     public interface RendererEvents {
         void onFirstFrameRendered();
 
-        void onFrameResolutionChanged(int i3, int i10, int i11);
+        void onFrameResolutionChanged(int i7, int i10, int i11);
     }
 
     public enum ScalingType {
@@ -92,11 +92,11 @@ public class RendererCommon {
         return 1.0f;
     }
 
-    public static Point getDisplaySize(ScalingType scalingType, float f10, int i3, int i10) {
-        return getDisplaySize(convertScalingTypeToVisibleFraction(scalingType), f10, i3, i10);
+    public static Point getDisplaySize(ScalingType scalingType, float f10, int i7, int i10) {
+        return getDisplaySize(convertScalingTypeToVisibleFraction(scalingType), f10, i7, i10);
     }
 
-    public static float[] getLayoutMatrix(boolean z10, float f10, float f11) {
+    public static float[] getLayoutMatrix(boolean z9, float f10, float f11) {
         float f12;
         float f13;
         if (f11 > f10) {
@@ -106,7 +106,7 @@ public class RendererCommon {
             f12 = f11 / f10;
             f13 = 1.0f;
         }
-        if (z10) {
+        if (z9) {
             f12 *= -1.0f;
         }
         float[] fArr = new float[16];
@@ -116,10 +116,10 @@ public class RendererCommon {
         return fArr;
     }
 
-    public static Point getDisplaySize(float f10, float f11, int i3, int i10) {
+    public static Point getDisplaySize(float f10, float f11, int i7, int i10) {
         if (f10 != 0.0f && f11 != 0.0f) {
-            return new Point(Math.min(i3, Math.round((i10 / f10) * f11)), Math.min(i10, Math.round((i3 / f10) / f11)));
+            return new Point(Math.min(i7, Math.round((i10 / f10) * f11)), Math.min(i10, Math.round((i7 / f10) / f11)));
         }
-        return new Point(i3, i10);
+        return new Point(i7, i10);
     }
 }

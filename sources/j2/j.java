@@ -1,16 +1,25 @@
 package j2;
-public abstract class j extends a {
-    public boolean shouldBeSkipped;
-    public int skippedOutputBufferCount;
-    public long timeUs;
 
-    @Override
-    public void clear() {
-        super.clear();
-        this.timeUs = 0L;
-        this.skippedOutputBufferCount = 0;
-        this.shouldBeSkipped = false;
+import java.io.IOException;
+public class j extends IOException {
+    public final int f16434a;
+
+    public j(int i7) {
+        this.f16434a = i7;
     }
 
-    public abstract void release();
+    public j(Exception exc, int i7) {
+        super(exc);
+        this.f16434a = i7;
+    }
+
+    public j(String str, int i7) {
+        super(str);
+        this.f16434a = i7;
+    }
+
+    public j(String str, Exception exc, int i7) {
+        super(str, exc);
+        this.f16434a = i7;
+    }
 }

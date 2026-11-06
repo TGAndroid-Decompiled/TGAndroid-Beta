@@ -1,68 +1,33 @@
 package ii;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import gi.f6;
-import org.telegram.ui.Components.u5;
-import org.telegram.ui.Components.xq;
-public final class e0 extends Drawable {
-    public final Paint f14907a = new Paint(1);
-    public final RectF f14908b = new RectF();
-    public final int f14909c;
-    public final Path d;
-    public boolean f14910e;
-    public int f14911f;
-    public final u5 f14912g;
-    public final u5 h;
+import android.content.DialogInterface;
+import org.telegram.messenger.v10;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.ActionBar.u1;
+public final class e0 implements DialogInterface.OnCancelListener {
+    public final int f15519a;
+    public final int f15520b;
+    public final int f15521c;
+    public final Object d;
 
-    public e0(int i3) {
-        Path path = new Path();
-        this.d = path;
-        f6 f6Var = new f6(this, 14);
-        xq xqVar = xq.h;
-        this.f14912g = new u5(f6Var, 320L, xqVar, 0);
-        this.h = new u5(new f6(this, 14), 320L, xqVar, 0);
-        this.f14909c = i3;
-        path.moveTo(-org.telegram.messenger.g0.L(6.5f), 0.0f);
-        path.lineTo(org.telegram.messenger.g0.L(6.5f), 0.0f);
-        path.lineTo(0.0f, -org.telegram.messenger.g0.L(6.16f));
-        path.close();
+    public e0(int i7, int i10, Object obj, int i11) {
+        this.f15519a = i11;
+        this.f15520b = i7;
+        this.f15521c = i10;
+        this.d = obj;
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        Rect bounds = getBounds();
-        RectF rectF = this.f14908b;
-        rectF.set(bounds);
-        rectF.inset(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(8.0f));
-        int i3 = this.f14909c;
-        Paint paint = this.f14907a;
-        canvas.drawRoundRect(rectF, i3, i3, paint);
-        float d = this.f14912g.d(this.f14910e);
-        float L = (rectF.right + org.telegram.messenger.g0.L(8.0f)) - this.h.e(false, this.f14911f);
-        if (d > 0.0f) {
-            canvas.save();
-            canvas.translate(L, com.google.android.recaptcha.internal.a.y(1.0f, d, org.telegram.messenger.g0.L(6.16f), org.telegram.messenger.g0.L(8.0f)));
-            canvas.drawPath(this.d, paint);
-            canvas.restore();
+    public final void onCancel(DialogInterface dialogInterface) {
+        switch (this.f15519a) {
+            case 0:
+                ConnectionsManager.getInstance(this.f15520b).cancelRequest(this.f15521c, true);
+                ((u1[]) this.d)[0] = null;
+                return;
+            default:
+                ConnectionsManager.getInstance(this.f15520b).cancelRequest(this.f15521c, true);
+                ((v10) this.d).a(null, "CANCELLED");
+                return;
         }
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i3) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

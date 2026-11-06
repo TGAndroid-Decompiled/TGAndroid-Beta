@@ -14,11 +14,11 @@ public class FractionAtom extends Atom {
         this(atom, atom2, true);
     }
 
-    private int checkAlignment(int i3) {
-        if (i3 != 0 && i3 != 1) {
+    private int checkAlignment(int i7) {
+        if (i7 != 0 && i7 != 1) {
             return 2;
         }
-        return i3;
+        return i7;
     }
 
     @Override
@@ -118,43 +118,43 @@ public class FractionAtom extends Atom {
         return new HorizontalBox(verticalBox, (new SpaceAtom(0, 0.12f, 0.0f, 0.0f).createBox(teXEnvironment).getWidth() * 2.0f) + verticalBox.getWidth(), 2);
     }
 
-    public FractionAtom(Atom atom, Atom atom2, boolean z10) {
-        this(atom, atom2, !z10, 2, 0.0f);
+    public FractionAtom(Atom atom, Atom atom2, boolean z9) {
+        this(atom, atom2, !z9, 2, 0.0f);
     }
 
-    public FractionAtom(Atom atom, Atom atom2, boolean z10, int i3, float f10) {
+    public FractionAtom(Atom atom, Atom atom2, boolean z9, int i7, float f10) {
         this.noDefault = false;
         this.numAlign = 2;
         this.denomAlign = 2;
         this.defFactorSet = false;
-        SpaceAtom.checkUnit(i3);
+        SpaceAtom.checkUnit(i7);
         this.numerator = atom;
         this.denominator = atom2;
-        this.noDefault = z10;
+        this.noDefault = z9;
         this.thickness = f10;
-        this.unit = i3;
+        this.unit = i7;
         this.type = 7;
     }
 
-    public FractionAtom(Atom atom, Atom atom2, boolean z10, int i3, int i10) {
-        this(atom, atom2, z10);
-        this.numAlign = checkAlignment(i3);
+    public FractionAtom(Atom atom, Atom atom2, boolean z9, int i7, int i10) {
+        this(atom, atom2, z9);
+        this.numAlign = checkAlignment(i7);
         this.denomAlign = checkAlignment(i10);
     }
 
-    public FractionAtom(Atom atom, Atom atom2, float f10, int i3, int i10) {
-        this(atom, atom2, true, i3, i10);
+    public FractionAtom(Atom atom, Atom atom2, float f10, int i7, int i10) {
+        this(atom, atom2, true, i7, i10);
         this.defFactor = f10;
         this.defFactorSet = true;
     }
 
-    public FractionAtom(Atom atom, Atom atom2, int i3, float f10, int i10, int i11) {
-        this(atom, atom2, i3, f10);
+    public FractionAtom(Atom atom, Atom atom2, int i7, float f10, int i10, int i11) {
+        this(atom, atom2, i7, f10);
         this.numAlign = checkAlignment(i10);
         this.denomAlign = checkAlignment(i11);
     }
 
-    public FractionAtom(Atom atom, Atom atom2, int i3, float f10) {
-        this(atom, atom2, true, i3, f10);
+    public FractionAtom(Atom atom, Atom atom2, int i7, float f10) {
+        this(atom, atom2, true, i7, f10);
     }
 }

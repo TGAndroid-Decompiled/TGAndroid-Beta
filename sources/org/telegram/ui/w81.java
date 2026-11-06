@@ -1,23 +1,39 @@
 package org.telegram.ui;
+public final class w81 implements Runnable {
+    public final int f51020a;
+    public final v91 f51021b;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class w81 extends org.telegram.ui.Components.t50 {
-    public final long f50751s2;
-    public final y81 f50752t2;
-
-    public w81(y81 y81Var, Context context, int i3, a0.h hVar, long j10, org.telegram.ui.ActionBar.d2 d2Var, long j11) {
-        super(context, i3, hVar, j10, d2Var, null);
-        this.f50752t2 = y81Var;
-        this.f50751s2 = j11;
+    public w81(v91 v91Var, int i7) {
+        this.f51020a = i7;
+        this.f51021b = v91Var;
     }
 
     @Override
-    public final boolean R0() {
-        TLRPC.Chat M0 = this.f50752t2.f52227b.getMessagesController().M0(Long.valueOf(this.f50751s2));
-        if (M0 != null && org.telegram.messenger.t3.y(3, M0)) {
-            return true;
+    public final void run() {
+        switch (this.f51020a) {
+            case 0:
+                v91 v91Var = this.f51021b;
+                v91Var.B0();
+                v91Var.F0();
+                return;
+            case 1:
+                this.f51021b.B0();
+                return;
+            case 2:
+                this.f51021b.S0(true);
+                return;
+            case 3:
+                this.f51021b.finishPreviewFragment();
+                return;
+            case 4:
+                v91 v91Var2 = this.f51021b;
+                v91Var2.A0 = null;
+                v91Var2.Z0(true, false);
+                return;
+            default:
+                v91 v91Var3 = this.f51021b;
+                v91Var3.N.postOnAnimation(new w81(v91Var3, 1));
+                return;
         }
-        return false;
     }
 }

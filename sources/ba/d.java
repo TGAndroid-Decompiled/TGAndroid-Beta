@@ -1,6 +1,3 @@
 package ba;
-public interface d {
-    String D();
-
-    void b();
+public final class d {
 }

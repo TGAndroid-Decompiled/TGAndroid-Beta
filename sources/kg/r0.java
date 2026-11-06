@@ -1,38 +1,71 @@
 package kg;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ii;
-import org.telegram.ui.Cells.g2;
-import org.telegram.ui.Components.x80;
-public final class r0 implements ii, g2 {
-    public final e1 f17163a;
+import android.os.Bundle;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.messenger.a20;
+import org.telegram.ui.Components.r31;
+import org.telegram.ui.an;
+public final class r0 implements org.telegram.ui.ActionBar.r1, a20 {
+    public final int f17515a;
+    public final s0 f17516b;
 
-    public r0(e1 e1Var) {
-        this.f17163a = e1Var;
+    public r0(s0 s0Var, int i7) {
+        this.f17515a = i7;
+        this.f17516b = s0Var;
     }
 
     @Override
-    public void h(String str, ArrayList arrayList) {
-        boolean z10;
-        e1 e1Var = this.f17163a;
-        e1Var.O = arrayList;
-        e1Var.J = null;
-        e1Var.B0 = null;
-        e1Var.f17021y = null;
-        e1Var.E = null;
-        e1Var.K = null;
-        e1Var.R = null;
-        e1Var.N = null;
-        e1Var.L = null;
-        e1Var.Q = null;
-        e1Var.f();
-        x80 x80Var = e1Var.W;
-        ArrayList arrayList2 = e1Var.O;
-        if (arrayList2 != null && !arrayList2.isEmpty()) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f17515a) {
+            case 0:
+                this.f17516b.c0();
+                return;
+            default:
+                this.f17516b.finishFragment();
+                return;
         }
-        x80Var.a(z10);
+    }
+
+    @Override
+    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        r31 r31Var = (r31) obj;
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        s0 s0Var = this.f17516b;
+        if (!s0Var.f17522c.h(r31Var)) {
+            int i7 = r31Var.d;
+            if (i7 != 2 && r31Var.f54415a != 17) {
+                if (i7 == 1) {
+                    s0Var.f17526r = !s0Var.f17526r;
+                    s0Var.f17521b.f35167f3.O(true);
+                    s0Var.a0(true);
+                    return;
+                } else if (i7 == 3) {
+                    a0 a0Var = s0Var.f17522c;
+                    s0Var.f17527s = true;
+                    a0Var.h = true;
+                    s0Var.f17521b.f35167f3.O(true);
+                    s0Var.a0(true);
+                    return;
+                } else if (i7 == 4) {
+                    a0 a0Var2 = s0Var.f17522c;
+                    s0Var.f17527s = false;
+                    a0Var2.h = false;
+                    s0Var.f17521b.f35167f3.O(true);
+                    s0Var.a0(true);
+                    return;
+                } else {
+                    return;
+                }
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", s0Var.getUserConfig().e());
+            bundle.putInt("chatMode", 5);
+            bundle.putString("quick_reply", "hello");
+            s0Var.presentFragment(new an(bundle));
+        }
     }
 }

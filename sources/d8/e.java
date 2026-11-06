@@ -1,13 +1,6 @@
 package d8;
 
-import a9.g0;
-import com.google.android.gms.internal.cast.o;
-public final class e extends o {
-    public final g0 f8591b;
-
-    public e(g0 g0Var) {
-        super(3);
-        this.f8591b = g0Var;
-        attachInterface(this, "com.google.android.gms.safetynet.internal.ISafetyNetCallbacks");
-    }
+import com.google.android.gms.common.api.j;
+public final class e extends j implements o8.e {
+    public static final com.google.android.gms.common.api.e f8216l = new com.google.android.gms.common.api.e("RecaptchaBase.API", new a9.e(2), new Object());
 }

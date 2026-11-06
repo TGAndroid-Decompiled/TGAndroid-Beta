@@ -1,6 +1,9 @@
 package org.telegram.ui;
-public final class km {
-    public int f46981a;
-    public int f46982b;
-    public int f46983c;
+
+import org.telegram.tgnet.TLRPC;
+public final class km extends org.telegram.messenger.ij {
+    @Override
+    public final boolean s(TLRPC.Chat chat, boolean z9) {
+        return false;
+    }
 }

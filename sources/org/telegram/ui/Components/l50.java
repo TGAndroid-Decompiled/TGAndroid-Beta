@@ -1,3 +1,30 @@
 package org.telegram.ui.Components;
-public final class l50 extends u4.k {
+
+import android.content.Context;
+public final class l50 extends org.telegram.ui.Cells.z8 {
+    public final m50 D;
+    public final dt f35520x;
+    public boolean f35521y;
+
+    public l50(m50 m50Var, Context context) {
+        super(context);
+        this.D = m50Var;
+        this.f35520x = new dt(this, 6);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        dt dtVar = this.f35520x;
+        org.telegram.messenger.g0.r(dtVar);
+        if (this.f35521y) {
+            org.telegram.messenger.g0.i3(dtVar, 500L);
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.g0.r(this.f35520x);
+    }
 }

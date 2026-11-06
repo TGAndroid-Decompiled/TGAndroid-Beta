@@ -1,10 +1,10 @@
 package x0;
 public final class a {
-    public final String f58123a;
+    public final String f58141a;
 
-    public a(int i3) {
+    public a(int i7) {
         this("androidx.credentials.TYPE_ABORT_ERROR");
-        switch (i3) {
+        switch (i7) {
             case 1:
                 this("androidx.credentials.TYPE_CONSTRAINT_ERROR");
                 return;
@@ -95,6 +95,6 @@ public final class a {
     }
 
     public a(String str) {
-        this.f58123a = str;
+        this.f58141a = str;
     }
 }

@@ -1,62 +1,66 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.webkit.WebView;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
 public final class gk0 implements Runnable {
-    public final int f45676a;
-    public final dl0 f45677b;
-    public final TLRPC.TL_error f45678c;
-    public final TLObject d;
+    public final int f45995a;
+    public final hl0 f45996b;
+    public final TLObject f45997c;
 
-    public gk0(dl0 dl0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i3) {
-        this.f45676a = i3;
-        this.f45677b = dl0Var;
-        this.f45678c = tL_error;
-        this.d = tLObject;
+    public gk0(hl0 hl0Var, TLObject tLObject, int i7) {
+        this.f45995a = i7;
+        this.f45996b = hl0Var;
+        this.f45997c = tLObject;
     }
 
     @Override
     public final void run() {
-        int i3 = this.f45676a;
-        TLObject tLObject = this.d;
-        TLRPC.TL_error tL_error = this.f45678c;
-        dl0 dl0Var = this.f45677b;
-        switch (i3) {
+        switch (this.f45995a) {
             case 0:
-                dl0Var.f44751f0 = false;
-                if (tL_error == null) {
-                    TL_account.Password password = (TL_account.Password) tLObject;
-                    dl0Var.f44740b0 = password;
-                    if (!TwoStepVerificationActivity.n0(password, false)) {
-                        org.telegram.ui.Components.t4.w0(dl0Var.getParentActivity(), org.telegram.messenger.bd.M0(2131743830, null), true);
-                        return;
-                    }
-                    TLRPC.PaymentForm paymentForm = dl0Var.D0;
-                    if (paymentForm != null && dl0Var.f44740b0.has_password) {
-                        paymentForm.password_missing = false;
-                        paymentForm.can_save_credentials = true;
-                        dl0Var.Q0();
-                    }
-                    TwoStepVerificationActivity.r0(dl0Var.f44740b0);
-                    dl0 dl0Var2 = dl0Var.f44753g0;
-                    if (dl0Var2 != null) {
-                        dl0Var2.I0(dl0Var.f44740b0);
-                    }
-                    if (!dl0Var.f44740b0.has_password && dl0Var.f44748e0 == null) {
-                        ek0 ek0Var = new ek0(dl0Var, 2);
-                        dl0Var.f44748e0 = ek0Var;
-                        org.telegram.messenger.g0.i3(ek0Var, 5000L);
-                        return;
-                    }
+                hl0.j0(this.f45996b, this.f45997c);
+                return;
+            case 1:
+                hl0 hl0Var = this.f45996b;
+                org.telegram.messenger.c20 c20Var = hl0Var.f46397d1;
+                TLObject tLObject = this.f45997c;
+                if (c20Var != null) {
+                    c20Var.a((TLRPC.TL_payments_paymentVerificationNeeded) tLObject);
+                }
+                hl0Var.J0(false);
+                hl0Var.f46428z0 = true;
+                hl0Var.N0(true, true);
+                org.telegram.ui.Components.zp zpVar = hl0Var.f46415r;
+                if (zpVar != null) {
+                    zpVar.setVisibility(0);
+                }
+                org.telegram.ui.ActionBar.r0 r0Var = hl0Var.f46410n;
+                if (r0Var != null) {
+                    r0Var.setEnabled(false);
+                    hl0Var.f46410n.getContentView().setVisibility(4);
+                }
+                org.telegram.ui.ActionBar.q4 parentLayout = hl0Var.getParentLayout();
+                Activity parentActivity = hl0Var.getParentActivity();
+                hl0Var.getMessagesController().f24819l7 = new a7(hl0Var, parentLayout, parentActivity, 17);
+                WebView webView = hl0Var.f46424x;
+                if (webView != null) {
+                    webView.setVisibility(0);
+                    WebView webView2 = hl0Var.f46424x;
+                    String str = ((TLRPC.TL_payments_paymentVerificationNeeded) tLObject).url;
+                    hl0Var.f46426y = str;
+                    webView2.loadUrl(str);
+                }
+                hl0Var.f46389a1 = true;
+                hl0Var.f46403f1 = 3;
+                gl0 gl0Var = hl0Var.Z0;
+                if (gl0Var != null) {
+                    gl0Var.b(3);
                     return;
                 }
                 return;
-            case 1:
-                dl0.a0(dl0Var, tL_error, tLObject);
-                return;
             default:
-                dl0.c0(dl0Var, tL_error, tLObject);
+                hl0.h0(this.f45996b, this.f45997c);
                 return;
         }
     }

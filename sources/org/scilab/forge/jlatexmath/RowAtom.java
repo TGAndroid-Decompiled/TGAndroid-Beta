@@ -61,29 +61,29 @@ public class RowAtom extends Atom implements Row {
         HorizontalBox horizontalBox = new HorizontalBox(teXEnvironment.getColor(), teXEnvironment.getBackground());
         teXEnvironment.reset();
         ListIterator<Atom> listIterator = this.elements.listIterator();
-        int i3 = 0;
+        int i7 = 0;
         while (true) {
             Atom atom = null;
             if (listIterator.hasNext()) {
                 Atom next = listIterator.next();
-                i3++;
-                boolean z10 = false;
+                i7++;
+                boolean z9 = false;
                 while (next instanceof BreakMarkAtom) {
-                    if (!z10) {
-                        z10 = true;
+                    if (!z9) {
+                        z9 = true;
                     }
                     if (!listIterator.hasNext()) {
                         break;
                     }
                     next = listIterator.next();
-                    i3++;
+                    i7++;
                 }
                 if (next instanceof DynamicAtom) {
                     DynamicAtom dynamicAtom = (DynamicAtom) next;
                     if (dynamicAtom.getInsertMode()) {
                         next = dynamicAtom.getAtom();
                         if (next instanceof RowAtom) {
-                            int i10 = i3 - 1;
+                            int i10 = i7 - 1;
                             this.elements.remove(i10);
                             this.elements.addAll(i10, ((RowAtom) next).elements);
                             listIterator = this.elements.listIterator(i10);
@@ -99,7 +99,7 @@ public class RowAtom extends Atom implements Row {
                 changeToOrd(dummy2, this.previousAtom, atom);
                 while (listIterator.hasNext() && dummy2.getRightType() == 0 && dummy2.isCharSymbol()) {
                     Atom next2 = listIterator.next();
-                    int i11 = i3 + 1;
+                    int i11 = i7 + 1;
                     if ((next2 instanceof CharSymbol) && ligKernSet.get(next2.getLeftType())) {
                         dummy2.markAsTextSymbol();
                         CharFont charFont = dummy2.getCharFont(teXFont);
@@ -111,7 +111,7 @@ public class RowAtom extends Atom implements Row {
                             break;
                         }
                         dummy2.changeAtom(new FixedCharAtom(ligature));
-                        i3 = i11;
+                        i7 = i11;
                     } else {
                         listIterator.previous();
                         break;
@@ -126,7 +126,7 @@ public class RowAtom extends Atom implements Row {
                 if (dummy2.isCharInMathMode() && (createBox instanceof CharBox)) {
                     ((CharBox) createBox).addItalicCorrectionToWidth();
                 }
-                if (z10 || ((next instanceof CharAtom) && Character.isDigit(((CharAtom) next).getCharacter()))) {
+                if (z9 || ((next instanceof CharAtom) && Character.isDigit(((CharAtom) next).getCharacter()))) {
                     horizontalBox.addBreakPosition(horizontalBox.children.size());
                 }
                 horizontalBox.add(createBox);

@@ -1,49 +1,62 @@
 package org.telegram.ui;
 
-import java.util.HashMap;
-import org.telegram.messenger.Utilities;
-public final class i60 implements org.telegram.ui.ActionBar.p1 {
-    public final int f46125a;
-    public final int f46126b;
-    public final HashMap f46127c;
-    public final boolean d;
-    public final boolean f46128e;
+import android.telephony.PhoneNumberUtils;
+import j$.util.function.Predicate$CC;
+import java.util.function.Predicate;
+import org.telegram.tgnet.TLRPC;
+public final class i60 implements Predicate {
+    public final int f46568a;
+    public final Object f46569b;
 
-    public i60(int i3, HashMap hashMap, boolean z10, boolean z11, int i10) {
-        this.f46125a = i10;
-        this.f46126b = i3;
-        this.f46127c = hashMap;
-        this.d = z10;
-        this.f46128e = z11;
+    public i60(Object obj, int i7) {
+        this.f46568a = i7;
+        this.f46569b = obj;
+    }
+
+    public Predicate and(Predicate predicate) {
+        int i7 = this.f46568a;
+        return Predicate$CC.$default$and(this, predicate);
+    }
+
+    public Predicate negate() {
+        switch (this.f46568a) {
+            case 0:
+                return Predicate$CC.$default$negate(this);
+            case 1:
+                return Predicate$CC.$default$negate(this);
+            case 2:
+                return Predicate$CC.$default$negate(this);
+            default:
+                return Predicate$CC.$default$negate(this);
+        }
+    }
+
+    public Predicate or(Predicate predicate) {
+        int i7 = this.f46568a;
+        return Predicate$CC.$default$or(this, predicate);
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        switch (this.f46125a) {
+    public final boolean test(Object obj) {
+        switch (this.f46568a) {
             case 0:
-                int i10 = this.f46126b;
-                HashMap hashMap = this.f46127c;
-                boolean z10 = this.d;
-                boolean z11 = this.f46128e;
-                String str = LaunchActivity.E1;
-                Utilities.f21387e.c(new org.telegram.messenger.j4(org.telegram.messenger.g5.r(i10), hashMap, z10, z11, true));
-                return;
+                String str = (String) this.f46569b;
+                String str2 = (String) obj;
+                if (str2 != null && str2.equals(str)) {
+                    return true;
+                }
+                return false;
             case 1:
-                int i11 = this.f46126b;
-                HashMap hashMap2 = this.f46127c;
-                boolean z12 = this.d;
-                boolean z13 = this.f46128e;
-                String str2 = LaunchActivity.E1;
-                Utilities.f21387e.c(new org.telegram.messenger.j4(org.telegram.messenger.g5.r(i11), hashMap2, z12, z13, false));
-                return;
+                return PhoneNumberUtils.compare((String) this.f46569b, (String) obj);
+            case 2:
+                String str3 = (String) this.f46569b;
+                String str4 = (String) obj;
+                if (str4 != null && str4.equals(str3)) {
+                    return true;
+                }
+                return false;
             default:
-                int i12 = this.f46126b;
-                HashMap hashMap3 = this.f46127c;
-                boolean z14 = this.d;
-                boolean z15 = this.f46128e;
-                String str3 = LaunchActivity.E1;
-                Utilities.f21387e.c(new org.telegram.messenger.j4(org.telegram.messenger.g5.r(i12), hashMap3, z14, z15, true));
-                return;
+                return an.A1((an) this.f46569b, (TLRPC.MessageEntity) obj);
         }
     }
 }

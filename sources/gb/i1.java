@@ -1,0 +1,47 @@
+package gb;
+public final class i1 {
+    public static final h1 Companion = new Object();
+    public final long f13711a;
+    public final long f13712b;
+    public final long f13713c;
+
+    public i1(int i7, long j3, long j10, long j11) {
+        if (1 != (i7 & 1)) {
+            oe.k.a(i7, 1, g1.f13688a.d());
+            throw null;
+        }
+        this.f13711a = j3;
+        this.f13712b = (i7 & 2) == 0 ? 1000 * j3 : j10;
+        if ((i7 & 4) == 0) {
+            this.f13713c = j3 / 1000;
+        } else {
+            this.f13713c = j11;
+        }
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if ((obj instanceof i1) && this.f13711a == ((i1) obj).f13711a) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        long j3 = this.f13711a;
+        return (int) (j3 ^ (j3 >>> 32));
+    }
+
+    public final String toString() {
+        return "Time(ms=" + this.f13711a + ')';
+    }
+
+    public i1(long j3) {
+        this.f13711a = j3;
+        long j10 = 1000;
+        this.f13712b = j3 * j10;
+        this.f13713c = j3 / j10;
+    }
+}

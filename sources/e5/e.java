@@ -1,17 +1,23 @@
 package e5;
 
-import android.content.Context;
-public final class e {
-    public boolean f9588a;
-    public Object f9589b;
-    public Object f9590c;
-    public Object d;
-    public Object f9591e = new a0(this, true);
-    public Object f9592f = new a0(this, false);
+import android.webkit.WebView;
+import org.chromium.support_lib_boundary.StaticsBoundaryInterface;
+import org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface;
+public final class e implements n {
+    public static final String[] f10705a = new String[0];
 
-    public e(Context context, n nVar, tf.b bVar) {
-        this.f9589b = context;
-        this.f9590c = nVar;
-        this.d = bVar;
+    @Override
+    public final String[] D() {
+        return f10705a;
+    }
+
+    @Override
+    public final WebViewProviderBoundaryInterface createWebView(WebView webView) {
+        throw new UnsupportedOperationException("This should never happen, if this method was called it means we're trying to reach into WebView APK code on an incompatible device. This most likely means the current method is being called too early, or is being called on start-up rather than lazily");
+    }
+
+    @Override
+    public final StaticsBoundaryInterface getStatics() {
+        throw new UnsupportedOperationException("This should never happen, if this method was called it means we're trying to reach into WebView APK code on an incompatible device. This most likely means the current method is being called too early, or is being called on start-up rather than lazily");
     }
 }

@@ -20,9 +20,9 @@ public final class d implements Iterator, Map.Entry {
             if (obj instanceof Map.Entry) {
                 Map.Entry entry = (Map.Entry) obj;
                 Object key = entry.getKey();
-                int i3 = this.f8b;
+                int i7 = this.f8b;
                 f fVar = this.d;
-                if (kotlin.jvm.internal.j.a(key, fVar.f(i3)) && kotlin.jvm.internal.j.a(entry.getValue(), fVar.i(this.f8b))) {
+                if (kotlin.jvm.internal.j.a(key, fVar.f(i7)) && kotlin.jvm.internal.j.a(entry.getValue(), fVar.i(this.f8b))) {
                     return true;
                 }
                 return false;
@@ -60,9 +60,9 @@ public final class d implements Iterator, Map.Entry {
     public final int hashCode() {
         int hashCode;
         if (this.f9c) {
-            int i3 = this.f8b;
+            int i7 = this.f8b;
             f fVar = this.d;
-            Object f10 = fVar.f(i3);
+            Object f10 = fVar.f(i7);
             Object i10 = fVar.i(this.f8b);
             int i11 = 0;
             if (f10 == null) {

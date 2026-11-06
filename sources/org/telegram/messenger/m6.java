@@ -1,20 +1,21 @@
 package org.telegram.messenger;
 public final class m6 {
-    public final String f24168a;
-    public final String f24169b;
+    public final int f23977a;
+    public final String f23978b;
+    public final String f23979c;
 
-    public m6(String str, String str2, boolean z10) {
-        this.f24168a = str;
-        this.f24169b = str2;
+    public m6(int i7, String str, String str2) {
+        this.f23977a = i7;
+        this.f23978b = str;
+        this.f23979c = str2;
     }
 
-    public m6(String str, String str2) {
-        Object[] objArr = {str, 23};
-        if (str.length() <= 23) {
-            this.f24168a = str;
-            this.f24169b = (str2 == null || str2.length() <= 0) ? null : str2;
-            return;
+    public String toString() {
+        switch (this.f23977a) {
+            case 1:
+                return this.f23978b + ", " + this.f23979c;
+            default:
+                return super.toString();
         }
-        throw new IllegalArgumentException(String.format("tag \"%s\" is longer than the %d character maximum", objArr));
     }
 }

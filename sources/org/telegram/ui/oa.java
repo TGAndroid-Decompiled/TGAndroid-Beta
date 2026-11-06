@@ -1,82 +1,73 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-public final class oa implements RequestDelegate {
-    public final int f48242a;
-    public final kb f48243b;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+public final class oa implements eh.a {
+    public final int f48312a;
+    public final Object f48313b;
 
-    public oa(kb kbVar, int i3) {
-        this.f48242a = i3;
-        this.f48243b = kbVar;
+    public oa(Object obj, int i7) {
+        this.f48312a = i7;
+        this.f48313b = obj;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f48242a) {
+    public final void c(dh.a aVar, RectF rectF) {
+        switch (this.f48312a) {
             case 0:
-                if (tLObject != null) {
-                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final kb kbVar = this.f48243b;
-                    org.telegram.messenger.g0.h3(new Runnable() {
-                        @Override
-                        public final void run() {
-                            switch (r3) {
-                                case 0:
-                                    kb.Z(kbVar, tL_channels_adminLogResults);
-                                    return;
-                                default:
-                                    kb.d0(kbVar, tL_channels_adminLogResults);
-                                    return;
-                            }
-                        }
-                    });
-                    return;
-                }
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            default:
+                aVar.f8700a = true;
+                return;
+        }
+    }
+
+    @Override
+    public final void d(Canvas canvas, RectF rectF) {
+        int i7 = this.f48312a;
+        Object obj = this.f48313b;
+        switch (i7) {
+            case 0:
+                ((kb) obj).X(canvas, rectF);
                 return;
             case 1:
-                kb kbVar2 = this.f48243b;
-                kbVar2.getClass();
-                if (tLObject instanceof Vector) {
-                    ArrayList<T> arrayList = ((Vector) tLObject).objects;
-                    ArrayList arrayList2 = new ArrayList();
-                    for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                        if (arrayList.get(i3) instanceof TLRPC.User) {
-                            arrayList2.add((TLRPC.User) arrayList.get(i3));
-                        }
-                    }
-                    kbVar2.getMessagesController().Y3(arrayList2, false);
-                    return;
-                }
+                pa0.Z((pa0) obj, canvas, rectF);
                 return;
             case 2:
-                org.telegram.messenger.g0.h3(new org.telegram.messenger.voip.l0(25, this.f48243b, tLObject));
+                PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) obj;
+                org.telegram.ui.Components.pj0 pj0Var = premiumPreviewFragment.f41577a;
+                ih.d.a(pj0Var, canvas, rectF, pj0Var, premiumPreviewFragment.f41583d0);
                 return;
             case 3:
-                if (tLObject != null) {
-                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
-                    final kb kbVar3 = this.f48243b;
-                    org.telegram.messenger.g0.h3(new Runnable() {
-                        @Override
-                        public final void run() {
-                            switch (r3) {
-                                case 0:
-                                    kb.Z(kbVar3, tL_channels_adminLogResults2);
-                                    return;
-                                default:
-                                    kb.d0(kbVar3, tL_channels_adminLogResults2);
-                                    return;
-                            }
-                        }
-                    });
-                    return;
-                }
+                View view = (View) obj;
+                RectF rectF2 = ProfileActivity.S6;
+                canvas.save();
+                canvas.translate(-view.getScrollX(), -view.getScrollY());
+                view.draw(canvas);
+                canvas.restore();
+                return;
+            case 4:
+                ww0 ww0Var = ((ProfileActivity) obj).f41681c1;
+                ww0Var.O = true;
+                ww0Var.draw(canvas);
+                ww0Var.O = false;
                 return;
             default:
-                org.telegram.messenger.g0.h3(new p1(this.f48243b, tL_error, tLObject, 9));
+                org.telegram.ui.Components.pj0 pj0Var2 = (org.telegram.ui.Components.pj0) obj;
+                org.telegram.ui.Components.q9 q9Var = pj0Var2.R2;
+                if (q9Var != null) {
+                    q9Var.d(canvas, rectF);
+                    return;
+                }
+                org.telegram.ui.Components.zi0 zi0Var = pj0Var2.G2;
+                if (zi0Var != null) {
+                    zi0Var.d(canvas, rectF);
+                    return;
+                }
                 return;
         }
     }

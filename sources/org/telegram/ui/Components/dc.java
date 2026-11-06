@@ -1,17 +1,22 @@
 package org.telegram.ui.Components;
-public enum dc {
-    SAVED_TO_DOWNLOADS(2131624052, 2, "Box", "Arrow"),
-    SAVED_TO_GALLERY(2131624055, 0, "Box", "Arrow", "Mask", "Arrow 2", "Splash"),
-    SAVED_TO_MUSIC(2131624057, 2, "Box", "Arrow"),
-    SAVED_TO_GIFS(2131624056, 0, "gif");
-    
-    public final int f33050a;
-    public final String[] f33051b;
-    public final int f33052c;
+public final class dc implements Runnable {
+    public final int f32810a;
+    public final kb f32811b;
 
-    dc(int i3, int i10, String... strArr) {
-        this.f33050a = i3;
-        this.f33052c = i10;
-        this.f33051b = strArr;
+    public dc(kb kbVar, int i7) {
+        this.f32810a = i7;
+        this.f32811b = kbVar;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f32810a) {
+            case 0:
+                this.f32811b.performHapticFeedback(3, 2);
+                return;
+            default:
+                this.f32811b.performHapticFeedback(3, 2);
+                return;
+        }
     }
 }

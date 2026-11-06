@@ -1,37 +1,34 @@
 package tg;
-public final class p0 implements Runnable {
-    public final int f55283a;
-    public final q0 f55284b;
 
-    public p0(q0 q0Var, int i3) {
-        this.f55283a = i3;
-        this.f55284b = q0Var;
+import android.content.Context;
+import fi.e5;
+import java.util.ArrayList;
+import org.telegram.ui.Components.pj0;
+public final class p0 extends pj0 {
+    public final ArrayList f55780e3;
+    public final ArrayList f55781f3;
+    public final ArrayList f55782g3;
+    public final ArrayList f55783h3;
+    public final ArrayList f55784i3;
+    public final e5 j3;
+
+    public p0(e5 e5Var, Context context, t0 t0Var) {
+        super(context, t0Var);
+        this.j3 = e5Var;
+        this.f55780e3 = new ArrayList();
+        this.f55781f3 = new ArrayList();
+        this.f55782g3 = new ArrayList();
+        this.f55783h3 = new ArrayList();
+        this.f55784i3 = new ArrayList(10);
     }
 
     @Override
-    public final void run() {
-        switch (this.f55283a) {
-            case 0:
-                s0 s0Var = this.f55284b.f55293b.d;
-                if (s0Var != null) {
-                    s0Var.postRunnable(s0Var.f55313x);
-                    return;
-                }
-                return;
-            case 1:
-                s0 s0Var2 = this.f55284b.f55293b.d;
-                if (s0Var2 != null) {
-                    s0Var2.postRunnable(s0Var2.f55313x);
-                    return;
-                }
-                return;
-            default:
-                u0 u0Var = this.f55284b.f55293b;
-                s0 s0Var3 = u0Var.d;
-                s0Var3.getClass();
-                s0Var3.postRunnable(new r0(s0Var3, 2));
-                u0Var.d = null;
-                return;
-        }
+    public final void dispatchDraw(android.graphics.Canvas r28) {
+        throw new UnsupportedOperationException("Method not decompiled: tg.p0.dispatchDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: tg.p0.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
     }
 }

@@ -1,54 +1,32 @@
 package org.telegram.ui;
+public final class xr implements Runnable {
+    public final int f51950a;
+    public final ks f51951b;
 
-import android.app.Activity;
-import android.view.View;
-public final class xr implements View.OnClickListener {
-    public final int f52080a;
-    public final is f52081b;
-
-    public xr(is isVar, int i3) {
-        this.f52080a = i3;
-        this.f52081b = isVar;
+    public xr(ks ksVar, int i7) {
+        this.f51950a = i7;
+        this.f51951b = ksVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f52080a) {
+    public final void run() {
+        switch (this.f51950a) {
             case 0:
-                is isVar = this.f52081b;
-                isVar.K = false;
-                isVar.f46409z.invalidate();
-                isVar.m();
+                this.f51951b.f47248c0 = null;
                 return;
             case 1:
-                is isVar2 = this.f52081b;
-                Activity activity = isVar2.f46406w;
-                if (activity instanceof LaunchActivity) {
-                    LaunchActivity launchActivity = (LaunchActivity) activity;
-                    if (launchActivity.M() != null && launchActivity.M().getLastFragment() != null) {
-                        launchActivity.M().getLastFragment().dismissCurrentDialog();
-                    }
-                    launchActivity.t0(new PremiumPreviewFragment(0, PremiumPreviewFragment.q0(5)));
+                ks ksVar = this.f51951b;
+                ksVar.A.w0(null);
+                org.telegram.ui.Components.sb0 sb0Var = ksVar.C;
+                if (sb0Var != null) {
+                    sb0Var.a();
+                    ksVar.f47270z.removeView(ksVar.C);
+                    ksVar.C = null;
+                    return;
                 }
-                isVar2.K = false;
-                isVar2.f46409z.invalidate();
-                isVar2.m();
-                return;
-            case 2:
-                is isVar3 = this.f52081b;
-                gs gsVar = isVar3.f46396l;
-                if (gsVar != null) {
-                    gsVar.J();
-                }
-                isVar3.o();
                 return;
             default:
-                is isVar4 = this.f52081b;
-                gs gsVar2 = isVar4.f46396l;
-                if (gsVar2 != null) {
-                    gsVar2.r();
-                }
-                isVar4.o();
+                this.f51951b.Q.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(420L).setInterpolator(org.telegram.ui.Components.xq.h).start();
                 return;
         }
     }

@@ -1,4 +1,17 @@
 package z7;
-public abstract class ja extends com.google.android.gms.internal.cast.o implements ka {
-    public static final int f59922b = 0;
+public final class ja {
+    public final boolean equals(Object obj) {
+        if (obj == this || (obj instanceof ja)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return 1269983555;
+    }
+
+    public final String toString() {
+        return "MLKitLoggingOptions{libraryName=vision-common, enableFirelog=true, firelogEventType=1}";
+    }
 }

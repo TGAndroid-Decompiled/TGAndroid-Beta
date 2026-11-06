@@ -1,42 +1,27 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.TextView;
-public final class nl extends TextView {
-    public float f36583a;
-    public boolean f36584b;
-    public final Paint f36585c;
+import android.view.View;
+public final class nl extends v4.c0 {
+    public final ei.h f36434r;
 
-    public nl(Context context, Paint paint) {
+    public nl(ei.h hVar, Context context) {
         super(context);
-        this.f36585c = paint;
-        this.f36583a = 0.0f;
+        this.f36434r = hVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i3 = (int) ((this.f36583a * 130.0f) + 125.0f);
-        Paint paint = this.f36585c;
-        paint.setAlpha(i3);
-        if (!this.f36584b) {
-            float f10 = this.f36583a - 0.026666667f;
-            this.f36583a = f10;
-            if (f10 <= 0.0f) {
-                this.f36583a = 0.0f;
-                this.f36584b = true;
-            }
-        } else {
-            float f11 = this.f36583a + 0.026666667f;
-            this.f36583a = f11;
-            if (f11 >= 1.0f) {
-                this.f36583a = 1.0f;
-                this.f36584b = false;
-            }
-        }
-        super.onDraw(canvas);
-        canvas.drawCircle(org.telegram.messenger.g0.L(14.0f), getMeasuredHeight() / 2, org.telegram.messenger.g0.L(4.0f), paint);
-        invalidate();
+    public final int k(int i7, View view) {
+        int topScrollOffset;
+        int k10 = super.k(i7, view);
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f36434r.R;
+        int paddingTop = chatAttachAlertPhotoLayout.E.getPaddingTop();
+        topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
+        return k10 - (paddingTop - topScrollOffset);
+    }
+
+    @Override
+    public final int m(int i7) {
+        return super.m(i7) * 2;
     }
 }

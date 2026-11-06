@@ -1,34 +1,46 @@
 package db;
 
-import b8.zc;
-public final class m implements oa.f {
-    public static final m f8701b;
-    public static final m[] f8702c;
-    public final int f8703a;
-
-    static {
-        m mVar = new m("EVENT_TYPE_UNKNOWN", 0, 0);
-        m mVar2 = new m("SESSION_START", 1, 1);
-        f8701b = mVar2;
-        m[] mVarArr = {mVar, mVar2};
-        f8702c = mVarArr;
-        zc.a(mVarArr);
-    }
-
-    public m(String str, int i3, int i10) {
-        this.f8703a = i10;
-    }
-
-    public static m valueOf(String str) {
-        return (m) Enum.valueOf(m.class, str);
-    }
-
-    public static m[] values() {
-        return (m[]) f8702c.clone();
-    }
+import java.util.ArrayList;
+public final class m extends kotlin.jvm.internal.k implements rd.l {
+    public static final m f8588b = new kotlin.jvm.internal.k(1);
 
     @Override
-    public final int a() {
-        return this.f8703a;
+    public final Object invoke(Object obj) {
+        int i7;
+        ArrayList arrayList = ((l) obj).f8587a;
+        ArrayList arrayList2 = new ArrayList(hd.h.d(arrayList, 10));
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj2 = arrayList.get(i10);
+            i10++;
+            i iVar = (i) obj2;
+            int i11 = iVar.f8583c;
+            if (i11 != 0) {
+                i7 = 1;
+                if (i11 != 1) {
+                    i7 = 2;
+                    if (i11 != 2) {
+                        i7 = 3;
+                        if (i11 != 3) {
+                            i7 = 4;
+                            if (i11 != 4) {
+                                throw new IllegalStateException("Unknown capability status: " + iVar.f8583c);
+                            }
+                        } else {
+                            continue;
+                        }
+                    } else {
+                        continue;
+                    }
+                } else {
+                    continue;
+                }
+            } else {
+                i7 = 0;
+            }
+            arrayList2.add(new c(iVar.f8581a, i7, iVar.f8582b));
+        }
+        return arrayList2;
     }
 }

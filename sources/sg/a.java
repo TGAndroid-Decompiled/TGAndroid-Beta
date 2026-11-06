@@ -1,14 +1,22 @@
 package sg;
-public abstract class a {
-    public int f54715a;
-    public boolean f54716b;
-
-    public a(int i3, boolean z10) {
-        this.f54715a = i3;
-        this.f54716b = z10;
+public final class a extends h {
+    @Override
+    public final int c() {
+        return -30208;
     }
 
-    public boolean a(a aVar) {
-        return false;
+    @Override
+    public final float d() {
+        return 0.25f;
+    }
+
+    @Override
+    public final int e() {
+        return 2131624125;
+    }
+
+    @Override
+    public final float j() {
+        return 0.25f;
     }
 }

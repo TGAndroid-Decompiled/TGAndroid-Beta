@@ -1,50 +1,59 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.tl.TL_account;
-public final class ii0 implements org.telegram.messenger.n10 {
-    public final int f46271a;
-    public final PasskeysActivity f46272b;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class ii0 implements TextWatcher {
+    public final int f46668a;
+    public final PasscodeActivity f46669b;
 
-    public ii0(PasskeysActivity passkeysActivity, int i3) {
-        this.f46271a = i3;
-        this.f46272b = passkeysActivity;
+    public ii0(PasscodeActivity passcodeActivity, int i7) {
+        this.f46668a = i7;
+        this.f46669b = passcodeActivity;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        int i3 = this.f46271a;
-        PasskeysActivity passkeysActivity = this.f46272b;
-        switch (i3) {
+    public final void afterTextChanged(Editable editable) {
+        int i7 = this.f46668a;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        switch (this.f46668a) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.Components.f41 f41Var = (org.telegram.ui.Components.f41) obj2;
-                ArrayList arrayList2 = passkeysActivity.f41366b;
-                passkeysActivity.addPasskeyRow = -1;
-                String M0 = org.telegram.messenger.bd.M0(2131747637, null);
-                org.telegram.ui.Components.r31 r31Var = new org.telegram.ui.Components.r31(2);
-                r31Var.f37627l = M0;
-                r31Var.f37626k = 2131624113;
-                arrayList.add(r31Var);
-                for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                    b40 b40Var = new b40(passkeysActivity, 16);
-                    int i11 = ji0.f46627b;
-                    org.telegram.ui.Components.r31 K = org.telegram.ui.Components.r31.K(ji0.class);
-                    K.G = (TL_account.Passkey) arrayList2.get(i10);
-                    K.D = b40Var;
-                    arrayList.add(K);
+                PasscodeActivity passcodeActivity = this.f46669b;
+                di0 di0Var = passcodeActivity.S;
+                if (passcodeActivity.R) {
+                    passcodeActivity.f41302n.removeCallbacks(di0Var);
+                    di0Var.run();
+                    return;
                 }
-                if (arrayList2.size() + 1 <= ((org.telegram.messenger.j0) passkeysActivity.getMessagesController().f23167x7.f24680z.f13798b).f23620c) {
-                    passkeysActivity.addPasskeyRow = arrayList.size();
-                    org.telegram.ui.Components.r31 c2 = org.telegram.ui.Components.r31.c(-1, 2131231845, org.telegram.messenger.bd.M0(2131747658, null));
-                    c2.f37632q = true;
-                    arrayList.add(c2);
-                }
-                arrayList.add(org.telegram.ui.Components.r31.C(org.telegram.messenger.g0.H2(org.telegram.messenger.g0.U2(org.telegram.messenger.bd.M0(2131747643, null), new sg0(passkeysActivity, 3)), true)));
                 return;
             default:
-                PasskeysActivity.Z(passkeysActivity, (TL_account.Passkey) obj, (String) obj2);
+                PasscodeActivity passcodeActivity2 = this.f46669b;
+                di0 di0Var2 = passcodeActivity2.S;
+                if (passcodeActivity2.R) {
+                    passcodeActivity2.f41302n.removeCallbacks(di0Var2);
+                    di0Var2.run();
+                    return;
+                }
                 return;
         }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f46668a;
+    }
+
+    private final void a(Editable editable) {
+    }
+
+    private final void b(Editable editable) {
+    }
+
+    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

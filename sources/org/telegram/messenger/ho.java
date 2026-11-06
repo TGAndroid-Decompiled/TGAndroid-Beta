@@ -1,37 +1,25 @@
 package org.telegram.messenger;
+public final class ho implements Runnable {
+    public final int f22958a;
+    public final qp f22959b;
+    public final long f22960c;
+    public final int d;
+    public final boolean f22961e;
+    public final int f22962f;
+    public final int h;
 
-import org.telegram.tgnet.tl.TL_account;
-public final class ho extends x2 {
-    public final hp f22952e;
-
-    public ho(hp hpVar) {
-        super(3600000);
-        this.f22952e = hpVar;
+    public ho(qp qpVar, long j3, int i7, boolean z9, int i10, int i11, int i12) {
+        this.f22958a = i12;
+        this.f22959b = qpVar;
+        this.f22960c = j3;
+        this.d = i7;
+        this.f22961e = z9;
+        this.f22962f = i10;
+        this.h = i11;
     }
 
     @Override
-    public final void e(int i3, Object obj, n10 n10Var) {
-        Void r42 = (Void) obj;
-        qr.a0(i3).f24934a.c(new x0(i3, n10Var, 7));
-    }
-
-    @Override
-    public final void f(int i3, Object obj, long j10, w2 w2Var) {
-        Void r32 = (Void) obj;
-        TL_account.getWebBrowserSettings getwebbrowsersettings = new TL_account.getWebBrowserSettings();
-        getwebbrowsersettings.hash = j10;
-        this.f22952e.getConnectionsManager().sendRequestTyped(getwebbrowsersettings, new c3.b(1), new d(w2Var, 6));
-    }
-
-    @Override
-    public final void g(int i3, Object obj, Object obj2) {
-        Void r42 = (Void) obj;
-        qr.a0(i3).f24934a.c(new x0(i3, (TL_account.TL_webBrowserSettings) obj2, 8));
-    }
-
-    @Override
-    public final boolean j(Object obj) {
-        Void r12 = (Void) obj;
-        return false;
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ho.run():void");
     }
 }

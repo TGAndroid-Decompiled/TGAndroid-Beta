@@ -1,41 +1,23 @@
 package q2;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-public final class d extends LinkedHashMap {
-    public final int f53674a;
+import android.os.Handler;
+import h2.m0;
+import org.telegram.ui.ActionBar.m5;
+public final class d implements l {
+    public final j f53599a;
+    public g f53600b;
+    public boolean f53601c;
+    public final e d;
 
-    public d(float f10, int i3, int i10, boolean z10) {
-        super(i3, f10, z10);
-        this.f53674a = i10;
-    }
-
-    public static Matcher b(String str, Pattern pattern, d dVar) {
-        Matcher matcher = (Matcher) dVar.get(pattern);
-        if (matcher == null) {
-            Matcher matcher2 = pattern.matcher(str);
-            dVar.put(pattern, matcher2);
-            return matcher2;
-        }
-        matcher.reset(str);
-        return matcher;
+    public d(e eVar, j jVar) {
+        this.d = eVar;
+        this.f53599a = jVar;
     }
 
     @Override
-    public final boolean removeEldestEntry(Map.Entry entry) {
-        switch (this.f53674a) {
-            case 0:
-                if (size() > 4) {
-                    return true;
-                }
-                return false;
-            default:
-                if (size() > 32) {
-                    return true;
-                }
-                return false;
-        }
+    public final void release() {
+        Handler handler = this.d.J;
+        handler.getClass();
+        m0.W(handler, new m5(this, 20));
     }
 }

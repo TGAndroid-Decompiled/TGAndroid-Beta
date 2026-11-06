@@ -1,343 +1,315 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.messenger.ImageReceiver;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.GradientDrawable;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-public class k9 extends View {
-    public ly0 E;
-    public Path F;
-    public ColorMatrixColorFilter G;
-    public ImageReceiver f35342a;
-    public ImageReceiver f35343b;
-    public int f35344c;
-    public int d;
-    public g5 f35345e;
-    public ColorFilter f35346f;
-    public u8 h;
-    public boolean f35347n;
-    public boolean f35348r;
-    public boolean f35349s;
-    public boolean f35350w;
-    public boolean f35351x;
-    public ValueAnimator f35352y;
+public final class k9 extends GradientDrawable {
+    public final int[] f35236a;
+    public final a0.f f35237b;
+    public final a0.f f35238c;
+    public final a0.f d;
+    public final ArrayList f35239e;
+    public final Paint f35240f;
+    public boolean f35241g;
 
-    public k9(Context context) {
-        super(context);
-        this.f35344c = -1;
-        this.d = -1;
-        this.f35351x = true;
-        ImageReceiver c2 = c();
-        this.f35342a = c2;
-        c2.f21259o1 = 0.0f;
-        c2.A1 = true;
-        c2.f21247h1 = new t(this, 14);
+    public k9(GradientDrawable.Orientation orientation, int[] iArr) {
+        super(orientation, iArr);
+        this.f35237b = new a0.l(0);
+        this.f35238c = new a0.l(0);
+        this.d = new a0.l(0);
+        this.f35239e = new ArrayList();
+        Paint paint = new Paint(1);
+        this.f35240f = paint;
+        this.f35241g = false;
+        setDither(true);
+        this.f35236a = iArr;
+        paint.setDither(true);
     }
 
-    public final void a() {
-        Bitmap n4;
-        if (this.f35348r && this.f35343b.n() == null && this.f35342a.n() != null && (n4 = this.f35342a.n()) != null && !n4.isRecycled()) {
-            this.f35343b.v0(Utilities.D(n4, false));
-            invalidate();
-        }
-    }
-
-    public final void b() {
-        this.f35342a.f();
-    }
-
-    public ImageReceiver c() {
-        return new ImageReceiver(this);
-    }
-
-    public final void d() {
-        if (this.f35348r) {
-            if (this.f35343b.n() != null && !this.f35343b.n().isRecycled()) {
-                this.f35343b.n().recycle();
-            }
-            this.f35343b.w0(null);
-            a();
-        }
-    }
-
-    public final void e(TLObject tLObject, u8 u8Var) {
-        this.f35342a.i0(tLObject, u8Var, null);
-        d();
-    }
-
-    public final void g(int i3, long j10, Object obj, String str, String str2, String str3, org.telegram.messenger.ac acVar, org.telegram.messenger.ac acVar2) {
-        this.f35342a.r0(acVar, str, acVar2, str2, null, j10, str3, obj, i3);
-        d();
-    }
-
-    public g5 getAnimatedEmojiDrawable() {
-        return this.f35345e;
-    }
-
-    public u8 getAvatarDrawable() {
-        if (this.h == null) {
-            this.h = new u8((org.telegram.ui.ActionBar.e6) null);
-        }
-        return this.h;
-    }
-
-    public ImageReceiver getImageReceiver() {
-        return this.f35342a;
-    }
-
-    public int[] getRoundRadius() {
-        return this.f35342a.X0;
-    }
-
-    public final void h(String str, String str2, Drawable drawable) {
-        n(org.telegram.messenger.ac.g(str), str2, null, null, drawable, null, 0, null);
-    }
-
-    public final void j(org.telegram.messenger.ac acVar, String str, Drawable drawable, Object obj) {
-        n(acVar, str, null, null, drawable, null, 0, obj);
-    }
-
-    public final void k(org.telegram.messenger.ac acVar, String str, String str2, Drawable drawable, Object obj) {
-        n(acVar, str, null, null, drawable, str2, 0, obj);
-    }
-
-    public final void l(org.telegram.messenger.ac acVar, String str, org.telegram.messenger.ac acVar2, String str2, int i3, Object obj) {
-        n(acVar, str, acVar2, str2, null, null, i3, obj);
-    }
-
-    public final void m(org.telegram.messenger.ac acVar, String str, org.telegram.messenger.ac acVar2, String str2, Drawable drawable, Object obj) {
-        this.f35342a.u0(acVar, str, acVar2, str2, null, null, drawable, 0L, null, obj, 1);
-        d();
-    }
-
-    public final void n(org.telegram.messenger.ac acVar, String str, org.telegram.messenger.ac acVar2, String str2, Drawable drawable, String str3, int i3, Object obj) {
-        this.f35342a.r0(acVar, str, acVar2, str2, drawable, i3, str3, obj, 0);
-        d();
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f35347n = true;
-        if (this.f35351x) {
-            this.f35342a.P();
-        }
-        if (this.f35349s) {
-            this.f35343b.P();
-        }
-        g5 g5Var = this.f35345e;
-        if (g5Var != null) {
-            g5Var.a(this);
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f35347n = false;
-        if (this.f35351x) {
-            this.f35342a.R();
-        }
-        if (this.f35349s) {
-            this.f35343b.R();
-        }
-        g5 g5Var = this.f35345e;
-        if (g5Var != null) {
-            g5Var.n(this);
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        ImageReceiver imageReceiver;
-        int i3;
-        ColorFilter colorFilter;
-        g5 g5Var = this.f35345e;
-        if (g5Var != null) {
-            imageReceiver = g5Var.f33971k;
-        } else {
-            imageReceiver = this.f35342a;
-        }
-        if (imageReceiver != null) {
-            if (g5Var != null && (colorFilter = this.f35346f) != null) {
-                g5Var.setColorFilter(colorFilter);
-            }
-            int i10 = this.f35344c;
-            if (i10 != -1 && (i3 = this.d) != -1) {
-                if (this.f35350w) {
-                    imageReceiver.y0(0.0f, 0.0f, i10, i3);
-                    if (this.f35349s) {
-                        this.f35343b.y0(0.0f, 0.0f, this.f35344c, this.d);
-                    }
-                } else {
-                    int height = getHeight();
-                    int i11 = this.d;
-                    imageReceiver.y0((getWidth() - this.f35344c) / 2, (height - i11) / 2, this.f35344c, i11);
-                    if (this.f35349s) {
-                        int height2 = getHeight();
-                        int i12 = this.d;
-                        this.f35343b.y0((getWidth() - this.f35344c) / 2, (height2 - i12) / 2, this.f35344c, i12);
-                    }
-                }
-            } else {
-                imageReceiver.y0(0.0f, 0.0f, getWidth(), getHeight());
-                if (this.f35349s) {
-                    this.f35343b.y0(0.0f, 0.0f, getWidth(), getHeight());
-                }
-            }
-            imageReceiver.h(canvas, null);
-            if (this.f35349s) {
-                this.f35343b.h(canvas, null);
-            }
-        }
-    }
-
-    public final void p(org.telegram.messenger.ac acVar, String str, Drawable drawable, Object obj) {
-        n(acVar, str, null, null, drawable, null, 0, obj);
-    }
-
-    public final void q(x41 x41Var, org.telegram.messenger.ac acVar, String str, org.telegram.messenger.ac acVar2, org.telegram.messenger.ac acVar3, String str2, int i3, String str3) {
-        if (x41Var != null) {
-            this.f35342a.w0(x41Var);
-        } else {
-            this.f35342a.u0(acVar, str, acVar2, null, acVar3, str2, null, i3, null, str3, 1);
-        }
-        d();
-    }
-
-    public final void r() {
-        this.f35342a.G0(0, 0, true);
-    }
-
-    public final void s(int i3, int i10, boolean z10) {
-        this.f35342a.G0(i3, i10, true);
-    }
-
-    public void setAnimatedEmojiDrawable(g5 g5Var) {
-        g5 g5Var2 = this.f35345e;
-        if (g5Var2 == g5Var) {
-            return;
-        }
-        if (this.f35347n && g5Var2 != null) {
-            g5Var2.n(this);
-        }
-        this.f35345e = g5Var;
-        if (this.f35347n && g5Var != null) {
-            g5Var.a(this);
-        }
-        invalidate();
-    }
-
-    public void setAspectFit(boolean z10) {
-        this.f35342a.S0 = z10;
-    }
-
-    public void setBlurAllowed(boolean z10) {
-        if (!this.f35347n) {
-            this.f35349s = z10;
-            if (z10) {
-                this.f35343b = new ImageReceiver(null);
+    public static void a(k9 k9Var, Runnable[] runnableArr, Bitmap bitmap, u40 u40Var, int i7, c8.ea[] eaVarArr) {
+        a0.f fVar = k9Var.f35237b;
+        ArrayList arrayList = k9Var.f35239e;
+        if (!arrayList.contains(runnableArr)) {
+            if (bitmap != null) {
+                bitmap.recycle();
                 return;
             }
             return;
         }
-        throw new IllegalStateException("You should call setBlurAllowed(...) only when detached!");
-    }
-
-    public void setBlurredText(CharSequence charSequence) {
-        if (TextUtils.isEmpty(charSequence)) {
-            this.E = null;
-            return;
+        if (bitmap != null) {
+            fVar.put(u40Var, bitmap);
+        } else {
+            fVar.remove(u40Var);
+            k9Var.f35238c.remove(u40Var);
         }
-        this.E = new ly0(charSequence, 16.5f, org.telegram.messenger.g0.o());
-        if (this.G == null) {
-            ColorMatrix colorMatrix = new ColorMatrix();
-            colorMatrix.setSaturation(1.2f);
-            org.telegram.messenger.g0.h(colorMatrix, -0.2f);
-            this.G = new ColorMatrixColorFilter(colorMatrix);
-        }
-    }
-
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.f35342a.f21261p1 = colorFilter;
-    }
-
-    public void setEmojiColorFilter(ColorFilter colorFilter) {
-        this.f35346f = colorFilter;
-        invalidate();
-    }
-
-    public void setHasBlur(boolean z10) {
-        if (z10 && !this.f35349s) {
-            throw new IllegalStateException("You should call setBlurAllowed(...) before calling setHasBlur(true)!");
-        }
-        this.f35348r = z10;
-        if (!z10) {
-            if (this.f35343b.n() != null && !this.f35343b.n().isRecycled()) {
-                this.f35343b.n().recycle();
+        runnableArr[i7] = null;
+        boolean z9 = true;
+        if (runnableArr.length > 1) {
+            for (Runnable runnable : runnableArr) {
+                if (runnable != null) {
+                    break;
+                }
             }
-            this.f35343b.w0(null);
         }
-        a();
-    }
-
-    public void setImageBitmap(Bitmap bitmap) {
-        this.f35342a.v0(bitmap);
-        d();
-    }
-
-    public void setImageDrawable(Drawable drawable) {
-        this.f35342a.w0(drawable);
-        d();
-    }
-
-    public void setImageResource(int i3) {
-        this.f35342a.w0(getResources().getDrawable(i3));
-        invalidate();
-        d();
-    }
-
-    public void setLayerNum(int i3) {
-        this.f35342a.E0(i3);
-    }
-
-    public void setRoundRadius(int i3) {
-        this.f35342a.J0(i3);
-        if (this.f35349s) {
-            this.f35343b.J0(i3);
+        z9 = false;
+        if (!z9) {
+            arrayList.remove(runnableArr);
         }
-        invalidate();
-    }
-
-    public final void t(int i3, int i10, int i11, int i12) {
-        this.f35342a.K0(i3, i10, i11, i12);
-        if (this.f35349s) {
-            this.f35343b.K0(i3, i10, i11, i12);
+        c8.ea eaVar = eaVarArr[0];
+        if (eaVar != null) {
+            eaVar.b(u40Var.f38519a, u40Var.f38520b);
+            if (!z9) {
+                eaVarArr[0].a();
+                eaVarArr[0] = null;
+            }
         }
-        invalidate();
     }
 
-    public final void u(int i3, int i10) {
-        this.f35344c = i3;
-        this.d = i10;
-        invalidate();
+    public static GradientDrawable.Orientation d(int i7) {
+        if (i7 != 0) {
+            if (i7 != 90) {
+                if (i7 != 135) {
+                    if (i7 != 180) {
+                        if (i7 != 225) {
+                            if (i7 != 270) {
+                                if (i7 != 315) {
+                                    return GradientDrawable.Orientation.BL_TR;
+                                }
+                                return GradientDrawable.Orientation.BR_TL;
+                            }
+                            return GradientDrawable.Orientation.RIGHT_LEFT;
+                        }
+                        return GradientDrawable.Orientation.TR_BL;
+                    }
+                    return GradientDrawable.Orientation.TOP_BOTTOM;
+                }
+                return GradientDrawable.Orientation.TL_BR;
+            }
+            return GradientDrawable.Orientation.LEFT_RIGHT;
+        }
+        return GradientDrawable.Orientation.BOTTOM_TOP;
+    }
+
+    public static Rect e(GradientDrawable.Orientation orientation, int i7, int i10) {
+        Rect rect = new Rect();
+        switch (i9.f34560a[orientation.ordinal()]) {
+            case 1:
+                int i11 = i7 / 2;
+                rect.left = i11;
+                rect.top = 0;
+                rect.right = i11;
+                rect.bottom = i10;
+                return rect;
+            case 2:
+                rect.left = i7;
+                rect.top = 0;
+                rect.right = 0;
+                rect.bottom = i10;
+                return rect;
+            case 3:
+                rect.left = i7;
+                int i12 = i10 / 2;
+                rect.top = i12;
+                rect.right = 0;
+                rect.bottom = i12;
+                return rect;
+            case 4:
+                rect.left = i7;
+                rect.top = i10;
+                rect.right = 0;
+                rect.bottom = 0;
+                return rect;
+            case 5:
+                int i13 = i7 / 2;
+                rect.left = i13;
+                rect.top = i10;
+                rect.right = i13;
+                rect.bottom = 0;
+                return rect;
+            case 6:
+                rect.left = 0;
+                rect.top = i10;
+                rect.right = i7;
+                rect.bottom = 0;
+                return rect;
+            case 7:
+                rect.left = 0;
+                int i14 = i10 / 2;
+                rect.top = i14;
+                rect.right = i7;
+                rect.bottom = i14;
+                return rect;
+            default:
+                rect.left = 0;
+                rect.top = 0;
+                rect.right = i7;
+                rect.bottom = i10;
+                return rect;
+        }
+    }
+
+    public final void b() {
+        if (!this.f35241g) {
+            for (int size = this.f35239e.size() - 1; size >= 0; size--) {
+                org.telegram.messenger.p5 p5Var = Utilities.f21333e;
+                Runnable[] runnableArr = (Runnable[]) this.f35239e.remove(size);
+                p5Var.getClass();
+                for (Runnable runnable : runnableArr) {
+                    p5Var.a(runnable);
+                }
+            }
+            for (int i7 = this.f35237b.f31c - 1; i7 >= 0; i7--) {
+                Bitmap bitmap = (Bitmap) this.f35237b.g(i7);
+                if (bitmap != null) {
+                    bitmap.recycle();
+                }
+            }
+            this.f35238c.clear();
+            this.d.clear();
+            this.f35241g = true;
+        }
+    }
+
+    public final j9 c(Canvas canvas, final ViewGroup viewGroup) {
+        if (this.f35241g) {
+            super.draw(canvas);
+            return null;
+        }
+        Rect bounds = getBounds();
+        int width = (int) (bounds.width() * 0.5f);
+        int height = (int) (bounds.height() * 0.5f);
+        a0.f fVar = this.f35237b;
+        int i7 = fVar.f31c;
+        int i10 = 0;
+        while (true) {
+            a0.f fVar2 = this.d;
+            if (i10 < i7) {
+                u40 u40Var = (u40) fVar.f(i10);
+                if (u40Var.f38519a == width && u40Var.f38520b == height) {
+                    Bitmap bitmap = (Bitmap) fVar.i(i10);
+                    if (bitmap != null) {
+                        canvas.drawBitmap(bitmap, (Rect) null, bounds, this.f35240f);
+                    } else {
+                        super.draw(canvas);
+                    }
+                    return (j9) fVar2.get(viewGroup);
+                }
+                i10++;
+            } else {
+                j9 j9Var = (j9) fVar2.remove(viewGroup);
+                if (j9Var != null) {
+                    j9Var.dispose();
+                }
+                u40 u40Var2 = new u40(width, height);
+                fVar.put(u40Var2, null);
+                this.f35238c.put(u40Var2, Boolean.TRUE);
+                final f9 g10 = g(new u40[]{u40Var2}, new h9(this, viewGroup), 0L);
+                j9 j9Var2 = (j9) fVar2.put(viewGroup, new j9() {
+                    @Override
+                    public final void dispose() {
+                        k9.this.d.remove(viewGroup);
+                        g10.dispose();
+                    }
+                });
+                super.draw(canvas);
+                return j9Var2;
+            }
+        }
     }
 
     @Override
-    public boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f35342a.t() && drawable != this.f35342a.T && !super.verifyDrawable(drawable)) {
-            return false;
+    public final void draw(Canvas canvas) {
+        Bitmap bitmap;
+        Boolean bool;
+        if (this.f35241g) {
+            super.draw(canvas);
+            return;
         }
-        return true;
+        Rect bounds = getBounds();
+        int width = bounds.width();
+        int height = bounds.height();
+        a0.f fVar = this.f35237b;
+        int i7 = fVar.f31c;
+        float f10 = Float.MAX_VALUE;
+        Bitmap bitmap2 = null;
+        for (int i10 = 0; i10 < i7; i10++) {
+            u40 u40Var = (u40) fVar.f(i10);
+            float f11 = f10;
+            float sqrt = (float) Math.sqrt(Math.pow(height - u40Var.f38520b, 2.0d) + Math.pow(width - u40Var.f38519a, 2.0d));
+            if (sqrt < f11 && (bitmap = (Bitmap) fVar.i(i10)) != null && ((bool = (Boolean) this.f35238c.get(u40Var)) == null || !bool.booleanValue())) {
+                bitmap2 = bitmap;
+                f10 = sqrt;
+            } else {
+                f10 = f11;
+            }
+        }
+        if (bitmap2 != null) {
+            canvas.drawBitmap(bitmap2, (Rect) null, bounds, this.f35240f);
+        } else {
+            super.draw(canvas);
+        }
+    }
+
+    public final f9 f(n nVar, c8.ea eaVar, long j3) {
+        u40[] u40VarArr = (u40[]) nVar.f36166a;
+        if (!this.f35241g) {
+            ArrayList arrayList = new ArrayList(u40VarArr.length);
+            for (u40 u40Var : u40VarArr) {
+                a0.f fVar = this.f35237b;
+                if (!fVar.containsKey(u40Var)) {
+                    fVar.put(u40Var, null);
+                    arrayList.add(u40Var);
+                }
+            }
+            if (!arrayList.isEmpty()) {
+                return g((u40[]) arrayList.toArray(new u40[0]), eaVar, j3);
+            }
+        }
+        return null;
+    }
+
+    public final void finalize() {
+        try {
+            b();
+        } finally {
+            super.finalize();
+        }
+    }
+
+    public final f9 g(u40[] u40VarArr, c8.ea eaVar, long j3) {
+        if (u40VarArr.length == 0) {
+            return null;
+        }
+        c8.ea[] eaVarArr = {eaVar};
+        Runnable[] runnableArr = new Runnable[u40VarArr.length];
+        this.f35239e.add(runnableArr);
+        for (int i7 = 0; i7 < u40VarArr.length; i7++) {
+            u40 u40Var = u40VarArr[i7];
+            if (u40Var.f38519a != 0 && u40Var.f38520b != 0) {
+                org.telegram.messenger.p5 p5Var = Utilities.f21333e;
+                e9 e9Var = new e9(this, u40Var, runnableArr, i7, eaVarArr);
+                runnableArr[i7] = e9Var;
+                p5Var.d(e9Var, j3);
+            }
+        }
+        return new f9(this, eaVarArr, runnableArr, u40VarArr);
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        super.setAlpha(i7);
+        this.f35240f.setAlpha(i7);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        super.setColorFilter(colorFilter);
+        this.f35240f.setColorFilter(colorFilter);
     }
 }

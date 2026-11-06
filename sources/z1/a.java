@@ -1,59 +1,65 @@
 package z1;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
-import b8.dg;
-import c6.d;
-import com.google.android.gms.common.api.m;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-import u9.k;
-public final class a implements Runnable {
-    public static Handler f59565f;
-    public final d f59569e;
-    public volatile int f59567b = 1;
-    public final AtomicBoolean f59568c = new AtomicBoolean();
-    public final AtomicBoolean d = new AtomicBoolean();
-    public final b f59566a = new b(this, new dg(this, 8));
+import androidx.lifecycle.a0;
+import androidx.lifecycle.t;
+import androidx.lifecycle.z;
+import ca.i;
+import d6.d;
+public final class a extends z {
+    public final d f59443l;
+    public t f59444m;
+    public i f59445n;
 
     public a(d dVar) {
-        this.f59569e = dVar;
-    }
-
-    public final void a() {
-        d dVar = this.f59569e;
-        int i3 = 0;
-        for (m mVar : dVar.f4228j) {
-            if (mVar.c(dVar)) {
-                i3++;
-            }
+        this.f59443l = dVar;
+        if (dVar.f8195a == null) {
+            dVar.f8195a = this;
+            return;
         }
-        try {
-            dVar.f4227i.tryAcquire(i3, 5L, TimeUnit.SECONDS);
-        } catch (InterruptedException e10) {
-            Log.i("GACSignInLoader", "Unexpected InterruptedException", e10);
-            Thread.currentThread().interrupt();
-        }
-    }
-
-    public final void b(Object obj) {
-        Handler handler;
-        synchronized (a.class) {
-            try {
-                if (f59565f == null) {
-                    f59565f = new Handler(Looper.getMainLooper());
-                }
-                handler = f59565f;
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        handler.post(new k(8, this, obj));
+        throw new IllegalStateException("There is already a listener registered");
     }
 
     @Override
-    public final void run() {
-        this.f59569e.b();
+    public final void f() {
+        d dVar = this.f59443l;
+        dVar.f8196b = true;
+        dVar.d = false;
+        dVar.f8197c = false;
+        dVar.f8201i.drainPermits();
+        dVar.c();
+    }
+
+    @Override
+    public final void g() {
+        this.f59443l.f8196b = false;
+    }
+
+    @Override
+    public final void i(a0 a0Var) {
+        super.i(a0Var);
+        this.f59444m = null;
+        this.f59445n = null;
+    }
+
+    public final void k() {
+        t tVar = this.f59444m;
+        i iVar = this.f59445n;
+        if (tVar != null && iVar != null) {
+            super.i(iVar);
+            d(tVar, iVar);
+        }
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder(64);
+        sb2.append("LoaderInfo{");
+        sb2.append(Integer.toHexString(System.identityHashCode(this)));
+        sb2.append(" #0 : ");
+        Class<?> cls = this.f59443l.getClass();
+        sb2.append(cls.getSimpleName());
+        sb2.append("{");
+        sb2.append(Integer.toHexString(System.identityHashCode(cls)));
+        sb2.append("}}");
+        return sb2.toString();
     }
 }

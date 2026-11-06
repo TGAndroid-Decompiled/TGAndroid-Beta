@@ -1,47 +1,28 @@
 package c8;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import kotlin.jvm.internal.j;
-import p6.h;
-public final class f extends h {
-    @Override
-    public final int d() {
-        return 17895000;
+import java.io.Serializable;
+public final class f extends a8.g implements Serializable {
+    public final Object f5453b;
+    public final a8.f f5454c;
+
+    public f(Object obj, a8.f fVar) {
+        super(1, false);
+        this.f5453b = obj;
+        this.f5454c = fVar;
     }
 
     @Override
-    public final IInterface g(IBinder iBinder) {
-        j.e(iBinder, "iBinder");
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
-        if (queryLocalInterface instanceof c) {
-            return (c) queryLocalInterface;
-        }
-        return new c(iBinder);
+    public final Object getKey() {
+        return this.f5453b;
     }
 
     @Override
-    public final m6.c[] i() {
-        return n8.f.f20281c;
+    public final Object getValue() {
+        return this.f5454c;
     }
 
     @Override
-    public final String n() {
-        return "com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService";
-    }
-
-    @Override
-    public final String o() {
-        return "com.google.android.gms.recaptchabase.service.START";
-    }
-
-    @Override
-    public final boolean q() {
-        return true;
-    }
-
-    @Override
-    public final boolean w() {
-        return false;
+    public final Object setValue(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

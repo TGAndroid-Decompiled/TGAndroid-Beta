@@ -1,18 +1,9 @@
 package d8;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class b {
-    public static final int f8587a = 0;
+import android.os.IInterface;
+import com.google.android.gms.common.api.Status;
+public interface b extends IInterface {
+    void n(Status status, o8.b bVar);
 
-    static {
-        b.class.getClassLoader();
-    }
-
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
-        }
-        return (Parcelable) creator.createFromParcel(parcel);
-    }
+    void n0(Status status, o8.d dVar);
 }

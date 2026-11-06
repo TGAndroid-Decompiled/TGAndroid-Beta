@@ -1,38 +1,45 @@
 package org.telegram.ui;
+public final class rf implements org.telegram.messenger.v10 {
+    public final int f49485a;
+    public final an f49486b;
+    public final String f49487c;
 
-import android.content.DialogInterface;
-public final class rf implements DialogInterface.OnCancelListener {
-    public final int f49211a;
-    public final Object f49212b;
-
-    public rf(Object obj, int i3) {
-        this.f49211a = i3;
-        this.f49212b = obj;
+    public rf(an anVar, String str, int i7) {
+        this.f49485a = i7;
+        this.f49486b = anVar;
+        this.f49487c = str;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        switch (this.f49211a) {
+    public final void a(Object obj, Object obj2) {
+        Boolean bool = (Boolean) obj;
+        Boolean bool2 = (Boolean) obj2;
+        switch (this.f49485a) {
             case 0:
-                wm wmVar = (wm) this.f49212b;
-                wmVar.f51454q9 = true;
-                wmVar.f51428o9 = 0;
-                wmVar.Rb = 0;
-                wmVar.f51242a5 = 0;
-                wmVar.M9();
-                wmVar.qc(false);
-                return;
-            case 1:
-                ln lnVar = (ln) this.f49212b;
-                lnVar.N0 = false;
-                lnVar.f47366b = null;
-                lnVar.O0 = false;
-                return;
-            case 2:
-                ((qo) this.f49212b).f48925n = null;
+                if (bool.booleanValue()) {
+                    boolean booleanValue = bool2.booleanValue();
+                    an anVar = this.f49486b;
+                    String str = this.f49487c;
+                    if (booleanValue) {
+                        anVar.getMessagesController().p(str, false);
+                    }
+                    anVar.getParentActivity();
+                    vf.c.o(str);
+                    return;
+                }
                 return;
             default:
-                ((m90) this.f49212b).b();
+                an anVar2 = this.f49486b;
+                anVar2.getClass();
+                if (bool.booleanValue()) {
+                    boolean booleanValue2 = bool2.booleanValue();
+                    String str2 = this.f49487c;
+                    if (booleanValue2) {
+                        anVar2.getMessagesController().p(str2, true);
+                    }
+                    vf.c.n(anVar2.getParentActivity(), str2, false, null);
+                    return;
+                }
                 return;
         }
     }

@@ -1,72 +1,55 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class xi {
-    public final CharSequence f26384a;
-    public final int f26385b;
-    public final int f26386c;
-    public final float d;
-    public final ArrayList f26387e = new ArrayList();
-    public final boolean f26388f;
-    public final boolean f26389g;
-    public final boolean h;
-    public final boolean f26390i;
-    public final boolean f26391j;
-    public final boolean f26392k;
-
-    public xi(org.telegram.messenger.zi r37, java.lang.CharSequence r38, android.text.TextPaint r39, int r40) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.xi.<init>(org.telegram.messenger.zi, java.lang.CharSequence, android.text.TextPaint, int):void");
+import org.telegram.tgnet.NativeByteBuffer;
+import org.telegram.tgnet.TLRPC;
+public abstract class xi {
+    public static void a(TLRPC.Message message, TLRPC.TL_message tL_message) {
+        tL_message.voiceTranscription = message.voiceTranscription;
+        tL_message.voiceTranscriptionOpen = message.voiceTranscriptionOpen;
+        tL_message.voiceTranscriptionFinal = message.voiceTranscriptionFinal;
+        tL_message.voiceTranscriptionForce = message.voiceTranscriptionForce;
+        tL_message.voiceTranscriptionRated = message.voiceTranscriptionRated;
+        tL_message.voiceTranscriptionId = message.voiceTranscriptionId;
+        tL_message.premiumEffectWasPlayed = message.premiumEffectWasPlayed;
+        tL_message.originalLanguage = message.originalLanguage;
+        tL_message.translatedToLanguage = message.translatedToLanguage;
+        tL_message.translatedPoll = message.translatedPoll;
+        tL_message.translatedText = message.translatedText;
+        tL_message.translatedRichMessage = message.translatedRichMessage;
+        tL_message.errorAllowedPriceStars = message.errorAllowedPriceStars;
+        tL_message.errorNewPriceStars = message.errorNewPriceStars;
+        tL_message.translatedVoiceTranscription = message.translatedVoiceTranscription;
+        tL_message.summarizedOpen = message.summarizedOpen;
+        tL_message.summaryText = message.summaryText;
+        tL_message.translatedSummaryText = message.translatedSummaryText;
+        tL_message.translatedSummaryLanguage = message.translatedSummaryLanguage;
     }
 
-    public final void a(xi xiVar) {
-        if (xiVar != null) {
-            ArrayList arrayList = xiVar.f26387e;
-            int i3 = 0;
-            while (true) {
-                ArrayList arrayList2 = this.f26387e;
-                if (i3 < Math.min(arrayList2.size(), arrayList.size())) {
-                    ((wi) arrayList2.get(i3)).H = ((wi) arrayList.get(i3)).H;
-                    i3++;
-                } else {
-                    return;
-                }
-            }
+    public static void b(TLRPC.Message message, NativeByteBuffer nativeByteBuffer) {
+        if (nativeByteBuffer == null) {
+            return;
         }
-    }
-
-    public final int b() {
-        int i3;
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            ArrayList arrayList = this.f26387e;
-            if (i10 < arrayList.size()) {
-                int i12 = ((wi) arrayList.get(i10)).f26211f;
-                wi wiVar = (wi) arrayList.get(i10);
-                if (wiVar.K && wiVar.f()) {
-                    i3 = wiVar.G;
-                } else {
-                    i3 = wiVar.f26215w;
-                }
-                i11 += i3 + i12 + ((wi) arrayList.get(i10)).h;
-                i10++;
-            } else {
-                return i11;
-            }
+        int readInt32 = nativeByteBuffer.readInt32(true);
+        if (readInt32 == 1) {
+            new wi(message).readParams(nativeByteBuffer, true);
+            return;
         }
+        throw new RuntimeException(jg.g.j(readInt32, "can't read params version = "));
     }
 
-    public final int c(org.telegram.ui.Cells.x1 x1Var) {
-        int i3 = 0;
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.f26387e;
-            if (i3 < arrayList.size()) {
-                i10 += ((wi) arrayList.get(i3)).j(x1Var) + ((wi) arrayList.get(i3)).f26211f + ((wi) arrayList.get(i3)).h;
-                i3++;
-            } else {
-                return i10;
-            }
+    public static NativeByteBuffer c(TLRPC.Message message) {
+        TLRPC.MessageAction messageAction = message.action;
+        if ((!(messageAction instanceof TLRPC.TL_messageActionGramTransfer) || !((TLRPC.TL_messageActionGramTransfer) messageAction).comment_encrypted_preparing) && message.voiceTranscription == null && message.translatedVoiceTranscription == null && !message.voiceTranscriptionOpen && !message.summarizedOpen && message.summaryText == null && message.translatedSummaryLanguage == null && message.translatedSummaryText == null && !message.voiceTranscriptionFinal && !message.voiceTranscriptionRated && !message.voiceTranscriptionForce && message.voiceTranscriptionId == 0 && !message.premiumEffectWasPlayed && message.originalLanguage == null && message.translatedToLanguage == null && message.translatedPoll == null && message.translatedText == null && message.translatedRichMessage == null && message.errorAllowedPriceStars == 0 && message.errorNewPriceStars == 0) {
+            return null;
+        }
+        wi wiVar = new wi(message);
+        try {
+            NativeByteBuffer nativeByteBuffer = new NativeByteBuffer(wiVar.getObjectSize());
+            wiVar.serializeToStream(nativeByteBuffer);
+            return nativeByteBuffer;
+        } catch (Exception e10) {
+            e10.printStackTrace();
+            return null;
         }
     }
 }

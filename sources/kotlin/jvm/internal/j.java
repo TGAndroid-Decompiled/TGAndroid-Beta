@@ -1,11 +1,12 @@
 package kotlin.jvm.internal;
 
+import a8.p0;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
 public abstract class j {
-    public static final Object[] f17354a = new Object[0];
+    public static final Object[] f17605a = new Object[0];
 
     public static boolean a(Object obj, Object obj2) {
         if (obj == null) {
@@ -48,27 +49,27 @@ public abstract class j {
         if (obj == null) {
             StackTraceElement[] stackTrace = Thread.currentThread().getStackTrace();
             String name = j.class.getName();
-            int i3 = 0;
-            while (!stackTrace[i3].getClassName().equals(name)) {
-                i3++;
+            int i7 = 0;
+            while (!stackTrace[i7].getClassName().equals(name)) {
+                i7++;
             }
-            while (stackTrace[i3].getClassName().equals(name)) {
-                i3++;
+            while (stackTrace[i7].getClassName().equals(name)) {
+                i7++;
             }
-            StackTraceElement stackTraceElement = stackTrace[i3];
-            StringBuilder n4 = com.google.android.recaptcha.internal.a.n("Parameter specified as non-null is null: method ", stackTraceElement.getClassName(), ".", stackTraceElement.getMethodName(), ", parameter ");
-            n4.append(str);
-            NullPointerException nullPointerException = new NullPointerException(n4.toString());
+            StackTraceElement stackTraceElement = stackTrace[i7];
+            StringBuilder n10 = com.google.android.recaptcha.internal.a.n("Parameter specified as non-null is null: method ", stackTraceElement.getClassName(), ".", stackTraceElement.getMethodName(), ", parameter ");
+            n10.append(str);
+            NullPointerException nullPointerException = new NullPointerException(n10.toString());
             g(nullPointerException, j.class.getName());
             throw nullPointerException;
         }
     }
 
-    public static int f(int i3, int i10) {
-        if (i3 < i10) {
+    public static int f(int i7, int i10) {
+        if (i7 < i10) {
             return -1;
         }
-        if (i3 == i10) {
+        if (i7 == i10) {
             return 0;
         }
         return 1;
@@ -77,17 +78,17 @@ public abstract class j {
     public static void g(RuntimeException runtimeException, String str) {
         StackTraceElement[] stackTrace = runtimeException.getStackTrace();
         int length = stackTrace.length;
-        int i3 = -1;
+        int i7 = -1;
         for (int i10 = 0; i10 < length; i10++) {
             if (str.equals(stackTrace[i10].getClassName())) {
-                i3 = i10;
+                i7 = i10;
             }
         }
-        runtimeException.setStackTrace((StackTraceElement[]) Arrays.copyOfRange(stackTrace, i3 + 1, length));
+        runtimeException.setStackTrace((StackTraceElement[]) Arrays.copyOfRange(stackTrace, i7 + 1, length));
     }
 
     public static void h(String str) {
-        RuntimeException runtimeException = new RuntimeException(a1.g.q("lateinit property ", str, " has not been initialized"));
+        RuntimeException runtimeException = new RuntimeException(p0.p("lateinit property ", str, " has not been initialized"));
         g(runtimeException, j.class.getName());
         throw runtimeException;
     }
@@ -98,10 +99,10 @@ public abstract class j {
             Iterator it = collection.iterator();
             if (it.hasNext()) {
                 Object[] objArr = new Object[size];
-                int i3 = 0;
+                int i7 = 0;
                 while (true) {
-                    int i10 = i3 + 1;
-                    objArr[i3] = it.next();
+                    int i10 = i7 + 1;
+                    objArr[i7] = it.next();
                     if (i10 >= objArr.length) {
                         if (!it.hasNext()) {
                             return objArr;
@@ -120,17 +121,17 @@ public abstract class j {
                         d(copyOf, "copyOf(...)");
                         return copyOf;
                     }
-                    i3 = i10;
+                    i7 = i10;
                 }
             }
         }
-        return f17354a;
+        return f17605a;
     }
 
     public static final Object[] j(Collection collection, Object[] objArr) {
         Object[] objArr2;
         int size = collection.size();
-        int i3 = 0;
+        int i7 = 0;
         if (size == 0) {
             if (objArr.length > 0) {
                 objArr[0] = null;
@@ -151,8 +152,8 @@ public abstract class j {
                     objArr2 = (Object[]) newInstance;
                 }
                 while (true) {
-                    int i10 = i3 + 1;
-                    objArr2[i3] = it.next();
+                    int i10 = i7 + 1;
+                    objArr2[i7] = it.next();
                     if (i10 >= objArr2.length) {
                         if (!it.hasNext()) {
                             return objArr2;
@@ -175,7 +176,7 @@ public abstract class j {
                         d(copyOf, "copyOf(...)");
                         return copyOf;
                     }
-                    i3 = i10;
+                    i7 = i10;
                 }
             }
         }

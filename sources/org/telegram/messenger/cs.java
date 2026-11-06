@@ -1,4 +1,8 @@
 package org.telegram.messenger;
+
+import java.util.List;
 public interface cs {
-    void didReceivedNotification(int i3, int i10, Object... objArr);
+    void a(int i7);
+
+    List b();
 }

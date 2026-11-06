@@ -1,35 +1,27 @@
 package p2;
+public final class q {
+    public final long f53034a;
+    public final long f53035b;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import org.telegram.ui.Components.i9;
-public interface q {
-    byte[] C0();
+    public q(long j3, long j10) {
+        this.f53034a = j3;
+        this.f53035b = j10;
+    }
 
-    void F1(byte[] bArr);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && q.class == obj.getClass()) {
+            q qVar = (q) obj;
+            if (this.f53034a == qVar.f53034a && this.f53035b == qVar.f53035b) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-    o J1(byte[] bArr, List list, int i3, HashMap hashMap);
-
-    int L1();
-
-    void U0(byte[] bArr, byte[] bArr2);
-
-    p W();
-
-    void W0(byte[] bArr);
-
-    boolean l2(String str, byte[] bArr);
-
-    void m(i9 i9Var);
-
-    byte[] o1(byte[] bArr, byte[] bArr2);
-
-    Map r(byte[] bArr);
-
-    j2.b r0(byte[] bArr);
-
-    void release();
-
-    void v0(byte[] bArr, l2.k kVar);
+    public final int hashCode() {
+        return (((int) this.f53034a) * 31) + ((int) this.f53035b);
+    }
 }

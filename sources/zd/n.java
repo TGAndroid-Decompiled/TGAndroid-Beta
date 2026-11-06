@@ -1,19 +1,11 @@
 package zd;
-public final class n extends hd.c {
-    public Object f60420a;
-    public int f60421b;
-    public final ua.b f60422c;
-    public l d;
 
-    public n(ua.b bVar, hd.c cVar) {
-        super(cVar);
-        this.f60422c = bVar;
-    }
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+public final class n extends v {
+    public static final AtomicIntegerFieldUpdater f59974c = AtomicIntegerFieldUpdater.newUpdater(n.class, "_resumed$volatile");
+    private volatile int _resumed$volatile;
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f60420a = obj;
-        this.f60421b |= Integer.MIN_VALUE;
-        return this.f60422c.U(null, this);
+    public n(zd.m r3, java.lang.Throwable r4, boolean r5) {
+        throw new UnsupportedOperationException("Method not decompiled: zd.n.<init>(zd.m, java.lang.Throwable, boolean):void");
     }
 }

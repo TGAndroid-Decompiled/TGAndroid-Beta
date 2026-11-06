@@ -1,3 +1,4 @@
 package p4;
-public final class g extends f {
+public interface g {
+    m9.y run();
 }

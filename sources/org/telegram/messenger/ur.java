@@ -1,8 +1,6 @@
 package org.telegram.messenger;
-
-import java.util.List;
-public interface ur {
-    void a(int i3);
-
-    List b();
+public final class ur {
+    public int f25879a;
+    public int f25880b;
+    public int f25881c;
 }

@@ -4,37 +4,37 @@ import android.util.SparseArray;
 import j$.util.Objects;
 import java.util.ArrayList;
 public final class g4 {
-    public static final SparseArray f22633e = new SparseArray();
-    public static final ArrayList f22634f = new ArrayList();
-    public final int f22635a;
-    public final int f22636b;
-    public final int f22637c;
+    public static final SparseArray f22564e = new SparseArray();
+    public static final ArrayList f22565f = new ArrayList();
+    public final int f22566a;
+    public final int f22567b;
+    public final int f22568c;
     public final boolean d;
 
-    public g4(int i3, int i10) {
-        if (i3 == -2) {
+    public g4(int i7, int i10) {
+        if (i7 == -2) {
             this.d = true;
-            i3 = -1;
+            i7 = -1;
         }
-        this.f22635a = i3;
-        Integer valueOf = Integer.valueOf(i3);
-        this.f22636b = i10;
-        this.f22637c = Objects.hash(0, valueOf, Integer.valueOf(i10));
+        this.f22566a = i7;
+        Integer valueOf = Integer.valueOf(i7);
+        this.f22567b = i10;
+        this.f22568c = Objects.hash(0, valueOf, Integer.valueOf(i10));
     }
 
     public final void a() {
-        if (f22633e.indexOfKey(this.f22637c) >= 0) {
+        if (f22564e.indexOfKey(this.f22568c) >= 0) {
             return;
         }
-        ArrayList arrayList = f22634f;
-        if (arrayList.contains(Integer.valueOf(this.f22637c))) {
+        ArrayList arrayList = f22565f;
+        if (arrayList.contains(Integer.valueOf(this.f22568c))) {
             return;
         }
-        arrayList.add(Integer.valueOf(this.f22637c));
-        Utilities.f21387e.c(new a(this, 5));
+        arrayList.add(Integer.valueOf(this.f22568c));
+        Utilities.f21333e.c(new a(this, 5));
     }
 
     public final int hashCode() {
-        return this.f22637c;
+        return this.f22568c;
     }
 }

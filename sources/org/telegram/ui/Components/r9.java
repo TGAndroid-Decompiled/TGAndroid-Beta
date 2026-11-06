@@ -1,56 +1,203 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-public final class r9 implements View.OnClickListener {
-    public final int f37692a = 0;
-    public final t9 f37693b;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Path;
+import java.util.Random;
+public class r9 {
+    public float f37649a;
+    public float f37650b;
+    public final Path f37651c;
+    public final Paint d;
+    public final float[] f37652e;
+    public final float[] f37653f;
+    public final float[] f37654g;
+    public final float[] h;
+    public final float[] f37655i;
+    public final float[] f37656j;
+    public final float[] f37657k;
+    public final float[] f37658l;
+    public final Random f37659m;
+    public final float f37660n;
+    public final float f37661o;
+    public final float f37662p;
+    public final Matrix f37663q;
+    public final int f37664r;
+    public float f37665s;
+    public float f37666t;
+    public float f37667u;
 
-    public r9(t9 t9Var) {
-        this.f37693b = t9Var;
+    public r9(int i7) {
+        this(i7, 512);
     }
 
-    @Override
-    public final void onClick(View view) {
-        int i3 = this.f37692a;
-        t9 t9Var = this.f37693b;
-        switch (i3) {
-            case 0:
-                int i10 = t9Var.f38361w + 1;
-                t9Var.f38361w = i10;
-                if (i10 >= 10) {
-                    t9Var.setVisibility(8);
-                    org.telegram.messenger.az.f21639j1 = null;
-                    org.telegram.messenger.az.y();
-                    return;
+    public final void a(float f10, float f11, Canvas canvas, Paint paint) {
+        int i7;
+        if (!org.telegram.messenger.rc.e(this.f37664r)) {
+            return;
+        }
+        Path path = this.f37651c;
+        path.reset();
+        int i10 = 0;
+        while (true) {
+            float f12 = this.f37660n;
+            if (i10 < f12) {
+                float[] fArr = this.f37655i;
+                float f13 = fArr[i10];
+                int i11 = i10 + 1;
+                if (i11 < f12) {
+                    i7 = i11;
+                } else {
+                    i7 = 0;
                 }
-                return;
-            default:
-                org.telegram.messenger.t0.u();
-                boolean z10 = org.telegram.messenger.r2.f25040a;
-                if (org.telegram.messenger.t0.f25456a.b(t9Var.getContext())) {
-                    TLRPC.TL_help_appUpdate tL_help_appUpdate = t9Var.f38358n;
-                    if (tL_help_appUpdate.document instanceof TLRPC.TL_document) {
-                        if (!org.telegram.messenger.t0.f25456a.v((Activity) t9Var.getContext(), t9Var.f38358n.document)) {
-                            org.telegram.messenger.w7.G(t9Var.f38360s).X(t9Var.f38358n.document, "update", 3, 1);
-                            t9Var.a(true);
-                            return;
-                        }
-                        return;
-                    } else if (tL_help_appUpdate.url != null) {
-                        sf.c.t(t9Var.getContext(), t9Var.f38358n.url);
-                        return;
-                    } else {
-                        return;
-                    }
+                float f14 = fArr[i7];
+                float[] fArr2 = this.f37652e;
+                float f15 = 1.0f - f13;
+                float[] fArr3 = this.f37654g;
+                float f16 = (fArr3[i10] * f13) + (fArr2[i10] * f15);
+                float f17 = 1.0f - f14;
+                float f18 = (fArr3[i7] * f14) + (fArr2[i7] * f17);
+                float[] fArr4 = this.f37653f;
+                float f19 = fArr4[i10] * f15;
+                float[] fArr5 = this.h;
+                float f20 = (fArr5[i7] * f14) + (fArr4[i7] * f17);
+                float max = (((Math.max(f16, f18) - Math.min(f16, f18)) / 2.0f) + Math.min(f16, f18)) * this.f37661o * this.f37662p;
+                Matrix matrix = this.f37663q;
+                matrix.reset();
+                matrix.setRotate((fArr5[i10] * f13) + f19, f10, f11);
+                float[] fArr6 = this.f37657k;
+                fArr6[0] = f10;
+                float f21 = f11 - f16;
+                fArr6[1] = f21;
+                fArr6[2] = f10 + max;
+                fArr6[3] = f21;
+                matrix.mapPoints(fArr6);
+                float[] fArr7 = this.f37658l;
+                fArr7[0] = f10;
+                float f22 = f11 - f18;
+                fArr7[1] = f22;
+                fArr7[2] = f10 - max;
+                fArr7[3] = f22;
+                matrix.reset();
+                matrix.setRotate(f20, f10, f11);
+                matrix.mapPoints(fArr7);
+                if (i10 == 0) {
+                    path.moveTo(fArr6[0], fArr6[1]);
                 }
+                path.cubicTo(fArr6[2], fArr6[3], fArr7[2], fArr7[3], fArr7[0], fArr7[1]);
+                i10 = i11;
+            } else {
+                canvas.save();
+                canvas.drawPath(path, paint);
+                canvas.restore();
                 return;
+            }
         }
     }
 
-    public r9(t9 t9Var, LaunchActivity launchActivity) {
-        this.f37693b = t9Var;
+    public final void b() {
+        for (int i7 = 0; i7 < this.f37660n; i7++) {
+            c(this.f37652e, this.f37653f, i7);
+            c(this.f37654g, this.h, i7);
+            this.f37655i[i7] = 0.0f;
+        }
+    }
+
+    public final void c(float[] fArr, float[] fArr2, int i7) {
+        float f10 = this.f37660n;
+        float f11 = this.f37650b;
+        float f12 = this.f37649a;
+        Random random = this.f37659m;
+        fArr[i7] = (Math.abs((random.nextInt() % 100.0f) / 100.0f) * (f11 - f12)) + f12;
+        fArr2[i7] = (((random.nextInt() % 100.0f) / 100.0f) * (360.0f / f10) * 0.05f) + ((360.0f / f10) * i7);
+        this.f37656j[i7] = (float) (((Math.abs(random.nextInt() % 100.0f) / 100.0f) * 0.003d) + 0.017d);
+    }
+
+    public final void d(boolean z9, float f10) {
+        this.f37665s = f10;
+        if (!org.telegram.messenger.rc.e(this.f37664r)) {
+            return;
+        }
+        if (z9) {
+            float f11 = this.f37665s;
+            float f12 = this.f37666t;
+            if (f11 > f12) {
+                this.f37667u = (f11 - f12) / 205.0f;
+                return;
+            } else {
+                this.f37667u = (f11 - f12) / 275.0f;
+                return;
+            }
+        }
+        float f13 = this.f37665s;
+        float f14 = this.f37666t;
+        if (f13 > f14) {
+            this.f37667u = (f13 - f14) / 320.0f;
+        } else {
+            this.f37667u = (f13 - f14) / 375.0f;
+        }
+    }
+
+    public final void e(float f10, float f11) {
+        if (org.telegram.messenger.rc.e(this.f37664r)) {
+            for (int i7 = 0; i7 < this.f37660n; i7++) {
+                float[] fArr = this.f37655i;
+                float f12 = fArr[i7];
+                float f13 = this.f37656j[i7];
+                float f14 = (f13 * f10 * 8.2f * f11) + (0.8f * f13) + f12;
+                fArr[i7] = f14;
+                if (f14 >= 1.0f) {
+                    fArr[i7] = 0.0f;
+                    float[] fArr2 = this.f37654g;
+                    this.f37652e[i7] = fArr2[i7];
+                    float[] fArr3 = this.h;
+                    this.f37653f[i7] = fArr3[i7];
+                    c(fArr2, fArr3, i7);
+                }
+            }
+        }
+    }
+
+    public final void f(long j3) {
+        float f10 = this.f37665s;
+        float f11 = this.f37666t;
+        if (f10 != f11) {
+            float f12 = this.f37667u;
+            float f13 = (((float) j3) * f12) + f11;
+            this.f37666t = f13;
+            if (f12 > 0.0f) {
+                if (f13 > f10) {
+                    this.f37666t = f10;
+                }
+            } else if (f13 < f10) {
+                this.f37666t = f10;
+            }
+        }
+    }
+
+    public r9(int i7, int i10) {
+        float f10;
+        this.f37651c = new Path();
+        this.d = new Paint(1);
+        this.f37657k = new float[4];
+        this.f37658l = new float[4];
+        this.f37659m = new Random();
+        this.f37662p = 1.0f;
+        this.f37663q = new Matrix();
+        this.f37660n = i7;
+        this.f37661o = (float) (Math.tan(3.141592653589793d / (f10 * 2.0f)) * 1.3333333333333333d);
+        this.f37652e = new float[i7];
+        this.f37653f = new float[i7];
+        this.f37654g = new float[i7];
+        this.h = new float[i7];
+        this.f37655i = new float[i7];
+        this.f37656j = new float[i7];
+        for (int i11 = 0; i11 < this.f37660n; i11++) {
+            c(this.f37652e, this.f37653f, i11);
+            c(this.f37654g, this.h, i11);
+            this.f37655i[i11] = 0.0f;
+        }
+        this.f37664r = i10;
     }
 }

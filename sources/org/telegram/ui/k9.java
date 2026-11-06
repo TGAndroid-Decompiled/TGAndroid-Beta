@@ -1,34 +1,31 @@
 package org.telegram.ui;
-public final class k9 implements q1.c {
-    public final int f46831a;
-    public final Object f46832b;
+public final class k9 implements r1.d {
+    public final int f47121a;
+    public final s9 f47122b;
 
-    public k9(Object obj, int i3) {
-        this.f46831a = i3;
-        this.f46832b = obj;
+    public k9(s9 s9Var, int i7) {
+        this.f47121a = i7;
+        this.f47122b = s9Var;
     }
 
     @Override
-    public final void a(q1.g gVar, boolean z10, float f10, float f11) {
-        switch (this.f46831a) {
+    public final void a(r1.g gVar, float f10, float f11) {
+        float f12;
+        switch (this.f47121a) {
             case 0:
-                s9 s9Var = (s9) this.f46832b;
-                q1.g gVar2 = s9Var.E;
-                if (gVar2 != null) {
-                    gVar2.d();
-                    s9Var.E = null;
-                    return;
-                }
-                return;
-            case 1:
-                zk0 zk0Var = (zk0) this.f46832b;
-                if (gVar == zk0Var.f52695c) {
-                    zk0Var.f52695c = null;
-                    return;
-                }
+                s9 s9Var = this.f47122b;
+                s9Var.E = f10 / 500.0f;
+                s9Var.fragmentView.invalidate();
                 return;
             default:
-                ((zp0) this.f46832b).E();
+                s9 s9Var2 = this.f47122b;
+                if (s9Var2.N) {
+                    f12 = f10 / 500.0f;
+                } else {
+                    f12 = 1.0f - (f10 / 500.0f);
+                }
+                s9Var2.f49668b0 = f12;
+                s9Var2.fragmentView.invalidate();
                 return;
         }
     }

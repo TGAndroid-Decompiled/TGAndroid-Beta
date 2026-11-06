@@ -1,6 +1,5 @@
 package org.telegram.messenger.voip;
 
-import ai.r1;
 import android.content.Intent;
 import android.graphics.Point;
 import android.media.projection.MediaProjection;
@@ -9,11 +8,13 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.view.Display;
 import android.view.WindowManager;
-import ci.e1;
-import ci.e3;
-import k2.p1;
+import bi.d3;
+import bi.k1;
+import bi.r3;
+import li.j3;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.voip.VideoCapturerDevice;
+import org.telegram.ui.Cells.f1;
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
@@ -58,24 +59,24 @@ public class VideoCapturerDevice {
         }
     }
 
-    public VideoCapturerDevice(boolean z10) {
+    public VideoCapturerDevice(boolean z9) {
         Logging.enableLogToDebugOutput(Logging.Severity.LS_VERBOSE);
         Logging.d("VideoCapturerDevice", "device model = " + Build.MANUFACTURER + Build.MODEL);
-        org.telegram.messenger.g0.h3(new e1(14, this, z10));
+        org.telegram.messenger.g0.h3(new k1(14, this, z9));
     }
 
     public static void checkScreenCapturerSize() {
         if (instance[1] != null) {
             Point screenCaptureSize = getScreenCaptureSize();
             VideoCapturerDevice videoCapturerDevice = instance[1];
-            int i3 = videoCapturerDevice.currentWidth;
+            int i7 = videoCapturerDevice.currentWidth;
             int i10 = screenCaptureSize.x;
-            if (i3 == i10 && videoCapturerDevice.currentHeight == screenCaptureSize.y) {
+            if (i7 == i10 && videoCapturerDevice.currentHeight == screenCaptureSize.y) {
                 return;
             }
             videoCapturerDevice.currentWidth = i10;
             videoCapturerDevice.currentHeight = screenCaptureSize.y;
-            videoCapturerDevice.handler.post(new m2.s(25, videoCapturerDevice, screenCaptureSize));
+            videoCapturerDevice.handler.post(new j3(20, videoCapturerDevice, screenCaptureSize));
         }
     }
 
@@ -109,8 +110,8 @@ public class VideoCapturerDevice {
         return eglBase2.getEglBaseContext();
     }
 
-    private void init(long j10, String str) {
-        org.telegram.messenger.g0.h3(new r1(this, j10, str, 15));
+    private void init(long j3, String str) {
+        org.telegram.messenger.g0.h3(new d3(this, j3, str, 14));
     }
 
     public static void lambda$checkScreenCapturerSize$1(VideoCapturerDevice videoCapturerDevice, Point point) {
@@ -120,13 +121,13 @@ public class VideoCapturerDevice {
         }
     }
 
-    public void lambda$init$2(long j10, Point point) {
+    public void lambda$init$2(long j3, Point point) {
         if (this.videoCapturerSurfaceTextureHelper != null) {
-            long j11 = this.nativePtr;
-            if (j11 != 0) {
-                this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(j11);
-                this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, org.telegram.messenger.t0.f25457b, this.nativeCapturerObserver);
-                a8.b("VideoCapturerDevice init(" + j10 + "): videoCapturer.startCapture SCREEN");
+            long j10 = this.nativePtr;
+            if (j10 != 0) {
+                this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(j10);
+                this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, org.telegram.messenger.t0.f25555b, this.nativeCapturerObserver);
+                a8.b("VideoCapturerDevice init(" + j3 + "): videoCapturer.startCapture SCREEN");
                 this.videoCapturer.startCapture(point.x, point.y, 30);
                 WebRtcAudioRecord webRtcAudioRecord = WebRtcAudioRecord.Instance;
                 if (webRtcAudioRecord != null) {
@@ -136,13 +137,13 @@ public class VideoCapturerDevice {
         }
     }
 
-    public void lambda$init$3(long j10) {
+    public void lambda$init$3(long j3) {
         if (this.videoCapturerSurfaceTextureHelper == null) {
             return;
         }
         this.nativeCapturerObserver = nativeGetJavaVideoCapturerObserver(this.nativePtr);
-        this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, org.telegram.messenger.t0.f25457b, this.nativeCapturerObserver);
-        a8.b("VideoCapturerDevice init(" + j10 + "): videoCapturer.startCapture CAMERA");
+        this.videoCapturer.initialize(this.videoCapturerSurfaceTextureHelper, org.telegram.messenger.t0.f25555b, this.nativeCapturerObserver);
+        a8.b("VideoCapturerDevice init(" + j3 + "): videoCapturer.startCapture CAMERA");
         this.videoCapturer.startCapture(1280, 720, 30);
     }
 
@@ -150,10 +151,10 @@ public class VideoCapturerDevice {
         ((CameraVideoCapturer) this.videoCapturer).switchCamera(new AnonymousClass3(), str);
     }
 
-    public void lambda$init$5(long j10, String str) {
+    public void lambda$init$5(long j3, String str) {
         CameraEnumerator camera1Enumerator;
         if (eglBase != null) {
-            this.nativePtr = j10;
+            this.nativePtr = j3;
             if ("screen".equals(str)) {
                 if (this.videoCapturer == null) {
                     this.videoCapturer = new ScreenCapturerAndroid(mediaProjectionPermissionResultData, new AnonymousClass1());
@@ -161,48 +162,48 @@ public class VideoCapturerDevice {
                     this.currentWidth = screenCaptureSize.x;
                     this.currentHeight = screenCaptureSize.y;
                     this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("ScreenCapturerThread", eglBase.getEglBaseContext());
-                    this.handler.post(new r1(this, j10, screenCaptureSize, 16));
+                    this.handler.post(new d3(this, j3, screenCaptureSize, 15));
                 }
             } else {
-                if (Camera2Enumerator.isSupported(org.telegram.messenger.t0.f25457b)) {
-                    camera1Enumerator = new Camera2Enumerator(org.telegram.messenger.t0.f25457b);
+                if (Camera2Enumerator.isSupported(org.telegram.messenger.t0.f25555b)) {
+                    camera1Enumerator = new Camera2Enumerator(org.telegram.messenger.t0.f25555b);
                 } else {
                     camera1Enumerator = new Camera1Enumerator();
                 }
                 String[] deviceNames = camera1Enumerator.getDeviceNames();
-                int i3 = 0;
+                int i7 = 0;
                 while (true) {
-                    if (i3 < deviceNames.length) {
-                        if (camera1Enumerator.isFrontFacing(deviceNames[i3]) == "front".equals(str)) {
+                    if (i7 < deviceNames.length) {
+                        if (camera1Enumerator.isFrontFacing(deviceNames[i7]) == "front".equals(str)) {
                             break;
                         }
-                        i3++;
+                        i7++;
                     } else {
-                        i3 = -1;
+                        i7 = -1;
                         break;
                     }
                 }
-                if (i3 == -1) {
+                if (i7 == -1) {
                     return;
                 }
-                String str2 = deviceNames[i3];
+                String str2 = deviceNames[i7];
                 if (this.videoCapturer == null) {
                     this.videoCapturer = camera1Enumerator.createCapturer(str2, new AnonymousClass2());
                     this.videoCapturerSurfaceTextureHelper = SurfaceTextureHelper.create("VideoCapturerThread", eglBase.getEglBaseContext());
-                    this.handler.post(new e3(this, j10, 17));
+                    this.handler.post(new r3(this, j3, 17));
                     return;
                 }
-                a8.b("VideoCapturerDevice init(" + j10 + "): videoCapturer.switchCamera CAMERA");
-                this.handler.post(new m2.s(26, this, str2));
+                a8.b("VideoCapturerDevice init(" + j3 + "): videoCapturer.switchCamera CAMERA");
+                this.handler.post(new j3(21, this, str2));
             }
         }
     }
 
-    public void lambda$new$0(boolean z10) {
+    public void lambda$new$0(boolean z9) {
         if (eglBase == null) {
             eglBase = org.webrtc.e.d(null, EglBase.CONFIG_PLAIN);
         }
-        instance[z10 ? 1 : 0] = this;
+        instance[z9 ? 1 : 0] = this;
         HandlerThread handlerThread = new HandlerThread("CallThread");
         this.thread = handlerThread;
         handlerThread.start();
@@ -232,16 +233,16 @@ public class VideoCapturerDevice {
     }
 
     public void lambda$onDestroy$9() {
-        int i3 = 0;
+        int i7 = 0;
         while (true) {
             VideoCapturerDevice[] videoCapturerDeviceArr = instance;
-            if (i3 >= videoCapturerDeviceArr.length) {
+            if (i7 >= videoCapturerDeviceArr.length) {
                 break;
-            } else if (videoCapturerDeviceArr[i3] == this) {
-                videoCapturerDeviceArr[i3] = null;
+            } else if (videoCapturerDeviceArr[i7] == this) {
+                videoCapturerDeviceArr[i7] = null;
                 break;
             } else {
-                i3++;
+                i7++;
             }
         }
         this.handler.post(new h(this, 0));
@@ -252,51 +253,51 @@ public class VideoCapturerDevice {
         }
     }
 
-    public void lambda$onStateChanged$6(int i3, long j10) {
+    public void lambda$onStateChanged$6(int i7, long j3) {
         if (this.videoCapturer == null) {
             return;
         }
-        if (i3 == 2) {
+        if (i7 == 2) {
             StringBuilder sb2 = new StringBuilder("VideoCapturerDevice onStateChanged(");
-            sb2.append(j10);
+            sb2.append(j3);
             sb2.append(", ");
-            sb2.append(i3);
-            p1.w("): videoCapturer.startCapture", sb2);
+            sb2.append(i7);
+            f1.u("): videoCapturer.startCapture", sb2);
             this.videoCapturer.startCapture(1280, 720, 30);
             return;
         }
         try {
-            a8.b("VideoCapturerDevice onStateChanged(" + j10 + ", " + i3 + "): videoCapturer.stopCapture");
+            a8.b("VideoCapturerDevice onStateChanged(" + j3 + ", " + i7 + "): videoCapturer.stopCapture");
             this.videoCapturer.stopCapture();
         } catch (InterruptedException e10) {
             throw new RuntimeException(e10);
         }
     }
 
-    public void lambda$onStateChanged$7(long j10, int i3) {
-        if (this.nativePtr != j10) {
+    public void lambda$onStateChanged$7(long j3, int i7) {
+        if (this.nativePtr != j3) {
             return;
         }
-        this.handler.post(new g(this, i3, j10));
+        this.handler.post(new g(this, i7, j3));
     }
 
-    private static native CapturerObserver nativeGetJavaVideoCapturerObserver(long j10);
+    private static native CapturerObserver nativeGetJavaVideoCapturerObserver(long j3);
 
     private void onDestroy() {
-        p1.r(this.nativePtr, new StringBuilder("VideoCapturerDevice onDestroy ptr="));
+        jg.g.u(this.nativePtr, new StringBuilder("VideoCapturerDevice onDestroy ptr="));
         this.nativePtr = 0L;
         org.telegram.messenger.g0.h3(new h(this, 1));
     }
 
-    private void onStateChanged(long j10, int i3) {
-        a8.b("VideoCapturerDevice onStateChanged(" + j10 + ", " + i3 + ")");
-        org.telegram.messenger.g0.h3(new g(this, j10, i3));
+    private void onStateChanged(long j3, int i7) {
+        a8.b("VideoCapturerDevice onStateChanged(" + j3 + ", " + i7 + ")");
+        org.telegram.messenger.g0.h3(new g(this, j3, i7));
     }
 
-    private static Point getScreenCaptureSize(int i3) {
+    private static Point getScreenCaptureSize(int i7) {
         int i10;
         int i11;
-        Display defaultDisplay = ((WindowManager) org.telegram.messenger.t0.f25457b.getSystemService("window")).getDefaultDisplay();
+        Display defaultDisplay = ((WindowManager) org.telegram.messenger.t0.f25555b.getSystemService("window")).getDefaultDisplay();
         Point point = new Point();
         defaultDisplay.getRealSize(point);
         int i12 = point.x;
@@ -321,7 +322,7 @@ public class VideoCapturerDevice {
         if (i14 != -1 && f10 != 1.0f) {
             while (true) {
                 int i15 = point.x;
-                if (i15 <= 1000 && (i11 = point.y) <= 1000 && i15 % i3 == 0 && i11 % i3 == 0) {
+                if (i15 <= 1000 && (i11 = point.y) <= 1000 && i15 % i7 == 0 && i11 % i7 == 0) {
                     break;
                 }
                 int i16 = i15 - i14;
@@ -336,9 +337,9 @@ public class VideoCapturerDevice {
         }
         if (i14 == -1 || f10 == 1.0f) {
             float max = Math.max(point.x / 970.0f, point.y / 970.0f);
-            float f12 = i3;
-            point.x = ((int) Math.ceil((point.x / max) / f12)) * i3;
-            point.y = ((int) Math.ceil((point.y / max) / f12)) * i3;
+            float f12 = i7;
+            point.x = ((int) Math.ceil((point.x / max) / f12)) * i7;
+            point.y = ((int) Math.ceil((point.y / max) / f12)) * i7;
             return point;
         }
         return point;
@@ -386,18 +387,18 @@ public class VideoCapturerDevice {
             VideoCapturerDevice.this = r1;
         }
 
-        public static void lambda$onCameraSwitchDone$0(boolean z10) {
+        public static void lambda$onCameraSwitchDone$0(boolean z9) {
             if (VoIPService.getSharedInstance() != null) {
-                VoIPService.getSharedInstance().setSwitchingCamera(false, z10);
+                VoIPService.getSharedInstance().setSwitchingCamera(false, z9);
             }
         }
 
         @Override
-        public void onCameraSwitchDone(final boolean z10) {
+        public void onCameraSwitchDone(final boolean z9) {
             org.telegram.messenger.g0.h3(new Runnable() {
                 @Override
                 public final void run() {
-                    VideoCapturerDevice.AnonymousClass3.lambda$onCameraSwitchDone$0(z10);
+                    VideoCapturerDevice.AnonymousClass3.lambda$onCameraSwitchDone$0(z9);
                 }
             });
         }

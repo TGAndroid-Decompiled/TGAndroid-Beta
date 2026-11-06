@@ -1,42 +1,68 @@
 package ai;
-public final class a1 implements Runnable {
-    public final int f477a;
-    public final i1 f478b;
 
-    public a1(i1 i1Var, int i3) {
-        this.f477a = i3;
-        this.f478b = i1Var;
+import kg.t1;
+import org.telegram.tgnet.TLRPC;
+public final class a1 implements Runnable {
+    public final int f1121a;
+    public final Object f1122b;
+    public final int f1123c;
+    public final Object d;
+    public final Object f1124e;
+
+    public a1(int i7, Object obj, Object obj2, Object obj3, int i10) {
+        this.f1121a = i10;
+        this.f1123c = i7;
+        this.f1122b = obj;
+        this.d = obj2;
+        this.f1124e = obj3;
+    }
+
+    private final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: ai.a1.a():void");
     }
 
     @Override
     public final void run() {
-        switch (this.f477a) {
-            case 0:
-                i1 i1Var = this.f478b;
-                sh.h hVar = i1Var.f696o1;
-                kh.f fVar = i1Var.f695n1;
-                if (fVar != null) {
-                    fVar.d();
-                }
-                g1 g1Var = i1Var.f707z1;
-                if (g1Var != null) {
-                    g1Var.setTranslationY(-hVar.d());
-                }
-                org.telegram.ui.Components.h6 h6Var = i1Var.f701t1;
-                if (h6Var != null) {
-                    h6Var.setTranslationY(-hVar.d());
-                }
-                i1Var.I0();
-                return;
-            case 1:
-                this.f478b.f707z1.performClick();
-                return;
-            case 2:
-                this.f478b.f697p1.H0();
-                return;
-            default:
-                this.f478b.dismiss();
-                return;
-        }
+        throw new UnsupportedOperationException("Method not decompiled: ai.a1.run():void");
+    }
+
+    public a1(Object obj, int i7, Object obj2, Object obj3, int i10) {
+        this.f1121a = i10;
+        this.f1122b = obj;
+        this.f1123c = i7;
+        this.d = obj2;
+        this.f1124e = obj3;
+    }
+
+    public a1(Object obj, int i7, Object obj2, String str, int i10) {
+        this.f1121a = i10;
+        this.f1122b = obj;
+        this.f1123c = i7;
+        this.f1124e = obj2;
+        this.d = str;
+    }
+
+    public a1(Object obj, Object obj2, int i7, Object obj3, int i10) {
+        this.f1121a = i10;
+        this.f1122b = obj;
+        this.d = obj2;
+        this.f1123c = i7;
+        this.f1124e = obj3;
+    }
+
+    public a1(Object obj, Object obj2, Object obj3, int i7, int i10) {
+        this.f1121a = i10;
+        this.f1122b = obj;
+        this.d = obj2;
+        this.f1124e = obj3;
+        this.f1123c = i7;
+    }
+
+    public a1(t1 t1Var, TLRPC.Message message, String str, int i7) {
+        this.f1121a = 9;
+        this.f1122b = t1Var;
+        this.f1124e = message;
+        this.d = str;
+        this.f1123c = i7;
     }
 }

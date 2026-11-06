@@ -1,3 +1,34 @@
 package s4;
-public final class c {
+
+import org.telegram.ui.hy0;
+public final class c implements Runnable {
+    public final int f54667a;
+    public final androidx.emoji2.text.p f54668b;
+    public final int f54669c;
+
+    public c(androidx.emoji2.text.p pVar, int i7, int i10) {
+        this.f54667a = i10;
+        this.f54668b = pVar;
+        this.f54669c = i7;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f54667a) {
+            case 0:
+                v vVar = ((e) ((hy0) this.f54668b.f2327f).d).d;
+                if (vVar != null) {
+                    vVar.j(this.f54669c);
+                    return;
+                }
+                return;
+            default:
+                v vVar2 = ((e) ((hy0) this.f54668b.f2327f).d).d;
+                if (vVar2 != null) {
+                    vVar2.k(this.f54669c);
+                    return;
+                }
+                return;
+        }
+    }
 }

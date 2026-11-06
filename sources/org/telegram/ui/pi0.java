@@ -1,80 +1,71 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
+import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class pi0 implements org.telegram.ui.ActionBar.p1, ns, nj0 {
-    public final int f48599a;
-    public final yj0 f48600b;
+public final class pi0 implements Runnable {
+    public final int f48843a;
+    public final bk0 f48844b;
 
-    public pi0(yj0 yj0Var, int i3) {
-        this.f48599a = i3;
-        this.f48600b = yj0Var;
+    public pi0(bk0 bk0Var, int i7) {
+        this.f48843a = i7;
+        this.f48844b = bk0Var;
     }
 
     @Override
-    public void c(ks ksVar) {
-        String str;
-        switch (this.f48599a) {
-            case 2:
-                yj0 yj0Var = this.f48600b;
-                yj0Var.Z[5].setText(ksVar.f47004a);
-                yj0Var.f52324s = ksVar.d;
-                return;
-            default:
-                yj0 yj0Var2 = this.f48600b;
-                yj0Var2.Z[0].setText(ksVar.f47004a);
-                if (yj0Var2.V0.indexOf(ksVar.f47004a) != -1) {
-                    yj0Var2.f52286a1 = true;
-                    String str2 = (String) yj0Var2.W0.get(ksVar.f47004a);
-                    yj0Var2.Z[1].setText(str2);
-                    String str3 = (String) yj0Var2.Y0.get(str2);
-                    EditTextBoldCursor editTextBoldCursor = yj0Var2.Z[2];
-                    if (str3 != null) {
-                        str = str3.replace('X', (char) 8211);
-                    } else {
-                        str = null;
-                    }
-                    editTextBoldCursor.setHintText(str);
-                    yj0Var2.f52286a1 = false;
-                }
-                org.telegram.messenger.g0.i3(new mi0(yj0Var2, 3), 300L);
-                yj0Var2.Z[2].requestFocus();
-                EditTextBoldCursor editTextBoldCursor2 = yj0Var2.Z[2];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                return;
-        }
-    }
-
-    @Override
-    public void f(String str, String str2) {
-        this.f48600b.B1();
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        switch (this.f48599a) {
+    public final void run() {
+        ViewGroup viewGroup;
+        switch (this.f48843a) {
             case 0:
-                yj0 yj0Var = this.f48600b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25457b.getPackageName()));
-                    yj0Var.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e10) {
-                    org.telegram.messenger.a8.g(e10, true);
+                bk0 bk0Var = this.f48844b;
+                ViewGroup[] viewGroupArr = bk0Var.Z;
+                if (viewGroupArr != null && (viewGroup = viewGroupArr[0]) != null && viewGroup.getVisibility() == 0) {
+                    bk0Var.Y[0].requestFocus();
+                    org.telegram.messenger.g0.K3(bk0Var.Y[0]);
                     return;
                 }
+                return;
             case 1:
-                this.f48600b.finishFragment();
+                bk0 bk0Var2 = this.f48844b;
+                bk0Var2.presentFragment(bk0Var2.f44364h1, true);
+                bk0Var2.f44364h1 = null;
                 return;
             case 2:
+                bk0 bk0Var3 = this.f48844b;
+                EditTextBoldCursor[] editTextBoldCursorArr = bk0Var3.f44345a0;
+                if (editTextBoldCursorArr != null) {
+                    bk0Var3.M1(editTextBoldCursorArr[0]);
+                    return;
+                }
+                return;
             case 3:
-            default:
-                yj0.f0(this.f48600b);
+                org.telegram.messenger.g0.K3(this.f48844b.Y[2]);
                 return;
             case 4:
-                yj0.i0(this.f48600b);
+                this.f48844b.B1();
+                return;
+            case 5:
+                int i7 = 0;
+                while (true) {
+                    bk0 bk0Var4 = this.f48844b;
+                    if (i7 < bk0Var4.f44351c0.getChildCount()) {
+                        View childAt = bk0Var4.f44351c0.getChildAt(i7);
+                        if (childAt instanceof ak0) {
+                            bk0Var4.f44351c0.removeView(childAt);
+                            i7--;
+                        }
+                        i7++;
+                    } else {
+                        bk0Var4.B1();
+                        bk0Var4.f44380q1.clear();
+                        bk0Var4.f44378p1.clear();
+                        bk0Var4.D.values.clear();
+                        bk0Var4.V1();
+                        return;
+                    }
+                }
+            default:
+                this.f48844b.finishFragment();
                 return;
         }
     }

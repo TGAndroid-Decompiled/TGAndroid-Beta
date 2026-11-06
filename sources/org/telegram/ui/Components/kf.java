@@ -1,22 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ViewGroup;
+import android.text.TextUtils;
 import org.telegram.tgnet.TLRPC;
-public final class kf extends ey {
-    public final ChatActivityEnterView W2;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.LaunchActivity;
+public final class kf implements Runnable {
+    public final org.telegram.messenger.ij f35269a;
+    public final long f35270b;
+    public final TL_keyboard.KeyboardButtonProto f35271c;
+    public final org.telegram.messenger.ij d;
+    public final TLRPC.User f35272e;
+    public final ChatActivityEnterView f35273f;
 
-    public kf(ChatActivityEnterView chatActivityEnterView, org.telegram.ui.ActionBar.d2 d2Var, boolean z10, Context context, TLRPC.ChatFull chatFull, ViewGroup viewGroup, boolean z11, org.telegram.ui.ActionBar.e6 e6Var, boolean z12, boolean z13) {
-        super(d2Var, z10, true, true, context, true, chatFull, viewGroup, z11, e6Var, z12, z13);
-        this.W2 = chatActivityEnterView;
+    public kf(ChatActivityEnterView chatActivityEnterView, org.telegram.messenger.ij ijVar, long j3, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.messenger.ij ijVar2, TLRPC.User user) {
+        this.f35273f = chatActivityEnterView;
+        this.f35269a = ijVar;
+        this.f35270b = j3;
+        this.f35271c = keyboardButtonProto;
+        this.d = ijVar2;
+        this.f35272e = user;
     }
 
     @Override
-    public final void setTranslationY(float f10) {
-        super.setTranslationY(f10);
-        ChatActivityEnterView chatActivityEnterView = this.W2;
-        if (chatActivityEnterView.W0 != null && chatActivityEnterView.f31176p3 == 0) {
-            chatActivityEnterView.f31087a3.x(f10);
+    public final void run() {
+        int i7;
+        long h92;
+        String F1;
+        ChatActivityEnterView chatActivityEnterView = this.f35273f;
+        org.telegram.ui.an anVar = chatActivityEnterView.P2;
+        if (chatActivityEnterView.f31082m1.Q() <= org.telegram.messenger.g0.L(20.0f) && !chatActivityEnterView.s0()) {
+            if (anVar != null) {
+                int i10 = chatActivityEnterView.Q;
+                long j3 = this.f35269a.f23237k.dialog_id;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f35271c;
+                String text = keyboardButtonProto.getText();
+                String url = keyboardButtonProto.getUrl();
+                boolean c10 = cg.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
+                org.telegram.messenger.ij ijVar = this.d;
+                if (ijVar != null) {
+                    i7 = ijVar.f23237k.f26973id;
+                } else {
+                    i7 = 0;
+                }
+                if (anVar == null) {
+                    h92 = 0;
+                } else {
+                    h92 = anVar.h9();
+                }
+                hi.q4 b10 = hi.q4.b(i10, j3, this.f35270b, text, url, c10 ? 1 : 0, i7, h92, null, false, null, null, 0, false, false);
+                LaunchActivity launchActivity = LaunchActivity.G1;
+                if (launchActivity != null && launchActivity.O() != null && LaunchActivity.G1.O().k(b10) != null) {
+                    hi.y yVar = chatActivityEnterView.f31077l0;
+                    if (yVar != null) {
+                        yVar.setOpened(false);
+                        return;
+                    }
+                    return;
+                }
+                TLRPC.User user = this.f35272e;
+                if (user == null) {
+                    F1 = null;
+                } else {
+                    F1 = org.telegram.messenger.qp.s1(chatActivityEnterView.Q).F1(user.restriction_reason);
+                }
+                if (!TextUtils.isEmpty(F1)) {
+                    org.telegram.messenger.qp.s1(chatActivityEnterView.Q);
+                    org.telegram.messenger.qp.R4(F1, anVar);
+                    return;
+                }
+                hi.a3 a3Var = new hi.a3(chatActivityEnterView.getContext(), chatActivityEnterView.W3);
+                a3Var.f14526l0 = chatActivityEnterView.O2;
+                a3Var.x(anVar, b10);
+                a3Var.show();
+                return;
+            }
+            return;
         }
+        chatActivityEnterView.k0(false);
+        org.telegram.messenger.g0.v1(chatActivityEnterView);
+        org.telegram.messenger.g0.i3(this, 150L);
     }
 }

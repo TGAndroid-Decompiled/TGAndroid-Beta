@@ -1,10 +1,11 @@
 package org.telegram.messenger;
 
-import android.graphics.drawable.Drawable;
-public interface ec {
-    void D(ImageReceiver imageReceiver);
-
-    void F0(int i3, Drawable drawable);
-
-    void l0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12);
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class ec {
+    public TLRPC.Document f22170a;
+    public String f22171b;
+    public ArrayList f22172c;
+    public ArrayList d;
+    public boolean f22173e;
 }

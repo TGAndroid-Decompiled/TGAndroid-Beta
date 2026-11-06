@@ -1,25 +1,18 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public final class zu0 extends ip {
-    public final boolean[] f52753d1;
-    public final TLRPC.User f52754e1;
-    public final ProfileActivity f52755f1;
+import android.content.Context;
+public final class zu0 extends org.telegram.ui.Components.sf0 {
+    public final ProfileActivity f52656s1;
 
-    public zu0(ProfileActivity profileActivity, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i3, boolean[] zArr, TLRPC.User user) {
-        super(j10, j11, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i3, true, false, null);
-        this.f52755f1 = profileActivity;
-        this.f52753d1 = zArr;
-        this.f52754e1 = user;
+    public zu0(ProfileActivity profileActivity, Context context, long j3, org.telegram.ui.ActionBar.k kVar, pu0 pu0Var, yu0 yu0Var, org.telegram.ui.Components.of0 of0Var, org.telegram.ui.Components.kf0 kf0Var) {
+        super(context, j3, kVar, pu0Var, yu0Var, of0Var, kf0Var);
+        this.f52656s1 = profileActivity;
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f52753d1[0]) {
-            ProfileActivity profileActivity = this.f52755f1;
-            if (org.telegram.ui.Components.fc.a(profileActivity)) {
-                org.telegram.ui.Components.fc.C(this.f52754e1.first_name, profileActivity).j();
-            }
-        }
+    public final void setCustomAvatarProgress(float f10) {
+        ProfileActivity profileActivity = this.f52656s1;
+        profileActivity.f41760n5 = f10;
+        profileActivity.Q3();
     }
 }

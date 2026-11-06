@@ -26,14 +26,14 @@ public class Glue {
         return new GlueBox((this.space / 18.0f) * quad, (this.stretch / 18.0f) * quad, (this.shrink / 18.0f) * quad);
     }
 
-    public static Box get(int i3, int i10, TeXEnvironment teXEnvironment) {
-        if (i3 > 7) {
-            i3 = 0;
+    public static Box get(int i7, int i10, TeXEnvironment teXEnvironment) {
+        if (i7 > 7) {
+            i7 = 0;
         }
         if (i10 > 7) {
             i10 = 0;
         }
-        return glueTypes[glueTable[i3][i10][teXEnvironment.getStyle() / 2]].createBox(teXEnvironment);
+        return glueTypes[glueTable[i7][i10][teXEnvironment.getStyle() / 2]].createBox(teXEnvironment);
     }
 
     public String getName() {

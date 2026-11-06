@@ -1,18 +1,24 @@
 package m;
 
-import android.view.ViewGroup;
-public final class g3 extends ViewGroup.MarginLayoutParams {
-    public int f18590a;
-    public int f18591b;
-
-    public g3(g3 g3Var) {
-        super((ViewGroup.MarginLayoutParams) g3Var);
-        this.f18590a = 0;
-        this.f18590a = g3Var.f18590a;
+import android.view.View;
+import android.window.OnBackInvokedCallback;
+import android.window.OnBackInvokedDispatcher;
+import j$.util.Objects;
+public abstract class g3 {
+    public static OnBackInvokedDispatcher a(View view) {
+        return view.findOnBackInvokedDispatcher();
     }
 
-    public g3(ViewGroup.LayoutParams layoutParams) {
-        super(layoutParams);
-        this.f18590a = 0;
+    public static OnBackInvokedCallback b(Runnable runnable) {
+        Objects.requireNonNull(runnable);
+        return new androidx.activity.q(runnable, 4);
+    }
+
+    public static void c(Object obj, Object obj2) {
+        ((OnBackInvokedDispatcher) obj).registerOnBackInvokedCallback(1000000, (OnBackInvokedCallback) obj2);
+    }
+
+    public static void d(Object obj, Object obj2) {
+        ((OnBackInvokedDispatcher) obj).unregisterOnBackInvokedCallback((OnBackInvokedCallback) obj2);
     }
 }

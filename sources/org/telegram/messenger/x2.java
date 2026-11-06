@@ -4,9 +4,9 @@ import android.content.SharedPreferences;
 import android.util.Pair;
 import java.util.HashMap;
 public abstract class x2 {
-    public final long f26337a;
-    public HashMap f26338b;
-    public HashMap f26339c;
+    public final long f26418a;
+    public HashMap f26419b;
+    public HashMap f26420c;
     public HashMap d;
 
     public x2() {
@@ -17,53 +17,53 @@ public abstract class x2 {
         if (!j(pair.second)) {
             return;
         }
-        if (this.f26338b == null) {
-            this.f26338b = new HashMap();
+        if (this.f26419b == null) {
+            this.f26419b = new HashMap();
         }
-        this.f26338b.put(pair, obj);
+        this.f26419b.put(pair, obj);
     }
 
     public boolean b(Object obj) {
         return false;
     }
 
-    public final void c(int i3, Object obj, u10 u10Var) {
+    public final void c(int i7, Object obj, c20 c20Var) {
         Object obj2;
-        Pair pair = new Pair(Integer.valueOf(i3), obj);
-        HashMap hashMap = this.f26339c;
+        Pair pair = new Pair(Integer.valueOf(i7), obj);
+        HashMap hashMap = this.f26420c;
         if (hashMap != null && hashMap.get(pair) != null) {
-            g0.h3(new fg(this, pair, u10Var, 11));
+            g0.h3(new ng(this, pair, c20Var, 11));
             return;
         }
-        HashMap hashMap2 = this.f26338b;
+        HashMap hashMap2 = this.f26419b;
         if (hashMap2 == null) {
             obj2 = null;
         } else {
             obj2 = hashMap2.get(pair);
         }
         if (obj2 != null && !i(pair)) {
-            u10Var.a(obj2);
+            c20Var.a(obj2);
             return;
         }
-        g0.h3(new fg(this, pair, u10Var, 11));
-        e(i3, obj, new v2(this, pair, obj, i3));
+        g0.h3(new ng(this, pair, c20Var, 11));
+        e(i7, obj, new v2(this, pair, obj, i7));
     }
 
-    public final void d(int i3, Integer num) {
+    public final void d(int i7, Integer num) {
         if (this.d != null) {
-            Pair pair = new Pair(Integer.valueOf(i3), num);
+            Pair pair = new Pair(Integer.valueOf(i7), num);
             this.d.remove(pair);
-            if (this instanceof fo) {
+            if (this instanceof po) {
                 h(pair.hashCode(), 0L);
             }
         }
     }
 
-    public void e(int i3, Object obj, n10 n10Var) {
-        ((v2) n10Var).a(0L, null);
+    public void e(int i7, Object obj, v10 v10Var) {
+        ((v2) v10Var).a(0L, null);
     }
 
-    public abstract void f(int i3, Object obj, long j10, w2 w2Var);
+    public abstract void f(int i7, Object obj, long j3, w2 w2Var);
 
     public final boolean i(Pair pair) {
         Long l10;
@@ -73,12 +73,12 @@ public abstract class x2 {
         } else {
             l10 = null;
         }
-        if ((this instanceof fo) && l10 == null) {
+        if ((this instanceof po) && l10 == null) {
             int hashCode = pair.hashCode();
-            SharedPreferences sharedPreferences = ((fo) this).f22536e.f22999e7;
+            SharedPreferences sharedPreferences = ((po) this).f24592e.f24759e7;
             l10 = Long.valueOf(sharedPreferences.getLong("effects_last_" + hashCode, 0L));
         }
-        if (l10 != null && System.currentTimeMillis() - l10.longValue() < this.f26337a) {
+        if (l10 != null && System.currentTimeMillis() - l10.longValue() < this.f26418a) {
             return false;
         }
         return true;
@@ -88,13 +88,13 @@ public abstract class x2 {
         return true;
     }
 
-    public x2(int i3) {
-        this.f26337a = i3;
+    public x2(int i7) {
+        this.f26418a = i7;
     }
 
-    public void h(int i3, long j10) {
+    public void h(int i7, long j3) {
     }
 
-    public void g(int i3, Object obj, Object obj2) {
+    public void g(int i7, Object obj, Object obj2) {
     }
 }

@@ -1,46 +1,37 @@
 package org.telegram.ui;
 
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Shader;
-public final class e30 extends org.telegram.ui.ActionBar.k5 {
-    public LinearGradient N0;
-    public int O0;
-    public final Matrix P0;
-    public float Q0;
-    public float R0;
-    public float S0;
-    public float T0;
-    public float U0;
-    public long V0;
-    public final x30 W0;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import java.util.ArrayList;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class e30 extends org.telegram.ui.ActionBar.g1 {
+    public final c40 f45160o;
 
-    public e30(x30 x30Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.W0 = x30Var;
-        this.P0 = new Matrix();
-        this.Q0 = -1.0f;
+    public e30(c40 c40Var, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
+        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
+        this.f45160o = c40Var;
     }
 
     @Override
-    public final void d(int i3) {
-        super.d(i3);
-        int textWidth = getTextWidth();
-        if (textWidth != this.O0) {
-            float f10 = textWidth;
-            this.U0 = 1.3f * f10;
-            float f11 = f10 * 2.0f;
-            int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Wh, false);
-            int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Yh, false);
-            int i10 = org.telegram.ui.ActionBar.k6.Xh;
-            this.N0 = new LinearGradient(0.0f, getTextHeight(), f11, 0.0f, new int[]{x02, x03, org.telegram.ui.ActionBar.k6.x0(null, i10, false), org.telegram.ui.ActionBar.k6.x0(null, i10, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
-            getPaint().setShader(this.N0);
-            this.O0 = textWidth;
+    public final void dismiss() {
+        d(true);
+        c40 c40Var = this.f45160o;
+        if (c40Var.W4 != this) {
+            return;
         }
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.e30.onDraw(android.graphics.Canvas):void");
+        c40Var.W4 = null;
+        AnimatorSet animatorSet = c40Var.V4;
+        if (animatorSet != null) {
+            animatorSet.cancel();
+            c40Var.V4 = null;
+        }
+        c40Var.P1.X = true;
+        c40Var.V4 = new AnimatorSet();
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(ObjectAnimator.ofInt(c40Var.N4, org.telegram.ui.Components.m6.f35936b, 0));
+        c40Var.V4.playTogether(arrayList);
+        c40Var.V4.setDuration(220L);
+        c40Var.V4.addListener(new d30(this, 0));
+        c40Var.V4.start();
     }
 }

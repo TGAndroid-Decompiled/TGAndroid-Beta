@@ -1,34 +1,113 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-public final class gs0 extends org.telegram.ui.Cells.t2 {
-    public final hs0 f34184b5;
+import java.util.Calendar;
+import org.telegram.tgnet.TLRPC;
+public final class gs0 extends oj0 {
+    public final Context f34034c;
+    public final int d;
+    public final org.telegram.ui.ActionBar.f6 f34035e;
+    public final es0 f34036f;
+    public final ArrayList h = new ArrayList(10);
+    public final ArrayList f34037n = new ArrayList();
+    public rr0 f34038r;
+    public final xs0 f34039s;
 
-    public gs0(hs0 hs0Var, Context context) {
-        super(context, true);
-        this.f34184b5 = hs0Var;
+    public gs0(xs0 xs0Var, Context context, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f34039s = xs0Var;
+        this.f34034c = context;
+        this.d = i7;
+        this.f34035e = f6Var;
+        this.f34036f = new es0(this, i7, f6Var);
+        E();
     }
 
     @Override
-    public final boolean W() {
+    public final boolean D(v4.d1 d1Var) {
         return false;
     }
 
-    @Override
-    public final boolean getIsPinned() {
-        hs0 hs0Var = this.f34184b5;
-        ArrayList arrayList = hs0Var.f34493f;
-        qr0 qr0Var = hs0Var.f34496s;
-        if (qr0Var != null && qr0Var.getAdapter() == hs0Var) {
-            hs0Var.f34496s.getClass();
-            int R = RecyclerView.R(this);
-            if (R >= 0 && R < arrayList.size()) {
-                return ((org.telegram.messenger.mv) arrayList.get(R)).f24265b;
+    public final void E() {
+        ArrayList arrayList = this.f34037n;
+        arrayList.clear();
+        ArrayList c10 = this.f34039s.f40399v1[8].c();
+        int i7 = 0;
+        for (int i10 = 0; i10 < c10.size(); i10++) {
+            org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) c10.get(i10);
+            if (ijVar.X != i7) {
+                int i11 = ijVar.f23237k.date;
+                TLRPC.TL_message tL_message = new TLRPC.TL_message();
+                long j3 = i11;
+                tL_message.message = org.telegram.messenger.hd.u(j3, false);
+                tL_message.f26973id = 0;
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(j3 * 1000);
+                calendar.set(11, 0);
+                calendar.set(12, 0);
+                calendar.set(13, 0);
+                calendar.set(14, 0);
+                tL_message.date = (int) (calendar.getTimeInMillis() / 1000);
+                org.telegram.messenger.ij ijVar2 = new org.telegram.messenger.ij(this.d, tL_message, false, false);
+                ijVar2.D = 10;
+                ijVar2.U = 1;
+                ijVar2.f23234j0 = true;
+                arrayList.add(ijVar2);
+                i7 = ijVar.X;
             }
-            return false;
+            arrayList.add(ijVar);
         }
-        return false;
+    }
+
+    @Override
+    public final int b() {
+        return this.f34037n.size();
+    }
+
+    @Override
+    public final int d(int i7) {
+        if (i7 >= 0) {
+            ArrayList arrayList = this.f34037n;
+            if (i7 < arrayList.size()) {
+                return ((org.telegram.messenger.ij) arrayList.get(i7)).U;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void f() {
+        E();
+        super.f();
+    }
+
+    @Override
+    public final void t(v4.d1 d1Var, int i7) {
+        if (i7 >= 0) {
+            ArrayList arrayList = this.f34037n;
+            if (i7 < arrayList.size()) {
+                org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) arrayList.get(i7);
+                int i10 = d1Var.f56931f;
+                View view = d1Var.f56927a;
+                if (i10 == 0) {
+                    ((org.telegram.ui.Cells.q1) view).v3(ijVar, null, false, false, false, false);
+                } else {
+                    ((org.telegram.ui.Cells.t0) view).setMessageObject(ijVar);
+                }
+            }
+        }
+    }
+
+    @Override
+    public final v4.d1 x(ViewGroup viewGroup, int i7) {
+        if (i7 == 0) {
+            fs0 fs0Var = new fs0(this.f34034c, this.d, false, null, this.f34035e);
+            fs0Var.setDelegate(this.f34036f);
+            return new v4.d1(fs0Var);
+        }
+        return new v4.d1(new org.telegram.ui.Cells.t0(this.f34034c, this.f34035e, false));
     }
 }

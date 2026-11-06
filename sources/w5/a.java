@@ -1,4 +1,3 @@
 package w5;
-public interface a {
-    long o();
+public final class a extends RuntimeException {
 }

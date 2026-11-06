@@ -1,19 +1,26 @@
 package d4;
+public final class h extends c4.i implements Comparable {
+    public long f8176s;
 
-import android.util.SparseArray;
-public final class h {
-    public final int f8552a;
-    public final int f8553b;
-    public final SparseArray f8554c = new SparseArray();
-    public final SparseArray d = new SparseArray();
-    public final SparseArray f8555e = new SparseArray();
-    public final SparseArray f8556f = new SparseArray();
-    public final SparseArray f8557g = new SparseArray();
-    public b h;
-    public d f8558i;
-
-    public h(int i3, int i10) {
-        this.f8552a = i3;
-        this.f8553b = i10;
+    @Override
+    public final int compareTo(Object obj) {
+        h hVar = (h) obj;
+        if (isEndOfStream() != hVar.isEndOfStream()) {
+            if (isEndOfStream()) {
+                return 1;
+            }
+            return -1;
+        }
+        long j3 = this.f17173e - hVar.f17173e;
+        if (j3 == 0) {
+            j3 = this.f8176s - hVar.f8176s;
+            if (j3 == 0) {
+                return 0;
+            }
+        }
+        if (j3 > 0) {
+            return 1;
+        }
+        return -1;
     }
 }

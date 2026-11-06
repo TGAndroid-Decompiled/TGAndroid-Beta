@@ -1,91 +1,56 @@
 package vh;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
+import android.content.Context;
 import android.view.View;
-import cg.r;
-import org.telegram.messenger.g0;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.g6;
-import org.telegram.ui.Components.gh0;
-import org.telegram.ui.Components.xq;
-public final class d extends c {
-    public final g6 d;
-    public final gh0 f56956e;
-    public final qe.a f56957f;
-    public float h;
+import java.util.HashMap;
+import org.telegram.messenger.camera.q;
+import org.telegram.messenger.hd;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.bj0;
+import org.telegram.ui.Components.c20;
+import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.v00;
+public final class d implements bj0 {
+    public final f6 f57388a;
+    public final Context f57389b;
+    public final g f57390c;
 
-    public d(View view, e6 e6Var) {
-        super(e6Var);
-        gh0 gh0Var = new gh0(view);
-        this.f56956e = gh0Var;
-        gh0Var.d(null, true, false);
-        gh0Var.v = 650.0f;
-        gh0Var.e(false, 0.69f);
-        gh0Var.f34109p.setStrokeWidth(g0.L(1.5f));
-        this.f56957f = new qe.a(view, xq.h, 260L);
-        g6 g6Var = new g6(true, false, false);
-        this.d = g6Var;
-        g6Var.x(g0.o());
-        g6Var.w(g0.L(13.0f));
-        g6Var.f33983b = 17;
-        int w02 = k6.w0(k6.f27972i6, e6Var);
-        if (this.f56954b != w02) {
-            k6.H1(this.f56953a, w02, false);
-            this.f56954b = w02;
-        }
+    public d(Context context, f6 f6Var, g gVar) {
+        this.f57390c = gVar;
+        this.f57388a = f6Var;
+        this.f57389b = context;
     }
 
     @Override
-    public final void a(int i3) {
-        this.f56953a.setAlpha(i3);
-        this.d.B = i3;
-    }
-
-    public final float b() {
-        return this.f56957f.f53840e;
-    }
-
-    public final void c(int i3) {
-        this.d.u(i3);
-        this.f56956e.f34108o = i3;
-    }
-
-    public final void d(float f10) {
-        if (this.h != f10) {
-            this.h = f10;
-            Rect bounds = getBounds();
-            int i3 = (int) this.h;
-            this.d.setBounds(bounds.left, bounds.top + i3, bounds.right, bounds.bottom + i3);
+    public final void c(int i7, View view) {
+        TLRPC.TL_help_country tL_help_country;
+        g gVar = this.f57390c;
+        v00 v00Var = gVar.Z1;
+        HashMap hashMap = gVar.f57397b2;
+        if (i7 == 0 || (tL_help_country = (TLRPC.TL_help_country) gVar.V1.G(i7 - 1).G) == null) {
+            return;
         }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        float f10 = this.f56957f.f53840e;
-        if (f10 < 1.0f) {
-            r.b(canvas, this.d, 1.0f - f10);
+        boolean z9 = false;
+        if (hashMap.containsKey(tL_help_country.iso2)) {
+            v00Var.c((c20) hashMap.remove(tL_help_country.iso2));
+        } else {
+            int size = hashMap.size();
+            int i10 = gVar.f57399e2;
+            if (size >= i10) {
+                q.s(hd.a0(null, null, 2131747111, Integer.valueOf(i10)), new hc(gVar.f57400f2, this.f57388a), 2131624067, 36);
+                return;
+            }
+            c20 c20Var = new c20(this.f57389b, tL_help_country);
+            c20Var.setOnClickListener(new a(gVar, 4));
+            v00Var.a(c20Var);
+            hashMap.put(tL_help_country.iso2, c20Var);
+            z9 = true;
         }
-        if (f10 > 0.0f) {
-            float exactCenterX = getBounds().exactCenterX();
-            float exactCenterY = getBounds().exactCenterY();
-            canvas.save();
-            canvas.scale(f10, f10, exactCenterX, exactCenterY);
-            this.f56956e.a(canvas);
-            canvas.restore();
+        if (view instanceof ah.c) {
+            ((ah.c) view).c(z9, true);
         }
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        Rect bounds = getBounds();
-        int i3 = (int) this.h;
-        this.d.setBounds(bounds.left, bounds.top + i3, bounds.right, bounds.bottom + i3);
-        int L = g0.L(11.0f);
-        int centerX = rect.centerX();
-        int centerY = rect.centerY();
-        this.f56956e.f(centerX - L, centerY - L, centerX + L, centerY + L);
+        gVar.V1.O(true);
+        gVar.W1.c(hashMap.size(), true);
     }
 }

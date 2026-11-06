@@ -1,27 +1,16 @@
 package org.telegram.ui;
 
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class vx implements org.telegram.ui.ActionBar.p1 {
-    public final int f50626a;
-    public final EditTextBoldCursor f50627b;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class vx extends FrameLayout {
+    public xh.l f50845a;
 
-    public vx(EditTextBoldCursor editTextBoldCursor, int i3) {
-        this.f50626a = i3;
-        this.f50627b = editTextBoldCursor;
+    public xh.l getSubtitleTextView() {
+        return this.f50845a;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        switch (this.f50626a) {
-            case 0:
-                org.telegram.messenger.g0.v1(this.f50627b);
-                return;
-            case 1:
-                org.telegram.messenger.g0.v1(this.f50627b);
-                return;
-            default:
-                org.telegram.messenger.g0.v1(this.f50627b);
-                return;
-        }
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 }

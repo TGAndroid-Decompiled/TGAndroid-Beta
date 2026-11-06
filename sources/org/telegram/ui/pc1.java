@@ -1,14 +1,16 @@
 package org.telegram.ui;
 
-import android.widget.FrameLayout;
-import java.util.HashSet;
-public final class pc1 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f27824a7));
-    }
+import java.io.File;
+public final class pc1 {
+    public String f48803a;
+    public int f48804b;
+    public int f48805c;
+    public File d;
+    public final File f48806e;
 
-    @Override
-    public final void updateColors() {
+    public pc1(File file, File file2, String str) {
+        this.f48803a = str;
+        this.d = file;
+        this.f48806e = file2;
     }
 }

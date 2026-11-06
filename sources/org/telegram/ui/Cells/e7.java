@@ -1,67 +1,79 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
-import org.telegram.messenger.qe;
-import org.telegram.messenger.v10;
-import org.telegram.messenger.zi;
-import org.telegram.ui.Components.f41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
-import org.telegram.ui.Components.tj0;
-public final class e7 extends q31 {
-    public static final int f29131b = 0;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.p10;
+import org.telegram.ui.Components.g70;
+import org.telegram.ui.Components.xp;
+public final class e7 extends FrameLayout {
+    public final org.telegram.ui.Components.l9 f29069a;
+    public final b7 f29070b;
+    public final TextView f29071c;
+    public long d;
+    public long f29072e;
+    public final int f29073f;
+    public final org.telegram.ui.ActionBar.f6 h;
 
-    static {
-        q31.h(new q31());
+    public e7(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.f29073f = p10.f24459s0;
+        this.h = f6Var;
+        setWillNotDraw(false);
+        org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
+        this.f29069a = l9Var;
+        l9Var.setRoundRadius(org.telegram.messenger.g0.L(28.0f));
+        addView(l9Var, c8.ha.d(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f29071c = textView;
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27956j5, f6Var);
+        textView.setTextSize(1, 12.0f);
+        textView.setMaxLines(2);
+        textView.setGravity(49);
+        textView.setLines(2);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, c8.ha.d(-1, -2.0f, 51, 6.0f, 66.0f, 6.0f, 0.0f));
+        this.f29070b = new b7(this, f6Var, 1);
+        int i7 = org.telegram.ui.ActionBar.k6.f27940i6;
+        Drawable a02 = org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.x0(null, i7, false), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
+        org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i7);
+        setBackground(a02);
+        org.telegram.ui.ActionBar.r6.k(this, a02, null, N, null);
     }
 
-    public static r31 i(qe qeVar, v10 v10Var) {
-        r31 K = r31.K(e7.class);
-        K.G = qeVar;
-        K.H = v10Var;
-        return K;
+    public long getCurrentDialog() {
+        return this.d;
     }
 
-    @Override
-    public final void b(View view, r31 r31Var, boolean z10, f41 f41Var, l41 l41Var) {
-        f7 f7Var = (f7) view;
-        Object obj = r31Var.G;
-        if (obj instanceof zi) {
-            f7Var.f((zi) obj, z10);
-        } else if (obj instanceof qe) {
-            qe qeVar = (qe) obj;
-            f7Var.setTag(qeVar);
-            f7Var.f(qeVar.f24883e, z10);
-        }
-        Object obj2 = r31Var.H;
-        if (obj2 instanceof v10) {
-            f7Var.setNeedPlayMessageListener((v10) obj2);
-        }
-        f7Var.e(r31Var.f37621e, false);
-    }
-
-    @Override
-    public final boolean c(r31 r31Var, r31 r31Var2) {
-        if (r31Var.d == r31Var2.d && r31Var.G == r31Var2.G) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final View d(Context context, tj0 tj0Var, int i3, org.telegram.ui.ActionBar.e6 e6Var) {
-        f7 f7Var = new f7(0, context, e6Var);
-        f7Var.setCheckForButtonPress(true);
-        return f7Var;
+    public long getCurrentTopic() {
+        return this.f29072e;
     }
 
     @Override
-    public final boolean e(r31 r31Var, r31 r31Var2) {
-        if (r31Var.d == r31Var2.d && r31Var.G == r31Var2.G) {
-            return true;
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(103.0f), 1073741824));
+    }
+
+    public void setAsNewBotForumTopic(boolean z9) {
+        int i7;
+        if (z9) {
+            i7 = 2131745436;
+        } else {
+            i7 = 2131745435;
         }
-        return false;
+        this.f29071c.setText(hd.M0(i7, null));
+        org.telegram.ui.Components.l9 l9Var = this.f29069a;
+        l9Var.setAnimatedEmojiDrawable(null);
+        qg.a aVar = new qg.a(qg.a.f53994k[0]);
+        g70 g70Var = new g70(1, null);
+        g70Var.a("");
+        g70Var.f33885i = 1.8f;
+        xp xpVar = new xp(aVar, g70Var, 0, 0);
+        xpVar.f40305x = true;
+        l9Var.setImageDrawable(xpVar);
     }
 }

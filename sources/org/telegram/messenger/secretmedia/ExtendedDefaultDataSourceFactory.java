@@ -3,8 +3,8 @@ package org.telegram.messenger.secretmedia;
 import android.content.Context;
 import android.net.Uri;
 import android.util.LongSparseArray;
-import i2.d0;
-import i2.g;
+import j2.d0;
+import j2.g;
 public final class ExtendedDefaultDataSourceFactory implements g {
     private final g baseDataSourceFactory;
     private final Context context;
@@ -15,12 +15,12 @@ public final class ExtendedDefaultDataSourceFactory implements g {
         this(context, str, (d0) null);
     }
 
-    public void putDocumentUri(long j10, Uri uri) {
-        this.mtprotoUris.put(j10, uri);
+    public void putDocumentUri(long j3, Uri uri) {
+        this.mtprotoUris.put(j3, uri);
     }
 
-    public ExtendedDefaultDataSourceFactory(android.content.Context r2, java.lang.String r3, i2.d0 r4) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory.<init>(android.content.Context, java.lang.String, i2.d0):void");
+    public ExtendedDefaultDataSourceFactory(android.content.Context r2, java.lang.String r3, j2.d0 r4) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.secretmedia.ExtendedDefaultDataSourceFactory.<init>(android.content.Context, java.lang.String, j2.d0):void");
     }
 
     @Override

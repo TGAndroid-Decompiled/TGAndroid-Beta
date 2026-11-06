@@ -1,36 +1,43 @@
 package fi;
+public final class n implements Runnable {
+    public final int f12468a;
+    public final la f12469b;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.q00;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.f41;
-import org.telegram.ui.Components.l41;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
-import org.telegram.ui.Components.tj0;
-public final class n extends q31 {
-    public static final int f11627b = 0;
-
-    static {
-        q31.h(new q31());
+    public n(la laVar, int i7) {
+        this.f12468a = i7;
+        this.f12469b = laVar;
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z10, f41 f41Var, l41 l41Var) {
-        o oVar = (o) view;
-        q00 q00Var = (q00) r31Var.G;
-        oVar.f11628a.setText(q00Var.f24845b);
-        oVar.f11629b.setText(q00Var.f24846c);
-        if (oVar.f11630c != z10) {
-            oVar.invalidate();
+    public final void run() {
+        switch (this.f12468a) {
+            case 0:
+                this.f12469b.n();
+                return;
+            case 1:
+                la laVar = this.f12469b;
+                laVar.J0 = false;
+                laVar.K0 = Integer.MIN_VALUE;
+                laVar.invalidate();
+                laVar.R0.setVisibility(0);
+                laVar.S0.setVisibility(0);
+                return;
+            default:
+                va vaVar = this.f12469b.R1;
+                ja jaVar = vaVar.X0;
+                if (jaVar != null) {
+                    jaVar.O = false;
+                    jaVar.c();
+                    ja jaVar2 = vaVar.X0;
+                    jaVar2.m(0L);
+                    fb fbVar = jaVar2.F;
+                    if (fbVar != null) {
+                        fbVar.setProgress(0L);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        oVar.f11630c = z10;
-        oVar.setWillNotDraw(!z10);
-    }
-
-    @Override
-    public final View d(Context context, tj0 tj0Var, int i3, e6 e6Var) {
-        return new o(context);
     }
 }

@@ -1,26 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class cw extends u4.c0 {
-    public final int f32846r;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class cw extends AnimatorListenerAdapter {
+    public final int f32682a;
+    public final boolean f32683b;
+    public final gy f32684c;
 
-    public cw(Context context, int i3) {
-        super(context);
-        this.f32846r = i3;
+    public cw(gy gyVar, boolean z9, int i7) {
+        this.f32682a = i7;
+        this.f32684c = gyVar;
+        this.f32683b = z9;
     }
 
     @Override
-    public final int i(int i3, int i10, int i11, int i12, int i13) {
-        return super.i(i3, i10, i11, i12, i13) + this.f32846r;
-    }
-
-    @Override
-    public final int m(int i3) {
-        return super.m(i3) * 16;
-    }
-
-    @Override
-    public final int p() {
-        return -1;
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32682a) {
+            case 0:
+                if (!this.f32683b) {
+                    this.f32684c.f34144y.setVisibility(4);
+                    return;
+                }
+                return;
+            default:
+                if (!this.f32683b) {
+                    this.f32684c.D.setVisibility(4);
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -3,20 +3,20 @@ package org.telegram.messenger.car;
 import androidx.car.app.m;
 import androidx.lifecycle.e;
 import androidx.lifecycle.t;
-import org.telegram.messenger.cs;
-import org.telegram.messenger.hs;
-public class HomeScreen extends m implements e, cs {
+import org.telegram.messenger.ls;
+import org.telegram.messenger.qs;
+public class HomeScreen extends m implements e, ls {
     @Override
     public final void a(t tVar) {
-        hs.e().c(this, hs.f23217d4);
-        hs.e().c(this, hs.G4);
-        hs.e().c(this, hs.f23211c4);
+        qs.e().c(this, qs.f24971d4);
+        qs.e().c(this, qs.G4);
+        qs.e().c(this, qs.f24966c4);
     }
 
     @Override
-    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
-        if (i3 != hs.f23211c4) {
-            if ((i3 != hs.f23217d4 && i3 != hs.G4) || !"tab_notifications".equals(null)) {
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 != qs.f24966c4) {
+            if ((i7 != qs.f24971d4 && i7 != qs.G4) || !"tab_notifications".equals(null)) {
                 return;
             }
             throw null;
@@ -26,9 +26,9 @@ public class HomeScreen extends m implements e, cs {
 
     @Override
     public final void e(t tVar) {
-        hs.e().n(this, hs.f23217d4);
-        hs.e().n(this, hs.G4);
-        hs.e().n(this, hs.f23211c4);
+        qs.e().n(this, qs.f24971d4);
+        qs.e().n(this, qs.G4);
+        qs.e().n(this, qs.f24966c4);
     }
 
     @Override

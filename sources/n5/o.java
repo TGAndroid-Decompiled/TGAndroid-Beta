@@ -1,42 +1,34 @@
 package n5;
+public final class o extends a0 {
+    public final r f20460a;
 
-import android.os.Process;
-public final class o implements Runnable {
-    public final int f20257a;
-    public final Runnable f20258b;
-
-    public o(int i3, Runnable runnable) {
-        this.f20257a = i3;
-        this.f20258b = runnable;
+    public o(r rVar) {
+        z zVar = z.f20482a;
+        this.f20460a = rVar;
     }
 
-    @Override
-    public final void run() {
-        switch (this.f20257a) {
-            case 0:
-                try {
-                    this.f20258b.run();
-                    return;
-                } catch (Exception e10) {
-                    x7.m.b("Executor", "Background execution failure.", e10);
-                    return;
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof a0) {
+                if (this.f20460a.equals(((o) ((a0) obj)).f20460a)) {
+                    Object obj2 = z.f20482a;
+                    if (obj2.equals(obj2)) {
+                        return true;
+                    }
+                    return false;
                 }
-            case 1:
-                this.f20258b.run();
-                return;
-            default:
-                Process.setThreadPriority(0);
-                this.f20258b.run();
-                return;
+                return false;
+            }
+            return false;
         }
+        return true;
     }
 
-    public String toString() {
-        switch (this.f20257a) {
-            case 1:
-                return this.f20258b.toString();
-            default:
-                return super.toString();
-        }
+    public final int hashCode() {
+        return ((this.f20460a.hashCode() ^ 1000003) * 1000003) ^ z.f20482a.hashCode();
+    }
+
+    public final String toString() {
+        return "ComplianceData{privacyContext=" + this.f20460a + ", productIdOrigin=" + z.f20482a + "}";
     }
 }

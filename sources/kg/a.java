@@ -1,48 +1,143 @@
 package kg;
 
-import java.util.Locale;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.bd;
-public final class a implements Runnable {
-    public final int f16914a;
-    public final c f16915b;
-    public final String f16916c;
+import android.os.Bundle;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.messenger.a20;
+import org.telegram.messenger.hd;
+import org.telegram.ui.Cells.m8;
+import org.telegram.ui.Cells.r8;
+import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.t4;
+import org.telegram.ui.Components.v4;
+import org.telegram.ui.an;
+public final class a implements a20, org.telegram.ui.ActionBar.r1 {
+    public final int f17284a;
+    public final c f17285b;
 
-    public a(c cVar, String str, int i3) {
-        this.f16914a = i3;
-        this.f16915b = cVar;
-        this.f16916c = str;
+    public a(c cVar, int i7) {
+        this.f17284a = i7;
+        this.f17285b = cVar;
     }
 
     @Override
-    public final void run() {
-        Locale locale;
-        switch (this.f16914a) {
-            case 0:
-                c cVar = this.f16915b;
-                String str = this.f16916c;
-                cVar.getClass();
-                org.telegram.messenger.g0.h3(new a(cVar, str, 1));
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f17284a) {
+            case 1:
+                this.f17285b.c0();
                 return;
             default:
-                c cVar2 = this.f16915b;
-                String str2 = this.f16916c;
-                Locale locale2 = null;
-                cVar2.f16935r = null;
-                int i3 = cVar2.f16936s + 1;
-                cVar2.f16936s = i3;
-                Locale locale3 = bd.E0().f21812y;
-                if (cVar2.d) {
-                    if (locale3.getLanguage().contains("en")) {
-                        locale = locale3;
-                        Utilities.f21387e.c(new ai.p1(cVar2, locale3, str2, locale, i3, 5));
-                        return;
-                    }
-                    locale2 = Locale.US;
-                }
-                locale = locale2;
-                Utilities.f21387e.c(new ai.p1(cVar2, locale3, str2, locale, i3, 5));
+                this.f17285b.finishFragment();
                 return;
+        }
+    }
+
+    @Override
+    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        r31 r31Var = (r31) obj;
+        final View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        final c cVar = this.f17285b;
+        if (!cVar.f17317c.h(r31Var)) {
+            int i7 = r31Var.d;
+            if (i7 != 2 && r31Var.f54415a != 17) {
+                if (i7 == 1) {
+                    cVar.f17321r = !cVar.f17321r;
+                    cVar.f17316b.f35167f3.O(true);
+                    cVar.a0(true);
+                    return;
+                } else if (i7 == 6) {
+                    a0 a0Var = cVar.f17317c;
+                    cVar.f17322s = true;
+                    a0Var.h = true;
+                    cVar.f17316b.f35167f3.O(true);
+                    cVar.a0(true);
+                    return;
+                } else if (i7 == 7) {
+                    a0 a0Var2 = cVar.f17317c;
+                    cVar.f17322s = false;
+                    a0Var2.h = false;
+                    cVar.f17316b.f35167f3.O(true);
+                    cVar.a0(true);
+                    return;
+                } else if (i7 == 3) {
+                    cVar.f17324x = 0;
+                    cVar.f17316b.f35167f3.O(true);
+                    cVar.a0(true);
+                    return;
+                } else if (i7 == 4) {
+                    cVar.f17324x = 1;
+                    cVar.f17316b.f35167f3.O(true);
+                    cVar.a0(true);
+                    return;
+                } else if (i7 == 5) {
+                    cVar.f17324x = 2;
+                    cVar.f17316b.f35167f3.O(true);
+                    cVar.a0(true);
+                    return;
+                } else if (i7 == 8) {
+                    v4.x(cVar.getParentActivity(), hd.M0(2131752823, null), hd.M0(2131752825, null), cVar.E, new t4() {
+                        @Override
+                        public final void L(int i10, int i11, boolean z9) {
+                            switch (r3) {
+                                case 0:
+                                    c cVar2 = cVar;
+                                    cVar2.getClass();
+                                    cVar2.E = i10;
+                                    ((m8) view).w(hd.Q(i10), true);
+                                    cVar2.a0(true);
+                                    return;
+                                default:
+                                    c cVar3 = cVar;
+                                    cVar3.getClass();
+                                    cVar3.F = i10;
+                                    ((m8) view).w(hd.Q(i10), true);
+                                    cVar3.a0(true);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                } else if (i7 == 9) {
+                    v4.x(cVar.getParentActivity(), hd.M0(2131752826, null), hd.M0(2131752825, null), cVar.F, new t4() {
+                        @Override
+                        public final void L(int i10, int i11, boolean z9) {
+                            switch (r3) {
+                                case 0:
+                                    c cVar2 = cVar;
+                                    cVar2.getClass();
+                                    cVar2.E = i10;
+                                    ((m8) view).w(hd.Q(i10), true);
+                                    cVar2.a0(true);
+                                    return;
+                                default:
+                                    c cVar3 = cVar;
+                                    cVar3.getClass();
+                                    cVar3.F = i10;
+                                    ((m8) view).w(hd.Q(i10), true);
+                                    cVar3.a0(true);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                } else if (i7 == 10) {
+                    boolean z9 = !cVar.f17323w;
+                    cVar.f17323w = z9;
+                    ((r8) view).setChecked(z9);
+                    cVar.a0(true);
+                    return;
+                } else {
+                    return;
+                }
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", cVar.getUserConfig().e());
+            bundle.putInt("chatMode", 5);
+            bundle.putString("quick_reply", "away");
+            cVar.presentFragment(new an(bundle));
         }
     }
 }

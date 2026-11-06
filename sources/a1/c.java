@@ -1,99 +1,99 @@
 package a1;
 
-import ai.b3;
-import ai.d6;
-import ai.i1;
-import ai.k0;
-import ai.s;
-import android.graphics.Canvas;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.graphics.Region;
+import a3.n;
+import a3.p;
+import a8.b8;
+import a8.r7;
+import aa.o;
+import ab.m0;
+import ab.o0;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
-import cg.o;
-import ci.e9;
-import ci.j1;
-import ci.n6;
-import ci.tb;
-import ci.v;
-import ci.w5;
-import ci.wb;
-import ci.x0;
+import bi.ad;
+import bi.dd;
+import bi.e1;
+import bi.ea;
+import bi.m7;
+import bi.mc;
+import bi.q1;
+import bi.u6;
+import bi.y;
+import bi.z;
+import com.google.android.gms.common.api.h;
 import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import e5.l;
-import ei.e8;
-import ei.f8;
-import ei.g1;
-import ei.g8;
-import ei.h7;
-import ei.j5;
-import ei.k2;
-import ei.l9;
-import ei.u;
-import ei.u0;
-import ei.v0;
-import ei.w0;
-import g2.k;
-import g9.f0;
-import j2.i;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import com.google.android.gms.tasks.Tasks;
+import db.m;
+import db.q;
+import db.r;
+import db.t;
+import db.u;
+import di.g1;
+import di.g2;
+import di.r0;
+import di.s0;
+import di.u0;
+import e2.m1;
+import h2.j;
+import h9.f0;
+import h9.i0;
+import h9.t1;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import org.telegram.messenger.g0;
-import org.telegram.messenger.n10;
-import org.telegram.messenger.o10;
-import org.telegram.messenger.q1;
-import org.telegram.messenger.s10;
-import org.telegram.messenger.u10;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ScheduledFuture;
+import k2.i;
+import org.telegram.messenger.a20;
+import org.telegram.messenger.c20;
+import org.telegram.messenger.d1;
+import org.telegram.messenger.v10;
+import org.telegram.messenger.w10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.ActionBar.p1;
+import org.telegram.ui.ActionBar.r1;
+import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Cells.t0;
-import org.telegram.ui.Components.gj0;
-import org.telegram.ui.Components.hj0;
+import org.telegram.ui.Components.cj0;
+import org.telegram.ui.Components.dj0;
 import org.telegram.ui.Components.r31;
-import org.telegram.ui.Components.r4;
-import org.telegram.ui.Wallet.s1;
-import org.telegram.ui.cl0;
-import r0.k1;
-import r0.m;
-import u4.m0;
-import yh.j;
-public final class c implements OnSuccessListener, Continuation, o, p1, m, q1, k, i, s10, r4, qe.b, cl0, hj0, o10, gj0, h7, l9, j {
-    public final int f38a;
-    public final Object f39b;
+import org.telegram.ui.Components.t4;
+import org.telegram.ui.Wallet.v1;
+import org.telegram.ui.gl0;
+import v4.l0;
+public final class c implements OnSuccessListener, p, Continuation, OnCompleteListener, a20, t4, r1, bg.p, te.b, gl0, j, i, com.google.android.gms.common.api.internal.p, dj0, w10, cj0 {
+    public final int f37a;
+    public final Object f38b;
 
-    public c(Object obj, int i3) {
-        this.f38a = i3;
-        this.f39b = obj;
+    public c(Object obj, int i7) {
+        this.f37a = i7;
+        this.f38b = obj;
     }
 
     @Override
-    public void L(int i3, int i10, boolean z10) {
-        x0 x0Var = (x0) this.f39b;
-        if (z10) {
-            long j10 = i3;
-            if (x0Var.A1 != j10) {
-                x0Var.A1 = j10;
-                x0Var.f6315q1.setText(x0.K0(j10));
+    public void L(int i7, int i10, boolean z9) {
+        e1 e1Var = (e1) this.f38b;
+        if (z9) {
+            long j3 = i7;
+            if (e1Var.f3749z1 != j3) {
+                e1Var.f3749z1 = j3;
+                e1Var.f3739p1.setText(e1.K0(j3));
             }
-            x0Var.J0(true);
+            e1Var.J0(true);
         }
     }
 
     @Override
-    public k1 R0(View view, k1 k1Var) {
-        ((i1) this.f39b).f696o1.j(k1Var);
-        return k1.f54025b;
-    }
-
-    @Override
-    public void Y(int i3, float f10, float f11, qe.c cVar) {
-        View view = ((n6) this.f39b).f5610b;
+    public void Y(int i7, float f10, float f11, te.c cVar) {
+        View view = ((m7) this.f38b).f4332b;
         if (view instanceof t0) {
             ((t0) view).T();
         } else {
@@ -102,95 +102,151 @@ public final class c implements OnSuccessListener, Continuation, o, p1, m, q1, k
     }
 
     @Override
-    public void a(j2.j jVar) {
-        c4.i iVar = (c4.i) jVar;
+    public void a(k2.j jVar) {
+        d4.i iVar = (d4.i) jVar;
         iVar.clear();
-        ((c4.j) this.f39b).f4205b.add(iVar);
+        ((d4.j) this.f38b).f8179b.add(iVar);
     }
 
     @Override
-    public void accept(Object obj) {
-        switch (this.f38a) {
-            case 6:
-                b4.h hVar = (b4.h) this.f39b;
-                b4.a aVar = (b4.a) obj;
-                b4.g gVar = new b4.g(aVar.f2353b, kb.a.q4(aVar.f2352a, aVar.f2354c));
-                hVar.f2363c.add(gVar);
-                long j10 = hVar.f2368j;
-                if (j10 == -9223372036854775807L || aVar.d >= j10) {
-                    hVar.g(gVar);
-                    return;
-                }
-                return;
-            default:
-                ((f0) this.f39b).c((b4.a) obj);
-                return;
+    public void accept(Object obj, Object obj2) {
+        db.p clientImpl = (db.p) obj;
+        kotlin.jvm.internal.j.e(clientImpl, "clientImpl");
+        u uVar = new u((TaskCompletionSource) obj2);
+        com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new h(-1, -1, 0, true), false);
+        gVar.f6538c = false;
+        r rVar = (r) ((t) clientImpl.n());
+        Parcel obtain = Parcel.obtain();
+        obtain.writeInterfaceToken("com.google.firebase.pnv.internal.IFpnvService");
+        int i7 = db.e.f8578a;
+        obtain.writeStrongBinder(uVar);
+        obtain.writeInt(1);
+        ((q) this.f38b).writeToParcel(obtain, 0);
+        obtain.writeInt(1);
+        gVar.writeToParcel(obtain, 0);
+        Parcel obtain2 = Parcel.obtain();
+        try {
+            rVar.f8593a.transact(3, obtain, obtain2, 0);
+            obtain2.readException();
+        } finally {
+            obtain.recycle();
+            obtain2.recycle();
         }
     }
 
     @Override
-    public void b(float f10, float f11, int i3, View view) {
+    public void b(int i7) {
+        switch (this.f37a) {
+            case 16:
+                v10 v10Var = (v10) this.f38b;
+                if (i7 == 1) {
+                    v10Var.a(Boolean.TRUE, null);
+                    return;
+                } else if (i7 != 3) {
+                    v10Var.a(Boolean.FALSE, null);
+                    return;
+                } else {
+                    return;
+                }
+            case 17:
+                v1 v1Var = (v1) this.f38b;
+                if (i7 == 1) {
+                    v1Var.a(Boolean.TRUE, null);
+                    return;
+                } else if (i7 != 3) {
+                    v1Var.a(Boolean.FALSE, null);
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                mc mcVar = (mc) this.f38b;
+                if (i7 == 1) {
+                    mcVar.a(Boolean.TRUE, null);
+                    return;
+                } else if (i7 != 3) {
+                    mcVar.a(Boolean.FALSE, null);
+                    return;
+                } else {
+                    return;
+                }
+        }
+    }
+
+    @Override
+    public boolean c(int r37, final android.view.View r38) {
+        throw new UnsupportedOperationException("Method not decompiled: a1.c.c(int, android.view.View):boolean");
+    }
+
+    @Override
+    public Object d(Number number, Object obj) {
+        Long l10 = (Long) number;
+        return u0.a((u0) this.f38b, (Long) obj);
+    }
+
+    @Override
+    public void f(float f10, float f11, int i7, View view) {
+        long j3;
         long j10;
-        long j11;
         int i10;
         int i11;
         int i12;
-        k2 k2Var = (k2) this.f39b;
-        j1 j1Var = k2Var.f11150c;
-        ArrayList arrayList = k2Var.f11160r;
-        v0 v0Var = ((ei.t0) view).f11036f;
-        int i13 = k2Var.O;
+        g2 g2Var = (g2) this.f38b;
+        q1 q1Var = g2Var.f9813c;
+        ArrayList arrayList = g2Var.f9822r;
+        di.t0 t0Var = ((r0) view).f9677f;
+        int i13 = g2Var.N;
         int currentTime = ConnectionsManager.getInstance(i13).getCurrentTime();
         HashSet hashSet = new HashSet();
         int i14 = 0;
         int i15 = 0;
         while (true) {
-            j10 = 0;
-            if (i15 >= v0Var.f11109f.size()) {
+            j3 = 0;
+            if (i15 >= t0Var.f9777f.size()) {
                 break;
             }
-            u0 u0Var = (u0) v0Var.f11109f.get(i15);
-            long j12 = u0Var.f11074g;
-            if (j12 > 0 && currentTime - u0Var.d <= u.b(i13, (int) j12, 0)) {
-                hashSet.add(Integer.valueOf(u0Var.f11069a));
+            s0 s0Var = (s0) t0Var.f9777f.get(i15);
+            long j11 = s0Var.f9741g;
+            if (j11 > 0 && currentTime - s0Var.d <= di.t.b(i13, (int) j11, 0)) {
+                hashSet.add(Integer.valueOf(s0Var.f9736a));
             }
             i15++;
         }
-        g1 g1Var = k2Var.Q;
+        g1 g1Var = g2Var.P;
         if (g1Var != null) {
-            j10 = g1Var.j();
+            j3 = g1Var.j();
         }
         int i16 = 0;
         int i17 = 0;
         while (i16 < arrayList.size()) {
-            u0 u0Var2 = (u0) arrayList.get(i16);
-            if (!u0Var2.f11070b && u0Var2.f11072e && u0Var2.f11074g < j10) {
-                j11 = j10;
+            s0 s0Var2 = (s0) arrayList.get(i16);
+            if (!s0Var2.f9737b && s0Var2.f9739e && s0Var2.f9741g < j3) {
+                j10 = j3;
             } else {
-                if (hashSet.contains(Integer.valueOf(u0Var2.f11069a))) {
-                    j11 = j10;
-                    if (k2Var.f11163x != v0Var.f11106b || (i12 = k2Var.f11164y) == 0 || u0Var2.f11069a < i12) {
-                        i10 = u0Var2.f11069a;
+                if (hashSet.contains(Integer.valueOf(s0Var2.f9736a))) {
+                    j10 = j3;
+                    if (g2Var.f9825x != t0Var.f9774b || (i12 = g2Var.f9826y) == 0 || s0Var2.f9736a < i12) {
+                        i10 = s0Var2.f9736a;
                         break;
                     }
                 } else {
-                    j11 = j10;
+                    j10 = j3;
                 }
                 i17++;
             }
             i16++;
-            j10 = j11;
+            j3 = j10;
         }
-        j11 = j10;
+        j10 = j3;
         i10 = -1;
         if (i10 < 0) {
             int i18 = 0;
             while (true) {
                 if (i14 < arrayList.size()) {
-                    u0 u0Var3 = (u0) arrayList.get(i14);
-                    if (u0Var3.f11070b || !u0Var3.f11072e || u0Var3.f11074g >= j11) {
-                        if (hashSet.contains(Integer.valueOf(u0Var3.f11069a))) {
-                            i11 = u0Var3.f11069a;
+                    s0 s0Var3 = (s0) arrayList.get(i14);
+                    if (s0Var3.f9737b || !s0Var3.f9739e || s0Var3.f9741g >= j10) {
+                        if (hashSet.contains(Integer.valueOf(s0Var3.f9736a))) {
+                            i11 = s0Var3.f9736a;
                             i17 = i18;
                             break;
                         }
@@ -209,148 +265,69 @@ public final class c implements OnSuccessListener, Continuation, o, p1, m, q1, k
         if (i11 < 0) {
             return;
         }
-        k2Var.f11163x = v0Var.f11106b;
-        k2Var.f11164y = i11;
-        k2Var.E = true;
-        m0 itemAnimator = j1Var.getItemAnimator();
-        j1Var.setItemAnimator(null);
-        k2Var.d.i1(i17, j1Var.getHeight() / 2, true);
-        k2Var.f11153e.g(i17);
-        j1Var.setItemAnimator(itemAnimator);
+        g2Var.f9825x = t0Var.f9774b;
+        g2Var.f9826y = i11;
+        g2Var.D = true;
+        l0 itemAnimator = q1Var.getItemAnimator();
+        q1Var.setItemAnimator(null);
+        g2Var.d.i1(i17, q1Var.getHeight() / 2, true);
+        g2Var.f9816e.g(i17);
+        q1Var.setItemAnimator(itemAnimator);
     }
 
     @Override
-    public boolean b1(View view) {
+    public boolean f1(View view) {
         return false;
     }
 
     @Override
-    public void c(boolean z10) {
-        j5 j5Var = (j5) this.f39b;
-        if (j5Var != null) {
-            j5Var.c();
+    public void g(u1 u1Var, int i7) {
+        ((c20) this.f38b).a(u1Var.h(i7, true, true));
+    }
+
+    @Override
+    public t1 h(int i7, m1 m1Var, int[] iArr) {
+        n nVar = (n) this.f38b;
+        f0 p10 = i0.p();
+        for (int i10 = 0; i10 < m1Var.f10373a; i10++) {
+            p10.c(new a3.j(i7, m1Var, i10, nVar, iArr[i10]));
         }
+        return p10.f();
     }
 
     @Override
-    public Object d(Number number, Object obj) {
-        Long l10 = (Long) number;
-        return w0.a((w0) this.f39b, (Long) obj);
-    }
-
-    @Override
-    public void e(int i3) {
-        switch (this.f38a) {
-            case 17:
-                n10 n10Var = (n10) this.f39b;
-                if (i3 == 1) {
-                    n10Var.a(Boolean.TRUE, null);
-                    return;
-                } else if (i3 != 3) {
-                    n10Var.a(Boolean.FALSE, null);
-                    return;
-                } else {
-                    return;
-                }
-            case 18:
-                s1 s1Var = (s1) this.f39b;
-                if (i3 == 1) {
-                    s1Var.a(Boolean.TRUE, null);
-                    return;
-                } else if (i3 != 3) {
-                    s1Var.a(Boolean.FALSE, null);
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                d6 d6Var = (d6) this.f39b;
-                if (i3 == 1) {
-                    d6Var.a(Boolean.TRUE, null);
-                    return;
-                } else if (i3 != 3) {
-                    d6Var.a(Boolean.FALSE, null);
-                    return;
-                } else {
-                    return;
-                }
-        }
-    }
-
-    @Override
-    public boolean f(int r37, final android.view.View r38) {
-        throw new UnsupportedOperationException("Method not decompiled: a1.c.f(int, android.view.View):boolean");
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        switch (this.f38a) {
-            case 3:
-                ((k0) this.f39b).run();
-                return;
-            default:
-                ((u10) this.f39b).a(s1Var.h(i3, true, true));
-                return;
-        }
-    }
-
-    @Override
-    public void h(long j10) {
-        switch (this.f38a) {
-            case 2:
-                ((ai.i) this.f39b).a(j10, true);
-                return;
-            default:
-                ((w5) this.f39b).h();
-                return;
-        }
-    }
-
-    @Override
-    public void i(float f10, Canvas canvas, RectF rectF, boolean z10) {
-        Path path = (Path) this.f39b;
-        if (z10) {
-            return;
-        }
-        path.rewind();
-        float pow = (float) Math.pow(f10, 2.0d);
-        path.addCircle((rectF.right + g0.L(7.0f)) - (g0.L(14.0f) * pow), (rectF.bottom + g0.L(7.0f)) - (g0.L(14.0f) * pow), g0.L(11.0f), Path.Direction.CW);
-        canvas.clipPath(path, Region.Op.DIFFERENCE);
-    }
-
-    @Override
-    public void j(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        switch (this.f38a) {
-            case 11:
-                ci.u uVar = (ci.u) this.f39b;
+    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        switch (this.f37a) {
+            case 10:
+                y yVar = (y) this.f38b;
                 r31 r31Var = (r31) obj;
                 View view = (View) obj2;
                 Integer num = (Integer) number;
                 Float f10 = (Float) serializable;
                 Float f11 = (Float) serializable2;
-                v vVar = uVar.f6075r;
+                z zVar = yVar.f5061r;
                 if (r31Var.G instanceof TL_stars.StarsTransaction) {
-                    wb.k1(uVar.getContext(), true, vVar.f6132b, v.p0(vVar), (TL_stars.StarsTransaction) r31Var.G, v.q0(vVar));
+                    dd.k1(yVar.getContext(), true, zVar.f5110b, z.p0(zVar), (TL_stars.StarsTransaction) r31Var.G, z.q0(zVar));
                     return;
-                } else if (uVar.h) {
-                    uVar.h = false;
-                    uVar.a();
+                } else if (yVar.h) {
+                    yVar.h = false;
+                    yVar.a();
                     return;
                 } else {
                     return;
                 }
-            case 16:
-                e9.b((e9) this.f39b, (ArrayList) obj, (Integer) obj2, (Long) number, (ArrayList) serializable, (ArrayList) serializable2);
+            case 15:
+                ea.b((ea) this.f38b, (ArrayList) obj, (Integer) obj2, (Long) number, (ArrayList) serializable, (ArrayList) serializable2);
                 return;
             default:
-                tb tbVar = (tb) this.f39b;
+                ad adVar = (ad) this.f38b;
                 r31 r31Var2 = (r31) obj;
                 View view2 = (View) obj2;
                 Integer num2 = (Integer) number;
                 Float f12 = (Float) serializable;
                 Float f13 = (Float) serializable2;
                 if (r31Var2.G instanceof TL_stars.StarsTransaction) {
-                    wb.k1(tbVar.getContext(), false, 0L, tbVar.f6051c, (TL_stars.StarsTransaction) r31Var2.G, tbVar.f6050b);
+                    dd.k1(adVar.getContext(), false, 0L, adVar.f3470c, (TL_stars.StarsTransaction) r31Var2.G, adVar.f3469b);
                     return;
                 }
                 return;
@@ -358,85 +335,134 @@ public final class c implements OnSuccessListener, Continuation, o, p1, m, q1, k
     }
 
     @Override
-    public void k(e5.f fVar, List list) {
-        int i3;
-        b3 b3Var = (b3) this.f39b;
-        ArrayList arrayList = b3Var.f513f2;
-        Iterator it = list.iterator();
-        long j10 = 0;
-        while (true) {
-            i3 = 0;
-            if (!it.hasNext()) {
-                break;
-            }
-            l lVar = (l) it.next();
-            int size = arrayList.size();
-            while (true) {
-                if (i3 < size) {
-                    Object obj = arrayList.get(i3);
-                    i3++;
-                    vg.j jVar = (vg.j) obj;
-                    if (jVar.h() != null && jVar.h().equals(lVar.f9611c)) {
-                        jVar.h = lVar;
-                        if (jVar.f() > j10) {
-                            j10 = jVar.f();
-                        }
-                    }
-                }
-            }
-        }
-        int size2 = arrayList.size();
-        while (i3 < size2) {
-            Object obj2 = arrayList.get(i3);
-            i3++;
-            ((vg.j) obj2).f56682g = j10;
-        }
-        g0.h3(new s(b3Var, 2));
+    public void j(long j3) {
+        ((u6) this.f38b).h();
     }
 
     @Override
-    public void l(yh.f fVar, float f10, float f11) {
-        g8 g8Var;
-        f8 f8Var = (f8) this.f39b;
-        if (!f8Var.v.f10348y) {
-            fVar.f59521q = new e8(f8Var, 2);
-            float sqrt = (float) Math.sqrt(Math.pow(g8Var.getHeight(), 2.0d) + Math.pow(g8Var.getWidth(), 2.0d));
-            ArrayList arrayList = f8Var.f10279i;
-            int size = arrayList.size();
-            int i3 = 0;
-            while (i3 < size) {
-                Object obj = arrayList.get(i3);
-                i3++;
-                ((yh.f) obj).j(f10, f11, sqrt, false);
-            }
+    public void onComplete(Task task) {
+        switch (this.f37a) {
+            case 5:
+                m0.b((Intent) this.f38b);
+                return;
+            case 6:
+                ((o0) this.f38b).f980b.trySetResult(null);
+                return;
+            default:
+                ((ScheduledFuture) this.f38b).cancel(false);
+                return;
         }
     }
 
     @Override
     public void onSuccess(Object obj) {
-        switch (this.f38a) {
+        switch (this.f37a) {
             case 0:
-                ((b) this.f39b).invoke(obj);
+                ((f) this.f38b).invoke(obj);
                 return;
-            case 8:
-                ((b1.e) this.f39b).invoke(obj);
-                return;
-            case 21:
-                ((b1.e) this.f39b).invoke(obj);
+            case 20:
+                ((ae.d) this.f38b).invoke(obj);
                 return;
             default:
-                ((e1.b) this.f39b).invoke(obj);
+                ((ae.d) this.f38b).invoke(obj);
                 return;
         }
     }
 
     @Override
     public Object then(Task task) {
-        return (Task) ((z9.k) this.f39b).call();
+        Exception exception;
+        int i7;
+        Task forException;
+        String message;
+        switch (this.f37a) {
+            case 2:
+                ((CountDownLatch) this.f38b).countDown();
+                return null;
+            case 3:
+                r7 r7Var = (r7) this.f38b;
+                r7Var.getClass();
+                if (!task.isSuccessful() && (exception = task.getException()) != null && !TextUtils.isEmpty(exception.getMessage()) && exception.getMessage().contains("FID_ALREADY_USED:")) {
+                    Log.w("FirebaseMessaging", "FID_ALREADY_USED Detected. Retrying with FID cache clearing!");
+                    ((va.c) ((va.d) r7Var.d)).f57174c.b().delete();
+                    return r7Var.C();
+                }
+                return task;
+            case 4:
+                ((b8) this.f38b).getClass();
+                Bundle bundle = (Bundle) task.getResult(IOException.class);
+                if (bundle != null) {
+                    String string = bundle.getString("registration_id");
+                    if (string != null || (string = bundle.getString("unregistered")) != null) {
+                        return string;
+                    }
+                    String string2 = bundle.getString("error");
+                    if (!"RST".equals(string2)) {
+                        if (string2 != null) {
+                            throw new IOException(string2);
+                        }
+                        Log.w("FirebaseMessaging", "Unexpected response: " + bundle, new Throwable());
+                        throw new IOException("SERVICE_NOT_AVAILABLE");
+                    }
+                    throw new IOException("INSTANCE_ID_RESET");
+                }
+                throw new IOException("SERVICE_NOT_AVAILABLE");
+            case 5:
+            case 6:
+            case 7:
+            default:
+                db.n this$0 = (db.n) this.f38b;
+                kotlin.jvm.internal.j.e(this$0, "this$0");
+                kotlin.jvm.internal.j.e(task, "task");
+                d1 d1Var = db.n.f8589b;
+                if (task.isSuccessful()) {
+                    d1Var.a("Successfully completed the operation", new Object[0]);
+                    Task forResult = Tasks.forResult(m.f8588b.invoke(task.getResult()));
+                    kotlin.jvm.internal.j.d(forResult, "{\n      logger.d(\"Succes…ccess(task.result))\n    }");
+                    return forResult;
+                }
+                Log.e(d1Var.f21939a, d1Var.b("Failed to fetch the Verification Support Info: " + task.getException(), new Object[0]));
+                Exception exception2 = task.getException();
+                if (exception2 != null && (message = exception2.getMessage()) != null && xd.d.e(message, "test_number_token is invalid")) {
+                    d1Var.a("Backend rejected the test number token.", new Object[0]);
+                    forException = Tasks.forException(new db.b(55507, "Invalid test number ID(s) - might be empty, expired or duplicated."));
+                } else {
+                    if (exception2 instanceof com.google.android.gms.common.api.f) {
+                        i7 = ((com.google.android.gms.common.api.f) exception2).getStatus().f6529a;
+                    } else {
+                        i7 = 55501;
+                    }
+                    forException = Tasks.forException(new db.b(i7, "Failed to fetch the Verification Support Info"));
+                }
+                kotlin.jvm.internal.j.d(forException, "{\n      logger.e(\"$onFai…reMessage))\n      }\n    }");
+                return forException;
+            case 8:
+                return (Task) ((o) this.f38b).call();
+        }
     }
 
     @Override
-    public void F(float f10, int i3) {
+    public void accept(Object obj) {
+        switch (this.f37a) {
+            case 21:
+                c4.h hVar = (c4.h) this.f38b;
+                c4.a aVar = (c4.a) obj;
+                c4.g gVar = new c4.g(aVar.f5270b, sa.d.w0(aVar.f5269a, aVar.f5271c));
+                hVar.f5280c.add(gVar);
+                long j3 = hVar.f5285j;
+                if (j3 == -9223372036854775807L || aVar.d >= j3) {
+                    hVar.g(gVar);
+                    return;
+                }
+                return;
+            default:
+                ((f0) this.f38b).c((c4.a) obj);
+                return;
+        }
+    }
+
+    @Override
+    public void F(float f10, int i7) {
     }
 
     @Override

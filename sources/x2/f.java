@@ -1,27 +1,90 @@
 package x2;
-
-import d2.v;
-import i2.c0;
-import w2.u;
-public abstract class f implements a3.m {
-    public final long f58148a = u.f57230g.getAndIncrement();
-    public final i2.n f58149b;
-    public final int f58150c;
-    public final v d;
-    public final int f58151e;
-    public final Object f58152f;
+public final class f extends s {
+    public final long f58204f;
+    public final long f58205g;
     public final long h;
-    public final long f58153n;
-    public final c0 f58154r;
+    public final boolean f58206i;
 
-    public f(i2.h hVar, i2.n nVar, int i3, v vVar, int i10, Object obj, long j10, long j11) {
-        this.f58154r = new c0(hVar);
-        this.f58149b = nVar;
-        this.f58150c = i3;
-        this.d = vVar;
-        this.f58151e = i10;
-        this.f58152f = obj;
-        this.h = j10;
-        this.f58153n = j11;
+    public f(e2.l1 l1Var, long j3, long j10, boolean z9) {
+        super(l1Var);
+        long max;
+        int i7 = (j10 > Long.MIN_VALUE ? 1 : (j10 == Long.MIN_VALUE ? 0 : -1));
+        if (i7 != 0 && j10 < j3) {
+            throw new g(j3, 2, j10);
+        }
+        boolean z10 = false;
+        if (l1Var.h() == 1) {
+            e2.k1 m10 = l1Var.m(0, new e2.k1(), 0L);
+            long max2 = Math.max(0L, j3);
+            if (!z9 && !m10.f10332k && max2 != 0 && !m10.h) {
+                throw new g(1);
+            }
+            if (i7 == 0) {
+                max = m10.f10334m;
+            } else {
+                max = Math.max(0L, j10);
+            }
+            long j11 = m10.f10334m;
+            int i10 = (j11 > (-9223372036854775807L) ? 1 : (j11 == (-9223372036854775807L) ? 0 : -1));
+            if (i10 != 0) {
+                max = max > j11 ? j11 : max;
+                if (max2 > max) {
+                    max2 = max;
+                }
+            }
+            this.f58204f = max2;
+            this.f58205g = max;
+            int i11 = (max > (-9223372036854775807L) ? 1 : (max == (-9223372036854775807L) ? 0 : -1));
+            this.h = i11 != 0 ? max - max2 : -9223372036854775807L;
+            if (m10.f10330i && (i11 == 0 || (i10 != 0 && max == j11))) {
+                z10 = true;
+            }
+            this.f58206i = z10;
+            return;
+        }
+        throw new g(0);
+    }
+
+    @Override
+    public final e2.i1 f(int i7, e2.i1 i1Var, boolean z9) {
+        this.f58336e.f(0, i1Var, z9);
+        long j3 = i1Var.f10283e - this.f58204f;
+        long j10 = this.h;
+        long j11 = -9223372036854775807L;
+        if (j10 != -9223372036854775807L) {
+            j11 = j10 - j3;
+        }
+        i1Var.h(i1Var.f10280a, i1Var.f10281b, 0, j11, j3, e2.c.f10190c, false);
+        return i1Var;
+    }
+
+    @Override
+    public final e2.k1 m(int i7, e2.k1 k1Var, long j3) {
+        this.f58336e.m(0, k1Var, 0L);
+        long j10 = k1Var.f10337p;
+        long j11 = this.f58204f;
+        k1Var.f10337p = j10 + j11;
+        k1Var.f10334m = this.h;
+        k1Var.f10330i = this.f58206i;
+        long j12 = k1Var.f10333l;
+        if (j12 != -9223372036854775807L) {
+            long max = Math.max(j12, j11);
+            k1Var.f10333l = max;
+            long j13 = this.f58205g;
+            if (j13 != -9223372036854775807L) {
+                max = Math.min(max, j13);
+            }
+            k1Var.f10333l = max - j11;
+        }
+        long h02 = h2.m0.h0(j11);
+        long j14 = k1Var.f10327e;
+        if (j14 != -9223372036854775807L) {
+            k1Var.f10327e = j14 + h02;
+        }
+        long j15 = k1Var.f10328f;
+        if (j15 != -9223372036854775807L) {
+            k1Var.f10328f = j15 + h02;
+        }
+        return k1Var;
     }
 }

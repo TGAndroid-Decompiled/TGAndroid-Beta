@@ -1,11 +1,29 @@
 package org.telegram.ui.Wallet;
 
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
+import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.drawable.ShapeDrawable;
-public final class i5 extends ShapeDrawable.ShaderFactory {
+import org.telegram.ui.Components.pr;
+public final class i5 extends pr {
+    public final ShapeDrawable G;
+    public final y5 H;
+
+    public i5(y5 y5Var, Context context) {
+        super(context);
+        this.H = y5Var;
+        this.G = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(22.0f), y5Var.getThemedColor(org.telegram.ui.ActionBar.k6.f27848d6));
+    }
+
     @Override
-    public final Shader resize(int i3, int i10) {
-        return new LinearGradient(0.0f, 0.0f, 0.0f, i10, -765355, -2148011, Shader.TileMode.CLAMP);
+    public final void dispatchDraw(Canvas canvas) {
+        int ceil = (int) Math.ceil(getMetadata().f55389g.f55396a);
+        if (ceil > 0) {
+            ShapeDrawable shapeDrawable = this.G;
+            shapeDrawable.getPaint().setColor(this.H.getThemedColor(org.telegram.ui.ActionBar.k6.f27848d6));
+            shapeDrawable.setBounds(0, 0, getWidth(), ceil);
+            shapeDrawable.setAlpha((int) (getMetadata().f55386c.f55396a * 255.0f));
+            shapeDrawable.draw(canvas);
+        }
+        super.dispatchDraw(canvas);
     }
 }

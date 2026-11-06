@@ -1,25 +1,27 @@
 package org.telegram.ui;
-public final class rs0 implements org.telegram.ui.ActionBar.p1 {
-    public final int f49271a;
-    public final PrivacyControlActivity f49272b;
 
-    public rs0(PrivacyControlActivity privacyControlActivity, int i3) {
-        this.f49271a = i3;
-        this.f49272b = privacyControlActivity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.widget.TextView;
+public final class rs0 extends ug.k1 {
+    public final ss0 N;
+
+    public rs0(ss0 ss0Var, Context context) {
+        super(context);
+        this.N = ss0Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        switch (this.f49271a) {
-            case 0:
-                this.f49272b.K0();
-                return;
-            case 1:
-                this.f49272b.finishFragment();
-                return;
-            default:
-                this.f49272b.finishFragment();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        TextView textView = this.f56570r;
+        if (textView.getVisibility() == 0) {
+            RectF rectF = org.telegram.messenger.g0.P;
+            rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
+            ss0 ss0Var = this.N;
+            ss0Var.d.f50109n.f41595n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f56569n.h, ss0Var.d.f50109n.O);
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), ss0Var.d.f50109n.f41595n0.f56752f);
         }
+        super.dispatchDraw(canvas);
     }
 }

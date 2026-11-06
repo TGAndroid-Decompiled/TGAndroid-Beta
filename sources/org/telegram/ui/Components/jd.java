@@ -1,33 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import org.telegram.tgnet.tl.TL_iv;
-public final class jd implements org.telegram.messenger.u10 {
-    public final int f35043a;
-    public final ChatActivityEnterView f35044b;
+import android.view.KeyEvent;
+public final class jd implements hi.h0, org.telegram.ui.ActionBar.r1, ws, org.telegram.ui.ActionBar.e1 {
+    public final ChatActivityEnterView f34947a;
 
-    public jd(ChatActivityEnterView chatActivityEnterView, int i3) {
-        this.f35043a = i3;
-        this.f35044b = chatActivityEnterView;
+    public jd(ChatActivityEnterView chatActivityEnterView) {
+        this.f34947a = chatActivityEnterView;
     }
 
     @Override
-    public final void a(Object obj) {
-        int i3 = this.f35043a;
-        ChatActivityEnterView chatActivityEnterView = this.f35044b;
-        switch (i3) {
-            case 0:
-                chatActivityEnterView.P0((TL_iv.RichMessage) obj);
-                return;
-            case 1:
-                CharSequence charSequence = (CharSequence) obj;
-                chatActivityEnterView.F0.setText(charSequence);
-                chatActivityEnterView.F0.setSelection(charSequence.length(), charSequence.length());
-                return;
-            default:
-                int i10 = ChatActivityEnterView.f31082t5;
-                chatActivityEnterView.b0((Canvas) obj, false);
-                return;
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        int i10 = ChatActivityEnterView.s5;
+        ChatActivityEnterView chatActivityEnterView = this.f34947a;
+        chatActivityEnterView.J();
+        xe xeVar = chatActivityEnterView.E0;
+        if (xeVar != null) {
+            xeVar.setText("");
+        }
+    }
+
+    @Override
+    public void j(KeyEvent keyEvent) {
+        ChatActivityEnterView chatActivityEnterView;
+        te teVar;
+        int i7 = ChatActivityEnterView.s5;
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (teVar = (chatActivityEnterView = this.f34947a).N0) != null && teVar.isShowing()) {
+            chatActivityEnterView.N0.dismiss();
+        }
+    }
+
+    @Override
+    public void m() {
+        ChatActivityEnterView chatActivityEnterView = this.f34947a;
+        chatActivityEnterView.E0.f();
+        wf wfVar = chatActivityEnterView.Z2;
+        if (wfVar != null) {
+            wfVar.k1(chatActivityEnterView.E0.getTextToUse());
         }
     }
 }

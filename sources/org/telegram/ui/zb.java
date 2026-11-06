@@ -1,15 +1,16 @@
 package org.telegram.ui;
-public final class zb extends x01 {
-    public final pc f52598e;
 
-    public zb(pc pcVar, yb ybVar) {
-        super(ybVar);
-        this.f52598e = pcVar;
+import android.app.Activity;
+public final class zb extends ug.i0 {
+    public final int P2;
+
+    public zb(rc rcVar, Activity activity, int i7, int i10, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(i7, i10, activity, rcVar, f6Var);
+        this.P2 = i11;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.f52598e.R = null;
+    public final int j1() {
+        return this.P2;
     }
 }

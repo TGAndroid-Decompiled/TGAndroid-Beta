@@ -1,27 +1,16 @@
 package s7;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public abstract class a {
-    public static final int f54671a = 0;
+import android.os.IBinder;
+import android.os.IInterface;
+public final class a implements IInterface {
+    public final IBinder f54817a;
 
-    static {
-        a.class.getClassLoader();
+    public a(IBinder iBinder) {
+        this.f54817a = iBinder;
     }
 
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
-        }
-        return (Parcelable) creator.createFromParcel(parcel);
-    }
-
-    public static void b(Parcel parcel, Parcelable parcelable) {
-        if (parcelable == null) {
-            parcel.writeInt(0);
-            return;
-        }
-        parcel.writeInt(1);
-        parcelable.writeToParcel(parcel, 0);
+    @Override
+    public final IBinder asBinder() {
+        return this.f54817a;
     }
 }

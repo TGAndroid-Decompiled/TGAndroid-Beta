@@ -1,19 +1,24 @@
 package org.telegram.ui;
 
 import android.content.DialogInterface;
-public final class u implements DialogInterface.OnClickListener {
-    public final int f49928a;
-    public final Object f49929b;
-    public final Object f49930c;
+public final class u implements DialogInterface.OnDismissListener {
+    public final int f50164a;
+    public final g4 f50165b;
 
-    public u(int i3, Object obj, Object obj2) {
-        this.f49928a = i3;
-        this.f49930c = obj;
-        this.f49929b = obj2;
+    public u(g4 g4Var, int i7) {
+        this.f50164a = i7;
+        this.f50165b = g4Var;
     }
 
     @Override
-    public final void onClick(android.content.DialogInterface r19, int r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.u.onClick(android.content.DialogInterface, int):void");
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f50164a) {
+            case 0:
+                this.f50165b.f48240c.f(true);
+                return;
+            default:
+                this.f50165b.f45807k0 = null;
+                return;
+        }
     }
 }

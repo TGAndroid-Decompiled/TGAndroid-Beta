@@ -1,106 +1,40 @@
 package r2;
 
-import android.net.Uri;
-import android.os.SystemClock;
-import b8.zb;
-import g9.g2;
-import g9.i0;
-import g9.t0;
-import java.util.HashMap;
-import org.telegram.ui.Cells.f1;
+import c8.e1;
+import e2.s0;
+import e2.u;
+import java.util.ArrayList;
 public final class c {
-    public final w f54080a;
-    public final HashMap f54081b;
-    public final d f54082c;
+    public static final int[] d = {8, 13, 11, 2, 0, 1, 7};
+    public w7.s f54168a;
+    public boolean f54169b;
+    public int f54170c;
 
-    public c(d dVar, w wVar) {
-        this.f54082c = dVar;
-        this.f54080a = wVar;
-        HashMap hashMap = new HashMap();
-        g2 it = t0.q(wVar.f54232b.keySet()).iterator();
-        while (it.hasNext()) {
-            String str = (String) it.next();
-            Uri uri = (Uri) wVar.f54232b.get(str);
-            uri.getClass();
-            hashMap.put(uri, new b(this.f54082c, uri, str));
+    public static void a(int i7, ArrayList arrayList) {
+        if (e1.d(i7, 0, 7, d) != -1 && !arrayList.contains(Integer.valueOf(i7))) {
+            arrayList.add(Integer.valueOf(i7));
         }
-        this.f54081b = hashMap;
     }
 
-    public static m a(c cVar, Uri uri) {
-        b bVar = (b) f1.p(cVar.f54081b, uri, uri);
-        bVar.getClass();
-        return bVar.f54072e;
-    }
-
-    public static void b(c cVar, Uri uri, boolean z10) {
-        Uri uri2;
-        b bVar = (b) f1.p(cVar.f54081b, uri, uri);
-        bVar.getClass();
-        if (z10) {
-            uri2 = bVar.a();
-        } else {
-            uri2 = bVar.f54069a;
-        }
-        bVar.c(uri2);
-    }
-
-    public static boolean c(c cVar, Uri uri, long j10) {
-        HashMap hashMap = cVar.f54081b;
-        b bVar = (b) f1.p(hashMap, uri, uri);
-        bVar.getClass();
-        bVar.f54075r = SystemClock.elapsedRealtime() + j10;
-        d dVar = cVar.f54082c;
-        w wVar = cVar.f54080a;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        for (b bVar2 : hashMap.values()) {
-            if (!bVar2.f54070b.equals(wVar.d) && elapsedRealtime > bVar2.f54075r) {
-                Uri c2 = wVar.c();
-                String str = bVar2.f54070b;
-                zb.p(wVar.f54232b.containsKey(str));
-                wVar.d = str;
-                if (c2.equals(dVar.G)) {
-                    dVar.g(bVar2.f54069a);
-                }
-                b bVar3 = (b) hashMap.get(c2);
-                bVar3.getClass();
-                bVar2.f54078x = bVar3.f54078x;
-                bVar3.f54078x = false;
-                return true;
+    public final u b(u uVar) {
+        String str;
+        if (this.f54169b && this.f54168a.w(uVar)) {
+            e2.t a10 = uVar.a();
+            String str2 = uVar.f10607k;
+            a10.f10563r = s0.n("application/x-media3-cues");
+            a10.P = this.f54168a.D(uVar);
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(uVar.f10615s);
+            if (str2 != null) {
+                str = " ".concat(str2);
+            } else {
+                str = "";
             }
+            sb2.append(str);
+            a10.f10555j = sb2.toString();
+            a10.f10567w = Long.MAX_VALUE;
+            return new u(a10);
         }
-        Uri uri2 = dVar.G;
-        if (uri2 == null || uri.equals(uri2)) {
-            i0 i0Var = dVar.f54092x;
-            long elapsedRealtime2 = SystemClock.elapsedRealtime();
-            boolean z10 = false;
-            int i3 = 0;
-            while (true) {
-                if (i3 >= i0Var.size()) {
-                    break;
-                }
-                Uri c10 = ((w) i0Var.get(i3)).c();
-                c cVar2 = (c) dVar.d.get(c10);
-                cVar2.getClass();
-                HashMap hashMap2 = cVar2.f54081b;
-                b bVar4 = (b) f1.p(hashMap2, c10, c10);
-                bVar4.getClass();
-                if (elapsedRealtime2 <= bVar4.f54075r) {
-                    i3++;
-                } else {
-                    dVar.G = c10;
-                    Uri d = dVar.d(c10);
-                    b bVar5 = (b) f1.p(hashMap2, c10, c10);
-                    bVar5.getClass();
-                    bVar5.c(d);
-                    z10 = true;
-                    break;
-                }
-            }
-            if (!z10) {
-                return false;
-            }
-        }
-        return true;
+        return uVar;
     }
 }

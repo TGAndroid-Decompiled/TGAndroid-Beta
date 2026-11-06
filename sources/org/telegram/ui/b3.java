@@ -1,229 +1,117 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
+import android.content.Context;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-public final class b3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f43904a;
-    public final Object f43905b;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class b3 extends FrameLayout {
+    public final LinearLayout f44146a;
+    public boolean f44147b;
+    public final org.telegram.ui.Components.l9 f44148c;
+    public final TextView d;
+    public final TextView f44149e;
+    public final TextView f44150f;
+    public final fi.d h;
+    public ValueAnimator f44151n;
+    public boolean f44152r;
 
-    public b3(Object obj, int i3) {
-        this.f43904a = i3;
-        this.f43905b = obj;
+    public b3(Context context) {
+        super(context);
+        this.f44152r = true;
+        setVisibility(8);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f44146a = linearLayout;
+        linearLayout.setPadding(org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(32.0f), org.telegram.messenger.g0.L(24.0f));
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(3);
+        addView(linearLayout, c8.ha.e(-2, -2, 17));
+        org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
+        this.f44148c = l9Var;
+        linearLayout.addView(l9Var, c8.ha.o(100, 100));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 19.0f);
+        textView.setTypeface(org.telegram.messenger.g0.o());
+        textView.setTextColor(-1);
+        TextView f10 = org.telegram.messenger.camera.q.f(linearLayout, textView, c8.ha.t(-2, -2, 3, 0, 4, 0, 2), context);
+        this.f44149e = f10;
+        f10.setTextSize(1, 15.0f);
+        f10.setTextColor(-1);
+        f10.setSingleLine(false);
+        f10.setMaxLines(3);
+        TextView f11 = org.telegram.messenger.camera.q.f(linearLayout, f10, c8.ha.t(-2, -2, 3, 0, 0, 0, 1), context);
+        this.f44150f = f11;
+        f11.setTextSize(1, 12.0f);
+        f11.setTextColor(-1);
+        f11.setAlpha(0.4f);
+        linearLayout.addView(f11, c8.ha.r(-2, -2, 3));
+        fi.d dVar = new fi.d(context, null, true);
+        this.h = dVar;
+        dVar.setMinWidth(org.telegram.messenger.g0.L(140.0f));
+        dVar.i(org.telegram.messenger.hd.M0(2131746339, null), false, true);
+        linearLayout.addView(dVar, c8.ha.t(-2, 40, 3, 0, 12, 0, 0));
+    }
+
+    public final void a(String str, String str2) {
+        this.d.setText(org.telegram.messenger.hd.M0(2131742923, null));
+        org.telegram.messenger.k5.r(null, null, 2131742925, new Object[]{str}, this.f44149e);
+        this.f44150f.setText(str2);
+    }
+
+    public final void b(boolean z9, boolean z10) {
+        int i7;
+        int i10;
+        float f10;
+        if (this.f44152r == z9) {
+            return;
+        }
+        this.f44152r = z9;
+        ValueAnimator valueAnimator = this.f44151n;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        if (z10) {
+            float f11 = 1.0f;
+            if (z9) {
+                f10 = 0.0f;
+            } else {
+                f10 = 1.0f;
+            }
+            if (!z9) {
+                f11 = 0.0f;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f11);
+            this.f44151n = ofFloat;
+            ofFloat.addUpdateListener(new a3(this, 0));
+            this.f44151n.start();
+            return;
+        }
+        int i11 = -1;
+        if (!z9) {
+            i7 = -16777216;
+        } else {
+            i7 = -1;
+        }
+        this.d.setTextColor(i7);
+        if (!z9) {
+            i10 = -16777216;
+        } else {
+            i10 = -1;
+        }
+        this.f44149e.setTextColor(i10);
+        if (!z9) {
+            i11 = -16777216;
+        }
+        this.f44150f.setTextColor(i11);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i3 = this.f43904a;
-        Object obj = this.f43905b;
-        switch (i3) {
-            case 0:
-                c3 c3Var = (c3) obj;
-                c3Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c3Var.d.setTextColor(i0.a.f(floatValue, -16777216, -1));
-                c3Var.f44208e.setTextColor(i0.a.f(floatValue, -16777216, -1));
-                c3Var.f44209f.setTextColor(i0.a.f(floatValue, -16777216, -1));
-                return;
-            case 1:
-                s4 s4Var = (s4) obj;
-                float U1 = org.telegram.messenger.g0.U1(valueAnimator.getAnimatedFraction(), s4Var.f49352n);
-                int i10 = (int) (255.0f * U1);
-                s4Var.f49351f.setAlpha(i10);
-                s4Var.h.setAlpha(i10);
-                s4Var.f49353r.setAlpha((int) (66.0f * U1));
-                s4Var.f49354s.setAlpha((int) (85.0f * U1));
-                s4Var.f49355w.setAlpha(i10);
-                s4Var.H = U1;
-                s4Var.invalidate();
-                return;
-            case 2:
-                i8 i8Var = (i8) obj;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                for (int i11 = 0; i11 < i8Var.f46165b.getChildCount(); i11++) {
-                    f8.b((f8) i8Var.f46165b.getChildAt(i11), floatValue2);
-                }
-                return;
-            case 3:
-                ad adVar = (ad) obj;
-                adVar.f43727b.a(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                adVar.f43727b.invalidateSelf();
-                return;
-            case 4:
-                ((org.telegram.ui.Components.wq) obj).a(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 5:
-                dk dkVar = (dk) obj;
-                dkVar.getClass();
-                dkVar.setBubbleOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                dkVar.invalidate();
-                return;
-            case 6:
-                ip ipVar = (ip) obj;
-                ipVar.getClass();
-                ipVar.K = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                FrameLayout frameLayout = ipVar.f46333e;
-                if (frameLayout != null) {
-                    frameLayout.invalidate();
-                    return;
-                }
-                return;
-            case 7:
-                zq zqVar = (zq) obj;
-                zqVar.getClass();
-                zqVar.R1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                zqVar.invalidate();
-                if (zqVar.getParent() != null) {
-                    ((ViewGroup) zqVar.getParent()).invalidate();
-                    return;
-                }
-                return;
-            case 8:
-                vq vqVar = (vq) obj;
-                vqVar.Q1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vqVar.invalidate();
-                if (vqVar.getParent() != null) {
-                    ((ViewGroup) vqVar.getParent()).invalidate();
-                    return;
-                }
-                return;
-            case 9:
-                pw pwVar = (pw) obj;
-                pwVar.getClass();
-                pwVar.setViewsOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 10:
-                yy yyVar = (yy) obj;
-                yyVar.getClass();
-                yyVar.f52447s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yyVar.invalidate();
-                return;
-            case 11:
-                yz yzVar = (yz) obj;
-                yzVar.getClass();
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ImageView imageView = yzVar.f52456c;
-                imageView.setAlpha(floatValue3);
-                float f10 = (floatValue3 * 0.5f) + 0.5f;
-                imageView.setScaleX(f10);
-                imageView.setScaleY(f10);
-                View view = yzVar.f52458f;
-                float f11 = 1.0f - floatValue3;
-                view.setAlpha(f11);
-                float f12 = (f11 * 0.5f) + 0.5f;
-                view.setScaleX(f12);
-                view.setScaleY(f12);
-                return;
-            case 12:
-                x30 x30Var = (x30) obj;
-                x30Var.N2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                x30Var.O1(true);
-                x30Var.m1.invalidate();
-                x30Var.I1.invalidate();
-                return;
-            case 13:
-                i30 i30Var = (i30) obj;
-                i30Var.h = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                i30Var.f46044a.invalidate();
-                return;
-            case 14:
-                l30 l30Var = (l30) obj;
-                l30Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                x30 x30Var2 = l30Var.L;
-                x30Var2.I1.invalidate();
-                x30Var2.S3.invalidate();
-                x30Var2.f28586b.invalidate();
-                x30.P0(x30Var2);
-                return;
-            case 15:
-                la0.d0((la0) obj);
-                return;
-            case 16:
-                xg0 xg0Var = (xg0) obj;
-                xg0Var.getClass();
-                xg0Var.f52025f = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                xg0Var.invalidate();
-                return;
-            case 17:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) obj;
-                passcodeActivity.getClass();
-                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                passcodeActivity.f41362w.setAlpha(floatValue4);
-                passcodeActivity.f41362w.setTranslationY((1.0f - floatValue4) * org.telegram.messenger.g0.L(230.0f) * 0.75f);
-                passcodeActivity.fragmentView.requestLayout();
-                return;
-            case 18:
-                PhotoViewer photoViewer = ((np0) obj).d;
-                photoViewer.U1.f52735l0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                photoViewer.U1.invalidate();
-                return;
-            case 19:
-                PhotoViewer photoViewer2 = ((np0) obj).d;
-                photoViewer2.U1.f52735l0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                photoViewer2.U1.invalidate();
-                return;
-            case 20:
-                ((PhotoViewer) ((org.telegram.ui.Components.rk0) obj).f37747b).U1.scrollTo(0, ((Integer) valueAnimator.getAnimatedValue()).intValue());
-                return;
-            case 21:
-                PhotoViewer photoViewer3 = ((qp0) obj).f48942r;
-                photoViewer3.f41492n6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                photoViewer3.I1();
-                return;
-            case 22:
-                fq0 fq0Var = (fq0) obj;
-                fq0Var.getClass();
-                fq0Var.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 23:
-                vq0 vq0Var = (vq0) obj;
-                vq0Var.getClass();
-                vq0Var.A = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vq0Var.e();
-                return;
-            case 24:
-                ((iu0) obj).G.f41719a.invalidate();
-                return;
-            case 25:
-                ProfileActivity profileActivity = ((mv0) obj).f47793y2;
-                RectF rectF = ProfileActivity.T6;
-                profileActivity.p5();
-                return;
-            case 26:
-                cw0 cw0Var = (cw0) obj;
-                float[] fArr = cw0Var.f44449n;
-                float animatedFraction = valueAnimator.getAnimatedFraction();
-                cw0Var.G = animatedFraction;
-                cw0Var.e(true, org.telegram.messenger.g0.U1(animatedFraction, fArr));
-                return;
-            case 27:
-                ew0 ew0Var = (ew0) obj;
-                float U12 = org.telegram.messenger.g0.U1(valueAnimator.getAnimatedFraction(), ew0Var.f45060e);
-                ProfileActivity profileActivity2 = ew0Var.f45062n;
-                org.telegram.ui.ActionBar.f5 f5Var = profileActivity2.U0;
-                if (f5Var != null && !profileActivity2.f41826p2) {
-                    float f13 = 1.0f - U12;
-                    f5Var.setScaleX(f13);
-                    profileActivity2.U0.setScaleY(f13);
-                    profileActivity2.U0.setAlpha(f13);
-                }
-                ew0Var.setScaleX(U12);
-                ew0Var.setScaleY(U12);
-                ew0Var.setAlpha(U12);
-                return;
-            case 28:
-                cx0 cx0Var = (cx0) obj;
-                cx0Var.f44471n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                cx0Var.b();
-                return;
-            default:
-                mx0 mx0Var = (mx0) obj;
-                mx0Var.E = org.telegram.messenger.g0.U1(valueAnimator.getAnimatedFraction(), mx0Var.F);
-                mx0Var.h.setTextColor(i0.a.f(mx0Var.E, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28290z6, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28121q6, false)));
-                return;
+    public void setVisibility(int i7) {
+        super.setVisibility(i7);
+        if (i7 == 0 && !this.f44147b) {
+            this.f44147b = true;
+            org.telegram.messenger.ui.b0(org.telegram.messenger.p10.f24459s0).c2(this.f44148c, "tg_placeholders_android", "🧐", "100_100");
         }
     }
 }

@@ -1,40 +1,77 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
-import org.telegram.tgnet.TLRPC;
-public final class sz implements org.telegram.ui.Cells.i7 {
-    public final tz f49648a;
+import android.view.ViewGroup;
+public final class sz extends org.telegram.ui.Components.oj0 {
+    public final yz f49841c;
 
-    public sz(tz tzVar) {
-        this.f49648a = tzVar;
+    public sz(yz yzVar) {
+        this.f49841c = yzVar;
     }
 
     @Override
-    public final void a(String str, boolean z10) {
-        wz wzVar = this.f49648a.f49926w;
-        if (z10) {
-            org.telegram.ui.ActionBar.t2 h = org.telegram.messenger.camera.q.h(wzVar.L, false, 1, null);
-            h.P = str;
-            h.Q = false;
-            u uVar = new u(6, this, str);
-            h.M = new CharSequence[]{org.telegram.messenger.bd.M0(2131747825, null), org.telegram.messenger.bd.M0(2131751767, null)};
-            h.L = uVar;
-            wzVar.M.showDialog(h);
-            return;
+    public final boolean D(v4.d1 d1Var) {
+        return true;
+    }
+
+    @Override
+    public final int b() {
+        yz yzVar = this.f49841c;
+        if (yzVar.f52382f.isEmpty()) {
+            return 0;
         }
-        SpannableStringBuilder[] spannableStringBuilderArr = wz.f51635t0;
-        wzVar.g(str);
+        return yzVar.f52382f.size() + (!yzVar.N ? 1 : 0);
     }
 
     @Override
-    public final void b(TLRPC.WebPage webPage, org.telegram.messenger.zi ziVar) {
-        wz wzVar = this.f49648a.f49926w;
-        SpannableStringBuilder[] spannableStringBuilderArr = wz.f51635t0;
-        org.telegram.ui.Components.ut.K0(wzVar.M, ziVar, wzVar.f51648h0, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+    public final int d(int i7) {
+        if (i7 >= this.f49841c.f52382f.size()) {
+            return 3;
+        }
+        return 0;
     }
 
     @Override
-    public final boolean c() {
-        return !this.f49648a.f49926w.f51656p0.I();
+    public final void t(v4.d1 d1Var, int i7) {
+        boolean z9;
+        boolean z10;
+        if (d1Var.f56931f == 0) {
+            org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) d1Var.f56927a;
+            yz yzVar = this.f49841c;
+            org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) yzVar.f52382f.get(i7);
+            t2Var.O = yzVar.f52393p0;
+            t2Var.d0(org.telegram.messenger.ij.B0(ijVar.f23237k), ijVar, ijVar.f23237k.date, false, false);
+            if (i7 != b() - 1) {
+                z9 = true;
+            } else {
+                z9 = false;
+            }
+            t2Var.f30475s2 = z9;
+            if (t2Var.getMessage() != null && t2Var.getMessage().f1() == ijVar.f1()) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            t2Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Components.tj(this, t2Var, ijVar, z10, 1));
+        }
+    }
+
+    @Override
+    public final v4.d1 x(ViewGroup viewGroup, int i7) {
+        jg.a0 a0Var;
+        if (i7 != 0) {
+            if (i7 != 3) {
+                org.telegram.ui.Cells.x3 x3Var = new org.telegram.ui.Cells.x3(viewGroup.getContext(), null);
+                x3Var.setText(org.telegram.messenger.hd.M0(2131745757, null));
+                a0Var = x3Var;
+            } else {
+                org.telegram.ui.Components.lz lzVar = new org.telegram.ui.Components.lz(viewGroup.getContext(), null);
+                lzVar.setIsSingleCell(true);
+                lzVar.setViewType(1);
+                a0Var = lzVar;
+            }
+        } else {
+            a0Var = new jg.a0(2, viewGroup.getContext(), true);
+        }
+        return jg.g.r(a0Var, a0Var, -1, -2);
     }
 }

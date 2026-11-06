@@ -1,32 +1,82 @@
 package m2;
 
-import android.media.AudioDeviceInfo;
-public final class i {
-    public final d2.v f18883a;
-    public d2.f f18884b;
-    public AudioDeviceInfo f18885c;
-    public boolean d;
-    public int f18886e;
-    public int f18887f;
-    public boolean f18888g;
-    public int h;
+import a8.ia;
+import android.content.ClipData;
+import android.media.metrics.LogSessionId;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.ContentInfo;
+public final class i implements r0.d, r0.f {
+    public final int f19556a;
+    public Object f19557b;
 
-    public i(i iVar) {
-        this.f18883a = iVar.f18883a;
-        this.f18884b = iVar.f18884b;
-        this.f18885c = iVar.f18885c;
-        this.d = iVar.d;
-        this.f18886e = iVar.f18886e;
-        this.f18887f = iVar.f18887f;
-        this.f18888g = iVar.f18888g;
-        this.h = iVar.h;
+    public i() {
+        this.f19556a = 0;
+        this.f19557b = d.b();
     }
 
-    public i(d2.v vVar) {
-        this.f18883a = vVar;
-        this.f18884b = d2.f.f8079i;
-        this.f18886e = 0;
-        this.f18887f = -1;
-        this.h = -1;
+    @Override
+    public ClipData a() {
+        return ((ContentInfo) this.f19557b).getClip();
+    }
+
+    @Override
+    public void b(Uri uri) {
+        ((ContentInfo.Builder) this.f19557b).setLinkUri(uri);
+    }
+
+    @Override
+    public r0.g build() {
+        return new r0.g(new i(((ContentInfo.Builder) this.f19557b).build()));
+    }
+
+    @Override
+    public void c(int i7) {
+        ((ContentInfo.Builder) this.f19557b).setFlags(i7);
+    }
+
+    @Override
+    public ContentInfo d() {
+        return (ContentInfo) this.f19557b;
+    }
+
+    @Override
+    public int e() {
+        return ((ContentInfo) this.f19557b).getSource();
+    }
+
+    public void f(LogSessionId logSessionId) {
+        ia.p(((LogSessionId) this.f19557b).equals(d.b()));
+        this.f19557b = logSessionId;
+    }
+
+    @Override
+    public int l() {
+        return ((ContentInfo) this.f19557b).getFlags();
+    }
+
+    @Override
+    public void setExtras(Bundle bundle) {
+        ((ContentInfo.Builder) this.f19557b).setExtras(bundle);
+    }
+
+    public String toString() {
+        switch (this.f19556a) {
+            case 2:
+                return "ContentInfoCompat{" + ((ContentInfo) this.f19557b) + "}";
+            default:
+                return super.toString();
+        }
+    }
+
+    public i(ContentInfo contentInfo) {
+        this.f19556a = 2;
+        contentInfo.getClass();
+        this.f19557b = contentInfo;
+    }
+
+    public i(ClipData clipData, int i7) {
+        this.f19556a = 1;
+        this.f19557b = r0.c.a(clipData, i7);
     }
 }

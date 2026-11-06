@@ -1,15 +1,15 @@
 package y7;
-public final class u3 implements ma.d {
-    public static final u3 f59283a = new Object();
+public final class u3 implements na.d {
+    public static final u3 f59050a = new Object();
 
     static {
-        t4.c.o(t4.c.j(d.class, t4.c.m(t4.c.j(d.class, new a(1)), 2)));
+        rf.b.p(rf.b.k(h.class, new e(1)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ma.e eVar = (ma.e) obj2;
+            na.e eVar = (na.e) obj2;
             throw null;
         }
         throw new ClassCastException();

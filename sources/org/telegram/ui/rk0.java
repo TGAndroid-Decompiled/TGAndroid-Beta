@@ -1,56 +1,31 @@
 package org.telegram.ui;
-public final class rk0 extends org.telegram.ui.ActionBar.j {
-    public final dl0 f49240a;
 
-    public rk0(dl0 dl0Var) {
-        this.f49240a = dl0Var;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class rk0 implements fl0 {
+    public final hl0 f49507a;
+
+    public rk0(hl0 hl0Var) {
+        this.f49507a = hl0Var;
     }
 
     @Override
-    public final void b(int i3) {
-        dl0 dl0Var = this.f49240a;
-        if (i3 == -1) {
-            if (!dl0Var.Q0) {
-                dl0Var.finishFragment();
-            }
-        } else if (i3 == 1 && !dl0Var.Q0) {
-            if (dl0Var.f44771v0 != 3) {
-                org.telegram.messenger.g0.v1(dl0Var.getParentActivity().getCurrentFocus());
-            }
-            int i10 = dl0Var.f44771v0;
-            if (i10 != 0) {
-                int i11 = 0;
-                if (i10 != 1) {
-                    if (i10 != 2) {
-                        if (i10 != 3) {
-                            if (i10 == 6) {
-                                dl0Var.G0(false);
-                                return;
-                            }
-                            return;
-                        }
-                        dl0.p0(dl0Var);
-                        return;
-                    }
-                    dl0.o0(dl0Var);
-                    return;
-                }
-                while (true) {
-                    org.telegram.ui.Cells.h6[] h6VarArr = dl0Var.h;
-                    if (i11 >= h6VarArr.length) {
-                        break;
-                    } else if (h6VarArr[i11].f29346b.f31589f) {
-                        dl0Var.H0 = dl0Var.F0.shipping_options.get(i11);
-                        break;
-                    } else {
-                        i11++;
-                    }
-                }
-                dl0Var.z0();
-                return;
-            }
-            dl0Var.J0(true);
-            dl0.r0(dl0Var);
-        }
+    public final boolean c(String str, String str2, boolean z9, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        return false;
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        hl0 hl0Var = this.f49507a;
+        hl0Var.I0 = tL_payments_validateRequestedInfo;
+        hl0Var.H0(tL_payments_validateRequestedInfo.info);
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
+    }
+
+    @Override
+    public final void b() {
     }
 }

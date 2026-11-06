@@ -1,52 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-public final class i2 implements TextView.OnEditorActionListener {
-    public final int f34572a;
+import android.view.View;
+public final class i2 implements View.OnClickListener {
+    public final int f34477a;
+    public final org.telegram.ui.ActionBar.v2[] f34478b;
 
-    public i2(int i3) {
-        this.f34572a = i3;
+    public i2(org.telegram.ui.ActionBar.v2[] v2VarArr, int i7) {
+        this.f34477a = i7;
+        this.f34478b = v2VarArr;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-        switch (this.f34572a) {
+    public final void onClick(View view) {
+        switch (this.f34477a) {
             case 0:
-                org.telegram.messenger.g0.v1(textView);
-                return false;
+                this.f34478b[0].dismiss();
+                return;
             case 1:
-                if (i3 == 6) {
-                    org.telegram.messenger.g0.v1(textView);
-                    return true;
-                }
-                return false;
+                this.f34478b[0].dismiss();
+                return;
             case 2:
-                if (i3 == 6) {
-                    org.telegram.messenger.g0.v1(textView);
-                    return true;
-                }
-                return false;
-            case 3:
-                if (i3 == 6) {
-                    org.telegram.messenger.g0.v1(textView);
-                    return true;
-                }
-                return false;
-            case 4:
-                if (i3 == 6) {
-                    textView.clearFocus();
-                    org.telegram.messenger.g0.v1(textView);
-                    return false;
-                }
-                return false;
+                this.f34478b[0].dismiss();
+                return;
             default:
-                if (i3 == 6) {
-                    textView.clearFocus();
-                    org.telegram.messenger.g0.v1(textView);
-                    return false;
-                }
-                return false;
+                this.f34478b[0].dismiss();
+                return;
         }
     }
 }

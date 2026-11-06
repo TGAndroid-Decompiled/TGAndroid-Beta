@@ -1,39 +1,26 @@
 package ai;
 
-import android.view.View;
-public final class j0 implements View.OnClickListener {
-    public final int f727a;
-    public final Runnable f728b;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.a8;
+import org.telegram.ui.ActionBar.r1;
+import org.telegram.ui.ActionBar.u1;
+public final class j0 implements r1 {
+    public final s0 f1298a;
 
-    public j0(int i3, Runnable runnable) {
-        this.f727a = i3;
-        this.f728b = runnable;
+    public j0(s0 s0Var) {
+        this.f1298a = s0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f727a) {
-            case 0:
-                this.f728b.run();
-                return;
-            case 1:
-                this.f728b.run();
-                return;
-            case 2:
-                this.f728b.run();
-                return;
-            case 3:
-                this.f728b.run();
-                return;
-            case 4:
-                this.f728b.run();
-                return;
-            case 5:
-                this.f728b.run();
-                return;
-            default:
-                this.f728b.run();
-                return;
+    public void g(u1 u1Var, int i7) {
+        s0 s0Var = this.f1298a;
+        try {
+            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+            intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25555b.getPackageName()));
+            s0Var.getParentActivity().startActivity(intent);
+        } catch (Exception e10) {
+            a8.g(e10, true);
         }
     }
 }

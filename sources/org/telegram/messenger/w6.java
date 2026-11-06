@@ -1,15 +1,15 @@
 package org.telegram.messenger;
 public final class w6 {
-    public final int f26164a;
-    public final long f26165b;
+    public final int f26250a;
+    public final long f26251b;
 
-    public w6(long j10, int i3, long j11) {
-        this.f26164a = i3;
-        this.f26165b = j11;
+    public w6(long j3, int i7, long j10) {
+        this.f26250a = i7;
+        this.f26251b = j10;
     }
 
     public final int hashCode() {
-        long j10 = this.f26165b;
-        return (int) (j10 ^ (j10 >>> 32));
+        long j3 = this.f26251b;
+        return (int) (j3 ^ (j3 >>> 32));
     }
 }

@@ -2,32 +2,37 @@ package d9;
 
 import android.os.IBinder;
 import android.os.IInterface;
-import android.os.Parcel;
-public final class a implements c, IInterface {
-    public final IBinder f8592a;
+import android.os.RemoteException;
+import java.util.ArrayList;
+public final class a extends h0 {
+    public final IBinder h;
+    public final ag.a f8217n;
 
-    public a(IBinder iBinder) {
-        this.f8592a = iBinder;
-    }
-
-    public final Parcel H0(Parcel parcel, int i3) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            try {
-                this.f8592a.transact(i3, parcel, obtain, 0);
-                obtain.readException();
-                return obtain;
-            } catch (RuntimeException e10) {
-                obtain.recycle();
-                throw e10;
-            }
-        } finally {
-            parcel.recycle();
-        }
+    public a(ag.a aVar, IBinder iBinder) {
+        this.h = iBinder;
+        this.f8217n = aVar;
     }
 
     @Override
-    public final IBinder asBinder() {
-        return this.f8592a;
+    public final void b() {
+        c cVar = (c) this.f8217n.f1055b;
+        cVar.f8232n = (IInterface) cVar.f8227i.a(this.h);
+        g0 g0Var = cVar.f8222b;
+        int i7 = 0;
+        g0Var.b("linkToDeath", new Object[0]);
+        try {
+            cVar.f8232n.asBinder().linkToDeath(cVar.f8229k, 0);
+        } catch (RemoteException e10) {
+            g0Var.a(e10, "linkToDeath failed", new Object[0]);
+        }
+        cVar.f8226g = false;
+        ArrayList arrayList = cVar.d;
+        int size = arrayList.size();
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            ((Runnable) obj).run();
+        }
+        cVar.d.clear();
     }
 }

@@ -1,22 +1,14 @@
 package org.telegram.ui;
-public final class ko implements Runnable {
-    public final int f46992a;
-    public final mo f46993b;
+public final class ko implements c50 {
+    public final so f47193a;
 
-    public ko(mo moVar, int i3) {
-        this.f46992a = i3;
-        this.f46993b = moVar;
+    public ko(so soVar) {
+        this.f47193a = soVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f46992a) {
-            case 0:
-                this.f46993b.f47718y.d.Q = false;
-                return;
-            default:
-                this.f46993b.f47718y.d.Q = false;
-                return;
-        }
+    public final void e(d50 d50Var, long j3) {
+        so soVar = this.f47193a;
+        soVar.d0(soVar.getMessagesController().M0(Long.valueOf(j3)), d50Var);
     }
 }

@@ -1,20 +1,26 @@
 package q2;
-public final class h {
-    public final r2.k f53680a;
-    public final long f53681b;
-    public final int f53682c;
-    public final boolean d;
+public final class h implements Runnable {
+    public final int f53614a;
+    public final j f53615b;
+    public final Object f53616c;
 
-    public h(r2.k kVar, long j10, int i3) {
-        boolean z10;
-        this.f53680a = kVar;
-        this.f53681b = j10;
-        this.f53682c = i3;
-        if ((kVar instanceof r2.h) && ((r2.h) kVar).f54134y) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public h(j jVar, k kVar, int i7) {
+        this.f53614a = i7;
+        this.f53615b = jVar;
+        this.f53616c = kVar;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f53614a) {
+            case 0:
+                j jVar = this.f53615b;
+                this.f53616c.z(jVar.f53619a, jVar.f53620b);
+                return;
+            default:
+                j jVar2 = this.f53615b;
+                this.f53616c.w(jVar2.f53619a, jVar2.f53620b);
+                return;
         }
-        this.d = z10;
     }
 }

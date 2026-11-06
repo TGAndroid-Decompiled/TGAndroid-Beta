@@ -2,68 +2,86 @@ package ud;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import kotlin.jvm.internal.j;
 public final class b implements Iterator {
-    public final CharSequence f55808a;
-    public int f55809b;
-    public int f55810c;
-    public int d;
-    public int f55811e;
+    public final int f56398a = 0;
+    public final int f56399b;
+    public final int f56400c;
+    public boolean d;
+    public int f56401e;
 
-    public b(CharSequence string) {
-        kotlin.jvm.internal.j.e(string, "string");
-        this.f55808a = string;
+    public b(char c10, char c11, int i7) {
+        boolean z9 = false;
+        this.f56399b = i7;
+        this.f56400c = c11;
+        if (i7 <= 0 ? j.f(c10, c11) >= 0 : j.f(c10, c11) <= 0) {
+            z9 = true;
+        }
+        this.d = z9;
+        this.f56401e = z9 ? c10 : c11;
     }
 
     @Override
     public final boolean hasNext() {
-        int i3;
-        int i10 = this.f55809b;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                return false;
-            }
-            return true;
+        switch (this.f56398a) {
+            case 0:
+                return this.d;
+            default:
+                return this.d;
         }
-        int i11 = 2;
-        if (this.f55811e < 0) {
-            this.f55809b = 2;
-            return false;
-        }
-        CharSequence charSequence = this.f55808a;
-        int length = charSequence.length();
-        int length2 = charSequence.length();
-        for (int i12 = this.f55810c; i12 < length2; i12++) {
-            char charAt = charSequence.charAt(i12);
-            if (charAt == '\n' || charAt == '\r') {
-                i11 = (charAt == '\r' && (i3 = i12 + 1) < charSequence.length() && charSequence.charAt(i3) == '\n') ? 1 : 1;
-                length = i12;
-                this.f55809b = 1;
-                this.f55811e = i11;
-                this.d = length;
-                return true;
-            }
-        }
-        i11 = -1;
-        this.f55809b = 1;
-        this.f55811e = i11;
-        this.d = length;
-        return true;
     }
 
     @Override
     public final Object next() {
-        if (hasNext()) {
-            this.f55809b = 0;
-            int i3 = this.d;
-            int i10 = this.f55810c;
-            this.f55810c = this.f55811e + i3;
-            return this.f55808a.subSequence(i10, i3).toString();
+        switch (this.f56398a) {
+            case 0:
+                int i7 = this.f56401e;
+                if (i7 == this.f56400c) {
+                    if (this.d) {
+                        this.d = false;
+                    } else {
+                        throw new NoSuchElementException();
+                    }
+                } else {
+                    this.f56401e = this.f56399b + i7;
+                }
+                return Character.valueOf((char) i7);
+            default:
+                return Integer.valueOf(nextInt());
         }
-        throw new NoSuchElementException();
+    }
+
+    public int nextInt() {
+        int i7 = this.f56401e;
+        if (i7 == this.f56400c) {
+            if (this.d) {
+                this.d = false;
+                return i7;
+            }
+            throw new NoSuchElementException();
+        }
+        this.f56401e = this.f56399b + i7;
+        return i7;
     }
 
     @Override
     public final void remove() {
-        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        switch (this.f56398a) {
+            case 0:
+                throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+            default:
+                throw new UnsupportedOperationException("Operation is not supported for read-only collection");
+        }
+    }
+
+    public b(int i7, int i10, int i11) {
+        this.f56399b = i11;
+        this.f56400c = i10;
+        boolean z9 = false;
+        if (i11 <= 0 ? i7 >= i10 : i7 <= i10) {
+            z9 = true;
+        }
+        this.d = z9;
+        this.f56401e = z9 ? i7 : i10;
     }
 }

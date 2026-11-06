@@ -1,11 +1,11 @@
 package org.telegram.messenger;
 public final class x7 implements Runnable {
-    public final int f26352a;
-    public final mg.f f26353b;
+    public final int f26433a;
+    public final lg.f f26434b;
 
-    public x7(mg.f fVar, int i3) {
-        this.f26352a = i3;
-        this.f26353b = fVar;
+    public x7(lg.f fVar, int i7) {
+        this.f26433a = i7;
+        this.f26434b = fVar;
     }
 
     @Override

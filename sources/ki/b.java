@@ -1,127 +1,92 @@
 package ki;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.text.SpannableStringBuilder;
 import android.widget.TextView;
-import b8.mf;
-import cg.r;
-import java.util.HashSet;
-import org.telegram.messenger.bd;
+import bi.nc;
+import bi.r;
+import c8.ha;
+import fi.d;
+import hi.u1;
+import ii.g;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.hp;
+import org.telegram.messenger.hd;
 import org.telegram.messenger.m5;
+import org.telegram.messenger.t3;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.z5;
-import org.telegram.ui.Components.k9;
-import org.telegram.ui.Components.u8;
-public final class b extends FrameLayout implements z5 {
-    public final e6 f17315a;
-    public final k9 f17316b;
-    public final TextView f17317c;
-    public final TextView d;
-    public final ImageView f17318e;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.l9;
+import org.telegram.ui.Components.na;
+import org.telegram.ui.Components.oj0;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.w8;
+import org.telegram.ui.Components.wp;
+public final class b extends na {
+    public final nc P1;
+    public f41 Q1;
 
-    public b(Context context, e6 e6Var) {
-        super(context);
-        this.f17315a = e6Var;
-        k9 k9Var = new k9(context);
-        this.f17316b = k9Var;
-        k9Var.setRoundRadius(g0.L(7.3125f));
-        addView(k9Var, mf.d(26, 26.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        linearLayout.setGravity(16);
-        TextView textView = new TextView(context);
-        this.f17317c = textView;
-        textView.setTextSize(1, 16.0f);
-        textView.setSingleLine(true);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        linearLayout.addView(textView, mf.o(-1, -2));
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setTextSize(1, 13.0f);
-        textView2.setSingleLine(true);
-        textView2.setEllipsize(truncateAt);
-        linearLayout.addView(textView2, mf.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
-        addView(linearLayout, mf.d(-1, -2.0f, 19, 58.0f, 0.0f, 48.0f, 1.0f));
-        ImageView imageView = new ImageView(context);
-        this.f17318e = imageView;
-        imageView.setImageResource(2131232189);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView(imageView, mf.d(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
-        updateColors();
-    }
-
-    public final void a(int i3, TLRPC.Chat chat) {
+    public b(Context context, TLRPC.Chat chat, Runnable runnable) {
+        super(context, (f6) null, false);
+        int i7;
         int i10;
-        if (chat == null) {
-            return;
-        }
-        TLRPC.ChatFull N0 = hp.s1(i3).N0(chat.f27001id);
-        setTitle(m5.u(chat));
-        if (N0 != null) {
-            i10 = N0.linked_peers.size();
+        this.B1 = g0.L(30.0f);
+        pj0 pj0Var = this.f36328k1;
+        int i11 = this.f28645t0;
+        pj0Var.setPadding(i11, 0, i11, g0.L(130.0f) + g0.f22532n);
+        this.f36328k1.setClipToPadding(false);
+        d dVar = new d(context, this.I0, true);
+        dVar.setText(hd.M0(2131752589, null));
+        dVar.e();
+        dVar.f();
+        dVar.setOnClickListener(new g(this, 9));
+        boolean V = t3.V(chat);
+        d dVar2 = new d(context, this.I0, true);
+        if (V) {
+            i7 = 2131751924;
         } else {
-            i10 = 0;
+            i7 = 2131751922;
         }
-        setSubtitle(bd.G(i10, "CommunityWithChats", new Object[0]));
-        this.f17316b.e(chat, new u8(chat));
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f28290z6));
-        hashSet.add(Integer.valueOf(k6.G6));
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Paint paint;
-        Drawable drawable = k6.S0;
-        k9 k9Var = this.f17316b;
-        r.a(canvas, drawable, (k9Var.getWidth() / 2.0f) + k9Var.getLeft(), (k9Var.getHeight() / 2.0f) + k9Var.getTop(), k9Var.getHeight());
-        super.dispatchDraw(canvas);
-        e6 e6Var = this.f17315a;
-        if (e6Var != null) {
-            paint = e6Var.d("paintDivider");
+        dVar2.setText(hd.M0(i7, null));
+        dVar2.f();
+        dVar2.setOnClickListener(new r(21, this, runnable));
+        nc ncVar = new nc(context, 3);
+        TextView textView = (TextView) ncVar.d;
+        TextView textView2 = (TextView) ncVar.f4436c;
+        this.P1 = ncVar;
+        ncVar.setPadding(g0.L(20.0f), 0, g0.L(20.0f), g0.L(17.0f));
+        ((l9) ncVar.f4435b).e(chat, new w8(chat));
+        textView2.setText(m5.m(chat));
+        int i12 = k6.G6;
+        r6.V(textView2, i12, this.I0);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        spannableStringBuilder.append((CharSequence) "* ");
+        spannableStringBuilder.setSpan(new wp(2131231942, 0), 0, 1, 33);
+        if (V) {
+            i10 = 2131751925;
         } else {
-            paint = null;
+            i10 = 2131751923;
         }
-        if (paint == null) {
-            paint = k6.f28002k0;
-        }
-        canvas.drawLine(g0.L(58.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
+        spannableStringBuilder.append((CharSequence) hd.M0(i10, null));
+        r6.V(textView, i12, this.I0);
+        textView.setText(spannableStringBuilder);
+        this.f28615b.addView(dVar2, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28645t0, 0, g0.L(12.0f) + this.f28645t0, g0.L(70.0f) + g0.f22532n));
+        this.f28615b.addView(dVar, ha.f(48.0f, -1, 80, g0.L(12.0f) + this.f28645t0, 0, g0.L(12.0f) + this.f28645t0, g0.L(12.0f) + g0.f22532n));
+        this.Q1.O(false);
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(g0.L(56.0f), 1073741824));
-    }
-
-    public void setSubtitle(CharSequence charSequence) {
-        this.d.setText(charSequence);
-    }
-
-    public void setTitle(CharSequence charSequence) {
-        this.f17317c.setText(charSequence);
+    public final oj0 L0(pj0 pj0Var) {
+        f41 f41Var = new f41(this.f36328k1, getContext(), this.f28612a, 0, true, new u1(this, 15), this.I0);
+        this.Q1 = f41Var;
+        f41Var.f33473r = false;
+        return f41Var;
     }
 
     @Override
-    public final void updateColors() {
-        int i3 = k6.f28290z6;
-        e6 e6Var = this.f17315a;
-        this.f17318e.setColorFilter(k6.w0(i3, e6Var));
-        this.f17317c.setTextColor(k6.w0(k6.G6, e6Var));
-        this.d.setTextColor(k6.w0(i3, e6Var));
+    public final CharSequence O0() {
+        return null;
     }
 }

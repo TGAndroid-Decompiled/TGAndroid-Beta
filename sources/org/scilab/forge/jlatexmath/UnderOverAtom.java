@@ -10,24 +10,24 @@ public class UnderOverAtom extends Atom {
     private final float underSpace;
     private final int underUnit;
 
-    public UnderOverAtom(Atom atom, Atom atom2, int i3, float f10, boolean z10, boolean z11) {
-        SpaceAtom.checkUnit(i3);
+    public UnderOverAtom(Atom atom, Atom atom2, int i7, float f10, boolean z9, boolean z10) {
+        SpaceAtom.checkUnit(i7);
         this.base = atom;
-        if (z11) {
+        if (z10) {
             this.under = null;
             this.underSpace = 0.0f;
             this.underUnit = 0;
             this.underScriptSize = false;
             this.over = atom2;
-            this.overUnit = i3;
+            this.overUnit = i7;
             this.overSpace = f10;
-            this.overScriptSize = z10;
+            this.overScriptSize = z9;
             return;
         }
         this.under = atom2;
-        this.underUnit = i3;
+        this.underUnit = i7;
         this.underSpace = f10;
-        this.underScriptSize = z10;
+        this.underScriptSize = z9;
         this.overSpace = 0.0f;
         this.over = null;
         this.overUnit = 0;
@@ -105,17 +105,17 @@ public class UnderOverAtom extends Atom {
         return this.base.getRightType();
     }
 
-    public UnderOverAtom(Atom atom, Atom atom2, int i3, float f10, boolean z10, Atom atom3, int i10, float f11, boolean z11) {
-        SpaceAtom.checkUnit(i3);
+    public UnderOverAtom(Atom atom, Atom atom2, int i7, float f10, boolean z9, Atom atom3, int i10, float f11, boolean z10) {
+        SpaceAtom.checkUnit(i7);
         SpaceAtom.checkUnit(i10);
         this.base = atom;
         this.under = atom2;
-        this.underUnit = i3;
+        this.underUnit = i7;
         this.underSpace = f10;
-        this.underScriptSize = z10;
+        this.underScriptSize = z9;
         this.over = atom3;
         this.overUnit = i10;
         this.overSpace = f11;
-        this.overScriptSize = z11;
+        this.overScriptSize = z10;
     }
 }

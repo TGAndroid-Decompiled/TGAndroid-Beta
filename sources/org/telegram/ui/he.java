@@ -1,48 +1,89 @@
 package org.telegram.ui;
 
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import android.app.Activity;
+import android.net.Uri;
+import android.text.TextUtils;
 public final class he implements Runnable {
-    public final int f45907a = 0;
-    public final wm f45908b;
-    public final org.telegram.messenger.hp f45909c;
-    public final CharSequence d;
-    public final boolean f45910e;
+    public final int f46335a;
+    public final an f46336b;
+    public final String f46337c;
 
-    public he(wm wmVar, CharSequence charSequence, org.telegram.messenger.hp hpVar, boolean z10) {
-        this.f45908b = wmVar;
-        this.d = charSequence;
-        this.f45909c = hpVar;
-        this.f45910e = z10;
+    public he(an anVar, String str, int i7) {
+        this.f46335a = i7;
+        this.f46336b = anVar;
+        this.f46337c = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f45907a) {
+        int i7 = this.f46335a;
+        String str = this.f46337c;
+        an anVar = this.f46336b;
+        switch (i7) {
             case 0:
-                wm.N0(this.f45908b, this.d, this.f45909c, this.f45910e);
+                an.x1(anVar, str);
+                return;
+            case 1:
+                an.W0(anVar, str);
+                return;
+            case 2:
+                g4.d(str, anVar.currentAccount, anVar.l1, null, anVar.f43998xa);
+                return;
+            case 3:
+                if (str != null) {
+                    anVar.getClass();
+                    if (str.length() != 0) {
+                        anVar.getMessagesController().A4(str, anVar.f43761f);
+                        return;
+                    }
+                }
+                anVar.getSendMessagesHelper().r0(org.telegram.messenger.ez.b("/start", anVar.f43818j6, null, null, null, false, null, null, null, true, 0, 0, null, false));
+                return;
+            case 4:
+                anVar.La(str);
+                return;
+            case 5:
+                anVar.Da(str, false);
+                return;
+            case 6:
+                anVar.getClass();
+                anVar.presentFragment(new org.telegram.ui.Wallet.n9(str));
+                return;
+            case 7:
+                String str2 = anVar.getMessagesController().H6;
+                if (TextUtils.isEmpty(str2)) {
+                    str2 = "https://tonviewer.com/";
+                } else if (!str2.endsWith("/")) {
+                    str2 = str2.concat("/");
+                }
+                Activity parentActivity = anVar.getParentActivity();
+                StringBuilder m10 = com.google.android.recaptcha.internal.a.m(str2);
+                m10.append(Uri.encode(str));
+                vf.c.v(parentActivity, m10.toString(), false);
+                return;
+            case 8:
+                Activity parentActivity2 = anVar.getParentActivity();
+                vf.c.t(parentActivity2, "tel:" + str);
+                return;
+            case 9:
+                org.telegram.messenger.g0.g(str);
+                org.telegram.messenger.camera.q.r(null, 2131747294, org.telegram.ui.Components.hc.a0(anVar));
+                return;
+            case 10:
+                an.l1(anVar, str);
+                return;
+            case 11:
+                Activity parentActivity3 = anVar.getParentActivity();
+                vf.c.t(parentActivity3, "tel:" + str);
+                return;
+            case 12:
+                org.telegram.messenger.g0.g(str);
+                org.telegram.messenger.camera.q.r(null, 2131747294, org.telegram.ui.Components.hc.a0(anVar));
                 return;
             default:
-                wm wmVar = this.f45908b;
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, wmVar.getParentActivity(), wmVar.f51557ya);
-                String M0 = org.telegram.messenger.bd.M0(2131689472, null);
-                org.telegram.ui.ActionBar.s1 s1Var = alertDialog$Builder.f27343a;
-                s1Var.S = M0;
-                String M02 = org.telegram.messenger.bd.M0(2131747839, null);
-                org.telegram.messenger.hp hpVar = this.f45909c;
-                alertDialog$Builder.k(M02, new ga.b(wmVar, hpVar, this.d, this.f45910e, 3));
-                alertDialog$Builder.h(org.telegram.messenger.bd.M0(2131752589, null), null);
-                s1Var.U = org.telegram.messenger.bd.M0(2131745695, null);
-                wmVar.showDialog(s1Var);
-                hpVar.H2 = 0;
-                org.telegram.messenger.hp.e1().edit().putInt("secretWebpage2", hpVar.H2).commit();
+                Activity parentActivity4 = anVar.getParentActivity();
+                vf.c.t(parentActivity4, "https://fragment.com/username/" + str);
                 return;
         }
-    }
-
-    public he(wm wmVar, org.telegram.messenger.hp hpVar, CharSequence charSequence, boolean z10) {
-        this.f45908b = wmVar;
-        this.f45909c = hpVar;
-        this.d = charSequence;
-        this.f45910e = z10;
     }
 }

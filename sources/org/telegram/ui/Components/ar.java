@@ -6,21 +6,21 @@ import android.graphics.Rect;
 import android.text.TextPaint;
 import android.view.View;
 import java.util.HashSet;
-public final class ar extends View implements org.telegram.ui.ActionBar.z5 {
-    public final TextPaint f31978a;
-    public final TextPaint f31979b;
-    public final String f31980c;
+public final class ar extends View implements org.telegram.ui.ActionBar.a6 {
+    public final TextPaint f31876a;
+    public final TextPaint f31877b;
+    public final String f31878c;
     public final String d;
-    public final Rect f31981e;
+    public final Rect f31879e;
 
     public ar(Context context, String str, String str2) {
         super(context);
         TextPaint textPaint = new TextPaint(1);
-        this.f31978a = textPaint;
+        this.f31876a = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f31979b = textPaint2;
-        this.f31981e = new Rect();
-        this.f31980c = str;
+        this.f31877b = textPaint2;
+        this.f31879e = new Rect();
+        this.f31878c = str;
         this.d = str2;
         textPaint.setTextSize(org.telegram.messenger.g0.L(24.0f));
         textPaint2.setTextSize(org.telegram.messenger.g0.L(14.0f));
@@ -30,14 +30,14 @@ public final class ar extends View implements org.telegram.ui.ActionBar.z5 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.f31979b;
+        TextPaint textPaint = this.f31877b;
         String str = this.d;
         float measureText = textPaint.measureText(str);
-        TextPaint textPaint2 = this.f31978a;
-        String str2 = this.f31980c;
+        TextPaint textPaint2 = this.f31876a;
+        String str2 = this.f31878c;
         float measureText2 = textPaint2.measureText(str2);
         int length = str2.length();
-        Rect rect = this.f31981e;
+        Rect rect = this.f31879e;
         textPaint2.getTextBounds(str2, 0, length, rect);
         textPaint.getTextBounds(str, 0, str.length(), rect);
         canvas.drawText(str2, (getWidth() * 0.25f) - (measureText2 / 2.0f), (getHeight() / 2.0f) + (rect.height() / 2.0f), textPaint2);
@@ -46,8 +46,8 @@ public final class ar extends View implements org.telegram.ui.ActionBar.z5 {
 
     @Override
     public final void updateColors() {
-        this.f31978a.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false));
-        this.f31979b.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.H6, false));
+        this.f31876a.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false));
+        this.f31877b.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.H6, false));
         invalidate();
     }
 

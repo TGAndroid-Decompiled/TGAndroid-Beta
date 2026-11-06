@@ -1,50 +1,35 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.content.res.Configuration;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.a8;
-public final class j2 extends q2 {
-    public final t2 I;
+import android.content.DialogInterface;
+public final class j2 implements DialogInterface.OnDismissListener {
+    public final int f27607a;
+    public final Runnable f27608b;
 
-    public j2(t2 t2Var, Context context) {
-        super(t2Var, context);
-        this.I = t2Var;
+    public j2(int i7, Runnable runnable) {
+        this.f27607a = i7;
+        this.f27608b = runnable;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        this.I.Z(canvas);
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        try {
-            return super.drawChild(canvas, view, j10);
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            return true;
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f27607a) {
+            case 0:
+                this.f27608b.run();
+                return;
+            case 1:
+                Runnable runnable = this.f27608b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            default:
+                Runnable runnable2 = this.f27608b;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        setTag(2131296351, new ai.y(7));
-    }
-
-    @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        t2 t2Var = this.I;
-        t2Var.h = null;
-        t2Var.f28589c.requestApplyInsets();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        setTag(2131296351, null);
     }
 }

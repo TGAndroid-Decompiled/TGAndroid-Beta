@@ -1,48 +1,89 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import org.telegram.tgnet.TLObject;
-public final class v60 implements Runnable {
-    public final int f50405a = 1;
-    public final LaunchActivity f50406b;
-    public final byte[] f50407c;
-    public final int d;
-    public final Integer f50408e;
-    public final String f50409f;
-    public final int h;
-    public final long f50410n;
-    public final Object f50411r;
-    public final Object f50412s;
-    public final Object f50413w;
+import org.telegram.tgnet.tl.TL_stories;
+public final class v60 implements org.telegram.messenger.c20 {
+    public final int f50571a;
+    public final LaunchActivity f50572b;
+    public final q10 f50573c;
+    public final Long d;
 
-    public v60(LaunchActivity launchActivity, Bundle bundle, byte[] bArr, int i3, Integer num, String str, int i10, long j10, k0 k0Var, org.telegram.ui.ActionBar.d2 d2Var) {
-        this.f50406b = launchActivity;
-        this.f50411r = bundle;
-        this.f50407c = bArr;
-        this.d = i3;
-        this.f50408e = num;
-        this.f50409f = str;
-        this.h = i10;
-        this.f50410n = j10;
-        this.f50412s = k0Var;
-        this.f50413w = d2Var;
+    public v60(LaunchActivity launchActivity, q10 q10Var, Long l10, int i7) {
+        this.f50571a = i7;
+        this.f50572b = launchActivity;
+        this.f50573c = q10Var;
+        this.d = l10;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.v60.run():void");
-    }
-
-    public v60(LaunchActivity launchActivity, TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j10, Runnable runnable, String str, int i3, int i10) {
-        this.f50406b = launchActivity;
-        this.f50411r = tLObject;
-        this.f50408e = num;
-        this.f50412s = num2;
-        this.f50407c = bArr;
-        this.f50410n = j10;
-        this.f50413w = runnable;
-        this.f50409f = str;
-        this.d = i3;
-        this.h = i10;
+    public final void a(Object obj) {
+        int i7 = this.f50571a;
+        Long l10 = this.d;
+        q10 q10Var = this.f50573c;
+        LaunchActivity launchActivity = this.f50572b;
+        TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
+        switch (i7) {
+            case 0:
+                String str = LaunchActivity.B1;
+                try {
+                    q10Var.run();
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                }
+                org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
+                if (storyItem == null) {
+                    org.telegram.ui.Components.hc X = org.telegram.ui.Components.hc.X();
+                    if (X != null) {
+                        org.telegram.messenger.k5.o(null, 2131744607, X, 2131624236, 36);
+                        return;
+                    }
+                    return;
+                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
+                    org.telegram.ui.Components.hc X2 = org.telegram.ui.Components.hc.X();
+                    if (X2 != null) {
+                        org.telegram.messenger.k5.o(null, 2131744607, X2, 2131624235, 36);
+                        return;
+                    }
+                    return;
+                } else if (Q != null) {
+                    storyItem.dialogId = l10.longValue();
+                    di.p9 createOverlayStoryViewer = Q.createOverlayStoryViewer();
+                    createOverlayStoryViewer.B();
+                    createOverlayStoryViewer.L(launchActivity, storyItem, null);
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                String str2 = LaunchActivity.B1;
+                try {
+                    q10Var.run();
+                } catch (Exception e11) {
+                    org.telegram.messenger.a8.g(e11, true);
+                }
+                org.telegram.ui.ActionBar.f2 Q2 = LaunchActivity.Q();
+                if (storyItem == null) {
+                    org.telegram.ui.Components.hc X3 = org.telegram.ui.Components.hc.X();
+                    if (X3 != null) {
+                        org.telegram.messenger.k5.o(null, 2131744607, X3, 2131624236, 36);
+                        return;
+                    }
+                    return;
+                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
+                    org.telegram.ui.Components.hc X4 = org.telegram.ui.Components.hc.X();
+                    if (X4 != null) {
+                        org.telegram.messenger.k5.o(null, 2131744607, X4, 2131624235, 36);
+                        return;
+                    }
+                    return;
+                } else if (Q2 != null) {
+                    storyItem.dialogId = l10.longValue();
+                    di.p9 createOverlayStoryViewer2 = Q2.createOverlayStoryViewer();
+                    createOverlayStoryViewer2.B();
+                    createOverlayStoryViewer2.L(launchActivity, storyItem, null);
+                    return;
+                } else {
+                    return;
+                }
+        }
     }
 }

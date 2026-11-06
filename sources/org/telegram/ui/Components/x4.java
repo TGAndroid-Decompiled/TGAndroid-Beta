@@ -1,93 +1,50 @@
 package org.telegram.ui.Components;
 
-import android.animation.TimeInterpolator;
-import android.os.SystemClock;
 import android.view.View;
-public final class x4 {
-    public final View f40215a;
-    public final Runnable f40216b;
-    public int f40217c;
-    public int d;
-    public boolean f40218e;
-    public final long f40219f;
-    public final TimeInterpolator f40220g;
-    public boolean h;
-    public long f40221i;
-    public int f40222j;
+import android.widget.FrameLayout;
+public final class x4 extends FrameLayout {
+    public boolean f40144a;
+    public int f40145b;
+    public j6 f40146c;
+    public j6 d;
 
-    public x4(View view) {
-        this.f40219f = 200L;
-        this.f40220g = xq.f40452f;
-        this.f40215a = view;
-        this.f40218e = true;
+    public j6 getSubtitleTextView() {
+        return this.d;
     }
 
-    public final int a(int i3, boolean z10) {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j10 = this.f40219f;
-        if (!z10 && j10 > 0 && !this.f40218e) {
-            if (this.d != i3) {
-                this.h = true;
-                this.d = i3;
-                this.f40222j = this.f40217c;
-                this.f40221i = elapsedRealtime;
-            }
+    public j6 getTitle() {
+        return this.f40146c;
+    }
+
+    @Override
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        int i13;
+        j6 j6Var = this.d;
+        j6 j6Var2 = this.f40146c;
+        int y10 = org.telegram.messenger.camera.q.y(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
+        if (this.f40144a) {
+            i13 = org.telegram.messenger.g0.f22531m;
         } else {
-            this.d = i3;
-            this.f40217c = i3;
-            this.h = false;
-            this.f40218e = false;
+            i13 = 0;
         }
-        if (this.h) {
-            float a10 = b8.be.a(((float) (elapsedRealtime - this.f40221i)) / ((float) j10), 0.0f, 1.0f);
-            if (elapsedRealtime - this.f40221i >= 0) {
-                TimeInterpolator timeInterpolator = this.f40220g;
-                if (timeInterpolator == null) {
-                    this.f40217c = i0.a.f(a10, this.f40222j, this.d);
-                } else {
-                    this.f40217c = i0.a.f(timeInterpolator.getInterpolation(a10), this.f40222j, this.d);
-                }
-            }
-            if (a10 >= 1.0f) {
-                this.h = false;
-            } else {
-                View view = this.f40215a;
-                if (view != null) {
-                    view.invalidate();
-                }
-                Runnable runnable = this.f40216b;
-                if (runnable != null) {
-                    runnable.run();
-                }
-            }
+        int i14 = y10 + i13;
+        int i15 = this.f40145b;
+        if (j6Var.getVisibility() != 8) {
+            j6Var2.layout(i15, (org.telegram.messenger.g0.L(1.0f) + i14) - j6Var2.getPaddingTop(), j6Var2.getMeasuredWidth() + i15, j6Var2.getPaddingBottom() + ((org.telegram.messenger.g0.L(1.3f) + (j6Var2.getTextHeight() + i14)) - j6Var2.getPaddingTop()));
+        } else {
+            j6Var2.layout(i15, (org.telegram.messenger.g0.L(11.0f) + i14) - j6Var2.getPaddingTop(), j6Var2.getMeasuredWidth() + i15, j6Var2.getPaddingBottom() + ((org.telegram.messenger.g0.L(11.0f) + (j6Var2.getTextHeight() + i14)) - j6Var2.getPaddingTop()));
         }
-        return this.f40217c;
+        j6Var.layout(i15, org.telegram.messenger.g0.L(20.0f) + i14, j6Var.getMeasuredWidth() + i15, org.telegram.messenger.g0.L(24.0f) + j6Var.getTextHeight() + i14);
     }
 
-    public x4(View view, long j10, TimeInterpolator timeInterpolator) {
-        this.f40219f = 200L;
-        xq xqVar = xq.f40452f;
-        this.f40215a = view;
-        this.f40219f = j10;
-        this.f40220g = timeInterpolator;
-        this.f40218e = true;
-    }
-
-    public x4(View view, long j10, TimeInterpolator timeInterpolator, int i3) {
-        this.f40219f = 200L;
-        xq xqVar = xq.f40452f;
-        this.f40215a = view;
-        this.f40219f = j10;
-        this.f40220g = timeInterpolator;
-        this.f40218e = true;
-    }
-
-    public x4(Runnable runnable, long j10, TimeInterpolator timeInterpolator) {
-        this.f40219f = 200L;
-        xq xqVar = xq.f40452f;
-        this.f40216b = runnable;
-        this.f40219f = j10;
-        this.f40220g = timeInterpolator;
-        this.f40218e = true;
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int size = View.MeasureSpec.getSize(i7);
+        j6 j6Var = this.f40146c;
+        int paddingRight = j6Var.getPaddingRight() + size;
+        int L = paddingRight - org.telegram.messenger.g0.L(16.0f);
+        j6Var.measure(View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(j6Var.getPaddingRight() + org.telegram.messenger.g0.L(32.0f), Integer.MIN_VALUE));
+        this.d.measure(View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(20.0f), Integer.MIN_VALUE));
+        setMeasuredDimension(paddingRight, View.MeasureSpec.getSize(i10));
     }
 }

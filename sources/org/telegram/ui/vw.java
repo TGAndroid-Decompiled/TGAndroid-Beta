@@ -1,36 +1,154 @@
 package org.telegram.ui;
-public final class vw implements org.telegram.messenger.x5 {
-    public long f50621a;
-    public long f50622b;
-    public final String f50623c;
-    public final ww d;
 
-    public vw(ww wwVar, String str) {
-        this.d = wwVar;
-        this.f50623c = str;
+import android.content.Context;
+import android.widget.FrameLayout;
+public final class vw extends FrameLayout {
+    public static final int L = 0;
+    public org.telegram.ui.Components.si0 D;
+    public boolean E;
+    public qv F;
+    public jg.n G;
+    public boolean H;
+    public final bv I;
+    public final bv J;
+    public final ww K;
+    public sw f50833a;
+    public a8.wa f50834b;
+    public cv f50835c;
+    public gv d;
+    public v4.y f50836e;
+    public uw f50837f;
+    public int h;
+    public fv f50838n;
+    public org.telegram.ui.Components.ri0 f50839r;
+    public int f50840s;
+    public int f50841w;
+    public org.telegram.ui.Components.lz f50842x;
+    public av f50843y;
+
+    public vw(Context context, ww wwVar) {
+        super(context);
+        this.K = wwVar;
+        this.I = new bv(this, 1);
+        this.J = new bv(this, 2);
+    }
+
+    public static void a(vw vwVar, cv cvVar) {
+        vwVar.f50835c = cvVar;
+    }
+
+    public static v4.y b(vw vwVar) {
+        return vwVar.f50836e;
+    }
+
+    public static void c(vw vwVar, v4.y yVar) {
+        vwVar.f50836e = yVar;
+    }
+
+    public static int d(vw vwVar) {
+        return vwVar.f50841w;
+    }
+
+    public static void e(vw vwVar, int i7) {
+        vwVar.f50841w = i7;
+    }
+
+    public static void f(vw vwVar, org.telegram.ui.Components.lz lzVar) {
+        vwVar.f50842x = lzVar;
+    }
+
+    public static uw g(vw vwVar) {
+        return vwVar.f50837f;
+    }
+
+    public static void h(vw vwVar, uw uwVar) {
+        vwVar.f50837f = uwVar;
+    }
+
+    public static void i(vw vwVar, av avVar) {
+        vwVar.f50843y = avVar;
+    }
+
+    public static void j(vw vwVar, org.telegram.ui.Components.si0 si0Var) {
+        vwVar.D = si0Var;
+    }
+
+    public static void k(vw vwVar, org.telegram.ui.Components.ri0 ri0Var) {
+        vwVar.f50839r = ri0Var;
+    }
+
+    public static void l(vw vwVar, int i7) {
+        vwVar.f50840s = i7;
+    }
+
+    public static jg.n m(vw vwVar) {
+        return vwVar.d;
+    }
+
+    public static void n(vw vwVar, gv gvVar) {
+        vwVar.d = gvVar;
+    }
+
+    public static void o(vw vwVar, fv fvVar) {
+        vwVar.f50838n = fvVar;
     }
 
     @Override
-    public final int getObserverTag() {
-        return 0;
+    public final void onMeasure(int i7, int i10) {
+        ((FrameLayout.LayoutParams) this.f50833a.getLayoutParams()).bottomMargin = 0;
+        super.onMeasure(i7, i10);
+    }
+
+    public final boolean p() {
+        int i7 = this.f50840s;
+        if (i7 != 0 && i7 != 7 && i7 != 8) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void q(boolean z9) {
+        boolean z10;
+        z10 = ((org.telegram.ui.ActionBar.f2) this.K).isPaused;
+        if (!z10) {
+            bv bvVar = this.J;
+            if (z9) {
+                org.telegram.messenger.g0.r(bvVar);
+                this.f50833a.setItemAnimator(this.f50843y);
+                bvVar.run();
+            } else if (this.H) {
+            } else {
+                this.H = true;
+                if (!this.f50843y.k()) {
+                    this.f50833a.setItemAnimator(null);
+                }
+                org.telegram.messenger.g0.i3(bvVar, 36L);
+            }
+        }
     }
 
     @Override
-    public final void i(long j10, long j11) {
-        this.f50622b = j10;
-        this.f50621a = j11;
-        this.d.b();
+    public void setTranslationX(float f10) {
+        oi.q qVar;
+        vw vwVar;
+        if (getTranslationX() != f10) {
+            super.setTranslationX(f10);
+            ww wwVar = this.K;
+            if (wwVar.f51553h3 && (vwVar = wwVar.f51534e0[0]) == this) {
+                wwVar.f51639z0.g(Math.abs(vwVar.getTranslationX()) / wwVar.f51534e0[0].getMeasuredWidth(), wwVar.f51534e0[1].h);
+            }
+            qVar = ((org.telegram.ui.ActionBar.f2) wwVar).glassEngine;
+            qVar.g();
+        }
     }
 
     @Override
-    public final void C(boolean z10) {
-    }
-
-    @Override
-    public final void M(String str) {
-    }
-
-    @Override
-    public final void o(long j10, long j11) {
+    public void setTranslationY(float f10) {
+        oi.q qVar;
+        if (getTranslationY() != f10) {
+            qVar = ((org.telegram.ui.ActionBar.f2) this.K).glassEngine;
+            qVar.g();
+        }
+        super.setTranslationY(f10);
     }
 }

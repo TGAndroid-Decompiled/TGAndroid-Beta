@@ -1,27 +1,72 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.ViewTreeObserver;
-import org.telegram.ui.Components.xq;
-public final class j0 implements ViewTreeObserver.OnPreDrawListener {
-    public final float f27649a;
-    public final q0 f27650b;
+import android.transition.Transition;
+import android.widget.FrameLayout;
+import org.telegram.ui.Components.r00;
+public final class j0 implements Transition.TransitionListener {
+    public final int f27603a;
+    public final FrameLayout f27604b;
 
-    public j0(q0 q0Var, float f10) {
-        this.f27650b = q0Var;
-        this.f27649a = f10;
+    public j0(int i7, FrameLayout frameLayout) {
+        this.f27603a = i7;
+        this.f27604b = frameLayout;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        q0 q0Var = this.f27650b;
-        q0Var.f28445e.getViewTreeObserver().removeOnPreDrawListener(this);
-        float x10 = q0Var.f28445e.getX();
-        float f10 = this.f27649a;
-        if (x10 != f10) {
-            bh.g gVar = q0Var.f28445e;
-            gVar.setTranslationX(f10 - gVar.getX());
+    public final void onTransitionCancel(Transition transition) {
+        switch (this.f27603a) {
+            case 0:
+                ((r0) this.f27604b).f28431i0.e();
+                return;
+            default:
+                ((r00) this.f27604b).E.e();
+                return;
         }
-        q0Var.f28445e.animate().translationX(0.0f).setDuration(250L).setStartDelay(0L).setInterpolator(xq.f40452f).start();
-        return true;
+    }
+
+    @Override
+    public final void onTransitionEnd(Transition transition) {
+        switch (this.f27603a) {
+            case 0:
+                ((r0) this.f27604b).f28431i0.e();
+                return;
+            default:
+                ((r00) this.f27604b).E.e();
+                return;
+        }
+    }
+
+    @Override
+    public final void onTransitionPause(Transition transition) {
+        int i7 = this.f27603a;
+    }
+
+    @Override
+    public final void onTransitionResume(Transition transition) {
+        int i7 = this.f27603a;
+    }
+
+    @Override
+    public final void onTransitionStart(Transition transition) {
+        switch (this.f27603a) {
+            case 0:
+                ((r0) this.f27604b).f28431i0.d();
+                return;
+            default:
+                ((r00) this.f27604b).E.d();
+                return;
+        }
+    }
+
+    private final void a(Transition transition) {
+    }
+
+    private final void b(Transition transition) {
+    }
+
+    private final void c(Transition transition) {
+    }
+
+    private final void d(Transition transition) {
     }
 }

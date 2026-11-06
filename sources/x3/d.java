@@ -1,208 +1,94 @@
 package x3;
 
-import d2.s0;
-import e3.i0;
-import e3.k;
-import e3.n;
-import e3.o;
-import e3.p;
-import e3.q;
-import e3.w;
-import e3.z;
-import g2.y;
-import g9.g0;
-import g9.s1;
-import java.io.EOFException;
+import android.util.SparseArray;
+import f3.b0;
+import f3.c0;
+import f3.d0;
+import f3.j;
+import java.util.Arrays;
 import java.util.List;
-public final class d implements o {
-    public final int f58183a;
-    public final long f58184b;
-    public final y f58185c;
-    public final z d;
-    public final w f58186e;
-    public final bb.c f58187f;
-    public final n f58188g;
-    public q h;
-    public i0 f58189i;
-    public i0 f58190j;
-    public int f58191k;
-    public s0 f58192l;
-    public s0 f58193m;
-    public long f58194n;
-    public long f58195o;
-    public long f58196p;
-    public long f58197q;
-    public int f58198r;
-    public h f58199s;
-    public boolean f58200t;
-    public boolean f58201u;
-    public long v;
+public final class d implements c0 {
+    public final j f58430a;
+    public final SparseArray f58431b;
+    public final long f58432c;
+    public final int d;
 
-    public d(int i3) {
-        this(i3, -9223372036854775807L);
-    }
-
-    @Override
-    public final boolean b(p pVar) {
-        return j(pVar, true);
-    }
-
-    @Override
-    public final void c(q qVar) {
-        this.h = qVar;
-        i0 i02 = qVar.i0(0, 1);
-        this.f58189i = i02;
-        this.f58190j = i02;
-        this.h.L();
-    }
-
-    @Override
-    public final void d(long j10, long j11) {
-        this.f58191k = 0;
-        this.f58194n = -9223372036854775807L;
-        this.f58195o = 0L;
-        this.f58198r = 0;
-        this.f58197q = -1L;
-        this.v = j11;
-        if (!(this.f58199s instanceof b)) {
-            return;
-        }
-        throw null;
-    }
-
-    @Override
-    public final List e() {
-        g0 g0Var = g9.i0.f12083b;
-        return s1.f12146e;
-    }
-
-    @Override
-    public final int f(e3.p r52, e3.s r53) {
-        throw new UnsupportedOperationException("Method not decompiled: x3.d.f(e3.p, e3.s):int");
-    }
-
-    public final a g(p pVar, boolean z10) {
-        y yVar = this.f58185c;
-        pVar.c(0, 4, yVar.f11923a);
-        yVar.N(0);
-        int m10 = yVar.m();
-        z zVar = this.d;
-        zVar.a(m10);
-        return new a(pVar.getLength(), pVar.getPosition(), zVar.f9543e, zVar.f9541b, z10, true);
-    }
-
-    public final void h() {
-        h hVar = this.f58199s;
-        if ((hVar instanceof a) && ((k) hVar).d()) {
-            long j10 = this.f58197q;
-            if (j10 != -1 && j10 != this.f58199s.a()) {
-                a aVar = (a) this.f58199s;
-                this.f58199s = new a(this.f58197q, aVar.f58175i, aVar.f58176j, aVar.f58177k, aVar.f58178l, false);
-                q qVar = this.h;
-                qVar.getClass();
-                qVar.f(this.f58199s);
-                i0 i0Var = this.f58189i;
-                i0Var.getClass();
-                i0Var.b(this.f58199s.h());
-            }
-        }
-    }
-
-    public final boolean i(e3.p r9) {
-        throw new UnsupportedOperationException("Method not decompiled: x3.d.i(e3.p):boolean");
-    }
-
-    public final boolean j(p pVar, boolean z10) {
-        int i3;
+    public d(SparseArray sparseArray, long j3, int i7, long j10, long j11) {
+        j jVar;
         int i10;
-        int h;
-        pVar.o();
-        if (pVar.getPosition() == 0) {
-            s0 h7 = this.f58187f.h(pVar, null, 131072);
-            this.f58192l = h7;
-            if (h7 != null) {
-                this.f58186e.b(h7);
+        this.f58431b = sparseArray;
+        this.f58432c = j3;
+        this.d = i7;
+        List list = (List) sparseArray.get(i7);
+        if (list != null && !list.isEmpty()) {
+            int size = list.size();
+            int[] iArr = new int[size];
+            long[] jArr = new long[size];
+            long[] jArr2 = new long[size];
+            long[] jArr3 = new long[size];
+            int i11 = 0;
+            for (int i12 = 0; i12 < size; i12++) {
+                c cVar = (c) list.get(i12);
+                jArr3[i12] = cVar.f58427a;
+                jArr[i12] = cVar.f58428b;
             }
-            i3 = (int) pVar.k();
-            if (!z10) {
-                pVar.u(i3);
-            }
-            i10 = 0;
-        } else {
-            i3 = 0;
-            i10 = 0;
-        }
-        int i11 = i10;
-        int i12 = i11;
-        while (true) {
-            if (i(pVar)) {
-                if (i11 <= 0) {
-                    h();
-                    throw new EOFException();
+            while (true) {
+                i10 = size - 1;
+                if (i11 >= i10) {
+                    break;
                 }
-            } else {
-                y yVar = this.f58185c;
-                yVar.N(0);
-                int m10 = yVar.m();
-                if ((i10 != 0 && ((-128000) & m10) != (i10 & (-128000))) || (h = e3.b.h(m10)) == -1) {
-                    int i13 = i12 + 1;
-                    if (i12 == 131072) {
-                        if (z10) {
-                            return false;
-                        }
-                        h();
-                        throw new EOFException();
-                    }
-                    if (z10) {
-                        pVar.o();
-                        pVar.n(i3 + i13);
-                    } else {
-                        pVar.u(1);
-                    }
-                    i11 = 0;
-                    i12 = i13;
-                    i10 = 0;
-                } else {
-                    i11++;
-                    if (i11 == 1) {
-                        this.d.a(m10);
-                        i10 = m10;
-                    } else if (i11 == 4) {
-                        break;
-                    }
-                    pVar.n(h - 4);
-                }
+                int i13 = i11 + 1;
+                iArr[i11] = (int) (jArr[i13] - jArr[i11]);
+                jArr2[i11] = jArr3[i13] - jArr3[i11];
+                i11 = i13;
             }
-        }
-        if (z10) {
-            pVar.u(i3 + i12);
+            int i14 = i10;
+            while (i14 > 0 && jArr3[i14] >= j3) {
+                i14--;
+            }
+            iArr[i14] = (int) ((j10 + j11) - jArr[i14]);
+            jArr2[i14] = j3 - jArr3[i14];
+            if (i14 < i10) {
+                h2.a.l("MatroskaExtractor", "Discarding trailing cue points with timestamps greater than total duration.");
+                int i15 = i14 + 1;
+                iArr = Arrays.copyOf(iArr, i15);
+                jArr = Arrays.copyOf(jArr, i15);
+                jArr2 = Arrays.copyOf(jArr2, i15);
+                jArr3 = Arrays.copyOf(jArr3, i15);
+            }
+            jVar = new j(iArr, jArr, jArr2, jArr3);
         } else {
-            pVar.o();
+            jVar = null;
         }
-        this.f58191k = i10;
-        return true;
-    }
-
-    public d(int i3, long j10) {
-        this.f58183a = i3;
-        this.f58184b = j10;
-        this.f58185c = new y(10);
-        this.d = new Object();
-        this.f58186e = new w();
-        this.f58194n = -9223372036854775807L;
-        this.f58187f = new bb.c(19);
-        n nVar = new n();
-        this.f58188g = nVar;
-        this.f58190j = nVar;
-        this.f58197q = -1L;
+        this.f58430a = jVar;
     }
 
     @Override
-    public final o a() {
-        return this;
+    public final boolean d() {
+        List list = (List) this.f58431b.get(this.d);
+        if (list != null && !list.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void release() {
+    public final boolean e() {
+        return false;
+    }
+
+    @Override
+    public final b0 f(long j3) {
+        j jVar = this.f58430a;
+        if (jVar != null) {
+            return jVar.f(j3);
+        }
+        d0 d0Var = d0.f11010c;
+        return new b0(d0Var, d0Var);
+    }
+
+    @Override
+    public final long h() {
+        return this.f58432c;
     }
 }

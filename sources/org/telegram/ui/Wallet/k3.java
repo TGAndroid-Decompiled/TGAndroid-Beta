@@ -1,30 +1,32 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
-public final class k3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f42749a;
-    public final n3 f42750b;
+import org.telegram.messenger.hd;
+import org.telegram.ui.Components.hc;
+public final class k3 implements Runnable {
+    public final int f42677a;
+    public final org.telegram.ui.ActionBar.f2 f42678b;
 
-    public k3(n3 n3Var, int i3) {
-        this.f42749a = i3;
-        this.f42750b = n3Var;
+    public k3(int i7, org.telegram.ui.ActionBar.f2 f2Var) {
+        this.f42677a = i7;
+        this.f42678b = f2Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f42749a) {
+    public final void run() {
+        int i7 = this.f42677a;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f42678b;
+        switch (i7) {
             case 0:
-                n3 n3Var = this.f42750b;
-                n3Var.getClass();
-                n3Var.J = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n3Var.e();
+                y5.I0(f2Var.getContext(), f2Var.getResourceProvider());
+                return;
+            case 1:
+                f2Var.presentFragment(new y5());
                 return;
             default:
-                n3 n3Var2 = this.f42750b;
-                n3Var2.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                n3Var2.R = floatValue;
-                n3Var2.f42919r.setUseGyroscope(floatValue);
+                if (hc.a(f2Var)) {
+                    hc.a0(f2Var).I(2131623989, hd.M0(2131743151, null), hd.M0(2131743150, null)).j();
+                    return;
+                }
                 return;
         }
     }

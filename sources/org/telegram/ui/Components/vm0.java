@@ -1,28 +1,25 @@
 package org.telegram.ui.Components;
-public final class vm0 implements q1.d {
-    public final int f39177a;
-    public final en0 f39178b;
 
-    public vm0(en0 en0Var, int i3) {
-        this.f39177a = i3;
-        this.f39178b = en0Var;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
+public final class vm0 extends LinearLayout {
+    public final int f38986a;
+    public final int f38987b;
+
+    public vm0(Context context, int i7, int i10) {
+        super(context);
+        this.f38986a = i7;
+        this.f38987b = i10;
     }
 
     @Override
-    public final void a(q1.g gVar, float f10, float f11) {
-        switch (this.f39177a) {
-            case 0:
-                this.f39178b.f33421o.setScaleX(1.0f / f10);
-                return;
-            case 1:
-                this.f39178b.f33421o.setScaleY(1.0f / f10);
-                return;
-            case 2:
-                this.f39178b.f33421o.setScaleX(1.0f / f10);
-                return;
-            default:
-                this.f39178b.f33421o.setScaleY(1.0f / f10);
-                return;
-        }
+    public final int getSuggestedMinimumWidth() {
+        return org.telegram.messenger.g0.L(260.0f);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), this.f38986a), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), this.f38987b), View.MeasureSpec.getMode(i10)));
     }
 }

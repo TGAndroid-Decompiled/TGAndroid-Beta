@@ -1,67 +1,83 @@
 package t9;
 
-import d2.l0;
-import j$.util.DesugarCollections;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-import org.telegram.ui.ActionBar.e3;
-import x7.b0;
-public final class a {
-    public final String f55041a;
-    public final Set f55042b;
-    public final Set f55043c;
-    public final int d;
-    public final int f55044e;
-    public final d f55045f;
-    public final Set f55046g;
+import android.os.Parcel;
+import android.os.Parcelable;
+import c8.wb;
+import q4.x;
+public final class a extends r6.a {
+    public static final Parcelable.Creator<a> CREATOR = new x(25);
+    public int f55340a;
+    public final boolean f55341b;
+    public final String f55342c;
+    public final String d;
+    public final byte[] f55343e;
+    public final boolean f55344f;
 
-    public a(String str, Set set, Set set2, int i3, int i10, d dVar, Set set3) {
-        this.f55041a = str;
-        this.f55042b = DesugarCollections.unmodifiableSet(set);
-        this.f55043c = DesugarCollections.unmodifiableSet(set2);
-        this.d = i3;
-        this.f55044e = i10;
-        this.f55045f = dVar;
-        this.f55046g = DesugarCollections.unmodifiableSet(set3);
-    }
-
-    public static l0 a(Class cls) {
-        return new l0(cls, new Class[0]);
-    }
-
-    public static l0 b(r rVar) {
-        r[] rVarArr = new r[0];
-        ?? obj = new Object();
-        obj.d = null;
-        HashSet hashSet = new HashSet();
-        obj.f8175c = hashSet;
-        obj.f8176e = new HashSet();
-        obj.f8173a = 0;
-        obj.f8174b = 0;
-        obj.f8178g = new HashSet();
-        hashSet.add(rVar);
-        for (r rVar2 : rVarArr) {
-            b0.a(rVar2, "Null interface");
-        }
-        Collections.addAll((HashSet) obj.f8175c, rVarArr);
-        return obj;
-    }
-
-    public static a c(Object obj, Class cls, Class... clsArr) {
-        HashSet hashSet = new HashSet();
-        HashSet hashSet2 = new HashSet();
-        HashSet hashSet3 = new HashSet();
-        hashSet.add(r.a(cls));
-        for (Class cls2 : clsArr) {
-            b0.a(cls2, "Null interface");
-            hashSet.add(r.a(cls2));
-        }
-        return new a(null, new HashSet(hashSet), new HashSet(hashSet2), 0, 0, new e3(obj, 15), hashSet3);
+    public a() {
+        this.f55340a = 0;
+        this.f55341b = true;
+        this.f55342c = null;
+        this.d = null;
+        this.f55343e = null;
+        this.f55344f = false;
     }
 
     public final String toString() {
-        return "Component<" + Arrays.toString(this.f55042b.toArray()) + ">{" + this.d + ", type=" + this.f55044e + ", deps=" + Arrays.toString(this.f55043c.toArray()) + "}";
+        StringBuilder sb2 = new StringBuilder("MetadataImpl { { eventStatus: '");
+        sb2.append(this.f55340a);
+        sb2.append("' } { uploadable: '");
+        sb2.append(this.f55341b);
+        sb2.append("' } ");
+        String str = this.f55342c;
+        if (str != null) {
+            sb2.append("{ completionToken: '");
+            sb2.append(str);
+            sb2.append("' } ");
+        }
+        String str2 = this.d;
+        if (str2 != null) {
+            sb2.append("{ accountName: '");
+            sb2.append(str2);
+            sb2.append("' } ");
+        }
+        byte[] bArr = this.f55343e;
+        if (bArr != null) {
+            sb2.append("{ ssbContext: [ ");
+            for (byte b10 : bArr) {
+                sb2.append("0x");
+                sb2.append(Integer.toHexString(b10));
+                sb2.append(" ");
+            }
+            sb2.append("] } ");
+        }
+        sb2.append("{ contextOnly: '");
+        sb2.append(this.f55344f);
+        sb2.append("' } }");
+        return sb2.toString();
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i7) {
+        int r10 = wb.r(parcel, 20293);
+        int i10 = this.f55340a;
+        wb.q(parcel, 1, 4);
+        parcel.writeInt(i10);
+        wb.q(parcel, 2, 4);
+        parcel.writeInt(this.f55341b ? 1 : 0);
+        wb.l(parcel, 3, this.f55342c);
+        wb.l(parcel, 4, this.d);
+        wb.c(parcel, 5, this.f55343e);
+        wb.q(parcel, 6, 4);
+        parcel.writeInt(this.f55344f ? 1 : 0);
+        wb.s(parcel, r10);
+    }
+
+    public a(int i7, boolean z9, String str, String str2, byte[] bArr, boolean z10) {
+        this.f55340a = i7;
+        this.f55341b = z9;
+        this.f55342c = str;
+        this.d = str2;
+        this.f55343e = bArr;
+        this.f55344f = z10;
     }
 }

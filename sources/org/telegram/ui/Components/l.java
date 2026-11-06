@@ -3,35 +3,35 @@ package org.telegram.ui.Components;
 import android.text.Editable;
 import android.text.TextWatcher;
 public final class l implements TextWatcher {
-    public final e0 f35518a;
+    public final g0 f35454a;
 
-    public l(e0 e0Var) {
-        this.f35518a = e0Var;
+    public l(g0 g0Var) {
+        this.f35454a = g0Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        int i3;
-        d0 d0Var;
-        e0 e0Var = this.f35518a;
-        d0 d0Var2 = e0Var.f33248p2;
-        if (d0Var2 != null) {
-            i3 = d0Var2.getSelectedTab();
+        int i7;
+        f0 f0Var;
+        g0 g0Var = this.f35454a;
+        f0 f0Var2 = g0Var.f33745o2;
+        if (f0Var2 != null) {
+            i7 = f0Var2.getSelectedTab();
         } else {
-            i3 = 0;
+            i7 = 0;
         }
-        if (i3 == 1 && (d0Var = e0Var.f33249q2) != null && (d0Var.getSelectedTone() instanceof a0)) {
-            e0Var.h1();
-            e0Var.v1();
-            e0Var.u1(true);
+        if (i7 == 1 && (f0Var = g0Var.f33746p2) != null && (f0Var.getSelectedTone() instanceof b0)) {
+            g0Var.h1();
+            g0Var.v1();
+            g0Var.u1(true);
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

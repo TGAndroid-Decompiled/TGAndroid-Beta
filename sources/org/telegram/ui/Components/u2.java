@@ -1,44 +1,26 @@
 package org.telegram.ui.Components;
+public final class u2 implements org.telegram.ui.ActionBar.r1 {
+    public final int f38497a;
+    public final org.telegram.messenger.c20 f38498b;
+    public final boolean[] f38499c;
 
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.LaunchActivity;
-public final class u2 implements Runnable {
-    public final int f38614a = 1;
-    public final int f38615b;
-    public final int[] f38616c;
-    public final Runnable d;
-
-    public u2(int i3, int[] iArr, org.telegram.ui.ly lyVar) {
-        this.f38615b = i3;
-        this.f38616c = iArr;
-        this.d = lyVar;
+    public u2(int i7, org.telegram.messenger.c20 c20Var, boolean[] zArr) {
+        this.f38497a = i7;
+        this.f38498b = c20Var;
+        this.f38499c = zArr;
     }
 
     @Override
-    public final void run() {
-        int i3 = this.f38614a;
-        Runnable runnable = this.d;
-        int[] iArr = this.f38616c;
-        int i10 = this.f38615b;
-        switch (i3) {
+    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f38497a) {
             case 0:
-                iArr[0] = i10;
-                runnable.run();
+                this.f38498b.a(Boolean.valueOf(this.f38499c[0]));
                 return;
             default:
-                String str = LaunchActivity.E1;
-                ConnectionsManager.getInstance(i10).cancelRequest(iArr[0], true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                this.f38498b.a(Boolean.TRUE);
+                this.f38499c[0] = true;
+                u1Var.dismiss();
                 return;
         }
-    }
-
-    public u2(int[] iArr, int i3, Runnable runnable) {
-        this.f38616c = iArr;
-        this.f38615b = i3;
-        this.d = runnable;
     }
 }

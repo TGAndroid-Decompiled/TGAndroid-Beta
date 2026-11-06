@@ -1,93 +1,96 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class d91 extends sg.b {
-    public final m91 d;
+import android.content.SharedPreferences;
+import org.telegram.tgnet.TLRPC;
+public final class d91 implements org.telegram.ui.Components.xn {
+    public final TLRPC.TL_forumTopic f45006a;
+    public final v91 f45007b;
 
-    public d91(m91 m91Var) {
-        this.d = m91Var;
+    public d91(v91 v91Var, TLRPC.TL_forumTopic tL_forumTopic) {
+        this.f45007b = v91Var;
+        this.f45006a = tL_forumTopic;
     }
 
     @Override
-    public final boolean D(u4.d1 d1Var) {
-        int i3 = d1Var.f55544f;
-        if (i3 != 0 && i3 != 3) {
-            return false;
+    public final void L() {
+        int i7;
+        v91 v91Var = this.f45007b;
+        i7 = ((org.telegram.ui.ActionBar.f2) v91Var).currentAccount;
+        SharedPreferences sharedPreferences = org.telegram.messenger.qp.s1(i7).f24749d7;
+        StringBuilder sb2 = new StringBuilder("sound_enabled_");
+        long j3 = v91Var.f50619a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f45006a;
+        sb2.append(org.telegram.messenger.dt.v(-j3, tL_forumTopic.f27004id, false));
+        boolean z9 = sharedPreferences.getBoolean(sb2.toString(), true);
+        boolean z10 = !z9 ? 1 : 0;
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.putBoolean("sound_enabled_" + org.telegram.messenger.dt.v(-j3, tL_forumTopic.f27004id, false), z10).apply();
+        v91Var.finishPreviewFragment();
+        if (org.telegram.ui.Components.hc.a(v91Var)) {
+            org.telegram.ui.Components.hc.S(z9 ? 1 : 0, v91Var, v91Var.getResourceProvider()).j();
         }
-        return true;
-    }
-
-    public final ArrayList F() {
-        m91 m91Var = this.d;
-        m91Var.getClass();
-        return m91Var.f47578b;
     }
 
     @Override
-    public final int b() {
-        return F().size() + 1;
-    }
-
-    @Override
-    public final int d(int i3) {
-        if (i3 == b() - 1) {
-            return 2;
+    public final void R(int i7) {
+        v91 v91Var = this.f45007b;
+        long j3 = v91Var.f50619a;
+        v91Var.finishPreviewFragment();
+        TLRPC.TL_forumTopic tL_forumTopic = this.f45006a;
+        if (i7 == 0) {
+            if (v91Var.getMessagesController().r2(-j3, tL_forumTopic.f27004id, null)) {
+                v91Var.getNotificationsController().G(-j3, tL_forumTopic.f27004id, false);
+            }
+            if (org.telegram.ui.Components.hc.a(v91Var)) {
+                org.telegram.ui.Components.hc.z(v91Var, 4, i7, v91Var.getResourceProvider()).j();
+                return;
+            }
+            return;
         }
-        return ((e91) this.d.f47578b.get(i3)).f54715a;
+        v91Var.getNotificationsController().H(-j3, i7, tL_forumTopic.f27004id);
+        if (org.telegram.ui.Components.hc.a(v91Var)) {
+            org.telegram.ui.Components.hc.z(v91Var, 5, i7, v91Var.getResourceProvider()).j();
+        }
     }
 
     @Override
-    public final void f() {
-        this.d.f47581c = b();
-        super.f();
+    public final void dismiss() {
+        this.f45007b.finishPreviewFragment();
     }
 
     @Override
-    public final void t(u4.d1 r21, int r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.d91.t(u4.d1, int):void");
-    }
-
-    @Override
-    public final u4.d1 x(ViewGroup viewGroup, int i3) {
-        boolean z10;
+    public final void p() {
+        int i7;
         int i10;
-        int i11;
-        int i12;
-        m91 m91Var = this.d;
-        if (i3 != 0 && i3 != 3) {
-            if (i3 == 2) {
-                c91 c91Var = new c91(this, m91Var.getParentActivity());
-                m91Var.F0 = c91Var;
-                return new u4.d1(c91Var);
-            }
-            org.telegram.ui.Components.iz izVar = new org.telegram.ui.Components.iz(viewGroup.getContext(), null);
-            izVar.setViewType(24);
-            izVar.setIsSingleCell(true);
-            izVar.f34869x = true;
-            return new u4.d1(izVar);
-        }
-        j91 j91Var = new j91(m91Var, viewGroup.getContext(), false);
-        if (i3 == 3) {
-            i10 = ((org.telegram.ui.ActionBar.d2) m91Var).currentAccount;
-            boolean v = org.telegram.messenger.l10.v(org.telegram.messenger.hp.s1(i10).a2(Long.valueOf(-m91Var.f47575a)));
-            j91Var.setForumIcon(rg.c.d(rg.a.f54504k[0], ""));
-            if (!v) {
-                i11 = 2131753066;
+        v91 v91Var = this.f45007b;
+        v91Var.finishPreviewFragment();
+        org.telegram.messenger.qp messagesController = v91Var.getMessagesController();
+        long j3 = v91Var.f50619a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f45006a;
+        boolean r22 = messagesController.r2(-j3, tL_forumTopic.f27004id, null);
+        v91Var.getNotificationsController().G(-j3, tL_forumTopic.f27004id, !r22);
+        if (org.telegram.ui.Components.hc.a(v91Var)) {
+            if (!r22) {
+                i7 = 3;
             } else {
-                i11 = 2131753068;
+                i7 = 4;
             }
-            j91Var.setTitleOverride(org.telegram.messenger.bd.M0(i11, null));
-            if (!v) {
-                i12 = 2131753067;
+            if (!r22) {
+                i10 = Integer.MAX_VALUE;
             } else {
-                i12 = 2131753069;
+                i10 = 0;
             }
-            j91Var.setCustomMessage(org.telegram.messenger.bd.M0(i12, null));
+            org.telegram.ui.Components.hc.z(v91Var, i7, i10, v91Var.getResourceProvider()).j();
         }
-        z10 = ((org.telegram.ui.ActionBar.d2) m91Var).inPreviewMode;
-        j91Var.f30519l0 = z10;
-        j91Var.setArchivedPullAnimation(m91Var.f47621x);
-        return new u4.d1(j91Var);
+    }
+
+    @Override
+    public final void y() {
+        this.f45007b.finishPreviewFragment();
+        org.telegram.messenger.g0.i3(new by0(19, this, this.f45006a), 500L);
+    }
+
+    @Override
+    public final void n() {
     }
 }

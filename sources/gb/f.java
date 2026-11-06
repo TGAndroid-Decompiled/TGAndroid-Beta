@@ -1,24 +1,18 @@
 package gb;
+public final class f implements na.d {
+    public static final f f13669a = new Object();
+    public static final na.c f13670b = na.c.c("processName");
+    public static final na.c f13671c = na.c.c("pid");
+    public static final na.c d = na.c.c("importance");
+    public static final na.c f13672e = na.c.c("defaultProcess");
 
-import android.net.Uri;
-import java.net.URL;
-public final class f {
-    public final db.b f12215a;
-    public final fd.h f12216b;
-
-    public f(db.b appInfo, fd.h blockingDispatcher) {
-        kotlin.jvm.internal.j.e(appInfo, "appInfo");
-        kotlin.jvm.internal.j.e(blockingDispatcher, "blockingDispatcher");
-        this.f12215a = appInfo;
-        this.f12216b = blockingDispatcher;
-    }
-
-    public static final URL a(f fVar) {
-        fVar.getClass();
-        Uri.Builder appendPath = new Uri.Builder().scheme("https").authority("firebase-settings.crashlytics.com").appendPath("spi").appendPath("v2").appendPath("platforms").appendPath("android").appendPath("gmp");
-        db.b bVar = fVar.f12215a;
-        Uri.Builder appendPath2 = appendPath.appendPath(bVar.f8604a).appendPath("settings");
-        db.a aVar = bVar.f8605b;
-        return new URL(appendPath2.appendQueryParameter("build_version", aVar.f8597c).appendQueryParameter("display_version", aVar.f8596b).build().toString());
+    @Override
+    public final void a(Object obj, Object obj2) {
+        f0 f0Var = (f0) obj;
+        na.e eVar = (na.e) obj2;
+        eVar.a(f13670b, f0Var.f13673a);
+        eVar.d(f13671c, f0Var.f13674b);
+        eVar.d(d, f0Var.f13675c);
+        eVar.c(f13672e, f0Var.d);
     }
 }

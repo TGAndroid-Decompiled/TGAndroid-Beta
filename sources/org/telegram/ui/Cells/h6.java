@@ -1,92 +1,133 @@
 package org.telegram.ui.Cells;
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.util.Property;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import b8.mf;
-import java.util.ArrayList;
-import org.telegram.messenger.bd;
+import org.telegram.messenger.hd;
 import org.telegram.ui.Components.RadioButton;
-public class h6 extends FrameLayout {
-    public final TextView f29345a;
-    public final RadioButton f29346b;
-    public boolean f29347c;
+public final class h6 extends FrameLayout {
+    public final TextView f29277a;
+    public final TextView f29278b;
+    public final RadioButton f29279c;
+    public boolean d;
 
-    public h6(Context context) {
-        this(context, null);
-    }
-
-    public final void a(boolean z10, boolean z11) {
-        this.f29346b.a(z10, z11);
-    }
-
-    public final void b(ArrayList arrayList, boolean z10) {
-        float f10;
-        float f11;
-        super.setEnabled(z10);
-        RadioButton radioButton = this.f29346b;
-        TextView textView = this.f29345a;
-        float f12 = 0.5f;
-        if (arrayList != null) {
-            if (z10) {
-                f11 = 1.0f;
-            } else {
-                f11 = 0.5f;
-            }
-            float[] fArr = {f11};
-            Property property = View.ALPHA;
-            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
-            if (z10) {
-                f12 = 1.0f;
-            }
-            arrayList.add(ObjectAnimator.ofFloat(radioButton, property, f12));
-            return;
-        }
-        if (z10) {
-            f10 = 1.0f;
+    public h6(Context context, boolean z9) {
+        super(context);
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        RadioButton radioButton = new RadioButton(context);
+        this.f29279c = radioButton;
+        radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
+        if (z9) {
+            org.telegram.ui.ActionBar.r6.P(radioButton, org.telegram.ui.ActionBar.k6.D5, org.telegram.ui.ActionBar.k6.E5, null);
         } else {
-            f10 = 0.5f;
+            org.telegram.ui.ActionBar.r6.P(radioButton, org.telegram.ui.ActionBar.k6.f27904g7, org.telegram.ui.ActionBar.k6.h7, null);
         }
-        textView.setAlpha(f10);
+        boolean z10 = hd.f22871a0;
         if (z10) {
-            f12 = 1.0f;
+            i7 = 5;
+        } else {
+            i7 = 3;
         }
-        radioButton.setAlpha(f12);
+        int i16 = i7 | 48;
+        if (z10) {
+            i10 = 0;
+        } else {
+            i10 = 20;
+        }
+        addView(radioButton, c8.ha.d(22, 22.0f, i16, i10, 10.0f, z10 ? 20 : 0, 0.0f));
+        TextView textView = new TextView(context);
+        this.f29277a = textView;
+        if (z9) {
+            org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27956j5, null);
+        } else {
+            org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.G6, null);
+        }
+        org.telegram.messenger.camera.q.n(textView, 1, 16.0f, 1, 1);
+        textView.setSingleLine(true);
+        if (hd.f22871a0) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        textView.setGravity(i11 | 16);
+        boolean z11 = hd.f22871a0;
+        if (z11) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        int i17 = i12 | 48;
+        if (z11) {
+            i13 = 23;
+        } else {
+            i13 = 61;
+        }
+        addView(textView, c8.ha.d(-2, -2.0f, i17, i13, 10.0f, z11 ? 61 : 23, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f29278b = textView2;
+        if (z9) {
+            org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28087q5, null);
+        } else {
+            org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28258z6, null);
+        }
+        textView2.setTextSize(1, 13.0f);
+        if (hd.f22871a0) {
+            i14 = 5;
+        } else {
+            i14 = 3;
+        }
+        textView2.setGravity(i14);
+        textView2.setLines(0);
+        textView2.setMaxLines(0);
+        textView2.setSingleLine(false);
+        textView2.setPadding(0, 0, 0, org.telegram.messenger.g0.L(12.0f));
+        boolean z12 = hd.f22871a0;
+        int i18 = (z12 ? 5 : 3) | 48;
+        if (z12) {
+            i15 = 17;
+        } else {
+            i15 = 61;
+        }
+        addView(textView2, c8.ha.d(-2, -2.0f, i18, i15, 35.0f, z12 ? 61 : 17, 0.0f));
     }
 
-    public final void c(String str, boolean z10, boolean z11) {
-        this.f29345a.setText(str);
-        this.f29346b.a(z10, false);
-        this.f29347c = z11;
-        setWillNotDraw(!z11);
+    public final void a(boolean z9) {
+        this.f29279c.a(z9, true);
+    }
+
+    public final void b(String str, String str2, boolean z9, boolean z10) {
+        this.f29277a.setText(str);
+        this.f29278b.setText(str2);
+        this.f29279c.a(z10, false);
+        this.d = z9;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        float L;
-        int i3;
-        if (this.f29347c) {
-            if (bd.f21784a0) {
-                L = 0.0f;
+        float f10;
+        if (this.d) {
+            float f11 = 60.0f;
+            if (hd.f22871a0) {
+                f10 = 0.0f;
             } else {
-                L = org.telegram.messenger.g0.L(20.0f);
+                f10 = 60.0f;
             }
-            float f10 = L;
-            float measuredHeight = getMeasuredHeight() - 1;
+            float L = org.telegram.messenger.g0.L(f10);
+            float height = getHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (bd.f21784a0) {
-                i3 = org.telegram.messenger.g0.L(20.0f);
-            } else {
-                i3 = 0;
+            if (!hd.f22871a0) {
+                f11 = 0.0f;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i3, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f28002k0);
+            canvas.drawLine(L, height, measuredWidth - org.telegram.messenger.g0.L(f11), getHeight() - 1, org.telegram.ui.ActionBar.k6.f27971k0);
         }
     }
 
@@ -95,41 +136,11 @@ public class h6 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f29346b.f31589f);
+        accessibilityNodeInfo.setChecked(this.f29279c.f31512f);
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i3), org.telegram.messenger.g0.L(50.0f) + (this.f29347c ? 1 : 0));
-        int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - org.telegram.messenger.g0.L(34.0f);
-        this.f29346b.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(22.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(22.0f), 1073741824));
-        this.f29345a.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-    }
-
-    public void setRadioIcon(Drawable drawable) {
-        this.f29346b.setIcon(drawable);
-    }
-
-    public void setTextColor(int i3) {
-        this.f29345a.setTextColor(i3);
-    }
-
-    public h6(Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        TextView textView = new TextView(context);
-        this.f29345a = textView;
-        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.G6, e6Var);
-        org.telegram.messenger.camera.q.n(textView, 1, 16.0f, 1, 1);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity((bd.f21784a0 ? 5 : 3) | 16);
-        float f10 = 21;
-        addView(textView, mf.d(-1, -1.0f, (bd.f21784a0 ? 5 : 3) | 48, f10, 0.0f, f10, 0.0f));
-        RadioButton radioButton = new RadioButton(context);
-        this.f29346b = radioButton;
-        radioButton.setSize(org.telegram.messenger.g0.L(20.0f));
-        org.telegram.ui.ActionBar.r6.P(radioButton, org.telegram.ui.ActionBar.k6.g7, org.telegram.ui.ActionBar.k6.h7, e6Var);
-        boolean z10 = bd.f21784a0;
-        addView(radioButton, mf.d(22, 22.0f, (z10 ? 3 : 5) | 48, z10 ? 22 : 0, 14.0f, z10 ? 0 : 22, 0.0f));
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
     }
 }

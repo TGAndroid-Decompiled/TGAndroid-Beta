@@ -5,27 +5,27 @@ import android.os.Build;
 import android.widget.EdgeEffect;
 import androidx.recyclerview.widget.RecyclerView;
 public final class ns extends EdgeEffect {
-    public final int f36613a;
-    public final ls f36614b;
-    public final RecyclerView f36615c;
+    public final int f36475a;
+    public final ls f36476b;
+    public final RecyclerView f36477c;
     public final gp d;
-    public boolean f36616e;
+    public boolean f36478e;
 
-    public ns(RecyclerView recyclerView, int i3, ls lsVar) {
+    public ns(RecyclerView recyclerView, int i7, ls lsVar) {
         super(recyclerView.getContext());
         this.d = new gp(this, 7);
-        this.f36615c = recyclerView;
-        this.f36613a = i3;
-        this.f36614b = lsVar;
+        this.f36477c = recyclerView;
+        this.f36475a = i7;
+        this.f36476b = lsVar;
     }
 
     public final void a() {
         boolean b10 = b();
-        if (this.f36616e != b10) {
-            this.f36616e = b10;
-            ls lsVar = this.f36614b;
+        if (this.f36478e != b10) {
+            this.f36478e = b10;
+            ls lsVar = this.f36476b;
             if (lsVar != null) {
-                lsVar.a(this.f36613a, b10);
+                lsVar.a(this.f36475a, b10);
             }
         }
     }
@@ -43,7 +43,7 @@ public final class ns extends EdgeEffect {
     @Override
     public final boolean draw(Canvas canvas) {
         boolean draw = super.draw(canvas);
-        this.f36615c.postOnAnimation(this.d);
+        this.f36477c.postOnAnimation(this.d);
         return draw;
     }
 
@@ -54,8 +54,8 @@ public final class ns extends EdgeEffect {
     }
 
     @Override
-    public final void onAbsorb(int i3) {
-        super.onAbsorb(i3);
+    public final void onAbsorb(int i7) {
+        super.onAbsorb(i7);
         a();
     }
 
@@ -79,8 +79,8 @@ public final class ns extends EdgeEffect {
     }
 
     @Override
-    public final void setSize(int i3, int i10) {
-        super.setSize(i3, i10);
+    public final void setSize(int i7, int i10) {
+        super.setSize(i7, i10);
         a();
     }
 

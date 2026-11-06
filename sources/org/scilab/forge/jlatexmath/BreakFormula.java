@@ -10,8 +10,8 @@ public final class BreakFormula {
         HorizontalBox hbox;
         int index;
 
-        public Position(int i3, HorizontalBox horizontalBox) {
-            this.index = i3;
+        public Position(int i7, HorizontalBox horizontalBox) {
+            this.index = i7;
             this.hbox = horizontalBox;
         }
     }
@@ -19,22 +19,22 @@ public final class BreakFormula {
     private static float canBreak(Stack<Position> stack, HorizontalBox horizontalBox, float f10) {
         LinkedList<Box> linkedList = horizontalBox.children;
         float[] fArr = new float[linkedList.size() + 1];
-        int i3 = 0;
+        int i7 = 0;
         fArr[0] = 0.0f;
-        while (i3 < linkedList.size()) {
-            Box box = linkedList.get(i3);
-            int i10 = i3 + 1;
-            float f11 = fArr[i3] + box.width;
+        while (i7 < linkedList.size()) {
+            Box box = linkedList.get(i7);
+            int i10 = i7 + 1;
+            float f11 = fArr[i7] + box.width;
             fArr[i10] = f11;
             if (f11 > f10) {
-                int breakPosition = getBreakPosition(horizontalBox, i3);
+                int breakPosition = getBreakPosition(horizontalBox, i7);
                 if (box instanceof HorizontalBox) {
                     Stack stack2 = new Stack();
-                    float canBreak = canBreak(stack2, (HorizontalBox) box, f10 - fArr[i3]);
-                    if (canBreak != box.width && (fArr[i3] + canBreak <= f10 || breakPosition == -1)) {
-                        stack.push(new Position(i3 - 1, horizontalBox));
+                    float canBreak = canBreak(stack2, (HorizontalBox) box, f10 - fArr[i7]);
+                    if (canBreak != box.width && (fArr[i7] + canBreak <= f10 || breakPosition == -1)) {
+                        stack.push(new Position(i7 - 1, horizontalBox));
                         stack.addAll(stack2);
-                        return fArr[i3] + canBreak;
+                        return fArr[i7] + canBreak;
                     }
                 }
                 if (breakPosition != -1) {
@@ -42,22 +42,22 @@ public final class BreakFormula {
                     return fArr[breakPosition];
                 }
             }
-            i3 = i10;
+            i7 = i10;
         }
         return horizontalBox.width;
     }
 
-    private static int getBreakPosition(HorizontalBox horizontalBox, int i3) {
+    private static int getBreakPosition(HorizontalBox horizontalBox, int i7) {
         List<Integer> list = horizontalBox.breakPositions;
         if (list == null) {
             return -1;
         }
         int i10 = 0;
-        if (list.size() == 1 && horizontalBox.breakPositions.get(0).intValue() <= i3) {
+        if (list.size() == 1 && horizontalBox.breakPositions.get(0).intValue() <= i7) {
             return horizontalBox.breakPositions.get(0).intValue();
         }
         while (i10 < horizontalBox.breakPositions.size()) {
-            if (horizontalBox.breakPositions.get(i10).intValue() > i3) {
+            if (horizontalBox.breakPositions.get(i10).intValue() > i7) {
                 if (i10 == 0) {
                     return -1;
                 }

@@ -2,15 +2,15 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class tq0 extends ScrollSlidingTextTabStrip {
-    public final ws0 f38535q0;
+    public final xs0 f38404p0;
 
-    public tq0(ws0 ws0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var);
-        this.f38535q0 = ws0Var;
+    public tq0(xs0 xs0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        this.f38404p0 = xs0Var;
     }
 
     @Override
-    public final int e(int i3) {
-        return this.f38535q0.f1(i3);
+    public final int e(int i7) {
+        return this.f38404p0.f1(i7);
     }
 }

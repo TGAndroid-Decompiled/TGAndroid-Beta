@@ -1,9 +1,20 @@
 package hd;
-public abstract class g {
-    public static final f f14395a = new f(null, null, null);
-    public static f f14396b;
 
-    public static final void a(int i3) {
-        new Integer(i3);
+import c8.d0;
+import java.util.Arrays;
+import java.util.List;
+public abstract class g extends d0 {
+    public static int b(List list) {
+        kotlin.jvm.internal.j.e(list, "<this>");
+        return list.size() - 1;
+    }
+
+    public static List c(Object... objArr) {
+        if (objArr.length > 0) {
+            List asList = Arrays.asList(objArr);
+            kotlin.jvm.internal.j.d(asList, "asList(...)");
+            return asList;
+        }
+        return n.f14474a;
     }
 }

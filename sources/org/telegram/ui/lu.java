@@ -1,40 +1,36 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-public final class lu implements Runnable {
-    public final int f47439a = 1;
-    public final uw f47440b;
-    public final int f47441c;
-    public final ArrayList d;
-    public final boolean f47442e;
-    public final HashSet f47443f;
+import android.content.DialogInterface;
+public final class lu implements DialogInterface.OnDismissListener {
+    public final int f47563a;
+    public final ww f47564b;
 
-    public lu(uw uwVar, int i3, ArrayList arrayList, boolean z10, HashSet hashSet) {
-        this.f47440b = uwVar;
-        this.f47441c = i3;
-        this.d = arrayList;
-        this.f47442e = z10;
-        this.f47443f = hashSet;
+    public lu(ww wwVar, int i7) {
+        this.f47563a = i7;
+        this.f47564b = wwVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f47439a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f47563a) {
             case 0:
-                this.f47440b.D4(this.d, this.f47441c, false, this.f47442e, this.f47443f);
+                ww wwVar = this.f47564b;
+                if (wwVar.R3 != null) {
+                    wwVar.getMessagesController().k4(0L, wwVar.R3);
+                    wwVar.R3 = null;
+                    wwVar.X4();
+                    return;
+                }
+                return;
+            case 1:
+                this.f47564b.n4(true);
+                return;
+            case 2:
+                this.f47564b.n4(true);
                 return;
             default:
-                uw.r0(this.f47440b, this.f47441c, this.d, this.f47442e, this.f47443f);
+                ww.l0(this.f47564b);
                 return;
         }
-    }
-
-    public lu(uw uwVar, ArrayList arrayList, int i3, boolean z10, HashSet hashSet) {
-        this.f47440b = uwVar;
-        this.d = arrayList;
-        this.f47441c = i3;
-        this.f47442e = z10;
-        this.f47443f = hashSet;
     }
 }

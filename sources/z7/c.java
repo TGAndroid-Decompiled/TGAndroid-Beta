@@ -1,61 +1,15 @@
 package z7;
+public final class c {
+    public static final c f59608a;
+    public static final c[] f59609b;
 
-import b8.ah;
-import b8.ra;
-import java.util.List;
-import java.util.ListIterator;
-public final class c extends ra implements ListIterator {
-    public final ah f59809e;
-
-    public c(ah ahVar) {
-        super(ahVar, (char) 0);
-        this.f59809e = ahVar;
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f59608a = r02;
+        f59609b = new c[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
     }
 
-    @Override
-    public final void add(Object obj) {
-        ah ahVar = this.f59809e;
-        boolean isEmpty = ahVar.isEmpty();
-        b();
-        ((ListIterator) this.f3048b).add(obj);
-        ((e) ahVar.h).d++;
-        if (isEmpty) {
-            ahVar.k();
-        }
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        b();
-        return ((ListIterator) this.f3048b).hasPrevious();
-    }
-
-    @Override
-    public final int nextIndex() {
-        b();
-        return ((ListIterator) this.f3048b).nextIndex();
-    }
-
-    @Override
-    public final Object previous() {
-        b();
-        return ((ListIterator) this.f3048b).previous();
-    }
-
-    @Override
-    public final int previousIndex() {
-        b();
-        return ((ListIterator) this.f3048b).previousIndex();
-    }
-
-    @Override
-    public final void set(Object obj) {
-        b();
-        ((ListIterator) this.f3048b).set(obj);
-    }
-
-    public c(ah ahVar, int i3) {
-        super(ahVar, ((List) ahVar.f2472c).listIterator(i3), (char) 0);
-        this.f59809e = ahVar;
+    public static c[] values() {
+        return (c[]) f59609b.clone();
     }
 }

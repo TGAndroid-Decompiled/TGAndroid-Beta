@@ -1,62 +1,263 @@
 package nb;
 
-import a7.e;
+import a8.r7;
+import ad.c;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.Paint;
 import android.graphics.RectF;
+import android.media.MediaCodecInfo;
+import android.media.MediaCodecList;
 import android.os.Bundle;
 import android.os.Looper;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.text.Editable;
 import android.text.style.CharacterStyle;
-import android.util.Log;
-import b4.k;
-import b8.ke;
+import b7.l;
+import bg.n;
+import bi.x5;
+import c4.k;
+import c8.z0;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import d2.v;
+import f3.g;
+import g6.d0;
+import ia.d;
 import j$.util.Objects;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.nio.ShortBuffer;
 import java.util.ArrayList;
-import java.util.TreeMap;
-import mb.h;
-import org.telegram.messenger.g10;
+import java.util.HashMap;
+import lf.b;
+import m8.e;
+import org.json.JSONObject;
+import org.telegram.messenger.IMapsProvider;
+import org.telegram.messenger.ab;
+import org.telegram.messenger.ca;
+import org.telegram.messenger.cb;
+import org.telegram.messenger.da;
+import org.telegram.messenger.fj;
+import org.telegram.messenger.ij;
+import org.telegram.messenger.o10;
 import org.telegram.messenger.o2;
-import org.telegram.messenger.wi;
-import org.telegram.messenger.zi;
+import org.telegram.messenger.ua;
+import org.telegram.messenger.va;
+import org.telegram.messenger.wa;
+import org.telegram.messenger.xa;
+import org.telegram.messenger.ya;
+import org.telegram.messenger.za;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.f1;
-import org.telegram.ui.Cells.i9;
+import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.ng;
-import org.telegram.ui.Components.p5;
-import org.telegram.ui.Components.zh;
-import org.telegram.ui.vq0;
-import p2.f;
-import p2.j;
-import p2.l;
-import p2.m;
-import p2.n;
-import sf.c;
-import t9.d;
-import tg.j1;
-import v7.q;
-import vi.g;
-public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListener, hh.a, g51, l1, m, j1, g, x9.a {
-    public static final a f20315b = new a(13);
-    public static a f20316c;
-    public final int f20317a;
+import org.telegram.ui.Components.r5;
+import org.telegram.ui.er0;
+import org.xml.sax.Attributes;
+import pb.h;
+import q2.f;
+import q2.j;
+import q2.m;
+import u2.u;
+import w7.q;
+import w7.s;
+public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d, IMapsProvider, gh.a, l1, m, u, x5.a {
+    public static final a f20531b = new a(14);
+    public final int f20532a;
 
-    public a(int i3) {
-        this.f20317a = i3;
+    public a(int i7) {
+        this.f20532a = i7;
     }
 
-    public static final CharSequence D(Object obj) {
+    public static ia.b W(s sVar) {
+        return new ia.b(System.currentTimeMillis() + 3600000, new l(8), new ia.a(true, false, false), 10.0d, 1.2d, 60);
+    }
+
+    public static n c0(Editable editable, int i7) {
+        Object[] objArr = (n[]) editable.getSpans(0, editable.length(), n.class);
+        if (objArr.length != 0) {
+            for (int length = objArr.length; length > 0; length--) {
+                int i10 = length - 1;
+                if (editable.getSpanFlags(objArr[i10]) == 17) {
+                    n nVar = objArr[i10];
+                    if (nVar.f3357a == i7) {
+                        return nVar;
+                    }
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public static boolean f0(boolean z9, String str, Editable editable, Attributes attributes) {
+        int i7;
+        boolean z10 = false;
+        Object obj = null;
+        if (str.startsWith("animated-emoji")) {
+            if (z9) {
+                String a10 = bg.m.a("data-document-id", attributes);
+                if (a10 != null) {
+                    editable.setSpan(new r5(Long.parseLong(a10), (Paint.FontMetricsInt) null), editable.length(), editable.length(), 17);
+                    return true;
+                }
+            } else {
+                Object[] spans = editable.getSpans(0, editable.length(), r5.class);
+                if (spans.length != 0) {
+                    int length = spans.length;
+                    while (true) {
+                        if (length <= 0) {
+                            break;
+                        }
+                        int i10 = length - 1;
+                        if (editable.getSpanFlags(spans[i10]) == 17) {
+                            obj = spans[i10];
+                            break;
+                        }
+                        length--;
+                    }
+                }
+                Object obj2 = (r5) obj;
+                if (obj2 != null) {
+                    int spanStart = editable.getSpanStart(obj2);
+                    editable.removeSpan(obj2);
+                    if (spanStart != editable.length()) {
+                        editable.setSpan(obj2, spanStart, editable.length(), 33);
+                        return true;
+                    }
+                    return true;
+                }
+            }
+            return false;
+        } else if (str.equals("spoiler")) {
+            if (z9) {
+                editable.setSpan(new n(0), editable.length(), editable.length(), 17);
+                return true;
+            }
+            Object c02 = c0(editable, 0);
+            if (c02 != null) {
+                int spanStart2 = editable.getSpanStart(c02);
+                editable.removeSpan(c02);
+                if (spanStart2 != editable.length()) {
+                    editable.setSpan(c02, spanStart2, editable.length(), 33);
+                    return true;
+                }
+                return true;
+            }
+            return false;
+        } else if (str.equals("pre")) {
+            if (z9) {
+                String a11 = bg.m.a("language", attributes);
+                if (a11 == null) {
+                    a11 = bg.m.a("lang", attributes);
+                }
+                if (a11 == null) {
+                    a11 = bg.m.a("lng", attributes);
+                }
+                editable.setSpan(new n(a11), editable.length(), editable.length(), 17);
+                return true;
+            }
+            Object c03 = c0(editable, 1);
+            if (c03 != null) {
+                int spanStart3 = editable.getSpanStart(c03);
+                editable.removeSpan(c03);
+                if (spanStart3 != editable.length()) {
+                    editable.setSpan(c03, spanStart3, editable.length(), 33);
+                    return true;
+                }
+                return true;
+            }
+            return false;
+        } else {
+            int i11 = 3;
+            if (str.equals("blockquote")) {
+                if (z9) {
+                    String a12 = bg.m.a("class", attributes);
+                    if (bg.m.a("data-collapsed", attributes) != null || (a12 != null && a12.contains("telegram-collapsed-quote"))) {
+                        z10 = true;
+                    }
+                    if (!z10) {
+                        i11 = 2;
+                    }
+                    editable.setSpan(new n(i11), editable.length(), editable.length(), 17);
+                    return true;
+                }
+                n[] nVarArr = (n[]) editable.getSpans(0, editable.length(), n.class);
+                for (int length2 = nVarArr.length - 1; length2 >= 0; length2--) {
+                    n nVar = nVarArr[length2];
+                    if (editable.getSpanFlags(nVar) == 17 && ((i7 = nVar.f3357a) == 2 || i7 == 3)) {
+                        obj = nVar;
+                        break;
+                    }
+                }
+                if (obj != null) {
+                    int spanStart4 = editable.getSpanStart(obj);
+                    editable.removeSpan(obj);
+                    if (spanStart4 != editable.length()) {
+                        editable.setSpan(obj, spanStart4, editable.length(), 33);
+                        return true;
+                    }
+                    return true;
+                }
+                return false;
+            }
+            if (str.equals("details")) {
+                if (z9) {
+                    editable.setSpan(new n(3), editable.length(), editable.length(), 17);
+                    return true;
+                }
+                Object c04 = c0(editable, 3);
+                if (c04 != null) {
+                    int spanStart5 = editable.getSpanStart(c04);
+                    editable.removeSpan(c04);
+                    if (spanStart5 != editable.length()) {
+                        editable.setSpan(c04, spanStart5, editable.length(), 33);
+                    }
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    public static String l0(c cVar) {
+        String str = cVar.f1035a;
+        if ("br".equals(str)) {
+            return "\n";
+        }
+        if ("img".equals(str)) {
+            String str2 = (String) cVar.a().get("alt");
+            if (str2 != null && str2.length() != 0) {
+                return str2;
+            }
+            return "￼";
+        } else if ("iframe".equals(str)) {
+            return " ";
+        } else {
+            return null;
+        }
+    }
+
+    public static void r0(String str) {
+        if (str != null && str.length() != 0) {
+            if (!str.startsWith("sk_")) {
+                return;
+            }
+            throw new tc.g("Invalid Publishable Key: You are using a secret key to create a token, instead of the publishable one. For more info, see https://stripe.com/docs/stripe.js", null);
+        }
+        throw new tc.g("Invalid Publishable Key: You must use a valid publishable key to create a token.  For more info, see https://stripe.com/docs/stripe.js.", null);
+    }
+
+    public static final CharSequence t0(Object obj) {
         Objects.requireNonNull(obj);
         if (obj instanceof CharSequence) {
             return (CharSequence) obj;
@@ -65,80 +266,150 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public p2.g A(j jVar, v vVar) {
-        if (vVar.f8492w == null) {
-            return null;
-        }
-        return new n(new f(6001, new Exception()));
-    }
-
-    @Override
-    public void E1(q1 q1Var, TLRPC.WebPage webPage, String str, boolean z10) {
-        c.t(q1Var.getContext(), str);
-    }
-
-    @Override
-    public int F() {
+    public int A() {
         return 0;
     }
 
     @Override
-    public CharacterStyle G1(q1 q1Var) {
+    public StackTraceElement[] B(StackTraceElement[] stackTraceElementArr) {
+        int i7;
+        HashMap hashMap = new HashMap();
+        StackTraceElement[] stackTraceElementArr2 = new StackTraceElement[stackTraceElementArr.length];
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 1;
+        while (i10 < stackTraceElementArr.length) {
+            StackTraceElement stackTraceElement = stackTraceElementArr[i10];
+            Integer num = (Integer) hashMap.get(stackTraceElement);
+            if (num != null) {
+                int intValue = num.intValue();
+                int i13 = i10 - intValue;
+                if (i10 + i13 <= stackTraceElementArr.length) {
+                    for (int i14 = 0; i14 < i13; i14++) {
+                        if (stackTraceElementArr[intValue + i14].equals(stackTraceElementArr[i10 + i14])) {
+                        }
+                    }
+                    int intValue2 = i10 - num.intValue();
+                    if (i12 < 10) {
+                        System.arraycopy(stackTraceElementArr, i10, stackTraceElementArr2, i11, intValue2);
+                        i11 += intValue2;
+                        i12++;
+                    }
+                    i7 = (intValue2 - 1) + i10;
+                    hashMap.put(stackTraceElement, Integer.valueOf(i10));
+                    i10 = i7 + 1;
+                }
+            }
+            stackTraceElementArr2[i11] = stackTraceElementArr[i10];
+            i11++;
+            i12 = 1;
+            i7 = i10;
+            hashMap.put(stackTraceElement, Integer.valueOf(i10));
+            i10 = i7 + 1;
+        }
+        StackTraceElement[] stackTraceElementArr3 = new StackTraceElement[i11];
+        System.arraycopy(stackTraceElementArr2, 0, stackTraceElementArr3, 0, i11);
+        if (i11 < stackTraceElementArr.length) {
+            return stackTraceElementArr3;
+        }
+        return stackTraceElementArr;
+    }
+
+    @Override
+    public void B1(q1 q1Var, TLRPC.WebPage webPage, String str, boolean z9) {
+        vf.c.t(q1Var.getContext(), str);
+    }
+
+    @Override
+    public int C0() {
+        return 0;
+    }
+
+    @Override
+    public CharacterStyle C1(q1 q1Var) {
         return null;
     }
 
     @Override
-    public void H0(ShortBuffer shortBuffer, int i3, ShortBuffer shortBuffer2, int i10) {
-        fg.a aVar;
-        if (i3 == 6) {
-            aVar = fg.a.f11595q;
-        } else if (i3 > i10) {
-            aVar = fg.a.f11592m;
-        } else if (i3 < i10) {
-            aVar = fg.a.f11593o;
-        } else {
-            aVar = fg.a.f11594p;
+    public int D(e2.u uVar) {
+        return 1;
+    }
+
+    @Override
+    public boolean E1(q1 q1Var, ij ijVar) {
+        return false;
+    }
+
+    @Override
+    public int F(e2.u uVar) {
+        if (uVar.f10618w != null) {
+            return 1;
         }
-        aVar.H0(shortBuffer, i3, shortBuffer2, i10);
+        return 0;
     }
 
     @Override
-    public boolean I1(q1 q1Var, zi ziVar) {
+    public void H0(ShortBuffer shortBuffer, int i7, ShortBuffer shortBuffer2, int i10) {
+        eg.a aVar;
+        if (i7 == 6) {
+            aVar = eg.a.f10808p;
+        } else if (i7 > i10) {
+            aVar = eg.a.f10805l;
+        } else if (i7 < i10) {
+            aVar = eg.a.f10806m;
+        } else {
+            aVar = eg.a.f10807o;
+        }
+        aVar.H0(shortBuffer, i7, shortBuffer2, i10);
+    }
+
+    @Override
+    public boolean I(String str, MediaCodecInfo.CodecCapabilities codecCapabilities) {
         return false;
     }
 
     @Override
-    public boolean J0(long j10) {
+    public boolean J0(long j3) {
         return false;
     }
 
     @Override
-    public boolean L1() {
+    public boolean J1(q1 q1Var, TLRPC.PollAnswer pollAnswer) {
         return false;
+    }
+
+    @Override
+    public int L() {
+        return MediaCodecList.getCodecCount();
     }
 
     @Override
     public int M() {
-        return 352321535;
+        return 0;
     }
 
     @Override
-    public float O() {
-        return -1.0f;
+    public er0 N1() {
+        return null;
     }
 
     @Override
-    public boolean P0(q1 q1Var, boolean z10) {
+    public int O() {
+        return 0;
+    }
+
+    @Override
+    public boolean O0(q1 q1Var, boolean z9) {
         return false;
     }
 
     @Override
-    public boolean P1(q1 q1Var, TLRPC.PollAnswer pollAnswer) {
+    public boolean Q(q1 q1Var, TLRPC.TodoItem todoItem, boolean z9) {
         return false;
     }
 
     @Override
-    public boolean Q(q1 q1Var, TLRPC.TodoItem todoItem, boolean z10) {
+    public boolean Q1(long j3) {
         return false;
     }
 
@@ -148,13 +419,18 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
+    public int R0() {
+        return 0;
+    }
+
+    @Override
     public boolean S(q1 q1Var) {
         return false;
     }
 
     @Override
-    public vq0 S1() {
-        return null;
+    public boolean S1(q1 q1Var, TLRPC.TodoItem todoItem) {
+        return false;
     }
 
     @Override
@@ -163,13 +439,8 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public boolean V1(long j10) {
-        return false;
-    }
-
-    @Override
-    public float W() {
-        return -1.0f;
+    public boolean W0(ij ijVar) {
+        return f1.a(ijVar);
     }
 
     @Override
@@ -178,166 +449,56 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public boolean X0(zi ziVar) {
-        return f1.a(ziVar);
-    }
-
-    @Override
-    public void Y(ng ngVar) {
-        ngVar.run();
-    }
-
-    @Override
-    public boolean Y1(q1 q1Var, TLRPC.TodoItem todoItem) {
+    public boolean Y() {
         return false;
     }
 
     @Override
-    public kh.a Z() {
+    public jh.a Z() {
         return null;
     }
 
     @Override
-    public float a0() {
-        return 0.0f;
-    }
-
-    @Override
-    public boolean b() {
-        if (k6.A0().f31756i != null) {
-            return true;
-        }
+    public boolean a0(q1 q1Var) {
         return false;
     }
 
     @Override
-    public boolean b0(q1 q1Var) {
+    public lf.a b(wf.b bVar) {
+        return new gf.l(bVar);
+    }
+
+    @Override
+    public boolean b0(q1 q1Var, TLRPC.User user) {
         return false;
     }
 
     @Override
-    public boolean c() {
+    public boolean b2(q1 q1Var, TL_iv.PageBlock pageBlock) {
         return false;
     }
 
     @Override
-    public int c0() {
-        return 0;
+    public ia.b c(s sVar, JSONObject jSONObject) {
+        return W(sVar);
     }
 
     @Override
     public boolean d() {
-        return true;
-    }
-
-    @Override
-    public boolean d0(q1 q1Var, TLRPC.User user) {
         return false;
     }
 
     @Override
-    public boolean e2(q1 q1Var, TL_iv.PageBlock pageBlock) {
-        return false;
-    }
-
-    @Override
-    public l f(j jVar, v vVar) {
-        return l.v;
-    }
-
-    @Override
-    public boolean f0() {
-        return false;
-    }
-
-    @Override
-    public String g(q1 q1Var) {
-        return null;
-    }
-
-    @Override
-    public boolean g0() {
-        return false;
-    }
-
-    @Override
-    public b4.m h(v vVar) {
-        throw new IllegalStateException("This SubtitleParser.Factory doesn't support any formats.");
-    }
-
-    @Override
-    public int j0(q1 q1Var) {
-        return 0;
-    }
-
-    @Override
-    public boolean l(v vVar) {
-        return false;
-    }
-
-    @Override
-    public a7.d l1(Context context, String str, a7.c cVar) {
-        a7.d dVar = new a7.d();
-        int e10 = cVar.e(context, str, true);
-        dVar.f139b = e10;
-        if (e10 != 0) {
-            dVar.f140c = 1;
-            return dVar;
-        }
-        int k10 = cVar.k(context, str);
-        dVar.f138a = k10;
-        if (k10 != 0) {
-            dVar.f140c = -1;
-        }
-        return dVar;
-    }
-
-    @Override
-    public boolean m0() {
-        return false;
-    }
-
-    @Override
-    public boolean m2(int i3) {
-        return false;
-    }
-
-    @Override
-    public boolean n1() {
-        return false;
-    }
-
-    @Override
-    public boolean o0(p5 p5Var) {
-        return false;
-    }
-
-    @Override
-    public void onFailure(Exception exc) {
-        Log.e("OptionalModuleUtils", "Failed to request modules install request", exc);
-    }
-
-    @Override
-    public boolean p1(q1 q1Var, int i3) {
-        return false;
-    }
-
-    @Override
-    public int q0(v vVar) {
-        return 1;
-    }
-
-    @Override
-    public Object q1(ke keVar) {
-        switch (this.f20317a) {
-            case 11:
+    public Object e(r7 r7Var) {
+        switch (this.f20532a) {
+            case 15:
                 return new h();
             default:
-                mb.g gVar = (mb.g) keVar.a(mb.g.class);
+                pb.g gVar = (pb.g) r7Var.a(pb.g.class);
                 synchronized (q.class) {
                     byte b10 = (byte) (((byte) 1) | 2);
                     if (b10 == 3) {
-                        q.f(new Object());
+                        q.a(new Object());
                     } else {
                         StringBuilder sb2 = new StringBuilder();
                         if ((b10 & 1) == 0) {
@@ -349,105 +510,352 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
                         throw new IllegalStateException("Missing required properties:".concat(sb2.toString()));
                     }
                 }
-                return new kb.a(0);
+                return new a(0);
         }
     }
 
     @Override
-    public i9 q2() {
+    public boolean e0() {
+        return false;
+    }
+
+    @Override
+    public int e1() {
+        return 0;
+    }
+
+    @Override
+    public MediaCodecInfo f(int i7) {
+        return MediaCodecList.getCodecInfoAt(i7);
+    }
+
+    @Override
+    public boolean g() {
+        return true;
+    }
+
+    @Override
+    public boolean g2(int i7) {
+        return false;
+    }
+
+    @Override
+    public int getInstallMapsString() {
+        return 2131749195;
+    }
+
+    @Override
+    public String getMapsAppPackageName() {
+        return "com.google.android.apps.maps";
+    }
+
+    @Override
+    public String h(q1 q1Var) {
         return null;
     }
 
     @Override
-    public void r(boolean z10, float[] fArr) {
-        k6.A0().e(z10, fArr);
+    public int h0(q1 q1Var) {
+        return 0;
     }
 
     @Override
-    public void t(Bundle bundle) {
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", "Skipping logging Crashlytics event to Firebase, no Firebase Analytics", null);
+    public q2.g i(j jVar, e2.u uVar) {
+        if (uVar.f10618w == null) {
+            return null;
         }
+        return new q2.n(new f(6001, new Exception()));
+    }
+
+    @Override
+    public void initializeMaps(Context context) {
+        synchronized (k8.b.class) {
+            k8.b.a(context);
+        }
+    }
+
+    @Override
+    public float j0() {
+        return -1.0f;
+    }
+
+    @Override
+    public boolean k0() {
+        return false;
+    }
+
+    @Override
+    public j9 k2() {
+        return null;
+    }
+
+    @Override
+    public c4.m l(e2.u uVar) {
+        throw new IllegalStateException("This SubtitleParser.Factory doesn't support any formats.");
+    }
+
+    @Override
+    public ya loadRawResourceStyle(Context context, int i7) {
+        InputStream openRawResource = context.getResources().openRawResource(i7);
+        try {
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            byte[] bArr = new byte[1024];
+            while (true) {
+                int read = openRawResource.read(bArr, 0, 1024);
+                if (read != -1) {
+                    byteArrayOutputStream.write(bArr, 0, read);
+                } else {
+                    x6.b.a(openRawResource);
+                    x6.b.a(byteArrayOutputStream);
+                    e eVar = new e(new String(byteArrayOutputStream.toByteArray(), "UTF-8"));
+                    ?? obj = new Object();
+                    obj.f22608a = eVar;
+                    return obj;
+                }
+            }
+        } catch (IOException e10) {
+            String obj2 = e10.toString();
+            throw new Resources.NotFoundException("Failed to read resource " + i7 + ": " + obj2);
+        }
+    }
+
+    @Override
+    public q2.l m(j jVar, e2.u uVar) {
+        return q2.l.f53622z;
+    }
+
+    @Override
+    public boolean n0(r5 r5Var) {
+        return false;
+    }
+
+    @Override
+    public boolean n1() {
+        return false;
+    }
+
+    @Override
+    public ua newCameraUpdateLatLng(cb cbVar) {
+        LatLng latLng = new LatLng(cbVar.f21791a, cbVar.f21792b);
+        try {
+            l8.a aVar = z0.f5984a;
+            q6.m.h(aVar, "CameraUpdateFactory is not initialized");
+            Parcel P0 = aVar.P0();
+            v7.b.b(P0, latLng);
+            Parcel O0 = aVar.O0(P0, 8);
+            a7.a M0 = a7.b.M0(O0.readStrongBinder());
+            O0.recycle();
+            return new ca(new k8.a(M0, 0));
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
+        }
+    }
+
+    @Override
+    public ua newCameraUpdateLatLngBounds(wa waVar, int i7) {
+        LatLngBounds latLngBounds = ((da) waVar).f21979a;
+        try {
+            l8.a aVar = z0.f5984a;
+            q6.m.h(aVar, "CameraUpdateFactory is not initialized");
+            Parcel P0 = aVar.P0();
+            v7.b.b(P0, latLngBounds);
+            P0.writeInt(i7);
+            Parcel O0 = aVar.O0(P0, 10);
+            a7.a M0 = a7.b.M0(O0.readStrongBinder());
+            O0.recycle();
+            return new ca(new k8.a(M0, 0));
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
+        }
+    }
+
+    @Override
+    public ua newCameraUpdateLatLngZoom(cb cbVar, float f10) {
+        LatLng latLng = new LatLng(cbVar.f21791a, cbVar.f21792b);
+        try {
+            l8.a aVar = z0.f5984a;
+            q6.m.h(aVar, "CameraUpdateFactory is not initialized");
+            Parcel P0 = aVar.P0();
+            v7.b.b(P0, latLng);
+            P0.writeFloat(f10);
+            Parcel O0 = aVar.O0(P0, 9);
+            a7.a M0 = a7.b.M0(O0.readStrongBinder());
+            O0.recycle();
+            return new ca(new k8.a(M0, 0));
+        } catch (RemoteException e10) {
+            throw new RuntimeException(e10);
+        }
+    }
+
+    @Override
+    public float o0() {
+        return -1.0f;
+    }
+
+    @Override
+    public va onCreateCircleOptions() {
+        h9.f1 f1Var = new h9.f1(22, false);
+        ?? obj = new Object();
+        obj.f19926a = null;
+        obj.f19927b = 0.0d;
+        obj.f19928c = 10.0f;
+        obj.d = -16777216;
+        obj.f19929e = 0;
+        obj.f19930f = 0.0f;
+        obj.h = true;
+        obj.f19931n = false;
+        obj.f19932r = null;
+        f1Var.f14323b = obj;
+        return f1Var;
+    }
+
+    @Override
+    public xa onCreateLatLngBoundsBuilder() {
+        d0 d0Var = new d0(25, false);
+        m8.d dVar = new m8.d(0);
+        dVar.f19935b = Double.POSITIVE_INFINITY;
+        dVar.f19936c = Double.NEGATIVE_INFINITY;
+        dVar.d = Double.NaN;
+        dVar.f19937e = Double.NaN;
+        d0Var.f13555b = dVar;
+        return d0Var;
+    }
+
+    @Override
+    public za onCreateMapView(Context context) {
+        r7 r7Var = new r7(13);
+        r7Var.f614b = new x5(r7Var, context);
+        return r7Var;
+    }
+
+    @Override
+    public ab onCreateMarkerOptions() {
+        gf.g gVar = new gf.g(24);
+        ?? obj = new Object();
+        obj.f19943e = 0.5f;
+        obj.f19944f = 1.0f;
+        obj.f19945n = true;
+        obj.f19946r = false;
+        obj.f19947s = 0.0f;
+        obj.f19948w = 0.5f;
+        obj.f19949x = 0.0f;
+        obj.f19950y = 1.0f;
+        gVar.f13889b = obj;
+        return gVar;
+    }
+
+    @Override
+    public boolean p1(q1 q1Var, int i7) {
+        return false;
+    }
+
+    @Override
+    public void q0(ShortBuffer shortBuffer, int i7, ShortBuffer shortBuffer2, int i10, int i11) {
+        if (i7 <= i10) {
+            if (i11 != 1 && i11 != 2) {
+                throw new IllegalArgumentException(jg.g.j(i11, "Illegal use of UpsampleAudioResampler. Channels:"));
+            }
+            int remaining = shortBuffer.remaining() / i11;
+            int ceil = ((int) Math.ceil((i10 / i7) * remaining)) - remaining;
+            float f10 = remaining;
+            float f11 = f10 / f10;
+            float f12 = ceil;
+            float f13 = f12 / f12;
+            while (remaining > 0 && ceil > 0) {
+                if (f11 >= f13) {
+                    shortBuffer2.put(shortBuffer.get());
+                    if (i11 == 2) {
+                        shortBuffer2.put(shortBuffer.get());
+                    }
+                    remaining--;
+                    f11 = remaining / f10;
+                } else {
+                    shortBuffer2.put(shortBuffer2.get(shortBuffer2.position() - i11));
+                    if (i11 == 2) {
+                        shortBuffer2.put(shortBuffer2.get(shortBuffer2.position() - i11));
+                    }
+                    ceil--;
+                    f13 = ceil / f12;
+                }
+            }
+            return;
+        }
+        throw new IllegalArgumentException("Illegal use of UpsampleAudioResampler");
+    }
+
+    @Override
+    public long s() {
+        return System.currentTimeMillis();
+    }
+
+    @Override
+    public boolean t(String str, String str2, MediaCodecInfo.CodecCapabilities codecCapabilities) {
+        if ("secure-playback".equals(str) && "video/avc".equals(str2)) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public Object then(Task task) {
         Intent intent = (Intent) ((Bundle) task.getResult()).getParcelable("notification_data");
         if (intent != null) {
-            return new l6.a(intent);
+            return new m6.a(intent);
         }
         return null;
     }
 
     @Override
-    public int u(v vVar) {
-        if (vVar.f8492w != null) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public int u0() {
-        return 0;
-    }
-
-    @Override
-    public int v1(int i3, int i10, int i11) {
-        fg.a aVar;
-        if (i10 == 6) {
-            aVar = fg.a.f11595q;
-        } else if (i10 > i11) {
-            aVar = fg.a.f11592m;
-        } else if (i10 < i11) {
-            aVar = fg.a.f11593o;
-        } else {
-            aVar = fg.a.f11594p;
-        }
-        return aVar.v1(i3, i10, i11);
-    }
-
-    @Override
-    public int w0() {
-        return 1711276032;
-    }
-
-    @Override
-    public boolean w1(q1 q1Var, TLRPC.Chat chat) {
+    public boolean u1(q1 q1Var, TLRPC.Chat chat) {
         return false;
     }
 
     @Override
-    public int x() {
-        return 872415231;
+    public float v0() {
+        return 0.0f;
     }
 
     @Override
-    public boolean x0(zi ziVar) {
+    public boolean w(e2.u uVar) {
+        return false;
+    }
+
+    @Override
+    public boolean w1() {
+        return false;
+    }
+
+    @Override
+    public boolean x0(ij ijVar) {
         return true;
     }
 
     @Override
-    public boolean y1() {
-        return false;
-    }
-
-    @Override
-    public String z(long j10) {
+    public String y(long j3) {
         return null;
     }
 
-    public a() {
-        this.f20317a = 16;
-        new TreeMap(String.CASE_INSENSITIVE_ORDER).clear();
-    }
-
-    public a(Context context) {
-        this.f20317a = 8;
+    @Override
+    public int z1(int i7, int i10, int i11) {
+        eg.a aVar;
+        if (i10 == 6) {
+            aVar = eg.a.f10808p;
+        } else if (i10 > i11) {
+            aVar = eg.a.f10805l;
+        } else if (i10 < i11) {
+            aVar = eg.a.f10806m;
+        } else {
+            aVar = eg.a.f10807o;
+        }
+        return aVar.z1(i7, i10, i11);
     }
 
     @Override
-    public void K1() {
+    public void F1() {
+    }
+
+    @Override
+    public void Z0() {
     }
 
     @Override
@@ -455,31 +863,19 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void c1() {
+    public void e2() {
     }
 
     @Override
-    public void h2() {
+    public void i2() {
     }
 
     @Override
-    public void j() {
+    public void k() {
     }
 
     @Override
-    public void o() {
-    }
-
-    @Override
-    public void o2() {
-    }
-
-    @Override
-    public void q() {
-    }
-
-    @Override
-    public void r0() {
+    public void p() {
     }
 
     @Override
@@ -487,11 +883,7 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void v() {
-    }
-
-    @Override
-    public void v0() {
+    public void u() {
     }
 
     @Override
@@ -499,19 +891,11 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void A1(q1 q1Var) {
-    }
-
-    @Override
-    public void B(q1 q1Var) {
+    public void A1(ij ijVar) {
     }
 
     @Override
     public void C(q1 q1Var) {
-    }
-
-    @Override
-    public void C1(zi ziVar) {
     }
 
     @Override
@@ -523,15 +907,11 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void I(q1 q1Var) {
+    public void H(q1 q1Var) {
     }
 
     @Override
-    public void I0(Object obj) {
-    }
-
-    @Override
-    public void J(wi wiVar) {
+    public void J(fj fjVar) {
     }
 
     @Override
@@ -543,7 +923,11 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void P(zi ziVar) {
+    public void P(ij ijVar) {
+    }
+
+    @Override
+    public void P0(q1 q1Var) {
     }
 
     @Override
@@ -551,7 +935,7 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void S0(q1 q1Var) {
+    public void U1(q1 q1Var) {
     }
 
     @Override
@@ -559,51 +943,44 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void Z1(q1 q1Var) {
+    public void c2(q1 q1Var) {
     }
 
     @Override
-    public void a1(TLRPC.User user) {
+    public void d0(int i7) {
     }
 
     @Override
-    public void e0(int i3) {
+    public void i0(q1 q1Var) {
     }
 
     @Override
-    public void f2(q1 q1Var) {
+    public void m0(String str) {
     }
 
     @Override
-    public void k0(q1 q1Var) {
+    public void o(q1 q1Var) {
     }
 
     @Override
-    public void m(String str) {
+    public long q(long j3) {
+        return j3;
     }
 
     @Override
-    public void n0(String str) {
+    public void r(q1 q1Var) {
     }
 
     @Override
-    public void p(q1 q1Var) {
+    public void r1(q1 q1Var) {
     }
 
     @Override
-    public void s(q1 q1Var) {
+    public void v(q1 q1Var) {
     }
 
     @Override
-    public void t1(q1 q1Var) {
-    }
-
-    @Override
-    public void w(q1 q1Var) {
-    }
-
-    @Override
-    public void y(q1 q1Var) {
+    public void x(q1 q1Var) {
     }
 
     @Override
@@ -611,7 +988,27 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void H(q1 q1Var, o2 o2Var) {
+    public void y1(q1 q1Var) {
+    }
+
+    @Override
+    public void z(q1 q1Var) {
+    }
+
+    @Override
+    public void E(Looper looper, m2.j jVar) {
+    }
+
+    @Override
+    public void G(q1 q1Var, o2 o2Var) {
+    }
+
+    @Override
+    public void H1(q1 q1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    }
+
+    @Override
+    public void K1(q1 q1Var, o10 o10Var) {
     }
 
     @Override
@@ -619,51 +1016,35 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void M1(q1 q1Var, TLRPC.MessageExtendedMedia messageExtendedMedia) {
+    public void P1(String str, String str2) {
     }
 
     @Override
-    public void Q1(q1 q1Var, g10 g10Var) {
+    public void W1(q1 q1Var, long j3) {
     }
 
     @Override
-    public void U1(String str, String str2) {
+    public void b1(q1 q1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void a2(q1 q1Var, long j10) {
+    public void g1(q1 q1Var, int i7) {
     }
 
     @Override
-    public void d1(q1 q1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
+    public void s1(q1 q1Var, boolean z9) {
     }
 
     @Override
-    public void e(String str, Throwable th2) {
+    public void v1(q1 q1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
     }
 
     @Override
-    public void f1(q1 q1Var, int i3) {
+    public void x1(q1 q1Var, int i7) {
     }
 
     @Override
-    public void k(Looper looper, l2.k kVar) {
-    }
-
-    @Override
-    public void u1(q1 q1Var, boolean z10) {
-    }
-
-    @Override
-    public void x1(q1 q1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
-    }
-
-    @Override
-    public void z1(q1 q1Var, int i3) {
-    }
-
-    @Override
-    public void A0(q1 q1Var, TLObject tLObject, boolean z10) {
+    public void A0(q1 q1Var, TLObject tLObject, boolean z9) {
     }
 
     @Override
@@ -671,7 +1052,7 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void E0(q1 q1Var, boolean z10, boolean z11) {
+    public void E0(q1 q1Var, boolean z9, boolean z10) {
     }
 
     @Override
@@ -679,15 +1060,19 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void N0(q1 q1Var, CharacterStyle characterStyle, boolean z10) {
+    public void N0(q1 q1Var, CharacterStyle characterStyle, boolean z9) {
     }
 
     @Override
-    public void h0(q1 q1Var, float f10, float f11) {
+    public void g0(q1 q1Var, float f10, float f11) {
     }
 
     @Override
-    public void i1(q1 q1Var, float f10, float f11) {
+    public void j1(q1 q1Var, float f10, float f11) {
+    }
+
+    @Override
+    public void j2(q1 q1Var, int i7, int i10) {
     }
 
     @Override
@@ -695,19 +1080,15 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void p2(q1 q1Var, int i3, int i10) {
+    public void q1(q1 q1Var, boolean z9, boolean z10) {
     }
 
     @Override
-    public void r1(q1 q1Var, boolean z10, boolean z11) {
+    public void I1(q1 q1Var, TLRPC.User user, TLRPC.Document document, String str) {
     }
 
     @Override
-    public void N1(q1 q1Var, TLRPC.User user, TLRPC.Document document, String str) {
-    }
-
-    @Override
-    public void n(q1 q1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i3) {
+    public void n(q1 q1Var, TLRPC.PollAnswer pollAnswer, TLRPC.MessageMedia messageMedia, int i7) {
     }
 
     @Override
@@ -715,34 +1096,26 @@ public final class a implements e, k, fg.a, zh, d, Continuation, OnFailureListen
     }
 
     @Override
-    public void t0(q1 q1Var, float f10, float f11, boolean z10) {
+    public void u0(q1 q1Var, float f10, float f11, boolean z9) {
     }
 
     @Override
-    public void W1(q1 q1Var, int i3, float f10, float f11, boolean z10) {
+    public void R1(q1 q1Var, int i7, float f10, float f11, boolean z9) {
     }
 
     @Override
-    public void i(q1 q1Var, ArrayList arrayList, int i3, int i10, int i11) {
+    public void f2(q1 q1Var, TLRPC.ReactionCount reactionCount, boolean z9, float f10, float f11) {
     }
 
     @Override
-    public void i2(q1 q1Var, TLRPC.ReactionCount reactionCount, boolean z10, float f10, float f11) {
+    public void j(q1 q1Var, ArrayList arrayList, int i7, int i10, int i11) {
     }
 
     @Override
-    public void o1(int i3, boolean z10, boolean z11, int i10, int i11, long j10, boolean z12, boolean z13, long j11) {
+    public void U(q1 q1Var, TLRPC.Chat chat, int i7, float f10, float f11, boolean z9) {
     }
 
     @Override
-    public void U(q1 q1Var, TLRPC.Chat chat, int i3, float f10, float f11, boolean z10) {
-    }
-
-    @Override
-    public void R1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i3, int i10, long j10, boolean z11, long j11) {
-    }
-
-    @Override
-    public void H1(zi ziVar, String str, String str2, String str3, String str4, int i3, int i10) {
+    public void D1(ij ijVar, String str, String str2, String str3, String str4, int i7, int i10) {
     }
 }

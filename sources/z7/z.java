@@ -1,4 +1,3 @@
 package z7;
-public interface z {
-    int zza();
+public abstract class z {
 }

@@ -1,111 +1,77 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.SurfaceView;
-import android.view.TextureView;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import org.telegram.messenger.MediaController;
-import org.telegram.ui.PhotoViewer;
-public final class zd0 extends org.telegram.ui.l4 {
-    public final int h;
-    public final Object f41029n;
+import android.webkit.JavascriptInterface;
+public final class zd0 {
+    public final org.telegram.ui.bq0 f40892a;
 
-    public zd0(int i3, Context context, Object obj) {
-        super(context);
-        this.h = i3;
-        this.f41029n = obj;
+    public zd0(org.telegram.ui.bq0 bq0Var) {
+        this.f40892a = bq0Var;
     }
 
-    @Override
-    public void draw(Canvas canvas) {
-        switch (this.h) {
-            case 2:
-                if (!((PhotoViewer) this.f41029n).U8) {
-                    super.draw(canvas);
-                    return;
-                }
-                return;
-            default:
-                super.draw(canvas);
-                return;
+    @JavascriptInterface
+    public void onPlayerError(String str) {
+        org.telegram.messenger.g0.h3(new r2(this, Integer.parseInt(str), 8));
+    }
+
+    @JavascriptInterface
+    public void onPlayerLoaded() {
+        org.telegram.messenger.g0.h3(new xd0(this, 0));
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyBufferedPosition(float f10) {
+        this.f40892a.J = f10;
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyCurrentPosition(int i7) {
+        this.f40892a.I = i7 * 1000;
+    }
+
+    @JavascriptInterface
+    public void onPlayerNotifyDuration(int i7) {
+        org.telegram.ui.bq0 bq0Var = this.f40892a;
+        bq0Var.H = i7 * 1000;
+        String str = bq0Var.f31782s;
+        if (str != null) {
+            ae0.a(bq0Var, str);
+            bq0Var.f31782s = null;
         }
     }
 
-    @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        org.telegram.messenger.zi ziVar;
-        switch (this.h) {
-            case 0:
-                boolean drawChild = super.drawChild(canvas, view, j10);
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f41029n;
-                if (view == pipRoundVideoView.f31499c && (ziVar = MediaController.B().f21348v0) != null) {
-                    pipRoundVideoView.F.set(org.telegram.messenger.g0.N(1.5f), org.telegram.messenger.g0.N(1.5f), getMeasuredWidth() - org.telegram.messenger.g0.N(1.5f), getMeasuredHeight() - org.telegram.messenger.g0.N(1.5f));
-                    canvas.drawArc(pipRoundVideoView.F, -90.0f, ziVar.f26828b0 * 360.0f, false, org.telegram.ui.ActionBar.k6.f28003k2);
-                }
-                return drawChild;
-            case 1:
-            default:
-                return super.drawChild(canvas, view, j10);
-            case 2:
-                PhotoViewer photoViewer = (PhotoViewer) this.f41029n;
-                if (view == photoViewer.F3 && photoViewer.f41441h4) {
-                    return true;
-                }
-                return super.drawChild(canvas, view, j10);
+    @JavascriptInterface
+    public void onPlayerStateChange(String str) {
+        boolean z9;
+        int parseInt = Integer.parseInt(str);
+        org.telegram.ui.bq0 bq0Var = this.f40892a;
+        boolean z10 = bq0Var.G;
+        boolean z11 = false;
+        int i7 = 1;
+        if (parseInt != 1 && parseInt != 3) {
+            z9 = false;
+        } else {
+            z9 = true;
         }
-    }
-
-    @Override
-    public void onMeasure(int i3, int i10) {
-        switch (this.h) {
-            case 1:
-                super.onMeasure(i3, i10);
-                d71 d71Var = (d71) this.f41029n;
-                if (d71Var.f33005f != null) {
-                    ViewGroup.LayoutParams layoutParams = d71Var.d.getLayoutParams();
-                    layoutParams.width = getMeasuredWidth();
-                    layoutParams.height = getMeasuredHeight();
-                    ImageView imageView = d71Var.f33003e;
-                    if (imageView != null) {
-                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
-                        layoutParams2.width = getMeasuredWidth();
-                        layoutParams2.height = getMeasuredHeight();
-                        return;
+        bq0Var.G = z9;
+        bq0Var.b(z10);
+        if (parseInt != 0) {
+            if (parseInt != 1) {
+                if (parseInt != 2) {
+                    if (parseInt == 3) {
+                        z11 = true;
+                        i7 = 2;
                     }
-                    return;
                 }
-                return;
-            case 2:
-                super.onMeasure(i3, i10);
-                PhotoViewer photoViewer = (PhotoViewer) this.f41029n;
-                ImageView imageView2 = photoViewer.f41591y3;
-                if (imageView2 != null) {
-                    ViewGroup.LayoutParams layoutParams3 = imageView2.getLayoutParams();
-                    layoutParams3.width = getMeasuredWidth();
-                    layoutParams3.height = getMeasuredHeight();
-                }
-                TextureView textureView = photoViewer.C2;
-                if (textureView instanceof b51) {
-                    textureView.setPivotX(textureView.getMeasuredWidth() / 2);
-                    photoViewer.F2.setPivotX(photoViewer.C2.getMeasuredWidth() / 2);
-                } else {
-                    if (textureView != null) {
-                        textureView.setPivotX(0.0f);
-                    }
-                    SurfaceView surfaceView = photoViewer.D2;
-                    if (surfaceView != null) {
-                        surfaceView.setPivotX(0.0f);
-                    }
-                    photoViewer.F2.setPivotX(0.0f);
-                }
-                photoViewer.A0();
-                return;
-            default:
-                super.onMeasure(i3, i10);
-                return;
+            } else {
+                z11 = true;
+            }
+            i7 = 3;
+        } else {
+            i7 = 4;
         }
+        if (i7 == 3 && bq0Var.h.getVisibility() != 4) {
+            org.telegram.messenger.g0.i3(new xd0(this, 1), 300L);
+        }
+        org.telegram.messenger.g0.h3(new bi.c9(this, z11, i7, 4));
     }
 }

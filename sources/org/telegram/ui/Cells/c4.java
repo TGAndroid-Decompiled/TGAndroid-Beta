@@ -2,29 +2,29 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 public final class c4 extends org.telegram.ui.ActionBar.k5 {
-    public float N0;
-    public final int O0;
-    public final f4 P0;
+    public float M0;
+    public final int N0;
+    public final f4 O0;
 
-    public c4(f4 f4Var, Context context, int i3) {
+    public c4(f4 f4Var, Context context, int i7) {
         super(context);
-        this.P0 = f4Var;
-        this.O0 = i3;
+        this.O0 = f4Var;
+        this.N0 = i7;
     }
 
     @Override
     public final float getAlpha() {
-        return this.N0;
+        return this.M0;
     }
 
     @Override
     public final void setAlpha(float f10) {
-        this.N0 = f10;
-        f4 f4Var = this.P0;
-        if (this.O0 == 4) {
+        this.M0 = f10;
+        f4 f4Var = this.O0;
+        if (this.N0 == 4) {
             float fullAlpha = f4Var.d[4].getFullAlpha();
             if (f4Var.c()) {
-                float f11 = f4Var.f29166f0;
+                float f11 = f4Var.f29105e0;
                 if (f11 > 0.0f) {
                     super.setAlpha(1.0f - f11);
                     return;
@@ -44,13 +44,13 @@ public final class c4 extends org.telegram.ui.ActionBar.k5 {
     @Override
     public final void setFullAlpha(float f10) {
         super.setFullAlpha(f10);
-        int i3 = 0;
+        int i7 = 0;
         while (true) {
-            org.telegram.ui.ActionBar.k5[] k5VarArr = this.P0.d;
-            if (i3 < k5VarArr.length) {
-                org.telegram.ui.ActionBar.k5 k5Var = k5VarArr[i3];
+            org.telegram.ui.ActionBar.k5[] k5VarArr = this.O0.d;
+            if (i7 < k5VarArr.length) {
+                org.telegram.ui.ActionBar.k5 k5Var = k5VarArr[i7];
                 k5Var.setAlpha(k5Var.getAlpha());
-                i3++;
+                i7++;
             } else {
                 return;
             }
@@ -59,7 +59,7 @@ public final class c4 extends org.telegram.ui.ActionBar.k5 {
 
     @Override
     public final void setTranslationY(float f10) {
-        if (this.O0 == 4 && getFullAlpha() > 0.0f) {
+        if (this.N0 == 4 && getFullAlpha() > 0.0f) {
             f10 = 0.0f;
         }
         super.setTranslationY(f10);

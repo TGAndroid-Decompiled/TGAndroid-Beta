@@ -1,62 +1,57 @@
 package org.telegram.ui;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
-import android.transition.Fade;
-import android.transition.TransitionValues;
-import android.view.View;
-import android.view.ViewGroup;
-public final class np0 extends Fade {
-    public final int f48043a;
-    public final boolean f48044b;
-    public final boolean f48045c;
-    public final PhotoViewer d;
+import android.animation.AnimatorListenerAdapter;
+public final class np0 extends AnimatorListenerAdapter {
+    public final int f48075a;
+    public final op0 f48076b;
 
-    public np0(PhotoViewer photoViewer, boolean z10, boolean z11, int i3) {
-        super(1);
-        this.f48043a = i3;
-        switch (i3) {
-            case 1:
-                this.d = photoViewer;
-                this.f48044b = z10;
-                this.f48045c = z11;
-                super(2);
-                return;
-            default:
-                this.d = photoViewer;
-                this.f48044b = z10;
-                this.f48045c = z11;
-                return;
+    public np0(op0 op0Var, int i7) {
+        this.f48076b = op0Var;
+        this.f48075a = i7;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        if (this.f48076b.f48440b.f41407j8) {
+            PhotoViewer photoViewer = this.f48076b.f48440b;
+            if (photoViewer.f41470r1) {
+                photoViewer.z3();
+            }
+        }
+        if (this.f48075a == 3) {
+            PhotoViewer photoViewer2 = this.f48076b.f48440b;
+            photoViewer2.D2(photoViewer2.O4, false, true, true);
         }
     }
 
     @Override
-    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f48043a) {
-            case 0:
-                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-                if (this.f48044b && !this.f48045c && view == this.d.R1) {
-                    onAppear.addListener(new y20(this, 14));
-                    ((ObjectAnimator) onAppear).addUpdateListener(new b3(this, 18));
-                }
-                return onAppear;
-            default:
-                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+    public final void onAnimationStart(Animator animator) {
+        int i7;
+        PhotoViewer photoViewer = this.f48076b.f48440b;
+        photoViewer.P0.setVisibility(0);
+        if (photoViewer.C3()) {
+            photoViewer.f41434n0.setVisibility(0);
+        } else {
+            photoViewer.S0.setVisibility(0);
         }
-    }
-
-    @Override
-    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f48043a) {
-            case 1:
-                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
-                if (!this.f48044b && this.f48045c && view == this.d.R1) {
-                    onDisappear.addListener(new y20(this, 15));
-                    ((ObjectAnimator) onDisappear).addUpdateListener(new b3(this, 19));
-                }
-                return onDisappear;
-            default:
-                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+        photoViewer.F.setVisibility(0);
+        if (photoViewer.f41394i2) {
+            kq0 kq0Var = photoViewer.Q1;
+            if (kq0Var.getTag() != null) {
+                i7 = 0;
+            } else {
+                i7 = 4;
+            }
+            kq0Var.setVisibility(i7);
+        }
+        if (!photoViewer.d2 && !photoViewer.f41358e2) {
+            int i10 = photoViewer.f41340c2;
+            if ((i10 == 0 || i10 == 4 || ((i10 == 2 || i10 == 5) && photoViewer.f41373f7.size() > 1)) && !photoViewer.f41360e4) {
+                photoViewer.N0.setVisibility(0);
+                photoViewer.O0.setVisibility(0);
+                photoViewer.p3();
+            }
         }
     }
 }

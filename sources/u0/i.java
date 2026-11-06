@@ -15,57 +15,57 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 public final class i implements ActionMode.Callback {
-    public final ActionMode.Callback f55466a;
-    public final TextView f55467b;
-    public Class f55468c;
+    public final ActionMode.Callback f56061a;
+    public final TextView f56062b;
+    public Class f56063c;
     public Method d;
-    public boolean f55469e;
-    public boolean f55470f = false;
+    public boolean f56064e;
+    public boolean f56065f = false;
 
     public i(ActionMode.Callback callback, TextView textView) {
-        this.f55466a = callback;
-        this.f55467b = textView;
+        this.f56061a = callback;
+        this.f56062b = textView;
     }
 
     @Override
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        return this.f55466a.onActionItemClicked(actionMode, menuItem);
+        return this.f56061a.onActionItemClicked(actionMode, menuItem);
     }
 
     @Override
     public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        return this.f55466a.onCreateActionMode(actionMode, menu);
+        return this.f56061a.onCreateActionMode(actionMode, menu);
     }
 
     @Override
     public final void onDestroyActionMode(ActionMode actionMode) {
-        this.f55466a.onDestroyActionMode(actionMode);
+        this.f56061a.onDestroyActionMode(actionMode);
     }
 
     @Override
     public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
         Method declaredMethod;
-        boolean z10;
-        TextView textView = this.f55467b;
+        boolean z9;
+        TextView textView = this.f56062b;
         Context context = textView.getContext();
         PackageManager packageManager = context.getPackageManager();
-        boolean z11 = this.f55470f;
+        boolean z10 = this.f56065f;
         Class<?> cls = Integer.TYPE;
-        if (!z11) {
-            this.f55470f = true;
+        if (!z10) {
+            this.f56065f = true;
             try {
                 Class<?> cls2 = Class.forName("com.android.internal.view.menu.MenuBuilder");
-                this.f55468c = cls2;
+                this.f56063c = cls2;
                 this.d = cls2.getDeclaredMethod("removeItemAt", cls);
-                this.f55469e = true;
+                this.f56064e = true;
             } catch (ClassNotFoundException | NoSuchMethodException unused) {
-                this.f55468c = null;
+                this.f56063c = null;
                 this.d = null;
-                this.f55469e = false;
+                this.f56064e = false;
             }
         }
         try {
-            if (this.f55469e && this.f55468c.isInstance(menu)) {
+            if (this.f56064e && this.f56063c.isInstance(menu)) {
                 declaredMethod = this.d;
             } else {
                 declaredMethod = menu.getClass().getDeclaredMethod("removeItemAt", cls);
@@ -90,21 +90,21 @@ public final class i implements ActionMode.Callback {
                     arrayList.add(resolveInfo);
                 }
             }
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                ResolveInfo resolveInfo2 = (ResolveInfo) arrayList.get(i3);
-                MenuItem add = menu.add(0, 0, i3 + 100, resolveInfo2.loadLabel(packageManager));
+            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                ResolveInfo resolveInfo2 = (ResolveInfo) arrayList.get(i7);
+                MenuItem add = menu.add(0, 0, i7 + 100, resolveInfo2.loadLabel(packageManager));
                 Intent type = new Intent().setAction("android.intent.action.PROCESS_TEXT").setType("text/plain");
                 if ((textView instanceof Editable) && textView.onCheckIsTextEditor() && textView.isEnabled()) {
-                    z10 = true;
+                    z9 = true;
                 } else {
-                    z10 = false;
+                    z9 = false;
                 }
-                Intent putExtra = type.putExtra("android.intent.extra.PROCESS_TEXT_READONLY", !z10);
+                Intent putExtra = type.putExtra("android.intent.extra.PROCESS_TEXT_READONLY", !z9);
                 ActivityInfo activityInfo2 = resolveInfo2.activityInfo;
                 add.setIntent(putExtra.setClassName(activityInfo2.packageName, activityInfo2.name)).setShowAsAction(1);
             }
         } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException unused2) {
         }
-        return this.f55466a.onPrepareActionMode(actionMode, menu);
+        return this.f56061a.onPrepareActionMode(actionMode, menu);
     }
 }

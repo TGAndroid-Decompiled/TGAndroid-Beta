@@ -1,29 +1,36 @@
 package kg;
-public final class n implements Runnable {
-    public final int f17101a;
-    public final e0 f17102b;
-    public final int f17103c;
-    public final String d;
-    public final String f17104e;
 
-    public n(e0 e0Var, int i3, String str, String str2) {
-        this.f17101a = 1;
-        this.f17102b = e0Var;
-        this.f17103c = i3;
-        this.d = str;
-        this.f17104e = str2;
+import android.content.DialogInterface;
+import android.view.KeyEvent;
+import android.view.View;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.ActionBar.v2;
+public final class n implements DialogInterface.OnShowListener {
+    public final int f17441a;
+    public final KeyEvent.Callback f17442b;
+    public final Object f17443c;
+
+    public n(KeyEvent.Callback callback, Object obj, int i7) {
+        this.f17441a = i7;
+        this.f17442b = callback;
+        this.f17443c = obj;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: kg.n.run():void");
-    }
-
-    public n(e0 e0Var, String str, int i3, String str2, int i10) {
-        this.f17101a = i10;
-        this.f17102b = e0Var;
-        this.d = str;
-        this.f17103c = i3;
-        this.f17104e = str2;
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f17441a) {
+            case 0:
+                View view = (View) this.f17442b;
+                s sVar = (s) this.f17443c;
+                if (view != null) {
+                    view.clearFocus();
+                }
+                sVar.requestFocus();
+                org.telegram.messenger.g0.K3(sVar);
+                return;
+            default:
+                VoIPService.lambda$toggleSpeakerphoneOrShowRouteSheet$94((v2) this.f17442b, (Integer) this.f17443c, dialogInterface);
+                return;
+        }
     }
 }

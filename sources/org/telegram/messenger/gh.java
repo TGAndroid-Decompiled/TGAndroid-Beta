@@ -1,78 +1,59 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class gh implements RequestDelegate {
-    public final int f22720a;
-    public final li f22721b;
-    public final int f22722c;
+public final class gh implements Comparator {
+    public final int f22638a;
+    public final ArrayList f22639b;
 
-    public gh(li liVar, int i3, int i10) {
-        this.f22720a = i10;
-        this.f22721b = liVar;
-        this.f22722c = i3;
+    public gh(int i7, ArrayList arrayList) {
+        this.f22638a = i7;
+        this.f22639b = arrayList;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        ArrayList<TLRPC.Document> arrayList;
-        ArrayList<TLRPC.Document> arrayList2;
-        switch (this.f22720a) {
+    public final int compare(Object obj, Object obj2) {
+        switch (this.f22638a) {
             case 0:
-                li liVar = this.f22721b;
-                Long[] lArr = liVar.G0;
-                Long valueOf = Long.valueOf(System.currentTimeMillis() / 1000);
-                int i3 = this.f22722c;
-                lArr[i3] = valueOf;
-                if (tLObject instanceof TL_account.TL_emojiStatusesNotModified) {
-                    liVar.I0[i3] = false;
-                    return;
-                } else if (tLObject instanceof TL_account.TL_emojiStatuses) {
-                    TL_account.TL_emojiStatuses tL_emojiStatuses = (TL_account.TL_emojiStatuses) tLObject;
-                    liVar.E0[i3] = tL_emojiStatuses.hash;
-                    liVar.F0[i3] = tL_emojiStatuses.statuses;
-                    liVar.getMessagesStorage().f24934a.c(new k7(liVar, i3, tL_emojiStatuses, 8));
-                    g0.h3(new xf(liVar, 1));
-                    return;
-                } else {
-                    return;
+                Long valueOf = Long.valueOf(((TLRPC.TL_messages_stickerSet) obj).set.f26979id);
+                ArrayList arrayList = this.f22639b;
+                int indexOf = arrayList.indexOf(valueOf);
+                int indexOf2 = arrayList.indexOf(Long.valueOf(((TLRPC.TL_messages_stickerSet) obj2).set.f26979id));
+                if (indexOf > indexOf2) {
+                    return 1;
                 }
-            case 1:
-                g0.h3(new vf(this.f22721b, tL_error, tLObject, this.f22722c, 0));
-                return;
-            case 2:
-                if (tLObject instanceof TLRPC.TL_messages_savedGifs) {
-                    arrayList = ((TLRPC.TL_messages_savedGifs) tLObject).gifs;
-                } else {
-                    arrayList = null;
+                if (indexOf < indexOf2) {
+                    return -1;
                 }
-                this.f22721b.y1(this.f22722c, arrayList, true, 0, true);
-                return;
+                return 0;
             default:
-                int i10 = this.f22722c;
-                if (i10 != 3 && i10 != 7) {
-                    if (i10 == 2) {
-                        if (tLObject instanceof TLRPC.TL_messages_favedStickers) {
-                            arrayList2 = ((TLRPC.TL_messages_favedStickers) tLObject).stickers;
-                        }
-                        arrayList2 = null;
-                    } else {
-                        if (tLObject instanceof TLRPC.TL_messages_recentStickers) {
-                            arrayList2 = ((TLRPC.TL_messages_recentStickers) tLObject).stickers;
-                        }
-                        arrayList2 = null;
-                    }
-                } else {
-                    if (tLObject instanceof TLRPC.TL_messages_stickers) {
-                        arrayList2 = ((TLRPC.TL_messages_stickers) tLObject).stickers;
-                    }
-                    arrayList2 = null;
+                qi qiVar = (qi) obj;
+                qi qiVar2 = (qi) obj2;
+                String str = qiVar.f24690a;
+                ArrayList arrayList2 = this.f22639b;
+                int indexOf3 = arrayList2.indexOf(str);
+                int i7 = Integer.MAX_VALUE;
+                if (indexOf3 < 0) {
+                    indexOf3 = Integer.MAX_VALUE;
                 }
-                this.f22721b.y1(i10, arrayList2, false, 0, true);
-                return;
+                int indexOf4 = arrayList2.indexOf(qiVar2.f24690a);
+                if (indexOf4 >= 0) {
+                    i7 = indexOf4;
+                }
+                if (indexOf3 >= i7) {
+                    if (indexOf3 <= i7) {
+                        int length = qiVar.f24691b.length();
+                        int length2 = qiVar2.f24691b.length();
+                        if (length >= length2) {
+                            if (length <= length2) {
+                                return 0;
+                            }
+                        }
+                    }
+                    return 1;
+                }
+                return -1;
         }
     }
 }

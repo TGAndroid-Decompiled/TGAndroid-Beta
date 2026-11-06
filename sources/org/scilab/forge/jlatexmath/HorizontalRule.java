@@ -38,12 +38,12 @@ public class HorizontalRule extends Box {
         return -1;
     }
 
-    public HorizontalRule(float f10, float f11, float f12, boolean z10) {
+    public HorizontalRule(float f10, float f11, float f12, boolean z9) {
         this.color = null;
         this.speShift = 0.0f;
         this.height = f10;
         this.width = f11;
-        if (z10) {
+        if (z9) {
             this.shift = f12;
             return;
         }

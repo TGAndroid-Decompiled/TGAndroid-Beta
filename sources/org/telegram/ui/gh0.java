@@ -1,63 +1,62 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class gh0 extends sg.a {
-    public int f45663c;
-    public int d;
-    public CharSequence f45664e;
-    public CharSequence f45665f;
-    public lh0 f45666g;
-    public int h;
-    public boolean f45667i;
+import android.view.View;
+import java.util.ArrayList;
+public final class gh0 implements Runnable {
+    public final int f45979a;
+    public final NotificationsCustomSettingsActivity f45980b;
+    public final View f45981c;
+    public final int d;
 
-    public static gh0 b(int i3, String str, boolean z10) {
-        ?? aVar = new sg.a(1, true);
-        aVar.f45663c = i3;
-        aVar.f45664e = str;
-        aVar.f45667i = z10;
-        return aVar;
-    }
-
-    public static gh0 c(int i3, String str, String str2) {
-        ?? aVar = new sg.a(5, true);
-        aVar.f45663c = i3;
-        aVar.f45664e = str;
-        aVar.f45665f = str2;
-        return aVar;
-    }
-
-    public static gh0 d(int i3, String str) {
-        ?? aVar = new sg.a(4, true);
-        aVar.f45663c = i3;
-        aVar.f45664e = str;
-        return aVar;
+    public gh0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, View view, int i7, int i10) {
+        this.f45979a = i10;
+        this.f45980b = notificationsCustomSettingsActivity;
+        this.f45981c = view;
+        this.d = i7;
     }
 
     @Override
-    public final boolean a(sg.a aVar) {
-        if (this != aVar) {
-            if (gh0.class == aVar.getClass()) {
-                gh0 gh0Var = (gh0) aVar;
-                if (this.f45663c == gh0Var.f45663c && this.d == gh0Var.d && this.h == gh0Var.h && this.f45667i == gh0Var.f45667i && Objects.equals(this.f45664e, gh0Var.f45664e) && Objects.equals(this.f45665f, gh0Var.f45665f) && this.f45666g == gh0Var.f45666g) {
-                    return true;
+    public final void run() {
+        int i7 = this.f45979a;
+        int i10 = this.d;
+        View view = this.f45981c;
+        NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = this.f45980b;
+        switch (i7) {
+            case 0:
+                ArrayList arrayList = notificationsCustomSettingsActivity.I;
+                if (view instanceof org.telegram.ui.Cells.t8) {
+                    if (i10 >= 0 && i10 < arrayList.size()) {
+                        ((kh0) arrayList.get(i10)).h = notificationsCustomSettingsActivity.k0();
+                    }
+                    ((org.telegram.ui.Cells.t8) view).b(notificationsCustomSettingsActivity.k0(), org.telegram.messenger.hd.M0(2131748988, "LedColor"), true);
+                    return;
                 }
-                return false;
-            }
-            return false;
+                notificationsCustomSettingsActivity.q0(true);
+                return;
+            case 1:
+                ArrayList arrayList2 = notificationsCustomSettingsActivity.I;
+                if (view instanceof org.telegram.ui.Cells.w9) {
+                    if (i10 >= 0 && i10 < arrayList2.size()) {
+                        ((kh0) arrayList2.get(i10)).f47171f = notificationsCustomSettingsActivity.l0();
+                    }
+                    org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) view;
+                    w9Var.c(org.telegram.messenger.hd.M0(2131747097, "PopupNotification"), notificationsCustomSettingsActivity.l0(), true, w9Var.h);
+                    return;
+                }
+                notificationsCustomSettingsActivity.q0(true);
+                return;
+            default:
+                ArrayList arrayList3 = notificationsCustomSettingsActivity.I;
+                if (view instanceof org.telegram.ui.Cells.w9) {
+                    if (i10 >= 0 && i10 < arrayList3.size()) {
+                        ((kh0) arrayList3.get(i10)).f47171f = notificationsCustomSettingsActivity.m0();
+                    }
+                    org.telegram.ui.Cells.w9 w9Var2 = (org.telegram.ui.Cells.w9) view;
+                    w9Var2.c(org.telegram.messenger.hd.M0(2131747905, "NotificationsImportance"), notificationsCustomSettingsActivity.m0(), true, w9Var2.h);
+                    return;
+                }
+                notificationsCustomSettingsActivity.q0(true);
+                return;
         }
-        return true;
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && gh0.class == obj.getClass()) {
-            gh0 gh0Var = (gh0) obj;
-            if (this.f45663c == gh0Var.f45663c && this.h == gh0Var.h && ((this.f54715a == 8 || (this.d == gh0Var.d && Objects.equals(this.f45664e, gh0Var.f45664e) && (this.f54715a == 6 || Objects.equals(this.f45665f, gh0Var.f45665f)))) && this.f45666g == gh0Var.f45666g)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

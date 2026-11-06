@@ -11,7 +11,7 @@ public abstract class j {
         bigPictureStyle.setContentDescription(charSequence);
     }
 
-    public static void c(Notification.BigPictureStyle bigPictureStyle, boolean z10) {
-        bigPictureStyle.showBigPictureWhenCollapsed(z10);
+    public static void c(Notification.BigPictureStyle bigPictureStyle, boolean z9) {
+        bigPictureStyle.showBigPictureWhenCollapsed(z9);
     }
 }

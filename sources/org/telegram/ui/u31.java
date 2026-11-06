@@ -1,12 +1,26 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class u31 extends org.telegram.ui.Cells.v7 {
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class u31 implements RequestDelegate {
+    public final int f50189a;
+    public final c51 f50190b;
+
+    public u31(c51 c51Var, int i7) {
+        this.f50189a = i7;
+        this.f50190b = c51Var;
+    }
+
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (getTranslationY() != 0.0f) {
-            canvas.drawColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27878d6, false));
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f50189a) {
+            case 0:
+                c51.a0(this.f50190b, tLObject);
+                return;
+            default:
+                c51.Z(this.f50190b, tLObject);
+                return;
         }
-        super.onDraw(canvas);
     }
 }

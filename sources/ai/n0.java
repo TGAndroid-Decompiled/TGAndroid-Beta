@@ -1,21 +1,40 @@
 package ai;
+public final class n0 implements Runnable {
+    public final int f1582a;
+    public final s0 f1583b;
 
-import org.telegram.messenger.n10;
-public final class n0 implements n10 {
-    public final int f831a;
-    public final Object f832b;
-    public final Object f833c;
-    public final Object d;
-
-    public n0(Object obj, Object obj2, Object obj3, int i3) {
-        this.f831a = i3;
-        this.f832b = obj;
-        this.f833c = obj2;
-        this.d = obj3;
+    public n0(s0 s0Var, int i7) {
+        this.f1582a = i7;
+        this.f1583b = s0Var;
     }
 
     @Override
-    public final void a(java.lang.Object r22, java.lang.Object r23) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.n0.a(java.lang.Object, java.lang.Object):void");
+    public final void run() {
+        switch (this.f1582a) {
+            case 0:
+                s0 s0Var = this.f1583b;
+                if (s0Var.h == null && s0Var.d != null && !s0Var.isFinished && s0Var.getParentActivity() != null) {
+                    s0Var.g0(s0Var.d.H0(), 0.0f, true);
+                    s0Var.h.setVisibility(4);
+                    d dVar = s0Var.f1640y;
+                    if (dVar != null) {
+                        dVar.setVisibility(4);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                s0 s0Var2 = this.f1583b;
+                d dVar2 = s0Var2.f1640y;
+                if (dVar2 != null) {
+                    dVar2.invalidate();
+                }
+                s0Var2.m0();
+                return;
+            default:
+                this.f1583b.k0();
+                return;
+        }
     }
 }

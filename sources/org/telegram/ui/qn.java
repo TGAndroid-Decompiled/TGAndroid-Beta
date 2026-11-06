@@ -1,64 +1,130 @@
 package org.telegram.ui;
 
 import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class qn implements View.OnClickListener {
-    public final int f48916a;
-    public final bo f48917b;
+public final class qn implements RequestDelegate {
+    public final int f49251a;
+    public final go f49252b;
 
-    public qn(bo boVar, int i3) {
-        this.f48916a = i3;
-        this.f48917b = boVar;
+    public qn(go goVar, int i7) {
+        this.f49251a = i7;
+        this.f49252b = goVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i3 = this.f48916a;
-        bo boVar = this.f48917b;
-        switch (i3) {
+    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f49251a) {
             case 0:
-                TLRPC.Chat currentChannel = ((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel();
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(boVar.getParentActivity());
-                String M0 = org.telegram.messenger.bd.M0(2131689472, null);
-                org.telegram.ui.ActionBar.s1 s1Var = alertDialog$Builder.f27343a;
-                s1Var.S = M0;
-                if (boVar.f44091b0) {
-                    s1Var.U = org.telegram.messenger.g0.X2(org.telegram.messenger.bd.a0("RevokeLinkAlertChannel", null, 2131746031, boVar.getMessagesController().V2 + "/" + org.telegram.messenger.t3.K(currentChannel, false), currentChannel.title));
-                } else {
-                    s1Var.U = org.telegram.messenger.g0.X2(org.telegram.messenger.bd.a0("RevokeLinkAlert", null, 2131746032, boVar.getMessagesController().V2 + "/" + org.telegram.messenger.t3.K(currentChannel, false), currentChannel.title));
+                if (tLObject instanceof TLRPC.TL_boolTrue) {
+                    org.telegram.messenger.g0.h3(new rn(this.f49252b, 3));
+                    return;
                 }
-                alertDialog$Builder.h(org.telegram.messenger.bd.M0(2131752589, null), null);
-                alertDialog$Builder.k(org.telegram.messenger.bd.M0(2131746034, null), new mi.d4(28, boVar, currentChannel));
-                boVar.showDialog(s1Var);
                 return;
             case 1:
-                if (!boVar.W) {
-                    boVar.W = true;
-                    boVar.h0();
-                    return;
-                }
+                final go goVar = this.f49252b;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                go goVar2 = goVar;
+                                ArrayList arrayList = goVar2.f46029f0;
+                                goVar2.f46025d0 = false;
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && goVar2.getParentActivity() != null) {
+                                    for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                                        goVar2.f46036n.removeView((View) arrayList.get(i7));
+                                    }
+                                    arrayList.clear();
+                                    TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
+                                    for (int i10 = 0; i10 < tL_messages_chats.chats.size(); i10++) {
+                                        org.telegram.ui.Cells.n nVar = new org.telegram.ui.Cells.n(goVar2.getParentActivity(), new un(goVar2, 0), false, 0);
+                                        TLRPC.Chat chat = tL_messages_chats.chats.get(i10);
+                                        boolean z9 = true;
+                                        if (i10 != tL_messages_chats.chats.size() - 1) {
+                                            z9 = false;
+                                        }
+                                        nVar.a(chat, z9);
+                                        arrayList.add(nVar);
+                                        goVar2.f46047y.addView(nVar, c8.ha.o(-1, 72));
+                                    }
+                                    goVar2.h0();
+                                    return;
+                                }
+                                return;
+                            default:
+                                boolean z10 = tLObject instanceof TLRPC.TL_boolTrue;
+                                go goVar3 = goVar;
+                                if (z10) {
+                                    for (int i11 = 0; i11 < goVar3.X.usernames.size(); i11++) {
+                                        TLRPC.TL_username tL_username = goVar3.X.usernames.get(i11);
+                                        if (tL_username != null && tL_username.active && !tL_username.editable) {
+                                            tL_username.active = false;
+                                        }
+                                    }
+                                }
+                                goVar3.f46044s0 = false;
+                                org.telegram.messenger.g0.h3(new rn(goVar3, 4));
+                                return;
+                        }
+                    }
+                });
                 return;
             case 2:
-                if (boVar.W) {
-                    if (!boVar.f44094d0) {
-                        boVar.f0();
-                        return;
+                final go goVar2 = this.f49252b;
+                org.telegram.messenger.g0.h3(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r3) {
+                            case 0:
+                                go goVar22 = goVar2;
+                                ArrayList arrayList = goVar22.f46029f0;
+                                goVar22.f46025d0 = false;
+                                TLObject tLObject2 = tLObject;
+                                if (tLObject2 != null && goVar22.getParentActivity() != null) {
+                                    for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                                        goVar22.f46036n.removeView((View) arrayList.get(i7));
+                                    }
+                                    arrayList.clear();
+                                    TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
+                                    for (int i10 = 0; i10 < tL_messages_chats.chats.size(); i10++) {
+                                        org.telegram.ui.Cells.n nVar = new org.telegram.ui.Cells.n(goVar22.getParentActivity(), new un(goVar22, 0), false, 0);
+                                        TLRPC.Chat chat = tL_messages_chats.chats.get(i10);
+                                        boolean z9 = true;
+                                        if (i10 != tL_messages_chats.chats.size() - 1) {
+                                            z9 = false;
+                                        }
+                                        nVar.a(chat, z9);
+                                        arrayList.add(nVar);
+                                        goVar22.f46047y.addView(nVar, c8.ha.o(-1, 72));
+                                    }
+                                    goVar22.h0();
+                                    return;
+                                }
+                                return;
+                            default:
+                                boolean z10 = tLObject instanceof TLRPC.TL_boolTrue;
+                                go goVar3 = goVar2;
+                                if (z10) {
+                                    for (int i11 = 0; i11 < goVar3.X.usernames.size(); i11++) {
+                                        TLRPC.TL_username tL_username = goVar3.X.usernames.get(i11);
+                                        if (tL_username != null && tL_username.active && !tL_username.editable) {
+                                            tL_username.active = false;
+                                        }
+                                    }
+                                }
+                                goVar3.f46044s0 = false;
+                                org.telegram.messenger.g0.h3(new rn(goVar3, 4));
+                                return;
+                        }
                     }
-                    boVar.W = false;
-                    boVar.h0();
-                    return;
-                }
-                return;
-            case 3:
-                xe0 xe0Var = new xe0(boVar.f44089a0, 0, 0L);
-                xe0Var.m0(boVar.Z, boVar.m0);
-                boVar.presentFragment(xe0Var);
+                });
                 return;
             default:
-                boolean z10 = !boVar.f44093c0;
-                boVar.f44093c0 = z10;
-                ((org.telegram.ui.Cells.q8) view).setChecked(z10);
+                org.telegram.messenger.g0.h3(new qf(21, this.f49252b, tL_error));
                 return;
         }
     }

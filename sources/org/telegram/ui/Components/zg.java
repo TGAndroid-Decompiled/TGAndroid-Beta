@@ -1,76 +1,58 @@
 package org.telegram.ui.Components;
+public final class zg implements Runnable {
+    public final int f40921a;
+    public final di f40922b;
+    public final boolean f40923c;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class zg extends AnimatorListenerAdapter {
-    public final int f41040a;
-    public final boolean f41041b;
-    public final gh f41042c;
-
-    public zg(gh ghVar, boolean z10, int i3) {
-        this.f41040a = i3;
-        this.f41042c = ghVar;
-        this.f41041b = z10;
+    public zg(di diVar, boolean z9, int i7) {
+        this.f40921a = i7;
+        this.f40922b = diVar;
+        this.f40923c = z9;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i3;
-        switch (this.f41040a) {
+    public final void run() {
+        switch (this.f40921a) {
             case 0:
-                gh ghVar = this.f41042c;
-                bi biVar = ghVar.f34095e;
-                boolean z10 = this.f41041b;
+                boolean z9 = this.f40923c;
+                di diVar = this.f40922b;
+                if (!z9) {
+                    diVar.W2.setVisibility(8);
+                    return;
+                } else {
+                    diVar.getClass();
+                    return;
+                }
+            case 1:
+                boolean z10 = this.f40923c;
+                di diVar2 = this.f40922b;
                 if (!z10) {
-                    biVar.f32300z3.setVisibility(8);
+                    diVar2.f32941s1.setVisibility(8);
+                    return;
                 } else {
-                    biVar.f32272s3.setVisibility(8);
-                }
-                if (z10) {
-                    i3 = org.telegram.messenger.g0.L(36.0f);
-                } else {
-                    i3 = 0;
-                }
-                for (int i10 = 0; i10 < biVar.f32271s2.size(); i10++) {
-                    ((ii.d4) biVar.f32271s2.valueAt(i10)).setMeasureOffsetY(i3);
-                }
-                if (ghVar.f34092a == animator) {
-                    ghVar.f34092a = null;
+                    diVar2.getClass();
                     return;
                 }
-                return;
-            default:
-                bi biVar2 = this.f41042c.f34095e;
-                boolean z11 = this.f41041b;
-                biVar2.f32288w3 = z11;
+            case 2:
+                boolean z11 = this.f40923c;
+                di diVar3 = this.f40922b;
                 if (!z11) {
-                    biVar2.f32292x3.setVisibility(8);
+                    diVar3.f32949u1.setVisibility(8);
+                    return;
+                } else {
+                    diVar3.getClass();
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f41040a) {
-            case 0:
-                bi biVar = this.f41042c.f34095e;
-                if (this.f41041b) {
-                    biVar.f32300z3.setAlpha(0.0f);
-                    biVar.f32300z3.setVisibility(0);
-                    int L = org.telegram.messenger.g0.L(36.0f);
-                    for (int i3 = 0; i3 < biVar.f32271s2.size(); i3++) {
-                        ((ii.d4) biVar.f32271s2.valueAt(i3)).setMeasureOffsetY(L);
-                    }
-                    return;
-                }
-                biVar.f32272s3.setAlpha(0.0f);
-                biVar.f32272s3.setVisibility(0);
-                return;
             default:
-                super.onAnimationStart(animator);
-                return;
+                boolean z12 = this.f40923c;
+                di diVar4 = this.f40922b;
+                if (z12) {
+                    diVar4.f32939r3.setVisibility(4);
+                    return;
+                } else {
+                    diVar4.getClass();
+                    return;
+                }
         }
     }
 }

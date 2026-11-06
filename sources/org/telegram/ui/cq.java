@@ -1,68 +1,56 @@
 package org.telegram.ui;
 
-import android.view.View;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-public final class cq implements q0.a {
-    public final int f44417a;
+public final class cq implements hq {
+    public final oq f44852a;
 
-    public cq(int i3) {
-        this.f44417a = i3;
+    public cq(oq oqVar) {
+        this.f44852a = oqVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        boolean z10;
-        boolean z11;
-        long j10;
-        boolean z12 = true;
-        switch (this.f44417a) {
-            case 0:
-                TLRPC.User user = (TLRPC.User) obj;
-                return;
-            case 1:
-                View view = (View) obj;
-                boolean z13 = ChatAttachAlertPhotoLayout.f31258r1;
-                if (view instanceof org.telegram.ui.Cells.q5) {
-                    org.telegram.ui.Cells.q5 q5Var = (org.telegram.ui.Cells.q5) view;
-                    if (q5Var.getPhotoEntry() != null && q5Var.getPhotoEntry().M) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    q5Var.c(z10, Float.valueOf(250.0f));
-                    if (q5Var.getPhotoEntry() != null && q5Var.getPhotoEntry().c()) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    q5Var.setHighQuality(z11);
-                    if (q5Var.getPhotoEntry() != null) {
-                        j10 = q5Var.getPhotoEntry().N;
-                    } else {
-                        j10 = 0;
-                    }
-                    if (ChatAttachAlertPhotoLayout.f31260t1.size() <= 1) {
-                        z12 = false;
-                    }
-                    q5Var.f(j10, z12);
-                    return;
-                }
-                return;
-            case 2:
-                View view2 = (View) obj;
-                if (view2 instanceof org.telegram.ui.Components.sl0) {
-                    ((org.telegram.ui.Components.sl0) view2).a(false, true);
-                    return;
-                }
-                return;
-            default:
-                View view3 = (View) obj;
-                if (view3 instanceof org.telegram.ui.Components.sl0) {
-                    ((org.telegram.ui.Components.sl0) view3).a(false, true);
-                    return;
-                }
-                return;
+    public final void c(long j3, TLObject tLObject) {
+        oq oqVar = this.f44852a;
+        if (oqVar.J.f(j3) == null) {
+            iq B0 = oqVar.B0();
+            oqVar.E.add(tLObject);
+            oqVar.J.k(tLObject, j3);
+            oqVar.E0(oqVar.E);
+            oqVar.F0(B0);
         }
+    }
+
+    @Override
+    public final void d(long j3) {
+        oq oqVar = this.f44852a;
+        if (oqVar.J.f(j3) == null) {
+            iq B0 = oqVar.B0();
+            TLRPC.TL_channelParticipantBanned tL_channelParticipantBanned = new TLRPC.TL_channelParticipantBanned();
+            if (j3 > 0) {
+                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                tL_channelParticipantBanned.peer = tL_peerUser;
+                tL_peerUser.user_id = j3;
+            } else {
+                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
+                tL_channelParticipantBanned.peer = tL_peerChannel;
+                tL_peerChannel.channel_id = -j3;
+            }
+            tL_channelParticipantBanned.date = oqVar.getConnectionsManager().getCurrentTime();
+            tL_channelParticipantBanned.kicked_by = org.telegram.messenger.p10.i(oqVar.getAccountInstance().f21723a).f24478n;
+            oqVar.f48478r.kicked_count++;
+            oqVar.E.add(tL_channelParticipantBanned);
+            oqVar.J.k(tL_channelParticipantBanned, j3);
+            oqVar.E0(oqVar.E);
+            oqVar.F0(B0);
+        }
+    }
+
+    @Override
+    public final void a(TLRPC.User user) {
+    }
+
+    @Override
+    public final void b(long j3) {
     }
 }

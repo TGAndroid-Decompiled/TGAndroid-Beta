@@ -1,34 +1,74 @@
 package ug;
 
 import android.content.Context;
-import gi.c5;
-import java.util.ArrayList;
-import org.telegram.ui.Components.tj0;
-public final class o0 extends tj0 {
-    public final ArrayList f56189f3;
-    public final ArrayList f56190g3;
-    public final ArrayList f56191h3;
-    public final ArrayList i3;
-    public final ArrayList f56192j3;
-    public final c5 f56193k3;
+import android.graphics.Canvas;
+import org.telegram.ui.Components.cp;
+import org.telegram.ui.Components.j6;
+public final class o0 extends j6 {
+    public final int f56613s;
+    public final p0 f56614w;
 
-    public o0(c5 c5Var, Context context, s0 s0Var) {
-        super(context, s0Var);
-        this.f56193k3 = c5Var;
-        this.f56189f3 = new ArrayList();
-        this.f56190g3 = new ArrayList();
-        this.f56191h3 = new ArrayList();
-        this.i3 = new ArrayList();
-        this.f56192j3 = new ArrayList(10);
+    public o0(p0 p0Var, Context context, int i7) {
+        super(context, true, true, true);
+        this.f56613s = i7;
+        this.f56614w = p0Var;
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r28) {
-        throw new UnsupportedOperationException("Method not decompiled: ug.o0.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(android.graphics.Canvas r19, android.view.View r20, long r21) {
-        throw new UnsupportedOperationException("Method not decompiled: ug.o0.drawChild(android.graphics.Canvas, android.view.View, long):boolean");
+    public final void onDraw(Canvas canvas) {
+        switch (this.f56613s) {
+            case 0:
+                p0 p0Var = this.f56614w;
+                if (p0Var.O > 0.0f) {
+                    if (p0Var.N == null) {
+                        p0Var.N = new cp(p0Var.f56640f.getTextColor());
+                    }
+                    int L = (int) ((1.0f - p0Var.O) * org.telegram.messenger.g0.L(24.0f));
+                    p0Var.N.setBounds(0, L, getWidth(), getHeight() + L);
+                    p0Var.N.setAlpha((int) (p0Var.O * 255.0f));
+                    p0Var.N.draw(canvas);
+                    invalidate();
+                }
+                float f10 = p0Var.O;
+                if (f10 < 1.0f) {
+                    if (f10 != 0.0f) {
+                        canvas.save();
+                        canvas.translate(0.0f, (int) (p0Var.O * org.telegram.messenger.g0.L(-24.0f)));
+                        canvas.scale(1.0f, 1.0f - (p0Var.O * 0.4f));
+                        super.onDraw(canvas);
+                        canvas.restore();
+                        return;
+                    }
+                    super.onDraw(canvas);
+                    return;
+                }
+                return;
+            default:
+                p0 p0Var2 = this.f56614w;
+                if (p0Var2.O > 0.0f) {
+                    if (p0Var2.N == null) {
+                        p0Var2.N = new cp(p0Var2.f56640f.getTextColor());
+                    }
+                    int L2 = (int) ((1.0f - p0Var2.O) * org.telegram.messenger.g0.L(24.0f));
+                    p0Var2.N.setBounds(0, L2, getWidth(), getHeight() + L2);
+                    p0Var2.N.setAlpha((int) (p0Var2.O * 255.0f));
+                    p0Var2.N.draw(canvas);
+                    invalidate();
+                }
+                float f11 = p0Var2.O;
+                if (f11 < 1.0f) {
+                    if (f11 != 0.0f) {
+                        canvas.save();
+                        canvas.translate(0.0f, (int) (p0Var2.O * org.telegram.messenger.g0.L(-24.0f)));
+                        canvas.scale(1.0f, 1.0f - (p0Var2.O * 0.4f));
+                        super.onDraw(canvas);
+                        canvas.restore();
+                        return;
+                    }
+                    super.onDraw(canvas);
+                    return;
+                }
+                return;
+        }
     }
 }

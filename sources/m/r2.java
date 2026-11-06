@@ -1,47 +1,28 @@
 package m;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
 import androidx.appcompat.widget.SearchView;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class r2 implements TextView.OnEditorActionListener {
-    public final int f18720a;
-    public final Object f18721b;
+public final class r2 implements Runnable {
+    public final int f19235a;
+    public final SearchView f19236b;
 
-    public r2(Object obj, int i3) {
-        this.f18720a = i3;
-        this.f18721b = obj;
+    public r2(SearchView searchView, int i7) {
+        this.f19235a = i7;
+        this.f19236b = searchView;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-        switch (this.f18720a) {
+    public final void run() {
+        switch (this.f19235a) {
             case 0:
-                ((SearchView) this.f18721b).p();
-                return true;
-            case 1:
-                if (i3 == 6) {
-                    ((org.telegram.ui.Cells.f) this.f18721b).run();
-                    return true;
-                }
-                return false;
-            case 2:
-                if (i3 == 6) {
-                    ((Runnable) this.f18721b).run();
-                    return true;
-                }
-                return false;
+                this.f19236b.r();
+                return;
             default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f18721b;
-                if (i3 == 4) {
-                    chatActivityEnterView.R0();
-                    return true;
-                } else if (keyEvent != null && i3 == 0 && !keyEvent.isShiftPressed() && (!chatActivityEnterView.C2 ? keyEvent.isCtrlPressed() : !keyEvent.isCtrlPressed()) && keyEvent.getAction() == 0 && chatActivityEnterView.f31086a2 == null) {
-                    chatActivityEnterView.R0();
-                    return true;
-                } else {
-                    return false;
+                i1.a aVar = this.f19236b.f1956h0;
+                if (aVar instanceof z2) {
+                    aVar.b(null);
+                    return;
                 }
+                return;
         }
     }
 }

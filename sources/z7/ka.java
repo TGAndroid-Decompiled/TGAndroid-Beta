@@ -1,5 +1,4 @@
 package z7;
-
-import android.os.IInterface;
-public interface ka extends IInterface {
+public interface ka {
+    void a(sg.i0 i0Var);
 }

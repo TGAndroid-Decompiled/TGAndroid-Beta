@@ -1,36 +1,28 @@
 package org.telegram.ui;
-public final class w5 implements v50 {
-    public final int f50708a;
-    public final z5 f50709b;
-    public final org.telegram.messenger.s2 f50710c;
+public final class w5 extends rg.a {
+    public final org.telegram.messenger.s2 f50952c;
 
-    public w5(z5 z5Var, org.telegram.messenger.s2 s2Var, int i3) {
-        this.f50708a = i3;
-        this.f50709b = z5Var;
-        this.f50710c = s2Var;
+    public w5(int i7, org.telegram.messenger.s2 s2Var) {
+        super(i7, false);
+        this.f50952c = s2Var;
     }
 
-    @Override
-    public final void a(int i3) {
-        switch (this.f50708a) {
-            case 0:
-                z5 z5Var = this.f50709b;
-                org.telegram.messenger.s2 s2Var = this.f50710c;
-                if (i3 == 4) {
-                    z5Var.d.remove(s2Var);
-                    z5Var.Z();
-                } else {
-                    s2Var.f25269b = i3;
-                    org.telegram.messenger.g0.b4(z5Var.f52534b);
-                }
-                z5Var.getMessagesController().f23111r7.h(z5Var.f52536e, z5Var.d);
-                return;
-            default:
-                this.f50710c.f25269b = i3;
-                z5 z5Var2 = this.f50709b;
-                z5Var2.getMessagesController().f23111r7.h(z5Var2.f52536e, z5Var2.d);
-                org.telegram.messenger.g0.b4(z5Var2.f52534b);
-                return;
+    public final boolean equals(Object obj) {
+        org.telegram.messenger.s2 s2Var;
+        if (this == obj) {
+            return true;
         }
+        if (obj == null || w5.class != obj.getClass()) {
+            return false;
+        }
+        w5 w5Var = (w5) obj;
+        if (this.f54415a != w5Var.f54415a) {
+            return false;
+        }
+        org.telegram.messenger.s2 s2Var2 = this.f50952c;
+        if (s2Var2 == null || (s2Var = w5Var.f50952c) == null || s2Var2.f25403a == s2Var.f25403a) {
+            return true;
+        }
+        return false;
     }
 }

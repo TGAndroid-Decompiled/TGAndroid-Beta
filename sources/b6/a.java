@@ -1,16 +1,7 @@
 package b6;
 
-import android.accounts.Account;
-import java.util.HashMap;
-import java.util.HashSet;
-public final class a {
-    public HashSet f2444a;
-    public boolean f2445b;
-    public boolean f2446c;
-    public boolean d;
-    public String f2447e;
-    public Account f2448f;
-    public String f2449g;
-    public HashMap h;
-    public String f2450i;
+import com.google.android.gms.common.api.e;
+import com.google.android.gms.common.api.j;
+public abstract class a extends j {
+    public static final e f2990l = new e("SmsRetriever.API", new a9.e(1), new Object());
 }

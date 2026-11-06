@@ -12,39 +12,39 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import org.telegram.tgnet.TLRPC;
-public final class s8 implements i2.h, j7 {
+public final class s8 implements j2.h, j7 {
+    public static final ConcurrentHashMap H = new ConcurrentHashMap();
     public static final ConcurrentHashMap I = new ConcurrentHashMap();
-    public static final ConcurrentHashMap J = new ConcurrentHashMap();
-    public boolean E = true;
-    public final ArrayList F = new ArrayList(1);
-    public int G;
-    public i2.n H;
-    public i7 f25284a;
-    public Uri f25285b;
-    public long f25286c;
+    public boolean D = true;
+    public final ArrayList E = new ArrayList(1);
+    public int F;
+    public j2.m G;
+    public i7 f25419a;
+    public Uri f25420b;
+    public long f25421c;
     public long d;
-    public long f25287e;
-    public boolean f25288f;
+    public long f25422e;
+    public boolean f25423f;
     public long h;
-    public CountDownLatch f25289n;
-    public RandomAccessFile f25290r;
-    public TLRPC.TL_document f25291s;
-    public Object f25292w;
-    public int f25293x;
-    public File f25294y;
+    public CountDownLatch f25424n;
+    public RandomAccessFile f25425r;
+    public TLRPC.TL_document f25426s;
+    public Object f25427w;
+    public int f25428x;
+    public File f25429y;
 
-    public static Uri i(int i3, Object obj, TLRPC.Document document) {
-        String r5 = w7.r(null, document);
-        w7.G(i3);
+    public static Uri f(int i7, Object obj, TLRPC.Document document) {
+        String r10 = w7.r(null, document);
+        w7.G(i7);
         File I2 = w7.I(document);
         if (I2 != null && I2.exists()) {
             return Uri.fromFile(I2);
         }
         try {
             StringBuilder sb2 = new StringBuilder("?account=");
-            sb2.append(i3);
+            sb2.append(i7);
             sb2.append("&id=");
-            sb2.append(document.f27007id);
+            sb2.append(document.f26958id);
             sb2.append("&hash=");
             sb2.append(document.access_hash);
             sb2.append("&dc=");
@@ -54,7 +54,7 @@ public final class s8 implements i2.h, j7 {
             sb2.append("&mime=");
             sb2.append(URLEncoder.encode(document.mime_type, "UTF-8"));
             sb2.append("&rid=");
-            sb2.append(w7.G(i3).F(obj));
+            sb2.append(w7.G(i7).F(obj));
             sb2.append("&name=");
             sb2.append(URLEncoder.encode(w7.B(document), "UTF-8"));
             sb2.append("&reference=");
@@ -64,7 +64,7 @@ public final class s8 implements i2.h, j7 {
             }
             sb2.append(Utilities.f(bArr));
             String sb3 = sb2.toString();
-            return Uri.parse("tg://" + r5 + sb3);
+            return Uri.parse("tg://" + r10 + sb3);
         } catch (UnsupportedEncodingException e10) {
             a8.g(e10, true);
             return null;
@@ -73,80 +73,80 @@ public final class s8 implements i2.h, j7 {
 
     @Override
     public final void a() {
-        CountDownLatch countDownLatch = this.f25289n;
-        this.f25289n = null;
+        CountDownLatch countDownLatch = this.f25424n;
+        this.f25424n = null;
         if (countDownLatch != null) {
             countDownLatch.countDown();
         }
     }
 
     @Override
-    public final void addTransferListener(i2.d0 d0Var) {
+    public final void addTransferListener(j2.d0 d0Var) {
         d0Var.getClass();
-        ArrayList arrayList = this.F;
+        ArrayList arrayList = this.E;
         if (!arrayList.contains(d0Var)) {
             arrayList.add(d0Var);
-            this.G++;
-        }
-    }
-
-    public final void b(int i3) {
-        i2.n nVar = this.H;
-        String str = g2.n0.f11873a;
-        for (int i10 = 0; i10 < this.G; i10++) {
-            boolean z10 = this.E;
-            a3.g gVar = (a3.g) ((i2.d0) this.F.get(i10));
-            synchronized (gVar) {
-                if (z10) {
-                    if (nVar != null) {
-                        try {
-                            if ((nVar.h & 8) == 8) {
-                            }
-                        } finally {
-                        }
-                    }
-                    gVar.f82i += i3;
-                }
-            }
+            this.F++;
         }
     }
 
     @Override
     public final void close() {
-        a8.d("FileStreamLoadOperation " + this.f25291s.f27007id + " close me=" + this);
-        i7 i7Var = this.f25284a;
+        a8.d("FileStreamLoadOperation " + this.f25426s.f26958id + " close me=" + this);
+        i7 i7Var = this.f25419a;
         if (i7Var != null) {
             Utilities.d.c(new e7(i7Var, this, 0));
         }
-        RandomAccessFile randomAccessFile = this.f25290r;
+        RandomAccessFile randomAccessFile = this.f25425r;
         if (randomAccessFile != null) {
             try {
                 randomAccessFile.close();
             } catch (Exception e10) {
                 a8.g(e10, true);
             }
-            this.f25290r = null;
+            this.f25425r = null;
         }
-        this.f25285b = null;
-        I.remove(Long.valueOf(this.f25291s.f27007id));
-        if (this.f25288f) {
-            this.f25288f = false;
-            i2.n nVar = this.H;
-            String str = g2.n0.f11873a;
-            for (int i3 = 0; i3 < this.G; i3++) {
-                ((a3.g) ((i2.d0) this.F.get(i3))).f(nVar, this.E);
+        this.f25420b = null;
+        H.remove(Long.valueOf(this.f25426s.f26958id));
+        if (this.f25423f) {
+            this.f25423f = false;
+            j2.m mVar = this.G;
+            String str = h2.m0.f14112a;
+            for (int i7 = 0; i7 < this.F; i7++) {
+                ((b3.g) ((j2.d0) this.E.get(i7))).f(mVar, this.D);
             }
-            this.H = null;
+            this.G = null;
         }
-        CountDownLatch countDownLatch = this.f25289n;
+        CountDownLatch countDownLatch = this.f25424n;
         if (countDownLatch != null) {
             countDownLatch.countDown();
-            this.f25289n = null;
+            this.f25424n = null;
         }
     }
 
-    public final int f() {
-        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(J, Long.valueOf(this.f25291s.f27007id), null);
+    public final void d(int i7) {
+        j2.m mVar = this.G;
+        String str = h2.m0.f14112a;
+        for (int i10 = 0; i10 < this.F; i10++) {
+            boolean z9 = this.D;
+            b3.g gVar = (b3.g) ((j2.d0) this.E.get(i10));
+            synchronized (gVar) {
+                if (z9) {
+                    if (mVar != null) {
+                        try {
+                            if ((mVar.h & 8) == 8) {
+                            }
+                        } finally {
+                        }
+                    }
+                    gVar.f2940i += i7;
+                }
+            }
+        }
+    }
+
+    public final int e() {
+        Integer num = (Integer) ConcurrentMap$EL.getOrDefault(I, Long.valueOf(this.f25426s.f26958id), null);
         if (num != null) {
             return num.intValue();
         }
@@ -160,12 +160,12 @@ public final class s8 implements i2.h, j7 {
 
     @Override
     public final Uri getUri() {
-        return this.f25285b;
+        return this.f25420b;
     }
 
     @Override
-    public final long open(i2.n r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.s8.open(i2.n):long");
+    public final long open(j2.m r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.s8.open(j2.m):long");
     }
 
     @Override

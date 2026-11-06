@@ -1,14 +1,12 @@
 package d4;
 public final class a {
-    public final int f8526a;
-    public final int[] f8527b;
-    public final int[] f8528c;
-    public final int[] d;
+    public final int f8111a;
+    public final boolean f8112b;
+    public int f8113c;
 
-    public a(int i3, int[] iArr, int[] iArr2, int[] iArr3) {
-        this.f8526a = i3;
-        this.f8527b = iArr;
-        this.f8528c = iArr2;
-        this.d = iArr3;
+    public a(int i7, boolean z9, int i10) {
+        this.f8111a = i7;
+        this.f8112b = z9;
+        this.f8113c = i10;
     }
 }

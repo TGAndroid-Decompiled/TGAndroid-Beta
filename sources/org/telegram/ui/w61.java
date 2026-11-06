@@ -1,28 +1,31 @@
 package org.telegram.ui;
-public final class w61 implements d71 {
-    public boolean f50723a;
-    public final wm f50724b;
 
-    public w61(wm wmVar, boolean z10) {
-        this.f50724b = wmVar;
-        this.f50723a = z10;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.widget.FrameLayout;
+public final class w61 extends FrameLayout {
+    public final int f50995a;
+    public final Rect f50996b;
+    public final u71 f50997c;
+
+    public w61(u71 u71Var, Context context, int i7, Rect rect) {
+        super(context);
+        this.f50997c = u71Var;
+        this.f50995a = i7;
+        this.f50996b = rect;
     }
 
     @Override
-    public final boolean Y0() {
-        return true;
-    }
-
-    @Override
-    public final boolean a() {
-        return this.f50723a;
-    }
-
-    @Override
-    public final void l1(boolean z10) {
-        boolean z11 = !this.f50723a;
-        this.f50723a = z11;
-        um umVar = this.f50724b.f51557ya;
-        umVar.r(umVar.f50124f, umVar.f50125g, z10, Boolean.valueOf(z11), false);
+    public final void onDraw(Canvas canvas) {
+        int i7 = this.f50995a;
+        Rect rect = this.f50996b;
+        u71 u71Var = this.f50997c;
+        if (i7 == 0) {
+            u71Var.f50291r.setBounds(u71Var.W.getLeft() - rect.left, 0, u71Var.W.getRight() + rect.right, getMeasuredHeight());
+        } else {
+            u71Var.f50291r.setBounds(-rect.left, 0, getMeasuredWidth() + rect.right, getMeasuredHeight());
+        }
+        u71Var.f50291r.draw(canvas);
     }
 }

@@ -1,4 +1,12 @@
 package org.telegram.ui.Components;
+
+import android.view.View;
 public interface ya0 {
-    String e(int i3);
+    void addOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
+
+    int getMeasuredHeight();
+
+    int getTop();
+
+    void removeOnLayoutChangeListener(View.OnLayoutChangeListener onLayoutChangeListener);
 }

@@ -14,9 +14,9 @@ public interface StaticsBoundaryInterface {
 
     boolean isMultiProcessEnabled();
 
-    void setDefaultTrafficStatsTag(int i3);
+    void setDefaultTrafficStatsTag(int i7);
 
-    void setDefaultTrafficStatsUid(int i3);
+    void setDefaultTrafficStatsUid(int i7);
 
     void setSafeBrowsingAllowlist(Set<String> set, ValueCallback<Boolean> valueCallback);
 

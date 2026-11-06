@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.os.Bundle;
-public final class er0 extends org.telegram.ui.ym {
-    public final ws0 f33452f;
+public final class er0 extends org.telegram.ui.cn {
+    public final xs0 f33319f;
 
-    public er0(ws0 ws0Var, Context context, org.telegram.ui.ActionBar.q4 q4Var, Bundle bundle) {
+    public er0(xs0 xs0Var, Context context, org.telegram.ui.ActionBar.q4 q4Var, Bundle bundle) {
         super(context, q4Var, bundle);
-        this.f33452f = ws0Var;
+        this.f33319f = xs0Var;
     }
 
     @Override
-    public final void b(boolean z10) {
-        org.telegram.ui.ActionBar.q0 q0Var = this.f33452f.f40117q0;
-        if (q0Var != null) {
-            q0Var.setShowSearchProgress(z10);
+    public final void b(boolean z9) {
+        org.telegram.ui.ActionBar.r0 r0Var = this.f33319f.f40381p0;
+        if (r0Var != null) {
+            r0Var.setShowSearchProgress(z9);
         }
     }
 }

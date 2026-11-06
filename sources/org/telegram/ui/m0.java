@@ -1,158 +1,291 @@
 package org.telegram.ui;
 
 import android.animation.ValueAnimator;
-import android.app.Activity;
-import android.text.TextUtils;
-import android.view.ViewGroup;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class m0 extends org.telegram.ui.web.i1 {
-    public final i4 C0;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class m0 implements TextWatcher {
+    public final int f47587a;
+    public final Object f47588b;
 
-    public m0(i4 i4Var, Activity activity) {
-        super(activity);
-        this.C0 = i4Var;
+    public m0(Object obj, int i7) {
+        this.f47587a = i7;
+        this.f47588b = obj;
     }
 
     @Override
-    public final org.telegram.ui.web.s1 getInstantViewLoader() {
-        l3 l3Var = this.C0.f46100v0[0];
-        if (!l3Var.f()) {
-            org.telegram.ui.web.s1 s1Var = l3Var.F;
-            if (s1Var != null) {
-                s1Var.a();
-                org.telegram.ui.web.s1 s1Var2 = l3Var.F;
-                TLRPC.TL_webPage tL_webPage = s1Var2.f51014j;
-                if (tL_webPage != null) {
-                    org.telegram.ui.web.u1.o(tL_webPage);
-                    s1Var2.f51014j = null;
+    public final void afterTextChanged(android.text.Editable r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.m0.afterTextChanged(android.text.Editable):void");
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        String charSequence2;
+        boolean z9;
+        int i12 = this.f47587a;
+        Object obj = this.f47588b;
+        switch (i12) {
+            case 0:
+                return;
+            case 1:
+                ga gaVar = (ga) obj;
+                la laVar = gaVar.f45903c;
+                String str = laVar.f47461r;
+                if (charSequence == null) {
+                    charSequence2 = "";
+                } else {
+                    charSequence2 = charSequence.toString();
                 }
-                l3Var.F = null;
-                return null;
-            }
-        } else if (l3Var.getWebView() == null) {
-            org.telegram.ui.web.s1 s1Var3 = l3Var.F;
-            if (s1Var3 != null) {
-                s1Var3.a();
-                org.telegram.ui.web.s1 s1Var4 = l3Var.F;
-                TLRPC.TL_webPage tL_webPage2 = s1Var4.f51014j;
-                if (tL_webPage2 != null) {
-                    org.telegram.ui.web.u1.o(tL_webPage2);
-                    s1Var4.f51014j = null;
+                laVar.f47461r = charSequence2;
+                la laVar2 = gaVar.f45903c;
+                ia iaVar = laVar2.E;
+                if (iaVar != null && str != null) {
+                    iaVar.b(laVar2.f47461r);
+                    return;
                 }
-                l3Var.F = null;
-            }
-        } else {
-            org.telegram.ui.web.s1 s1Var5 = l3Var.F;
-            if (s1Var5 != null && (s1Var5.f51011f != l3Var.getWebView().f51022b || l3Var.F.f51010e != l3Var.getWebView().getProgress())) {
-                l3Var.F.d(l3Var.getWebView());
-                return l3Var.F;
-            } else if (l3Var.F != null && TextUtils.equals(l3Var.getWebView().getUrl(), l3Var.F.d)) {
-                return l3Var.F;
-            } else {
-                org.telegram.ui.web.s1 s1Var6 = l3Var.F;
-                if (s1Var6 != null) {
-                    s1Var6.a();
-                    org.telegram.ui.web.s1 s1Var7 = l3Var.F;
-                    TLRPC.TL_webPage tL_webPage3 = s1Var7.f51014j;
-                    if (tL_webPage3 != null) {
-                        org.telegram.ui.web.u1.o(tL_webPage3);
-                        s1Var7.f51014j = null;
+                return;
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+                return;
+            case 6:
+                wq wqVar = (wq) obj;
+                if (charSequence.length() != 0) {
+                    z9 = true;
+                } else {
+                    z9 = false;
+                }
+                wqVar.R1 = z9;
+                wqVar.P1 = 0.0f;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                wqVar.U1 = ofFloat;
+                ofFloat.addUpdateListener(new a3(wqVar, 8));
+                if (!wqVar.R1) {
+                    org.telegram.messenger.camera.q.i(1.5f, wqVar.U1);
+                    wqVar.U1.setDuration(350L);
+                } else {
+                    wqVar.U1.setDuration(220L);
+                }
+                wqVar.U1.start();
+                wqVar.m();
+                return;
+            case 7:
+            case 8:
+                return;
+            case 9:
+                ob0 ob0Var = (ob0) obj;
+                hb0 hb0Var = ob0Var.S;
+                if (ob0Var.R) {
+                    ob0Var.removeCallbacks(hb0Var);
+                    hb0Var.run();
+                    return;
+                }
+                return;
+            case 10:
+                hc0 hc0Var = (hc0) obj;
+                fc0 fc0Var = hc0Var.f46318y;
+                if (hc0Var.f46317x) {
+                    hc0Var.removeCallbacks(fc0Var);
+                    fc0Var.run();
+                    return;
+                }
+                return;
+            case 11:
+                gd0 gd0Var = (gd0) obj;
+                tc0 tc0Var = gd0Var.f45953t0;
+                if (gd0Var.f45952s0) {
+                    gd0Var.removeCallbacks(tc0Var);
+                    tc0Var.run();
+                    return;
+                }
+                return;
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+            case 17:
+            case 18:
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        String charSequence2;
+        switch (this.f47587a) {
+            case 0:
+                return;
+            case 1:
+                ga gaVar = (ga) this.f47588b;
+                la laVar = gaVar.f45903c;
+                String str = laVar.f47461r;
+                if (charSequence == null) {
+                    charSequence2 = "";
+                } else {
+                    charSequence2 = charSequence.toString();
+                }
+                laVar.f47461r = charSequence2;
+                la laVar2 = gaVar.f45903c;
+                ia iaVar = laVar2.E;
+                if (iaVar != null && str != null) {
+                    iaVar.b(laVar2.f47461r);
+                }
+                if (!laVar.f47460n) {
+                    laVar.i0(laVar.f47461r);
+                    return;
+                }
+                return;
+            case 2:
+                bd bdVar = (bd) this.f47588b;
+                bdVar.j0(bdVar.f44268y.getText().toString());
+                return;
+            case 3:
+                return;
+            case 4:
+                go goVar = (go) this.f47588b;
+                if (!goVar.m0) {
+                    String obj = goVar.f46021b.getText().toString();
+                    ia iaVar2 = goVar.O;
+                    if (iaVar2 != null) {
+                        iaVar2.b(obj);
                     }
-                    l3Var.F = null;
+                    goVar.c0(obj);
+                    return;
                 }
-                org.telegram.ui.web.s1 s1Var8 = new org.telegram.ui.web.s1(l3Var.M.Y);
-                l3Var.F = s1Var8;
-                org.telegram.ui.web.t0 webView = l3Var.getWebView();
-                if (!s1Var8.f51008b) {
-                    s1Var8.f51008b = true;
-                    s1Var8.d = webView.getUrl();
-                    s1Var8.f51010e = webView.getProgress();
-                    s1Var8.f51011f = webView.f51022b;
-                    s1Var8.f51016l = org.telegram.ui.web.u1.e(webView, new org.telegram.ui.web.r1(s1Var8, 0));
-                    TLRPC.TL_messages_getWebPage tL_messages_getWebPage = new TLRPC.TL_messages_getWebPage();
-                    tL_messages_getWebPage.url = s1Var8.d;
-                    tL_messages_getWebPage.hash = 0;
-                    s1Var8.f51015k = ConnectionsManager.getInstance(s1Var8.f51007a).sendRequest(tL_messages_getWebPage, new ci.d0(s1Var8, 22));
+                return;
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+                return;
+            case 16:
+                x71 x71Var = (x71) this.f47588b;
+                if (!x71Var.F) {
+                    x71Var.e0(x71Var.f51772a.getText().toString(), false);
+                    return;
                 }
-                return l3Var.F;
-            }
-        }
-        return null;
-    }
-
-    public final void j(float f10) {
-        int f11 = i0.a.f(this.f50873b0, this.f50901x, this.E);
-        org.telegram.ui.ActionBar.w1 w1Var = this.N;
-        w1Var.a(f11);
-        w1Var.b(i0.a.f(this.f50873b0, this.f50901x, this.E));
-        this.M.invalidate();
-        i4 i4Var = this.C0;
-        org.telegram.ui.web.l lVar = i4Var.f46089j0;
-        if (lVar != null) {
-            lVar.setOpenProgress(f10);
-        }
-        u3 u3Var = i4Var.L;
-        if (u3Var != null) {
-            u3Var.u();
+                return;
+            case 17:
+            case 18:
+            default:
+                return;
         }
     }
 
-    public final void k(boolean z10) {
-        float f10;
-        long j10;
-        if (this.f50871a0 != z10) {
-            ValueAnimator valueAnimator = this.f50902x0;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            this.f50871a0 = z10;
-            ci.s sVar = this.f50875c0;
-            if (z10) {
-                int i3 = this.f50876d0;
-                int i10 = org.telegram.messenger.az.f21653p0;
-                if (i3 != i10) {
-                    this.f50876d0 = i10;
-                    sVar.setHint(org.telegram.messenger.bd.a0(null, null, 2131754351, org.telegram.ui.web.d1.a().f50829a));
-                }
-            }
-            sVar.setVisibility(0);
-            float f11 = 0.0f;
-            if (!this.f50898v0 && !z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            this.N.c(true, f10);
-            float f12 = this.f50873b0;
-            if (z10) {
-                f11 = 1.0f;
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(f12, f11);
-            this.f50902x0 = ofFloat;
-            ofFloat.addUpdateListener(new gi.j3(this, 24));
-            this.f50902x0.addListener(new u40(13, this, z10));
-            this.f50902x0.setInterpolator(org.telegram.ui.Components.xq.h);
-            this.f50902x0.setDuration(360L);
-            this.f50902x0.start();
-            org.telegram.messenger.g0.r(new org.telegram.ui.web.f1(this, 1));
-            org.telegram.ui.web.f1 f1Var = new org.telegram.ui.web.f1(this, 1);
-            if (this.f50871a0) {
-                j10 = 100;
-            } else {
-                j10 = 0;
-            }
-            org.telegram.messenger.g0.i3(f1Var, j10);
-        }
-        org.telegram.ui.web.l lVar = this.C0.f46089j0;
-        if (lVar != null) {
-            lVar.setOpened(z10);
-        }
+    private final void a(Editable editable) {
     }
 
-    @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(i3, i10);
-        ((ViewGroup.MarginLayoutParams) this.C0.f46089j0.getLayoutParams()).topMargin = getMeasuredHeight();
+    private final void b(Editable editable) {
+    }
+
+    private final void c(Editable editable) {
+    }
+
+    private final void d(Editable editable) {
+    }
+
+    private final void e(Editable editable) {
+    }
+
+    private final void A(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void B(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void C(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void D(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void E(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void F(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void G(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void H(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void I(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void J(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void f(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void g(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void h(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void i(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void j(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void k(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void l(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void m(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void n(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void o(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void p(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void q(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void r(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void s(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void t(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void u(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void v(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void w(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void x(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void y(int i7, int i10, int i11, CharSequence charSequence) {
+    }
+
+    private final void z(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

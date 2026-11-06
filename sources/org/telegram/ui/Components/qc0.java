@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
-public final class qc0 extends org.telegram.ui.ActionBar.j {
-    public final vc0 f37442a;
+public final class qc0 implements u0.g, t4 {
+    public final ad0 f37372a;
 
-    public qc0(vc0 vc0Var) {
-        this.f37442a = vc0Var;
+    public qc0(ad0 ad0Var) {
+        this.f37372a = ad0Var;
     }
 
     @Override
-    public final void b(int i3) {
-        if (i3 == -1) {
-            this.f37442a.dismiss();
-        }
+    public void L(int i7, int i10, boolean z9) {
+        ad0 ad0Var = this.f37372a;
+        ad0Var.B1.a(ad0Var.E1, z9, i7, 0L);
+        ad0Var.dismiss();
     }
 }

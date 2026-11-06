@@ -33,9 +33,9 @@ public class ArrayOfAtoms extends TeXFormula {
         }
         this.row = this.array.size() - 1;
         this.col = this.array.get(0).size();
-        for (int i3 = 1; i3 < this.row; i3++) {
-            if (this.array.get(i3).size() > this.col) {
-                this.col = this.array.get(i3).size();
+        for (int i7 = 1; i7 < this.row; i7++) {
+            if (this.array.get(i7).size() > this.col) {
+                this.col = this.array.get(i7).size();
             }
         }
         for (int i10 = 0; i10 < this.row; i10++) {
@@ -71,14 +71,14 @@ public class ArrayOfAtoms extends TeXFormula {
         return this.row;
     }
 
-    public void addCol(int i3) {
-        if (i3 < 1) {
-            i3 = 1;
-        } else if (i3 > 4096) {
-            i3 = 4096;
+    public void addCol(int i7) {
+        if (i7 < 1) {
+            i7 = 1;
+        } else if (i7 > 4096) {
+            i7 = 4096;
         }
         this.array.get(this.row).add(this.root);
-        for (int i10 = 1; i10 < i3 - 1; i10++) {
+        for (int i10 = 1; i10 < i7 - 1; i10++) {
             this.array.get(this.row).add(null);
         }
         this.root = null;

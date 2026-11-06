@@ -1,20 +1,69 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.view.View;
 import java.util.ArrayList;
-public final class jh extends org.telegram.ui.Components.pu {
-    public final kh O1;
+public final class jh extends AnimatorListenerAdapter {
+    public final boolean f46953a;
+    public final boolean f46954b;
+    public final org.telegram.ui.Components.l9 f46955c;
+    public final zm d;
+    public final org.telegram.ui.ActionBar.k5 f46956e;
+    public final boolean f46957f;
+    public final pm h;
+    public final an f46958n;
 
-    public jh(kh khVar, org.telegram.ui.ActionBar.d2 d2Var, Activity activity, org.telegram.ui.ActionBar.e6 e6Var, ArrayList arrayList) {
-        super(d2Var, activity, e6Var, arrayList);
-        this.O1 = khVar;
+    public jh(an anVar, boolean z9, boolean z10, org.telegram.ui.Components.l9 l9Var, zm zmVar, org.telegram.ui.ActionBar.k5 k5Var, boolean z11, pm pmVar) {
+        this.f46958n = anVar;
+        this.f46953a = z9;
+        this.f46954b = z10;
+        this.f46955c = l9Var;
+        this.d = zmVar;
+        this.f46956e = k5Var;
+        this.f46957f = z11;
+        this.h = pmVar;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        wm wmVar = this.O1.f46947p;
-        wmVar.getClass();
-        wmVar.v8(false, true, 0.0f);
+    public final void onAnimationCancel(Animator animator) {
+        an anVar = this.f46958n;
+        anVar.V2[1] = null;
+        anVar.P2[1].setTranslationY(0.0f);
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        Object[] objArr = this.f46958n.V2;
+        if (animator.equals(objArr[1])) {
+            org.telegram.ui.Components.l9 l9Var = this.f46955c;
+            boolean z9 = this.f46954b;
+            boolean z10 = this.f46953a;
+            if (!z10 && !z9 && l9Var == null) {
+                objArr[1] = null;
+                return;
+            }
+            objArr[1] = new AnimatorSet();
+            objArr[1].setInterpolator(org.telegram.ui.Components.xq.h);
+            objArr[1].setDuration(360L);
+            ArrayList arrayList = new ArrayList();
+            if (z10) {
+                arrayList.add(ObjectAnimator.ofFloat(this.d, View.TRANSLATION_Y, 0.0f));
+            }
+            if (z9) {
+                arrayList.add(ObjectAnimator.ofFloat(this.f46956e, View.TRANSLATION_Y, 0.0f));
+            }
+            if (this.f46957f) {
+                arrayList.add(ObjectAnimator.ofFloat(this.h, View.TRANSLATION_Y, 0.0f));
+            }
+            if (l9Var != null) {
+                arrayList.add(ObjectAnimator.ofFloat(l9Var, View.TRANSLATION_Y, 0.0f));
+            }
+            objArr[1].addListener(new va(this, 4));
+            objArr[1].playTogether(arrayList);
+            objArr[1].start();
+        }
     }
 }

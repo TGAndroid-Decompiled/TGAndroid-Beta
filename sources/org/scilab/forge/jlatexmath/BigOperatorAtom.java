@@ -27,9 +27,9 @@ public class BigOperatorAtom extends Atom {
         throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.BigOperatorAtom.createBox(org.scilab.forge.jlatexmath.TeXEnvironment):org.scilab.forge.jlatexmath.Box");
     }
 
-    public BigOperatorAtom(Atom atom, Atom atom2, Atom atom3, boolean z10) {
+    public BigOperatorAtom(Atom atom, Atom atom2, Atom atom3, boolean z9) {
         this(atom, atom2, atom3);
-        this.limits = z10;
+        this.limits = z9;
         this.limitsSet = true;
     }
 }

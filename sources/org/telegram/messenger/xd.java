@@ -1,67 +1,46 @@
 package org.telegram.messenger;
-public final class xd implements Runnable {
-    public final int f26365a;
-    public final boolean[] f26366b;
-    public final org.telegram.ui.ActionBar.s1 f26367c;
 
-    public xd(org.telegram.ui.ActionBar.s1 s1Var, boolean[] zArr, int i3) {
-        this.f26365a = i3;
-        this.f26367c = s1Var;
-        this.f26366b = zArr;
+import android.media.AudioRecord;
+public final class xd implements Runnable {
+    public final int f26451a;
+    public final MediaController f26452b;
+    public final boolean f26453c;
+
+    public xd(MediaController mediaController, boolean z9, int i7) {
+        this.f26451a = i7;
+        this.f26452b = mediaController;
+        this.f26453c = z9;
     }
 
     @Override
     public final void run() {
-        int i3 = this.f26365a;
-        boolean[] zArr = this.f26366b;
-        org.telegram.ui.ActionBar.s1 s1Var = this.f26367c;
-        switch (i3) {
+        switch (this.f26451a) {
             case 0:
-                String[] strArr = MediaController.W1;
-                if (!zArr[0]) {
-                    s1Var.show();
-                    return;
-                }
-                return;
-            case 1:
-                String[] strArr2 = MediaController.W1;
-                if (!zArr[0]) {
-                    s1Var.show();
-                    return;
-                }
-                return;
-            case 2:
-                String[] strArr3 = MediaController.W1;
-                try {
-                    if (s1Var.isShowing()) {
-                        s1Var.dismiss();
-                    } else {
-                        zArr[0] = true;
+                MediaController mediaController = this.f26452b;
+                p5 p5Var = mediaController.M1;
+                if (mediaController.f21263f1 != null && mediaController.f21271j1 != null) {
+                    boolean z9 = mediaController.f21257d1;
+                    mediaController.f21257d1 = !z9;
+                    if (!z9) {
+                        AudioRecord audioRecord = mediaController.f21260e1;
+                        if (audioRecord != null) {
+                            mediaController.B1 = 4;
+                            audioRecord.stop();
+                            mediaController.f21260e1.release();
+                            mediaController.f21260e1 = null;
+                            p5Var.c(new xd(mediaController, this.f26453c, 1));
+                            return;
+                        }
+                        return;
                     }
-                    return;
-                } catch (Exception e10) {
-                    a8.g(e10, true);
+                    p5Var.a(mediaController.O1);
+                    p5Var.c(new vd(mediaController, 6));
                     return;
                 }
+                return;
             default:
-                String[] strArr4 = MediaController.W1;
-                try {
-                    if (s1Var.isShowing()) {
-                        s1Var.dismiss();
-                    } else {
-                        zArr[0] = true;
-                    }
-                    return;
-                } catch (Exception e11) {
-                    a8.g(e11, true);
-                    return;
-                }
+                MediaController.a(this.f26452b, this.f26453c);
+                return;
         }
-    }
-
-    public xd(boolean[] zArr, org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        this.f26365a = i3;
-        this.f26366b = zArr;
-        this.f26367c = s1Var;
     }
 }

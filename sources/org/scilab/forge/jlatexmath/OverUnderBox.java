@@ -9,7 +9,7 @@ public class OverUnderBox extends Box {
     private final boolean over;
     private final Box script;
 
-    public OverUnderBox(Box box, Box box2, Box box3, float f10, boolean z10) {
+    public OverUnderBox(Box box, Box box2, Box box3, float f10, boolean z9) {
         float f11;
         float f12;
         float width;
@@ -17,30 +17,30 @@ public class OverUnderBox extends Box {
         this.del = box2;
         this.script = box3;
         this.kern = f10;
-        this.over = z10;
+        this.over = z9;
         this.width = box.getWidth();
         float f13 = box.height;
         float f14 = 0.0f;
-        if (z10) {
+        if (z9) {
             f11 = box2.getWidth();
         } else {
             f11 = 0.0f;
         }
         float f15 = f13 + f11;
-        if (z10 && box3 != null) {
+        if (z9 && box3 != null) {
             f12 = box3.height + box3.depth + f10;
         } else {
             f12 = 0.0f;
         }
         this.height = f15 + f12;
         float f16 = box.depth;
-        if (z10) {
+        if (z9) {
             width = 0.0f;
         } else {
             width = box2.getWidth();
         }
         float f17 = f16 + width;
-        if (!z10 && box3 != null) {
+        if (!z9 && box3 != null) {
             f14 = box3.height + box3.depth + f10;
         }
         this.depth = f17 + f14;

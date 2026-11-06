@@ -1,51 +1,51 @@
 package org.telegram.messenger;
 
 import android.os.Looper;
-public final class b implements org.telegram.ui.Components.uz {
-    public final Thread f21686c;
-    public final ai.y1 d;
-    public volatile boolean f21687e;
-    public volatile int f21688f;
-    public int f21689g;
-    public volatile boolean f21690i;
-    public final Object f21684a = new Object();
+public final class b implements org.telegram.ui.Components.yz {
+    public final Thread f21556c;
+    public final ai.m0 d;
+    public volatile boolean f21557e;
+    public volatile int f21558f;
+    public int f21559g;
+    public volatile boolean f21560i;
+    public final Object f21554a = new Object();
     public volatile int h = -1;
-    public final android.support.v4.media.session.q f21685b = new android.support.v4.media.session.q(this, Looper.getMainLooper(), 5);
+    public final android.support.v4.media.session.q f21555b = new android.support.v4.media.session.q(this, Looper.getMainLooper(), 4);
 
-    public b(ai.y1 y1Var) {
-        boolean z10;
-        this.d = y1Var;
-        r0 r0Var = r0.f25016f;
-        if (r0Var.f25017a > 0) {
-            z10 = true;
+    public b(ai.m0 m0Var) {
+        boolean z9;
+        this.d = m0Var;
+        r0 r0Var = r0.f25165f;
+        if (r0Var.f25166a > 0) {
+            z9 = true;
         } else {
-            z10 = false;
+            z9 = false;
         }
-        this.f21687e = z10;
+        this.f21557e = z9;
         r0Var.d.add(this);
         Thread thread = new Thread(new a(this, 0), "ANRDetector");
-        this.f21686c = thread;
+        this.f21556c = thread;
         thread.start();
     }
 
     @Override
     public final void a() {
-        synchronized (this.f21684a) {
-            this.f21688f++;
-            this.f21687e = false;
+        synchronized (this.f21554a) {
+            this.f21558f++;
+            this.f21557e = false;
         }
-        this.f21685b.removeMessages(1);
-        this.f21686c.interrupt();
+        this.f21555b.removeMessages(1);
+        this.f21556c.interrupt();
     }
 
     @Override
     public final void b() {
-        synchronized (this.f21684a) {
-            this.f21688f++;
-            this.f21687e = true;
-            this.f21690i = false;
-            this.f21684a.notifyAll();
+        synchronized (this.f21554a) {
+            this.f21558f++;
+            this.f21557e = true;
+            this.f21560i = false;
+            this.f21554a.notifyAll();
         }
-        this.f21686c.interrupt();
+        this.f21556c.interrupt();
     }
 }

@@ -1,144 +1,105 @@
 package gh;
 
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Outline;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.RenderNode;
-import android.os.Build;
-import b8.mc;
 import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-public final class e extends mc {
-    public final float f12290a = g0.N(0.55f);
-    public final Outline f12291b = new Outline();
-    public final Rect f12292c = new Rect();
-    public final RenderNode d;
-    public final RenderNode f12293e;
-    public final Paint f12294f;
-    public eh.h f12295g;
-    public boolean h;
-    public boolean f12296i;
-    public final RectF f12297j;
-    public final g f12298k;
+public class e implements a {
+    public final f6 f13968a;
+    public d f13969b;
+    public d f13970c;
+    public d d;
+    public d f13971e;
+    public float f13972f;
+    public float h;
+    public float f13973n;
+    public float f13974r;
 
-    public e(g gVar) {
-        this.f12298k = gVar;
-        RenderNode renderNode = new RenderNode("BlurredNode");
-        this.d = renderNode;
-        this.f12293e = new RenderNode("BlurredFill");
-        Paint paint = new Paint(1);
-        this.f12294f = paint;
-        this.h = true;
-        this.f12296i = true;
-        this.f12297j = new RectF();
-        renderNode.setClipToOutline(true);
-        renderNode.setClipToBounds(true);
-        paint.setColor(0);
+    public e(f6 f6Var) {
+        this.f13968a = f6Var;
+        float N = g0.N(1.0f);
+        float N2 = g0.N(0.33333334f);
+        this.f13973n = N;
+        this.f13974r = N2;
+        float N3 = g0.N(1.0f);
+        float N4 = g0.N(0.6666667f);
+        this.f13972f = N3;
+        this.h = N4;
     }
 
     @Override
-    public final void a() {
-        this.d.discardDisplayList();
-        this.f12293e.discardDisplayList();
-        this.h = true;
+    public int A() {
+        return a(this.f13970c);
     }
 
     @Override
-    public final void b(Canvas canvas, si.a aVar) {
-        g gVar = this.f12298k;
-        f fVar = gVar.R;
-        if (!this.d.hasDisplayList() || this.h) {
-            e();
-        }
-        int r12 = k6.r1(this.d.getAlpha() * gVar.W, gVar.f12335x);
-        int alpha = Color.alpha(r12);
-        Paint paint = this.f12294f;
-        if (alpha != 0) {
-            paint.setShadowLayer(gVar.U, 0.0f, gVar.V, r12);
-            fVar.d(canvas, paint, gVar.T);
-        }
-        int r13 = k6.r1(this.d.getAlpha() * gVar.W, gVar.G);
-        if (Color.alpha(r13) != 0) {
-            paint.setShadowLayer(this.f12290a, 0.0f, 0.0f, r13);
-            fVar.d(canvas, paint, gVar.T);
-        }
-        Rect rect = fVar.f12309m;
-        canvas.save();
-        if (fVar.e()) {
-            canvas.clipPath(fVar.f12307k);
-        }
-        canvas.translate(rect.left, rect.top);
-        canvas.drawRenderNode(this.d);
-        canvas.restore();
+    public int C0() {
+        return 0;
     }
 
-    public final boolean c() {
-        return this.d.hasDisplayList();
+    @Override
+    public int M() {
+        return 0;
     }
 
-    public final void d() {
-        f fVar = this.f12298k.R;
-        Rect rect = fVar.f12309m;
-        int width = rect.width();
-        int height = rect.height();
-        Rect rect2 = this.f12292c;
-        boolean z10 = false;
-        rect2.set(0, 0, width, height);
-        float[] fArr = fVar.f12300b;
-        Outline outline = this.f12291b;
-        g.l(outline, rect2, fArr);
-        outline.setAlpha(1.0f);
-        if (!rect.isEmpty()) {
-            this.f12293e.setPosition(0, 0, rect.width(), rect.height());
-            this.d.setPosition(0, 0, rect.width(), rect.height());
-            this.d.setOutline(outline);
-            RenderNode renderNode = this.d;
-            if (this.f12296i && !fVar.e()) {
-                z10 = true;
-            }
-            renderNode.setClipToOutline(z10);
-            this.h = true;
+    @Override
+    public int O() {
+        return a(this.d);
+    }
+
+    @Override
+    public int R0() {
+        return a(this.f13969b);
+    }
+
+    public final int a(d dVar) {
+        boolean z9 = false;
+        if (dVar == null) {
+            return 0;
         }
-    }
-
-    public final void e() {
-        throw new UnsupportedOperationException("Method not decompiled: gh.e.e():void");
-    }
-
-    public final void f(float f10) {
-        this.d.setAlpha(f10);
-    }
-
-    public final void g(boolean z10) {
-        boolean z11;
-        this.f12296i = z10;
-        RenderNode renderNode = this.d;
-        if (z10 && !this.f12298k.R.e()) {
-            z11 = true;
-        } else {
-            z11 = false;
+        f6 f6Var = this.f13968a;
+        if ((f6Var instanceof di.b) || (f6Var == null ? k6.I.q() : f6Var.a())) {
+            z9 = true;
         }
-        renderNode.setClipToOutline(z11);
+        return dVar.k(f6Var, z9);
     }
 
-    public final void h(boolean z10) {
-        boolean z11;
-        if (this.f12295g != null) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (z10 != z11 && Build.VERSION.SDK_INT >= 33) {
-            if (z10) {
-                this.f12295g = new eh.h(this.f12293e);
-            } else {
-                this.f12295g = null;
-                this.f12293e.setRenderEffect(null);
-            }
-            this.h = true;
-        }
+    public float b() {
+        return this.f13974r;
+    }
+
+    public float c() {
+        return this.f13973n;
+    }
+
+    public final void d(int i7, int i10) {
+        this.f13969b = new c(i10, i7, 0);
+    }
+
+    public final void e(int i7, int i10) {
+        this.d = new c(i10, i7, 0);
+    }
+
+    @Override
+    public final int e1() {
+        return a(this.f13971e);
+    }
+
+    public final void f(int i7, int i10) {
+        this.f13970c = new c(i10, i7, 0);
+    }
+
+    @Override
+    public final float j0() {
+        return -1.0f;
+    }
+
+    @Override
+    public final float o0() {
+        return -1.0f;
+    }
+
+    @Override
+    public float v0() {
+        return 0.0f;
     }
 }

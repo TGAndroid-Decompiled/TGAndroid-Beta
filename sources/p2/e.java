@@ -1,412 +1,805 @@
 package p2;
 
-import android.media.ResourceBusyException;
-import android.media.UnsupportedSchemeException;
-import android.os.Build;
-import android.os.Handler;
-import android.os.Looper;
-import b8.og;
-import b8.zb;
-import d2.u0;
-import g9.g0;
-import g9.g2;
-import g9.i0;
-import g9.s1;
-import g9.t0;
-import j$.util.Objects;
+import a8.ga;
+import android.net.Uri;
+import android.text.TextUtils;
+import e2.t0;
+import h2.m0;
+import java.io.IOException;
+import java.math.RoundingMode;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.IdentityHashMap;
 import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-import mi.h0;
-import org.telegram.ui.Components.i9;
-import org.telegram.ui.Components.y00;
-import org.telegram.ui.hc1;
-public final class e implements m {
-    public final Set E;
-    public int F;
-    public q G;
-    public b H;
-    public b I;
-    public Looper J;
-    public Handler K;
-    public byte[] L;
-    public l2.k M;
-    public volatile android.support.v4.media.session.q N;
-    public final UUID f53098a;
-    public final org.telegram.utils.twidget.a f53099b;
-    public final b4.n f53100c;
-    public final HashMap d;
-    public final boolean f53101e;
-    public final int[] f53102f;
-    public final boolean h;
-    public final h0 f53103n;
-    public final kb.a f53104r;
-    public final y00 f53105s;
-    public final long f53106w;
-    public final ArrayList f53107x;
-    public final Set f53108y;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.telegram.ui.hy0;
+import org.xml.sax.helpers.DefaultHandler;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+public final class e extends DefaultHandler implements b3.q {
+    public static final Pattern f52997b = Pattern.compile("(\\d+)(?:/(\\d+))?");
+    public static final Pattern f52998c = Pattern.compile("CC([1-4])=.*");
+    public static final Pattern d = Pattern.compile("([1-9]|[1-5][0-9]|6[0-3])=.*");
+    public static final int[] f52999e = {2, 1, 2, 2, 2, 2, 1, 2, 2, 1, 1, 1, 1, 2, 1, 1, 2, 2, 2};
+    public static final int[] f53000f = {-1, 1, 2, 3, 4, 5, 6, 8, 2, 3, 4, 7, 8, 24, 8, 12, 10, 12, 14, 12, 14};
+    public final XmlPullParserFactory f53001a;
 
-    public e(UUID uuid, b4.n nVar, HashMap hashMap, boolean z10, int[] iArr, boolean z11, kb.a aVar) {
-        uuid.getClass();
-        zb.e("Use C.CLEARKEY_UUID instead", !d2.m.f8184c.equals(uuid));
-        this.f53098a = uuid;
-        this.f53099b = t.d;
-        this.f53100c = nVar;
-        this.d = hashMap;
-        this.f53101e = z10;
-        this.f53102f = iArr;
-        this.h = z11;
-        this.f53104r = aVar;
-        this.f53103n = new h0(16);
-        this.f53105s = new y00(this);
-        this.f53107x = new ArrayList();
-        this.f53108y = Collections.newSetFromMap(new IdentityHashMap());
-        this.E = Collections.newSetFromMap(new IdentityHashMap());
-        this.f53106w = 300000L;
-    }
-
-    public static boolean c(b bVar) {
-        bVar.p();
-        if (bVar.f53085p == 1) {
-            f g7 = bVar.g();
-            g7.getClass();
-            Throwable cause = g7.getCause();
-            if ((cause instanceof ResourceBusyException) || og.c(cause)) {
-                return true;
-            }
-            return false;
+    public e() {
+        try {
+            this.f53001a = XmlPullParserFactory.newInstance();
+        } catch (XmlPullParserException e10) {
+            throw new RuntimeException("Couldn't create XmlPullParserFactory instance", e10);
         }
-        return false;
     }
 
-    public static ArrayList g(d2.s sVar, UUID uuid, boolean z10) {
-        ArrayList arrayList = new ArrayList(sVar.d);
-        for (int i3 = 0; i3 < sVar.d; i3++) {
-            d2.r rVar = sVar.f8363a[i3];
-            if ((rVar.a(uuid) || (d2.m.d.equals(uuid) && rVar.a(d2.m.f8184c))) && (rVar.f8339e != null || z10)) {
-                arrayList.add(rVar);
+    public static long a(ArrayList arrayList, long j3, long j10, int i7, long j11) {
+        int i10;
+        if (i7 >= 0) {
+            i10 = i7 + 1;
+        } else {
+            String str = m0.f14112a;
+            i10 = (int) ((((j11 - j3) + j10) - 1) / j10);
+        }
+        for (int i11 = 0; i11 < i10; i11++) {
+            arrayList.add(new q(j3, j10));
+            j3 += j10;
+        }
+        return j3;
+    }
+
+    public static void b(XmlPullParser xmlPullParser) {
+        if (xmlPullParser.getEventType() == 2) {
+            int i7 = 1;
+            while (i7 != 0) {
+                xmlPullParser.next();
+                if (xmlPullParser.getEventType() == 2) {
+                    i7++;
+                } else if (xmlPullParser.getEventType() == 3) {
+                    i7--;
+                }
             }
+        }
+    }
+
+    public static int c(org.xmlpull.v1.XmlPullParser r12, java.lang.String r13) {
+        throw new UnsupportedOperationException("Method not decompiled: p2.e.c(org.xmlpull.v1.XmlPullParser, java.lang.String):int");
+    }
+
+    public static long d(XmlPullParser xmlPullParser, long j3) {
+        String attributeValue = xmlPullParser.getAttributeValue(null, "availabilityTimeOffset");
+        if (attributeValue == null) {
+            return j3;
+        }
+        if ("INF".equals(attributeValue)) {
+            return Long.MAX_VALUE;
+        }
+        return Float.parseFloat(attributeValue) * 1000000.0f;
+    }
+
+    public static ArrayList e(XmlPullParser xmlPullParser, ArrayList arrayList, boolean z9) {
+        int i7;
+        int i10;
+        String str;
+        String attributeValue = xmlPullParser.getAttributeValue(null, "dvb:priority");
+        if (attributeValue != null) {
+            i7 = Integer.parseInt(attributeValue);
+        } else if (z9) {
+            i7 = 1;
+        } else {
+            i7 = Integer.MIN_VALUE;
+        }
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, "dvb:weight");
+        if (attributeValue2 != null) {
+            i10 = Integer.parseInt(attributeValue2);
+        } else {
+            i10 = 1;
+        }
+        String attributeValue3 = xmlPullParser.getAttributeValue(null, "serviceLocation");
+        String str2 = "";
+        do {
+            xmlPullParser.next();
+            if (xmlPullParser.getEventType() == 4) {
+                str2 = xmlPullParser.getText();
+            } else {
+                b(xmlPullParser);
+            }
+        } while (!h2.a.h(xmlPullParser, "BaseURL"));
+        if (str2 != null && h2.e.c(str2)[0] != -1) {
+            if (attributeValue3 == null) {
+                attributeValue3 = str2;
+            }
+            return h9.o.r(new b(i7, i10, str2, attributeValue3));
+        }
+        ArrayList arrayList2 = new ArrayList();
+        for (int i11 = 0; i11 < arrayList.size(); i11++) {
+            b bVar = (b) arrayList.get(i11);
+            String f10 = h2.e.f(bVar.f52977a, str2);
+            if (attributeValue3 == null) {
+                str = f10;
+            } else {
+                str = attributeValue3;
+            }
+            if (z9) {
+                i7 = bVar.f52979c;
+                i10 = bVar.d;
+                str = bVar.f52978b;
+            }
+            arrayList2.add(new b(i7, i10, f10, str));
+        }
+        return arrayList2;
+    }
+
+    public static android.util.Pair f(org.xmlpull.v1.XmlPullParser r14) {
+        throw new UnsupportedOperationException("Method not decompiled: p2.e.f(org.xmlpull.v1.XmlPullParser):android.util.Pair");
+    }
+
+    public static int g(XmlPullParser xmlPullParser) {
+        String attributeValue = xmlPullParser.getAttributeValue(null, "contentType");
+        if (!TextUtils.isEmpty(attributeValue)) {
+            if ("audio".equals(attributeValue)) {
+                return 1;
+            }
+            if ("video".equals(attributeValue)) {
+                return 2;
+            }
+            if ("text".equals(attributeValue)) {
+                return 3;
+            }
+            if ("image".equals(attributeValue)) {
+                return 4;
+            }
+            return -1;
+        }
+        return -1;
+    }
+
+    public static f h(XmlPullParser xmlPullParser, String str) {
+        String str2 = null;
+        String attributeValue = xmlPullParser.getAttributeValue(null, "schemeIdUri");
+        if (attributeValue == null) {
+            attributeValue = "";
+        }
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, "value");
+        if (attributeValue2 == null) {
+            attributeValue2 = null;
+        }
+        String attributeValue3 = xmlPullParser.getAttributeValue(null, "id");
+        if (attributeValue3 != null) {
+            str2 = attributeValue3;
+        }
+        do {
+            xmlPullParser.next();
+        } while (!h2.a.h(xmlPullParser, str));
+        return new f(attributeValue, attributeValue2, str2);
+    }
+
+    public static long i(XmlPullParser xmlPullParser, String str, long j3) {
+        double d2;
+        double d10;
+        double d11;
+        double d12;
+        double d13;
+        String attributeValue = xmlPullParser.getAttributeValue(null, str);
+        if (attributeValue == null) {
+            return j3;
+        }
+        Matcher matcher = m0.f14115e.matcher(attributeValue);
+        if (matcher.matches()) {
+            boolean isEmpty = TextUtils.isEmpty(matcher.group(1));
+            String group = matcher.group(3);
+            double d14 = 0.0d;
+            if (group != null) {
+                d2 = Double.parseDouble(group) * 3.1556908E7d;
+            } else {
+                d2 = 0.0d;
+            }
+            String group2 = matcher.group(5);
+            if (group2 != null) {
+                d10 = Double.parseDouble(group2) * 2629739.0d;
+            } else {
+                d10 = 0.0d;
+            }
+            double d15 = d2 + d10;
+            String group3 = matcher.group(7);
+            if (group3 != null) {
+                d11 = Double.parseDouble(group3) * 86400.0d;
+            } else {
+                d11 = 0.0d;
+            }
+            double d16 = d15 + d11;
+            String group4 = matcher.group(10);
+            if (group4 != null) {
+                d12 = Double.parseDouble(group4) * 3600.0d;
+            } else {
+                d12 = 0.0d;
+            }
+            double d17 = d16 + d12;
+            String group5 = matcher.group(12);
+            if (group5 != null) {
+                d13 = Double.parseDouble(group5) * 60.0d;
+            } else {
+                d13 = 0.0d;
+            }
+            double d18 = d17 + d13;
+            String group6 = matcher.group(14);
+            if (group6 != null) {
+                d14 = Double.parseDouble(group6);
+            }
+            long j10 = (long) ((d18 + d14) * 1000.0d);
+            if (!isEmpty) {
+                return -j10;
+            }
+            return j10;
+        }
+        return (long) (Double.parseDouble(attributeValue) * 3600.0d * 1000.0d);
+    }
+
+    public static float j(XmlPullParser xmlPullParser, float f10) {
+        String attributeValue = xmlPullParser.getAttributeValue(null, "frameRate");
+        if (attributeValue != null) {
+            Matcher matcher = f52997b.matcher(attributeValue);
+            if (matcher.matches()) {
+                int parseInt = Integer.parseInt(matcher.group(1));
+                String group = matcher.group(2);
+                if (!TextUtils.isEmpty(group)) {
+                    return parseInt / Integer.parseInt(group);
+                }
+                return parseInt;
+            }
+        }
+        return f10;
+    }
+
+    public static p2.c k(org.xmlpull.v1.XmlPullParser r160, android.net.Uri r161) {
+        throw new UnsupportedOperationException("Method not decompiled: p2.e.k(org.xmlpull.v1.XmlPullParser, android.net.Uri):p2.c");
+    }
+
+    public static j l(XmlPullParser xmlPullParser, String str, String str2) {
+        long j3;
+        long j10;
+        String attributeValue = xmlPullParser.getAttributeValue(null, str);
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, str2);
+        if (attributeValue2 != null) {
+            String[] split = attributeValue2.split("-");
+            j3 = Long.parseLong(split[0]);
+            if (split.length == 2) {
+                j10 = (Long.parseLong(split[1]) - j3) + 1;
+                return new j(j3, attributeValue, j10);
+            }
+        } else {
+            j3 = 0;
+        }
+        j10 = -1;
+        return new j(j3, attributeValue, j10);
+    }
+
+    public static int m(String str) {
+        if (str != null) {
+            char c10 = 65535;
+            switch (str.hashCode()) {
+                case -2060497896:
+                    if (str.equals("subtitle")) {
+                        c10 = 0;
+                        break;
+                    }
+                    break;
+                case -1724546052:
+                    if (str.equals("description")) {
+                        c10 = 1;
+                        break;
+                    }
+                    break;
+                case -1580883024:
+                    if (str.equals("enhanced-audio-intelligibility")) {
+                        c10 = 2;
+                        break;
+                    }
+                    break;
+                case -1574842690:
+                    if (str.equals("forced_subtitle")) {
+                        c10 = 3;
+                        break;
+                    }
+                    break;
+                case -1408024454:
+                    if (str.equals("alternate")) {
+                        c10 = 4;
+                        break;
+                    }
+                    break;
+                case -1396432756:
+                    if (str.equals("forced-subtitle")) {
+                        c10 = 5;
+                        break;
+                    }
+                    break;
+                case 99825:
+                    if (str.equals("dub")) {
+                        c10 = 6;
+                        break;
+                    }
+                    break;
+                case 3343801:
+                    if (str.equals("main")) {
+                        c10 = 7;
+                        break;
+                    }
+                    break;
+                case 3530173:
+                    if (str.equals("sign")) {
+                        c10 = '\b';
+                        break;
+                    }
+                    break;
+                case 552573414:
+                    if (str.equals("caption")) {
+                        c10 = '\t';
+                        break;
+                    }
+                    break;
+                case 899152809:
+                    if (str.equals("commentary")) {
+                        c10 = '\n';
+                        break;
+                    }
+                    break;
+                case 1629013393:
+                    if (str.equals("emergency")) {
+                        c10 = 11;
+                        break;
+                    }
+                    break;
+                case 1855372047:
+                    if (str.equals("supplementary")) {
+                        c10 = '\f';
+                        break;
+                    }
+                    break;
+            }
+            switch (c10) {
+                case 0:
+                case 3:
+                case 5:
+                    return 128;
+                case 1:
+                    return 512;
+                case 2:
+                    return 2048;
+                case 4:
+                    return 2;
+                case 6:
+                    return 16;
+                case 7:
+                    return 1;
+                case '\b':
+                    return 256;
+                case '\t':
+                    return 64;
+                case '\n':
+                    return 8;
+                case 11:
+                    return 32;
+                case '\f':
+                    return 4;
+            }
+        }
+        return 0;
+    }
+
+    public static int n(ArrayList arrayList) {
+        int i7 = 0;
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            if (ga.a("http://dashif.org/guidelines/trickmode", ((f) arrayList.get(i10)).f53002a)) {
+                i7 = 16384;
+            }
+        }
+        return i7;
+    }
+
+    public static r o(XmlPullParser xmlPullParser, r rVar) {
+        long j3;
+        long j10;
+        long j11;
+        if (rVar != null) {
+            j3 = rVar.f53038b;
+        } else {
+            j3 = 1;
+        }
+        j jVar = null;
+        String attributeValue = xmlPullParser.getAttributeValue(null, "timescale");
+        if (attributeValue != null) {
+            j3 = Long.parseLong(attributeValue);
+        }
+        long j12 = j3;
+        long j13 = 0;
+        if (rVar != null) {
+            j10 = rVar.f53039c;
+        } else {
+            j10 = 0;
+        }
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, "presentationTimeOffset");
+        if (attributeValue2 != null) {
+            j10 = Long.parseLong(attributeValue2);
+        }
+        long j14 = j10;
+        if (rVar != null) {
+            j11 = rVar.d;
+        } else {
+            j11 = 0;
+        }
+        if (rVar != null) {
+            j13 = rVar.f53036e;
+        }
+        String attributeValue3 = xmlPullParser.getAttributeValue(null, "indexRange");
+        if (attributeValue3 != null) {
+            String[] split = attributeValue3.split("-");
+            j11 = Long.parseLong(split[0]);
+            j13 = (Long.parseLong(split[1]) - j11) + 1;
+        }
+        long j15 = j13;
+        long j16 = j11;
+        if (rVar != null) {
+            jVar = rVar.f53037a;
+        }
+        while (true) {
+            xmlPullParser.next();
+            if (h2.a.i(xmlPullParser, "Initialization")) {
+                jVar = l(xmlPullParser, "sourceURL", "range");
+            } else {
+                b(xmlPullParser);
+            }
+            j jVar2 = jVar;
+            if (h2.a.h(xmlPullParser, "SegmentBase")) {
+                return new r(jVar2, j12, j14, j16, j15);
+            }
+            jVar = jVar2;
+        }
+    }
+
+    public static o p(XmlPullParser xmlPullParser, o oVar, long j3, long j10, long j11, long j12, long j13) {
+        long j14;
+        long j15;
+        long j16;
+        long j17;
+        long j18;
+        long j19 = 1;
+        if (oVar != null) {
+            j14 = oVar.f53038b;
+        } else {
+            j14 = 1;
+        }
+        List list = null;
+        String attributeValue = xmlPullParser.getAttributeValue(null, "timescale");
+        if (attributeValue != null) {
+            j14 = Long.parseLong(attributeValue);
+        }
+        long j20 = j14;
+        if (oVar != null) {
+            j15 = oVar.f53039c;
+        } else {
+            j15 = 0;
+        }
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, "presentationTimeOffset");
+        if (attributeValue2 != null) {
+            j15 = Long.parseLong(attributeValue2);
+        }
+        long j21 = j15;
+        if (oVar != null) {
+            j16 = oVar.f53026e;
+        } else {
+            j16 = -9223372036854775807L;
+        }
+        String attributeValue3 = xmlPullParser.getAttributeValue(null, "duration");
+        if (attributeValue3 != null) {
+            j16 = Long.parseLong(attributeValue3);
+        }
+        long j22 = j16;
+        if (oVar != null) {
+            j19 = oVar.d;
+        }
+        String attributeValue4 = xmlPullParser.getAttributeValue(null, "startNumber");
+        if (attributeValue4 != null) {
+            j19 = Long.parseLong(attributeValue4);
+        }
+        long j23 = j19;
+        if (j12 == -9223372036854775807L) {
+            j17 = j11;
+        } else {
+            j17 = j12;
+        }
+        if (j17 == Long.MAX_VALUE) {
+            j18 = -9223372036854775807L;
+        } else {
+            j18 = j17;
+        }
+        j jVar = null;
+        List list2 = null;
+        do {
+            xmlPullParser.next();
+            if (h2.a.i(xmlPullParser, "Initialization")) {
+                jVar = l(xmlPullParser, "sourceURL", "range");
+            } else if (h2.a.i(xmlPullParser, "SegmentTimeline")) {
+                list2 = r(xmlPullParser, j20, j10);
+            } else if (h2.a.i(xmlPullParser, "SegmentURL")) {
+                if (list == null) {
+                    list = new ArrayList();
+                }
+                list.add(l(xmlPullParser, "media", "mediaRange"));
+            } else {
+                b(xmlPullParser);
+            }
+        } while (!h2.a.h(xmlPullParser, "SegmentList"));
+        if (oVar != null) {
+            if (jVar == null) {
+                jVar = oVar.f53037a;
+            }
+            if (list2 == null) {
+                list2 = oVar.f53027f;
+            }
+            if (list == null) {
+                list = oVar.f53030j;
+            }
+        }
+        return new o(jVar, j20, j21, j23, j22, list2, j18, list, m0.S(j13), m0.S(j3));
+    }
+
+    public static p q(XmlPullParser xmlPullParser, p pVar, List list, long j3, long j10, long j11, long j12, long j13) {
+        long j14;
+        long j15;
+        long j16;
+        long j17;
+        long j18;
+        long j19;
+        hy0 hy0Var;
+        hy0 hy0Var2;
+        long j20 = 1;
+        if (pVar != null) {
+            j14 = pVar.f53038b;
+        } else {
+            j14 = 1;
+        }
+        j jVar = null;
+        String attributeValue = xmlPullParser.getAttributeValue(null, "timescale");
+        if (attributeValue != null) {
+            j14 = Long.parseLong(attributeValue);
+        }
+        long j21 = j14;
+        if (pVar != null) {
+            j15 = pVar.f53039c;
+        } else {
+            j15 = 0;
+        }
+        String attributeValue2 = xmlPullParser.getAttributeValue(null, "presentationTimeOffset");
+        if (attributeValue2 != null) {
+            j15 = Long.parseLong(attributeValue2);
+        }
+        long j22 = j15;
+        if (pVar != null) {
+            j16 = pVar.f53026e;
+        } else {
+            j16 = -9223372036854775807L;
+        }
+        String attributeValue3 = xmlPullParser.getAttributeValue(null, "duration");
+        if (attributeValue3 != null) {
+            j16 = Long.parseLong(attributeValue3);
+        }
+        long j23 = j16;
+        if (pVar != null) {
+            j20 = pVar.d;
+        }
+        String attributeValue4 = xmlPullParser.getAttributeValue(null, "startNumber");
+        if (attributeValue4 != null) {
+            j20 = Long.parseLong(attributeValue4);
+        }
+        long j24 = j20;
+        int i7 = 0;
+        while (true) {
+            if (i7 < list.size()) {
+                f fVar = (f) list.get(i7);
+                if (ga.a("http://dashif.org/guidelines/last-segment-number", fVar.f53002a)) {
+                    j17 = Long.parseLong(fVar.f53003b);
+                    break;
+                }
+                i7++;
+            } else {
+                j17 = -1;
+                break;
+            }
+        }
+        long j25 = j17;
+        if (j12 == -9223372036854775807L) {
+            j18 = j11;
+        } else {
+            j18 = j12;
+        }
+        if (j18 == Long.MAX_VALUE) {
+            j19 = -9223372036854775807L;
+        } else {
+            j19 = j18;
+        }
+        if (pVar != null) {
+            hy0Var = pVar.f53032k;
+        } else {
+            hy0Var = null;
+        }
+        hy0 s5 = s(xmlPullParser, "media", hy0Var);
+        if (pVar != null) {
+            hy0Var2 = pVar.f53031j;
+        } else {
+            hy0Var2 = null;
+        }
+        hy0 s9 = s(xmlPullParser, "initialization", hy0Var2);
+        List list2 = null;
+        do {
+            xmlPullParser.next();
+            if (h2.a.i(xmlPullParser, "Initialization")) {
+                jVar = l(xmlPullParser, "sourceURL", "range");
+            } else if (h2.a.i(xmlPullParser, "SegmentTimeline")) {
+                list2 = r(xmlPullParser, j21, j10);
+            } else {
+                b(xmlPullParser);
+            }
+        } while (!h2.a.h(xmlPullParser, "SegmentTemplate"));
+        if (pVar != null) {
+            if (jVar == null) {
+                jVar = pVar.f53037a;
+            }
+            if (list2 == null) {
+                list2 = pVar.f53027f;
+            }
+        }
+        return new p(jVar, j21, j22, j24, j25, j23, list2, j19, s9, s5, m0.S(j13), m0.S(j3));
+    }
+
+    public static ArrayList r(XmlPullParser xmlPullParser, long j3, long j10) {
+        long parseLong;
+        long j11;
+        ArrayList arrayList = new ArrayList();
+        long j12 = 0;
+        long j13 = -9223372036854775807L;
+        boolean z9 = false;
+        int i7 = 0;
+        do {
+            xmlPullParser.next();
+            if (h2.a.i(xmlPullParser, "S")) {
+                String attributeValue = xmlPullParser.getAttributeValue(null, "t");
+                if (attributeValue == null) {
+                    parseLong = -9223372036854775807L;
+                } else {
+                    parseLong = Long.parseLong(attributeValue);
+                }
+                if (z9) {
+                    int i10 = i7;
+                    j11 = parseLong;
+                    j12 = a(arrayList, j12, j13, i10, j11);
+                } else {
+                    j11 = parseLong;
+                }
+                if (j11 != -9223372036854775807L) {
+                    j12 = j11;
+                }
+                String attributeValue2 = xmlPullParser.getAttributeValue(null, "d");
+                if (attributeValue2 == null) {
+                    j13 = -9223372036854775807L;
+                } else {
+                    j13 = Long.parseLong(attributeValue2);
+                }
+                String attributeValue3 = xmlPullParser.getAttributeValue(null, "r");
+                if (attributeValue3 == null) {
+                    i7 = 0;
+                } else {
+                    i7 = Integer.parseInt(attributeValue3);
+                }
+                z9 = true;
+            } else {
+                b(xmlPullParser);
+            }
+        } while (!h2.a.h(xmlPullParser, "SegmentTimeline"));
+        if (z9) {
+            String str = m0.f14112a;
+            a(arrayList, j12, j13, i7, m0.a0(j10, j3, 1000L, RoundingMode.DOWN));
         }
         return arrayList;
     }
 
-    @Override
-    public final g A(j jVar, d2.v vVar) {
-        boolean z10 = false;
-        i(false);
-        if (this.F > 0) {
-            z10 = true;
-        }
-        zb.p(z10);
-        this.J.getClass();
-        return b(this.J, jVar, vVar, true);
-    }
-
-    @Override
-    public final void a() {
-        q eVar;
-        i(true);
-        int i3 = this.F;
-        this.F = i3 + 1;
-        if (i3 == 0) {
-            if (this.G == null) {
-                UUID uuid = this.f53098a;
-                this.f53099b.getClass();
-                try {
-                    try {
-                        eVar = new t(uuid);
-                    } catch (x unused) {
-                        g2.a.c("FrameworkMediaDrm", "Failed to instantiate a FrameworkMediaDrm for uuid: " + uuid + ".");
-                        eVar = new ra.e(20);
-                    }
-                    this.G = eVar;
-                    eVar.m(new i9(this, 10));
-                } catch (UnsupportedSchemeException e10) {
-                    throw new Exception(e10);
-                } catch (Exception e11) {
-                    throw new Exception(e11);
-                }
-            } else if (this.f53106w != -9223372036854775807L) {
-                int i10 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f53107x;
-                    if (i10 < arrayList.size()) {
-                        ((b) arrayList.get(i10)).e(null);
-                        i10++;
+    public static hy0 s(XmlPullParser xmlPullParser, String str, hy0 hy0Var) {
+        String str2;
+        String attributeValue = xmlPullParser.getAttributeValue(null, str);
+        if (attributeValue != null) {
+            ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            ArrayList arrayList3 = new ArrayList();
+            arrayList.add("");
+            int i7 = 0;
+            while (i7 < attributeValue.length()) {
+                int indexOf = attributeValue.indexOf("$", i7);
+                char c10 = 65535;
+                if (indexOf == -1) {
+                    arrayList.set(arrayList2.size(), ((String) arrayList.get(arrayList2.size())) + attributeValue.substring(i7));
+                    i7 = attributeValue.length();
+                } else if (indexOf != i7) {
+                    arrayList.set(arrayList2.size(), ((String) arrayList.get(arrayList2.size())) + attributeValue.substring(i7, indexOf));
+                    i7 = indexOf;
+                } else if (attributeValue.startsWith("$$", i7)) {
+                    arrayList.set(arrayList2.size(), ((String) arrayList.get(arrayList2.size())) + "$");
+                    i7 += 2;
+                } else {
+                    arrayList3.add("");
+                    int i10 = i7 + 1;
+                    int indexOf2 = attributeValue.indexOf("$", i10);
+                    String substring = attributeValue.substring(i10, indexOf2);
+                    if (substring.equals("RepresentationID")) {
+                        arrayList2.add(1);
                     } else {
-                        return;
-                    }
-                }
-            }
-        }
-    }
-
-    public final g b(Looper looper, j jVar, d2.v vVar, boolean z10) {
-        ArrayList arrayList;
-        if (this.N == null) {
-            this.N = new android.support.v4.media.session.q(this, looper, 9);
-        }
-        d2.s sVar = vVar.f8492w;
-        int i3 = 0;
-        b bVar = null;
-        if (sVar == null) {
-            int h = u0.h(vVar.f8489s);
-            q qVar = this.G;
-            qVar.getClass();
-            if (qVar.L1() != 2 || !r.f53124c) {
-                int[] iArr = this.f53102f;
-                while (true) {
-                    if (i3 < iArr.length) {
-                        if (iArr[i3] == h) {
-                            break;
+                        int indexOf3 = substring.indexOf("%0");
+                        if (indexOf3 != -1) {
+                            str2 = substring.substring(indexOf3);
+                            if (!str2.endsWith("d") && !str2.endsWith("x") && !str2.endsWith("X")) {
+                                str2 = str2.concat("d");
+                            }
+                            substring = substring.substring(0, indexOf3);
+                        } else {
+                            str2 = "%01d";
                         }
-                        i3++;
-                    } else {
-                        i3 = -1;
-                        break;
+                        substring.getClass();
+                        switch (substring.hashCode()) {
+                            case -1950496919:
+                                if (substring.equals("Number")) {
+                                    c10 = 0;
+                                    break;
+                                }
+                                break;
+                            case 2606829:
+                                if (substring.equals("Time")) {
+                                    c10 = 1;
+                                    break;
+                                }
+                                break;
+                            case 38199441:
+                                if (substring.equals("Bandwidth")) {
+                                    c10 = 2;
+                                    break;
+                                }
+                                break;
+                        }
+                        switch (c10) {
+                            case 0:
+                                arrayList2.add(2);
+                                break;
+                            case 1:
+                                arrayList2.add(4);
+                                break;
+                            case 2:
+                                arrayList2.add(3);
+                                break;
+                            default:
+                                throw new IllegalArgumentException("Invalid template: ".concat(attributeValue));
+                        }
+                        arrayList3.set(arrayList2.size() - 1, str2);
                     }
-                }
-                if (i3 != -1 && qVar.L1() != 1) {
-                    b bVar2 = this.H;
-                    if (bVar2 == null) {
-                        g0 g0Var = i0.f12083b;
-                        b e10 = e(s1.f12146e, true, null, z10);
-                        this.f53107x.add(e10);
-                        this.H = e10;
-                    } else {
-                        bVar2.e(null);
-                    }
-                    return this.H;
+                    arrayList.add("");
+                    i7 = indexOf2 + 1;
                 }
             }
-            return null;
+            return new hy0(arrayList, arrayList2, arrayList3, 2);
         }
-        if (this.L == null) {
-            arrayList = g(sVar, this.f53098a, false);
-            if (arrayList.isEmpty()) {
-                Exception exc = new Exception("Media does not support uuid: " + this.f53098a);
-                g2.a.d("DefaultDrmSessionMgr", "DRM error", exc);
-                if (jVar != null) {
-                    jVar.d(exc);
-                }
-                return new n(new f(6003, exc));
-            }
-        } else {
-            arrayList = null;
-        }
-        if (!this.f53101e) {
-            bVar = this.I;
-        } else {
-            ArrayList arrayList2 = this.f53107x;
-            int size = arrayList2.size();
-            int i10 = 0;
-            while (true) {
-                if (i10 >= size) {
-                    break;
-                }
-                Object obj = arrayList2.get(i10);
-                i10++;
-                b bVar3 = (b) obj;
-                if (Objects.equals(bVar3.f53072a, arrayList)) {
-                    bVar = bVar3;
-                    break;
-                }
-            }
-        }
-        if (bVar == null) {
-            b e11 = e(arrayList, false, jVar, z10);
-            if (!this.f53101e) {
-                this.I = e11;
-            }
-            this.f53107x.add(e11);
-            return e11;
-        }
-        bVar.e(jVar);
-        return bVar;
-    }
-
-    public final b d(List list, boolean z10, j jVar) {
-        this.G.getClass();
-        q qVar = this.G;
-        byte[] bArr = this.L;
-        Looper looper = this.J;
-        looper.getClass();
-        l2.k kVar = this.M;
-        kVar.getClass();
-        b bVar = new b(this.f53098a, qVar, this.f53103n, this.f53105s, list, this.h | z10, z10, bArr, this.d, this.f53100c, looper, this.f53104r, kVar);
-        bVar.e(jVar);
-        if (this.f53106w != -9223372036854775807L) {
-            bVar.e(null);
-        }
-        return bVar;
-    }
-
-    public final b e(List list, boolean z10, j jVar, boolean z11) {
-        b d = d(list, z10, jVar);
-        boolean c2 = c(d);
-        long j10 = this.f53106w;
-        Set set = this.E;
-        if (c2 && !set.isEmpty()) {
-            g2 it = t0.q(set).iterator();
-            while (it.hasNext()) {
-                ((g) it.next()).b(null);
-            }
-            d.b(jVar);
-            if (j10 != -9223372036854775807L) {
-                d.b(null);
-            }
-            d = d(list, z10, jVar);
-        }
-        if (c(d) && z11) {
-            Set set2 = this.f53108y;
-            if (!set2.isEmpty()) {
-                g2 it2 = t0.q(set2).iterator();
-                while (it2.hasNext()) {
-                    ((d) it2.next()).release();
-                }
-                if (!set.isEmpty()) {
-                    g2 it3 = t0.q(set).iterator();
-                    while (it3.hasNext()) {
-                        ((g) it3.next()).b(null);
-                    }
-                }
-                d.b(jVar);
-                if (j10 != -9223372036854775807L) {
-                    d.b(null);
-                }
-                return d(list, z10, jVar);
-            }
-        }
-        return d;
+        return hy0Var;
     }
 
     @Override
-    public final l f(j jVar, d2.v vVar) {
-        boolean z10;
-        if (this.F > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        zb.p(z10);
-        this.J.getClass();
-        d dVar = new d(this, jVar);
-        Handler handler = this.K;
-        handler.getClass();
-        handler.post(new hc1(18, dVar, vVar));
-        return dVar;
-    }
-
-    public final void h() {
-        if (this.G != null && this.F == 0 && this.f53107x.isEmpty() && this.f53108y.isEmpty()) {
-            q qVar = this.G;
-            qVar.getClass();
-            qVar.release();
-            this.G = null;
-        }
-    }
-
-    public final void i(boolean z10) {
-        if (z10 && this.J == null) {
-            g2.a.m("DefaultDrmSessionMgr", "DefaultDrmSessionManager accessed before setPlayer(), possibly on the wrong thread.", new IllegalStateException());
-            return;
-        }
-        Thread currentThread = Thread.currentThread();
-        Looper looper = this.J;
-        looper.getClass();
-        if (currentThread != looper.getThread()) {
-            g2.a.m("DefaultDrmSessionMgr", "DefaultDrmSessionManager accessed on the wrong thread.\nCurrent thread: " + Thread.currentThread().getName() + "\nExpected thread: " + this.J.getThread().getName(), new IllegalStateException());
-        }
-    }
-
-    @Override
-    public final void k(Looper looper, l2.k kVar) {
-        boolean z10;
-        synchronized (this) {
-            try {
-                Looper looper2 = this.J;
-                if (looper2 == null) {
-                    this.J = looper;
-                    this.K = new Handler(looper);
-                } else {
-                    if (looper2 == looper) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    zb.p(z10);
-                    this.K.getClass();
-                }
-            } catch (Throwable th2) {
-                throw th2;
+    public final Object L1(Uri uri, j2.k kVar) {
+        try {
+            XmlPullParser newPullParser = this.f53001a.newPullParser();
+            newPullParser.setInput(kVar, null);
+            if (newPullParser.next() == 2 && "MPD".equals(newPullParser.getName())) {
+                return k(newPullParser, uri);
             }
-        }
-        this.M = kVar;
-    }
-
-    @Override
-    public final void release() {
-        i(true);
-        int i3 = this.F - 1;
-        this.F = i3;
-        if (i3 != 0) {
-            return;
-        }
-        if (this.f53106w != -9223372036854775807L) {
-            ArrayList arrayList = new ArrayList(this.f53107x);
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                ((b) arrayList.get(i10)).b(null);
+            throw t0.b("inputStream does not contain a valid media presentation description", null);
+        } catch (XmlPullParserException e10) {
+            if (e10.getDetail() instanceof IOException) {
+                throw ((IOException) e10.getDetail());
             }
+            throw t0.b(null, e10);
         }
-        g2 it = t0.q(this.f53108y).iterator();
-        while (it.hasNext()) {
-            ((d) it.next()).release();
-        }
-        h();
-    }
-
-    @Override
-    public final int u(d2.v vVar) {
-        i(false);
-        q qVar = this.G;
-        qVar.getClass();
-        int L1 = qVar.L1();
-        d2.s sVar = vVar.f8492w;
-        if (sVar == null) {
-            int h = u0.h(vVar.f8489s);
-            int i3 = 0;
-            while (true) {
-                int[] iArr = this.f53102f;
-                if (i3 < iArr.length) {
-                    if (iArr[i3] == h) {
-                        break;
-                    }
-                    i3++;
-                } else {
-                    i3 = -1;
-                    break;
-                }
-            }
-            if (i3 == -1) {
-                return 0;
-            }
-        } else if (this.L == null) {
-            UUID uuid = this.f53098a;
-            if (g(sVar, uuid, true).isEmpty()) {
-                if (sVar.d == 1 && sVar.f8363a[0].a(d2.m.f8184c)) {
-                    g2.a.l("DefaultDrmSessionMgr", "DrmInitData only contains common PSSH SchemeData. Assuming support for: " + uuid);
-                }
-                return 1;
-            }
-            String str = sVar.f8365c;
-            if (str != null && !"cenc".equals(str) && (!"cbcs".equals(str) ? "cbc1".equals(str) || "cens".equals(str) : Build.VERSION.SDK_INT < 25)) {
-                return 1;
-            }
-        }
-        return L1;
     }
 }

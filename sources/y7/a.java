@@ -1,41 +1,42 @@
 package y7;
-public final class a implements d {
-    public final int f59039a;
 
-    public a(int i3) {
-        this.f59039a = i3;
+import java.util.Iterator;
+import java.util.Map;
+public final class a extends m9 {
+    public final transient a8.v f58855c;
+    public final transient Object[] d;
+    public final transient int f58856e = 1;
+
+    public a(a8.v vVar, Object[] objArr) {
+        this.f58855c = vVar;
+        this.d = objArr;
     }
 
     @Override
-    public final Class annotationType() {
-        return d.class;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof d) {
-                if (this.f59039a == ((a) ((d) obj)).f59039a) {
-                    Object obj2 = c.f59056a;
-                    if (obj2.equals(obj2)) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
+    public final boolean contains(Object obj) {
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Object value = entry.getValue();
+            if (value != null && value.equals(this.f58855c.get(key))) {
+                return true;
             }
-            return false;
         }
-        return true;
+        return false;
     }
 
     @Override
-    public final int hashCode() {
-        return (this.f59039a ^ 14552422) + (c.f59056a.hashCode() ^ 2041407134);
+    public final int f(Object[] objArr) {
+        return l().f(objArr);
     }
 
     @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f59039a + "intEncoding=" + c.f59056a + ')';
+    public final Iterator iterator() {
+        return l().listIterator(0);
+    }
+
+    @Override
+    public final int size() {
+        return this.f58856e;
     }
 }

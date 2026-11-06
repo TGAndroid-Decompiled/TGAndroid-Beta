@@ -1,50 +1,33 @@
 package org.telegram.ui.web;
 
-import java.util.HashMap;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.r2;
-public final class z1 {
-    public static z1 f51133e;
-    public HashMap f51134a;
-    public boolean f51135b;
-    public boolean f51136c;
-    public boolean d;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+public final class z1 extends TLObject {
+    public final ArrayList f51407a = new ArrayList();
 
-    public static z1 b() {
-        if (f51133e == null) {
-            f51133e = new Object();
-        }
-        return f51133e;
-    }
-
-    public final y1 a(String str) {
-        c();
-        y1 y1Var = (y1) this.f51134a.get(str);
-        if (y1Var == null) {
-            return null;
-        }
-        y1Var.f51119a = Math.max(y1Var.f51119a, System.currentTimeMillis());
-        d();
-        return y1Var;
-    }
-
-    public final void c() {
-        if (!this.f51135b && !this.f51136c) {
-            this.f51136c = true;
-            if (this.f51134a == null) {
-                this.f51134a = new HashMap();
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z9) {
+        int readInt32 = inputSerializedData.readInt32(z9);
+        for (int i7 = 0; i7 < readInt32; i7++) {
+            a2 a2Var = new a2();
+            a2Var.readParams(inputSerializedData, z9);
+            if (!TextUtils.isEmpty(a2Var.f51080b)) {
+                this.f51407a.add(a2Var);
+            } else {
+                return;
             }
-            Utilities.f21387e.c(new v1(this, 1));
         }
     }
 
-    public final void d() {
-        org.telegram.messenger.g0.r(new v1(this, 0));
-        if (this.d) {
-            return;
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        ArrayList arrayList = this.f51407a;
+        outputSerializedData.writeInt32(arrayList.size());
+        for (int i7 = 0; i7 < arrayList.size(); i7++) {
+            ((a2) arrayList.get(i7)).serializeToStream(outputSerializedData);
         }
-        v1 v1Var = new v1(this, 0);
-        boolean z10 = r2.f25040a;
-        org.telegram.messenger.g0.i3(v1Var, 1000L);
     }
 }

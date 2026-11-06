@@ -9,19 +9,19 @@ public class MediaSource {
         ENDED,
         MUTED;
 
-        public static State fromNativeIndex(int i3) {
-            return values()[i3];
+        public static State fromNativeIndex(int i7) {
+            return values()[i7];
         }
     }
 
-    public MediaSource(final long j10) {
+    public MediaSource(final long j3) {
         this.refCountDelegate = new RefCountDelegate(new Runnable() {
             @Override
             public final void run() {
-                JniCommon.nativeReleaseRef(j10);
+                JniCommon.nativeReleaseRef(j3);
             }
         });
-        this.nativeSource = j10;
+        this.nativeSource = j3;
     }
 
     private void checkMediaSourceExists() {
@@ -31,7 +31,7 @@ public class MediaSource {
         throw new IllegalStateException("MediaSource has been disposed.");
     }
 
-    private static native State nativeGetState(long j10);
+    private static native State nativeGetState(long j3);
 
     public void dispose() {
         checkMediaSourceExists();

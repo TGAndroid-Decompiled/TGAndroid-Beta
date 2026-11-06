@@ -2,51 +2,81 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.tgnet.TLRPC;
-public final class kx extends org.telegram.ui.ActionBar.d2 {
-    public long f47043a;
-    public TLRPC.Chat f47044b;
-    public boolean f47045c;
-    public boolean d;
-    public boolean f47046e;
-    public ai.i5 f47047f;
-    public ei.d0 h;
+public final class kx extends org.telegram.ui.Components.k41 {
+    public final int f47308m3;
 
-    @Override
-    public final View createView(Context context) {
-        setHasOwnBackground(true);
-        this.simpleActionBar.setBackButtonImage(2131231240);
-        this.simpleActionBar.setActionBarMenuOnItemClick(new hx(this, 0));
-        this.simpleActionBar.setTitle(org.telegram.messenger.bd.M0(2131743991, null));
-        FrameLayout frameLayout = new FrameLayout(context);
-        ai.i5 i5Var = new ai.i5(this, new c5(this, 13), new ur(this, 9), null, 7);
-        this.f47047f = i5Var;
-        i5Var.r1();
-        this.f47047f.setSectionsDrawBackground(true);
-        frameLayout.addView(this.f47047f, b8.mf.e(-1, -1, 119));
-        this.fragmentView = frameLayout;
-        return frameLayout;
+    public kx(Context context, int i7, int i10, boolean z9, org.telegram.messenger.v10 v10Var, org.telegram.messenger.a20 a20Var, org.telegram.messenger.b20 b20Var, org.telegram.ui.ActionBar.f6 f6Var, int i11) {
+        super(context, i7, i10, z9, v10Var, a20Var, b20Var, f6Var);
+        this.f47308m3 = i11;
     }
 
     @Override
-    public final org.telegram.ui.Components.tj0 getListViewForSimpleGlass() {
-        return this.f47047f;
+    public Integer V0(int i7) {
+        switch (this.f47308m3) {
+            case 0:
+                org.telegram.ui.Components.r31 G = this.f35167f3.G(i7);
+                if (G != null && G.d == 2) {
+                    return 0;
+                }
+                return super.V0(i7);
+            case 1:
+            default:
+                return super.V0(i7);
+            case 2:
+                return 0;
+        }
     }
 
     @Override
-    public final boolean isSupportEdgeToEdge() {
-        return true;
+    public void onMeasure(int i7, int i10) {
+        switch (this.f47308m3) {
+            case 3:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f22537q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            case 4:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f22537q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            case 5:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f22537q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            case 6:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f22537q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            case 7:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f22537q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            case 8:
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min((int) (org.telegram.messenger.g0.f22537q.y * 0.35f), View.MeasureSpec.getSize(i10)), View.MeasureSpec.getMode(i10)));
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                return;
+        }
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        this.f47044b = getMessagesController().M0(Long.valueOf(-this.f47043a));
-        return super.onFragmentCreate();
+    public boolean u1(View view) {
+        switch (this.f47308m3) {
+            case 1:
+                if (view instanceof org.telegram.ui.Wallet.w3) {
+                    org.telegram.ui.Wallet.w3 w3Var = (org.telegram.ui.Wallet.w3) view;
+                    if (w3Var.F > 0.0f || w3Var.I.d()) {
+                        return false;
+                    }
+                }
+                return true;
+            default:
+                return super.u1(view);
+        }
     }
 
-    @Override
-    public final boolean useSimpleActionBar() {
-        return true;
+    public kx(Context context, int i7, int i10, boolean z9, org.telegram.messenger.v10 v10Var, org.telegram.messenger.a20 a20Var, org.telegram.messenger.b20 b20Var, org.telegram.ui.ActionBar.f6 f6Var, int i11, int i12) {
+        super(context, i7, i10, z9, v10Var, a20Var, b20Var, f6Var, i11, i12);
+        this.f47308m3 = 1;
+    }
+
+    public kx(org.telegram.ui.ActionBar.f2 f2Var, org.telegram.messenger.v10 v10Var, org.telegram.messenger.a20 a20Var, org.telegram.messenger.b20 b20Var, int i7) {
+        super(f2Var, v10Var, a20Var, b20Var);
+        this.f47308m3 = i7;
     }
 }

@@ -38,47 +38,47 @@ public final class d {
     public float T;
     public boolean U;
     public boolean V;
-    public final Paint f52817a = new Paint(3);
-    public final Paint f52818b = new Paint(1);
-    public final Paint f52819c = new Paint();
+    public final Paint f52726a = new Paint(3);
+    public final Paint f52727b = new Paint(1);
+    public final Paint f52728c = new Paint();
     public final Paint d;
-    public final Path f52820e;
-    public final Path f52821f;
-    public final Matrix f52822g;
+    public final Path f52729e;
+    public final Path f52730f;
+    public final Matrix f52731g;
     public final Matrix h;
-    public final float[] f52823i;
-    public final float[] f52824j;
-    public final float[] f52825k;
-    public final RectF f52826l;
-    public final Rect f52827m;
-    public final int f52828n;
-    public Bitmap f52829o;
-    public Bitmap f52830p;
-    public Canvas f52831q;
-    public int f52832r;
-    public int f52833s;
-    public int[] f52834t;
-    public int f52835u;
+    public final float[] f52732i;
+    public final float[] f52733j;
+    public final float[] f52734k;
+    public final RectF f52735l;
+    public final Rect f52736m;
+    public final int f52737n;
+    public Bitmap f52738o;
+    public Bitmap f52739p;
+    public Canvas f52740q;
+    public int f52741r;
+    public int f52742s;
+    public int[] f52743t;
+    public int f52744u;
     public int v;
-    public int f52836w;
-    public int f52837x;
-    public int f52838y;
-    public int f52839z;
+    public int f52745w;
+    public int f52746x;
+    public int f52747y;
+    public int f52748z;
 
-    public d(int i3) {
+    public d(int i7) {
         Paint paint = new Paint();
         this.d = paint;
-        this.f52820e = new Path();
-        this.f52821f = new Path();
-        this.f52822g = new Matrix();
+        this.f52729e = new Path();
+        this.f52730f = new Path();
+        this.f52731g = new Matrix();
         this.h = new Matrix();
-        this.f52823i = new float[9];
-        this.f52824j = new float[6];
-        this.f52825k = new float[8];
-        this.f52826l = new RectF();
-        this.f52827m = new Rect();
-        this.f52833s = -1;
-        this.f52828n = i3;
+        this.f52732i = new float[9];
+        this.f52733j = new float[6];
+        this.f52734k = new float[8];
+        this.f52735l = new RectF();
+        this.f52736m = new Rect();
+        this.f52742s = -1;
+        this.f52737n = i7;
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
@@ -88,22 +88,22 @@ public final class d {
 
     public final void a(Paint paint) {
         int[] iArr;
-        if (this.f52837x != 0 && (iArr = this.E) != null) {
+        if (this.f52746x != 0 && (iArr = this.E) != null) {
             float[] fArr = this.F;
             paint.setColor(-16777216);
-            int i3 = this.f52837x;
-            float[] fArr2 = this.f52824j;
-            if (i3 == 1) {
+            int i7 = this.f52746x;
+            float[] fArr2 = this.f52733j;
+            if (i7 == 1) {
                 paint.setShader(new LinearGradient(fArr2[0], fArr2[1], fArr2[2], fArr2[3], iArr, fArr, Shader.TileMode.CLAMP));
                 return;
-            } else if (i3 == 2) {
+            } else if (i7 == 2) {
                 float f10 = fArr2[2];
                 float max = Math.max(fArr2[5], 0.01f);
                 if (f10 > 0.0f && f10 < max) {
                     float[] fArr3 = new float[fArr.length];
                     for (int i10 = 0; i10 < fArr.length; i10++) {
                         float f11 = f10 / max;
-                        fArr3[i10] = com.google.android.recaptcha.internal.a.y(1.0f, f11, fArr[i10], f11);
+                        fArr3[i10] = com.google.android.recaptcha.internal.a.z(1.0f, f11, fArr[i10], f11);
                     }
                     fArr = fArr3;
                 }
@@ -119,7 +119,7 @@ public final class d {
             }
         }
         paint.setShader(null);
-        paint.setColor(this.f52838y);
+        paint.setColor(this.f52747y);
     }
 
     public final void c(android.graphics.Canvas r18, org.telegram.utils.twidget.c r19) {
@@ -129,7 +129,7 @@ public final class d {
     public final void d(Paint paint) {
         Paint.Cap cap;
         Paint.Join join;
-        int i3;
+        int i7;
         paint.setStrokeWidth(this.I);
         int i10 = this.G;
         if (i10 == 1) {
@@ -155,13 +155,13 @@ public final class d {
         if (fArr != null) {
             int length = fArr.length;
             if (length % 2 == 1) {
-                i3 = length * 2;
+                i7 = length * 2;
             } else {
-                i3 = length;
+                i7 = length;
             }
-            float[] fArr2 = new float[i3];
+            float[] fArr2 = new float[i7];
             float f10 = 0.0f;
-            for (int i12 = 0; i12 < i3; i12++) {
+            for (int i12 = 0; i12 < i7; i12++) {
                 float max = Math.max(0.0f, this.L[i12 % length]);
                 fArr2[i12] = max;
                 f10 += max;
@@ -173,21 +173,21 @@ public final class d {
     }
 
     public final float e() {
-        int[] iArr = this.f52834t;
-        int i3 = this.f52835u;
-        this.f52835u = i3 + 1;
-        return Float.intBitsToFloat(iArr[i3]);
+        int[] iArr = this.f52743t;
+        int i7 = this.f52744u;
+        this.f52744u = i7 + 1;
+        return Float.intBitsToFloat(iArr[i7]);
     }
 
-    public final void f(Path path, boolean z10) {
+    public final void f(Path path, boolean z9) {
         path.rewind();
-        int[] iArr = this.f52834t;
-        int i3 = this.f52835u;
-        int i10 = i3 + 1;
-        this.f52835u = i10;
-        int i11 = iArr[i3];
-        int i12 = i3 + 2;
-        this.f52835u = i12;
+        int[] iArr = this.f52743t;
+        int i7 = this.f52744u;
+        int i10 = i7 + 1;
+        this.f52744u = i10;
+        int i11 = iArr[i7];
+        int i12 = i7 + 2;
+        this.f52744u = i12;
         int i13 = iArr[i10];
         int i14 = i12 + i11;
         int i15 = i14;
@@ -216,8 +216,8 @@ public final class d {
             }
             i15 += 2;
         }
-        this.f52835u = i11 + i13 + this.f52835u;
-        if (z10) {
+        this.f52744u = i11 + i13 + this.f52744u;
+        if (z9) {
             path.setFillType(Path.FillType.WINDING);
         }
     }

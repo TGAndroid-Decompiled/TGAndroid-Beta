@@ -1,23 +1,32 @@
 package org.telegram.messenger;
 
-import android.util.SparseArray;
-import java.util.ArrayList;
-public final class pe {
-    public final int f24735a;
-    public boolean f24736b;
-    public final String f24737c;
-    public final ye d;
-    public final ArrayList f24738e = new ArrayList();
-    public final SparseArray f24739f = new SparseArray();
+import java.io.File;
+public final class pe extends File {
+    public final int f24533a;
 
-    public pe(int i3, String str, ye yeVar) {
-        this.f24735a = i3;
-        this.f24737c = str;
-        this.d = yeVar;
+    public pe(int i7, File file, String str) {
+        super(file, str);
+        this.f24533a = i7;
     }
 
-    public final void a(ye yeVar) {
-        this.f24738e.add(yeVar);
-        this.f24739f.put(yeVar.C, yeVar);
+    @Override
+    public final boolean delete() {
+        switch (this.f24533a) {
+            case 0:
+                if (r2.f25191a) {
+                    a8.d("delete voice file (trimmed)");
+                }
+                return super.delete();
+            case 1:
+                if (r2.f25191a) {
+                    a8.d("delete voice file (from resume)");
+                }
+                return super.delete();
+            default:
+                if (r2.f25191a) {
+                    a8.d("delete camera file");
+                }
+                return super.delete();
+        }
     }
 }

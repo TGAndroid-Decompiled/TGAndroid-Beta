@@ -22,11 +22,11 @@ public class InputSurface {
     }
 
     private void checkEglError(String str) {
-        boolean z10 = false;
+        boolean z9 = false;
         while (EGL14.eglGetError() != 12288) {
-            z10 = true;
+            z9 = true;
         }
-        if (!z10) {
+        if (!z9) {
             return;
         }
         throw new RuntimeException("EGL error encountered (see log)");
@@ -88,8 +88,8 @@ public class InputSurface {
         this.mSurface = null;
     }
 
-    public void setPresentationTime(long j10) {
-        EGLExt.eglPresentationTimeANDROID(this.mEGLDisplay, this.mEGLSurface, j10);
+    public void setPresentationTime(long j3) {
+        EGLExt.eglPresentationTimeANDROID(this.mEGLDisplay, this.mEGLSurface, j3);
     }
 
     public boolean swapBuffers() {

@@ -1,18 +1,27 @@
 package org.telegram.ui;
-public final class jo0 implements Runnable {
-    public final PhotoViewer f46662a;
 
-    public jo0(PhotoViewer photoViewer) {
-        this.f46662a = photoViewer;
+import android.net.Uri;
+public final class jo0 implements org.telegram.messenger.c20 {
+    public final int f46993a;
+    public final po0 f46994b;
+    public final boolean f46995c;
+
+    public jo0(po0 po0Var, boolean z9, int i7) {
+        this.f46993a = i7;
+        this.f46994b = po0Var;
+        this.f46995c = z9;
     }
 
     @Override
-    public final void run() {
-        PhotoViewer photoViewer = this.f46662a;
-        org.telegram.messenger.zi ziVar = photoViewer.U4;
-        if (ziVar == null) {
-            return;
+    public final void a(Object obj) {
+        Uri uri = (Uri) obj;
+        switch (this.f46993a) {
+            case 0:
+                org.telegram.ui.Components.hc.F(this.f46994b.f48903b.f41356e0, this.f46995c).j();
+                return;
+            default:
+                org.telegram.ui.Components.hc.F(this.f46994b.f48903b.f41356e0, this.f46995c).j();
+                return;
         }
-        org.telegram.messenger.w7.G(ziVar.I1).c0(photoViewer.U4.F0(), true, false);
     }
 }

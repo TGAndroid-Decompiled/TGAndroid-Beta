@@ -1,69 +1,41 @@
 package u2;
 
-import b8.te;
-import d2.v;
-import s3.h;
-import u3.c;
-public final class a {
-    public static final a f55473a = new Object();
+import android.media.MediaCodec;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
+public final class a implements MediaCodec.OnFrameRenderedListener {
+    public final int f56104a;
+    public final d3.k f56105b;
 
-    public final te a(v vVar) {
-        String str = vVar.f8489s;
-        if (str != null) {
-            char c2 = 65535;
-            switch (str.hashCode()) {
-                case -1354451219:
-                    if (str.equals("application/vnd.dvb.ait")) {
-                        c2 = 0;
-                        break;
-                    }
-                    break;
-                case -1348231605:
-                    if (str.equals("application/x-icy")) {
-                        c2 = 1;
-                        break;
-                    }
-                    break;
-                case -1248341703:
-                    if (str.equals("application/id3")) {
-                        c2 = 2;
-                        break;
-                    }
-                    break;
-                case 1154383568:
-                    if (str.equals("application/x-emsg")) {
-                        c2 = 3;
-                        break;
-                    }
-                    break;
-                case 1652648887:
-                    if (str.equals("application/x-scte35")) {
-                        c2 = 4;
-                        break;
-                    }
-                    break;
-            }
-            switch (c2) {
-                case 0:
-                    return new o3.b(0);
-                case 1:
-                    return new r3.a();
-                case 2:
-                    return new h(null);
-                case 3:
-                    return new o3.b(1);
-                case 4:
-                    return new c();
-            }
-        }
-        throw new IllegalArgumentException(t4.c.f("Attempted to create decoder for unsupported MIME type: ", str));
+    public a(l lVar, d3.k kVar, int i7) {
+        this.f56104a = i7;
+        this.f56105b = kVar;
     }
 
-    public final boolean b(v vVar) {
-        String str = vVar.f8489s;
-        if (!"application/id3".equals(str) && !"application/x-emsg".equals(str) && !"application/x-scte35".equals(str) && !"application/x-icy".equals(str) && !"application/vnd.dvb.ait".equals(str)) {
-            return false;
+    @Override
+    public final void onFrameRendered(MediaCodec mediaCodec, long j3, long j10) {
+        switch (this.f56104a) {
+            case 0:
+                d3.k kVar = this.f56105b;
+                Handler handler = kVar.f8030a;
+                if (Build.VERSION.SDK_INT < 30) {
+                    handler.sendMessageAtFrontOfQueue(Message.obtain(handler, 0, (int) (j3 >> 32), (int) j3));
+                    return;
+                } else {
+                    kVar.a(j3);
+                    return;
+                }
+            default:
+                d3.k kVar2 = this.f56105b;
+                Handler handler2 = kVar2.f8030a;
+                if (Build.VERSION.SDK_INT < 30) {
+                    handler2.sendMessageAtFrontOfQueue(Message.obtain(handler2, 0, (int) (j3 >> 32), (int) j3));
+                    return;
+                } else {
+                    kVar2.a(j3);
+                    return;
+                }
         }
-        return true;
     }
 }

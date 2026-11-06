@@ -1,60 +1,16 @@
 package g9;
 
-import b8.ah;
-import b8.ra;
-import java.util.List;
-import java.util.ListIterator;
-public final class j extends ra implements ListIterator {
-    public final ah f12084e;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+public abstract class j {
+    public static final Charset f13590a;
 
-    public j(ah ahVar) {
-        super(ahVar, (byte) 0);
-        this.f12084e = ahVar;
-    }
-
-    @Override
-    public final void add(Object obj) {
-        ah ahVar = this.f12084e;
-        boolean isEmpty = ahVar.isEmpty();
-        c().add(obj);
-        ((k1) ahVar.h).f12092f++;
-        if (isEmpty) {
-            ahVar.h();
-        }
-    }
-
-    public final ListIterator c() {
-        a();
-        return (ListIterator) this.f3048b;
-    }
-
-    @Override
-    public final boolean hasPrevious() {
-        return c().hasPrevious();
-    }
-
-    @Override
-    public final int nextIndex() {
-        return c().nextIndex();
-    }
-
-    @Override
-    public final Object previous() {
-        return c().previous();
-    }
-
-    @Override
-    public final int previousIndex() {
-        return c().previousIndex();
-    }
-
-    @Override
-    public final void set(Object obj) {
-        c().set(obj);
-    }
-
-    public j(ah ahVar, int i3) {
-        super(ahVar, ((List) ahVar.f2472c).listIterator(i3), (byte) 0);
-        this.f12084e = ahVar;
+    static {
+        Charset charset = StandardCharsets.US_ASCII;
+        Charset charset2 = StandardCharsets.ISO_8859_1;
+        f13590a = StandardCharsets.UTF_8;
+        Charset charset3 = StandardCharsets.UTF_16BE;
+        Charset charset4 = StandardCharsets.UTF_16LE;
+        Charset charset5 = StandardCharsets.UTF_16;
     }
 }

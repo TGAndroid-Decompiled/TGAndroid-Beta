@@ -1,40 +1,39 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import java.util.HashSet;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
+import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public final class b9 extends r40 {
-    public final int f44004w0;
-    public final org.telegram.ui.ActionBar.d2 f44005x0;
+public final class b9 extends org.telegram.ui.Components.mo0 {
+    public final org.telegram.ui.ActionBar.v2 R2;
 
-    public b9(Bundle bundle, int i3, org.telegram.ui.ActionBar.d2 d2Var) {
-        super(bundle);
-        this.f44004w0 = i3;
-        this.f44005x0 = d2Var;
+    public b9(Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.ActionBar.v2 v2Var) {
+        super(context, null, str, false, str2, false, f6Var);
+        this.R2 = v2Var;
     }
 
     @Override
-    public final void s0(HashSet hashSet) {
-        int size = hashSet.size();
-        int i3 = this.f44004w0;
-        if (size == 1) {
-            TLRPC.User a22 = org.telegram.messenger.hp.s1(i3).a2((Long) hashSet.iterator().next());
-            TLRPC.UserFull b22 = org.telegram.messenger.hp.s1(i3).b2(a22.f27150id);
-            if (b22 == null) {
-                TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                tL_users_getFullUser.f27143id = org.telegram.messenger.hp.s1(i3).o1(a22.f27150id);
-                ConnectionsManager.getInstance(i3).sendRequest(tL_users_getFullUser, new kg.t(this, i3, a22, 3));
-                return;
-            }
-            org.telegram.ui.Components.voip.n1.m(a22, false, b22.video_calls_available, getParentActivity(), b22, org.telegram.messenger.c.a(i3));
-        } else {
-            TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-            createconferencecall.random_id = Utilities.f21385b.nextInt();
-            ConnectionsManager.getInstance(i3).sendRequest(createconferencecall, new kg.t(i3, hashSet, this.f44005x0));
+    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
+        int m10;
+        String a02;
+        if (!z9) {
+            return;
         }
-        finishFragment();
+        if (hVar != null && hVar.m() == 1) {
+            long j3 = ((TLRPC.Dialog) hVar.n(0)).f26956id;
+            if (j3 != 0 && j3 != org.telegram.messenger.p10.i(this.f28612a).e()) {
+                a02 = org.telegram.messenger.hd.a0(null, null, 2131749183, org.telegram.messenger.qp.s1(this.f28612a).B1(j3, true));
+            } else {
+                a02 = org.telegram.messenger.hd.M0(2131749184, null);
+            }
+        } else {
+            if (hVar == null) {
+                m10 = 1;
+            } else {
+                m10 = hVar.m();
+            }
+            a02 = org.telegram.messenger.hd.a0(null, null, 2131749186, org.telegram.messenger.hd.G(m10, "Chats", new Object[0]));
+        }
+        org.telegram.ui.Components.cc Q = new org.telegram.ui.Components.hc(this.R2.E, this.I0).Q(2131624028, 36, org.telegram.messenger.g0.X2(a02));
+        Q.f32531r = false;
+        Q.j();
     }
 }

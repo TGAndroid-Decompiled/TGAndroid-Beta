@@ -1,40 +1,29 @@
 package yb;
-public abstract class d {
-    public final int f59357a;
-    public final int f59358b;
 
-    public d(int i3, int i10) {
-        this.f59357a = i3;
-        this.f59358b = i10;
+import a8.ab;
+import android.content.Context;
+import bi.b1;
+import h2.p0;
+import pb.g;
+public final class d extends b1 {
+    public final g f59225b;
+
+    public d(g gVar) {
+        super(4);
+        this.f59225b = gVar;
     }
 
-    public abstract byte[] a();
-
-    public abstract byte[] b(int i3, byte[] bArr);
-
-    public final String toString() {
-        char c2;
-        int i3 = this.f59357a;
-        byte[] bArr = new byte[i3];
-        int i10 = this.f59358b;
-        StringBuilder sb2 = new StringBuilder((i3 + 1) * i10);
-        for (int i11 = 0; i11 < i10; i11++) {
-            bArr = b(i11, bArr);
-            for (int i12 = 0; i12 < i3; i12++) {
-                int i13 = bArr[i12] & 255;
-                if (i13 < 64) {
-                    c2 = '#';
-                } else if (i13 < 128) {
-                    c2 = '+';
-                } else if (i13 < 192) {
-                    c2 = '.';
-                } else {
-                    c2 = ' ';
-                }
-                sb2.append(c2);
-            }
-            sb2.append('\n');
+    @Override
+    public final Object Q0(Object obj) {
+        a bVar;
+        xb.a aVar = (xb.a) obj;
+        Context b10 = this.f59225b.b();
+        n6.e.f20498b.getClass();
+        if (n6.e.a(b10) >= 204700000) {
+            bVar = new p0(b10, aVar);
+        } else {
+            bVar = new b(b10, aVar);
         }
-        return sb2.toString();
+        return new e(aVar, bVar, ab.d());
     }
 }

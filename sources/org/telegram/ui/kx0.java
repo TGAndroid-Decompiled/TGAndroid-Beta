@@ -1,89 +1,472 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class kx0 implements TextWatcher {
-    public final int f47048a;
-    public final mx0 f47049b;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import j$.util.Objects;
+public abstract class kx0 extends FrameLayout implements org.telegram.messenger.ls {
+    public final ei.a f47309a;
+    public final org.telegram.ui.Components.o61 f47310b;
+    public final di.m6 f47311c;
+    public final jx0 d;
+    public int f47312e;
+    public boolean f47313f;
+    public ValueAnimator h;
+    public float f47314n;
+    public boolean f47315r;
+    public final Rect f47316s;
+    public final qu0 f47317w;
 
-    public kx0(mx0 mx0Var, int i3) {
-        this.f47048a = i3;
-        this.f47049b = mx0Var;
+    public kx0(Context context, di.m6 m6Var, final org.telegram.ui.Components.xp0 xp0Var) {
+        super(context);
+        this.f47316s = new Rect();
+        this.f47311c = m6Var;
+        Objects.requireNonNull(m6Var);
+        this.f47317w = new qu0(m6Var, 8);
+        final org.telegram.ui.Components.yp0 yp0Var = (org.telegram.ui.Components.yp0) this;
+        ei.a aVar = new ei.a(yp0Var, context, xp0Var, 1);
+        this.f47309a = aVar;
+        aVar.setAllowDisallowInterceptTouch(true);
+        jx0 jx0Var = new jx0(yp0Var);
+        this.d = jx0Var;
+        jx0Var.f47028a = m6Var.a();
+        aVar.setAdapter(jx0Var);
+        aVar.setTranslationY(org.telegram.messenger.g0.L(42.0f));
+        org.telegram.ui.Components.o61 n10 = aVar.n(10, true);
+        this.f47310b = n10;
+        n10.g(org.telegram.ui.ActionBar.k6.f28176ui, org.telegram.ui.ActionBar.k6.G6, org.telegram.ui.ActionBar.k6.f28137si, org.telegram.ui.ActionBar.k6.f28194vi, org.telegram.ui.ActionBar.k6.f28128s8);
+        n10.f36662r = 12;
+        n10.setPreTabClick(new org.telegram.messenger.w10() {
+            @Override
+            public final Object d(Number number, Object obj) {
+                di.y6 storiesController;
+                int i7 = r3;
+                final org.telegram.ui.Components.xp0 xp0Var2 = xp0Var;
+                org.telegram.ui.Components.yp0 yp0Var2 = yp0Var;
+                Integer num = (Integer) number;
+                switch (i7) {
+                    case 0:
+                        Integer num2 = (Integer) obj;
+                        if (yp0Var2.f47313f) {
+                            return Boolean.TRUE;
+                        }
+                        if (num.intValue() == -1) {
+                            org.telegram.ui.Components.v4.P(xp0Var2.f40307a, xp0Var2.f40308b, xp0Var2.f40309c, new org.telegram.ui.Components.ax(xp0Var2, 20));
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                    default:
+                        View view = (View) obj;
+                        if (num.intValue() != -1 && num.intValue() != 0 && !yp0Var2.f47313f) {
+                            final int intValue = num.intValue();
+                            org.telegram.ui.Components.xs0 xs0Var = xp0Var2.d;
+                            org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40405x1;
+                            storiesController = xs0Var.getStoriesController();
+                            if (storiesController.i(xs0Var.l1)) {
+                                org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(f2Var, view);
+                                H.W(new org.telegram.ui.Components.wp0(xp0Var2));
+                                H.c(2131231763, org.telegram.messenger.hd.M0(2131744799, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                xs0 xs0Var2 = xp0Var2.d;
+                                                xs0Var2.Y0(xs0Var2.f40405x1, xs0Var2.l1, intValue);
+                                                return;
+                                            case 1:
+                                                xs0 xs0Var3 = xp0Var2.d;
+                                                xs0Var3.a1(xs0Var3.f40405x1, xs0Var3.l1, intValue);
+                                                return;
+                                            case 2:
+                                                xp0Var2.d.q1(intValue);
+                                                return;
+                                            default:
+                                                xs0 xs0Var4 = xp0Var2.d;
+                                                xs0Var4.Z0(xs0Var4.f40405x1, xs0Var4.l1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                xs0Var.B(new org.telegram.ui.Components.n(H), f2Var, xs0Var.l1, intValue);
+                                H.c(2131232116, org.telegram.messenger.hd.M0(2131744794, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                xs0 xs0Var2 = xp0Var2.d;
+                                                xs0Var2.Y0(xs0Var2.f40405x1, xs0Var2.l1, intValue);
+                                                return;
+                                            case 1:
+                                                xs0 xs0Var3 = xp0Var2.d;
+                                                xs0Var3.a1(xs0Var3.f40405x1, xs0Var3.l1, intValue);
+                                                return;
+                                            case 2:
+                                                xp0Var2.d.q1(intValue);
+                                                return;
+                                            default:
+                                                xs0 xs0Var4 = xp0Var2.d;
+                                                xs0Var4.Z0(xs0Var4.f40405x1, xs0Var4.l1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                H.c(2131232773, org.telegram.messenger.hd.M0(2131744791, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                xs0 xs0Var2 = xp0Var2.d;
+                                                xs0Var2.Y0(xs0Var2.f40405x1, xs0Var2.l1, intValue);
+                                                return;
+                                            case 1:
+                                                xs0 xs0Var3 = xp0Var2.d;
+                                                xs0Var3.a1(xs0Var3.f40405x1, xs0Var3.l1, intValue);
+                                                return;
+                                            case 2:
+                                                xp0Var2.d.q1(intValue);
+                                                return;
+                                            default:
+                                                xs0 xs0Var4 = xp0Var2.d;
+                                                xs0Var4.Z0(xs0Var4.f40405x1, xs0Var4.l1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                H.c(2131232108, org.telegram.messenger.hd.M0(2131744797, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                xs0 xs0Var2 = xp0Var2.d;
+                                                xs0Var2.Y0(xs0Var2.f40405x1, xs0Var2.l1, intValue);
+                                                return;
+                                            case 1:
+                                                xs0 xs0Var3 = xp0Var2.d;
+                                                xs0Var3.a1(xs0Var3.f40405x1, xs0Var3.l1, intValue);
+                                                return;
+                                            case 2:
+                                                xp0Var2.d.q1(intValue);
+                                                return;
+                                            default:
+                                                xs0 xs0Var4 = xp0Var2.d;
+                                                xs0Var4.Z0(xs0Var4.f40405x1, xs0Var4.l1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, true);
+                                H.Z();
+                            }
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                }
+            }
+        });
+        n10.setOnTabLongClick(new org.telegram.messenger.w10() {
+            @Override
+            public final Object d(Number number, Object obj) {
+                di.y6 storiesController;
+                int i7 = r3;
+                final org.telegram.ui.Components.xp0 xp0Var2 = xp0Var;
+                org.telegram.ui.Components.yp0 yp0Var2 = yp0Var;
+                Integer num = (Integer) number;
+                switch (i7) {
+                    case 0:
+                        Integer num2 = (Integer) obj;
+                        if (yp0Var2.f47313f) {
+                            return Boolean.TRUE;
+                        }
+                        if (num.intValue() == -1) {
+                            org.telegram.ui.Components.v4.P(xp0Var2.f40307a, xp0Var2.f40308b, xp0Var2.f40309c, new org.telegram.ui.Components.ax(xp0Var2, 20));
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                    default:
+                        View view = (View) obj;
+                        if (num.intValue() != -1 && num.intValue() != 0 && !yp0Var2.f47313f) {
+                            final int intValue = num.intValue();
+                            org.telegram.ui.Components.xs0 xs0Var = xp0Var2.d;
+                            org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40405x1;
+                            storiesController = xs0Var.getStoriesController();
+                            if (storiesController.i(xs0Var.l1)) {
+                                org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(f2Var, view);
+                                H.W(new org.telegram.ui.Components.wp0(xp0Var2));
+                                H.c(2131231763, org.telegram.messenger.hd.M0(2131744799, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                xs0 xs0Var2 = xp0Var2.d;
+                                                xs0Var2.Y0(xs0Var2.f40405x1, xs0Var2.l1, intValue);
+                                                return;
+                                            case 1:
+                                                xs0 xs0Var3 = xp0Var2.d;
+                                                xs0Var3.a1(xs0Var3.f40405x1, xs0Var3.l1, intValue);
+                                                return;
+                                            case 2:
+                                                xp0Var2.d.q1(intValue);
+                                                return;
+                                            default:
+                                                xs0 xs0Var4 = xp0Var2.d;
+                                                xs0Var4.Z0(xs0Var4.f40405x1, xs0Var4.l1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                xs0Var.B(new org.telegram.ui.Components.n(H), f2Var, xs0Var.l1, intValue);
+                                H.c(2131232116, org.telegram.messenger.hd.M0(2131744794, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                xs0 xs0Var2 = xp0Var2.d;
+                                                xs0Var2.Y0(xs0Var2.f40405x1, xs0Var2.l1, intValue);
+                                                return;
+                                            case 1:
+                                                xs0 xs0Var3 = xp0Var2.d;
+                                                xs0Var3.a1(xs0Var3.f40405x1, xs0Var3.l1, intValue);
+                                                return;
+                                            case 2:
+                                                xp0Var2.d.q1(intValue);
+                                                return;
+                                            default:
+                                                xs0 xs0Var4 = xp0Var2.d;
+                                                xs0Var4.Z0(xs0Var4.f40405x1, xs0Var4.l1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                H.c(2131232773, org.telegram.messenger.hd.M0(2131744791, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                xs0 xs0Var2 = xp0Var2.d;
+                                                xs0Var2.Y0(xs0Var2.f40405x1, xs0Var2.l1, intValue);
+                                                return;
+                                            case 1:
+                                                xs0 xs0Var3 = xp0Var2.d;
+                                                xs0Var3.a1(xs0Var3.f40405x1, xs0Var3.l1, intValue);
+                                                return;
+                                            case 2:
+                                                xp0Var2.d.q1(intValue);
+                                                return;
+                                            default:
+                                                xs0 xs0Var4 = xp0Var2.d;
+                                                xs0Var4.Z0(xs0Var4.f40405x1, xs0Var4.l1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, false);
+                                H.c(2131232108, org.telegram.messenger.hd.M0(2131744797, null), new Runnable() {
+                                    @Override
+                                    public final void run() {
+                                        switch (r3) {
+                                            case 0:
+                                                xs0 xs0Var2 = xp0Var2.d;
+                                                xs0Var2.Y0(xs0Var2.f40405x1, xs0Var2.l1, intValue);
+                                                return;
+                                            case 1:
+                                                xs0 xs0Var3 = xp0Var2.d;
+                                                xs0Var3.a1(xs0Var3.f40405x1, xs0Var3.l1, intValue);
+                                                return;
+                                            case 2:
+                                                xp0Var2.d.q1(intValue);
+                                                return;
+                                            default:
+                                                xs0 xs0Var4 = xp0Var2.d;
+                                                xs0Var4.Z0(xs0Var4.f40405x1, xs0Var4.l1, intValue);
+                                                return;
+                                        }
+                                    }
+                                }, true);
+                                H.Z();
+                            }
+                            return Boolean.TRUE;
+                        }
+                        return Boolean.FALSE;
+                }
+            }
+        });
+        addView(n10, c8.ha.e(-1, 42, 48));
+        c(!m6Var.h.isEmpty(), false, true);
+    }
+
+    public final void a() {
+        int i7;
+        org.telegram.ui.Components.o61 o61Var = this.f47310b;
+        if (o61Var != null) {
+            i7 = o61Var.getCurrentTabId();
+        } else {
+            i7 = 0;
+        }
+        di.m6 m6Var = this.f47311c;
+        boolean a10 = m6Var.a();
+        jx0 jx0Var = this.d;
+        jx0Var.f47028a = a10;
+        this.f47309a.o(true);
+        c(!m6Var.h.isEmpty(), true, false);
+        int i10 = this.f47312e;
+        if (i10 > 0) {
+            if (jx0Var.i(i10) != -1) {
+                org.telegram.messenger.g0.i3(new ix0(this, this.f47312e, 1), 500L);
+                this.f47312e = 0;
+            }
+        } else if (o61Var != null && i7 > 0 && m6Var.b(i7) == null) {
+            o61Var.d(0, 0);
+        }
+    }
+
+    public abstract void b();
+
+    public final void c(boolean z9, boolean z10, boolean z11) {
+        if (this.f47315r == z9 && !z11) {
+            return;
+        }
+        this.f47315r = z9;
+        setEnabled(z9);
+        ValueAnimator valueAnimator = this.h;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.h = null;
+        }
+        float f10 = 0.0f;
+        if (!z10) {
+            if (z9) {
+                f10 = 1.0f;
+            }
+            this.f47314n = f10;
+            b();
+            return;
+        }
+        float f11 = this.f47314n;
+        if (z9) {
+            f10 = 1.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
+        this.h = ofFloat;
+        ofFloat.setDuration(480L);
+        this.h.setInterpolator(org.telegram.ui.Components.xq.h);
+        this.h.addUpdateListener(new a3(this, 28));
+        this.h.start();
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f47048a) {
-            case 0:
-                this.f47049b.Z(true);
-                return;
-            case 1:
-                mx0 mx0Var = this.f47049b;
-                if (!mx0Var.L) {
-                    EditTextBoldCursor editTextBoldCursor = mx0Var.f47810a[1];
-                    int selectionStart = editTextBoldCursor.getSelectionStart();
-                    String obj = editTextBoldCursor.getText().toString();
-                    StringBuilder sb2 = new StringBuilder(obj.length());
-                    int i3 = 0;
-                    while (i3 < obj.length()) {
-                        int i10 = i3 + 1;
-                        String substring = obj.substring(i3, i10);
-                        if ("0123456789".contains(substring)) {
-                            sb2.append(substring);
-                        }
-                        i3 = i10;
-                    }
-                    mx0Var.L = true;
-                    int intValue = Utilities.z(sb2.toString()).intValue();
-                    if (intValue >= 0 && intValue <= 65535 && obj.equals(sb2.toString())) {
-                        if (selectionStart >= 0) {
-                            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
-                        }
-                    } else if (intValue < 0) {
-                        editTextBoldCursor.setText("0");
-                    } else if (intValue > 65535) {
-                        editTextBoldCursor.setText("65535");
-                    } else {
-                        editTextBoldCursor.setText(sb2.toString());
-                    }
-                    mx0Var.L = false;
-                    mx0Var.Z(true);
-                    return;
-                }
-                return;
-            default:
-                this.f47049b.Z(true);
-                return;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == org.telegram.messenger.qs.j3 && ((Long) objArr[0]).longValue() == this.f47311c.f9355b) {
+            a();
         }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
-        int i12 = this.f47048a;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.f47315r && super.dispatchTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    public int getCurrentAlbumId() {
+        return this.d.f(this.f47310b.getCurrentPosition());
+    }
+
+    public float getVisibilityFactor() {
+        return this.f47314n;
+    }
+
+    public float getVisualHeight() {
+        return getMeasuredHeight() * this.f47314n;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
-        int i12 = this.f47048a;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        di.m6 m6Var = this.f47311c;
+        org.telegram.messenger.qs.f(m6Var.f9354a).c(this, org.telegram.messenger.qs.j3);
+        if (this.f47315r != m6Var.h.isEmpty() && this.d.f47028a == m6Var.a()) {
+            return;
+        }
+        a();
     }
 
-    private final void a(int i3, int i10, int i11, CharSequence charSequence) {
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.qs.f(this.f47311c.f9354a).n(this, org.telegram.messenger.qs.j3);
     }
 
-    private final void b(int i3, int i10, int i11, CharSequence charSequence) {
+    @Override
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        super.onLayout(z9, i7, i10, i11, i12);
+        Rect rect = this.f47316s;
+        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
+        setClipBounds(rect);
     }
 
-    private final void c(int i3, int i10, int i11, CharSequence charSequence) {
+    public void setInitialTabId(int i7) {
+        if (this.d.i(i7) != -1) {
+            org.telegram.messenger.g0.i3(new ix0(this, i7, 0), 500L);
+        } else {
+            this.f47312e = i7;
+        }
     }
 
-    private final void d(int i3, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void e(int i3, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void f(int i3, int i10, int i11, CharSequence charSequence) {
+    public void setReorderingAlbums(boolean z9) {
+        float f10;
+        float f11;
+        if (this.f47313f != z9) {
+            this.f47313f = z9;
+            org.telegram.ui.Components.o61 o61Var = this.f47310b;
+            o61Var.setReordering(z9);
+            boolean z10 = this.f47313f;
+            org.telegram.ui.Components.yp0 yp0Var = (org.telegram.ui.Components.yp0) this;
+            org.telegram.ui.Components.xs0 xs0Var = yp0Var.f40674x;
+            TextView textView = xs0Var.f40392s0;
+            textView.setVisibility(0);
+            ViewPropertyAnimator animate = textView.animate();
+            float f12 = 1.0f;
+            if (z10) {
+                f10 = 1.0f;
+            } else {
+                f10 = 0.0f;
+            }
+            ViewPropertyAnimator alpha = animate.alpha(f10);
+            if (z10) {
+                f11 = 1.0f;
+            } else {
+                f11 = 0.4f;
+            }
+            ViewPropertyAnimator scaleX = alpha.scaleX(f11);
+            if (!z10) {
+                f12 = 0.4f;
+            }
+            scaleX.scaleY(f12).withEndAction(new org.telegram.ui.Components.tp0(1, yp0Var, z10)).start();
+            xs0Var.G1(true);
+            if (z9) {
+                org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
+                if (T instanceof ProfileActivity) {
+                    ProfileActivity profileActivity = (ProfileActivity) T;
+                    profileActivity.U4(false);
+                    org.telegram.messenger.g0.h3(new j90(profileActivity, 28));
+                }
+            }
+            if (!z9) {
+                org.telegram.messenger.g0.r(this.f47317w);
+                di.m6 m6Var = this.f47311c;
+                m6Var.e();
+                m6Var.f(false);
+                int currentPosition = o61Var.getCurrentPosition();
+                jx0 jx0Var = this.d;
+                int f13 = jx0Var.f(currentPosition);
+                this.f47309a.o(true);
+                int i7 = jx0Var.i(f13);
+                o61Var.e(0.0f, i7, i7);
+            }
+        }
     }
 }

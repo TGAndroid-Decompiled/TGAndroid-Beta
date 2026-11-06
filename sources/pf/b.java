@@ -1,101 +1,357 @@
 package pf;
 
-import a1.g;
-import gf.p;
-import java.io.DataInputStream;
-import java.io.EOFException;
-import java.io.IOException;
-public final class b extends p {
-    public final int f53449g;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Locale;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.t0;
+public final class b {
+    public static volatile b f53465j;
+    public final byte[] f53466a;
+    public final boolean f53467b;
+    public final ByteBuffer f53468c;
+    public final String d;
+    public final String f53469e;
+    public final HashMap f53470f;
+    public final HashMap f53471g;
+    public final HashMap h;
+    public final HashMap f53472i;
 
-    public b(rf.a aVar, p pVar, String str, int i3) {
-        super(aVar, pVar, str);
-        this.f53449g = i3;
-    }
-
-    public static void h(StringBuffer stringBuffer, p pVar) {
-        p pVar2 = (p) pVar.f12267c;
-        if (pVar2 != null) {
-            h(stringBuffer, pVar2);
-            stringBuffer.append("/");
+    public b() {
+        InputStream inputStream;
+        ByteArrayOutputStream byteArrayOutputStream;
+        this.f53467b = false;
+        ByteArrayOutputStream byteArrayOutputStream2 = null;
+        try {
+            inputStream = t0.f25555b.getAssets().open("PhoneFormats.dat");
+            try {
+                try {
+                    byteArrayOutputStream = new ByteArrayOutputStream();
+                } catch (Exception e10) {
+                    e = e10;
+                }
+            } catch (Throwable th2) {
+                th = th2;
+            }
+        } catch (Exception e11) {
+            e = e11;
+            inputStream = null;
+        } catch (Throwable th3) {
+            th = th3;
+            inputStream = null;
         }
-        stringBuffer.append((String) pVar.d);
+        try {
+            byte[] bArr = new byte[1024];
+            while (true) {
+                int read = inputStream.read(bArr, 0, 1024);
+                if (read == -1) {
+                    break;
+                }
+                byteArrayOutputStream.write(bArr, 0, read);
+            }
+            byte[] byteArray = byteArrayOutputStream.toByteArray();
+            this.f53466a = byteArray;
+            ByteBuffer wrap = ByteBuffer.wrap(byteArray);
+            this.f53468c = wrap;
+            wrap.order(ByteOrder.LITTLE_ENDIAN);
+            try {
+                byteArrayOutputStream.close();
+            } catch (Exception e12) {
+                a8.g(e12, true);
+            }
+            try {
+                inputStream.close();
+            } catch (Exception e13) {
+                a8.g(e13, true);
+            }
+            this.d = Locale.getDefault().getCountry().toLowerCase();
+            this.f53470f = new HashMap(255);
+            this.f53471g = new HashMap(255);
+            this.h = new HashMap(10);
+            this.f53472i = new HashMap(255);
+            int f10 = f(0);
+            int i7 = 4;
+            int i10 = (f10 * 12) + 4;
+            for (int i11 = 0; i11 < f10; i11++) {
+                String g10 = g(i7);
+                String g11 = g(i7 + 4);
+                int f11 = f(i7 + 8) + i10;
+                i7 += 12;
+                if (g11.equals(this.d)) {
+                    this.f53469e = g10;
+                }
+                this.f53472i.put(g11, g10);
+                this.f53470f.put(g10, Integer.valueOf(f11));
+                ArrayList arrayList = (ArrayList) this.f53471g.get(g10);
+                if (arrayList == null) {
+                    arrayList = new ArrayList();
+                    this.f53471g.put(g10, arrayList);
+                }
+                arrayList.add(g11);
+            }
+            String str = this.f53469e;
+            if (str != null) {
+                a(str);
+            }
+            this.f53467b = true;
+        } catch (Exception e14) {
+            e = e14;
+            byteArrayOutputStream2 = byteArrayOutputStream;
+            e.printStackTrace();
+            if (byteArrayOutputStream2 != null) {
+                try {
+                    byteArrayOutputStream2.close();
+                } catch (Exception e15) {
+                    a8.g(e15, true);
+                }
+            }
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (Exception e16) {
+                    a8.g(e16, true);
+                }
+            }
+        } catch (Throwable th4) {
+            th = th4;
+            byteArrayOutputStream2 = byteArrayOutputStream;
+            if (byteArrayOutputStream2 != null) {
+                try {
+                    byteArrayOutputStream2.close();
+                } catch (Exception e17) {
+                    a8.g(e17, true);
+                }
+            }
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                } catch (Exception e18) {
+                    a8.g(e18, true);
+                }
+            }
+            throw th;
+        }
     }
 
-    public long i() {
-        return ((rf.b) ((rf.a) this.f12266b)).e();
+    public static b c() {
+        b bVar;
+        b bVar2 = f53465j;
+        if (bVar2 == null) {
+            synchronized (b.class) {
+                try {
+                    bVar = f53465j;
+                    if (bVar == null) {
+                        bVar = new b();
+                        f53465j = bVar;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            return bVar;
+        }
+        return bVar2;
     }
 
-    public boolean j() {
-        long j10;
-        b bVar = (b) this.f12269f;
-        if (bVar != null) {
-            j10 = bVar.i();
+    public static String d(String str, boolean z9) {
+        String str2;
+        if (str == null) {
+            return null;
+        }
+        StringBuilder sb2 = new StringBuilder(str);
+        if (z9) {
+            str2 = "0123456789+";
         } else {
-            j10 = 0;
+            str2 = "0123456789";
         }
-        if (j10 < i()) {
-            return true;
-        }
-        return false;
-    }
-
-    public b k(String str) {
-        while (i() > 0) {
-            b c2 = c();
-            if (((String) c2.d).matches(str)) {
-                return c2;
+        for (int length = sb2.length() - 1; length >= 0; length--) {
+            if (!str2.contains(sb2.substring(length, length + 1))) {
+                sb2.deleteCharAt(length);
             }
         }
-        throw new IOException("atom type mismatch, not found: ".concat(str));
+        return sb2.toString();
     }
 
-    public short l() {
-        return ((DataInputStream) this.f12268e).readShort();
-    }
-
-    public String m() {
-        byte[] bArr = new byte[(int) i()];
-        ((DataInputStream) this.f12268e).readFully(bArr);
-        String str = new String(bArr, "UTF-8");
-        int indexOf = str.indexOf(0);
-        if (indexOf < 0) {
-            return str;
+    public final a a(String str) {
+        Integer num;
+        b bVar = this;
+        a aVar = (a) bVar.h.get(str);
+        if (aVar == null && (num = (Integer) bVar.f53470f.get(str)) != null) {
+            int intValue = num.intValue();
+            ?? obj = new Object();
+            new ArrayList();
+            obj.f53462a = "";
+            obj.f53463b = new ArrayList();
+            obj.f53464c = new ArrayList();
+            obj.d = new ArrayList();
+            obj.f53462a = str;
+            ArrayList arrayList = (ArrayList) bVar.f53471g.get(str);
+            bVar.h.put(str, obj);
+            short e10 = bVar.e(intValue);
+            short e11 = bVar.e(intValue + 4);
+            short e12 = bVar.e(intValue + 8);
+            int i7 = intValue + 12;
+            ArrayList arrayList2 = new ArrayList(5);
+            while (true) {
+                String g10 = bVar.g(i7);
+                if (g10.length() == 0) {
+                    break;
+                }
+                arrayList2.add(g10);
+                i7 += g10.length() + 1;
+            }
+            obj.f53463b = arrayList2;
+            int i10 = i7 + 1;
+            ArrayList arrayList3 = new ArrayList(5);
+            while (true) {
+                String g11 = bVar.g(i10);
+                if (g11.length() == 0) {
+                    break;
+                }
+                arrayList3.add(g11);
+                i10 += g11.length() + 1;
+            }
+            obj.f53464c = arrayList3;
+            ArrayList arrayList4 = new ArrayList(e12);
+            int i11 = intValue + e10;
+            int i12 = i11;
+            int i13 = 0;
+            while (i13 < e12) {
+                ?? obj2 = new Object();
+                obj2.f53479b = new ArrayList();
+                obj2.f53478a = bVar.e(i12);
+                short e13 = bVar.e(i12 + 2);
+                i12 += 4;
+                ArrayList arrayList5 = new ArrayList(e13);
+                int i14 = 0;
+                while (i14 < e13) {
+                    ?? obj3 = new Object();
+                    obj3.f53473a = bVar.f(i12);
+                    obj3.f53474b = bVar.f(i12 + 4);
+                    byte[] bArr = bVar.f53466a;
+                    byte b10 = bArr[i12 + 8];
+                    obj3.f53475c = bArr[i12 + 9];
+                    byte b11 = bArr[i12 + 10];
+                    byte b12 = bArr[i12 + 11];
+                    obj3.d = bArr[i12 + 12];
+                    byte b13 = bArr[i12 + 13];
+                    short e14 = bVar.e(i12 + 14);
+                    i12 += 16;
+                    String g12 = bVar.g(i11 + e11 + e14);
+                    obj3.f53476e = g12;
+                    int indexOf = g12.indexOf("[[");
+                    if (indexOf != -1) {
+                        obj3.f53476e = rf.b.q(obj3.f53476e.substring(0, indexOf), obj3.f53476e.substring(obj3.f53476e.indexOf("]]") + 2));
+                    }
+                    arrayList5.add(obj3);
+                    i14++;
+                    bVar = this;
+                }
+                obj2.f53479b = arrayList5;
+                arrayList4.add(obj2);
+                i13++;
+                bVar = this;
+            }
+            obj.d = arrayList4;
+            return obj;
         }
-        return str.substring(0, indexOf);
+        return aVar;
     }
 
-    public void n(int i3) {
-        int i10 = 0;
-        while (i10 < i3) {
-            int skipBytes = ((DataInputStream) this.f12268e).skipBytes(i3 - i10);
-            if (skipBytes > 0) {
-                i10 += skipBytes;
-            } else {
-                throw new EOFException();
+    public final String b(String str) {
+        String str2;
+        if (this.f53467b) {
+            try {
+                StringBuilder sb2 = new StringBuilder(str);
+                for (int length = sb2.length() - 1; length >= 0; length--) {
+                    if (!"0123456789+*#".contains(sb2.substring(length, length + 1))) {
+                        sb2.deleteCharAt(length);
+                    }
+                }
+                String sb3 = sb2.toString();
+                a aVar = null;
+                if (sb3.startsWith("+")) {
+                    String substring = sb3.substring(1);
+                    int i7 = 0;
+                    while (i7 < 3 && i7 < substring.length()) {
+                        i7++;
+                        aVar = a(substring.substring(0, i7));
+                        if (aVar != null) {
+                            break;
+                        }
+                    }
+                    if (aVar != null) {
+                        return "+" + aVar.a(substring);
+                    }
+                } else {
+                    a a10 = a(this.f53469e);
+                    if (a10 != null) {
+                        ArrayList arrayList = a10.f53464c;
+                        int size = arrayList.size();
+                        int i10 = 0;
+                        while (true) {
+                            if (i10 < size) {
+                                Object obj = arrayList.get(i10);
+                                i10++;
+                                str2 = (String) obj;
+                                if (sb3.startsWith(str2)) {
+                                    break;
+                                }
+                            } else {
+                                str2 = null;
+                                break;
+                            }
+                        }
+                        if (str2 != null) {
+                            String substring2 = sb3.substring(str2.length());
+                            int i11 = 0;
+                            while (i11 < 3 && i11 < substring2.length()) {
+                                i11++;
+                                aVar = a(substring2.substring(0, i11));
+                                if (aVar != null) {
+                                    break;
+                                }
+                            }
+                            if (aVar != null) {
+                                substring2 = aVar.a(substring2);
+                            }
+                            if (substring2.length() == 0) {
+                                return str2;
+                            }
+                            return str2 + " " + substring2;
+                        }
+                        return a10.a(sb3);
+                    }
+                }
+            } catch (Exception e10) {
+                a8.g(e10, true);
+                return str;
             }
         }
+        return str;
     }
 
-    @Override
-    public final String toString() {
-        switch (this.f53449g) {
-            case 0:
-                StringBuffer stringBuffer = new StringBuffer();
-                h(stringBuffer, this);
-                stringBuffer.append("[off=");
-                long j10 = ((rf.a) ((p) this.f12267c).f12266b).f54501b;
-                rf.a aVar = (rf.a) this.f12266b;
-                stringBuffer.append(j10 - aVar.f54501b);
-                stringBuffer.append(",pos=");
-                stringBuffer.append(aVar.f54501b);
-                stringBuffer.append(",len=");
-                rf.b bVar = (rf.b) aVar;
-                stringBuffer.append(bVar.e() + bVar.f54501b);
-                stringBuffer.append("]");
-                return stringBuffer.toString();
-            default:
-                return g.r(new StringBuilder("mp4[pos="), ((rf.a) this.f12266b).f54501b, "]");
+    public final short e(int i7) {
+        if (i7 + 2 <= this.f53466a.length) {
+            this.f53468c.position(i7);
+            return this.f53468c.getShort();
         }
+        return (short) 0;
+    }
+
+    public final int f(int i7) {
+        if (i7 + 4 <= this.f53466a.length) {
+            this.f53468c.position(i7);
+            return this.f53468c.getInt();
+        }
+        return 0;
+    }
+
+    public final java.lang.String g(int r5) {
+        throw new UnsupportedOperationException("Method not decompiled: pf.b.g(int):java.lang.String");
     }
 }

@@ -1,66 +1,91 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.content.Context;
+import android.graphics.BlendMode;
+import android.graphics.Paint;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.os.Build;
+import android.view.ViewGroup;
 import java.util.ArrayList;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-public final class s71 implements View.OnClickListener {
-    public final df0 f49411a;
-    public final wm f49412b;
-    public final org.telegram.ui.Components.tj0 f49413c;
-    public final LinearLayout d;
-    public final org.telegram.ui.Components.f60 f49414e;
-    public final org.telegram.ui.Components.f60 f49415f;
-    public final w71 h;
+import org.telegram.ui.Components.RadialProgress2;
+public final class s71 extends org.telegram.ui.Components.oj0 {
+    public final Context f49655c;
+    public final u71 d;
 
-    public s71(w71 w71Var, df0 df0Var, wm wmVar, org.telegram.ui.Components.tj0 tj0Var, LinearLayout linearLayout, org.telegram.ui.Components.f60 f60Var, org.telegram.ui.Components.f60 f60Var2) {
-        this.h = w71Var;
-        this.f49411a = df0Var;
-        this.f49412b = wmVar;
-        this.f49413c = tj0Var;
-        this.d = linearLayout;
-        this.f49414e = f60Var;
-        this.f49415f = f60Var2;
+    public s71(Context context, u71 u71Var) {
+        this.d = u71Var;
+        this.f49655c = context;
     }
 
     @Override
-    public final void onClick(View view) {
-        df0 df0Var = this.f49411a;
-        ArrayList arrayList = df0Var.f44676b;
-        ArrayList arrayList2 = df0Var.f44677c;
-        if (!arrayList2.isEmpty()) {
-            int size = arrayList2.size();
-            w71 w71Var = this.h;
-            wm wmVar = this.f49412b;
-            if (size == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
-                TLObject tLObject = (TLObject) arrayList2.get(0);
-                if (tLObject == null) {
-                    return;
+    public final boolean D(v4.d1 d1Var) {
+        return false;
+    }
+
+    @Override
+    public final int b() {
+        ArrayList arrayList = this.d.V0;
+        if (arrayList != null) {
+            return arrayList.size();
+        }
+        return 0;
+    }
+
+    @Override
+    public final int d(int i7) {
+        return 0;
+    }
+
+    @Override
+    public final void t(v4.d1 d1Var, int i7) {
+        BlendMode blendMode;
+        org.telegram.ui.Cells.i5 i5Var = (org.telegram.ui.Cells.i5) d1Var.f56927a;
+        u71 u71Var = this.d;
+        i5Var.setPattern((TLRPC.TL_wallPaper) u71Var.V0.get(i7));
+        i5Var.getImageReceiver().f21206o1 = new PorterDuffColorFilter(u71Var.f50279k1, u71Var.f50298t1);
+        if (Build.VERSION.SDK_INT >= 29) {
+            int i10 = 0;
+            if (u71Var.f50248b == 1) {
+                int E0 = org.telegram.ui.ActionBar.k6.E0(org.telegram.ui.ActionBar.k6.De);
+                long j3 = u71Var.f50303w.f27524l;
+                int i11 = (int) j3;
+                if (i11 != 0 || j3 == 0) {
+                    i10 = i11 != 0 ? i11 : E0;
                 }
-                Bundle bundle = new Bundle();
-                if (tLObject instanceof TLRPC.User) {
-                    bundle.putLong("user_id", ((TLRPC.User) tLObject).f27150id);
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f27001id);
-                }
-                wmVar.presentFragment(new ProfileActivity(bundle, null));
-                w71Var.c(false);
+            } else if (u71Var.C1 instanceof oc1) {
+                i10 = u71Var.f50257d1;
+            }
+            if (i10 != 0 && u71Var.f50282m1 >= 0.0f) {
+                ImageReceiver imageReceiver = u71Var.f50310y0.getImageReceiver();
+                blendMode = BlendMode.SOFT_LIGHT;
+                imageReceiver.Z(blendMode);
                 return;
             }
-            if (org.telegram.messenger.az.f21620c1 > 0 && wmVar.m1.getKeyboardHeight() < org.telegram.messenger.g0.L(20.0f)) {
-                org.telegram.ui.Components.ac t10 = new org.telegram.ui.Components.fc(org.telegram.ui.Components.wa.a(w71Var.getContext()), w71Var.f50731a).t(org.telegram.messenger.g0.X2(org.telegram.messenger.bd.M0(2131748496, null)), null);
-                wmVar.C1 = t10;
-                t10.f31792j = 4000;
-                t10.j();
-                org.telegram.messenger.az.S(org.telegram.messenger.az.f21620c1 - 1);
-            }
-            org.telegram.ui.Components.tj0 tj0Var = this.f49413c;
-            tj0Var.requestLayout();
-            this.d.requestLayout();
-            tj0Var.getAdapter().f();
-            this.f49414e.K(this.f49415f);
+            i5Var.getImageReceiver().Z(null);
         }
+    }
+
+    @Override
+    public final v4.d1 x(ViewGroup viewGroup, int i7) {
+        int i10 = this.d.I1;
+        r71 r71Var = new r71(this);
+        ?? l9Var = new org.telegram.ui.Components.l9(this.f49655c);
+        l9Var.G = new RectF();
+        int i11 = org.telegram.messenger.p10.f24459s0;
+        l9Var.J = i11;
+        l9Var.setRoundRadius(org.telegram.messenger.g0.L(6.0f));
+        l9Var.U = i10;
+        l9Var.T = r71Var;
+        RadialProgress2 radialProgress2 = new RadialProgress2(l9Var, null);
+        l9Var.H = radialProgress2;
+        radialProgress2.r(org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(70.0f), org.telegram.messenger.g0.L(70.0f));
+        l9Var.Q = new Paint(3);
+        l9Var.S = org.telegram.messenger.z5.q(i11).k();
+        l9Var.setOutlineProvider(new bg.q0(8));
+        l9Var.setClipToOutline(true);
+        return new v4.d1(l9Var);
     }
 }

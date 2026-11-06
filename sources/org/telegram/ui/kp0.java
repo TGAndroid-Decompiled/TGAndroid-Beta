@@ -1,12 +1,15 @@
 package org.telegram.ui;
+public final class kp0 implements Runnable {
+    public final int f47235a;
+    public final ca.i f47236b;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-public final class kp0 extends ug.n0 {
-    public final PhotoViewer L;
+    public kp0(ca.i iVar, int i7) {
+        this.f47235a = i7;
+        this.f47236b = iVar;
+    }
 
-    public kp0(PhotoViewer photoViewer, Context context, int i3, Bitmap bitmap, Bitmap bitmap2, int i10, org.telegram.messenger.re reVar) {
-        super(context, i3, bitmap, bitmap2, i10, reVar);
-        this.L = photoViewer;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.kp0.run():void");
     }
 }

@@ -41,10 +41,10 @@ public class XLeftRightArrowFactory {
         }
     }
 
-    public static Box create(boolean z10, TeXEnvironment teXEnvironment, float f10) {
+    public static Box create(boolean z9, TeXEnvironment teXEnvironment, float f10) {
         float f11;
         float min = Math.min((Float.isInfinite(f10) || Float.isNaN(f10) || f10 < 0.0f) ? 0.0f : f10, 4096.0f);
-        Box createBox = (z10 ? LEFT : RIGHT).createBox(teXEnvironment);
+        Box createBox = (z9 ? LEFT : RIGHT).createBox(teXEnvironment);
         float height = createBox.getHeight();
         float depth = createBox.getDepth();
         float width = createBox.getWidth();
@@ -71,7 +71,7 @@ public class XLeftRightArrowFactory {
         float f13 = (-2.0f) * width4;
         horizontalBox.add(new SpaceAtom(5, f13, 0.0f, 0.0f).createBox(teXEnvironment));
         horizontalBox.add(new ScaleAtom(MINUS, width4, 1.0d).createBox(teXEnvironment));
-        if (z10) {
+        if (z9) {
             horizontalBox.add(0, new SpaceAtom(5, -3.5f, 0.0f, 0.0f).createBox(teXEnvironment));
             horizontalBox.add(0, createBox);
         } else {

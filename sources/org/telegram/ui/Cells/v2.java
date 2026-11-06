@@ -6,156 +6,155 @@ import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.widget.FrameLayout;
 import android.widget.TextView;
-import b8.mf;
-import org.telegram.messenger.bd;
+import org.telegram.messenger.hd;
 import org.telegram.ui.Components.RadioButton;
 public final class v2 extends FrameLayout {
-    public int f30714a;
-    public TextView f30715b;
-    public TextView f30716c;
+    public int f30615a;
+    public TextView f30616b;
+    public TextView f30617c;
     public RadioButton d;
-    public boolean f30717e;
-    public int f30718f;
+    public boolean f30618e;
+    public int f30619f;
 
-    public final void a(boolean z10, boolean z11) {
+    public final void a(boolean z9, boolean z10) {
         float f10;
         float f11;
         float f12;
         float f13;
         RadioButton radioButton = this.d;
-        TextView textView = this.f30716c;
-        TextView textView2 = this.f30715b;
-        setEnabled(z10);
+        TextView textView = this.f30617c;
+        TextView textView2 = this.f30616b;
+        setEnabled(z9);
         float f14 = 0.5f;
-        if (z11) {
+        if (z10) {
             ViewPropertyAnimator animate = textView2.animate();
-            if (z10) {
+            if (z9) {
                 f12 = 1.0f;
             } else {
                 f12 = 0.5f;
             }
             animate.alpha(f12).start();
             ViewPropertyAnimator animate2 = textView.animate();
-            if (z10) {
+            if (z9) {
                 f13 = 1.0f;
             } else {
                 f13 = 0.5f;
             }
             animate2.alpha(f13).start();
             ViewPropertyAnimator animate3 = radioButton.animate();
-            if (z10) {
+            if (z9) {
                 f14 = 1.0f;
             }
             animate3.alpha(f14).start();
             return;
         }
-        if (z10) {
+        if (z9) {
             f10 = 1.0f;
         } else {
             f10 = 0.5f;
         }
         textView2.setAlpha(f10);
-        if (z10) {
+        if (z9) {
             f11 = 1.0f;
         } else {
             f11 = 0.5f;
         }
         textView.setAlpha(f11);
-        if (z10) {
+        if (z9) {
             f14 = 1.0f;
         }
         radioButton.setAlpha(f14);
     }
 
     public final void b() {
-        int i3;
+        int i7;
         float f10;
         FrameLayout.LayoutParams d;
-        FrameLayout.LayoutParams d10;
+        FrameLayout.LayoutParams d2;
         int i10;
         float f11;
-        TextView textView = this.f30715b;
-        TextView textView2 = this.f30716c;
+        TextView textView = this.f30616b;
+        TextView textView2 = this.f30617c;
         float f12 = 61.0f;
         int i11 = 3;
         if (textView2.getVisibility() == 0) {
-            boolean z10 = bd.f21784a0;
-            if (z10) {
+            boolean z9 = hd.f22871a0;
+            if (z9) {
                 i10 = 5;
             } else {
                 i10 = 3;
             }
             int i12 = i10 | 48;
-            if (z10) {
-                f11 = this.f30718f;
+            if (z9) {
+                f11 = this.f30619f;
             } else {
                 f11 = 61.0f;
             }
-            if (!z10) {
-                f12 = this.f30718f;
+            if (!z9) {
+                f12 = this.f30619f;
             }
-            d = mf.d(-1, -1.0f, i12, f11, 0.0f, f12, 0.0f);
+            d = c8.ha.d(-1, -1.0f, i12, f11, 0.0f, f12, 0.0f);
         } else {
-            boolean z11 = bd.f21784a0;
-            if (z11) {
-                i3 = 5;
+            boolean z10 = hd.f22871a0;
+            if (z10) {
+                i7 = 5;
             } else {
-                i3 = 3;
+                i7 = 3;
             }
-            int i13 = i3 | 48;
-            if (z11) {
+            int i13 = i7 | 48;
+            if (z10) {
                 f10 = 61.0f;
             } else {
-                f10 = this.f30718f;
+                f10 = this.f30619f;
             }
-            if (z11) {
-                f12 = this.f30718f;
+            if (z10) {
+                f12 = this.f30619f;
             }
-            d = mf.d(-1, -1.0f, i13, f10, 0.0f, f12, 0.0f);
+            d = c8.ha.d(-1, -1.0f, i13, f10, 0.0f, f12, 0.0f);
         }
         textView.setLayoutParams(d);
         RadioButton radioButton = this.d;
         if (textView2.getVisibility() == 0) {
-            if (bd.f21784a0) {
+            if (hd.f22871a0) {
                 i11 = 5;
             }
-            d10 = mf.d(22, 22.0f, i11 | 48, 20.0f, 15.0f, 20.0f, 0.0f);
+            d2 = c8.ha.d(22, 22.0f, i11 | 48, 20.0f, 15.0f, 20.0f, 0.0f);
         } else {
-            if (!bd.f21784a0) {
+            if (!hd.f22871a0) {
                 i11 = 5;
             }
-            d10 = mf.d(22, 22.0f, i11 | 48, 20.0f, 15.0f, 20.0f, 0.0f);
+            d2 = c8.ha.d(22, 22.0f, i11 | 48, 20.0f, 15.0f, 20.0f, 0.0f);
         }
-        radioButton.setLayoutParams(d10);
+        radioButton.setLayoutParams(d2);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f10;
-        if (this.f30717e) {
+        if (this.f30618e) {
             float f11 = 0.0f;
-            if (bd.f21784a0) {
+            if (hd.f22871a0) {
                 f10 = 0.0f;
             } else {
-                f10 = this.f30718f;
+                f10 = this.f30619f;
             }
             float L = org.telegram.messenger.g0.L(f10);
             float height = getHeight() - 1;
             int measuredWidth = getMeasuredWidth();
-            if (bd.f21784a0) {
-                f11 = this.f30718f;
+            if (hd.f22871a0) {
+                f11 = this.f30619f;
             }
-            canvas.drawLine(L, height, measuredWidth - org.telegram.messenger.g0.L(f11), getHeight() - 1, org.telegram.ui.ActionBar.k6.f28002k0);
+            canvas.drawLine(L, height, measuredWidth - org.telegram.messenger.g0.L(f11), getHeight() - 1, org.telegram.ui.ActionBar.k6.f27971k0);
         }
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
+    public final void onMeasure(int i7, int i10) {
         int i11;
-        setMeasuredDimension(View.MeasureSpec.getSize(i3), org.telegram.messenger.g0.L(50.0f) + (this.f30717e ? 1 : 0));
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(50.0f) + (this.f30618e ? 1 : 0));
         int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
-        int i12 = this.f30718f + 61;
-        TextView textView = this.f30716c;
+        int i12 = this.f30619f + 61;
+        TextView textView = this.f30617c;
         if (textView.getVisibility() == 0) {
             i11 = 12;
         } else {
@@ -167,21 +166,21 @@ public final class v2 extends FrameLayout {
             textView.measure(View.MeasureSpec.makeMeasureSpec(L, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
             L = org.telegram.messenger.camera.q.w(12.0f, textView.getMeasuredWidth(), L);
         }
-        this.f30715b.measure(View.MeasureSpec.makeMeasureSpec(L, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f30616b.measure(View.MeasureSpec.makeMeasureSpec(L, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
-    public void setHorizontalPadding(int i3) {
-        TextView textView = this.f30716c;
-        if (this.f30718f != i3) {
-            this.f30718f = i3;
-            float f10 = i3;
+    public void setHorizontalPadding(int i7) {
+        TextView textView = this.f30617c;
+        if (this.f30619f != i7) {
+            this.f30619f = i7;
+            float f10 = i7;
             ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).leftMargin = org.telegram.messenger.g0.L(f10);
             ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).rightMargin = org.telegram.messenger.g0.L(f10);
             b();
         }
     }
 
-    public void setTextColor(int i3) {
-        this.f30715b.setTextColor(i3);
+    public void setTextColor(int i7) {
+        this.f30616b.setTextColor(i7);
     }
 }

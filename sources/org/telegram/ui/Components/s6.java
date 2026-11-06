@@ -1,33 +1,79 @@
 package org.telegram.ui.Components;
+public final class s6 implements org.telegram.ui.ActionBar.s6 {
+    public final int f37953a;
+    public final Object f37954b;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import org.telegram.messenger.MediaController;
-public final class s6 implements org.telegram.messenger.n10 {
-    public final int f37932a;
-    public final z7 f37933b;
-
-    public s6(z7 z7Var, int i3) {
-        this.f37932a = i3;
-        this.f37933b = z7Var;
+    public s6(Object obj, int i7) {
+        this.f37953a = i7;
+        this.f37954b = obj;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f37932a) {
+    public final void a(float f10) {
+        int i7 = this.f37953a;
+    }
+
+    @Override
+    public final void b() {
+        switch (this.f37953a) {
             case 0:
-                z7 z7Var = this.f37933b;
-                z7Var.P1 = !((Boolean) obj2).booleanValue();
-                MediaController B = MediaController.B();
-                org.telegram.ui.ActionBar.u0 u0Var = z7Var.O1;
-                float floatValue = ((Float) obj).floatValue();
-                u0Var.getClass();
-                B.m0(true, (floatValue * 2.8f) + 0.2f);
+                ((b8) this.f37954b).K0();
+                return;
+            case 1:
+                ((wk) this.f37954b).b0();
+                return;
+            case 2:
+                vp vpVar = (vp) this.f37954b;
+                org.telegram.ui.ActionBar.r0 r0Var = vpVar.I;
+                r0Var.setIconColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G6, vpVar.f39636d0));
+                org.telegram.ui.ActionBar.k6.C1(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.I5, vpVar.f39636d0), r0Var.getBackground());
+                r0Var.O(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.E8, vpVar.f39636d0), false);
+                r0Var.O(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.F8, vpVar.f39636d0), true);
+                r0Var.H(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G8, vpVar.f39636d0));
+                return;
+            case 3:
+                ((qe0) this.f37954b).M0();
+                return;
+            case 4:
+                cm0 cm0Var = ((fm0) this.f37954b).f33658z0;
+                if (cm0Var != null) {
+                    cm0Var.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28242y8, false));
+                    return;
+                }
+                return;
+            case 5:
+                ((Runnable) this.f37954b).run();
+                return;
+            case 6:
+                ((yv0) this.f37954b).X0(false);
                 return;
             default:
-                Bitmap bitmap = (Bitmap) obj2;
-                this.f37933b.Z1.setBackground(new BitmapDrawable((Bitmap) obj));
+                ((n31) this.f37954b).d();
                 return;
         }
+    }
+
+    private final void c(float f10) {
+    }
+
+    private final void d(float f10) {
+    }
+
+    private final void e(float f10) {
+    }
+
+    private final void f(float f10) {
+    }
+
+    private final void g(float f10) {
+    }
+
+    private final void h(float f10) {
+    }
+
+    private final void i(float f10) {
+    }
+
+    private final void j(float f10) {
     }
 }

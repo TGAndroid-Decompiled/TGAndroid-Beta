@@ -1,41 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-public final class mn implements org.telegram.messenger.ec {
-    public boolean f36211a;
-    public final lg.g f36212b;
-    public final on f36213c;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class mn implements View.OnClickListener {
+    public final int f36042a;
+    public final pn f36043b;
+    public final TLRPC.Document f36044c;
 
-    public mn(lg.i iVar, lg.g gVar) {
-        this.f36213c = iVar;
-        this.f36212b = gVar;
+    public mn(pn pnVar, TLRPC.Document document, int i7) {
+        this.f36042a = i7;
+        this.f36043b = pnVar;
+        this.f36044c = document;
     }
 
     @Override
-    public final void F0(int i3, Drawable drawable) {
-        ch0 ch0Var;
-        cg.h hVar;
-        if (!this.f36211a) {
-            if ((i3 == 0 || i3 == 3) && drawable != null) {
-                this.f36211a = true;
-                boolean z10 = drawable instanceof ch0;
-                lg.g gVar = this.f36212b;
-                if (z10 && (hVar = (ch0Var = (ch0) drawable).C0) != null && hVar.g()) {
-                    ch0Var.B0 = new cl(2, this, gVar);
+    public final void onClick(View view) {
+        switch (this.f36042a) {
+            case 0:
+                on onVar = this.f36043b.d;
+                if (onVar != null) {
+                    onVar.b(this.f36044c);
                     return;
                 }
-                on.a(this.f36213c);
-                gVar.run();
-            }
+                return;
+            default:
+                on onVar2 = this.f36043b.d;
+                if (onVar2 != null) {
+                    onVar2.b(this.f36044c);
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void D(ImageReceiver imageReceiver) {
-    }
-
-    @Override
-    public final void l0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
     }
 }

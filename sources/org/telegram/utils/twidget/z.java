@@ -12,18 +12,18 @@ import java.security.MessageDigest;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 public abstract class z {
-    public static final ExecutorService f53000a = Executors.newFixedThreadPool(2, new g2.m0(6));
-    public static File f53001b;
+    public static final ExecutorService f52909a = Executors.newFixedThreadPool(2, new h2.l0(6));
+    public static File f52910b;
 
     public static synchronized File a(Context context) {
-        int i3;
+        int i7;
         int i10;
-        char c2;
+        char c10;
         AssetManager assetManager;
         int i11;
         synchronized (z.class) {
             try {
-                File file = f53001b;
+                File file = f52910b;
                 if (file != null) {
                     return file;
                 }
@@ -34,7 +34,7 @@ public abstract class z {
                 byte[] bArr = new byte[16384];
                 while (true) {
                     int read = open.read(bArr);
-                    i3 = -1;
+                    i7 = -1;
                     i10 = 0;
                     if (read == -1) {
                         break;
@@ -49,7 +49,7 @@ public abstract class z {
                 StringBuilder sb2 = new StringBuilder();
                 int i13 = 0;
                 while (true) {
-                    c2 = 1;
+                    c10 = 1;
                     if (i13 >= 12) {
                         break;
                     }
@@ -69,7 +69,7 @@ public abstract class z {
                             i11 = i10;
                         } else {
                             String[] split2 = str2.split(" ", 2);
-                            String str3 = split2[c2];
+                            String str3 = split2[c10];
                             if (!str3.contains("..") && !str3.startsWith("/")) {
                                 File file4 = new File(file2, str3);
                                 if (!file4.getParentFile().isDirectory() && !file4.getParentFile().mkdirs()) {
@@ -81,7 +81,7 @@ public abstract class z {
                                 byte[] bArr2 = new byte[i12];
                                 while (true) {
                                     int read2 = open2.read(bArr2);
-                                    if (read2 == i3) {
+                                    if (read2 == i7) {
                                         break;
                                     }
                                     messageDigest.update(bArr2, i10, read2);
@@ -116,14 +116,14 @@ public abstract class z {
                         i10 = i11;
                         assets = assetManager;
                         i12 = 16384;
-                        i3 = -1;
-                        c2 = 1;
+                        i7 = -1;
+                        c10 = 1;
                     }
                     FileOutputStream fileOutputStream2 = new FileOutputStream(file3);
                     fileOutputStream2.write(1);
                     fileOutputStream2.close();
                 }
-                f53001b = file2;
+                f52910b = file2;
                 return file2;
             } catch (Throwable th2) {
                 throw th2;

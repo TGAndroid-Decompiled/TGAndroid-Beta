@@ -1,130 +1,284 @@
 package g6;
 
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.text.TextUtils;
 import android.util.Log;
-import com.google.android.gms.cast.MediaInfo;
-import java.util.regex.Pattern;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-public final class j extends n {
-    public final int f12017r;
-    public final h f12018s;
-    public final Object f12019t;
+import com.google.android.gms.cast.CastDevice;
+import java.util.HashSet;
+import java.util.Iterator;
+public final class j extends a8.q {
+    public final int f13563b = 2;
+    public final Object f13564c;
 
-    public j(h hVar, Object obj, int i3) {
-        super(hVar, false);
-        this.f12017r = i3;
-        this.f12018s = hVar;
-        this.f12019t = obj;
+    public j(com.google.android.gms.internal.cast.e eVar) {
+        super("com.google.android.gms.cast.framework.ISessionProvider", 1);
+        this.f13564c = eVar;
     }
 
     @Override
-    public final void n() {
-        int i3 = this.f12017r;
-        Object obj = this.f12019t;
-        h hVar = this.f12018s;
-        switch (i3) {
+    public final boolean K0(int i7, Parcel parcel, Parcel parcel2) {
+        int i10;
+        long g10;
+        Object[] objArr;
+        String str;
+        CastDevice castDevice;
+        CastDevice castDevice2;
+        int i11 = this.f13563b;
+        Object obj = this.f13564c;
+        switch (i11) {
             case 0:
-                i6.m mVar = hVar.f12009c;
-                i6.n o10 = o();
-                int[] iArr = (int[]) obj;
-                mVar.getClass();
-                JSONObject jSONObject = new JSONObject();
-                long b10 = mVar.b();
-                try {
-                    jSONObject.put("requestId", b10);
-                    jSONObject.put("type", "QUEUE_GET_ITEMS");
-                    jSONObject.put("mediaSessionId", mVar.p());
-                    JSONArray jSONArray = new JSONArray();
-                    for (int i10 : iArr) {
-                        jSONArray.put(i10);
-                    }
-                    jSONObject.put("itemIds", jSONArray);
-                } catch (JSONException unused) {
-                }
-                mVar.c(b10, jSONObject.toString());
-                mVar.f14643s.a(b10, o10);
-                return;
-            case 1:
-                i6.m mVar2 = hVar.f12009c;
-                i6.n o11 = o();
-                e6.k kVar = (e6.k) obj;
-                mVar2.getClass();
-                MediaInfo mediaInfo = kVar.f9717a;
-                e6.n nVar = kVar.f9718b;
-                if (mediaInfo == null && nVar == null) {
-                    throw new IllegalArgumentException("MediaInfo and MediaQueueData should not be both null");
-                }
-                long[] jArr = kVar.f9721f;
-                JSONObject jSONObject2 = new JSONObject();
-                try {
-                    MediaInfo mediaInfo2 = kVar.f9717a;
-                    if (mediaInfo2 != null) {
-                        jSONObject2.put("media", mediaInfo2.b());
-                    }
-                    if (nVar != null) {
-                        jSONObject2.put("queueData", nVar.b());
-                    }
-                    jSONObject2.putOpt("autoplay", kVar.f9719c);
-                    long j10 = kVar.d;
-                    if (j10 != -1) {
-                        Pattern pattern = i6.a.f14618a;
-                        jSONObject2.put("currentTime", j10 / 1000.0d);
-                    }
-                    jSONObject2.put("playbackRate", kVar.f9720e);
-                    jSONObject2.putOpt("credentials", kVar.f9723r);
-                    jSONObject2.putOpt("credentialsType", kVar.f9724s);
-                    jSONObject2.putOpt("atvCredentials", kVar.f9725w);
-                    jSONObject2.putOpt("atvCredentialsType", kVar.f9726x);
-                    if (jArr != null) {
-                        JSONArray jSONArray2 = new JSONArray();
-                        for (int i11 = 0; i11 < jArr.length; i11++) {
-                            jSONArray2.put(i11, jArr[i11]);
+                v0.j jVar = (v0.j) obj;
+                if (i7 != 1) {
+                    if (i7 != 2) {
+                        if (i7 != 3) {
+                            return false;
                         }
-                        jSONObject2.put("activeTrackIds", jSONArray2);
+                        parcel2.writeNoException();
+                        parcel2.writeInt(12451000);
+                        return true;
                     }
-                    jSONObject2.putOpt("customData", kVar.f9722n);
-                    jSONObject2.put("requestId", kVar.f9727y);
-                } catch (JSONException e10) {
-                    i6.b bVar = e6.k.E;
-                    Log.e(bVar.f14620a, bVar.d("Error transforming MediaLoadRequestData into JSONObject", e10));
-                    jSONObject2 = new JSONObject();
+                    int readInt = parcel.readInt();
+                    com.google.android.gms.internal.cast.t.b(parcel);
+                    jVar.getClass();
+                    Log.d("CAST_STATE", "onCastStateChanged " + readInt);
+                    parcel2.writeNoException();
+                    return true;
                 }
-                long b11 = mVar2.b();
-                try {
-                    jSONObject2.put("requestId", b11);
-                    jSONObject2.put("type", "LOAD");
-                } catch (JSONException unused2) {
+                a7.b bVar = new a7.b(jVar);
+                parcel2.writeNoException();
+                com.google.android.gms.internal.cast.t.d(parcel2, bVar);
+                return true;
+            case 1:
+                f fVar = (f) obj;
+                switch (i7) {
+                    case 1:
+                        a7.b bVar2 = new a7.b(fVar);
+                        parcel2.writeNoException();
+                        com.google.android.gms.internal.cast.t.d(parcel2, bVar2);
+                        return true;
+                    case 2:
+                        com.google.android.gms.internal.cast.t.b(parcel);
+                        ((c) fVar).i((Bundle) com.google.android.gms.internal.cast.t.a(parcel, Bundle.CREATOR));
+                        parcel2.writeNoException();
+                        return true;
+                    case 3:
+                        com.google.android.gms.internal.cast.t.b(parcel);
+                        ((c) fVar).i((Bundle) com.google.android.gms.internal.cast.t.a(parcel, Bundle.CREATOR));
+                        parcel2.writeNoException();
+                        return true;
+                    case 4:
+                        int i12 = com.google.android.gms.internal.cast.t.f6991a;
+                        if (parcel.readInt() != 0) {
+                            i10 = 1;
+                        } else {
+                            i10 = 0;
+                        }
+                        com.google.android.gms.internal.cast.t.b(parcel);
+                        c cVar = (c) fVar;
+                        q qVar = cVar.f13545e;
+                        if (qVar != null) {
+                            try {
+                                o oVar = (o) qVar;
+                                Parcel P0 = oVar.P0();
+                                P0.writeInt(i10);
+                                P0.writeInt(0);
+                                oVar.T0(P0, 6);
+                            } catch (RemoteException e10) {
+                                c.f13543m.a(e10, "Unable to call %s on %s.", "disconnectFromDevice", q.class.getSimpleName());
+                            }
+                            cVar.d(0);
+                        }
+                        parcel2.writeNoException();
+                        return true;
+                    case 5:
+                        c cVar2 = (c) fVar;
+                        q6.m.d("Must be called from the main thread.");
+                        h6.h hVar = cVar2.f13549j;
+                        if (hVar == null) {
+                            g10 = 0;
+                        } else {
+                            g10 = hVar.g() - cVar2.f13549j.a();
+                        }
+                        parcel2.writeNoException();
+                        parcel2.writeLong(g10);
+                        return true;
+                    case 6:
+                        parcel2.writeNoException();
+                        parcel2.writeInt(12451000);
+                        return true;
+                    case 7:
+                        com.google.android.gms.internal.cast.t.b(parcel);
+                        ((c) fVar).f13550k = CastDevice.b((Bundle) com.google.android.gms.internal.cast.t.a(parcel, Bundle.CREATOR));
+                        parcel2.writeNoException();
+                        return true;
+                    case 8:
+                        com.google.android.gms.internal.cast.t.b(parcel);
+                        ((c) fVar).f13550k = CastDevice.b((Bundle) com.google.android.gms.internal.cast.t.a(parcel, Bundle.CREATOR));
+                        parcel2.writeNoException();
+                        return true;
+                    case 9:
+                        com.google.android.gms.internal.cast.t.b(parcel);
+                        c cVar3 = (c) fVar;
+                        CastDevice b10 = CastDevice.b((Bundle) com.google.android.gms.internal.cast.t.a(parcel, Bundle.CREATOR));
+                        if (b10 != null) {
+                            String str2 = b10.d;
+                            if (!b10.equals(cVar3.f13550k)) {
+                                if (!TextUtils.isEmpty(str2) && ((castDevice2 = cVar3.f13550k) == null || !TextUtils.equals(castDevice2.d, str2))) {
+                                    objArr = 1;
+                                } else {
+                                    objArr = null;
+                                }
+                                cVar3.f13550k = b10;
+                                j6.b bVar3 = c.f13543m;
+                                if (1 != objArr) {
+                                    str = "unchanged";
+                                } else {
+                                    str = "changed";
+                                }
+                                bVar3.b("update to device (%s) with name %s", b10, str);
+                                if (objArr != null && (castDevice = cVar3.f13550k) != null) {
+                                    i6.h hVar2 = cVar3.h;
+                                    if (hVar2 != null) {
+                                        j6.b bVar4 = i6.h.v;
+                                        Log.i(bVar4.f16505a, bVar4.d("update Cast device to %s", castDevice));
+                                        hVar2.f15387o = castDevice;
+                                        hVar2.b();
+                                    }
+                                    Iterator it = new HashSet(cVar3.d).iterator();
+                                    while (it.hasNext()) {
+                                        ((e0) it.next()).getClass();
+                                    }
+                                }
+                            }
+                        }
+                        parcel2.writeNoException();
+                        return true;
+                    default:
+                        return false;
                 }
-                mVar2.c(b11, jSONObject2.toString());
-                mVar2.f14634j.a(b11, o11);
-                return;
+            case 2:
+                com.google.android.gms.internal.cast.e eVar = (com.google.android.gms.internal.cast.e) obj;
+                b bVar5 = eVar.d;
+                if (i7 != 1) {
+                    if (i7 != 2) {
+                        if (i7 != 3) {
+                            if (i7 != 4) {
+                                return false;
+                            }
+                            parcel2.writeNoException();
+                            parcel2.writeInt(12451000);
+                            return true;
+                        }
+                        String str3 = eVar.f6841b;
+                        parcel2.writeNoException();
+                        parcel2.writeString(str3);
+                        return true;
+                    }
+                    boolean z9 = bVar5.f13534e;
+                    parcel2.writeNoException();
+                    int i13 = com.google.android.gms.internal.cast.t.f6991a;
+                    parcel2.writeInt(z9 ? 1 : 0);
+                    return true;
+                }
+                String readString = parcel.readString();
+                com.google.android.gms.internal.cast.t.b(parcel);
+                a7.a f10 = new c(eVar.f6840a, eVar.f6841b, readString, eVar.d, eVar.f6843e, new i6.h(eVar.f6840a, bVar5, eVar.f6843e)).f();
+                parcel2.writeNoException();
+                com.google.android.gms.internal.cast.t.d(parcel2, f10);
+                return true;
+            case 3:
+                c cVar4 = (c) obj;
+                if (i7 != 1) {
+                    if (i7 != 2) {
+                        if (i7 != 3) {
+                            if (i7 != 4) {
+                                if (i7 != 5) {
+                                    return false;
+                                }
+                                parcel2.writeNoException();
+                                parcel2.writeInt(12451000);
+                                return true;
+                            }
+                            int readInt2 = parcel.readInt();
+                            com.google.android.gms.internal.cast.t.b(parcel);
+                            c.g(cVar4, readInt2);
+                            parcel2.writeNoException();
+                            return true;
+                        }
+                        String readString2 = parcel.readString();
+                        com.google.android.gms.internal.cast.t.b(parcel);
+                        f6.e0 e0Var = cVar4.f13548i;
+                        if (e0Var != null && e0Var.G == 2) {
+                            com.google.android.gms.common.api.internal.s b11 = com.google.android.gms.common.api.internal.t.b();
+                            b11.f6682c = new q4.q(e0Var, readString2, false, 22);
+                            b11.f6680a = 8409;
+                            e0Var.e(1, b11.a());
+                        }
+                        parcel2.writeNoException();
+                        return true;
+                    }
+                    String readString3 = parcel.readString();
+                    f6.i iVar = (f6.i) com.google.android.gms.internal.cast.t.a(parcel, f6.i.CREATOR);
+                    com.google.android.gms.internal.cast.t.b(parcel);
+                    f6.e0 e0Var2 = cVar4.f13548i;
+                    if (e0Var2 != null && e0Var2.G == 2) {
+                        com.google.android.gms.common.api.internal.s b12 = com.google.android.gms.common.api.internal.t.b();
+                        b12.f6682c = new android.support.v4.media.session.a0(e0Var2, readString3, iVar, false, 23);
+                        b12.f6680a = 8406;
+                        e0Var2.e(1, b12.a()).addOnCompleteListener(new aa.n(this, 26));
+                    }
+                    parcel2.writeNoException();
+                    return true;
+                }
+                String readString4 = parcel.readString();
+                String readString5 = parcel.readString();
+                com.google.android.gms.internal.cast.t.b(parcel);
+                f6.e0 e0Var3 = cVar4.f13548i;
+                if (e0Var3 != null && e0Var3.G == 2) {
+                    com.google.android.gms.common.api.internal.s b13 = com.google.android.gms.common.api.internal.t.b();
+                    b13.f6682c = new f6.b0(e0Var3, readString4, readString5, 0);
+                    b13.f6680a = 8407;
+                    e0Var3.e(1, b13.a()).addOnCompleteListener(new d0(this, 0));
+                }
+                parcel2.writeNoException();
+                return true;
             default:
-                i6.m mVar3 = hVar.f12009c;
-                i6.n o12 = o();
-                mVar3.getClass();
-                JSONObject jSONObject3 = new JSONObject();
-                long b12 = mVar3.b();
-                long j11 = ((e6.p) obj).f9751a;
-                try {
-                    jSONObject3.put("requestId", b12);
-                    jSONObject3.put("type", "SEEK");
-                    jSONObject3.put("mediaSessionId", mVar3.p());
-                    Pattern pattern2 = i6.a.f14618a;
-                    jSONObject3.put("currentTime", j11 / 1000.0d);
-                } catch (JSONException unused3) {
+                if (i7 != 1) {
+                    if (i7 != 2) {
+                        return false;
+                    }
+                    parcel2.writeNoException();
+                    parcel2.writeInt(12451000);
+                    return true;
                 }
-                mVar3.c(b12, jSONObject3.toString());
-                mVar3.f14632g = Long.valueOf(j11);
-                mVar3.f14637m.a(b12, new tf.b(mVar3, o12, false));
-                return;
+                long readLong = parcel.readLong();
+                long readLong2 = parcel.readLong();
+                com.google.android.gms.internal.cast.t.b(parcel);
+                i6.b.a((i6.b) obj, new Long[]{Long.valueOf(readLong), Long.valueOf(readLong2)});
+                parcel2.writeNoException();
+                return true;
         }
     }
 
-    public j(h hVar, int[] iArr) {
-        super(hVar, true);
-        this.f12017r = 0;
-        this.f12018s = hVar;
-        this.f12019t = iArr;
+    public j(c cVar) {
+        super("com.google.android.gms.cast.framework.ICastConnectionController", 1);
+        this.f13564c = cVar;
+    }
+
+    public j(f fVar) {
+        super("com.google.android.gms.cast.framework.ISessionProxy", 1);
+        this.f13564c = fVar;
+    }
+
+    public j(i6.b bVar) {
+        super("com.google.android.gms.cast.framework.media.internal.IFetchBitmapTaskProgressPublisher", 1);
+        this.f13564c = bVar;
+    }
+
+    public j(v0.j jVar) {
+        super("com.google.android.gms.cast.framework.ICastStateListener", 1);
+        this.f13564c = jVar;
     }
 }

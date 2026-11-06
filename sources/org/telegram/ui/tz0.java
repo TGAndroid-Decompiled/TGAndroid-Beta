@@ -1,44 +1,62 @@
 package org.telegram.ui;
 
 import java.util.ArrayList;
-public final class tz0 extends g.p {
-    public final int f49927c;
-    public final g11 d;
+import java.util.HashSet;
+import java.util.concurrent.CountDownLatch;
+public final class tz0 implements Runnable {
+    public final int f50162a;
+    public final q11 f50163b;
 
-    public tz0(g11 g11Var, int i3) {
-        this.f49927c = i3;
-        this.d = g11Var;
+    public tz0(q11 q11Var, int i7) {
+        this.f50162a = i7;
+        this.f50163b = q11Var;
     }
 
     @Override
-    public final int i(int i3) {
-        int i10;
-        ArrayList arrayList;
-        int i11;
-        switch (this.f49927c) {
+    public final void run() {
+        switch (this.f50162a) {
             case 0:
-                g11 g11Var = this.d;
-                if (g11Var.f45488x0.indexOfKey(i3) < 0 && g11Var.A0.indexOfKey(i3) < 0 && i3 != g11Var.f45449f && i3 != g11Var.E && i3 != g11Var.f45463n && i3 != g11Var.h && i3 != g11Var.f45484w && i3 != g11Var.f45434a && i3 != g11Var.f45490y) {
-                    if ((i3 >= g11Var.F && i3 < g11Var.G) || g11Var.R) {
-                        return 8;
-                    }
-                    return 5;
+                q11 q11Var = this.f50163b;
+                q11Var.getClass();
+                HashSet hashSet = ch.e0.f6231a;
+                com.google.android.gms.internal.cast.b0 b0Var = org.telegram.messenger.gc.D().f22622p;
+                if (((CountDownLatch) b0Var.f6815c) == null) {
+                    b0Var.f6815c = new CountDownLatch(1);
                 }
-                return g11Var.f45476s0.J;
+                ch.e0.f6232b = true;
+                ch.e0.f6234e = false;
+                ch.e0.f6236g = false;
+                org.telegram.messenger.g0.i3(new tz0(q11Var, 2), 0L);
+                return;
+            case 1:
+                q11 q11Var2 = this.f50163b;
+                ArrayList arrayList = q11Var2.B1;
+                if (arrayList != null) {
+                    arrayList.clear();
+                }
+                ArrayList arrayList2 = q11Var2.C1;
+                if (arrayList2 != null) {
+                    arrayList2.clear();
+                }
+                ArrayList arrayList3 = q11Var2.E1;
+                if (arrayList3 != null) {
+                    arrayList3.clear();
+                }
+                q11Var2.f49024q0.E(true);
+                return;
+            case 2:
+                this.f50163b.V1.start();
+                return;
+            case 3:
+                this.f50163b.B(true, true, true);
+                return;
             default:
-                g11 g11Var2 = this.d;
-                r01 r01Var = g11Var2.f45473r0;
-                int d = r01Var.d(i3);
-                if (d == 6) {
-                    return g11Var2.f45476s0.J;
-                }
-                if (d != 5) {
-                    g11 g11Var3 = r01Var.f48988s;
-                    if (g11Var3.f45435a0 != 14 ? i3 <= (i10 = r01Var.f48983c) || (i3 - i10) - 1 >= g11Var3.E1.size() : (arrayList = g11Var3.D1) == null || i3 < (i11 = r01Var.f48983c) || i3 - i11 >= arrayList.size()) {
-                        return 5;
-                    }
-                }
-                return 8;
+                q11 q11Var3 = this.f50163b;
+                org.telegram.messenger.qs e10 = org.telegram.messenger.qs.e();
+                tz0 tz0Var = q11Var3.S1;
+                e10.f25110e.remove(tz0Var);
+                org.telegram.messenger.qs.e().d(tz0Var);
+                return;
         }
     }
 }

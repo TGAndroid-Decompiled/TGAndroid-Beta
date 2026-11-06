@@ -2,25 +2,25 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class s5 extends TLRPC.TL_document {
-    public final TLRPC.ThemeSettings f25276a;
-    public final TLRPC.Document f25277b;
-    public final org.telegram.ui.ActionBar.j6 f25278c;
-    public final org.telegram.ui.ActionBar.g6 d;
+    public final TLRPC.ThemeSettings f25411a;
+    public final TLRPC.Document f25412b;
+    public final org.telegram.ui.ActionBar.j6 f25413c;
+    public final org.telegram.ui.ActionBar.h6 d;
 
     public s5(TLRPC.ThemeSettings themeSettings) {
-        this.f25276a = themeSettings;
+        this.f25411a = themeSettings;
         org.telegram.ui.ActionBar.j6 Q0 = org.telegram.ui.ActionBar.k6.Q0(org.telegram.ui.ActionBar.k6.r0(themeSettings));
-        this.f25278c = Q0;
+        this.f25413c = Q0;
         Q0.getClass();
-        org.telegram.ui.ActionBar.g6 g6Var = new org.telegram.ui.ActionBar.g6();
-        org.telegram.ui.ActionBar.j6.i(g6Var, themeSettings);
-        g6Var.f27526b = Q0;
-        this.d = g6Var;
+        org.telegram.ui.ActionBar.h6 h6Var = new org.telegram.ui.ActionBar.h6();
+        org.telegram.ui.ActionBar.j6.i(h6Var, themeSettings);
+        h6Var.f27516b = Q0;
+        this.d = h6Var;
         TLRPC.WallPaper wallPaper = themeSettings.wallpaper;
         if (wallPaper instanceof TLRPC.TL_wallPaper) {
             TLRPC.Document document = ((TLRPC.TL_wallPaper) wallPaper).document;
-            this.f25277b = document;
-            this.f27007id = document.f27007id;
+            this.f25412b = document;
+            this.f26958id = document.f26958id;
             this.access_hash = document.access_hash;
             this.file_reference = document.file_reference;
             this.user_id = document.user_id;
@@ -36,7 +36,7 @@ public final class s5 extends TLRPC.TL_document {
             this.attributes = document.attributes;
             return;
         }
-        this.f27007id = -2147483648L;
+        this.f26958id = -2147483648L;
         this.dc_id = Integer.MIN_VALUE;
     }
 }

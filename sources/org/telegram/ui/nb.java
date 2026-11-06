@@ -1,44 +1,33 @@
 package org.telegram.ui;
 
-import java.util.concurrent.CountDownLatch;
-public final class nb implements Runnable {
-    public final int f47929a;
-    public final rb f47930b;
+import android.content.Context;
+import android.view.KeyEvent;
+public final class nb implements org.telegram.ui.Components.bj0 {
+    public final int f47981a = 1;
+    public final long f47982b;
+    public final Context f47983c;
+    public final KeyEvent.Callback d;
+    public final Object f47984e;
+    public final Object f47985f;
 
-    public nb(rb rbVar, int i3) {
-        this.f47929a = i3;
-        this.f47930b = rbVar;
+    public nb(tb tbVar, Context context, long j3, org.telegram.ui.ActionBar.f6 f6Var, c51 c51Var) {
+        this.d = tbVar;
+        this.f47983c = context;
+        this.f47982b = j3;
+        this.f47984e = f6Var;
+        this.f47985f = c51Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f47929a) {
-            case 0:
-                CountDownLatch countDownLatch = new CountDownLatch(2);
-                rb rbVar = this.f47930b;
-                rbVar.a(countDownLatch, null);
-                rbVar.b(countDownLatch, null);
-                try {
-                    countDownLatch.await();
-                } catch (InterruptedException unused) {
-                }
-                org.telegram.messenger.g0.h3(new nb(rbVar, 3));
-                return;
-            case 1:
-                rb rbVar2 = this.f47930b;
-                rbVar2.H = false;
-                rbVar2.d(true);
-                return;
-            case 2:
-                rb rbVar3 = this.f47930b;
-                rbVar3.H = false;
-                rbVar3.d(true);
-                return;
-            default:
-                rb rbVar4 = this.f47930b;
-                rbVar4.H = false;
-                rbVar4.d(true);
-                return;
-        }
+    public final void c(int r23, android.view.View r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.nb.c(int, android.view.View):void");
+    }
+
+    public nb(org.telegram.ui.Components.x50 x50Var, long j3, org.telegram.ui.ActionBar.f2 f2Var, a0.h hVar, Context context) {
+        this.d = x50Var;
+        this.f47982b = j3;
+        this.f47984e = f2Var;
+        this.f47985f = hVar;
+        this.f47983c = context;
     }
 }

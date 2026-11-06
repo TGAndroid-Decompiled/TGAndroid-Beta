@@ -1,43 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.animation.AnimatorSet;
 import android.content.Context;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class n10 implements Runnable {
-    public final int f36327a;
-    public final Context f36328b;
+import android.content.SharedPreferences;
+import android.graphics.Point;
+import android.widget.FrameLayout;
+public final class n10 extends FrameLayout {
+    public float f36206a;
+    public float f36207b;
+    public boolean f36208c;
+    public AnimatorSet d;
+    public final m10 f36209e;
+    public final l10 f36210f;
+    public final float h;
+    public final p10 f36211n;
 
-    public n10(Context context, int i3) {
-        this.f36327a = i3;
-        this.f36328b = context;
+    public n10(p10 p10Var, Context context, float f10) {
+        super(context);
+        this.f36211n = p10Var;
+        this.h = f10;
+        this.f36209e = new m10(this);
+        this.f36210f = new l10(0);
     }
 
     @Override
-    public final void run() {
-        int i3 = this.f36327a;
-        Context context = this.f36328b;
-        switch (i3) {
-            case 0:
-                l10.j(context);
-                return;
-            case 1:
-                sf.c.t(context, org.telegram.messenger.bd.M0(2131744976, null));
-                return;
-            case 2:
-                Activity W = org.telegram.messenger.g0.W(context);
-                if (W instanceof LaunchActivity) {
-                    ((LaunchActivity) W).t0(new PremiumPreviewFragment(0, vg.i0.u1(10)));
-                    return;
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, i10);
+        Point point = org.telegram.messenger.g0.f22537q;
+        int i11 = point.x;
+        p10 p10Var = this.f36211n;
+        if (i11 != p10Var.J || p10Var.K != point.y) {
+            p10Var.J = i11;
+            p10Var.K = point.y;
+            if (p10Var.L < 0.0f) {
+                SharedPreferences sharedPreferences = org.telegram.messenger.t0.f25555b.getSharedPreferences("groupcallpipconfig", 0);
+                this.f36211n.L = sharedPreferences.getFloat("relativeX", 1.0f);
+                this.f36211n.M = sharedPreferences.getFloat("relativeY", 0.4f);
+            }
+            p10 p10Var2 = p10.f36845e0;
+            if (p10Var2 != null) {
+                p10 p10Var3 = this.f36211n;
+                float f10 = p10Var3.L;
+                float f11 = p10Var3.M;
+                float f12 = -org.telegram.messenger.g0.L(36.0f);
+                p10Var2.f36858s.x = (int) com.google.android.recaptcha.internal.a.z(point.x - (2.0f * f12), org.telegram.messenger.g0.L(105.0f), f10, f12);
+                p10Var2.f36858s.y = (int) ((point.y - org.telegram.messenger.g0.L(105.0f)) * f11);
+                p10Var2.i();
+                n10 n10Var = p10Var2.f36847a;
+                if (n10Var.getParent() != null) {
+                    p10Var2.f36856n.updateViewLayout(n10Var, p10Var2.f36858s);
                 }
-                return;
-            default:
-                Activity W2 = org.telegram.messenger.g0.W(context);
-                if (W2 instanceof LaunchActivity) {
-                    ((LaunchActivity) W2).t0(new PremiumPreviewFragment(0, vg.i0.u1(9)));
-                    return;
-                }
-                return;
+            }
         }
+    }
+
+    @Override
+    public final boolean onTouchEvent(android.view.MotionEvent r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.n10.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

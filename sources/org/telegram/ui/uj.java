@@ -1,32 +1,28 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-public final class uj extends vq0 {
-    public uj(ViewGroup viewGroup, ViewGroup viewGroup2) {
-        super(viewGroup, viewGroup2);
+import android.content.Context;
+public final class uj extends lh.e {
+    public final an L;
+
+    public uj(an anVar, Context context, org.telegram.ui.ActionBar.f6 f6Var, oi oiVar, dh.c cVar) {
+        super(context, cVar, oiVar, f6Var);
+        this.L = anVar;
     }
 
     @Override
-    public final void c(Canvas canvas, float f10, float f11, float f12, float f13, float f14) {
-        if (f10 > 0.0f) {
-            View view = this.f50583e;
-            if (view instanceof org.telegram.ui.Cells.q1) {
-                org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
-                RectF rectF = org.telegram.messenger.g0.P;
-                rectF.set(f11, (int) Math.max(f13, f12), q1Var.getMeasuredWidth() + f11, (int) Math.min(f14, q1Var.getMeasuredHeight() + f12));
-                canvas.saveLayerAlpha(rectF, (int) (f10 * 255.0f), 31);
-                canvas.translate(f11, f12 + q1Var.getPaddingTop());
-                q1Var.Lb = true;
-                q1Var.j1(canvas);
-                if (q1Var.D3() && q1Var.getCurrentMessagesGroup() == null) {
-                    q1Var.x1(1.0f, canvas, false);
-                }
-                q1Var.Lb = false;
-                canvas.restore();
-            }
+    public final void setVisibility(int i7) {
+        boolean z9;
+        super.setVisibility(i7);
+        m6.n nVar = this.L.f43773fd;
+        boolean z10 = false;
+        if (i7 == 0) {
+            z9 = true;
+        } else {
+            z9 = false;
         }
+        if (getMeasuredWidth() > 0) {
+            z10 = true;
+        }
+        nVar.h(3, z9, z10);
     }
 }

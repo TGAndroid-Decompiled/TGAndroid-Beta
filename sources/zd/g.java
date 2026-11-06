@@ -1,17 +1,15 @@
 package zd;
 
-import gi.v5;
-public final class g implements b {
-    public final v5 f60396a;
-    public final l1.n f60397b;
-
-    public g(v5 v5Var, l1.n nVar) {
-        this.f60396a = v5Var;
-        this.f60397b = nVar;
-    }
+import java.util.Iterator;
+public final class g extends kd.c {
+    public Iterator f59945a;
+    public Object f59946b;
+    public int f59947c;
 
     @Override
-    public final java.lang.Object U(zd.c r9, hd.c r10) {
-        throw new UnsupportedOperationException("Method not decompiled: zd.g.U(zd.c, hd.c):java.lang.Object");
+    public final Object invokeSuspend(Object obj) {
+        this.f59946b = obj;
+        this.f59947c |= Integer.MIN_VALUE;
+        return b0.o(null, this);
     }
 }

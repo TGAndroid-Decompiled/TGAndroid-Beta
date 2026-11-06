@@ -1,141 +1,100 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.util.SparseArray;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class rk implements RequestDelegate {
-    public final int f25162a = 1;
-    public final hp f25163b;
-    public final int f25164c;
+import org.telegram.tgnet.tl.TL_update;
+public final class rk implements Runnable {
+    public final int f25289a = 1;
+    public final qp f25290b;
+    public final long f25291c;
     public final int d;
-    public final long f25165e;
-    public final long f25166f;
-    public final int f25167g;
-    public final int h;
-    public final int f25168i;
-    public final int f25169j;
-    public final int f25170k;
-    public final int f25171l;
-    public final int f25172m;
-    public final int f25173n;
-    public final long f25174o;
-    public final int f25175p;
-    public final boolean f25176q;
-    public final int f25177r;
-    public final boolean f25178s;
-    public final boolean f25179t;
+    public final long f25292e;
+    public final Object f25293f;
+    public final Object h;
+    public final Object f25294n;
+    public final Object f25295r;
 
-    public rk(hp hpVar, int i3, int i10, long j10, long j11, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, long j12, int i19, boolean z10, int i20, boolean z11, boolean z12) {
-        this.f25163b = hpVar;
-        this.f25164c = i3;
-        this.d = i10;
-        this.f25165e = j10;
-        this.f25166f = j11;
-        this.f25167g = i11;
-        this.h = i12;
-        this.f25168i = i13;
-        this.f25169j = i14;
-        this.f25170k = i15;
-        this.f25171l = i16;
-        this.f25172m = i17;
-        this.f25173n = i18;
-        this.f25174o = j12;
-        this.f25175p = i19;
-        this.f25176q = z10;
-        this.f25177r = i20;
-        this.f25178s = z11;
-        this.f25179t = z12;
+    public rk(qp qpVar, ArrayList arrayList, long j3, TLRPC.updates_ChannelDifference updates_channeldifference, TLRPC.Chat chat, a0.h hVar, int i7, long j10) {
+        this.f25290b = qpVar;
+        this.f25293f = arrayList;
+        this.f25291c = j3;
+        this.h = updates_channeldifference;
+        this.f25294n = chat;
+        this.f25295r = hVar;
+        this.d = i7;
+        this.f25292e = j10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i3;
-        switch (this.f25162a) {
+    public final void run() {
+        TLRPC.Chat chat;
+        a0.h hVar;
+        switch (this.f25289a) {
             case 0:
-                hp hpVar = this.f25163b;
-                hpVar.getClass();
-                long j10 = this.f25165e;
-                long j11 = this.f25166f;
-                int i10 = this.f25164c;
-                int i11 = this.d;
-                int i12 = this.f25167g;
-                int i13 = this.h;
-                int i14 = this.f25168i;
-                int i15 = this.f25169j;
-                int i16 = this.f25170k;
-                int i17 = this.f25171l;
-                int i18 = this.f25172m;
-                int i19 = this.f25173n;
-                long j12 = this.f25174o;
-                int i20 = this.f25175p;
-                boolean z10 = this.f25176q;
-                int i21 = this.f25177r;
-                boolean z11 = this.f25178s;
-                boolean z12 = this.f25179t;
-                if (tLObject != null) {
-                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                    if (!(messages_messages instanceof TLRPC.TL_messages_messagesNotModified)) {
-                        hpVar.K3(messages_messages, messages_messages.messages.size(), j10, j11, i10, i11, i12, false, i13, i14, i15, i16, i17, i18, false, i19, j12, i20, z10, i21, z11, z12, null);
-                        return;
-                    }
-                    return;
-                } else if (tL_error != null && "SHORTCUT_INVALID".equals(tL_error.text)) {
-                    hpVar.K3(new TLRPC.TL_messages_messages(), 0, j10, j11, i10, i11, i12, false, i13, i14, i15, i16, i17, i18, false, i19, j12, i20, z10, i21, z11, z12, null);
-                    return;
-                } else {
+                qp qpVar = this.f25290b;
+                boolean[] zArr = (boolean[]) this.f25293f;
+                yr yrVar = (yr) this.h;
+                long j3 = this.f25291c;
+                Runnable[] runnableArr = (Runnable[]) this.f25294n;
+                long j10 = this.f25292e;
+                int i7 = this.d;
+                ep epVar = (ep) this.f25295r;
+                if (!zArr[0]) {
+                    g0.h3(new pb(qpVar, zArr, yrVar.O(j3), runnableArr, j10, i7, epVar));
                     return;
                 }
+                return;
             default:
-                hp hpVar2 = this.f25163b;
-                hpVar2.getClass();
-                if (tLObject != null) {
-                    TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject;
-                    if (!(messages_messages2 instanceof TLRPC.TL_messages_messagesNotModified)) {
-                        int i22 = this.d;
-                        if (i22 != 0 && !messages_messages2.messages.isEmpty()) {
-                            i3 = ((TLRPC.Message) k2.p1.h(1, messages_messages2.messages)).f27022id;
-                            int size = messages_messages2.messages.size() - 1;
-                            while (true) {
-                                if (size >= 0) {
-                                    TLRPC.Message message = messages_messages2.messages.get(size);
-                                    if (message.date > i22) {
-                                        i3 = message.f27022id;
-                                    } else {
-                                        size--;
-                                    }
-                                }
-                            }
-                        } else {
-                            i3 = this.f25164c;
+                qp qpVar2 = this.f25290b;
+                ArrayList arrayList = (ArrayList) this.f25293f;
+                long j11 = this.f25291c;
+                TLRPC.updates_ChannelDifference updates_channeldifference = (TLRPC.updates_ChannelDifference) this.h;
+                TLRPC.Chat chat2 = (TLRPC.Chat) this.f25294n;
+                a0.h hVar2 = (a0.h) this.f25295r;
+                int i10 = this.d;
+                long j12 = this.f25292e;
+                if (!arrayList.isEmpty()) {
+                    SparseArray sparseArray = new SparseArray();
+                    int size = arrayList.size();
+                    int i11 = 0;
+                    while (i11 < size) {
+                        Object obj = arrayList.get(i11);
+                        i11++;
+                        TL_update.TL_updateMessageID tL_updateMessageID = (TL_update.TL_updateMessageID) obj;
+                        TLRPC.Chat chat3 = chat2;
+                        a0.h hVar3 = hVar2;
+                        ArrayList arrayList2 = arrayList;
+                        long[] a22 = qpVar2.getMessagesStorage().a2(tL_updateMessageID.random_id, -j11, null, tL_updateMessageID.f27210id, 0, -1, 0);
+                        if (a22 != null) {
+                            sparseArray.put(tL_updateMessageID.f27210id, a22);
                         }
-                        hpVar2.K3(messages_messages2, messages_messages2.messages.size(), this.f25165e, this.f25166f, this.f25167g, i3, i22, false, this.h, this.f25168i, this.f25169j, this.f25170k, this.f25171l, this.f25172m, false, this.f25173n, this.f25174o, this.f25175p, this.f25176q, this.f25177r, this.f25178s, this.f25179t, null);
-                        return;
+                        chat2 = chat3;
+                        hVar2 = hVar3;
+                        arrayList = arrayList2;
                     }
-                    return;
+                    chat = chat2;
+                    hVar = hVar2;
+                    if (sparseArray.size() != 0) {
+                        g0.h3(new dm(qpVar2, sparseArray, 1));
+                    }
+                } else {
+                    chat = chat2;
+                    hVar = hVar2;
                 }
+                Utilities.d.c(new fm(qpVar2, updates_channeldifference, j11, chat, hVar, i10, j12));
                 return;
         }
     }
 
-    public rk(hp hpVar, long j10, long j11, int i3, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, long j12, int i19, boolean z10, int i20, boolean z11, boolean z12) {
-        this.f25163b = hpVar;
-        this.f25165e = j10;
-        this.f25166f = j11;
-        this.f25164c = i3;
-        this.d = i10;
-        this.f25167g = i11;
-        this.h = i12;
-        this.f25168i = i13;
-        this.f25169j = i14;
-        this.f25170k = i15;
-        this.f25171l = i16;
-        this.f25172m = i17;
-        this.f25173n = i18;
-        this.f25174o = j12;
-        this.f25175p = i19;
-        this.f25176q = z10;
-        this.f25177r = i20;
-        this.f25178s = z11;
-        this.f25179t = z12;
+    public rk(qp qpVar, boolean[] zArr, yr yrVar, long j3, Runnable[] runnableArr, long j10, int i7, ep epVar) {
+        this.f25290b = qpVar;
+        this.f25293f = zArr;
+        this.h = yrVar;
+        this.f25291c = j3;
+        this.f25294n = runnableArr;
+        this.f25292e = j10;
+        this.d = i7;
+        this.f25295r = epVar;
     }
 }

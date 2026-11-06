@@ -1,35 +1,35 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-public final class u20 extends org.telegram.ui.ActionBar.k {
-    public final org.telegram.ui.Components.ap G1;
-    public final x30 H1;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class u20 extends AnimatorListenerAdapter {
+    public final int f50183a;
+    public final org.telegram.ui.Components.voip.y f50184b;
+    public final c40 f50185c;
 
-    public u20(x30 x30Var, LaunchActivity launchActivity, org.telegram.ui.Components.ap apVar) {
-        super(launchActivity, null);
-        this.H1 = x30Var;
-        this.G1 = apVar;
+    public u20(c40 c40Var, org.telegram.ui.Components.voip.y yVar, int i7) {
+        this.f50183a = i7;
+        this.f50185c = c40Var;
+        this.f50184b = yVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (getAdditionalSubtitleTextView().getVisibility() == 0) {
-            canvas.save();
-            canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - org.telegram.messenger.g0.L(1.0f));
-            org.telegram.ui.Components.ap apVar = this.G1;
-            apVar.f31964f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
-            apVar.draw(canvas);
-            canvas.restore();
-            invalidate();
-        }
-    }
-
-    @Override
-    public final void setAlpha(float f10) {
-        if (getAlpha() != f10) {
-            super.setAlpha(f10);
-            this.H1.f28586b.invalidate();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f50183a) {
+            case 0:
+                org.telegram.ui.Components.voip.y yVar = this.f50184b;
+                if (yVar.getParent() != null) {
+                    this.f50185c.f28615b.removeView(yVar);
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Components.voip.y yVar2 = this.f50184b;
+                if (yVar2.getParent() != null) {
+                    this.f50185c.f28615b.removeView(yVar2);
+                    return;
+                }
+                return;
         }
     }
 }

@@ -2,37 +2,37 @@ package org.telegram.messenger;
 
 import java.util.HashMap;
 public final class b5 implements Runnable {
-    public final int f21739a;
-    public final g5 f21740b;
-    public final HashMap f21741c;
+    public final int f21587a;
+    public final g5 f21588b;
+    public final HashMap f21589c;
     public final HashMap d;
 
-    public b5(g5 g5Var, HashMap hashMap, HashMap hashMap2, int i3) {
-        this.f21739a = i3;
-        this.f21740b = g5Var;
-        this.f21741c = hashMap;
+    public b5(g5 g5Var, HashMap hashMap, HashMap hashMap2, int i7) {
+        this.f21587a = i7;
+        this.f21588b = g5Var;
+        this.f21589c = hashMap;
         this.d = hashMap2;
     }
 
     @Override
     public final void run() {
-        switch (this.f21739a) {
+        switch (this.f21587a) {
             case 0:
-                g5 g5Var = this.f21740b;
-                Utilities.f21387e.c(new b5(g5Var, this.f21741c, this.d, 1));
-                if (!g5Var.f22650e) {
-                    g5Var.f22650e = true;
-                    qr messagesStorage = g5Var.getMessagesStorage();
-                    messagesStorage.f24934a.c(new vq(messagesStorage, false, 0));
+                g5 g5Var = this.f21588b;
+                Utilities.f21333e.c(new b5(g5Var, this.f21589c, this.d, 1));
+                if (!g5Var.f22581e) {
+                    g5Var.f22581e = true;
+                    yr messagesStorage = g5Var.getMessagesStorage();
+                    messagesStorage.f26688a.c(new dr(messagesStorage, false, 0));
                     return;
                 }
                 return;
             default:
-                g5 g5Var2 = this.f21740b;
-                HashMap hashMap = this.f21741c;
+                g5 g5Var2 = this.f21588b;
+                HashMap hashMap = this.f21589c;
                 HashMap hashMap2 = this.d;
-                g5Var2.f22659l0 = hashMap;
-                g5Var2.m0 = hashMap2;
+                g5Var2.f22589k0 = hashMap;
+                g5Var2.f22590l0 = hashMap2;
                 return;
         }
     }

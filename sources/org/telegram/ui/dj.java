@@ -1,194 +1,141 @@
 package org.telegram.ui;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-public final class dj implements org.telegram.ui.ActionBar.e6 {
-    public final int f44720a;
-    public final Object f44721b;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class dj extends v4.t {
+    public boolean S;
+    public final an T;
 
-    public dj(Object obj, int i3) {
-        this.f44720a = i3;
-        this.f44721b = obj;
+    public dj(an anVar, boolean z9) {
+        super(z9);
+        this.T = anVar;
     }
 
     @Override
-    public final boolean a() {
-        switch (this.f44720a) {
-            case 0:
-                return org.telegram.ui.ActionBar.k6.I.q();
-            case 1:
-                return ((cm0) this.f44721b).T;
-            default:
-                return ((h71) this.f44721b).f45849f.f47141a.a();
+    public final boolean B1(int i7) {
+        int i10;
+        org.telegram.messenger.ij ijVar;
+        org.telegram.messenger.dj s9;
+        byte b10;
+        an anVar = this.T;
+        jl jlVar = anVar.C0;
+        int i11 = jlVar.J;
+        if (i7 >= i11 && i7 < jlVar.K && (i10 = i7 - i11) >= 0 && i10 < jlVar.L().size() && (s9 = anVar.s9((ijVar = (org.telegram.messenger.ij) anVar.C0.L().get(i10)))) != null) {
+            ArrayList arrayList = s9.f22005e;
+            org.telegram.messenger.aj d = s9.d(ijVar);
+            if (d.f21442a != d.f21443b && (b10 = d.f21444c) == d.d && b10 != 0) {
+                int size = arrayList.size();
+                for (int i12 = 0; i12 < size; i12++) {
+                    org.telegram.messenger.aj ajVar = (org.telegram.messenger.aj) arrayList.get(i12);
+                    if (ajVar != d) {
+                        byte b11 = ajVar.f21444c;
+                        byte b12 = d.f21444c;
+                        if (b11 <= b12 && ajVar.d >= b12) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        if (view instanceof org.telegram.ui.Cells.q1) {
+            return !((org.telegram.ui.Cells.q1) view).getMessageObject().Q3();
+        }
+        return false;
+    }
+
+    @Override
+    public final int G() {
+        if (this.S) {
+            return (int) this.T.L9;
+        }
+        return 0;
+    }
+
+    @Override
+    public final int J() {
+        if (this.S) {
+            return (int) this.T.L9;
+        }
+        return F();
+    }
+
+    @Override
+    public final int K() {
+        if (this.S) {
+            return (int) ((this.f57025n - this.T.L9) - C());
+        }
+        return super.K();
+    }
+
+    @Override
+    public final int X0() {
+        return (int) this.T.L9;
+    }
+
+    @Override
+    public final void b0(v4.v0 v0Var, v4.a1 a1Var) {
+        boolean z9 = org.telegram.messenger.r2.f25191a;
+        try {
+            super.b0(v0Var, a1Var);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+            org.telegram.messenger.g0.h3(new bh(this, 4));
         }
     }
 
     @Override
-    public final void b(float f10, float f11, int i3, int i10) {
-        switch (this.f44720a) {
-            case 0:
-                org.telegram.ui.ActionBar.k6.r(f10, f11, i3, i10);
-                return;
-            case 1:
-                org.telegram.ui.ActionBar.k6.r(f10, f11, i3, i10);
-                return;
-            default:
-                l61 l61Var = ((h71) this.f44721b).f45849f.f47141a;
-                if (l61Var != null) {
-                    l61Var.b(f10, f11, i3, i10);
-                    return;
-                } else {
-                    org.telegram.ui.ActionBar.k6.r(f10, f11, i3, i10);
-                    return;
-                }
+    public final void i1(int i7, int i10, boolean z9) {
+        if (!z9) {
+            i10 = (int) ((i10 - F()) + this.T.L9);
         }
+        super.i1(i7, i10, z9);
     }
 
     @Override
-    public final ColorFilter c() {
-        switch (this.f44720a) {
-            case 0:
-                return org.telegram.ui.ActionBar.k6.f28211v3;
-            case 1:
-                return org.telegram.ui.ActionBar.k6.f28211v3;
-            default:
-                return org.telegram.ui.ActionBar.k6.f28211v3;
-        }
+    public final int j(v4.a1 a1Var) {
+        this.S = true;
+        int B0 = B0(a1Var);
+        this.S = false;
+        return B0;
     }
 
     @Override
-    public final Paint d(String str) {
-        switch (this.f44720a) {
-            case 0:
-                return org.telegram.ui.ActionBar.k6.V0(str);
-            case 1:
-                return org.telegram.ui.ActionBar.k6.V0(str);
-            default:
-                return ((h71) this.f44721b).f45849f.f47141a.d(str);
-        }
+    public final int k(v4.a1 a1Var) {
+        this.S = true;
+        int C0 = C0(a1Var);
+        this.S = false;
+        return C0;
     }
 
     @Override
-    public final boolean e() {
-        switch (this.f44720a) {
-            case 0:
-                return org.telegram.messenger.az.H0;
-            case 1:
-                return org.telegram.messenger.az.H0;
-            default:
-                return org.telegram.messenger.az.H0;
-        }
+    public final int l(v4.a1 a1Var) {
+        this.S = true;
+        int D0 = D0(a1Var);
+        this.S = false;
+        return D0;
     }
 
     @Override
-    public final int f(int i3) {
-        switch (this.f44720a) {
-            case 0:
-                return h(i3);
-            case 1:
-                return h(i3);
-            default:
-                return ((h71) this.f44721b).f45849f.f47141a.h(i3);
-        }
+    public final int o0(int r11, v4.v0 r12, v4.a1 r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dj.o0(int, v4.v0, v4.a1):int");
     }
 
     @Override
-    public final boolean g() {
-        switch (this.f44720a) {
-            case 0:
-                return false;
-            case 1:
-                return false;
-            default:
-                return ((h71) this.f44721b).f45849f.f47141a.g();
-        }
+    public final void v0(RecyclerView recyclerView, v4.a1 a1Var, int i7) {
+        this.T.La = false;
+        mi.m mVar = new mi.m(recyclerView.getContext(), 0);
+        mVar.f57096a = i7;
+        w0(mVar);
     }
 
     @Override
-    public final Drawable getDrawable(String str) {
-        switch (this.f44720a) {
-            case 0:
-                return null;
-            case 1:
-                cm0 cm0Var = (cm0) this.f44721b;
-                if (str.equals("drawableMsgIn")) {
-                    return cm0Var.f44402x;
-                }
-                if (str.equals("drawableMsgInSelected")) {
-                    return cm0Var.f44403y;
-                }
-                org.telegram.ui.ActionBar.e6 e6Var = cm0Var.f44400s;
-                if (e6Var != null) {
-                    return e6Var.getDrawable(str);
-                }
-                return org.telegram.ui.ActionBar.k6.R0(str);
-            default:
-                l71 l71Var = ((h71) this.f44721b).f45849f;
-                if (str.equals("drawableMsgOut")) {
-                    return l71Var.T;
-                }
-                if (str.equals("drawableMsgOutSelected")) {
-                    return l71Var.U;
-                }
-                if (str.equals("drawableMsgOutMedia")) {
-                    return l71Var.V;
-                }
-                if (str.equals("drawableMsgOutMediaSelected")) {
-                    return l71Var.W;
-                }
-                l61 l61Var = l71Var.f47141a;
-                if (l61Var != null) {
-                    return l61Var.getDrawable(str);
-                }
-                return org.telegram.ui.ActionBar.k6.R0(str);
-        }
-    }
-
-    @Override
-    public final int h(int i3) {
-        switch (this.f44720a) {
-            case 0:
-                return ((wm) this.f44721b).getThemedColor(i3);
-            case 1:
-                cm0 cm0Var = (cm0) this.f44721b;
-                int indexOfKey = cm0Var.f44401w.indexOfKey(i3);
-                if (indexOfKey >= 0) {
-                    return cm0Var.f44401w.valueAt(indexOfKey);
-                }
-                org.telegram.ui.ActionBar.e6 e6Var = cm0Var.f44400s;
-                if (e6Var != null) {
-                    return e6Var.h(i3);
-                }
-                return org.telegram.ui.ActionBar.k6.v0(i3);
-            default:
-                return ((h71) this.f44721b).f45849f.f47141a.h(i3);
-        }
-    }
-
-    @Override
-    public final void i(int i3, int i10) {
-        int i11 = this.f44720a;
-    }
-
-    @Override
-    public final int j(int i3) {
-        switch (this.f44720a) {
-            case 0:
-                return h(i3);
-            case 1:
-                return h(i3);
-            default:
-                return ((h71) this.f44721b).f45849f.f47141a.j(i3);
-        }
-    }
-
-    private final void k(int i3, int i10) {
-    }
-
-    private final void l(int i3, int i10) {
-    }
-
-    private final void m(int i3, int i10) {
+    public final boolean y0() {
+        return true;
     }
 }

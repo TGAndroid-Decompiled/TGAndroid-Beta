@@ -1,36 +1,31 @@
 package vg;
+public final class b implements Runnable {
+    public final int f57237a;
+    public final e f57238b;
+    public final int f57239c;
 
-import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.h10;
-public final class b extends a {
-    public c d;
-
-    @Override
-    public final u4.h0 a() {
-        c cVar = new c(h10.f22829t0, this.f56567a);
-        this.d = cVar;
-        cVar.f56579r = this;
-        return cVar;
+    public b(e eVar, int i7, int i10) {
+        this.f57237a = i10;
+        this.f57238b = eVar;
+        this.f57239c = i7;
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(i3, i10);
-        c cVar = this.d;
-        Context context = getContext();
-        int measuredWidth = getMeasuredWidth();
-        int measuredHeight = getMeasuredHeight();
-        ArrayList arrayList = cVar.f56577f;
-        e eVar = new e(context, cVar.f56575c);
-        int i11 = 0;
-        for (int i12 = 0; i12 < arrayList.size(); i12++) {
-            eVar.a((d) arrayList.get(i12));
-            eVar.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(measuredHeight, Integer.MIN_VALUE));
-            ((d) arrayList.get(i12)).f56587e = i11;
-            i11 += eVar.getMeasuredHeight();
+    public final void run() {
+        switch (this.f57237a) {
+            case 0:
+                e eVar = this.f57238b;
+                eVar.postOnAnimation(new b(eVar, this.f57239c, 1));
+                return;
+            default:
+                e eVar2 = this.f57238b;
+                int i7 = this.f57239c;
+                if (eVar2.f57249e && !eVar2.f57252r && i7 == eVar2.E) {
+                    eVar2.f57256y = true;
+                    eVar2.requestRender();
+                    return;
+                }
+                return;
         }
-        cVar.f56578n = i11;
     }
 }

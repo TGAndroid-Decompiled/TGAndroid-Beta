@@ -1,22 +1,50 @@
 package df;
-public final class a {
-    public final int f8839a;
-    public final boolean f8840b;
-    public final int f8841c;
 
-    public a(int i3, int i10, boolean z10) {
-        this.f8839a = i3;
-        this.f8841c = i10;
-        this.f8840b = z10;
+import gf.e;
+import kf.p;
+import kf.s;
+public final class a implements nf.a {
+    @Override
+    public final void a(s sVar, s sVar2, int i7) {
+        p pVar = new p();
+        for (p pVar2 = (p) sVar.f17281f; pVar2 != null && pVar2 != sVar2; pVar2 = (p) pVar2.f17281f) {
+            pVar.b(pVar2);
+        }
+        pVar.g();
+        p pVar3 = (p) sVar.f17281f;
+        pVar.f17281f = pVar3;
+        if (pVar3 != null) {
+            pVar3.f17280e = pVar;
+        }
+        pVar.f17280e = sVar;
+        sVar.f17281f = pVar;
+        p pVar4 = (p) sVar.f17278b;
+        pVar.f17278b = pVar4;
+        if (((p) pVar.f17281f) == null) {
+            pVar4.d = pVar;
+        }
     }
 
-    public static a a(int i3) {
-        return new a(i3, -1, false);
+    @Override
+    public final char b() {
+        return '~';
     }
 
-    public a(int i3, boolean z10, int i10) {
-        this.f8839a = i3;
-        this.f8840b = z10;
-        this.f8841c = i10;
+    @Override
+    public final int c(e eVar, e eVar2) {
+        if (eVar.f13885g >= 2 && eVar2.f13885g >= 2) {
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final int d() {
+        return 2;
+    }
+
+    @Override
+    public final char e() {
+        return '~';
     }
 }

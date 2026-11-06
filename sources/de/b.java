@@ -1,35 +1,26 @@
 package de;
 
-import b8.zc;
-public final class b {
-    public static final b f8809a;
-    public static final b f8810b;
-    public static final b f8811c;
-    public static final b d;
-    public static final b f8812e;
-    public static final b[] f8813f;
+import ce.w;
+import ce.y;
+public abstract class b {
+    public y[] f8669a;
+    public int f8670b;
+    public int f8671c;
 
-    static {
-        ?? r02 = new Enum("CPU_ACQUIRED", 0);
-        f8809a = r02;
-        ?? r12 = new Enum("BLOCKING", 1);
-        f8810b = r12;
-        ?? r32 = new Enum("PARKING", 2);
-        f8811c = r32;
-        ?? r5 = new Enum("DORMANT", 3);
-        d = r5;
-        ?? r72 = new Enum("TERMINATED", 4);
-        f8812e = r72;
-        b[] bVarArr = {r02, r12, r32, r5, r72};
-        f8813f = bVarArr;
-        zc.a(bVarArr);
-    }
-
-    public static b valueOf(String str) {
-        return (b) Enum.valueOf(b.class, str);
-    }
-
-    public static b[] values() {
-        return (b[]) f8813f.clone();
+    public final void b(y yVar) {
+        synchronized (this) {
+            try {
+                int i7 = this.f8670b - 1;
+                this.f8670b = i7;
+                if (i7 == 0) {
+                    this.f8671c = 0;
+                }
+                kotlin.jvm.internal.j.c(yVar, "null cannot be cast to non-null type kotlinx.coroutines.flow.internal.AbstractSharedFlowSlot<kotlin.Any>");
+                w wVar = (w) this;
+                yVar.f6157a.set(null);
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
     }
 }

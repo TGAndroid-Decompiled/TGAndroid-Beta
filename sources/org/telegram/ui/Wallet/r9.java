@@ -1,26 +1,35 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.bd;
-import org.telegram.ui.Components.fc;
-public final class r9 implements Runnable {
-    public final int f43134a;
-    public final w9 f43135b;
+import org.telegram.messenger.c20;
+import org.telegram.tgnet.TLRPC;
+public final class r9 implements c20 {
+    public final int f43087a;
+    public final x9 f43088b;
 
-    public r9(w9 w9Var, int i3) {
-        this.f43134a = i3;
-        this.f43135b = w9Var;
+    public r9(x9 x9Var, int i7) {
+        this.f43087a = i7;
+        this.f43088b = x9Var;
     }
 
     @Override
-    public final void run() {
-        int i3 = this.f43134a;
-        w9 w9Var = this.f43135b;
-        switch (i3) {
+    public final void a(Object obj) {
+        ah.i iVar;
+        switch (this.f43087a) {
             case 0:
-                w9Var.f43362e0 = null;
+                x9.e0(this.f43088b, (String) obj);
                 return;
             default:
-                fc.a0(w9Var).N(bd.M0(2131745871, null), bd.M0(2131751106, null)).j();
+                TLRPC.User user = (TLRPC.User) obj;
+                x9 x9Var = this.f43088b;
+                if (!x9Var.isFinished && (iVar = x9Var.N) != null) {
+                    if (user == null) {
+                        org.telegram.messenger.g0.h3(new s9(x9Var, 1));
+                        return;
+                    }
+                    org.telegram.messenger.g0.v1(iVar);
+                    x9Var.m0(null, user);
+                    return;
+                }
                 return;
         }
     }

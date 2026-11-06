@@ -4,43 +4,43 @@ import android.content.ClipDescription;
 import android.net.Uri;
 import android.view.inputmethod.InputContentInfo;
 public final class g implements h {
-    public final InputContentInfo f54771a;
+    public final InputContentInfo f55234a;
 
     public g(Object obj) {
-        this.f54771a = (InputContentInfo) obj;
+        this.f55234a = (InputContentInfo) obj;
     }
 
     @Override
-    public final Uri a() {
-        return this.f54771a.getContentUri();
+    public final Uri c() {
+        return this.f55234a.getContentUri();
     }
 
     @Override
-    public final void b() {
-        this.f54771a.requestPermission();
+    public final void e() {
+        this.f55234a.requestPermission();
     }
 
     @Override
-    public final Uri d() {
-        return this.f54771a.getLinkUri();
-    }
-
-    @Override
-    public final Object e() {
-        return this.f54771a;
-    }
-
-    @Override
-    public final void f() {
-        this.f54771a.releasePermission();
+    public final Uri f() {
+        return this.f55234a.getLinkUri();
     }
 
     @Override
     public final ClipDescription getDescription() {
-        return this.f54771a.getDescription();
+        return this.f55234a.getDescription();
+    }
+
+    @Override
+    public final Object h() {
+        return this.f55234a;
+    }
+
+    @Override
+    public final void i() {
+        this.f55234a.releasePermission();
     }
 
     public g(Uri uri, ClipDescription clipDescription, Uri uri2) {
-        this.f54771a = new InputContentInfo(uri, clipDescription, uri2);
+        this.f55234a = new InputContentInfo(uri, clipDescription, uri2);
     }
 }

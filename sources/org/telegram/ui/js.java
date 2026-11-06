@@ -1,28 +1,25 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class js implements org.telegram.messenger.cs {
-    public final int f46683a;
-    public final View f46684b;
+import android.content.Context;
+import android.widget.LinearLayout;
+import org.telegram.tgnet.TLRPC;
+public final class js extends LinearLayout {
+    public final org.telegram.ui.Components.l9 f47008a;
+    public final org.telegram.ui.ActionBar.k5 f47009b;
+    public final org.telegram.ui.ActionBar.f6 f47010c;
+    public TLRPC.StickerSetCovered d;
 
-    public js(int i3, View view) {
-        this.f46683a = i3;
-        this.f46684b = view;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i3, int i10, Object[] objArr) {
-        switch (this.f46683a) {
-            case 0:
-                org.telegram.ui.Cells.v9 v9Var = (org.telegram.ui.Cells.v9) this.f46684b;
-                if (i3 == 259) {
-                    v9Var.getTextView().invalidate();
-                    return;
-                }
-                return;
-            default:
-                ((org.telegram.ui.ActionBar.k2) this.f46684b).invalidate();
-                return;
-        }
+    public js(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.f47010c = f6Var;
+        org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
+        this.f47008a = l9Var;
+        org.telegram.ui.ActionBar.k5 k5Var = new org.telegram.ui.ActionBar.k5(context);
+        this.f47009b = k5Var;
+        k5Var.setTextSize(16);
+        k5Var.setTextColor(-1);
+        setOrientation(0);
+        addView(l9Var, c8.ha.t(24, 24, 17, 17, 0, 17, 0));
+        addView(k5Var, c8.ha.t(-2, -2, 17, 0, 0, 12, 0));
     }
 }

@@ -1,82 +1,22 @@
 package l2;
 
-import android.content.ClipData;
-import android.media.metrics.LogSessionId;
-import android.net.Uri;
-import android.os.Bundle;
-import android.view.ContentInfo;
-import b8.zb;
-public final class j implements r0.d, r0.f {
-    public final int f17725a;
-    public Object f17726b;
+import android.content.Context;
+import di.h4;
+public class j {
+    public final Context f17894a;
+    public final k0.b f17895b;
+    public int f17896c = 0;
 
-    public j() {
-        this.f17725a = 0;
-        this.f17726b = d.e();
+    public j(Context context) {
+        this.f17894a = context;
+        this.f17895b = new k0.b(context, false);
     }
 
-    @Override
-    public ClipData a() {
-        return ((ContentInfo) this.f17726b).getClip();
+    public n2.q0 a(Context context) {
+        return new h4(context, 1).a();
     }
 
-    @Override
-    public void b(Uri uri) {
-        ((ContentInfo.Builder) this.f17726b).setLinkUri(uri);
-    }
-
-    @Override
-    public r0.g build() {
-        return new r0.g(new j(((ContentInfo.Builder) this.f17726b).build()));
-    }
-
-    @Override
-    public void c(int i3) {
-        ((ContentInfo.Builder) this.f17726b).setFlags(i3);
-    }
-
-    @Override
-    public ContentInfo d() {
-        return (ContentInfo) this.f17726b;
-    }
-
-    @Override
-    public int e() {
-        return ((ContentInfo) this.f17726b).getSource();
-    }
-
-    public void f(LogSessionId logSessionId) {
-        zb.p(((LogSessionId) this.f17726b).equals(d.e()));
-        this.f17726b = logSessionId;
-    }
-
-    @Override
-    public int l() {
-        return ((ContentInfo) this.f17726b).getFlags();
-    }
-
-    @Override
-    public void setExtras(Bundle bundle) {
-        ((ContentInfo.Builder) this.f17726b).setExtras(bundle);
-    }
-
-    public String toString() {
-        switch (this.f17725a) {
-            case 2:
-                return "ContentInfoCompat{" + ((ContentInfo) this.f17726b) + "}";
-            default:
-                return super.toString();
-        }
-    }
-
-    public j(ContentInfo contentInfo) {
-        this.f17725a = 2;
-        contentInfo.getClass();
-        this.f17726b = contentInfo;
-    }
-
-    public j(ClipData clipData, int i3) {
-        this.f17725a = 1;
-        this.f17726b = r0.c.a(clipData, i3);
+    public final l2.b[] b(android.os.Handler r23, l2.c0 r24, l2.c0 r25, l2.c0 r26, l2.c0 r27) {
+        throw new UnsupportedOperationException("Method not decompiled: l2.j.b(android.os.Handler, l2.c0, l2.c0, l2.c0, l2.c0):l2.b[]");
     }
 }

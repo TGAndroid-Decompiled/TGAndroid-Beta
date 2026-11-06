@@ -1,43 +1,51 @@
 package org.telegram.ui.Wallet;
-public final class j3 implements Runnable {
-    public final int f42699a;
-    public final n3 f42700b;
 
-    public j3(n3 n3Var, int i3) {
-        this.f42699a = i3;
-        this.f42700b = n3Var;
+import android.app.Activity;
+import android.view.View;
+public final class j3 implements View.OnClickListener {
+    public final int f42630a;
+    public final Object f42631b;
+
+    public j3(Object obj, int i7) {
+        this.f42630a = i7;
+        this.f42631b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42699a) {
+    public final void onClick(View view) {
+        switch (this.f42630a) {
             case 0:
-                n3 n3Var = this.f42700b;
-                if (!n3Var.T && !n3Var.S) {
-                    n3Var.a(1.0f);
+                ((p3) this.f42631b).dismiss();
+                return;
+            case 1:
+                vf.c.v((Activity) this.f42631b, "https://fragment.com/", false);
+                return;
+            case 2:
+                ((w4) this.f42631b).dismiss();
+                return;
+            case 3:
+                ((Runnable) this.f42631b).run();
+                return;
+            case 4:
+                w6 w6Var = (w6) this.f42631b;
+                if (!w6Var.f43283y && w6Var.f43279r && !w6Var.h.b()) {
+                    w6Var.h.setProgress(0.0f);
+                    w6Var.h.d();
                     return;
                 }
                 return;
+            case 5:
+                t8 t8Var = (t8) this.f42631b;
+                t8Var.b(!t8Var.f43157y);
+                return;
+            case 6:
+                org.telegram.ui.Cells.c2 c2Var = (org.telegram.ui.Cells.c2) this.f42631b;
+                c2Var.c(!c2Var.b(), true);
+                return;
             default:
-                n3 n3Var2 = this.f42700b;
-                if (!n3Var2.T && !n3Var2.S) {
-                    jh.d.c(n3Var2.F, n3Var2.h);
-                    n3Var2.G.d();
-                    f6 f6Var = n3Var2.f42919r;
-                    j3 j3Var = new j3(n3Var2, 0);
-                    a6 a6Var = f6Var.E;
-                    if (a6Var != null) {
-                        if (a6Var.f42138b != null) {
-                            j3Var.run();
-                            return;
-                        } else {
-                            a6Var.d = j3Var;
-                            return;
-                        }
-                    }
-                    j3Var.run();
-                    return;
-                }
+                i9 i9Var = ((m9) this.f42631b).f42755c;
+                i9Var.requestFocus();
+                org.telegram.messenger.g0.K3(i9Var);
                 return;
         }
     }

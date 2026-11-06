@@ -1,24 +1,19 @@
 package org.telegram.ui;
-public final class f21 implements Runnable {
-    public final int f45127a;
-    public final SessionsActivity f45128b;
-    public final boolean f45129c;
 
-    public f21(SessionsActivity sessionsActivity, boolean z10, int i3) {
-        this.f45127a = i3;
-        this.f45128b = sessionsActivity;
-        this.f45129c = z10;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class f21 implements View.OnLongClickListener {
+    public final TLRPC.TL_authorization f45464a;
+    public final l21 f45465b;
+
+    public f21(l21 l21Var, TLRPC.TL_authorization tL_authorization) {
+        this.f45465b = l21Var;
+        this.f45464a = tL_authorization;
     }
 
     @Override
-    public final void run() {
-        switch (this.f45127a) {
-            case 0:
-                this.f45128b.p0(this.f45129c);
-                return;
-            default:
-                this.f45128b.p0(this.f45129c);
-                return;
-        }
+    public final boolean onLongClick(View view) {
+        l21.I0(this.f45465b, this.f45464a.country);
+        return true;
     }
 }

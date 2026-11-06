@@ -2,39 +2,39 @@ package org.telegram.ui;
 
 import android.view.KeyEvent;
 import android.view.View;
-public final class s implements uq0, org.telegram.ui.Components.hj0, org.telegram.ui.ActionBar.d1 {
-    public final i4 f49313a;
+public final class s implements dr0, org.telegram.ui.Components.dj0, org.telegram.ui.ActionBar.e1 {
+    public final g4 f49587a;
 
-    public s(i4 i4Var) {
-        this.f49313a = i4Var;
+    public s(g4 g4Var) {
+        this.f49587a = g4Var;
     }
 
     @Override
     public void a(float[] fArr) {
-        i4 i4Var = this.f49313a;
-        fArr[0] = i4Var.K0;
-        fArr[1] = i4Var.f46100v0[0].f47083b.getMeasuredHeight();
+        g4 g4Var = this.f49587a;
+        fArr[0] = g4Var.J0;
+        fArr[1] = g4Var.f45816u0[0].f47065b.getMeasuredHeight();
     }
 
     @Override
-    public boolean f(int i3, View view) {
-        i4 i4Var = this.f49313a;
-        i4Var.getClass();
-        if (view instanceof h2) {
-            b4 b4Var = ((h2) view).f45784n;
-            i4Var.X(b4Var.f43913a.articles.get(b4Var.f43914b).url);
+    public boolean c(int i7, View view) {
+        g4 g4Var = this.f49587a;
+        g4Var.getClass();
+        if (view instanceof g2) {
+            a4 a4Var = ((g2) view).f45759n;
+            g4Var.X(a4Var.f43534a.articles.get(a4Var.f43535b).url);
             return true;
         }
         return false;
     }
 
     @Override
-    public void k(KeyEvent keyEvent) {
-        org.telegram.ui.ActionBar.f1 f1Var;
-        i4 i4Var = this.f49313a;
-        i4Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (f1Var = i4Var.I) != null && f1Var.isShowing()) {
-            i4Var.I.d(true);
+    public void j(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.g1 g1Var;
+        g4 g4Var = this.f49587a;
+        g4Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var = g4Var.H) != null && g1Var.isShowing()) {
+            g4Var.H.d(true);
         }
     }
 }

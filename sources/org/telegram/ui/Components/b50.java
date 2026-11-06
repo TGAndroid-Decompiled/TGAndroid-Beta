@@ -1,41 +1,31 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLObject;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class b50 implements org.telegram.ui.d90 {
-    public final c50 f32086a;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.ProfileActivity;
+public final class b50 extends ClickableSpan {
+    public final org.telegram.ui.ActionBar.v2[] f32002a;
+    public final TLRPC.TL_chatInviteImporter f32003b;
 
-    public b50(c50 c50Var) {
-        this.f32086a = c50Var;
+    public b50(org.telegram.ui.ActionBar.v2[] v2VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
+        this.f32002a = v2VarArr;
+        this.f32003b = tL_chatInviteImporter;
     }
 
     @Override
-    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
-        int i3;
-        org.telegram.ui.za zaVar = this.f32086a.f32565a.f32935c.f34600b2;
-        if (zaVar != null) {
-            TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
-            TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
-            tL_channelAdminLogEventActionExportedInviteEdit.new_invite = tL_chatInviteExported;
-            tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
-            tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
-            tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
-            org.telegram.ui.kb kbVar = zaVar.f52592a;
-            tL_channelAdminLogEvent.user_id = org.telegram.messenger.h10.i(kbVar.getAccountInstance().f21919a).f22848n;
-            i3 = ((org.telegram.ui.ActionBar.d2) kbVar).currentAccount;
-            if (new org.telegram.messenger.zi(i3, tL_channelAdminLogEvent, kbVar.f46875o0, kbVar.f46874n0, kbVar.f46865f, kbVar.U, true).U >= 0) {
-                kbVar.W0();
-                kbVar.F.f();
-                org.telegram.ui.kb.P0(kbVar);
-            }
+    public final void onClick(View view) {
+        this.f32002a[0].dismiss();
+        org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
+        if (T != null) {
+            T.presentFragment(ProfileActivity.A4(this.f32003b.user_id));
         }
     }
 
     @Override
-    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
-    }
-
-    @Override
-    public final void c(TLObject tLObject) {
+    public final void updateDrawState(TextPaint textPaint) {
+        textPaint.setUnderlineText(false);
     }
 }

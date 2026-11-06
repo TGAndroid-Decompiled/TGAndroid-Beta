@@ -1,74 +1,66 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
+import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
-public final class rk extends u4.t0 {
-    public final int f37744a;
-    public final uk f37745b;
+public final class rk implements ViewTreeObserver.OnPreDrawListener {
+    public final int f37766a;
+    public final View f37767b;
 
-    public rk(uk ukVar, int i3) {
-        this.f37744a = i3;
-        this.f37745b = ukVar;
+    public rk(int i7, View view) {
+        this.f37766a = i7;
+        this.f37767b = view;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i3) {
-        boolean z10;
-        bj0 bj0Var;
-        switch (this.f37744a) {
+    public final boolean onPreDraw() {
+        float f10;
+        RecyclerView recyclerView;
+        switch (this.f37766a) {
             case 0:
-                uk ukVar = this.f37745b;
-                ci.j1 j1Var = ukVar.M;
-                if (i3 != 0) {
-                    z10 = true;
+                wk wkVar = (wk) this.f37767b;
+                r7 r7Var = wkVar.f38951b.R2;
+                if (r7Var != null) {
+                    f10 = r7Var.getAlpha();
                 } else {
-                    z10 = false;
+                    f10 = 0.0f;
                 }
-                ukVar.I = z10;
-                if (!z10 && ukVar.G != null) {
-                    ukVar.G = null;
+                if (f10 != wkVar.f40010z0) {
+                    wkVar.f40010z0 = f10;
+                    wkVar.i0();
+                    return true;
                 }
-                if (i3 == 0) {
-                    int L = org.telegram.messenger.g0.L(13.0f);
-                    bi biVar = ukVar.f38416b;
-                    int i10 = biVar.f28617t0;
-                    if (((biVar.W3[0] - i10) - L) + i10 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (bj0Var = (bj0) j1Var.K(0)) != null) {
-                        View view = bj0Var.f55540a;
-                        if (view.getTop() > 0) {
-                            j1Var.w0(0, view.getTop(), null);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
+                return true;
+            case 1:
+                org.telegram.ui.ActionBar.w3 w3Var = ((EditTextBoldCursor) this.f37767b).Y0;
+                if (w3Var != null) {
+                    w3Var.c();
+                    return true;
                 }
-                return;
+                return true;
+            case 2:
+                ((i60) this.f37767b).invalidate();
+                return true;
             default:
-                if (i3 == 1) {
-                    uk ukVar2 = this.f37745b;
-                    if (ukVar2.f38783d0 && ukVar2.f38784e0) {
-                        org.telegram.messenger.g0.v1(ukVar2.f38416b.getCurrentFocus());
-                        return;
+                ht0 ht0Var = (ht0) this.f37767b;
+                if (ht0Var.f34414a && ht0Var.f34416b > 0) {
+                    ht0Var.f("PRE_DRAW_BEFORE", null, 0, 0, true);
+                }
+                ht0Var.p();
+                if (ht0Var.f34425g0 && (recyclerView = ht0Var.E) != null && !recyclerView.c0()) {
+                    float n10 = ht0Var.n();
+                    if (!Float.isInfinite(n10)) {
+                        ht0Var.f34425g0 = false;
+                        ht0Var.t(ht0Var.E, Math.round(n10 - ht0Var.U));
+                        ht0Var.B();
                     }
-                    return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public void b(RecyclerView recyclerView, int i3, int i10) {
-        switch (this.f37744a) {
-            case 0:
-                uk ukVar = this.f37745b;
-                ukVar.i0();
-                if (ukVar.G != null) {
-                    ukVar.H += i10;
+                if (ht0Var.f34414a && ht0Var.f34416b > 0) {
+                    ht0Var.f("PRE_DRAW_AFTER", null, 0, 0, true);
+                    ht0Var.f34416b--;
+                    ht0Var.f34418c++;
                 }
-                ukVar.f38416b.M1(ukVar, i10);
-                return;
-            default:
-                return;
+                return true;
         }
     }
 }

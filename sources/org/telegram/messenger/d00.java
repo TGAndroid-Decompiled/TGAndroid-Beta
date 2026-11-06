@@ -1,24 +1,25 @@
 package org.telegram.messenger;
-public final class d00 implements jc, ic {
-    public final x00 f22115a;
-    public final zi f22116b;
-    public final e3.s f22117c;
-    public final ci.w9 d;
 
-    public d00(x00 x00Var, zi ziVar, e3.s sVar, ci.w9 w9Var) {
-        this.f22115a = x00Var;
-        this.f22116b = ziVar;
-        this.f22117c = sVar;
-        this.d = w9Var;
+import java.util.ArrayList;
+public final class d00 implements Runnable {
+    public final int f21934a;
+    public final k00 f21935b;
+    public final long f21936c;
+    public final ArrayList d;
+    public final boolean f21937e;
+    public final long f21938f;
+
+    public d00(k00 k00Var, long j3, ArrayList arrayList, boolean z9, long j10, int i7) {
+        this.f21934a = i7;
+        this.f21935b = k00Var;
+        this.f21936c = j3;
+        this.d = arrayList;
+        this.f21937e = z9;
+        this.f21938f = j10;
     }
 
     @Override
-    public void a(String str) {
-        g0.h3(new cn(this.f22115a, this.f22116b, str, this.f22117c, this.d, 18));
-    }
-
-    @Override
-    public void s(Exception exc) {
-        g0.h3(new ul(this.f22115a, this.f22116b, this.f22117c, this.d, 27));
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.d00.run():void");
     }
 }

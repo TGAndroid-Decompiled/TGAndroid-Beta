@@ -1,61 +1,77 @@
 package dh;
 
-import android.app.Activity;
-import android.graphics.PorterDuff;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import b8.mf;
-import org.telegram.messenger.bd;
-import org.telegram.messenger.u10;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.r6;
-public final class f extends FrameLayout {
-    public static final int f8999e = 0;
-    public final e f9000a;
-    public boolean f9001b;
-    public boolean f9002c;
-    public u10 d;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.RenderNode;
+import android.support.v4.media.session.w;
+import bg.o0;
+import org.telegram.messenger.g0;
+public final class f {
+    public final e f8731b;
+    public final e f8732c;
+    public long f8733e;
+    public final RenderNode f8730a = w.c();
+    public final Rect d = new Rect();
 
-    public f(Activity activity, e6 e6Var) {
-        super(activity);
-        int x02;
-        e eVar = new e(this, activity);
-        this.f9000a = eVar;
-        eVar.setHapticFeedbackEnabled(true);
-        eVar.setImageResource(2131232737);
-        r6.t(eVar, k6.Gf, e6Var, PorterDuff.Mode.MULTIPLY);
-        eVar.setScaleType(ImageView.ScaleType.CENTER);
-        eVar.setContentDescription(bd.M0(2131754920, null));
-        eVar.setFocusable(true);
-        eVar.setOnClickListener(new ai.t(4));
-        addView(eVar, mf.e(36, 36, 17));
-        int x03 = k6.x0(null, k6.f27972i6, false);
-        int L = org.telegram.messenger.g0.L(36.0f);
-        int i3 = k6.f27878d6;
-        if (e6Var != null) {
-            x02 = e6Var.h(i3);
+    public f(g gVar) {
+        int i7;
+        boolean z9 = gVar.f8734a;
+        boolean z10 = gVar.f8736c;
+        if (z9) {
+            if (z10) {
+                e eVar = new e(gVar, "glass", 0, true);
+                this.f8732c = eVar;
+                eVar.f8725e = 4;
+                eVar.f8726f = 4;
+                eVar.d(g0.N(6.0f), o0.d());
+            } else {
+                e eVar2 = new e(gVar, "glass", 1, true);
+                this.f8732c = eVar2;
+                eVar2.f8725e = 4;
+                eVar2.f8726f = 4;
+                eVar2.c(g0.N(6.0f));
+                eVar2.e(o0.d());
+            }
+            e eVar3 = new e(gVar, "blur", 0, false);
+            this.f8731b = eVar3;
+            eVar3.f8725e = 8;
+            eVar3.f8726f = 8;
+            eVar3.c(g0.N(38.34f));
+        } else if (z10) {
+            e eVar4 = new e(gVar, "blur", 0, false);
+            this.f8731b = eVar4;
+            boolean z11 = gVar.f8735b;
+            if (z11) {
+                i7 = 16;
+            } else {
+                i7 = 8;
+            }
+            int i10 = z11 ? 16 : 8;
+            eVar4.f8725e = i7;
+            eVar4.f8726f = i10;
+            eVar4.d(g0.N(40.0f), o0.d());
+            this.f8732c = null;
         } else {
-            x02 = k6.x0(null, i3, false);
+            e eVar5 = new e(gVar, "blur", 1, false);
+            this.f8731b = eVar5;
+            eVar5.f8725e = 8;
+            eVar5.f8726f = 8;
+            eVar5.c(g0.N(40.0f));
+            eVar5.e(o0.d());
+            this.f8732c = null;
         }
-        org.telegram.ui.Cells.y j02 = k6.j0(L, x02, x03);
-        n6 N = r6.N(i3);
-        eVar.setBackground(j02);
-        r6.k(eVar, j02, N, null, e6Var);
-        eVar.setOutlineProvider(new cg.q0(18));
-        eVar.setElevation(org.telegram.messenger.g0.L(1.0f));
-        eVar.setClipToOutline(true);
-        setClickable(true);
     }
 
-    @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(42.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(42.0f), 1073741824));
-    }
-
-    public void setOnBackspace(u10 u10Var) {
-        this.d = u10Var;
+    public static void a(f fVar, RectF rectF) {
+        Rect rect = fVar.d;
+        float f10 = rectF.left;
+        float f11 = 16;
+        rect.left = Math.round(f10 - (f10 % f11));
+        float f12 = rectF.top;
+        rect.top = Math.round(f12 - (f12 % f11));
+        float f13 = rectF.right;
+        rect.right = Math.round((f11 - (f13 % f11)) + f13);
+        float f14 = rectF.bottom;
+        rect.bottom = Math.round((f11 - (f14 % f11)) + f14);
     }
 }

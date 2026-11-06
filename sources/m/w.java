@@ -1,188 +1,203 @@
 package m;
 
+import a8.wa;
 import android.content.Context;
 import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.text.method.KeyListener;
-import android.text.method.NumberKeyListener;
+import android.graphics.drawable.RippleDrawable;
+import android.net.Uri;
 import android.util.AttributeSet;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.widget.MultiAutoCompleteTextView;
-import b8.oc;
-import b8.zd;
-public final class w extends MultiAutoCompleteTextView implements u0.k {
-    public static final int[] d = {16843126};
-    public final g2.d f18747a;
-    public final w0 f18748b;
-    public final y f18749c;
+import android.widget.ImageView;
+public class w extends ImageView {
+    public final h2.c f19272a;
+    public final wa f19273b;
+    public boolean f19274c;
 
-    public w(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet, 2130968624);
-        a3.a(context);
-        z2.a(this, getContext());
-        k4.j F = k4.j.F(getContext(), attributeSet, d, 2130968624);
-        if (((TypedArray) F.f16870b).hasValue(0)) {
-            setDropDownBackgroundDrawable(F.A(0));
-        }
-        F.H();
-        g2.d dVar = new g2.d(this);
-        this.f18747a = dVar;
-        dVar.x(attributeSet, 2130968624);
-        w0 w0Var = new w0(this);
-        this.f18748b = w0Var;
-        w0Var.f(attributeSet, 2130968624);
-        w0Var.b();
-        y yVar = new y(this);
-        this.f18749c = yVar;
-        yVar.b(attributeSet, 2130968624);
-        KeyListener keyListener = getKeyListener();
-        if (!(keyListener instanceof NumberKeyListener)) {
-            boolean isFocusable = isFocusable();
-            boolean isClickable = isClickable();
-            boolean isLongClickable = isLongClickable();
-            int inputType = getInputType();
-            KeyListener a10 = yVar.a(keyListener);
-            if (a10 != keyListener) {
-                super.setKeyListener(a10);
-                setRawInputType(inputType);
-                setFocusable(isFocusable);
-                setClickable(isClickable);
-                setLongClickable(isLongClickable);
-            }
-        }
+    public w(Context context, AttributeSet attributeSet, int i7) {
+        super(context, attributeSet, i7);
+        b3.a(context);
+        this.f19274c = false;
+        a3.a(this, getContext());
+        h2.c cVar = new h2.c(this);
+        this.f19272a = cVar;
+        cVar.x(attributeSet, i7);
+        wa waVar = new wa(this);
+        this.f19273b = waVar;
+        waVar.s(attributeSet, i7);
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        g2.d dVar = this.f18747a;
-        if (dVar != null) {
-            dVar.b();
+        h2.c cVar = this.f19272a;
+        if (cVar != null) {
+            cVar.b();
         }
-        w0 w0Var = this.f18748b;
-        if (w0Var != null) {
-            w0Var.b();
+        wa waVar = this.f19273b;
+        if (waVar != null) {
+            waVar.c();
         }
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        g2.d dVar = this.f18747a;
-        if (dVar != null) {
-            return dVar.v();
+        h2.c cVar = this.f19272a;
+        if (cVar != null) {
+            return cVar.v();
         }
         return null;
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        g2.d dVar = this.f18747a;
-        if (dVar != null) {
-            return dVar.w();
+        h2.c cVar = this.f19272a;
+        if (cVar != null) {
+            return cVar.w();
         }
         return null;
     }
 
-    public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f18748b.d();
+    public ColorStateList getSupportImageTintList() {
+        c3 c3Var;
+        wa waVar = this.f19273b;
+        if (waVar == null || (c3Var = (c3) waVar.d) == null) {
+            return null;
+        }
+        return (ColorStateList) c3Var.f19074c;
     }
 
-    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f18748b.e();
+    public PorterDuff.Mode getSupportImageTintMode() {
+        c3 c3Var;
+        wa waVar = this.f19273b;
+        if (waVar == null || (c3Var = (c3) waVar.d) == null) {
+            return null;
+        }
+        return (PorterDuff.Mode) c3Var.d;
     }
 
     @Override
-    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-        zd.a(editorInfo, onCreateInputConnection, this);
-        return this.f18749c.c(onCreateInputConnection, editorInfo);
+    public final boolean hasOverlappingRendering() {
+        if (!(((ImageView) this.f19273b.f701c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        g2.d dVar = this.f18747a;
-        if (dVar != null) {
-            dVar.y();
+        h2.c cVar = this.f19272a;
+        if (cVar != null) {
+            cVar.y();
         }
     }
 
     @Override
-    public void setBackgroundResource(int i3) {
-        super.setBackgroundResource(i3);
-        g2.d dVar = this.f18747a;
-        if (dVar != null) {
-            dVar.z(i3);
+    public void setBackgroundResource(int i7) {
+        super.setBackgroundResource(i7);
+        h2.c cVar = this.f19272a;
+        if (cVar != null) {
+            cVar.z(i7);
         }
     }
 
     @Override
-    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f18748b;
-        if (w0Var != null) {
-            w0Var.b();
+    public void setImageBitmap(Bitmap bitmap) {
+        super.setImageBitmap(bitmap);
+        wa waVar = this.f19273b;
+        if (waVar != null) {
+            waVar.c();
         }
     }
 
     @Override
-    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
-        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
-        w0 w0Var = this.f18748b;
-        if (w0Var != null) {
-            w0Var.b();
+    public void setImageDrawable(Drawable drawable) {
+        wa waVar = this.f19273b;
+        if (waVar != null && drawable != null && !this.f19274c) {
+            waVar.f700b = drawable.getLevel();
+        }
+        super.setImageDrawable(drawable);
+        if (waVar != null) {
+            waVar.c();
+            if (!this.f19274c) {
+                ImageView imageView = (ImageView) waVar.f701c;
+                if (imageView.getDrawable() != null) {
+                    imageView.getDrawable().setLevel(waVar.f700b);
+                }
+            }
         }
     }
 
     @Override
-    public void setDropDownBackgroundResource(int i3) {
-        setDropDownBackgroundDrawable(oc.b(getContext(), i3));
-    }
-
-    public void setEmojiCompatEnabled(boolean z10) {
-        this.f18749c.d(z10);
+    public void setImageLevel(int i7) {
+        super.setImageLevel(i7);
+        this.f19274c = true;
     }
 
     @Override
-    public void setKeyListener(KeyListener keyListener) {
-        super.setKeyListener(this.f18749c.a(keyListener));
+    public void setImageResource(int i7) {
+        wa waVar = this.f19273b;
+        if (waVar != null) {
+            ImageView imageView = (ImageView) waVar.f701c;
+            if (i7 != 0) {
+                Drawable b10 = b5.a.b(imageView.getContext(), i7);
+                if (b10 != null) {
+                    m1.a(b10);
+                }
+                imageView.setImageDrawable(b10);
+            } else {
+                imageView.setImageDrawable(null);
+            }
+            waVar.c();
+        }
+    }
+
+    @Override
+    public void setImageURI(Uri uri) {
+        super.setImageURI(uri);
+        wa waVar = this.f19273b;
+        if (waVar != null) {
+            waVar.c();
+        }
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        g2.d dVar = this.f18747a;
-        if (dVar != null) {
-            dVar.D(colorStateList);
+        h2.c cVar = this.f19272a;
+        if (cVar != null) {
+            cVar.D(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        g2.d dVar = this.f18747a;
-        if (dVar != null) {
-            dVar.E(mode);
+        h2.c cVar = this.f19272a;
+        if (cVar != null) {
+            cVar.E(mode);
         }
     }
 
-    @Override
-    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        w0 w0Var = this.f18748b;
-        w0Var.l(colorStateList);
-        w0Var.b();
+    public void setSupportImageTintList(ColorStateList colorStateList) {
+        wa waVar = this.f19273b;
+        if (waVar != null) {
+            if (((c3) waVar.d) == null) {
+                waVar.d = new Object();
+            }
+            c3 c3Var = (c3) waVar.d;
+            c3Var.f19074c = colorStateList;
+            c3Var.f19073b = true;
+            waVar.c();
+        }
     }
 
-    @Override
-    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        w0 w0Var = this.f18748b;
-        w0Var.m(mode);
-        w0Var.b();
-    }
-
-    @Override
-    public final void setTextAppearance(Context context, int i3) {
-        super.setTextAppearance(context, i3);
-        w0 w0Var = this.f18748b;
-        if (w0Var != null) {
-            w0Var.g(context, i3);
+    public void setSupportImageTintMode(PorterDuff.Mode mode) {
+        wa waVar = this.f19273b;
+        if (waVar != null) {
+            if (((c3) waVar.d) == null) {
+                waVar.d = new Object();
+            }
+            c3 c3Var = (c3) waVar.d;
+            c3Var.d = mode;
+            c3Var.f19072a = true;
+            waVar.c();
         }
     }
 }

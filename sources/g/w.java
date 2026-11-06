@@ -5,14 +5,14 @@ import android.util.AttributeSet;
 import android.view.View;
 import java.lang.reflect.Constructor;
 public final class w {
-    public static final Class[] f11769b = {Context.class, AttributeSet.class};
-    public static final int[] f11770c = {16843375};
+    public static final Class[] f13384b = {Context.class, AttributeSet.class};
+    public static final int[] f13385c = {16843375};
     public static final int[] d = {16844160};
-    public static final int[] f11771e = {16844156};
-    public static final int[] f11772f = {16844148};
-    public static final String[] f11773g = {"android.widget.", "android.view.", "android.webkit."};
+    public static final int[] f13386e = {16844156};
+    public static final int[] f13387f = {16844148};
+    public static final String[] f13388g = {"android.widget.", "android.view.", "android.webkit."};
     public static final a0.l h = new a0.l(0);
-    public final Object[] f11774a = new Object[2];
+    public final Object[] f13389a = new Object[2];
 
     public final View a(Context context, String str, String str2) {
         String concat;
@@ -28,10 +28,10 @@ public final class w {
             } else {
                 concat = str;
             }
-            constructor = Class.forName(concat, false, context.getClassLoader()).asSubclass(View.class).getConstructor(f11769b);
+            constructor = Class.forName(concat, false, context.getClassLoader()).asSubclass(View.class).getConstructor(f13384b);
             lVar.put(str, constructor);
         }
         constructor.setAccessible(true);
-        return (View) constructor.newInstance(this.f11774a);
+        return (View) constructor.newInstance(this.f13389a);
     }
 }

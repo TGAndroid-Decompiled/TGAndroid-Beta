@@ -1,100 +1,92 @@
 package yg;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import k2.p1;
+import c8.ha;
+import di.d4;
 import org.telegram.messenger.g0;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.j2;
-import org.telegram.ui.Components.sj0;
-import u4.d1;
-import zg.c0;
-import zg.d0;
-import zg.r;
-import zg.t;
-public abstract class e extends sj0 {
-    public final e6 f59443c;
-    public boolean d;
-    public d2 f59444e;
-    public TLRPC.TL_payments_checkedGiftCode f59445f;
-    public String h;
-    public j2 f59446n;
-
-    public e(e6 e6Var) {
-        this.f59443c = e6Var;
-    }
-
+import org.telegram.messenger.hd;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Components.l9;
+import org.telegram.ui.Components.w8;
+public final class e extends d {
     @Override
-    public final boolean D(d1 d1Var) {
-        return false;
-    }
-
-    public abstract void E();
-
-    public abstract void F(TLObject tLObject);
-
-    @Override
-    public final int b() {
-        return 5;
-    }
-
-    @Override
-    public final int d(int i3) {
-        if (i3 != 0) {
-            int i10 = 1;
-            if (i3 != 1) {
-                i10 = 2;
-                if (i3 != 2) {
-                    i10 = 3;
-                    if (i3 != 3) {
-                        i10 = 4;
-                        if (i3 != 4) {
-                            return 5;
-                        }
-                    }
-                }
-            }
-            return i10;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void t(u4.d1 r22, int r23) {
-        throw new UnsupportedOperationException("Method not decompiled: yg.e.t(u4.d1, int):void");
-    }
-
-    @Override
-    public final d1 x(ViewGroup viewGroup, int i3) {
-        View tVar;
-        Context context = viewGroup.getContext();
-        e6 e6Var = this.f59443c;
-        if (i3 != 1) {
-            if (i3 != 2) {
-                if (i3 != 3) {
-                    if (i3 != 4) {
-                        if (i3 != 5) {
-                            tVar = new r(context, e6Var);
-                        } else {
-                            tVar = new View(context);
-                        }
-                    } else {
-                        tVar = new zg.a(context, e6Var);
-                        tVar.setPadding(0, 0, 0, g0.L(14.0f));
-                    }
-                } else {
-                    tVar = new d0(context, e6Var);
-                }
-            } else {
-                tVar = new c0(context, e6Var);
-            }
+    public final void d() {
+        int i7;
+        int i10;
+        float f10;
+        float f11;
+        float f12;
+        float f13;
+        int i11 = 3;
+        if (hd.f22871a0) {
+            i7 = 5;
         } else {
-            tVar = new t(context, e6Var);
+            i7 = 3;
         }
-        return p1.p(tVar, tVar, -1, -2);
+        this.f59311c.setLayoutParams(ha.d(40, 40.0f, i7 | 16, 16.0f, 0.0f, 16.0f, 0.0f));
+        boolean z9 = hd.f22871a0;
+        if (z9) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        int i12 = i10 | 16;
+        if (z9) {
+            f10 = 20.0f;
+        } else {
+            f10 = 69.0f;
+        }
+        if (z9) {
+            f11 = 69.0f;
+        } else {
+            f11 = 20.0f;
+        }
+        this.d.setLayoutParams(ha.d(-1, -2.0f, i12, f10, 0.0f, f11, 0.0f));
+        boolean z10 = hd.f22871a0;
+        if (z10) {
+            i11 = 5;
+        }
+        int i13 = i11 | 16;
+        if (z10) {
+            f12 = 20.0f;
+        } else {
+            f12 = 69.0f;
+        }
+        if (z10) {
+            f13 = 69.0f;
+        } else {
+            f13 = 20.0f;
+        }
+        this.f59312e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+    }
+
+    public void setGiveaway(TL_stories.PrepaidGiveaway prepaidGiveaway) {
+        r6.Y(this.f59312e, k6.f28106r5, this.f59309a);
+        boolean z9 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
+        d4 d4Var = this.d;
+        w8 w8Var = this.f59310b;
+        if (z9) {
+            TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
+            w8Var.g(26);
+            d4Var.k(hd.H(',', "BoostingStarsPreparedGiveawaySubscriptionsPlural", (int) tL_prepaidStarsGiveaway.stars));
+            setSubtitle(hd.G(tL_prepaidStarsGiveaway.quantity, "AmongWinners", new Object[0]));
+        } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
+            d4Var.k(hd.M0(2131753328, null));
+            w8Var.g(16);
+            TL_stories.TL_prepaidGiveaway tL_prepaidGiveaway = (TL_stories.TL_prepaidGiveaway) prepaidGiveaway;
+            int i7 = tL_prepaidGiveaway.months;
+            if (i7 == 12) {
+                w8Var.i(-31392, -2796986);
+            } else if (i7 == 6) {
+                w8Var.i(-10703110, -12481584);
+            } else {
+                w8Var.i(-6631068, -11945404);
+            }
+            setSubtitle(hd.G(prepaidGiveaway.quantity, "BoostingPreparedGiveawaySubscriptionsPlural", hd.G(tL_prepaidGiveaway.months, "Months", new Object[0])));
+        }
+        l9 l9Var = this.f59311c;
+        l9Var.setImageDrawable(w8Var);
+        l9Var.setRoundRadius(g0.L(20.0f));
     }
 }

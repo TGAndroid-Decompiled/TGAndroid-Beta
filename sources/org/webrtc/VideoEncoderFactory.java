@@ -2,13 +2,13 @@ package org.webrtc;
 public interface VideoEncoderFactory {
 
     public interface VideoEncoderSelector {
-        VideoCodecInfo onAvailableBitrate(int i3);
+        VideoCodecInfo onAvailableBitrate(int i7);
 
         void onCurrentEncoder(VideoCodecInfo videoCodecInfo);
 
         VideoCodecInfo onEncoderBroken();
 
-        VideoCodecInfo onResolutionChange(int i3, int i10);
+        VideoCodecInfo onResolutionChange(int i7, int i10);
     }
 
     VideoEncoder createEncoder(VideoCodecInfo videoCodecInfo);

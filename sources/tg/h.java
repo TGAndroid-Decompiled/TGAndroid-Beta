@@ -1,62 +1,30 @@
 package tg;
+public interface h {
+    void B(boolean z9);
 
-import java.util.Arrays;
-import java.util.List;
-public abstract class h {
-    public static final List f55183a = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object(), new Object());
+    void C();
 
-    public float a() {
-        return 0.85f;
-    }
+    void d(boolean z9);
 
-    public float b() {
-        return 0.0f;
-    }
+    void e(boolean z9);
 
-    public int c() {
-        return -16777216;
-    }
+    void f(j jVar);
 
-    public float d() {
-        return 0.25f;
-    }
+    void g();
 
-    public abstract int e();
+    void h();
 
-    public float f() {
-        return 1.0f;
-    }
+    void j(boolean z9);
 
-    public float g() {
-        return 0.4f;
-    }
+    int[] n(j jVar);
 
-    public float h() {
-        return 1.0f;
-    }
+    boolean p();
 
-    public String i(int i3) {
-        if (i3 != 0) {
-            if (i3 != 1) {
-                if (i3 != 2) {
-                    return null;
-                }
-                return "brush";
-            }
-            return "compositeWithMask";
-        }
-        return "blitWithMask";
-    }
+    boolean q();
 
-    public float j() {
-        return 1.0f;
-    }
+    boolean u(j jVar);
 
-    public float k() {
-        return 0.15f;
-    }
+    void v(float f10, float f11, float[] fArr);
 
-    public int l() {
-        return 2131232511;
-    }
+    void y();
 }

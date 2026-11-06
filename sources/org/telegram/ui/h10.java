@@ -1,19 +1,8 @@
 package org.telegram.ui;
+public final class h10 {
+    public final c40 f46172a;
 
-import android.view.animation.OvershootInterpolator;
-public final class h10 extends nh.b {
-    public final OvershootInterpolator d;
-    public int f45775e;
-    public final x30 f45776f;
-
-    public h10(x30 x30Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f45776f = x30Var;
-        this.d = new OvershootInterpolator(1.5f);
-    }
-
-    @Override
-    public final void dispatchDraw(android.graphics.Canvas r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.h10.dispatchDraw(android.graphics.Canvas):void");
+    public h10(c40 c40Var) {
+        this.f46172a = c40Var;
     }
 }

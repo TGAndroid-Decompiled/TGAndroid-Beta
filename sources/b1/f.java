@@ -1,23 +1,22 @@
 package b1;
 
-import dd.k;
-import ed.p;
-import ed.s;
+import bi.a4;
+import gd.k;
+import hd.r;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Executor;
 import kotlin.jvm.internal.j;
-import v0.h;
-import v0.n;
-public final class f implements od.a {
-    public final int f2335a;
-    public final Object f2336b;
-    public final Object f2337c;
+import v0.o;
+public final class f implements rd.a {
+    public final int f2901a;
+    public final Object f2902b;
+    public final Object f2903c;
 
-    public f(int i3, Object obj, Object obj2) {
-        this.f2335a = i3;
-        this.f2336b = obj;
-        this.f2337c = obj2;
+    public f(int i7, Object obj, Object obj2) {
+        this.f2901a = i7;
+        this.f2902b = obj;
+        this.f2903c = obj2;
     }
 
     @Override
@@ -25,25 +24,25 @@ public final class f implements od.a {
         Object obj;
         String[] names;
         String str;
-        switch (this.f2335a) {
+        switch (this.f2901a) {
             case 0:
-                ((Executor) this.f2336b).execute(new a1.e((h) this.f2337c, 7));
+                ((Executor) this.f2902b).execute(new a1.b((v0.g) this.f2903c, 7));
                 break;
             case 1:
-                c1.e eVar = (c1.e) this.f2336b;
-                eVar.f().execute(new a1.f(24, eVar, (n) this.f2337c));
+                c1.e eVar = (c1.e) this.f2902b;
+                eVar.g().execute(new a4(14, eVar, (o) this.f2903c));
                 break;
             default:
-                je.d dVar = (je.d) this.f2336b;
-                me.b bVar = (me.b) this.f2337c;
+                me.d dVar = (me.d) this.f2902b;
+                pe.b bVar = (pe.b) this.f2903c;
                 LinkedHashMap linkedHashMap = new LinkedHashMap();
-                bVar.f19277a.getClass();
-                ne.f.e(dVar, bVar);
+                bVar.f53459a.getClass();
+                qe.f.e(dVar, bVar);
                 int f10 = dVar.f();
-                for (int i3 = 0; i3 < f10; i3++) {
+                for (int i7 = 0; i7 < f10; i7++) {
                     ArrayList arrayList = new ArrayList();
-                    for (Object obj2 : dVar.h(i3)) {
-                        if (obj2 instanceof me.d) {
+                    for (Object obj2 : dVar.h(i7)) {
+                        if (obj2 instanceof pe.d) {
                             arrayList.add(obj2);
                         }
                     }
@@ -52,18 +51,18 @@ public final class f implements od.a {
                     } else {
                         obj = null;
                     }
-                    me.d dVar2 = (me.d) obj;
+                    pe.d dVar2 = (pe.d) obj;
                     if (dVar2 != null && (names = dVar2.names()) != null) {
                         for (String str2 : names) {
-                            if (j.a(dVar.e(), je.e.f16244c)) {
+                            if (j.a(dVar.e(), me.e.f20009c)) {
                                 str = "enum value";
                             } else {
                                 str = "property";
                             }
                             if (!linkedHashMap.containsKey(str2)) {
-                                linkedHashMap.put(str2, Integer.valueOf(i3));
+                                linkedHashMap.put(str2, Integer.valueOf(i7));
                             } else {
-                                String message = "The suggested name '" + str2 + "' for " + str + ' ' + dVar.g(i3) + " is already one of the names for " + str + ' ' + dVar.g(((Number) s.a(linkedHashMap, str2)).intValue()) + " in " + dVar;
+                                String message = "The suggested name '" + str2 + "' for " + str + ' ' + dVar.g(i7) + " is already one of the names for " + str + ' ' + dVar.g(((Number) r.a(linkedHashMap, str2)).intValue()) + " in " + dVar;
                                 j.e(message, "message");
                                 throw new IllegalArgumentException(message);
                             }
@@ -72,10 +71,10 @@ public final class f implements od.a {
                     }
                 }
                 if (linkedHashMap.isEmpty()) {
-                    return p.f9954a;
+                    return hd.o.f14475a;
                 }
                 return linkedHashMap;
         }
-        return k.f8801a;
+        return k.f13829a;
     }
 }

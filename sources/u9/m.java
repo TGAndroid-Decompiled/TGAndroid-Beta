@@ -1,30 +1,33 @@
 package u9;
+public final class m implements ua.b {
+    public static final Object f56363c = new Object();
+    public volatile Object f56364a = f56363c;
+    public volatile ua.b f56365b;
 
-import android.os.Handler;
-import android.os.Looper;
-import java.util.concurrent.Executor;
-public final class m implements Executor {
-    public static final m f55776a;
-    public static final Handler f55777b;
-    public static final m[] f55778c;
-
-    static {
-        ?? r02 = new Enum("INSTANCE", 0);
-        f55776a = r02;
-        f55778c = new m[]{r02};
-        f55777b = new Handler(Looper.getMainLooper());
-    }
-
-    public static m valueOf(String str) {
-        return (m) Enum.valueOf(m.class, str);
-    }
-
-    public static m[] values() {
-        return (m[]) f55778c.clone();
+    public m(ua.b bVar) {
+        this.f56365b = bVar;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        f55777b.post(runnable);
+    public final Object get() {
+        Object obj;
+        Object obj2 = this.f56364a;
+        Object obj3 = f56363c;
+        if (obj2 == obj3) {
+            synchronized (this) {
+                try {
+                    obj = this.f56364a;
+                    if (obj == obj3) {
+                        obj = this.f56365b.get();
+                        this.f56364a = obj;
+                        this.f56365b = null;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            return obj;
+        }
+        return obj2;
     }
 }

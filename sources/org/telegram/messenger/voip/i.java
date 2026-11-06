@@ -2,15 +2,15 @@ package org.telegram.messenger.voip;
 
 import org.telegram.messenger.voip.VideoCapturerDevice;
 public final class i implements Runnable {
-    public final int f26010a;
+    public final int f26113a;
 
-    public i(int i3) {
-        this.f26010a = i3;
+    public i(int i7) {
+        this.f26113a = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f26010a) {
+        switch (this.f26113a) {
             case 0:
                 VideoCapturerDevice.AnonymousClass1.lambda$onStop$0();
                 return;

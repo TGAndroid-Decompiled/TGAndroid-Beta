@@ -1,48 +1,14 @@
 package i5;
 
-import java.nio.ByteBuffer;
 import java.nio.channels.WritableByteChannel;
-public final class b extends a {
-    public int h;
-    public int f14610n;
-    public long f14611r;
+public interface b {
+    void getBox(WritableByteChannel writableByteChannel);
 
-    @Override
-    public final void getBox(WritableByteChannel writableByteChannel) {
-        writableByteChannel.write(d());
-        ByteBuffer allocate = ByteBuffer.allocate(28);
-        allocate.position(6);
-        g5.b.p(this.f14609f, allocate);
-        g5.b.p(0, allocate);
-        g5.b.p(0, allocate);
-        allocate.putInt((int) 0);
-        g5.b.p(this.h, allocate);
-        g5.b.p(this.f14610n, allocate);
-        g5.b.p(0, allocate);
-        g5.b.p(0, allocate);
-        if (this.f7971e.equals("mlpa")) {
-            allocate.putInt((int) this.f14611r);
-        } else {
-            allocate.putInt((int) (this.f14611r << 16));
-        }
-        writableByteChannel.write((ByteBuffer) allocate.rewind());
-        c(writableByteChannel);
-    }
+    f getParent();
 
-    @Override
-    public final long getSize() {
-        int i3;
-        long b10 = b() + 28;
-        if (8 + b10 >= 4294967296L) {
-            i3 = 16;
-        } else {
-            i3 = 8;
-        }
-        return b10 + i3;
-    }
+    long getSize();
 
-    @Override
-    public final String toString() {
-        return "AudioSampleEntry{bytesPerSample=0, bytesPerFrame=0, bytesPerPacket=0, samplesPerPacket=0, packetSize=0, compressionId=0, soundVersion=0, sampleRate=" + this.f14611r + ", sampleSize=" + this.f14610n + ", channelCount=" + this.h + ", boxes=" + this.f7977b + '}';
-    }
+    String getType();
+
+    void setParent(f fVar);
 }

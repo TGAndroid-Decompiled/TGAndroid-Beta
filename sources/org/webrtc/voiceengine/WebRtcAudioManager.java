@@ -47,8 +47,8 @@ public class WebRtcAudioManager {
             private final int maxRingVolume;
             private final int maxVoiceCallVolume;
 
-            public LogVolumeTask(int i3, int i10) {
-                this.maxRingVolume = i3;
+            public LogVolumeTask(int i7, int i10) {
+                this.maxRingVolume = i7;
                 this.maxVoiceCallVolume = i10;
             }
 
@@ -82,19 +82,19 @@ public class WebRtcAudioManager {
         }
     }
 
-    public WebRtcAudioManager(long j10) {
+    public WebRtcAudioManager(long j3) {
         Logging.d("WebRtcAudioManager", "ctor" + WebRtcAudioUtils.getThreadInfo());
-        this.nativeAudioManager = j10;
+        this.nativeAudioManager = j3;
         AudioManager audioManager = (AudioManager) ContextUtils.getApplicationContext().getSystemService("audio");
         this.audioManager = audioManager;
         this.volumeLogger = new VolumeLogger(audioManager);
         storeAudioParameters();
-        nativeCacheAudioParameters(this.sampleRate, this.outputChannels, this.inputChannels, this.hardwareAEC, this.hardwareAGC, this.hardwareNS, this.lowLatencyOutput, this.lowLatencyInput, this.proAudio, this.aAudio, this.outputBufferSize, this.inputBufferSize, j10);
+        nativeCacheAudioParameters(this.sampleRate, this.outputChannels, this.inputChannels, this.hardwareAEC, this.hardwareAGC, this.hardwareNS, this.lowLatencyOutput, this.lowLatencyInput, this.proAudio, this.aAudio, this.outputBufferSize, this.inputBufferSize, j3);
         WebRtcAudioUtils.logAudioState("WebRtcAudioManager");
     }
 
-    private static void assertTrue(boolean z10) {
-        if (z10) {
+    private static void assertTrue(boolean z9) {
+        if (z9) {
             return;
         }
         throw new AssertionError("Expected condition to be true");
@@ -121,7 +121,7 @@ public class WebRtcAudioManager {
         return Integer.parseInt(property);
     }
 
-    private static int getMinInputFrameSize(int i3, int i10) {
+    private static int getMinInputFrameSize(int i7, int i10) {
         int i11;
         int i12 = i10 * 2;
         if (i10 == 1) {
@@ -129,10 +129,10 @@ public class WebRtcAudioManager {
         } else {
             i11 = 12;
         }
-        return AudioRecord.getMinBufferSize(i3, i11, 2) / i12;
+        return AudioRecord.getMinBufferSize(i7, i11, 2) / i12;
     }
 
-    private static int getMinOutputFrameSize(int i3, int i10) {
+    private static int getMinOutputFrameSize(int i7, int i10) {
         int i11;
         int i12 = i10 * 2;
         if (i10 == 1) {
@@ -140,7 +140,7 @@ public class WebRtcAudioManager {
         } else {
             i11 = 12;
         }
-        return AudioTrack.getMinBufferSize(i3, i11, 2) / i12;
+        return AudioTrack.getMinBufferSize(i7, i11, 2) / i12;
     }
 
     private int getNativeOutputSampleRate() {
@@ -166,19 +166,19 @@ public class WebRtcAudioManager {
     }
 
     public static synchronized boolean getStereoInput() {
-        boolean z10;
+        boolean z9;
         synchronized (WebRtcAudioManager.class) {
-            z10 = useStereoInput;
+            z9 = useStereoInput;
         }
-        return z10;
+        return z9;
     }
 
     public static synchronized boolean getStereoOutput() {
-        boolean z10;
+        boolean z9;
         synchronized (WebRtcAudioManager.class) {
-            z10 = useStereoOutput;
+            z9 = useStereoOutput;
         }
-        return z10;
+        return z9;
     }
 
     private boolean hasEarpiece() {
@@ -241,40 +241,40 @@ public class WebRtcAudioManager {
         return false;
     }
 
-    private native void nativeCacheAudioParameters(int i3, int i10, int i11, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, boolean z15, boolean z16, int i12, int i13, long j10);
+    private native void nativeCacheAudioParameters(int i7, int i10, int i11, boolean z9, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14, boolean z15, int i12, int i13, long j3);
 
-    public static synchronized void setBlacklistDeviceForOpenSLESUsage(boolean z10) {
+    public static synchronized void setBlacklistDeviceForOpenSLESUsage(boolean z9) {
         synchronized (WebRtcAudioManager.class) {
             blacklistDeviceForOpenSLESUsageIsOverridden = true;
-            blacklistDeviceForOpenSLESUsage = z10;
+            blacklistDeviceForOpenSLESUsage = z9;
         }
     }
 
-    public static synchronized void setStereoInput(boolean z10) {
+    public static synchronized void setStereoInput(boolean z9) {
         synchronized (WebRtcAudioManager.class) {
-            Logging.w("WebRtcAudioManager", "Overriding default input behavior: setStereoInput(" + z10 + ')');
-            useStereoInput = z10;
+            Logging.w("WebRtcAudioManager", "Overriding default input behavior: setStereoInput(" + z9 + ')');
+            useStereoInput = z9;
         }
     }
 
-    public static synchronized void setStereoOutput(boolean z10) {
+    public static synchronized void setStereoOutput(boolean z9) {
         synchronized (WebRtcAudioManager.class) {
-            Logging.w("WebRtcAudioManager", "Overriding default output behavior: setStereoOutput(" + z10 + ')');
-            useStereoOutput = z10;
+            Logging.w("WebRtcAudioManager", "Overriding default output behavior: setStereoOutput(" + z9 + ')');
+            useStereoOutput = z9;
         }
     }
 
     private void storeAudioParameters() {
-        int i3;
+        int i7;
         int minOutputFrameSize;
         int minInputFrameSize;
         int i10 = 1;
         if (getStereoOutput()) {
-            i3 = 2;
+            i7 = 2;
         } else {
-            i3 = 1;
+            i7 = 1;
         }
-        this.outputChannels = i3;
+        this.outputChannels = i7;
         if (getStereoInput()) {
             i10 = 2;
         }

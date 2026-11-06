@@ -1,43 +1,19 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import org.telegram.tgnet.TLRPC;
-public final class fo extends x2 {
-    public final hp f22536e;
+import org.telegram.tgnet.RequestDelegate;
+public final class fo implements RequestDelegate {
+    public final int f22420a;
+    public final c1 f22421b;
+    public final int f22422c;
 
-    public fo(hp hpVar) {
-        this.f22536e = hpVar;
+    public fo(c1 c1Var, int i7, int i10) {
+        this.f22420a = i10;
+        this.f22421b = c1Var;
+        this.f22422c = i7;
     }
 
     @Override
-    public final boolean b(Object obj) {
-        Integer num = (Integer) obj;
-        return true;
-    }
-
-    @Override
-    public final void e(int i3, Object obj, n10 n10Var) {
-        Integer num = (Integer) obj;
-        this.f22536e.getMessagesStorage().f24934a.c(new ao(i3, (v2) n10Var, 1));
-    }
-
-    @Override
-    public final void f(int i3, Object obj, long j10, w2 w2Var) {
-        Integer num = (Integer) obj;
-        TLRPC.TL_messages_getAvailableEffects tL_messages_getAvailableEffects = new TLRPC.TL_messages_getAvailableEffects();
-        tL_messages_getAvailableEffects.hash = (int) j10;
-        this.f22536e.getConnectionsManager().sendRequest(tL_messages_getAvailableEffects, new bo(w2Var, 1));
-    }
-
-    @Override
-    public final void g(int i3, Object obj, Object obj2) {
-        Integer num = (Integer) obj;
-        qr.a0(i3).f24934a.c(new x0(i3, (TLRPC.messages_AvailableEffects) obj2, 6));
-    }
-
-    @Override
-    public final void h(int i3, long j10) {
-        SharedPreferences.Editor edit = this.f22536e.f22999e7.edit();
-        edit.putLong("effects_last_" + i3, j10).apply();
+    public final void run(org.telegram.tgnet.TLObject r20, org.telegram.tgnet.TLRPC.TL_error r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.fo.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

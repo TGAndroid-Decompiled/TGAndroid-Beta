@@ -11,11 +11,10 @@ import android.hardware.camera2.CaptureRequest;
 import android.os.Handler;
 import android.util.Range;
 import android.view.Surface;
-import ei.g1;
+import di.g1;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import k2.p1;
 import org.webrtc.CameraEnumerationAndroid;
 import org.webrtc.CameraSession;
 public class Camera2Session implements CameraSession {
@@ -61,13 +60,13 @@ public class Camera2Session implements CameraSession {
             Camera2Session.this = r1;
         }
 
-        private String getErrorDescription(int i3) {
-            if (i3 != 1) {
-                if (i3 != 2) {
-                    if (i3 != 3) {
-                        if (i3 != 4) {
-                            if (i3 != 5) {
-                                return p1.i(i3, "Unknown camera error: ");
+        private String getErrorDescription(int i7) {
+            if (i7 != 1) {
+                if (i7 != 2) {
+                    if (i7 != 3) {
+                        if (i7 != 4) {
+                            if (i7 != 5) {
+                                return jg.g.j(i7, "Unknown camera error: ");
                             }
                             return "Camera service has encountered a fatal error.";
                         }
@@ -89,16 +88,16 @@ public class Camera2Session implements CameraSession {
 
         @Override
         public void onDisconnected(CameraDevice cameraDevice) {
-            boolean z10;
+            boolean z9;
             Camera2Session.this.checkIsOnCameraThread();
             if (Camera2Session.this.captureSession == null && Camera2Session.this.state != SessionState.STOPPED) {
-                z10 = true;
+                z9 = true;
             } else {
-                z10 = false;
+                z9 = false;
             }
             Camera2Session.this.state = SessionState.STOPPED;
             Camera2Session.this.stopInternal();
-            if (z10) {
+            if (z9) {
                 Camera2Session.this.callback.onFailure(CameraSession.FailureType.DISCONNECTED, "Camera disconnected / evicted.");
             } else {
                 Camera2Session.this.events.onCameraDisconnected(Camera2Session.this);
@@ -106,9 +105,9 @@ public class Camera2Session implements CameraSession {
         }
 
         @Override
-        public void onError(CameraDevice cameraDevice, int i3) {
+        public void onError(CameraDevice cameraDevice, int i7) {
             Camera2Session.this.checkIsOnCameraThread();
-            Camera2Session.this.reportError(getErrorDescription(i3));
+            Camera2Session.this.reportError(getErrorDescription(i7));
         }
 
         @Override
@@ -133,8 +132,8 @@ public class Camera2Session implements CameraSession {
         }
 
         private void chooseFocusMode(CaptureRequest.Builder builder) {
-            for (int i3 : (int[]) Camera2Session.this.cameraCharacteristics.get(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES)) {
-                if (i3 == 3) {
+            for (int i7 : (int[]) Camera2Session.this.cameraCharacteristics.get(CameraCharacteristics.CONTROL_AF_AVAILABLE_MODES)) {
+                if (i7 == 3) {
                     builder.set(CaptureRequest.CONTROL_AF_MODE, 3);
                     Logging.d("Camera2Session", "Using continuous video auto-focus.");
                     return;
@@ -146,8 +145,8 @@ public class Camera2Session implements CameraSession {
         private void chooseStabilizationMode(CaptureRequest.Builder builder) {
             int[] iArr = (int[]) Camera2Session.this.cameraCharacteristics.get(CameraCharacteristics.LENS_INFO_AVAILABLE_OPTICAL_STABILIZATION);
             if (iArr != null) {
-                for (int i3 : iArr) {
-                    if (i3 == 1) {
+                for (int i7 : iArr) {
+                    if (i7 == 1) {
                         builder.set(CaptureRequest.LENS_OPTICAL_STABILIZATION_MODE, 1);
                         builder.set(CaptureRequest.CONTROL_VIDEO_STABILIZATION_MODE, 0);
                         Logging.d("Camera2Session", "Using optical stabilization.");
@@ -217,7 +216,7 @@ public class Camera2Session implements CameraSession {
         STOPPED
     }
 
-    private Camera2Session(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, CameraManager cameraManager, SurfaceTextureHelper surfaceTextureHelper, String str, int i3, int i10, int i11) {
+    private Camera2Session(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, CameraManager cameraManager, SurfaceTextureHelper surfaceTextureHelper, String str, int i7, int i10, int i11) {
         Logging.d("Camera2Session", "Create new camera2 session on camera " + str);
         this.constructionTimeNs = System.nanoTime();
         this.cameraThreadHandler = new Handler();
@@ -227,7 +226,7 @@ public class Camera2Session implements CameraSession {
         this.cameraManager = cameraManager;
         this.surfaceTextureHelper = surfaceTextureHelper;
         this.cameraId = str;
-        this.width = i3;
+        this.width = i7;
         this.height = i10;
         this.framerate = i11;
         this.orientationHelper = new OrientationHelper();
@@ -241,8 +240,8 @@ public class Camera2Session implements CameraSession {
         throw new IllegalStateException("Wrong thread");
     }
 
-    public static void create(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, CameraManager cameraManager, SurfaceTextureHelper surfaceTextureHelper, String str, int i3, int i10, int i11) {
-        new Camera2Session(createSessionCallback, events, context, cameraManager, surfaceTextureHelper, str, i3, i10, i11);
+    public static void create(CameraSession.CreateSessionCallback createSessionCallback, CameraSession.Events events, Context context, CameraManager cameraManager, SurfaceTextureHelper surfaceTextureHelper, String str, int i7, int i10, int i11) {
+        new Camera2Session(createSessionCallback, events, context, cameraManager, surfaceTextureHelper, str, i7, i10, i11);
     }
 
     private void findCaptureFormat() {
@@ -267,7 +266,7 @@ public class Camera2Session implements CameraSession {
 
     public int getFrameOrientation() {
         int orientation;
-        if (g1.X != null) {
+        if (g1.W != null) {
             orientation = 0;
         } else {
             orientation = this.orientationHelper.getOrientation();
@@ -292,17 +291,17 @@ public class Camera2Session implements CameraSession {
     }
 
     public void reportError(String str) {
-        boolean z10;
+        boolean z9;
         checkIsOnCameraThread();
         Logging.e("Camera2Session", "Error: " + str);
         if (this.captureSession == null && this.state != SessionState.STOPPED) {
-            z10 = true;
+            z9 = true;
         } else {
-            z10 = false;
+            z9 = false;
         }
         this.state = SessionState.STOPPED;
         stopInternal();
-        if (z10) {
+        if (z9) {
             this.callback.onFailure(CameraSession.FailureType.ERROR, str);
         } else {
             this.events.onCameraError(this, str);
@@ -310,7 +309,7 @@ public class Camera2Session implements CameraSession {
     }
 
     private void start() {
-        boolean z10;
+        boolean z9;
         checkIsOnCameraThread();
         Logging.d("Camera2Session", "start");
         try {
@@ -318,11 +317,11 @@ public class Camera2Session implements CameraSession {
             this.orientationHelper.start();
             this.cameraOrientation = ((Integer) this.cameraCharacteristics.get(CameraCharacteristics.SENSOR_ORIENTATION)).intValue();
             if (((Integer) this.cameraCharacteristics.get(CameraCharacteristics.LENS_FACING)).intValue() == 0) {
-                z10 = true;
+                z9 = true;
             } else {
-                z10 = false;
+                z9 = false;
             }
-            this.isCameraFrontFacing = z10;
+            this.isCameraFrontFacing = z9;
             findCaptureFormat();
             openCamera();
         } catch (Throwable th2) {

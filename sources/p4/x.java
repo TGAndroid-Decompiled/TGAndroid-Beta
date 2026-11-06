@@ -1,87 +1,22 @@
 package p4;
 
-import android.media.Rating;
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class x implements Parcelable {
-    public static final Parcelable.Creator<x> CREATOR = new n8.g(15);
-    public final int f53203a;
-    public final float f53204b;
-    public Rating f53205c;
+import android.content.Context;
+import android.os.Bundle;
+import java.util.HashMap;
+public class x {
+    public static final Object f53344b = new Object();
+    public static final HashMap f53345c = new HashMap();
+    public final d0 f53346a;
 
-    public x(int i3, float f10) {
-        this.f53203a = i3;
-        this.f53204b = f10;
-    }
-
-    public static x c(float f10) {
-        if (f10 >= 0.0f && f10 <= 100.0f) {
-            return new x(6, f10);
-        }
-        g2.a.c("Rating", "Invalid percentage-based rating value");
-        return null;
-    }
-
-    public static x d(float f10, int i3) {
-        float f11;
-        if (i3 != 3) {
-            if (i3 != 4) {
-                if (i3 != 5) {
-                    g2.a.c("Rating", "Invalid rating style (" + i3 + ") for a star rating");
-                    return null;
-                }
-                f11 = 5.0f;
+    public x(Context context, String str, e2.c1 c1Var, h9.i0 i0Var, h9.i0 i0Var2, h9.i0 i0Var3, pb.b bVar, Bundle bundle, Bundle bundle2, h2.d dVar, boolean z9, boolean z10) {
+        synchronized (f53344b) {
+            HashMap hashMap = f53345c;
+            if (!hashMap.containsKey(str)) {
+                hashMap.put(str, this);
             } else {
-                f11 = 4.0f;
+                throw new IllegalStateException("Session ID must be unique. ID=" + str);
             }
-        } else {
-            f11 = 3.0f;
         }
-        if (f10 >= 0.0f && f10 <= f11) {
-            return new x(i3, f10);
-        }
-        g2.a.c("Rating", "Trying to set out of range star-based rating");
-        return null;
-    }
-
-    public final float a() {
-        int i3 = this.f53203a;
-        if ((i3 == 3 || i3 == 4 || i3 == 5) && b()) {
-            return this.f53204b;
-        }
-        return -1.0f;
-    }
-
-    public final boolean b() {
-        if (this.f53204b >= 0.0f) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final int describeContents() {
-        return this.f53203a;
-    }
-
-    public final String toString() {
-        String valueOf;
-        StringBuilder sb2 = new StringBuilder("Rating:style=");
-        sb2.append(this.f53203a);
-        sb2.append(" rating=");
-        float f10 = this.f53204b;
-        if (f10 < 0.0f) {
-            valueOf = "unrated";
-        } else {
-            valueOf = String.valueOf(f10);
-        }
-        sb2.append(valueOf);
-        return sb2.toString();
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i3) {
-        parcel.writeInt(this.f53203a);
-        parcel.writeFloat(this.f53204b);
+        this.f53346a = new d0(this, context, str, c1Var, i0Var, i0Var2, i0Var3, bVar, bundle, bundle2, dVar, z9, z10);
     }
 }

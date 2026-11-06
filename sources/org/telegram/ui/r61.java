@@ -1,24 +1,13 @@
 package org.telegram.ui;
+public final class r61 extends v4.k {
+    public final u71 F;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class r61 extends AnimatorListenerAdapter {
-    public final l71 f49112a;
-
-    public r61(l71 l71Var) {
-        this.f49112a = l71Var;
+    public r61(u71 u71Var) {
+        this.F = u71Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        char c2;
-        l71 l71Var = this.f49112a;
-        org.telegram.ui.Components.o61[] o61VarArr = l71Var.L0;
-        if (l71Var.Y0 != null) {
-            c2 = 0;
-        } else {
-            c2 = 2;
-        }
-        o61VarArr[c2].setVisibility(4);
+    public final void P(v4.d1 d1Var) {
+        this.F.f50301v0.g1();
     }
 }

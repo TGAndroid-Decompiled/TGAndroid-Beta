@@ -1,23 +1,117 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class fd implements View.OnClickListener {
-    public final int f45259a;
-    public final org.telegram.ui.ActionBar.t2 f45260b;
+import android.widget.EditText;
+public final class fd implements View.OnFocusChangeListener {
+    public final int f45605a;
+    public final Object f45606b;
 
-    public fd(org.telegram.ui.ActionBar.t2 t2Var, int i3) {
-        this.f45259a = i3;
-        this.f45260b = t2Var;
+    public fd(Object obj, int i7) {
+        this.f45605a = i7;
+        this.f45606b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f45259a) {
+    public final void onFocusChange(View view, boolean z9) {
+        int i7 = this.f45605a;
+        float f10 = 0.0f;
+        Object obj = this.f45606b;
+        switch (i7) {
             case 0:
-                this.f45260b.dismiss();
+                bi.u uVar = ((zd) obj).K0;
+                if (z9) {
+                    f10 = 1.0f;
+                }
+                uVar.b(f10, f10, true);
                 return;
+            case 1:
+                ww wwVar = (ww) obj;
+                if (z9) {
+                    wwVar.Y.b(true);
+                    return;
+                }
+                return;
+            case 2:
+                ce0 ce0Var = ((ob0) obj).W;
+                if (z9) {
+                    ce0Var.f44740c.setEditText((EditText) view);
+                    ce0Var.f44740c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 3:
+                org.telegram.ui.Components.lb0 lb0Var = (org.telegram.ui.Components.lb0) obj;
+                if (z9) {
+                    f10 = 1.0f;
+                }
+                lb0Var.b(f10, f10, true);
+                return;
+            case 4:
+                org.telegram.ui.Components.lb0 lb0Var2 = ((xb0) obj).f51811y;
+                if (z9) {
+                    f10 = 1.0f;
+                }
+                lb0Var2.b(f10, f10, true);
+                return;
+            case 5:
+                org.telegram.ui.Components.lb0 lb0Var3 = ((ec0) obj).f45232b;
+                if (z9) {
+                    f10 = 1.0f;
+                }
+                lb0Var3.b(f10, f10, true);
+                return;
+            case 6:
+                ce0 ce0Var2 = ((hc0) obj).D;
+                if (z9) {
+                    ce0Var2.f44740c.setEditText((EditText) view);
+                    ce0Var2.f44740c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 7:
+                org.telegram.ui.Components.lb0 lb0Var4 = ((sc0) obj).f49716a;
+                if (z9) {
+                    f10 = 1.0f;
+                }
+                lb0Var4.b(f10, f10, true);
+                return;
+            case 8:
+                ce0 ce0Var3 = ((gd0) obj).f45954u0;
+                if (z9) {
+                    ce0Var3.f44740c.setEditText((EditText) view);
+                    ce0Var3.f44740c.setDispatchBackWhenEmpty(true);
+                    return;
+                }
+                return;
+            case 9:
+                org.telegram.ui.Components.lb0 lb0Var5 = ((be0) obj).f44282e;
+                if (z9) {
+                    f10 = 1.0f;
+                }
+                lb0Var5.b(f10, f10, true);
+                return;
+            case 10:
+                org.telegram.ui.Components.lb0 lb0Var6 = ((PasscodeActivity) obj).f41301f;
+                if (z9) {
+                    f10 = 1.0f;
+                }
+                lb0Var6.b(f10, f10, true);
+                return;
+            case 11:
+                x71 x71Var = (x71) obj;
+                if (z9) {
+                    x71Var.d.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(2131744185, null)));
+                    return;
+                } else {
+                    x71Var.d.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.M0(2131744186, null)));
+                    return;
+                }
             default:
-                this.f45260b.dismiss();
+                org.telegram.ui.Components.lb0 lb0Var7 = ((TwoStepVerificationActivity) obj).f42035w;
+                if (z9) {
+                    f10 = 1.0f;
+                }
+                lb0Var7.b(f10, f10, true);
                 return;
         }
     }

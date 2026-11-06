@@ -1,26 +1,19 @@
 package org.telegram.ui;
-public final class bi implements org.telegram.messenger.cs {
-    public final int f44047a;
-    public final bi.q0 f44048b;
-    public final wm f44049c;
-    public final wm d;
 
-    public bi(wm wmVar, int i3, bi.q0 q0Var, wm wmVar2) {
-        this.d = wmVar;
-        this.f44047a = i3;
-        this.f44048b = q0Var;
-        this.f44049c = wmVar2;
+import android.app.Activity;
+public final class bi extends org.telegram.ui.Cells.t0 {
+    public final an f44339t2;
+
+    public bi(Activity activity, org.telegram.ui.ActionBar.f6 f6Var, an anVar) {
+        super(activity, f6Var, false);
+        this.f44339t2 = anVar;
     }
 
     @Override
-    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
-        int i11;
-        int i12 = org.telegram.messenger.hs.D;
-        if (i3 == i12 && ((Integer) objArr[10]).intValue() == this.f44047a) {
-            this.f44048b.run();
-            org.telegram.messenger.g0.i3(new k2.a0(this.f44049c, i3, i10, objArr, 10), 50L);
-            i11 = ((org.telegram.ui.ActionBar.d2) this.d).currentAccount;
-            org.telegram.messenger.hs.f(i11).n(this, i12);
-        }
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        super.onLayout(z9, i7, i10, i11, i12);
+        float y10 = getY();
+        an anVar = this.f44339t2;
+        i0(anVar.f43763f1.getY() + y10, anVar.l1.getBackgroundSizeY());
     }
 }

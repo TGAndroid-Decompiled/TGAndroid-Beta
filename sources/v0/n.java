@@ -1,10 +1,34 @@
 package v0;
 
-import ci.u0;
+import java.util.Collection;
+import java.util.List;
 public final class n {
-    public final u0 f56433a;
+    public final List f56857a;
+    public final boolean f56858b;
 
-    public n(u0 u0Var) {
-        this.f56433a = u0Var;
+    public n(List list, boolean z9) {
+        this.f56857a = list;
+        this.f56858b = z9;
+        if (!list.isEmpty()) {
+            if (list.size() > 1) {
+                List<h> list2 = list;
+                int i7 = 0;
+                if (!(list2 instanceof Collection) || !list2.isEmpty()) {
+                    for (h hVar : list2) {
+                        if ((hVar instanceof p) && (i7 = i7 + 1) < 0) {
+                            throw new ArithmeticException("Count overflow has happened.");
+                        }
+                    }
+                }
+                if (i7 > 0 && i7 != this.f56857a.size()) {
+                    throw new IllegalArgumentException("Digital Credential Option cannot be used with other credential option.");
+                }
+                for (h hVar2 : this.f56857a) {
+                }
+                return;
+            }
+            return;
+        }
+        throw new IllegalArgumentException("credentialOptions should not be empty");
     }
 }

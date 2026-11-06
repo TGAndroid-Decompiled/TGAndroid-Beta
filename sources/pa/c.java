@@ -1,19 +1,21 @@
 package pa;
-public final class c {
-    public static final c f53429a;
-    public static final c[] f53430b;
+
+import j$.util.DesugarTimeZone;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import na.g;
+public final class c implements na.f {
+    public static final SimpleDateFormat f53391a;
 
     static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f53429a = r02;
-        f53430b = new c[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.US);
+        f53391a = simpleDateFormat;
+        simpleDateFormat.setTimeZone(DesugarTimeZone.getTimeZone("UTC"));
     }
 
-    public static c valueOf(String str) {
-        return (c) Enum.valueOf(c.class, str);
-    }
-
-    public static c[] values() {
-        return (c[]) f53430b.clone();
+    @Override
+    public final void a(Object obj, Object obj2) {
+        ((g) obj2).f(f53391a.format((Date) obj));
     }
 }

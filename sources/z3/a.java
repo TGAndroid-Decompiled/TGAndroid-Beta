@@ -1,40 +1,58 @@
 package z3;
 
-import e3.a0;
-import e3.b0;
-import e3.c0;
-import g2.n0;
-import java.math.BigInteger;
-public final class a implements b0 {
-    public final b f59650a;
+import h2.x;
+public final class a {
+    public final int f59455a;
+    public int f59456b;
+    public int f59457c;
+    public long d;
+    public final boolean f59458e;
+    public final x f59459f;
+    public final x f59460g;
+    public int h;
+    public int f59461i;
 
-    public a(b bVar) {
-        this.f59650a = bVar;
+    public a(x xVar, x xVar2, boolean z9) {
+        this.f59460g = xVar;
+        this.f59459f = xVar2;
+        this.f59458e = z9;
+        xVar2.N(12);
+        this.f59455a = xVar2.E();
+        xVar.N(12);
+        this.f59461i = xVar.E();
+        f3.b.b("first_chunk must be 1", xVar.m() == 1);
+        this.f59456b = -1;
     }
 
-    @Override
-    public final boolean d() {
+    public final boolean a() {
+        long C;
+        int i7;
+        int i10 = this.f59456b + 1;
+        this.f59456b = i10;
+        if (i10 == this.f59455a) {
+            return false;
+        }
+        boolean z9 = this.f59458e;
+        x xVar = this.f59459f;
+        if (z9) {
+            C = xVar.G();
+        } else {
+            C = xVar.C();
+        }
+        this.d = C;
+        if (this.f59456b == this.h) {
+            x xVar2 = this.f59460g;
+            this.f59457c = xVar2.E();
+            xVar2.O(4);
+            int i11 = this.f59461i - 1;
+            this.f59461i = i11;
+            if (i11 > 0) {
+                i7 = xVar2.E() - 1;
+            } else {
+                i7 = -1;
+            }
+            this.h = i7;
+        }
         return true;
-    }
-
-    @Override
-    public final boolean e() {
-        return false;
-    }
-
-    @Override
-    public final a0 f(long j10) {
-        b bVar = this.f59650a;
-        long j11 = bVar.f59652b;
-        BigInteger valueOf = BigInteger.valueOf((bVar.d.f59685i * j10) / 1000000);
-        long j12 = bVar.f59653c;
-        c0 c0Var = new c0(j10, n0.j((valueOf.multiply(BigInteger.valueOf(j12 - j11)).divide(BigInteger.valueOf(bVar.f59655f)).longValue() + j11) - 30000, bVar.f59652b, j12 - 1));
-        return new a0(c0Var, c0Var);
-    }
-
-    @Override
-    public final long h() {
-        b bVar = this.f59650a;
-        return (bVar.f59655f * 1000000) / bVar.d.f59685i;
     }
 }

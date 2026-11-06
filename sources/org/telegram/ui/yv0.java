@@ -1,59 +1,37 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class yv0 extends View {
-    public int f52416a;
-    public int f52417b;
-    public final bw0 f52418c;
+public final class yv0 implements View.OnClickListener {
+    public final int f52336a;
+    public final jw0 f52337b;
 
-    public yv0(bw0 bw0Var, Context context) {
-        super(context);
-        this.f52418c = bw0Var;
-        this.f52416a = 0;
-        this.f52417b = 0;
+    public yv0(jw0 jw0Var, int i7) {
+        this.f52336a = i7;
+        this.f52337b = jw0Var;
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        int measuredHeight;
-        int i11 = this.f52417b;
-        ProfileActivity profileActivity = this.f52418c.f44157e;
-        int i12 = 0;
-        if (i11 != profileActivity.f41719a.getMeasuredHeight()) {
-            this.f52416a = 0;
-        }
-        this.f52417b = profileActivity.f41719a.getMeasuredHeight();
-        int childCount = profileActivity.f41719a.getChildCount();
-        if (childCount == profileActivity.d.f44157e.N2) {
-            int i13 = 0;
-            for (int i14 = 0; i14 < childCount; i14++) {
-                View childAt = profileActivity.f41719a.getChildAt(i14);
-                profileActivity.f41719a.getClass();
-                int R = RecyclerView.R(childAt);
-                if (R >= 0 && R != profileActivity.C3) {
-                    i13 += profileActivity.f41719a.getChildAt(i14).getMeasuredHeight();
+    public final void onClick(View view) {
+        switch (this.f52336a) {
+            case 0:
+                ProfileActivity profileActivity = this.f52337b.f47027e;
+                profileActivity.getMessagesController().x3(profileActivity, profileActivity.getMessagesController().a2(Long.valueOf(profileActivity.f41688d1)), null, profileActivity.getClassGuid(), null, false, false);
+                return;
+            default:
+                ProfileActivity profileActivity2 = this.f52337b.f47027e;
+                profileActivity2.O4 = !profileActivity2.O4;
+                if (!profileActivity2.N4) {
+                    profileActivity2.N4 = true;
                 }
-            }
-            View view = profileActivity.fragmentView;
-            if (view == null) {
-                measuredHeight = 0;
-            } else {
-                measuredHeight = view.getMeasuredHeight();
-            }
-            int currentActionBarHeight = ((measuredHeight - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.f22602m) - i13;
-            if (currentActionBarHeight > profileActivity.j4()) {
-                currentActionBarHeight = 0;
-            }
-            if (currentActionBarHeight > 0) {
-                i12 = currentActionBarHeight;
-            }
-            int measuredWidth = profileActivity.f41719a.getMeasuredWidth();
-            this.f52416a = i12;
-            setMeasuredDimension(measuredWidth, i12);
-            return;
+                profileActivity2.T4();
+                view.requestLayout();
+                profileActivity2.d.g(profileActivity2.N3);
+                int i7 = profileActivity2.f41742k6;
+                if (i7 >= 0) {
+                    profileActivity2.f41679c.h1(i7, profileActivity2.f41748l6 - profileActivity2.f41663a.getPaddingTop());
+                    return;
+                }
+                return;
         }
-        setMeasuredDimension(profileActivity.f41719a.getMeasuredWidth(), this.f52416a);
     }
 }

@@ -9,26 +9,26 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-public final class w01 extends l41 {
-    public final k4.j f39852n3;
-    public final u5 f39853o3;
-    public Drawable f39854p3;
-    public int f39855q3;
-    public final Paint f39856r3;
+public final class w01 extends k41 {
+    public final h6.m f39797m3;
+    public final w5 f39798n3;
+    public Drawable f39799o3;
+    public int f39800p3;
+    public final Paint f39801q3;
 
-    public w01(Context context, int i3, p01 p01Var, q01 q01Var, q01 q01Var2, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, i3, 0, false, p01Var, q01Var, q01Var2, e6Var);
-        this.f39852n3 = new k4.j(24);
-        this.f39853o3 = new u5(this, 320L, xq.h);
-        this.f39856r3 = new Paint(1);
+    public w01(Context context, int i7, p01 p01Var, q01 q01Var, q01 q01Var2, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, i7, 0, false, p01Var, q01Var, q01Var2, f6Var);
+        this.f39797m3 = new h6.m(28);
+        this.f39798n3 = new w5(this, 320L, xq.h);
+        this.f39801q3 = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
-        float d = this.f39853o3.d(canScrollVertically(-1));
-        int i3 = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
-        if (i3 > 0) {
+        float d = this.f39798n3.d(canScrollVertically(-1));
+        int i7 = (d > 0.0f ? 1 : (d == 0.0f ? 0 : -1));
+        if (i7 > 0) {
             canvas2 = canvas;
             canvas2.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         } else {
@@ -40,7 +40,7 @@ public final class w01 extends l41 {
             View childAt = getChildAt(i10);
             if (childAt instanceof f11) {
                 f11 f11Var = (f11) childAt;
-                if (f11Var.F) {
+                if (f11Var.E) {
                     if (height > f11Var.getY()) {
                         height = f11Var.getY();
                         RecyclerView.R(f11Var);
@@ -53,32 +53,32 @@ public final class w01 extends l41 {
             }
         }
         if (f10 > height) {
-            int i11 = org.telegram.ui.ActionBar.k6.f28161s9;
-            org.telegram.ui.ActionBar.e6 e6Var = this.f38460o2;
-            int w02 = org.telegram.ui.ActionBar.k6.w0(i11, e6Var);
-            Paint paint = this.f39856r3;
+            int i11 = org.telegram.ui.ActionBar.k6.s9;
+            org.telegram.ui.ActionBar.f6 f6Var = this.f37060n2;
+            int w02 = org.telegram.ui.ActionBar.k6.w0(i11, f6Var);
+            Paint paint = this.f39801q3;
             paint.setColor(w02);
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set((getWidth() - org.telegram.messenger.g0.L(56.0f)) / 2.0f, height, (org.telegram.messenger.g0.L(56.0f) + getWidth()) / 2.0f, f10);
             canvas2.drawRoundRect(rectF, org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), paint);
-            if (this.f39854p3 == null) {
-                this.f39854p3 = getContext().getResources().getDrawable(2131232201).mutate();
+            if (this.f39799o3 == null) {
+                this.f39799o3 = getContext().getResources().getDrawable(2131232201).mutate();
             }
-            int w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27845b9, e6Var);
-            if (this.f39855q3 != w03) {
-                Drawable drawable = this.f39854p3;
-                this.f39855q3 = w03;
+            int w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27814b9, f6Var);
+            if (this.f39800p3 != w03) {
+                Drawable drawable = this.f39799o3;
+                this.f39800p3 = w03;
                 drawable.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
             }
-            this.f39854p3.setBounds((int) (rectF.left + org.telegram.messenger.g0.L(4.0f)), (int) (rectF.top + org.telegram.messenger.g0.L(2.66f)), (int) (rectF.left + org.telegram.messenger.g0.L(13.66f)), (int) (rectF.top + org.telegram.messenger.g0.L(12.32f)));
-            this.f39854p3.draw(canvas2);
+            this.f39799o3.setBounds((int) (rectF.left + org.telegram.messenger.g0.L(4.0f)), (int) (rectF.top + org.telegram.messenger.g0.L(2.66f)), (int) (rectF.left + org.telegram.messenger.g0.L(13.66f)), (int) (rectF.top + org.telegram.messenger.g0.L(12.32f)));
+            this.f39799o3.draw(canvas2);
         }
         super.dispatchDraw(canvas2);
-        if (i3 > 0) {
+        if (i7 > 0) {
             canvas2.save();
             RectF rectF2 = org.telegram.messenger.g0.P;
             rectF2.set(0.0f, 0.0f, getWidth(), org.telegram.messenger.g0.L(12.0f));
-            this.f39852n3.w(canvas2, rectF2, 1, d);
+            this.f39797m3.m(canvas2, rectF2, 1, d);
             canvas2.restore();
             canvas2.restore();
         }

@@ -1,21 +1,88 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class ke implements z51, hj0 {
-    public final ChatActivityEnterView f35374a;
+import android.content.Context;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+public final class ke extends ImageView {
+    public final int f35264a;
+    public final ChatActivityEnterView f35265b;
 
-    public ke(ChatActivityEnterView chatActivityEnterView) {
-        this.f35374a = chatActivityEnterView;
+    public ke(ChatActivityEnterView chatActivityEnterView, Context context, int i7) {
+        super(context);
+        this.f35264a = i7;
+        this.f35265b = chatActivityEnterView;
     }
 
     @Override
-    public boolean f(int i3, View view) {
-        if (view instanceof ii.y) {
-            ChatActivityEnterView chatActivityEnterView = this.f35374a;
-            chatActivityEnterView.setFieldText(((ii.y) view).getCommand() + " ");
-            chatActivityEnterView.f31162n0.c();
-            return true;
+    public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        switch (this.f35264a) {
+            case 0:
+                super.onLayout(z9, i7, i10, i11, i12);
+                post(new rd(this.f35265b, 5));
+                return;
+            default:
+                super.onLayout(z9, i7, i10, i11, i12);
+                return;
         }
-        return false;
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f35264a) {
+            case 2:
+                if (getAlpha() <= 0.0f) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public final void setAlpha(float f10) {
+        switch (this.f35264a) {
+            case 0:
+                super.setAlpha(f10);
+                ie ieVar = this.f35265b.J1;
+                if (ieVar != null) {
+                    ieVar.setTranslationX(ieVar.f34599a);
+                    return;
+                }
+                return;
+            case 1:
+                super.setAlpha(f10);
+                ie ieVar2 = this.f35265b.J1;
+                if (ieVar2 != null) {
+                    ieVar2.setTranslationX(ieVar2.f34599a);
+                    return;
+                }
+                return;
+            default:
+                super.setAlpha(f10);
+                de deVar = this.f35265b.Z0;
+                if (deVar != null) {
+                    deVar.invalidate();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i7) {
+        switch (this.f35264a) {
+            case 2:
+                super.setVisibility(i7);
+                de deVar = this.f35265b.Z0;
+                if (deVar != null) {
+                    deVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i7);
+                return;
+        }
     }
 }

@@ -1,250 +1,124 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.ViewGroup;
+import android.util.SparseIntArray;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
-public final class iq extends org.telegram.ui.Components.sj0 {
-    public final Context f46364c;
-    public final nq d;
+public final class iq extends v4.o {
+    public int f46697b;
+    public int f46699e;
+    public int f46700f;
+    public int f46701g;
+    public int h;
+    public int f46702i;
+    public int f46703j;
+    public final oq f46707n;
+    public final SparseIntArray f46698c = new SparseIntArray();
+    public final SparseIntArray d = new SparseIntArray();
+    public final ArrayList f46704k = new ArrayList();
+    public final ArrayList f46705l = new ArrayList();
+    public final ArrayList f46706m = new ArrayList();
 
-    public iq(nq nqVar, Context context) {
-        this.d = nqVar;
-        this.f46364c = context;
+    public iq(oq oqVar) {
+        this.f46707n = oqVar;
     }
 
-    @Override
-    public final void A(u4.d1 d1Var) {
-        View view = d1Var.f55540a;
-        if (view instanceof org.telegram.ui.Cells.a5) {
-            ((org.telegram.ui.Cells.a5) view).a();
+    public static void g(int i7, int i10, SparseIntArray sparseIntArray) {
+        if (i10 >= 0) {
+            sparseIntArray.put(i10, i7);
         }
     }
 
     @Override
-    public final boolean D(u4.d1 r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iq.D(u4.d1):boolean");
-    }
-
-    public final TLObject E(int i3) {
-        nq nqVar = this.d;
-        int i10 = nqVar.E0;
-        if (i3 >= i10 && i3 < nqVar.F0) {
-            return (TLObject) nqVar.F.get(i3 - i10);
+    public final boolean a(int i7, int i10) {
+        if (!b(i7, i10) || this.f46707n.C0 == i10) {
+            return false;
         }
-        int i11 = nqVar.U0;
-        if (i3 >= i11 && i3 < nqVar.V0) {
-            return (TLObject) nqVar.H.get(i3 - i11);
-        }
-        int i12 = nqVar.X0;
-        if (i3 >= i12 && i3 < nqVar.Y0) {
-            return (TLObject) nqVar.G.get(i3 - i12);
-        }
-        return null;
+        return true;
     }
 
     @Override
-    public final int b() {
-        return this.d.f48056d1;
-    }
-
-    @Override
-    public final int d(int i3) {
-        nq nqVar = this.d;
-        if (i3 != nqVar.f48104z0 && i3 != nqVar.A0 && i3 != nqVar.f48093v0 && i3 != nqVar.f48089t0) {
-            if ((i3 >= nqVar.E0 && i3 < nqVar.F0) || ((i3 >= nqVar.X0 && i3 < nqVar.Y0) || (i3 >= nqVar.U0 && i3 < nqVar.V0))) {
-                return 0;
-            }
-            if (i3 != nqVar.C0 && i3 != nqVar.G0 && i3 != nqVar.H0) {
-                if (i3 != nqVar.D0 && i3 != nqVar.S && i3 != nqVar.N0 && i3 != nqVar.f48087s0 && i3 != nqVar.f48079p0) {
-                    if (i3 != nqVar.f48051b1 && i3 != nqVar.P0 && i3 != nqVar.R0 && i3 != nqVar.f48091u0 && i3 != nqVar.f48102y0 && i3 != nqVar.K0 && i3 != nqVar.M0 && i3 != nqVar.f48070j1 && i3 != nqVar.f48077o0 && i3 != nqVar.f48084r0) {
-                        if (i3 == nqVar.f48054c1) {
-                            return 4;
-                        }
-                        if (i3 == nqVar.B0) {
-                            return 6;
-                        }
-                        if (i3 != nqVar.f48063g0 && i3 != nqVar.f48065h0 && i3 != nqVar.m0 && i3 != nqVar.f48067i0 && i3 != nqVar.f48069j0 && i3 != nqVar.T && i3 != nqVar.f48058e0 && i3 != nqVar.f48061f0 && i3 != nqVar.f48072l0 && i3 != nqVar.Q0) {
-                            if (i3 != nqVar.Z0 && i3 != nqVar.T0 && i3 != nqVar.W0 && i3 != nqVar.f48064g1) {
-                                if (i3 == nqVar.O0) {
-                                    return 9;
-                                }
-                                if (i3 == nqVar.f48048a1) {
-                                    return 10;
-                                }
-                                if (i3 == nqVar.f48062f1) {
-                                    return 11;
-                                }
-                                if (i3 != nqVar.f48099x0 && i3 != nqVar.J0 && i3 != nqVar.L0) {
-                                    if (nqVar.u0(i3)) {
-                                        return 13;
-                                    }
-                                    if (i3 == nqVar.U) {
-                                        return 14;
-                                    }
-                                    if (i3 == nqVar.S0) {
-                                        return 15;
-                                    }
-                                    if (i3 != nqVar.f48066h1 && i3 != nqVar.f48068i1 && i3 != nqVar.f48075n0) {
-                                        if (i3 != nqVar.f48081q0) {
-                                            return 0;
-                                        }
-                                        return 17;
-                                    }
-                                    return 16;
-                                }
-                                return 12;
-                            }
-                            return 8;
-                        }
-                        return 7;
-                    }
-                    return 1;
-                }
-                return 5;
-            }
-            return 3;
+    public final boolean b(int i7, int i10) {
+        int i11 = this.f46702i;
+        oq oqVar = this.f46707n;
+        if (i7 >= i11 && i7 < this.f46703j && i10 >= oqVar.W0 && i10 < oqVar.X0) {
+            return ((TLObject) this.f46705l.get(i7 - i11)).equals(oqVar.F.get(i10 - oqVar.W0));
         }
-        return 2;
-    }
-
-    @Override
-    public final void t(u4.d1 r27, int r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.iq.t(u4.d1, int):void");
-    }
-
-    @Override
-    public final u4.d1 x(ViewGroup viewGroup, int i3) {
-        int i10;
-        boolean z10;
-        org.telegram.ui.ActionBar.e6 e6Var;
-        org.telegram.ui.Components.ut0 ut0Var;
-        org.telegram.ui.Components.ut0 ut0Var2;
-        int i11 = 2;
-        int i12 = 0;
-        Context context = this.f46364c;
-        nq nqVar = this.d;
-        switch (i3) {
-            case 0:
-                int i13 = nqVar.O;
-                if (i13 != 0 && i13 != 3) {
-                    i10 = 6;
-                } else {
-                    i10 = 7;
-                }
-                if (i13 == 0 || i13 == 3) {
-                    i11 = 6;
-                }
-                if (nqVar.f48059e1 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f46364c, i10, i11, z10, null);
-                a5Var.setDelegate(new hq(this, 0));
-                ut0Var2 = a5Var;
-                ut0Var = ut0Var2;
-                break;
-            case 1:
-                ut0Var = new org.telegram.ui.Cells.y8(context);
-                break;
-            case 2:
-                ut0Var = new org.telegram.ui.Cells.x4(context);
-                break;
-            case 3:
-                ut0Var = new org.telegram.ui.Cells.x6(context, (org.telegram.ui.Cells.f1) null);
-                break;
-            case 4:
-                org.telegram.ui.Cells.y8 y8Var = new org.telegram.ui.Cells.y8(context);
-                if (nqVar.f48086s) {
-                    y8Var.setText(org.telegram.messenger.bd.M0(2131748246, null));
-                    ut0Var = y8Var;
-                    break;
-                } else if (nqVar.f48095w) {
-                    y8Var.setText(org.telegram.messenger.bd.M0(2131748245, null));
-                    ut0Var = y8Var;
-                    break;
-                } else {
-                    y8Var.setText(org.telegram.messenger.bd.M0(2131748244, null));
-                    ut0Var = y8Var;
-                    break;
-                }
-            case 5:
-                org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(this.f46364c, org.telegram.ui.ActionBar.k6.L6, 21, 11, false, null);
-                n4Var.setHeight(43);
-                ut0Var2 = n4Var;
-                ut0Var = ut0Var2;
-                break;
-            case 6:
-                ut0Var = new org.telegram.ui.Cells.v9(context);
-                break;
-            case 7:
-            case 14:
-                ut0Var = new org.telegram.ui.Cells.p8(context);
-                break;
-            case 8:
-                e6Var = ((org.telegram.ui.ActionBar.d2) nqVar).resourceProvider;
-                View x3Var = new org.telegram.ui.Cells.x3(26, context, e6Var);
-                x3Var.setBackground(null);
-                ut0Var = x3Var;
-                break;
-            case 9:
-            default:
-                org.telegram.ui.Components.ut0 ut0Var3 = new org.telegram.ui.Components.ut0(context, null);
-                ut0Var3.b(nqVar.f48080p1, null, org.telegram.messenger.bd.M0(2131745315, "SlowmodeOff"), org.telegram.messenger.bd.a0(null, null, 2131745314, 5), org.telegram.messenger.bd.a0(null, null, 2131745314, 10), org.telegram.messenger.bd.a0(null, null, 2131745314, 30), org.telegram.messenger.bd.a0(null, null, 2131745316, 1), org.telegram.messenger.bd.a0(null, null, 2131745316, 5), org.telegram.messenger.bd.a0(null, null, 2131745316, 15), org.telegram.messenger.bd.a0(null, null, 2131745319, 1));
-                ut0Var3.setCallback(new hq(this, 1));
-                ut0Var = ut0Var3;
-                break;
-            case 10:
-                ut0Var = new org.telegram.ui.Cells.t4(context, org.telegram.messenger.g0.L(40.0f), org.telegram.messenger.g0.L(120.0f));
-                break;
-            case 11:
-                org.telegram.ui.Components.iz izVar = new org.telegram.ui.Components.iz(context, null);
-                izVar.setIsSingleCell(true);
-                izVar.setViewType(6);
-                izVar.f34869x = false;
-                izVar.setUseHeaderOffset(false);
-                izVar.setPaddingLeft(org.telegram.messenger.g0.L(5.0f));
-                u4.p0 p0Var = new u4.p0(-1, -1);
-                int L = org.telegram.messenger.g0.L(12.0f);
-                ((ViewGroup.MarginLayoutParams) p0Var).rightMargin = L;
-                ((ViewGroup.MarginLayoutParams) p0Var).leftMargin = L;
-                ((ViewGroup.MarginLayoutParams) p0Var).topMargin = org.telegram.messenger.g0.L(30.0f);
-                izVar.setLayoutParams(p0Var);
-                ut0Var = izVar;
-                break;
-            case 12:
-                org.telegram.ui.Cells.l8 l8Var = new org.telegram.ui.Cells.l8(23, this.f46364c, nqVar.getResourceProvider(), false, true);
-                l8Var.f29600w = 50;
-                ut0Var = l8Var;
-                break;
-            case 13:
-                org.telegram.ui.Cells.c2 c2Var = new org.telegram.ui.Cells.c2(this.f46364c, 4, 21, false, nqVar.getResourceProvider());
-                c2Var.getCheckBoxRound().setDrawBackgroundAsArc(14);
-                c2Var.getCheckBoxRound().b(org.telegram.ui.ActionBar.k6.V6, org.telegram.ui.ActionBar.k6.g7, org.telegram.ui.ActionBar.k6.f28008k7);
-                c2Var.setEnabled(true);
-                ut0Var = c2Var;
-                break;
-            case 15:
-                org.telegram.ui.Components.ut0 ut0Var4 = new org.telegram.ui.Components.ut0(context, null);
-                Drawable[] drawableArr = {nqVar.getParentActivity().getDrawable(2131231930), nqVar.getParentActivity().getDrawable(2131231931), nqVar.getParentActivity().getDrawable(2131231931), nqVar.getParentActivity().getDrawable(2131231931), nqVar.getParentActivity().getDrawable(2131231931)};
-                int i14 = nqVar.f48088s1;
-                if (i14 > 0) {
-                    i12 = i14 - 1;
-                }
-                ut0Var4.b(i12, drawableArr, "1", "2", "3", "4", "5");
-                ut0Var4.setCallback(new hq(this, 2));
-                ut0Var2 = ut0Var4;
-                ut0Var = ut0Var2;
-                break;
-            case 16:
-                ut0Var = new org.telegram.ui.Cells.q8(context, nqVar.getResourceProvider());
-                break;
-            case 17:
-                ut0Var = new org.telegram.ui.Cells.s7(context, nqVar.getResourceProvider());
-                break;
+        int i12 = this.f46701g;
+        if (i7 >= i12 && i7 < this.h && i10 >= oqVar.T0 && i10 < oqVar.U0) {
+            return ((TLObject) this.f46706m.get(i7 - i12)).equals(oqVar.G.get(i10 - oqVar.T0));
         }
-        return new u4.d1(ut0Var);
+        int i13 = this.f46699e;
+        if (i7 >= i13 && i7 < this.f46700f && i10 >= oqVar.D0 && i10 < oqVar.E0) {
+            return ((TLObject) this.f46704k.get(i7 - i13)).equals(oqVar.E.get(i10 - oqVar.D0));
+        }
+        if (this.f46698c.get(i7) == this.d.get(i10)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f46707n.f48449c1;
+    }
+
+    @Override
+    public final int e() {
+        return this.f46697b;
+    }
+
+    public final void f(SparseIntArray sparseIntArray) {
+        sparseIntArray.clear();
+        oq oqVar = this.f46707n;
+        g(1, oqVar.f48486u0, sparseIntArray);
+        g(2, oqVar.f48497y0, sparseIntArray);
+        g(3, oqVar.f48499z0, sparseIntArray);
+        g(4, oqVar.B0, sparseIntArray);
+        g(5, oqVar.C0, sparseIntArray);
+        g(6, oqVar.F0, sparseIntArray);
+        g(7, oqVar.G0, sparseIntArray);
+        g(8, oqVar.f48479r0, sparseIntArray);
+        g(9, oqVar.f48482s0, sparseIntArray);
+        g(10, oqVar.f48484t0, sparseIntArray);
+        g(11, oqVar.f48443a1, sparseIntArray);
+        g(12, oqVar.f48446b1, sparseIntArray);
+        g(13, oqVar.R, sparseIntArray);
+        g(14, oqVar.S, sparseIntArray);
+        g(15, oqVar.T, sparseIntArray);
+        g(16, oqVar.f48450d0, sparseIntArray);
+        g(17, oqVar.f48448c0, sparseIntArray);
+        g(18, oqVar.f48453e0, sparseIntArray);
+        g(19, oqVar.f48458g0, sparseIntArray);
+        g(20, oqVar.f48468l0, sparseIntArray);
+        g(21, oqVar.f48460h0, sparseIntArray);
+        g(22, oqVar.f48462i0, sparseIntArray);
+        int i7 = 23;
+        g(23, oqVar.f48464j0, sparseIntArray);
+        if (oqVar.f48493x) {
+            i7 = 24;
+            g(24, oqVar.f48466k0, sparseIntArray);
+        }
+        g(i7 + 1, oqVar.f48456f0, sparseIntArray);
+        g(i7 + 2, oqVar.A0, sparseIntArray);
+        g(i7 + 3, oqVar.S0, sparseIntArray);
+        g(i7 + 4, oqVar.V0, sparseIntArray);
+        g(i7 + 5, oqVar.Y0, sparseIntArray);
+        g(i7 + 6, oqVar.M0, sparseIntArray);
+        g(i7 + 7, oqVar.N0, sparseIntArray);
+        g(i7 + 8, oqVar.O0, sparseIntArray);
+        g(i7 + 9, oqVar.P0, sparseIntArray);
+        g(i7 + 10, oqVar.R0, sparseIntArray);
+        g(i7 + 11, oqVar.Q0, sparseIntArray);
+        g(i7 + 12, oqVar.Z0, sparseIntArray);
+        g(i7 + 13, oqVar.f48454e1, sparseIntArray);
+        g(i7 + 14, oqVar.f48457f1, sparseIntArray);
+        g(i7 + 15, oqVar.f48459g1, sparseIntArray);
+        g(i7 + 16, oqVar.f48461h1, sparseIntArray);
+        g(i7 + 17, oqVar.f48463i1, sparseIntArray);
+        g(i7 + 18, oqVar.m0, sparseIntArray);
+        g(i7 + 19, oqVar.f48471n0, sparseIntArray);
+        g(i7 + 20, oqVar.f48472o0, sparseIntArray);
+        g(i7 + 21, oqVar.f48474p0, sparseIntArray);
+        g(i7 + 22, oqVar.f48476q0, sparseIntArray);
     }
 }

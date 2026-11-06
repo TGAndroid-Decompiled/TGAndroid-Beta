@@ -2,22 +2,22 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class nt implements Runnable {
-    public final int f36619a;
-    public final View f36620b;
+    public final int f36489a;
+    public final View f36490b;
 
-    public nt(int i3, View view) {
-        this.f36619a = i3;
-        this.f36620b = view;
+    public nt(int i7, View view) {
+        this.f36489a = i7;
+        this.f36490b = view;
     }
 
     @Override
     public final void run() {
-        switch (this.f36619a) {
+        switch (this.f36489a) {
             case 0:
-                this.f36620b.callOnClick();
+                this.f36490b.callOnClick();
                 return;
             default:
-                this.f36620b.invalidate();
+                this.f36490b.invalidate();
                 return;
         }
     }

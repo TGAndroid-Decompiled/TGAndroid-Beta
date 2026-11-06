@@ -44,7 +44,7 @@ public abstract class WrappedNativeVideoEncoder implements VideoEncoder {
     }
 
     @Override
-    public final VideoCodecStatus setRateAllocation(VideoEncoder.BitrateAllocation bitrateAllocation, int i3) {
+    public final VideoCodecStatus setRateAllocation(VideoEncoder.BitrateAllocation bitrateAllocation, int i7) {
         throw new UnsupportedOperationException("Not implemented.");
     }
 

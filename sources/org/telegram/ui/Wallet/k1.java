@@ -1,94 +1,75 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.u10;
-import org.telegram.ui.Components.fc;
-import org.telegram.ui.n60;
-public final class k1 implements u10 {
-    public final int f42741a = 0;
-    public final gi.d f42742b;
-    public final gi.d f42743c;
-    public final x2 d;
-    public final org.telegram.ui.ActionBar.e6 f42744e;
-    public final y1 f42745f;
-    public final Object f42746g;
-    public final Object h;
+import android.text.TextUtils;
+import android.view.View;
+import org.json.JSONObject;
+import org.telegram.tgnet.tl.TL_wallet;
+import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.k60;
+public final class k1 implements View.OnClickListener {
+    public final int f42665a;
+    public final Object f42666b;
+    public final Object f42667c;
+    public final Object d;
 
-    public k1(gi.d dVar, gi.d dVar2, c2 c2Var, y1 y1Var, x2 x2Var, org.telegram.ui.ActionBar.e6 e6Var, g gVar) {
-        this.f42742b = dVar;
-        this.f42743c = dVar2;
-        this.f42746g = c2Var;
-        this.f42745f = y1Var;
-        this.d = x2Var;
-        this.f42744e = e6Var;
-        this.h = gVar;
+    public k1(Object obj, Object obj2, Object obj3, int i7) {
+        this.f42665a = i7;
+        this.f42666b = obj;
+        this.f42667c = obj2;
+        this.d = obj3;
     }
 
     @Override
-    public final void a(Object obj) {
-        gi.d dVar;
-        boolean z10;
-        switch (this.f42741a) {
+    public final void onClick(View view) {
+        switch (this.f42665a) {
             case 0:
-                c2 c2Var = (c2) this.f42746g;
-                g gVar = (g) this.h;
-                Boolean bool = (Boolean) obj;
-                gi.d dVar2 = this.f42742b;
-                dVar2.setEnabled(false);
-                gi.d dVar3 = this.f42743c;
-                dVar3.setEnabled(false);
-                if (bool.booleanValue()) {
-                    dVar = dVar3;
-                } else {
-                    dVar = dVar2;
+                z2 z2Var = (z2) this.f42667c;
+                org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.d;
+                if (org.telegram.messenger.g0.g(((JSONObject) this.f42666b).optString("text"))) {
+                    org.telegram.messenger.camera.q.r(null, 2131743010, new hc(z2Var.E, f6Var));
+                    return;
                 }
-                dVar.setLoading(true);
-                boolean booleanValue = bool.booleanValue();
-                x2 x2Var = this.d;
-                org.telegram.ui.ActionBar.e6 e6Var = this.f42744e;
-                y1 y1Var = this.f42745f;
-                c2Var.f(y1Var, booleanValue, new n60(dVar2, dVar3, x2Var, e6Var, gVar, y1Var, 3));
+                return;
+            case 1:
+                p3 p3Var = (p3) this.f42666b;
+                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f42667c;
+                TL_wallet.card cardVar = (TL_wallet.card) this.d;
+                if (!p3Var.R) {
+                    if (p3Var.f42959e) {
+                        p3Var.U = new k3(1, f2Var);
+                    } else if (p3Var.d) {
+                        p3Var.U = new k3(0, f2Var);
+                    } else if (p3Var.f42958c && !TextUtils.isEmpty(cardVar.address)) {
+                        p3Var.U = new n(7, f2Var, cardVar);
+                    } else {
+                        return;
+                    }
+                    p3Var.dismiss();
+                    return;
+                }
+                return;
+            case 2:
+                k60 k60Var = (k60) this.d;
+                f fVar = ((n0) this.f42666b).h;
+                String str = ((TL_wallet.currencyRate) this.f42667c).currency;
+                if (!TextUtils.equals(fVar.f42417f, str)) {
+                    fVar.f42417f = str;
+                    try {
+                        org.telegram.messenger.t0.f25555b.getSharedPreferences("gram_wallet", 0).edit().putString("currency", fVar.g()).apply();
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.e("[gram-wallet] failed to save currency prefs", e10);
+                    }
+                    fVar.f42414b.L();
+                }
+                k60Var.u();
                 return;
             default:
-                boolean[] zArr = (boolean[]) this.f42746g;
-                boolean[] zArr2 = (boolean[]) this.h;
-                String str = (String) obj;
-                gi.d dVar4 = this.f42742b;
-                boolean z11 = false;
-                dVar4.setLoading(false);
-                gi.d dVar5 = this.f42743c;
-                dVar5.setLoading(false);
-                x2 x2Var2 = this.d;
-                if (str == null) {
-                    x2Var2.dismiss();
-                    return;
-                } else if (zArr[0]) {
-                    fc.b0(str);
-                    return;
-                } else {
-                    fc.c0(str, x2Var2.F, this.f42744e);
-                    y1 y1Var2 = this.f42745f;
-                    if (!y1Var2.f43467n && zArr2[0]) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    dVar4.setEnabled(z10);
-                    if (!y1Var2.f43467n && !y1Var2.f43468o) {
-                        z11 = true;
-                    }
-                    dVar5.setEnabled(z11);
-                    return;
-                }
+                r8 r8Var = (r8) this.f42666b;
+                r8Var.getClass();
+                ((org.telegram.ui.ActionBar.u1[]) this.f42667c)[0].dismiss();
+                org.telegram.messenger.g0.g(r8Var.f43086s);
+                ((Runnable) this.d).run();
+                return;
         }
-    }
-
-    public k1(gi.d dVar, gi.d dVar2, x2 x2Var, boolean[] zArr, org.telegram.ui.ActionBar.e6 e6Var, y1 y1Var, boolean[] zArr2) {
-        this.f42742b = dVar;
-        this.f42743c = dVar2;
-        this.d = x2Var;
-        this.f42746g = zArr;
-        this.f42744e = e6Var;
-        this.f42745f = y1Var;
-        this.h = zArr2;
     }
 }

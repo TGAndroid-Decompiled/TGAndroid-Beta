@@ -1,112 +1,176 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.graphics.Path;
 import android.graphics.RectF;
-import android.view.View;
-import java.util.HashSet;
-public final class aq extends View implements org.telegram.ui.ActionBar.z5 {
-    public final Paint f31971a;
-    public final Paint f31972b;
-    public final RectF f31973c;
-    public int d;
-    public long f31974e;
-    public int f31975f;
-    public int h;
-    public int f31976n;
-    public int f31977r;
+import android.os.Build;
+import java.util.ArrayList;
+import java.util.List;
+public class aq extends Path {
+    public static ArrayList f31870g;
+    public int f31874e;
+    public int f31875f;
+    public boolean f31872b = false;
+    public boolean f31873c = true;
+    public float d = 0.0f;
+    public final ArrayList f31871a = new ArrayList(1);
 
-    public aq(Context context, int i3) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f31971a = paint;
-        Paint paint2 = new Paint(1);
-        this.f31972b = paint2;
-        this.f31973c = new RectF();
-        this.d = 0;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        if (i3 == 0) {
-            this.f31975f = org.telegram.ui.ActionBar.k6.B7;
-            this.h = org.telegram.ui.ActionBar.k6.C7;
-        } else if (i3 == 1) {
-            this.f31975f = org.telegram.ui.ActionBar.k6.D7;
-            this.h = org.telegram.ui.ActionBar.k6.E7;
-        } else if (i3 == 2) {
-            this.f31975f = org.telegram.ui.ActionBar.k6.F7;
-            this.h = org.telegram.ui.ActionBar.k6.G7;
-        } else if (i3 == 3) {
-            this.f31975f = org.telegram.ui.ActionBar.k6.H7;
-            this.h = org.telegram.ui.ActionBar.k6.I7;
+    public aq() {
+    }
+
+    public final void a() {
+        if (Build.VERSION.SDK_INT >= 34 && this.f31873c && !this.f31872b) {
+            b(this.f31871a);
+            this.f31872b = true;
         }
-        updateColors();
-    }
-
-    public final void a(int i3, int i10) {
-        this.f31975f = -1;
-        this.h = -1;
-        this.f31976n = i3;
-        this.f31977r = i10;
-        updateColors();
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f31974e = System.currentTimeMillis();
-        invalidate();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (getVisibility() != 0) {
+    public final void addRect(RectF rectF, Path.Direction direction) {
+        RectF rectF2;
+        if (Build.VERSION.SDK_INT >= 34 && this.f31873c) {
+            ArrayList arrayList = this.f31871a;
+            if (arrayList.size() <= 0 || !((RectF) jg.g.i(1, arrayList)).contains(rectF)) {
+                if (arrayList.size() > 0 && Math.abs(rectF.top - ((RectF) jg.g.i(1, arrayList)).top) <= this.d && Math.abs(rectF.bottom - ((RectF) jg.g.i(1, arrayList)).bottom) <= this.d) {
+                    ((RectF) jg.g.i(1, arrayList)).union(rectF);
+                } else {
+                    ArrayList arrayList2 = f31870g;
+                    if (arrayList2 != null && arrayList2.size() > 0) {
+                        rectF2 = (RectF) f31870g.remove(0);
+                    } else {
+                        rectF2 = new RectF();
+                    }
+                    rectF2.set(rectF);
+                    arrayList.add(rectF2);
+                }
+                this.f31872b = false;
+                return;
+            }
             return;
         }
-        long currentTimeMillis = System.currentTimeMillis();
-        long j10 = currentTimeMillis - this.f31974e;
-        this.f31974e = currentTimeMillis;
-        this.d = (int) ((((float) (j10 * 360)) / 1000.0f) + this.d);
-        int measuredWidth = (getMeasuredWidth() / 2) - org.telegram.messenger.g0.L(9.0f);
-        int measuredHeight = (getMeasuredHeight() / 2) - org.telegram.messenger.g0.L(9.0f);
-        RectF rectF = this.f31973c;
-        rectF.set(measuredWidth, measuredHeight, org.telegram.messenger.g0.L(18.0f) + measuredWidth, org.telegram.messenger.g0.L(18.0f) + measuredHeight);
-        canvas.drawCircle(getMeasuredWidth() / 2, getMeasuredHeight() / 2, org.telegram.messenger.g0.L(9.0f), this.f31971a);
-        canvas.drawArc(rectF, this.d - 90, 90.0f, false, this.f31972b);
-        invalidate();
+        float f10 = rectF.left;
+        int i7 = this.f31874e;
+        float f11 = f10 - i7;
+        float f12 = rectF.top;
+        int i10 = this.f31875f;
+        super.addRect(f11, f12 - i10, rectF.right + i7, rectF.bottom + i10, direction);
     }
 
-    @Override
-    public void setVisibility(int i3) {
-        super.setVisibility(i3);
-        this.f31974e = System.currentTimeMillis();
-        invalidate();
-    }
-
-    @Override
-    public final void updateColors() {
-        int i3 = this.f31975f;
-        Paint paint = this.f31971a;
-        if (i3 >= 0) {
-            paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, i3, false));
-        } else {
-            paint.setColor(this.f31976n);
+    public final void b(List list) {
+        if (!list.isEmpty()) {
+            boolean z9 = false;
+            if (list.size() == 1) {
+                super.addRect(((RectF) list.get(0)).left - this.f31874e, ((RectF) list.get(0)).top - this.f31875f, ((RectF) list.get(0)).right + this.f31874e, ((RectF) list.get(0)).bottom + this.f31875f, Path.Direction.CW);
+                return;
+            }
+            RectF rectF = (RectF) list.get(0);
+            int size = list.size() - 1;
+            super.moveTo(rectF.left - this.f31874e, rectF.top - this.f31875f);
+            for (int i7 = 1; i7 < list.size(); i7++) {
+                RectF rectF2 = (RectF) list.get(i7);
+                if (rectF2.width() != 0.0f) {
+                    float f10 = rectF.bottom;
+                    int i10 = this.f31875f;
+                    float f11 = f10 + i10;
+                    float f12 = rectF2.top;
+                    if (f11 >= f12 - i10) {
+                        float f13 = rectF.left;
+                        if (f13 <= rectF2.right) {
+                            float f14 = rectF.right;
+                            float f15 = rectF2.left;
+                            if (f14 >= f15) {
+                                if (f13 != f15) {
+                                    super.lineTo(f13 - this.f31874e, f12);
+                                    super.lineTo(rectF2.left - this.f31874e, rectF2.top);
+                                }
+                                rectF = rectF2;
+                            }
+                        }
+                    }
+                    z9 = true;
+                    size = i7;
+                    break;
+                }
+            }
+            super.lineTo(rectF.left - this.f31874e, rectF.bottom + this.f31875f);
+            super.lineTo(rectF.right + this.f31874e, rectF.bottom + this.f31875f);
+            for (int i11 = size - 1; i11 >= 0; i11--) {
+                RectF rectF3 = (RectF) list.get(i11);
+                if (rectF3.width() != 0.0f) {
+                    float f16 = rectF.right;
+                    if (f16 != rectF3.right) {
+                        super.lineTo(f16 + this.f31874e, rectF.top);
+                        super.lineTo(rectF3.right + this.f31874e, rectF.top);
+                    }
+                    rectF = rectF3;
+                }
+            }
+            super.lineTo(rectF.right + this.f31874e, rectF.top - this.f31875f);
+            super.close();
+            if (z9) {
+                b(list.subList(size, list.size()));
+            }
         }
-        int i10 = this.h;
-        Paint paint2 = this.f31972b;
-        if (i10 >= 0) {
-            paint2.setColor(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
-        } else {
-            paint2.setColor(this.f31977r);
-        }
-        invalidate();
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public void reset() {
+        super.reset();
+        if (Build.VERSION.SDK_INT >= 34 && this.f31873c) {
+            ArrayList arrayList = f31870g;
+            ArrayList arrayList2 = this.f31871a;
+            if (arrayList == null) {
+                f31870g = new ArrayList(arrayList2.size());
+            }
+            f31870g.addAll(arrayList2);
+            arrayList2.clear();
+            this.f31872b = false;
+        }
+    }
+
+    @Override
+    public final void rewind() {
+        super.rewind();
+        if (Build.VERSION.SDK_INT >= 34 && this.f31873c) {
+            ArrayList arrayList = f31870g;
+            ArrayList arrayList2 = this.f31871a;
+            if (arrayList == null) {
+                f31870g = new ArrayList(arrayList2.size());
+            }
+            f31870g.addAll(arrayList2);
+            arrayList2.clear();
+            this.f31872b = false;
+        }
+    }
+
+    public aq(int i7) {
+    }
+
+    @Override
+    public void addRect(float f10, float f11, float f12, float f13, Path.Direction direction) {
+        RectF rectF;
+        if (Build.VERSION.SDK_INT >= 34 && this.f31873c) {
+            ArrayList arrayList = this.f31871a;
+            if (arrayList.size() <= 0 || !((RectF) jg.g.i(1, arrayList)).contains(f10, f11, f12, f13)) {
+                if (arrayList.size() > 0 && Math.abs(f11 - ((RectF) jg.g.i(1, arrayList)).top) <= this.d && Math.abs(f13 - ((RectF) jg.g.i(1, arrayList)).bottom) <= this.d) {
+                    ((RectF) jg.g.i(1, arrayList)).union(f10, f11, f12, f13);
+                } else {
+                    ArrayList arrayList2 = f31870g;
+                    if (arrayList2 != null && arrayList2.size() > 0) {
+                        rectF = (RectF) f31870g.remove(0);
+                    } else {
+                        rectF = new RectF();
+                    }
+                    rectF.set(f10, f11, f12, f13);
+                    arrayList.add(rectF);
+                }
+                this.f31872b = false;
+                return;
+            }
+            return;
+        }
+        int i7 = this.f31874e;
+        float f14 = f10 - i7;
+        int i10 = this.f31875f;
+        super.addRect(f14, f11 - i10, f12 + i7, f13 + i10, direction);
     }
 }

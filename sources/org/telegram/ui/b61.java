@@ -1,35 +1,35 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_stories;
-public final class b61 implements org.telegram.messenger.u10 {
-    public final int f43938a;
-    public final l71 f43939b;
+import android.content.Context;
+import java.util.HashSet;
+public final class b61 extends org.telegram.ui.Cells.i0 implements org.telegram.ui.ActionBar.a6 {
+    public int f44185e;
+    public final f61 f44186f;
 
-    public b61(l71 l71Var, int i3) {
-        this.f43938a = i3;
-        this.f43939b = l71Var;
+    public b61(f61 f61Var, Context context) {
+        super(context);
+        this.f44186f = f61Var;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f43938a) {
-            case 0:
-                l71 l71Var = this.f43939b;
-                l71Var.getClass();
-                l71Var.f47186p1 = ((Float) obj).floatValue();
-                l71Var.f47210z0.invalidate();
-                l71Var.a1();
-                return;
-            case 1:
-                l71 l71Var2 = this.f43939b;
-                l71Var2.X1 = (TL_stories.TL_premium_boostsStatus) obj;
-                l71Var2.W1 = true;
-                l71Var2.m1(true);
-                l71Var2.V1 = false;
-                return;
-            default:
-                l71.Z(this.f43939b, (org.telegram.messenger.e3) obj);
-                return;
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.Jj));
+    }
+
+    @Override
+    public final void updateColors() {
+        org.telegram.ui.Cells.h0 h0Var = this.d;
+        if (h0Var != null) {
+            try {
+                int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Jj, false);
+                if (x02 != this.f44185e) {
+                    this.f44185e = x02;
+                    h0Var.setOuterColor(x02);
+                    h0Var.invalidate();
+                }
+            } catch (Exception e10) {
+                org.telegram.messenger.a8.g(e10, true);
+            }
         }
     }
 }

@@ -1,3 +1,3 @@
 package z7;
-public interface p {
+public abstract class p {
 }

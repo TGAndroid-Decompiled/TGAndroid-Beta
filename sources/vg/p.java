@@ -1,29 +1,14 @@
 package vg;
+public final class p {
+    public final float f57359a;
+    public final float f57360b;
+    public final boolean f57361c;
+    public final boolean d;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class p extends AnimatorListenerAdapter {
-    public final int f56773a;
-    public final q f56774b;
-    public final r f56775c;
-
-    public p(r rVar, q qVar, int i3) {
-        this.f56773a = i3;
-        this.f56775c = rVar;
-        this.f56774b = qVar;
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f56773a) {
-            case 0:
-                this.f56774b.f56788f = null;
-                r.a(this.f56775c);
-                return;
-            default:
-                this.f56774b.f56788f = null;
-                r.a(this.f56775c);
-                return;
-        }
+    public p(float f10, float f11, boolean z9, boolean z10) {
+        this.f57359a = f10;
+        this.f57360b = f11;
+        this.f57361c = z9;
+        this.d = z10;
     }
 }

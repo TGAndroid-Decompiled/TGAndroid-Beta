@@ -1,141 +1,111 @@
 package ii;
 
-import android.app.DownloadManager;
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.text.TextUtils;
-import android.util.Pair;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import org.json.JSONObject;
-import org.telegram.messenger.a8;
-import org.telegram.messenger.hs;
-public final class i0 {
-    public static final HashMap f14999g = new HashMap();
-    public static final HashMap h = new HashMap();
-    public final Context f15000a;
-    public final int f15001b;
-    public final long f15002c;
-    public final DownloadManager d;
-    public final ArrayList f15003e = new ArrayList();
-    public h0 f15004f;
+import android.view.View;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.p10;
+import org.telegram.messenger.qp;
+import org.telegram.messenger.t3;
+import org.telegram.messenger.uo;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Cells.p2;
+import org.telegram.ui.Cells.t2;
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.q31;
+import org.telegram.ui.Components.r31;
+public final class i0 extends q31 {
+    static {
+        q31.h(new q31());
+    }
 
-    public i0(Context context, int i3, long j10) {
-        this.f15000a = context;
-        this.f15001b = i3;
-        this.f15002c = j10;
-        this.d = (DownloadManager) context.getSystemService("download");
-        SharedPreferences sharedPreferences = context.getSharedPreferences("botdownloads_" + i3, 0);
-        Set<String> stringSet = sharedPreferences.getStringSet("" + j10, null);
-        if (stringSet != null) {
-            for (String str : stringSet) {
-                try {
-                    h0 h0Var = new h0(this, new JSONObject(str));
-                    File file = h0Var.d;
-                    if (file != null && file.exists()) {
-                        this.f15003e.add(h0Var);
-                    }
-                } catch (Exception e10) {
-                    a8.g(e10, true);
-                }
+    public static r31 i(uo uoVar, p2 p2Var) {
+        long j3;
+        TLRPC.User user = uoVar.f25872c;
+        if (user != null) {
+            r31 K = r31.K(i0.class);
+            long j10 = user.f27101id;
+            K.B = j10;
+            K.d = (int) (j10 ^ (j10 >>> 32));
+            K.G = user;
+            K.H = p2Var;
+            return K;
+        }
+        TLRPC.Chat chat = uoVar.f25871b;
+        r31 K2 = r31.K(i0.class);
+        if (chat != null) {
+            j3 = -chat.f26952id;
+        } else {
+            j3 = 0;
+        }
+        K2.B = j3;
+        K2.d = (int) (j3 ^ (j3 >>> 32));
+        K2.G = chat;
+        K2.H = p2Var;
+        return K2;
+    }
+
+    @Override
+    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
+        t2 t2Var = (t2) view;
+        t2Var.setDialogCellDelegate((p2) r31Var.H);
+        Object obj = r31Var.G;
+        boolean z10 = true;
+        if (obj instanceof TLRPC.Chat) {
+            TLRPC.Chat chat = (TLRPC.Chat) obj;
+            t2Var.Q0 = t3.e0(p10.f24459s0, chat);
+            TLRPC.Dialog S0 = qp.s1(p10.f24459s0).S0(-chat.f26952id);
+            if (S0 != null) {
+                z10 = false;
             }
-        }
-    }
-
-    public static void a() {
-        Context context = org.telegram.messenger.t0.f25457b;
-        if (context == null) {
-            return;
-        }
-        for (int i3 = 0; i3 < 4; i3++) {
-            context.getSharedPreferences("botdownloads_" + i3, 0).edit().clear().apply();
-        }
-        f14999g.clear();
-    }
-
-    public static i0 c(Context context, int i3, long j10) {
-        Pair pair = new Pair(Integer.valueOf(i3), Long.valueOf(j10));
-        HashMap hashMap = f14999g;
-        i0 i0Var = (i0) hashMap.get(pair);
-        if (i0Var == null) {
-            i0 i0Var2 = new i0(context, i3, j10);
-            hashMap.put(pair, i0Var2);
-            return i0Var2;
-        }
-        return i0Var;
-    }
-
-    public final void b(String str, String str2) {
-        h0 d = d(str);
-        if (d != null) {
-            this.f15004f = d;
-            d.f14982k = true;
-            e();
-            return;
-        }
-        h0 h0Var = new h0(this, str, str2);
-        this.f15004f = h0Var;
-        h0Var.f14983l = false;
-        this.f15003e.add(h0Var);
-        f();
-        e();
-    }
-
-    public final h0 d(String str) {
-        ArrayList arrayList = this.f15003e;
-        int size = arrayList.size();
-        int i3 = 0;
-        while (i3 < size) {
-            Object obj = arrayList.get(i3);
-            i3++;
-            h0 h0Var = (h0) obj;
-            if (TextUtils.equals(h0Var.f14975b, str) && h0Var.h) {
-                return h0Var;
+            t2Var.P0 = z10;
+            if (S0 != null) {
+                t2Var.setCustomMessageWithoutRebuild(null);
+                t2Var.e0(S0, 0, 0);
+                return;
             }
-        }
-        return null;
-    }
-
-    public final void e() {
-        hs.f(this.f15001b).k(hs.J3, new Object[0]);
-    }
-
-    public final void f() {
-        String absolutePath;
-        int i3 = 0;
-        SharedPreferences.Editor edit = this.f15000a.getSharedPreferences("botdownloads_" + this.f15001b, 0).edit();
-        edit.clear();
-        HashSet hashSet = new HashSet();
-        ArrayList arrayList = this.f15003e;
-        int size = arrayList.size();
-        while (i3 < size) {
-            Object obj = arrayList.get(i3);
-            i3++;
-            h0 h0Var = (h0) obj;
-            h0Var.getClass();
-            JSONObject jSONObject = new JSONObject();
-            try {
-                jSONObject.put("url", h0Var.f14975b);
-                jSONObject.put("file_name", h0Var.f14976c);
-                jSONObject.put("size", h0Var.f14979g);
-                File file = h0Var.d;
-                if (file == null) {
-                    absolutePath = null;
-                } else {
-                    absolutePath = file.getAbsolutePath();
-                }
-                jSONObject.put("path", absolutePath);
-                jSONObject.put("done", h0Var.h);
-                jSONObject.put("mime", h0Var.f14977e);
-            } catch (Exception e10) {
-                a8.g(e10, true);
+            t2Var.setCustomMessageWithoutRebuild(hd.G(chat.participants_count, "Members", new Object[0]));
+            t2Var.d0(-chat.f26952id, null, 0, false, false);
+        } else if (obj instanceof TLRPC.User) {
+            TLRPC.User user = (TLRPC.User) obj;
+            t2Var.Q0 = t3.f0(p10.f24459s0, user);
+            TLRPC.Dialog S02 = qp.s1(p10.f24459s0).S0(user.f27101id);
+            if (S02 != null) {
+                z10 = false;
             }
-            hashSet.add(jSONObject.toString());
+            t2Var.P0 = z10;
+            if (S02 != null) {
+                t2Var.setCustomMessageWithoutRebuild(null);
+                t2Var.e0(S02, 0, 0);
+                return;
+            }
+            t2Var.setCustomMessageWithoutRebuild(hd.M0(2131753156, null));
+            t2Var.d0(user.f27101id, null, 0, false, false);
         }
-        edit.putStringSet("" + this.f15002c, hashSet);
-        edit.apply();
+    }
+
+    @Override
+    public final boolean c(r31 r31Var, r31 r31Var2) {
+        if (r31Var.d == r31Var2.d) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final View d(Context context, pj0 pj0Var, int i7, f6 f6Var) {
+        t2 t2Var = new t2(null, context, false, i7, f6Var);
+        t2Var.O0 = true;
+        return t2Var;
+    }
+
+    @Override
+    public final boolean e(r31 r31Var, r31 r31Var2) {
+        if (r31Var.d == r31Var2.d) {
+            return true;
+        }
+        return false;
     }
 }

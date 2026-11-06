@@ -1,18 +1,61 @@
 package kg;
 
 import android.content.Context;
-import android.widget.FrameLayout;
-public final class l extends FrameLayout {
-    public boolean f17078a;
-    public final m f17079b;
+import android.text.Editable;
+import fi.w3;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Cells.k3;
+public final class l extends k3 {
+    public final int E;
+    public final m F;
 
-    public l(m mVar, Context context) {
-        super(context);
-        this.f17079b = mVar;
+    public l(m mVar, Context context, String str, int i7, f6 f6Var, int i10) {
+        super(context, str, false, false, i7, f6Var);
+        this.E = i10;
+        switch (i10) {
+            case 1:
+                this.F = mVar;
+                super(context, str, true, false, i7, f6Var);
+                return;
+            default:
+                this.F = mVar;
+                return;
+        }
     }
 
     @Override
-    public final void onMeasure(int r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: kg.l.onMeasure(int, int):void");
+    public final void a(boolean z9) {
+        w3 w3Var;
+        w3 w3Var2;
+        switch (this.E) {
+            case 0:
+                if (z9 && (w3Var = this.F.f34211a) != null) {
+                    w3Var.y0(2);
+                    return;
+                }
+                return;
+            default:
+                if (z9 && (w3Var2 = this.F.f34211a) != null) {
+                    w3Var2.y0(3);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void b(Editable editable) {
+        switch (this.E) {
+            case 0:
+                m mVar = this.F;
+                mVar.f17427n.d(mVar.f17429s.getText().toString(), mVar.f17430w.getText().toString());
+                mVar.j0(true);
+                return;
+            default:
+                m mVar2 = this.F;
+                mVar2.f17427n.d(mVar2.f17429s.getText().toString(), mVar2.f17430w.getText().toString());
+                mVar2.j0(true);
+                return;
+        }
     }
 }

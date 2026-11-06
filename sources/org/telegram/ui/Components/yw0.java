@@ -3,14 +3,14 @@ public final class yw0 extends cx0 {
     public int d;
 
     @Override
-    public final int a(lx0 lx0Var, ex0 ex0Var, xw0 xw0Var, int i3, boolean z10) {
-        return Math.max(0, this.f32850a - xw0Var.a(ex0Var, i3));
+    public final int a(lx0 lx0Var, ex0 ex0Var, xw0 xw0Var, int i7, boolean z9) {
+        return Math.max(0, this.f32690a - xw0Var.a(ex0Var, i7));
     }
 
     @Override
-    public final void b(int i3, int i10) {
-        super.b(i3, i10);
-        this.d = Math.max(this.d, i3 + i10);
+    public final void b(int i7, int i10) {
+        super.b(i7, i10);
+        this.d = Math.max(this.d, i7 + i10);
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class yw0 extends cx0 {
     }
 
     @Override
-    public final int d(boolean z10) {
-        return Math.max(super.d(z10), this.d);
+    public final int d(boolean z9) {
+        return Math.max(super.d(z9), this.d);
     }
 }

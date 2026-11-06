@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import a1.g;
+import a8.p0;
 public class AccentedAtom extends Atom {
     private boolean acc;
     private final SymbolAtom accent;
@@ -81,8 +81,8 @@ public class AccentedAtom extends Atom {
             f11 = 0.0f;
         }
         charBox.setShift(f10 + f11);
-        int i3 = (width2 > 0.0f ? 1 : (width2 == 0.0f ? 0 : -1));
-        if (i3 < 0) {
+        int i7 = (width2 > 0.0f ? 1 : (width2 == 0.0f ? 0 : -1));
+        if (i7 < 0) {
             createBox = new HorizontalBox(createBox, charBox.getWidth(), 2);
         }
         verticalBox.add(charBox);
@@ -97,7 +97,7 @@ public class AccentedAtom extends Atom {
         float depth = createBox.getDepth();
         verticalBox.setDepth(depth);
         verticalBox.setHeight((verticalBox.getDepth() + height) - depth);
-        if (i3 < 0) {
+        if (i7 < 0) {
             HorizontalBox horizontalBox2 = new HorizontalBox(new StrutBox(width2, 0.0f, 0.0f, 0.0f));
             horizontalBox2.add(verticalBox);
             horizontalBox2.setWidth(width);
@@ -106,9 +106,9 @@ public class AccentedAtom extends Atom {
         return verticalBox;
     }
 
-    public AccentedAtom(Atom atom, Atom atom2, boolean z10) {
+    public AccentedAtom(Atom atom, Atom atom2, boolean z9) {
         this(atom, atom2);
-        this.changeSize = z10;
+        this.changeSize = z9;
     }
 
     public AccentedAtom(Atom atom, String str) {
@@ -128,7 +128,7 @@ public class AccentedAtom extends Atom {
                 return;
             }
         }
-        throw new InvalidSymbolTypeException(g.q("The symbol with the name '", str, "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!"));
+        throw new InvalidSymbolTypeException(p0.p("The symbol with the name '", str, "' is not defined as an accent (type='acc') in 'TeXSymbols.xml'!"));
     }
 
     public AccentedAtom(Atom atom, TeXFormula teXFormula) {

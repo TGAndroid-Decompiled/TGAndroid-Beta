@@ -1,16 +1,54 @@
 package bi;
-public final class w0 {
-    public final long[] f3880a = new long[4096];
-    public final boolean[] f3881b = new boolean[4096];
-    public final float[] f3882c = new float[4096];
-    public final float[] d = new float[4096];
-    public final float[] f3883e = new float[4096];
-    public final float[] f3884f = new float[4096];
-    public final float[] f3885g = new float[4096];
-    public final float[] h = new float[4096];
-    public final float[] f3886i = new float[4096];
-    public final float[] f3887j = new float[4096];
-    public final int[] f3888k = new int[4096];
-    public final int[] f3889l = new int[4096];
-    public int f3890m;
+
+import org.telegram.messenger.sr;
+public final class w0 implements sr {
+    public final int f4932a;
+    public final Object f4933b;
+
+    public w0(Object obj, int i7) {
+        this.f4932a = i7;
+        this.f4933b = obj;
+    }
+
+    @Override
+    public final void a(int i7) {
+        cg.b bVar;
+        cg.b bVar2;
+        cg.b bVar3;
+        switch (this.f4932a) {
+            case 0:
+                a1 a1Var = (a1) this.f4933b;
+                a1Var.getClass();
+                if (i7 == 0) {
+                    bVar = cg.b.f6162a;
+                } else {
+                    bVar = cg.b.f6163b;
+                }
+                a1Var.f1(cg.a.i(0L, bVar), true, false, true);
+                a1Var.W1.setText("");
+                return;
+            case 1:
+                e1 e1Var = (e1) this.f4933b;
+                e1Var.getClass();
+                if (i7 == 0) {
+                    bVar2 = cg.b.f6162a;
+                } else {
+                    bVar2 = cg.b.f6163b;
+                }
+                e1Var.M0(cg.a.i(0L, bVar2), true, false, true);
+                e1Var.n1.setText("");
+                return;
+            default:
+                k6 k6Var = (k6) this.f4933b;
+                k6Var.getClass();
+                if (i7 == 0) {
+                    bVar3 = cg.b.f6162a;
+                } else {
+                    bVar3 = cg.b.f6163b;
+                }
+                k6Var.f4161q = bVar3;
+                k6Var.a(true);
+                return;
+        }
+    }
 }

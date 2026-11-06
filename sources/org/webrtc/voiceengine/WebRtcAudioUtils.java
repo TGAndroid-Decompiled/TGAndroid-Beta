@@ -22,8 +22,8 @@ public final class WebRtcAudioUtils {
         return Arrays.asList(BLACKLISTED_OPEN_SL_ES_MODELS).contains(Build.MODEL);
     }
 
-    private static String deviceTypeToString(int i3) {
-        switch (i3) {
+    private static String deviceTypeToString(int i7) {
+        switch (i7) {
             case 1:
                 return "TYPE_BUILTIN_EARPIECE";
             case 2:
@@ -82,11 +82,11 @@ public final class WebRtcAudioUtils {
     }
 
     public static synchronized int getDefaultSampleRateHz() {
-        int i3;
+        int i7;
         synchronized (WebRtcAudioUtils.class) {
-            i3 = defaultSampleRateHz;
+            i7 = defaultSampleRateHz;
         }
-        return i3;
+        return i7;
     }
 
     public static String getThreadInfo() {
@@ -106,11 +106,11 @@ public final class WebRtcAudioUtils {
     }
 
     public static synchronized boolean isDefaultSampleRateOverridden() {
-        boolean z10;
+        boolean z9;
         synchronized (WebRtcAudioUtils.class) {
-            z10 = isDefaultSampleRateOverridden;
+            z9 = isDefaultSampleRateOverridden;
         }
-        return z10;
+        return z9;
     }
 
     public static boolean isNoiseSuppressorSupported() {
@@ -175,8 +175,8 @@ public final class WebRtcAudioUtils {
         boolean isVolumeFixed = isVolumeFixed(audioManager);
         Logging.d(str, "  fixed volume=" + isVolumeFixed);
         if (!isVolumeFixed) {
-            for (int i3 = 0; i3 < 6; i3++) {
-                int i10 = iArr[i3];
+            for (int i7 = 0; i7 < 6; i7++) {
+                int i10 = iArr[i7];
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append("  " + streamTypeToString(i10) + ": ");
                 sb2.append("volume=");
@@ -193,16 +193,16 @@ public final class WebRtcAudioUtils {
         Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
     }
 
-    private static void logIsStreamMute(String str, AudioManager audioManager, int i3, StringBuilder sb2) {
+    private static void logIsStreamMute(String str, AudioManager audioManager, int i7, StringBuilder sb2) {
         sb2.append(", muted=");
-        sb2.append(audioManager.isStreamMute(i3));
+        sb2.append(audioManager.isStreamMute(i7));
     }
 
-    public static String modeToString(int i3) {
-        if (i3 != 0) {
-            if (i3 != 1) {
-                if (i3 != 2) {
-                    if (i3 != 3) {
+    public static String modeToString(int i7) {
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 != 2) {
+                    if (i7 != 3) {
                         return "MODE_INVALID";
                     }
                     return "MODE_IN_COMMUNICATION";
@@ -221,38 +221,38 @@ public final class WebRtcAudioUtils {
         return false;
     }
 
-    public static synchronized void setDefaultSampleRateHz(int i3) {
+    public static synchronized void setDefaultSampleRateHz(int i7) {
         synchronized (WebRtcAudioUtils.class) {
             isDefaultSampleRateOverridden = true;
-            defaultSampleRateHz = i3;
+            defaultSampleRateHz = i7;
         }
     }
 
-    public static synchronized void setWebRtcBasedAcousticEchoCanceler(boolean z10) {
+    public static synchronized void setWebRtcBasedAcousticEchoCanceler(boolean z9) {
         synchronized (WebRtcAudioUtils.class) {
-            useWebRtcBasedAcousticEchoCanceler = z10;
+            useWebRtcBasedAcousticEchoCanceler = z9;
         }
     }
 
-    public static synchronized void setWebRtcBasedAutomaticGainControl(boolean z10) {
+    public static synchronized void setWebRtcBasedAutomaticGainControl(boolean z9) {
         synchronized (WebRtcAudioUtils.class) {
             Logging.w("WebRtcAudioUtils", "setWebRtcBasedAutomaticGainControl() is deprecated");
         }
     }
 
-    public static synchronized void setWebRtcBasedNoiseSuppressor(boolean z10) {
+    public static synchronized void setWebRtcBasedNoiseSuppressor(boolean z9) {
         synchronized (WebRtcAudioUtils.class) {
-            useWebRtcBasedNoiseSuppressor = z10;
+            useWebRtcBasedNoiseSuppressor = z9;
         }
     }
 
-    private static String streamTypeToString(int i3) {
-        if (i3 != 0) {
-            if (i3 != 1) {
-                if (i3 != 2) {
-                    if (i3 != 3) {
-                        if (i3 != 4) {
-                            if (i3 != 5) {
+    private static String streamTypeToString(int i7) {
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 != 2) {
+                    if (i7 != 3) {
+                        if (i7 != 4) {
+                            if (i7 != 5) {
                                 return "STREAM_INVALID";
                             }
                             return "STREAM_NOTIFICATION";
@@ -269,18 +269,18 @@ public final class WebRtcAudioUtils {
     }
 
     public static synchronized boolean useWebRtcBasedAcousticEchoCanceler() {
-        boolean z10;
+        boolean z9;
         synchronized (WebRtcAudioUtils.class) {
             try {
                 if (useWebRtcBasedAcousticEchoCanceler) {
                     Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC AEC!");
                 }
-                z10 = useWebRtcBasedAcousticEchoCanceler;
+                z9 = useWebRtcBasedAcousticEchoCanceler;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return z10;
+        return z9;
     }
 
     public static synchronized boolean useWebRtcBasedAutomaticGainControl() {
@@ -290,17 +290,17 @@ public final class WebRtcAudioUtils {
     }
 
     public static synchronized boolean useWebRtcBasedNoiseSuppressor() {
-        boolean z10;
+        boolean z9;
         synchronized (WebRtcAudioUtils.class) {
             try {
                 if (useWebRtcBasedNoiseSuppressor) {
                     Logging.w("WebRtcAudioUtils", "Overriding default behavior; now using WebRTC NS!");
                 }
-                z10 = useWebRtcBasedNoiseSuppressor;
+                z9 = useWebRtcBasedNoiseSuppressor;
             } catch (Throwable th2) {
                 throw th2;
             }
         }
-        return z10;
+        return z9;
     }
 }

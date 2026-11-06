@@ -1,77 +1,65 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-public final class qz extends org.telegram.ui.Components.sj0 {
-    public final wz f48972c;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import java.util.HashSet;
+public final class qz extends View implements org.telegram.ui.ActionBar.a6 {
+    public final org.telegram.ui.Components.i6 f49314a;
+    public fh.g f49315b;
+    public String f49316c;
 
-    public qz(wz wzVar) {
-        this.f48972c = wzVar;
+    public qz(Activity activity) {
+        super(activity);
+        org.telegram.ui.Components.i6 i6Var = new org.telegram.ui.Components.i6(true, false, false);
+        this.f49314a = i6Var;
+        i6Var.u(-1);
+        i6Var.f34516b = 17;
+        i6Var.x(org.telegram.messenger.g0.o());
+        i6Var.w(org.telegram.messenger.g0.L(14.0f));
+        i6Var.setCallback(this);
     }
 
     @Override
-    public final boolean D(u4.d1 d1Var) {
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        org.telegram.ui.Components.i6 i6Var = this.f49314a;
+        int N = (int) (org.telegram.messenger.g0.N(30.0f) + i6Var.c());
+        int width = (getWidth() - N) / 2;
+        int i7 = N + width;
+        fh.g gVar = this.f49315b;
+        if (gVar != null) {
+            gVar.setBounds(width, 0, i7, getHeight());
+            this.f49315b.draw(canvas);
+        }
+        i6Var.draw(canvas);
+    }
+
+    @Override
+    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
+        super.onSizeChanged(i7, i10, i11, i12);
+        this.f49314a.setBounds(0, 0, i7, i10);
+    }
+
+    @Override
+    public final void updateColors() {
+        fh.g gVar = this.f49315b;
+        if (gVar != null) {
+            gVar.updateColors();
+            invalidate();
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f49314a) {
+            return false;
+        }
         return true;
     }
 
     @Override
-    public final int b() {
-        wz wzVar = this.f48972c;
-        if (wzVar.f51645f.isEmpty()) {
-            return 0;
-        }
-        return wzVar.f51645f.size() + (!wzVar.O ? 1 : 0);
-    }
-
-    @Override
-    public final int d(int i3) {
-        if (i3 >= this.f48972c.f51645f.size()) {
-            return 3;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void t(u4.d1 d1Var, int i3) {
-        boolean z10;
-        boolean z11;
-        if (d1Var.f55544f == 0) {
-            org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) d1Var.f55540a;
-            wz wzVar = this.f48972c;
-            org.telegram.messenger.zi ziVar = (org.telegram.messenger.zi) wzVar.f51645f.get(i3);
-            t2Var.P = wzVar.f51657q0;
-            t2Var.d0(org.telegram.messenger.zi.B0(ziVar.f26868k), ziVar, ziVar.f26868k.date, false, false);
-            if (i3 != b() - 1) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            t2Var.f30561t2 = z10;
-            if (t2Var.getMessage() != null && t2Var.getMessage().f1() == ziVar.f1()) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            t2Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Components.sj(this, t2Var, ziVar, z11, 1));
-        }
-    }
-
-    @Override
-    public final u4.d1 x(ViewGroup viewGroup, int i3) {
-        kg.x xVar;
-        if (i3 != 0) {
-            if (i3 != 3) {
-                org.telegram.ui.Cells.x3 x3Var = new org.telegram.ui.Cells.x3(viewGroup.getContext(), null);
-                x3Var.setText(org.telegram.messenger.bd.M0(2131745766, null));
-                xVar = x3Var;
-            } else {
-                org.telegram.ui.Components.iz izVar = new org.telegram.ui.Components.iz(viewGroup.getContext(), null);
-                izVar.setIsSingleCell(true);
-                izVar.setViewType(1);
-                xVar = izVar;
-            }
-        } else {
-            xVar = new kg.x(2, viewGroup.getContext(), true);
-        }
-        return k2.p1.p(xVar, xVar, -1, -2);
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

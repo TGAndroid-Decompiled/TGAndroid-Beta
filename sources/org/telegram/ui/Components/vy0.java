@@ -6,9 +6,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 public class vy0 extends ViewSwitcher {
-    public final void a(CharSequence charSequence, boolean z10, boolean z11) {
-        if (z11 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
-            if (z10) {
+    public final void a(CharSequence charSequence, boolean z9, boolean z10) {
+        if (z10 || !TextUtils.equals(charSequence, getCurrentView().getText())) {
+            if (z9) {
                 getNextView().setText(charSequence);
                 showNext();
                 return;
@@ -18,9 +18,9 @@ public class vy0 extends ViewSwitcher {
     }
 
     @Override
-    public final void addView(View view, int i3, ViewGroup.LayoutParams layoutParams) {
+    public final void addView(View view, int i7, ViewGroup.LayoutParams layoutParams) {
         if (view instanceof TextView) {
-            super.addView(view, i3, layoutParams);
+            super.addView(view, i7, layoutParams);
             return;
         }
         throw new IllegalArgumentException();

@@ -1,36 +1,20 @@
 package org.telegram.ui;
-public final class jv0 implements Runnable {
-    public final int f46694a;
-    public final kv0 f46695b;
 
-    public jv0(kv0 kv0Var, int i3) {
-        this.f46694a = i3;
-        this.f46695b = kv0Var;
+import android.app.Activity;
+import org.telegram.tgnet.TLRPC;
+public final class jv0 extends org.telegram.ui.Components.mo0 {
+    public final ProfileActivity R2;
+
+    public jv0(ProfileActivity profileActivity, Activity activity, String str, String str2) {
+        super(activity, null, str, false, str2, false, null);
+        this.R2 = profileActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f46694a) {
-            case 0:
-                ProfileActivity profileActivity = this.f46695b.f47034n0;
-                yu0 yu0Var = profileActivity.O5;
-                if (yu0Var != null) {
-                    yu0Var.dismiss();
-                    profileActivity.O5 = null;
-                    return;
-                }
-                return;
-            default:
-                try {
-                    org.telegram.ui.Components.tj0 currentListView = this.f46695b.f47029h0.O.getCurrentListView();
-                    if (currentListView != null && currentListView.getAdapter() != null) {
-                        currentListView.getAdapter().f();
-                        return;
-                    }
-                    return;
-                } catch (Throwable unused) {
-                    return;
-                }
+    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
+        if (!z9) {
+            return;
         }
+        org.telegram.messenger.g0.i3(new qn0(this, hVar, i7, 24), 250L);
     }
 }

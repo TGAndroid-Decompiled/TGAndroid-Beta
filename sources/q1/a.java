@@ -1,13 +1,36 @@
 package q1;
 
-import a0.l;
-import java.util.ArrayList;
-import org.telegram.ui.Components.nh;
-public final class a {
-    public static final ThreadLocal f53629f = new ThreadLocal();
-    public p7.d d;
-    public final l f53630a = new l(0);
-    public final ArrayList f53631b = new ArrayList();
-    public final nh f53632c = new nh(this, 11);
-    public boolean f53633e = false;
+import java.util.Map;
+import kotlin.jvm.internal.j;
+import kotlin.jvm.internal.k;
+import org.telegram.ui.Cells.f1;
+import rd.l;
+public final class a extends k implements l {
+    public static final a f53562b = new k(1);
+
+    @Override
+    public final Object invoke(Object obj) {
+        String valueOf;
+        byte[] bArr;
+        Map.Entry entry = (Map.Entry) obj;
+        j.e(entry, "entry");
+        Object value = entry.getValue();
+        if (value instanceof byte[]) {
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append((CharSequence) "[");
+            int i7 = 0;
+            for (byte b10 : (byte[]) value) {
+                i7++;
+                if (i7 > 1) {
+                    sb2.append((CharSequence) ", ");
+                }
+                sb2.append((CharSequence) String.valueOf((int) b10));
+            }
+            sb2.append((CharSequence) "]");
+            valueOf = sb2.toString();
+        } else {
+            valueOf = String.valueOf(entry.getValue());
+        }
+        return f1.n(((e) entry.getKey()).f53569a, " = ", valueOf, new StringBuilder("  "));
+    }
 }

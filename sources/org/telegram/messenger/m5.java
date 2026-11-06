@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public abstract class m5 {
     public static boolean A() {
-        TLRPC.User a22 = hp.s1(h10.f22829t0).a2(0L);
+        TLRPC.User a22 = qp.s1(p10.f24459s0).a2(0L);
         if (a22 == null) {
             return false;
         }
@@ -25,74 +25,74 @@ public abstract class m5 {
         return true;
     }
 
-    public static boolean C(long j10) {
-        if ((4611686018427387904L & j10) != 0 && (j10 & Long.MIN_VALUE) == 0) {
+    public static boolean C(long j3) {
+        if ((4611686018427387904L & j3) != 0 && (j3 & Long.MIN_VALUE) == 0) {
             return true;
         }
         return false;
     }
 
-    public static boolean D(long j10) {
-        if ((2305843009213693952L & j10) != 0 && (j10 & Long.MIN_VALUE) == 0) {
+    public static boolean D(long j3) {
+        if ((2305843009213693952L & j3) != 0 && (j3 & Long.MIN_VALUE) == 0) {
             return true;
         }
         return false;
     }
 
-    public static boolean E(long j10) {
-        if (!C(j10) && !D(j10) && j10 > 0) {
+    public static boolean E(long j3) {
+        if (!C(j3) && !D(j3) && j3 > 0) {
             return true;
         }
         return false;
     }
 
-    public static long F(long j10) {
-        return (j10 & 4294967295L) | 4611686018427387904L;
+    public static long F(long j3) {
+        return (j3 & 4294967295L) | 4611686018427387904L;
     }
 
-    public static long G(int i3) {
-        return 2305843009213693952L | i3;
+    public static long G(int i7) {
+        return 2305843009213693952L | i7;
     }
 
-    public static String H(ImageReceiver imageReceiver, org.telegram.ui.Components.u8 u8Var, TLObject tLObject) {
+    public static String H(ImageReceiver imageReceiver, org.telegram.ui.Components.w8 w8Var, TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
             TLRPC.User user = (TLRPC.User) tLObject;
-            if (l10.z(user)) {
-                String M0 = bd.M0(2131746274, null);
-                if (u8Var != null) {
-                    u8Var.g(12);
+            if (t10.z(user)) {
+                String M0 = hd.M0(2131746265, null);
+                if (w8Var != null) {
+                    w8Var.g(12);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.i0(null, u8Var, null);
+                    imageReceiver.i0(null, w8Var, null);
                 }
                 return M0;
-            } else if (l10.B(user)) {
-                String M02 = bd.M0(2131745911, null);
-                if (u8Var != null) {
-                    u8Var.g(1);
+            } else if (t10.B(user)) {
+                String M02 = hd.M0(2131745902, null);
+                if (w8Var != null) {
+                    w8Var.g(1);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.i0(null, u8Var, null);
+                    imageReceiver.i0(null, w8Var, null);
                 }
                 return M02;
             } else {
-                String p10 = l10.p(user);
-                if (u8Var != null) {
-                    u8Var.r(user);
+                String p10 = t10.p(user);
+                if (w8Var != null) {
+                    w8Var.r(user);
                 }
                 if (imageReceiver != null) {
-                    imageReceiver.i0(tLObject, u8Var, null);
+                    imageReceiver.i0(tLObject, w8Var, null);
                 }
                 return p10;
             }
         } else if (tLObject instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
             String str = chat.title;
-            if (u8Var != null) {
-                u8Var.q(chat);
+            if (w8Var != null) {
+                w8Var.q(chat);
             }
             if (imageReceiver != null) {
-                imageReceiver.i0(tLObject, u8Var, null);
+                imageReceiver.i0(tLObject, w8Var, null);
             }
             return str;
         } else {
@@ -112,22 +112,22 @@ public abstract class m5 {
         String lowerCase = str.toLowerCase();
         String lowerCase2 = str2.toLowerCase();
         int[] iArr = new int[lowerCase2.length() + 1];
-        for (int i3 = 0; i3 <= lowerCase.length(); i3++) {
-            int i10 = i3;
+        for (int i7 = 0; i7 <= lowerCase.length(); i7++) {
+            int i10 = i7;
             for (int i11 = 0; i11 <= lowerCase2.length(); i11++) {
-                if (i3 == 0) {
+                if (i7 == 0) {
                     iArr[i11] = i11;
                 } else if (i11 > 0) {
                     int i12 = i11 - 1;
                     int i13 = iArr[i12];
-                    if (lowerCase.charAt(i3 - 1) != lowerCase2.charAt(i12)) {
+                    if (lowerCase.charAt(i7 - 1) != lowerCase2.charAt(i12)) {
                         i13 = Math.min(Math.min(i13, i10), iArr[i11]) + 1;
                     }
                     iArr[i12] = i10;
                     i10 = i13;
                 }
             }
-            if (i3 > 0) {
+            if (i7 > 0) {
                 iArr[lowerCase2.length()] = i10;
             }
         }
@@ -146,10 +146,10 @@ public abstract class m5 {
             return null;
         }
         int size = arrayList.size();
-        int i3 = 0;
-        while (i3 < size) {
-            Object obj = arrayList.get(i3);
-            i3++;
+        int i7 = 0;
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
             TLRPC.TL_username tL_username = (TLRPC.TL_username) obj;
             if (tL_username != null && TextUtils.equals(tL_username.username, str)) {
                 return tL_username;
@@ -170,10 +170,10 @@ public abstract class m5 {
 
     public static long d(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return ((TLRPC.User) tLObject).f27150id;
+            return ((TLRPC.User) tLObject).f27101id;
         }
         if (tLObject instanceof TLRPC.Chat) {
-            return -((TLRPC.Chat) tLObject).f27001id;
+            return -((TLRPC.Chat) tLObject).f26952id;
         }
         return 0L;
     }
@@ -225,18 +225,18 @@ public abstract class m5 {
         }
     }
 
-    public static int h(long j10) {
-        return (int) (j10 & 4294967295L);
+    public static int h(long j3) {
+        return (int) (j3 & 4294967295L);
     }
 
-    public static int i(long j10) {
-        return (int) j10;
+    public static int i(long j3) {
+        return (int) j3;
     }
 
     public static long j(TLRPC.Dialog dialog, TLRPC.DraftMessage draftMessage) {
-        int i3;
-        if (draftMessage != null && (i3 = draftMessage.date) >= dialog.last_message_date) {
-            return i3;
+        int i7;
+        if (draftMessage != null && (i7 = draftMessage.date) >= dialog.last_message_date) {
+            return i7;
         }
         return dialog.last_message_date;
     }
@@ -248,13 +248,13 @@ public abstract class m5 {
         return 0L;
     }
 
-    public static String l(int i3, long j10) {
-        return m(hp.s1(i3).e2(j10));
+    public static String l(int i7, long j3) {
+        return m(qp.s1(i7).e2(j3));
     }
 
     public static String m(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return g0.F2(g0.D2(l10.p((TLRPC.User) tLObject)));
+            return g0.F2(g0.D2(t10.p((TLRPC.User) tLObject)));
         }
         if (tLObject instanceof TLRPC.Chat) {
             return ((TLRPC.Chat) tLObject).title;
@@ -266,13 +266,13 @@ public abstract class m5 {
         if (inputPeer == null) {
             return 0L;
         }
-        long j10 = inputPeer.user_id;
-        if (j10 != 0) {
-            return j10;
+        long j3 = inputPeer.user_id;
+        if (j3 != 0) {
+            return j3;
         }
-        long j11 = inputPeer.chat_id;
-        if (j11 != 0) {
-            return -j11;
+        long j10 = inputPeer.chat_id;
+        if (j10 != 0) {
+            return -j10;
         }
         return -inputPeer.channel_id;
     }
@@ -281,13 +281,13 @@ public abstract class m5 {
         if (peer == null) {
             return 0L;
         }
-        long j10 = peer.user_id;
-        if (j10 != 0) {
-            return j10;
+        long j3 = peer.user_id;
+        if (j3 != 0) {
+            return j3;
         }
-        long j11 = peer.chat_id;
-        if (j11 != 0) {
-            return -j11;
+        long j10 = peer.chat_id;
+        if (j10 != 0) {
+            return -j10;
         }
         return -peer.channel_id;
     }
@@ -297,8 +297,8 @@ public abstract class m5 {
             return str;
         }
         if (arrayList != null) {
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                TLRPC.TL_username tL_username = (TLRPC.TL_username) arrayList.get(i3);
+            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                TLRPC.TL_username tL_username = (TLRPC.TL_username) arrayList.get(i7);
                 if (tL_username != null && ((tL_username.active || tL_username.editable) && !TextUtils.isEmpty(tL_username.username))) {
                     return tL_username.username;
                 }
@@ -338,17 +338,17 @@ public abstract class m5 {
         }
     }
 
-    public static String s(int i3, long j10) {
-        return u(hp.s1(i3).e2(j10));
+    public static String s(int i7, long j3) {
+        return u(qp.s1(i7).e2(j3));
     }
 
-    public static String t(long j10) {
-        return u(hp.s1(h10.f22829t0).e2(j10));
+    public static String t(long j3) {
+        return u(qp.s1(p10.f24459s0).e2(j3));
     }
 
     public static String u(TLObject tLObject) {
         if (tLObject instanceof TLRPC.User) {
-            return g0.F2(g0.D2(l10.k((TLRPC.User) tLObject)));
+            return g0.F2(g0.D2(t10.k((TLRPC.User) tLObject)));
         }
         if (tLObject instanceof TLRPC.Chat) {
             return g0.F2(g0.D2(((TLRPC.Chat) tLObject).title));
@@ -359,78 +359,78 @@ public abstract class m5 {
     public static String v(String str, ArrayList arrayList, String str2) {
         double I;
         double d = 0.0d;
-        double d10 = -1.0d;
+        double d2 = -1.0d;
         String str3 = null;
         if (arrayList != null) {
-            for (int i3 = 0; i3 < arrayList.size(); i3++) {
-                TLRPC.TL_username tL_username = (TLRPC.TL_username) arrayList.get(i3);
+            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                TLRPC.TL_username tL_username = (TLRPC.TL_username) arrayList.get(i7);
                 if (tL_username != null && tL_username.active && !TextUtils.isEmpty(tL_username.username)) {
-                    if (d10 < 0.0d) {
+                    if (d2 < 0.0d) {
                         I = 0.0d;
                     } else {
                         I = I(tL_username.username, str2);
                     }
-                    if (I > d10) {
+                    if (I > d2) {
                         str3 = tL_username.username;
-                        d10 = I;
+                        d2 = I;
                     }
                 }
             }
         }
         if (!TextUtils.isEmpty(str)) {
-            if (d10 >= 0.0d) {
+            if (d2 >= 0.0d) {
                 d = I(str, str2);
             }
-            if (d > d10) {
+            if (d > d2) {
                 return str;
             }
         }
         return str3;
     }
 
-    public static String w(long j10) {
-        int i3 = h10.f22829t0;
-        TLObject e22 = hp.s1(i3).e2(j10);
+    public static String w(long j3) {
+        int i7 = p10.f24459s0;
+        TLObject e22 = qp.s1(i7).e2(j3);
         if (e22 instanceof TLRPC.User) {
-            return bd.d0(i3, (TLRPC.User) e22, null, null);
+            return hd.d0(i7, (TLRPC.User) e22, null, null);
         }
         if (e22 instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) e22;
             if (chat.participants_count > 1) {
                 if (t3.V(chat)) {
-                    return bd.H(',', "Subscribers", chat.participants_count);
+                    return hd.H(',', "Subscribers", chat.participants_count);
                 }
-                return bd.H(',', "Members", chat.participants_count);
+                return hd.H(',', "Members", chat.participants_count);
             } else if (t3.V(chat)) {
-                return bd.M0(2131751391, null);
+                return hd.M0(2131751391, null);
             } else {
-                return bd.M0(2131754876, null);
+                return hd.M0(2131754876, null);
             }
         }
         return "";
     }
 
     public static void x(TLRPC.Dialog dialog) {
-        if (dialog != null && dialog.f27005id == 0) {
+        if (dialog != null && dialog.f26956id == 0) {
             if (dialog instanceof TLRPC.TL_dialog) {
                 TLRPC.Peer peer = dialog.peer;
                 if (peer != null) {
-                    long j10 = peer.user_id;
-                    if (j10 != 0) {
-                        dialog.f27005id = j10;
+                    long j3 = peer.user_id;
+                    if (j3 != 0) {
+                        dialog.f26956id = j3;
                         return;
                     }
-                    long j11 = peer.chat_id;
-                    if (j11 != 0) {
-                        dialog.f27005id = -j11;
+                    long j10 = peer.chat_id;
+                    if (j10 != 0) {
+                        dialog.f26956id = -j10;
                     } else {
-                        dialog.f27005id = -peer.channel_id;
+                        dialog.f26956id = -peer.channel_id;
                     }
                 }
             } else if (dialog instanceof TLRPC.TL_dialogFolder) {
-                dialog.f27005id = 2305843009213693952L | ((TLRPC.TL_dialogFolder) dialog).folder.f27052id;
+                dialog.f26956id = 2305843009213693952L | ((TLRPC.TL_dialogFolder) dialog).folder.f27003id;
             } else if (dialog instanceof TLRPC.TL_dialogCommunity) {
-                dialog.f27005id = -dialog.community_id;
+                dialog.f26956id = -dialog.community_id;
             }
         }
     }
@@ -442,8 +442,8 @@ public abstract class m5 {
         return false;
     }
 
-    public static boolean z(long j10) {
-        if (!C(j10) && !D(j10) && j10 < 0) {
+    public static boolean z(long j3) {
+        if (!C(j3) && !D(j3) && j3 < 0) {
             return true;
         }
         return false;

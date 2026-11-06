@@ -1,7 +1,9 @@
 package d5;
 
-import java.util.Arrays;
-import java.util.HashSet;
-public abstract class a {
-    public static final HashSet f8567a = new HashSet(Arrays.asList(m.f8582a.m()));
+import a8.wa;
+import android.net.Uri;
+import android.webkit.WebView;
+import e5.f;
+public interface a {
+    void l(WebView webView, wa waVar, Uri uri, boolean z9, f fVar);
 }

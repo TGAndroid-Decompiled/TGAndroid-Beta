@@ -1,86 +1,72 @@
 package org.telegram.ui;
 
-import android.text.SpannableStringBuilder;
 import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 public final class dd implements Runnable {
-    public final int f44631a;
-    public final xd f44632b;
-    public final int f44633c;
+    public final int f45027a;
+    public final zd f45028b;
 
-    public dd(xd xdVar, int i3, int i10) {
-        this.f44631a = i10;
-        this.f44632b = xdVar;
-        this.f44633c = i3;
+    public dd(zd zdVar, int i7) {
+        this.f45027a = i7;
+        this.f45028b = zdVar;
     }
 
     @Override
     public final void run() {
-        boolean z10;
-        String H;
-        int i3 = this.f44631a;
-        int i10 = this.f44633c;
-        xd xdVar = this.f44632b;
-        switch (i3) {
+        boolean z9;
+        int i7 = this.f45027a;
+        boolean z10 = false;
+        zd zdVar = this.f45028b;
+        switch (i7) {
             case 0:
-                sf.c.t(xdVar.getContext(), org.telegram.messenger.bd.M0(i10, null));
+                vf.c.t(zdVar.getContext(), org.telegram.messenger.hd.M0(2131748403, null));
                 return;
             case 1:
-                dd ddVar = xdVar.f51920g1;
-                ci.s sVar = xdVar.P0;
-                org.telegram.ui.Components.ac.e();
-                if (xdVar.E0.amount < org.telegram.messenger.hp.s1(i10).R5) {
-                    xdVar.N0 = true;
-                    xdVar.O0 = xdVar.E0.amount;
-                } else {
-                    xdVar.N0 = false;
-                    xdVar.O0 = org.telegram.messenger.hp.s1(i10).R5;
-                }
-                xdVar.M0 = true;
-                sVar.setText(Long.toString(xdVar.O0));
-                sVar.setSelection(sVar.getText().length());
-                xdVar.M0 = false;
-                org.telegram.messenger.g0.r(ddVar);
-                ddVar.run();
+                vf.c.t(zdVar.getContext(), org.telegram.messenger.hd.M0(2131748369, null));
                 return;
-            default:
-                dd ddVar2 = xdVar.f51920g1;
-                int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
-                nd ndVar = xdVar.H0;
-                if (xdVar.O0 <= 0 && xdVar.C0 <= currentTime) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                ndVar.setEnabled(z10);
-                if (currentTime < xdVar.C0) {
-                    ndVar.i(org.telegram.messenger.bd.M0(2131748375, null), true, true);
-                    if (xdVar.f51919f1 == null) {
-                        xdVar.f51919f1 = new SpannableStringBuilder("l");
-                        org.telegram.ui.Components.wp wpVar = new org.telegram.ui.Components.wp(2131231976, 0);
-                        wpVar.f40044n = 1;
-                        xdVar.f51919f1.setSpan(wpVar, 0, 1, 33);
+            case 2:
+                org.telegram.ui.Components.k41 k41Var = zdVar.X0;
+                if (k41Var != null) {
+                    boolean z11 = zdVar.f34422e0;
+                    if (zdVar.R0 != -1) {
+                        z9 = true;
+                    } else {
+                        z9 = false;
                     }
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) xdVar.f51919f1).append((CharSequence) ci.v.w0(xdVar.C0 - currentTime));
-                    ndVar.g(spannableStringBuilder, true);
-                    org.telegram.ui.Components.ac acVar = xdVar.Q0;
-                    if (acVar != null) {
-                        org.telegram.ui.Components.fb fbVar = acVar.f31788e;
-                        if ((fbVar instanceof org.telegram.ui.Components.ib) && fbVar.isAttachedToWindow()) {
-                            org.telegram.messenger.k5.r(null, null, 2131752952, new Object[]{ci.v.w0(xdVar.C0 - currentTime)}, ((org.telegram.ui.Components.ib) xdVar.Q0.f31788e).f34651b);
-                        }
+                    org.telegram.ui.Components.f41 f41Var = k41Var.f35167f3;
+                    if (z9 == zdVar.f52524a1.a()) {
+                        z10 = true;
                     }
-                    org.telegram.messenger.g0.r(ddVar2);
-                    org.telegram.messenger.g0.i3(ddVar2, 1000L);
+                    f41Var.O(z10);
+                    if (z11 && zdVar.R0 != -1) {
+                        zdVar.a();
+                        return;
+                    }
                     return;
                 }
-                ndVar.g(null, true);
-                if (xdVar.N0) {
-                    H = org.telegram.messenger.bd.M0(2131748376, null);
-                } else {
-                    H = org.telegram.messenger.bd.H(' ', "MonetizationStarsWithdraw", (int) xdVar.O0);
+                return;
+            case 3:
+                zdVar.f52534k1 = zdVar.f52533j1;
+                return;
+            case 4:
+                zdVar.J0.setLoading(false);
+                return;
+            case 5:
+                zdVar.Y0.setVisibility(8);
+                return;
+            case 6:
+                zdVar.Y0.setVisibility(8);
+                return;
+            default:
+                int i10 = zdVar.f52537o0;
+                org.telegram.messenger.g0.r(zdVar.f52546s1);
+                if (zdVar.f52533j1 != zdVar.f52534k1) {
+                    TLRPC.TL_channels_restrictSponsoredMessages tL_channels_restrictSponsoredMessages = new TLRPC.TL_channels_restrictSponsoredMessages();
+                    tL_channels_restrictSponsoredMessages.channel = org.telegram.messenger.qp.s1(i10).h1(-zdVar.f52539p0);
+                    tL_channels_restrictSponsoredMessages.restricted = zdVar.f52533j1;
+                    ConnectionsManager.getInstance(i10).sendRequest(tL_channels_restrictSponsoredMessages, new kd(zdVar, 0));
+                    return;
                 }
-                ndVar.i(ci.wb.Y0(false, H, xdVar.I0), true, true);
                 return;
         }
     }

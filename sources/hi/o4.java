@@ -1,0 +1,183 @@
+package hi;
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.SpannableStringBuilder;
+import org.telegram.messenger.c20;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k5;
+import org.telegram.messenger.p10;
+import org.telegram.messenger.qp;
+import org.telegram.messenger.t10;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.i5;
+import org.telegram.ui.LaunchActivity;
+public abstract class o4 {
+    public static void a(int i7, long j3, org.telegram.ui.web.n nVar) {
+        TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(j3));
+        TLRPC.UserFull b22 = qp.s1(i7).b2(j3);
+        if (b22 == null) {
+            qp.s1(i7).W2(a22, 0, true, new d4(nVar, i7, a22, 0));
+        } else {
+            b(i7, a22, b22, nVar);
+        }
+    }
+
+    public static void b(final int i7, final TLRPC.User user, final TLRPC.UserFull userFull, final org.telegram.ui.web.n nVar) {
+        if (userFull.bot_can_manage_emoji_status) {
+            nVar.a(Boolean.FALSE, "allowed");
+            return;
+        }
+        Context W = org.telegram.messenger.g0.W(LaunchActivity.G1);
+        if (W == null) {
+            W = org.telegram.messenger.t0.f25555b;
+        }
+        final Context context = W;
+        TLRPC.User f10 = p10.i(i7).f();
+        final boolean[] zArr = new boolean[1];
+        final boolean[] zArr2 = new boolean[1];
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, null);
+        n4 n4Var = new n4(f10);
+        int i10 = k6.L5;
+        int x02 = k6.x0(null, i10, false);
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+        u1Var.f28551b0 = n4Var;
+        u1Var.f28554c0 = x02;
+        u1Var.f28556d0 = -1;
+        alertDialog$Builder.n(i10, null);
+        alertDialog$Builder.f27292a.T = org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753088, t10.p(user), t10.p(user)));
+        alertDialog$Builder.k(hd.M0(2131753090, null), new org.telegram.ui.ActionBar.r1() {
+            @Override
+            public final void g(org.telegram.ui.ActionBar.u1 u1Var2, int i11) {
+                int i12 = i7;
+                boolean q10 = p10.i(i12).q();
+                boolean[] zArr3 = zArr2;
+                boolean[] zArr4 = zArr;
+                org.telegram.ui.web.n nVar2 = nVar;
+                if (!q10) {
+                    new ug.w0(new org.telegram.ui.ActionBar.f2(null), 12, false).show();
+                    if (!zArr3[0] && !zArr4[0]) {
+                        zArr4[0] = true;
+                        nVar2.a(Boolean.TRUE, "cancelled");
+                        return;
+                    }
+                    return;
+                }
+                zArr3[0] = true;
+                TLRPC.User user2 = user;
+                o4.e(context, i12, user2.f27101id);
+                TL_bots.toggleUserEmojiStatusPermission toggleuseremojistatuspermission = new TL_bots.toggleUserEmojiStatusPermission();
+                toggleuseremojistatuspermission.bot = qp.s1(i12).q1(user2);
+                toggleuseremojistatuspermission.enabled = true;
+                ConnectionsManager.getInstance(i12).sendRequest(toggleuseremojistatuspermission, new bi.f2(zArr4, nVar2, userFull, 8));
+            }
+        });
+        alertDialog$Builder.h(hd.M0(2131753089, null), null);
+        org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27292a;
+        u1Var2.show();
+        u1Var2.setOnDismissListener(new i4(zArr2, zArr, context, i7, user, nVar));
+    }
+
+    public static void c() {
+        Context context = org.telegram.messenger.t0.f25555b;
+        if (context != null) {
+            for (int i7 = 0; i7 < 4; i7++) {
+                context.getSharedPreferences("botemojistatus_" + i7, 0).edit().clear().apply();
+            }
+        }
+    }
+
+    public static boolean d(Activity activity, int i7, long j3) {
+        if (activity == null) {
+            return false;
+        }
+        return k5.w("requested_", j3, activity.getSharedPreferences("botemojistatus_" + i7, 0), false);
+    }
+
+    public static void e(Context context, int i7, long j3) {
+        if (context == null) {
+            return;
+        }
+        SharedPreferences.Editor edit = context.getSharedPreferences("botemojistatus_" + i7, 0).edit();
+        edit.putBoolean("requested_" + j3, true).apply();
+    }
+
+    public static void f(final int i7, final TLRPC.User user, long j3, final int i10, final org.telegram.ui.web.n nVar) {
+        TLRPC.Document e10 = i5.e(i7, j3);
+        if (e10 != null) {
+            g(i7, user, e10, i10, new e4(nVar, e10, 1));
+        } else {
+            i5.g(i7).b(j3, new f5() {
+                @Override
+                public final void a(TLRPC.Document document) {
+                    org.telegram.messenger.g0.h3(new j4(i7, user, document, i10, nVar));
+                }
+            });
+        }
+    }
+
+    public static void g(int i7, TLRPC.User user, TLRPC.Document document, int i10, c20 c20Var) {
+        SpannableStringBuilder X2;
+        if (document instanceof TLRPC.TL_documentEmpty) {
+            c20Var.a("SUGGESTED_EMOJI_INVALID");
+            return;
+        }
+        Context W = org.telegram.messenger.g0.W(LaunchActivity.G1);
+        if (W == null) {
+            W = org.telegram.messenger.t0.f25555b;
+        }
+        ConnectionsManager.getInstance(i7).getCurrentTime();
+        TLRPC.User f10 = p10.i(i7).f();
+        boolean[] zArr = new boolean[1];
+        boolean[] zArr2 = new boolean[1];
+        if (i10 > 0) {
+            int i11 = i10 / 86400;
+            int i12 = i10 - (86400 * i11);
+            int i13 = i12 / 3600;
+            int round = Math.round((i12 - (i13 * 3600)) / 60.0f);
+            StringBuilder sb2 = new StringBuilder();
+            if (i11 > 0) {
+                if (sb2.length() > 0) {
+                    sb2.append(" ");
+                }
+                sb2.append(hd.G(i11, "BotEmojiStatusSetRequestForDay", new Object[0]));
+            }
+            if (i13 > 0) {
+                if (sb2.length() > 0) {
+                    sb2.append(" ");
+                }
+                sb2.append(hd.G(i13, "BotEmojiStatusSetRequestForHour", new Object[0]));
+            }
+            if (round > 0) {
+                if (sb2.length() > 0) {
+                    sb2.append(" ");
+                }
+                sb2.append(hd.G(round, "BotEmojiStatusSetRequestForMinute", new Object[0]));
+            }
+            X2 = org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753085, t10.p(user), sb2));
+        } else {
+            X2 = org.telegram.messenger.g0.X2(hd.a0(null, null, 2131753086, t10.p(user)));
+        }
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, W, null);
+        n4 n4Var = new n4(f10, document);
+        int i14 = k6.L5;
+        int x02 = k6.x0(null, i14, false);
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+        u1Var.f28551b0 = n4Var;
+        u1Var.f28554c0 = x02;
+        u1Var.f28556d0 = -1;
+        alertDialog$Builder.n(i14, null);
+        alertDialog$Builder.f27292a.T = X2;
+        alertDialog$Builder.k(hd.M0(2131753091, null), new g4(i7, zArr2, document, i10, zArr, c20Var));
+        alertDialog$Builder.h(hd.M0(2131752589, null), null);
+        org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder.f27292a;
+        u1Var2.show();
+        u1Var2.setOnDismissListener(new o0(zArr2, zArr, c20Var));
+    }
+}

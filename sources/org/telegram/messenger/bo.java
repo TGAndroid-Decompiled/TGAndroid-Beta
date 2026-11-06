@@ -1,84 +1,100 @@
 package org.telegram.messenger;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
 public final class bo implements RequestDelegate {
-    public final int f21862a;
-    public final w2 f21863b;
+    public final int f21678a;
+    public final int f21679b;
+    public final Object f21680c;
+    public final Object d;
 
-    public bo(w2 w2Var, int i3) {
-        this.f21862a = i3;
-        this.f21863b = w2Var;
+    public bo(Object obj, int i7, Object obj2, int i10) {
+        this.f21678a = i10;
+        this.f21680c = obj;
+        this.f21679b = i7;
+        this.d = obj2;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        String str;
-        boolean z10;
-        int i3;
-        TLRPC.TL_help_appConfig tL_help_appConfig;
-        String str2;
-        boolean z11;
-        int i10;
-        TLRPC.TL_messages_availableEffects tL_messages_availableEffects;
-        switch (this.f21862a) {
+        switch (this.f21678a) {
             case 0:
-                boolean z12 = tLObject instanceof TLRPC.TL_help_appConfigNotModified;
-                w2 w2Var = this.f21863b;
-                if (z12) {
-                    Boolean bool = Boolean.TRUE;
-                    w2Var.a(bool, null, 0L, bool);
+                qp qpVar = (qp) this.f21680c;
+                String str = (String) this.d;
+                if (tLObject instanceof TLRPC.TL_boolTrue) {
+                    boolean z9 = r2.f25191a;
+                    int i7 = this.f21679b;
+                    if (z9) {
+                        a8.b("account " + qpVar.currentAccount + " registered for push, push type: " + i7);
+                    }
+                    qpVar.getUserConfig().d = true;
+                    iz.f23374g = str;
+                    iz.f23371f = i7;
+                    qpVar.getUserConfig().v(false);
+                }
+                g0.h3(new wj(qpVar, 4));
+                return;
+            case 1:
+                i7 i7Var = (i7) this.f21680c;
+                h7 h7Var = (h7) this.d;
+                i7Var.f23127z0 = false;
+                boolean z10 = tLObject instanceof Vector;
+                int i10 = this.f21679b;
+                if (z10) {
+                    Vector vector = (Vector) tLObject;
+                    if (!vector.objects.isEmpty()) {
+                        if (i7Var.f23110q0 == null) {
+                            i7Var.f23110q0 = new HashMap();
+                        }
+                        for (int i11 = 0; i11 < vector.objects.size(); i11++) {
+                            TLRPC.TL_fileHash tL_fileHash = (TLRPC.TL_fileHash) vector.objects.get(i11);
+                            i7Var.f23110q0.put(Long.valueOf(tL_fileHash.offset), tL_fileHash);
+                        }
+                    }
+                    i7Var.s(i10);
                     return;
-                } else if (tLObject instanceof TLRPC.TL_help_appConfig) {
-                    w2Var.a(Boolean.FALSE, (TLRPC.TL_help_appConfig) tLObject, Long.valueOf(tL_help_appConfig.hash), Boolean.TRUE);
+                } else if (tL_error != null) {
+                    if (!tL_error.text.equals("FILE_TOKEN_INVALID") && !tL_error.text.equals("REQUEST_TOKEN_INVALID")) {
+                        i7Var.j(0, false);
+                        return;
+                    }
+                    i7Var.f23118u0 = false;
+                    i7Var.e(h7Var, false, false);
+                    i7Var.s(i10);
                     return;
                 } else {
-                    StringBuilder sb2 = new StringBuilder("getting appconfig error ");
-                    if (tL_error != null) {
-                        str = tL_error.code + " " + tL_error.text;
-                    } else {
-                        str = "";
-                    }
-                    sb2.append(str);
-                    a8.d(sb2.toString());
-                    Boolean bool2 = Boolean.FALSE;
-                    if (tL_error != null && ((i3 = tL_error.code) == -2000 || i3 == -2001)) {
-                        z10 = false;
-                    } else {
-                        z10 = true;
-                    }
-                    w2Var.a(bool2, null, 0L, Boolean.valueOf(z10));
                     return;
                 }
+            case 2:
+                g0.h3(new k7((ui) this.f21680c, (TLRPC.StickerSet) this.d, this.f21679b, 9));
+                return;
+            case 3:
+                ui uiVar = (ui) this.f21680c;
+                c20 c20Var = (c20) this.d;
+                boolean z11 = tLObject instanceof TLRPC.TL_messages_stickerSet;
+                int i12 = this.f21679b;
+                if (z11) {
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add((TLRPC.TL_messages_stickerSet) tLObject);
+                    uiVar.z1(i12, arrayList, false, (int) (System.currentTimeMillis() / 1000), ui.q(arrayList), new rf(c20Var, 4));
+                    return;
+                }
+                uiVar.z1(i12, null, false, (int) (System.currentTimeMillis() / 1000), 0L, new rf(c20Var, 5));
+                return;
             default:
-                boolean z13 = tLObject instanceof TLRPC.TL_messages_availableEffectsNotModified;
-                w2 w2Var2 = this.f21863b;
-                if (z13) {
-                    Boolean bool3 = Boolean.TRUE;
-                    w2Var2.a(bool3, null, 0L, bool3);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_availableEffects) {
-                    w2Var2.a(Boolean.FALSE, (TLRPC.TL_messages_availableEffects) tLObject, Long.valueOf(tL_messages_availableEffects.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    StringBuilder sb3 = new StringBuilder("getting available effects error ");
-                    if (tL_error != null) {
-                        str2 = tL_error.code + " " + tL_error.text;
-                    } else {
-                        str2 = "";
-                    }
-                    sb3.append(str2);
-                    a8.d(sb3.toString());
-                    Boolean bool4 = Boolean.FALSE;
-                    if (tL_error != null && ((i10 = tL_error.code) == -2000 || i10 == -2001)) {
-                        z11 = false;
-                    } else {
-                        z11 = true;
-                    }
-                    w2Var2.a(bool4, null, 0L, Boolean.valueOf(z11));
-                    return;
-                }
+                g0.h3(new dg((qp) this.f21680c, tLObject, this.f21679b, (so) this.d));
+                return;
         }
+    }
+
+    public bo(ui uiVar, TLRPC.StickerSet stickerSet, int i7) {
+        this.f21678a = 2;
+        this.f21680c = uiVar;
+        this.d = stickerSet;
+        this.f21679b = i7;
     }
 }

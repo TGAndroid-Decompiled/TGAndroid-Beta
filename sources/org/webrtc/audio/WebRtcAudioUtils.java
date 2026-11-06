@@ -5,14 +5,14 @@ import android.media.AudioDeviceInfo;
 import android.media.AudioManager;
 import android.os.Build;
 import java.util.Arrays;
-import k2.p1;
+import jg.g;
 import org.webrtc.Logging;
 final class WebRtcAudioUtils {
     private static final String TAG = "WebRtcAudioUtilsExternal";
 
-    public static String audioEncodingToString(int i3) {
-        if (i3 != 0) {
-            switch (i3) {
+    public static String audioEncodingToString(int i7) {
+        if (i7 != 0) {
+            switch (i7) {
                 case 2:
                     return "PCM_16BIT";
                 case 3:
@@ -29,14 +29,14 @@ final class WebRtcAudioUtils {
                 case 9:
                     return "MP3";
                 default:
-                    return p1.i(i3, "Invalid encoding: ");
+                    return g.j(i7, "Invalid encoding: ");
             }
         }
         return "INVALID";
     }
 
-    public static String audioSourceToString(int i3) {
-        switch (i3) {
+    public static String audioSourceToString(int i7) {
+        switch (i7) {
             case 0:
                 return "DEFAULT";
             case 1:
@@ -63,9 +63,9 @@ final class WebRtcAudioUtils {
         }
     }
 
-    public static String channelMaskToString(int i3) {
-        if (i3 != 12) {
-            if (i3 != 16) {
+    public static String channelMaskToString(int i7) {
+        if (i7 != 12) {
+            if (i7 != 16) {
                 return "INVALID";
             }
             return "IN_MONO";
@@ -73,8 +73,8 @@ final class WebRtcAudioUtils {
         return "IN_STEREO";
     }
 
-    public static String deviceTypeToString(int i3) {
-        switch (i3) {
+    public static String deviceTypeToString(int i7) {
+        switch (i7) {
             case 1:
                 return "TYPE_BUILTIN_EARPIECE";
             case 2:
@@ -185,8 +185,8 @@ final class WebRtcAudioUtils {
         boolean isVolumeFixed = audioManager.isVolumeFixed();
         Logging.d(str, "  fixed volume=" + isVolumeFixed);
         if (!isVolumeFixed) {
-            for (int i3 = 0; i3 < 6; i3++) {
-                int i10 = iArr[i3];
+            for (int i7 = 0; i7 < 6; i7++) {
+                int i10 = iArr[i7];
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append("  " + streamTypeToString(i10) + ": ");
                 sb2.append("volume=");
@@ -203,16 +203,16 @@ final class WebRtcAudioUtils {
         Logging.d(str, "Android SDK: " + Build.VERSION.SDK_INT + ", Release: " + Build.VERSION.RELEASE + ", Brand: " + Build.BRAND + ", Device: " + Build.DEVICE + ", Id: " + Build.ID + ", Hardware: " + Build.HARDWARE + ", Manufacturer: " + Build.MANUFACTURER + ", Model: " + Build.MODEL + ", Product: " + Build.PRODUCT);
     }
 
-    private static void logIsStreamMute(String str, AudioManager audioManager, int i3, StringBuilder sb2) {
+    private static void logIsStreamMute(String str, AudioManager audioManager, int i7, StringBuilder sb2) {
         sb2.append(", muted=");
-        sb2.append(audioManager.isStreamMute(i3));
+        sb2.append(audioManager.isStreamMute(i7));
     }
 
-    public static String modeToString(int i3) {
-        if (i3 != 0) {
-            if (i3 != 1) {
-                if (i3 != 2) {
-                    if (i3 != 3) {
+    public static String modeToString(int i7) {
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 != 2) {
+                    if (i7 != 3) {
                         return "MODE_INVALID";
                     }
                     return "MODE_IN_COMMUNICATION";
@@ -231,13 +231,13 @@ final class WebRtcAudioUtils {
         return false;
     }
 
-    private static String streamTypeToString(int i3) {
-        if (i3 != 0) {
-            if (i3 != 1) {
-                if (i3 != 2) {
-                    if (i3 != 3) {
-                        if (i3 != 4) {
-                            if (i3 != 5) {
+    private static String streamTypeToString(int i7) {
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 != 2) {
+                    if (i7 != 3) {
+                        if (i7 != 4) {
+                            if (i7 != 5) {
                                 return "STREAM_INVALID";
                             }
                             return "STREAM_NOTIFICATION";

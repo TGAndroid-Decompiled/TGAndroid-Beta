@@ -1,70 +1,56 @@
 package jh;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
-import gh.g;
-import kh.k;
-public abstract class d {
-    public static final Matrix f16256a = new Matrix();
-    public static final RectF f16257b = new RectF();
-    public static final RectF f16258c = new RectF();
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class d {
+    public final int f17013a;
+    public final long f17014b;
+    public long f17016e;
+    public long f17017f;
+    public long f17018g;
+    public long h;
+    public boolean f17019i;
+    public final RectF f17015c = new RectF();
+    public float f17020j = 0.0f;
+    public float f17021k = 0.0f;
+    public float f17022l = Float.MAX_VALUE;
+    public float f17023m = 0.0f;
+    public final long d = Utilities.f21331b.nextLong();
 
-    public static void a(fh.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup) {
-        b(aVar, canvas, rectF, view, viewGroup, 255);
+    public d(int i7, long j3) {
+        this.f17013a = i7;
+        this.f17014b = j3;
     }
 
-    public static void b(fh.a aVar, Canvas canvas, RectF rectF, View view, ViewGroup viewGroup, int i3) {
-        boolean z10;
-        if (i3 > 0 && aVar != null) {
-            RectF rectF2 = f16258c;
-            if (k.c(view, viewGroup, rectF2)) {
-                float f10 = rectF2.left;
-                float f11 = rectF2.top;
-                RectF rectF3 = f16257b;
-                rectF3.set(rectF);
-                rectF3.offset(-f10, -f11);
-                boolean z11 = true;
-                if (f10 == 0.0f && f11 == 0.0f) {
-                    z10 = false;
-                } else {
-                    z10 = true;
-                }
-                if (i3 == 255) {
-                    z11 = false;
-                }
-                if (z10) {
-                    canvas.save();
-                    canvas.translate(f10, f11);
-                }
-                if (z11) {
-                    canvas.saveLayerAlpha(rectF3, i3);
-                }
-                aVar.d(canvas, rectF3);
-                if (z11) {
-                    canvas.restore();
-                }
-                if (z10) {
-                    canvas.restore();
-                }
+    public final TLRPC.TL_inputMessageReadMetric a() {
+        int round;
+        TLRPC.TL_inputMessageReadMetric tL_inputMessageReadMetric = new TLRPC.TL_inputMessageReadMetric();
+        tL_inputMessageReadMetric.msg_id = this.f17013a;
+        tL_inputMessageReadMetric.view_id = this.d;
+        tL_inputMessageReadMetric.time_in_view_ms = (int) this.f17018g;
+        tL_inputMessageReadMetric.active_time_in_view_ms = (int) this.h;
+        float f10 = this.f17021k;
+        if (f10 == 0.0f) {
+            round = 1000;
+        } else {
+            round = Math.round((this.f17020j / f10) * 1000.0f);
+        }
+        tL_inputMessageReadMetric.height_to_viewport_ratio_permille = round;
+        tL_inputMessageReadMetric.seen_range_ratio_permille = b();
+        return tL_inputMessageReadMetric;
+    }
+
+    public final int b() {
+        float f10 = this.f17020j;
+        if (f10 != 0.0f) {
+            float f11 = this.f17022l;
+            float f12 = this.f17023m;
+            if (f11 <= f12) {
+                return Math.round(((f12 - f11) / f10) * 1000.0f);
             }
+            return 0;
         }
-    }
-
-    public static void c(si.b bVar, View view) {
-        Bitmap bitmap;
-        if (bVar != null && view != null && view.getWidth() != 0 && view.getHeight() != 0 && (bitmap = bVar.d) != null && !bitmap.isRecycled() && bitmap.getWidth() != 0 && bitmap.getHeight() != 0) {
-            Matrix matrix = f16256a;
-            matrix.reset();
-            matrix.setScale(view.getWidth() / bitmap.getWidth(), view.getHeight() / bitmap.getHeight());
-            bVar.f54741b.set(matrix);
-        }
-    }
-
-    public static c d(g gVar, int i3, int i10) {
-        return new c(i3, i10, gVar);
+        return 0;
     }
 }

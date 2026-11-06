@@ -1,82 +1,116 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.view.View;
-import java.util.HashSet;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class f30 extends org.telegram.ui.Components.tj0 {
-    public final LongSparseIntArray f45132f3;
-    public final x30 f45133g3;
+import org.telegram.tgnet.TLRPC;
+public final class f30 extends v4.o {
+    public final c40 f45468b;
 
-    public f30(x30 x30Var, LaunchActivity launchActivity) {
-        super(launchActivity, null);
-        this.f45133g3 = x30Var;
-        this.f45132f3 = new LongSparseIntArray();
+    public f30(c40 c40Var) {
+        this.f45468b = c40Var;
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r20) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.f30.dispatchDraw(android.graphics.Canvas):void");
+    public final boolean a(int i7, int i10) {
+        return true;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if (view == this.f45133g3.P4) {
-            return false;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
+    public final boolean b(int i7, int i10) {
+        int i11;
+        int i12;
         int i13;
-        super.onLayout(z10, i3, i10, i11, i12);
-        l30 l30Var = this.f45133g3.P1;
-        HashSet hashSet = l30Var.I;
-        x30 x30Var = l30Var.L;
-        HashSet hashSet2 = l30Var.H;
-        if (l30Var.G == null) {
-            hashSet2.clear();
-            hashSet2.addAll(l30Var.f55599q);
-            hashSet.clear();
-            hashSet.addAll(l30Var.f55598p);
-            l30Var.J = 0.0f;
-            l30Var.K = Float.MAX_VALUE;
-            if (hashSet2.isEmpty() && hashSet.isEmpty()) {
-                return;
+        int i14;
+        int i15;
+        c40 c40Var = this.f45468b;
+        w30 w30Var = c40Var.G1;
+        int i16 = w30Var.f50905x;
+        if (i16 >= 0) {
+            int i17 = c40Var.Y4;
+            if (i7 == i17 && i10 == i16) {
+                return true;
             }
-            f30 f30Var = x30Var.I1;
-            int childCount = f30Var.getChildCount();
-            for (int i14 = 0; i14 < childCount; i14++) {
-                View childAt = f30Var.getChildAt(i14);
-                u4.d1 G = f30Var.G(childAt);
-                if (G != null && (i13 = G.f55544f) != 3 && i13 != 4 && i13 != 5 && i13 != 7 && !hashSet2.contains(G)) {
-                    l30Var.J = Math.max(l30Var.J, childAt.getY() + childAt.getMeasuredHeight());
-                    l30Var.K = Math.min(l30Var.K, Math.max(0.0f, childAt.getY()));
+            if ((i7 == i17 && i10 != i16) || (i7 != i17 && i10 == i16)) {
+                return false;
+            }
+        }
+        int i18 = w30Var.f50906y;
+        if (i18 >= 0) {
+            int i19 = c40Var.f44573l5;
+            if (i7 == i19 && i10 == i18) {
+                return true;
+            }
+            if ((i7 == i19 && i10 != i18) || (i7 != i19 && i10 == i18)) {
+                return false;
+            }
+        }
+        int i20 = w30Var.D;
+        if (i20 >= 0) {
+            int i21 = c40Var.f44578m5;
+            if (i7 == i21 && i10 == i20) {
+                return true;
+            }
+            if ((i7 == i21 && i10 != i20) || (i7 != i21 && i10 == i20)) {
+                return false;
+            }
+        }
+        int i22 = w30Var.K;
+        if (i22 >= 0) {
+            int i23 = c40Var.X4;
+            if (i7 == i23 && i10 == i22) {
+                return true;
+            }
+            if ((i7 == i23 && i10 != i22) || (i7 != i23 && i10 == i22)) {
+                return false;
+            }
+        }
+        int i24 = w30Var.J;
+        if (i24 >= 0) {
+            int i25 = c40Var.f44569k5;
+            if (i7 == i25 && i10 == i24) {
+                return true;
+            }
+            if ((i7 == i25 && i10 != i24) || (i7 != i25 && i10 == i24)) {
+                return false;
+            }
+        }
+        int i26 = w30Var.I;
+        if (i26 >= 0 && i26 == i10 && i7 == c40Var.f44564j5) {
+            return true;
+        }
+        int i27 = c40Var.f44632z2;
+        if (i7 == i27 - 1 && i10 == w30Var.F - 1) {
+            return true;
+        }
+        if (i7 != i27 - 1 && i10 != w30Var.F - 1) {
+            if (i10 >= w30Var.G && i10 < w30Var.H && i7 >= (i15 = c40Var.f44555h5) && i7 < c40Var.f44560i5) {
+                return ((org.telegram.messenger.s3) c40Var.f44616v2.get(i7 - i15)).equals((org.telegram.messenger.s3) c40Var.f44552h2.get(i10 - c40Var.G1.G));
+            }
+            if (i10 >= w30Var.d && i10 < w30Var.f50899e && i7 >= (i14 = c40Var.Z4) && i7 < c40Var.f44528a5) {
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) c40Var.f44612u2.get(i7 - i14);
+                if (org.telegram.messenger.ij.C1(groupCallParticipant.peer) != org.telegram.messenger.ij.C1(((TLRPC.GroupCallParticipant) c40Var.R2.f25205g.get(i10 - c40Var.G1.d)).peer) || (i7 != i10 && groupCallParticipant.lastActiveDate != groupCallParticipant.active_date)) {
+                    return false;
+                }
+                return true;
+            } else if (i10 >= w30Var.f50900f && i10 < w30Var.h && i7 >= (i13 = c40Var.f44532b5) && i7 < c40Var.f44536c5) {
+                return ((Long) c40Var.f44620w2.get(i7 - i13)).equals((Long) c40Var.R2.f25207j.get(i10 - c40Var.G1.f50900f));
+            } else {
+                if (i10 >= w30Var.f50901n && i10 < w30Var.f50902r && i7 >= (i12 = c40Var.f44539d5) && i7 < c40Var.f44543e5) {
+                    return ((Long) c40Var.f44624x2.get(i7 - i12)).equals((Long) c40Var.R2.f25210m.get(i10 - c40Var.G1.f50901n));
+                }
+                if (i10 >= w30Var.f50903s && i10 < w30Var.f50904w && i7 >= (i11 = c40Var.f44547f5) && i7 < c40Var.f44551g5) {
+                    return ((Long) c40Var.f44628y2.get(i7 - i11)).equals((Long) c40Var.R2.f25209l.get(i10 - c40Var.G1.f50903s));
                 }
             }
-            l30Var.F = 0.0f;
-            f30Var.invalidate();
         }
+        return false;
     }
 
     @Override
-    public final void setVisibility(int i3) {
-        boolean z10;
-        if (getVisibility() != i3) {
-            for (int i10 = 0; i10 < getChildCount(); i10++) {
-                View childAt = getChildAt(i10);
-                if (childAt instanceof org.telegram.ui.Components.voip.k) {
-                    org.telegram.ui.Components.voip.k kVar = (org.telegram.ui.Components.voip.k) childAt;
-                    if (childAt.isAttachedToWindow() && i3 == 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    x30.J0(this.f45133g3, kVar, z10);
-                }
-            }
-        }
-        super.setVisibility(i3);
+    public final int d() {
+        return this.f45468b.G1.F;
+    }
+
+    @Override
+    public final int e() {
+        return this.f45468b.f44632z2;
     }
 }

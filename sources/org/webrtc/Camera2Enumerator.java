@@ -27,10 +27,10 @@ public class Camera2Enumerator implements CameraEnumerator {
         this.cameraManager = (CameraManager) context.getSystemService("camera");
     }
 
-    public static List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates(Range<Integer>[] rangeArr, int i3) {
+    public static List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates(Range<Integer>[] rangeArr, int i7) {
         ArrayList arrayList = new ArrayList();
         for (Range<Integer> range : rangeArr) {
-            arrayList.add(new CameraEnumerationAndroid.CaptureFormat.FramerateRange(range.getLower().intValue() * i3, range.getUpper().intValue() * i3));
+            arrayList.add(new CameraEnumerationAndroid.CaptureFormat.FramerateRange(range.getLower().intValue() * i7, range.getUpper().intValue() * i7));
         }
         return arrayList;
     }
@@ -125,7 +125,7 @@ public class Camera2Enumerator implements CameraEnumerator {
     }
 
     public static List<CameraEnumerationAndroid.CaptureFormat> getSupportedFormats(CameraManager cameraManager, String str) {
-        long j10;
+        long j3;
         Map<String, List<CameraEnumerationAndroid.CaptureFormat>> map = cachedSupportedFormats;
         synchronized (map) {
             try {
@@ -138,18 +138,18 @@ public class Camera2Enumerator implements CameraEnumerator {
                         Range[] rangeArr = (Range[]) cameraCharacteristics.get(CameraCharacteristics.CONTROL_AE_AVAILABLE_TARGET_FPS_RANGES);
                         List<CameraEnumerationAndroid.CaptureFormat.FramerateRange> convertFramerates = convertFramerates(rangeArr, getFpsUnitFactor(rangeArr));
                         List<Size> supportedSizes = getSupportedSizes(cameraCharacteristics);
-                        int i3 = 0;
+                        int i7 = 0;
                         for (CameraEnumerationAndroid.CaptureFormat.FramerateRange framerateRange : convertFramerates) {
-                            i3 = Math.max(i3, framerateRange.max);
+                            i7 = Math.max(i7, framerateRange.max);
                         }
                         ArrayList arrayList = new ArrayList();
                         for (Size size : supportedSizes) {
                             try {
-                                j10 = streamConfigurationMap.getOutputMinFrameDuration(SurfaceTexture.class, new android.util.Size(size.width, size.height));
+                                j3 = streamConfigurationMap.getOutputMinFrameDuration(SurfaceTexture.class, new android.util.Size(size.width, size.height));
                             } catch (Exception unused) {
-                                j10 = 0;
+                                j3 = 0;
                             }
-                            int round = j10 == 0 ? i3 : ((int) Math.round(1.0E9d / j10)) * 1000;
+                            int round = j3 == 0 ? i7 : ((int) Math.round(1.0E9d / j3)) * 1000;
                             arrayList.add(new CameraEnumerationAndroid.CaptureFormat(size.width, size.height, 0, round));
                             Logging.d("Camera2Enumerator", "Format: " + size.width + "x" + size.height + "@" + round);
                         }

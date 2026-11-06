@@ -1,39 +1,36 @@
 package org.telegram.messenger;
+
+import android.net.Uri;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.tgnet.TLRPC;
 public final class fz {
-    public char f22575a;
-    public String f22576b;
-    public int f22577c;
-    public int d;
-
-    public static void c(char c2) {
-        throw new RuntimeException("Unexpected char '" + c2 + "'.");
-    }
-
-    public final float a() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.fz.a():float");
-    }
-
-    public final char b() {
-        int i3 = this.f22577c;
-        int i10 = this.d;
-        if (i3 < i10) {
-            this.f22577c = i3 + 1;
-        }
-        int i11 = this.f22577c;
-        if (i11 == i10) {
-            return (char) 0;
-        }
-        return this.f22576b.charAt(i11);
-    }
-
-    public final void d() {
-        while (true) {
-            int i3 = this.f22577c;
-            if (i3 < this.d && Character.isWhitespace(this.f22576b.charAt(i3))) {
-                this.f22575a = b();
-            } else {
-                return;
-            }
-        }
-    }
+    public long A;
+    public int B;
+    public Uri f22484a;
+    public String f22485b;
+    public String f22486c;
+    public String d;
+    public String f22487e;
+    public String f22488f;
+    public TLRPC.Photo f22489g;
+    public int h;
+    public ArrayList f22490i;
+    public ArrayList f22491j;
+    public j20 f22492k;
+    public kf f22493l;
+    public TLRPC.BotInlineResult f22494m;
+    public HashMap f22495n;
+    public boolean f22496o;
+    public boolean f22497p;
+    public boolean f22498q;
+    public boolean f22499r;
+    public boolean f22500s;
+    public boolean f22501t;
+    public boolean f22502u;
+    public TLRPC.VideoSize v;
+    public long f22503w;
+    public boolean f22504x;
+    public gf f22505y;
+    public long f22506z;
 }

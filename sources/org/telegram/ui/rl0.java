@@ -1,46 +1,35 @@
 package org.telegram.ui;
+public final class rl0 implements Runnable {
+    public final int f49511a;
+    public final bm0 f49512b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.MotionEvent;
-public final class rl0 extends org.telegram.ui.Cells.z9 {
-    public final int I = 1;
-
-    public rl0(Context context, org.telegram.ui.ActionBar.q4 q4Var, int i3) {
-        super(context, q4Var, i3);
+    public rl0(bm0 bm0Var, int i7) {
+        this.f49511a = i7;
+        this.f49512b = bm0Var;
     }
 
     @Override
-    public void draw(Canvas canvas) {
-        switch (this.I) {
+    public final void run() {
+        int i7 = this.f49511a;
+        bm0 bm0Var = this.f49512b;
+        switch (i7) {
             case 0:
-                if (canvas.isHardwareAccelerated()) {
-                    super.draw(canvas);
-                    return;
-                } else {
-                    cg.t0.a(canvas, this, new s3(this, 16));
+                if (bm0Var.G) {
+                    bm0Var.f44413b.invalidate();
                     return;
                 }
+                return;
+            case 1:
+                bm0Var.h();
+                return;
+            case 2:
+                int i10 = bm0.f44410q0;
+                bm0Var.h();
+                return;
             default:
-                super.draw(canvas);
+                int i11 = bm0.f44410q0;
+                bm0Var.h();
                 return;
         }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.I) {
-            case 1:
-                if (getParent() != null && getParent().getParent() != null) {
-                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
-    }
-
-    public rl0(Context context, org.telegram.ui.ActionBar.q4 q4Var, int i3, long j10, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, q4Var, i3, j10, e6Var);
     }
 }

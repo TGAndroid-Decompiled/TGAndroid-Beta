@@ -1,186 +1,134 @@
 package h2;
 
-import b8.zb;
-import java.nio.ByteBuffer;
+import a8.ia;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
+import java.util.ArrayDeque;
+import java.util.Iterator;
+import java.util.concurrent.CopyOnWriteArraySet;
 public final class r {
-    public final boolean f14163a;
-    public final boolean f14164b;
-    public final boolean f14165c;
-    public final boolean d;
-    public final boolean f14166e;
-    public final int f14167f;
-    public final int f14168g;
-    public final boolean h;
-    public final boolean f14169i;
-    public final boolean f14170j;
-    public final boolean f14171k;
-    public final boolean f14172l;
-    public final byte f14173m;
-    public final byte f14174n;
-    public final byte f14175o;
+    public final Thread f14139a;
+    public final i0 f14140b;
+    public final p f14141c;
+    public final CopyOnWriteArraySet d;
+    public final ArrayDeque f14142e;
+    public final ArrayDeque f14143f;
+    public final Object f14144g;
+    public boolean h;
+    public final boolean f14145i;
 
-    public r(q qVar) {
-        boolean z10;
-        int i3 = qVar.f14161a;
-        ByteBuffer byteBuffer = qVar.f14162b;
-        if (i3 == 1) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public r(Thread thread) {
+        this(new CopyOnWriteArraySet(), null, thread, null, null, true);
+    }
+
+    public final void a(Object obj) {
+        obj.getClass();
+        synchronized (this.f14144g) {
+            try {
+                if (this.h) {
+                    return;
+                }
+                this.d.add(new q(obj));
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
-        zb.f(z10);
-        int remaining = byteBuffer.remaining();
-        byte[] bArr = new byte[remaining];
-        byteBuffer.asReadOnlyBuffer().get(bArr);
-        c4.f fVar = new c4.f(bArr, remaining);
-        this.f14168g = fVar.j(3);
-        fVar.K();
-        boolean i10 = fVar.i();
-        this.f14163a = i10;
-        if (i10) {
-            fVar.j(5);
-            this.f14164b = false;
-            this.h = false;
-        } else {
-            if (fVar.i()) {
-                fVar.L(64);
-                if (fVar.i()) {
-                    int i11 = 0;
-                    while (!fVar.i()) {
-                        i11++;
-                    }
-                    if (i11 < 32) {
-                        fVar.L(i11);
-                    }
-                }
-                boolean i12 = fVar.i();
-                this.f14164b = i12;
-                if (i12) {
-                    fVar.L(47);
-                }
+    }
+
+    public final void b() {
+        boolean z9;
+        if (this.f14145i) {
+            if (Thread.currentThread() == this.f14139a) {
+                z9 = true;
             } else {
-                this.f14164b = false;
+                z9 = false;
             }
-            this.h = fVar.i();
-            int j10 = fVar.j(5);
-            for (int i13 = 0; i13 <= j10; i13++) {
-                fVar.L(12);
-                if (i13 == 0) {
-                    if (fVar.j(5) > 7) {
-                        fVar.i();
-                    }
-                } else if (fVar.j(5) > 7) {
-                    fVar.K();
+            ia.p(z9);
+        }
+        ArrayDeque arrayDeque = this.f14143f;
+        if (!arrayDeque.isEmpty()) {
+            if (this.f14141c != null) {
+                i0 i0Var = this.f14140b;
+                i0Var.getClass();
+                Handler handler = i0Var.f14096a;
+                if (!handler.hasMessages(1)) {
+                    h0 a10 = i0Var.a(1);
+                    Message message = a10.f14092a;
+                    message.getClass();
+                    handler.sendMessageAtFrontOfQueue(message);
+                    a10.a();
                 }
-                if (this.f14164b) {
-                    fVar.K();
-                }
-                if (this.h && fVar.i()) {
-                    if (i13 == 0) {
-                        fVar.j(4);
-                    } else {
-                        fVar.L(4);
-                    }
+            }
+            ArrayDeque arrayDeque2 = this.f14142e;
+            boolean isEmpty = arrayDeque2.isEmpty();
+            arrayDeque2.addAll(arrayDeque);
+            arrayDeque.clear();
+            if (isEmpty) {
+                while (!arrayDeque2.isEmpty()) {
+                    ((Runnable) arrayDeque2.peekFirst()).run();
+                    arrayDeque2.removeFirst();
                 }
             }
         }
-        int j11 = fVar.j(4);
-        int j12 = fVar.j(4);
-        fVar.L(j11 + 1);
-        fVar.L(j12 + 1);
-        if (!this.f14163a) {
-            this.f14165c = fVar.i();
-        } else {
-            this.f14165c = false;
-        }
-        if (this.f14165c) {
-            fVar.L(4);
-            fVar.L(3);
-        }
-        fVar.L(3);
-        if (this.f14163a) {
-            this.f14166e = true;
-            this.d = true;
-            this.f14167f = 0;
-        } else {
-            fVar.L(4);
-            boolean i14 = fVar.i();
-            if (i14) {
-                fVar.L(2);
-            }
-            if (fVar.i()) {
-                this.d = true;
+    }
+
+    public final void c(int i7, o oVar) {
+        boolean z9;
+        if (this.f14145i) {
+            if (Thread.currentThread() == this.f14139a) {
+                z9 = true;
             } else {
-                this.d = fVar.i();
+                z9 = false;
             }
-            if (this.d) {
-                if (fVar.i()) {
-                    this.f14166e = true;
-                } else {
-                    this.f14166e = fVar.i();
-                }
+            ia.p(z9);
+        }
+        this.f14143f.add(new ai.e0(new CopyOnWriteArraySet(this.d), i7, oVar, 14));
+    }
+
+    public final void d() {
+        boolean z9;
+        if (this.f14145i) {
+            if (Thread.currentThread() == this.f14139a) {
+                z9 = true;
             } else {
-                this.f14166e = true;
+                z9 = false;
             }
-            if (i14) {
-                this.f14167f = fVar.j(3) + 1;
-            } else {
-                this.f14167f = 0;
-            }
+            ia.p(z9);
         }
-        fVar.L(3);
-        boolean i15 = fVar.i();
-        if (this.f14168g == 2 && i15) {
-            this.f14169i = fVar.i();
-        } else {
-            this.f14169i = false;
+        synchronized (this.f14144g) {
+            this.h = true;
         }
-        if (this.f14168g != 1) {
-            this.f14170j = fVar.i();
-        } else {
-            this.f14170j = false;
-        }
-        if (fVar.i()) {
-            this.f14173m = (byte) fVar.j(8);
-            this.f14174n = (byte) fVar.j(8);
-            this.f14175o = (byte) fVar.j(8);
-        } else {
-            this.f14173m = (byte) 0;
-            this.f14174n = (byte) 0;
-            this.f14175o = (byte) 0;
-        }
-        if (this.f14170j) {
-            fVar.K();
-            this.f14171k = false;
-            this.f14172l = false;
-        } else if (this.f14173m == 1 && this.f14174n == 13 && this.f14175o == 0) {
-            this.f14171k = false;
-            this.f14172l = false;
-        } else {
-            fVar.K();
-            int i16 = this.f14168g;
-            if (i16 == 0) {
-                this.f14171k = true;
-                this.f14172l = true;
-            } else if (i16 == 1) {
-                this.f14171k = false;
-                this.f14172l = false;
-            } else if (this.f14169i) {
-                boolean i17 = fVar.i();
-                this.f14171k = i17;
-                if (i17) {
-                    this.f14172l = fVar.i();
-                } else {
-                    this.f14172l = false;
-                }
-            } else {
-                this.f14171k = true;
-                this.f14172l = false;
-            }
-            if (this.f14171k && this.f14172l) {
-                fVar.j(2);
+        Iterator it = this.d.iterator();
+        while (it.hasNext()) {
+            q qVar = (q) it.next();
+            p pVar = this.f14141c;
+            qVar.d = true;
+            if (pVar != null && qVar.f14138c) {
+                qVar.f14138c = false;
+                pVar.h(qVar.f14136a, qVar.f14137b.d());
             }
         }
-        fVar.K();
+        this.d.clear();
+    }
+
+    public final void e(int i7, o oVar) {
+        c(i7, oVar);
+        b();
+    }
+
+    public r(CopyOnWriteArraySet copyOnWriteArraySet, Looper looper, Thread thread, g0 g0Var, p pVar, boolean z9) {
+        this.f14139a = thread;
+        this.d = copyOnWriteArraySet;
+        this.f14141c = pVar;
+        this.f14144g = new Object();
+        this.f14142e = new ArrayDeque();
+        this.f14143f = new ArrayDeque();
+        if (looper != null && g0Var != null && pVar != null) {
+            this.f14140b = g0Var.a(looper, new n(this, 0));
+        } else {
+            this.f14140b = null;
+        }
+        this.f14145i = z9;
     }
 }

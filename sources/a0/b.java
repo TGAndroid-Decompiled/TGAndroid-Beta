@@ -9,8 +9,8 @@ public final class b implements Iterator {
     public final int d;
     public final Object f5e;
 
-    public b(int i3) {
-        this.f2a = i3;
+    public b(int i7) {
+        this.f2a = i7;
     }
 
     @Override
@@ -25,16 +25,16 @@ public final class b implements Iterator {
     public final Object next() {
         Object f10;
         if (hasNext()) {
-            int i3 = this.f3b;
+            int i7 = this.f3b;
             switch (this.d) {
                 case 0:
-                    f10 = ((f) this.f5e).f(i3);
+                    f10 = ((f) this.f5e).f(i7);
                     break;
                 case 1:
-                    f10 = ((f) this.f5e).i(i3);
+                    f10 = ((f) this.f5e).i(i7);
                     break;
                 default:
-                    f10 = ((g) this.f5e).f15b[i3];
+                    f10 = ((g) this.f5e).f15b[i7];
                     break;
             }
             this.f3b++;
@@ -47,17 +47,17 @@ public final class b implements Iterator {
     @Override
     public final void remove() {
         if (this.f4c) {
-            int i3 = this.f3b - 1;
-            this.f3b = i3;
+            int i7 = this.f3b - 1;
+            this.f3b = i7;
             switch (this.d) {
                 case 0:
-                    ((f) this.f5e).g(i3);
+                    ((f) this.f5e).g(i7);
                     break;
                 case 1:
-                    ((f) this.f5e).g(i3);
+                    ((f) this.f5e).g(i7);
                     break;
                 default:
-                    ((g) this.f5e).h(i3);
+                    ((g) this.f5e).f(i7);
                     break;
             }
             this.f2a--;
@@ -73,10 +73,10 @@ public final class b implements Iterator {
         this.f5e = gVar;
     }
 
-    public b(f fVar, int i3) {
+    public b(f fVar, int i7) {
         this(fVar.f31c);
-        this.d = i3;
-        switch (i3) {
+        this.d = i7;
+        switch (i7) {
             case 1:
                 this.f5e = fVar;
                 this(fVar.f31c);

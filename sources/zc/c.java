@@ -1,22 +1,24 @@
 package zc;
 
-import java.lang.reflect.Field;
-import java.util.Collections;
-import java.util.Map;
-public abstract class c {
-    public static final Map f60380a;
+import ed.h;
+import java.util.regex.Pattern;
+import kf.p;
+public final class c extends h {
+    public static final Pattern f59912e = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
 
-    static {
-        Map map;
-        try {
-            Field declaredField = ff.b.class.getDeclaredField("a");
-            declaredField.setAccessible(true);
-            map = (Map) declaredField.get(null);
-        } catch (Throwable th2) {
-            Map map2 = Collections.EMPTY_MAP;
-            th2.printStackTrace();
-            map = map2;
+    @Override
+    public final p b() {
+        String a10 = a(f59912e);
+        if (a10 == null) {
+            return null;
         }
-        f60380a = map;
+        ?? pVar = new p();
+        pVar.f59913g = com.google.android.recaptcha.internal.a.k(a10, 2, 2);
+        return pVar;
+    }
+
+    @Override
+    public final char d() {
+        return '$';
     }
 }

@@ -1,186 +1,193 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.view.View;
+import android.content.SharedPreferences;
+import android.widget.Toast;
 import java.util.ArrayList;
-import java.util.Arrays;
-import org.telegram.ui.Components.CheckBox;
-import org.telegram.ui.PhotoViewer;
-public final class cu implements View.OnClickListener {
-    public final int f44434a;
-    public final uw f44435b;
+import org.telegram.ui.Components.UndoView;
+public final class cu implements Runnable {
+    public final int f44873a;
+    public final ww f44874b;
 
-    public cu(uw uwVar, int i3) {
-        this.f44434a = i3;
-        this.f44435b = uwVar;
+    public cu(ww wwVar, int i7) {
+        this.f44873a = i7;
+        this.f44874b = wwVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        ArrayList arrayList;
-        CharSequence charSequence;
-        mv mvVar;
-        mv mvVar2;
-        int i3 = this.f44434a;
+    public final void run() {
+        int i7 = this.f44873a;
         int i10 = 0;
-        uw uwVar = this.f44435b;
-        switch (i3) {
+        ww wwVar = this.f44874b;
+        switch (i7) {
             case 0:
-                if (uwVar.m4() && (arrayList = uwVar.E2) != null && !arrayList.isEmpty() && uwVar.getParentActivity() != null) {
-                    org.telegram.messenger.ye yeVar = (org.telegram.messenger.ye) uwVar.E2.get(0);
-                    gv gvVar = uwVar.C1;
-                    if (gvVar != null) {
-                        charSequence = gvVar.getFieldText();
-                    } else {
-                        charSequence = yeVar.f25309a;
-                    }
-                    ArrayList arrayList2 = uwVar.E2;
-                    int size = arrayList2.size();
-                    while (i10 < size) {
-                        Object obj = arrayList2.get(i10);
-                        i10++;
-                        ((org.telegram.messenger.ye) obj).f25309a = charSequence;
-                    }
-                    PhotoViewer.v1().N2(null, uwVar, uwVar.getResourceProvider());
-                    PhotoViewer.v1().f41520q7 = true;
-                    PhotoViewer.v1().f41529r7 = charSequence;
-                    ArrayList arrayList3 = new ArrayList(uwVar.E2);
-                    boolean[] zArr = new boolean[uwVar.E2.size()];
-                    Arrays.fill(zArr, true);
-                    PhotoViewer.v1().j2(arrayList3, 0, 0, false, new zv(uwVar, zArr), null);
-                    PhotoViewer v12 = PhotoViewer.v1();
-                    v12.f41433g4 = true;
-                    CheckBox checkBox = v12.O0;
-                    if (checkBox != null) {
-                        checkBox.setVisibility(8);
-                    }
-                    PhotoViewer.CounterView counterView = v12.P0;
-                    if (counterView != null) {
-                        counterView.setVisibility(8);
-                        return;
-                    }
-                    return;
-                }
+                wwVar.getClass();
+                wwVar.presentFragment(new org.telegram.ui.Wallet.y5());
                 return;
             case 1:
-                if (uwVar.H0 && (mvVar = uwVar.F0) != null && !mvVar.g()) {
-                    uwVar.J4(true, true);
-                    return;
-                } else {
-                    uwVar.b5();
-                    return;
-                }
+                ww.u0(wwVar);
+                return;
             case 2:
-                if (uwVar.H0 && (mvVar2 = uwVar.F0) != null && !mvVar2.g()) {
-                    uwVar.J4(true, true);
-                    return;
-                } else {
-                    uwVar.b5();
-                    return;
-                }
+                wwVar.g5();
+                return;
             case 3:
-                uwVar.a5(true, false, true, false);
-                uwVar.Z.b(true);
-                org.telegram.messenger.g0.i3(new au(uwVar, 9), 100L);
+                ?? obj = new Object();
+                obj.f27420a = true;
+                wwVar.showAsSheet(new PrivacyControlActivity(11, false), obj);
                 return;
             case 4:
-                uwVar.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putLong("community_id", uwVar.Z2);
-                uwVar.presentFragment(new ji.q(bundle));
+                wwVar.fragmentView.dispatchTouchEvent(org.telegram.messenger.g0.R());
                 return;
             case 5:
-                uw uwVar2 = this.f44435b;
-                ArrayList arrayList4 = uwVar2.J2;
-                if (uwVar2.D2 != null && !arrayList4.isEmpty()) {
-                    uwVar2.N2 = false;
-                    ArrayList arrayList5 = new ArrayList();
-                    while (i10 < arrayList4.size()) {
-                        arrayList5.add(org.telegram.messenger.pr.a(((Long) arrayList4.get(i10)).longValue(), 0L));
+                ww wwVar2 = this.f44874b;
+                ArrayList arrayList = wwVar2.I2;
+                wwVar2.M2 = true;
+                if (wwVar2.C2 != null && !arrayList.isEmpty()) {
+                    ArrayList arrayList2 = new ArrayList();
+                    while (i10 < arrayList.size()) {
+                        arrayList2.add(org.telegram.messenger.xr.a(((Long) arrayList.get(i10)).longValue(), 0L));
                         i10++;
                     }
-                    uwVar2.D2.y(uwVar2, arrayList5, uwVar2.C1.getFieldText(), false, uwVar2.K2, uwVar2.L2, uwVar2.M2, null);
+                    wwVar2.C2.y(wwVar2, arrayList2, wwVar2.B1.getFieldText(), false, wwVar2.J2, wwVar2.K2, wwVar2.L2, null);
                     return;
                 }
                 return;
             case 6:
-                uwVar.n4(true);
+                ww wwVar3 = this.f44874b;
+                ArrayList arrayList3 = wwVar3.I2;
+                wwVar3.J2 = false;
+                wwVar3.M2 = false;
+                if (wwVar3.C2 != null && !arrayList3.isEmpty()) {
+                    ArrayList arrayList4 = new ArrayList();
+                    while (i10 < arrayList3.size()) {
+                        arrayList4.add(org.telegram.messenger.xr.a(((Long) arrayList3.get(i10)).longValue(), 0L));
+                        i10++;
+                    }
+                    wwVar3.C2.y(wwVar3, arrayList4, wwVar3.B1.getFieldText(), false, wwVar3.J2, wwVar3.K2, wwVar3.L2, null);
+                    return;
+                }
                 return;
             case 7:
-                uwVar.finishPreviewFragment();
+                ww.z0(wwVar);
                 return;
             case 8:
-                uwVar.A0.setIsEditing(false);
-                uwVar.U4(false);
+                wwVar.getClass();
+                if (LaunchActivity.Q() != null) {
+                    wwVar.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                    return;
+                }
                 return;
             case 9:
-                uwVar.getClass();
-                uwVar.showDialog(new vg.v0((org.telegram.ui.ActionBar.d2) uwVar, 2, true));
+                wwVar.X.f37557r.requestFocus();
+                org.telegram.messenger.g0.K3(wwVar.X.f37557r);
                 return;
             case 10:
-                uwVar.getContactsController().B();
-                uwVar.W4();
+                wwVar.getClass();
+                wwVar.presentFragment(new k());
                 return;
             case 11:
-                uwVar.B4(view);
+                wwVar.getClass();
+                wwVar.presentFragment(new FiltersSetupActivity());
                 return;
             case 12:
-                uw.w0(uwVar);
+                wwVar.getClass();
+                wwVar.presentFragment(new ThemeActivity(1));
                 return;
             case 13:
-                uw.K0(uwVar);
+                wwVar.M4(false, true);
                 return;
             case 14:
-                uw.y0(uwVar);
+                org.telegram.messenger.yr messagesStorage = wwVar.getMessagesStorage();
+                messagesStorage.f26688a.c(new org.telegram.messenger.qq(messagesStorage, 16));
+                Toast.makeText(wwVar.getParentActivity(), org.telegram.messenger.hd.M0(2131751652, null), 0).show();
                 return;
             case 15:
-                uwVar.showDialog((org.telegram.ui.ActionBar.t2) org.telegram.ui.Components.t4.l(uwVar.getParentActivity(), org.telegram.messenger.bd.M0(2131751239, null), org.telegram.messenger.bd.M0(2131751244, null), null, new fu(uwVar, 1), new au(uwVar, 3), false, false, uwVar.getResourceProvider()).f14429b);
+                org.telegram.messenger.qp messagesController = wwVar.getMessagesController();
+                messagesController.B1.b();
+                messagesController.C1.b();
                 return;
             case 16:
-                uw.D0(uwVar);
+                fw fwVar = wwVar.C0;
+                if (fwVar != null && fwVar.A0) {
+                    fwVar.R(false);
+                    return;
+                }
+                wwVar.X.f37557r.getText().clear();
+                org.telegram.messenger.g0.v1(wwVar.X.f37557r);
+                wwVar.X.f37557r.clearFocus();
+                wwVar.Y.b(false);
                 return;
             case 17:
-                uw.B0(uwVar);
-                return;
+                if (wwVar.R0 != 10) {
+                    wwVar.o4(false);
+                }
+                if (wwVar.L && wwVar.j4().I()) {
+                    wwVar.E0.h();
+                    return;
+                } else {
+                    wwVar.J4(true, true);
+                    return;
+                }
             case 18:
-                PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment.f41647k0 = true;
-                uwVar.presentFragment(premiumPreviewFragment);
-                org.telegram.messenger.g0.i3(new au(uwVar, 7), 250L);
+                jh.f fVar = wwVar.f51636y1;
+                if (fVar != null) {
+                    fVar.d();
+                }
+                wwVar.E3();
+                wwVar.F3();
+                li.w1 w1Var = wwVar.C1;
+                if (w1Var != null) {
+                    w1Var.setTranslationY(-wwVar.f51623w.d());
+                    return;
+                }
                 return;
             case 19:
-                uw.d0(uwVar);
+                wwVar.getNotificationCenter().k(24, new Object[0]);
                 return;
             case 20:
-                PremiumPreviewFragment premiumPreviewFragment2 = new PremiumPreviewFragment(0, "dialogs_hint");
-                premiumPreviewFragment2.f41647k0 = true;
-                uwVar.presentFragment(premiumPreviewFragment2);
-                org.telegram.messenger.g0.i3(new au(uwVar, 1), 250L);
+                wwVar.Y3();
                 return;
             case 21:
-                uwVar.presentFragment(new z6());
-                org.telegram.messenger.g0.i3(new au(uwVar, 27), 250L);
+                wwVar.g5();
                 return;
             case 22:
-                uw.E0(uwVar);
+                ww.H0(wwVar);
                 return;
             case 23:
-                uw.c0(uwVar);
+                wwVar.getMessagesController().k4(0L, "SETUP_LOGIN_EMAIL");
                 return;
             case 24:
-                uw.o0(uwVar);
+                fi.m3 m3Var = wwVar.f51591q0;
+                if (m3Var != null) {
+                    m3Var.f(true);
+                }
+                wwVar.presentFragment(new PremiumPreviewFragment(0, "stories"));
                 return;
             case 25:
-                sf.c.t(uwVar.getParentActivity(), uwVar.getMessagesController().L5);
+                wwVar.f51534e0[0].d.f();
                 return;
             case 26:
-                uw.n0(uwVar);
+                UndoView k42 = wwVar.k4();
+                if (k42 != null) {
+                    k42.l(0L, 15, null, new cu(wwVar, 11));
+                    return;
+                }
                 return;
             case 27:
-                uw.A0(uwVar);
+                wwVar.getClass();
+                SharedPreferences e12 = org.telegram.messenger.qp.e1();
+                long j3 = e12.getLong("cache_hint_period", 604800000L);
+                if (j3 <= 604800000) {
+                    j3 = 2592000000L;
+                }
+                e12.edit().putLong("cache_hint_showafter", System.currentTimeMillis() + j3).putLong("cache_hint_period", j3).apply();
+                wwVar.g5();
+                return;
+            case 28:
+                org.telegram.messenger.qp.s1(wwVar.currentAccount).l0(null);
                 return;
             default:
-                uw.b0(uwVar);
+                wwVar.getClass();
+                wwVar.presentFragment(new UserInfoActivity());
                 return;
         }
     }

@@ -1,16 +1,26 @@
 package vb;
 
-import z7.da;
-import z7.fa;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
+import q6.m;
 public final class c {
-    public final d f56506a;
-    public final mb.d f56507b;
-    public final da f56508c;
+    public final HashMap f57194a = new HashMap();
 
-    public c(d dVar, mb.d dVar2) {
-        da b10 = fa.b();
-        this.f56506a = dVar;
-        this.f56507b = dVar2;
-        this.f56508c = b10;
+    public c(Set set) {
+        HashMap hashMap = new HashMap();
+        Iterator it = set.iterator();
+        while (it.hasNext()) {
+            b bVar = (b) it.next();
+            bVar.getClass();
+            if (this.f57194a.containsKey(xb.a.class)) {
+                Integer num = (Integer) hashMap.get(xb.a.class);
+                m.g(num);
+                if (num.intValue() <= 0) {
+                }
+            }
+            this.f57194a.put(xb.a.class, bVar.f57193a);
+            hashMap.put(xb.a.class, 0);
+        }
     }
 }

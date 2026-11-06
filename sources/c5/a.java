@@ -1,49 +1,48 @@
 package c5;
 
-import android.content.pm.PackageInfo;
-import android.net.Uri;
-import android.support.v4.media.c;
-import android.webkit.WebView;
-import d5.l;
-import d5.m;
-import d5.n;
-import java.util.Set;
-import java.util.WeakHashMap;
-import org.telegram.ui.ActionBar.e3;
+import android.database.DataSetObservable;
+import android.database.DataSetObserver;
+import android.view.View;
 public abstract class a {
-    public static final boolean f4210a;
-    public static final WeakHashMap f4211b;
+    public final DataSetObservable f5303a = new DataSetObservable();
+    public DataSetObserver f5304b;
 
-    static {
-        Uri.parse("*");
-        Uri.parse("");
-        f4210a = true;
-        f4211b = new WeakHashMap();
+    public abstract void a(k kVar, Object obj);
+
+    public abstract int b();
+
+    public int c(Object obj) {
+        return -1;
     }
 
-    public static void a(WebView webView, String str, Set set, e3 e3Var) {
-        if (l.f8580c.b()) {
-            c(webView).f8583a.addWebMessageListener(str, (String[]) set.toArray(new String[0]), new xe.a(new c(e3Var, 12)));
-            return;
-        }
-        throw new UnsupportedOperationException("This method is not supported by the current version of the framework and the current WebView APK");
+    public CharSequence d(int i7) {
+        return null;
     }
 
-    public static PackageInfo b() {
-        return (PackageInfo) Class.forName("android.webkit.WebViewFactory").getMethod("getLoadedPackageInfo", null).invoke(null, null);
-    }
+    public abstract Object e(k kVar, int i7);
 
-    public static n c(WebView webView) {
-        if (l.f8581e.b() && f4210a) {
-            WeakHashMap weakHashMap = f4211b;
-            n nVar = (n) weakHashMap.get(webView);
-            if (nVar == null) {
-                n nVar2 = new n(m.f8582a.createWebView(webView));
-                weakHashMap.put(webView, nVar2);
-                return nVar2;
+    public abstract boolean f(View view, Object obj);
+
+    public void g() {
+        synchronized (this) {
+            try {
+                DataSetObserver dataSetObserver = this.f5304b;
+                if (dataSetObserver != null) {
+                    dataSetObserver.onChanged();
+                }
+            } catch (Throwable th2) {
+                throw th2;
             }
-            return nVar;
         }
-        return new n(m.f8582a.createWebView(webView));
+        this.f5303a.notifyChanged();
+    }
+
+    public final void i(DataSetObserver dataSetObserver) {
+        synchronized (this) {
+            this.f5304b = dataSetObserver;
+        }
+    }
+
+    public void h(int i7) {
     }
 }

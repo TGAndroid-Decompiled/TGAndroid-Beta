@@ -1,52 +1,66 @@
 package org.telegram.ui.Components;
-public final class co implements Runnable {
-    public final int f32776a;
-    public final vo f32777b;
 
-    public co(vo voVar, int i3) {
-        this.f32776a = i3;
-        this.f32777b = voVar;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public abstract class co extends FrameLayout {
+    public o61 f32627a;
+    public float f32628b;
+    public boolean f32629c;
+    public float d;
+    public ValueAnimator f32630e;
+
+    public abstract void a(boolean z9);
+
+    public final void b(boolean z9) {
+        float f10;
+        this.f32629c = z9;
+        ValueAnimator valueAnimator = this.f32630e;
+        if (valueAnimator != null) {
+            this.f32630e = null;
+            valueAnimator.cancel();
+        }
+        if (z9) {
+            setVisibility(0);
+        }
+        float f11 = this.d;
+        if (z9) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
+        this.f32630e = ofFloat;
+        ofFloat.addUpdateListener(new e6(this, 13));
+        this.f32630e.setInterpolator(xq.h);
+        this.f32630e.setDuration(320L);
+        this.f32630e.addListener(new t9(4, this, z9));
+        this.f32630e.start();
+    }
+
+    public int getCurrentHeight() {
+        return (int) (getMeasuredHeight() * this.f32628b);
     }
 
     @Override
-    public final void run() {
-        switch (this.f32776a) {
-            case 0:
-                this.f32777b.f39187o1.f();
-                return;
-            case 1:
-                this.f32777b.K0(true);
-                return;
-            case 2:
-                vo voVar = this.f32777b;
-                org.telegram.ui.wm wmVar = voVar.f39191s1;
-                org.telegram.ui.ActionBar.d2 g02 = org.telegram.ui.r41.g0(wmVar.getMessagesController().M0(Long.valueOf(-wmVar.a())), true);
-                ?? obj = new Object();
-                obj.f27395a = true;
-                g02.setResourceProvider(wmVar.getResourceProvider());
-                obj.f27397c = new go(0);
-                obj.d = new co(voVar, 3);
-                obj.f27396b = new co(voVar, 4);
-                obj.f27398e = true;
-                voVar.O1 = g02;
-                wmVar.showAsSheet(g02, obj);
-                return;
-            case 3:
-                this.f32777b.O0();
-                return;
-            case 4:
-                this.f32777b.O1 = null;
-                return;
-            case 5:
-                this.f32777b.O0();
-                return;
-            case 6:
-                this.f32777b.O1 = null;
-                return;
-            default:
-                vo voVar2 = this.f32777b;
-                voVar2.L1.c(voVar2.f39196x1);
-                return;
+    public final boolean isShown() {
+        return this.f32629c;
+    }
+
+    public void setShown(float f10) {
+        this.f32628b = f10;
+        o61 o61Var = this.f32627a;
+        if (o61Var != null) {
+            o61Var.setPivotX(o61Var.getWidth() / 2.0f);
+            this.f32627a.setPivotY(0.0f);
+            this.f32627a.setScaleX(org.telegram.messenger.g0.T1(0.8f, 1.0f, f10));
+            this.f32627a.setScaleY(org.telegram.messenger.g0.T1(0.8f, 1.0f, f10));
         }
+        setAlpha(f10);
+        invalidate();
+    }
+
+    public void setTabs(o61 o61Var) {
+        this.f32627a = o61Var;
+        addView(o61Var, c8.ha.c(-1.0f, -1));
     }
 }

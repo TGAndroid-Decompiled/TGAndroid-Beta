@@ -1,93 +1,73 @@
 package r2;
 
-import android.net.Uri;
-import d2.h1;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import e2.p0;
+import e2.q0;
+import e2.u;
 import java.util.Map;
-public final class p extends q {
-    public static final p f54180n;
-    public final List d;
-    public final List f54181e;
-    public final List f54182f;
-    public final List f54183g;
-    public final List h;
-    public final List f54184i;
-    public final d2.v f54185j;
-    public final List f54186k;
-    public final Map f54187l;
-    public final List f54188m;
+import x2.b1;
+public final class p extends b1 {
+    public final Map J;
+    public e2.r K;
 
-    static {
-        List list = Collections.EMPTY_LIST;
-        f54180n = new p("", list, list, list, list, list, list, null, list, false, Collections.EMPTY_MAP, list);
-    }
-
-    public p(String str, List list, List list2, List list3, List list4, List list5, List list6, d2.v vVar, List list7, boolean z10, Map map, List list8) {
-        super(str, list, z10);
-        List list9;
-        ArrayList arrayList = new ArrayList();
-        for (int i3 = 0; i3 < list2.size(); i3++) {
-            Uri uri = ((o) list2.get(i3)).f54174a;
-            if (!arrayList.contains(uri)) {
-                arrayList.add(uri);
-            }
-        }
-        b(arrayList, list3);
-        b(arrayList, list4);
-        b(arrayList, list5);
-        b(arrayList, list6);
-        this.d = DesugarCollections.unmodifiableList(arrayList);
-        this.f54181e = DesugarCollections.unmodifiableList(list2);
-        this.f54182f = DesugarCollections.unmodifiableList(list3);
-        this.f54183g = DesugarCollections.unmodifiableList(list4);
-        this.h = DesugarCollections.unmodifiableList(list5);
-        this.f54184i = DesugarCollections.unmodifiableList(list6);
-        this.f54185j = vVar;
-        if (list7 != null) {
-            list9 = DesugarCollections.unmodifiableList(list7);
-        } else {
-            list9 = null;
-        }
-        this.f54186k = list9;
-        this.f54187l = DesugarCollections.unmodifiableMap(map);
-        this.f54188m = DesugarCollections.unmodifiableList(list8);
-    }
-
-    public static void b(ArrayList arrayList, List list) {
-        for (int i3 = 0; i3 < list.size(); i3++) {
-            Uri uri = ((n) list.get(i3)).f54171a;
-            if (!arrayList.contains(uri)) {
-                arrayList.add(uri);
-            }
-        }
-    }
-
-    public static ArrayList c(int i3, List list, List list2) {
-        ArrayList arrayList = new ArrayList(list2.size());
-        for (int i10 = 0; i10 < list.size(); i10++) {
-            Object obj = list.get(i10);
-            int i11 = 0;
-            while (true) {
-                if (i11 < list2.size()) {
-                    h1 h1Var = (h1) list2.get(i11);
-                    if (h1Var.f8128b == i3 && h1Var.f8129c == i10) {
-                        arrayList.add(obj);
-                        break;
-                    }
-                    i11++;
-                }
-            }
-        }
-        return arrayList;
+    public p(h6.m mVar, q2.m mVar2, q2.j jVar, Map map) {
+        super(mVar, mVar2, jVar);
+        this.J = map;
     }
 
     @Override
-    public final Object a(List list) {
-        ArrayList c2 = c(0, this.f54181e, list);
-        List list2 = Collections.EMPTY_LIST;
-        return new p(this.f54189a, this.f54190b, c2, list2, c(1, this.f54183g, list), c(2, this.h, list), list2, this.f54185j, this.f54186k, this.f54191c, this.f54187l, this.f54188m);
+    public final u r(u uVar) {
+        e2.r rVar;
+        e2.r rVar2 = this.K;
+        if (rVar2 == null) {
+            rVar2 = uVar.f10618w;
+        }
+        if (rVar2 != null && (rVar = (e2.r) this.J.get(rVar2.f10532c)) != null) {
+            rVar2 = rVar;
+        }
+        q0 q0Var = uVar.f10608l;
+        q0 q0Var2 = null;
+        if (q0Var != null) {
+            p0[] p0VarArr = q0Var.f10484a;
+            int length = p0VarArr.length;
+            int i7 = 0;
+            while (true) {
+                if (i7 < length) {
+                    p0 p0Var = p0VarArr[i7];
+                    if ((p0Var instanceof t3.m) && "com.apple.streaming.transportStreamTimestamp".equals(((t3.m) p0Var).f55294b)) {
+                        break;
+                    }
+                    i7++;
+                } else {
+                    i7 = -1;
+                    break;
+                }
+            }
+            if (i7 != -1) {
+                if (length != 1) {
+                    p0[] p0VarArr2 = new p0[length - 1];
+                    for (int i10 = 0; i10 < length; i10++) {
+                        if (i10 != i7) {
+                            p0VarArr2[i10 < i7 ? i10 : i10 - 1] = p0VarArr[i10];
+                        }
+                    }
+                    q0Var2 = new q0(p0VarArr2);
+                }
+            }
+            if (rVar2 == uVar.f10618w || q0Var != uVar.f10608l) {
+                e2.t a10 = uVar.a();
+                a10.v = rVar2;
+                a10.f10556k = q0Var;
+                uVar = new u(a10);
+            }
+            return super.r(uVar);
+        }
+        q0Var = q0Var2;
+        if (rVar2 == uVar.f10618w) {
+        }
+        e2.t a102 = uVar.a();
+        a102.v = rVar2;
+        a102.f10556k = q0Var;
+        uVar = new u(a102);
+        return super.r(uVar);
     }
 }

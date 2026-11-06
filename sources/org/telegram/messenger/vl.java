@@ -1,59 +1,45 @@
 package org.telegram.messenger;
-
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
 public final class vl implements Runnable {
-    public final int f25958a = 3;
-    public final long f25959b;
-    public final long f25960c;
-    public final int d;
-    public final Object f25961e;
-    public final Object f25962f;
-    public final Object h;
-    public final Object f25963n;
+    public final int f26037a;
+    public final qp f26038b;
+    public final bg.u f26039c;
 
-    public vl(hp hpVar, TLRPC.updates_ChannelDifference updates_channeldifference, long j10, TLRPC.Chat chat, a0.h hVar, int i3, long j11) {
-        this.f25961e = hpVar;
-        this.f25962f = updates_channeldifference;
-        this.f25959b = j10;
-        this.h = chat;
-        this.f25963n = hVar;
-        this.d = i3;
-        this.f25960c = j11;
+    public vl(qp qpVar, bg.u uVar, int i7) {
+        this.f26037a = i7;
+        this.f26038b = qpVar;
+        this.f26039c = uVar;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.vl.run():void");
-    }
-
-    public vl(yy yyVar, long j10, long j11, int i3, TLRPC.Message message, ArrayList arrayList, zi ziVar) {
-        this.f25961e = yyVar;
-        this.f25959b = j10;
-        this.f25960c = j11;
-        this.d = i3;
-        this.f25962f = message;
-        this.h = arrayList;
-        this.f25963n = ziVar;
-    }
-
-    public vl(WearReplyReceiver wearReplyReceiver, c cVar, TLRPC.Chat chat, CharSequence charSequence, long j10, long j11, int i3, int[] iArr) {
-        this.f25961e = cVar;
-        this.h = chat;
-        this.f25962f = charSequence;
-        this.f25959b = j10;
-        this.f25960c = j11;
-        this.d = i3;
-        this.f25963n = iArr;
-    }
-
-    public vl(WearReplyReceiver wearReplyReceiver, c cVar, TLRPC.User user, CharSequence charSequence, long j10, long j11, int i3, int[] iArr) {
-        this.f25961e = cVar;
-        this.f25962f = user;
-        this.h = charSequence;
-        this.f25959b = j10;
-        this.f25960c = j11;
-        this.d = i3;
-        this.f25963n = iArr;
+        int i7 = this.f26037a;
+        bg.u uVar = this.f26039c;
+        qp qpVar = this.f26038b;
+        switch (i7) {
+            case 0:
+                a0.h hVar = uVar.f3375c;
+                int m10 = hVar.m();
+                for (int i10 = 0; i10 < m10; i10++) {
+                    qpVar.getNotificationCenter().k(49, Long.valueOf(hVar.j(i10)), hVar.n(i10), Boolean.FALSE);
+                }
+                return;
+            case 1:
+                a0.h hVar2 = uVar.f3375c;
+                int m11 = hVar2.m();
+                for (int i11 = 0; i11 < m11; i11++) {
+                    qpVar.getNotificationCenter().k(49, Long.valueOf(hVar2.j(i11)), hVar2.n(i11), Boolean.FALSE);
+                }
+                return;
+            default:
+                a0.h hVar3 = uVar.f3375c;
+                if (!hVar3.i()) {
+                    int m12 = hVar3.m();
+                    for (int i12 = 0; i12 < m12; i12++) {
+                        qpVar.getNotificationCenter().k(1, Long.valueOf(hVar3.j(i12)), hVar3.n(i12), Boolean.FALSE, 0);
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

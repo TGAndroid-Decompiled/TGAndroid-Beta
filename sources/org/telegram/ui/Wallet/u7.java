@@ -1,60 +1,81 @@
 package org.telegram.ui.Wallet;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-public final class u7 extends View {
-    public final b8 f43268a;
+import org.telegram.ui.oa0;
+public final class u7 implements Runnable {
+    public final int f43188a;
+    public final c8 f43189b;
 
-    public u7(b8 b8Var, Context context) {
-        super(context);
-        this.f43268a = b8Var;
+    public u7(c8 c8Var, int i7) {
+        this.f43188a = i7;
+        this.f43189b = c8Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float pow;
-        float f10;
-        Canvas canvas2;
-        float f11;
-        float f12;
-        b8 b8Var = this.f43268a;
-        if (b8Var.Z0 > 0.0f) {
-            if (b8Var.Y0) {
-                float f13 = b8Var.V0;
-                pow = com.google.android.recaptcha.internal.a.B(f13, 2.0f, 3.0f, f13 * f13);
-            } else {
-                pow = 1.0f - ((float) Math.pow(1.0f - b8Var.V0, 4.0d));
-            }
-            float f14 = pow;
-            boolean z10 = b8Var.Y0;
-            if (!z10 && f14 < 1.0f) {
-                f10 = b8Var.Z0 * 1.2f * f14;
-            } else {
-                f10 = -1.0f;
-            }
-            float f15 = f10;
-            a8 a8Var = b8Var.T0;
-            if (a8Var != null && f14 < 1.0f) {
-                if (z10) {
-                    f12 = 1.0f - f14;
-                } else {
-                    f12 = 1.0f;
+    public final void run() {
+        p7 j3;
+        switch (this.f43188a) {
+            case 0:
+                c8 c8Var = this.f43189b;
+                c8Var.f42267s0 = false;
+                c8Var.f42243g0 = null;
+                c8Var.f0();
+                return;
+            case 1:
+                this.f43189b.Q();
+                return;
+            case 2:
+                c8 c8Var2 = this.f43189b;
+                b8 b8Var = c8Var2.f42243g0;
+                if (b8Var != null && !c8Var2.m0) {
+                    if (c8Var2.f42271u0) {
+                        c8Var2.f42256n0 = true;
+                        c8Var2.f42245h0 = b8Var;
+                        c8Var2.B0 = Float.NaN;
+                        c8Var2.E0 = Float.NaN;
+                        c8Var2.C0 = 0.0f;
+                        c8Var2.L0 = false;
+                        c8Var2.D0 = b8Var.f42137i.f42081b;
+                        b8Var.f42145q.a(0.0f);
+                        b8 b8Var2 = c8Var2.f42243g0;
+                        a8 a8Var = b8Var2.f42140l;
+                        a8Var.d = 260.0f;
+                        a8Var.f42083e = 0.58f;
+                        a8Var.f42081b = 1.0f;
+                        long j10 = c8Var2.N0 + 1;
+                        c8Var2.N0 = j10;
+                        b8Var2.I = j10;
+                        di.z2 z2Var = b8Var2.f42131c;
+                        z2Var.f21219u0 = true;
+                        z2Var.P0(false);
+                        c8Var2.performHapticFeedback(0);
+                        c8Var2.f0();
+                        return;
+                    } else if (c8Var2.f42259p0 && (j3 = c8Var2.j(b8Var)) != null) {
+                        c8Var2.S(j3);
+                        return;
+                    } else {
+                        return;
+                    }
                 }
-                canvas2 = canvas;
-                b8Var.s(canvas2, a8Var, f12, f15, true);
-            } else {
-                canvas2 = canvas;
-            }
-            a8 a8Var2 = b8Var.U0;
-            if (a8Var2 != null) {
-                if (b8Var.Y0) {
-                    f11 = f14;
-                } else {
-                    f11 = 1.0f;
+                return;
+            default:
+                c8 c8Var3 = this.f43189b;
+                if (c8Var3.f42261q0 && c8Var3.f42243g0 != null) {
+                    c8Var3.f42261q0 = false;
+                    c8Var3.f42259p0 = true;
+                    c8Var3.removeCallbacks(c8Var3.B1);
+                    ((oa0) c8Var3.d.f19608a).X();
+                    c8Var3.getParent().requestDisallowInterceptTouchEvent(true);
+                    c8Var3.performHapticFeedback(4);
+                    p7 j11 = c8Var3.j(c8Var3.f42243g0);
+                    if (j11 != null) {
+                        j11.o();
+                        j11.animate().scaleX(0.94f).scaleY(0.94f).setDuration(100L).start();
+                    }
+                    c8Var3.f0();
+                    return;
                 }
-                b8Var.s(canvas2, a8Var2, f11, f15, false);
-            }
+                return;
         }
     }
 }

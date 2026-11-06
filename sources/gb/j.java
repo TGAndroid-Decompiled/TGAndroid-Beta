@@ -1,35 +1,38 @@
 package gb;
+public final class j implements pa.f {
+    public static final j f13714b;
+    public static final j f13715c;
+    public static final j d;
+    public static final j[] f13716e;
+    public final int f13717a;
 
-import b8.ge;
-import java.io.FileInputStream;
-import java.io.IOException;
-import l1.h1;
-import l1.z0;
-public final class j implements z0 {
-    public static final j f12222a = new Object();
-    public static final i f12223b = new i(null, null, null, null, null);
+    static {
+        j jVar = new j("COLLECTION_UNKNOWN", 0, 0);
+        j jVar2 = new j("COLLECTION_SDK_NOT_INSTALLED", 1, 1);
+        f13714b = jVar2;
+        j jVar3 = new j("COLLECTION_ENABLED", 2, 2);
+        f13715c = jVar3;
+        j jVar4 = new j("COLLECTION_DISABLED", 3, 3);
+        d = jVar4;
+        j[] jVarArr = {jVar, jVar2, jVar3, jVar4, new j("COLLECTION_DISABLED_REMOTE", 4, 4), new j("COLLECTION_SAMPLED", 5, 5)};
+        f13716e = jVarArr;
+        c8.j1.a(jVarArr);
+    }
 
-    @Override
-    public final Object a() {
-        return f12223b;
+    public j(String str, int i7, int i10) {
+        this.f13717a = i10;
+    }
+
+    public static j valueOf(String str) {
+        return (j) Enum.valueOf(j.class, str);
+    }
+
+    public static j[] values() {
+        return (j[]) f13716e.clone();
     }
 
     @Override
-    public final void b(Object obj, h1 h1Var) {
-        byte[] bytes = me.b.d.b(i.Companion.serializer(), (i) obj).getBytes(ud.a.f55807a);
-        kotlin.jvm.internal.j.d(bytes, "getBytes(...)");
-        h1Var.write(bytes);
-    }
-
-    @Override
-    public final Object c(FileInputStream fileInputStream) {
-        try {
-            me.b bVar = me.b.d;
-            String str = new String(ge.b(fileInputStream), ud.a.f55807a);
-            bVar.getClass();
-            return (i) bVar.a(i.Companion.serializer(), str);
-        } catch (Exception e10) {
-            throw new IOException("Cannot parse session configs", e10);
-        }
+    public final int a() {
+        return this.f13717a;
     }
 }

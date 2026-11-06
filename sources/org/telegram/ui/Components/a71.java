@@ -1,24 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.view.TextureView;
-import android.view.View;
-import android.view.ViewGroup;
-public interface a71 {
-    TextureView a(View view, boolean z10, float f10, int i3, boolean z11);
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class a71 extends AnimatorListenerAdapter {
+    public final int f31708a;
+    public final b71 f31709b;
 
-    void b();
+    public a71(b71 b71Var, int i7) {
+        this.f31708a = i7;
+        this.f31709b = b71Var;
+    }
 
-    void c(float f10);
-
-    void d();
-
-    void e(d71 d71Var, boolean z10);
-
-    TextureView f(View view, boolean z10, int i3, int i10, boolean z11);
-
-    ViewGroup g();
-
-    boolean h();
-
-    void i(boolean z10, v61 v61Var, float f10, boolean z11);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f31708a) {
+            case 0:
+                this.f31709b.D = null;
+                return;
+            default:
+                this.f31709b.D = null;
+                return;
+        }
+    }
 }

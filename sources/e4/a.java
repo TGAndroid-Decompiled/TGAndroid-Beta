@@ -1,14 +1,14 @@
 package e4;
-
-import g2.y;
 public final class a {
-    public final y f9546a = new y();
-    public final int[] f9547b = new int[256];
-    public boolean f9548c;
-    public int d;
-    public int f9549e;
-    public int f9550f;
-    public int f9551g;
-    public int h;
-    public int f9552i;
+    public final int f10663a;
+    public final int[] f10664b;
+    public final int[] f10665c;
+    public final int[] d;
+
+    public a(int i7, int[] iArr, int[] iArr2, int[] iArr3) {
+        this.f10663a = i7;
+        this.f10664b = iArr;
+        this.f10665c = iArr2;
+        this.d = iArr3;
+    }
 }

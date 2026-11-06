@@ -1,94 +1,73 @@
 package org.telegram.ui;
 
-import java.util.Locale;
+import android.content.Context;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stats;
-public final class m41 {
-    public String A;
-    public boolean B;
-    public boolean C;
-    public String D;
-    public String E;
-    public String F;
-    public boolean G;
-    public boolean H;
-    public String f47500a;
-    public String f47501b;
-    public String f47502c;
-    public boolean d;
-    public String f47503e;
-    public String f47504f;
-    public String f47505g;
-    public boolean h;
-    public String f47506i;
-    public String f47507j;
-    public String f47508k;
-    public boolean f47509l;
-    public String f47510m;
-    public String f47511n;
-    public String f47512o;
-    public String f47513p;
-    public String f47514q;
-    public boolean f47515r;
-    public boolean f47516s;
-    public String f47517t;
-    public String f47518u;
-    public String v;
-    public boolean f47519w;
-    public boolean f47520x;
-    public String f47521y;
-    public String f47522z;
+public abstract class m41 extends l41 {
+    public final int f47636w;
+    public final c51 f47637x;
 
-    public static za.p a(TL_stats.TL_statsAbsValueAndPrev tL_statsAbsValueAndPrev) {
-        float abs;
-        boolean z10;
-        double d = tL_statsAbsValueAndPrev.current;
-        double d10 = tL_statsAbsValueAndPrev.previous;
-        int i3 = (int) (d - d10);
-        if (d10 == 0.0d) {
-            abs = 0.0f;
-        } else {
-            abs = Math.abs((i3 / ((float) d10)) * 100.0f);
-        }
-        boolean z11 = false;
-        String o02 = org.telegram.messenger.g0.o0((int) tL_statsAbsValueAndPrev.current, 0);
-        String str = "";
-        if (i3 != 0 && abs != 0.0f) {
-            int i10 = (int) abs;
-            if (abs == i10) {
-                Locale locale = Locale.ENGLISH;
-                StringBuilder sb2 = new StringBuilder();
-                if (i3 > 0) {
-                    str = "+";
+    public m41(c51 c51Var, Context context, int i7, int i10, lg.f fVar) {
+        super(context, i10, fVar, null);
+        this.f47637x = c51Var;
+        this.f47636w = i7;
+    }
+
+    @Override
+    public final void b(o41 o41Var) {
+        int i7;
+        c51 c51Var = this.f47637x;
+        i7 = ((org.telegram.ui.ActionBar.f2) c51Var).classGuid;
+        o41Var.a(this.f47636w, i7, c51Var.f44643a.stats_dc, new eh(2, c51Var, this.f47388r));
+    }
+
+    @Override
+    public final void c() {
+        int i7;
+        if (this.f47388r.f48227c <= 0) {
+            performClick();
+            lg.g gVar = this.f47383b;
+            if (gVar.f18319t0.G) {
+                long selectedDate = gVar.getSelectedDate();
+                if (this.f47389s == 4) {
+                    o41 o41Var = this.f47388r;
+                    o41Var.f48228e = new mg.e(o41Var.d, selectedDate);
+                    g(false);
+                } else if (this.f47388r.f48230g == null) {
+                } else {
+                    c51 c51Var = this.f47637x;
+                    c51.c0(c51Var);
+                    String str = this.f47388r.f48230g + "_" + selectedDate;
+                    mg.b bVar = (mg.b) c51Var.U.f(str);
+                    if (bVar != null) {
+                        this.f47388r.f48228e = bVar;
+                        g(false);
+                        return;
+                    }
+                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
+                    tL_loadAsyncGraph.token = this.f47388r.f48230g;
+                    if (selectedDate != 0) {
+                        tL_loadAsyncGraph.f27185x = selectedDate;
+                        tL_loadAsyncGraph.flags |= 1;
+                    }
+                    ?? obj = new Object();
+                    c51Var.Y = obj;
+                    c51Var.S.getClass();
+                    obj.f44181a = RecyclerView.R(this);
+                    gVar.f18319t0.d(true, false);
+                    int i10 = this.f47636w;
+                    int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new ko0(this, str, obj, 10), null, null, 0, c51Var.f44643a.stats_dc, 1, true);
+                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
+                    i7 = ((org.telegram.ui.ActionBar.f2) c51Var).classGuid;
+                    connectionsManager.bindRequestToGuid(sendRequest, i7);
                 }
-                sb2.append(str);
-                sb2.append(org.telegram.messenger.g0.o0(i3, 0));
-                str = sb2.toString() + " (" + i10 + "%)";
-            } else {
-                Locale locale2 = Locale.ENGLISH;
-                StringBuilder sb3 = new StringBuilder();
-                if (i3 > 0) {
-                    str = "+";
-                }
-                sb3.append(str);
-                sb3.append(org.telegram.messenger.g0.o0(i3, 0));
-                str = String.format(locale2, "%s (%.1f%s)", sb3.toString(), Float.valueOf(abs), "%");
             }
         }
-        if (i3 >= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i3 != 0 || tL_statsAbsValueAndPrev.current != 0.0d) {
-            z11 = true;
-        }
-        Boolean valueOf = Boolean.valueOf(z10);
-        Boolean valueOf2 = Boolean.valueOf(z11);
-        ?? obj = new Object();
-        obj.f60311a = o02;
-        obj.d = str;
-        obj.f60312b = valueOf;
-        obj.f60313c = valueOf2;
-        return obj;
+    }
+
+    @Override
+    public final void f() {
+        c51.c0(this.f47637x);
     }
 }

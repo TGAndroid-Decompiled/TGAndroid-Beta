@@ -12,8 +12,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public class ShareActivity extends Activity {
-    public static final int f41995b = 0;
-    public org.telegram.ui.Components.oo0 f41996a;
+    public static final int f41938b = 0;
+    public org.telegram.ui.Components.mo0 f41939a;
 
     @Override
     public final void onCreate(Bundle bundle) {
@@ -31,7 +31,7 @@ public class ShareActivity extends Activity {
             String uri = data.toString();
             String queryParameter = data.getQueryParameter("hash");
             if ("tgb".equals(scheme) && uri.toLowerCase().startsWith("tgb://share_game_score") && !TextUtils.isEmpty(queryParameter)) {
-                SharedPreferences sharedPreferences = org.telegram.messenger.t0.f25457b.getSharedPreferences("botshare", 0);
+                SharedPreferences sharedPreferences = org.telegram.messenger.t0.f25555b.getSharedPreferences("botshare", 0);
                 String string = sharedPreferences.getString(queryParameter + "_m", null);
                 if (TextUtils.isEmpty(string)) {
                     finish();
@@ -46,14 +46,14 @@ public class ShareActivity extends Activity {
                 TLdeserialize.readAttachPath(serializedData, 0L);
                 serializedData.cleanup();
                 String string2 = sharedPreferences.getString(queryParameter + "_link", null);
-                org.telegram.messenger.zi ziVar = new org.telegram.messenger.zi(org.telegram.messenger.h10.f22829t0, TLdeserialize, false, true);
-                ziVar.f26868k.with_my_score = true;
+                org.telegram.messenger.ij ijVar = new org.telegram.messenger.ij(org.telegram.messenger.p10.f24459s0, TLdeserialize, false, true);
+                ijVar.f23237k.with_my_score = true;
                 try {
-                    org.telegram.ui.Components.oo0 N0 = org.telegram.ui.Components.oo0.N0(this, ziVar, null, false, string2);
-                    this.f41996a = N0;
+                    org.telegram.ui.Components.mo0 N0 = org.telegram.ui.Components.mo0.N0(this, ijVar, null, false, string2);
+                    this.f41939a = N0;
                     N0.setCanceledOnTouchOutside(true);
-                    this.f41996a.setOnDismissListener(new s5(this, 15));
-                    this.f41996a.show();
+                    this.f41939a.setOnDismissListener(new q5(this, 15));
+                    this.f41939a.show();
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
@@ -71,10 +71,10 @@ public class ShareActivity extends Activity {
     public final void onPause() {
         super.onPause();
         try {
-            org.telegram.ui.Components.oo0 oo0Var = this.f41996a;
-            if (oo0Var != null && oo0Var.isShowing()) {
-                this.f41996a.dismiss();
-                this.f41996a = null;
+            org.telegram.ui.Components.mo0 mo0Var = this.f41939a;
+            if (mo0Var != null && mo0Var.isShowing()) {
+                this.f41939a.dismiss();
+                this.f41939a = null;
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

@@ -20,8 +20,8 @@ public class CameraEnumerationAndroid {
             public int max;
             public int min;
 
-            public FramerateRange(int i3, int i10) {
-                this.min = i3;
+            public FramerateRange(int i7, int i10) {
+                this.min = i7;
                 this.max = i10;
             }
 
@@ -45,8 +45,8 @@ public class CameraEnumerationAndroid {
             }
         }
 
-        public CaptureFormat(int i3, int i10, int i11, int i12) {
-            this.width = i3;
+        public CaptureFormat(int i7, int i10, int i11, int i12) {
+            this.width = i7;
             this.height = i10;
             this.framerate = new FramerateRange(i11, i12);
         }
@@ -74,15 +74,15 @@ public class CameraEnumerationAndroid {
             return this.width + "x" + this.height + "@" + this.framerate;
         }
 
-        public static int frameSize(int i3, int i10, int i11) {
+        public static int frameSize(int i7, int i10, int i11) {
             if (i11 == 17) {
-                return (ImageFormat.getBitsPerPixel(i11) * (i3 * i10)) / 8;
+                return (ImageFormat.getBitsPerPixel(i11) * (i7 * i10)) / 8;
             }
             throw new UnsupportedOperationException("Don't know how to calculate the frame size of non-NV21 image formats.");
         }
 
-        public CaptureFormat(int i3, int i10, FramerateRange framerateRange) {
-            this.width = i3;
+        public CaptureFormat(int i7, int i10, FramerateRange framerateRange) {
+            this.width = i7;
             this.height = i10;
             this.framerate = framerateRange;
         }
@@ -93,14 +93,14 @@ public class CameraEnumerationAndroid {
         }
 
         @Override
-        public int compare(T t10, T t11) {
-            return diff(t10) - diff(t11);
+        public int compare(T t6, T t10) {
+            return diff(t6) - diff(t10);
         }
 
-        public abstract int diff(T t10);
+        public abstract int diff(T t6);
     }
 
-    public static CaptureFormat.FramerateRange getClosestSupportedFramerateRange(List<CaptureFormat.FramerateRange> list, final int i3) {
+    public static CaptureFormat.FramerateRange getClosestSupportedFramerateRange(List<CaptureFormat.FramerateRange> list, final int i7) {
         return (CaptureFormat.FramerateRange) Collections.min(list, new ClosestComparator<CaptureFormat.FramerateRange>() {
             private static final int MAX_FPS_DIFF_THRESHOLD = 5000;
             private static final int MAX_FPS_HIGH_DIFF_WEIGHT = 3;
@@ -122,12 +122,12 @@ public class CameraEnumerationAndroid {
 
             @Override
             public int diff(CaptureFormat.FramerateRange framerateRange) {
-                return progressivePenalty(framerateRange.min, 8000, 1, 4) + progressivePenalty(Math.abs((i3 * 1000) - framerateRange.max), 5000, 1, 3);
+                return progressivePenalty(framerateRange.min, 8000, 1, 4) + progressivePenalty(Math.abs((i7 * 1000) - framerateRange.max), 5000, 1, 3);
             }
         });
     }
 
-    public static Size getClosestSupportedSize(List<Size> list, final int i3, final int i10) {
+    public static Size getClosestSupportedSize(List<Size> list, final int i7, final int i10) {
         return (Size) Collections.min(list, new ClosestComparator<Size>() {
             {
                 super();
@@ -135,7 +135,7 @@ public class CameraEnumerationAndroid {
 
             @Override
             public int diff(Size size) {
-                return Math.abs(i10 - size.height) + Math.abs(i3 - size.width);
+                return Math.abs(i10 - size.height) + Math.abs(i7 - size.width);
             }
         });
     }

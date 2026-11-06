@@ -1,110 +1,54 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class kw implements org.telegram.ui.Components.xy {
-    public final Context f47035a;
-    public final uw f47036b;
+import android.view.ViewTreeObserver;
+public final class kw implements ViewTreeObserver.OnPreDrawListener {
+    public final int f47294a;
+    public final Object f47295b;
+    public final Object f47296c;
 
-    public kw(Context context, uw uwVar) {
-        this.f47036b = uwVar;
-        this.f47035a = context;
+    public kw(int i7, Object obj, Object obj2) {
+        this.f47294a = i7;
+        this.f47296c = obj;
+        this.f47295b = obj2;
     }
 
-    public final int a(int i3) {
-        uw uwVar = this.f47036b;
-        if (uwVar.S0 != 3) {
-            if (i3 == uwVar.A0.getDefaultTabId()) {
-                return uwVar.getMessagesStorage().L;
-            }
-            ArrayList T0 = uwVar.getMessagesController().T0();
-            if (i3 >= 0 && i3 < T0.size()) {
-                return ((org.telegram.messenger.mo) uwVar.getMessagesController().T0().get(i3)).d;
-            }
-            return 0;
-        }
-        return 0;
-    }
-
-    public final void b(float f10) {
-        int i3 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-        uw uwVar = this.f47036b;
-        if (i3 != 0 || uwVar.f50230f0[1].getVisibility() == 0 || uwVar.f50255k2) {
-            if (uwVar.f50252j3) {
-                tw twVar = uwVar.f50230f0[0];
-                twVar.setTranslationX((-f10) * twVar.getMeasuredWidth());
-                tw[] twVarArr = uwVar.f50230f0;
-                twVarArr[1].setTranslationX(twVarArr[0].getMeasuredWidth() - (f10 * uwVar.f50230f0[0].getMeasuredWidth()));
-            } else {
-                tw twVar2 = uwVar.f50230f0[0];
-                twVar2.setTranslationX(twVar2.getMeasuredWidth() * f10);
-                tw[] twVarArr2 = uwVar.f50230f0;
-                twVarArr2[1].setTranslationX((f10 * twVarArr2[0].getMeasuredWidth()) - uwVar.f50230f0[0].getMeasuredWidth());
-            }
-            if (i3 == 0) {
-                tw[] twVarArr3 = uwVar.f50230f0;
-                tw twVar3 = twVarArr3[0];
-                twVarArr3[0] = twVarArr3[1];
-                twVarArr3[1] = twVar3;
-                twVar3.setVisibility(8);
-                uw.j1(uwVar, true);
-                uwVar.f5(false);
-                uwVar.A0.P = false;
-                uwVar.C3(uwVar.f50230f0[0]);
-                uwVar.f50230f0[0].d.getClass();
-                uwVar.f50230f0[1].d.getClass();
-            }
-        }
-    }
-
-    public final void c(org.telegram.ui.Components.yy yyVar, boolean z10) {
-        int i3;
-        int i10;
-        uw uwVar = this.f47036b;
-        int i11 = uwVar.f50230f0[0].h;
-        int i12 = yyVar.f40853a;
-        if (i11 != i12) {
-            if (yyVar.f40857f) {
-                uwVar.A0.i(i12);
-                i10 = ((org.telegram.ui.ActionBar.d2) uwVar).currentAccount;
-                uwVar.showDialog(new vg.i0(3, i10, this.f47035a, uwVar, null));
-                return;
-            }
-            ArrayList T0 = uwVar.getMessagesController().T0();
-            if (!yyVar.f40856e && ((i3 = yyVar.f40853a) < 0 || i3 >= T0.size())) {
-                return;
-            }
-            tw twVar = uwVar.f50230f0[1];
-            twVar.h = yyVar.f40853a;
-            twVar.setVisibility(0);
-            tw[] twVarArr = uwVar.f50230f0;
-            twVarArr[1].setTranslationX(twVarArr[0].getMeasuredWidth());
-            uw.j1(uwVar, false);
-            uwVar.d5(true);
-            uwVar.f50252j3 = z10;
-        }
-    }
-
-    public final void d(org.telegram.messenger.mo moVar) {
-        boolean d = moVar.d();
-        uw uwVar = this.f47036b;
-        if (d) {
-            org.telegram.ui.Components.rz.g1(uwVar, moVar.f24237a, null);
-            return;
-        }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(uwVar.getParentActivity());
-        String M0 = org.telegram.messenger.bd.M0(2131750791, null);
-        org.telegram.ui.ActionBar.s1 s1Var = alertDialog$Builder.f27343a;
-        s1Var.S = M0;
-        s1Var.U = org.telegram.messenger.bd.M0(2131750790, null);
-        alertDialog$Builder.h(org.telegram.messenger.bd.M0(2131752589, null), null);
-        alertDialog$Builder.k(org.telegram.messenger.bd.M0(2131751599, null), new org.telegram.ui.Components.i41(12, this, moVar));
-        uwVar.showDialog(s1Var);
-        TextView textView = (TextView) s1Var.d(-1);
-        if (textView != null) {
-            org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28122q7, uwVar.getResourceProvider());
+    @Override
+    public final boolean onPreDraw() {
+        float f10;
+        switch (this.f47294a) {
+            case 0:
+                ((dv) this.f47296c).f45118a.f51534e0[0].f50833a.getViewTreeObserver().removeOnPreDrawListener(this);
+                org.telegram.messenger.g0.i3((bi.r3) this.f47295b, 100L);
+                return false;
+            case 1:
+                c40 c40Var = (c40) this.f47296c;
+                c40Var.H1.getViewTreeObserver().removeOnPreDrawListener(this);
+                c40Var.f44554h4 = null;
+                c40Var.R3.j((org.telegram.messenger.s3) this.f47295b);
+                org.telegram.messenger.g0.b4(c40Var.f44538d4);
+                c40Var.f28615b.requestLayout();
+                return false;
+            default:
+                ((ViewTreeObserver) this.f47295b).removeOnPreDrawListener(this);
+                wh.h hVar = (wh.h) this.f47296c;
+                org.telegram.ui.Components.kb kbVar = hVar.W;
+                if (kbVar != null) {
+                    int[] iArr = wh.h.f57778d0;
+                    kbVar.getLocationInWindow(iArr);
+                    float f11 = iArr[0];
+                    float translationY = iArr[1] - hVar.W.getTranslationY();
+                    org.telegram.ui.Components.kb kbVar2 = hVar.W;
+                    if (kbVar2.top) {
+                        f10 = kbVar2.getTopOffset();
+                    } else {
+                        f10 = -kbVar2.getBottomOffset();
+                    }
+                    hVar.f57781a.getLocationInWindow(iArr);
+                    hVar.X = (hVar.W.f35248a.getMeasuredWidth() / 2.0f) + (f11 - iArr[0]) + hVar.W.f35248a.getLeft();
+                    hVar.Y = (hVar.W.f35248a.getMeasuredHeight() / 2.0f) + ((translationY + f10) - iArr[1]) + hVar.W.f35248a.getTop();
+                }
+                hVar.c();
+                return true;
         }
     }
 }

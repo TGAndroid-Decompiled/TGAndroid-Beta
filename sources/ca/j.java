@@ -1,17 +1,22 @@
 package ca;
-public final class j implements ma.d {
-    public static final j f4409a = new Object();
 
-    static {
-        ma.c.c("clsId");
+import a8.p0;
+public final class j {
+    public static final j f6017c = new j(0, 0);
+    public final int f6018a;
+    public final int f6019b;
+
+    public j(int i7, int i10) {
+        this.f6018a = i7;
+        this.f6019b = i10;
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ma.e eVar = (ma.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(j.class.getSimpleName());
+        sb2.append("[position = ");
+        sb2.append(this.f6018a);
+        sb2.append(", length = ");
+        return p0.n(this.f6019b, "]", sb2);
     }
 }

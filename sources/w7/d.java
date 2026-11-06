@@ -1,5 +1,6 @@
 package w7;
 
+import c8.ed;
 import j$.util.List;
 import java.util.Collection;
 import java.util.Comparator;
@@ -8,17 +9,16 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 import java.util.function.UnaryOperator;
-import x7.o5;
 public abstract class d extends a implements List, RandomAccess, j$.util.List {
-    public static final b f57408b = new b(e.f57409e, 0);
+    public static final b f57472b = new b(g.f57477e, 0);
 
     @Override
-    public final void add(int i3, Object obj) {
+    public final void add(int i7, Object obj) {
         throw new UnsupportedOperationException();
     }
 
     @Override
-    public final boolean addAll(int i3, Collection collection) {
+    public final boolean addAll(int i7, Collection collection) {
         throw new UnsupportedOperationException();
     }
 
@@ -40,9 +40,9 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
                 int size = size();
                 if (size == list.size()) {
                     if (list instanceof RandomAccess) {
-                        for (int i3 = 0; i3 < size; i3++) {
-                            Object obj2 = get(i3);
-                            Object obj3 = list.get(i3);
+                        for (int i7 = 0; i7 < size; i7++) {
+                            Object obj2 = get(i7);
+                            Object obj3 = list.get(i7);
                             if (obj2 == obj3 || (obj2 != null && obj2.equals(obj3))) {
                             }
                         }
@@ -67,10 +67,10 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
     }
 
     @Override
-    public int h(Object[] objArr) {
+    public int f(Object[] objArr) {
         int size = size();
-        for (int i3 = 0; i3 < size; i3++) {
-            objArr[i3] = get(i3);
+        for (int i7 = 0; i7 < size; i7++) {
+            objArr[i7] = get(i7);
         }
         return size;
     }
@@ -78,11 +78,11 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
     @Override
     public final int hashCode() {
         int size = size();
-        int i3 = 1;
+        int i7 = 1;
         for (int i10 = 0; i10 < size; i10++) {
-            i3 = (i3 * 31) + get(i10).hashCode();
+            i7 = (i7 * 31) + get(i10).hashCode();
         }
-        return i3;
+        return i7;
     }
 
     @Override
@@ -91,9 +91,9 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
             return -1;
         }
         int size = size();
-        for (int i3 = 0; i3 < size; i3++) {
-            if (obj.equals(get(i3))) {
-                return i3;
+        for (int i7 = 0; i7 < size; i7++) {
+            if (obj.equals(get(i7))) {
+                return i7;
             }
         }
         return -1;
@@ -105,16 +105,16 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
     }
 
     @Override
-    public d subList(int i3, int i10) {
-        o5.b(i3, i10, size());
-        int i11 = i10 - i3;
+    public d subList(int i7, int i10) {
+        ed.c(i7, i10, size());
+        int i11 = i10 - i7;
         if (i11 == size()) {
             return this;
         }
         if (i11 == 0) {
-            return e.f57409e;
+            return g.f57477e;
         }
-        return new c(this, i3, i11);
+        return new c(this, i7, i11);
     }
 
     @Override
@@ -136,19 +136,16 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
     }
 
     @Override
-    public final b listIterator(int i3) {
-        int size = size();
-        if (i3 >= 0 && i3 <= size) {
-            if (isEmpty()) {
-                return f57408b;
-            }
-            return new b(this, i3);
+    public final b listIterator(int i7) {
+        ed.b(i7, size());
+        if (isEmpty()) {
+            return f57472b;
         }
-        throw new IndexOutOfBoundsException(o5.c(i3, size, "index"));
+        return new b(this, i7);
     }
 
     @Override
-    public final Object remove(int i3) {
+    public final Object remove(int i7) {
         throw new UnsupportedOperationException();
     }
 
@@ -158,7 +155,7 @@ public abstract class d extends a implements List, RandomAccess, j$.util.List {
     }
 
     @Override
-    public final Object set(int i3, Object obj) {
+    public final Object set(int i7, Object obj) {
         throw new UnsupportedOperationException();
     }
 

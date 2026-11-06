@@ -1,86 +1,157 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class e61 implements RequestDelegate {
-    public final int f44907a;
-    public final l71 f44908b;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewParent;
+public final class e61 extends org.telegram.ui.Components.pj0 {
+    public final int f45186e3;
 
-    public e61(l71 l71Var, int i3) {
-        this.f44907a = i3;
-        this.f44908b = l71Var;
+    public e61(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        this.f45186e3 = i7;
     }
 
     @Override
-    public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f44907a) {
+    public Integer V0(int i7) {
+        switch (this.f45186e3) {
+            case 1:
+                return 0;
+            case 3:
+                return 0;
+            case 4:
+                return 0;
+            case 8:
+                return 0;
+            default:
+                return super.V0(i7);
+        }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.f45186e3) {
             case 0:
-                final l71 l71Var = this.f44908b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                l71.b0(l71Var, tLObject);
-                                return;
-                            default:
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
-                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                                    if (tL_wallPaper.pattern) {
-                                        l71 l71Var2 = l71Var;
-                                        l71Var2.Y0 = tL_wallPaper;
-                                        l71Var2.g1(false);
-                                        l71Var2.o1();
-                                        l71Var2.W0.add(0, l71Var2.Y0);
-                                        j71 j71Var = l71Var2.S0;
-                                        if (j71Var != null) {
-                                            j71Var.f();
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
+                if (getParent() != null && getParent().getParent() != null) {
+                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            case 2:
+                if (getParent() != null && getParent().getParent() != null) {
+                    ViewParent parent = getParent().getParent();
+                    boolean z9 = true;
+                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                        z9 = false;
                     }
-                });
+                    parent.requestDisallowInterceptTouchEvent(z9);
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            case 6:
+                if (getParent() != null && getParent().getParent() != null) {
+                    ViewParent parent2 = getParent().getParent();
+                    boolean z10 = true;
+                    if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
+                        z10 = false;
+                    }
+                    parent2.requestDisallowInterceptTouchEvent(z10);
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            case 13:
+                if (getParent() != null && getParent().getParent() != null) {
+                    getParent().getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+                }
+                return super.onInterceptTouchEvent(motionEvent);
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onMeasure(int i7, int i10) {
+        switch (this.f45186e3) {
+            case 7:
+                int size = View.MeasureSpec.getSize(i10);
+                int b10 = (getAdapter().b() * org.telegram.messenger.g0.L(50.0f)) + org.telegram.messenger.g0.L(4.0f);
+                if (b10 <= size) {
+                    size = b10;
+                }
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+                return;
+            case 10:
+                int size2 = View.MeasureSpec.getSize(i10);
+                int b11 = (getAdapter().b() * org.telegram.messenger.g0.L(50.0f)) + org.telegram.messenger.g0.L(4.0f);
+                if (b11 <= size2) {
+                    size2 = b11;
+                }
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
                 return;
             default:
-                final l71 l71Var2 = this.f44908b;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                l71.b0(l71Var2, tLObject);
-                                return;
-                            default:
-                                TLObject tLObject2 = tLObject;
-                                if (tLObject2 instanceof TLRPC.TL_wallPaper) {
-                                    TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                                    if (tL_wallPaper.pattern) {
-                                        l71 l71Var22 = l71Var2;
-                                        l71Var22.Y0 = tL_wallPaper;
-                                        l71Var22.g1(false);
-                                        l71Var22.o1();
-                                        l71Var22.W0.add(0, l71Var22.Y0);
-                                        j71 j71Var = l71Var22.S0;
-                                        if (j71Var != null) {
-                                            j71Var.f();
-                                            return;
-                                        }
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
+                super.onMeasure(i7, i10);
                 return;
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f45186e3) {
+            case 12:
+                if (motionEvent.getAction() == 0) {
+                    getParent().requestDisallowInterceptTouchEvent(true);
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void r0(View view, View view2) {
+        switch (this.f45186e3) {
+            case 5:
+                if (view instanceof org.telegram.ui.Cells.a6) {
+                    super.r0(view, view2);
+                    return;
+                }
+                return;
+            case 11:
+                if (view instanceof org.telegram.ui.Cells.a6) {
+                    super.r0(view, view2);
+                    return;
+                }
+                return;
+            default:
+                super.r0(view, view2);
+                return;
+        }
+    }
+
+    @Override
+    public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z9) {
+        switch (this.f45186e3) {
+            case 5:
+                rect.bottom = org.telegram.messenger.g0.L(60.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z9);
+            case 11:
+                rect.bottom = org.telegram.messenger.g0.L(60.0f) + rect.bottom;
+                return super.requestChildRectangleOnScreen(view, rect, z9);
+            default:
+                return super.requestChildRectangleOnScreen(view, rect, z9);
+        }
+    }
+
+    @Override
+    public boolean requestFocus(int i7, Rect rect) {
+        switch (this.f45186e3) {
+            case 9:
+                return false;
+            default:
+                return super.requestFocus(i7, rect);
+        }
+    }
+
+    public e61(Context context) {
+        super(context, null);
+        this.f45186e3 = 12;
     }
 }

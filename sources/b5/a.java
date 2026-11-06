@@ -1,48 +1,34 @@
 package b5;
 
-import android.database.DataSetObservable;
-import android.database.DataSetObserver;
-import android.view.View;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.os.Bundle;
+import android.os.Parcelable;
+import androidx.versionedparcelable.ParcelImpl;
+import m.n2;
 public abstract class a {
-    public final DataSetObservable f2390a = new DataSetObservable();
-    public DataSetObserver f2391b;
-
-    public abstract void a(l lVar, Object obj);
-
-    public abstract int b();
-
-    public int c(Object obj) {
-        return -1;
+    public static android.content.res.ColorStateList a(android.content.Context r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: b5.a.a(android.content.Context, int):android.content.res.ColorStateList");
     }
 
-    public CharSequence d(int i3) {
-        return null;
+    public static Drawable b(Context context, int i7) {
+        return n2.d().g(context, i7);
     }
 
-    public abstract Object e(l lVar, int i3);
-
-    public abstract boolean f(View view, Object obj);
-
-    public void g() {
-        synchronized (this) {
-            try {
-                DataSetObserver dataSetObserver = this.f2391b;
-                if (dataSetObserver != null) {
-                    dataSetObserver.onChanged();
+    public static d c(Bundle bundle) {
+        try {
+            Bundle bundle2 = (Bundle) bundle.getParcelable("android.support.v4.media.session.SESSION_TOKEN2");
+            if (bundle2 != null) {
+                bundle2.setClassLoader(a.class.getClassLoader());
+                Parcelable parcelable = bundle2.getParcelable("a");
+                if (parcelable instanceof ParcelImpl) {
+                    return ((ParcelImpl) parcelable).f2884a;
                 }
-            } catch (Throwable th2) {
-                throw th2;
+                throw new IllegalArgumentException("Invalid parcel");
             }
+            return null;
+        } catch (RuntimeException unused) {
+            return null;
         }
-        this.f2390a.notifyChanged();
-    }
-
-    public final void i(DataSetObserver dataSetObserver) {
-        synchronized (this) {
-            this.f2391b = dataSetObserver;
-        }
-    }
-
-    public void h(int i3) {
     }
 }

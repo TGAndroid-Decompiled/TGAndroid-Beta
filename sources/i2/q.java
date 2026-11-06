@@ -1,22 +1,12 @@
 package i2;
 
-import java.util.Map;
-public final class q implements f9.l {
-    public final int f14584a;
+import java.nio.ByteBuffer;
+public final class q {
+    public final int f15205a;
+    public final ByteBuffer f15206b;
 
-    @Override
-    public final boolean apply(Object obj) {
-        switch (this.f14584a) {
-            case 0:
-                if (((Map.Entry) obj).getKey() != null) {
-                    return true;
-                }
-                return false;
-            default:
-                if (((String) obj) != null) {
-                    return true;
-                }
-                return false;
-        }
+    public q(int i7, ByteBuffer byteBuffer) {
+        this.f15205a = i7;
+        this.f15206b = byteBuffer;
     }
 }

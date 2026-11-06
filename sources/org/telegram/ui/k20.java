@@ -1,16 +1,17 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class k20 extends AnimatorListenerAdapter {
-    public final x30 f46744a;
-
-    public k20(x30 x30Var) {
-        this.f46744a = x30Var;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class k20 extends FrameLayout {
+    public k20(LaunchActivity launchActivity) {
+        super(launchActivity);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f46744a.P2 = null;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (getAlpha() <= 0.95f) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

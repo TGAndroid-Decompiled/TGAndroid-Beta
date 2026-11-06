@@ -1,142 +1,325 @@
 package xh;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.bd;
+import android.graphics.SurfaceTexture;
+import android.opengl.GLES20;
+import android.opengl.GLES30;
+import javax.microedition.khronos.egl.EGL10;
+import javax.microedition.khronos.egl.EGLConfig;
+import javax.microedition.khronos.egl.EGLContext;
+import javax.microedition.khronos.egl.EGLDisplay;
+import javax.microedition.khronos.egl.EGLSurface;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.g5;
-import org.telegram.messenger.h10;
-import org.telegram.messenger.hp;
-import org.telegram.messenger.l10;
-import org.telegram.messenger.m5;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.u8;
-public final class d implements ValueAnimator.AnimatorUpdateListener {
-    public final h f58807a;
-    public final q1 f58808b;
-    public final ImageReceiver f58809c;
-    public final long d;
-    public b f58810e;
-    public b f58811f;
-    public Paint f58812g;
-    public final StaticLayout h;
-    public float f58813i;
-    public float f58814j;
-    public ValueAnimator f58815k;
-    public float f58816l;
-    public boolean f58817m;
-    public ValueAnimator f58818n;
-    public float f58819o;
-    public boolean f58820p;
+public final class d extends Thread {
+    public EGLSurface D;
+    public EGLContext E;
+    public int F;
+    public int G;
+    public int H;
+    public int I;
+    public int J;
+    public int K;
+    public int L;
+    public int[] O;
+    public float P;
+    public final e Q;
+    public final c f58649c;
+    public final SurfaceTexture d;
+    public boolean f58651f;
+    public int h;
+    public int f58652n;
+    public int f58653r;
+    public EGL10 f58655w;
+    public EGLDisplay f58656x;
+    public EGLConfig f58657y;
+    public volatile boolean f58647a = true;
+    public volatile boolean f58648b = false;
+    public final Object f58650e = new Object();
+    public final float f58654s = g0.N(1.2f);
+    public boolean M = true;
+    public int N = 0;
 
-    public d(h hVar, long j10) {
-        ImageReceiver imageReceiver;
-        String str;
-        String str2;
-        float f10;
-        CharSequence ellipsize;
-        u8 u8Var = new u8((e6) null);
-        int i3 = h10.f22829t0;
-        this.f58816l = 1.0f;
-        this.f58817m = true;
-        this.f58819o = 0.0f;
-        this.f58820p = false;
-        ImageReceiver imageReceiver2 = new ImageReceiver(hVar.f58849a);
-        this.f58809c = imageReceiver2;
-        this.f58807a = hVar;
-        q1 q1Var = hVar.E;
-        this.f58808b = q1Var;
-        this.d = j10;
-        u8Var.f38691p = 1.0f;
-        if (m5.E(j10)) {
-            TLRPC.User a22 = hp.s1(i3).a2(Long.valueOf(j10));
-            u8Var.r(a22);
-            if (l10.B(a22)) {
-                str2 = bd.M0(2131745911, null);
-                u8Var.g(1);
-                u8Var.f38691p = 0.75f;
-                imageReceiver = imageReceiver2;
-                imageReceiver.r0(null, null, null, null, u8Var, 0L, null, a22, 0);
-                imageReceiver.J0(g0.L(g.f58842a / 2.0f));
-                imageReceiver.y0(0.0f, 0.0f, g0.L(f10), g0.L(f10));
-                Paint Z1 = q1Var.Z1("paintChatActionText");
-                if (str2 == null && Z1 != null) {
-                    int L = g0.L(48);
-                    TextPaint textPaint = new TextPaint(Z1);
-                    this.h = new StaticLayout(TextUtils.ellipsize(str2, textPaint, g0.f22608q.x - L, TextUtils.TruncateAt.END), textPaint, (int) Math.ceil(textPaint.measureText(ellipsize, 0, ellipsize.length())), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                    return;
-                }
+    public d(e eVar, SurfaceTexture surfaceTexture, int i7, int i10, c cVar) {
+        this.Q = eVar;
+        this.f58649c = cVar;
+        this.d = surfaceTexture;
+        this.h = i7;
+        this.f58652n = i10;
+        this.f58653r = (int) Utilities.i(((i7 * i10) / 250000.0f) * 1000.0f, 10000.0f, 500.0f);
+    }
+
+    public static void a() {
+        while (true) {
+            int glGetError = GLES20.glGetError();
+            if (glGetError != 0) {
+                a8.d("spoiler gles error " + glGetError);
+            } else {
+                return;
             }
-            imageReceiver = imageReceiver2;
-            str = a22 != null ? g5.m(0, a22.first_name, a22.last_name) : "";
-            imageReceiver.i0(a22, u8Var, null);
-        } else {
-            imageReceiver = imageReceiver2;
-            TLRPC.Chat M0 = hp.s1(i3).M0(Long.valueOf(-j10));
-            str = M0 != null ? M0.title : "";
-            u8Var.q(M0);
-            imageReceiver.i0(M0, u8Var, null);
-        }
-        str2 = str;
-        imageReceiver.J0(g0.L(g.f58842a / 2.0f));
-        imageReceiver.y0(0.0f, 0.0f, g0.L(f10), g0.L(f10));
-        Paint Z12 = q1Var.Z1("paintChatActionText");
-        if (str2 == null) {
         }
     }
 
-    public static float b(float f10, float f11, float f12, float f13) {
-        float f14 = f11 / 2.0f;
-        float f15 = f10 - f14;
-        float f16 = f10 + f14;
-        float f17 = f13 - f12;
-        if (f11 > f17) {
-            float f18 = (f12 + f13) / 2.0f;
-            float f19 = f11 - f17;
-            float max = Math.max(0.0f, f12 - f15);
-            float max2 = Math.max(0.0f, f16 - f13);
-            float f20 = max + max2;
-            if (f20 < 0.1f) {
-                return f18;
-            }
-            return a1.g.A(f19, 2.0f, (max - max2) / f20, f18);
-        } else if (f15 < f12) {
-            return f12 + f14;
-        } else {
-            if (f16 > f13) {
-                return f13 - f14;
-            }
-            return f10;
+    public final void b() {
+        int[] iArr = this.O;
+        if (iArr != null) {
+            GLES20.glDeleteBuffers(2, iArr, 0);
         }
-    }
-
-    public final void a(Canvas canvas, float f10, float f11, float f12, float f13) {
-        canvas.save();
-        canvas.translate(f10 - f12, f11 - f12);
-        int i3 = g.f58842a;
-        float f14 = 21;
-        canvas.scale(f12 / g0.L(f14), f12 / g0.L(f14));
-        ImageReceiver imageReceiver = this.f58809c;
-        imageReceiver.setAlpha(((this.f58816l * 0.25f) + 0.75f) * f13);
-        imageReceiver.h(canvas, null);
-        canvas.restore();
+        int[] iArr2 = new int[2];
+        this.O = iArr2;
+        GLES20.glGenBuffers(2, iArr2, 0);
+        for (int i7 = 0; i7 < 2; i7++) {
+            GLES20.glBindBuffer(34962, this.O[i7]);
+            GLES20.glBufferData(34962, this.f58653r * 24, null, 35048);
+        }
+        a();
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        if (valueAnimator == this.f58818n) {
-            this.f58819o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        } else if (valueAnimator == this.f58815k) {
-            this.f58816l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+    public final void run() {
+        float f10;
+        int i7;
+        int i10;
+        EGL10 egl10 = (EGL10) EGLContext.getEGL();
+        this.f58655w = egl10;
+        EGLDisplay eglGetDisplay = egl10.eglGetDisplay(0);
+        this.f58656x = eglGetDisplay;
+        int i11 = 3;
+        int i12 = 2;
+        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
+            this.f58647a = false;
+        } else {
+            if (!this.f58655w.eglInitialize(eglGetDisplay, new int[2])) {
+                this.f58647a = false;
+            } else {
+                EGLConfig[] eGLConfigArr = new EGLConfig[1];
+                if (!this.f58655w.eglChooseConfig(this.f58656x, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
+                    this.f58647a = false;
+                } else {
+                    EGLConfig eGLConfig = eGLConfigArr[0];
+                    this.f58657y = eGLConfig;
+                    EGLContext eglCreateContext = this.f58655w.eglCreateContext(this.f58656x, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
+                    this.E = eglCreateContext;
+                    if (eglCreateContext == null) {
+                        this.f58647a = false;
+                    } else {
+                        EGLSurface eglCreateWindowSurface = this.f58655w.eglCreateWindowSurface(this.f58656x, this.f58657y, this.d, null);
+                        this.D = eglCreateWindowSurface;
+                        if (eglCreateWindowSurface == null) {
+                            this.f58647a = false;
+                        } else if (!this.f58655w.eglMakeCurrent(this.f58656x, eglCreateWindowSurface, eglCreateWindowSurface, this.E)) {
+                            this.f58647a = false;
+                        } else {
+                            b();
+                            int glCreateShader = GLES20.glCreateShader(35633);
+                            int glCreateShader2 = GLES20.glCreateShader(35632);
+                            if (glCreateShader != 0 && glCreateShader2 != 0) {
+                                GLES20.glShaderSource(glCreateShader, g0.y2(null, 2131624213));
+                                GLES20.glCompileShader(glCreateShader);
+                                int[] iArr = new int[1];
+                                GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
+                                if (iArr[0] == 0) {
+                                    a8.d("SpoilerEffect2, compile vertex shader error: " + GLES20.glGetShaderInfoLog(glCreateShader));
+                                    GLES20.glDeleteShader(glCreateShader);
+                                    this.f58647a = false;
+                                } else {
+                                    GLES20.glShaderSource(glCreateShader2, g0.y2(null, 2131624212));
+                                    GLES20.glCompileShader(glCreateShader2);
+                                    GLES20.glGetShaderiv(glCreateShader2, 35713, iArr, 0);
+                                    if (iArr[0] == 0) {
+                                        a8.d("SpoilerEffect2, compile fragment shader error: " + GLES20.glGetShaderInfoLog(glCreateShader2));
+                                        GLES20.glDeleteShader(glCreateShader2);
+                                        this.f58647a = false;
+                                    } else {
+                                        int glCreateProgram = GLES20.glCreateProgram();
+                                        this.F = glCreateProgram;
+                                        if (glCreateProgram == 0) {
+                                            this.f58647a = false;
+                                        } else {
+                                            GLES20.glAttachShader(glCreateProgram, glCreateShader);
+                                            GLES20.glAttachShader(this.F, glCreateShader2);
+                                            GLES30.glTransformFeedbackVaryings(this.F, new String[]{"outPosition", "outVelocity", "outTime", "outDuration"}, 35980);
+                                            GLES20.glLinkProgram(this.F);
+                                            GLES20.glGetProgramiv(this.F, 35714, iArr, 0);
+                                            if (iArr[0] == 0) {
+                                                a8.d("SpoilerEffect2, link draw program error: " + GLES20.glGetProgramInfoLog(this.F));
+                                                this.f58647a = false;
+                                            } else {
+                                                this.G = GLES20.glGetUniformLocation(this.F, "reset");
+                                                this.H = GLES20.glGetUniformLocation(this.F, "time");
+                                                this.I = GLES20.glGetUniformLocation(this.F, "deltaTime");
+                                                this.J = GLES20.glGetUniformLocation(this.F, "size");
+                                                this.K = GLES20.glGetUniformLocation(this.F, "r");
+                                                this.L = GLES20.glGetUniformLocation(this.F, "seed");
+                                                GLES20.glViewport(0, 0, this.h, this.f58652n);
+                                                GLES20.glEnable(3042);
+                                                GLES20.glBlendFunc(770, 771);
+                                                GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+                                                GLES20.glUseProgram(this.F);
+                                                GLES20.glUniform2f(this.J, this.h, this.f58652n);
+                                                int i13 = this.G;
+                                                if (this.M) {
+                                                    f10 = 1.0f;
+                                                } else {
+                                                    f10 = 0.0f;
+                                                }
+                                                GLES20.glUniform1f(i13, f10);
+                                                GLES20.glUniform1f(this.K, this.f58654s);
+                                                GLES20.glUniform1f(this.L, Utilities.f21332c.nextInt(256) / 256.0f);
+                                            }
+                                        }
+                                    }
+                                }
+                            } else {
+                                this.f58647a = false;
+                            }
+                        }
+                    }
+                }
+            }
         }
-        this.f58807a.invalidateSelf();
+        long nanoTime = System.nanoTime();
+        while (this.f58647a) {
+            long nanoTime2 = System.nanoTime();
+            double d = (nanoTime2 - nanoTime) / 1.0E9d;
+            e eVar = this.Q;
+            double d2 = eVar.f58659a;
+            if (d < d2) {
+                double d10 = d2 - d;
+                long j3 = (long) (d10 * 1000.0d);
+                i7 = i11;
+                i10 = i12;
+                try {
+                    Thread.sleep(j3, (int) ((d10 - (j3 / 1000.0d)) * 1.0E9d));
+                } catch (Exception unused) {
+                }
+                d = this.Q.f58659a;
+            } else {
+                i7 = i11;
+                i10 = i12;
+                double d11 = eVar.f58660b;
+                if (d > d11) {
+                    d = d11;
+                }
+            }
+            while (this.f58648b) {
+                try {
+                    Thread.sleep(1000L);
+                } catch (Exception unused2) {
+                }
+            }
+            synchronized (this.f58650e) {
+                try {
+                    if (this.f58651f) {
+                        GLES20.glUniform2f(this.J, this.h, this.f58652n);
+                        GLES20.glViewport(0, 0, this.h, this.f58652n);
+                        int i14 = (int) Utilities.i(((this.h * this.f58652n) / 250000.0f) * 1000.0f, 10000.0f, 500.0f);
+                        if (i14 > this.f58653r) {
+                            this.M = true;
+                            b();
+                        }
+                        this.f58653r = i14;
+                        this.f58651f = false;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            float f11 = (float) d;
+            EGL10 egl102 = this.f58655w;
+            EGLDisplay eGLDisplay = this.f58656x;
+            EGLSurface eGLSurface = this.D;
+            if (!egl102.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.E)) {
+                this.f58647a = false;
+            } else {
+                float f12 = f11 * 0.65f;
+                float f13 = this.P + f12;
+                this.P = f13;
+                if (f13 > 1000.0f) {
+                    this.P = 0.0f;
+                }
+                GLES20.glClear(16384);
+                GLES20.glBindBuffer(34962, this.O[this.N]);
+                GLES20.glVertexAttribPointer(0, 2, 5126, false, 24, 0);
+                GLES20.glEnableVertexAttribArray(0);
+                GLES20.glVertexAttribPointer(1, 2, 5126, false, 24, 8);
+                GLES20.glEnableVertexAttribArray(1);
+                GLES20.glVertexAttribPointer(2, 1, 5126, false, 24, 16);
+                GLES20.glEnableVertexAttribArray(i10);
+                GLES20.glVertexAttribPointer(3, 1, 5126, false, 24, 20);
+                GLES20.glEnableVertexAttribArray(i7);
+                GLES30.glBindBufferBase(35982, 0, this.O[1 - this.N]);
+                GLES20.glVertexAttribPointer(0, 2, 5126, false, 24, 0);
+                GLES20.glEnableVertexAttribArray(0);
+                GLES20.glVertexAttribPointer(1, 2, 5126, false, 24, 8);
+                GLES20.glEnableVertexAttribArray(1);
+                GLES20.glVertexAttribPointer(2, 1, 5126, false, 24, 16);
+                GLES20.glEnableVertexAttribArray(i10);
+                GLES20.glVertexAttribPointer(3, 1, 5126, false, 24, 20);
+                GLES20.glEnableVertexAttribArray(i7);
+                GLES20.glUniform1f(this.H, this.P);
+                GLES20.glUniform1f(this.I, f12);
+                GLES30.glBeginTransformFeedback(0);
+                GLES20.glDrawArrays(0, 0, this.f58653r);
+                GLES30.glEndTransformFeedback();
+                if (this.M) {
+                    this.M = false;
+                    GLES20.glUniform1f(this.G, 0.0f);
+                }
+                this.N = 1 - this.N;
+                this.f58655w.eglSwapBuffers(this.f58656x, this.D);
+                a();
+            }
+            g0.r(this.f58649c);
+            g0.h3(this.f58649c);
+            i11 = i7;
+            nanoTime = nanoTime2;
+            i12 = i10;
+        }
+        int i15 = i12;
+        int[] iArr2 = this.O;
+        if (iArr2 != null) {
+            try {
+                GLES20.glDeleteBuffers(i15, iArr2, 0);
+            } catch (Exception e10) {
+                a8.g(e10, true);
+            }
+            this.O = null;
+        }
+        int i16 = this.F;
+        if (i16 != 0) {
+            try {
+                GLES20.glDeleteProgram(i16);
+            } catch (Exception e11) {
+                a8.g(e11, true);
+            }
+            this.F = 0;
+        }
+        EGL10 egl103 = this.f58655w;
+        if (egl103 != null) {
+            try {
+                EGLDisplay eGLDisplay2 = this.f58656x;
+                EGLSurface eGLSurface2 = EGL10.EGL_NO_SURFACE;
+                egl103.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, EGL10.EGL_NO_CONTEXT);
+            } catch (Exception e12) {
+                a8.g(e12, true);
+            }
+            try {
+                this.f58655w.eglDestroySurface(this.f58656x, this.D);
+            } catch (Exception e13) {
+                a8.g(e13, true);
+            }
+            try {
+                this.f58655w.eglDestroyContext(this.f58656x, this.E);
+            } catch (Exception e14) {
+                a8.g(e14, true);
+            }
+        }
+        try {
+            this.d.release();
+        } catch (Exception e15) {
+            a8.g(e15, true);
+        }
+        a();
     }
 }

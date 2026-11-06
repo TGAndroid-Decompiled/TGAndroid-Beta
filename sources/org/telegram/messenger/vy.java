@@ -1,9 +1,19 @@
 package org.telegram.messenger;
 
-import java.util.concurrent.CountDownLatch;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class vy {
-    public volatile TLRPC.TL_photo f26135a;
-    public volatile String f26136b;
-    public CountDownLatch f26137c;
+public final class vy implements RequestDelegate {
+    public final String f26225a;
+    public final xy f26226b;
+
+    public vy(xy xyVar, String str) {
+        this.f26226b = xyVar;
+        this.f26225a = str;
+    }
+
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        g0.h3(new yq(20, this, this.f26225a));
+    }
 }

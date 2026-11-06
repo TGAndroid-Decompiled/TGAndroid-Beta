@@ -1,78 +1,69 @@
 package bi;
 
 import android.content.Context;
-import lg.u1;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.ql0;
-import org.telegram.ui.Components.tl0;
-public final class q0 implements Runnable {
-    public final int f3826a;
-    public final Object f3827b;
-    public final int f3828c;
-    public final Object d;
-    public final Object f3829e;
+import android.graphics.PorterDuff;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import org.telegram.ui.Components.w70;
+public final class q0 extends LinearLayout {
+    public final ImageView f4550a;
+    public final w70 f4551b;
+    public final w70 f4552c;
 
-    public q0(int i3, Object obj, Object obj2, Object obj3, int i10) {
-        this.f3826a = i10;
-        this.f3828c = i3;
-        this.f3827b = obj;
-        this.d = obj2;
-        this.f3829e = obj3;
+    public q0(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        float f10;
+        float f11;
+        setOrientation(0);
+        if (i7 == 1) {
+            f10 = 11.0f;
+        } else {
+            f10 = 32.0f;
+        }
+        int L = org.telegram.messenger.g0.L(f10);
+        int L2 = org.telegram.messenger.g0.L(i7 == 1 ? 11.0f : 32.0f);
+        if (i7 == 1) {
+            f11 = 8.0f;
+        } else {
+            f11 = 12.0f;
+        }
+        setPadding(L, 0, L2, org.telegram.messenger.g0.L(f11));
+        ImageView imageView = new ImageView(context);
+        this.f4550a = imageView;
+        int i10 = org.telegram.ui.ActionBar.k6.G6;
+        org.telegram.ui.ActionBar.r6.t(imageView, i10, null, PorterDuff.Mode.SRC_IN);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView(imageView, c8.ha.t(24, 24, 51, 0, 6, 16, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        w70 w70Var = new w70(context, null);
+        this.f4551b = w70Var;
+        w70Var.setTypeface(org.telegram.messenger.g0.o());
+        w70Var.setTextSize(1, 14.0f);
+        org.telegram.ui.ActionBar.r6.V(w70Var, i10, f6Var);
+        int i11 = org.telegram.ui.ActionBar.k6.Uc;
+        org.telegram.ui.ActionBar.r6.H(w70Var, i11, f6Var);
+        linearLayout.addView(w70Var, c8.ha.t(-1, -2, 7, 0, 0, 0, 3));
+        w70 w70Var2 = new w70(context, null);
+        this.f4552c = w70Var2;
+        w70Var2.setTextSize(1, 14.0f);
+        org.telegram.ui.ActionBar.r6.V(w70Var2, org.telegram.ui.ActionBar.k6.f28258z6, f6Var);
+        org.telegram.ui.ActionBar.r6.H(w70Var2, i11, f6Var);
+        linearLayout.addView(w70Var2, c8.ha.r(-1, -2, 7));
+        addView(linearLayout, c8.ha.q(-1, -2, 1.0f, 55, 0, 0, 0, 0));
     }
 
-    private final void a() {
-        Context context = ((tl0) this.f3827b).getContext();
-        TLRPC.Reaction g7 = ((ql0) this.d).f37490a.g();
-        tl0.c(context, this.f3828c, g7, (e6) this.f3829e);
+    public final void a(int i7, CharSequence charSequence, CharSequence charSequence2) {
+        this.f4550a.setImageResource(i7);
+        this.f4551b.setText(charSequence);
+        this.f4552c.setText(charSequence2);
     }
 
-    private final void b() {
-        throw new UnsupportedOperationException("Method not decompiled: bi.q0.b():void");
+    public void setSubtitle(CharSequence charSequence) {
+        this.f4552c.setText(charSequence);
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: bi.q0.run():void");
-    }
-
-    public q0(Object obj, int i3, Object obj2, Object obj3, int i10) {
-        this.f3826a = i10;
-        this.f3827b = obj;
-        this.f3828c = i3;
-        this.d = obj2;
-        this.f3829e = obj3;
-    }
-
-    public q0(Object obj, int i3, Object obj2, String str, int i10) {
-        this.f3826a = i10;
-        this.f3827b = obj;
-        this.f3828c = i3;
-        this.f3829e = obj2;
-        this.d = str;
-    }
-
-    public q0(Object obj, Object obj2, int i3, Object obj3, int i10) {
-        this.f3826a = i10;
-        this.f3827b = obj;
-        this.d = obj2;
-        this.f3828c = i3;
-        this.f3829e = obj3;
-    }
-
-    public q0(Object obj, Object obj2, Object obj3, int i3, int i10) {
-        this.f3826a = i10;
-        this.f3827b = obj;
-        this.d = obj2;
-        this.f3829e = obj3;
-        this.f3828c = i3;
-    }
-
-    public q0(u1 u1Var, TLRPC.Message message, String str, int i3) {
-        this.f3826a = 9;
-        this.f3827b = u1Var;
-        this.f3829e = message;
-        this.d = str;
-        this.f3828c = i3;
+    public void setTitle(CharSequence charSequence) {
+        this.f4551b.setText(charSequence);
     }
 }

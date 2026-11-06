@@ -1,6 +1,6 @@
 package org.scilab.forge.jlatexmath;
 
-import a1.g;
+import a8.p0;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,24 +39,24 @@ public class TeXSymbolParser {
     }
 
     public Map<String, SymbolAtom> readSymbols() {
-        boolean z10;
+        boolean z9;
         HashMap hashMap = new HashMap();
         NodeList elementsByTagName = this.root.getElementsByTagName("Symbol");
-        for (int i3 = 0; i3 < elementsByTagName.getLength(); i3++) {
-            Element element = (Element) elementsByTagName.item(i3);
+        for (int i7 = 0; i7 < elementsByTagName.getLength(); i7++) {
+            Element element = (Element) elementsByTagName.item(i7);
             String attrValueAndCheckIfNotNull = getAttrValueAndCheckIfNotNull("name", element);
             String attrValueAndCheckIfNotNull2 = getAttrValueAndCheckIfNotNull("type", element);
             String attribute = element.getAttribute("del");
             if (attribute != null && attribute.equals("true")) {
-                z10 = true;
+                z9 = true;
             } else {
-                z10 = false;
+                z9 = false;
             }
             Integer num = typeMappings.get(attrValueAndCheckIfNotNull2);
             if (num != null) {
-                hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z10));
+                hashMap.put(attrValueAndCheckIfNotNull, new SymbolAtom(attrValueAndCheckIfNotNull, num.intValue(), z9));
             } else {
-                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", g.q("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
+                throw new XMLResourceParseException("TeXSymbols.xml", "Symbol", "type", p0.p("has an unknown value '", attrValueAndCheckIfNotNull2, "'!"));
             }
         }
         return hashMap;

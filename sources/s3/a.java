@@ -1,60 +1,68 @@
 package s3;
 
-import d2.p0;
-import j$.util.Objects;
-import java.util.Arrays;
-public final class a extends i {
-    public final String f54604b;
-    public final String f54605c;
-    public final int d;
-    public final byte[] f54606e;
-
-    public a(int i3, String str, String str2, byte[] bArr) {
-        super("APIC");
-        this.f54604b = str;
-        this.f54605c = str2;
-        this.d = i3;
-        this.f54606e = bArr;
-    }
+import a8.ga;
+import c8.ca;
+import e2.q0;
+import java.nio.ByteBuffer;
+import java.nio.charset.CharacterCodingException;
+import java.nio.charset.CharsetDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public final class a extends ca {
+    public static final Pattern f54652c = Pattern.compile("(.+?)='(.*?)';", 32);
+    public final CharsetDecoder f54653a = StandardCharsets.UTF_8.newDecoder();
+    public final CharsetDecoder f54654b = StandardCharsets.ISO_8859_1.newDecoder();
 
     @Override
-    public final void a(p0 p0Var) {
-        p0Var.a(this.d, this.f54606e);
-    }
-
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    public final q0 b(o3.a aVar, ByteBuffer byteBuffer) {
+        String str;
+        CharsetDecoder charsetDecoder = this.f54654b;
+        CharsetDecoder charsetDecoder2 = this.f54653a;
+        String str2 = null;
+        try {
+            str = charsetDecoder2.decode(byteBuffer).toString();
+        } catch (CharacterCodingException unused) {
+            try {
+                String charBuffer = charsetDecoder.decode(byteBuffer).toString();
+                charsetDecoder.reset();
+                byteBuffer.rewind();
+                str = charBuffer;
+            } catch (CharacterCodingException unused2) {
+                charsetDecoder.reset();
+                byteBuffer.rewind();
+                str = null;
+            } catch (Throwable th2) {
+                charsetDecoder.reset();
+                byteBuffer.rewind();
+                throw th2;
+            }
+        } finally {
+            charsetDecoder2.reset();
+            byteBuffer.rewind();
         }
-        if (obj != null && a.class == obj.getClass()) {
-            a aVar = (a) obj;
-            if (this.d == aVar.d && Objects.equals(this.f54604b, aVar.f54604b) && Objects.equals(this.f54605c, aVar.f54605c) && Arrays.equals(this.f54606e, aVar.f54606e)) {
-                return true;
+        byte[] bArr = new byte[byteBuffer.limit()];
+        byteBuffer.get(bArr);
+        if (str == null) {
+            return new q0(new c(bArr, null, null));
+        }
+        Matcher matcher = f54652c.matcher(str);
+        String str3 = null;
+        for (int i7 = 0; matcher.find(i7); i7 = matcher.end()) {
+            String group = matcher.group(1);
+            String group2 = matcher.group(2);
+            if (group != null) {
+                String c10 = ga.c(group);
+                c10.getClass();
+                if (!c10.equals("streamurl")) {
+                    if (c10.equals("streamtitle")) {
+                        str2 = group2;
+                    }
+                } else {
+                    str3 = group2;
+                }
             }
         }
-        return false;
-    }
-
-    public final int hashCode() {
-        int i3;
-        int i10 = (527 + this.d) * 31;
-        int i11 = 0;
-        String str = this.f54604b;
-        if (str != null) {
-            i3 = str.hashCode();
-        } else {
-            i3 = 0;
-        }
-        int i12 = (i10 + i3) * 31;
-        String str2 = this.f54605c;
-        if (str2 != null) {
-            i11 = str2.hashCode();
-        }
-        return Arrays.hashCode(this.f54606e) + ((i12 + i11) * 31);
-    }
-
-    @Override
-    public final String toString() {
-        return this.f54624a + ": mimeType=" + this.f54604b + ", description=" + this.f54605c;
+        return new q0(new c(bArr, str2, str3));
     }
 }

@@ -1,23 +1,24 @@
 package org.telegram.ui;
-public final class rh implements org.telegram.ui.Components.we0 {
-    public boolean f49226a = true;
-    public final org.telegram.ui.Components.li0 f49227b;
 
-    public rh(org.telegram.ui.Components.li0 li0Var) {
-        this.f49227b = li0Var;
+import org.telegram.tgnet.TLRPC;
+public final class rh extends mq0 {
+    public final an f49495a;
+
+    public rh(an anVar) {
+        this.f49495a = anVar;
     }
 
     @Override
-    public final void a(float f10, float f11) {
-        int i3 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
-        org.telegram.ui.Components.li0 li0Var = this.f49227b;
-        if (i3 == 0 && !this.f49226a) {
-            li0Var.r(false);
-            this.f49226a = true;
-        } else if (f10 == 1.0f && this.f49226a) {
-            li0Var.setAlpha(1.0f - f11);
-            if (f11 == 1.0f) {
-                this.f49226a = false;
+    public final org.telegram.ui.vq0 E(org.telegram.messenger.ij r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.rh.E(org.telegram.messenger.ij, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.vq0");
+    }
+
+    @Override
+    public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
+        if (i7 >= 0) {
+            an anVar = this.f49495a;
+            if (i7 < anVar.f43718bb.size()) {
+                anVar.Db((TLRPC.BotInlineResult) anVar.f43718bb.get(i7), z9, i10, 0L);
             }
         }
     }

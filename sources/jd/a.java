@@ -1,38 +1,23 @@
 package jd;
 
-import java.lang.reflect.Method;
-import kotlin.jvm.internal.j;
-public abstract class a {
-    public static final Method f16238a;
+import c8.j1;
+public final class a {
+    public static final a f16643a;
+    public static final a[] f16644b;
 
     static {
-        Method method;
-        Method[] methods = Throwable.class.getMethods();
-        j.b(methods);
-        int length = methods.length;
-        int i3 = 0;
-        while (true) {
-            method = null;
-            if (i3 >= length) {
-                break;
-            }
-            Method method2 = methods[i3];
-            if (j.a(method2.getName(), "addSuppressed")) {
-                Class<?>[] parameterTypes = method2.getParameterTypes();
-                j.d(parameterTypes, "getParameterTypes(...)");
-                if (parameterTypes.length == 1) {
-                    method = parameterTypes[0];
-                }
-                if (j.a(method, Throwable.class)) {
-                    method = method2;
-                    break;
-                }
-            }
-            i3++;
-        }
-        f16238a = method;
-        int length2 = methods.length;
-        for (int i10 = 0; i10 < length2 && !j.a(methods[i10].getName(), "getSuppressed"); i10++) {
-        }
+        ?? r02 = new Enum("COROUTINE_SUSPENDED", 0);
+        f16643a = r02;
+        a[] aVarArr = {r02, new Enum("UNDECIDED", 1), new Enum("RESUMED", 2)};
+        f16644b = aVarArr;
+        j1.a(aVarArr);
+    }
+
+    public static a valueOf(String str) {
+        return (a) Enum.valueOf(a.class, str);
+    }
+
+    public static a[] values() {
+        return (a[]) f16644b.clone();
     }
 }

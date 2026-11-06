@@ -1,48 +1,47 @@
 package p4;
 
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.text.TextUtils;
-public final class v implements Parcelable {
-    public static final Parcelable.Creator<v> CREATOR = new n8.g(14);
-    public final String f53190a;
-    public final CharSequence f53191b;
-    public final int f53192c;
-    public final Bundle d;
+import j$.util.Objects;
+public final class v {
+    public final q4.r f53333a;
+    public final int f53334b;
+    public final int f53335c;
+    public final u d;
+    public final Bundle f53336e;
 
-    public v(String str, int i3, Bundle bundle) {
-        this.f53190a = str;
-        this.f53191b = "";
-        this.f53192c = i3;
-        this.d = bundle;
+    public v(q4.r rVar, int i7, int i10, boolean z9, u uVar, Bundle bundle) {
+        this.f53333a = rVar;
+        this.f53334b = i7;
+        this.f53335c = i10;
+        this.d = uVar;
+        this.f53336e = bundle;
     }
 
-    @Override
-    public final int describeContents() {
-        return 0;
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof v)) {
+            return false;
+        }
+        if (this == obj) {
+            return true;
+        }
+        v vVar = (v) obj;
+        u uVar = vVar.d;
+        u uVar2 = this.d;
+        if (uVar2 == null && uVar == null) {
+            return this.f53333a.equals(vVar.f53333a);
+        }
+        return Objects.equals(uVar2, uVar);
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.d, this.f53333a);
     }
 
     public final String toString() {
-        return "Action:mName='" + ((Object) this.f53191b) + ", mIcon=" + this.f53192c + ", mExtras=" + this.d;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i3) {
-        parcel.writeString(this.f53190a);
-        TextUtils.writeToParcel(this.f53191b, parcel, i3);
-        parcel.writeInt(this.f53192c);
-        parcel.writeBundle(this.d);
-    }
-
-    public v(Parcel parcel) {
-        String readString = parcel.readString();
-        readString.getClass();
-        this.f53190a = readString;
-        CharSequence charSequence = (CharSequence) TextUtils.CHAR_SEQUENCE_CREATOR.createFromParcel(parcel);
-        charSequence.getClass();
-        this.f53191b = charSequence;
-        this.f53192c = parcel.readInt();
-        this.d = parcel.readBundle(q.class.getClassLoader());
+        StringBuilder sb2 = new StringBuilder("ControllerInfo {pkg=");
+        q4.r rVar = this.f53333a;
+        sb2.append(rVar.f53688a.f53689a);
+        sb2.append(", uid=");
+        return a8.p0.n(rVar.f53688a.f53691c, "}", sb2);
     }
 }

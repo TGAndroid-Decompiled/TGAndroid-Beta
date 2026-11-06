@@ -1,75 +1,78 @@
 package x2;
+public final class c implements c1 {
+    public final c1 f58183a;
+    public boolean f58184b;
+    public final d f58185c;
 
-import d2.o;
-import d2.v;
-import e3.h0;
-import e3.i0;
-import g2.n0;
-import g2.y;
-public final class c implements i0 {
-    public final int f58132a;
-    public final v f58133b;
-    public final e3.n f58134c = new e3.n();
-    public final d d;
-    public v f58135e;
-    public i0 f58136f;
-    public long f58137g;
-
-    public c(int i3, int i10, v vVar, d dVar) {
-        this.f58132a = i10;
-        this.f58133b = vVar;
-        this.d = dVar;
+    public c(d dVar, c1 c1Var) {
+        this.f58185c = dVar;
+        this.f58183a = c1Var;
     }
 
     @Override
-    public final int a(o oVar, int i3, boolean z10) {
-        return c(oVar, i3, z10);
+    public final void a() {
+        this.f58183a.a();
     }
 
     @Override
-    public final int c(o oVar, int i3, boolean z10) {
-        i0 i0Var = this.f58136f;
-        String str = n0.f11873a;
-        return i0Var.a(oVar, i3, z10);
-    }
-
-    @Override
-    public final void d(long j10, int i3, int i10, int i11, h0 h0Var) {
-        long j11 = this.f58137g;
-        if (j11 != -9223372036854775807L && j10 >= j11) {
-            this.f58136f = this.f58134c;
+    public final boolean f() {
+        if (!this.f58185c.f() && this.f58183a.f()) {
+            return true;
         }
-        i0 i0Var = this.f58136f;
-        String str = n0.f11873a;
-        i0Var.d(j10, i3, i10, i11, h0Var);
+        return false;
     }
 
     @Override
-    public final void e(int i3, y yVar) {
-        com.google.android.recaptcha.internal.a.a(this, yVar, i3);
-    }
-
-    @Override
-    public final void f(y yVar, int i3, int i10) {
-        i0 i0Var = this.f58136f;
-        String str = n0.f11873a;
-        i0Var.e(i3, yVar);
-    }
-
-    @Override
-    public final void g(v vVar) {
-        this.d.getClass();
-        v vVar2 = this.f58133b;
-        if (vVar2 != null) {
-            vVar = vVar.d(vVar2);
+    public final int l(long j3) {
+        if (this.f58185c.f()) {
+            return -3;
         }
-        this.f58135e = vVar;
-        i0 i0Var = this.f58136f;
-        String str = n0.f11873a;
-        i0Var.g(vVar);
+        return this.f58183a.l(j3);
     }
 
     @Override
-    public final void b(long j10) {
+    public final int m(wf.b bVar, k2.h hVar, int i7) {
+        d dVar = this.f58185c;
+        if (dVar.f()) {
+            return -3;
+        }
+        if (this.f58184b) {
+            hVar.setFlags(4);
+            return -4;
+        }
+        long p10 = dVar.p();
+        int m10 = this.f58183a.m(bVar, hVar, i7);
+        if (dVar.f58195e != -9223372036854775807L && m10 != -3) {
+            dVar.f58195e = -9223372036854775807L;
+        }
+        if (m10 == -5) {
+            long j3 = dVar.f58196f;
+            long j10 = dVar.h;
+            e2.u uVar = (e2.u) bVar.f57539c;
+            uVar.getClass();
+            int i10 = uVar.O;
+            int i11 = uVar.N;
+            if (i11 != 0 || i10 != 0) {
+                if (j3 != 0) {
+                    i11 = 0;
+                }
+                if (j10 != Long.MIN_VALUE) {
+                    i10 = 0;
+                }
+                e2.t a10 = uVar.a();
+                a10.M = i11;
+                a10.N = i10;
+                bVar.f57539c = new e2.u(a10);
+            }
+            return -5;
+        }
+        long j11 = dVar.h;
+        if (j11 != Long.MIN_VALUE && ((m10 == -4 && hVar.f17173e >= j11) || (m10 == -3 && p10 == Long.MIN_VALUE && !hVar.d))) {
+            hVar.clear();
+            hVar.setFlags(4);
+            this.f58184b = true;
+            return -4;
+        }
+        return m10;
     }
 }

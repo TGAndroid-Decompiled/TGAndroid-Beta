@@ -1,16 +1,14 @@
 package n5;
-
-import k2.p1;
-public final class f implements ma.d {
-    public static final f f20231a = new Object();
-    public static final ma.c f20232b = new ma.c("currentCacheSizeBytes", p1.o(p1.n(pa.d.class, new pa.a(1))));
-    public static final ma.c f20233c = new ma.c("maxCacheSizeBytes", p1.o(p1.n(pa.d.class, new pa.a(2))));
+public final class f implements na.d {
+    public static final f f20418a = new Object();
+    public static final na.c f20419b = na.c.c("clearBlob");
+    public static final na.c f20420c = na.c.c("encryptedBlob");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        q5.f fVar = (q5.f) obj;
-        ma.e eVar = (ma.e) obj2;
-        eVar.f(f20232b, fVar.f53807a);
-        eVar.f(f20233c, fVar.f53808b);
+        na.e eVar = (na.e) obj2;
+        p pVar = (p) ((b0) obj);
+        eVar.a(f20419b, pVar.f20461a);
+        eVar.a(f20420c, pVar.f20462b);
     }
 }

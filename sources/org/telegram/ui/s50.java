@@ -1,144 +1,100 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-public final class s50 extends ViewGroup {
-    public AnimatorSet f49364a;
-    public boolean f49365b;
-    public final ArrayList f49366c;
-    public org.telegram.ui.Components.y10 d;
-    public int f49367e;
-    public final t50 f49368f;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+import org.telegram.messenger.Intro;
+public final class s50 implements TextureView.SurfaceTextureListener {
+    public final int f49635a;
+    public final org.telegram.messenger.ls f49636b;
 
-    public s50(t50 t50Var, Context context) {
-        super(context);
-        this.f49368f = t50Var;
-        this.f49366c = new ArrayList();
-    }
-
-    public final void a(org.telegram.ui.Components.y10 y10Var) {
-        t50 t50Var = this.f49368f;
-        t50Var.E.remove(y10Var.getKey());
-        t50Var.F.remove(y10Var);
-        y10Var.setOnClickListener(null);
-        AnimatorSet animatorSet = this.f49364a;
-        if (animatorSet != null && animatorSet.isRunning()) {
-            this.f49364a.setupEndValues();
-            this.f49364a.cancel();
-        }
-        this.f49365b = false;
-        AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f49364a = animatorSet2;
-        animatorSet2.addListener(new org.telegram.ui.Components.ri0(8, this, y10Var));
-        this.f49364a.setInterpolator(org.telegram.ui.Components.xq.h);
-        this.f49364a.setDuration(320L);
-        this.d = y10Var;
-        ArrayList arrayList = this.f49366c;
-        arrayList.clear();
-        arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_X, 1.0f, 0.75f));
-        arrayList.add(ObjectAnimator.ofFloat(this.d, View.SCALE_Y, 1.0f, 0.75f));
-        arrayList.add(ObjectAnimator.ofFloat(this.d, View.ALPHA, 1.0f, 0.0f));
-        requestLayout();
+    public s50(org.telegram.messenger.ls lsVar, int i7) {
+        this.f49635a = i7;
+        this.f49636b = lsVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
-        int childCount = getChildCount();
-        for (int i13 = 0; i13 < childCount; i13++) {
-            View childAt = getChildAt(i13);
-            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
+        switch (this.f49635a) {
+            case 0:
+                u50 u50Var = (u50) this.f49636b;
+                if (u50Var.I == null && surfaceTexture != null) {
+                    u50Var.I = new t50(u50Var, surfaceTexture);
+                    Intro.onSurfaceChanged(i7, i10, Math.min(i7 / 150.0f, i10 / 150.0f), 0);
+                    u50Var.I.postRunnable(new hz(this, 12));
+                    t50 t50Var = u50Var.I;
+                    t50Var.postRunnable(t50Var.f49920x);
+                    return;
+                }
+                return;
+            default:
+                return;
         }
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        ArrayList arrayList;
-        float min;
-        int i11;
-        int childCount = getChildCount();
-        int size = View.MeasureSpec.getSize(i3);
-        int L = org.telegram.messenger.g0.L(8.0f);
-        int i12 = size - (L * 2);
-        int i13 = L;
-        int i14 = i13;
-        int i15 = 0;
-        int i16 = 0;
-        int i17 = 0;
-        int i18 = 0;
-        while (true) {
-            arrayList = this.f49366c;
-            if (i15 >= childCount) {
-                break;
-            }
-            View childAt = getChildAt(i15);
-            if (childAt instanceof org.telegram.ui.Components.y10) {
-                childAt.measure(View.MeasureSpec.makeMeasureSpec(i12, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(28.0f), 1073741824));
-                if (childAt != this.d && childAt.getMeasuredWidth() + i17 > i12) {
-                    i14 += org.telegram.messenger.g0.L(34.0f);
-                    i17 = 0;
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        switch (this.f49635a) {
+            case 0:
+                u50 u50Var = (u50) this.f49636b;
+                t50 t50Var = u50Var.I;
+                if (t50Var != null) {
+                    t50Var.postRunnable(new hz(t50Var, 14));
+                    u50Var.I = null;
+                    return true;
                 }
-                if (childAt.getMeasuredWidth() + i18 > i12) {
-                    i13 += org.telegram.messenger.g0.L(34.0f);
-                    i18 = 0;
-                }
-                int i19 = L + i17;
-                if (!this.f49365b) {
-                    org.telegram.ui.Components.y10 y10Var = this.d;
-                    if (childAt == y10Var) {
-                        childAt.setTranslationX(L + i18);
-                        childAt.setTranslationY(i13);
-                    } else if (y10Var != null) {
-                        float f10 = i19;
-                        if (childAt.getTranslationX() != f10) {
-                            i11 = 1;
-                            arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_X, f10));
-                        } else {
-                            i11 = 1;
-                        }
-                        float f11 = i14;
-                        if (childAt.getTranslationY() != f11) {
-                            float[] fArr = new float[i11];
-                            fArr[0] = f11;
-                            arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_Y, fArr));
-                        }
-                    } else {
-                        childAt.setTranslationX(i19);
-                        childAt.setTranslationY(i14);
+                return true;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f49636b;
+                TextureView textureView = photoViewer.B2;
+                if (textureView != null && photoViewer.E3) {
+                    if (photoViewer.K3) {
+                        photoViewer.F3 = 2;
                     }
+                    textureView.setSurfaceTexture(surfaceTexture);
+                    photoViewer.B2.setVisibility(0);
+                    photoViewer.E3 = false;
+                    photoViewer.f41356e0.invalidate();
+                    return false;
                 }
-                if (childAt != this.d) {
-                    int C = org.telegram.messenger.k5.C(6.0f, childAt.getMeasuredWidth(), i17);
-                    i16 = Math.max(i16, i14);
-                    i17 = C;
+                return true;
+        }
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
+        switch (this.f49635a) {
+            case 0:
+                if (((u50) this.f49636b).I != null) {
+                    Intro.onSurfaceChanged(i7, i10, Math.min(i7 / 150.0f, i10 / 150.0f), 0);
+                    return;
                 }
-                i18 = org.telegram.messenger.k5.C(6.0f, childAt.getMeasuredWidth(), i18);
-            }
-            i15++;
+                return;
+            default:
+                return;
         }
-        int C2 = org.telegram.messenger.k5.C(28.0f, i16, L);
-        if (!this.f49365b) {
-            AnimatorSet animatorSet = this.f49364a;
-            if (animatorSet != null) {
-                this.f49367e = C2;
-                animatorSet.playTogether(arrayList);
-                this.f49364a.start();
-                this.f49365b = true;
-            } else {
-                this.f49367e = Math.max(C2, org.telegram.messenger.g0.L(28.0f) + i13 + L);
-            }
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        switch (this.f49635a) {
+            case 0:
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f49636b;
+                if (photoViewer.F3 == 1) {
+                    photoViewer.q0(true);
+                    return;
+                }
+                return;
         }
-        t50 t50Var = this.f49368f;
-        qe.c cVar = t50Var.f49700a;
-        if (t50Var.F.isEmpty()) {
-            min = 0.0f;
-        } else {
-            min = Math.min(C2, t50Var.f49709x);
-        }
-        cVar.a(min);
-        setMeasuredDimension(size, this.f49367e);
+    }
+
+    private final void c(SurfaceTexture surfaceTexture) {
+    }
+
+    private final void a(SurfaceTexture surfaceTexture, int i7, int i10) {
+    }
+
+    private final void b(SurfaceTexture surfaceTexture, int i7, int i10) {
     }
 }

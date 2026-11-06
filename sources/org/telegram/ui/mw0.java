@@ -1,94 +1,146 @@
 package org.telegram.ui;
 
+import android.animation.ValueAnimator;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-public final class mw0 extends Drawable implements org.telegram.ui.ActionBar.j5 {
-    public final org.telegram.ui.Components.g6 f47802a;
-    public final Paint f47803b;
-    public int f47804c;
-    public float d;
-    public float f47805e;
-    public final org.telegram.ui.Cells.j0 f47806f;
-    public org.telegram.ui.Cells.t0 h;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.view.View;
+public final class mw0 extends View {
+    public final RectF f47862a;
+    public final TextPaint f47863b;
+    public final Paint f47864c;
+    public final ValueAnimator d;
+    public final float[] f47865e;
+    public final c5.a f47866f;
+    public boolean h;
+    public final ProfileActivity f47867n;
 
-    public mw0(String str) {
+    public mw0(ProfileActivity profileActivity, Context context) {
+        super(context);
+        this.f47867n = profileActivity;
+        this.f47862a = new RectF();
+        this.f47865e = new float[]{0.0f, 1.0f};
+        c5.a adapter = profileActivity.f41756n0.getAdapter();
+        this.f47866f = adapter;
+        setVisibility(8);
+        TextPaint textPaint = new TextPaint(1);
+        this.f47863b = textPaint;
+        textPaint.setColor(-1);
+        textPaint.setTypeface(Typeface.SANS_SERIF);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTextSize(org.telegram.messenger.g0.N(15.0f));
         Paint paint = new Paint(1);
-        this.f47803b = paint;
-        this.d = 1.0f;
-        this.f47805e = 1.0f;
-        this.f47806f = new org.telegram.ui.Cells.j0(this);
-        org.telegram.ui.Components.g6 g6Var = new org.telegram.ui.Components.g6(false, false, false);
-        this.f47802a = g6Var;
-        g6Var.setCallback(new sq(1, this));
-        g6Var.t(str, true, true);
-        g6Var.w(org.telegram.messenger.g0.L(11.0f));
-        g6Var.f33983b = 17;
-        paint.setColor(520093696);
+        this.f47864c = paint;
+        paint.setColor(637534208);
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.d = ofFloat;
+        ofFloat.setInterpolator(org.telegram.ui.Components.xq.f40313j);
+        ofFloat.addUpdateListener(new a3(this, 27));
+        ofFloat.addListener(new z40(5, this, profileActivity.f41749m1));
+        profileActivity.f41756n0.b(new lw0(this));
+        adapter.f5303a.registerObserver(new c5.h(this, 3));
     }
 
-    public final void a(int i3) {
-        Paint paint = this.f47803b;
-        if (paint.getColor() != i3) {
-            paint.setColor(i3);
-            invalidateSelf();
+    public final void a(boolean z9) {
+        org.telegram.ui.ActionBar.k kVar;
+        int i7;
+        org.telegram.ui.ActionBar.k kVar2;
+        ProfileActivity profileActivity = this.f47867n;
+        if (z9) {
+            kw0 kw0Var = profileActivity.M;
+            kw0Var.J = kw0Var.L;
+            kw0Var.K = kw0Var.M;
+            kw0Var.N = 0.0f;
+            kw0Var.O = 1;
+        }
+        profileActivity.M.invalidate();
+        float measureText = this.f47863b.measureText(((String) this.f47866f.d(profileActivity.f41756n0.getCurrentItem())).toString());
+        float measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(54.0f);
+        RectF rectF = this.f47862a;
+        rectF.right = measuredWidth;
+        rectF.left = measuredWidth - (org.telegram.messenger.g0.N(16.0f) + measureText);
+        kVar = ((org.telegram.ui.ActionBar.f2) profileActivity).actionBar;
+        if (kVar != null) {
+            kVar2 = ((org.telegram.ui.ActionBar.f2) profileActivity).actionBar;
+            if (kVar2.getOccupyStatusBar()) {
+                i7 = org.telegram.messenger.g0.f22531m;
+                float L = org.telegram.messenger.g0.L(15.0f) + i7;
+                rectF.top = L;
+                rectF.bottom = L + org.telegram.messenger.g0.L(26.0f);
+                setPivotX(rectF.centerX());
+                setPivotY(rectF.centerY());
+                invalidate();
+            }
+        }
+        i7 = 0;
+        float L2 = org.telegram.messenger.g0.L(15.0f) + i7;
+        rectF.top = L2;
+        rectF.bottom = L2 + org.telegram.messenger.g0.L(26.0f);
+        setPivotX(rectF.centerX());
+        setPivotY(rectF.centerY());
+        invalidate();
+    }
+
+    public final void b(float f10) {
+        boolean z9;
+        ProfileActivity profileActivity = this.f47867n;
+        if (profileActivity.f41764o2 && profileActivity.f41756n0.getRealCount() > 20) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        if (z9 != this.h) {
+            this.h = z9;
+            ValueAnimator valueAnimator = this.d;
+            valueAnimator.cancel();
+            float animatedFraction = valueAnimator.getAnimatedFraction();
+            float[] fArr = this.f47865e;
+            float U1 = org.telegram.messenger.g0.U1(animatedFraction, fArr);
+            float f11 = 0.0f;
+            if (f10 <= 0.0f) {
+                valueAnimator.setDuration(0L);
+            } else if (z9) {
+                valueAnimator.setDuration(((1.0f - U1) * 250.0f) / f10);
+            } else {
+                valueAnimator.setDuration((250.0f * U1) / f10);
+            }
+            fArr[0] = U1;
+            if (z9) {
+                f11 = 1.0f;
+            }
+            fArr[1] = f11;
+            valueAnimator.start();
+        }
+    }
+
+    public final void c() {
+        zu0 zu0Var;
+        ProfileActivity profileActivity = this.f47867n;
+        if (profileActivity.S0 != null && (zu0Var = profileActivity.f41756n0) != null && profileActivity.f41764o2) {
+            if (zu0Var.getRealPosition() == 0) {
+                profileActivity.S0.t(33);
+                profileActivity.S0.S(36);
+                return;
+            }
+            profileActivity.S0.S(33);
+            profileActivity.S0.t(36);
         }
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        float f10 = this.d * this.f47805e;
-        if (f10 <= 0.0f) {
-            return;
-        }
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(getBounds());
-        canvas.save();
-        float a10 = this.f47806f.a(0.1f);
-        canvas.scale(a10, a10, rectF.centerX(), rectF.centerY());
-        Paint paint = this.f47803b;
-        int alpha = paint.getAlpha();
-        paint.setAlpha((int) (alpha * f10));
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(20.0f), org.telegram.messenger.g0.L(20.0f), paint);
-        paint.setAlpha(alpha);
-        int i3 = this.f47804c;
-        org.telegram.ui.Components.g6 g6Var = this.f47802a;
-        g6Var.u(i3);
-        g6Var.B = (int) (f10 * 255.0f);
-        g6Var.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        g6Var.draw(canvas);
-        canvas.restore();
+    public final void onDraw(Canvas canvas) {
+        float N = org.telegram.messenger.g0.N(12.0f);
+        Paint paint = this.f47864c;
+        RectF rectF = this.f47862a;
+        canvas.drawRoundRect(rectF, N, N, paint);
+        canvas.drawText(((String) this.f47866f.d(this.f47867n.f41756n0.getCurrentItem())).toString(), rectF.centerX(), org.telegram.messenger.g0.N(18.5f) + rectF.top, this.f47863b);
     }
 
     @Override
-    public final int getAlpha() {
-        return (int) (this.d * 255.0f);
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(17.33f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return (int) (this.f47802a.d + org.telegram.messenger.g0.L(11.0f));
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i3) {
-        this.d = i3 / 255.0f;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onSizeChanged(int i7, int i10, int i11, int i12) {
+        a(false);
     }
 }

@@ -1,26 +1,25 @@
 package t3;
 
-import a1.g;
-import b8.zb;
-import g2.n0;
+import e2.n0;
 import j$.util.Objects;
-import java.util.Locale;
-public final class a {
-    public final long f54902a;
-    public final long f54903b;
-    public final int f54904c;
+import java.util.Arrays;
+public final class a extends i {
+    public final String f55266b;
+    public final String f55267c;
+    public final int d;
+    public final byte[] f55268e;
 
-    public a(long j10, int i3, long j11) {
-        boolean z10;
-        if (j10 < j11) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        zb.f(z10);
-        this.f54902a = j10;
-        this.f54903b = j11;
-        this.f54904c = i3;
+    public a(int i7, String str, String str2, byte[] bArr) {
+        super("APIC");
+        this.f55266b = str;
+        this.f55267c = str2;
+        this.d = i7;
+        this.f55268e = bArr;
+    }
+
+    @Override
+    public final void b(n0 n0Var) {
+        n0Var.a(this.d, this.f55268e);
     }
 
     public final boolean equals(Object obj) {
@@ -29,7 +28,7 @@ public final class a {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f54902a == aVar.f54902a && this.f54903b == aVar.f54903b && this.f54904c == aVar.f54904c) {
+            if (this.d == aVar.d && Objects.equals(this.f55266b, aVar.f55266b) && Objects.equals(this.f55267c, aVar.f55267c) && Arrays.equals(this.f55268e, aVar.f55268e)) {
                 return true;
             }
         }
@@ -37,16 +36,25 @@ public final class a {
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f54902a), Long.valueOf(this.f54903b), Integer.valueOf(this.f54904c));
+        int i7;
+        int i10 = (527 + this.d) * 31;
+        int i11 = 0;
+        String str = this.f55266b;
+        if (str != null) {
+            i7 = str.hashCode();
+        } else {
+            i7 = 0;
+        }
+        int i12 = (i10 + i7) * 31;
+        String str2 = this.f55267c;
+        if (str2 != null) {
+            i11 = str2.hashCode();
+        }
+        return Arrays.hashCode(this.f55268e) + ((i12 + i11) * 31);
     }
 
+    @Override
     public final String toString() {
-        String str = n0.f11873a;
-        Locale locale = Locale.US;
-        StringBuilder t10 = g.t(this.f54902a, "Segment: startTimeMs=", ", endTimeMs=");
-        t10.append(this.f54903b);
-        t10.append(", speedDivisor=");
-        t10.append(this.f54904c);
-        return t10.toString();
+        return this.f55286a + ": mimeType=" + this.f55266b + ", description=" + this.f55267c;
     }
 }

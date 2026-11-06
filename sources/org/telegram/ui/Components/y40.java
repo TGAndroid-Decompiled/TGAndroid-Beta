@@ -1,37 +1,139 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class y40 implements View.OnClickListener {
-    public final int f40609a;
-    public final TLRPC.User f40610b;
-    public final String f40611c;
-    public final boolean d;
-    public final boolean f40612e;
-    public final boolean f40613f;
-    public final sj0 h;
+import android.widget.FrameLayout;
+public final class y40 extends FrameLayout {
+    public final RectF f40492a;
+    public boolean f40493b;
+    public Boolean f40494c;
+    public final m50 d;
 
-    public y40(sj0 sj0Var, TLRPC.User user, String str, boolean z10, boolean z11, boolean z12, int i3) {
-        this.f40609a = i3;
-        this.h = sj0Var;
-        this.f40610b = user;
-        this.f40611c = str;
-        this.d = z10;
-        this.f40612e = z11;
-        this.f40613f = z12;
+    public y40(m50 m50Var, Context context) {
+        super(context);
+        this.d = m50Var;
+        this.f40492a = new RectF();
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40609a) {
-            case 0:
-                i50 i50Var = ((d50) this.h).f32935c;
-                dy0.b(i50Var.getContext(), i50Var.f28583a, -i50Var.Y1, this.f40610b, this.f40611c, this.d, this.f40612e, this.f40613f, i50Var.J0);
-                return;
-            default:
-                ws0 ws0Var = ((jr0) this.h).f35173f;
-                dy0.b(ws0Var.getContext(), ws0Var.f40142y1.getCurrentAccount(), ws0Var.m1, this.f40610b, this.f40611c, this.d, this.f40612e, this.f40613f, ws0Var.I1);
-                return;
+    public final void onDraw(Canvas canvas) {
+        int i7;
+        float f10;
+        boolean z9;
+        boolean z10;
+        m50 m50Var = this.d;
+        int L = (m50Var.Q1 - m50Var.f28644s0) - org.telegram.messenger.g0.L(8.0f);
+        int L2 = org.telegram.messenger.g0.L(36.0f) + getMeasuredHeight();
+        int i10 = m50Var.f28644s0;
+        int i11 = org.telegram.messenger.g0.f22531m;
+        int i12 = L + i11;
+        int i13 = (L2 + i10) - i11;
+        boolean z11 = false;
+        if (this.f40493b) {
+            int i14 = i11 * 2;
+            if (i12 + i10 < i14) {
+                int min = Math.min(i11, (i14 - i12) - i10);
+                i12 -= min;
+                i13 += min;
+                f10 = 1.0f - Math.min(1.0f, (min * 2) / org.telegram.messenger.g0.f22531m);
+            } else {
+                f10 = 1.0f;
+            }
+            int i15 = m50Var.f28644s0;
+            int i16 = i12 + i15;
+            int i17 = org.telegram.messenger.g0.f22531m;
+            if (i16 < i17) {
+                i7 = Math.min(i17, (i17 - i12) - i15);
+            } else {
+                i7 = 0;
+            }
+        } else {
+            i7 = 0;
+            f10 = 1.0f;
         }
+        m50Var.f28642r0.setBounds(0, i12, getMeasuredWidth(), org.telegram.messenger.g0.L(10.0f) + i13 + org.telegram.messenger.g0.f22532n);
+        m50Var.f28642r0.draw(canvas);
+        if (f10 != 1.0f) {
+            org.telegram.ui.ActionBar.k6.f28139t0.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27921h5, false));
+            int i18 = m50Var.f28644s0 + i12;
+            RectF rectF = this.f40492a;
+            rectF.set(m50Var.f28645t0, m50Var.f28644s0 + i12, getMeasuredWidth() - m50Var.f28645t0, org.telegram.messenger.g0.L(24.0f) + i18);
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(12.0f) * f10, org.telegram.messenger.g0.L(12.0f) * f10, org.telegram.ui.ActionBar.k6.f28139t0);
+        }
+        if (i7 > 0) {
+            org.telegram.ui.ActionBar.k6.f28139t0.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27921h5, false));
+            canvas.drawRect(m50Var.f28645t0, org.telegram.messenger.g0.f22531m - i7, getMeasuredWidth() - m50Var.f28645t0, org.telegram.messenger.g0.f22531m, org.telegram.ui.ActionBar.k6.f28139t0);
+        }
+        if (i7 > org.telegram.messenger.g0.f22531m / 2) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        Boolean bool = this.f40494c;
+        if (bool != null && bool.booleanValue() == z9) {
+            return;
+        }
+        if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, m50Var.I0)) > 0.721f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.k6.w(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28128s8, m50Var.I0), 855638016)) > 0.721f) {
+            z11 = true;
+        }
+        this.f40494c = Boolean.valueOf(z9);
+        if (!z9) {
+            z10 = z11;
+        }
+        org.telegram.messenger.g0.s3(m50Var.getWindow(), z10);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            m50 m50Var = this.d;
+            if (m50Var.Q1 != 0 && motionEvent.getY() < m50Var.Q1) {
+                m50Var.dismiss();
+                return true;
+            }
+        }
+        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        super.onLayout(z9, i7, i10, i11, i12);
+        m50.I0(this.d);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        int size = View.MeasureSpec.getSize(i10);
+        m50 m50Var = this.d;
+        m50Var.R1 = true;
+        int i11 = m50Var.f28645t0;
+        setPadding(i11, org.telegram.messenger.g0.f22531m, i11, 0);
+        m50Var.R1 = false;
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+        this.f40493b = true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.d.I && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.d.R1) {
+            return;
+        }
+        super.requestLayout();
     }
 }

@@ -11,7 +11,7 @@ public interface mw0 {
 
     CharSequence getFieldText();
 
-    org.telegram.ui.ActionBar.d2 getParentFragment();
+    org.telegram.ui.ActionBar.f2 getParentFragment();
 
     int getVisibility();
 

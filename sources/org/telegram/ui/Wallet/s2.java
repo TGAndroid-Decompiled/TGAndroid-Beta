@@ -1,25 +1,52 @@
 package org.telegram.ui.Wallet;
 
-import android.os.SystemClock;
-public final class s2 {
-    public final x2 f43144a;
-    public final q2 f43145b;
-    public final long f43146c = SystemClock.uptimeMillis();
-    public boolean d;
-    public boolean f43147e;
-    public boolean f43148f;
-    public Runnable f43149g;
-    public f2 h;
+import org.telegram.tgnet.TLRPC;
+public final class s2 implements t2 {
+    public final boolean[] f43103a;
+    public final org.telegram.utils.twidget.k f43104b;
 
-    public s2(x2 x2Var, q2 q2Var) {
-        this.f43144a = x2Var;
-        this.f43145b = q2Var;
+    public s2(boolean[] zArr, org.telegram.utils.twidget.k kVar) {
+        this.f43103a = zArr;
+        this.f43104b = kVar;
     }
 
-    public final boolean a() {
-        if (SystemClock.uptimeMillis() - this.f43146c < 700) {
-            return true;
+    @Override
+    public final void a() {
+        boolean[] zArr = this.f43103a;
+        if (zArr[0]) {
+            return;
         }
-        return false;
+        zArr[0] = true;
+        this.f43104b.a();
+    }
+
+    @Override
+    public final void b() {
+        boolean[] zArr = this.f43103a;
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        this.f43104b.b();
+    }
+
+    public final void c() {
+        boolean[] zArr = this.f43103a;
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        org.telegram.utils.twidget.k kVar = this.f43104b;
+        kVar.f52808b.a(4, null, kVar.f52809c);
+    }
+
+    public final void d(TLRPC.WidgetQueryType widgetQueryType) {
+        boolean[] zArr = this.f43103a;
+        if (zArr[0]) {
+            return;
+        }
+        zArr[0] = true;
+        org.telegram.utils.twidget.k kVar = this.f43104b;
+        org.telegram.utils.twidget.p.u(kVar.f52807a, kVar.f52808b, kVar.f52809c, widgetQueryType, kVar.d);
     }
 }

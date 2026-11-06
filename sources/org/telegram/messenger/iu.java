@@ -1,233 +1,151 @@
 package org.telegram.messenger;
 
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
+import android.text.Spanned;
+import android.text.style.ReplacementSpan;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.widget.OverScroller;
 import org.telegram.tgnet.tl.TL_iv;
-public final class iu extends xt {
-    public final TL_iv.pageBlockMath X;
-    public final Bitmap Y;
-    public final int Z;
-    public final int f23579a0;
-    public final int f23580b0;
-    public final int f23581c0;
-    public final int f23582d0;
-    public int f23583e0;
-    public float f23584f0;
-    public int f23585g0;
-    public boolean f23586h0;
-    public int f23587i0;
-    public final Paint f23588j0;
-    public int f23589k0;
-    public int f23590l0;
-    public VelocityTracker m0;
-    public OverScroller f23591n0;
-    public final mi.b0 f23592o0;
+public final class iu extends ReplacementSpan {
+    public final gu f23336a;
+    public final TL_iv.textButton f23337b;
+    public final RectF f23338c = new RectF();
+    public float d;
+    public boolean f23339e;
+    public int f23340f;
+    public View h;
 
-    public iu(cv cvVar, Rect rect, int i3, TL_iv.pageBlockMath pageblockmath) {
-        super(cvVar, rect, i3);
-        mi.q qVar;
-        this.f23588j0 = new Paint(3);
-        this.f23592o0 = new mi.b0(this, 9);
-        this.X = pageblockmath;
-        int i10 = this.f26436c;
-        this.f23580b0 = i10;
-        if (pageblockmath != null && !TextUtils.isEmpty(pageblockmath.source)) {
-            qVar = mi.q.a(pageblockmath.source, g0.L(cvVar.M + 4), false);
+    public iu(org.telegram.messenger.kv r21, int r22, org.telegram.tgnet.tl.TL_iv.textButton r23, java.lang.Boolean r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.iu.<init>(org.telegram.messenger.kv, int, org.telegram.tgnet.tl.TL_iv$textButton, java.lang.Boolean):void");
+    }
+
+    public final void a(View view) {
+        this.h = view;
+        this.f23336a.f22698a.i(view);
+    }
+
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        int i14;
+        float f11;
+        gu guVar = this.f23336a;
+        int i15 = guVar.f22698a.f23592s;
+        int i16 = 0;
+        if (i15 > 0 && this.f23340f > 0) {
+            i14 = 1;
         } else {
-            qVar = null;
+            i14 = 0;
         }
-        if (qVar != null) {
-            this.Y = qVar.f19824a;
-            this.Z = qVar.f19825b;
-            this.f23579a0 = qVar.f19826c;
-        }
-        int D = k5.D(0.0f, 2, this.Z);
-        this.f23581c0 = D;
-        this.f23582d0 = Math.max(0, D - i10);
-    }
-
-    @Override
-    public final int I() {
-        Rect rect = this.f26435b;
-        return k5.D(8.0f, 2, rect.top + this.f23579a0) + rect.bottom;
-    }
-
-    @Override
-    public final int J() {
-        return K();
-    }
-
-    @Override
-    public final int K() {
-        Rect rect = this.f26435b;
-        return Math.min(this.f23580b0, this.f23581c0) + rect.left + rect.right;
-    }
-
-    @Override
-    public final boolean Q() {
-        if (!this.f23586h0) {
-            OverScroller overScroller = this.f23591n0;
-            if (overScroller == null || overScroller.isFinished()) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final void W(Canvas canvas) {
-        int i3;
-        float f10;
-        Canvas canvas2;
-        int i10;
-        int i11;
-        Bitmap bitmap = this.Y;
-        if (bitmap == null) {
-            return;
-        }
-        cv cvVar = this.f26434a;
-        if (cvVar.E()) {
-            i3 = org.telegram.ui.ActionBar.k6.Tc;
-        } else {
-            i3 = org.telegram.ui.ActionBar.k6.Sc;
-        }
-        int w02 = org.telegram.ui.ActionBar.k6.w0(i3, cvVar.D);
-        Paint paint = this.f23588j0;
-        paint.setColor(w02);
-        int D = k5.D(8.0f, 2, this.f23579a0);
-        int i12 = this.f23582d0;
-        Rect rect = this.f26435b;
-        if (i12 > 0) {
-            f10 = 0.0f;
-            canvas2 = canvas;
-            canvas2.saveLayerAlpha(-cvVar.S, 0.0f, ((cvVar.C + cvVar.T) - rect.left) - rect.right, D, 255, 31);
-            canvas2.save();
-            canvas2.translate(g0.L(0.0f) - this.f23583e0, g0.L(8.0f));
-        } else {
-            f10 = 0.0f;
-            canvas2 = canvas;
-            canvas2.save();
-            canvas2.translate(((cvVar.C / 2.0f) - rect.left) - (this.Z / 2.0f), g0.L(8.0f));
-        }
-        float f11 = f10;
-        canvas2.drawBitmap(bitmap, f11, f11, paint);
-        if (i12 > 0) {
-            canvas2.restore();
-            RectF rectF = g0.P;
-            float f12 = D;
-            rectF.set(-i10, f11, g0.L(12.0f) + (-cvVar.S), f12);
-            cvVar.f22087z.w(canvas2, rectF, 0, 1.0f);
-            rectF.set(i11 - g0.L(12.0f), f11, ((cvVar.C + cvVar.T) - rect.left) - rect.right, f12);
-            cvVar.f22087z.w(canvas2, rectF, 2, 1.0f);
-        }
-        canvas2.restore();
-    }
-
-    @Override
-    public final boolean Y(MotionEvent motionEvent) {
-        VelocityTracker velocityTracker;
-        View view;
-        int i3 = 0;
-        int i10 = this.f23582d0;
-        if (i10 > 0) {
-            int actionMasked = motionEvent.getActionMasked();
-            if (actionMasked == 0) {
-                if (this.f23587i0 == 0 && (view = this.W) != null) {
-                    ViewConfiguration viewConfiguration = ViewConfiguration.get(view.getContext());
-                    this.f23587i0 = viewConfiguration.getScaledTouchSlop();
-                    this.f23589k0 = viewConfiguration.getScaledMinimumFlingVelocity();
-                    this.f23590l0 = viewConfiguration.getScaledMaximumFlingVelocity();
-                }
-                if (this.f23591n0 == null && this.W != null) {
-                    this.f23591n0 = new OverScroller(this.W.getContext());
-                }
-                OverScroller overScroller = this.f23591n0;
-                if (overScroller != null && !overScroller.isFinished()) {
-                    this.f23591n0.forceFinished(true);
-                }
-                this.f23584f0 = motionEvent.getX();
-                this.f23585g0 = this.f23583e0;
-                this.f23586h0 = false;
-                VelocityTracker velocityTracker2 = this.m0;
-                if (velocityTracker2 == null) {
-                    this.m0 = VelocityTracker.obtain();
+        if (i14 == 0 && i15 > 0 && (charSequence instanceof Spanned)) {
+            gv[] gvVarArr = (gv[]) ((Spanned) charSequence).getSpans(i7, i10, gv.class);
+            int length = gvVarArr.length;
+            int i17 = 0;
+            while (true) {
+                if (i17 >= length) {
+                    break;
+                } else if ((gvVarArr[i17].f22722b & 15) == 14) {
+                    i14 = 1;
+                    break;
                 } else {
-                    velocityTracker2.clear();
-                }
-                this.m0.addMovement(motionEvent);
-                return true;
-            } else if (actionMasked == 2) {
-                VelocityTracker velocityTracker3 = this.m0;
-                if (velocityTracker3 != null) {
-                    velocityTracker3.addMovement(motionEvent);
-                }
-                float x10 = motionEvent.getX() - this.f23584f0;
-                if (!this.f23586h0 && Math.abs(x10) > this.f23587i0) {
-                    this.f23586h0 = true;
-                    a0(true);
-                }
-                if (this.f23586h0) {
-                    int i11 = (int) (this.f23585g0 - x10);
-                    if (i11 >= 0) {
-                        i3 = i11;
-                    }
-                    if (i3 <= i10) {
-                        i10 = i3;
-                    }
-                    if (i10 != this.f23583e0) {
-                        this.f23583e0 = i10;
-                        View view2 = this.W;
-                        if (view2 != null) {
-                            view2.invalidate();
-                            return true;
-                        }
-                    }
-                    return true;
-                }
-            } else if (actionMasked == 1 || actionMasked == 3) {
-                boolean z10 = this.f23586h0;
-                this.f23586h0 = false;
-                if (z10) {
-                    a0(false);
-                    if (actionMasked == 1 && (velocityTracker = this.m0) != null && this.f23591n0 != null && this.W != null) {
-                        velocityTracker.addMovement(motionEvent);
-                        this.m0.computeCurrentVelocity(1000, this.f23590l0);
-                        float f10 = -this.m0.getXVelocity();
-                        if (Math.abs(f10) > this.f23589k0) {
-                            this.f23591n0.fling(this.f23583e0, 0, (int) f10, 0, 0, this.f23582d0, 0, 0);
-                            this.W.postOnAnimation(this.f23592o0);
-                        }
-                    }
-                }
-                VelocityTracker velocityTracker4 = this.m0;
-                if (velocityTracker4 != null) {
-                    velocityTracker4.recycle();
-                    this.m0 = null;
-                }
-                if (z10 || actionMasked == 1) {
-                    return true;
+                    i17++;
                 }
             }
         }
-        return false;
+        if (i14 != 0) {
+            f11 = (i11 + i13) / 2.0f;
+        } else {
+            Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
+            f11 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2.0f) + i12;
+        }
+        canvas.save();
+        if (!guVar.f22714s) {
+            i16 = g0.L(1.0f);
+        }
+        int round = Math.round(f10 + i16);
+        int ceil = (int) Math.ceil((f11 - (guVar.c() / 2.0f)) + (i14 ^ 1));
+        float f12 = round;
+        float f13 = ceil;
+        this.f23338c.set(f12, f13, round + guVar.f22701e, guVar.c() + ceil);
+        canvas.translate(f12, f13);
+        guVar.a(canvas);
+        canvas.restore();
     }
 
     @Override
-    public final void k(SpannableStringBuilder spannableStringBuilder) {
-        TL_iv.pageBlockMath pageblockmath = this.X;
-        if (pageblockmath != null && !TextUtils.isEmpty(pageblockmath.source)) {
-            spannableStringBuilder.append((CharSequence) pageblockmath.source);
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        boolean z9;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16 = 0;
+        if (this.f23339e && fontMetricsInt != null) {
+            z9 = true;
+        } else {
+            z9 = false;
         }
+        if (z9) {
+            i11 = fontMetricsInt.top;
+        } else {
+            i11 = 0;
+        }
+        if (z9) {
+            i12 = fontMetricsInt.ascent;
+        } else {
+            i12 = 0;
+        }
+        if (z9) {
+            i13 = fontMetricsInt.descent;
+        } else {
+            i13 = 0;
+        }
+        if (z9) {
+            i14 = fontMetricsInt.bottom;
+        } else {
+            i14 = 0;
+        }
+        if (z9) {
+            i15 = fontMetricsInt.leading;
+        } else {
+            i15 = 0;
+        }
+        int L = g0.L(8.0f);
+        int L2 = g0.L(10.0f);
+        gu guVar = this.f23336a;
+        if (fontMetricsInt != null && guVar.f22714s) {
+            float f10 = this.d;
+            int i17 = (int) (((-L2) - L) * f10);
+            fontMetricsInt.top = i17;
+            int i18 = (int) ((L2 - L) * f10);
+            fontMetricsInt.bottom = i18;
+            fontMetricsInt.ascent = i17;
+            fontMetricsInt.descent = i18;
+            fontMetricsInt.leading = 0;
+        }
+        if (z9) {
+            fontMetricsInt.top = i11;
+            fontMetricsInt.ascent = i12;
+            fontMetricsInt.descent = i13;
+            fontMetricsInt.bottom = i14;
+            fontMetricsInt.leading = i15;
+            int i19 = this.f23340f;
+            int i20 = i13 - i12;
+            if (i19 > i20) {
+                int i21 = i19 - i20;
+                int i22 = (i21 + 1) / 2;
+                int i23 = i12 - i22;
+                fontMetricsInt.ascent = i23;
+                fontMetricsInt.descent = i13 + (i21 - i22);
+                fontMetricsInt.top = Math.min(i11, i23);
+                fontMetricsInt.bottom = Math.max(fontMetricsInt.bottom, fontMetricsInt.descent);
+            }
+        }
+        int i24 = guVar.f22701e;
+        if (!guVar.f22714s) {
+            i16 = g0.L(1.0f) * 2;
+        }
+        return i24 + i16;
     }
 }

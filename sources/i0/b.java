@@ -1,38 +1,39 @@
 package i0;
 
+import ab.x;
 import android.graphics.Insets;
-import gi.i8;
+import hi.x3;
 public final class b {
-    public static final b f14494e = new b(0, 0, 0, 0);
-    public final int f14495a;
-    public final int f14496b;
-    public final int f14497c;
+    public static final b f15116e = new b(0, 0, 0, 0);
+    public final int f15117a;
+    public final int f15118b;
+    public final int f15119c;
     public final int d;
 
-    public b(int i3, int i10, int i11, int i12) {
-        this.f14495a = i3;
-        this.f14496b = i10;
-        this.f14497c = i11;
+    public b(int i7, int i10, int i11, int i12) {
+        this.f15117a = i7;
+        this.f15118b = i10;
+        this.f15119c = i11;
         this.d = i12;
     }
 
     public static b a(b bVar, b bVar2) {
-        return b(Math.max(bVar.f14495a, bVar2.f14495a), Math.max(bVar.f14496b, bVar2.f14496b), Math.max(bVar.f14497c, bVar2.f14497c), Math.max(bVar.d, bVar2.d));
+        return b(Math.max(bVar.f15117a, bVar2.f15117a), Math.max(bVar.f15118b, bVar2.f15118b), Math.max(bVar.f15119c, bVar2.f15119c), Math.max(bVar.d, bVar2.d));
     }
 
-    public static b b(int i3, int i10, int i11, int i12) {
-        if (i3 == 0 && i10 == 0 && i11 == 0 && i12 == 0) {
-            return f14494e;
+    public static b b(int i7, int i10, int i11, int i12) {
+        if (i7 == 0 && i10 == 0 && i11 == 0 && i12 == 0) {
+            return f15116e;
         }
-        return new b(i3, i10, i11, i12);
+        return new b(i7, i10, i11, i12);
     }
 
     public static b c(Insets insets) {
-        return b(i8.b(insets), i8.e(insets), i8.f(insets), i8.g(insets));
+        return b(x3.d(insets), x3.l(insets), x3.m(insets), x3.n(insets));
     }
 
     public final Insets d() {
-        return d2.d.i(this.f14495a, this.f14496b, this.f14497c, this.d);
+        return x.i(this.f15117a, this.f15118b, this.f15119c, this.d);
     }
 
     public final boolean equals(Object obj) {
@@ -43,17 +44,17 @@ public final class b {
             return false;
         }
         b bVar = (b) obj;
-        if (this.d == bVar.d && this.f14495a == bVar.f14495a && this.f14497c == bVar.f14497c && this.f14496b == bVar.f14496b) {
+        if (this.d == bVar.d && this.f15117a == bVar.f15117a && this.f15119c == bVar.f15119c && this.f15118b == bVar.f15118b) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return (((((this.f14495a * 31) + this.f14496b) * 31) + this.f14497c) * 31) + this.d;
+        return (((((this.f15117a * 31) + this.f15118b) * 31) + this.f15119c) * 31) + this.d;
     }
 
     public final String toString() {
-        return "Insets{left=" + this.f14495a + ", top=" + this.f14496b + ", right=" + this.f14497c + ", bottom=" + this.d + '}';
+        return "Insets{left=" + this.f15117a + ", top=" + this.f15118b + ", right=" + this.f15119c + ", bottom=" + this.d + '}';
     }
 }

@@ -1,41 +1,28 @@
 package org.telegram.ui.Components;
+public final class e70 implements Runnable {
+    public final int f33167a;
+    public final f70 f33168b;
+    public final boolean f33169c;
+    public final boolean d;
 
-import android.view.KeyEvent;
-public final class e70 implements org.telegram.ui.ActionBar.p1, org.telegram.ui.ActionBar.d1 {
-    public final int f33301a;
-    public final m70 f33302b;
-
-    public e70(m70 m70Var, int i3) {
-        this.f33301a = i3;
-        this.f33302b = m70Var;
+    public e70(f70 f70Var, boolean z9, boolean z10, int i7) {
+        this.f33167a = i7;
+        this.f33168b = f70Var;
+        this.f33169c = z9;
+        this.d = z10;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        switch (this.f33301a) {
+    public final void run() {
+        switch (this.f33167a) {
             case 0:
-                l70 l70Var = this.f33302b.f36061r;
-                if (l70Var != null) {
-                    l70Var.i();
-                    return;
-                }
+                org.telegram.messenger.g0.h3(new e70(this.f33168b, this.f33169c, this.d, 1));
                 return;
             default:
-                l70 l70Var2 = this.f33302b.f36061r;
-                if (l70Var2 != null) {
-                    l70Var2.d();
-                    return;
-                }
+                f70 f70Var = this.f33168b;
+                f70Var.setJoinRequest(this.f33169c);
+                f70Var.setJoinToSend(this.d);
                 return;
-        }
-    }
-
-    @Override
-    public void k(KeyEvent keyEvent) {
-        m70 m70Var = this.f33302b;
-        m70Var.getClass();
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && m70Var.f36062s.isShowing()) {
-            m70Var.f36062s.d(true);
         }
     }
 }

@@ -1,13 +1,98 @@
 package org.telegram.ui.Components;
 
-import android.view.accessibility.AccessibilityNodeInfo;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.view.View;
 import android.widget.FrameLayout;
-public final class el0 extends FrameLayout {
-    public org.telegram.ui.Cells.g7 f33416a;
+import android.widget.ImageView;
+import java.util.HashSet;
+public abstract class el0 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
+    public final View f33281a;
+    public final ImageView f33282b;
+    public final fi.c2 f33283c;
+    public final ah.i d;
+    public final org.telegram.ui.ActionBar.f6 f33284e;
+
+    public el0(Context context, float f10, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.f33284e = f6Var;
+        View view = new View(context);
+        this.f33281a = view;
+        view.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(18.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.O5, f6Var)));
+        addView(view, c8.ha.i(-1.0f, 36.0f, 8388659, f10, 11.0f, f10, 0.0f));
+        ImageView imageView = new ImageView(context);
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(2131232737);
+        org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.Q5, f6Var, PorterDuff.Mode.MULTIPLY);
+        addView(imageView, c8.ha.i(36.0f, 36.0f, 8388659, f10 + 2.0f, 11.0f, 0.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f33282b = imageView2;
+        imageView2.setScaleType(scaleType);
+        fi.c2 c2Var = new fi.c2(3, this);
+        this.f33283c = c2Var;
+        imageView2.setImageDrawable(c2Var);
+        c2Var.f36762f = org.telegram.messenger.g0.L(7.0f);
+        imageView2.setScaleX(0.1f);
+        imageView2.setScaleY(0.1f);
+        imageView2.setAlpha(0.0f);
+        addView(imageView2, c8.ha.i(36.0f, 36.0f, 8388661, f10, 11.0f, f10, 0.0f));
+        imageView2.setOnClickListener(new la0(this, 8));
+        ah.i iVar = new ah.i(8, context, this);
+        this.d = iVar;
+        iVar.setTextSize(1, 16.0f);
+        org.telegram.ui.ActionBar.r6.E(iVar, org.telegram.ui.ActionBar.k6.P5, f6Var);
+        org.telegram.ui.ActionBar.r6.V(iVar, org.telegram.ui.ActionBar.k6.R5, f6Var);
+        iVar.setBackgroundDrawable(null);
+        iVar.setPadding(0, 0, 0, 0);
+        iVar.setMaxLines(1);
+        iVar.setLines(1);
+        iVar.setSingleLine(true);
+        iVar.setGravity(c8.ha.y() | 16);
+        iVar.setImeOptions(268435459);
+        org.telegram.ui.ActionBar.r6.m(iVar, 30, org.telegram.ui.ActionBar.k6.Ai, f6Var);
+        iVar.setCursorSize(org.telegram.messenger.g0.L(20.0f));
+        iVar.setCursorWidth(1.5f);
+        float f11 = f10 + 2.0f;
+        addView(iVar, c8.ha.i(-1.0f, 40.0f, 8388659, f11 + 38.0f, 9.0f, f11 + 30.0f, 0.0f));
+        iVar.addTextChangedListener(new ah.j(this, 22));
+        iVar.setOnEditorActionListener(new t0(this, 6));
+    }
+
+    public abstract void a(String str);
+
+    public op getProgressDrawable() {
+        return this.f33283c;
+    }
+
+    public View getSearchBackground() {
+        return this.f33281a;
+    }
+
+    public EditTextBoldCursor getSearchEditText() {
+        return this.d;
+    }
+
+    public void setHint(String str) {
+        this.d.setHint(str);
+    }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f33416a.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+    public final void updateColors() {
+        View view = this.f33281a;
+        if (view != null) {
+            try {
+                org.telegram.ui.ActionBar.k6.C1(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.O5, this.f33284e), view.getBackground());
+                view.invalidate();
+            } catch (Exception e10) {
+                org.telegram.messenger.a8.g(e10, true);
+                return;
+            }
+        }
+        invalidate();
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

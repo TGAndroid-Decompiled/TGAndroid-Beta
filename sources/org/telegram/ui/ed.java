@@ -1,117 +1,86 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.EditText;
-public final class ed implements View.OnFocusChangeListener {
-    public final int f44965a;
-    public final Object f44966b;
+import android.text.SpannableStringBuilder;
+import org.telegram.tgnet.ConnectionsManager;
+public final class ed implements Runnable {
+    public final int f45289a;
+    public final zd f45290b;
+    public final int f45291c;
 
-    public ed(Object obj, int i3) {
-        this.f44965a = i3;
-        this.f44966b = obj;
+    public ed(zd zdVar, int i7, int i10) {
+        this.f45289a = i10;
+        this.f45290b = zdVar;
+        this.f45291c = i7;
     }
 
     @Override
-    public final void onFocusChange(View view, boolean z10) {
-        int i3 = this.f44965a;
-        float f10 = 0.0f;
-        Object obj = this.f44966b;
-        switch (i3) {
+    public final void run() {
+        boolean z9;
+        String H;
+        int i7 = this.f45289a;
+        int i10 = this.f45291c;
+        zd zdVar = this.f45290b;
+        switch (i7) {
             case 0:
-                ci.r rVar = ((xd) obj).L0;
-                if (z10) {
-                    f10 = 1.0f;
-                }
-                rVar.b(f10, f10, true);
+                vf.c.t(zdVar.getContext(), org.telegram.messenger.hd.M0(i10, null));
                 return;
             case 1:
-                uw uwVar = (uw) obj;
-                if (z10) {
-                    uwVar.Z.b(true);
-                    return;
-                }
-                return;
-            case 2:
-                xd0 xd0Var = ((lb0) obj).f47284a0;
-                if (z10) {
-                    xd0Var.f51950c.setEditText((EditText) view);
-                    xd0Var.f51950c.setDispatchBackWhenEmpty(true);
-                    return;
-                }
-                return;
-            case 3:
-                org.telegram.ui.Components.gb0 gb0Var = (org.telegram.ui.Components.gb0) obj;
-                if (z10) {
-                    f10 = 1.0f;
-                }
-                gb0Var.b(f10, f10, true);
-                return;
-            case 4:
-                org.telegram.ui.Components.gb0 gb0Var2 = ((vb0) obj).f50451y;
-                if (z10) {
-                    f10 = 1.0f;
-                }
-                gb0Var2.b(f10, f10, true);
-                return;
-            case 5:
-                org.telegram.ui.Components.gb0 gb0Var3 = ((cc0) obj).f44297b;
-                if (z10) {
-                    f10 = 1.0f;
-                }
-                gb0Var3.b(f10, f10, true);
-                return;
-            case 6:
-                xd0 xd0Var2 = ((fc0) obj).E;
-                if (z10) {
-                    xd0Var2.f51950c.setEditText((EditText) view);
-                    xd0Var2.f51950c.setDispatchBackWhenEmpty(true);
-                    return;
-                }
-                return;
-            case 7:
-                org.telegram.ui.Components.gb0 gb0Var4 = ((qc0) obj).f48849a;
-                if (z10) {
-                    f10 = 1.0f;
-                }
-                gb0Var4.b(f10, f10, true);
-                return;
-            case 8:
-                xd0 xd0Var3 = ((dd0) obj).f44663v0;
-                if (z10) {
-                    xd0Var3.f51950c.setEditText((EditText) view);
-                    xd0Var3.f51950c.setDispatchBackWhenEmpty(true);
-                    return;
-                }
-                return;
-            case 9:
-                org.telegram.ui.Components.gb0 gb0Var5 = ((wd0) obj).f50787e;
-                if (z10) {
-                    f10 = 1.0f;
-                }
-                gb0Var5.b(f10, f10, true);
-                return;
-            case 10:
-                org.telegram.ui.Components.gb0 gb0Var6 = ((PasscodeActivity) obj).f41358f;
-                if (z10) {
-                    f10 = 1.0f;
-                }
-                gb0Var6.b(f10, f10, true);
-                return;
-            case 11:
-                o71 o71Var = (o71) obj;
-                if (z10) {
-                    o71Var.d.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.bd.M0(2131744194, null)));
-                    return;
+                ed edVar = zdVar.f52529f1;
+                bi.v vVar = zdVar.O0;
+                org.telegram.ui.Components.cc.e();
+                if (zdVar.D0.amount < org.telegram.messenger.qp.s1(i10).R5) {
+                    zdVar.M0 = true;
+                    zdVar.N0 = zdVar.D0.amount;
                 } else {
-                    o71Var.d.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.bd.M0(2131744195, null)));
+                    zdVar.M0 = false;
+                    zdVar.N0 = org.telegram.messenger.qp.s1(i10).R5;
+                }
+                zdVar.L0 = true;
+                vVar.setText(Long.toString(zdVar.N0));
+                vVar.setSelection(vVar.getText().length());
+                zdVar.L0 = false;
+                org.telegram.messenger.g0.r(edVar);
+                edVar.run();
+                return;
+            default:
+                ed edVar2 = zdVar.f52529f1;
+                int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
+                pd pdVar = zdVar.G0;
+                if (zdVar.N0 <= 0 && zdVar.B0 <= currentTime) {
+                    z9 = false;
+                } else {
+                    z9 = true;
+                }
+                pdVar.setEnabled(z9);
+                if (currentTime < zdVar.B0) {
+                    pdVar.i(org.telegram.messenger.hd.M0(2131748366, null), true, true);
+                    if (zdVar.f52528e1 == null) {
+                        zdVar.f52528e1 = new SpannableStringBuilder("l");
+                        org.telegram.ui.Components.wp wpVar = new org.telegram.ui.Components.wp(2131231976, 0);
+                        wpVar.f40054n = 1;
+                        zdVar.f52528e1.setSpan(wpVar, 0, 1, 33);
+                    }
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                    spannableStringBuilder.append((CharSequence) zdVar.f52528e1).append((CharSequence) bi.z.w0(zdVar.B0 - currentTime));
+                    pdVar.g(spannableStringBuilder, true);
+                    org.telegram.ui.Components.cc ccVar = zdVar.P0;
+                    if (ccVar != null) {
+                        org.telegram.ui.Components.gb gbVar = ccVar.f32519e;
+                        if ((gbVar instanceof org.telegram.ui.Components.kb) && gbVar.isAttachedToWindow()) {
+                            org.telegram.messenger.k5.r(null, null, 2131752952, new Object[]{bi.z.w0(zdVar.B0 - currentTime)}, ((org.telegram.ui.Components.kb) zdVar.P0.f32519e).f35249b);
+                        }
+                    }
+                    org.telegram.messenger.g0.r(edVar2);
+                    org.telegram.messenger.g0.i3(edVar2, 1000L);
                     return;
                 }
-            default:
-                org.telegram.ui.Components.gb0 gb0Var7 = ((TwoStepVerificationActivity) obj).f42094w;
-                if (z10) {
-                    f10 = 1.0f;
+                pdVar.g(null, true);
+                if (zdVar.M0) {
+                    H = org.telegram.messenger.hd.M0(2131748367, null);
+                } else {
+                    H = org.telegram.messenger.hd.H(' ', "MonetizationStarsWithdraw", (int) zdVar.N0);
                 }
-                gb0Var7.b(f10, f10, true);
+                pdVar.i(bi.dd.Y0(false, H, zdVar.H0), true, true);
                 return;
         }
     }

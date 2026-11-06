@@ -1,11 +1,13 @@
 package gg;
 
-import java.nio.ShortBuffer;
-import mb.b;
-import v7.s;
-public interface a {
-    public static final s f12272t = new s(8);
-    public static final b f12273u = new b(9);
+import android.graphics.Bitmap;
+import java.util.List;
+public final class a {
+    public final Bitmap f13953a;
+    public final List f13954b;
 
-    void l0(ShortBuffer shortBuffer, int i3, ShortBuffer shortBuffer2, int i10, int i11);
+    public a(Bitmap bitmap, int i7, List list) {
+        this.f13954b = list;
+        this.f13953a = bitmap;
+    }
 }

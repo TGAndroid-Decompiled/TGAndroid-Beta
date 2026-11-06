@@ -1,125 +1,222 @@
 package t2;
 
-import android.media.MediaCodec;
-import android.media.MediaFormat;
-import android.os.Handler;
-import android.os.HandlerThread;
+import a8.ia;
+import android.graphics.Bitmap;
+import android.os.Trace;
+import androidx.biometric.t;
+import e2.u;
 import java.util.ArrayDeque;
-import k2.l0;
-import org.telegram.ui.Components.i9;
-public final class f extends MediaCodec.Callback {
-    public final HandlerThread f54830b;
-    public Handler f54831c;
-    public MediaFormat h;
-    public MediaFormat f54835i;
-    public MediaCodec.CodecException f54836j;
-    public MediaCodec.CryptoException f54837k;
-    public long f54838l;
-    public boolean f54839m;
-    public IllegalStateException f54840n;
-    public i9 f54841o;
-    public final Object f54829a = new Object();
-    public final g2.g d = new g2.g(0);
-    public final g2.g f54832e = new g2.g(0);
-    public final ArrayDeque f54833f = new ArrayDeque();
-    public final ArrayDeque f54834g = new ArrayDeque();
+import jg.g;
+import k2.h;
+import l2.k0;
+import li.z;
+public final class f extends l2.b {
+    public final t I;
+    public final h J;
+    public final ArrayDeque K;
+    public boolean L;
+    public boolean M;
+    public e N;
+    public long O;
+    public long P;
+    public int Q;
+    public int R;
+    public u S;
+    public b T;
+    public h U;
+    public d V;
+    public k0 W;
+    public Bitmap X;
+    public boolean Y;
+    public z Z;
+    public z f55263a0;
+    public int f55264b0;
+    public boolean f55265c0;
 
-    public f(HandlerThread handlerThread) {
-        this.f54830b = handlerThread;
+    public f(t tVar) {
+        super(4);
+        this.I = tVar;
+        this.V = d.f55259a;
+        this.J = new h(0, 0);
+        this.N = e.f55260c;
+        this.K = new ArrayDeque();
+        this.P = -9223372036854775807L;
+        this.O = -9223372036854775807L;
+        this.Q = 0;
+        this.R = 1;
     }
 
-    public final void a() {
-        ArrayDeque arrayDeque = this.f54834g;
-        if (!arrayDeque.isEmpty()) {
-            this.f54835i = (MediaFormat) arrayDeque.getLast();
+    @Override
+    public final int C(u uVar) {
+        this.I.getClass();
+        return t.d(uVar);
+    }
+
+    public final boolean F(long r13) {
+        throw new UnsupportedOperationException("Method not decompiled: t2.f.F(long):boolean");
+    }
+
+    public final boolean G(long r12) {
+        throw new UnsupportedOperationException("Method not decompiled: t2.f.G(long):boolean");
+    }
+
+    public final void H() {
+        if (!this.f55265c0) {
+            return;
         }
-        g2.g gVar = this.d;
-        gVar.f11842b = gVar.f11841a;
-        g2.g gVar2 = this.f54832e;
-        gVar2.f11842b = gVar2.f11841a;
-        this.f54833f.clear();
-        arrayDeque.clear();
+        u uVar = this.S;
+        uVar.getClass();
+        t tVar = this.I;
+        tVar.getClass();
+        int d = t.d(uVar);
+        if (d != g.b(4, 0, 0, 0) && d != g.b(3, 0, 0, 0)) {
+            throw d(new Exception("Provided decoder factory can't create decoder for format."), this.S, false, 4005);
+        }
+        b bVar = this.T;
+        if (bVar != null) {
+            bVar.release();
+        }
+        this.T = new b(tVar.f2020a);
+        this.f55265c0 = false;
     }
 
-    public final void b() {
-        IllegalStateException illegalStateException = this.f54840n;
-        if (illegalStateException == null) {
-            MediaCodec.CodecException codecException = this.f54836j;
-            if (codecException == null) {
-                MediaCodec.CryptoException cryptoException = this.f54837k;
-                if (cryptoException == null) {
+    public final void I() {
+        this.U = null;
+        this.Q = 0;
+        this.P = -9223372036854775807L;
+        b bVar = this.T;
+        if (bVar != null) {
+            bVar.release();
+            this.T = null;
+        }
+    }
+
+    @Override
+    public final void c(int i7, Object obj) {
+        d dVar;
+        if (i7 != 15) {
+            if (i7 != 23) {
+                return;
+            }
+            this.W = (k0) obj;
+            return;
+        }
+        if (obj instanceof d) {
+            dVar = (d) obj;
+        } else {
+            dVar = null;
+        }
+        if (dVar == null) {
+            dVar = d.f55259a;
+        }
+        this.V = dVar;
+    }
+
+    @Override
+    public final String i() {
+        return "ImageRenderer";
+    }
+
+    @Override
+    public final boolean l() {
+        return this.M;
+    }
+
+    @Override
+    public final boolean m() {
+        int i7 = this.R;
+        if (i7 != 3) {
+            if (i7 != 0 || !this.Y) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final void n() {
+        this.S = null;
+        this.N = e.f55260c;
+        this.K.clear();
+        I();
+        this.V.getClass();
+    }
+
+    @Override
+    public final void o(boolean z9, boolean z10) {
+        this.R = z10 ? 1 : 0;
+    }
+
+    @Override
+    public final void p(long j3, boolean z9, boolean z10) {
+        this.R = Math.min(this.R, 1);
+        this.M = false;
+        this.L = false;
+        this.X = null;
+        this.Z = null;
+        this.f55263a0 = null;
+        this.Y = false;
+        this.U = null;
+        b bVar = this.T;
+        if (bVar != null) {
+            bVar.flush();
+        }
+        this.K.clear();
+    }
+
+    @Override
+    public final void q() {
+        I();
+    }
+
+    @Override
+    public final void r() {
+        I();
+        this.R = Math.min(this.R, 1);
+    }
+
+    @Override
+    public final void u(e2.u[] r5, long r6, long r8, x2.g0 r10) {
+        throw new UnsupportedOperationException("Method not decompiled: t2.f.u(e2.u[], long, long, x2.g0):void");
+    }
+
+    @Override
+    public final void x(long j3, long j10) {
+        if (!this.M) {
+            if (this.S == null) {
+                wf.b bVar = this.f17758c;
+                bVar.A();
+                h hVar = this.J;
+                hVar.clear();
+                int w10 = w(bVar, hVar, 2);
+                if (w10 == -5) {
+                    u uVar = (u) bVar.f57539c;
+                    uVar.getClass();
+                    this.S = uVar;
+                    this.f55265c0 = true;
+                } else if (w10 == -4) {
+                    ia.p(hVar.isEndOfStream());
+                    this.L = true;
+                    this.M = true;
+                    return;
+                } else {
                     return;
                 }
-                this.f54837k = null;
-                throw cryptoException;
             }
-            this.f54836j = null;
-            throw codecException;
-        }
-        this.f54840n = null;
-        throw illegalStateException;
-    }
-
-    public final void c(IllegalStateException illegalStateException) {
-        synchronized (this.f54829a) {
-            this.f54840n = illegalStateException;
-        }
-    }
-
-    public final void onCryptoError(MediaCodec mediaCodec, MediaCodec.CryptoException cryptoException) {
-        synchronized (this.f54829a) {
-            this.f54837k = cryptoException;
-        }
-    }
-
-    @Override
-    public final void onError(MediaCodec mediaCodec, MediaCodec.CodecException codecException) {
-        synchronized (this.f54829a) {
-            this.f54836j = codecException;
-        }
-    }
-
-    @Override
-    public final void onInputBufferAvailable(MediaCodec mediaCodec, int i3) {
-        l0 l0Var;
-        synchronized (this.f54829a) {
-            this.d.a(i3);
-            i9 i9Var = this.f54841o;
-            if (i9Var != null && (l0Var = ((r) i9Var.f34636b).Z) != null) {
-                l0Var.a();
+            if (this.T == null) {
+                H();
             }
-        }
-    }
-
-    @Override
-    public final void onOutputBufferAvailable(MediaCodec mediaCodec, int i3, MediaCodec.BufferInfo bufferInfo) {
-        l0 l0Var;
-        synchronized (this.f54829a) {
             try {
-                MediaFormat mediaFormat = this.f54835i;
-                if (mediaFormat != null) {
-                    this.f54832e.a(-2);
-                    this.f54834g.add(mediaFormat);
-                    this.f54835i = null;
+                Trace.beginSection("drainAndFeedDecoder");
+                while (F(j3)) {
                 }
-                this.f54832e.a(i3);
-                this.f54833f.add(bufferInfo);
-                i9 i9Var = this.f54841o;
-                if (i9Var != null && (l0Var = ((r) i9Var.f34636b).Z) != null) {
-                    l0Var.a();
+                while (G(j3)) {
                 }
-            } catch (Throwable th2) {
-                throw th2;
+                Trace.endSection();
+            } catch (c e10) {
+                throw d(e10, null, false, 4003);
             }
-        }
-    }
-
-    @Override
-    public final void onOutputFormatChanged(MediaCodec mediaCodec, MediaFormat mediaFormat) {
-        synchronized (this.f54829a) {
-            this.f54832e.a(-2);
-            this.f54834g.add(mediaFormat);
-            this.f54835i = null;
         }
     }
 }

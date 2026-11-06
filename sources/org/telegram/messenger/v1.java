@@ -10,27 +10,27 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class v1 {
-    public static volatile v1[] f25812f = new v1[4];
-    public static final Object[] f25813g = new Object[4];
-    public final int f25814a;
-    public long f25815b;
-    public t1 f25816c;
+    public static volatile v1[] f25922f = new v1[4];
+    public static final Object[] f25923g = new Object[4];
+    public final int f25924a;
+    public long f25925b;
+    public t1 f25926c;
     public final Set d;
-    public boolean f25817e;
+    public boolean f25927e;
 
     static {
-        for (int i3 = 0; i3 < 4; i3++) {
-            f25813g[i3] = new Object();
+        for (int i7 = 0; i7 < 4; i7++) {
+            f25923g[i7] = new Object();
         }
     }
 
-    public v1(int i3) {
+    public v1(int i7) {
         v1 v1Var;
         Exception exc;
         u1 u1Var;
-        this.f25814a = i3;
-        SharedPreferences sharedPreferences = hp.s1(i3).f22999e7;
-        this.f25815b = sharedPreferences.getLong("bday_check", 0L);
+        this.f25924a = i7;
+        SharedPreferences sharedPreferences = qp.s1(i7).f24759e7;
+        this.f25925b = sharedPreferences.getLong("bday_check", 0L);
         u1 u1Var2 = null;
         String string = sharedPreferences.getString("bday_contacts", null);
         if (string != null) {
@@ -39,7 +39,7 @@ public final class v1 {
                 int readInt32 = serializedData.readInt32(true);
                 if (readInt32 != 290452237) {
                     try {
-                        int i10 = u1.f25641b;
+                        int i10 = u1.f25709b;
                     } catch (Exception e10) {
                         exc = e10;
                         v1Var = this;
@@ -54,14 +54,14 @@ public final class v1 {
                 e = e11;
                 v1Var = this;
             }
-            if (u1Var != null && !u1Var.f25642a.isEmpty()) {
+            if (u1Var != null && !u1Var.f25710a.isEmpty()) {
                 ArrayList arrayList = new ArrayList();
-                for (int i11 = 0; i11 < u1Var.f25642a.size(); i11++) {
-                    arrayList.add(Long.valueOf(((TL_account.TL_contactBirthday) u1Var.f25642a.get(i11)).contact_id));
+                for (int i11 = 0; i11 < u1Var.f25710a.size(); i11++) {
+                    arrayList.add(Long.valueOf(((TL_account.TL_contactBirthday) u1Var.f25710a.get(i11)).contact_id));
                 }
                 v1Var = this;
                 try {
-                    qr.a0(i3).f24934a.c(new vf(v1Var, i3, arrayList, u1Var, 2));
+                    yr.a0(i7).f26688a.c(new dg(v1Var, i7, arrayList, u1Var, 2));
                 } catch (Exception e12) {
                     e = e12;
                     exc = e;
@@ -75,17 +75,17 @@ public final class v1 {
         v1Var.d = sharedPreferences.getStringSet("bday_hidden", new HashSet());
     }
 
-    public static v1 a(int i3) {
+    public static v1 a(int i7) {
         v1 v1Var;
-        v1 v1Var2 = f25812f[i3];
+        v1 v1Var2 = f25922f[i7];
         if (v1Var2 == null) {
-            synchronized (f25813g[i3]) {
+            synchronized (f25923g[i7]) {
                 try {
-                    v1Var = f25812f[i3];
+                    v1Var = f25922f[i7];
                     if (v1Var == null) {
-                        v1[] v1VarArr = f25812f;
-                        v1 v1Var3 = new v1(i3);
-                        v1VarArr[i3] = v1Var3;
+                        v1[] v1VarArr = f25922f;
+                        v1 v1Var3 = new v1(i7);
+                        v1VarArr[i7] = v1Var3;
                         v1Var = v1Var3;
                     }
                 } catch (Throwable th2) {
@@ -98,7 +98,7 @@ public final class v1 {
     }
 
     public static boolean d(TLRPC.UserFull userFull) {
-        if (userFull == null || !e(userFull.birthday) || l10.b(userFull)) {
+        if (userFull == null || !e(userFull.birthday) || t10.b(userFull)) {
             return false;
         }
         return true;
@@ -109,29 +109,29 @@ public final class v1 {
             return false;
         }
         Calendar calendar = Calendar.getInstance();
-        int i3 = calendar.get(5);
+        int i7 = calendar.get(5);
         int i10 = calendar.get(2) + 1;
-        if (tL_birthday.day != i3 || tL_birthday.month != i10) {
+        if (tL_birthday.day != i7 || tL_birthday.month != i10) {
             return false;
         }
         return true;
     }
 
     public final t1 b() {
-        t1 t1Var = this.f25816c;
-        if (t1Var == null || this.d.contains(t1Var.f25473a)) {
+        t1 t1Var = this.f25926c;
+        if (t1Var == null || this.d.contains(t1Var.f25568a)) {
             return null;
         }
-        return this.f25816c;
+        return this.f25926c;
     }
 
-    public final boolean c(long j10) {
-        t1 t1Var = this.f25816c;
-        if (t1Var != null && t1Var.a(j10)) {
+    public final boolean c(long j3) {
+        t1 t1Var = this.f25926c;
+        if (t1Var != null && t1Var.a(j3)) {
             return true;
         }
-        TLRPC.UserFull b22 = hp.s1(this.f25814a).b2(j10);
-        if (b22 != null && e(b22.birthday) && !l10.b(b22)) {
+        TLRPC.UserFull b22 = qp.s1(this.f25924a).b2(j3);
+        if (b22 != null && e(b22.birthday) && !t10.b(b22)) {
             return true;
         }
         return false;

@@ -1,4 +1,4 @@
 package org.telegram.ui.Components;
 public interface ms {
-    void a(int i3, boolean z10);
+    void a(int i7, boolean z9);
 }

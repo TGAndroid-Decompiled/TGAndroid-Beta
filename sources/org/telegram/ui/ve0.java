@@ -1,35 +1,61 @@
 package org.telegram.ui;
 
 import android.content.Context;
-public final class ve0 implements org.telegram.ui.Components.l70 {
-    public final org.telegram.ui.Components.m70 f50468a;
-    public final we0 f50469b;
+import android.widget.LinearLayout;
+import org.telegram.tgnet.TLRPC;
+public final class ve0 extends LinearLayout implements org.telegram.messenger.ls {
+    public final org.telegram.ui.Components.l9 f50704a;
+    public final int f50705b;
 
-    public ve0(we0 we0Var, org.telegram.ui.Components.m70 m70Var) {
-        this.f50469b = we0Var;
-        this.f50468a = m70Var;
+    public ve0(Context context) {
+        super(context);
+        this.f50705b = org.telegram.messenger.p10.f24459s0;
+        setPadding(0, org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f));
+        setOrientation(1);
+        org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
+        this.f50704a = l9Var;
+        addView(l9Var, c8.ha.t(104, 104, 49, 0, 2, 0, 0));
+    }
+
+    public final void a() {
+        boolean z9;
+        int i7 = this.f50705b;
+        TLRPC.TL_messages_stickerSet p02 = org.telegram.messenger.ui.b0(i7).p0("tg_placeholders_android");
+        if (p02 == null) {
+            p02 = org.telegram.messenger.ui.b0(i7).n0("tg_placeholders_android");
+        }
+        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = p02;
+        if (tL_messages_stickerSet != null && tL_messages_stickerSet.documents.size() >= 4) {
+            TLRPC.Document document = tL_messages_stickerSet.documents.get(3);
+            this.f50704a.k(org.telegram.messenger.hc.b(document), "104_104", "tgs", org.telegram.messenger.t5.f(document, org.telegram.ui.ActionBar.k6.f27792a7, 1.0f, null), tL_messages_stickerSet);
+            return;
+        }
+        org.telegram.messenger.ui b02 = org.telegram.messenger.ui.b0(i7);
+        if (tL_messages_stickerSet == null) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        b02.c1("tg_placeholders_android", false, z9);
     }
 
     @Override
-    public final void d() {
-        xe0.b0(this.f50469b.d);
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == org.telegram.messenger.qs.f25094y0 && "tg_placeholders_android".equals((String) objArr[0])) {
+            a();
+        }
     }
 
     @Override
-    public final void h() {
-        we0 we0Var = this.f50469b;
-        xe0 xe0Var = we0Var.d;
-        Context context = this.f50468a.getContext();
-        xe0 xe0Var2 = we0Var.d;
-        xe0Var.m0 = new org.telegram.ui.Components.i50(context, xe0Var2.f51990e, xe0Var2.d, xe0Var2.f51999l0, xe0Var2, xe0Var2.f52000n, true, xe0Var2.h);
-        we0Var.d.m0.show();
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+        org.telegram.messenger.qs.f(this.f50705b).c(this, org.telegram.messenger.qs.f25094y0);
     }
 
     @Override
-    public final void b() {
-    }
-
-    @Override
-    public final void i() {
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.messenger.qs.f(this.f50705b).n(this, org.telegram.messenger.qs.f25094y0);
     }
 }

@@ -1,10 +1,9 @@
 package h2;
-public final class m {
-    public final int f14139a;
-    public final boolean f14140b;
 
-    public m(int i3, int i10, boolean z10) {
-        this.f14139a = i10;
-        this.f14140b = z10;
+import h9.t1;
+public final class m extends Exception {
+    public m(String str, t1 t1Var) {
+        super(str);
+        h9.i0.q(t1Var);
     }
 }

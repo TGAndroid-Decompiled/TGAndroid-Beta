@@ -1,86 +1,98 @@
 package lg;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.or;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.s4;
-public final class q implements TextView.OnEditorActionListener {
-    public final int f18406a;
-    public final int f18407b;
-    public final org.telegram.ui.ActionBar.s1[] f18408c;
-    public final View d;
-    public final EditTextBoldCursor f18409e;
-    public final Object f18410f;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Path;
+import android.graphics.RectF;
+import java.util.ArrayList;
+import org.telegram.messenger.g0;
+public class q extends g {
+    public final Matrix D1;
+    public final float[] E1;
+    public final Path F1;
+    public boolean[] G1;
+    public float[] H1;
 
-    public q(EditTextBoldCursor editTextBoldCursor, int i3, Object obj, org.telegram.ui.ActionBar.s1[] s1VarArr, View view, int i10) {
-        this.f18406a = i10;
-        this.f18409e = editTextBoldCursor;
-        this.f18407b = i3;
-        this.f18410f = obj;
-        this.f18408c = s1VarArr;
-        this.d = view;
+    public q(Context context) {
+        super(context, null);
+        this.D1 = new Matrix();
+        this.E1 = new float[2];
+        this.F1 = new Path();
+        this.f18323w0 = true;
+        this.f18325x0 = true;
+        this.f18294e = false;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-        switch (this.f18406a) {
-            case 0:
-                s sVar = (s) this.f18409e;
-                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f18410f;
-                if (i3 != 6) {
-                    return false;
-                }
-                String obj = sVar.getText().toString();
-                if (obj.length() > 32) {
-                    org.telegram.messenger.g0.F3(sVar);
-                } else {
-                    z d = z.d(this.f18407b);
-                    TL_account.TL_businessChatLink c2 = d.c(tL_businessChatLink.link);
-                    if (c2 != null) {
-                        TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
-                        tL_inputBusinessChatLink.message = c2.message;
-                        tL_inputBusinessChatLink.entities = c2.entities;
-                        tL_inputBusinessChatLink.title = obj;
-                        d.b(c2, tL_inputBusinessChatLink, null);
-                    }
-                    org.telegram.ui.ActionBar.s1[] s1VarArr = this.f18408c;
-                    org.telegram.ui.ActionBar.s1 s1Var = s1VarArr[0];
-                    if (s1Var != null) {
-                        s1Var.dismiss();
-                    }
-                    if (s1VarArr[0] == v.f18489e) {
-                        v.f18489e = null;
-                    }
-                    View view = this.d;
-                    if (view != null) {
-                        view.requestFocus();
-                    }
-                }
-                return true;
-            default:
-                s4 s4Var = (s4) this.f18409e;
-                or orVar = (or) this.f18410f;
-                if (i3 != 6) {
-                    return false;
-                }
-                String obj2 = s4Var.getText().toString();
-                if (obj2.length() > this.f18407b) {
-                    org.telegram.messenger.g0.F3(s4Var);
-                } else {
-                    orVar.a(obj2);
-                    org.telegram.ui.ActionBar.s1 s1Var2 = this.f18408c[0];
-                    if (s1Var2 != null) {
-                        s1Var2.dismiss();
-                    }
-                    View view2 = this.d;
-                    if (view2 != null) {
-                        view2.requestFocus();
-                    }
-                }
-                return true;
+    public ng.i h(mg.a aVar) {
+        return new ng.i(aVar);
+    }
+
+    public final int M(float f10, float f11) {
+        RectF rectF = this.H0;
+        float centerX = rectF.centerX();
+        float centerY = rectF.centerY() + g0.L(16.0f);
+        int i7 = (f10 > centerX ? 1 : (f10 == centerX ? 0 : -1));
+        if (i7 >= 0 && f11 <= centerY) {
+            return 0;
         }
+        if (i7 >= 0 && f11 >= centerY) {
+            return 1;
+        }
+        if (f10 < centerX && f11 >= centerY) {
+            return 2;
+        }
+        return 3;
+    }
+
+    @Override
+    public float getMinDistance() {
+        return 0.1f;
+    }
+
+    @Override
+    public void k(android.graphics.Canvas r46) {
+        throw new UnsupportedOperationException("Method not decompiled: lg.q.k(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public void n(android.graphics.Canvas r27) {
+        throw new UnsupportedOperationException("Method not decompiled: lg.q.n(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        F();
+        k(canvas);
+        i(canvas);
+        ArrayList arrayList = this.f18286b;
+        this.m0 = arrayList.size();
+        int i7 = 0;
+        while (true) {
+            this.f18311n0 = i7;
+            int i10 = this.f18311n0;
+            if (i10 < this.m0) {
+                l(canvas, (ng.d) arrayList.get(i10));
+                p(canvas, (ng.d) arrayList.get(this.f18311n0));
+                i7 = this.f18311n0 + 1;
+            } else {
+                j(canvas);
+                m(canvas);
+                o(canvas);
+                super.onDraw(canvas);
+                return;
+            }
+        }
+    }
+
+    @Override
+    public void q(ng.j r21) {
+        throw new UnsupportedOperationException("Method not decompiled: lg.q.q(ng.j):void");
+    }
+
+    @Override
+    public final long r(int i7, int i10) {
+        return 100L;
     }
 }

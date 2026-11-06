@@ -1,46 +1,28 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ly0 extends AnimatorListenerAdapter {
-    public final int f47468a;
-    public final my0 f47469b;
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+public final class ly0 extends org.telegram.ui.Cells.k3 {
+    public final ny0 E;
 
-    public ly0(my0 my0Var, int i3) {
-        this.f47468a = i3;
-        this.f47469b = my0Var;
+    public ly0(ny0 ny0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, "", true, false, 1024, f6Var);
+        this.E = ny0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f47468a) {
-            case 0:
-                my0 my0Var = this.f47469b;
-                if (my0Var.h != null) {
-                    my0Var.h = null;
-                    my0Var.f47828e = 0.0f;
-                    my0Var.g();
-                    my0Var.f47830n.e();
-                    wv wvVar = my0Var.f47825a;
-                    if (wvVar != null) {
-                        wvVar.onPause();
-                        my0Var.f47825a.onFragmentDestroy();
-                        my0Var.removeAllViews();
-                        my0Var.f47825a = null;
-                        org.telegram.messenger.hs.e().k(268, new Object[0]);
-                    }
-                    my0Var.d(false);
-                    return;
-                }
-                return;
-            default:
-                my0 my0Var2 = this.f47469b;
-                if (my0Var2.h != null) {
-                    my0Var2.h = null;
-                    my0Var2.d(true);
-                    return;
-                }
-                return;
+    public final void b(Editable editable) {
+        boolean z9;
+        ny0 ny0Var = this.E;
+        fi.d dVar = ny0Var.f48147s;
+        if (dVar != null) {
+            if (!ny0Var.d.optional && TextUtils.isEmpty(ny0Var.f48145n.getText())) {
+                z9 = false;
+            } else {
+                z9 = true;
+            }
+            dVar.setEnabled(z9);
         }
     }
 }

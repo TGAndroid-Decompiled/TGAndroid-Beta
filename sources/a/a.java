@@ -1,20 +1,11 @@
 package a;
 
-import android.net.Uri;
+import android.content.Context;
+import l7.b;
+import q6.m;
 public abstract class a {
-    public static Uri a(Uri uri) {
-        if (uri.isHierarchical() && uri.getQueryParameter("CMCD") != null) {
-            Uri.Builder buildUpon = uri.buildUpon();
-            buildUpon.clearQuery();
-            for (String str : uri.getQueryParameterNames()) {
-                if (!str.equals("CMCD")) {
-                    for (String str2 : uri.getQueryParameters(str)) {
-                        buildUpon.appendQueryParameter(str, str2);
-                    }
-                }
-            }
-            return buildUpon.build();
-        }
-        return uri;
+    public static b a(Context context) {
+        m.g(context);
+        return new b(context, new Object());
     }
 }

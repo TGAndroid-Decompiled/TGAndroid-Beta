@@ -1,56 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
-public final class w60 extends org.telegram.ui.wm {
-    public boolean f39915sd;
-    public final boolean f39916td;
-    public final long f39917ud;
-    public final x60 f39918vd;
+public final class w60 implements Runnable {
+    public final int f39865a;
+    public final b70 f39866b;
+    public final TLRPC.TL_chatInviteJoinResultWebView f39867c;
+    public final long d;
 
-    public w60(x60 x60Var, Bundle bundle, boolean z10, long j10) {
-        super(bundle);
-        this.f39918vd = x60Var;
-        this.f39916td = z10;
-        this.f39917ud = j10;
-        this.f39915sd = false;
-    }
-
-    public static void Dd(w60 w60Var, long j10, TLRPC.Chat chat) {
-        boolean z10;
-        if (!org.telegram.messenger.g0.E1(w60Var.getParentActivity())) {
-            return;
-        }
-        Activity parentActivity = w60Var.getParentActivity();
-        int i3 = w60Var.currentAccount;
-        long j11 = -j10;
-        TLRPC.User f10 = w60Var.getUserConfig().f();
-        if (chat.admin_rights != null) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        dy0.c(parentActivity, i3, j11, f10, null, z10, chat.creator, w60Var.f39918vd.J0);
+    public w60(b70 b70Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j3, int i7) {
+        this.f39865a = i7;
+        this.f39866b = b70Var;
+        this.f39867c = tL_chatInviteJoinResultWebView;
+        this.d = j3;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.f39915sd && this.f39916td) {
-            this.f39915sd = true;
-            org.telegram.messenger.hp messagesController = getMessagesController();
-            long j10 = this.f39917ud;
-            TLRPC.Chat M0 = messagesController.M0(Long.valueOf(j10));
-            if (org.telegram.messenger.t3.h(M0)) {
-                ac K = fc.a0(this).K(2131623989, org.telegram.messenger.bd.M0(2131749079, null), org.telegram.messenger.bd.M0(2131749078, null), new ai.r1(this, j10, M0, 24));
-                K.f31800r = false;
-                K.k(true);
+    public final void run() {
+        switch (this.f39865a) {
+            case 0:
+                b70 b70Var = this.f39866b;
+                org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(b70Var.f28612a);
+                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = this.f39867c;
+                s12.Y3(tL_chatInviteJoinResultWebView.users, false);
+                org.telegram.messenger.k2.b(b70Var.f28612a).c(this.d, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id, false);
                 return;
-            }
-            ac Q = fc.a0(this).Q(2131623989, 36, org.telegram.messenger.bd.M0(2131749079, null));
-            Q.f31800r = false;
-            Q.k(true);
+            default:
+                b70 b70Var2 = this.f39866b;
+                org.telegram.messenger.qp s13 = org.telegram.messenger.qp.s1(b70Var2.f28612a);
+                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView2 = this.f39867c;
+                s13.Y3(tL_chatInviteJoinResultWebView2.users, false);
+                org.telegram.messenger.k2.b(b70Var2.f28612a).c(this.d, tL_chatInviteJoinResultWebView2.bot_id, tL_chatInviteJoinResultWebView2.query_id, false);
+                return;
         }
     }
 }

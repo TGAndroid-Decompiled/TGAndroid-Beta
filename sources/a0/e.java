@@ -53,7 +53,7 @@ public final class e implements Collection {
                 }
                 return false;
             default:
-                return ed.f.a((Object[]) this.f11b, obj);
+                return hd.e.a((Object[]) this.f11b, obj);
         }
     }
 
@@ -74,7 +74,7 @@ public final class e implements Collection {
                     return true;
                 }
                 for (Object obj2 : collection) {
-                    if (!ed.f.a((Object[]) this.f11b, obj2)) {
+                    if (!hd.e.a((Object[]) this.f11b, obj2)) {
                         return false;
                     }
                 }
@@ -103,7 +103,7 @@ public final class e implements Collection {
             default:
                 Object[] array = (Object[]) this.f11b;
                 kotlin.jvm.internal.j.e(array, "array");
-                return new ed.a(array);
+                return new cd.b(array);
         }
     }
 
@@ -128,19 +128,19 @@ public final class e implements Collection {
         switch (this.f10a) {
             case 0:
                 f fVar = (f) this.f11b;
-                int i3 = fVar.f31c;
+                int i7 = fVar.f31c;
                 int i10 = 0;
-                boolean z10 = false;
-                while (i10 < i3) {
+                boolean z9 = false;
+                while (i10 < i7) {
                     if (collection.contains(fVar.i(i10))) {
                         fVar.g(i10);
                         i10--;
-                        i3--;
-                        z10 = true;
+                        i7--;
+                        z9 = true;
                     }
                     i10++;
                 }
-                return z10;
+                return z9;
             default:
                 throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
@@ -151,19 +151,19 @@ public final class e implements Collection {
         switch (this.f10a) {
             case 0:
                 f fVar = (f) this.f11b;
-                int i3 = fVar.f31c;
+                int i7 = fVar.f31c;
                 int i10 = 0;
-                boolean z10 = false;
-                while (i10 < i3) {
+                boolean z9 = false;
+                while (i10 < i7) {
                     if (!collection.contains(fVar.i(i10))) {
                         fVar.g(i10);
                         i10--;
-                        i3--;
-                        z10 = true;
+                        i7--;
+                        z9 = true;
                     }
                     i10++;
                 }
-                return z10;
+                return z9;
             default:
                 throw new UnsupportedOperationException("Operation is not supported for read-only collection");
         }
@@ -184,15 +184,15 @@ public final class e implements Collection {
         switch (this.f10a) {
             case 0:
                 f fVar = (f) this.f11b;
-                int i3 = fVar.f31c;
-                if (array.length < i3) {
-                    array = (Object[]) Array.newInstance(array.getClass().getComponentType(), i3);
+                int i7 = fVar.f31c;
+                if (array.length < i7) {
+                    array = (Object[]) Array.newInstance(array.getClass().getComponentType(), i7);
                 }
-                for (int i10 = 0; i10 < i3; i10++) {
+                for (int i10 = 0; i10 < i7; i10++) {
                     array[i10] = fVar.i(i10);
                 }
-                if (array.length > i3) {
-                    array[i3] = null;
+                if (array.length > i7) {
+                    array[i7] = null;
                 }
                 return array;
             default:
@@ -210,9 +210,9 @@ public final class e implements Collection {
         switch (this.f10a) {
             case 0:
                 f fVar = (f) this.f11b;
-                int i3 = fVar.f31c;
-                Object[] objArr = new Object[i3];
-                for (int i10 = 0; i10 < i3; i10++) {
+                int i7 = fVar.f31c;
+                Object[] objArr = new Object[i7];
+                for (int i10 = 0; i10 < i7; i10++) {
                     objArr[i10] = fVar.i(i10);
                 }
                 return objArr;

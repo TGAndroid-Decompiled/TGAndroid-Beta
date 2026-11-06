@@ -1,37 +1,41 @@
 package s0;
 
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Typeface;
-import android.util.Base64;
-import b8.ke;
+import android.media.MediaRoute2Info;
+import android.view.WindowManager;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.firebase.components.ComponentRegistrar;
-import com.google.firebase.concurrent.ExecutorsRegistrar;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ScheduledExecutorService;
 import org.telegram.messenger.g0;
-import org.telegram.messenger.t0;
-import tg.z;
-public final class b implements s3.g, t9.e, ta.a, i2.g, z, u5.e, t9.d {
-    public final int f54562a;
+import org.telegram.ui.ActionBar.r1;
+import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.Components.jt0;
+import org.telegram.ui.Components.kt0;
+import sg.z;
+import tg.c2;
+public final class b implements z, t3.g, OnFailureListener, jt0, kt0, u9.e, ua.a, r1 {
+    public final int f54476a;
 
-    public b(int i3) {
-        this.f54562a = i3;
+    public b(int i7) {
+        this.f54476a = i7;
+    }
+
+    public static MediaRoute2Info d(Object obj) {
+        return (MediaRoute2Info) obj;
     }
 
     @Override
     public Typeface a() {
-        switch (this.f54562a) {
-            case 20:
+        switch (this.f54476a) {
+            case 9:
                 return g0.o1("fonts/rmedium.ttf");
-            case 21:
+            case 10:
                 return g0.o1("fonts/rmediumitalic.ttf");
-            case 22:
+            case 11:
                 return Typeface.create("serif", 1);
-            case 23:
+            case 12:
                 return g0.o1("fonts/rcondensedbold.ttf");
-            case 24:
+            case 13:
                 return g0.o1("fonts/rmono.ttf");
             default:
                 return g0.o1("fonts/mw_bold.ttf");
@@ -39,58 +43,63 @@ public final class b implements s3.g, t9.e, ta.a, i2.g, z, u5.e, t9.d {
     }
 
     @Override
-    public Object apply(Object obj) {
-        byte[] decode;
-        Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
-        try {
-            ArrayList arrayList = new ArrayList();
-            while (rawQuery.moveToNext()) {
-                k4.j a10 = n5.i.a();
-                a10.I(rawQuery.getString(1));
-                a10.f16871c = x5.a.b(rawQuery.getInt(2));
-                String string = rawQuery.getString(3);
-                if (string == null) {
-                    decode = null;
-                } else {
-                    decode = Base64.decode(string, 0);
-                }
-                a10.f16870b = decode;
-                arrayList.add(a10.l());
-            }
-            return arrayList;
-        } finally {
-            rawQuery.close();
-        }
-    }
-
-    @Override
-    public List b(ComponentRegistrar componentRegistrar) {
-        return componentRegistrar.getComponents();
-    }
-
-    @Override
-    public i2.h createDataSource() {
-        return new i2.b(t0.f25457b);
-    }
-
-    @Override
-    public boolean d(int i3, int i10, int i11, int i12, int i13) {
+    public boolean b(int i7, int i10, int i11, int i12, int i13) {
         return false;
     }
 
     @Override
-    public Object q1(ke keVar) {
-        switch (this.f54562a) {
-            case 27:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7932a.get();
-            case 28:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7934c.get();
+    public void f(Object obj, float f10) {
+        ti.i iVar = (ti.i) obj;
+        switch (this.f54476a) {
+            case 20:
+                WindowManager.LayoutParams layoutParams = iVar.f55968e;
+                iVar.B = f10;
+                layoutParams.x = (int) f10;
+                iVar.r();
+                return;
             default:
-                return (ScheduledExecutorService) ExecutorsRegistrar.f7933b.get();
+                WindowManager.LayoutParams layoutParams2 = iVar.f55968e;
+                iVar.C = f10;
+                layoutParams2.y = (int) f10;
+                iVar.r();
+                return;
         }
     }
 
     @Override
-    public void c(ta.b bVar) {
+    public void g(u1 u1Var, int i7) {
+        switch (this.f54476a) {
+            case 27:
+                u1Var.dismiss();
+                return;
+            default:
+                u1Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public float get(Object obj) {
+        ti.i iVar = (ti.i) obj;
+        switch (this.f54476a) {
+            case 19:
+                return iVar.B;
+            default:
+                return iVar.C;
+        }
+    }
+
+    @Override
+    public List i(ComponentRegistrar componentRegistrar) {
+        return componentRegistrar.getComponents();
+    }
+
+    @Override
+    public void onFailure(Exception exc) {
+        int i7 = c2.f55471r0;
+    }
+
+    @Override
+    public void c(ua.b bVar) {
     }
 }

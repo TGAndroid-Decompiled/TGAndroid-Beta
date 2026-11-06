@@ -1,8 +1,20 @@
 package org.telegram.ui;
-public final class wb1 extends org.telegram.ui.Components.voip.c2 {
+
+import org.webrtc.RendererCommon;
+public final class wb1 implements RendererCommon.RendererEvents {
+    public final ec1 f51044a;
+
+    public wb1(ec1 ec1Var) {
+        this.f51044a = ec1Var;
+    }
+
     @Override
-    public final void dispatchSetPressed(boolean z10) {
-        super.dispatchSetPressed(z10);
-        setPressedBtn(z10);
+    public final void onFirstFrameRendered() {
+        org.telegram.messenger.g0.h3(new qu0(this, 25));
+    }
+
+    @Override
+    public final void onFrameResolutionChanged(int i7, int i10, int i11) {
+        org.telegram.messenger.g0.h3(new org.telegram.ui.Components.l10(13));
     }
 }

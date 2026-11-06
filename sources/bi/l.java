@@ -1,130 +1,67 @@
 package bi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import ei.c3;
+import android.app.Activity;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.b10;
+import org.telegram.messenger.f10;
+import org.telegram.messenger.ui;
+import org.telegram.messenger.vi;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.g5;
-public final class l extends View {
-    public final int f3780a;
-    public g5 f3781b;
-    public final Paint f3782c;
-    public long d;
-    public TLRPC.Document f3783e;
-    public String f3784f;
-    public float h;
-    public float f3785n;
-    public float f3786r;
+import org.telegram.ui.TwoStepVerificationActivity;
+public final class l implements Runnable {
+    public final int f4238a = 0;
+    public final boolean f4239b;
+    public final long f4240c;
+    public final Object d;
+    public final Object f4241e;
+    public final Object f4242f;
+    public final Object h;
+    public final Object f4243n;
 
-    public l(Context context, int i3) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f3782c = paint;
-        this.f3785n = 1.0f;
-        this.f3786r = 1.0f;
-        this.f3780a = i3;
-        paint.setColor(738197503);
-    }
-
-    public String getKey() {
-        return this.f3784f;
+    public l(z zVar, TLRPC.TL_error tL_error, TwoStepVerificationActivity twoStepVerificationActivity, Activity activity, boolean z9, long j3, TLObject tLObject) {
+        this.d = zVar;
+        this.f4241e = tL_error;
+        this.f4242f = twoStepVerificationActivity;
+        this.h = activity;
+        this.f4239b = z9;
+        this.f4240c = j3;
+        this.f4243n = tLObject;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        g5 g5Var = this.f3781b;
-        if (g5Var != null) {
-            g5Var.a(this);
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: bi.l.run():void");
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        g5 g5Var = this.f3781b;
-        if (g5Var != null) {
-            g5Var.n(this);
-        }
+    public l(ui uiVar, ArrayList arrayList, boolean z9, ArrayList arrayList2, ArrayList arrayList3, a0.h hVar, long j3) {
+        this.d = uiVar;
+        this.f4241e = arrayList;
+        this.f4239b = z9;
+        this.f4242f = arrayList2;
+        this.h = arrayList3;
+        this.f4243n = hVar;
+        this.f4240c = j3;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f10;
-        c3 c3Var;
-        if (isPressed()) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        float f11 = this.h;
-        if (f11 != f10) {
-            if (Math.abs(f11 - f10) >= 0.02f) {
-                float f12 = this.h;
-                f10 = com.google.android.recaptcha.internal.a.y(f10, f12, 0.35f, f12);
-            }
-            this.h = f10;
-            invalidate();
-        }
-        float f13 = (1.0f - (this.h * 0.2f)) * this.f3785n * this.f3786r;
-        if (f13 > 0.01f) {
-            float width = getWidth() * 0.78f * f13;
-            float width2 = getWidth() / 2.0f;
-            float height = getHeight() / 2.0f;
-            g5 g5Var = this.f3781b;
-            if (g5Var == null || (c3Var = g5Var.f33971k) == null || !c3Var.I()) {
-                canvas.drawCircle(width2, height, 0.42f * width, this.f3782c);
-            }
-            g5 g5Var2 = this.f3781b;
-            if (g5Var2 != null) {
-                float f14 = width / 2.0f;
-                g5Var2.setBounds((int) (width2 - f14), (int) (height - f14), (int) (width2 + f14), (int) (height + f14));
-                s.b(canvas, this.f3781b);
-            }
-        }
+    public l(vi viVar, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, boolean z9, long j3, t4 t4Var) {
+        this.d = viVar;
+        this.f4241e = tL_error;
+        this.f4243n = tLObject;
+        this.f4242f = tL_chatInviteImporter;
+        this.f4239b = z9;
+        this.f4240c = j3;
+        this.h = t4Var;
     }
 
-    @Override
-    public final void onMeasure(int i3, int i10) {
-        int size = View.MeasureSpec.getSize(i3);
-        setMeasuredDimension(size, size);
-    }
-
-    public void set(TLRPC.Document document) {
-        long j10 = document.f27007id;
-        if (j10 == 0) {
-            if (this.f3781b != null && isAttachedToWindow()) {
-                this.f3781b.n(this);
-            }
-            this.f3781b = null;
-            this.d = 0L;
-            this.f3783e = document;
-            this.f3784f = null;
-            invalidate();
-        } else if (j10 == this.d && this.f3781b != null) {
-        } else {
-            if (this.f3781b != null && isAttachedToWindow()) {
-                this.f3781b.n(this);
-            }
-            this.d = document.f27007id;
-            this.f3783e = document;
-            this.f3784f = "c:" + document.f27007id;
-            this.f3781b = g5.l(this.f3780a, 2, document);
-            if (isAttachedToWindow()) {
-                this.f3781b.a(this);
-            }
-            setContentDescription(document.f27007id + "");
-            invalidate();
-        }
-    }
-
-    @Override
-    public void setPressed(boolean z10) {
-        if (z10 != isPressed()) {
-            super.setPressed(z10);
-            invalidate();
-        }
+    public l(f10 f10Var, b10 b10Var, TLObject tLObject, boolean z9, TLRPC.TL_error tL_error, long j3, HashSet hashSet) {
+        this.d = f10Var;
+        this.f4242f = b10Var;
+        this.f4243n = tLObject;
+        this.f4239b = z9;
+        this.f4241e = tL_error;
+        this.f4240c = j3;
+        this.h = hashSet;
     }
 }

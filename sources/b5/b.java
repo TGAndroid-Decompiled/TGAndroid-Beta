@@ -1,17 +1,145 @@
 package b5;
 
-import java.util.Comparator;
-public final class b implements Comparator {
-    public static final b f2392b = new b(2);
-    public static final b f2393c = new b(10);
-    public final int f2394a;
+import a0.f;
+import android.os.Parcel;
+import android.os.Parcelable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+public abstract class b {
+    public final f f2981a;
+    public final f f2982b;
+    public final f f2983c;
 
-    public b(int i3) {
-        this.f2394a = i3;
+    public b(f fVar, f fVar2, f fVar3) {
+        this.f2981a = fVar;
+        this.f2982b = fVar2;
+        this.f2983c = fVar3;
     }
 
-    @Override
-    public final int compare(java.lang.Object r7, java.lang.Object r8) {
-        throw new UnsupportedOperationException("Method not decompiled: b5.b.compare(java.lang.Object, java.lang.Object):int");
+    public abstract c a();
+
+    public final Class b(Class cls) {
+        String name = cls.getName();
+        f fVar = this.f2983c;
+        Class cls2 = (Class) fVar.get(name);
+        if (cls2 == null) {
+            String name2 = cls.getPackage().getName();
+            String simpleName = cls.getSimpleName();
+            Class<?> cls3 = Class.forName(name2 + "." + simpleName + "Parcelizer", false, cls.getClassLoader());
+            fVar.put(cls.getName(), cls3);
+            return cls3;
+        }
+        return cls2;
+    }
+
+    public final Method c(String str) {
+        f fVar = this.f2981a;
+        Method method = (Method) fVar.get(str);
+        if (method == null) {
+            System.currentTimeMillis();
+            Method declaredMethod = Class.forName(str, true, b.class.getClassLoader()).getDeclaredMethod("read", b.class);
+            fVar.put(str, declaredMethod);
+            return declaredMethod;
+        }
+        return method;
+    }
+
+    public final Method d(Class cls) {
+        String name = cls.getName();
+        f fVar = this.f2982b;
+        Method method = (Method) fVar.get(name);
+        if (method == null) {
+            Class b10 = b(cls);
+            System.currentTimeMillis();
+            Method declaredMethod = b10.getDeclaredMethod("write", cls, b.class);
+            fVar.put(cls.getName(), declaredMethod);
+            return declaredMethod;
+        }
+        return method;
+    }
+
+    public abstract boolean e(int i7);
+
+    public final int f(int i7, int i10) {
+        if (!e(i10)) {
+            return i7;
+        }
+        return ((c) this).f2984e.readInt();
+    }
+
+    public final Parcelable g(Parcelable parcelable, int i7) {
+        if (!e(i7)) {
+            return parcelable;
+        }
+        return ((c) this).f2984e.readParcelable(c.class.getClassLoader());
+    }
+
+    public final d h() {
+        String readString = ((c) this).f2984e.readString();
+        if (readString == null) {
+            return null;
+        }
+        try {
+            return (d) c(readString).invoke(null, a());
+        } catch (ClassNotFoundException e10) {
+            throw new RuntimeException("VersionedParcel encountered ClassNotFoundException", e10);
+        } catch (IllegalAccessException e11) {
+            throw new RuntimeException("VersionedParcel encountered IllegalAccessException", e11);
+        } catch (NoSuchMethodException e12) {
+            throw new RuntimeException("VersionedParcel encountered NoSuchMethodException", e12);
+        } catch (InvocationTargetException e13) {
+            if (e13.getCause() instanceof RuntimeException) {
+                throw ((RuntimeException) e13.getCause());
+            }
+            throw new RuntimeException("VersionedParcel encountered InvocationTargetException", e13);
+        }
+    }
+
+    public abstract void i(int i7);
+
+    public final void j(int i7, int i10) {
+        i(i10);
+        ((c) this).f2984e.writeInt(i7);
+    }
+
+    public final void k(Parcelable parcelable, int i7) {
+        i(i7);
+        ((c) this).f2984e.writeParcelable(parcelable, 0);
+    }
+
+    public final void l(d dVar) {
+        if (dVar == null) {
+            ((c) this).f2984e.writeString(null);
+            return;
+        }
+        try {
+            ((c) this).f2984e.writeString(b(dVar.getClass()).getName());
+            c a10 = a();
+            try {
+                d(dVar.getClass()).invoke(null, dVar, a10);
+                Parcel parcel = a10.f2984e;
+                int i7 = a10.f2987i;
+                if (i7 >= 0) {
+                    int i10 = a10.d.get(i7);
+                    int dataPosition = parcel.dataPosition();
+                    parcel.setDataPosition(i10);
+                    parcel.writeInt(dataPosition - i10);
+                    parcel.setDataPosition(dataPosition);
+                }
+            } catch (ClassNotFoundException e10) {
+                throw new RuntimeException("VersionedParcel encountered ClassNotFoundException", e10);
+            } catch (IllegalAccessException e11) {
+                throw new RuntimeException("VersionedParcel encountered IllegalAccessException", e11);
+            } catch (NoSuchMethodException e12) {
+                throw new RuntimeException("VersionedParcel encountered NoSuchMethodException", e12);
+            } catch (InvocationTargetException e13) {
+                if (e13.getCause() instanceof RuntimeException) {
+                    throw ((RuntimeException) e13.getCause());
+                }
+                throw new RuntimeException("VersionedParcel encountered InvocationTargetException", e13);
+            }
+        } catch (ClassNotFoundException e14) {
+            throw new RuntimeException(dVar.getClass().getSimpleName().concat(" does not have a Parcelizer"), e14);
+        }
     }
 }

@@ -1,52 +1,78 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import java.util.HashSet;
-public final class l30 extends u4.k {
-    public float F;
-    public ValueAnimator G;
-    public final HashSet H = new HashSet();
-    public final HashSet I = new HashSet();
-    public float J;
-    public float K;
-    public final x30 L;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class l30 implements org.telegram.ui.Components.i30 {
+    public float f47369a;
+    public TLRPC.FileLocation f47370b;
+    public TLRPC.FileLocation f47371c;
+    public org.telegram.messenger.hc d;
+    public final long f47372e;
+    public final c40 f47373f;
 
-    public l30(x30 x30Var) {
-        this.L = x30Var;
+    public l30(c40 c40Var, long j3) {
+        this.f47373f = c40Var;
+        this.f47372e = j3;
     }
 
     @Override
-    public final void g() {
-        super.g();
-        this.I.clear();
-        this.H.clear();
-        this.K = Float.MAX_VALUE;
-        this.L.I1.invalidate();
+    public final void H(float f10) {
+        this.f47373f.f44556i1.O(this.d, f10);
+        a(f10);
     }
 
     @Override
-    public final void m() {
-        boolean isEmpty = this.f55598p.isEmpty();
-        boolean isEmpty2 = this.f55600r.isEmpty();
-        boolean isEmpty3 = this.f55599q.isEmpty();
-        ValueAnimator valueAnimator = this.G;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.G = null;
+    public final void U(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z9, TLRPC.VideoSize videoSize) {
+        org.telegram.messenger.g0.h3(new ii.l(this, inputFile, inputFile2, videoSize, d, str, photoSize2, photoSize, 3));
+    }
+
+    public final void a(float f10) {
+        this.f47369a = f10;
+        k30 k30Var = this.f47373f.H1;
+        if (k30Var != null) {
+            for (int i7 = 0; i7 < k30Var.getChildCount(); i7++) {
+                View childAt = k30Var.getChildAt(i7);
+                if (childAt instanceof org.telegram.ui.Cells.f4) {
+                    org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) childAt;
+                    if (f4Var.c()) {
+                        org.telegram.ui.Cells.b4 b4Var = f4Var.f29113y;
+                        b4Var.setProgress(f10);
+                        if (f10 < 1.0f) {
+                            org.telegram.messenger.g0.Z3(b4Var, true, 1.0f, true, true);
+                        } else {
+                            org.telegram.messenger.g0.Z3(b4Var, false, 1.0f, true, true);
+                        }
+                    }
+                }
+            }
         }
-        if (!isEmpty || !isEmpty2 || !isEmpty3) {
-            this.F = 0.0f;
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.G = ofFloat;
-            ofFloat.addUpdateListener(new b3(this, 14));
-            this.G.addListener(new y20(this, 1));
-            this.G.setDuration(350L);
-            this.G.setInterpolator(org.telegram.ui.Components.xq.f40452f);
-            this.G.start();
-            x30 x30Var = this.L;
-            x30Var.I1.invalidate();
-            x30Var.S3.invalidate();
-        }
-        super.m();
+    }
+
+    @Override
+    public final boolean e() {
+        return true;
+    }
+
+    @Override
+    public final vq0 getCloseIntoObject() {
+        return null;
+    }
+
+    @Override
+    public final String getInitialSearchString() {
+        return null;
+    }
+
+    @Override
+    public final boolean x() {
+        return false;
+    }
+
+    @Override
+    public final void T() {
+    }
+
+    @Override
+    public final void O(boolean z9, boolean z10) {
     }
 }

@@ -5,28 +5,28 @@ import java.util.ArrayList;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 public final class so implements ResultCallback {
-    public final org.telegram.messenger.d4 f38094a;
-    public final vo f38095b;
+    public final org.telegram.messenger.d4 f38128a;
+    public final vo f38129b;
 
     public so(vo voVar, org.telegram.messenger.d4 d4Var) {
-        this.f38095b = voVar;
-        this.f38094a = d4Var;
+        this.f38129b = voVar;
+        this.f38128a = d4Var;
     }
 
     @Override
     public final void onComplete(Object obj) {
-        int i3;
+        int i7;
         Void r62 = (Void) obj;
-        org.telegram.messenger.d4 d4Var = this.f38094a;
-        if (d4Var.f22144f.f16749c) {
-            i3 = 2;
+        org.telegram.messenger.d4 d4Var = this.f38128a;
+        if (d4Var.f21953f.f18060c) {
+            i7 = 2;
         } else {
-            i3 = 0;
+            i7 = 0;
         }
-        ArrayList e10 = d4Var.e(i3 | 5);
-        vo voVar = this.f38095b;
-        org.telegram.messenger.hs.f(voVar.f28583a).d(new cl(4, this, e10));
-        voVar.S1 = false;
+        ArrayList e10 = d4Var.e(i7 | 5);
+        vo voVar = this.f38129b;
+        org.telegram.messenger.qs.f(voVar.f28612a).d(new f(29, this, e10));
+        voVar.R1 = false;
     }
 
     @Override
@@ -36,6 +36,6 @@ public final class so implements ResultCallback {
 
     @Override
     public final void onError(TLRPC.TL_error tL_error) {
-        Toast.makeText(this.f38095b.getContext(), tL_error.text, 0).show();
+        Toast.makeText(this.f38129b.getContext(), tL_error.text, 0).show();
     }
 }

@@ -1,3 +1,25 @@
 package u5;
-public interface c {
+public final class c {
+    public static final c f56231a;
+    public static final c f56232b;
+    public static final c f56233c;
+    public static final c[] d;
+
+    static {
+        ?? r02 = new Enum("NETWORK_UNMETERED", 0);
+        f56231a = r02;
+        ?? r12 = new Enum("DEVICE_IDLE", 1);
+        f56232b = r12;
+        ?? r32 = new Enum("DEVICE_CHARGING", 2);
+        f56233c = r32;
+        d = new c[]{r02, r12, r32};
+    }
+
+    public static c valueOf(String str) {
+        return (c) Enum.valueOf(c.class, str);
+    }
+
+    public static c[] values() {
+        return (c[]) d.clone();
+    }
 }

@@ -1,85 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
+import android.location.Location;
 import android.view.View;
-public final class jk implements org.telegram.ui.ActionBar.l0, org.telegram.messenger.ua, org.telegram.messenger.wa, org.telegram.ui.ActionBar.p1, kg.b {
-    public final uk f35094a;
+public final class jk implements Runnable {
+    public final int f34994a;
+    public final wk f34995b;
 
-    public jk(uk ukVar) {
-        this.f35094a = ukVar;
+    public jk(wk wkVar, int i7) {
+        this.f34994a = i7;
+        this.f34995b = wkVar;
     }
 
     @Override
-    public void a() {
-        uk ukVar = this.f35094a;
-        ukVar.f38785f0 = false;
-        ukVar.j0();
-    }
-
-    @Override
-    public boolean b(MotionEvent motionEvent, org.telegram.messenger.ca caVar) {
-        MotionEvent motionEvent2;
-        uk ukVar = this.f35094a;
-        if (ukVar.H != 0.0f) {
-            motionEvent = MotionEvent.obtain(motionEvent);
-            motionEvent.offsetLocation(0.0f, (-ukVar.H) / 2.0f);
-            motionEvent2 = motionEvent;
-        } else {
-            motionEvent2 = null;
-        }
-        boolean booleanValue = caVar.a(motionEvent).booleanValue();
-        if (motionEvent2 != null) {
-            motionEvent2.recycle();
-        }
-        return booleanValue;
-    }
-
-    @Override
-    public void c(int i3) {
-        View childAt;
-        u4.d1 T;
-        int L;
-        uk ukVar = this.f35094a;
-        ci.j1 j1Var = ukVar.M;
-        if (i3 == 1 && !ukVar.I && j1Var.getChildCount() > 0 && (childAt = j1Var.getChildAt(0)) != null) {
-            View F = j1Var.F(childAt);
-            if (F == null) {
-                T = null;
-            } else {
-                T = j1Var.T(F);
-            }
-            if (T != null && T.b() == 0) {
-                if (ukVar.f38795p0 == 0) {
-                    L = 0;
-                } else {
-                    L = org.telegram.messenger.g0.L(66.0f);
+    public final void run() {
+        Location location;
+        switch (this.f34994a) {
+            case 0:
+                wk.S(this.f34995b);
+                return;
+            case 1:
+                wk.U(this.f34995b);
+                return;
+            case 2:
+                wk wkVar = this.f34995b;
+                double[] dArr = wkVar.f38951b.f32952u4;
+                wkVar.h0(dArr[0], dArr[1]);
+                return;
+            case 3:
+                org.telegram.messenger.g0.h3(new jk(this.f34995b, 6));
+                return;
+            case 4:
+                wk wkVar2 = this.f34995b;
+                jg.r0 r0Var = wkVar2.K;
+                if (wkVar2.f39990k0) {
+                    wkVar2.f39990k0 = false;
+                    return;
                 }
-                int top = childAt.getTop();
-                if (top < (-L)) {
-                    gi.w4 d = ukVar.E.d();
-                    ukVar.G = ((mb.b) org.telegram.messenger.t0.k()).newCameraUpdateLatLngZoom((org.telegram.messenger.va) d.f13795b, d.f13796c);
-                    j1Var.w0(0, top + L, null);
+                org.telegram.messenger.fa faVar = wkVar2.D;
+                if (faVar != null && (location = wkVar2.f39988i0) != null) {
+                    location.setLatitude(((org.telegram.messenger.cb) faVar.d().f13160b).f21791a);
+                    wkVar2.f39988i0.setLongitude(((org.telegram.messenger.cb) wkVar2.D.d().f13160b).f21792b);
                 }
-            }
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        uk.Q(this.f35094a);
-    }
-
-    @Override
-    public void i(int i3) {
-        org.telegram.messenger.z9 z9Var = this.f35094a.E;
-        if (z9Var != null) {
-            if (i3 == 2) {
-                z9Var.j(0);
-            } else if (i3 == 3) {
-                z9Var.j(1);
-            } else if (i3 == 4) {
-                z9Var.j(2);
-            }
+                r0Var.L(wkVar2.f39988i0);
+                r0Var.H();
+                return;
+            case 5:
+                View view = this.f34995b.I;
+                if (view.getTag() == null) {
+                    view.animate().alpha(0.0f).setDuration(180L).start();
+                    return;
+                }
+                return;
+            case 6:
+                View view2 = this.f34995b.I;
+                view2.setTag(1);
+                view2.animate().alpha(0.0f).setDuration(180L).start();
+                return;
+            default:
+                this.f34995b.h0(0.0d, 0.0d);
+                return;
         }
     }
 }

@@ -1,65 +1,147 @@
 package gc;
 
-import java.io.FilterInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-public final class a extends FilterInputStream {
-    public int f12239a;
-    public int f12240b;
+import cc.j;
+public abstract class a {
+    public static final char[] f13790a = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:".toCharArray();
 
-    public a(InputStream inputStream) {
-        super(inputStream);
-        this.f12239a = -1;
-        this.f12240b = -1;
-    }
-
-    @Override
-    public final boolean markSupported() {
-        return false;
-    }
-
-    @Override
-    public final int read() {
-        int read = super.read();
-        if (read == 3 && this.f12239a == 0 && this.f12240b == 0) {
-            this.f12239a = -1;
-            this.f12240b = -1;
-            read = super.read();
+    public static void a(cc.c cVar, StringBuilder sb2, int i7, boolean z9) {
+        while (i7 > 1) {
+            if (cVar.d() >= 11) {
+                int f10 = cVar.f(11);
+                sb2.append(f(f10 / 45));
+                sb2.append(f(f10 % 45));
+                i7 -= 2;
+            } else {
+                throw bc.c.a();
+            }
         }
-        this.f12239a = this.f12240b;
-        this.f12240b = read;
-        return read;
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i3, int i10) {
-        bArr.getClass();
-        if (i3 < 0 || i10 < 0 || i10 > bArr.length - i3) {
-            throw new IndexOutOfBoundsException();
+        if (i7 == 1) {
+            if (cVar.d() >= 6) {
+                sb2.append(f(cVar.f(6)));
+            } else {
+                throw bc.c.a();
+            }
         }
-        if (i10 == 0) {
-            return 0;
-        }
-        int read = read();
-        if (read == -1) {
-            return -1;
-        }
-        bArr[i3] = (byte) read;
-        int i11 = 1;
-        while (true) {
-            if (i11 < i10) {
-                try {
-                    int read2 = read();
-                    if (read2 == -1) {
-                        break;
+        if (z9) {
+            for (int length = sb2.length(); length < sb2.length(); length++) {
+                if (sb2.charAt(length) == '%') {
+                    if (length < sb2.length() - 1) {
+                        int i10 = length + 1;
+                        if (sb2.charAt(i10) == '%') {
+                            sb2.deleteCharAt(i10);
+                        }
                     }
-                    bArr[i3 + i11] = (byte) read2;
-                    i11++;
-                } catch (IOException unused) {
+                    sb2.setCharAt(length, (char) 29);
                 }
             }
-            return i11;
         }
-        return i11;
+    }
+
+    public static void b(cc.c r24, java.lang.StringBuilder r25, int r26, cc.d r27, java.util.ArrayList r28) {
+        throw new UnsupportedOperationException("Method not decompiled: gc.a.b(cc.c, java.lang.StringBuilder, int, cc.d, java.util.ArrayList):void");
+    }
+
+    public static void c(cc.c cVar, StringBuilder sb2, int i7) {
+        int i10;
+        if (j.f6076c != null) {
+            if (i7 * 13 <= cVar.d()) {
+                byte[] bArr = new byte[i7 * 2];
+                int i11 = 0;
+                while (i7 > 0) {
+                    int f10 = cVar.f(13);
+                    int i12 = (f10 % 96) | ((f10 / 96) << 8);
+                    if (i12 < 2560) {
+                        i10 = 41377;
+                    } else {
+                        i10 = 42657;
+                    }
+                    int i13 = i12 + i10;
+                    bArr[i11] = (byte) ((i13 >> 8) & 255);
+                    bArr[i11 + 1] = (byte) (i13 & 255);
+                    i11 += 2;
+                    i7--;
+                }
+                sb2.append(new String(bArr, j.f6076c));
+                return;
+            }
+            throw bc.c.a();
+        }
+        throw bc.c.a();
+    }
+
+    public static void d(cc.c cVar, StringBuilder sb2, int i7) {
+        int i10;
+        if (j.f6075b != null) {
+            if (i7 * 13 <= cVar.d()) {
+                byte[] bArr = new byte[i7 * 2];
+                int i11 = 0;
+                while (i7 > 0) {
+                    int f10 = cVar.f(13);
+                    int i12 = (f10 % 192) | ((f10 / 192) << 8);
+                    if (i12 < 7936) {
+                        i10 = 33088;
+                    } else {
+                        i10 = 49472;
+                    }
+                    int i13 = i12 + i10;
+                    bArr[i11] = (byte) (i13 >> 8);
+                    bArr[i11 + 1] = (byte) i13;
+                    i11 += 2;
+                    i7--;
+                }
+                sb2.append(new String(bArr, j.f6075b));
+                return;
+            }
+            throw bc.c.a();
+        }
+        throw bc.c.a();
+    }
+
+    public static void e(cc.c cVar, StringBuilder sb2, int i7) {
+        while (i7 >= 3) {
+            if (cVar.d() >= 10) {
+                int f10 = cVar.f(10);
+                if (f10 < 1000) {
+                    sb2.append(f(f10 / 100));
+                    sb2.append(f((f10 / 10) % 10));
+                    sb2.append(f(f10 % 10));
+                    i7 -= 3;
+                } else {
+                    throw bc.c.a();
+                }
+            } else {
+                throw bc.c.a();
+            }
+        }
+        if (i7 == 2) {
+            if (cVar.d() >= 7) {
+                int f11 = cVar.f(7);
+                if (f11 < 100) {
+                    sb2.append(f(f11 / 10));
+                    sb2.append(f(f11 % 10));
+                    return;
+                }
+                throw bc.c.a();
+            }
+            throw bc.c.a();
+        } else if (i7 == 1) {
+            if (cVar.d() >= 4) {
+                int f12 = cVar.f(4);
+                if (f12 < 10) {
+                    sb2.append(f(f12));
+                    return;
+                }
+                throw bc.c.a();
+            }
+            throw bc.c.a();
+        }
+    }
+
+    public static char f(int i7) {
+        char[] cArr = f13790a;
+        if (i7 < cArr.length) {
+            return cArr[i7];
+        }
+        throw bc.c.a();
     }
 }

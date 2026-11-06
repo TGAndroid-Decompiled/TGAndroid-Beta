@@ -1,56 +1,80 @@
 package org.telegram.ui.Components;
-public final class t90 extends ni.l {
-    public int W;
-    public Runnable X;
-    public final x90 Y;
 
-    public t90(x90 x90Var, ci.j1 j1Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(null, j1Var, e6Var);
-        this.Y = x90Var;
-        this.W = -1;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_stars;
+public final class t90 implements View.OnClickListener {
+    public final int f38301a;
+    public final boolean f38302b;
+    public final FrameLayout f38303c;
+    public final Object d;
+    public final Object f38304e;
+    public final Object f38305f;
+
+    public t90(FrameLayout frameLayout, boolean z9, Object obj, Object obj2, Object obj3, int i7) {
+        this.f38301a = i7;
+        this.f38303c = frameLayout;
+        this.f38302b = z9;
+        this.d = obj;
+        this.f38304e = obj2;
+        this.f38305f = obj3;
     }
 
     @Override
-    public final void N() {
-        super.N();
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
+    public final void onClick(View view) {
+        int i7 = this.f38301a;
+        Object obj = this.f38305f;
+        Object obj2 = this.f38304e;
+        Object obj3 = this.d;
+        boolean z9 = this.f38302b;
+        FrameLayout frameLayout = this.f38303c;
+        switch (i7) {
+            case 0:
+                ca0 ca0Var = (ca0) frameLayout;
+                Context context = (Context) obj3;
+                ha0 ha0Var = (ha0) obj2;
+                ha0 ha0Var2 = (ha0) obj;
+                ia0 ia0Var = ca0Var.f32503c0;
+                org.telegram.messenger.mj mjVar = ia0Var.d;
+                if (!z9) {
+                    new hc(ia0Var, ia0Var.F).Q(2131624216, 36, org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131750584, null), new r90(ca0Var, context, 0))).j();
+                    return;
+                }
+                boolean z10 = mjVar.f24026k;
+                mjVar.f24026k = !z10;
+                ia0Var.f34585y = false;
+                if (z10) {
+                    mjVar.f24027l = false;
+                    if (ha0Var != null) {
+                        ha0Var.a(false, true);
+                    }
+                }
+                ha0Var2.a(mjVar.f24026k, true);
+                ca0Var.i();
+                ca0Var.l(true);
+                return;
+            default:
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj3;
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
+                k60 k60Var = (k60) obj;
+                up0 up0Var = ((zh.a2) frameLayout).f60081a;
+                if (!z9) {
+                    bi.t9 t9Var = up0Var.f60190e;
+                    int i10 = tL_starGiftCollection.collection_id;
+                    t9Var.getClass();
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(savedStarGift);
+                    t9Var.a(i10, arrayList);
+                    hc.a0(up0Var.f60187a).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131750392, bi.k7.A1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                } else {
+                    up0Var.f60190e.k(tL_starGiftCollection.collection_id, savedStarGift);
+                    hc.a0(up0Var.f60187a).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131750036, bi.k7.A1(savedStarGift.gift), tL_starGiftCollection.title))).j();
+                }
+                k60Var.u();
+                up0Var.o();
+                return;
         }
-        s90 s90Var = new s90(this, 0);
-        this.X = s90Var;
-        org.telegram.messenger.g0.h3(s90Var);
-        x90 x90Var = this.Y;
-        if (x90Var.W) {
-            x90Var.W = false;
-            org.telegram.messenger.g0.h3(new s90(this, 1));
-        }
-    }
-
-    @Override
-    public final void W() {
-        da0 da0Var = this.Y.f40291d0;
-        org.telegram.messenger.g0.r(da0Var.E);
-        da0Var.E.run();
-        if (this.W == -1) {
-            this.W = org.telegram.messenger.hs.f(da0Var.f33042x).q(null, this.W, false);
-        }
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-            this.X = null;
-        }
-    }
-
-    @Override
-    public final void g() {
-        super.g();
-        Runnable runnable = this.X;
-        if (runnable != null) {
-            org.telegram.messenger.g0.r(runnable);
-        }
-        s90 s90Var = new s90(this, 2);
-        this.X = s90Var;
-        org.telegram.messenger.g0.h3(s90Var);
     }
 }

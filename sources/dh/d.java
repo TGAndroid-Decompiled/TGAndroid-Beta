@@ -1,153 +1,210 @@
 package dh;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapShader;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ComposeShader;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ac;
-import org.telegram.messenger.h10;
-import org.telegram.messenger.lc;
-import org.telegram.messenger.li;
-import org.telegram.messenger.zi;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ch0;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.fx;
-public final class d {
-    public static int f8971m;
-    public g5 f8972a;
-    public Rect f8973b;
-    public ArrayList f8974c;
-    public View d;
-    public long f8975e;
-    public boolean f8976f;
-    public boolean f8977g;
-    public int h;
-    public boolean f8978i;
-    public ImageReceiver f8979j;
-    public int f8980k;
-    public long f8981l;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
+import java.util.HashSet;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.a6;
+public final class d extends Drawable implements a6 {
+    public final Paint D;
+    public int E;
+    public boolean F;
+    public int G;
+    public final Paint f8711a;
+    public final fh.g f8712b;
+    public final Matrix f8713c;
+    public LinearGradient d;
+    public final Matrix f8714e;
+    public LinearGradient f8715f;
+    public BitmapShader h;
+    public ComposeShader f8716n;
+    public final Matrix f8717r;
+    public final Paint f8718s;
+    public Bitmap f8719w;
+    public int f8720x;
+    public boolean f8721y;
 
-    public static d a(g5 g5Var, boolean z10, boolean z11) {
-        int i3 = h10.f22829t0;
-        ?? obj = new Object();
-        obj.f8973b = new Rect();
-        obj.f8974c = new ArrayList();
-        obj.f8977g = true;
-        obj.f8980k = -1;
-        obj.f8972a = g5Var;
-        obj.f8976f = z10;
-        obj.h = i3;
-        obj.f8978i = z11;
-        obj.f8975e = System.currentTimeMillis();
-        if (z11 && lc.e(4112)) {
-            ImageReceiver imageReceiver = new ImageReceiver(null);
-            obj.f8979j = imageReceiver;
-            if (z10) {
-                imageReceiver.f21230b = true;
-            }
+    public d(fh.g gVar) {
+        Paint paint = new Paint(1);
+        this.f8711a = paint;
+        this.f8713c = new Matrix();
+        this.f8714e = new Matrix();
+        this.f8717r = new Matrix();
+        Paint paint2 = new Paint(1);
+        this.f8718s = paint2;
+        a5.b bVar = new a5.b(this, 3);
+        this.D = new Paint(1);
+        this.G = 255;
+        this.f8712b = gVar;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        paint2.setFilterBitmap(true);
+        b(g0.L(40.0f), false);
+        gVar.setCallback(bVar);
+    }
+
+    public static LinearGradient a(int i7, boolean z9) {
+        int alpha = Color.alpha(i7);
+        if (z9) {
+            return new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.o(i7, 0), i0.a.o(i7, (alpha * 96) / 285), i0.a.o(i7, (alpha * 176) / 285), i0.a.o(i7, (alpha * 232) / 285)}, (float[]) null, Shader.TileMode.CLAMP);
         }
-        return obj;
+        return new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.o(i7, 0), i0.a.o(i7, (alpha * 96) / 255), i0.a.o(i7, (alpha * 176) / 255), i0.a.o(i7, (alpha * 232) / 255), i0.a.o(i7, (alpha * 255) / 255)}, (float[]) null, Shader.TileMode.CLAMP);
     }
 
-    public final void b(android.graphics.Canvas r18) {
-        throw new UnsupportedOperationException("Method not decompiled: dh.d.b(android.graphics.Canvas):void");
-    }
-
-    public final boolean c() {
-        if (System.currentTimeMillis() - this.f8975e > 2500) {
-            return true;
+    public final void b(int i7, boolean z9) {
+        if (this.f8720x == i7 && this.f8721y == z9) {
+            return;
         }
-        return false;
-    }
-
-    public final void d(View view) {
-        this.f8972a.n(view);
-        ImageReceiver imageReceiver = this.f8979j;
-        if (imageReceiver != null) {
-            imageReceiver.R();
-            imageReceiver.f();
+        this.f8720x = i7;
+        this.f8721y = z9;
+        LinearGradient a10 = a(-16777216, z9);
+        this.d = a10;
+        this.f8711a.setShader(a10);
+        this.D.setShader(null);
+        Matrix matrix = this.f8713c;
+        matrix.reset();
+        matrix.setScale(1.0f, i7);
+        if (i7 < 0) {
+            matrix.postTranslate(0.0f, -i7);
         }
+        this.d.setLocalMatrix(matrix);
     }
 
-    public final void e(int i3, int i10, int i11, int i12) {
-        Rect rect = this.f8973b;
-        rect.set(i3, i10, i11, i12);
-        ImageReceiver imageReceiver = this.f8979j;
-        if (imageReceiver != null) {
-            imageReceiver.z0(rect);
-        }
-    }
-
-    public final void f(View view) {
-        boolean z10;
-        boolean z11;
-        TLRPC.TL_availableReaction tL_availableReaction;
-        TLRPC.Document document;
-        boolean z12 = this.f8976f;
-        int i3 = this.h;
-        g5 g5Var = this.f8972a;
-        g5Var.a(view);
-        this.d = view;
-        ImageReceiver imageReceiver = this.f8979j;
-        if (imageReceiver != null && this.f8978i) {
-            imageReceiver.P();
-            TLRPC.Document document2 = g5Var.f33966e;
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
-            String V = zi.V(document2, null, null);
-            if (V != null && (tL_availableReaction = (TLRPC.TL_availableReaction) li.b0(i3).f24045r.get(V)) != null && (document = tL_availableReaction.around_animation) != null) {
-                if (z12) {
-                    StringBuilder sb2 = new StringBuilder();
-                    int i10 = f8971m;
-                    f8971m = i10 + 1;
-                    imageReceiver.f21278w1 = a1.g.o(i10, " ", sb2);
-                    int f10 = fx.f();
-                    TLRPC.Document document3 = tL_availableReaction.around_animation;
-                    z10 = true;
-                    imageReceiver.q0(ac.b(tL_availableReaction.around_animation), f10 + "_" + f10 + "_pcache_compress", null, null, document3, 0);
-                } else {
-                    ac b10 = ac.b(document);
-                    String a10 = j0.a();
-                    TLRPC.Document document4 = tL_availableReaction.around_animation;
-                    z10 = true;
-                    imageReceiver.q0(b10, a10, null, null, document4, 0);
+    @Override
+    public final void draw(Canvas canvas) {
+        int i7;
+        boolean z9;
+        Rect bounds = getBounds();
+        if (!bounds.isEmpty() && this.G != 0) {
+            fh.g gVar = this.f8712b;
+            ri.a v = fh.g.v(gVar.f11537r);
+            boolean z10 = this.F;
+            Matrix matrix = this.f8713c;
+            int i10 = 0;
+            Matrix matrix2 = this.f8714e;
+            if (!z10 && (v instanceof ri.c)) {
+                int i11 = ((ri.c) v).f54447b;
+                int i12 = this.E;
+                Paint paint = this.D;
+                if (i12 != i11 || this.f8715f == null) {
+                    LinearGradient a10 = a(i11, this.f8721y);
+                    this.f8715f = a10;
+                    this.E = i11;
+                    paint.setShader(a10);
                 }
-                z11 = z10;
-            } else {
-                z10 = true;
-                z11 = false;
-            }
-            if (!z11) {
-                String str = h10.i(i3).f22839e0;
-                if (str != null && (tL_messages_stickerSet = li.b0(i3).p0(str)) == null) {
-                    tL_messages_stickerSet = li.b0(i3).n0(str);
+                if (this.f8720x < 0) {
+                    i10 = bounds.height() + this.f8720x;
                 }
-                if (tL_messages_stickerSet != null) {
-                    if (this.f8980k < 0) {
-                        this.f8980k = Math.abs(((int) Utilities.f21386c.nextLong()) % tL_messages_stickerSet.documents.size());
-                    }
-                    if (z12) {
-                        StringBuilder sb3 = new StringBuilder();
-                        int i11 = f8971m;
-                        f8971m = i11 + 1;
-                        imageReceiver.f21278w1 = a1.g.o(i11, " ", sb3);
-                        int f11 = fx.f();
-                        imageReceiver.q0(ac.b(tL_messages_stickerSet.documents.get(this.f8980k)), f11 + "_" + f11 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f8980k), 0);
+                matrix2.set(matrix);
+                matrix2.postTranslate(bounds.left, bounds.top + i10);
+                this.f8715f.setLocalMatrix(matrix2);
+                paint.setAlpha(this.G);
+                canvas.drawRect(bounds, paint);
+            } else if (!z10 && (v instanceof ri.b) && (i7 = Build.VERSION.SDK_INT) >= 28) {
+                ri.b bVar = (ri.b) v;
+                Bitmap bitmap = bVar.d;
+                if (bitmap != null) {
+                    boolean z11 = true;
+                    if (this.E == -16777216 && this.f8715f != null) {
+                        z9 = false;
                     } else {
-                        imageReceiver.q0(ac.b(tL_messages_stickerSet.documents.get(this.f8980k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f8980k), 0);
+                        this.f8715f = a(-16777216, this.f8721y);
+                        this.E = -16777216;
+                        z9 = true;
                     }
-                    z11 = z10;
+                    if (this.h != null && this.f8719w == bitmap) {
+                        z11 = z9;
+                    } else {
+                        this.f8719w = bitmap;
+                        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
+                        BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
+                        this.h = bitmapShader;
+                        if (i7 >= 33) {
+                            bitmapShader.setFilterMode(2);
+                        }
+                    }
+                    Paint paint2 = this.f8718s;
+                    if (z11 || this.f8716n == null) {
+                        ComposeShader composeShader = new ComposeShader(this.h, this.f8715f, PorterDuff.Mode.DST_IN);
+                        this.f8716n = composeShader;
+                        paint2.setShader(composeShader);
+                    }
+                    if (this.f8720x < 0) {
+                        i10 = bounds.height() + this.f8720x;
+                    }
+                    matrix2.set(matrix);
+                    matrix2.postTranslate(bounds.left, bounds.top + i10);
+                    this.f8715f.setLocalMatrix(matrix2);
+                    Matrix matrix3 = bVar.f54441b;
+                    Matrix matrix4 = this.f8717r;
+                    matrix4.set(matrix3);
+                    matrix4.postTranslate(-gVar.d, -gVar.f21074e);
+                    this.h.setLocalMatrix(matrix4);
+                    paint2.setAlpha(this.G);
+                    canvas.drawRect(bounds, paint2);
                 }
-            }
-            if (z11) {
-                if (imageReceiver.B() != null) {
-                    imageReceiver.B().N(0, false, z10);
+            } else {
+                int saveLayerAlpha = canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, this.G);
+                if (this.f8720x < 0) {
+                    i10 = bounds.height() + this.f8720x;
                 }
-                imageReceiver.W(0);
-                return;
+                gVar.draw(canvas);
+                canvas.translate(bounds.left, bounds.top + i10);
+                canvas.drawRect(0.0f, -i10, bounds.width(), bounds.height() - i10, this.f8711a);
+                canvas.restoreToCount(saveLayerAlpha);
             }
-            imageReceiver.w0(new ch0(2131623994, org.telegram.messenger.g0.L(60.0f), org.telegram.messenger.g0.L(60.0f), false, null));
         }
+    }
+
+    @Override
+    public final int getAlpha() {
+        return this.G;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        this.f8712b.setBounds(rect);
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.G = i7;
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.f8712b.updateColors();
+            invalidateSelf();
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

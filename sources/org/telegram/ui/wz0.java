@@ -1,23 +1,43 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-public final class wz0 extends c11 {
-    public final View R;
-    public final TL_stars.TL_starGiftUnique S;
-    public final xz0 T;
+import android.animation.ValueAnimator;
+public final class wz0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f51674a;
+    public final q11 f51675b;
+    public final boolean f51676c;
 
-    public wz0(xz0 xz0Var, Context context, Runnable runnable, View view, q01 q01Var, org.telegram.ui.ActionBar.e6 e6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(xz0Var.f52134e, context, runnable, view, q01Var, e6Var);
-        this.T = xz0Var;
-        this.R = view2;
-        this.S = tL_starGiftUnique;
+    public wz0(q11 q11Var, boolean z9, int i7) {
+        this.f51674a = i7;
+        this.f51675b = q11Var;
+        this.f51676c = z9;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.T.f52134e.Y0 = null;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f51674a) {
+            case 0:
+                q11 q11Var = this.f51675b;
+                o01 o01Var = q11Var.f49008h0;
+                e01 e01Var = q11Var.f49010i0;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!this.f51676c) {
+                    floatValue = 1.0f - floatValue;
+                }
+                float f10 = 1.0f - floatValue;
+                o01Var.setAlpha(f10);
+                o01Var.setTranslationY(org.telegram.messenger.g0.L(8.0f) * floatValue);
+                e01Var.setAlpha(floatValue);
+                e01Var.setTranslationY(org.telegram.messenger.g0.L(8.0f) * f10);
+                q11Var.f49012j0.setAlpha(e01Var.getAlpha() * floatValue);
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                if (!this.f51676c) {
+                    floatValue2 = 1.0f - floatValue2;
+                }
+                q11 q11Var2 = this.f51675b;
+                q11Var2.f49012j0.setAlpha(q11Var2.f49010i0.getAlpha() * floatValue2);
+                return;
+        }
     }
 }

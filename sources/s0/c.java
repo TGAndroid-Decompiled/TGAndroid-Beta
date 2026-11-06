@@ -3,14 +3,14 @@ package s0;
 import android.os.Build;
 import android.view.accessibility.AccessibilityNodeInfo;
 public final class c {
-    public static final c f54563c;
+    public static final c f54477c;
     public static final c d;
-    public static final c f54564e;
-    public static final c f54565f;
-    public static final c f54566g;
+    public static final c f54478e;
+    public static final c f54479f;
+    public static final c f54480g;
     public static final c h;
-    public final Object f54567a;
-    public final int f54568b;
+    public final Object f54481a;
+    public final int f54482b;
 
     static {
         AccessibilityNodeInfo.AccessibilityAction accessibilityAction;
@@ -32,7 +32,7 @@ public final class c {
         new c(null, 2, null, null);
         new c(null, 4, null, null);
         new c(null, 8, null, null);
-        f54563c = new c(null, 16, null, null);
+        f54477c = new c(null, 16, null, null);
         new c(null, 32, null, null);
         new c(null, 64, null, null);
         new c(null, 128, null, null);
@@ -41,7 +41,7 @@ public final class c {
         new c(null, 1024, null, g.class);
         new c(null, 2048, null, g.class);
         d = new c(null, 4096, null, null);
-        f54564e = new c(null, 8192, null, null);
+        f54478e = new c(null, 8192, null, null);
         new c(null, 16384, null, null);
         new c(null, 32768, null, null);
         new c(null, 65536, null, null);
@@ -50,112 +50,112 @@ public final class c {
         new c(null, 524288, null, null);
         new c(null, 1048576, null, null);
         new c(null, 2097152, null, l.class);
-        int i3 = Build.VERSION.SDK_INT;
+        int i7 = Build.VERSION.SDK_INT;
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_ON_SCREEN, 16908342, null, null);
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_TO_POSITION, 16908343, null, i.class);
-        f54565f = new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_UP, 16908344, null, null);
+        f54479f = new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_UP, 16908344, null, null);
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_LEFT, 16908345, null, null);
-        f54566g = new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN, 16908346, null, null);
+        f54480g = new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_DOWN, 16908346, null, null);
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_RIGHT, 16908347, null, null);
-        if (i3 >= 29) {
+        if (i7 >= 29) {
             accessibilityAction = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_UP;
         } else {
             accessibilityAction = null;
         }
         new c(accessibilityAction, 16908358, null, null);
-        if (i3 >= 29) {
+        if (i7 >= 29) {
             accessibilityAction2 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_DOWN;
         } else {
             accessibilityAction2 = null;
         }
         new c(accessibilityAction2, 16908359, null, null);
-        if (i3 >= 29) {
+        if (i7 >= 29) {
             accessibilityAction3 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_LEFT;
         } else {
             accessibilityAction3 = null;
         }
         new c(accessibilityAction3, 16908360, null, null);
-        if (i3 >= 29) {
+        if (i7 >= 29) {
             accessibilityAction4 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PAGE_RIGHT;
         } else {
             accessibilityAction4 = null;
         }
         new c(accessibilityAction4, 16908361, null, null);
         new c(AccessibilityNodeInfo.AccessibilityAction.ACTION_CONTEXT_CLICK, 16908348, null, null);
-        if (i3 >= 24) {
+        if (i7 >= 24) {
             accessibilityAction5 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SET_PROGRESS;
         } else {
             accessibilityAction5 = null;
         }
         h = new c(accessibilityAction5, 16908349, null, j.class);
-        if (i3 >= 26) {
+        if (i7 >= 26) {
             accessibilityAction6 = AccessibilityNodeInfo.AccessibilityAction.ACTION_MOVE_WINDOW;
         } else {
             accessibilityAction6 = null;
         }
         new c(accessibilityAction6, 16908354, null, h.class);
-        if (i3 >= 28) {
+        if (i7 >= 28) {
             accessibilityAction7 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_TOOLTIP;
         } else {
             accessibilityAction7 = null;
         }
         new c(accessibilityAction7, 16908356, null, null);
-        if (i3 >= 28) {
+        if (i7 >= 28) {
             accessibilityAction8 = AccessibilityNodeInfo.AccessibilityAction.ACTION_HIDE_TOOLTIP;
         } else {
             accessibilityAction8 = null;
         }
         new c(accessibilityAction8, 16908357, null, null);
-        if (i3 >= 30) {
+        if (i7 >= 30) {
             accessibilityAction9 = AccessibilityNodeInfo.AccessibilityAction.ACTION_PRESS_AND_HOLD;
         } else {
             accessibilityAction9 = null;
         }
         new c(accessibilityAction9, 16908362, null, null);
-        if (i3 >= 30) {
+        if (i7 >= 30) {
             accessibilityAction10 = AccessibilityNodeInfo.AccessibilityAction.ACTION_IME_ENTER;
         } else {
             accessibilityAction10 = null;
         }
         new c(accessibilityAction10, 16908372, null, null);
-        if (i3 >= 32) {
+        if (i7 >= 32) {
             accessibilityAction11 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_START;
         } else {
             accessibilityAction11 = null;
         }
         new c(accessibilityAction11, 16908373, null, null);
-        if (i3 >= 32) {
+        if (i7 >= 32) {
             accessibilityAction12 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_DROP;
         } else {
             accessibilityAction12 = null;
         }
         new c(accessibilityAction12, 16908374, null, null);
-        if (i3 >= 32) {
+        if (i7 >= 32) {
             accessibilityAction13 = AccessibilityNodeInfo.AccessibilityAction.ACTION_DRAG_CANCEL;
         } else {
             accessibilityAction13 = null;
         }
         new c(accessibilityAction13, 16908375, null, null);
-        if (i3 >= 33) {
+        if (i7 >= 33) {
             accessibilityAction14 = AccessibilityNodeInfo.AccessibilityAction.ACTION_SHOW_TEXT_SUGGESTIONS;
         } else {
             accessibilityAction14 = null;
         }
         new c(accessibilityAction14, 16908376, null, null);
-        if (i3 >= 34) {
-            accessibilityAction15 = g1.a.e();
+        if (i7 >= 34) {
+            accessibilityAction15 = h1.a.e();
         } else {
             accessibilityAction15 = null;
         }
         new c(accessibilityAction15, 16908382, null, null);
     }
 
-    public c(Object obj, int i3, CharSequence charSequence, Class cls) {
-        this.f54568b = i3;
+    public c(Object obj, int i7, CharSequence charSequence, Class cls) {
+        this.f54482b = i7;
         if (obj == null) {
-            this.f54567a = new AccessibilityNodeInfo.AccessibilityAction(i3, charSequence);
+            this.f54481a = new AccessibilityNodeInfo.AccessibilityAction(i7, charSequence);
         } else {
-            this.f54567a = obj;
+            this.f54481a = obj;
         }
     }
 
@@ -163,8 +163,8 @@ public final class c {
         if (obj == null || !(obj instanceof c)) {
             return false;
         }
-        Object obj2 = ((c) obj).f54567a;
-        Object obj3 = this.f54567a;
+        Object obj2 = ((c) obj).f54481a;
+        Object obj3 = this.f54481a;
         if (obj3 == null) {
             if (obj2 != null) {
                 return false;
@@ -178,7 +178,7 @@ public final class c {
     }
 
     public final int hashCode() {
-        Object obj = this.f54567a;
+        Object obj = this.f54481a;
         if (obj != null) {
             return obj.hashCode();
         }
@@ -187,9 +187,9 @@ public final class c {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("AccessibilityActionCompat: ");
-        String e10 = d.e(this.f54568b);
+        String e10 = d.e(this.f54482b);
         if (e10.equals("ACTION_UNKNOWN")) {
-            Object obj = this.f54567a;
+            Object obj = this.f54481a;
             if (((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel() != null) {
                 e10 = ((AccessibilityNodeInfo.AccessibilityAction) obj).getLabel().toString();
             }

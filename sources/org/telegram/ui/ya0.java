@@ -1,45 +1,36 @@
 package org.telegram.ui;
+public final class ya0 implements org.telegram.ui.Components.qt0 {
+    public final int f52159a;
+    public final org.telegram.ui.ActionBar.f2 f52160b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ya0 extends AnimatorListenerAdapter {
-    public final int f52237a;
-    public final xd0 f52238b;
-
-    public ya0(xd0 xd0Var, int i3) {
-        this.f52237a = i3;
-        this.f52238b = xd0Var;
+    public ya0(int i7, org.telegram.ui.ActionBar.f2 f2Var) {
+        this.f52159a = i7;
+        this.f52160b = f2Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f52237a) {
+    public final void K(int i7, boolean z9) {
+        qd0 qd0Var;
+        ei0 ei0Var;
+        switch (this.f52159a) {
             case 0:
-                xd0 xd0Var = this.f52238b;
-                if (xd0Var.d == animator) {
-                    xd0Var.d = null;
+                ce0 ce0Var = (ce0) this.f52160b;
+                if (i7 > org.telegram.messenger.g0.L(20.0f) && ce0Var.z1()) {
+                    org.telegram.messenger.g0.v1(ce0Var.fragmentView);
+                }
+                if (i7 <= org.telegram.messenger.g0.L(20.0f) && (qd0Var = ce0Var.T) != null) {
+                    qd0Var.run();
+                    ce0Var.T = null;
                     return;
                 }
                 return;
             default:
-                xd0 xd0Var2 = this.f52238b;
-                xd0Var2.f51950c.setVisibility(8);
-                if (xd0Var2.d == animator) {
-                    xd0Var2.d = null;
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f52160b;
+                if (i7 >= org.telegram.messenger.g0.L(20.0f) && (ei0Var = passcodeActivity.T) != null) {
+                    ei0Var.run();
+                    passcodeActivity.T = null;
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f52237a) {
-            case 0:
-                this.f52238b.f51950c.setVisibility(0);
-                return;
-            default:
-                super.onAnimationStart(animator);
                 return;
         }
     }

@@ -4,19 +4,19 @@ import android.os.Build;
 import android.widget.EdgeEffect;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-public final class os extends u4.l0 {
-    public final ns[] f36932a = new ns[4];
-    public final ArrayList f36933b = new ArrayList();
+public final class os extends v4.k0 {
+    public final ns[] f36773a = new ns[4];
+    public final ArrayList f36774b = new ArrayList();
 
     @Override
-    public final EdgeEffect a(RecyclerView recyclerView, int i3) {
-        ns nsVar = new ns(recyclerView, i3, new ls(this, 0));
-        this.f36932a[i3] = nsVar;
+    public final EdgeEffect a(RecyclerView recyclerView, int i7) {
+        ns nsVar = new ns(recyclerView, i7, new ls(this, 0));
+        this.f36773a[i7] = nsVar;
         return nsVar;
     }
 
-    public final float b(int i3) {
-        ns nsVar = this.f36932a[i3];
+    public final float b(int i7) {
+        ns nsVar = this.f36773a[i7];
         if (Build.VERSION.SDK_INT >= 31 && nsVar != null && !nsVar.isFinished()) {
             return nsVar.getDistance();
         }

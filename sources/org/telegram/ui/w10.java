@@ -1,15 +1,17 @@
 package org.telegram.ui;
-public final class w10 extends org.telegram.ui.Components.vf0 {
-    public final x30 f50665t1;
+public final class w10 extends v4.k {
+    public final c40 F;
 
-    public w10(x30 x30Var, LaunchActivity launchActivity, u20 u20Var, f30 f30Var, v10 v10Var) {
-        super(launchActivity, u20Var, f30Var, v10Var);
-        this.f50665t1 = x30Var;
+    public w10(c40 c40Var) {
+        this.F = c40Var;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f50665t1.f28586b.invalidate();
+    public final void P(v4.d1 d1Var) {
+        c40 c40Var = this.F;
+        c40Var.H1.invalidate();
+        c40Var.R3.invalidate();
+        c40Var.f28615b.invalidate();
+        c40.P0(c40Var);
     }
 }

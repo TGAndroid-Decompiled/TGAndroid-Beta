@@ -1,11 +1,21 @@
 package org.telegram.ui.Components;
-public final class lt0 {
-    public float f35877a;
-    public float f35878b;
-    public boolean f35879c;
+public final class lt0 extends r1.e {
+    public final jt0 f35736a;
+    public final kt0 f35737b;
+    public float f35738c = 1.0f;
 
-    public lt0(float f10, float f11) {
-        this.f35877a = f10;
-        this.f35878b = f11;
+    public lt0(jt0 jt0Var, kt0 kt0Var) {
+        this.f35736a = jt0Var;
+        this.f35737b = kt0Var;
+    }
+
+    @Override
+    public final float a(Object obj) {
+        return this.f35736a.get(obj) * this.f35738c;
+    }
+
+    @Override
+    public final void b(Object obj, float f10) {
+        this.f35737b.f(obj, f10 / this.f35738c);
     }
 }

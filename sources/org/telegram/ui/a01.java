@@ -1,67 +1,35 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.widget.FrameLayout;
 import java.util.ArrayList;
-public final class a01 extends AnimatorListenerAdapter {
-    public final int f43549a;
-    public final boolean f43550b;
-    public final g11 f43551c;
+import java.util.LinkedHashSet;
+import org.telegram.tgnet.TLRPC;
+public final class a01 implements org.telegram.messenger.c20 {
+    public final int f43489a;
+    public final LinkedHashSet f43490b;
+    public final Runnable f43491c;
 
-    public a01(g11 g11Var, boolean z10, int i3) {
-        this.f43549a = i3;
-        this.f43551c = g11Var;
-        this.f43550b = z10;
+    public a01(LinkedHashSet linkedHashSet, Runnable runnable, int i7) {
+        this.f43489a = i7;
+        this.f43490b = linkedHashSet;
+        this.f43491c = runnable;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        int i3;
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        int i10;
-        switch (this.f43549a) {
+    public final void a(Object obj) {
+        switch (this.f43489a) {
             case 0:
-                g11 g11Var = this.f43551c;
-                uz0 uz0Var = g11Var.f45458j0;
-                int i11 = 8;
-                boolean z10 = this.f43550b;
-                if (z10) {
-                    i3 = 0;
-                } else {
-                    i3 = 8;
+                ArrayList arrayList = (ArrayList) obj;
+                if (arrayList != null) {
+                    this.f43490b.addAll(arrayList);
                 }
-                uz0Var.setVisibility(i3);
-                e01 e01Var = g11Var.f45456i0;
-                if (!z10) {
-                    i11 = 0;
-                }
-                e01Var.setVisibility(i11);
-                g11Var.G1 = null;
-                if (!z10 && (arrayList2 = g11Var.C1) != null) {
-                    arrayList2.clear();
-                    ArrayList arrayList3 = g11Var.F1;
-                    if (arrayList3 != null) {
-                        arrayList3.clear();
-                    }
-                    g11Var.f45473r0.E(false);
-                }
-                if (!z10 && (arrayList = g11Var.D1) != null) {
-                    arrayList.clear();
-                    return;
-                }
+                this.f43491c.run();
                 return;
             default:
-                g11 g11Var2 = this.f43551c;
-                FrameLayout frameLayout = g11Var2.f45460k0;
-                if (this.f43550b && g11Var2.f45458j0.getVisibility() == 0) {
-                    i10 = 0;
-                } else {
-                    i10 = 8;
+                TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) obj;
+                if (tL_emojiList != null) {
+                    this.f43490b.addAll(tL_emojiList.document_id);
                 }
-                frameLayout.setVisibility(i10);
-                g11Var2.J1 = null;
+                this.f43491c.run();
                 return;
         }
     }

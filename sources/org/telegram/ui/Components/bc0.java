@@ -1,85 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.app.Dialog;
-import android.os.Bundle;
-import android.view.KeyEvent;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
-import java.util.WeakHashMap;
-import org.telegram.ui.LaunchActivity;
-public final class bc0 extends Dialog {
-    public final FrameLayout f32158a;
-    public final ac0 f32159b;
+import android.widget.ImageView;
+import android.widget.TextView;
+public final class bc0 extends FrameLayout {
+    public final ImageView f32102a;
+    public final TextView f32103b;
+    public final TextView f32104c;
 
-    public bc0(LaunchActivity launchActivity) {
-        super(launchActivity, 2131755352);
-        org.telegram.messenger.g0.S(getWindow());
-        FrameLayout frameLayout = new FrameLayout(launchActivity);
-        this.f32158a = frameLayout;
-        a3 a3Var = new a3(25);
-        WeakHashMap weakHashMap = r0.i0.f54015a;
-        r0.a0.i(frameLayout, a3Var);
-        ac0 ac0Var = new ac0(this, launchActivity);
-        this.f32159b = ac0Var;
-        frameLayout.addView(ac0Var, b8.mf.e(-1, -1, 119));
-    }
-
-    public static void a(bc0 bc0Var) {
-        super.dismiss();
+    public bc0(Context context) {
+        super(context);
+        ImageView imageView = new ImageView(context);
+        this.f32102a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(2131231189);
+        addView(imageView, c8.ha.e(-1, -1, 119));
+        TextView textView = new TextView(context);
+        this.f32103b = textView;
+        textView.setTypeface(org.telegram.messenger.g0.o());
+        textView.setTextColor(-1);
+        textView.setTextSize(1, 26.0f);
+        textView.setGravity(17);
+        addView(textView, c8.ha.d(-1, -2.0f, 17, 0.0f, -5.33f, 0.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f32104c = textView2;
+        textView2.setTypeface(org.telegram.messenger.g0.o());
+        textView2.setTextSize(1, 10.0f);
+        textView2.setTextColor(Integer.MAX_VALUE);
+        textView2.setGravity(17);
+        addView(textView2, c8.ha.d(-1, -2.0f, 17, 0.0f, 14.0f, 0.0f, 0.0f));
     }
 
     @Override
-    public final void dismiss() {
-        LaunchActivity launchActivity;
-        if (this.f32159b.i() && (launchActivity = LaunchActivity.K1) != null) {
-            launchActivity.moveTaskToBack(true);
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Button");
     }
 
-    @Override
-    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        LaunchActivity launchActivity;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
-            if (this.f32159b.i() && (launchActivity = LaunchActivity.K1) != null) {
-                launchActivity.moveTaskToBack(true);
+    public void setImage(int i7) {
+        ImageView imageView = this.f32102a;
+        imageView.setVisibility(0);
+        this.f32103b.setVisibility(8);
+        this.f32104c.setVisibility(8);
+        imageView.setImageResource(i7);
+    }
+
+    public void setNum(int i7) {
+        this.f32102a.setVisibility(8);
+        TextView textView = this.f32103b;
+        textView.setVisibility(0);
+        TextView textView2 = this.f32104c;
+        textView2.setVisibility(0);
+        String str = "";
+        textView.setText("" + i7);
+        if (i7 != 0) {
+            switch (i7) {
+                case 2:
+                    str = "ABC";
+                    break;
+                case 3:
+                    str = "DEF";
+                    break;
+                case 4:
+                    str = "GHI";
+                    break;
+                case 5:
+                    str = "JKL";
+                    break;
+                case 6:
+                    str = "MNO";
+                    break;
+                case 7:
+                    str = "PQRS";
+                    break;
+                case 8:
+                    str = "TUV";
+                    break;
+                case 9:
+                    str = "WXYZ";
+                    break;
             }
-            return true;
+        } else {
+            str = "+";
         }
-        return super.dispatchKeyEvent(keyEvent);
-    }
-
-    @Override
-    public final void onBackPressed() {
-        LaunchActivity launchActivity;
-        if (this.f32159b.i() && (launchActivity = LaunchActivity.K1) != null) {
-            launchActivity.moveTaskToBack(true);
-        }
-    }
-
-    @Override
-    public final void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        Window window = getWindow();
-        window.setWindowAnimations(2131755178);
-        ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        FrameLayout frameLayout = this.f32158a;
-        setContentView(frameLayout, layoutParams);
-        WindowManager.LayoutParams attributes = window.getAttributes();
-        attributes.width = -1;
-        attributes.height = -1;
-        attributes.gravity = 119;
-        attributes.dimAmount = 0.0f;
-        int i3 = attributes.flags & (-3);
-        attributes.flags = i3;
-        attributes.softInputMode = 16;
-        boolean z10 = org.telegram.messenger.r2.f25040a;
-        attributes.flags = i3 | 8192;
-        org.telegram.messenger.g0.h2();
-        attributes.flags |= -2013198976;
-        window.setAttributes(attributes);
-        frameLayout.setSystemUiVisibility(256);
-        org.telegram.messenger.g0.n3(this, false);
+        textView2.setText(str);
     }
 }

@@ -1,19 +1,21 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class jp implements Runnable {
-    public final int f23694a;
-    public final qr f23695b;
-    public final ArrayList f23696c;
+import java.util.HashSet;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+public final class jp {
+    public final int f23569a;
+    public final HashSet f23570b = new HashSet();
+    public boolean f23571c;
+    public boolean d;
 
-    public jp(qr qrVar, ArrayList arrayList, int i3) {
-        this.f23694a = i3;
-        this.f23695b = qrVar;
-        this.f23696c = arrayList;
-    }
-
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.jp.run():void");
+    public jp(int i7) {
+        this.f23569a = i7;
+        if (!this.f23571c && !this.d) {
+            this.f23571c = true;
+            TL_account.getSavedMusicIds getsavedmusicids = new TL_account.getSavedMusicIds();
+            getsavedmusicids.hash = 0L;
+            ConnectionsManager.getInstance(i7).sendRequest(getsavedmusicids, new s1(this, 5));
+        }
     }
 }

@@ -1,6 +1,12 @@
 package g9;
+public abstract class g extends d {
+    public final String f13589a;
 
-import b8.ah;
-import java.util.RandomAccess;
-public final class g extends ah implements RandomAccess {
+    public g(String str) {
+        this.f13589a = str;
+    }
+
+    public final String toString() {
+        return this.f13589a;
+    }
 }

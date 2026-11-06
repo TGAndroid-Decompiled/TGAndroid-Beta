@@ -1,25 +1,80 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class dx0 implements org.telegram.ui.Components.hj0, org.telegram.ui.ActionBar.p1 {
-    public final ProxyListActivity f44825a;
+import android.content.SharedPreferences;
+import org.telegram.tgnet.TLRPC;
+public final class dx0 extends org.telegram.ui.ActionBar.j {
+    public final String f45127a;
+    public final gx0 f45128b;
 
-    public dx0(ProxyListActivity proxyListActivity) {
-        this.f44825a = proxyListActivity;
+    public dx0(gx0 gx0Var, String str) {
+        this.f45128b = gx0Var;
+        this.f45127a = str;
     }
 
     @Override
-    public boolean f(int i3, View view) {
-        ProxyListActivity proxyListActivity = this.f44825a;
-        if (i3 >= proxyListActivity.f41909n && i3 < proxyListActivity.f41910r) {
-            proxyListActivity.f41904a.M(i3);
-            return true;
+    public final void b(int i7) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        gx0 gx0Var = this.f45128b;
+        long j3 = gx0Var.h;
+        long j10 = gx0Var.f46115f;
+        String str = this.f45127a;
+        if (i7 == -1) {
+            if (!gx0Var.f46116n && gx0Var.f46117r) {
+                i16 = ((org.telegram.ui.ActionBar.f2) gx0Var).currentAccount;
+                SharedPreferences.Editor edit = org.telegram.messenger.qp.s1(i16).f24749d7.edit();
+                edit.putInt("notify2_" + str, 0).apply();
+            }
+        } else if (i7 == 1) {
+            i10 = ((org.telegram.ui.ActionBar.f2) gx0Var).currentAccount;
+            SharedPreferences sharedPreferences = org.telegram.messenger.qp.s1(i10).f24749d7;
+            SharedPreferences.Editor edit2 = sharedPreferences.edit();
+            edit2.putBoolean("custom_" + str, true);
+            i11 = ((org.telegram.ui.ActionBar.f2) gx0Var).currentAccount;
+            TLRPC.Dialog dialog = (TLRPC.Dialog) org.telegram.messenger.qp.s1(i11).Q.f(j10);
+            if (gx0Var.f46117r) {
+                edit2.putInt("notify2_" + str, 0);
+                if (j3 == 0) {
+                    i15 = ((org.telegram.ui.ActionBar.f2) gx0Var).currentAccount;
+                    org.telegram.messenger.yr.a0(i15).E1(j10, 0L);
+                    if (dialog != null) {
+                        dialog.notify_settings = new TLRPC.TL_peerNotifySettings();
+                    }
+                }
+            } else {
+                edit2.putInt("notify2_" + str, 2);
+                if (j3 == 0) {
+                    i12 = ((org.telegram.ui.ActionBar.f2) gx0Var).currentAccount;
+                    org.telegram.messenger.dt.t(i12).N(j10);
+                    i13 = ((org.telegram.ui.ActionBar.f2) gx0Var).currentAccount;
+                    org.telegram.messenger.yr.a0(i13).E1(j10, 1L);
+                    if (dialog != null) {
+                        TLRPC.TL_peerNotifySettings tL_peerNotifySettings = new TLRPC.TL_peerNotifySettings();
+                        dialog.notify_settings = tL_peerNotifySettings;
+                        tL_peerNotifySettings.mute_until = Integer.MAX_VALUE;
+                    }
+                }
+            }
+            edit2.apply();
+            i14 = ((org.telegram.ui.ActionBar.f2) gx0Var).currentAccount;
+            org.telegram.messenger.dt.t(i14).c0(gx0Var.f46115f, gx0Var.h, true);
+            if (gx0Var.f46118s != null) {
+                ?? obj = new Object();
+                obj.d = j10;
+                obj.f48385b = true;
+                int c10 = org.telegram.messenger.k5.c("notify2_", str, sharedPreferences, 0);
+                obj.f48386c = c10;
+                if (c10 != 0) {
+                    obj.f48384a = org.telegram.messenger.k5.c("notifyuntil_", str, sharedPreferences, 0);
+                }
+                gx0Var.f46118s.t(obj);
+            }
         }
-        return false;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        ProxyListActivity.a0(this.f44825a);
+        gx0Var.finishFragment();
     }
 }

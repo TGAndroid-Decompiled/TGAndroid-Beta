@@ -1,50 +1,61 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.RectF;
 import android.widget.FrameLayout;
-public final class t61 extends AnimatorListenerAdapter {
-    public final boolean f49718a;
-    public final int f49719b;
-    public final int f49720c;
-    public final boolean d;
-    public final l71 f49721e;
+public final class t61 extends FrameLayout {
+    public final int f49933a;
+    public final RectF f49934b;
+    public final u71 f49935c;
 
-    public t61(l71 l71Var, boolean z10, int i3, int i10, boolean z11) {
-        this.f49721e = l71Var;
-        this.f49718a = z10;
-        this.f49719b = i3;
-        this.f49720c = i10;
-        this.d = z11;
+    public t61(u71 u71Var, Context context, int i7) {
+        super(context);
+        this.f49933a = i7;
+        switch (i7) {
+            case 1:
+                this.f49935c = u71Var;
+                super(context);
+                this.f49934b = new RectF();
+                return;
+            default:
+                this.f49935c = u71Var;
+                this.f49934b = new RectF();
+                return;
+        }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        l71 l71Var = this.f49721e;
-        FrameLayout[] frameLayoutArr = l71Var.N0;
-        l71Var.f47196t1 = null;
-        int i3 = this.f49720c;
-        int i10 = this.f49719b;
-        boolean z10 = this.f49718a;
-        if (z10 && frameLayoutArr[i10].getVisibility() == 0) {
-            frameLayoutArr[i10].setAlpha(1.0f);
-            frameLayoutArr[i10].setVisibility(4);
-        } else if (!z10) {
-            frameLayoutArr[i3].setVisibility(4);
-        }
-        int i11 = l71Var.f47145b;
-        char c2 = 2;
-        if (i11 != 1 && i11 != 2) {
-            if (i3 == 1) {
-                frameLayoutArr[i10].setAlpha(0.0f);
+    public final void onDraw(Canvas canvas) {
+        switch (this.f49933a) {
+            case 0:
+                RectF rectF = this.f49934b;
+                rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                u71 u71Var = this.f49935c;
+                t61 t61Var = u71Var.E0;
+                k71 k71Var = u71Var.f50310y0;
+                v61 v61Var = u71Var.f50244a;
+                org.telegram.ui.ActionBar.k6.t(t61Var, k71Var, v61Var);
+                canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, v61Var.d("paintChatActionBackground"));
+                if (org.telegram.ui.ActionBar.k6.d1()) {
+                    canvas.drawRoundRect(rectF, getMeasuredHeight() / 2, getMeasuredHeight() / 2, v61Var.d("paintChatActionBackgroundDarken"));
+                    return;
+                }
                 return;
-            }
-            return;
+            default:
+                RectF rectF2 = this.f49934b;
+                rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                u71 u71Var2 = this.f49935c;
+                t61 t61Var2 = u71Var2.F0;
+                k71 k71Var2 = u71Var2.f50310y0;
+                v61 v61Var2 = u71Var2.f50244a;
+                org.telegram.ui.ActionBar.k6.t(t61Var2, k71Var2, v61Var2);
+                canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, v61Var2.d("paintChatActionBackground"));
+                if (org.telegram.ui.ActionBar.k6.d1()) {
+                    canvas.drawRoundRect(rectF2, getMeasuredHeight() / 2, getMeasuredHeight() / 2, v61Var2.d("paintChatActionBackgroundDarken"));
+                    return;
+                }
+                return;
         }
-        org.telegram.ui.Components.o61[] o61VarArr = l71Var.L0;
-        if (this.d) {
-            c2 = 0;
-        }
-        o61VarArr[c2].setVisibility(4);
     }
 }

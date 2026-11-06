@@ -1,42 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class a90 extends u4.n0 {
-    public final b90 f31773a;
+import org.telegram.tgnet.TLRPC;
+public final class a90 extends g.p {
+    public final g90 f31741c;
 
-    public a90(b90 b90Var) {
-        this.f31773a = b90Var;
+    public a90(g90 g90Var) {
+        this.f31741c = g90Var;
     }
 
     @Override
-    public final void e(Rect rect, View view, RecyclerView recyclerView, u4.a1 a1Var) {
-        int R;
-        int i3 = 0;
-        rect.left = 0;
-        rect.right = 0;
-        rect.top = 0;
-        rect.bottom = 0;
-        u4.o0 layoutManager = recyclerView.getLayoutManager();
-        c90 c90Var = this.f31773a.f32123j3;
-        if (layoutManager == c90Var.d && (R = RecyclerView.R(view)) != 0 && !c90Var.f32614f.N()) {
-            if (c90Var.f32614f.I() == null && c90Var.f32614f.V == null) {
-                rect.top = org.telegram.messenger.g0.L(2.0f);
-            } else if (R != 0) {
-                R--;
-                v80 v80Var = c90Var.d;
-                v80Var.B1();
-                if (R > v80Var.U) {
-                    rect.top = org.telegram.messenger.g0.L(2.0f);
-                }
-            } else {
-                return;
+    public final int i(int i7) {
+        g90 g90Var = this.f31741c;
+        jg.i1 i1Var = g90Var.f33915f;
+        if (i7 != 0) {
+            int i10 = i7 - 1;
+            Object J = i1Var.J(i10);
+            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
+                return 100;
             }
-            if (!c90Var.d.E1(R)) {
-                i3 = org.telegram.messenger.g0.L(2.0f);
+            if (J instanceof TLRPC.Document) {
+                return 20;
             }
-            rect.right = i3;
+            if (i1Var.I() != null || i1Var.U != null) {
+                i7 = i10;
+            }
+            z80 z80Var = g90Var.d;
+            z80Var.B1();
+            return z80Var.R.get(i7);
         }
+        return 100;
     }
 }

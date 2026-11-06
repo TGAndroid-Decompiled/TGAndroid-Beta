@@ -1,3 +1,6 @@
 package r6;
-public final class b extends b8.a {
+
+import android.os.Parcelable;
+public interface b extends Parcelable {
+    public static final String NULL = "SAFE_PARCELABLE_NULL_STRING";
 }

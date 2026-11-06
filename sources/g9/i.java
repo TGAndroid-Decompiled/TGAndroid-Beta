@@ -1,44 +1,37 @@
 package g9;
-
-import java.util.Comparator;
-import java.util.SortedMap;
-import java.util.SortedSet;
-public class i extends d implements SortedSet {
-    public final k1 d;
-
-    public i(k1 k1Var, SortedMap sortedMap) {
-        super(k1Var, sortedMap);
-        this.d = k1Var;
+public abstract class i implements m {
+    public static String a(char c10) {
+        char[] cArr = new char[6];
+        cArr[0] = '\\';
+        cArr[1] = 'u';
+        cArr[2] = 0;
+        cArr[3] = 0;
+        cArr[4] = 0;
+        cArr[5] = 0;
+        for (int i7 = 0; i7 < 4; i7++) {
+            cArr[5 - i7] = "0123456789ABCDEF".charAt(c10 & 15);
+            c10 = (char) (c10 >> 4);
+        }
+        return String.copyValueOf(cArr);
     }
 
-    @Override
-    public final Comparator comparator() {
-        return h().comparator();
+    public static i b(String str) {
+        int length = str.length();
+        if (length != 0) {
+            if (length != 1) {
+                if (length != 2) {
+                    return new c(str);
+                }
+                return new f(str.charAt(0), str.charAt(1));
+            }
+            return new e(str.charAt(0), 0);
+        }
+        return b.f13581f;
     }
 
-    @Override
-    public final Object first() {
-        return h().firstKey();
-    }
+    public abstract boolean c(char c10);
 
-    public SortedMap h() {
-        return (SortedMap) this.f12065b;
-    }
-
-    public SortedSet headSet(Object obj) {
-        return new i(this.d, h().headMap(obj));
-    }
-
-    @Override
-    public final Object last() {
-        return h().lastKey();
-    }
-
-    public SortedSet subSet(Object obj, Object obj2) {
-        return new i(this.d, h().subMap(obj, obj2));
-    }
-
-    public SortedSet tailSet(Object obj) {
-        return new i(this.d, h().tailMap(obj));
+    public i d() {
+        return new c(this);
     }
 }

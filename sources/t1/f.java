@@ -1,29 +1,88 @@
 package t1;
 
-import java.io.InputStream;
-public final class f extends b {
-    public f(byte[] bArr) {
-        super(bArr);
-        this.f54776a.mark(Integer.MAX_VALUE);
+import android.text.InputFilter;
+import android.text.method.PasswordTransformationMethod;
+import android.text.method.TransformationMethod;
+import android.util.SparseArray;
+import android.widget.TextView;
+import c8.fc;
+public final class f extends fc {
+    public final TextView f55246a;
+    public final d f55247b;
+    public boolean f55248c = true;
+
+    public f(TextView textView) {
+        this.f55246a = textView;
+        this.f55247b = new d(textView);
     }
 
-    public final void b(long j10) {
-        int i3 = this.f54778c;
-        if (i3 > j10) {
-            this.f54778c = 0;
-            this.f54776a.reset();
-        } else {
-            j10 -= i3;
+    @Override
+    public final InputFilter[] a(InputFilter[] inputFilterArr) {
+        if (!this.f55248c) {
+            SparseArray sparseArray = new SparseArray(1);
+            for (int i7 = 0; i7 < inputFilterArr.length; i7++) {
+                InputFilter inputFilter = inputFilterArr[i7];
+                if (inputFilter instanceof d) {
+                    sparseArray.put(i7, inputFilter);
+                }
+            }
+            if (sparseArray.size() == 0) {
+                return inputFilterArr;
+            }
+            int length = inputFilterArr.length;
+            InputFilter[] inputFilterArr2 = new InputFilter[inputFilterArr.length - sparseArray.size()];
+            int i10 = 0;
+            for (int i11 = 0; i11 < length; i11++) {
+                if (sparseArray.indexOfKey(i11) < 0) {
+                    inputFilterArr2[i10] = inputFilterArr[i11];
+                    i10++;
+                }
+            }
+            return inputFilterArr2;
         }
-        a((int) j10);
+        int length2 = inputFilterArr.length;
+        int i12 = 0;
+        while (true) {
+            d dVar = this.f55247b;
+            if (i12 < length2) {
+                if (inputFilterArr[i12] == dVar) {
+                    return inputFilterArr;
+                }
+                i12++;
+            } else {
+                InputFilter[] inputFilterArr3 = new InputFilter[inputFilterArr.length + 1];
+                System.arraycopy(inputFilterArr, 0, inputFilterArr3, 0, length2);
+                inputFilterArr3[length2] = dVar;
+                return inputFilterArr3;
+            }
+        }
     }
 
-    public f(InputStream inputStream) {
-        super(inputStream);
-        if (inputStream.markSupported()) {
-            this.f54776a.mark(Integer.MAX_VALUE);
-            return;
+    @Override
+    public final void b(boolean z9) {
+        if (z9) {
+            d();
         }
-        throw new IllegalArgumentException("Cannot create SeekableByteOrderedDataInputStream with stream that does not support mark/reset");
+    }
+
+    @Override
+    public final void c(boolean z9) {
+        this.f55248c = z9;
+        d();
+        TextView textView = this.f55246a;
+        textView.setFilters(a(textView.getFilters()));
+    }
+
+    public final void d() {
+        TextView textView = this.f55246a;
+        TransformationMethod transformationMethod = textView.getTransformationMethod();
+        if (this.f55248c) {
+            if (!(transformationMethod instanceof j) && !(transformationMethod instanceof PasswordTransformationMethod)) {
+                transformationMethod = new j(transformationMethod);
+            }
+        } else if (transformationMethod instanceof j) {
+            transformationMethod = ((j) transformationMethod).f55254a;
+        }
+        textView.setTransformationMethod(transformationMethod);
     }
 }

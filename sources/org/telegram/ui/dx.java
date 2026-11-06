@@ -1,40 +1,112 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import org.telegram.messenger.ImageReceiver;
-public final class dx implements org.telegram.messenger.ec {
-    public final ex f44822a;
-    public final boolean f44823b;
-    public final org.telegram.messenger.zi f44824c;
-    public final fx d;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+public final class dx extends FrameLayout {
+    public org.telegram.ui.Components.j9 f45120a;
+    public org.telegram.ui.Components.j9 f45121b;
+    public Drawable f45122c;
+    public Drawable d;
+    public final Drawable f45123e;
+    public Paint f45124f;
+    public RectF h;
+    public final ViewGroup[] f45125n;
+    public final ex f45126r;
 
-    public dx(fx fxVar, ex exVar, boolean z10, org.telegram.messenger.zi ziVar) {
-        this.d = fxVar;
-        this.f44822a = exVar;
-        this.f44823b = z10;
-        this.f44824c = ziVar;
-    }
-
-    @Override
-    public final void D(ImageReceiver imageReceiver) {
-        org.telegram.messenger.zi ziVar;
-        if (this.f44823b && (ziVar = this.f44824c) != null && ziVar.G2() && imageReceiver.B() != null && imageReceiver.B().f32751y == null) {
-            try {
-                this.d.H.performHapticFeedback(3, 1);
-            } catch (Exception unused) {
+    public dx(ex exVar, Context context) {
+        super(context);
+        this.f45126r = exVar;
+        this.f45124f = new Paint(1);
+        this.h = new RectF();
+        this.f45125n = new ViewGroup[2];
+        int i7 = 0;
+        setWillNotDraw(false);
+        setPadding(0, org.telegram.messenger.g0.L(24.0f), 0, org.telegram.messenger.g0.L(24.0f));
+        LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
+        addView(f10, c8.ha.e(-2, -2, 17));
+        org.telegram.ui.Cells.t0 t0Var = new org.telegram.ui.Cells.t0(context);
+        t0Var.setCustomText(org.telegram.messenger.hd.M0(2131742870, null));
+        f10.addView(t0Var, c8.ha.t(-2, -2, 17, 0, 0, 0, 4));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setBackgroundResource(2131232857);
+        f10.addView(linearLayout, c8.ha.t(-2, -2, 17, 10, 0, 10, 0));
+        exVar.d = new ImageView(context);
+        int i10 = exVar.f45427x;
+        if (i10 == 0) {
+            while (i7 < 2) {
+                this.f45125n[i7] = (ViewGroup) exVar.getParentActivity().getLayoutInflater().inflate(2131492957, (ViewGroup) null);
+                linearLayout.addView(this.f45125n[i7], c8.ha.o(-1, -2));
+                i7++;
             }
+            linearLayout.addView(exVar.d, c8.ha.r(218, 160, 17));
+            exVar.d.setImageResource(2131231003);
+        } else if (i10 == 1) {
+            while (i7 < 2) {
+                this.f45125n[i7] = (ViewGroup) exVar.getParentActivity().getLayoutInflater().inflate(2131492900, (ViewGroup) null);
+                linearLayout.addView(this.f45125n[i7], c8.ha.o(160, -2));
+                i7++;
+            }
+            linearLayout.addView(exVar.d, c8.ha.r(160, 160, 17));
+            exVar.d.setImageResource(2131231031);
+        }
+        a();
+        this.f45123e = org.telegram.ui.ActionBar.k6.Y0(context, 2131231230, org.telegram.ui.ActionBar.k6.f27812b7);
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dx.a():void");
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        org.telegram.ui.Components.j9 j9Var = this.f45120a;
+        if (j9Var != null) {
+            j9Var.dispose();
+            this.f45120a = null;
+        }
+        org.telegram.ui.Components.j9 j9Var2 = this.f45121b;
+        if (j9Var2 != null) {
+            j9Var2.dispose();
+            this.f45121b = null;
         }
     }
 
     @Override
-    public final void l0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        ImageReceiver imageReceiver2 = this.f44822a.f45078r;
-        if (imageReceiver2.B() != null) {
-            imageReceiver2.B().N(0, false, true);
-        }
+    public final void onDraw(android.graphics.Canvas r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.dx.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void F0(int i3, Drawable drawable) {
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(264.0f), 1073741824));
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    @Override
+    public final void dispatchSetPressed(boolean z9) {
     }
 }

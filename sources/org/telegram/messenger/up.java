@@ -2,16 +2,16 @@ package org.telegram.messenger;
 
 import java.util.ArrayList;
 public final class up implements Runnable {
-    public final int f25733a;
-    public final qr f25734b;
-    public final ArrayList f25735c;
-    public final boolean d;
+    public final int f25873a;
+    public final yr f25874b;
+    public final int f25875c;
+    public final ArrayList d;
 
-    public up(qr qrVar, ArrayList arrayList, boolean z10, int i3) {
-        this.f25733a = i3;
-        this.f25734b = qrVar;
-        this.f25735c = arrayList;
-        this.d = z10;
+    public up(yr yrVar, int i7, ArrayList arrayList, int i10) {
+        this.f25873a = i10;
+        this.f25874b = yrVar;
+        this.f25875c = i7;
+        this.d = arrayList;
     }
 
     @Override
@@ -19,10 +19,10 @@ public final class up implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.up.run():void");
     }
 
-    public up(qr qrVar, boolean z10, ArrayList arrayList) {
-        this.f25733a = 2;
-        this.f25734b = qrVar;
-        this.d = z10;
-        this.f25735c = arrayList;
+    public up(yr yrVar, ArrayList arrayList, int i7) {
+        this.f25873a = 2;
+        this.f25874b = yrVar;
+        this.d = arrayList;
+        this.f25875c = i7;
     }
 }

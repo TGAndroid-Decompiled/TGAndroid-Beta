@@ -1,8 +1,35 @@
 package m;
 
+import android.content.Context;
 import android.view.View;
-public abstract class l3 {
-    public static void a(View view, CharSequence charSequence) {
-        view.setTooltipText(charSequence);
+import android.view.Window;
+public final class l3 implements View.OnClickListener {
+    public final l.a f19149a;
+    public final m3 f19150b;
+
+    public l3(m3 m3Var) {
+        this.f19150b = m3Var;
+        Context context = m3Var.f19159a.getContext();
+        CharSequence charSequence = m3Var.h;
+        ?? obj = new Object();
+        obj.f17617e = 4096;
+        obj.f17619g = 4096;
+        obj.f17623l = null;
+        obj.f17624m = null;
+        obj.f17625n = false;
+        obj.f17626o = false;
+        obj.f17627p = 16;
+        obj.f17620i = context;
+        obj.f17614a = charSequence;
+        this.f19149a = obj;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        m3 m3Var = this.f19150b;
+        Window.Callback callback = m3Var.f19167k;
+        if (callback != null && m3Var.f19168l) {
+            callback.onMenuItemSelected(0, this.f19149a);
+        }
     }
 }

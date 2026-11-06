@@ -90,20 +90,20 @@ public class VRowAtom extends Atom {
         return this.vtop;
     }
 
-    public void setAddInterline(boolean z10) {
-        this.addInterline = z10;
+    public void setAddInterline(boolean z9) {
+        this.addInterline = z9;
     }
 
-    public void setHalign(int i3) {
-        this.halign = i3;
+    public void setHalign(int i7) {
+        this.halign = i7;
     }
 
-    public void setRaise(int i3, float f10) {
-        this.raise = new SpaceAtom(i3, f10, 0.0f, 0.0f);
+    public void setRaise(int i7, float f10) {
+        this.raise = new SpaceAtom(i7, f10, 0.0f, 0.0f);
     }
 
-    public void setVtop(boolean z10) {
-        this.vtop = z10;
+    public void setVtop(boolean z9) {
+        this.vtop = z9;
     }
 
     public VRowAtom(Atom atom) {

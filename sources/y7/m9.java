@@ -1,30 +1,51 @@
 package y7;
 
-import b8.df;
-public final class m9 {
-    public final String f59207a;
-    public final String f59208b;
-    public final String f59209c;
-    public final String d;
-    public final va f59210e;
-    public final String f59211f;
-    public final Boolean f59212g;
-    public final Boolean h;
-    public final Boolean f59213i;
-    public final Integer f59214j;
-    public final Integer f59215k;
+import java.util.Set;
+public abstract class m9 extends i9 implements Set {
+    public transient l9 f58986b;
 
-    public m9(df dfVar) {
-        this.f59207a = dfVar.f2543a;
-        this.f59208b = dfVar.f2544b;
-        this.f59209c = dfVar.f2545c;
-        this.d = dfVar.d;
-        this.f59210e = (va) dfVar.f2551k;
-        this.f59211f = dfVar.f2546e;
-        this.f59212g = dfVar.f2547f;
-        this.h = dfVar.f2548g;
-        this.f59213i = dfVar.h;
-        this.f59214j = dfVar.f2549i;
-        this.f59215k = dfVar.f2550j;
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this || obj == this) {
+            return true;
+        }
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            try {
+                if (size() == set.size()) {
+                    if (containsAll(set)) {
+                        return true;
+                    }
+                    return false;
+                }
+            } catch (ClassCastException | NullPointerException unused) {
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final int hashCode() {
+        int i7;
+        int i10 = 0;
+        for (Object obj : this) {
+            if (obj != null) {
+                i7 = obj.hashCode();
+            } else {
+                i7 = 0;
+            }
+            i10 += i7;
+        }
+        return i10;
+    }
+
+    public final l9 l() {
+        l9 l9Var = this.f58986b;
+        if (l9Var == null) {
+            o9 o9Var = new o9((a) this);
+            this.f58986b = o9Var;
+            return o9Var;
+        }
+        return l9Var;
     }
 }

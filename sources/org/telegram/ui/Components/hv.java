@@ -1,20 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class hv implements View.OnFocusChangeListener {
-    public final ey f34518a;
+import android.content.Context;
+public final class hv extends tx {
+    public final gy H;
 
-    public hv(ey eyVar) {
-        this.f34518a = eyVar;
+    public hv(gy gyVar, Context context) {
+        super(gyVar, context, 1);
+        this.H = gyVar;
     }
 
     @Override
-    public final void onFocusChange(View view, boolean z10) {
-        if (z10) {
-            String[] G0 = org.telegram.messenger.g0.G0();
-            ey eyVar = this.f34518a;
-            eyVar.X0 = G0;
-            org.telegram.messenger.li.b0(eyVar.f33529d1).M(eyVar.X0, false);
+    public final void setTranslationY(float f10) {
+        if (f10 != getTranslationY()) {
+            super.setTranslationY(f10);
+            this.H.J.invalidate();
         }
     }
 }

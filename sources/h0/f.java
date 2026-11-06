@@ -1,18 +1,18 @@
 package h0;
 public final class f {
-    public final String f14068a;
-    public final int f14069b;
-    public final boolean f14070c;
+    public final String f14013a;
+    public final int f14014b;
+    public final boolean f14015c;
     public final String d;
-    public final int f14071e;
-    public final int f14072f;
+    public final int f14016e;
+    public final int f14017f;
 
-    public f(String str, int i3, boolean z10, String str2, int i10, int i11) {
-        this.f14068a = str;
-        this.f14069b = i3;
-        this.f14070c = z10;
+    public f(String str, int i7, boolean z9, String str2, int i10, int i11) {
+        this.f14013a = str;
+        this.f14014b = i7;
+        this.f14015c = z9;
         this.d = str2;
-        this.f14071e = i10;
-        this.f14072f = i11;
+        this.f14016e = i10;
+        this.f14017f = i11;
     }
 }

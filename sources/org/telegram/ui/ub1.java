@@ -1,200 +1,85 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class ub1 extends FrameLayout {
-    public float f50033a;
-    public float f50034b;
-    public boolean f50035c;
-    public long d;
-    public final zb1 f50036e;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ub1 extends AnimatorListenerAdapter {
+    public final int f50366a;
+    public final ec1 f50367b;
 
-    public ub1(zb1 zb1Var, Activity activity) {
-        super(activity);
-        this.f50036e = zb1Var;
+    public ub1(ec1 ec1Var, int i7) {
+        this.f50366a = i7;
+        this.f50367b = ec1Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        zb1 zb1Var = this.f50036e;
-        org.telegram.ui.Components.voip.j2 j2Var = zb1Var.f52645w;
-        if (view == j2Var && (zb1Var.f52635o0 || zb1Var.f52633n0)) {
-            return false;
-        }
-        if ((view != j2Var && view != zb1Var.f52613d0 && (view != zb1Var.Z || !zb1Var.f52608b0)) || (!zb1Var.f52624h1 && zb1Var.f52628j1 == null)) {
-            return super.drawChild(canvas, view, j10);
-        }
-        canvas.save();
-        float f10 = zb1Var.f52622g1;
-        canvas.scale(f10, f10, zb1Var.f52612c1, zb1Var.f52614d1);
-        canvas.translate(zb1Var.Z0, zb1Var.f52606a1);
-        boolean drawChild = super.drawChild(canvas, view, j10);
-        canvas.restore();
-        return drawChild;
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        zb1 zb1Var = this.f50036e;
-        kb1 kb1Var = zb1Var.U0;
-        if (motionEvent.getActionMasked() == 1) {
-            zb1Var.E.b(false, false);
-            zb1Var.f52645w.a();
-            org.telegram.messenger.g0.r(kb1Var);
-            if (zb1Var.f52637q0 == 3) {
-                org.telegram.messenger.g0.i3(kb1Var, 10000L);
-            }
-        }
-        return super.onInterceptTouchEvent(motionEvent);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        org.telegram.ui.Components.voip.z1 z1Var;
-        org.telegram.ui.Components.zo zoVar;
-        zb1 zb1Var = this.f50036e;
-        kb1 kb1Var = zb1Var.U0;
-        if (motionEvent.getActionMasked() == 1) {
-            zb1Var.E.b(false, false);
-            zb1Var.f52645w.a();
-            org.telegram.messenger.g0.r(kb1Var);
-            if (zb1Var.f52637q0 == 3) {
-                org.telegram.messenger.g0.i3(kb1Var, 10000L);
-            }
-        }
-        if (!zb1Var.f52626i1 && !zb1Var.f52609b1 && !zb1Var.f52624h1 && motionEvent.getActionMasked() != 0) {
-            zb1.a(zb1Var);
-            return false;
-        }
-        if (motionEvent.getActionMasked() == 0) {
-            zb1Var.f52626i1 = false;
-            zb1Var.f52609b1 = false;
-            zb1Var.f52624h1 = false;
-        }
-        if (zb1Var.f52633n0) {
-            z1Var = zb1Var.f52613d0;
-        } else {
-            z1Var = zb1Var.f52616e0;
-        }
-        if (motionEvent.getActionMasked() != 0 && motionEvent.getActionMasked() != 5) {
-            if (motionEvent.getActionMasked() == 2 && zb1Var.f52609b1) {
-                int i3 = -1;
-                int i10 = -1;
-                for (int i11 = 0; i11 < motionEvent.getPointerCount(); i11++) {
-                    if (zb1Var.f52617e1 == motionEvent.getPointerId(i11)) {
-                        i3 = i11;
-                    }
-                    if (zb1Var.f52620f1 == motionEvent.getPointerId(i11)) {
-                        i10 = i11;
+    public final void onAnimationEnd(Animator animator) {
+        di.z2 z2Var;
+        di.z2 z2Var2;
+        int i7 = this.f50366a;
+        ec1 ec1Var = this.f50367b;
+        switch (i7) {
+            case 0:
+                ec1Var.f45262h1 = null;
+                ec1Var.f45255e1 = 1.0f;
+                ec1Var.X0 = 0.0f;
+                ec1Var.Y0 = 0.0f;
+                ec1Var.f45277s.invalidate();
+                return;
+            case 1:
+                org.telegram.ui.Components.voip.e2.d().f39118a.setAlpha(1.0f);
+                org.telegram.messenger.g0.i3(new qu0(this, 26), 200L);
+                return;
+            case 2:
+                ec1Var.K0.e();
+                ec1Var.Y.setCornerRadius(-1.0f);
+                ec1Var.D0 = false;
+                ec1Var.Y.f39345b0 = false;
+                ec1Var.f45273p0 = ec1Var.f45272o0;
+                ec1Var.y();
+                return;
+            case 3:
+                for (org.telegram.ui.Components.l9 l9Var : ec1Var.V) {
+                    org.telegram.ui.Components.i5 i5Var = l9Var.f35560e;
+                    if (i5Var != null && (z2Var = i5Var.f34505k) != null) {
+                        z2Var.f21217t0 = true;
+                        z2Var.P0(false);
                     }
                 }
-                if (i3 != -1 && i10 != -1) {
-                    float hypot = ((float) Math.hypot(motionEvent.getX(i10) - motionEvent.getX(i3), motionEvent.getY(i10) - motionEvent.getY(i3))) / zb1Var.Y0;
-                    zb1Var.f52622g1 = hypot;
-                    if (hypot > 1.005f && !zb1Var.f52624h1) {
-                        zb1Var.Y0 = (float) Math.hypot(motionEvent.getX(i10) - motionEvent.getX(i3), motionEvent.getY(i10) - motionEvent.getY(i3));
-                        float x10 = (motionEvent.getX(i10) + motionEvent.getX(i3)) / 2.0f;
-                        zb1Var.f52612c1 = x10;
-                        zb1Var.W0 = x10;
-                        float y9 = (motionEvent.getY(i10) + motionEvent.getY(i3)) / 2.0f;
-                        zb1Var.f52614d1 = y9;
-                        zb1Var.X0 = y9;
-                        zb1Var.f52622g1 = 1.0f;
-                        zb1Var.Z0 = 0.0f;
-                        zb1Var.f52606a1 = 0.0f;
-                        getParent().requestDisallowInterceptTouchEvent(true);
-                        zb1Var.f52624h1 = true;
-                        zb1Var.f52609b1 = true;
-                    }
-                    float x11 = motionEvent.getX(i3);
-                    float y10 = motionEvent.getY(i3);
-                    float x12 = zb1Var.W0 - ((motionEvent.getX(i10) + x11) / 2.0f);
-                    float y11 = zb1Var.X0 - ((motionEvent.getY(i10) + y10) / 2.0f);
-                    float f10 = zb1Var.f52622g1;
-                    zb1Var.Z0 = (-x12) / f10;
-                    zb1Var.f52606a1 = (-y11) / f10;
-                    invalidate();
-                } else {
-                    getParent().requestDisallowInterceptTouchEvent(false);
-                    zb1.a(zb1Var);
-                }
-            } else if (motionEvent.getActionMasked() == 1 || ((motionEvent.getActionMasked() == 6 && motionEvent.getPointerCount() >= 2 && ((zb1Var.f52617e1 == motionEvent.getPointerId(0) && zb1Var.f52620f1 == motionEvent.getPointerId(1)) || (zb1Var.f52617e1 == motionEvent.getPointerId(1) && zb1Var.f52620f1 == motionEvent.getPointerId(0)))) || motionEvent.getActionMasked() == 3)) {
-                getParent().requestDisallowInterceptTouchEvent(false);
-                zb1.a(zb1Var);
-            }
-        } else {
-            if (motionEvent.getActionMasked() == 0) {
-                RectF rectF = org.telegram.messenger.g0.P;
-                rectF.set(z1Var.getX(), z1Var.getY(), z1Var.getX() + z1Var.getMeasuredWidth(), z1Var.getY() + z1Var.getMeasuredHeight());
-                rectF.inset(((z1Var.getMeasuredHeight() * z1Var.U) - z1Var.getMeasuredHeight()) / 2.0f, ((z1Var.getMeasuredWidth() * z1Var.U) - z1Var.getMeasuredWidth()) / 2.0f);
-                if (!x30.f51713x5) {
-                    rectF.top = Math.max(rectF.top, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
-                    rectF.bottom = Math.min(rectF.bottom, z1Var.getMeasuredHeight() - org.telegram.messenger.g0.L(90.0f));
-                } else {
-                    rectF.top = Math.max(rectF.top, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
-                    rectF.right = Math.min(rectF.right, z1Var.getMeasuredWidth() - org.telegram.messenger.g0.L(90.0f));
-                }
-                boolean contains = rectF.contains(motionEvent.getX(), motionEvent.getY());
-                zb1Var.f52626i1 = contains;
-                if (!contains) {
-                    zb1.a(zb1Var);
-                }
-            }
-            if (zb1Var.f52626i1 && !zb1Var.f52609b1 && motionEvent.getPointerCount() == 2) {
-                zb1Var.Y0 = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
-                float x13 = (motionEvent.getX(1) + motionEvent.getX(0)) / 2.0f;
-                zb1Var.f52612c1 = x13;
-                zb1Var.W0 = x13;
-                float y12 = (motionEvent.getY(1) + motionEvent.getY(0)) / 2.0f;
-                zb1Var.f52614d1 = y12;
-                zb1Var.X0 = y12;
-                zb1Var.f52622g1 = 1.0f;
-                zb1Var.f52617e1 = motionEvent.getPointerId(0);
-                zb1Var.f52620f1 = motionEvent.getPointerId(1);
-                zb1Var.f52609b1 = true;
-            }
-        }
-        zb1Var.f52640s.invalidate();
-        int action = motionEvent.getAction();
-        if (action != 0) {
-            if (action != 1) {
-                if (action == 3) {
-                    this.f50035c = false;
-                }
-            } else if (this.f50035c) {
-                float x14 = motionEvent.getX() - this.f50033a;
-                float y13 = motionEvent.getY() - this.f50034b;
-                long currentTimeMillis = System.currentTimeMillis();
-                float f11 = (y13 * y13) + (x14 * x14);
-                float f12 = zb1Var.f52643u0;
-                if (f11 < f12 * f12 && currentTimeMillis - this.d < 300 && currentTimeMillis - zb1Var.L0 > 300) {
-                    zb1Var.L0 = System.currentTimeMillis();
-                    if (zb1Var.D0) {
-                        zb1Var.e(false);
-                    } else if (zb1Var.A0) {
-                        zb1Var.z(!zb1Var.f52650y0);
-                        zb1Var.f52639r0 = zb1Var.f52637q0;
-                        if (!zb1Var.f52650y0 && (zoVar = zb1Var.O0) != null && zoVar.W) {
-                            zoVar.f(true);
-                        }
-                        zb1Var.G();
+                return;
+            case 4:
+                ec1Var.s();
+                for (org.telegram.ui.Components.l9 l9Var2 : ec1Var.V) {
+                    org.telegram.ui.Components.i5 i5Var2 = l9Var2.f35560e;
+                    if (i5Var2 != null && (z2Var2 = i5Var2.f34505k) != null) {
+                        z2Var2.f21217t0 = false;
+                        z2Var2.Q0();
                     }
                 }
-                this.f50035c = false;
-            }
-        } else {
-            this.f50033a = motionEvent.getX();
-            this.f50034b = motionEvent.getY();
-            this.f50035c = true;
-            this.d = System.currentTimeMillis();
+                ec1Var.R.setVisibility(8);
+                return;
+            case 5:
+                ec1Var.E.setText(org.telegram.messenger.hd.M0(2131743491, null));
+                ec1Var.E.animate().alpha(1.0f).setDuration(70L).setListener(null).start();
+                return;
+            case 6:
+                if (ec1Var.Z.getTag() == null) {
+                    ec1Var.Z.setVisibility(8);
+                    return;
+                }
+                return;
+            case 7:
+                ec1Var.Y.setTranslationX(0.0f);
+                ec1Var.Y.setTranslationY(0.0f);
+                ec1Var.Y.setScaleY(1.0f);
+                ec1Var.Y.setScaleX(1.0f);
+                ec1Var.Y.setVisibility(8);
+                return;
+            case 8:
+                ec1Var.D.setVisibility(8);
+                return;
+            default:
+                ec1Var.f45254e0.setVisibility(8);
+                return;
         }
-        if (!zb1Var.f52626i1 && !this.f50035c) {
-            return false;
-        }
-        return true;
     }
 }

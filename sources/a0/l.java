@@ -3,41 +3,40 @@ package a0;
 import java.util.Arrays;
 import java.util.ConcurrentModificationException;
 import java.util.Map;
-import k2.p1;
 public class l {
     public int[] f29a;
     public Object[] f30b;
     public int f31c;
 
-    public l(int i3) {
+    public l(int i7) {
         int[] iArr;
         Object[] objArr;
-        if (i3 == 0) {
-            iArr = b0.a.f2320a;
+        if (i7 == 0) {
+            iArr = b0.a.f2888a;
         } else {
-            iArr = new int[i3];
+            iArr = new int[i7];
         }
         this.f29a = iArr;
-        if (i3 == 0) {
-            objArr = b0.a.f2322c;
+        if (i7 == 0) {
+            objArr = b0.a.f2890c;
         } else {
-            objArr = new Object[i3 << 1];
+            objArr = new Object[i7 << 1];
         }
         this.f30b = objArr;
     }
 
     public final int b(Object obj) {
-        int i3 = this.f31c * 2;
+        int i7 = this.f31c * 2;
         Object[] objArr = this.f30b;
         if (obj == null) {
-            for (int i10 = 1; i10 < i3; i10 += 2) {
+            for (int i10 = 1; i10 < i7; i10 += 2) {
                 if (objArr[i10] == null) {
                     return i10 >> 1;
                 }
             }
             return -1;
         }
-        for (int i11 = 1; i11 < i3; i11 += 2) {
+        for (int i11 = 1; i11 < i7; i11 += 2) {
             if (obj.equals(objArr[i11])) {
                 return i11 >> 1;
             }
@@ -45,23 +44,23 @@ public class l {
         return -1;
     }
 
-    public final int c(int i3, Object obj) {
+    public final int c(int i7, Object obj) {
         int i10 = this.f31c;
         if (i10 == 0) {
             return -1;
         }
-        int a10 = b0.a.a(i10, i3, this.f29a);
+        int a10 = b0.a.a(i10, i7, this.f29a);
         if (a10 < 0 || kotlin.jvm.internal.j.a(obj, this.f30b[a10 << 1])) {
             return a10;
         }
         int i11 = a10 + 1;
-        while (i11 < i10 && this.f29a[i11] == i3) {
+        while (i11 < i10 && this.f29a[i11] == i7) {
             if (kotlin.jvm.internal.j.a(obj, this.f30b[i11 << 1])) {
                 return i11;
             }
             i11++;
         }
-        for (int i12 = a10 - 1; i12 >= 0 && this.f29a[i12] == i3; i12--) {
+        for (int i12 = a10 - 1; i12 >= 0 && this.f29a[i12] == i7; i12--) {
             if (kotlin.jvm.internal.j.a(obj, this.f30b[i12 << 1])) {
                 return i12;
             }
@@ -71,8 +70,8 @@ public class l {
 
     public final void clear() {
         if (this.f31c > 0) {
-            this.f29a = b0.a.f2320a;
-            this.f30b = b0.a.f2322c;
+            this.f29a = b0.a.f2888a;
+            this.f30b = b0.a.f2890c;
             this.f31c = 0;
         }
         if (this.f31c <= 0) {
@@ -103,16 +102,16 @@ public class l {
     }
 
     public final int e() {
-        int i3 = this.f31c;
-        if (i3 == 0) {
+        int i7 = this.f31c;
+        if (i7 == 0) {
             return -1;
         }
-        int a10 = b0.a.a(i3, 0, this.f29a);
+        int a10 = b0.a.a(i7, 0, this.f29a);
         if (a10 < 0 || this.f30b[a10 << 1] == null) {
             return a10;
         }
         int i10 = a10 + 1;
-        while (i10 < i3 && this.f29a[i10] == 0) {
+        while (i10 < i7 && this.f29a[i10] == 0) {
             if (this.f30b[i10 << 1] == null) {
                 return i10;
             }
@@ -132,12 +131,12 @@ public class l {
         }
         try {
             if (obj instanceof l) {
-                int i3 = this.f31c;
-                if (i3 != ((l) obj).f31c) {
+                int i7 = this.f31c;
+                if (i7 != ((l) obj).f31c) {
                     return false;
                 }
                 l lVar = (l) obj;
-                for (int i10 = 0; i10 < i3; i10++) {
+                for (int i10 = 0; i10 < i7; i10++) {
                     Object f10 = f(i10);
                     Object i11 = i(i10);
                     Object obj2 = lVar.get(f10);
@@ -173,18 +172,18 @@ public class l {
         return false;
     }
 
-    public final Object f(int i3) {
-        if (i3 >= 0 && i3 < this.f31c) {
-            return this.f30b[i3 << 1];
+    public final Object f(int i7) {
+        if (i7 >= 0 && i7 < this.f31c) {
+            return this.f30b[i7 << 1];
         }
-        throw new IllegalArgumentException(p1.i(i3, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(jg.g.j(i7, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
-    public final Object g(int i3) {
+    public final Object g(int i7) {
         int i10;
-        if (i3 >= 0 && i3 < (i10 = this.f31c)) {
+        if (i7 >= 0 && i7 < (i10 = this.f31c)) {
             Object[] objArr = this.f30b;
-            int i11 = i3 << 1;
+            int i11 = i7 << 1;
             Object obj = objArr[i11 + 1];
             if (i10 <= 1) {
                 clear();
@@ -204,24 +203,24 @@ public class l {
                 kotlin.jvm.internal.j.d(copyOf2, "copyOf(this, newSize)");
                 this.f30b = copyOf2;
                 if (i10 == this.f31c) {
-                    if (i3 > 0) {
-                        ed.f.b(0, 0, i3, iArr, this.f29a);
-                        ed.f.c(0, 0, i11, objArr, this.f30b);
+                    if (i7 > 0) {
+                        hd.e.b(0, 0, i7, iArr, this.f29a);
+                        hd.e.c(0, 0, i11, objArr, this.f30b);
                     }
-                    if (i3 < i12) {
-                        int i14 = i3 + 1;
-                        ed.f.b(i3, i14, i10, iArr, this.f29a);
-                        ed.f.c(i11, i14 << 1, i10 << 1, objArr, this.f30b);
+                    if (i7 < i12) {
+                        int i14 = i7 + 1;
+                        hd.e.b(i7, i14, i10, iArr, this.f29a);
+                        hd.e.c(i11, i14 << 1, i10 << 1, objArr, this.f30b);
                     }
                 } else {
                     throw new ConcurrentModificationException();
                 }
             } else {
-                if (i3 < i12) {
-                    int i15 = i3 + 1;
-                    ed.f.b(i3, i15, i10, iArr, iArr);
+                if (i7 < i12) {
+                    int i15 = i7 + 1;
+                    hd.e.b(i7, i15, i10, iArr, iArr);
                     Object[] objArr2 = this.f30b;
-                    ed.f.c(i11, i15 << 1, i10 << 1, objArr2, objArr2);
+                    hd.e.c(i11, i15 << 1, i10 << 1, objArr2, objArr2);
                 }
                 Object[] objArr3 = this.f30b;
                 int i16 = i12 << 1;
@@ -234,7 +233,7 @@ public class l {
             }
             throw new ConcurrentModificationException();
         }
-        throw new IllegalArgumentException(p1.i(i3, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(jg.g.j(i7, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public Object get(Object obj) {
@@ -253,19 +252,19 @@ public class l {
         return obj2;
     }
 
-    public final Object h(int i3, Object obj) {
-        if (i3 >= 0 && i3 < this.f31c) {
-            int i10 = (i3 << 1) + 1;
+    public final Object h(int i7, Object obj) {
+        if (i7 >= 0 && i7 < this.f31c) {
+            int i10 = (i7 << 1) + 1;
             Object[] objArr = this.f30b;
             Object obj2 = objArr[i10];
             objArr[i10] = obj;
             return obj2;
         }
-        throw new IllegalArgumentException(p1.i(i3, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(jg.g.j(i7, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final int hashCode() {
-        int i3;
+        int i7;
         int[] iArr = this.f29a;
         Object[] objArr = this.f30b;
         int i10 = this.f31c;
@@ -276,22 +275,22 @@ public class l {
             Object obj = objArr[i11];
             int i14 = iArr[i12];
             if (obj != null) {
-                i3 = obj.hashCode();
+                i7 = obj.hashCode();
             } else {
-                i3 = 0;
+                i7 = 0;
             }
-            i13 += i3 ^ i14;
+            i13 += i7 ^ i14;
             i12++;
             i11 += 2;
         }
         return i13;
     }
 
-    public final Object i(int i3) {
-        if (i3 >= 0 && i3 < this.f31c) {
-            return this.f30b[(i3 << 1) + 1];
+    public final Object i(int i7) {
+        if (i7 >= 0 && i7 < this.f31c) {
+            return this.f30b[(i7 << 1) + 1];
         }
-        throw new IllegalArgumentException(p1.i(i3, "Expected index to be within 0..size()-1, but was ").toString());
+        throw new IllegalArgumentException(jg.g.j(i7, "Expected index to be within 0..size()-1, but was ").toString());
     }
 
     public final boolean isEmpty() {
@@ -302,16 +301,16 @@ public class l {
     }
 
     public final Object put(Object obj, Object obj2) {
-        int i3;
+        int i7;
         int e10;
         int i10 = this.f31c;
         if (obj != null) {
-            i3 = obj.hashCode();
+            i7 = obj.hashCode();
         } else {
-            i3 = 0;
+            i7 = 0;
         }
         if (obj != null) {
-            e10 = c(i3, obj);
+            e10 = c(i7, obj);
         } else {
             e10 = e();
         }
@@ -344,15 +343,15 @@ public class l {
         if (i12 < i10) {
             int[] iArr2 = this.f29a;
             int i14 = i12 + 1;
-            ed.f.b(i14, i12, i10, iArr2, iArr2);
+            hd.e.b(i14, i12, i10, iArr2, iArr2);
             Object[] objArr2 = this.f30b;
-            ed.f.c(i14 << 1, i12 << 1, this.f31c << 1, objArr2, objArr2);
+            hd.e.c(i14 << 1, i12 << 1, this.f31c << 1, objArr2, objArr2);
         }
         int i15 = this.f31c;
         if (i10 == i15) {
             int[] iArr3 = this.f29a;
             if (i12 < iArr3.length) {
-                iArr3[i12] = i3;
+                iArr3[i12] = i7;
                 Object[] objArr3 = this.f30b;
                 int i16 = i12 << 1;
                 objArr3[i16] = obj;
@@ -398,8 +397,8 @@ public class l {
         }
         StringBuilder sb2 = new StringBuilder(this.f31c * 28);
         sb2.append('{');
-        int i3 = this.f31c;
-        for (int i10 = 0; i10 < i3; i10++) {
+        int i7 = this.f31c;
+        for (int i10 = 0; i10 < i7; i10++) {
             if (i10 > 0) {
                 sb2.append(", ");
             }

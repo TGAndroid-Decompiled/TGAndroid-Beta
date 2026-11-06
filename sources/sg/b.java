@@ -1,19 +1,36 @@
 package sg;
+public final class b extends h {
+    @Override
+    public final float a() {
+        return 1.0f;
+    }
 
-import java.util.ArrayList;
-import kg.g;
-import org.telegram.ui.Components.sj0;
-import u4.o;
-public abstract class b extends sj0 {
-    public final g f54717c = new g();
+    @Override
+    public final float d() {
+        return 1.0f;
+    }
 
-    public final void E(ArrayList arrayList, ArrayList arrayList2) {
-        if (arrayList2 == null) {
-            arrayList2 = new ArrayList();
+    @Override
+    public final int e() {
+        return 2131624126;
+    }
+
+    @Override
+    public final float g() {
+        return 0.35f;
+    }
+
+    @Override
+    public final String i(int i7) {
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 != 2) {
+                    return null;
+                }
+                return "brush";
+            }
+            return "compositeWithMaskBlurer";
         }
-        g gVar = this.f54717c;
-        gVar.f17028c = arrayList;
-        gVar.d = arrayList2;
-        o.c(gVar, true).c(this);
+        return "blitWithMaskBlurer";
     }
 }

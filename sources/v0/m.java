@@ -1,27 +1,34 @@
 package v0;
 
-import java.util.Collection;
-import java.util.List;
-public final class m {
-    public final List f56431a;
-    public final boolean f56432b;
-
-    public m(List list, boolean z10) {
-        this.f56431a = list;
-        this.f56432b = z10;
-        if (!list.isEmpty()) {
-            if (list.size() > 1) {
-                List<o> list2 = list;
-                if (!(list2 instanceof Collection) || !list2.isEmpty()) {
-                    for (o oVar : list2) {
+import android.os.Bundle;
+import bi.b1;
+import org.json.JSONObject;
+public class m extends b1 {
+    public m(String str, int i7, Bundle data) {
+        super(str, data);
+        switch (i7) {
+            case 2:
+                super("android.credentials.TYPE_PASSWORD_CREDENTIAL", data);
+                if (str.length() > 0) {
+                    return;
+                }
+                throw new IllegalArgumentException("password should not be empty");
+            case 3:
+                super("androidx.credentials.TYPE_PUBLIC_KEY_CREDENTIAL", data);
+                if (str.length() != 0) {
+                    try {
+                        new JSONObject(str);
+                        return;
+                    } catch (Exception unused) {
                     }
                 }
-                for (o oVar2 : this.f56431a) {
+                throw new IllegalArgumentException("authenticationResponseJson must not be empty, and must be a valid JSON");
+            default:
+                kotlin.jvm.internal.j.e(data, "data");
+                if (str.length() > 0) {
+                    return;
                 }
-                return;
-            }
-            return;
+                throw new IllegalArgumentException("type should not be empty");
         }
-        throw new IllegalArgumentException("credentialOptions should not be empty");
     }
 }

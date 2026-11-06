@@ -3,53 +3,53 @@ package c0;
 import java.lang.ref.WeakReference;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
-import l9.y;
+import m9.y;
 public final class l implements y {
-    public final WeakReference f3956a;
-    public final k f3957b = new k(this);
+    public final WeakReference f5244a;
+    public final k f5245b = new k(this);
 
     public l(i iVar) {
-        this.f3956a = new WeakReference(iVar);
+        this.f5244a = new WeakReference(iVar);
     }
 
     @Override
     public final void b(Runnable runnable, Executor executor) {
-        this.f3957b.b(runnable, executor);
+        this.f5245b.b(runnable, executor);
     }
 
     @Override
-    public final boolean cancel(boolean z10) {
-        i iVar = (i) this.f3956a.get();
-        boolean cancel = this.f3957b.cancel(z10);
+    public final boolean cancel(boolean z9) {
+        i iVar = (i) this.f5244a.get();
+        boolean cancel = this.f5245b.cancel(z9);
         if (cancel && iVar != null) {
-            iVar.f3952a = null;
-            iVar.f3953b = null;
-            iVar.f3954c.k(null);
+            iVar.f5240a = null;
+            iVar.f5241b = null;
+            iVar.f5242c.k(null);
         }
         return cancel;
     }
 
     @Override
     public final Object get() {
-        return this.f3957b.get();
+        return this.f5245b.get();
     }
 
     @Override
     public final boolean isCancelled() {
-        return this.f3957b.f3949a instanceof a;
+        return this.f5245b.f5237a instanceof a;
     }
 
     @Override
     public final boolean isDone() {
-        return this.f3957b.isDone();
+        return this.f5245b.isDone();
     }
 
     public final String toString() {
-        return this.f3957b.toString();
+        return this.f5245b.toString();
     }
 
     @Override
-    public final Object get(long j10, TimeUnit timeUnit) {
-        return this.f3957b.get(j10, timeUnit);
+    public final Object get(long j3, TimeUnit timeUnit) {
+        return this.f5245b.get(j3, timeUnit);
     }
 }

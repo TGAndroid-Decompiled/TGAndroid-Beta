@@ -1,13 +1,20 @@
 package sh;
 
+import android.graphics.Canvas;
 import android.view.View;
-import r0.k1;
-public interface c {
-    void P();
+import org.telegram.messenger.ImageReceiver;
+public abstract class c {
+    public final ImageReceiver f55177a = new ImageReceiver(null);
 
-    View R();
+    public void a(View view) {
+        ImageReceiver imageReceiver = this.f55177a;
+        imageReceiver.H0(view);
+        imageReceiver.P();
+    }
 
-    void m(k1 k1Var);
+    public void b() {
+        this.f55177a.R();
+    }
 
-    void w();
+    public abstract void c(Canvas canvas, int i7, int i10);
 }

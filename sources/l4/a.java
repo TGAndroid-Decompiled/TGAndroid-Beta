@@ -1,113 +1,75 @@
 package l4;
 
-import g9.i0;
-import g9.s1;
-import java.util.List;
-public final class a implements e3.o {
-    public final b f17740a = new b("audio/ac3");
-    public final g2.y f17741b = new g2.y(2786);
-    public boolean f17742c;
+import h2.x;
+import java.util.regex.Pattern;
+public final class a {
+    public static final Pattern f18125c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
+    public static final Pattern d = Pattern.compile("^((?:[0-9]*\\.)?[0-9]+)(px|em|%)$");
+    public final x f18126a = new x();
+    public final StringBuilder f18127b = new StringBuilder();
 
-    @Override
-    public final boolean b(e3.p pVar) {
-        e3.l lVar;
-        int e10;
-        g2.y yVar = new g2.y(10);
-        int i3 = 0;
-        while (true) {
-            lVar = (e3.l) pVar;
-            lVar.h(yVar.f11923a, 0, 10, false);
-            yVar.N(0);
-            if (yVar.D() != 4801587) {
-                break;
-            }
-            yVar.O(3);
-            int z10 = yVar.z();
-            i3 += z10 + 10;
-            lVar.w(z10, false);
-        }
-        lVar.f9496f = 0;
-        lVar.w(i3, false);
-        int i10 = 0;
-        int i11 = i3;
-        while (true) {
-            lVar.h(yVar.f11923a, 0, 6, false);
-            yVar.N(0);
-            if (yVar.H() != 2935) {
-                lVar.f9496f = 0;
-                i11++;
-                if (i11 - i3 >= 8192) {
-                    break;
-                }
-                lVar.w(i11, false);
-                i10 = 0;
+    public static String a(x xVar, StringBuilder sb2) {
+        boolean z9 = false;
+        sb2.setLength(0);
+        int i7 = xVar.f14163b;
+        int i10 = xVar.f14164c;
+        while (i7 < i10 && !z9) {
+            char c10 = (char) xVar.f14162a[i7];
+            if ((c10 < 'A' || c10 > 'Z') && ((c10 < 'a' || c10 > 'z') && ((c10 < '0' || c10 > '9') && c10 != '#' && c10 != '-' && c10 != '.' && c10 != '_'))) {
+                z9 = true;
             } else {
-                i10++;
-                if (i10 >= 4) {
-                    return true;
-                }
-                byte[] bArr = yVar.f11923a;
-                if (bArr.length < 6) {
-                    e10 = -1;
-                } else if (((bArr[5] & 248) >> 3) > 10) {
-                    e10 = ((((bArr[2] & 7) << 8) | (bArr[3] & 255)) + 1) * 2;
-                } else {
-                    byte b10 = bArr[4];
-                    e10 = e3.b.e((b10 & 192) >> 6, b10 & 63);
-                }
-                if (e10 == -1) {
-                    break;
-                }
-                lVar.w(e10 - 6, false);
+                i7++;
+                sb2.append(c10);
             }
         }
-        return false;
+        xVar.O(i7 - xVar.f14163b);
+        return sb2.toString();
     }
 
-    @Override
-    public final void c(e3.q qVar) {
-        this.f17740a.f(qVar, new f0(0, 1));
-        qVar.L();
-        qVar.f(new e3.t(-9223372036854775807L));
-    }
-
-    @Override
-    public final void d(long j10, long j11) {
-        this.f17742c = false;
-        this.f17740a.a();
-    }
-
-    @Override
-    public final List e() {
-        g9.g0 g0Var = i0.f12083b;
-        return s1.f12146e;
-    }
-
-    @Override
-    public final int f(e3.p pVar, e3.s sVar) {
-        g2.y yVar = this.f17741b;
-        int read = pVar.read(yVar.f11923a, 0, 2786);
-        if (read == -1) {
-            return -1;
+    public static String b(x xVar, StringBuilder sb2) {
+        c(xVar);
+        if (xVar.a() == 0) {
+            return null;
         }
-        yVar.N(0);
-        yVar.M(read);
-        boolean z10 = this.f17742c;
-        b bVar = this.f17740a;
-        if (!z10) {
-            bVar.f17755o = 0L;
-            this.f17742c = true;
+        String a10 = a(xVar, sb2);
+        if (!a10.isEmpty()) {
+            return a10;
         }
-        bVar.c(yVar);
-        return 0;
+        return "" + ((char) xVar.A());
     }
 
-    @Override
-    public final e3.o a() {
-        return this;
-    }
-
-    @Override
-    public final void release() {
+    public static void c(x xVar) {
+        while (true) {
+            for (boolean z9 = true; xVar.a() > 0 && z9; z9 = false) {
+                int i7 = xVar.f14163b;
+                byte[] bArr = xVar.f14162a;
+                byte b10 = bArr[i7];
+                char c10 = (char) b10;
+                if (c10 != '\t' && c10 != '\n' && c10 != '\f' && c10 != '\r' && c10 != ' ') {
+                    int i10 = xVar.f14164c;
+                    int i11 = i7 + 2;
+                    if (i11 <= i10) {
+                        int i12 = i7 + 1;
+                        if (b10 == 47 && bArr[i12] == 42) {
+                            while (true) {
+                                int i13 = i11 + 1;
+                                if (i13 >= i10) {
+                                    break;
+                                } else if (((char) bArr[i11]) == '*' && ((char) bArr[i13]) == '/') {
+                                    i11 += 2;
+                                    i10 = i11;
+                                } else {
+                                    i11 = i13;
+                                }
+                            }
+                            xVar.O(i10 - xVar.f14163b);
+                        }
+                    }
+                } else {
+                    xVar.O(1);
+                }
+            }
+            return;
+        }
     }
 }

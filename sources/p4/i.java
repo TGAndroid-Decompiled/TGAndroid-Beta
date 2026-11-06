@@ -1,75 +1,51 @@
 package p4;
 
-import android.media.MediaMetadata;
+import a8.ia;
 import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class i implements Parcelable {
-    public static final Parcelable.Creator<i> CREATOR;
-    public static final a0.f f53159c;
-    public static final String[] d;
-    public final Bundle f53160a;
-    public MediaMetadata f53161b;
+public final class i {
+    public static final String f53175f;
+    public static final String f53176g;
+    public static final String h;
+    public static final String f53177i;
+    public static final String f53178j;
+    public static final String f53179k;
+    public final int f53180a;
+    public final int f53181b;
+    public final String f53182c;
+    public final int d;
+    public final Bundle f53183e;
 
     static {
-        ?? lVar = new a0.l(0);
-        f53159c = lVar;
-        lVar.put("android.media.metadata.TITLE", 1);
-        lVar.put("android.media.metadata.ARTIST", 1);
-        lVar.put("android.media.metadata.DURATION", 0);
-        lVar.put("android.media.metadata.ALBUM", 1);
-        lVar.put("android.media.metadata.AUTHOR", 1);
-        lVar.put("android.media.metadata.WRITER", 1);
-        lVar.put("android.media.metadata.COMPOSER", 1);
-        lVar.put("android.media.metadata.COMPILATION", 1);
-        lVar.put("android.media.metadata.DATE", 1);
-        lVar.put("android.media.metadata.YEAR", 0);
-        lVar.put("android.media.metadata.GENRE", 1);
-        lVar.put("android.media.metadata.TRACK_NUMBER", 0);
-        lVar.put("android.media.metadata.NUM_TRACKS", 0);
-        lVar.put("android.media.metadata.DISC_NUMBER", 0);
-        lVar.put("android.media.metadata.ALBUM_ARTIST", 1);
-        lVar.put("android.media.metadata.ART", 2);
-        lVar.put("android.media.metadata.ART_URI", 1);
-        lVar.put("android.media.metadata.ALBUM_ART", 2);
-        lVar.put("android.media.metadata.ALBUM_ART_URI", 1);
-        lVar.put("android.media.metadata.USER_RATING", 3);
-        lVar.put("android.media.metadata.RATING", 3);
-        lVar.put("android.media.metadata.DISPLAY_TITLE", 1);
-        lVar.put("android.media.metadata.DISPLAY_SUBTITLE", 1);
-        lVar.put("android.media.metadata.DISPLAY_DESCRIPTION", 1);
-        lVar.put("android.media.metadata.DISPLAY_ICON", 2);
-        lVar.put("android.media.metadata.DISPLAY_ICON_URI", 1);
-        lVar.put("android.media.metadata.MEDIA_ID", 1);
-        lVar.put("android.media.metadata.BT_FOLDER_TYPE", 0);
-        lVar.put("android.media.metadata.MEDIA_URI", 1);
-        lVar.put("android.media.metadata.ADVERTISEMENT", 0);
-        lVar.put("android.media.metadata.DOWNLOAD_STATUS", 0);
-        d = new String[]{"android.media.metadata.TITLE", "android.media.metadata.ARTIST", "android.media.metadata.ALBUM", "android.media.metadata.ALBUM_ARTIST", "android.media.metadata.WRITER", "android.media.metadata.AUTHOR", "android.media.metadata.COMPOSER", "android.media.metadata.DISPLAY_SUBTITLE", "android.media.metadata.DISPLAY_DESCRIPTION"};
-        CREATOR = new n8.g(10);
+        String str = h2.m0.f14112a;
+        f53175f = Integer.toString(0, 36);
+        f53176g = Integer.toString(1, 36);
+        h = Integer.toString(2, 36);
+        f53177i = Integer.toString(3, 36);
+        f53178j = Integer.toString(4, 36);
+        f53179k = Integer.toString(5, 36);
     }
 
-    public i(Bundle bundle) {
-        Bundle bundle2 = new Bundle(bundle);
-        this.f53160a = bundle2;
-        ClassLoader classLoader = q.class.getClassLoader();
-        classLoader.getClass();
-        bundle2.setClassLoader(classLoader);
+    public i(int i7, int i10, String str, int i11, Bundle bundle, int i12) {
+        this.f53180a = i7;
+        this.f53181b = i10;
+        this.f53182c = str;
+        this.d = i11;
+        this.f53183e = bundle;
     }
 
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i3) {
-        parcel.writeBundle(this.f53160a);
-    }
-
-    public i(Parcel parcel) {
-        Bundle readBundle = parcel.readBundle(q.class.getClassLoader());
-        readBundle.getClass();
-        this.f53160a = readBundle;
+    public static i a(Bundle bundle) {
+        int i7 = bundle.getInt(f53175f, 0);
+        int i10 = bundle.getInt(f53178j, 0);
+        String string = bundle.getString(f53176g);
+        string.getClass();
+        String str = h;
+        ia.f(bundle.containsKey(str));
+        int i11 = bundle.getInt(str);
+        Bundle bundle2 = bundle.getBundle(f53177i);
+        int i12 = bundle.getInt(f53179k, 0);
+        if (bundle2 == null) {
+            bundle2 = Bundle.EMPTY;
+        }
+        return new i(i7, i10, string, i11, bundle2, i12);
     }
 }

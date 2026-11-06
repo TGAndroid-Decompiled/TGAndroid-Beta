@@ -7,96 +7,96 @@ import android.view.MenuInflater;
 import android.view.View;
 import l.a0;
 public final class e extends ActionMode {
-    public final Context f16393a;
-    public final a f16394b;
+    public final Context f17111a;
+    public final a f17112b;
 
     public e(Context context, a aVar) {
-        this.f16393a = context;
-        this.f16394b = aVar;
+        this.f17111a = context;
+        this.f17112b = aVar;
     }
 
     @Override
     public final void finish() {
-        this.f16394b.c();
+        this.f17112b.b();
     }
 
     @Override
     public final View getCustomView() {
-        return this.f16394b.d();
+        return this.f17112b.c();
     }
 
     @Override
     public final Menu getMenu() {
-        return new a0(this.f16393a, this.f16394b.e());
+        return new a0(this.f17111a, this.f17112b.d());
     }
 
     @Override
     public final MenuInflater getMenuInflater() {
-        return this.f16394b.f();
+        return this.f17112b.e();
     }
 
     @Override
     public final CharSequence getSubtitle() {
-        return this.f16394b.g();
+        return this.f17112b.f();
     }
 
     @Override
     public final Object getTag() {
-        return this.f16394b.f16385b;
+        return this.f17112b.f17103b;
     }
 
     @Override
     public final CharSequence getTitle() {
-        return this.f16394b.h();
+        return this.f17112b.g();
     }
 
     @Override
     public final boolean getTitleOptionalHint() {
-        return this.f16394b.f16384a;
+        return this.f17112b.f17102a;
     }
 
     @Override
     public final void invalidate() {
-        this.f16394b.i();
+        this.f17112b.h();
     }
 
     @Override
     public final boolean isTitleOptional() {
-        return this.f16394b.j();
+        return this.f17112b.i();
     }
 
     @Override
     public final void setCustomView(View view) {
-        this.f16394b.m(view);
+        this.f17112b.l(view);
     }
 
     @Override
     public final void setSubtitle(CharSequence charSequence) {
-        this.f16394b.o(charSequence);
+        this.f17112b.n(charSequence);
     }
 
     @Override
     public final void setTag(Object obj) {
-        this.f16394b.f16385b = obj;
+        this.f17112b.f17103b = obj;
     }
 
     @Override
     public final void setTitle(CharSequence charSequence) {
-        this.f16394b.q(charSequence);
+        this.f17112b.p(charSequence);
     }
 
     @Override
-    public final void setTitleOptionalHint(boolean z10) {
-        this.f16394b.r(z10);
+    public final void setTitleOptionalHint(boolean z9) {
+        this.f17112b.q(z9);
     }
 
     @Override
-    public final void setSubtitle(int i3) {
-        this.f16394b.n(i3);
+    public final void setSubtitle(int i7) {
+        this.f17112b.m(i7);
     }
 
     @Override
-    public final void setTitle(int i3) {
-        this.f16394b.p(i3);
+    public final void setTitle(int i7) {
+        this.f17112b.o(i7);
     }
 }

@@ -1,78 +1,88 @@
 package org.telegram.ui;
 
-import android.content.SharedPreferences;
-import android.os.Bundle;
-public final class ti implements org.telegram.ui.Components.wn {
-    public final wm f49812a;
+import android.content.Context;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class ti implements View.OnTouchListener {
+    public View f50046a;
+    public org.telegram.ui.ActionBar.g1 f50047b;
+    public final Rect f50048c = new Rect();
+    public boolean d;
+    public boolean f50049e;
+    public final org.telegram.ui.Components.z00 f50050f;
+    public final int[] h;
+    public View f50051n;
+    public float f50052r;
+    public float f50053s;
+    public final View f50054w;
+    public final an f50055x;
 
-    public ti(wm wmVar) {
-        this.f49812a = wmVar;
+    public ti(an anVar, ImageView imageView) {
+        this.f50055x = anVar;
+        this.f50054w = imageView;
+        org.telegram.ui.Components.z00 z00Var = new org.telegram.ui.Components.z00((Context) null, new f(this, 22));
+        this.f50050f = z00Var;
+        this.h = new int[2];
+        z00Var.v = true;
     }
 
     @Override
-    public final void dismiss() {
-        this.f49812a.f51359j0.U(null, null);
-    }
-
-    @Override
-    public final void q() {
-        wm wmVar = this.f49812a;
-        wmVar.Ec(true);
-        org.telegram.ui.Components.fc.A(wmVar, wmVar.getMessagesController().r2(wmVar.f51376k6, wmVar.b(), null), wmVar.f51557ya).j();
-    }
-
-    @Override
-    public final void t() {
-        wm wmVar = this.f49812a;
-        if (wmVar.f51376k6 != 0 && wmVar.f51325g4 != 3) {
-            if (wmVar.f51306f != null) {
-                wmVar.getMessagesController().X3(wmVar.f51306f, true, false);
-            }
-            Bundle bundle = new Bundle();
-            bundle.putLong("dialog_id", wmVar.f51376k6);
-            if (wmVar.b() != 0) {
-                bundle.putLong("topic_id", wmVar.b());
-            }
-            wmVar.presentFragment(new yw0(bundle, wmVar.f51557ya));
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        View view2;
+        this.f50046a = view;
+        if (motionEvent.getAction() == 0) {
+            this.f50052r = motionEvent.getX();
+            this.f50053s = motionEvent.getY();
+            this.f50049e = false;
         }
-    }
-
-    @Override
-    public final void v() {
-        int i3;
-        wm wmVar = this.f49812a;
-        i3 = ((org.telegram.ui.ActionBar.d2) wmVar).currentAccount;
-        SharedPreferences sharedPreferences = org.telegram.messenger.hp.s1(i3).f22989d7;
-        boolean z10 = sharedPreferences.getBoolean("sound_enabled_" + org.telegram.messenger.us.v(wmVar.f51376k6, wmVar.b(), false), true);
-        boolean z11 = !z10 ? 1 : 0;
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putBoolean("sound_enabled_" + org.telegram.messenger.us.v(wmVar.f51376k6, wmVar.b(), false), z11).apply();
-        if (org.telegram.ui.Components.fc.a(wmVar)) {
-            org.telegram.ui.Components.fc.S(z10 ? 1 : 0, wmVar, wmVar.getResourceProvider()).j();
-        }
-        wmVar.ud(false);
-    }
-
-    @Override
-    public final void z(int i3) {
-        wm wmVar = this.f49812a;
-        if (i3 == 0) {
-            if (wmVar.getMessagesController().r2(wmVar.f51376k6, wmVar.b(), null)) {
-                wmVar.Ec(true);
+        this.f50050f.a(motionEvent);
+        if (this.f50047b != null && !this.d && motionEvent.getAction() == 2) {
+            View view3 = this.f50046a;
+            int[] iArr = this.h;
+            view3.getLocationOnScreen(iArr);
+            float x10 = motionEvent.getX() + iArr[0];
+            float y10 = motionEvent.getY() + iArr[1];
+            this.f50047b.getContentView().getLocationOnScreen(iArr);
+            float f10 = x10 - iArr[0];
+            float f11 = y10 - iArr[1];
+            this.f50051n = null;
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f50047b.getContentView();
+            for (int i7 = 0; i7 < actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount(); i7++) {
+                View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.L.getChildAt(i7);
+                Rect rect = this.f50048c;
+                childAt.getHitRect(rect);
+                childAt.getTag();
+                if (childAt.getVisibility() == 0 && childAt.isClickable()) {
+                    if (!rect.contains((int) f10, (int) f11)) {
+                        childAt.setPressed(false);
+                        childAt.setSelected(false);
+                    } else {
+                        childAt.setPressed(true);
+                        childAt.setSelected(true);
+                        childAt.drawableHotspotChanged(f10, f11 - childAt.getTop());
+                        this.f50051n = childAt;
+                    }
+                }
             }
-            if (org.telegram.ui.Components.fc.a(wmVar)) {
-                org.telegram.ui.Components.fc.z(wmVar, 4, i3, wmVar.getResourceProvider()).j();
-                return;
+        }
+        if ((motionEvent.getAction() == 2 && Math.abs(motionEvent.getX() - this.f50052r) > org.telegram.messenger.g0.f22516e * 2.0f) || Math.abs(motionEvent.getY() - this.f50053s) > org.telegram.messenger.g0.f22516e * 2.0f) {
+            this.f50049e = true;
+            this.f50046a.setPressed(false);
+            this.f50046a.setSelected(false);
+        }
+        if (motionEvent.getAction() == 1 && !this.d && !this.f50049e) {
+            View view4 = this.f50051n;
+            if (view4 != null) {
+                view4.callOnClick();
+                this.d = true;
+                return true;
+            } else if (this.f50047b == null && (view2 = this.f50046a) != null) {
+                view2.callOnClick();
             }
-            return;
         }
-        wmVar.getNotificationsController().H(wmVar.f51376k6, i3, wmVar.b());
-        if (org.telegram.ui.Components.fc.a(wmVar)) {
-            org.telegram.ui.Components.fc.z(wmVar, 5, i3, wmVar.getResourceProvider()).j();
-        }
-    }
-
-    @Override
-    public final void p() {
+        return true;
     }
 }

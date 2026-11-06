@@ -1,30 +1,64 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
-public final class kf implements RequestDelegate {
-    public final int f23816a;
-    public final boolean f23817b;
-    public final long f23818c;
-    public final c1 d;
-
-    public kf(c1 c1Var, boolean z10, long j10, int i3) {
-        this.f23816a = i3;
-        this.d = c1Var;
-        this.f23817b = z10;
-        this.f23818c = j10;
-    }
+public final class kf extends ze {
+    public String B;
+    public String C;
+    public String D;
+    public int E;
+    public int F;
+    public int G;
+    public int H;
+    public CharSequence I;
+    public TLRPC.Document J;
+    public TLRPC.Photo K;
+    public TLRPC.PhotoSize L;
+    public TLRPC.PhotoSize M;
+    public TLRPC.BotInlineResult N;
+    public HashMap O;
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f23816a) {
-            case 0:
-                g0.h3(new jg((li) this.d, tLObject, this.f23817b, this.f23818c, 1));
-                return;
-            default:
-                g0.h3(new jg((hp) this.d, tLObject, this.f23817b, this.f23818c, 3));
-                return;
+    public final String a() {
+        if (this.L != null) {
+            w7.G(p10.f24459s0);
+            return w7.K(this.L, null, true, true).getAbsolutePath();
+        } else if (this.J != null) {
+            w7.G(p10.f24459s0);
+            return w7.K(this.J, null, true, true).getAbsolutePath();
+        } else {
+            return gc.A(this.C).getAbsolutePath();
+        }
+    }
+
+    public final kf clone() {
+        ?? obj = new Object();
+        obj.B = this.B;
+        obj.C = this.C;
+        obj.D = this.D;
+        obj.E = this.E;
+        obj.F = this.F;
+        obj.G = this.G;
+        obj.H = this.H;
+        obj.I = this.I;
+        obj.J = this.J;
+        obj.K = this.K;
+        obj.L = this.L;
+        obj.M = this.M;
+        obj.N = this.N;
+        obj.O = this.O;
+        return obj;
+    }
+
+    public final String g() {
+        if (this.L != null) {
+            w7.G(p10.f24459s0);
+            return w7.K(this.L, null, true, true).getAbsolutePath();
+        } else if (this.J != null) {
+            w7.G(p10.f24459s0);
+            return w7.K(this.J, null, true, true).getAbsolutePath();
+        } else {
+            return this.C;
         }
     }
 }

@@ -12,12 +12,12 @@ import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-public class NotificationImageProvider extends ContentProvider implements cs {
+public class NotificationImageProvider extends ContentProvider implements ls {
     public static String d;
-    public static UriMatcher f21376e;
-    public final HashSet f21377a = new HashSet();
-    public final Object f21378b = new Object();
-    public final HashMap f21379c = new HashMap();
+    public static UriMatcher f21322e;
+    public final HashSet f21323a = new HashSet();
+    public final Object f21324b = new Object();
+    public final HashMap f21325c = new HashMap();
 
     @Override
     public final int delete(Uri uri, String str, String[] strArr) {
@@ -25,14 +25,14 @@ public class NotificationImageProvider extends ContentProvider implements cs {
     }
 
     @Override
-    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
-        if (i3 == hs.Y1) {
-            synchronized (this.f21378b) {
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == qs.Y1) {
+            synchronized (this.f21324b) {
                 try {
                     String str = (String) objArr[0];
-                    if (this.f21377a.remove(str)) {
-                        this.f21379c.remove(str);
-                        this.f21378b.notifyAll();
+                    if (this.f21323a.remove(str)) {
+                        this.f21325c.remove(str);
+                        this.f21324b.notifyAll();
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -61,8 +61,8 @@ public class NotificationImageProvider extends ContentProvider implements cs {
 
     @Override
     public final boolean onCreate() {
-        for (int i3 = 0; i3 < h10.c(); i3++) {
-            hs.f(i3).b(this, hs.Y1);
+        for (int i7 = 0; i7 < p10.c(); i7++) {
+            qs.f(i7).b(this, qs.Y1);
         }
         return true;
     }
@@ -71,16 +71,16 @@ public class NotificationImageProvider extends ContentProvider implements cs {
     public final ParcelFileDescriptor openFile(Uri uri, String str) {
         long currentTimeMillis;
         if ("r".equals(str)) {
-            if (f21376e == null) {
+            if (f21322e == null) {
                 UriMatcher uriMatcher = new UriMatcher(-1);
-                f21376e = uriMatcher;
+                f21322e = uriMatcher;
                 if (d == null) {
                     t0.d();
                     d = "org.telegram.messenger.beta.notification_image_provider";
                 }
                 uriMatcher.addURI(d, "msg_media_raw/#/*", 1);
             }
-            if (f21376e.match(uri) == 1) {
+            if (f21322e.match(uri) == 1) {
                 List<String> pathSegments = uri.getPathSegments();
                 Integer.parseInt(pathSegments.get(1));
                 String str2 = pathSegments.get(2);
@@ -90,18 +90,18 @@ public class NotificationImageProvider extends ContentProvider implements cs {
                 t0.w();
                 if (!g0.I1(Uri.fromFile(file), 0)) {
                     if (!file.exists()) {
-                        Long l10 = (Long) this.f21379c.get(str2);
+                        Long l10 = (Long) this.f21325c.get(str2);
                         if (l10 != null) {
                             currentTimeMillis = l10.longValue();
                         } else {
                             currentTimeMillis = System.currentTimeMillis();
                         }
                         if (l10 == null) {
-                            this.f21379c.put(str2, Long.valueOf(currentTimeMillis));
+                            this.f21325c.put(str2, Long.valueOf(currentTimeMillis));
                         }
                         while (!file.exists()) {
                             if (System.currentTimeMillis() - currentTimeMillis >= 3000) {
-                                if (r2.f25040a) {
+                                if (r2.f25191a) {
                                     a8.l("Waiting for " + str2 + " to download timed out");
                                 }
                                 if (!TextUtils.isEmpty(queryParameter2)) {
@@ -113,10 +113,10 @@ public class NotificationImageProvider extends ContentProvider implements cs {
                                 }
                                 throw new FileNotFoundException("Download timed out");
                             }
-                            synchronized (this.f21378b) {
-                                this.f21377a.add(str2);
+                            synchronized (this.f21324b) {
+                                this.f21323a.add(str2);
                                 try {
-                                    this.f21378b.wait(1000L);
+                                    this.f21324b.wait(1000L);
                                 } catch (InterruptedException unused) {
                                 }
                             }
@@ -141,8 +141,8 @@ public class NotificationImageProvider extends ContentProvider implements cs {
 
     @Override
     public final void shutdown() {
-        for (int i3 = 0; i3 < h10.c(); i3++) {
-            hs.f(i3).n(this, hs.Y1);
+        for (int i7 = 0; i7 < p10.c(); i7++) {
+            qs.f(i7).n(this, qs.Y1);
         }
     }
 

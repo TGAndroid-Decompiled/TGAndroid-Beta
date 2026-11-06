@@ -1,15 +1,12 @@
 package org.telegram.messenger;
 
-import android.telephony.PhoneStateListener;
-public final class ne extends PhoneStateListener {
-    public final MediaController f24367a;
-
-    public ne(MediaController mediaController) {
-        this.f24367a = mediaController;
-    }
-
+import java.io.File;
+public final class ne extends File {
     @Override
-    public final void onCallStateChanged(int i3, String str) {
-        g0.h3(new x0(this, i3, 4));
+    public final boolean delete() {
+        if (r2.f25191a) {
+            a8.d("delete voice file");
+        }
+        return super.delete();
     }
 }

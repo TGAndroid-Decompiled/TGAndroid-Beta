@@ -1,0 +1,48 @@
+package org.telegram.ui;
+
+import android.os.Bundle;
+import org.telegram.tgnet.TLObject;
+public final class b70 implements Runnable {
+    public final int f44190a = 1;
+    public final LaunchActivity f44191b;
+    public final byte[] f44192c;
+    public final int d;
+    public final Integer f44193e;
+    public final String f44194f;
+    public final int h;
+    public final long f44195n;
+    public final Object f44196r;
+    public final Object f44197s;
+    public final Object f44198w;
+
+    public b70(LaunchActivity launchActivity, Bundle bundle, byte[] bArr, int i7, Integer num, String str, int i10, long j3, j0 j0Var, org.telegram.ui.ActionBar.f2 f2Var) {
+        this.f44191b = launchActivity;
+        this.f44196r = bundle;
+        this.f44192c = bArr;
+        this.d = i7;
+        this.f44193e = num;
+        this.f44194f = str;
+        this.h = i10;
+        this.f44195n = j3;
+        this.f44197s = j0Var;
+        this.f44198w = f2Var;
+    }
+
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.b70.run():void");
+    }
+
+    public b70(LaunchActivity launchActivity, TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j3, Runnable runnable, String str, int i7, int i10) {
+        this.f44191b = launchActivity;
+        this.f44196r = tLObject;
+        this.f44193e = num;
+        this.f44197s = num2;
+        this.f44192c = bArr;
+        this.f44195n = j3;
+        this.f44198w = runnable;
+        this.f44194f = str;
+        this.d = i7;
+        this.h = i10;
+    }
+}

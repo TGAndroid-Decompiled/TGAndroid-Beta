@@ -8,13 +8,13 @@ public class SparseLongArray implements Cloneable {
         this(10);
     }
 
-    private static int binarySearch(int[] iArr, int i3, int i10, long j10) {
-        int i11 = i10 + i3;
-        int i12 = i3 - 1;
+    private static int binarySearch(int[] iArr, int i7, int i10, long j3) {
+        int i11 = i10 + i7;
+        int i12 = i7 - 1;
         int i13 = i11;
         while (i13 - i12 > 1) {
             int i14 = (i13 + i12) / 2;
-            if (iArr[i14] < j10) {
+            if (iArr[i14] < j3) {
                 i12 = i14;
             } else {
                 i13 = i14;
@@ -23,14 +23,14 @@ public class SparseLongArray implements Cloneable {
         if (i13 == i11) {
             return ~i11;
         }
-        if (iArr[i13] == j10) {
+        if (iArr[i13] == j3) {
             return i13;
         }
         return ~i13;
     }
 
-    private void growKeyAndValueArrays(int i3) {
-        int idealLongArraySize = ArrayUtils.idealLongArraySize(i3);
+    private void growKeyAndValueArrays(int i7) {
+        int idealLongArraySize = ArrayUtils.idealLongArraySize(i7);
         int[] iArr = new int[idealLongArraySize];
         long[] jArr = new long[idealLongArraySize];
         int[] iArr2 = this.mKeys;
@@ -41,17 +41,17 @@ public class SparseLongArray implements Cloneable {
         this.mValues = jArr;
     }
 
-    public void append(int i3, long j10) {
+    public void append(int i7, long j3) {
         int i10 = this.mSize;
-        if (i10 != 0 && i3 <= this.mKeys[i10 - 1]) {
-            put(i3, j10);
+        if (i10 != 0 && i7 <= this.mKeys[i10 - 1]) {
+            put(i7, j3);
             return;
         }
         if (i10 >= this.mKeys.length) {
             growKeyAndValueArrays(i10 + 1);
         }
-        this.mKeys[i10] = i3;
-        this.mValues[i10] = j10;
+        this.mKeys[i10] = i7;
+        this.mValues[i10] = j3;
         this.mSize = i10 + 1;
     }
 
@@ -59,38 +59,38 @@ public class SparseLongArray implements Cloneable {
         this.mSize = 0;
     }
 
-    public void delete(int i3) {
-        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i3);
+    public void delete(int i7) {
+        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i7);
         if (binarySearch >= 0) {
             removeAt(binarySearch);
         }
     }
 
-    public long get(int i3) {
-        return get(i3, 0L);
+    public long get(int i7) {
+        return get(i7, 0L);
     }
 
-    public int indexOfKey(int i3) {
-        return binarySearch(this.mKeys, 0, this.mSize, i3);
+    public int indexOfKey(int i7) {
+        return binarySearch(this.mKeys, 0, this.mSize, i7);
     }
 
-    public int indexOfValue(long j10) {
-        for (int i3 = 0; i3 < this.mSize; i3++) {
-            if (this.mValues[i3] == j10) {
-                return i3;
+    public int indexOfValue(long j3) {
+        for (int i7 = 0; i7 < this.mSize; i7++) {
+            if (this.mValues[i7] == j3) {
+                return i7;
             }
         }
         return -1;
     }
 
-    public int keyAt(int i3) {
-        return this.mKeys[i3];
+    public int keyAt(int i7) {
+        return this.mKeys[i7];
     }
 
-    public void put(int i3, long j10) {
-        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i3);
+    public void put(int i7, long j3) {
+        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i7);
         if (binarySearch >= 0) {
-            this.mValues[binarySearch] = j10;
+            this.mValues[binarySearch] = j3;
             return;
         }
         int i10 = ~binarySearch;
@@ -106,17 +106,17 @@ public class SparseLongArray implements Cloneable {
             long[] jArr = this.mValues;
             System.arraycopy(jArr, i10, jArr, i13, this.mSize - i10);
         }
-        this.mKeys[i10] = i3;
-        this.mValues[i10] = j10;
+        this.mKeys[i10] = i7;
+        this.mValues[i10] = j3;
         this.mSize++;
     }
 
-    public void removeAt(int i3) {
+    public void removeAt(int i7) {
         int[] iArr = this.mKeys;
-        int i10 = i3 + 1;
-        System.arraycopy(iArr, i10, iArr, i3, this.mSize - i10);
+        int i10 = i7 + 1;
+        System.arraycopy(iArr, i10, iArr, i7, this.mSize - i10);
         long[] jArr = this.mValues;
-        System.arraycopy(jArr, i10, jArr, i3, this.mSize - i10);
+        System.arraycopy(jArr, i10, jArr, i7, this.mSize - i10);
         this.mSize--;
     }
 
@@ -124,12 +124,12 @@ public class SparseLongArray implements Cloneable {
         return this.mSize;
     }
 
-    public long valueAt(int i3) {
-        return this.mValues[i3];
+    public long valueAt(int i7) {
+        return this.mValues[i7];
     }
 
-    public SparseLongArray(int i3) {
-        int idealLongArraySize = ArrayUtils.idealLongArraySize(i3);
+    public SparseLongArray(int i7) {
+        int idealLongArraySize = ArrayUtils.idealLongArraySize(i7);
         this.mKeys = new int[idealLongArraySize];
         this.mValues = new long[idealLongArraySize];
         this.mSize = 0;
@@ -150,8 +150,8 @@ public class SparseLongArray implements Cloneable {
         }
     }
 
-    public long get(int i3, long j10) {
-        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i3);
-        return binarySearch < 0 ? j10 : this.mValues[binarySearch];
+    public long get(int i7, long j3) {
+        int binarySearch = binarySearch(this.mKeys, 0, this.mSize, i7);
+        return binarySearch < 0 ? j3 : this.mValues[binarySearch];
     }
 }

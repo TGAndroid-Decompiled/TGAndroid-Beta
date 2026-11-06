@@ -3,61 +3,61 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class wq0 extends AnimatorListenerAdapter {
-    public final int f40056a;
-    public final ws0 f40057b;
+    public final int f40066a;
+    public final xs0 f40067b;
 
-    public wq0(ws0 ws0Var, int i3) {
-        this.f40056a = i3;
-        this.f40057b = ws0Var;
+    public wq0(xs0 xs0Var, int i7) {
+        this.f40066a = i7;
+        this.f40067b = xs0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f40056a) {
+        switch (this.f40066a) {
             case 0:
-                this.f40057b.O0 = null;
+                this.f40067b.N0 = null;
                 return;
             default:
-                ws0 ws0Var = this.f40057b;
-                org.telegram.ui.ActionBar.q0 q0Var = ws0Var.f40117q0;
-                rr0[] rr0VarArr = ws0Var.f40108n0;
-                ws0Var.f40096i1 = null;
-                int i3 = 4;
-                if (ws0Var.f40104l1) {
-                    rr0VarArr[1].setVisibility(8);
-                    if (q0Var != null && !ws0Var.I()) {
-                        if (ws0Var.H0()) {
-                            i3 = 8;
+                xs0 xs0Var = this.f40067b;
+                org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40381p0;
+                sr0[] sr0VarArr = xs0Var.m0;
+                xs0Var.f40360h1 = null;
+                int i7 = 4;
+                if (xs0Var.f40369k1) {
+                    sr0VarArr[1].setVisibility(8);
+                    if (r0Var != null && !xs0Var.I()) {
+                        if (xs0Var.H0()) {
+                            i7 = 8;
                         }
-                        ws0Var.setSearchItemVisibility(i3);
-                        ws0Var.f40121r0 = 0.0f;
+                        xs0Var.setSearchItemVisibility(i7);
+                        xs0Var.f40384q0 = 0.0f;
                     } else {
-                        ws0Var.f40121r0 = ws0Var.l0(0.0f);
-                        ws0Var.K1(0.0f);
+                        xs0Var.f40384q0 = xs0Var.l0(0.0f);
+                        xs0Var.K1(0.0f);
                     }
-                    ws0Var.G1(false);
-                    ws0Var.A0 = 0;
+                    xs0Var.G1(false);
+                    xs0Var.f40409z0 = 0;
                 } else {
-                    rr0 rr0Var = rr0VarArr[0];
-                    rr0VarArr[0] = rr0VarArr[1];
-                    rr0VarArr[1] = rr0Var;
-                    rr0Var.setVisibility(8);
-                    if (q0Var != null && ws0Var.A0 == 2) {
-                        if (ws0Var.H0()) {
-                            i3 = 8;
+                    sr0 sr0Var = sr0VarArr[0];
+                    sr0VarArr[0] = sr0VarArr[1];
+                    sr0VarArr[1] = sr0Var;
+                    sr0Var.setVisibility(8);
+                    if (r0Var != null && xs0Var.f40409z0 == 2) {
+                        if (xs0Var.H0()) {
+                            i7 = 8;
                         }
-                        ws0Var.setSearchItemVisibility(i3);
+                        xs0Var.setSearchItemVisibility(i7);
                     }
-                    ws0Var.A0 = 0;
-                    ws0Var.j1(1.0f, rr0VarArr[0].F);
-                    ws0Var.W0();
-                    ws0Var.s1();
+                    xs0Var.f40409z0 = 0;
+                    xs0Var.j1(1.0f, sr0VarArr[0].E);
+                    xs0Var.W0();
+                    xs0Var.s1();
                 }
-                ws0Var.f40099j1 = false;
-                ws0Var.B1 = false;
-                ws0Var.A1 = false;
-                ws0Var.setHeaderEnabled(true);
-                ws0Var.L0.setEnabled(true);
+                xs0Var.f40363i1 = false;
+                xs0Var.A1 = false;
+                xs0Var.f40410z1 = false;
+                xs0Var.setHeaderEnabled(true);
+                xs0Var.K0.setEnabled(true);
                 return;
         }
     }

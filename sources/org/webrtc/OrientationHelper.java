@@ -7,12 +7,12 @@ public class OrientationHelper {
     public static volatile int cameraOrientation;
     public static volatile int cameraRotation;
     public static volatile boolean cameraRotationDisabled;
-    private OrientationEventListener orientationEventListener = new OrientationEventListener(t0.f25457b) {
+    private OrientationEventListener orientationEventListener = new OrientationEventListener(t0.f25555b) {
         @Override
-        public void onOrientationChanged(int i3) {
-            if (OrientationHelper.this.orientationEventListener != null && i3 != -1) {
+        public void onOrientationChanged(int i7) {
+            if (OrientationHelper.this.orientationEventListener != null && i7 != -1) {
                 OrientationHelper orientationHelper = OrientationHelper.this;
-                int roundOrientation = orientationHelper.roundOrientation(i3, orientationHelper.rotation);
+                int roundOrientation = orientationHelper.roundOrientation(i7, orientationHelper.rotation);
                 if (roundOrientation != OrientationHelper.this.rotation) {
                     OrientationHelper orientationHelper2 = OrientationHelper.this;
                     orientationHelper2.onOrientationUpdate(orientationHelper2.rotation = roundOrientation);
@@ -22,14 +22,14 @@ public class OrientationHelper {
     };
     private int rotation;
 
-    public int roundOrientation(int i3, int i10) {
+    public int roundOrientation(int i7, int i10) {
         if (i10 != -1) {
-            int abs = Math.abs(i3 - i10);
+            int abs = Math.abs(i7 - i10);
             if (Math.min(abs, 360 - abs) < 50) {
                 return i10;
             }
         }
-        return (((i3 + 45) / 90) * 90) % 360;
+        return (((i7 + 45) / 90) * 90) % 360;
     }
 
     public int getOrientation() {
@@ -56,6 +56,6 @@ public class OrientationHelper {
         }
     }
 
-    public void onOrientationUpdate(int i3) {
+    public void onOrientationUpdate(int i7) {
     }
 }

@@ -1,165 +1,97 @@
 package g4;
 
-import a1.g;
-import android.text.Html;
-import android.text.Spanned;
-import android.text.TextUtils;
-import b4.d;
-import b4.l;
-import b4.m;
-import g2.k;
-import g2.y;
-import g9.i0;
-import java.nio.charset.Charset;
+import a8.ia;
+import a8.p0;
+import c4.m;
+import h2.m0;
+import h2.x;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 public final class a implements m {
-    public static final Pattern d = Pattern.compile("\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*-->\\s*((?:(\\d+):)?(\\d+):(\\d+)(?:,(\\d{3}))?)\\s*");
-    public static final Pattern f11967e = Pattern.compile("\\{\\\\.*?\\}");
-    public final StringBuilder f11968a = new StringBuilder();
-    public final ArrayList f11969b = new ArrayList();
-    public final y f11970c = new y();
+    public static final Pattern h = Pattern.compile("(?:(\\d+):)?(\\d+):(\\d+)[:.](\\d+)");
+    public final boolean f13491a;
+    public final e4.b f13492b;
+    public LinkedHashMap d;
+    public float f13494e = -3.4028235E38f;
+    public float f13495f = -3.4028235E38f;
+    public final x f13493c = new x();
 
-    public static f2.b a(android.text.Spanned r21, java.lang.String r22) {
-        throw new UnsupportedOperationException("Method not decompiled: g4.a.a(android.text.Spanned, java.lang.String):f2.b");
+    public a(List list) {
+        if (list != null && !list.isEmpty()) {
+            this.f13491a = true;
+            String r10 = m0.r((byte[]) list.get(0));
+            ia.f(r10.startsWith("Format:"));
+            e4.b b10 = e4.b.b(r10);
+            b10.getClass();
+            this.f13492b = b10;
+            b(new x((byte[]) list.get(1)), StandardCharsets.UTF_8);
+            return;
+        }
+        this.f13491a = false;
+        this.f13492b = null;
     }
 
-    public static long b(Matcher matcher, int i3) {
-        long j10;
-        String group = matcher.group(i3 + 1);
-        if (group != null) {
-            j10 = Long.parseLong(group) * 3600000;
-        } else {
-            j10 = 0;
-        }
-        String group2 = matcher.group(i3 + 2);
-        group2.getClass();
-        long parseLong = (Long.parseLong(group2) * 60000) + j10;
-        String group3 = matcher.group(i3 + 3);
-        group3.getClass();
-        long parseLong2 = (Long.parseLong(group3) * 1000) + parseLong;
-        String group4 = matcher.group(i3 + 4);
-        if (group4 != null) {
-            parseLong2 += Long.parseLong(group4);
-        }
-        return parseLong2 * 1000;
-    }
-
-    @Override
-    public final d B(int i3, int i10, byte[] bArr) {
-        return g.a(this, bArr, i10);
-    }
-
-    @Override
-    public final void F(byte[] bArr, int i3, int i10, l lVar, k kVar) {
-        ArrayList arrayList;
-        String n4;
-        String str;
-        a aVar = this;
-        long j10 = lVar.f2374a;
-        y yVar = aVar.f11970c;
-        yVar.L(i3 + i10, bArr);
-        yVar.N(i3);
-        Charset J = yVar.J();
-        if (J == null) {
-            J = StandardCharsets.UTF_8;
-        }
-        long j11 = -9223372036854775807L;
-        if (j10 != -9223372036854775807L && lVar.f2375b) {
-            arrayList = new ArrayList();
-        } else {
-            arrayList = null;
-        }
+    public static int a(long j3, ArrayList arrayList, ArrayList arrayList2) {
+        int i7;
+        ArrayList arrayList3;
+        int size = arrayList.size() - 1;
         while (true) {
-            String n10 = yVar.n(J);
-            if (n10 == null) {
-                break;
-            } else if (!n10.isEmpty()) {
-                try {
-                    Integer.parseInt(n10);
-                    n4 = yVar.n(J);
-                } catch (NumberFormatException unused) {
-                    g2.a.l("SubripParser", "Skipping invalid index: ".concat(n10));
+            if (size >= 0) {
+                if (((Long) arrayList.get(size)).longValue() == j3) {
+                    return size;
                 }
-                if (n4 == null) {
-                    g2.a.l("SubripParser", "Unexpected end");
+                if (((Long) arrayList.get(size)).longValue() < j3) {
+                    i7 = size + 1;
                     break;
                 }
-                Matcher matcher = d.matcher(n4);
-                if (matcher.matches()) {
-                    long b10 = b(matcher, 1);
-                    long b11 = b(matcher, 6);
-                    StringBuilder sb2 = aVar.f11968a;
-                    sb2.setLength(0);
-                    long j12 = j11;
-                    ArrayList arrayList2 = aVar.f11969b;
-                    arrayList2.clear();
-                    for (String n11 = yVar.n(J); !TextUtils.isEmpty(n11); n11 = yVar.n(J)) {
-                        if (sb2.length() > 0) {
-                            sb2.append("<br>");
-                        }
-                        String trim = n11.trim();
-                        StringBuilder sb3 = new StringBuilder(trim);
-                        Matcher matcher2 = f11967e.matcher(trim);
-                        int i11 = 0;
-                        while (matcher2.find()) {
-                            String group = matcher2.group();
-                            arrayList2.add(group);
-                            int start = matcher2.start() - i11;
-                            int length = group.length();
-                            sb3.replace(start, start + length, "");
-                            i11 += length;
-                            j10 = j10;
-                        }
-                        sb2.append(sb3.toString());
-                    }
-                    long j13 = j10;
-                    Spanned fromHtml = Html.fromHtml(sb2.toString());
-                    int i12 = 0;
-                    while (true) {
-                        if (i12 < arrayList2.size()) {
-                            str = (String) arrayList2.get(i12);
-                            if (str.matches("\\{\\\\an[1-9]\\}")) {
-                                break;
-                            }
-                            i12++;
-                        } else {
-                            str = null;
-                            break;
-                        }
-                    }
-                    if (j13 != j12 && b11 < j13) {
-                        if (arrayList != null) {
-                            arrayList.add(new b4.a(b10, b11 - b10, i0.u(a(fromHtml, str))));
-                        }
-                    } else {
-                        kVar.accept(new b4.a(b10, b11 - b10, i0.u(a(fromHtml, str))));
-                    }
-                    aVar = this;
-                    j11 = j12;
-                    j10 = j13;
-                } else {
-                    g2.a.l("SubripParser", "Skipping invalid timing: ".concat(n4));
-                    aVar = this;
-                }
+                size--;
+            } else {
+                i7 = 0;
+                break;
             }
         }
-        if (arrayList != null) {
-            int size = arrayList.size();
-            int i13 = 0;
-            while (i13 < size) {
-                Object obj = arrayList.get(i13);
-                i13++;
-                kVar.accept((b4.a) obj);
-            }
+        arrayList.add(i7, Long.valueOf(j3));
+        if (i7 == 0) {
+            arrayList3 = new ArrayList();
+        } else {
+            arrayList3 = new ArrayList((Collection) arrayList2.get(i7 - 1));
         }
+        arrayList2.add(i7, arrayList3);
+        return i7;
+    }
+
+    public static long d(String str) {
+        Matcher matcher = h.matcher(str.trim());
+        if (!matcher.matches()) {
+            return -9223372036854775807L;
+        }
+        String group = matcher.group(1);
+        String str2 = m0.f14112a;
+        return (Long.parseLong(matcher.group(4)) * 10000) + (Long.parseLong(matcher.group(3)) * 1000000) + (Long.parseLong(matcher.group(2)) * 60000000) + (Long.parseLong(group) * 3600000000L);
     }
 
     @Override
-    public final int Y() {
+    public final int P() {
         return 1;
+    }
+
+    public final void b(h2.x r39, java.nio.charset.Charset r40) {
+        throw new UnsupportedOperationException("Method not decompiled: g4.a.b(h2.x, java.nio.charset.Charset):void");
+    }
+
+    @Override
+    public final c4.d c(int i7, int i10, byte[] bArr) {
+        return p0.a(this, bArr, i10);
+    }
+
+    @Override
+    public final void z(byte[] r44, int r45, int r46, c4.l r47, h2.j r48) {
+        throw new UnsupportedOperationException("Method not decompiled: g4.a.z(byte[], int, int, c4.l, h2.j):void");
     }
 
     @Override

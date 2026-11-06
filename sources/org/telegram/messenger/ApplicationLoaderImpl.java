@@ -12,8 +12,8 @@ import org.telegram.tgnet.TLRPC;
 public class ApplicationLoaderImpl extends t0 {
     @Override
     public final boolean b(Context context) {
-        if (Build.VERSION.SDK_INT >= 26 && !t0.f25457b.getPackageManager().canRequestPackageInstalls()) {
-            org.telegram.ui.Components.t4.j(context, null).show();
+        if (Build.VERSION.SDK_INT >= 26 && !t0.f25555b.getPackageManager().canRequestPackageInstalls()) {
+            org.telegram.ui.Components.v4.j(context, null).show();
             return false;
         }
         return true;
@@ -38,18 +38,18 @@ public class ApplicationLoaderImpl extends t0 {
 
     @Override
     public final boolean q() {
-        return !TextUtils.isEmpty("https://telegram.org/dl/android/apk-public-beta.json");
+        return !TextUtils.isEmpty("null");
     }
 
     @Override
     public final boolean v(Activity activity, TLRPC.Document document) {
-        boolean z10 = false;
+        boolean z9 = false;
         try {
             w7.r(null, document);
-            w7.G(h10.f22829t0);
+            w7.G(p10.f24459s0);
             File K = w7.K(document, null, true, true);
-            z10 = K.exists();
-            if (z10) {
+            z9 = K.exists();
+            if (z9) {
                 Intent intent = new Intent("android.intent.action.VIEW");
                 intent.setFlags(1);
                 if (Build.VERSION.SDK_INT >= 24) {
@@ -67,6 +67,6 @@ public class ApplicationLoaderImpl extends t0 {
         } catch (Exception e11) {
             a8.g(e11, true);
         }
-        return z10;
+        return z9;
     }
 }

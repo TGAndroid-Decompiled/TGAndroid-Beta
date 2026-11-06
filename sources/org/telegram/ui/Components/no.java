@@ -1,27 +1,27 @@
 package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.k71;
-public final class no implements k71 {
-    public final int f36594a;
-    public final oo f36595b;
+import org.telegram.ui.t71;
+public final class no implements t71 {
+    public final int f36453a;
+    public final oo f36454b;
 
-    public no(oo ooVar, int i3) {
-        this.f36594a = i3;
-        this.f36595b = ooVar;
+    public no(oo ooVar, int i7) {
+        this.f36453a = i7;
+        this.f36454b = ooVar;
     }
 
     @Override
     public final void a(TLRPC.TL_wallPaper tL_wallPaper) {
-        switch (this.f36594a) {
+        switch (this.f36453a) {
             case 0:
-                vo voVar = this.f36595b.f36874a;
-                voVar.P1.K();
+                vo voVar = this.f36454b.f36757a;
+                voVar.O1.K();
                 voVar.dismiss();
                 return;
             default:
-                vo voVar2 = this.f36595b.f36874a;
-                voVar2.P1.K();
+                vo voVar2 = this.f36454b.f36757a;
+                voVar2.O1.K();
                 voVar2.dismiss();
                 return;
         }

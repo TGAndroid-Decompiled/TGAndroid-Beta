@@ -1,34 +1,82 @@
 package org.telegram.ui;
 
-import android.text.TextWatcher;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class i31 implements TextWatcher {
-    public boolean f46051a;
-    public final int f46052b;
-    public final EditTextBoldCursor f46053c;
-    public final org.telegram.ui.Components.gb0 d;
-    public final int[] f46054e;
-    public final TextView f46055f;
+public final class i31 extends org.telegram.ui.Components.q31 {
+    static {
+        org.telegram.ui.Components.q31.h(new org.telegram.ui.Components.q31());
+    }
 
-    public i31(int i3, EditTextBoldCursor editTextBoldCursor, org.telegram.ui.Components.gb0 gb0Var, int[] iArr, TextView textView) {
-        this.f46052b = i3;
-        this.f46053c = editTextBoldCursor;
-        this.d = gb0Var;
-        this.f46054e = iArr;
-        this.f46055f = textView;
+    public static org.telegram.ui.Components.r31 i(int i7, int i10, int i11, int i12, CharSequence charSequence, CharSequence charSequence2, CharSequence charSequence3) {
+        org.telegram.ui.Components.r31 K = org.telegram.ui.Components.r31.K(i31.class);
+        K.d = i7;
+        K.f37597k = i12;
+        K.f37598l = charSequence;
+        K.f37599m = charSequence2;
+        K.f37600n = charSequence3;
+        K.B = (i10 & 4294967295L) | (i11 << 32);
+        return K;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.i31.afterTextChanged(android.text.Editable):void");
+    public final void b(View view, org.telegram.ui.Components.r31 r31Var, boolean z9, org.telegram.ui.Components.f41 f41Var, org.telegram.ui.Components.k41 k41Var) {
+        boolean z10;
+        int i7;
+        float f10;
+        long j3 = r31Var.B;
+        int i10 = (int) j3;
+        int i11 = (int) (j3 >>> 32);
+        j31 j31Var = (j31) view;
+        int i12 = r31Var.f37597k;
+        CharSequence charSequence = r31Var.f37598l;
+        CharSequence charSequence2 = r31Var.f37599m;
+        CharSequence charSequence3 = r31Var.f37600n;
+        TextView textView = j31Var.f46803e;
+        TextView textView2 = j31Var.f46804f;
+        int i13 = 0;
+        if (i10 == 0 && i11 == 0) {
+            z10 = false;
+        } else {
+            z10 = true;
+        }
+        j31Var.f46805n = z10;
+        FrameLayout frameLayout = j31Var.f46802c;
+        if (i12 != 0) {
+            i7 = 0;
+        } else {
+            i7 = 8;
+        }
+        frameLayout.setVisibility(i7);
+        float f11 = 0.0f;
+        if (i12 == 0) {
+            f10 = org.telegram.messenger.g0.L(2.0f);
+        } else {
+            f10 = 0.0f;
+        }
+        textView.setTranslationX(f10);
+        if (i12 == 0) {
+            f11 = org.telegram.messenger.g0.L(2.0f);
+        }
+        textView2.setTranslationX(f11);
+        j31Var.f46801b.b(i10, i11);
+        j31Var.d.setImageResource(i12);
+        textView.setText(charSequence);
+        boolean isEmpty = TextUtils.isEmpty(charSequence2);
+        j31Var.f46806r = !isEmpty;
+        if (isEmpty) {
+            i13 = 8;
+        }
+        textView2.setVisibility(i13);
+        textView2.setText(charSequence2);
+        j31Var.setValue(charSequence3);
+        j31Var.updateColors();
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+    public final View d(Context context, org.telegram.ui.Components.pj0 pj0Var, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
+        return new j31(context, f6Var);
     }
 }

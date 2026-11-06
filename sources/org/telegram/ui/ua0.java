@@ -1,37 +1,42 @@
 package org.telegram.ui;
-public final class ua0 implements org.telegram.ui.Components.pt0 {
-    public final int f50024a;
-    public final org.telegram.ui.ActionBar.d2 f50025b;
 
-    public ua0(int i3, org.telegram.ui.ActionBar.d2 d2Var) {
-        this.f50024a = i3;
-        this.f50025b = d2Var;
+import android.os.Bundle;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.play.core.integrity.IntegrityTokenResponse;
+import org.telegram.tgnet.TLRPC;
+public final class ua0 implements OnSuccessListener {
+    public final int f50344a = 0;
+    public final ce0 f50345b;
+    public final String f50346c;
+    public final TLRPC.auth_SentCode d;
+    public final Bundle f50347e;
+    public final boolean f50348f;
+
+    public ua0(ce0 ce0Var, Bundle bundle, TLRPC.auth_SentCode auth_sentcode, String str, boolean z9) {
+        this.f50345b = ce0Var;
+        this.f50347e = bundle;
+        this.d = auth_sentcode;
+        this.f50346c = str;
+        this.f50348f = z9;
     }
 
     @Override
-    public final void K(int i3, boolean z10) {
-        nd0 nd0Var;
-        bi0 bi0Var;
-        switch (this.f50024a) {
+    public final void onSuccess(Object obj) {
+        switch (this.f50344a) {
             case 0:
-                xd0 xd0Var = (xd0) this.f50025b;
-                if (i3 > org.telegram.messenger.g0.L(20.0f) && xd0Var.q1()) {
-                    org.telegram.messenger.g0.v1(xd0Var.fragmentView);
-                }
-                if (i3 <= org.telegram.messenger.g0.L(20.0f) && (nd0Var = xd0Var.U) != null) {
-                    nd0Var.run();
-                    xd0Var.U = null;
-                    return;
-                }
+                ce0.a0(this.f50345b, this.f50347e, this.d, this.f50346c, this.f50348f, (IntegrityTokenResponse) obj);
                 return;
             default:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f50025b;
-                if (i3 >= org.telegram.messenger.g0.L(20.0f) && (bi0Var = passcodeActivity.U) != null) {
-                    bi0Var.run();
-                    passcodeActivity.U = null;
-                    return;
-                }
+                ce0.c0(this.f50345b, this.f50346c, this.d, this.f50347e, this.f50348f, (p8.d) obj);
                 return;
         }
+    }
+
+    public ua0(ce0 ce0Var, String str, TLRPC.auth_SentCode auth_sentcode, Bundle bundle, boolean z9) {
+        this.f50345b = ce0Var;
+        this.f50346c = str;
+        this.d = auth_sentcode;
+        this.f50347e = bundle;
+        this.f50348f = z9;
     }
 }

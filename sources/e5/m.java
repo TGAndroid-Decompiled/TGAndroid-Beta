@@ -1,6 +1,10 @@
 package e5;
 
-import java.util.List;
-public interface m {
-    void a(f fVar, List list);
+import org.chromium.support_lib_boundary.WebViewProviderBoundaryInterface;
+public final class m {
+    public final WebViewProviderBoundaryInterface f10715a;
+
+    public m(WebViewProviderBoundaryInterface webViewProviderBoundaryInterface) {
+        this.f10715a = webViewProviderBoundaryInterface;
+    }
 }

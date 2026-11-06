@@ -10,7 +10,7 @@ public class CustomTabsCopyReceiver extends BroadcastReceiver {
         String dataString = intent.getDataString();
         if (dataString != null) {
             g0.g(dataString);
-            Toast.makeText(context, bd.M0(2131748929, null), 0).show();
+            Toast.makeText(context, hd.M0(2131748920, null), 0).show();
         }
     }
 }

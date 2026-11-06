@@ -7,13 +7,13 @@ public class LegacyAudioDeviceModule implements AudioDeviceModule {
     }
 
     @Override
-    public void setMicrophoneMute(boolean z10) {
-        org.webrtc.voiceengine.WebRtcAudioRecord.setMicrophoneMute(z10);
+    public void setMicrophoneMute(boolean z9) {
+        org.webrtc.voiceengine.WebRtcAudioRecord.setMicrophoneMute(z9);
     }
 
     @Override
-    public final boolean setNoiseSuppressorEnabled(boolean z10) {
-        return a.a(this, z10);
+    public final boolean setNoiseSuppressorEnabled(boolean z9) {
+        return a.a(this, z9);
     }
 
     @Override
@@ -22,8 +22,8 @@ public class LegacyAudioDeviceModule implements AudioDeviceModule {
     }
 
     @Override
-    public void setSpeakerMute(boolean z10) {
-        org.webrtc.voiceengine.WebRtcAudioTrack.setSpeakerMute(z10);
+    public void setSpeakerMute(boolean z9) {
+        org.webrtc.voiceengine.WebRtcAudioTrack.setSpeakerMute(z9);
     }
 
     @Override

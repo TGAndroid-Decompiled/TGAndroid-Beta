@@ -1,35 +1,80 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-public final class tj implements Runnable {
-    public final int f49816a;
-    public final wm f49817b;
+import android.widget.ImageView;
+public final class tj extends FrameLayout {
+    public final int f50058a;
+    public final an f50059b;
 
-    public tj(wm wmVar, int i3) {
-        this.f49816a = i3;
-        this.f49817b = wmVar;
+    public tj(an anVar, Context context, int i7) {
+        super(context);
+        this.f50058a = i7;
+        this.f50059b = anVar;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.Components.jg jgVar;
-        FrameLayout frameLayout;
-        switch (this.f49816a) {
-            case 0:
-                wm wmVar = this.f49817b;
-                AnimatorSet animatorSet = wmVar.f51442pa;
-                if (animatorSet != null && !animatorSet.isRunning()) {
-                    wmVar.f51442pa.start();
-                    return;
+    public void measureChildWithMargins(View view, int i7, int i10, int i11, int i12) {
+        int i13;
+        switch (this.f50058a) {
+            case 1:
+                an anVar = this.f50059b;
+                if (view == anVar.f43804i3) {
+                    ImageView imageView = anVar.f43777g3;
+                    if (imageView != null && imageView.getVisibility() != 8) {
+                        i13 = 66;
+                    } else {
+                        i13 = 18;
+                    }
+                    ImageView imageView2 = anVar.f43791h3;
+                    if (imageView2 != null && imageView2.getVisibility() != 8) {
+                        i13 += 48;
+                    }
+                    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = org.telegram.messenger.g0.L(i13);
                 }
+                super.measureChildWithMargins(view, i7, i10, i11, i12);
                 return;
             default:
-                wm wmVar2 = this.f49817b;
-                if (wmVar2.f51281d3 == this && (jgVar = wmVar2.f51252b1) != null && (frameLayout = wmVar2.f51268c3) != null) {
-                    jgVar.i(frameLayout, false, true);
-                    return;
+                super.measureChildWithMargins(view, i7, i10, i11, i12);
+                return;
+        }
+    }
+
+    @Override
+    public void setTranslationY(float f10) {
+        switch (this.f50058a) {
+            case 2:
+                super.setTranslationY(f10);
+                this.f50059b.l1.invalidate();
+                return;
+            default:
+                super.setTranslationY(f10);
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i7) {
+        boolean z9;
+        switch (this.f50058a) {
+            case 0:
+                super.setVisibility(i7);
+                m6.n nVar = this.f50059b.f43773fd;
+                boolean z10 = false;
+                if (i7 == 0) {
+                    z9 = true;
+                } else {
+                    z9 = false;
                 }
+                if (getMeasuredWidth() > 0) {
+                    z10 = true;
+                }
+                nVar.h(2, z9, z10);
+                return;
+            default:
+                super.setVisibility(i7);
                 return;
         }
     }

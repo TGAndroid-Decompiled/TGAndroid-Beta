@@ -1,55 +1,30 @@
 package p4;
 
-import android.os.IBinder;
-import android.os.Parcel;
-public final class a implements b {
-    public IBinder f53143a;
+import android.net.Uri;
+public final class a implements Runnable {
+    public final int f53043a;
+    public final b f53044b;
 
-    @Override
-    public final IBinder asBinder() {
-        return this.f53143a;
+    public a(b bVar, int i7) {
+        this.f53043a = i7;
+        this.f53044b = bVar;
     }
 
     @Override
-    public final void c(int i3) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
-            obtain.writeInt(i3);
-            if (!this.f53143a.transact(9, obtain, null, 1)) {
-                int i10 = e.f53145b;
-            }
-        } finally {
-            obtain.recycle();
-        }
-    }
-
-    @Override
-    public final void i(int i3) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
-            obtain.writeInt(i3);
-            if (!this.f53143a.transact(12, obtain, null, 1)) {
-                int i10 = e.f53145b;
-            }
-        } finally {
-            obtain.recycle();
-        }
-    }
-
-    @Override
-    public final void u0(w wVar) {
-        Parcel obtain = Parcel.obtain();
-        try {
-            obtain.writeInterfaceToken("android.support.v4.media.session.IMediaControllerCallback");
-            obtain.writeInt(1);
-            wVar.writeToParcel(obtain, 0);
-            if (!this.f53143a.transact(3, obtain, null, 1)) {
-                int i3 = e.f53145b;
-            }
-        } finally {
-            obtain.recycle();
+    public final void run() {
+        int i7 = this.f53043a;
+        b bVar = this.f53044b;
+        switch (i7) {
+            case 0:
+                bVar.f53048a.unregisterReceiver(bVar.d);
+                return;
+            case 1:
+                b.a(bVar);
+                return;
+            default:
+                Uri uri = b.f53047g;
+                bVar.b();
+                return;
         }
     }
 }

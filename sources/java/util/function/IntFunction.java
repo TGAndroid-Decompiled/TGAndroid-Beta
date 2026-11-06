@@ -1,4 +1,4 @@
 package java.util.function;
 public interface IntFunction<R> {
-    R apply(int i3);
+    R apply(int i7);
 }

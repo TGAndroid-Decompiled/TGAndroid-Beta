@@ -1,123 +1,87 @@
 package org.telegram.messenger;
 
 import android.content.Context;
-import java.util.ArrayList;
+import org.telegram.messenger.voip.VoIPGroupNotification;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
 public final class on implements RequestDelegate {
-    public final int f24574a;
-    public final c1 f24575b;
-    public final Object f24576c;
-    public final Object d;
-    public final Object f24577e;
-    public final Object f24578f;
-    public final TLObject f24579g;
+    public final int f24343a = 2;
+    public final Object f24344b;
+    public final long f24345c;
+    public final int d;
+    public final int f24346e;
+    public final long f24347f;
+    public final boolean f24348g;
+    public final Object h;
 
-    public on(c1 c1Var, Object obj, Object obj2, Object obj3, Object obj4, TLObject tLObject, int i3) {
-        this.f24574a = i3;
-        this.f24575b = c1Var;
-        this.f24576c = obj;
-        this.d = obj2;
-        this.f24577e = obj3;
-        this.f24578f = obj4;
-        this.f24579g = tLObject;
+    public on(Context context, int i7, long j3, String str, long j10, int i10, boolean z9) {
+        this.d = i7;
+        this.f24345c = j3;
+        this.f24347f = j10;
+        this.f24346e = i10;
+        this.f24348g = z9;
+        this.f24344b = context;
+        this.h = str;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f24574a) {
+        switch (this.f24343a) {
             case 0:
-                hp hpVar = (hp) this.f24575b;
-                Context context = (Context) this.f24576c;
-                org.telegram.ui.ActionBar.s1 s1Var = (org.telegram.ui.ActionBar.s1) this.d;
-                ir irVar = (ir) this.f24577e;
-                org.telegram.ui.ActionBar.d2 d2Var = (org.telegram.ui.ActionBar.d2) this.f24578f;
-                TLRPC.TL_channels_convertToGigagroup tL_channels_convertToGigagroup = (TLRPC.TL_channels_convertToGigagroup) this.f24579g;
-                hpVar.getClass();
+                qp qpVar = (qp) this.f24344b;
+                TLRPC.InputPeer inputPeer = (TLRPC.InputPeer) this.h;
+                long j3 = this.f24345c;
+                if (j3 != 0) {
+                    qpVar.getMessagesStorage().q1(j3);
+                }
                 if (tL_error == null) {
-                    if (context != null) {
-                        g0.h3(new vm(1, context, s1Var));
+                    TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
+                    int i7 = tL_messages_affectedHistory.offset;
+                    long j10 = this.f24347f;
+                    if (i7 > 0) {
+                        qpVar.Y(j10, 0, this.d, this.f24346e, this.f24348g, inputPeer, 0L);
                     }
-                    hpVar.O3((TLRPC.Updates) tLObject, false);
-                    g0.h3(new a(irVar, 26));
+                    qpVar.M3(tL_messages_affectedHistory.pts, -1, tL_messages_affectedHistory.pts_count);
+                    yr messagesStorage = qpVar.getMessagesStorage();
+                    messagesStorage.f26688a.c(new xp(messagesStorage, j10, 5));
                     return;
                 }
-                g0.h3(new wm(hpVar, irVar, context, s1Var, tL_error, d2Var, tL_channels_convertToGigagroup, 1));
+                return;
+            case 1:
+                qp qpVar2 = (qp) this.f24344b;
+                org.telegram.ui.xf xfVar = (org.telegram.ui.xf) this.h;
+                if (tL_error == null) {
+                    TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory2 = (TLRPC.TL_messages_affectedHistory) tLObject;
+                    qpVar2.M3(tL_messages_affectedHistory2.pts, -1, tL_messages_affectedHistory2.pts_count);
+                    qpVar2.getMessagesStorage().f26688a.c(new xn(qpVar2, this.f24345c, this.d, this.f24346e, this.f24347f, tL_messages_affectedHistory2, this.f24348g, xfVar));
+                    return;
+                }
+                g0.h3(new a(xfVar, 26));
                 return;
             default:
-                final x00 x00Var = (x00) this.f24575b;
-                final TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f24576c;
-                final String str = (String) this.d;
-                final v00 v00Var = (v00) this.f24577e;
-                final ci.e3 e3Var = (ci.e3) this.f24578f;
-                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.f24579g;
-                x00Var.getClass();
-                if (tLObject instanceof TLRPC.TL_messages_translateResult) {
-                    ArrayList<TLRPC.TL_textWithEntities> arrayList = ((TLRPC.TL_messages_translateResult) tLObject).result;
-                    if (arrayList.size() <= 0) {
-                        g0.h3(new Runnable() {
-                            @Override
-                            public final void run() {
-                                switch (r6) {
-                                    case 0:
-                                        x00 x00Var2 = x00Var;
-                                        x00Var2.getClass();
-                                        TL_stories.StoryItem storyItem2 = storyItem;
-                                        storyItem2.translatedLng = str;
-                                        storyItem2.translatedText = null;
-                                        x00Var2.getMessagesController().P1().f11282k.h(storyItem2.dialogId, storyItem2);
-                                        x00Var2.K.remove(v00Var);
-                                        e3Var.run();
-                                        return;
-                                    default:
-                                        x00 x00Var3 = x00Var;
-                                        x00Var3.getClass();
-                                        TL_stories.StoryItem storyItem3 = storyItem;
-                                        storyItem3.translatedLng = str;
-                                        storyItem3.translatedText = null;
-                                        x00Var3.getMessagesController().P1().f11282k.h(storyItem3.dialogId, storyItem3);
-                                        x00Var3.K.remove(v00Var);
-                                        e3Var.run();
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    } else {
-                        g0.h3(new wm(x00Var, storyItem, str, tL_textWithEntities, arrayList.get(0), v00Var, e3Var, 4));
-                        return;
-                    }
-                }
-                g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r6) {
-                            case 0:
-                                x00 x00Var2 = x00Var;
-                                x00Var2.getClass();
-                                TL_stories.StoryItem storyItem2 = storyItem;
-                                storyItem2.translatedLng = str;
-                                storyItem2.translatedText = null;
-                                x00Var2.getMessagesController().P1().f11282k.h(storyItem2.dialogId, storyItem2);
-                                x00Var2.K.remove(v00Var);
-                                e3Var.run();
-                                return;
-                            default:
-                                x00 x00Var3 = x00Var;
-                                x00Var3.getClass();
-                                TL_stories.StoryItem storyItem3 = storyItem;
-                                storyItem3.translatedLng = str;
-                                storyItem3.translatedText = null;
-                                x00Var3.getMessagesController().P1().f11282k.h(storyItem3.dialogId, storyItem3);
-                                x00Var3.K.remove(v00Var);
-                                e3Var.run();
-                                return;
-                        }
-                    }
-                });
+                VoIPGroupNotification.lambda$request$1(this.d, this.f24345c, this.f24347f, this.f24346e, this.f24348g, (Context) this.f24344b, (String) this.h, tLObject, tL_error);
                 return;
         }
+    }
+
+    public on(qp qpVar, long j3, int i7, int i10, long j10, boolean z9, org.telegram.ui.xf xfVar) {
+        this.f24344b = qpVar;
+        this.f24345c = j3;
+        this.d = i7;
+        this.f24346e = i10;
+        this.f24347f = j10;
+        this.f24348g = z9;
+        this.h = xfVar;
+    }
+
+    public on(qp qpVar, long j3, long j10, int i7, int i10, boolean z9, TLRPC.InputPeer inputPeer) {
+        this.f24344b = qpVar;
+        this.f24345c = j3;
+        this.f24347f = j10;
+        this.d = i7;
+        this.f24346e = i10;
+        this.f24348g = z9;
+        this.h = inputPeer;
     }
 }

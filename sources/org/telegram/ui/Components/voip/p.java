@@ -1,61 +1,123 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class p extends AnimatorListenerAdapter {
-    public final int f39504a;
-    public final r f39505b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.messenger.hd;
+import org.telegram.ui.ActionBar.k6;
+public final class p extends View {
+    public org.telegram.ui.Cells.y f39393a;
+    public final Paint f39394b;
+    public final Paint f39395c;
+    public final Paint d;
+    public final RectF f39396e;
+    public final Drawable f39397f;
+    public final String h;
+    public int f39398n;
+    public int f39399r;
+    public int f39400s;
+    public int f39401w;
 
-    public p(r rVar, int i3) {
-        this.f39504a = i3;
-        this.f39505b = rVar;
+    public p(Context context) {
+        super(context);
+        this.f39394b = new Paint(1);
+        Paint paint = new Paint(1);
+        this.f39395c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.f39396e = new RectF();
+        this.f39398n = -761748;
+        this.f39399r = org.telegram.messenger.g0.L(26.0f);
+        this.f39400s = 255;
+        this.f39401w = 0;
+        Drawable mutate = getContext().getDrawable(2131230918).mutate();
+        this.f39397f = mutate;
+        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.MULTIPLY));
+        paint.setTextSize(org.telegram.messenger.g0.L(18.0f));
+        paint.setTypeface(org.telegram.messenger.g0.o());
+        Paint.Align align = Paint.Align.CENTER;
+        paint.setTextAlign(align);
+        paint.setColor(-16777216);
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_OUT));
+        paint2.setTextSize(org.telegram.messenger.g0.L(18.0f));
+        paint2.setTypeface(org.telegram.messenger.g0.o());
+        paint2.setTextAlign(align);
+        paint2.setColor(-16777216);
+        setLayerType(2, null);
+        setClickable(true);
+        this.h = hd.M0(2131752041, null);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f10;
-        int i3;
-        switch (this.f39504a) {
-            case 0:
-                r rVar = this.f39505b;
-                rVar.F = false;
-                rVar.invalidate();
-                return;
-            case 1:
-                r rVar2 = this.f39505b;
-                q qVar = rVar2.f39551c0;
-                if (rVar2.f39547a0) {
-                    f10 = 0.0f;
-                } else {
-                    f10 = 1.0f;
-                }
-                rVar2.f39549b0 = f10;
-                qVar.setAlpha(f10);
-                if (rVar2.f39547a0) {
-                    i3 = 8;
-                } else {
-                    i3 = 0;
-                }
-                qVar.setVisibility(i3);
-                rVar2.f39546a.invalidate();
-                return;
-            case 2:
-                super.onAnimationEnd(animator);
-                r rVar3 = this.f39505b;
-                rVar3.K0 = null;
-                n nVar = rVar3.f39546a;
-                nVar.setRotationY(0.0f);
-                if (!rVar3.L0) {
-                    nVar.d.clearImage();
-                    return;
-                }
-                return;
-            case 3:
-                this.f39505b.F = false;
-                return;
-            default:
-                this.f39505b.F = false;
-                return;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!isEnabled()) {
+            return false;
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        org.telegram.ui.Cells.y yVar = this.f39393a;
+        if (yVar != null) {
+            yVar.setState(getDrawableState());
+        }
+    }
+
+    @Override
+    public final void jumpDrawablesToCurrentState() {
+        super.jumpDrawablesToCurrentState();
+        org.telegram.ui.Cells.y yVar = this.f39393a;
+        if (yVar != null) {
+            yVar.jumpToCurrentState();
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        int i7 = this.f39398n;
+        Paint paint = this.f39394b;
+        paint.setColor(i7);
+        RectF rectF = this.f39396e;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        float f10 = this.f39399r;
+        canvas.drawRoundRect(rectF, f10, f10, paint);
+        Drawable drawable = this.f39397f;
+        drawable.setBounds((int) (width - (drawable.getIntrinsicWidth() / 2.0f)), (int) (height - (drawable.getIntrinsicHeight() / 2)), (int) ((drawable.getIntrinsicWidth() / 2) + width), (int) ((drawable.getIntrinsicHeight() / 2) + height));
+        drawable.setAlpha(this.f39400s);
+        drawable.draw(canvas);
+        int i10 = this.f39401w;
+        Paint paint2 = this.f39395c;
+        paint2.setAlpha(i10);
+        Paint paint3 = this.d;
+        paint3.setAlpha((this.f39401w / 255) * 38);
+        String str = this.h;
+        canvas.drawText(str, width, org.telegram.messenger.g0.L(6.0f) + height, paint2);
+        canvas.drawText(str, width, height + org.telegram.messenger.g0.L(6.0f), paint3);
+        if (this.f39393a == null) {
+            org.telegram.ui.Cells.y a02 = k6.a0(k6.x0(null, k6.f27940i6, false), 8, 8);
+            this.f39393a = a02;
+            a02.setCallback(this);
+        }
+        this.f39393a.setBounds(0, 0, getWidth(), getHeight());
+        this.f39393a.draw(canvas);
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.f39393a != drawable && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

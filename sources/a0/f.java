@@ -55,11 +55,11 @@ public final class f extends l implements Map, j$.util.Map {
     }
 
     public final boolean k(Collection collection) {
-        int i3 = this.f31c;
+        int i7 = this.f31c;
         for (Object obj : collection) {
             super.remove(obj);
         }
-        if (i3 != this.f31c) {
+        if (i7 != this.f31c) {
             return true;
         }
         return false;
@@ -84,7 +84,7 @@ public final class f extends l implements Map, j$.util.Map {
     @Override
     public final void putAll(java.util.Map map) {
         int size = map.size() + this.f31c;
-        int i3 = this.f31c;
+        int i7 = this.f31c;
         int[] iArr = this.f29a;
         if (iArr.length < size) {
             int[] copyOf = Arrays.copyOf(iArr, size);
@@ -94,7 +94,7 @@ public final class f extends l implements Map, j$.util.Map {
             kotlin.jvm.internal.j.d(copyOf2, "copyOf(this, newSize)");
             this.f30b = copyOf2;
         }
-        if (this.f31c == i3) {
+        if (this.f31c == i7) {
             for (Map.Entry entry : map.entrySet()) {
                 put(entry.getKey(), entry.getValue());
             }

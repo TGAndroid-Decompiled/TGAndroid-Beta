@@ -1,4 +1,6 @@
 package be;
-public abstract class u {
-    public static final int f3286a = Runtime.getRuntime().availableProcessors();
+public interface u {
+    Object a(id.c cVar, Object obj);
+
+    Object b(Object obj);
 }

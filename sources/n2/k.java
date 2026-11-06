@@ -1,21 +1,18 @@
 package n2;
-public final class k extends x2.b {
-    public final j d;
+public final class k {
+    public final boolean f20225a;
+    public final boolean f20226b;
+    public final boolean f20227c;
+    public final int d;
 
-    public k(j jVar, long j10, long j11) {
-        super(j10, j11);
-        this.d = jVar;
+    static {
+        new j().a();
     }
 
-    @Override
-    public final long D() {
-        a();
-        return this.d.d(this.f58131c);
-    }
-
-    @Override
-    public final long t() {
-        a();
-        return this.d.e(this.f58131c);
+    public k(j jVar) {
+        this.f20225a = jVar.f20221b;
+        this.f20226b = jVar.f20222c;
+        this.f20227c = jVar.d;
+        this.d = jVar.f20220a;
     }
 }

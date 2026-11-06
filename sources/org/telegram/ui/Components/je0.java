@@ -1,71 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.view.animation.AnimationUtils;
-public final class je0 extends Drawable {
-    public final Paint f35050a;
-    public final int f35051b;
-    public boolean f35052c;
-    public float d;
-    public long f35053e;
-    public View f35054f;
-    public int f35055g = 255;
-    public float h = 300.0f;
+import java.util.Arrays;
+import java.util.Comparator;
+public final class je0 implements Comparator {
+    public final qe0 f34961a;
 
-    public je0(int i3) {
-        this.f35051b = org.telegram.messenger.g0.L(i3);
-        Paint paint = new Paint(1);
-        this.f35050a = paint;
-        paint.setColor(-1);
+    public je0(qe0 qe0Var) {
+        this.f34961a = qe0Var;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        float f10;
-        if (this.f35052c != z10) {
-            this.f35052c = z10;
-            if (!z11) {
-                if (z10) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                this.d = f10;
+    public final int a(pe0 pe0Var) {
+        qe0 qe0Var = this.f34961a;
+        int size = qe0Var.f37389p1.answers.size();
+        for (int i7 = 0; i7 < size; i7++) {
+            if (Arrays.equals(qe0Var.f37389p1.answers.get(i7).option, pe0Var.d)) {
+                return i7;
             }
-            this.f35053e = AnimationUtils.currentAnimationTimeMillis();
-            invalidateSelf();
         }
+        return 0;
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.je0.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f35051b;
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f35051b;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i3) {
-        this.f35055g = i3;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f35050a.setColorFilter(colorFilter);
+    public final int compare(Object obj, Object obj2) {
+        int a10 = a((pe0) obj);
+        int a11 = a((pe0) obj2);
+        if (a10 > a11) {
+            return 1;
+        }
+        if (a10 < a11) {
+            return -1;
+        }
+        return 0;
     }
 }

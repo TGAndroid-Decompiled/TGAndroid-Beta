@@ -1,3 +1,5 @@
 package p1;
-public abstract class f {
+
+import androidx.datastore.preferences.protobuf.x;
+public final class f extends x {
 }

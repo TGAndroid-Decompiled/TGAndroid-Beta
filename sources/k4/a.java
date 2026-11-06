@@ -1,75 +1,72 @@
 package k4;
 
-import g2.y;
-import java.util.regex.Pattern;
+import android.graphics.Rect;
+import d4.f;
+import java.util.Arrays;
 public final class a {
-    public static final Pattern f16827c = Pattern.compile("\\[voice=\"([^\"]*)\"\\]");
-    public static final Pattern d = Pattern.compile("^((?:[0-9]*\\.)?[0-9]+)(px|em|%)$");
-    public final y f16828a = new y();
-    public final StringBuilder f16829b = new StringBuilder();
+    public boolean d;
+    public boolean f17208e;
+    public int[] f17209f;
+    public int f17210g;
+    public int h;
+    public Rect f17211i;
+    public long f17206b = -9223372036854775807L;
+    public long f17207c = -9223372036854775807L;
+    public final int[] f17205a = new int[4];
+    public int f17212j = -1;
+    public int f17213k = -1;
 
-    public static String a(y yVar, StringBuilder sb2) {
-        boolean z10 = false;
-        sb2.setLength(0);
-        int i3 = yVar.f11924b;
-        int i10 = yVar.f11925c;
-        while (i3 < i10 && !z10) {
-            char c2 = (char) yVar.f11923a[i3];
-            if ((c2 < 'A' || c2 > 'Z') && ((c2 < 'a' || c2 > 'z') && ((c2 < '0' || c2 > '9') && c2 != '#' && c2 != '-' && c2 != '.' && c2 != '_'))) {
-                z10 = true;
-            } else {
-                i3++;
-                sb2.append(c2);
-            }
+    public static int a(int[] iArr, int i7) {
+        if (i7 >= 0 && i7 < iArr.length) {
+            return iArr[i7];
         }
-        yVar.O(i3 - yVar.f11924b);
-        return sb2.toString();
+        return iArr[0];
     }
 
-    public static String b(y yVar, StringBuilder sb2) {
-        c(yVar);
-        if (yVar.a() == 0) {
-            return null;
-        }
-        String a10 = a(yVar, sb2);
-        if (!a10.isEmpty()) {
-            return a10;
-        }
-        return "" + ((char) yVar.A());
+    public static int c(int i7, int i10) {
+        return (i7 & 16777215) | ((i10 * 17) << 24);
     }
 
-    public static void c(y yVar) {
+    public final void b(f fVar, boolean z9, Rect rect, int[] iArr) {
+        int i7;
+        int i10;
+        int width = rect.width();
+        int height = rect.height();
+        int i11 = !z9 ? 1 : 0;
+        int i12 = i11 * width;
         while (true) {
-            for (boolean z10 = true; yVar.a() > 0 && z10; z10 = false) {
-                int i3 = yVar.f11924b;
-                byte[] bArr = yVar.f11923a;
-                byte b10 = bArr[i3];
-                char c2 = (char) b10;
-                if (c2 != '\t' && c2 != '\n' && c2 != '\f' && c2 != '\r' && c2 != ' ') {
-                    int i10 = yVar.f11925c;
-                    int i11 = i3 + 2;
-                    if (i11 <= i10) {
-                        int i12 = i3 + 1;
-                        if (b10 == 47 && bArr[i12] == 42) {
-                            while (true) {
-                                int i13 = i11 + 1;
-                                if (i13 >= i10) {
-                                    break;
-                                } else if (((char) bArr[i11]) == '*' && ((char) bArr[i13]) == '/') {
-                                    i11 += 2;
-                                    i10 = i11;
-                                } else {
-                                    i11 = i13;
-                                }
-                            }
-                            yVar.O(i10 - yVar.f11924b);
-                        }
+            int i13 = 0;
+            do {
+                int i14 = 0;
+                for (int i15 = 1; i14 < i15 && i15 <= 64; i15 <<= 2) {
+                    if (fVar.b() < 4) {
+                        i7 = -1;
+                        i10 = 0;
+                        break;
                     }
-                } else {
-                    yVar.O(1);
+                    i14 = (i14 << 4) | fVar.j(4);
                 }
+                i7 = i14 & 3;
+                if (i14 < 4) {
+                    i10 = width;
+                } else {
+                    i10 = i14 >> 2;
+                }
+                int min = Math.min(i10, width - i13);
+                if (min > 0) {
+                    int i16 = i12 + min;
+                    Arrays.fill(iArr, i12, i16, this.f17205a[i7]);
+                    i13 += min;
+                    i12 = i16;
+                    continue;
+                }
+            } while (i13 < width);
+            i11 += 2;
+            if (i11 >= height) {
+                return;
             }
-            return;
+            i12 = i11 * width;
+            fVar.c();
         }
     }
 }

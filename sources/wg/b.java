@@ -1,31 +1,103 @@
 package wg;
-public final class b implements Runnable {
-    public final int f57608a;
-    public final e f57609b;
-    public final int f57610c;
 
-    public b(e eVar, int i3, int i10) {
-        this.f57608a = i10;
-        this.f57609b = eVar;
-        this.f57610c = i3;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.ui.Components.i6;
+import org.telegram.ui.Components.xq;
+import org.telegram.ui.r81;
+public final class b extends View {
+    public final i6 f57580a;
+    public float f57581b;
+    public ValueAnimator f57582c;
+    public int d;
+    public final Paint f57583e;
+
+    public b(Context context) {
+        super(context);
+        this.f57581b = 1.0f;
+        i6 i6Var = new i6(false, false, true);
+        this.f57580a = i6Var;
+        i6Var.n(0.3f, 250L, xq.h);
+        i6Var.setCallback(this);
+        i6Var.w(org.telegram.messenger.g0.L(11.5f));
+        i6Var.x(org.telegram.messenger.g0.o());
+        i6Var.u(-1);
+        i6Var.t("", true, true);
+        i6Var.f34516b = 17;
+        Paint paint = new Paint(1);
+        this.f57583e = paint;
+        paint.setColor(-6915073);
+        setVisibility(8);
+    }
+
+    public final void a(int i7, boolean z9) {
+        if (!s.i()) {
+            i7 = 0;
+        }
+        if (i7 > 0) {
+            setVisibility(0);
+        }
+        i6 i6Var = this.f57580a;
+        if (z9) {
+            i6Var.a();
+        }
+        if (z9 && i7 != this.d && i7 > 0) {
+            ValueAnimator valueAnimator = this.f57582c;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+                this.f57582c = null;
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            this.f57582c = ofFloat;
+            ofFloat.addUpdateListener(new ti.d(this, 5));
+            this.f57582c.addListener(new r81(this, 23));
+            org.telegram.messenger.camera.q.i(2.0f, this.f57582c);
+            this.f57582c.setDuration(200L);
+            this.f57582c.start();
+        }
+        this.d = i7;
+        int length = i6Var.f34522i.length();
+        i6Var.t("x" + i7, z9, true);
+        int length2 = i6Var.f34522i.length();
+        invalidate();
+        if (length != length2) {
+            requestLayout();
+        }
     }
 
     @Override
-    public final void run() {
-        switch (this.f57608a) {
-            case 0:
-                e eVar = this.f57609b;
-                eVar.postOnAnimation(new b(eVar, this.f57610c, 1));
-                return;
-            default:
-                e eVar2 = this.f57609b;
-                int i3 = this.f57610c;
-                if (eVar2.f57620e && !eVar2.f57623r && i3 == eVar2.F) {
-                    eVar2.f57627y = true;
-                    eVar2.requestRender();
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f));
+        Rect rect = org.telegram.messenger.g0.Q;
+        int L = org.telegram.messenger.g0.L(8.0f);
+        i6 i6Var = this.f57580a;
+        rect.set(0, 0, L + ((int) i6Var.c()), org.telegram.messenger.g0.L(20.0f));
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(rect);
+        if (this.f57581b != 1.0f) {
+            canvas.save();
+            float f10 = this.f57581b;
+            canvas.scale(f10, f10, rect.centerX(), rect.centerY());
         }
+        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), this.f57583e);
+        rect.set(0, 0, (int) rectF.width(), org.telegram.messenger.g0.L(19.0f));
+        i6Var.setBounds(rect);
+        i6Var.draw(canvas);
+        if (this.f57581b != 1.0f) {
+            canvas.restore();
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) (this.f57580a.e() + org.telegram.messenger.g0.L(15.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(26.0f), 1073741824));
     }
 }

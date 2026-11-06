@@ -1,68 +1,82 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.RectF;
+import android.content.Context;
+import android.graphics.Typeface;
+import android.text.TextUtils;
 import android.view.View;
-import java.util.ArrayList;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
-public final class kb implements ki0 {
-    public final lb f35360a;
+public class kb extends za {
+    public final ch0 f35248a;
+    public TextView f35249b;
+    public int f35250c;
 
-    public kb(lb lbVar) {
-        this.f35360a = lbVar;
+    public kb(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, f6Var);
+        ?? imageView = new ImageView(context);
+        this.f35248a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView((View) imageView, c8.ha.h(56.0f, 48.0f, 8388627));
+        jb jbVar = new jb(0, context, null);
+        jbVar.setDisablePaddingsOffset(true);
+        this.f35249b = jbVar;
+        org.telegram.messenger.qs.i(jbVar);
+        this.f35249b.setSingleLine();
+        this.f35249b.setTypeface(Typeface.SANS_SERIF);
+        this.f35249b.setTextSize(1, 15.0f);
+        this.f35249b.setEllipsize(TextUtils.TruncateAt.END);
+        this.f35249b.setPadding(0, org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f));
+        addView(this.f35249b, c8.ha.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+        org.telegram.ui.ActionBar.r6.H(this.f35249b, org.telegram.ui.ActionBar.k6.uj, f6Var);
+        setTextColor(getThemedColor(org.telegram.ui.ActionBar.k6.vj));
+        setBackground(getThemedColor(org.telegram.ui.ActionBar.k6.tj));
     }
 
-    @Override
-    public final boolean O() {
-        return false;
-    }
-
-    @Override
-    public final boolean r() {
-        return true;
-    }
-
-    @Override
-    public final boolean v() {
-        return false;
-    }
-
-    @Override
-    public final void z(View view, dh.n0 n0Var, boolean z10, boolean z11) {
-        boolean z12;
-        lb lbVar = this.f35360a;
-        org.telegram.ui.ActionBar.d2 d2Var = lbVar.f35674f;
-        if (lbVar.f35673e == null) {
-            return;
+    public final void c(int i7, int i10, int i11, String... strArr) {
+        ch0 ch0Var = this.f35248a;
+        ch0Var.f(i7, i10, i11, null);
+        for (String str : strArr) {
+            ch0Var.h(this.f35250c, str);
         }
-        long e10 = org.telegram.messenger.h10.i(d2Var.getCurrentAccount()).e();
-        if ((d2Var instanceof org.telegram.ui.wm) && ((org.telegram.ui.wm) d2Var).a() == e10) {
-            z12 = true;
-        } else {
-            z12 = false;
+    }
+
+    public final void d(int i7, String... strArr) {
+        c(i7, 32, 32, strArr);
+    }
+
+    public final void e(TLRPC.Document document, String... strArr) {
+        ch0 ch0Var = this.f35248a;
+        ch0Var.setAutoRepeat(true);
+        ch0Var.g(36, 36, document);
+        for (String str : strArr) {
+            ch0Var.h(this.f35250c, str);
         }
-        int i3 = 0;
-        for (int i10 = 0; i10 < lbVar.f35673e.size(); i10++) {
-            int keyAt = lbVar.f35673e.keyAt(i10);
-            TLRPC.Message message = new TLRPC.Message();
-            message.dialog_id = d2Var.getUserConfig().e();
-            message.f27022id = keyAt;
-            org.telegram.messenger.zi ziVar = new org.telegram.messenger.zi(d2Var.getCurrentAccount(), message, false, false);
-            ArrayList arrayList = new ArrayList();
-            arrayList.add(n0Var);
-            d2Var.getSendMessagesHelper().s0(ziVar, arrayList, n0Var, false, false, lbVar.f35674f, null);
-            i3 = message.f27022id;
-        }
-        lbVar.f();
-        ac.e();
-        org.telegram.messenger.g0.i3(new org.telegram.messenger.kw(this, n0Var, !z12, d2Var.getCurrentAccount(), i3), 300L);
     }
 
     @Override
-    public final void J() {
+    public CharSequence getAccessibilityText() {
+        return this.f35249b.getText();
     }
 
     @Override
-    public final void E(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i3, boolean z10) {
+    public final void onShow() {
+        super.onShow();
+        this.f35248a.d();
+    }
+
+    public void setIconPaddingBottom(int i7) {
+        this.f35248a.setLayoutParams(c8.ha.i(56.0f, 48 - i7, 8388627, 0.0f, 0.0f, 0.0f, i7));
+    }
+
+    public void setTextColor(int i7) {
+        this.f35250c = i7;
+        this.f35249b.setTextColor(i7);
+    }
+
+    public kb(int i7, int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        this(context, f6Var);
+        setBackground(i7);
+        setTextColor(i10);
     }
 }

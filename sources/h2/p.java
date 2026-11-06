@@ -1,3 +1,4 @@
 package h2;
-public final class p extends Exception {
+public interface p {
+    void h(Object obj, e2.s sVar);
 }

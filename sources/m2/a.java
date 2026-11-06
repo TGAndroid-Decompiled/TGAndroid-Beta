@@ -1,74 +1,47 @@
 package m2;
 
-import android.os.Build;
-import g9.g2;
+import e2.l1;
 import j$.util.Objects;
-import java.util.Set;
+import x2.g0;
 public final class a {
-    public static final a d;
-    public final int f18807a;
-    public final int f18808b;
-    public final g9.t0 f18809c;
+    public final long f19515a;
+    public final l1 f19516b;
+    public final int f19517c;
+    public final g0 d;
+    public final long f19518e;
+    public final l1 f19519f;
+    public final int f19520g;
+    public final g0 h;
+    public final long f19521i;
+    public final long f19522j;
 
-    static {
-        a aVar;
-        if (Build.VERSION.SDK_INT >= 33) {
-            ?? b0Var = new g9.b0(4);
-            for (int i3 = 1; i3 <= 10; i3++) {
-                b0Var.c(Integer.valueOf(g2.n0.t(i3)));
-            }
-            aVar = new a(2, b0Var.g());
-        } else {
-            aVar = new a(2, 10);
-        }
-        d = aVar;
-    }
-
-    public a(int i3, Set set) {
-        this.f18807a = i3;
-        g9.t0 q10 = g9.t0.q(set);
-        this.f18809c = q10;
-        g2 it = q10.iterator();
-        int i10 = 0;
-        while (it.hasNext()) {
-            i10 = Math.max(i10, Integer.bitCount(((Integer) it.next()).intValue()));
-        }
-        this.f18808b = i10;
+    public a(long j3, l1 l1Var, int i7, g0 g0Var, long j10, l1 l1Var2, int i10, g0 g0Var2, long j11, long j12) {
+        this.f19515a = j3;
+        this.f19516b = l1Var;
+        this.f19517c = i7;
+        this.d = g0Var;
+        this.f19518e = j10;
+        this.f19519f = l1Var2;
+        this.f19520g = i10;
+        this.h = g0Var2;
+        this.f19521i = j11;
+        this.f19522j = j12;
     }
 
     public final boolean equals(Object obj) {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof a)) {
-            return false;
-        }
-        a aVar = (a) obj;
-        if (this.f18807a == aVar.f18807a && this.f18808b == aVar.f18808b && Objects.equals(this.f18809c, aVar.f18809c)) {
-            return true;
+        if (obj != null && a.class == obj.getClass()) {
+            a aVar = (a) obj;
+            if (this.f19515a == aVar.f19515a && this.f19517c == aVar.f19517c && this.f19518e == aVar.f19518e && this.f19520g == aVar.f19520g && this.f19521i == aVar.f19521i && this.f19522j == aVar.f19522j && Objects.equals(this.f19516b, aVar.f19516b) && Objects.equals(this.d, aVar.d) && Objects.equals(this.f19519f, aVar.f19519f) && Objects.equals(this.h, aVar.h)) {
+                return true;
+            }
         }
         return false;
     }
 
     public final int hashCode() {
-        int hashCode;
-        int i3 = ((this.f18807a * 31) + this.f18808b) * 31;
-        g9.t0 t0Var = this.f18809c;
-        if (t0Var == null) {
-            hashCode = 0;
-        } else {
-            hashCode = t0Var.hashCode();
-        }
-        return i3 + hashCode;
-    }
-
-    public final String toString() {
-        return "AudioProfile[format=" + this.f18807a + ", maxChannelCount=" + this.f18808b + ", channelMasks=" + this.f18809c + "]";
-    }
-
-    public a(int i3, int i10) {
-        this.f18807a = i3;
-        this.f18808b = i10;
-        this.f18809c = null;
+        return Objects.hash(Long.valueOf(this.f19515a), this.f19516b, Integer.valueOf(this.f19517c), this.d, Long.valueOf(this.f19518e), this.f19519f, Integer.valueOf(this.f19520g), this.h, Long.valueOf(this.f19521i), Long.valueOf(this.f19522j));
     }
 }

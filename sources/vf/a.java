@@ -1,3 +1,3 @@
 package vf;
-public interface a {
+public final class a {
 }

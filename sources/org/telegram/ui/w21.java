@@ -1,37 +1,34 @@
 package org.telegram.ui;
+public final class w21 implements Runnable {
+    public final int f50889a;
+    public final x21 f50890b;
 
-import android.content.Context;
-import android.view.View;
-public final class w21 extends org.telegram.ui.Components.q31 {
-    public static final int f50682b = 0;
-
-    static {
-        org.telegram.ui.Components.q31.h(new org.telegram.ui.Components.q31());
+    public w21(x21 x21Var, int i7) {
+        this.f50889a = i7;
+        this.f50890b = x21Var;
     }
 
     @Override
-    public final void b(View view, org.telegram.ui.Components.r31 r31Var, boolean z10, org.telegram.ui.Components.f41 f41Var, org.telegram.ui.Components.l41 l41Var) {
-        ((x21) view).set(r31Var.f37640z);
-    }
-
-    @Override
-    public final boolean c(org.telegram.ui.Components.r31 r31Var, org.telegram.ui.Components.r31 r31Var2) {
-        if (r31Var.f37640z == r31Var2.f37640z) {
-            return true;
+    public final void run() {
+        String sb2;
+        int i7 = this.f50889a;
+        x21 x21Var = this.f50890b;
+        switch (i7) {
+            case 0:
+                String str = x21Var.f51705b.text;
+                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
+                    sb2 = org.telegram.messenger.hd.M0(2131754709, null);
+                } else {
+                    StringBuilder sb3 = new StringBuilder();
+                    org.telegram.messenger.camera.q.q(null, 2131751106, sb3, "\n");
+                    sb3.append(x21Var.f51705b.text);
+                    sb2 = sb3.toString();
+                }
+                org.telegram.ui.Components.v4.r0(x21Var.f51706c, org.telegram.messenger.hd.M0(2131753894, null), sb2, null);
+                return;
+            default:
+                org.telegram.ui.Components.v4.r0(x21Var.f51706c, org.telegram.messenger.hd.M0(2131753894, null), org.telegram.messenger.hd.M0(2131751106, null), null);
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final View d(Context context, org.telegram.ui.Components.tj0 tj0Var, int i3, org.telegram.ui.ActionBar.e6 e6Var) {
-        return new x21(context, e6Var);
-    }
-
-    @Override
-    public final boolean e(org.telegram.ui.Components.r31 r31Var, org.telegram.ui.Components.r31 r31Var2) {
-        if (r31Var.d == r31Var2.d) {
-            return true;
-        }
-        return false;
     }
 }

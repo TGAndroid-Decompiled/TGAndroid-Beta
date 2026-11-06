@@ -1,52 +1,46 @@
 package org.telegram.messenger;
 
-import android.icu.text.Collator;
-import java.util.Comparator;
-import java.util.List;
-public final class f00 implements Comparator {
-    public final int f22429a;
-    public final Object f22430b;
+import android.content.SharedPreferences;
+public final class f00 implements Runnable {
+    public final int f22312a;
+    public final k00 f22313b;
 
-    public f00(Object obj, int i3) {
-        this.f22429a = i3;
-        this.f22430b = obj;
+    public f00(k00 k00Var, int i7) {
+        this.f22312a = i7;
+        this.f22313b = k00Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        switch (this.f22429a) {
+    public final void run() {
+        int i7 = this.f22312a;
+        k00 k00Var = this.f22313b;
+        switch (i7) {
             case 0:
-                return x00.a((Collator) this.f22430b, (q00) obj, (q00) obj2);
+                qs f10 = qs.f(k00Var.currentAccount);
+                int i10 = qp.C8;
+                f10.k(2, 512);
+                return;
             default:
-                yc ycVar = (yc) this.f22430b;
-                yc ycVar2 = (yc) obj;
-                yc ycVar3 = (yc) obj2;
-                if (ycVar2 != ycVar) {
-                    if (ycVar3 != ycVar) {
-                        List list = x00.N;
-                        int indexOf = list.indexOf(ycVar2.f26565f);
-                        int indexOf2 = list.indexOf(ycVar3.f26565f);
-                        if (indexOf >= 0 && indexOf2 >= 0) {
-                            return indexOf - indexOf2;
-                        }
-                        if (indexOf < 0) {
-                            if (indexOf2 < 0) {
-                                int i3 = ycVar2.f26569k;
-                                int i10 = ycVar3.f26569k;
-                                if (i3 == i10) {
-                                    return ycVar2.f26561a.compareTo(ycVar3.f26561a);
-                                }
-                                if (i3 <= i10) {
-                                    if (i3 >= i10) {
-                                        return 0;
-                                    }
-                                }
-                            }
-                        }
+                k00Var.f23630a.b();
+                k00Var.f23631b.b();
+                k00Var.d.clear();
+                SharedPreferences.Editor edit = k00Var.getUserConfig().k().edit();
+                for (String str : k00Var.getUserConfig().k().getAll().keySet()) {
+                    if (str.startsWith("topics_load_offset_message_id_")) {
+                        edit.remove(str);
                     }
-                    return 1;
+                    if (str.startsWith("topics_load_offset_date_")) {
+                        edit.remove(str);
+                    }
+                    if (str.startsWith("topics_load_offset_topic_id_")) {
+                        edit.remove(str);
+                    }
+                    if (str.startsWith("topics_end_reached_")) {
+                        edit.remove(str);
+                    }
                 }
-                return -1;
+                edit.apply();
+                return;
         }
     }
 }

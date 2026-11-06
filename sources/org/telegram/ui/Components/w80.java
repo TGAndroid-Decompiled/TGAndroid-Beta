@@ -1,33 +1,47 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class w80 extends g.p {
-    public final c90 f39970c;
+import android.widget.FrameLayout;
+public final class w80 extends yh.m {
+    public final int E = 1;
+    public final Object F;
 
-    public w80(c90 c90Var) {
-        this.f39970c = c90Var;
+    public w80(bi.w4 w4Var, bi.w4 w4Var2, FrameLayout frameLayout, long j3) {
+        super(w4Var2, frameLayout, j3, true);
+        this.F = w4Var;
     }
 
     @Override
-    public final int i(int i3) {
-        c90 c90Var = this.f39970c;
-        kg.e1 e1Var = c90Var.f32614f;
-        if (i3 != 0) {
-            int i10 = i3 - 1;
-            Object J = e1Var.J(i10);
-            if (J instanceof TLRPC.TL_inlineBotSwitchPM) {
-                return 100;
-            }
-            if (J instanceof TLRPC.Document) {
-                return 20;
-            }
-            if (e1Var.I() != null || e1Var.V != null) {
-                i3 = i10;
-            }
-            v80 v80Var = c90Var.d;
-            v80Var.B1();
-            return v80Var.R.get(i3);
+    public final void f(String str, boolean z9, boolean z10) {
+        switch (this.E) {
+            case 0:
+                yh.b bVar = (yh.b) this.F;
+                av0 av0Var = bVar.N1;
+                if (this.f59423e.isEmpty()) {
+                    if (av0Var.getVisibility() != 4) {
+                        av0Var.setVisibility(4);
+                        return;
+                    }
+                    return;
+                } else if (z10) {
+                    bVar.f39839s1.J.setText("");
+                    return;
+                } else {
+                    super.f(str, z9, z10);
+                    return;
+                }
+            default:
+                if (z10) {
+                    bi.w4.Z((bi.w4) this.F).setSearchFieldText("");
+                    return;
+                } else {
+                    super.f(str, z9, z10);
+                    return;
+                }
         }
-        return 100;
+    }
+
+    public w80(yh.b bVar, org.telegram.ui.ActionBar.f2 f2Var, org.telegram.ui.ActionBar.l2 l2Var, long j3) {
+        super(f2Var, l2Var, j3, false);
+        this.F = bVar;
     }
 }

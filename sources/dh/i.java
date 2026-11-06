@@ -1,91 +1,107 @@
 package dh;
 
-import ai.e3;
-import android.text.SpannableStringBuilder;
-import android.view.KeyEvent;
-import org.telegram.messenger.u10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Cells.q8;
-import org.telegram.ui.Components.p5;
-public final class i implements u10 {
-    public final int f9020a;
-    public final o f9021b;
+import android.graphics.RecordingCanvas;
+import android.graphics.RectF;
+import android.graphics.RenderNode;
+import android.util.SparseArray;
+import android.view.View;
+import org.telegram.messenger.iz;
+import org.telegram.ui.ActionBar.f2;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ie0;
+import org.telegram.ui.je0;
+import org.telegram.ui.lb1;
+public final class i {
+    public final RenderNode f8768a;
+    public final ca.i f8769b;
+    public final a f8770c = new Object();
+    public long d = 0;
+    public int f8771e;
+    public int f8772f;
 
-    public i(o oVar, int i3) {
-        this.f9020a = i3;
-        this.f9021b = oVar;
+    public i(RenderNode renderNode, ca.i iVar) {
+        this.f8768a = renderNode;
+        this.f8769b = iVar;
     }
 
-    @Override
-    public final void a(Object obj) {
-        p5[] p5VarArr;
-        q8 q8Var;
-        long j10;
-        switch (this.f9020a) {
-            case 0:
-                o oVar = this.f9021b;
-                oVar.X = (TL_stories.TL_premium_boostsStatus) obj;
-                if (!oVar.I.keySet().equals(oVar.K.keySet())) {
-                    oVar.e0(false);
-                    return;
+    public final void a() {
+        long j3;
+        boolean z9;
+        ri.f B;
+        ri.f B2;
+        int width = this.f8768a.getWidth();
+        int height = this.f8768a.getHeight();
+        a aVar = this.f8770c;
+        aVar.f8701b = 0L;
+        aVar.f8700a = false;
+        ca.i iVar = this.f8769b;
+        boolean z10 = iVar.f6015b;
+        je0 je0Var = (je0) iVar.f6016c;
+        int themedColor = je0Var.getThemedColor(k6.f27848d6);
+        RectF rectF = je0Var.U;
+        aVar.a(themedColor);
+        aVar.b(iz.f());
+        SparseArray sparseArray = je0Var.f47987a;
+        int size = sparseArray.size();
+        for (int i7 = 0; i7 < size; i7++) {
+            f2 f2Var = ((lb1) sparseArray.valueAt(i7)).f47478a;
+            View view = f2Var.fragmentView;
+            if (view != null && jh.k.c(view, je0Var.f47988b, rectF) && rectF.right > 0.0f && rectF.left < je0Var.fragmentView.getMeasuredWidth() && (f2Var instanceof ie0)) {
+                ie0 ie0Var = (ie0) f2Var;
+                if (z10) {
+                    B2 = ie0Var.k();
+                } else {
+                    B2 = ie0Var.B();
                 }
-                return;
-            case 1:
-                Boolean bool = (Boolean) obj;
-                o oVar2 = this.f9021b;
-                h hVar = oVar2.f9102b0;
-                if (!oVar2.g0()) {
-                    int editTextSelectionEnd = oVar2.h.getEditTextSelectionEnd();
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(oVar2.h.getText());
-                    for (p5 p5Var : (p5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), p5.class)) {
-                        if (spannableStringBuilder.getSpanEnd(p5Var) == editTextSelectionEnd) {
-                            oVar2.I.remove(Long.valueOf(p5Var.documentId));
-                            oVar2.J.remove(Long.valueOf(p5Var.documentId));
-                            oVar2.f9101b.A(Long.valueOf(p5Var.documentId));
-                            if (p5Var.documentId == -1 && (q8Var = oVar2.f9107r) != null) {
-                                q8Var.setChecked(false);
-                                oVar2.h.setMaxLength(oVar2.O);
-                            }
-                            if (bool.booleanValue()) {
-                                oVar2.h.dispatchKeyEvent(new KeyEvent(0, 67));
-                                org.telegram.messenger.g0.r(hVar);
-                                org.telegram.messenger.g0.i3(hVar, 350L);
-                                return;
-                            }
-                            p5Var.setRemoved(new e3(oVar2, p5Var, editTextSelectionEnd, 6));
-                            oVar2.c0(p5Var);
-                            oVar2.e0(false);
-                            return;
-                        }
-                    }
-                    return;
+                if (B2 != null) {
+                    aVar.c(rectF.left);
+                    aVar.c(rectF.top);
+                    aVar.a(f2Var.getClassGuid());
                 }
-                return;
-            case 2:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
-                o oVar3 = this.f9021b;
-                if (!oVar3.isFinishing()) {
-                    oVar3.f9108s.setLoading(false);
-                    if (tL_error.text.equals("CHAT_NOT_MODIFIED")) {
-                        oVar3.finishFragment();
-                        return;
-                    }
-                    ci.e0 e0Var = new ci.e0(21, oVar3, tL_error);
-                    if (oVar3.X == null) {
-                        j10 = 200;
+            }
+        }
+        if (aVar.f8700a) {
+            j3 = -1;
+        } else {
+            j3 = aVar.f8701b;
+        }
+        if (this.f8768a.hasDisplayList() && width == this.f8771e && height == this.f8772f && j3 == this.d && j3 != -1) {
+            z9 = false;
+        } else {
+            z9 = true;
+        }
+        this.f8771e = width;
+        this.f8772f = height;
+        this.d = j3;
+        if (z9) {
+            RecordingCanvas beginRecording = this.f8768a.beginRecording();
+            View view2 = je0Var.fragmentView;
+            SparseArray sparseArray2 = je0Var.f47987a;
+            RectF rectF2 = je0Var.U;
+            int measuredWidth = view2.getMeasuredWidth();
+            int measuredHeight = je0Var.fragmentView.getMeasuredHeight();
+            beginRecording.drawColor(je0Var.getThemedColor(k6.f27848d6));
+            int size2 = sparseArray2.size();
+            for (int i10 = 0; i10 < size2; i10++) {
+                f2 f2Var2 = ((lb1) sparseArray2.valueAt(i10)).f47478a;
+                View view3 = f2Var2.fragmentView;
+                if (view3 != null && jh.k.c(view3, je0Var.f47988b, rectF2) && rectF2.right > 0.0f && rectF2.left < je0Var.fragmentView.getMeasuredWidth() && (f2Var2 instanceof ie0)) {
+                    ie0 ie0Var2 = (ie0) f2Var2;
+                    if (z10) {
+                        B = ie0Var2.k();
                     } else {
-                        j10 = 0;
+                        B = ie0Var2.B();
                     }
-                    org.telegram.messenger.g0.i3(e0Var, j10);
-                    return;
+                    ri.f fVar = B;
+                    if (fVar != null) {
+                        beginRecording.save();
+                        beginRecording.translate(rectF2.left, rectF2.top);
+                        fVar.e(beginRecording, 0.0f, 0.0f, measuredWidth, measuredHeight);
+                        beginRecording.restore();
+                    }
                 }
-                return;
-            default:
-                o oVar4 = this.f9021b;
-                oVar4.getClass();
-                oVar4.V = ((Integer) obj).intValue();
-                return;
+            }
+            this.f8768a.endRecording();
         }
     }
 }

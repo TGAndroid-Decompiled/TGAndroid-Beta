@@ -4,38 +4,38 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.transition.TransitionValues;
 public final class h extends AnimatorListenerAdapter {
-    public final int f27548a;
-    public final TransitionValues f27549b;
+    public final int f27496a;
+    public final TransitionValues f27497b;
 
-    public h(TransitionValues transitionValues, int i3) {
-        this.f27548a = i3;
-        this.f27549b = transitionValues;
+    public h(TransitionValues transitionValues, int i7) {
+        this.f27496a = i7;
+        this.f27497b = transitionValues;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f27548a) {
+        switch (this.f27496a) {
             case 0:
                 super.onAnimationEnd(animator);
-                this.f27549b.view.setLayerType(0, null);
+                this.f27497b.view.setLayerType(0, null);
                 return;
             default:
                 super.onAnimationEnd(animator);
-                this.f27549b.view.setEnabled(true);
+                this.f27497b.view.setEnabled(true);
                 return;
         }
     }
 
     @Override
     public final void onAnimationStart(Animator animator) {
-        switch (this.f27548a) {
+        switch (this.f27496a) {
             case 0:
                 super.onAnimationStart(animator);
-                this.f27549b.view.setLayerType(2, null);
+                this.f27497b.view.setLayerType(2, null);
                 return;
             default:
                 super.onAnimationStart(animator);
-                this.f27549b.view.setEnabled(false);
+                this.f27497b.view.setEnabled(false);
                 return;
         }
     }

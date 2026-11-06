@@ -1,27 +1,25 @@
 package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
-public final class hv0 implements fp {
-    public final uw f45994a;
-    public final iv0 f45995b;
+public final class hv0 extends kp {
+    public final boolean[] f46492c1;
+    public final TLRPC.User f46493d1;
+    public final ProfileActivity f46494e1;
 
-    public hv0(iv0 iv0Var, uw uwVar) {
-        this.f45995b = iv0Var;
-        this.f45994a = uwVar;
+    public hv0(ProfileActivity profileActivity, long j3, long j10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, TLRPC.TL_chatBannedRights tL_chatBannedRights2, String str, int i7, boolean[] zArr, TLRPC.User user) {
+        super(j3, j10, tL_chatAdminRights, tL_chatBannedRights, tL_chatBannedRights2, str, i7, true, false, null);
+        this.f46494e1 = profileActivity;
+        this.f46492c1 = zArr;
+        this.f46493d1 = user;
     }
 
     @Override
-    public final void b(int i3, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        ProfileActivity profileActivity = this.f45995b.f46427b;
-        profileActivity.N1 = true;
-        this.f45994a.removeSelfFromStack();
-        org.telegram.messenger.hs notificationCenter = profileActivity.getNotificationCenter();
-        int i10 = org.telegram.messenger.hs.f23305t;
-        notificationCenter.n(profileActivity, i10);
-        profileActivity.getNotificationCenter().k(i10, new Object[0]);
-    }
-
-    @Override
-    public final void a(TLRPC.User user) {
+    public final void onTransitionAnimationEnd(boolean z9, boolean z10) {
+        if (!z9 && z10 && this.f46492c1[0]) {
+            ProfileActivity profileActivity = this.f46494e1;
+            if (org.telegram.ui.Components.hc.a(profileActivity)) {
+                org.telegram.ui.Components.hc.C(this.f46493d1.first_name, profileActivity).j();
+            }
+        }
     }
 }

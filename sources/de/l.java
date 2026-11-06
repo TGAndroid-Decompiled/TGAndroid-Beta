@@ -1,25 +1,20 @@
 package de;
 
-import wd.x;
-public final class l extends x {
-    public static final l f8834c = new x();
+import be.s;
+import be.u;
+public final class l implements ce.d {
+    public final u f8687a;
 
-    @Override
-    public final void c(fd.h hVar, Runnable runnable) {
-        e.d.f8825c.b(runnable, true);
+    public l(s sVar) {
+        this.f8687a = sVar;
     }
 
     @Override
-    public final x f(int i3) {
-        be.a.a(i3);
-        if (i3 >= k.d) {
-            return this;
+    public final Object a(Object obj, id.c cVar) {
+        Object a10 = this.f8687a.a(cVar, obj);
+        if (a10 == jd.a.f16643a) {
+            return a10;
         }
-        return super.f(i3);
-    }
-
-    @Override
-    public final String toString() {
-        return "Dispatchers.IO";
+        return gd.k.f13829a;
     }
 }

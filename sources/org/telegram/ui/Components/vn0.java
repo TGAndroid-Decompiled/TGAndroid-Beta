@@ -1,77 +1,91 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class vn0 implements TextWatcher {
-    public final int f39179a;
-    public final oo0 f39180b;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
+import org.telegram.tgnet.TLRPC;
+public final class vn0 implements org.telegram.messenger.ls {
+    public final TLRPC.Dialog f38993a;
+    public final AtomicReference f38994b;
+    public final View f38995c;
+    public final mo0 d;
 
-    public vn0(oo0 oo0Var, int i3) {
-        this.f39179a = i3;
-        this.f39180b = oo0Var;
+    public vn0(mo0 mo0Var, TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
+        this.d = mo0Var;
+        this.f38993a = dialog;
+        this.f38994b = atomicReference;
+        this.f38995c = view;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f39179a) {
-            case 0:
-                org.telegram.messenger.g0.h3(new jb0(this, 27));
-                return;
-            default:
-                oo0 oo0Var = this.f39180b;
-                ho0 ho0Var = oo0Var.D1;
-                zu0 zu0Var = oo0Var.J1;
-                n00 n00Var = oo0Var.f36898r2;
-                if (!TextUtils.isEmpty(n00Var.f36302r.getText())) {
-                    oo0Var.K0(false);
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        boolean z9;
+        float f10;
+        mo0 mo0Var = this.d;
+        pj0 pj0Var = mo0Var.f36087w1;
+        ko0 ko0Var = mo0Var.D1;
+        org.telegram.ui.ActionBar.k kVar = mo0Var.f36078r2;
+        long longValue = ((Long) objArr[0]).longValue();
+        TLRPC.Dialog dialog = this.f38993a;
+        if (longValue == (-dialog.f26956id)) {
+            ArrayList arrayList = ko0Var.f35385f;
+            AtomicReference atomicReference = this.f38994b;
+            if ((arrayList == null && org.telegram.messenger.qp.s1(mo0Var.f28612a).f24862q7.l(-dialog.f26956id) != null) || atomicReference.get() == null) {
+                z9 = true;
+            } else {
+                z9 = false;
+            }
+            ko0Var.f35385f = org.telegram.messenger.qp.s1(mo0Var.f28612a).f24862q7.l(-dialog.f26956id);
+            ko0Var.d = org.telegram.messenger.t10.u(org.telegram.messenger.qp.s1(mo0Var.f28612a).a2(Long.valueOf(dialog.f26956id)));
+            ko0Var.f35384e = org.telegram.messenger.t10.v(org.telegram.messenger.qp.s1(mo0Var.f28612a).a2(Long.valueOf(dialog.f26956id)));
+            if (z9) {
+                ko0Var.f();
+            }
+            if (ko0Var.f35385f != null) {
+                org.telegram.messenger.qs.f(mo0Var.f28612a).n(this, org.telegram.messenger.qs.f25045q5);
+            }
+            if (z9) {
+                pj0Var.setVisibility(0);
+                pj0Var.setAlpha(0.0f);
+                kVar.setVisibility(0);
+                kVar.setAlpha(0.0f);
+                if (org.telegram.messenger.t10.u(org.telegram.messenger.qp.s1(mo0Var.f28612a).a2(Long.valueOf(dialog.f26956id)))) {
+                    kVar.setTitle(org.telegram.messenger.m5.u(org.telegram.messenger.qp.s1(mo0Var.f28612a).a2(Long.valueOf(dialog.f26956id))));
+                    kVar.setSubtitle(org.telegram.messenger.hd.M0(2131745670, null));
+                } else if (org.telegram.messenger.t3.o0(mo0Var.f28612a, dialog.f26956id)) {
+                    int i11 = mo0Var.f28612a;
+                    kVar.setTitle(qg.d.i(i11, org.telegram.messenger.qp.s1(i11).M0(Long.valueOf(-dialog.f26956id)), false));
+                    kVar.setSubtitle(org.telegram.messenger.hd.M0(2131745670, null));
+                } else {
+                    kVar.setTitle(org.telegram.messenger.qp.s1(mo0Var.f28612a).M0(Long.valueOf(-dialog.f26956id)).title);
+                    kVar.setSubtitle(org.telegram.messenger.hd.M0(2131745650, null));
                 }
-                if (oo0Var.f36902t2) {
-                    String obj = n00Var.f36302r.getText().toString();
-                    if (obj.length() != 0) {
-                        if (zu0Var != null) {
-                            zu0Var.d.setText(org.telegram.messenger.bd.M0(2131748175, null));
-                        }
-                    } else if (oo0Var.f36911y1.getAdapter() != ho0Var) {
-                        int J0 = oo0.J0(oo0Var);
-                        zu0Var.d.setText(org.telegram.messenger.bd.M0(2131748175, null));
-                        zu0Var.e(false, true);
-                        oo0Var.K0(false);
-                        ho0Var.f();
-                        if (J0 > 0) {
-                            oo0Var.A1.h1(0, -J0);
-                        }
-                    }
-                    lo0 lo0Var = oo0Var.F1;
-                    if (lo0Var != null) {
-                        lo0Var.E(obj);
-                        return;
-                    }
-                    return;
+                mo0Var.E2 = mo0Var.D2;
+                r1.g gVar = mo0Var.f36082t2;
+                if (gVar != null) {
+                    gVar.d();
                 }
-                return;
+                int[] iArr = new int[2];
+                r1.g gVar2 = new r1.g(new r1.f(0.0f));
+                r1.h hVar = new r1.h(1000.0f);
+                org.telegram.ui.an anVar = mo0Var.X1;
+                if (anVar != null && anVar.f43706b) {
+                    f10 = 10.0f;
+                } else {
+                    f10 = 800.0f;
+                }
+                hVar.b(f10);
+                hVar.a(1.0f);
+                gVar2.f54150m = hVar;
+                mo0Var.f36082t2 = gVar2;
+                gVar2.b(new fn0(this, this.f38995c, iArr, 1));
+                mo0Var.f36082t2.a(new ta(this, 6));
+                mo0Var.f36082t2.h();
+                if (atomicReference.get() != null) {
+                    org.telegram.messenger.g0.r((Runnable) atomicReference.get());
+                    atomicReference.set(null);
+                }
+            }
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
-        int i12 = this.f39179a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
-        int i12 = this.f39179a;
-    }
-
-    private final void a(int i3, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i3, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i3, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i3, int i10, int i11, CharSequence charSequence) {
     }
 }

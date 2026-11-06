@@ -1,18 +1,20 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class bl extends org.telegram.ui.Cells.f0 {
-    public final fl M;
+import org.telegram.tgnet.TLRPC;
+public final class bl extends mq0 {
+    public final an f44404a;
 
-    public bl(fl flVar, Context context, int i3, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(i3, context, e6Var);
-        this.M = flVar;
+    public bl(an anVar) {
+        this.f44404a = anVar;
     }
 
     @Override
-    public final int getSideMenuWidth() {
-        wm wmVar = this.M.R;
-        int i3 = wm.f51227jd;
-        return wmVar.l9();
+    public final vq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
+        return an.O1(this.f44404a, ijVar, fileLocation, i7, z9, false);
+    }
+
+    @Override
+    public final boolean L() {
+        return true;
     }
 }

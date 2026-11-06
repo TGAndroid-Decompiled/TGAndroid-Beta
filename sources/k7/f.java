@@ -1,37 +1,58 @@
 package k7;
 
-import android.os.BadParcelableException;
-import android.os.Parcel;
-import android.os.Parcelable;
-import k2.p1;
-public abstract class f {
-    public static final int f16904a = 0;
+import a8.k8;
+import a8.q;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import j7.m;
+import j7.r;
+import kotlin.jvm.internal.j;
+public final class f extends q implements a {
+    public final int f17224b;
+    public final TaskCompletionSource f17225c;
 
-    static {
-        f.class.getClassLoader();
+    public f(int i7, TaskCompletionSource taskCompletionSource) {
+        super(10);
+        this.f17224b = i7;
+        this.f17225c = taskCompletionSource;
+        attachInterface(this, "com.google.android.gms.identitycredentials.internal.IIdentityCredentialCallbacks");
     }
 
-    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
-        if (parcel.readInt() == 0) {
-            return null;
-        }
-        return (Parcelable) creator.createFromParcel(parcel);
+    @Override
+    public void D0(Status status, j7.c cVar) {
+        j.e(status, "status");
+        throw new UnsupportedOperationException();
     }
 
-    public static void b(Parcel parcel) {
-        int dataAvail = parcel.dataAvail();
-        if (dataAvail <= 0) {
-            return;
+    @Override
+    public void f0(Status status, j7.f fVar) {
+        switch (this.f17224b) {
+            case 0:
+                j.e(status, "status");
+                k8.a(status, fVar, this.f17225c);
+                return;
+            default:
+                j.e(status, "status");
+                throw new UnsupportedOperationException();
         }
-        throw new BadParcelableException(p1.i(dataAvail, "Parcel data not fully consumed, unread size: "));
     }
 
-    public static void c(Parcel parcel, Parcelable parcelable) {
-        if (parcelable == null) {
-            parcel.writeInt(0);
-            return;
+    @Override
+    public void p0(Status status, m mVar) {
+        switch (this.f17224b) {
+            case 1:
+                j.e(status, "status");
+                k8.a(status, mVar, this.f17225c);
+                return;
+            default:
+                j.e(status, "status");
+                throw new UnsupportedOperationException();
         }
-        parcel.writeInt(1);
-        parcelable.writeToParcel(parcel, 0);
+    }
+
+    @Override
+    public void q0(Status status, r rVar) {
+        j.e(status, "status");
+        throw new UnsupportedOperationException();
     }
 }

@@ -1,195 +1,147 @@
 package a3;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
-import android.os.SystemClock;
-import android.os.Trace;
-import b8.zb;
-import java.io.IOException;
-public final class l extends Handler implements Runnable {
-    public final int f95a;
-    public final m f96b;
-    public final long f97c;
-    public k d;
-    public IOException f98e;
-    public int f99f;
-    public Thread h;
-    public boolean f100n;
-    public volatile boolean f101r;
-    public final q f102s;
+import a8.r7;
+import android.util.Log;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import bi.ad;
+import bi.da;
+import bi.k7;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.Task;
+import java.io.File;
+import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import org.telegram.messenger.b20;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.ui.ActionBar.o6;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.r1;
+import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.Cells.f1;
+import org.telegram.ui.Components.ft0;
+import org.telegram.ui.Components.r31;
+import org.telegram.ui.ya1;
+public final class l implements g9.k, Continuation, l5.e, h2.j, Vector.TLDeserializer, b20, r1, o6, p6, ft0, u9.d {
+    public final int f102a;
 
-    public l(q qVar, Looper looper, m mVar, k kVar, int i3, long j10) {
-        super(looper);
-        this.f102s = qVar;
-        this.f96b = mVar;
-        this.d = kVar;
-        this.f95a = i3;
-        this.f97c = j10;
-    }
-
-    public final void a(boolean z10) {
-        this.f101r = z10;
-        this.f98e = null;
-        if (hasMessages(1)) {
-            this.f100n = true;
-            removeMessages(1);
-            if (!z10) {
-                sendEmptyMessage(2);
-            }
-        } else {
-            synchronized (this) {
-                try {
-                    this.f100n = true;
-                    this.f96b.X1();
-                    Thread thread = this.h;
-                    if (thread != null) {
-                        thread.interrupt();
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
-        }
-        if (z10) {
-            this.f102s.f108b = null;
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            k kVar = this.d;
-            kVar.getClass();
-            kVar.q0(this.f96b, elapsedRealtime, elapsedRealtime - this.f97c, true);
-            this.d = null;
-        }
-    }
-
-    public final void b() {
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j10 = elapsedRealtime - this.f97c;
-        k kVar = this.d;
-        kVar.getClass();
-        kVar.M(this.f96b, elapsedRealtime, j10, this.f99f);
-        this.f98e = null;
-        q qVar = this.f102s;
-        b3.a aVar = qVar.f107a;
-        l lVar = qVar.f108b;
-        lVar.getClass();
-        aVar.execute(lVar);
+    public l(int i7) {
+        this.f102a = i7;
     }
 
     @Override
-    public final void handleMessage(Message message) {
-        boolean z10;
-        if (!this.f101r) {
-            int i3 = message.what;
-            if (i3 == 1) {
-                b();
-            } else if (i3 != 4) {
-                this.f102s.f108b = null;
-                long elapsedRealtime = SystemClock.elapsedRealtime();
-                long j10 = elapsedRealtime - this.f97c;
-                k kVar = this.d;
-                kVar.getClass();
-                if (this.f100n) {
-                    kVar.q0(this.f96b, elapsedRealtime, j10, false);
-                    return;
-                }
-                int i10 = message.what;
-                if (i10 != 2) {
-                    if (i10 == 3) {
-                        IOException iOException = (IOException) message.obj;
-                        this.f98e = iOException;
-                        int i11 = this.f99f + 1;
-                        this.f99f = i11;
-                        i k10 = kVar.k(this.f96b, elapsedRealtime, j10, iOException, i11);
-                        int i12 = k10.f92a;
-                        if (i12 == 3) {
-                            this.f102s.f109c = this.f98e;
-                            return;
-                        } else if (i12 != 2) {
-                            if (i12 == 1) {
-                                this.f99f = 1;
-                            }
-                            long j11 = k10.f93b;
-                            if (j11 == -9223372036854775807L) {
-                                j11 = Math.min((this.f99f - 1) * 1000, 5000);
-                            }
-                            q qVar = this.f102s;
-                            if (qVar.f108b == null) {
-                                z10 = true;
-                            } else {
-                                z10 = false;
-                            }
-                            zb.p(z10);
-                            qVar.f108b = this;
-                            if (j11 > 0) {
-                                sendEmptyMessageDelayed(1, j11);
-                                return;
-                            } else {
-                                b();
-                                return;
-                            }
-                        } else {
-                            return;
-                        }
-                    }
-                    return;
-                }
+    public Boolean a(r31 r31Var, View view, Integer num, Float f10, Float f11) {
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public void accept(Object obj) {
+        ((ExecutorService) obj).shutdown();
+    }
+
+    @Override
+    public java.lang.Object apply(java.lang.Object r26) {
+        throw new UnsupportedOperationException("Method not decompiled: a3.l.apply(java.lang.Object):java.lang.Object");
+    }
+
+    @Override
+    public void c(int i7, View view) {
+        ((da) view).setColor(i7);
+    }
+
+    @Override
+    public TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
+        return TLRPC.MessageReplyHeader.TLdeserialize(inputSerializedData, i7, z9);
+    }
+
+    @Override
+    public Object e(r7 r7Var) {
+        Set H = r7Var.H(cb.a.class);
+        cb.c cVar = cb.c.f6038c;
+        if (cVar == null) {
+            synchronized (cb.c.class) {
                 try {
-                    kVar.h(this.f96b, elapsedRealtime, j10);
-                } catch (RuntimeException e10) {
-                    g2.a.d("LoadTask", "Unexpected exception handling load completed", e10);
-                    this.f102s.f109c = new p(e10);
+                    cVar = cb.c.f6038c;
+                    if (cVar == null) {
+                        cVar = new cb.c(0);
+                        cb.c.f6038c = cVar;
+                    }
+                } finally {
                 }
-            } else {
-                throw ((Error) message.obj);
             }
+        }
+        return new cb.b(H, cVar);
+    }
+
+    @Override
+    public void g(u1 u1Var, int i7) {
+        switch (this.f102a) {
+            case 22:
+                int i10 = k7.f4163s3;
+                return;
+            default:
+                k7.c2(new ya1(6, null));
+                return;
         }
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        try {
-            synchronized (this) {
-                z10 = this.f100n;
-                this.h = Thread.currentThread();
-            }
-            if (!z10) {
-                Trace.beginSection("load:".concat(this.f96b.getClass().getSimpleName()));
-                try {
-                    this.f96b.a();
-                    Trace.endSection();
-                } catch (Throwable th2) {
-                    Trace.endSection();
-                    throw th2;
+    public float h(RecyclerView recyclerView) {
+        return f1.c(recyclerView);
+    }
+
+    @Override
+    public int i(View view) {
+        return ((da) view).f3694y;
+    }
+
+    @Override
+    public RecyclerView l(View view) {
+        return ((ad) view).f3468a;
+    }
+
+    @Override
+    public void s(RecyclerView recyclerView) {
+        f1.b(recyclerView);
+    }
+
+    @Override
+    public Object then(Task task) {
+        boolean z9;
+        File file;
+        int i7;
+        switch (this.f102a) {
+            case 5:
+                if (task.isSuccessful()) {
+                    aa.b bVar = (aa.b) task.getResult();
+                    x9.b bVar2 = x9.b.f58546a;
+                    bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f776b);
+                    z9 = true;
+                    if (bVar.f777c.delete()) {
+                        bVar2.b("Deleted report file: " + file.getPath());
+                    } else {
+                        bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
+                    }
+                } else {
+                    Log.w("FirebaseCrashlytics", "Crashlytics report could not be enqueued to DataTransport", task.getException());
+                    z9 = false;
                 }
-            }
-            synchronized (this) {
-                this.h = null;
-                Thread.interrupted();
-            }
-            if (!this.f101r) {
-                sendEmptyMessage(2);
-            }
-        } catch (IOException e10) {
-            if (!this.f101r) {
-                obtainMessage(3, e10).sendToTarget();
-            }
-        } catch (Exception e11) {
-            if (!this.f101r) {
-                g2.a.d("LoadTask", "Unexpected exception loading stream", e11);
-                obtainMessage(3, new p(e11)).sendToTarget();
-            }
-        } catch (OutOfMemoryError e12) {
-            if (!this.f101r) {
-                g2.a.d("LoadTask", "OutOfMemory error loading stream", e12);
-                obtainMessage(3, new p(e12)).sendToTarget();
-            }
-        } catch (Error e13) {
-            if (!this.f101r) {
-                g2.a.d("LoadTask", "Unexpected error loading stream", e13);
-                obtainMessage(4, e13).sendToTarget();
-            }
-            throw e13;
+                return Boolean.valueOf(z9);
+            case 6:
+            default:
+                i7 = -1;
+                break;
+            case 7:
+                i7 = 403;
+                break;
         }
+        return Integer.valueOf(i7);
+    }
+
+    public l(Object obj, int i7) {
+        this.f102a = i7;
     }
 }

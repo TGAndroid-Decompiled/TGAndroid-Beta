@@ -13,11 +13,11 @@ public class MacroInfo {
     public Object pack;
     public int posOpts;
 
-    public MacroInfo(Object obj, Method method, int i3) {
+    public MacroInfo(Object obj, Method method, int i7) {
         this.hasOptions = false;
         this.pack = obj;
         this.macro = method;
-        this.nbArgs = i3;
+        this.nbArgs = i7;
     }
 
     public Object invoke(TeXParser teXParser, String[] strArr) {
@@ -33,25 +33,25 @@ public class MacroInfo {
         }
     }
 
-    public MacroInfo(Object obj, Method method, int i3, int i10) {
-        this(obj, method, i3);
+    public MacroInfo(Object obj, Method method, int i7, int i10) {
+        this(obj, method, i7);
         this.hasOptions = true;
         this.posOpts = i10;
     }
 
-    public MacroInfo(int i3, int i10) {
-        this((Object) null, (Method) null, i3);
+    public MacroInfo(int i7, int i10) {
+        this((Object) null, (Method) null, i7);
         this.hasOptions = true;
         this.posOpts = i10;
     }
 
-    public MacroInfo(int i3) {
-        this((Object) null, (Method) null, i3);
+    public MacroInfo(int i7) {
+        this((Object) null, (Method) null, i7);
     }
 
     public MacroInfo(String str, String str2, float f10) {
         this.hasOptions = false;
-        int i3 = (int) f10;
+        int i7 = (int) f10;
         Class<?>[] clsArr = {TeXParser.class, String[].class};
         try {
             Object obj = Packages.get(str);
@@ -61,7 +61,7 @@ public class MacroInfo {
             }
             this.pack = obj;
             this.macro = obj.getClass().getDeclaredMethod(str2, clsArr);
-            this.nbArgs = i3;
+            this.nbArgs = i7;
         } catch (Exception e10) {
             PrintStream printStream = System.err;
             printStream.println("Cannot load package " + str + ":");
@@ -71,7 +71,7 @@ public class MacroInfo {
 
     public MacroInfo(String str, String str2, float f10, float f11) {
         this.hasOptions = false;
-        int i3 = (int) f10;
+        int i7 = (int) f10;
         Class<?>[] clsArr = {TeXParser.class, String[].class};
         try {
             Object obj = Packages.get(str);
@@ -81,7 +81,7 @@ public class MacroInfo {
             }
             this.pack = obj;
             this.macro = obj.getClass().getDeclaredMethod(str2, clsArr);
-            this.nbArgs = i3;
+            this.nbArgs = i7;
             this.hasOptions = true;
             this.posOpts = (int) f11;
         } catch (Exception e10) {

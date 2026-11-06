@@ -1,6 +1,8 @@
 package w;
 
+import ab.z;
 import android.accounts.Account;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.media.MediaDescription;
@@ -10,82 +12,329 @@ import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.ResultReceiver;
 import android.support.v4.media.MediaBrowserCompat$MediaItem;
 import android.support.v4.media.MediaDescriptionCompat;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.RatingCompat;
-import androidx.fragment.app.f0;
-import androidx.fragment.app.l0;
-import androidx.fragment.app.o0;
+import androidx.fragment.app.e0;
+import androidx.fragment.app.k0;
+import androidx.fragment.app.n0;
 import androidx.versionedparcelable.ParcelImpl;
+import c8.vb;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.SignInAccount;
 import com.google.android.gms.auth.api.signin.internal.SignInConfiguration;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.fido.common.Transport;
-import e7.b0;
-import e7.h0;
-import e7.i;
-import e7.k;
-import e7.m;
-import e7.m0;
-import e7.n0;
-import e7.p0;
-import e7.q0;
-import e7.t;
-import e7.u;
-import e7.v;
-import e7.w;
-import e7.x;
-import e7.y;
-import e7.z0;
+import com.google.android.gms.wearable.ConnectionConfiguration;
+import f7.u;
 import j$.util.Objects;
 import java.util.ArrayList;
 import kotlin.jvm.internal.j;
-import p7.t0;
 public final class a implements Parcelable.Creator {
-    public final int f57004a;
+    public final int f57447a;
 
-    public a(int i3) {
-        this.f57004a = i3;
+    public a(int i7) {
+        this.f57447a = i7;
     }
 
     @Override
     public final Object createFromParcel(final Parcel inParcel) {
-        t0 o10;
-        t0 o11;
-        long j10 = 0;
-        int i3 = 0;
-        int i10 = 0;
+        boolean z9 = false;
+        int i7 = 0;
         boolean z10 = false;
         boolean z11 = false;
-        boolean z12 = false;
-        ArrayList arrayList = null;
-        byte[][] bArr = null;
-        t0 t0Var = null;
+        PendingIntent pendingIntent = null;
         String str = null;
         String str2 = null;
-        Bundle bundle = null;
-        c.b bVar = null;
         GoogleSignInAccount googleSignInAccount = null;
-        switch (this.f57004a) {
+        ArrayList arrayList = null;
+        c.b bVar = null;
+        Bundle bundle = null;
+        byte[] bArr = null;
+        String str3 = null;
+        switch (this.f57447a) {
             case 0:
                 Bundle readBundle = inParcel.readBundle(a.class.getClassLoader());
                 Objects.requireNonNull(readBundle);
                 return new b(readBundle);
             case 1:
-                return new ParcelImpl(inParcel);
+                int z12 = vb.z(inParcel);
+                boolean z13 = false;
+                int i10 = 0;
+                boolean z14 = false;
+                a6.d dVar = null;
+                a6.a aVar = null;
+                String str4 = null;
+                a6.c cVar = null;
+                a6.b bVar2 = null;
+                while (inParcel.dataPosition() < z12) {
+                    int readInt = inParcel.readInt();
+                    switch ((char) readInt) {
+                        case 1:
+                            dVar = (a6.d) vb.g(inParcel, readInt, a6.d.CREATOR);
+                            break;
+                        case 2:
+                            aVar = (a6.a) vb.g(inParcel, readInt, a6.a.CREATOR);
+                            break;
+                        case 3:
+                            str4 = vb.h(inParcel, readInt);
+                            break;
+                        case 4:
+                            z13 = vb.n(inParcel, readInt);
+                            break;
+                        case 5:
+                            i10 = vb.u(inParcel, readInt);
+                            break;
+                        case 6:
+                            cVar = (a6.c) vb.g(inParcel, readInt, a6.c.CREATOR);
+                            break;
+                        case 7:
+                            bVar2 = (a6.b) vb.g(inParcel, readInt, a6.b.CREATOR);
+                            break;
+                        case '\b':
+                            z14 = vb.n(inParcel, readInt);
+                            break;
+                        default:
+                            vb.y(inParcel, readInt);
+                            break;
+                    }
+                }
+                vb.m(inParcel, z12);
+                return new a6.e(dVar, aVar, str4, z13, i10, cVar, bVar2, z14);
             case 2:
+                int z15 = vb.z(inParcel);
+                while (inParcel.dataPosition() < z15) {
+                    int readInt2 = inParcel.readInt();
+                    if (((char) readInt2) != 1) {
+                        vb.y(inParcel, readInt2);
+                    } else {
+                        pendingIntent = (PendingIntent) vb.g(inParcel, readInt2, PendingIntent.CREATOR);
+                    }
+                }
+                vb.m(inParcel, z15);
+                return new a6.f(pendingIntent);
+            case 3:
+                int z16 = vb.z(inParcel);
+                boolean z17 = false;
+                boolean z18 = false;
+                boolean z19 = false;
+                String str5 = null;
+                String str6 = null;
+                String str7 = null;
+                ArrayList arrayList2 = null;
+                while (inParcel.dataPosition() < z16) {
+                    int readInt3 = inParcel.readInt();
+                    switch ((char) readInt3) {
+                        case 1:
+                            z17 = vb.n(inParcel, readInt3);
+                            break;
+                        case 2:
+                            str5 = vb.h(inParcel, readInt3);
+                            break;
+                        case 3:
+                            str6 = vb.h(inParcel, readInt3);
+                            break;
+                        case 4:
+                            z18 = vb.n(inParcel, readInt3);
+                            break;
+                        case 5:
+                            str7 = vb.h(inParcel, readInt3);
+                            break;
+                        case 6:
+                            arrayList2 = vb.j(inParcel, readInt3);
+                            break;
+                        case 7:
+                            z19 = vb.n(inParcel, readInt3);
+                            break;
+                        default:
+                            vb.y(inParcel, readInt3);
+                            break;
+                    }
+                }
+                vb.m(inParcel, z16);
+                return new a6.a(z17, str5, str6, z18, str7, arrayList2, z19);
+            case 4:
+                int z20 = vb.z(inParcel);
+                while (inParcel.dataPosition() < z20) {
+                    int readInt4 = inParcel.readInt();
+                    char c10 = (char) readInt4;
+                    if (c10 != 1) {
+                        if (c10 != 2) {
+                            vb.y(inParcel, readInt4);
+                        } else {
+                            str3 = vb.h(inParcel, readInt4);
+                        }
+                    } else {
+                        z9 = vb.n(inParcel, readInt4);
+                    }
+                }
+                vb.m(inParcel, z20);
+                return new a6.b(str3, z9);
+            case 5:
+                int z21 = vb.z(inParcel);
+                String str8 = null;
+                while (inParcel.dataPosition() < z21) {
+                    int readInt5 = inParcel.readInt();
+                    char c11 = (char) readInt5;
+                    if (c11 != 1) {
+                        if (c11 != 2) {
+                            if (c11 != 3) {
+                                vb.y(inParcel, readInt5);
+                            } else {
+                                str8 = vb.h(inParcel, readInt5);
+                            }
+                        } else {
+                            bArr = vb.b(inParcel, readInt5);
+                        }
+                    } else {
+                        z11 = vb.n(inParcel, readInt5);
+                    }
+                }
+                vb.m(inParcel, z21);
+                return new a6.c(z11, bArr, str8);
+            case 6:
+                int z22 = vb.z(inParcel);
+                while (inParcel.dataPosition() < z22) {
+                    int readInt6 = inParcel.readInt();
+                    if (((char) readInt6) != 1) {
+                        vb.y(inParcel, readInt6);
+                    } else {
+                        z10 = vb.n(inParcel, readInt6);
+                    }
+                }
+                vb.m(inParcel, z22);
+                return new a6.d(z10);
+            case 7:
+                int z23 = vb.z(inParcel);
+                String str9 = null;
+                String str10 = null;
+                String str11 = null;
+                String str12 = null;
+                Uri uri = null;
+                String str13 = null;
+                String str14 = null;
+                String str15 = null;
+                u uVar = null;
+                while (inParcel.dataPosition() < z23) {
+                    int readInt7 = inParcel.readInt();
+                    switch ((char) readInt7) {
+                        case 1:
+                            str9 = vb.h(inParcel, readInt7);
+                            break;
+                        case 2:
+                            str10 = vb.h(inParcel, readInt7);
+                            break;
+                        case 3:
+                            str11 = vb.h(inParcel, readInt7);
+                            break;
+                        case 4:
+                            str12 = vb.h(inParcel, readInt7);
+                            break;
+                        case 5:
+                            uri = (Uri) vb.g(inParcel, readInt7, Uri.CREATOR);
+                            break;
+                        case 6:
+                            str13 = vb.h(inParcel, readInt7);
+                            break;
+                        case 7:
+                            str14 = vb.h(inParcel, readInt7);
+                            break;
+                        case '\b':
+                            str15 = vb.h(inParcel, readInt7);
+                            break;
+                        case '\t':
+                            uVar = (u) vb.g(inParcel, readInt7, u.CREATOR);
+                            break;
+                        default:
+                            vb.y(inParcel, readInt7);
+                            break;
+                    }
+                }
+                vb.m(inParcel, z23);
+                return new a6.g(str9, str10, str11, str12, uri, str13, str14, str15, uVar);
+            case 8:
+                int z24 = vb.z(inParcel);
+                int i11 = 0;
+                int i12 = 0;
+                boolean z25 = false;
+                boolean z26 = false;
+                boolean z27 = false;
+                int i13 = 0;
+                String str16 = null;
+                String str17 = null;
+                String str18 = null;
+                String str19 = null;
+                String str20 = null;
+                ArrayList arrayList3 = null;
+                while (inParcel.dataPosition() < z24) {
+                    int readInt8 = inParcel.readInt();
+                    switch ((char) readInt8) {
+                        case 2:
+                            str16 = vb.h(inParcel, readInt8);
+                            break;
+                        case 3:
+                            str17 = vb.h(inParcel, readInt8);
+                            break;
+                        case 4:
+                            i11 = vb.u(inParcel, readInt8);
+                            break;
+                        case 5:
+                            i12 = vb.u(inParcel, readInt8);
+                            break;
+                        case 6:
+                            z25 = vb.n(inParcel, readInt8);
+                            break;
+                        case 7:
+                            z26 = vb.n(inParcel, readInt8);
+                            break;
+                        case '\b':
+                            str18 = vb.h(inParcel, readInt8);
+                            break;
+                        case '\t':
+                            z27 = vb.n(inParcel, readInt8);
+                            break;
+                        case '\n':
+                            str19 = vb.h(inParcel, readInt8);
+                            break;
+                        case 11:
+                            str20 = vb.h(inParcel, readInt8);
+                            break;
+                        case '\f':
+                            i13 = vb.u(inParcel, readInt8);
+                            break;
+                        case '\r':
+                            arrayList3 = vb.j(inParcel, readInt8);
+                            break;
+                        default:
+                            vb.y(inParcel, readInt8);
+                            break;
+                    }
+                }
+                vb.m(inParcel, z24);
+                return new ConnectionConfiguration(str16, str17, i11, i12, z25, z26, str18, z27, str19, str20, i13, arrayList3);
+            case 9:
+                int z28 = vb.z(inParcel);
+                while (inParcel.dataPosition() < z28) {
+                    int readInt9 = inParcel.readInt();
+                    if (((char) readInt9) != 2) {
+                        vb.y(inParcel, readInt9);
+                    } else {
+                        bundle = vb.a(inParcel, readInt9);
+                    }
+                }
+                vb.m(inParcel, z28);
+                return new z(bundle);
+            case 10:
                 return new Parcelable(inParcel) {
-                    public static final Parcelable.Creator<MediaBrowserCompat$MediaItem> CREATOR = new w.a(2);
-                    public final int f1138a;
-                    public final MediaDescriptionCompat f1139b;
+                    public static final Parcelable.Creator<MediaBrowserCompat$MediaItem> CREATOR = new w.a(10);
+                    public final int f1717a;
+                    public final MediaDescriptionCompat f1718b;
 
                     {
-                        this.f1138a = inParcel.readInt();
-                        this.f1139b = MediaDescriptionCompat.CREATOR.createFromParcel(inParcel);
+                        this.f1717a = inParcel.readInt();
+                        this.f1718b = MediaDescriptionCompat.CREATOR.createFromParcel(inParcel);
                     }
 
                     @Override
@@ -94,548 +343,326 @@ public final class a implements Parcelable.Creator {
                     }
 
                     public final String toString() {
-                        return "MediaItem{mFlags=" + this.f1138a + ", mDescription=" + this.f1139b + '}';
+                        return "MediaItem{mFlags=" + this.f1717a + ", mDescription=" + this.f1718b + '}';
                     }
 
                     @Override
-                    public final void writeToParcel(Parcel parcel, int i11) {
-                        parcel.writeInt(this.f1138a);
-                        this.f1139b.writeToParcel(parcel, i11);
+                    public final void writeToParcel(Parcel parcel, int i14) {
+                        parcel.writeInt(this.f1717a);
+                        this.f1718b.writeToParcel(parcel, i14);
                     }
                 };
-            case 3:
+            case 11:
                 return MediaDescriptionCompat.a(MediaDescription.CREATOR.createFromParcel(inParcel));
-            case 4:
+            case 12:
                 return new MediaMetadataCompat(inParcel);
-            case 5:
+            case 13:
                 return new RatingCompat(inParcel.readInt(), inParcel.readFloat());
-            case 6:
+            case 14:
                 return new androidx.activity.result.a(inParcel);
-            case 7:
+            case 15:
                 j.e(inParcel, "inParcel");
                 Parcelable readParcelable = inParcel.readParcelable(IntentSender.class.getClassLoader());
                 j.b(readParcelable);
                 return new androidx.activity.result.g((IntentSender) readParcelable, (Intent) inParcel.readParcelable(Intent.class.getClassLoader()), inParcel.readInt(), inParcel.readInt());
-            case 8:
-                return new androidx.fragment.app.b(inParcel);
-            case 9:
-                return new androidx.fragment.app.c(inParcel);
-            case 10:
-                ?? obj = new Object();
-                obj.f1814a = inParcel.readString();
-                obj.f1815b = inParcel.readInt();
-                return obj;
-            case 11:
-                ?? obj2 = new Object();
-                obj2.f1857e = null;
-                obj2.f1858f = new ArrayList();
-                obj2.h = new ArrayList();
-                obj2.f1854a = inParcel.createStringArrayList();
-                obj2.f1855b = inParcel.createStringArrayList();
-                obj2.f1856c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
-                obj2.d = inParcel.readInt();
-                obj2.f1857e = inParcel.readString();
-                obj2.f1858f = inParcel.createStringArrayList();
-                obj2.h = inParcel.createTypedArrayList(androidx.fragment.app.c.CREATOR);
-                obj2.f1859n = inParcel.createTypedArrayList(f0.CREATOR);
-                return obj2;
-            case 12:
-                return new o0(inParcel);
-            case 13:
-                int z13 = g6.e.z(inParcel);
-                long j11 = 0;
-                String str3 = null;
-                String str4 = null;
-                String str5 = null;
-                String str6 = null;
-                Uri uri = null;
-                String str7 = null;
-                String str8 = null;
-                ArrayList arrayList2 = null;
-                String str9 = null;
-                String str10 = null;
-                while (inParcel.dataPosition() < z13) {
-                    int readInt = inParcel.readInt();
-                    switch ((char) readInt) {
-                        case 2:
-                            str3 = g6.e.h(inParcel, readInt);
-                            break;
-                        case 3:
-                            str4 = g6.e.h(inParcel, readInt);
-                            break;
-                        case 4:
-                            str5 = g6.e.h(inParcel, readInt);
-                            break;
-                        case 5:
-                            str6 = g6.e.h(inParcel, readInt);
-                            break;
-                        case 6:
-                            uri = (Uri) g6.e.g(inParcel, readInt, Uri.CREATOR);
-                            break;
-                        case 7:
-                            str7 = g6.e.h(inParcel, readInt);
-                            break;
-                        case '\b':
-                            j11 = g6.e.w(inParcel, readInt);
-                            break;
-                        case '\t':
-                            str8 = g6.e.h(inParcel, readInt);
-                            break;
-                        case '\n':
-                            arrayList2 = g6.e.l(inParcel, readInt, Scope.CREATOR);
-                            break;
-                        case 11:
-                            str9 = g6.e.h(inParcel, readInt);
-                            break;
-                        case '\f':
-                            str10 = g6.e.h(inParcel, readInt);
-                            break;
-                        default:
-                            g6.e.y(inParcel, readInt);
-                            break;
-                    }
-                }
-                g6.e.m(inParcel, z13);
-                return new GoogleSignInAccount(str3, str4, str5, str6, uri, str7, j11, str8, arrayList2, str9, str10);
-            case 14:
-                int z14 = g6.e.z(inParcel);
-                int i11 = 0;
-                boolean z15 = false;
-                boolean z16 = false;
-                boolean z17 = false;
-                ArrayList arrayList3 = null;
-                Account account = null;
-                String str11 = null;
-                String str12 = null;
-                String str13 = null;
-                while (inParcel.dataPosition() < z14) {
-                    int readInt2 = inParcel.readInt();
-                    switch ((char) readInt2) {
-                        case 1:
-                            i11 = g6.e.u(inParcel, readInt2);
-                            break;
-                        case 2:
-                            arrayList3 = g6.e.l(inParcel, readInt2, Scope.CREATOR);
-                            break;
-                        case 3:
-                            account = (Account) g6.e.g(inParcel, readInt2, Account.CREATOR);
-                            break;
-                        case 4:
-                            z15 = g6.e.n(inParcel, readInt2);
-                            break;
-                        case 5:
-                            z16 = g6.e.n(inParcel, readInt2);
-                            break;
-                        case 6:
-                            z17 = g6.e.n(inParcel, readInt2);
-                            break;
-                        case 7:
-                            str11 = g6.e.h(inParcel, readInt2);
-                            break;
-                        case '\b':
-                            str12 = g6.e.h(inParcel, readInt2);
-                            break;
-                        case '\t':
-                            arrayList = g6.e.l(inParcel, readInt2, c6.a.CREATOR);
-                            break;
-                        case '\n':
-                            str13 = g6.e.h(inParcel, readInt2);
-                            break;
-                        default:
-                            g6.e.y(inParcel, readInt2);
-                            break;
-                    }
-                }
-                g6.e.m(inParcel, z14);
-                return new GoogleSignInOptions(i11, arrayList3, account, z15, z16, z17, str11, str12, GoogleSignInOptions.c(arrayList), str13);
-            case 15:
-                int z18 = g6.e.z(inParcel);
-                String str14 = "";
-                String str15 = "";
-                while (inParcel.dataPosition() < z18) {
-                    int readInt3 = inParcel.readInt();
-                    char c2 = (char) readInt3;
-                    if (c2 != 4) {
-                        if (c2 != 7) {
-                            if (c2 != '\b') {
-                                g6.e.y(inParcel, readInt3);
-                            } else {
-                                str15 = g6.e.h(inParcel, readInt3);
-                            }
-                        } else {
-                            googleSignInAccount = (GoogleSignInAccount) g6.e.g(inParcel, readInt3, GoogleSignInAccount.CREATOR);
-                        }
-                    } else {
-                        str14 = g6.e.h(inParcel, readInt3);
-                    }
-                }
-                g6.e.m(inParcel, z18);
-                return new SignInAccount(str14, googleSignInAccount, str15);
             case 16:
+                return new androidx.fragment.app.b(inParcel);
+            case 17:
+                return new androidx.fragment.app.c(inParcel);
+            case 18:
+                ?? obj = new Object();
+                obj.f2384a = inParcel.readString();
+                obj.f2385b = inParcel.readInt();
+                return obj;
+            case 19:
+                ?? obj2 = new Object();
+                obj2.f2427e = null;
+                obj2.f2428f = new ArrayList();
+                obj2.h = new ArrayList();
+                obj2.f2424a = inParcel.createStringArrayList();
+                obj2.f2425b = inParcel.createStringArrayList();
+                obj2.f2426c = (androidx.fragment.app.b[]) inParcel.createTypedArray(androidx.fragment.app.b.CREATOR);
+                obj2.d = inParcel.readInt();
+                obj2.f2427e = inParcel.readString();
+                obj2.f2428f = inParcel.createStringArrayList();
+                obj2.h = inParcel.createTypedArrayList(androidx.fragment.app.c.CREATOR);
+                obj2.f2429n = inParcel.createTypedArrayList(e0.CREATOR);
+                return obj2;
+            case 20:
+                return new n0(inParcel);
+            case 21:
+                return new ParcelImpl(inParcel);
+            case 22:
                 ?? obj3 = new Object();
                 IBinder readStrongBinder = inParcel.readStrongBinder();
-                int i12 = c.c.f3929b;
+                int i14 = c.c.f5217b;
                 if (readStrongBinder != null) {
                     IInterface queryLocalInterface = readStrongBinder.queryLocalInterface(c.b.h);
                     if (queryLocalInterface != null && (queryLocalInterface instanceof c.b)) {
                         bVar = (c.b) queryLocalInterface;
                     } else {
                         ?? obj4 = new Object();
-                        obj4.f3928a = readStrongBinder;
+                        obj4.f5216a = readStrongBinder;
                         bVar = obj4;
                     }
                 }
-                obj3.f3931a = bVar;
+                obj3.f5219a = bVar;
                 return obj3;
-            case 17:
-                int z19 = g6.e.z(inParcel);
-                int i13 = 0;
-                while (inParcel.dataPosition() < z19) {
-                    int readInt4 = inParcel.readInt();
-                    char c10 = (char) readInt4;
-                    if (c10 != 1) {
-                        if (c10 != 2) {
-                            if (c10 != 3) {
-                                g6.e.y(inParcel, readInt4);
-                            } else {
-                                bundle = g6.e.a(inParcel, readInt4);
-                            }
-                        } else {
-                            i13 = g6.e.u(inParcel, readInt4);
-                        }
-                    } else {
-                        i3 = g6.e.u(inParcel, readInt4);
-                    }
-                }
-                g6.e.m(inParcel, z19);
-                return new c6.a(i3, i13, bundle);
-            case 18:
-                int z20 = g6.e.z(inParcel);
-                GoogleSignInOptions googleSignInOptions = null;
-                while (inParcel.dataPosition() < z20) {
-                    int readInt5 = inParcel.readInt();
-                    char c11 = (char) readInt5;
-                    if (c11 != 2) {
-                        if (c11 != 5) {
-                            g6.e.y(inParcel, readInt5);
-                        } else {
-                            googleSignInOptions = (GoogleSignInOptions) g6.e.g(inParcel, readInt5, GoogleSignInOptions.CREATOR);
-                        }
-                    } else {
-                        str2 = g6.e.h(inParcel, readInt5);
-                    }
-                }
-                g6.e.m(inParcel, z20);
-                return new SignInConfiguration(str2, googleSignInOptions);
-            case 19:
-                try {
-                    return Transport.a(inParcel.readString());
-                } catch (c7.a e10) {
-                    throw new RuntimeException(e10);
-                }
-            case 20:
-                try {
-                    return e7.c.a(inParcel.readString());
-                } catch (e7.b e11) {
-                    throw new RuntimeException(e11);
-                }
-            case 21:
-                int z21 = g6.e.z(inParcel);
-                while (inParcel.dataPosition() < z21) {
-                    int readInt6 = inParcel.readInt();
-                    if (((char) readInt6) != 1) {
-                        g6.e.y(inParcel, readInt6);
-                    } else {
-                        z12 = g6.e.n(inParcel, readInt6);
-                    }
-                }
-                g6.e.m(inParcel, z21);
-                return new z0(z12);
-            case 22:
-                int z22 = g6.e.z(inParcel);
-                while (inParcel.dataPosition() < z22) {
-                    int readInt7 = inParcel.readInt();
-                    if (((char) readInt7) != 1) {
-                        g6.e.y(inParcel, readInt7);
-                    } else {
-                        j10 = g6.e.w(inParcel, readInt7);
-                    }
-                }
-                g6.e.m(inParcel, z22);
-                return new m0(j10);
             case 23:
-                int z23 = g6.e.z(inParcel);
-                while (inParcel.dataPosition() < z23) {
-                    int readInt8 = inParcel.readInt();
-                    if (((char) readInt8) != 1) {
-                        g6.e.y(inParcel, readInt8);
-                    } else {
-                        z11 = g6.e.n(inParcel, readInt8);
-                    }
-                }
-                g6.e.m(inParcel, z23);
-                return new n0(z11);
-            case 24:
-                int z24 = g6.e.z(inParcel);
-                while (inParcel.dataPosition() < z24) {
-                    int readInt9 = inParcel.readInt();
-                    if (((char) readInt9) != 1) {
-                        g6.e.y(inParcel, readInt9);
-                    } else {
-                        z10 = g6.e.n(inParcel, readInt9);
-                    }
-                }
-                g6.e.m(inParcel, z24);
-                return new t(z10);
-            case 25:
-                int z25 = g6.e.z(inParcel);
-                while (inParcel.dataPosition() < z25) {
-                    int readInt10 = inParcel.readInt();
-                    if (((char) readInt10) != 1) {
-                        g6.e.y(inParcel, readInt10);
-                    } else {
-                        str = g6.e.h(inParcel, readInt10);
-                    }
-                }
-                g6.e.m(inParcel, z25);
-                return new e7.o0(str);
-            case 26:
-                int z26 = g6.e.z(inParcel);
-                byte[] bArr2 = null;
-                byte[] bArr3 = null;
-                byte[] bArr4 = null;
-                while (inParcel.dataPosition() < z26) {
-                    int readInt11 = inParcel.readInt();
-                    char c12 = (char) readInt11;
-                    if (c12 != 1) {
-                        if (c12 != 2) {
-                            if (c12 != 3) {
-                                if (c12 != 4) {
-                                    g6.e.y(inParcel, readInt11);
-                                } else {
-                                    i10 = g6.e.u(inParcel, readInt11);
-                                }
-                            } else {
-                                bArr4 = g6.e.b(inParcel, readInt11);
-                            }
-                        } else {
-                            bArr3 = g6.e.b(inParcel, readInt11);
-                        }
-                    } else {
-                        bArr2 = g6.e.b(inParcel, readInt11);
-                    }
-                }
-                g6.e.m(inParcel, z26);
-                if (bArr2 == null) {
-                    o10 = null;
-                } else {
-                    o10 = t0.o(bArr2.length, bArr2);
-                }
-                if (bArr3 == null) {
-                    o11 = null;
-                } else {
-                    o11 = t0.o(bArr3.length, bArr3);
-                }
-                if (bArr4 != null) {
-                    t0Var = t0.o(bArr4.length, bArr4);
-                }
-                return new p0(o10, o11, t0Var, i10);
-            case 27:
-                int z27 = g6.e.z(inParcel);
-                while (inParcel.dataPosition() < z27) {
-                    int readInt12 = inParcel.readInt();
-                    if (((char) readInt12) != 1) {
-                        g6.e.y(inParcel, readInt12);
-                    } else {
-                        bArr = g6.e.c(inParcel, readInt12);
-                    }
-                }
-                g6.e.m(inParcel, z27);
-                return new q0(bArr);
-            case 28:
-                int z28 = g6.e.z(inParcel);
-                y yVar = null;
-                b0 b0Var = null;
-                byte[] bArr5 = null;
+                int z29 = vb.z(inParcel);
+                long j3 = 0;
+                String str21 = null;
+                String str22 = null;
+                String str23 = null;
+                String str24 = null;
+                Uri uri2 = null;
+                String str25 = null;
+                String str26 = null;
                 ArrayList arrayList4 = null;
-                Double d = null;
-                ArrayList arrayList5 = null;
-                m mVar = null;
-                Integer num = null;
-                h0 h0Var = null;
-                String str16 = null;
-                e7.f fVar = null;
-                String str17 = null;
-                ResultReceiver resultReceiver = null;
-                while (inParcel.dataPosition() < z28) {
-                    int readInt13 = inParcel.readInt();
-                    switch ((char) readInt13) {
+                String str27 = null;
+                String str28 = null;
+                while (inParcel.dataPosition() < z29) {
+                    int readInt10 = inParcel.readInt();
+                    switch ((char) readInt10) {
                         case 2:
-                            yVar = (y) g6.e.g(inParcel, readInt13, y.CREATOR);
+                            str21 = vb.h(inParcel, readInt10);
                             break;
                         case 3:
-                            b0Var = (b0) g6.e.g(inParcel, readInt13, b0.CREATOR);
+                            str22 = vb.h(inParcel, readInt10);
                             break;
                         case 4:
-                            bArr5 = g6.e.b(inParcel, readInt13);
+                            str23 = vb.h(inParcel, readInt10);
                             break;
                         case 5:
-                            arrayList4 = g6.e.l(inParcel, readInt13, x.CREATOR);
+                            str24 = vb.h(inParcel, readInt10);
                             break;
                         case 6:
-                            int x10 = g6.e.x(inParcel, readInt13);
-                            if (x10 == 0) {
-                                d = null;
-                                break;
-                            } else {
-                                g6.e.B(inParcel, x10, 8);
-                                d = Double.valueOf(inParcel.readDouble());
-                                break;
-                            }
+                            uri2 = (Uri) vb.g(inParcel, readInt10, Uri.CREATOR);
+                            break;
                         case 7:
-                            arrayList5 = g6.e.l(inParcel, readInt13, w.CREATOR);
+                            str25 = vb.h(inParcel, readInt10);
                             break;
                         case '\b':
-                            mVar = (m) g6.e.g(inParcel, readInt13, m.CREATOR);
+                            j3 = vb.w(inParcel, readInt10);
                             break;
                         case '\t':
-                            num = g6.e.v(inParcel, readInt13);
+                            str26 = vb.h(inParcel, readInt10);
                             break;
                         case '\n':
-                            h0Var = (h0) g6.e.g(inParcel, readInt13, h0.CREATOR);
+                            arrayList4 = vb.l(inParcel, readInt10, Scope.CREATOR);
                             break;
                         case 11:
-                            str16 = g6.e.h(inParcel, readInt13);
+                            str27 = vb.h(inParcel, readInt10);
                             break;
                         case '\f':
-                            fVar = (e7.f) g6.e.g(inParcel, readInt13, e7.f.CREATOR);
-                            break;
-                        case '\r':
-                            str17 = g6.e.h(inParcel, readInt13);
-                            break;
-                        case 14:
-                            resultReceiver = (ResultReceiver) g6.e.g(inParcel, readInt13, ResultReceiver.CREATOR);
+                            str28 = vb.h(inParcel, readInt10);
                             break;
                         default:
-                            g6.e.y(inParcel, readInt13);
+                            vb.y(inParcel, readInt10);
                             break;
                     }
                 }
-                g6.e.m(inParcel, z28);
-                return new v(yVar, b0Var, bArr5, arrayList4, d, arrayList5, mVar, num, h0Var, str16, fVar, str17, resultReceiver);
-            default:
-                int z29 = g6.e.z(inParcel);
-                String str18 = null;
-                String str19 = null;
-                byte[] bArr6 = null;
-                e7.j jVar = null;
-                i iVar = null;
-                k kVar = null;
-                e7.g gVar = null;
-                String str20 = null;
-                while (inParcel.dataPosition() < z29) {
-                    int readInt14 = inParcel.readInt();
-                    switch ((char) readInt14) {
+                vb.m(inParcel, z29);
+                return new GoogleSignInAccount(str21, str22, str23, str24, uri2, str25, j3, str26, arrayList4, str27, str28);
+            case 24:
+                int z30 = vb.z(inParcel);
+                int i15 = 0;
+                boolean z31 = false;
+                boolean z32 = false;
+                boolean z33 = false;
+                ArrayList arrayList5 = null;
+                Account account = null;
+                String str29 = null;
+                String str30 = null;
+                String str31 = null;
+                while (inParcel.dataPosition() < z30) {
+                    int readInt11 = inParcel.readInt();
+                    switch ((char) readInt11) {
                         case 1:
-                            str18 = g6.e.h(inParcel, readInt14);
+                            i15 = vb.u(inParcel, readInt11);
                             break;
                         case 2:
-                            str19 = g6.e.h(inParcel, readInt14);
+                            arrayList5 = vb.l(inParcel, readInt11, Scope.CREATOR);
                             break;
                         case 3:
-                            bArr6 = g6.e.b(inParcel, readInt14);
+                            account = (Account) vb.g(inParcel, readInt11, Account.CREATOR);
                             break;
                         case 4:
-                            jVar = (e7.j) g6.e.g(inParcel, readInt14, e7.j.CREATOR);
+                            z31 = vb.n(inParcel, readInt11);
                             break;
                         case 5:
-                            iVar = (i) g6.e.g(inParcel, readInt14, i.CREATOR);
+                            z32 = vb.n(inParcel, readInt11);
                             break;
                         case 6:
-                            kVar = (k) g6.e.g(inParcel, readInt14, k.CREATOR);
+                            z33 = vb.n(inParcel, readInt11);
                             break;
                         case 7:
-                            gVar = (e7.g) g6.e.g(inParcel, readInt14, e7.g.CREATOR);
+                            str29 = vb.h(inParcel, readInt11);
                             break;
                         case '\b':
-                            str20 = g6.e.h(inParcel, readInt14);
+                            str30 = vb.h(inParcel, readInt11);
                             break;
                         case '\t':
-                            g6.e.h(inParcel, readInt14);
+                            arrayList = vb.l(inParcel, readInt11, d6.a.CREATOR);
+                            break;
+                        case '\n':
+                            str31 = vb.h(inParcel, readInt11);
                             break;
                         default:
-                            g6.e.y(inParcel, readInt14);
+                            vb.y(inParcel, readInt11);
                             break;
                     }
                 }
-                g6.e.m(inParcel, z29);
-                return new u(str18, str19, bArr6, jVar, iVar, kVar, gVar, str20);
+                vb.m(inParcel, z30);
+                return new GoogleSignInOptions(i15, arrayList5, account, z31, z32, z33, str29, str30, GoogleSignInOptions.c(arrayList), str31);
+            case 25:
+                int z34 = vb.z(inParcel);
+                String str32 = "";
+                String str33 = "";
+                while (inParcel.dataPosition() < z34) {
+                    int readInt12 = inParcel.readInt();
+                    char c12 = (char) readInt12;
+                    if (c12 != 4) {
+                        if (c12 != 7) {
+                            if (c12 != '\b') {
+                                vb.y(inParcel, readInt12);
+                            } else {
+                                str33 = vb.h(inParcel, readInt12);
+                            }
+                        } else {
+                            googleSignInAccount = (GoogleSignInAccount) vb.g(inParcel, readInt12, GoogleSignInAccount.CREATOR);
+                        }
+                    } else {
+                        str32 = vb.h(inParcel, readInt12);
+                    }
+                }
+                vb.m(inParcel, z34);
+                return new SignInAccount(str32, googleSignInAccount, str33);
+            case 26:
+                int z35 = vb.z(inParcel);
+                Bundle bundle2 = null;
+                int i16 = 0;
+                while (inParcel.dataPosition() < z35) {
+                    int readInt13 = inParcel.readInt();
+                    char c13 = (char) readInt13;
+                    if (c13 != 1) {
+                        if (c13 != 2) {
+                            if (c13 != 3) {
+                                vb.y(inParcel, readInt13);
+                            } else {
+                                bundle2 = vb.a(inParcel, readInt13);
+                            }
+                        } else {
+                            i16 = vb.u(inParcel, readInt13);
+                        }
+                    } else {
+                        i7 = vb.u(inParcel, readInt13);
+                    }
+                }
+                vb.m(inParcel, z35);
+                return new d6.a(i7, i16, bundle2);
+            case 27:
+                int z36 = vb.z(inParcel);
+                GoogleSignInOptions googleSignInOptions = null;
+                while (inParcel.dataPosition() < z36) {
+                    int readInt14 = inParcel.readInt();
+                    char c14 = (char) readInt14;
+                    if (c14 != 2) {
+                        if (c14 != 5) {
+                            vb.y(inParcel, readInt14);
+                        } else {
+                            googleSignInOptions = (GoogleSignInOptions) vb.g(inParcel, readInt14, GoogleSignInOptions.CREATOR);
+                        }
+                    } else {
+                        str2 = vb.h(inParcel, readInt14);
+                    }
+                }
+                vb.m(inParcel, z36);
+                return new SignInConfiguration(str2, googleSignInOptions);
+            case 28:
+                try {
+                    return Transport.a(inParcel.readString());
+                } catch (d7.a e10) {
+                    throw new RuntimeException(e10);
+                }
+            default:
+                int z37 = vb.z(inParcel);
+                while (inParcel.dataPosition() < z37) {
+                    int readInt15 = inParcel.readInt();
+                    if (((char) readInt15) != 1) {
+                        vb.y(inParcel, readInt15);
+                    } else {
+                        str = vb.h(inParcel, readInt15);
+                    }
+                }
+                vb.m(inParcel, z37);
+                return new db.g(str);
         }
     }
 
     @Override
-    public final Object[] newArray(int i3) {
-        switch (this.f57004a) {
+    public final Object[] newArray(int i7) {
+        switch (this.f57447a) {
             case 0:
-                return new b[i3];
+                return new b[i7];
             case 1:
-                return new ParcelImpl[i3];
+                return new a6.e[i7];
             case 2:
-                return new MediaBrowserCompat$MediaItem[i3];
+                return new a6.f[i7];
             case 3:
-                return new MediaDescriptionCompat[i3];
+                return new a6.a[i7];
             case 4:
-                return new MediaMetadataCompat[i3];
+                return new a6.b[i7];
             case 5:
-                return new RatingCompat[i3];
+                return new a6.c[i7];
             case 6:
-                return new androidx.activity.result.a[i3];
+                return new a6.d[i7];
             case 7:
-                return new androidx.activity.result.g[i3];
+                return new a6.g[i7];
             case 8:
-                return new androidx.fragment.app.b[i3];
+                return new ConnectionConfiguration[i7];
             case 9:
-                return new androidx.fragment.app.c[i3];
+                return new z[i7];
             case 10:
-                return new f0[i3];
+                return new MediaBrowserCompat$MediaItem[i7];
             case 11:
-                return new l0[i3];
+                return new MediaDescriptionCompat[i7];
             case 12:
-                return new o0[i3];
+                return new MediaMetadataCompat[i7];
             case 13:
-                return new GoogleSignInAccount[i3];
+                return new RatingCompat[i7];
             case 14:
-                return new GoogleSignInOptions[i3];
+                return new androidx.activity.result.a[i7];
             case 15:
-                return new SignInAccount[i3];
+                return new androidx.activity.result.g[i7];
             case 16:
-                return new c.d[i3];
+                return new androidx.fragment.app.b[i7];
             case 17:
-                return new c6.a[i3];
+                return new androidx.fragment.app.c[i7];
             case 18:
-                return new SignInConfiguration[i3];
+                return new e0[i7];
             case 19:
-                return new Transport[i3];
+                return new k0[i7];
             case 20:
-                return new e7.c[i3];
+                return new n0[i7];
             case 21:
-                return new z0[i3];
+                return new ParcelImpl[i7];
             case 22:
-                return new m0[i3];
+                return new c.d[i7];
             case 23:
-                return new n0[i3];
+                return new GoogleSignInAccount[i7];
             case 24:
-                return new t[i3];
+                return new GoogleSignInOptions[i7];
             case 25:
-                return new e7.o0[i3];
+                return new SignInAccount[i7];
             case 26:
-                return new p0[i3];
+                return new d6.a[i7];
             case 27:
-                return new q0[i3];
+                return new SignInConfiguration[i7];
             case 28:
-                return new v[i3];
+                return new Transport[i7];
             default:
-                return new u[i3];
+                return new db.g[i7];
         }
     }
 }

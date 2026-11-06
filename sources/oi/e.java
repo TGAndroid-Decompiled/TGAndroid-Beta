@@ -1,64 +1,60 @@
 package oi;
 
-import android.text.SpannableString;
-import java.lang.reflect.Array;
-public class e extends SpannableString {
-    public volatile boolean f21137a;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public abstract class e extends Drawable {
+    public final Rect f21071a = new Rect();
+    public r f21072b = q.f();
+    public int f21073c = 255;
+    public float d;
+    public float f21074e;
 
-    public e(CharSequence charSequence) {
-        super(charSequence);
-        this.f21137a = false;
+    public abstract void a();
+
+    public void b(Rect rect) {
+        rect.set(getBounds());
     }
 
-    public static Object[] a(e eVar, int i3, Class cls) {
-        return super.getSpans(0, i3, cls);
+    public int c() {
+        return 0;
     }
 
-    public static int b(e eVar, Object obj) {
-        return super.getSpanStart(obj);
+    public int d() {
+        return 0;
     }
 
-    public static int c(e eVar, Object obj) {
-        return super.getSpanEnd(obj);
-    }
+    public abstract boolean e();
+
+    public abstract void f(int i7);
+
+    public abstract void g(r rVar);
 
     @Override
-    public int getSpanEnd(Object obj) {
-        if (!this.f21137a) {
-            return -1;
-        }
-        return super.getSpanEnd(obj);
+    public final int getAlpha() {
+        return this.f21073c;
     }
 
-    @Override
-    public int getSpanFlags(Object obj) {
-        if (!this.f21137a) {
-            return 0;
+    public final void i(float f10, float f11) {
+        if (this.d == f10 && this.f21074e == f11) {
+            return;
         }
-        return super.getSpanFlags(obj);
+        this.d = f10;
+        this.f21074e = f11;
+        h();
     }
 
-    @Override
-    public int getSpanStart(Object obj) {
-        if (!this.f21137a) {
-            return -1;
-        }
-        return super.getSpanStart(obj);
-    }
+    public abstract boolean j();
 
     @Override
-    public Object[] getSpans(int i3, int i10, Class cls) {
-        if (!this.f21137a) {
-            return (Object[]) Array.newInstance(cls, 0);
+    public final void setAlpha(int i7) {
+        if (this.f21073c != i7) {
+            this.f21073c = i7;
+            f(i7);
         }
-        return super.getSpans(i3, i10, cls);
     }
 
-    @Override
-    public int nextSpanTransition(int i3, int i10, Class cls) {
-        if (!this.f21137a) {
-            return i10;
-        }
-        return super.nextSpanTransition(i3, i10, cls);
+    public abstract void updateColors();
+
+    public void h() {
     }
 }

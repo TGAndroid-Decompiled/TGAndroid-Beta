@@ -1,17 +1,31 @@
 package org.telegram.messenger;
-public final class hh implements Runnable {
-    public final int f22928a;
-    public final li f22929b;
-    public final boolean f22930c;
 
-    public hh(li liVar, boolean z10, int i3) {
-        this.f22928a = i3;
-        this.f22929b = liVar;
-        this.f22930c = z10;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class hh implements c20 {
+    public final int f22928a;
+    public final ui f22929b;
+    public final TLRPC.StickerSet f22930c;
+
+    public hh(ui uiVar, TLRPC.StickerSet stickerSet, int i7) {
+        this.f22928a = i7;
+        this.f22929b = uiVar;
+        this.f22930c = stickerSet;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.hh.run():void");
+    public final void a(Object obj) {
+        int i7 = this.f22928a;
+        ArrayList arrayList = (ArrayList) obj;
+        ui uiVar = this.f22929b;
+        uiVar.getClass();
+        switch (i7) {
+            case 0:
+                uiVar.f1(this.f22930c.f26979id, false);
+                return;
+            default:
+                uiVar.g1(this.f22930c.f26979id, false);
+                return;
+        }
     }
 }

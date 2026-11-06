@@ -1,22 +1,45 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.SpannableStringBuilder;
-public final class z40 extends m70 {
-    public final d50 N;
+import android.view.View;
+public final class z40 extends pj0 {
+    public int f40839e3;
+    public final m50 f40840f3;
 
-    public z40(d50 d50Var, Context context, org.telegram.ui.ActionBar.d2 d2Var, org.telegram.ui.ActionBar.t2 t2Var, boolean z10) {
-        super(context, d2Var, t2Var, false, z10);
-        this.N = d50Var;
+    public z40(m50 m50Var, Context context) {
+        super(context, null);
+        this.f40840f3 = m50Var;
     }
 
     @Override
-    public final void e(SpannableStringBuilder spannableStringBuilder) {
-        i50 i50Var = this.N.f32935c;
-        org.telegram.ui.ActionBar.j2 j2Var = i50Var.f28589c;
-        int i3 = i50.f34598f2;
-        ac Q = new fc(j2Var, i50Var.J0).Q(2131624028, 36, spannableStringBuilder);
-        Q.f31800r = false;
-        Q.k(true);
+    public final void onMeasure(int i7, int i10) {
+        m50 m50Var = this.f40840f3;
+        z40 z40Var = m50Var.M1;
+        if (this.f40839e3 != View.MeasureSpec.getSize(i10)) {
+            this.f40839e3 = View.MeasureSpec.getSize(i10);
+            m50Var.R1 = true;
+            z40Var.setPadding(0, 0, 0, 0);
+            m50Var.R1 = false;
+            measure(i7, View.MeasureSpec.makeMeasureSpec(i10, Integer.MIN_VALUE));
+            int measuredHeight = getMeasuredHeight();
+            int i11 = this.f40839e3;
+            int i12 = (int) ((i11 / 5.0f) * 2.0f);
+            if (i12 < org.telegram.messenger.g0.L(60.0f) + (i11 - measuredHeight)) {
+                i12 = this.f40839e3 - measuredHeight;
+            }
+            m50Var.R1 = true;
+            z40Var.setPadding(0, i12, 0, 0);
+            m50Var.R1 = false;
+            measure(i7, View.MeasureSpec.makeMeasureSpec(i10, Integer.MIN_VALUE));
+        }
+        super.onMeasure(i7, i10);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f40840f3.R1) {
+            return;
+        }
+        super.requestLayout();
     }
 }

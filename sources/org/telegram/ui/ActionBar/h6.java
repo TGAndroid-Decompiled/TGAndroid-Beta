@@ -1,194 +1,168 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.util.Pair;
-import java.util.ArrayList;
-import java.util.Calendar;
-import org.telegram.messenger.hs;
-import org.telegram.messenger.li;
-import org.telegram.messenger.qr;
-import org.telegram.messenger.u10;
-import org.telegram.messenger.zi;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.graphics.Color;
+import android.text.TextUtils;
+import android.util.SparseIntArray;
+import c8.j9;
+import java.io.File;
+import java.util.Locale;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.ui.Components.bi;
-import org.telegram.ui.Components.cl;
-import org.telegram.ui.Components.d20;
-import org.telegram.ui.Components.e7;
-import org.telegram.ui.Components.f21;
-import org.telegram.ui.Components.j50;
-import org.telegram.ui.Components.ky0;
-import org.telegram.ui.Components.m70;
-import org.telegram.ui.Components.oo0;
-import org.telegram.ui.Components.p11;
-import org.telegram.ui.Components.re0;
-import org.telegram.ui.Components.rz;
-import org.telegram.ui.Components.se0;
-import org.telegram.ui.Components.to;
-import org.telegram.ui.Components.uh;
-import org.telegram.ui.Components.v60;
-import org.telegram.ui.Components.xv0;
-import org.telegram.ui.Components.z7;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.ez;
-import org.telegram.ui.fx;
-import org.telegram.ui.go0;
-import org.telegram.ui.hn;
-import org.telegram.ui.i8;
-import org.telegram.ui.ip;
-import org.telegram.ui.ln;
-import org.telegram.ui.lo;
-import org.telegram.ui.nc;
-import org.telegram.ui.ne;
-import org.telegram.ui.pp;
-import org.telegram.ui.qo;
-import org.telegram.ui.sc;
-import org.telegram.ui.wm;
-import org.telegram.ui.xd;
-import org.telegram.ui.zk;
-import org.telegram.ui.zx;
-public final class h6 implements RequestDelegate {
-    public final int f27583a;
-    public final Object f27584b;
-    public final Object f27585c;
+public final class h6 {
+    public int f27515a;
+    public j6 f27516b;
+    public int f27517c;
+    public int d;
+    public int f27518e;
+    public int f27519f;
+    public int f27520g;
+    public int h;
+    public boolean f27521i;
+    public long f27522j;
+    public long f27523k;
+    public long f27524l;
+    public long f27525m;
+    public float f27528p;
+    public boolean f27529q;
+    public TLRPC.TL_theme f27530r;
+    public TLRPC.TL_wallPaper f27531s;
+    public int f27532t;
+    public String f27533u;
+    public String v;
+    public TLRPC.InputFile f27534w;
+    public TLRPC.InputFile f27535x;
+    public c6 f27536y;
+    public boolean f27537z;
+    public int f27526n = 45;
+    public String f27527o = "";
+    public final float[] A = new float[3];
 
-    public h6(int i3, Object obj, Object obj2) {
-        this.f27583a = i3;
-        this.f27584b = obj;
-        this.f27585c = obj2;
+    public static int a(SparseIntArray sparseIntArray, int... iArr) {
+        int i7 = 0;
+        int i10 = 0;
+        int i11 = 0;
+        int i12 = 0;
+        for (int i13 = 0; i13 < iArr.length; i13++) {
+            if (sparseIntArray.indexOfKey(iArr[i13]) >= 0) {
+                try {
+                    int i14 = sparseIntArray.get(iArr[i13]);
+                    i10 += Color.red(i14);
+                    i11 += Color.green(i14);
+                    i12 += Color.blue(i14);
+                    i7++;
+                } catch (Exception unused) {
+                }
+            }
+        }
+        if (i7 == 0) {
+            return 0;
+        }
+        return Color.argb(255, i10 / i7, i11 / i7, i12 / i7);
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i3;
-        switch (this.f27583a) {
-            case 0:
-                org.telegram.messenger.g0.h3(new lg.y((j6) this.f27584b, tLObject, (j6) this.f27585c, 25));
-                return;
-            case 1:
-                org.telegram.messenger.g0.h3(new o4.b1((i8) this.f27584b, tL_error, tLObject, (Calendar) this.f27585c, 8));
-                return;
-            case 2:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.p1((nc) this.f27585c, tLObject, (j6) this.f27584b, 10));
-                return;
-            case 3:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.p1((xd) this.f27584b, tLObject, (Context) this.f27585c, 13));
-                return;
-            case 4:
-                wm wmVar = (wm) this.f27584b;
-                TLObject tLObject2 = (TLObject) this.f27585c;
-                if (tLObject instanceof TLRPC.messages_Messages) {
-                    TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
-                    if (!messages_messages.messages.isEmpty()) {
-                        i3 = ((TLRPC.messages_Messages) tLObject2).offset_id_offset - messages_messages.offset_id_offset;
-                    } else {
-                        i3 = ((TLRPC.messages_Messages) tLObject2).offset_id_offset;
-                    }
-                    org.telegram.messenger.g0.h3(new ne(wmVar, i3, 6));
-                    return;
-                }
-                return;
-            case 5:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.p1((wm) this.f27584b, tLObject, (TLRPC.User) this.f27585c, 21));
-                return;
-            case 6:
-                wm wmVar2 = (wm) this.f27584b;
-                TLRPC.TL_messages_sendScheduledMessages tL_messages_sendScheduledMessages = (TLRPC.TL_messages_sendScheduledMessages) this.f27585c;
-                if (tL_error == null) {
-                    wmVar2.getMessagesController().O3((TLRPC.Updates) tLObject, false);
-                    org.telegram.messenger.g0.h3(new sc(14, wmVar2, tL_messages_sendScheduledMessages));
-                    return;
-                } else if (tL_error.text != null) {
-                    org.telegram.messenger.g0.h3(new sc(15, wmVar2, tL_error));
-                    return;
-                } else {
-                    return;
-                }
-            case 7:
-                org.telegram.messenger.g0.h3(new o4.b1((wm) this.f27584b, tLObject, tL_error, (qr) this.f27585c, 14));
-                return;
-            case 8:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.p1((zk) this.f27584b, tLObject, (zi) this.f27585c, 23));
-                return;
-            case 9:
-                ln lnVar = (ln) this.f27584b;
-                TL_bots.setBotInfo setbotinfo = (TL_bots.setBotInfo) this.f27585c;
-                TLRPC.UserFull userFull = lnVar.E0;
-                if (userFull != null) {
-                    userFull.about = setbotinfo.about;
-                    lnVar.getMessagesStorage().j2(lnVar.E0, false);
-                }
-                org.telegram.messenger.g0.h3(new hn(lnVar, 2));
-                return;
-            case 10:
-                org.telegram.messenger.g0.h3(new sc(27, (qo) this.f27584b, (s1[]) this.f27585c));
-                return;
-            case 11:
-                org.telegram.messenger.g0.h3(new o4.b1((ip) this.f27584b, tL_error, tLObject, (TwoStepVerificationActivity) this.f27585c, 17));
-                return;
-            case 12:
-                org.telegram.ui.Components.c5 c5Var = (org.telegram.ui.Components.c5) this.f27584b;
-                hs.f(c5Var.f32564e).d(new org.telegram.ui.Components.b5(c5Var, (ArrayList) this.f27585c, tLObject, 0));
-                return;
-            case 13:
-                org.telegram.messenger.g0.h3(new e7((z7) this.f27584b, (s1) this.f27585c, tLObject, 0));
-                return;
-            case 14:
-                org.telegram.messenger.g0.h3(new lo(20, (bi) this.f27584b, (TLRPC.TL_attachMenuBot) this.f27585c));
-                return;
-            case 15:
-                org.telegram.messenger.g0.h3(new lo(19, (bi) this.f27584b, (uh) this.f27585c));
-                return;
-            case 16:
-                org.telegram.messenger.g0.h3(new e7((Object) ((to) this.f27585c), tLObject, (Object) ((j6) this.f27584b), 6));
-                return;
-            case 17:
-                org.telegram.messenger.g0.h3(new cl(23, (rz) this.f27584b, (Pair) this.f27585c));
-                return;
-            case 18:
-                org.telegram.messenger.g0.h3(new o4.b1((rz) this.f27584b, tL_error, tLObject, (u10) this.f27585c, 27));
-                return;
-            case 19:
-                org.telegram.messenger.g0.h3(new o4.b1((d20) this.f27584b, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) this.f27585c, 29));
-                return;
-            case 20:
-                org.telegram.messenger.g0.h3(new v60((m70) this.f27584b, (TLRPC.TL_chatInviteExported) this.f27585c, tL_error, tLObject));
-                return;
-            case 21:
-                org.telegram.messenger.g0.h3(new e7((se0) this.f27584b, (re0) this.f27585c, tLObject, 20));
-                return;
-            case 22:
-                org.telegram.messenger.g0.h3(new j50((oo0) this.f27584b, tLObject, (Context) this.f27585c, 17));
-                return;
-            case 23:
-                org.telegram.messenger.g0.h3(new v60((xv0) this.f27584b, tL_error, tLObject, (li) this.f27585c, 7));
-                return;
-            case 24:
-                org.telegram.messenger.g0.h3(new v60((go0) this.f27584b, tL_error, tLObject, (TLRPC.TL_messages_getAttachedStickers) this.f27585c, 8));
-                return;
-            case 25:
-                org.telegram.messenger.g0.h3(new v60((Object) ((ky0) this.f27584b), (Object) ((s1) this.f27585c), (Object) tLObject, tL_error, 9));
-                return;
-            case 26:
-                org.telegram.messenger.g0.h3(new v60((f21) this.f27584b, tL_error, tLObject, (TLRPC.TL_textWithEntities) this.f27585c, 11));
-                return;
-            case 27:
-                org.telegram.messenger.g0.h3(new pp((fx) this.f27584b, tLObject, (zi) this.f27585c, 4));
-                return;
-            case 28:
-                org.telegram.messenger.g0.h3(new p11(25, (zx) this.f27584b, (s1) this.f27585c));
-                return;
-            default:
-                org.telegram.messenger.g0.h3(new p11(29, (ez) this.f27584b, (s1) this.f27585c));
-                return;
+    public static int c(SparseIntArray sparseIntArray, int i7) {
+        int i10;
+        int indexOfKey = sparseIntArray.indexOfKey(i7);
+        if (indexOfKey < 0 && (i10 = k6.fm.get(i7, -1)) >= 0) {
+            indexOfKey = sparseIntArray.indexOfKey(i10);
+        }
+        if (indexOfKey >= 0) {
+            return sparseIntArray.valueAt(indexOfKey);
+        }
+        return k6.em[i7];
+    }
+
+    public static void h(SparseIntArray sparseIntArray) {
+        for (int i7 = k6.f28035nb; i7 < k6.f28169ub; i7++) {
+            sparseIntArray.delete(i7);
+            sparseIntArray.put(i7, k6.em[i7]);
+        }
+        for (int i10 = k6.f28188vb; i10 < k6.Hc; i10++) {
+            sparseIntArray.delete(i10);
+            sparseIntArray.put(i10, k6.em[i10]);
+        }
+        for (int i11 = k6.Ic; i11 < k6.Qc; i11++) {
+            sparseIntArray.delete(i11);
+            sparseIntArray.put(i11, k6.em[i11]);
         }
     }
 
-    public h6(Object obj, j6 j6Var, int i3) {
-        this.f27583a = i3;
-        this.f27585c = obj;
-        this.f27584b = j6Var;
+    public final int b(int i7, int i10) {
+        float[] fArr = this.A;
+        Color.colorToHSV(i10, fArr);
+        float f10 = fArr[0];
+        Color.colorToHSV(i7, fArr);
+        float f11 = fArr[1];
+        if (f11 <= 0.0f) {
+            fArr[0] = f10;
+        }
+        fArr[1] = org.telegram.messenger.camera.q.z(f11, 0.6f, 1.0f, 0.0f);
+        fArr[2] = Math.max(0.0f, Math.min(1.0f, fArr[2] - 0.05f));
+        return Color.HSVToColor(30, fArr);
+    }
+
+    public final boolean d(android.util.SparseIntArray r21, android.util.SparseIntArray r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.h6.d(android.util.SparseIntArray, android.util.SparseIntArray):boolean");
+    }
+
+    public final File e() {
+        if (this.f27515a < 100) {
+            if (TextUtils.isEmpty(this.f27527o)) {
+                return null;
+            }
+            File h = org.telegram.messenger.t0.h();
+            Locale locale = Locale.US;
+            String m10 = this.f27516b.m();
+            int i7 = this.f27515a;
+            String str = this.f27527o;
+            return new File(h, m10 + "_" + i7 + "_" + str + "_v5.jpg");
+        } else if (TextUtils.isEmpty(this.f27527o)) {
+            return null;
+        } else {
+            File h7 = org.telegram.messenger.t0.h();
+            Locale locale2 = Locale.US;
+            String m11 = this.f27516b.m();
+            int i10 = this.f27515a;
+            String str2 = this.f27527o;
+            return new File(h7, m11 + "_" + i10 + "_" + str2 + "_v8_debug.jpg");
+        }
+    }
+
+    public final int f(int i7, int i10, boolean z9) {
+        int f10 = i0.a.f(0.25f, i7, i10);
+        float[] fArr = this.A;
+        Color.colorToHSV(f10, fArr);
+        float f11 = 0.1f;
+        fArr[1] = Math.max(0.0f, Math.min(1.0f, fArr[1] - 0.1f));
+        float f12 = fArr[2];
+        if (!z9) {
+            f11 = 0.0f;
+        }
+        fArr[2] = org.telegram.messenger.camera.q.z(f12, f11, 1.0f, 0.0f);
+        return Color.HSVToColor(51, fArr);
+    }
+
+    public final int g(int i7, float f10, boolean z9) {
+        if (z9) {
+            return 520093695;
+        }
+        float[] fArr = this.A;
+        Color.colorToHSV(i7, fArr);
+        if (fArr[1] > 0.0f) {
+            float f11 = fArr[2];
+            if (f11 < 1.0f && f11 > 0.0f) {
+                fArr[0] = j9.a(fArr[0] + 0.22f, 0.0f, 1.0f);
+                fArr[1] = j9.a(fArr[1] - 0.35f, 0.0f, 1.0f);
+                fArr[2] = j9.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+                return Color.HSVToColor(90, fArr);
+            }
+        }
+        fArr[0] = f10;
+        fArr[1] = 0.2f;
+        fArr[2] = j9.a(fArr[2] - 0.65f, 0.0f, 1.0f);
+        return Color.HSVToColor(90, fArr);
+    }
+
+    public final int i(int r7, int r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.h6.i(int, int):int");
     }
 }

@@ -60,11 +60,11 @@ public class VideoFrameDrawer {
             return uploadYuvData(i420Buffer.getWidth(), i420Buffer.getHeight(), new int[]{i420Buffer.getStrideY(), i420Buffer.getStrideU(), i420Buffer.getStrideV()}, new ByteBuffer[]{i420Buffer.getDataY(), i420Buffer.getDataU(), i420Buffer.getDataV()});
         }
 
-        public int[] uploadYuvData(int i3, int i10, int[] iArr, ByteBuffer[] byteBufferArr) {
+        public int[] uploadYuvData(int i7, int i10, int[] iArr, ByteBuffer[] byteBufferArr) {
             ByteBuffer byteBuffer;
             ByteBuffer byteBuffer2;
-            int i11 = i3 / 2;
-            int[] iArr2 = {i3, i11, i11};
+            int i11 = i7 / 2;
+            int[] iArr2 = {i7, i11, i11};
             int i12 = i10 / 2;
             int[] iArr3 = {i10, i12, i12};
             int i13 = 0;
@@ -105,9 +105,9 @@ public class VideoFrameDrawer {
         }
     }
 
-    private void calculateTransformedRenderSize(int i3, int i10, Matrix matrix) {
+    private void calculateTransformedRenderSize(int i7, int i10, Matrix matrix) {
         if (matrix == null) {
-            this.renderWidth = i3;
+            this.renderWidth = i7;
             this.renderHeight = i10;
             return;
         }
@@ -115,7 +115,7 @@ public class VideoFrameDrawer {
         for (int i11 = 0; i11 < 3; i11++) {
             float[] fArr = this.dstPoints;
             int i12 = i11 * 2;
-            fArr[i12] = fArr[i12] * i3;
+            fArr[i12] = fArr[i12] * i7;
             int i13 = i12 + 1;
             fArr[i13] = fArr[i13] * i10;
         }
@@ -129,31 +129,32 @@ public class VideoFrameDrawer {
         return (int) Math.round(Math.hypot(f12 - f10, f13 - f11));
     }
 
-    public static void drawTexture(RendererCommon.GlDrawer glDrawer, VideoFrame.TextureBuffer textureBuffer, Matrix matrix, int i3, int i10, int i11, int i12, int i13, int i14, int i15, int i16, boolean z10) {
+    public static void drawTexture(RendererCommon.GlDrawer glDrawer, VideoFrame.TextureBuffer textureBuffer, Matrix matrix, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16, boolean z9) {
         Matrix matrix2 = new Matrix(textureBuffer.getTransformMatrix());
         matrix2.preConcat(matrix);
         float[] convertMatrixFromAndroidGraphicsMatrix = RendererCommon.convertMatrixFromAndroidGraphicsMatrix(matrix2);
         int i17 = AnonymousClass1.$SwitchMap$org$webrtc$VideoFrame$TextureBuffer$Type[textureBuffer.getType().ordinal()];
-        if (i17 == 1) {
-            glDrawer.drawOes(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i3, i10, convertMatrixFromAndroidGraphicsMatrix, i11, i12, i13, i14, i15, i16, z10);
-        } else if (i17 == 2) {
-            glDrawer.drawRgb(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i3, i10, convertMatrixFromAndroidGraphicsMatrix, i11, i12, i13, i14, i15, i16, z10);
-        } else {
+        if (i17 != 1) {
+            if (i17 == 2) {
+                glDrawer.drawRgb(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i7, i10, convertMatrixFromAndroidGraphicsMatrix, i11, i12, i13, i14, i15, i16, z9);
+                return;
+            }
             throw new RuntimeException("Unknown texture type.");
         }
+        glDrawer.drawOes(textureBuffer.getTextureId(), textureBuffer.getWidth(), textureBuffer.getHeight(), i7, i10, convertMatrixFromAndroidGraphicsMatrix, i11, i12, i13, i14, i15, i16, z9);
     }
 
     public void drawFrame(VideoFrame videoFrame, RendererCommon.GlDrawer glDrawer) {
         drawFrame(videoFrame, glDrawer, null);
     }
 
-    public void getRenderBufferBitmap(RendererCommon.GlDrawer glDrawer, int i3, GlGenericDrawer.TextureCallback textureCallback) {
+    public void getRenderBufferBitmap(RendererCommon.GlDrawer glDrawer, int i7, GlGenericDrawer.TextureCallback textureCallback) {
         if (glDrawer instanceof GlGenericDrawer) {
-            ((GlGenericDrawer) glDrawer).getRenderBufferBitmap(i3, textureCallback);
+            ((GlGenericDrawer) glDrawer).getRenderBufferBitmap(i7, textureCallback);
         }
     }
 
-    public VideoFrame.Buffer prepareBufferForViewportSize(VideoFrame.Buffer buffer, int i3, int i10) {
+    public VideoFrame.Buffer prepareBufferForViewportSize(VideoFrame.Buffer buffer, int i7, int i10) {
         buffer.retain();
         return buffer;
     }
@@ -167,13 +168,13 @@ public class VideoFrameDrawer {
         drawFrame(videoFrame, glDrawer, matrix, 0, 0, videoFrame.getRotatedWidth(), videoFrame.getRotatedHeight(), false, false);
     }
 
-    public void drawFrame(VideoFrame videoFrame, RendererCommon.GlDrawer glDrawer, Matrix matrix, int i3, int i10, int i11, int i12, boolean z10, boolean z11) {
-        calculateTransformedRenderSize(z10 ? videoFrame.getRotatedHeight() : videoFrame.getRotatedWidth(), z10 ? videoFrame.getRotatedWidth() : videoFrame.getRotatedHeight(), matrix);
+    public void drawFrame(VideoFrame videoFrame, RendererCommon.GlDrawer glDrawer, Matrix matrix, int i7, int i10, int i11, int i12, boolean z9, boolean z10) {
+        calculateTransformedRenderSize(z9 ? videoFrame.getRotatedHeight() : videoFrame.getRotatedWidth(), z9 ? videoFrame.getRotatedWidth() : videoFrame.getRotatedHeight(), matrix);
         if (this.renderWidth > 0 && this.renderHeight > 0) {
-            boolean z12 = videoFrame.getBuffer() instanceof VideoFrame.TextureBuffer;
+            boolean z11 = videoFrame.getBuffer() instanceof VideoFrame.TextureBuffer;
             this.renderMatrix.reset();
             this.renderMatrix.preTranslate(0.5f, 0.5f);
-            if (!z12) {
+            if (!z11) {
                 this.renderMatrix.preScale(1.0f, -1.0f);
             }
             this.renderMatrix.preRotate(videoFrame.getRotation());
@@ -181,9 +182,9 @@ public class VideoFrameDrawer {
             if (matrix != null) {
                 this.renderMatrix.preConcat(matrix);
             }
-            if (z12) {
+            if (z11) {
                 this.lastI420Frame = null;
-                drawTexture(glDrawer, (VideoFrame.TextureBuffer) videoFrame.getBuffer(), this.renderMatrix, videoFrame.getRotatedWidth(), videoFrame.getRotatedHeight(), this.renderWidth, this.renderHeight, i3, i10, i11, i12, z11);
+                drawTexture(glDrawer, (VideoFrame.TextureBuffer) videoFrame.getBuffer(), this.renderMatrix, videoFrame.getRotatedWidth(), videoFrame.getRotatedHeight(), this.renderWidth, this.renderHeight, i7, i10, i11, i12, z10);
                 return;
             }
             if (videoFrame != this.lastI420Frame) {
@@ -192,7 +193,7 @@ public class VideoFrameDrawer {
                 this.yuvUploader.uploadFromBuffer(i420);
                 i420.release();
             }
-            glDrawer.drawYuv(this.yuvUploader.getYuvTextures(), videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotatedWidth(), videoFrame.getRotatedHeight(), RendererCommon.convertMatrixFromAndroidGraphicsMatrix(this.renderMatrix), this.renderWidth, this.renderHeight, i3, i10, i11, i12, z11);
+            glDrawer.drawYuv(this.yuvUploader.getYuvTextures(), videoFrame.getBuffer().getWidth(), videoFrame.getBuffer().getHeight(), videoFrame.getRotatedWidth(), videoFrame.getRotatedHeight(), RendererCommon.convertMatrixFromAndroidGraphicsMatrix(this.renderMatrix), this.renderWidth, this.renderHeight, i7, i10, i11, i12, z10);
             return;
         }
         Logging.w("VideoFrameDrawer", "Illegal frame size: " + this.renderWidth + "x" + this.renderHeight);

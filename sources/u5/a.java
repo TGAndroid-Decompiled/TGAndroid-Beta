@@ -1,49 +1,48 @@
 package u5;
-public final class a {
-    public static final a f55710f = new a(200, 10485760, 604800000, 10000, 81920);
-    public final long f55711a;
-    public final int f55712b;
-    public final int f55713c;
-    public final long d;
-    public final int f55714e;
 
-    public a(int i3, long j10, long j11, int i10, int i11) {
-        this.f55711a = j10;
-        this.f55712b = i3;
-        this.f55713c = i10;
-        this.d = j11;
-        this.f55714e = i11;
+import java.util.HashMap;
+public final class a {
+    public final x5.a f56226a;
+    public final HashMap f56227b;
+
+    public a(x5.a aVar, HashMap hashMap) {
+        this.f56226a = aVar;
+        this.f56227b = hashMap;
+    }
+
+    public final long a(l5.d dVar, long j3, int i7) {
+        long j10;
+        long s5 = j3 - this.f56226a.s();
+        b bVar = (b) this.f56227b.get(dVar);
+        long j11 = bVar.f56228a;
+        int i10 = i7 - 1;
+        if (j11 > 1) {
+            j10 = j11;
+        } else {
+            j10 = 2;
+        }
+        return Math.min(Math.max((long) (Math.pow(3.0d, i10) * j11 * Math.max(1.0d, Math.log(10000.0d) / Math.log(j10 * i10))), s5), bVar.f56229b);
     }
 
     public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof a) {
-            a aVar = (a) obj;
-            if (this.f55711a == aVar.f55711a && this.f55712b == aVar.f55712b && this.f55713c == aVar.f55713c && this.d == aVar.d && this.f55714e == aVar.f55714e) {
-                return true;
+        if (obj != this) {
+            if (obj instanceof a) {
+                a aVar = (a) obj;
+                if (this.f56226a.equals(aVar.f56226a) && this.f56227b.equals(aVar.f56227b)) {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     public final int hashCode() {
-        long j10 = this.f55711a;
-        long j11 = this.d;
-        return ((((((((((int) (j10 ^ (j10 >>> 32))) ^ 1000003) * 1000003) ^ this.f55712b) * 1000003) ^ this.f55713c) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ this.f55714e;
+        return ((this.f56226a.hashCode() ^ 1000003) * 1000003) ^ this.f56227b.hashCode();
     }
 
     public final String toString() {
-        StringBuilder sb2 = new StringBuilder("EventStoreConfig{maxStorageSizeInBytes=");
-        sb2.append(this.f55711a);
-        sb2.append(", loadBatchSize=");
-        sb2.append(this.f55712b);
-        sb2.append(", criticalSectionEnterTimeoutMs=");
-        sb2.append(this.f55713c);
-        sb2.append(", eventCleanUpAge=");
-        sb2.append(this.d);
-        sb2.append(", maxBlobByteSizePerRow=");
-        return a1.g.o(this.f55714e, "}", sb2);
+        return "SchedulerConfig{clock=" + this.f56226a + ", values=" + this.f56227b + "}";
     }
 }

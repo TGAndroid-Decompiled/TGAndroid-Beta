@@ -5,13 +5,13 @@ public class RaiseAtom extends Atom {
     private int dunit;
     private float h;
     private int hunit;
-    private float f21193r;
+    private float f21140r;
     private int runit;
 
-    public RaiseAtom(Atom atom, int i3, float f10, int i10, float f11, int i11, float f12) {
+    public RaiseAtom(Atom atom, int i7, float f10, int i10, float f11, int i11, float f12) {
         this.base = atom;
-        this.runit = i3;
-        this.f21193r = f10;
+        this.runit = i7;
+        this.f21140r = f10;
         this.hunit = i10;
         this.h = f11;
         this.dunit = i11;
@@ -21,11 +21,11 @@ public class RaiseAtom extends Atom {
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
         Box createBox = this.base.createBox(teXEnvironment);
-        int i3 = this.runit;
-        if (i3 == -1) {
+        int i7 = this.runit;
+        if (i7 == -1) {
             createBox.setShift(0.0f);
         } else {
-            createBox.setShift(SpaceAtom.getFactor(i3, teXEnvironment) * (-this.f21193r));
+            createBox.setShift(SpaceAtom.getFactor(i7, teXEnvironment) * (-this.f21140r));
         }
         if (this.hunit == -1) {
             return createBox;

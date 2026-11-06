@@ -1,23 +1,28 @@
 package org.telegram.ui.Components;
+public final class nk implements Runnable {
+    public final int f36429a;
+    public final wk f36430b;
+    public final org.telegram.messenger.za f36431c;
 
-import android.location.Location;
-public final class nk implements q0.a {
-    public final int f36570a;
-    public final uk f36571b;
-
-    public nk(uk ukVar, int i3) {
-        this.f36570a = i3;
-        this.f36571b = ukVar;
+    public nk(wk wkVar, org.telegram.messenger.za zaVar, int i7) {
+        this.f36429a = i7;
+        this.f36430b = wkVar;
+        this.f36431c = zaVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        switch (this.f36570a) {
+    public final void run() {
+        switch (this.f36429a) {
             case 0:
-                uk.Z(this.f36571b, (org.telegram.messenger.z9) obj);
+                org.telegram.messenger.za zaVar = this.f36431c;
+                try {
+                    ((a8.r7) zaVar).u();
+                } catch (Exception unused) {
+                }
+                org.telegram.messenger.g0.h3(new nk(this.f36430b, zaVar, 1));
                 return;
             default:
-                uk.W(this.f36571b, (Location) obj);
+                wk.R(this.f36430b, this.f36431c);
                 return;
         }
     }

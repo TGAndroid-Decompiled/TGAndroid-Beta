@@ -1,36 +1,30 @@
 package oi;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class i extends MetricAffectingSpan {
-    public static final Typeface[] f21144c;
-    public final int f21145a;
-    public final int f21146b;
+import org.telegram.ui.Components.vv;
+public final class i implements c5.g {
+    public int f21078a;
+    public final vv f21079b;
+    public final q f21080c;
 
-    static {
-        Typeface typeface = Typeface.MONOSPACE;
-        f21144c = new Typeface[]{typeface, Typeface.create(typeface, 1), Typeface.create(typeface, 2), Typeface.create(typeface, 3)};
-    }
-
-    public i(int i3) {
-        int i10;
-        this.f21146b = i3;
-        if ((i3 & 256) != 0) {
-            i10 = 1;
-        } else {
-            i10 = 0;
-        }
-        this.f21145a = i10 | ((i3 & 512) != 0 ? 2 : 0);
+    public i(q qVar, vv vvVar) {
+        this.f21080c = qVar;
+        this.f21079b = vvVar;
+        this.f21078a = vvVar.getScrollX();
     }
 
     @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        updateMeasureState(textPaint);
+    public final void b(float f10, int i7, int i10) {
+        int scrollX = this.f21079b.getScrollX();
+        this.f21080c.h(scrollX - this.f21078a, 0);
+        this.f21078a = scrollX;
     }
 
     @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        textPaint.setTypeface(f21144c[this.f21145a]);
+    public final void c(int i7) {
+        this.f21080c.f21101g++;
+    }
+
+    @Override
+    public final void a(int i7) {
     }
 }

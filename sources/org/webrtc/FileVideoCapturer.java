@@ -50,14 +50,14 @@ public class FileVideoCapturer implements VideoCapturer {
                     if (read == 10) {
                         this.videoStart = this.mediaFileChannel.position();
                         String str2 = "";
-                        int i3 = 0;
+                        int i7 = 0;
                         int i10 = 0;
                         for (String str3 : sb2.toString().split("[ ]")) {
                             char charAt = str3.charAt(0);
                             if (charAt != 'C') {
                                 if (charAt != 'H') {
                                     if (charAt == 'W') {
-                                        i3 = Integer.parseInt(str3.substring(1));
+                                        i7 = Integer.parseInt(str3.substring(1));
                                     }
                                 } else {
                                     i10 = Integer.parseInt(str3.substring(1));
@@ -70,17 +70,17 @@ public class FileVideoCapturer implements VideoCapturer {
                         if (!str2.equals("420") && !str2.equals("420mpeg2")) {
                             throw new IllegalArgumentException("Does not support any other color space than I420 or I420mpeg2");
                         }
-                        if (i3 % 2 != 1 && i10 % 2 != 1) {
-                            this.frameWidth = i3;
+                        if (i7 % 2 != 1 && i10 % 2 != 1) {
+                            this.frameWidth = i7;
                             this.frameHeight = i10;
-                            Logging.d("VideoReaderY4M", "frame dim: (" + i3 + ", " + i10 + ")");
+                            Logging.d("VideoReaderY4M", "frame dim: (" + i7 + ", " + i10 + ")");
                             return;
                         }
                         throw new IllegalArgumentException("Does not support odd width or height");
                     }
                     sb2.append((char) read);
                 } else {
-                    throw new RuntimeException(t4.c.f("Found end of file before end of header for file: ", str));
+                    throw new RuntimeException(rf.b.i("Found end of file before end of header for file: ", str));
                 }
             }
         }
@@ -105,11 +105,11 @@ public class FileVideoCapturer implements VideoCapturer {
             allocate.getStrideU();
             allocate.getStrideV();
             try {
-                int i3 = FRAME_DELIMETER_LENGTH;
-                ByteBuffer allocate2 = ByteBuffer.allocate(i3);
-                if (this.mediaFileChannel.read(allocate2) < i3) {
+                int i7 = FRAME_DELIMETER_LENGTH;
+                ByteBuffer allocate2 = ByteBuffer.allocate(i7);
+                if (this.mediaFileChannel.read(allocate2) < i7) {
                     this.mediaFileChannel.position(this.videoStart);
-                    if (this.mediaFileChannel.read(allocate2) < i3) {
+                    if (this.mediaFileChannel.read(allocate2) < i7) {
                         throw new RuntimeException("Error looping video");
                     }
                 }
@@ -152,7 +152,7 @@ public class FileVideoCapturer implements VideoCapturer {
     }
 
     @Override
-    public void startCapture(int i3, int i10, int i11) {
+    public void startCapture(int i7, int i10, int i11) {
         this.timer.schedule(this.tickTask, 0L, 1000 / i11);
     }
 
@@ -168,6 +168,6 @@ public class FileVideoCapturer implements VideoCapturer {
     }
 
     @Override
-    public void changeCaptureFormat(int i3, int i10, int i11) {
+    public void changeCaptureFormat(int i7, int i10, int i11) {
     }
 }

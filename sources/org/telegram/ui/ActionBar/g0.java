@@ -2,48 +2,26 @@ package org.telegram.ui.ActionBar;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import java.util.ArrayList;
 public final class g0 extends AnimatorListenerAdapter {
-    public final int f27512a;
-    public final ArrayList f27513b;
-    public final q0 f27514c;
+    public final int f27472a;
+    public final r0 f27473b;
 
-    public g0(q0 q0Var, ArrayList arrayList, int i3) {
-        this.f27512a = i3;
-        this.f27514c = q0Var;
-        this.f27513b = arrayList;
+    public g0(r0 r0Var, int i7) {
+        this.f27472a = i7;
+        this.f27473b = r0Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f27512a) {
+        switch (this.f27472a) {
             case 0:
-                q0 q0Var = this.f27514c;
-                q0Var.G.setAlpha(0.0f);
-                int i3 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f27513b;
-                    if (i3 < arrayList.size()) {
-                        ((View) arrayList.get(i3)).setAlpha(1.0f);
-                        i3++;
-                    } else {
-                        q0Var.G.setVisibility(8);
-                        return;
-                    }
-                }
+                r0 r0Var = this.f27473b;
+                r0Var.f28442s.setVisibility(4);
+                r0Var.f28447w = null;
+                return;
             default:
-                this.f27514c.G.setAlpha(1.0f);
-                int i10 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f27513b;
-                    if (i10 < arrayList2.size()) {
-                        ((View) arrayList2.get(i10)).setAlpha(0.0f);
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
+                this.f27473b.f28447w = null;
+                return;
         }
     }
 }

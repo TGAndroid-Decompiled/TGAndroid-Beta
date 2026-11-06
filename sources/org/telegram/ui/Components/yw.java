@@ -1,50 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-public final class yw extends b5.a {
-    public final ey f40840c;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class yw {
+    public final TLRPC.StickerSetCovered f40749a;
+    public final TLRPC.TL_messages_stickerSet f40750b;
+    public final TLRPC.StickerSet f40751c;
+    public final ArrayList d;
+    public final TLRPC.Document f40752e;
 
-    public yw(ey eyVar) {
-        this.f40840c = eyVar;
-    }
-
-    @Override
-    public final void a(b5.l lVar, Object obj) {
-        lVar.removeView((View) obj);
-    }
-
-    @Override
-    public final int b() {
-        return this.f40840c.f33531e.size();
-    }
-
-    @Override
-    public final CharSequence d(int i3) {
-        if (i3 != 0) {
-            if (i3 != 1) {
-                if (i3 != 2) {
-                    return null;
-                }
-                return org.telegram.messenger.bd.M0(2131754756, null);
-            }
-            return org.telegram.messenger.bd.M0(2131754879, null);
+    public yw(TLRPC.TL_messages_stickerSet tL_messages_stickerSet, ArrayList arrayList) {
+        TLRPC.Document document = null;
+        this.f40749a = null;
+        this.f40750b = tL_messages_stickerSet;
+        this.f40751c = tL_messages_stickerSet.set;
+        this.d = arrayList;
+        if (arrayList != null && !arrayList.isEmpty()) {
+            document = (TLRPC.Document) arrayList.get(0);
         }
-        return org.telegram.messenger.bd.M0(2131751197, null);
+        this.f40752e = document;
     }
 
-    @Override
-    public final Object e(b5.l lVar, int i3) {
-        FrameLayout frameLayout = ((zx) this.f40840c.f33531e.get(i3)).f41145b;
-        lVar.addView(frameLayout);
-        return frameLayout;
-    }
-
-    @Override
-    public final boolean f(View view, Object obj) {
-        if (view == obj) {
-            return true;
-        }
-        return false;
+    public yw(TLRPC.StickerSetCovered stickerSetCovered, ArrayList arrayList) {
+        this.f40749a = stickerSetCovered;
+        this.f40750b = null;
+        this.f40751c = stickerSetCovered.set;
+        this.d = arrayList;
+        this.f40752e = arrayList.isEmpty() ? null : (TLRPC.Document) arrayList.get(0);
     }
 }

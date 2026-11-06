@@ -1,51 +1,129 @@
 package org.telegram.ui;
-public final class ie implements Runnable {
-    public final int f46253a;
-    public final wm f46254b;
-    public final org.telegram.ui.Components.nk0 f46255c;
-    public final String d;
 
-    public ie(wm wmVar, org.telegram.ui.Components.nk0 nk0Var, String str, int i3) {
-        this.f46253a = i3;
-        this.f46254b = wmVar;
-        this.f46255c = nk0Var;
-        this.d = str;
+import org.telegram.messenger.MediaController;
+import org.telegram.tgnet.TLRPC;
+public final class ie implements Runnable {
+    public final int f46647a;
+    public final an f46648b;
+    public final org.telegram.messenger.ij f46649c;
+
+    public ie(an anVar, org.telegram.messenger.ij ijVar, int i7) {
+        this.f46647a = i7;
+        this.f46648b = anVar;
+        this.f46649c = ijVar;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.Components.fc a02;
-        int i3;
-        int i10 = this.f46253a;
-        String str = this.d;
-        org.telegram.ui.Components.nk0 nk0Var = this.f46255c;
-        wm wmVar = this.f46254b;
-        switch (i10) {
+        TLRPC.WebPage webPage;
+        boolean z9;
+        int i7;
+        int i10;
+        int i11;
+        int i12;
+        int i13 = this.f46647a;
+        an anVar = this.f46648b;
+        org.telegram.messenger.ij ijVar = this.f46649c;
+        switch (i13) {
             case 0:
-                nk0Var.dismiss();
-                org.telegram.messenger.g0.g(str);
-                a02 = org.telegram.ui.Components.fc.a0(wmVar);
-                i3 = 2131746343;
-                break;
+                TLRPC.MessageMedia messageMedia = ijVar.f23237k.media;
+                if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
+                    LaunchActivity launchActivity = LaunchActivity.G1;
+                    if (launchActivity == null || launchActivity.O() == null || LaunchActivity.G1.O().l(ijVar) == null) {
+                        anVar.createArticleViewer(false).L(ijVar, null, null, null);
+                        return;
+                    }
+                    return;
+                }
+                return;
             case 1:
-                nk0Var.dismiss();
-                org.telegram.messenger.g0.g(str);
-                a02 = org.telegram.ui.Components.fc.a0(wmVar);
-                i3 = 2131743211;
-                break;
+                anVar.getClass();
+                TLRPC.Message message = ijVar.f23237k;
+                int i14 = message.ttl;
+                if (i14 != Integer.MAX_VALUE) {
+                    z9 = true;
+                } else {
+                    z9 = false;
+                }
+                if (i14 == Integer.MAX_VALUE) {
+                    i7 = 0;
+                } else {
+                    i7 = i14;
+                }
+                message.destroyTime = anVar.getConnectionsManager().getCurrentTime() + i7;
+                ijVar.f23237k.destroyTimeMillis = anVar.getConnectionsManager().getCurrentTimeMillis() + (i7 * 1000);
+                if (anVar.h != null) {
+                    anVar.getMessagesController().p3(anVar.f43818j6, i7, ijVar.f23237k.random_id);
+                    return;
+                } else {
+                    anVar.getMessagesController().q3(anVar.f43818j6, ijVar.f1(), null, i7, 0L, z9);
+                    return;
+                }
             case 2:
-                nk0Var.dismiss();
-                org.telegram.messenger.g0.g(str);
-                a02 = org.telegram.ui.Components.fc.a0(wmVar);
-                i3 = 2131752553;
-                break;
+                int f12 = ijVar.f1();
+                an anVar2 = this.f46648b;
+                anVar2.xb(f12, 0, true, 0, true, 0, null, null, new xf(anVar2, 13));
+                if (anVar2.f43994x6.isEmpty()) {
+                    anVar2.oc(false);
+                    return;
+                }
+                return;
+            case 3:
+                an anVar3 = this.f46648b;
+                anVar3.getClass();
+                int O1 = ijVar.O1();
+                TLRPC.Message message2 = ijVar.f23237k;
+                int i15 = message2.f26973id;
+                if (org.telegram.messenger.ij.B0(message2) == anVar3.f43714b7) {
+                    i10 = 1;
+                } else {
+                    i10 = 0;
+                }
+                anVar3.xb(O1, i15, true, i10, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) ijVar.f23237k.action).answer.option, null);
+                return;
+            case 4:
+                an anVar4 = this.f46648b;
+                anVar4.getClass();
+                int O12 = ijVar.O1();
+                TLRPC.Message message3 = ijVar.f23237k;
+                int i16 = message3.f26973id;
+                if (org.telegram.messenger.ij.B0(message3) == anVar4.f43714b7) {
+                    i11 = 1;
+                } else {
+                    i11 = 0;
+                }
+                anVar4.xb(O12, i16, true, i11, false, 0, null, null, null);
+                return;
+            case 5:
+                an anVar5 = this.f46648b;
+                anVar5.getClass();
+                int O13 = ijVar.O1();
+                TLRPC.Message message4 = ijVar.f23237k;
+                int i17 = message4.f26973id;
+                if (org.telegram.messenger.ij.B0(message4) == anVar5.f43714b7) {
+                    i12 = 1;
+                } else {
+                    i12 = 0;
+                }
+                anVar5.l(O13, i17, true, i12, false, 0);
+                return;
+            case 6:
+                if (org.telegram.messenger.ij.M4(ijVar.f23237k)) {
+                    anVar.Ha(null, ijVar);
+                    return;
+                } else {
+                    MediaController.B().S(ijVar);
+                    return;
+                }
+            case 7:
+                anVar.getMessagesController().C3(anVar.f43747e, anVar.f43761f, ijVar.f1(), true, false, false);
+                anVar.O3 = null;
+                return;
             default:
-                nk0Var.dismiss();
-                org.telegram.messenger.g0.g("@" + str);
-                a02 = org.telegram.ui.Components.fc.a0(wmVar);
-                i3 = 2131743675;
-                break;
+                org.telegram.ui.Components.hc.a0(anVar).c(org.telegram.messenger.hd.M0(2131754488, null)).j();
+                anVar.eb(ijVar);
+                anVar.gb(ijVar);
+                return;
         }
-        org.telegram.messenger.camera.q.r(null, i3, a02);
     }
 }

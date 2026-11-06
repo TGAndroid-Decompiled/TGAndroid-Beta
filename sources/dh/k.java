@@ -1,59 +1,95 @@
 package dh;
 
-import android.view.ViewPropertyAnimator;
-import ci.e1;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.ActionBar.h1;
-import org.telegram.ui.ActionBar.q4;
-public final class k extends h1 {
-    public final ai.c0 f9057x;
+import android.graphics.Canvas;
+import android.graphics.PointF;
+import android.graphics.RectF;
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.n40;
+import org.telegram.ui.t91;
+public final class k implements eh.a {
+    public final ViewGroup f8786c;
+    public final n40 d;
+    public final ViewGroup f8787e;
+    public boolean h;
+    public final RectF f8784a = new RectF();
+    public final PointF f8785b = new PointF();
+    public final RectF f8788f = new RectF();
 
-    public k(ai.c0 c0Var, ai.c0 c0Var2) {
-        super(c0Var2);
-        this.f9057x = c0Var;
+    public k(ViewGroup viewGroup, ViewGroup viewGroup2, n40 n40Var) {
+        this.f8786c = viewGroup;
+        this.d = n40Var;
+        this.f8787e = viewGroup2;
     }
 
     @Override
-    public final boolean b() {
-        boolean z10;
-        boolean z11;
-        o oVar = (o) this.f9057x.f537c;
-        q4 parentLayout = oVar.getParentLayout();
-        z10 = ((d2) oVar).inPreviewMode;
-        if (!z10 && !org.telegram.messenger.g0.Q1()) {
-            z11 = ((d2) oVar).inBubbleMode;
-            if (!z11 && !org.telegram.messenger.g0.E && parentLayout != null) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final void e(float f10, float f11, boolean z10) {
-        o oVar = (o) this.f9057x.f537c;
-        if (oVar.getParentLayout() != null) {
-            boolean z11 = ((ActionBarLayout) oVar.getParentLayout()).f27304n;
-        }
-    }
-
-    @Override
-    public final void g(int i3, boolean z10) {
-        float f10;
-        o oVar = (o) this.f9057x.f537c;
-        oVar.f9109w.setVisibility(0);
-        ViewPropertyAnimator animate = oVar.f9109w.animate();
-        if (!z10) {
-            f10 = 1.0f;
+    public final void c(a aVar, RectF rectF) {
+        ViewGroup viewGroup = this.f8786c;
+        ViewGroup viewGroup2 = this.f8787e;
+        PointF pointF = this.f8785b;
+        if (!jh.k.b(viewGroup, viewGroup2, pointF)) {
+            aVar.f8700a = true;
+        } else if ((viewGroup instanceof eh.a) && !this.h) {
+            aVar.c(pointF.x);
+            aVar.c(pointF.y);
+            RectF rectF2 = this.f8788f;
+            rectF2.set(rectF);
+            rectF.offset(-pointF.x, -pointF.y);
+            ((eh.a) viewGroup).c(aVar, rectF);
+            rectF.set(rectF2);
         } else {
-            f10 = 0.0f;
+            aVar.f8700a = true;
         }
-        animate.alpha(f10).withEndAction(new e1(3, this, z10)).start();
     }
 
     @Override
-    public final void f() {
+    public final void d(Canvas canvas, RectF rectF) {
+        long uptimeMillis = SystemClock.uptimeMillis();
+        ViewGroup viewGroup = this.f8786c;
+        ViewGroup viewGroup2 = this.f8787e;
+        PointF pointF = this.f8785b;
+        if (!jh.k.b(viewGroup, viewGroup2, pointF)) {
+            return;
+        }
+        canvas.save();
+        canvas.clipRect(rectF);
+        canvas.translate(pointF.x, pointF.y);
+        if ((viewGroup instanceof eh.a) && !this.h) {
+            RectF rectF2 = this.f8788f;
+            rectF2.set(rectF);
+            rectF.offset(-pointF.x, -pointF.y);
+            ((eh.a) viewGroup).d(canvas, rectF);
+            rectF.set(rectF2);
+        } else {
+            for (int i7 = 0; i7 < viewGroup.getChildCount(); i7++) {
+                View childAt = viewGroup.getChildAt(i7);
+                RectF rectF3 = this.f8784a;
+                if (jh.k.c(childAt, viewGroup2, rectF3) && rectF3.intersect(rectF)) {
+                    n40 n40Var = this.d;
+                    int i10 = n40Var.f47931a;
+                    Object obj = n40Var.f47932b;
+                    switch (i10) {
+                        case 0:
+                            ((pj0) obj).drawChild(canvas, childAt, uptimeMillis);
+                            continue;
+                        case 1:
+                            ProfileActivity profileActivity = (ProfileActivity) obj;
+                            if (childAt == profileActivity.N) {
+                                break;
+                            } else {
+                                profileActivity.f41663a.drawChild(canvas, childAt, uptimeMillis);
+                                continue;
+                            }
+                        default:
+                            ((t91) obj).drawChild(canvas, childAt, uptimeMillis);
+                            continue;
+                    }
+                }
+            }
+        }
+        canvas.restore();
     }
 }

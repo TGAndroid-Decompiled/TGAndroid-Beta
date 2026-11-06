@@ -4,11 +4,11 @@ public class ScaleAtom extends Atom {
     private double xscl;
     private double yscl;
 
-    public ScaleAtom(Atom atom, double d, double d10) {
+    public ScaleAtom(Atom atom, double d, double d2) {
         this.type = atom.type;
         this.base = atom;
         this.xscl = d;
-        this.yscl = d10;
+        this.yscl = d2;
     }
 
     @Override

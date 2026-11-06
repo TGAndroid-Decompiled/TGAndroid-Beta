@@ -1,78 +1,64 @@
 package ni;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.InetSocketAddress;
-import java.net.Socket;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.ActionBar.d2;
-public final class g implements Runnable {
-    public final int f20425a;
-    public boolean f20426b;
-    public Object f20427c;
-    public final Object d;
+import android.text.SpannableString;
+import java.lang.reflect.Array;
+public class g extends SpannableString {
+    public volatile boolean f20620a;
 
-    public g(Object obj, Object obj2, boolean z10, int i3) {
-        this.f20425a = i3;
-        this.d = obj;
-        this.f20427c = obj2;
-        this.f20426b = z10;
+    public g(CharSequence charSequence) {
+        super(charSequence);
+        this.f20620a = false;
+    }
+
+    public static Object[] a(g gVar, int i7, Class cls) {
+        return super.getSpans(0, i7, cls);
+    }
+
+    public static int b(g gVar, Object obj) {
+        return super.getSpanStart(obj);
+    }
+
+    public static int c(g gVar, Object obj) {
+        return super.getSpanEnd(obj);
     }
 
     @Override
-    public final void run() {
-        switch (this.f20425a) {
-            case 0:
-                l lVar = (l) this.d;
-                ArrayList arrayList = (ArrayList) this.f20427c;
-                int size = arrayList.size();
-                int i3 = 0;
-                while (i3 < size) {
-                    Object obj = arrayList.get(i3);
-                    i3++;
-                    u4.j jVar = (u4.j) obj;
-                    lVar.T(jVar.f55590a, jVar, this.f20426b);
-                }
-                arrayList.clear();
-                lVar.f55603u.remove(arrayList);
-                return;
-            case 1:
-                ActionBarLayout actionBarLayout = (ActionBarLayout) this.d;
-                if (actionBarLayout.f27287e == this) {
-                    actionBarLayout.f27287e = null;
-                    ((d2) this.f20427c).onTransitionAnimationStart(true, false);
-                    actionBarLayout.h0(true, true, this.f20426b);
-                    return;
-                }
-                return;
-            default:
-                try {
-                    ((vc.i) this.d).f56553a.bind(new InetSocketAddress(61578));
-                    this.f20426b = true;
-                    do {
-                        try {
-                            Socket accept = ((vc.i) this.d).f56553a.accept();
-                            accept.setSoTimeout(5000);
-                            InputStream inputStream = accept.getInputStream();
-                            vc.i iVar = (vc.i) this.d;
-                            iVar.f56555c.D(new vc.a(iVar, inputStream, accept));
-                        } catch (IOException e10) {
-                            vc.i.d.log(Level.FINE, "Communication with the client broken", (Throwable) e10);
-                        }
-                    } while (!((vc.i) this.d).f56553a.isClosed());
-                    return;
-                } catch (IOException e11) {
-                    this.f20427c = e11;
-                    return;
-                }
+    public int getSpanEnd(Object obj) {
+        if (!this.f20620a) {
+            return -1;
         }
+        return super.getSpanEnd(obj);
     }
 
-    public g(vc.i iVar) {
-        this.f20425a = 2;
-        this.d = iVar;
-        this.f20426b = false;
+    @Override
+    public int getSpanFlags(Object obj) {
+        if (!this.f20620a) {
+            return 0;
+        }
+        return super.getSpanFlags(obj);
+    }
+
+    @Override
+    public int getSpanStart(Object obj) {
+        if (!this.f20620a) {
+            return -1;
+        }
+        return super.getSpanStart(obj);
+    }
+
+    @Override
+    public Object[] getSpans(int i7, int i10, Class cls) {
+        if (!this.f20620a) {
+            return (Object[]) Array.newInstance(cls, 0);
+        }
+        return super.getSpans(i7, i10, cls);
+    }
+
+    @Override
+    public int nextSpanTransition(int i7, int i10, Class cls) {
+        if (!this.f20620a) {
+            return i10;
+        }
+        return super.nextSpanTransition(i7, i10, cls);
     }
 }

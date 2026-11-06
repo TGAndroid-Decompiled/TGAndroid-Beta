@@ -2,135 +2,135 @@ package org.telegram.ui.ActionBar;
 
 import android.content.Context;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class f5 extends q0 {
-    public final e5 A0;
-    public boolean B0;
-    public m0 C0;
+public final class f5 extends r0 {
+    public boolean A0;
+    public n0 B0;
+    public boolean C0;
     public boolean D0;
-    public boolean E0;
+    public final e5 f27468z0;
 
-    public f5(Context context, e5 e5Var, int i3, int i10, boolean z10, e6 e6Var) {
-        super(context, null, i3, i10, z10, e6Var);
+    public f5(Context context, e5 e5Var, int i7, int i10, boolean z9, f6 f6Var) {
+        super(context, null, i7, i10, z9, f6Var);
+        this.C0 = true;
         this.D0 = true;
-        this.E0 = true;
-        this.A0 = e5Var;
+        this.f27468z0 = e5Var;
         setDelegate(new c5(e5Var));
     }
 
     @Override
     public final void E() {
-        m0 m0Var = this.C0;
-        if (m0Var != null) {
-            m0Var.k(getSearchField());
+        n0 n0Var = this.B0;
+        if (n0Var != null) {
+            n0Var.k(getSearchField());
         }
     }
 
     @Override
-    public final void F(boolean z10) {
-        this.A0.f27477a.v(z10, true);
+    public final void F(boolean z9) {
+        this.f27468z0.f27449a.v(z9, true);
     }
 
     @Override
-    public final q0 J(m0 m0Var) {
-        this.C0 = m0Var;
+    public final r0 J(n0 n0Var) {
+        this.B0 = n0Var;
         return this;
     }
 
     @Override
-    public final q0 M() {
+    public final r0 M() {
         N();
         return this;
     }
 
     @Override
-    public final q0 N() {
-        this.B0 = true;
-        this.A0.f27477a.setSearchItem(this);
+    public final r0 N() {
+        this.A0 = true;
+        this.f27468z0.f27449a.setSearchItem(this);
         return this;
     }
 
     @Override
-    public final void P(CharSequence charSequence, boolean z10) {
-        this.A0.f27477a.setSearchFieldText(charSequence);
+    public final void P(CharSequence charSequence, boolean z9) {
+        this.f27468z0.f27449a.setSearchFieldText(charSequence);
     }
 
     @Override
-    public final boolean T(boolean z10) {
-        y4 y4Var = this.A0.f27477a;
-        if (y4Var.G) {
-            y4Var.j(z10);
+    public final boolean T(boolean z9) {
+        y4 y4Var = this.f27468z0.f27449a;
+        if (y4Var.F) {
+            y4Var.j(z9);
             return false;
         }
-        return y4Var.v(z10, true);
+        return y4Var.v(z9, true);
     }
 
     public final void X() {
-        if (!this.D0) {
+        if (!this.C0) {
             super.setVisibility(8);
         }
     }
 
-    public final void Y(boolean z10, boolean z11) {
-        boolean z12 = this.D0;
-        e5 e5Var = this.A0;
-        if (z12 == z10) {
-            if (!z10 && !z11 && getVisibility() != 8) {
+    public final void Y(boolean z9, boolean z10) {
+        boolean z11 = this.C0;
+        e5 e5Var = this.f27468z0;
+        if (z11 == z9) {
+            if (!z9 && !z10 && getVisibility() != 8) {
                 super.setVisibility(8);
-                e5Var.f27481f = true;
+                e5Var.f27453f = true;
                 e5Var.requestLayout();
                 return;
-            } else if (z10 && getVisibility() != 0) {
+            } else if (z9 && getVisibility() != 0) {
                 super.setVisibility(0);
                 return;
             } else {
                 return;
             }
         }
-        this.D0 = z10;
-        if (z10) {
-            setEnabled(this.E0);
+        this.C0 = z9;
+        if (z9) {
+            setEnabled(this.D0);
         } else {
-            this.E0 = isEnabled();
+            this.D0 = isEnabled();
             setEnabled(false);
         }
-        if (z10) {
+        if (z9) {
             super.setVisibility(0);
-        } else if (!z11 || !isLaidOut() || !e5Var.isLaidOut()) {
+        } else if (!z10 || !isLaidOut() || !e5Var.isLaidOut()) {
             super.setVisibility(8);
         }
-        if (!z11 || !e5Var.f27477a.t()) {
-            e5Var.f27481f = true;
+        if (!z10 || !e5Var.f27449a.t()) {
+            e5Var.f27453f = true;
         }
         e5Var.requestLayout();
     }
 
     public e5 getParentMenu() {
-        return this.A0;
+        return this.f27468z0;
     }
 
     @Override
     public EditTextBoldCursor getSearchField() {
-        return this.A0.f27477a.getSearchField();
+        return this.f27468z0.f27449a.getSearchField();
     }
 
-    public m0 getSearchListener() {
-        return this.C0;
+    public n0 getSearchListener() {
+        return this.B0;
     }
 
     @Override
     public i5 getSubMenuOverlay() {
-        return this.A0.f27477a.getMenuOverlay();
+        return this.f27468z0.f27449a.getMenuOverlay();
     }
 
     @Override
     public s4 getSubMenuOverlayHost() {
-        return this.A0.f27477a;
+        return this.f27468z0.f27449a;
     }
 
     @Override
     public final boolean i() {
-        e5 e5Var = this.A0;
-        if (e5Var.f27478b && !e5Var.f27477a.s()) {
+        e5 e5Var = this.f27468z0;
+        if (e5Var.f27450b && !e5Var.f27449a.s()) {
             return false;
         }
         return true;
@@ -138,53 +138,53 @@ public final class f5 extends q0 {
 
     @Override
     public final void n() {
-        this.A0.f27477a.setSearchFieldText("");
+        this.f27468z0.f27449a.setSearchFieldText("");
     }
 
     @Override
     public void setSearchFieldCaption(CharSequence charSequence) {
-        this.A0.f27477a.setSearchFieldCaption(charSequence);
+        this.f27468z0.f27449a.setSearchFieldCaption(charSequence);
     }
 
     @Override
     public void setSearchFieldHint(CharSequence charSequence) {
-        this.A0.f27477a.setSearchFieldHint(charSequence);
+        this.f27468z0.f27449a.setSearchFieldHint(charSequence);
         setContentDescription(charSequence);
     }
 
     @Override
-    public void setVisibility(int i3) {
-        boolean z10;
-        e5 e5Var = this.A0;
-        if (e5Var != null && i3 != 4) {
-            boolean z11 = false;
-            if (i3 == 0) {
-                z10 = true;
+    public void setVisibility(int i7) {
+        boolean z9;
+        e5 e5Var = this.f27468z0;
+        if (e5Var != null && i7 != 4) {
+            boolean z10 = false;
+            if (i7 == 0) {
+                z9 = true;
             } else {
-                z10 = false;
+                z9 = false;
             }
-            y4 y4Var = e5Var.f27477a;
-            if (e5Var.isLaidOut() && y4Var.t() && (!e5Var.f27478b || (y4Var.s() && y4Var.getActionModeFactor() > 0.0f))) {
-                z11 = true;
+            y4 y4Var = e5Var.f27449a;
+            if (e5Var.isLaidOut() && y4Var.t() && (!e5Var.f27450b || (y4Var.s() && y4Var.getActionModeFactor() > 0.0f))) {
+                z10 = true;
             }
-            Y(z10, z11);
+            Y(z9, z10);
             return;
         }
-        super.setVisibility(i3);
+        super.setVisibility(i7);
     }
 
     @Override
     public final boolean u() {
-        return this.B0;
+        return this.A0;
     }
 
     @Override
     public final boolean v() {
-        return this.A0.f27477a.G;
+        return this.f27468z0.f27449a.F;
     }
 
     @Override
     public final boolean w() {
-        return this.A0.f27477a.G;
+        return this.f27468z0.f27449a.F;
     }
 }

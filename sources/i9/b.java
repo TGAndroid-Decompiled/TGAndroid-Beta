@@ -1,43 +1,35 @@
 package i9;
 
-import java.math.RoundingMode;
-public abstract class b {
-    public static final int[] f14712a;
+import a8.ia;
+public final class b extends d {
+    public final char[] f15403e;
 
-    static {
-        int[] iArr = new int[RoundingMode.values().length];
-        f14712a = iArr;
-        try {
-            iArr[RoundingMode.UNNECESSARY.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
+    public b(a aVar) {
+        super(aVar, (Character) null);
+        boolean z9;
+        this.f15403e = new char[512];
+        char[] cArr = aVar.f15398b;
+        if (cArr.length == 16) {
+            z9 = true;
+        } else {
+            z9 = false;
         }
-        try {
-            f14712a[RoundingMode.FLOOR.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
+        ia.f(z9);
+        for (int i7 = 0; i7 < 256; i7++) {
+            char[] cArr2 = this.f15403e;
+            cArr2[i7] = cArr[i7 >>> 4];
+            cArr2[i7 | 256] = cArr[i7 & 15];
         }
-        try {
-            f14712a[RoundingMode.CEILING.ordinal()] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            f14712a[RoundingMode.DOWN.ordinal()] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            f14712a[RoundingMode.UP.ordinal()] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            f14712a[RoundingMode.HALF_EVEN.ordinal()] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            f14712a[RoundingMode.HALF_UP.ordinal()] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
-        try {
-            f14712a[RoundingMode.HALF_DOWN.ordinal()] = 8;
-        } catch (NoSuchFieldError unused8) {
+    }
+
+    @Override
+    public final void b(StringBuilder sb2, byte[] bArr, int i7) {
+        ia.n(0, i7, bArr.length);
+        for (int i10 = 0; i10 < i7; i10++) {
+            int i11 = bArr[i10] & 255;
+            char[] cArr = this.f15403e;
+            sb2.append(cArr[i11]);
+            sb2.append(cArr[i11 | 256]);
         }
     }
 }

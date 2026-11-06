@@ -1,29 +1,29 @@
 package org.telegram.tgnet;
 
-import org.telegram.messenger.u10;
-public final class v implements u10 {
-    public final int f27271a;
-    public final OutputSerializedData f27272b;
+import org.telegram.messenger.c20;
+public final class v implements c20 {
+    public final int f27221a;
+    public final OutputSerializedData f27222b;
 
-    public v(OutputSerializedData outputSerializedData, int i3) {
-        this.f27271a = i3;
-        this.f27272b = outputSerializedData;
+    public v(OutputSerializedData outputSerializedData, int i7) {
+        this.f27221a = i7;
+        this.f27222b = outputSerializedData;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f27271a) {
+        switch (this.f27221a) {
             case 0:
-                this.f27272b.writeInt64(((Long) obj).longValue());
+                this.f27222b.writeInt64(((Long) obj).longValue());
                 return;
             case 1:
-                this.f27272b.writeInt32(((Integer) obj).intValue());
+                this.f27222b.writeInt32(((Integer) obj).intValue());
                 return;
             case 2:
-                this.f27272b.writeByteArray((byte[]) obj);
+                this.f27222b.writeByteArray((byte[]) obj);
                 return;
             default:
-                this.f27272b.writeString((String) obj);
+                this.f27222b.writeString((String) obj);
                 return;
         }
     }

@@ -1,33 +1,50 @@
 package p7;
+
+import c8.cb;
+import j$.util.Objects;
 public final class f extends e {
-    public final e7.x f53349a;
+    public static final f f53372e = new f(0, new Object[0]);
+    public final transient Object[] f53373c;
+    public final transient int d;
 
-    public f(e7.x xVar) {
-        this.f53349a = xVar;
+    public f(int i7, Object[] objArr) {
+        this.f53373c = objArr;
+        this.d = i7;
     }
 
     @Override
-    public final Object a() {
-        return this.f53349a;
+    public final Object[] f() {
+        return this.f53373c;
     }
 
     @Override
-    public final boolean b() {
-        return true;
+    public final Object get(int i7) {
+        cb.a(i7, this.d);
+        Object obj = this.f53373c[i7];
+        Objects.requireNonNull(obj);
+        return obj;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof f) {
-            return this.f53349a.equals(((f) obj).f53349a);
-        }
-        return false;
+    @Override
+    public final int i() {
+        return 0;
     }
 
-    public final int hashCode() {
-        return this.f53349a.hashCode() + 1502476572;
+    @Override
+    public final int j() {
+        return this.d;
     }
 
-    public final String toString() {
-        return a1.g.q("Optional.of(", this.f53349a.toString(), ")");
+    @Override
+    public final int k(Object[] objArr) {
+        Object[] objArr2 = this.f53373c;
+        int i7 = this.d;
+        System.arraycopy(objArr2, 0, objArr, 0, i7);
+        return i7;
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

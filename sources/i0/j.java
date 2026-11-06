@@ -9,20 +9,20 @@ import android.graphics.fonts.FontFamily;
 import android.graphics.fonts.FontStyle;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
-import b8.sc;
+import c8.j0;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
-public final class j extends sc {
-    public static Font g(FontFamily fontFamily, int i3) {
+public final class j extends j0 {
+    public static Font g(FontFamily fontFamily, int i7) {
         int i10;
         int i11;
-        if ((i3 & 1) != 0) {
+        if ((i7 & 1) != 0) {
             i10 = 700;
         } else {
             i10 = 400;
         }
-        if ((i3 & 2) != 0) {
+        if ((i7 & 2) != 0) {
             i11 = 1;
         } else {
             i11 = 0;
@@ -41,12 +41,12 @@ public final class j extends sc {
         return font;
     }
 
-    public static FontFamily h(o0.i[] iVarArr, ContentResolver contentResolver) {
+    public static FontFamily h(o0.h[] hVarArr, ContentResolver contentResolver) {
         ParcelFileDescriptor openFileDescriptor;
         FontFamily.Builder builder = null;
-        for (o0.i iVar : iVarArr) {
+        for (o0.h hVar : hVarArr) {
             try {
-                openFileDescriptor = contentResolver.openFileDescriptor(iVar.f20494a, "r", null);
+                openFileDescriptor = contentResolver.openFileDescriptor(hVar.f20688a, "r", null);
             } catch (IOException e10) {
                 Log.w("TypefaceCompatApi29Impl", "Font load failed", e10);
             }
@@ -54,7 +54,7 @@ public final class j extends sc {
                 if (openFileDescriptor == null) {
                 }
             } else {
-                Font build = new Font.Builder(openFileDescriptor).setWeight(iVar.f20496c).setSlant(iVar.d ? 1 : 0).setTtcIndex(iVar.f20495b).build();
+                Font build = new Font.Builder(openFileDescriptor).setWeight(hVar.f20690c).setSlant(hVar.d ? 1 : 0).setTtcIndex(hVar.f20689b).build();
                 if (builder == null) {
                     builder = new FontFamily.Builder(build);
                 } else {
@@ -70,24 +70,24 @@ public final class j extends sc {
     }
 
     public static int i(FontStyle fontStyle, FontStyle fontStyle2) {
-        int i3;
+        int i7;
         int abs = Math.abs(fontStyle.getWeight() - fontStyle2.getWeight()) / 100;
         if (fontStyle.getSlant() == fontStyle2.getSlant()) {
-            i3 = 0;
+            i7 = 0;
         } else {
-            i3 = 2;
+            i7 = 2;
         }
-        return abs + i3;
+        return abs + i7;
     }
 
     @Override
-    public final Typeface a(Context context, h0.e eVar, Resources resources, int i3) {
+    public final Typeface a(Context context, h0.e eVar, Resources resources, int i7) {
         h0.f[] fVarArr;
         try {
             FontFamily.Builder builder = null;
-            for (h0.f fVar : eVar.f14067a) {
+            for (h0.f fVar : eVar.f14012a) {
                 try {
-                    Font build = new Font.Builder(resources, fVar.f14072f).setWeight(fVar.f14069b).setSlant(fVar.f14070c ? 1 : 0).setTtcIndex(fVar.f14071e).setFontVariationSettings(fVar.d).build();
+                    Font build = new Font.Builder(resources, fVar.f14017f).setWeight(fVar.f14014b).setSlant(fVar.f14015c ? 1 : 0).setTtcIndex(fVar.f14016e).setFontVariationSettings(fVar.d).build();
                     if (builder == null) {
                         builder = new FontFamily.Builder(build);
                     } else {
@@ -100,7 +100,7 @@ public final class j extends sc {
                 return null;
             }
             FontFamily build2 = builder.build();
-            return new Typeface.CustomFallbackBuilder(build2).setStyle(g(build2, i3).getStyle()).build();
+            return new Typeface.CustomFallbackBuilder(build2).setStyle(g(build2, i7).getStyle()).build();
         } catch (Exception e10) {
             Log.w("TypefaceCompatApi29Impl", "Font load failed", e10);
             return null;
@@ -108,13 +108,13 @@ public final class j extends sc {
     }
 
     @Override
-    public final Typeface b(Context context, o0.i[] iVarArr, int i3) {
+    public final Typeface b(Context context, o0.h[] hVarArr, int i7) {
         try {
-            FontFamily h = h(iVarArr, context.getContentResolver());
+            FontFamily h = h(hVarArr, context.getContentResolver());
             if (h == null) {
                 return null;
             }
-            return new Typeface.CustomFallbackBuilder(h).setStyle(g(h, i3).getStyle()).build();
+            return new Typeface.CustomFallbackBuilder(h).setStyle(g(h, i7).getStyle()).build();
         } catch (Exception e10) {
             Log.w("TypefaceCompatApi29Impl", "Font load failed", e10);
             return null;
@@ -122,21 +122,21 @@ public final class j extends sc {
     }
 
     @Override
-    public final Typeface c(Context context, List list, int i3) {
+    public final Typeface c(Context context, List list, int i7) {
         ContentResolver contentResolver = context.getContentResolver();
         try {
-            FontFamily h = h((o0.i[]) list.get(0), contentResolver);
+            FontFamily h = h((o0.h[]) list.get(0), contentResolver);
             if (h == null) {
                 return null;
             }
             Typeface.CustomFallbackBuilder customFallbackBuilder = new Typeface.CustomFallbackBuilder(h);
             for (int i10 = 1; i10 < list.size(); i10++) {
-                FontFamily h7 = h((o0.i[]) list.get(i10), contentResolver);
+                FontFamily h7 = h((o0.h[]) list.get(i10), contentResolver);
                 if (h7 != null) {
                     customFallbackBuilder.addCustomFallback(h7);
                 }
             }
-            return customFallbackBuilder.setStyle(g(h, i3).getStyle()).build();
+            return customFallbackBuilder.setStyle(g(h, i7).getStyle()).build();
         } catch (Exception e10) {
             Log.w("TypefaceCompatApi29Impl", "Font load failed", e10);
             return null;
@@ -149,9 +149,9 @@ public final class j extends sc {
     }
 
     @Override
-    public final Typeface e(Context context, Resources resources, int i3, String str, int i10) {
+    public final Typeface e(Context context, Resources resources, int i7, String str, int i10) {
         try {
-            Font build = new Font.Builder(resources, i3).build();
+            Font build = new Font.Builder(resources, i7).build();
             return new Typeface.CustomFallbackBuilder(new FontFamily.Builder(build).build()).setStyle(build.getStyle()).build();
         } catch (Exception e10) {
             Log.w("TypefaceCompatApi29Impl", "Font load failed", e10);
@@ -160,7 +160,7 @@ public final class j extends sc {
     }
 
     @Override
-    public final o0.i f(o0.i[] iVarArr, int i3) {
+    public final o0.h f(o0.h[] hVarArr, int i7) {
         throw new RuntimeException("Do not use this function in API 29 or later.");
     }
 }

@@ -1,4 +1,4 @@
 package java.util.function;
 public interface IntBinaryOperator {
-    int applyAsInt(int i3, int i10);
+    int applyAsInt(int i7, int i10);
 }

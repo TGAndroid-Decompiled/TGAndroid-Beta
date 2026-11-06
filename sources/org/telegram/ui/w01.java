@@ -1,22 +1,85 @@
 package org.telegram.ui;
-public final class w01 implements Runnable {
-    public final int f50652a;
-    public final x01 f50653b;
 
-    public w01(x01 x01Var, int i3) {
-        this.f50652a = i3;
-        this.f50653b = x01Var;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public final class w01 extends FrameLayout {
+    public final TextView f50868a;
+    public final org.telegram.ui.Components.ch0 f50869b;
+    public final ImageView f50870c;
+    public float d;
+    public ValueAnimator f50871e;
+    public final q11 f50872f;
+
+    public w01(q11 q11Var, Context context, boolean z9) {
+        super(context);
+        int i7;
+        this.f50872f = q11Var;
+        LinearLayout f10 = org.telegram.messenger.k5.f(context, 0);
+        if (z9) {
+            i7 = 3;
+        } else {
+            i7 = 17;
+        }
+        addView(f10, c8.ha.e(-2, -2, i7));
+        ?? imageView = new ImageView(context);
+        this.f50869b = imageView;
+        imageView.f(2131624314, 20, 20, null);
+        int i10 = org.telegram.ui.ActionBar.k6.If;
+        org.telegram.ui.ActionBar.f6 f6Var = q11Var.Z0;
+        org.telegram.ui.ActionBar.r6.t(imageView, i10, f6Var, PorterDuff.Mode.SRC_ATOP);
+        f10.addView((View) imageView, c8.ha.o(20, 20));
+        TextView textView = new TextView(context);
+        this.f50868a = textView;
+        org.telegram.ui.ActionBar.r6.V(textView, i10, f6Var);
+        textView.setTypeface(org.telegram.messenger.g0.o());
+        textView.setTextSize(1, 14.0f);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        textView.setLines(1);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        f10.addView(textView, c8.ha.r(-2, -2, 17));
+        ImageView imageView2 = new ImageView(context);
+        this.f50870c = imageView2;
+        imageView2.setImageResource(2131232096);
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        org.telegram.ui.ActionBar.r6.t(imageView2, org.telegram.ui.ActionBar.k6.Kf, f6Var, PorterDuff.Mode.MULTIPLY);
+        addView(imageView2, c8.ha.e(24, 24, 21));
+    }
+
+    public final void a(String str, boolean z9) {
+        this.f50868a.setText(str);
+        b(z9);
+    }
+
+    public final void b(boolean z9) {
+        float f10;
+        ValueAnimator valueAnimator = this.f50871e;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f50871e = null;
+        }
+        if (z9) {
+            f10 = 1.0f;
+        } else {
+            f10 = 0.0f;
+        }
+        this.d = f10;
+        float L = (1.0f - this.d) * org.telegram.messenger.g0.L(-8.0f);
+        org.telegram.ui.Components.ch0 ch0Var = this.f50869b;
+        ch0Var.setTranslationX(L);
+        this.f50868a.setTranslationX((1.0f - this.d) * org.telegram.messenger.g0.L(-8.0f));
+        ch0Var.setAlpha(this.d);
     }
 
     @Override
-    public final void run() {
-        switch (this.f50652a) {
-            case 0:
-                x01.a(this.f50653b);
-                return;
-            default:
-                this.f50653b.dismiss();
-                return;
-        }
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824));
     }
 }

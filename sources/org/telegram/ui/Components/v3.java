@@ -1,10 +1,7 @@
 package org.telegram.ui.Components;
-
-import android.widget.Button;
-import android.widget.TextView;
-public final class v3 extends TextView {
+public final class v3 extends hb0 {
     @Override
-    public final CharSequence getAccessibilityClassName() {
-        return Button.class.getName();
+    public final CharSequence d(int i7) {
+        return org.telegram.messenger.hd.G(i7, "Minutes", new Object[0]);
     }
 }

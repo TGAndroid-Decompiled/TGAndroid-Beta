@@ -1,54 +1,50 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class f90 implements org.telegram.messenger.n10 {
-    public final int f45220a;
-    public final m90 f45221b;
-    public final String f45222c;
+import android.content.Context;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.widget.TextView;
+public final class f90 extends org.telegram.ui.Cells.k3 {
+    public boolean E;
+    public final h90 F;
 
-    public f90(m90 m90Var, String str, int i3) {
-        this.f45220a = i3;
-        this.f45221b = m90Var;
-        this.f45222c = str;
+    public f90(h90 h90Var, Context context, String str, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, str, false, false, -1, f6Var);
+        this.F = h90Var;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        int i3 = this.f45220a;
-        String str = this.f45222c;
-        m90 m90Var = this.f45221b;
-        switch (i3) {
-            case 0:
-                TL_account.Passkeys passkeys = (TL_account.Passkeys) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                m90Var.c();
-                if (passkeys != null) {
-                    m90Var.u(new PasskeysActivity(passkeys.passkeys), false);
-                    if ("create".equalsIgnoreCase(str)) {
-                        m90Var.x("addPasskeyRow");
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                org.telegram.ui.Wallet.x1 x1Var = (org.telegram.ui.Wallet.x1) obj;
-                String str2 = (String) obj2;
-                m90Var.c();
-                if (x1Var == null) {
-                    if (str2 == null) {
-                        str2 = org.telegram.messenger.bd.M0(2131743001, null);
-                    }
-                    org.telegram.ui.Components.fc.b0(str2);
-                    return;
-                }
-                org.telegram.ui.ActionBar.d2 T = LaunchActivity.T();
-                if (T != null && T.getContext() != null) {
-                    org.telegram.ui.Wallet.c2.D(T.getContext(), m90Var.f47567b, x1Var, null, T.getResourceProvider(), null, new i90(m90Var, str, 1));
-                    return;
-                }
-                return;
+    public final void b(Editable editable) {
+        int i7;
+        int i10;
+        if (this.E) {
+            return;
+        }
+        boolean isEmpty = TextUtils.isEmpty(editable);
+        h90 h90Var = this.F;
+        if (isEmpty) {
+            h90Var.f46283s.setText("");
+            return;
+        }
+        try {
+            long parseLong = Long.parseLong(editable.toString());
+            if (parseLong > h90Var.getMessagesController().f24720a6) {
+                this.E = true;
+                parseLong = h90Var.getMessagesController().f24720a6;
+                setText(Long.toString(parseLong));
+                this.E = false;
+            }
+            TextView textView = h90Var.f46283s;
+            if (h90Var.getConnectionsManager().isTestBackend()) {
+                i7 = 2131746153;
+            } else {
+                i7 = 2131746156;
+            }
+            org.telegram.messenger.r1 i11 = org.telegram.messenger.r1.i();
+            i10 = ((org.telegram.ui.ActionBar.f2) h90Var).currentAccount;
+            textView.setText(org.telegram.messenger.hd.a0(null, null, i7, i11.f((long) ((parseLong / 1000.0d) * org.telegram.messenger.qp.s1(i10).f24740c6), "USD")));
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 }

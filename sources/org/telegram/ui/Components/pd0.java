@@ -1,87 +1,76 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class pd0 extends LinearLayout {
-    public final int f37138a = 0;
-    public final LinearLayout f37139b;
-    public final LinearLayout f37140c;
+import android.graphics.Matrix;
+import android.graphics.SurfaceTexture;
+import android.view.TextureView;
+public final class pd0 implements TextureView.SurfaceTextureListener {
+    public final boolean f36984a;
+    public final y9 f36985b;
+    public final sd0 f36986c;
 
-    public pd0(Context context) {
-        super(context);
-        setOrientation(0);
-        setGravity(17);
-        setPadding(org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f));
-        LinearLayout a10 = a(2131232331, org.telegram.messenger.bd.M0(2131746279, null));
-        this.f37140c = a10;
-        addView(a10, b8.mf.o(-2, -1));
-        LinearLayout a11 = a(2131231728, org.telegram.messenger.bd.M0(2131751336, null));
-        this.f37139b = a11;
-        addView(a11, b8.mf.o(-2, -1));
-    }
-
-    public LinearLayout a(int i3, String str) {
-        Context context = getContext();
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(0);
-        linearLayout.setGravity(17);
-        linearLayout.setPadding(org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(7.0f), org.telegram.messenger.g0.L(25.0f), org.telegram.messenger.g0.L(7.0f));
-        linearLayout.addView(org.telegram.messenger.camera.q.e(context, i3), b8.mf.k(0.0f, 0.0f, 8.0f, 0.0f, 24, 24));
-        TextView textView = new TextView(context);
-        textView.setGravity(16);
-        textView.setText(str);
-        textView.setTextSize(2, 14.0f);
-        textView.setSingleLine(true);
-        textView.setTextColor(-1);
-        linearLayout.addView(textView, b8.mf.o(-2, -2));
-        b8.pf.a(linearLayout);
-        return linearLayout;
+    public pd0(sd0 sd0Var, boolean z9, y9 y9Var) {
+        this.f36986c = sd0Var;
+        this.f36984a = z9;
+        this.f36985b = y9Var;
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        switch (this.f37138a) {
-            case 0:
-                LinearLayout linearLayout = this.f37139b;
-                ViewGroup.LayoutParams layoutParams = linearLayout.getLayoutParams();
-                ViewGroup.LayoutParams layoutParams2 = linearLayout.getLayoutParams();
-                int size = View.MeasureSpec.getSize(i3);
-                int size2 = View.MeasureSpec.getSize(i10);
-                int paddingRight = getPaddingRight() + getPaddingLeft();
-                int paddingTop = getPaddingTop();
-                int max = Math.max(0, size - paddingRight);
-                int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(Math.max(0, size2 - (getPaddingBottom() + paddingTop)), 1073741824);
-                int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(max, Integer.MIN_VALUE);
-                linearLayout.measure(makeMeasureSpec2, makeMeasureSpec);
-                LinearLayout linearLayout2 = this.f37140c;
-                linearLayout2.measure(makeMeasureSpec2, makeMeasureSpec);
-                int min = Math.min(Math.max(linearLayout.getMeasuredWidth(), linearLayout2.getMeasuredWidth()), max / 2);
-                layoutParams2.width = min;
-                layoutParams.width = min;
-                super.onMeasure(i3, i10);
-                return;
-            default:
-                int makeMeasureSpec3 = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), Integer.MIN_VALUE);
-                int makeMeasureSpec4 = View.MeasureSpec.makeMeasureSpec(0, 0);
-                LinearLayout linearLayout3 = this.f37139b;
-                linearLayout3.measure(makeMeasureSpec3, makeMeasureSpec4);
-                LinearLayout linearLayout4 = this.f37140c;
-                if (linearLayout4 != null) {
-                    linearLayout4.measure(View.MeasureSpec.makeMeasureSpec(linearLayout3.getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
-                    setMeasuredDimension(linearLayout3.getMeasuredWidth(), linearLayout4.getMeasuredHeight() + linearLayout3.getMeasuredHeight());
-                    return;
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
+        sd0 sd0Var = this.f36986c;
+        TextureView textureView = sd0Var.f38038i0;
+        if (sd0Var.f38041l0 == null && surfaceTexture != null) {
+            ry ryVar = new ry(surfaceTexture, sd0Var.C0, sd0Var.H0, sd0Var.f38055w0, this.f36984a, this.f36985b, i7, i10);
+            sd0Var.f38041l0 = ryVar;
+            if (!this.f36984a) {
+                ryVar.h(sd0Var.J0, sd0Var.K0);
+                ry ryVar2 = sd0Var.f38041l0;
+                Matrix transform = textureView.getTransform(null);
+                int width = textureView.getWidth();
+                int height = textureView.getHeight();
+                da daVar = ryVar2.I;
+                if (daVar != null) {
+                    Matrix matrix = daVar.v;
+                    transform.invert(matrix);
+                    float f10 = width;
+                    float f11 = height;
+                    matrix.preScale(f10, f11);
+                    matrix.postScale(1.0f / f10, 1.0f / f11);
+                    daVar.c(matrix);
+                    ryVar2.c(false, false, false);
                 }
-                setMeasuredDimension(linearLayout3.getMeasuredWidth(), linearLayout3.getMeasuredHeight());
-                return;
+            }
+            sd0Var.f38041l0.d(sd0Var);
+            ry ryVar3 = sd0Var.f38041l0;
+            ryVar3.getClass();
+            ryVar3.postRunnable(new ny(ryVar3, i7, i10, 1));
+            sd0Var.f38041l0.c(true, true, false);
         }
     }
 
-    public pd0(Context context, LinearLayout linearLayout, LinearLayout linearLayout2) {
-        super(context);
-        this.f37139b = linearLayout;
-        this.f37140c = linearLayout2;
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        sd0 sd0Var = this.f36986c;
+        ry ryVar = sd0Var.f38041l0;
+        if (ryVar != null) {
+            ryVar.postRunnable(new oy(ryVar, 0));
+            sd0Var.f38041l0 = null;
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
+        sd0 sd0Var = this.f36986c;
+        ry ryVar = sd0Var.f38041l0;
+        if (ryVar != null) {
+            ryVar.postRunnable(new ny(ryVar, i7, i10, 1));
+            sd0Var.f38041l0.c(false, true, false);
+            sd0Var.f38041l0.postRunnable(new ob0(this, 3));
+        }
+    }
+
+    @Override
+    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
     }
 }

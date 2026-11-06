@@ -1,31 +1,77 @@
 package ii;
 
-import org.telegram.messenger.u10;
+import java.util.ArrayList;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
-public final class a implements u10 {
-    public final int f14768a;
-    public final k f14769b;
+import org.telegram.tgnet.tl.TL_communities;
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.r31;
+public final class a implements v10 {
+    public final int f15484a;
+    public final f f15485b;
 
-    public a(k kVar, int i3) {
-        this.f14768a = i3;
-        this.f14769b = kVar;
+    public a(f fVar, int i7) {
+        this.f15484a = i7;
+        this.f15485b = fVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f14768a) {
+    public final void a(Object obj, Object obj2) {
+        String M0;
+        int i7;
+        int i10 = this.f15484a;
+        f fVar = this.f15485b;
+        switch (i10) {
             case 0:
-                org.telegram.messenger.g0.h3(new e(0, this.f14769b, (TLRPC.UserFull) obj));
-                return;
-            case 1:
-                k kVar = this.f14769b;
-                kVar.f15034b0.commission_permille = ((Integer) obj).intValue();
-                kVar.L0();
+                ArrayList arrayList = (ArrayList) obj;
+                f41 f41Var = (f41) obj2;
+                arrayList.add(r31.l(0, fVar.h));
+                r31 c10 = r31.c(1, 2131232176, hd.M0(2131751939, null));
+                c10.f37603q = true;
+                arrayList.add(c10);
+                arrayList.add(r31.E(2, org.telegram.messenger.g0.L(14.0f)));
+                ArrayList arrayList2 = fVar.f15527n;
+                if (arrayList2 != null && !arrayList2.isEmpty()) {
+                    arrayList.add(r31.t(3, hd.M0(2131751969, null)));
+                    ArrayList arrayList3 = fVar.f15527n;
+                    int size = arrayList3.size();
+                    int i11 = 0;
+                    while (i11 < size) {
+                        Object obj3 = arrayList3.get(i11);
+                        i11++;
+                        TLRPC.Chat chat = (TLRPC.Chat) obj3;
+                        TLRPC.ChatFull N0 = fVar.getMessagesController().N0(chat.f26952id);
+                        r31 w10 = r31.w(chat);
+                        long j3 = chat.f26952id;
+                        w10.d = (int) (j3 ^ (j3 >>> 32));
+                        if (N0 != null) {
+                            ArrayList<TL_communities.CommunityPeer> arrayList4 = N0.linked_peers;
+                            if (arrayList4 != null) {
+                                i7 = arrayList4.size();
+                            } else {
+                                i7 = 0;
+                            }
+                            M0 = hd.G(i7, "Chats", new Object[0]);
+                        } else {
+                            M0 = hd.M0(2131748778, null);
+                        }
+                        w10.f37599m = M0;
+                        arrayList.add(w10);
+                    }
+                    return;
+                }
                 return;
             default:
-                k kVar2 = this.f14769b;
-                kVar2.f15034b0.duration_months = ((Integer) kVar2.f15036d0.get(((Integer) obj).intValue())).intValue();
-                kVar2.L0();
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (tL_error != null) {
+                    fVar.getClass();
+                    hc.a0(fVar).f0(tL_error, false);
+                    return;
+                }
+                m0.d(fVar, fVar.f15523b, 0);
                 return;
         }
     }

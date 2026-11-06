@@ -1,32 +1,90 @@
 package org.telegram.messenger;
 
-import android.graphics.PointF;
-public final class ze {
-    public float f26784a;
-    public float f26785b;
-    public float f26786c;
-    public float d;
-    public float f26787e;
-    public float f26788f;
-    public float f26789g;
-    public int h;
-    public int f26790i;
-    public float f26791j;
-    public float f26792k;
-    public float f26793l;
-    public float f26794m;
-    public int f26795n;
-    public float f26796o;
-    public g2.d f26797p = new g2.d();
-    public float f26798q;
-    public PointF f26799r;
-    public float f26800s;
-    public float f26801t;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public abstract class ze {
+    public ye A;
+    public CharSequence f26823a;
+    public boolean f26824b;
+    public String f26825c;
+    public long d;
+    public TLRPC.Photo f26826e;
+    public ij f26827f;
+    public String f26828g;
+    public String h;
+    public String f26829i;
+    public String f26830j;
+    public String f26831k;
+    public String f26832l;
+    public long f26833m;
+    public ArrayList f26834n;
+    public hf f26835o;
+    public ArrayList f26836p;
+    public ArrayList f26837q;
+    public ArrayList f26838r;
+    public j20 f26839s;
+    public long f26840t;
+    public boolean f26841u;
+    public boolean v;
+    public boolean f26842w;
+    public int f26843x;
+    public long f26844y;
+    public Boolean f26845z;
 
-    public final boolean a() {
-        if (Math.abs(this.f26784a) < 0.1f && Math.abs(this.f26785b) < 0.1f && Math.abs(this.f26786c) < 0.1f && Math.abs(this.d) < 0.1f && Math.abs(this.f26787e) < 0.1f && Math.abs(this.f26788f) < 0.1f && Math.abs(this.f26789g) < 0.1f && this.h == 0 && this.f26790i == 0 && Math.abs(this.f26791j) < 0.1f && Math.abs(this.f26792k) < 0.1f && Math.abs(this.f26793l) < 0.1f && Math.abs(this.f26794m) < 0.1f && this.f26795n == 0 && Math.abs(this.f26796o) < 0.1f) {
+    public abstract String a();
+
+    public final boolean b() {
+        ArrayList arrayList;
+        if (!this.f26824b) {
+            return false;
+        }
+        j20 j20Var = this.f26839s;
+        if (j20Var != null && (j20Var.f23462t || j20Var.f23443a > 0 || j20Var.f23445b > 0)) {
+            return true;
+        }
+        ye yeVar = this.A;
+        if ((yeVar == null || yeVar.b()) && this.f26835o == null && this.f26830j == null && (((arrayList = this.f26836p) == null || arrayList.isEmpty()) && this.f26828g == null)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean c() {
+        Boolean bool = this.f26845z;
+        if (bool == null) {
+            return iz.f23378h1;
+        }
+        return bool.booleanValue();
+    }
+
+    public boolean d() {
+        if ((this instanceof gf) && ((gf) this).d()) {
             return true;
         }
         return false;
+    }
+
+    public void e() {
+        this.f26823a = null;
+        this.f26828g = null;
+        this.f26826e = null;
+        this.f26827f = null;
+        this.f26825c = null;
+        this.f26829i = null;
+        this.h = null;
+        this.f26830j = null;
+        this.f26832l = null;
+        this.f26831k = null;
+        this.f26841u = false;
+        this.v = false;
+        this.f26842w = false;
+        this.f26843x = 0;
+        this.f26836p = null;
+        this.f26839s = null;
+        this.f26834n = null;
+        this.f26835o = null;
+        this.f26838r = null;
+        this.A = null;
+        this.f26845z = null;
     }
 }

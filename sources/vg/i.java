@@ -1,19 +1,33 @@
 package vg;
 
-import android.graphics.Bitmap;
-import ci.r4;
-import java.util.ArrayList;
-public final class i extends a {
-    public final ArrayList d;
-    public final Bitmap f56649e;
-    public final int f56650f;
+import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+public final class i implements Runnable {
+    public final int f57284a;
+    public final m f57285b;
 
-    public i(int r22, android.content.Context r23, org.telegram.ui.ActionBar.e6 r24) {
-        throw new UnsupportedOperationException("Method not decompiled: vg.i.<init>(int, android.content.Context, org.telegram.ui.ActionBar.e6):void");
+    public i(m mVar, int i7) {
+        this.f57284a = i7;
+        this.f57285b = mVar;
     }
 
     @Override
-    public final u4.h0 a() {
-        return new r4(this, 9);
+    public final void run() {
+        ValueAnimator valueAnimator;
+        switch (this.f57284a) {
+            case 0:
+                m mVar = this.f57285b;
+                AnimatorSet animatorSet = mVar.f57299d0;
+                if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = mVar.f57298c0) != null && valueAnimator.isRunning())) {
+                    mVar.j(mVar.L);
+                    return;
+                } else {
+                    mVar.n();
+                    return;
+                }
+            default:
+                this.f57285b.l();
+                return;
+        }
     }
 }

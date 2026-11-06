@@ -1,132 +1,82 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
-public abstract class zk0 extends HorizontalScrollView {
-    public boolean f41057a;
-    public LinearLayout f41058b;
-    public ValueAnimator f41059c;
-    public boolean d;
-    public int f41060e;
-    public ValueAnimator f41061f;
+import java.util.ArrayList;
+public final class zk0 extends v4.o {
+    public final int f40997b;
+    public final int f40998c;
+    public final int d;
+    public final int f40999e;
+    public final int f41000f;
+    public final ArrayList f41001g;
+    public final int h;
+    public final int f41002i;
+    public final ArrayList f41003j;
+    public final dl0 f41004k;
 
-    public zk0(Context context) {
-        super(context);
-        this.f41060e = -1;
+    public zk0(dl0 dl0Var, int i7, int i10, int i11, int i12, int i13, ArrayList arrayList, int i14, int i15, ArrayList arrayList2) {
+        this.f41004k = dl0Var;
+        this.f40997b = i7;
+        this.f40998c = i10;
+        this.d = i11;
+        this.f40999e = i12;
+        this.f41000f = i13;
+        this.f41001g = arrayList;
+        this.h = i14;
+        this.f41002i = i15;
+        this.f41003j = arrayList2;
     }
 
-    public final void a(int i3) {
-        if (this.f41060e != i3) {
-            this.f41060e = i3;
-            ValueAnimator valueAnimator = this.f41061f;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
+    @Override
+    public final boolean a(int i7, int i10) {
+        return b(i7, i10);
+    }
+
+    @Override
+    public final boolean b(int i7, int i10) {
+        org.telegram.messenger.ij ijVar;
+        dl0 dl0Var = this.f41004k;
+        if (i7 >= 0 && i10 >= 0) {
+            if (i7 == this.f40998c && i10 == dl0Var.f32992s) {
+                return true;
             }
-            if (getScrollX() == i3) {
-                return;
+            if (i7 == this.d && i10 == dl0Var.f32995y) {
+                return true;
             }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(getScrollX(), i3);
-            this.f41061f = ofFloat;
-            ofFloat.addUpdateListener(new y50(this, 14));
-            this.f41061f.setInterpolator(xq.h);
-            this.f41061f.setDuration(250L);
-            this.f41061f.addListener(new a60(this, 16));
-            this.f41061f.start();
         }
-    }
-
-    public final void b(int i3, int i10) {
-        int measuredWidth;
-        if (getChildCount() > 0) {
-            int L = org.telegram.messenger.g0.L(50.0f);
-            if (i3 < getScrollX() + L) {
-                measuredWidth = i3 - L;
+        org.telegram.messenger.ij ijVar2 = null;
+        int i11 = this.f40999e;
+        if (i7 >= i11 && i7 < this.f41000f) {
+            ijVar = (org.telegram.messenger.ij) this.f41001g.get(i7 - i11);
+        } else {
+            int i12 = this.h;
+            if (i7 >= i12 && i7 < this.f41002i) {
+                ijVar = (org.telegram.messenger.ij) this.f41003j.get(i7 - i12);
             } else {
-                if (i10 > (getMeasuredWidth() - L) + getScrollX()) {
-                    measuredWidth = (i10 - getMeasuredWidth()) + L;
-                } else {
-                    return;
-                }
-            }
-            a(b8.be.b(measuredWidth, 0, getChildAt(0).getMeasuredWidth() - getMeasuredWidth()));
-        }
-    }
-
-    public final void c() {
-        boolean z10;
-        boolean z11;
-        g5 g5Var;
-        ei.c3 c3Var;
-        ch0 ch0Var;
-        ValueAnimator valueAnimator;
-        int childCount = this.f41058b.getChildCount();
-        for (int i3 = 0; i3 < childCount; i3++) {
-            View childAt = this.f41058b.getChildAt(i3);
-            if (childAt instanceof vu) {
-                vu vuVar = (vu) childAt;
-                if (childAt.getRight() - getScrollX() > 0 && childAt.getLeft() - getScrollX() < getMeasuredWidth()) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (this.d && ((valueAnimator = this.f41059c) == null || !valueAnimator.isRunning())) {
-                    z11 = true;
-                } else {
-                    z11 = false;
-                }
-                if (!vuVar.E && z10 && (ch0Var = vuVar.f39798e) != null && !ch0Var.f32734l0 && !z11) {
-                    vuVar.f39798e.T(true, 0.0f);
-                    vuVar.f39798e.start();
-                }
-                if (vuVar.E != z10) {
-                    vuVar.E = z10;
-                    if (z10) {
-                        vuVar.invalidate();
-                        vg.y0 y0Var = vuVar.f39799f;
-                        if (y0Var != null) {
-                            y0Var.invalidate();
-                        }
-                        vg.y0 y0Var2 = vuVar.f39799f;
-                        if (y0Var2 != null && (g5Var = vuVar.f39804x) != null && (c3Var = g5Var.f33971k) != null) {
-                            y0Var2.setImageReceiver(c3Var);
-                        }
-                        k9 k9Var = vuVar.d;
-                        if (k9Var != null) {
-                            k9Var.invalidate();
-                        }
-                    } else {
-                        vuVar.b();
-                    }
-                    vuVar.c();
-                }
+                ijVar = null;
             }
         }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
-        super.onLayout(z10, i3, i10, i11, i12);
-        c();
-    }
-
-    @Override
-    public final void onScrollChanged(int i3, int i10, int i11, int i12) {
-        super.onScrollChanged(i3, i10, i11, i12);
-        if ((Math.abs(i10 - i12) < 2 || i10 >= getMeasuredHeight() || i10 == 0) && !this.f41057a) {
-            requestDisallowInterceptTouchEvent(false);
+        int i13 = dl0Var.f32993w;
+        if (i10 >= i13 && i10 < dl0Var.f32994x) {
+            ijVar2 = (org.telegram.messenger.ij) dl0Var.f32988e.get(i10 - i13);
+        } else {
+            int i14 = dl0Var.D;
+            if (i10 >= i14 && i10 < dl0Var.E) {
+                ijVar2 = (org.telegram.messenger.ij) dl0Var.f32989f.get(i10 - i14);
+            }
         }
-        c();
+        if (ijVar2 != null && ijVar != null && ijVar2.F0() != null && ijVar.F0() != null && ijVar2.F0().f26958id == ijVar.F0().f26958id) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() != 0 && motionEvent.getAction() != 1) {
-            motionEvent.getAction();
-        }
-        return super.onTouchEvent(motionEvent);
+    public final int d() {
+        return this.f41004k.f32991r;
+    }
+
+    @Override
+    public final int e() {
+        return this.f40997b;
     }
 }

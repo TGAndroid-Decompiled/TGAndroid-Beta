@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public interface d0 {
-    ii.w0 A();
+    hi.v0 A();
 
     void a();
 
@@ -18,43 +18,43 @@ public interface d0 {
 
     void f(ArrayList arrayList);
 
-    String g(boolean z10, boolean z11);
+    String g(boolean z9, boolean z10);
 
     boolean h();
 
-    void i(boolean z10);
+    void i(boolean z9);
 
     void j();
 
-    void k(boolean z10);
+    void k(boolean z9);
 
-    void l(boolean z10, boolean z11, String str, long j10, int i3, int i10, boolean z12, boolean z13, String str2);
+    void l(boolean z9, boolean z10, String str, long j3, int i7, int i10, boolean z11, boolean z12, String str2);
 
-    void m(int i3);
+    void m(int i7);
 
     void n(TLRPC.InputInvoice inputInvoice, String str, TLObject tLObject);
 
-    void o(int i3, boolean z10);
+    void o(int i7, boolean z9);
 
-    void p(boolean z10);
+    void p(boolean z9);
 
-    void q(boolean z10, boolean z11, String str, long j10, int i3, int i10, boolean z12, boolean z13);
+    void q(boolean z9, boolean z10, String str, long j3, int i7, int i10, boolean z11, boolean z12);
 
-    void r(int i3);
+    void r(int i7);
 
     void s();
 
-    void t(boolean z10);
+    void t(boolean z9);
 
-    void u(int i3, int i10, boolean z10);
+    void u(int i7, int i10, boolean z9);
 
     void v(TLRPC.User user, String str, ArrayList arrayList);
 
-    void w(boolean z10);
+    void w(boolean z9);
 
-    void x(int i3);
+    void x(int i7);
 
-    void y(boolean z10);
+    void y(boolean z9);
 
     void z();
 }

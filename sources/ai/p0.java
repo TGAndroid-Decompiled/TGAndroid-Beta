@@ -1,9 +1,8 @@
 package ai;
+public final class p0 {
+    public final s0 f1598a;
 
-import org.telegram.ui.Components.fc;
-public final class p0 extends d7 {
-    @Override
-    public final fc e1() {
-        return new fc(this.f28589c, this.J0);
+    public p0(s0 s0Var) {
+        this.f1598a = s0Var;
     }
 }

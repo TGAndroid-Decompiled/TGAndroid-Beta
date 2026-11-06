@@ -1,80 +1,49 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-public final class l31 implements Runnable {
-    public final int f47093a;
-    public final r41 f47094b;
-    public final ArrayList f47095c;
+import android.content.Context;
+import android.widget.LinearLayout;
+import java.util.HashSet;
+public final class l31 extends LinearLayout implements org.telegram.ui.ActionBar.a6 {
+    public final org.telegram.ui.ActionBar.f6 f47374a;
+    public final org.telegram.ui.Components.w70 f47375b;
+    public final org.telegram.ui.Components.w70 f47376c;
+    public final fi.d d;
+    public final fi.d f47377e;
 
-    public l31(r41 r41Var, ArrayList arrayList, int i3) {
-        this.f47093a = i3;
-        this.f47094b = r41Var;
-        this.f47095c = arrayList;
+    public l31(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.f47374a = f6Var;
+        setOrientation(1);
+        int i7 = org.telegram.ui.ActionBar.k6.G6;
+        org.telegram.ui.Components.w70 a10 = c8.na.a(context, 15.0f, i7, true, f6Var);
+        this.f47375b = a10;
+        a10.setGravity(17);
+        addView(a10, c8.ha.t(-1, -2, 55, 32, 20, 32, 0));
+        org.telegram.ui.Components.w70 a11 = c8.na.a(context, 13.0f, i7, false, f6Var);
+        this.f47376c = a11;
+        a11.setGravity(17);
+        addView(a11, c8.ha.s(-1, -2, 55, 32.0f, 9.33f, 32.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        fi.d h = org.telegram.messenger.k5.h(24, context, f6Var, true);
+        this.d = h;
+        fi.d h7 = org.telegram.messenger.k5.h(24, context, f6Var, true);
+        this.f47377e = h7;
+        linearLayout.addView(h, c8.ha.q(0, 42, 1.0f, 112, 0, 0, 12, 0));
+        linearLayout.addView(h7, c8.ha.q(0, 42, 1.0f, 112, 0, 0, 0, 0));
+        addView(linearLayout, c8.ha.t(-1, -2, 55, 24, 18, 24, 16));
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        switch (this.f47093a) {
-            case 0:
-                r41 r41Var = this.f47094b;
-                ei.r6 r6Var = r41Var.D0;
-                r6Var.getClass();
-                ArrayList arrayList = this.f47095c;
-                int size = arrayList.size();
-                int i3 = 0;
-                while (true) {
-                    if (i3 < size) {
-                        Object obj = arrayList.get(i3);
-                        i3++;
-                        if (!r6Var.f10877j.containsKey((Integer) obj)) {
-                            z10 = true;
-                        }
-                    } else {
-                        z10 = false;
-                    }
-                }
-                if (!r6Var.q(0, arrayList, z10)) {
-                    r41Var.m0();
-                    r41Var.r0();
-                    return;
-                }
-                return;
-            default:
-                r41 r41Var2 = this.f47094b;
-                ArrayList arrayList2 = r41Var2.f49093w0;
-                ArrayList arrayList3 = r41Var2.f49091v0;
-                int i10 = 0;
-                r41Var2.A0 = false;
-                ArrayList arrayList4 = this.f47095c;
-                if (!arrayList4.isEmpty()) {
-                    int size2 = arrayList4.size();
-                    for (int i11 = 0; i11 < size2; i11++) {
-                        org.telegram.messenger.zi ziVar = (org.telegram.messenger.zi) arrayList4.get(i11);
-                        int i12 = r41Var2.f49089t0.get(ziVar.f1(), -1);
-                        if (i12 >= 0 && ((o41) arrayList3.get(i12)).b() == ziVar.f1()) {
-                            ((o41) arrayList3.get(i12)).f48186b = ziVar;
-                        }
-                    }
-                    arrayList2.clear();
-                    int size3 = arrayList3.size();
-                    while (true) {
-                        if (i10 < size3) {
-                            o41 o41Var = (o41) arrayList3.get(i10);
-                            if (o41Var.f48186b == null) {
-                                r41Var2.f49088s0 = o41Var.b();
-                            } else {
-                                arrayList2.add(o41Var);
-                                i10++;
-                            }
-                        }
-                    }
-                    r41Var2.r0();
-                    r41Var2.T.setItemAnimator(null);
-                    r41Var2.C0.f();
-                    return;
-                }
-                return;
-        }
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.G6));
+    }
+
+    @Override
+    public final void updateColors() {
+        int i7 = org.telegram.ui.ActionBar.k6.G6;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f47374a;
+        this.f47375b.setTextColor(org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
+        this.f47376c.setTextColor(org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
     }
 }

@@ -1,225 +1,94 @@
 package org.telegram.messenger;
 
-import android.graphics.SurfaceTexture;
 import java.util.ArrayList;
-import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.k51;
-import org.telegram.ui.Components.m51;
-import org.telegram.ui.PhotoViewer;
-public final class fe implements k51 {
-    public final int f22480a;
-    public final int f22481b;
-    public final zi f22482c;
-    public final MediaController d;
+import org.telegram.messenger.support.LongSparseIntArray;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.Components.xo0;
+import org.telegram.ui.Components.xs0;
+public final class fe implements RequestDelegate {
+    public final int f22371a;
+    public final int f22372b;
+    public final int f22373c;
+    public final ls d;
 
-    public fe(MediaController mediaController, int i3, zi ziVar, int i10) {
-        this.f22480a = i10;
-        this.d = mediaController;
-        this.f22481b = i3;
-        this.f22482c = ziVar;
+    public fe(ls lsVar, int i7, int i10, int i11) {
+        this.f22371a = i11;
+        this.d = lsVar;
+        this.f22372b = i7;
+        this.f22373c = i10;
     }
 
     @Override
-    public final void onError(m51 m51Var, Exception exc) {
-        switch (this.f22480a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i7 = this.f22371a;
+        ls lsVar = this.d;
+        switch (i7) {
             case 0:
+                String[] strArr = MediaController.V1;
+                g0.h3(new hi.j4(this.f22372b, this.f22373c, 7, (MediaController) lsVar, tLObject, tL_error));
                 return;
-            default:
-                a8.g(exc, true);
-                return;
-        }
-    }
-
-    @Override
-    public final void onRenderedFirstFrame(l2.a aVar) {
-        int i3 = this.f22480a;
-    }
-
-    @Override
-    public final void onSeekFinished(l2.a aVar) {
-        int i3 = this.f22480a;
-    }
-
-    @Override
-    public final void onSeekStarted(l2.a aVar) {
-        int i3 = this.f22480a;
-    }
-
-    @Override
-    public final void onStateChanged(boolean z10, int i3) {
-        int i10 = this.f22480a;
-        int i11 = this.f22481b;
-        switch (i10) {
-            case 0:
-                MediaController mediaController = this.d;
-                ArrayList arrayList = mediaController.S0;
-                if (i11 == mediaController.f21330n0) {
-                    zi ziVar = this.f22482c;
-                    if (i3 != 4 && ((i3 != 1 && i3 != 2) || !z10 || ziVar.f26828b0 < 0.999f)) {
-                        m51 m51Var = mediaController.f21324j0;
-                        if (m51Var != null && mediaController.f21346u0 != 0.0f && (i3 == 3 || i3 == 1)) {
-                            mediaController.f21324j0.q0((int) (((float) m51Var.U()) * mediaController.f21346u0), false);
-                            mediaController.f21346u0 = 0.0f;
-                        }
-                    } else {
-                        ziVar.f26828b0 = 1.0f;
-                        hs.f(ziVar.I1).k(148, Integer.valueOf(ziVar.f1()), 0);
-                        if (!mediaController.a0()) {
-                            if (!arrayList.isEmpty() && (arrayList.size() > 1 || !zi.S4(ziVar.f26868k))) {
-                                mediaController.U(true);
-                            } else {
-                                mediaController.q(true, mediaController.F(), zi.S4(ziVar.f26868k), false);
-                            }
-                        }
-                    }
-                    if (mediaController.f21324j0 != null && d1.f.u()) {
-                        mediaController.f21324j0.t0(true);
+            case 1:
+                qp qpVar = (qp) lsVar;
+                LongSparseIntArray longSparseIntArray = qpVar.Y0;
+                int i10 = 0;
+                if (tL_error == null) {
+                    TLRPC.updates_Difference updates_difference = (TLRPC.updates_Difference) tLObject;
+                    if (updates_difference instanceof TLRPC.TL_updates_differenceTooLong) {
+                        g0.h3(new l2.a0(qpVar, updates_difference, this.f22372b, this.f22373c, 4));
                         return;
                     }
-                    return;
-                }
-                return;
-            default:
-                MediaController mediaController2 = this.d;
-                if (i11 == mediaController2.f21330n0) {
-                    MediaController.f(mediaController2, this.f22482c, null, true, z10, i3);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture) {
-        switch (this.f22480a) {
-            case 0:
-                return false;
-            default:
-                MediaController mediaController = this.d;
-                if (mediaController.F0 == null) {
-                    return false;
-                }
-                int i3 = mediaController.J0;
-                if (i3 == 2) {
-                    org.telegram.ui.l4 l4Var = mediaController.M0;
-                    if (l4Var != null) {
-                        if (mediaController.N0) {
-                            l4Var.setDrawingReady(true);
-                        }
-                        if (mediaController.M0.getParent() == null) {
-                            mediaController.O0.addView(mediaController.M0);
-                        }
-                        if (mediaController.H0.getSurfaceTexture() != surfaceTexture) {
-                            mediaController.H0.setSurfaceTexture(surfaceTexture);
-                        }
-                        mediaController.F0.A0(mediaController.H0);
+                    if (updates_difference instanceof TLRPC.TL_updates_differenceSlice) {
+                        TLRPC.TL_updates_state tL_updates_state = updates_difference.intermediate_state;
+                        qpVar.Y0(tL_updates_state.pts, tL_updates_state.date, tL_updates_state.qts, true);
                     }
-                    mediaController.J0 = 0;
-                } else if (i3 == 1) {
-                    if (mediaController.K0 != null) {
-                        if (mediaController.I0 == null) {
-                            try {
-                                PipRoundVideoView pipRoundVideoView = new PipRoundVideoView();
-                                mediaController.I0 = pipRoundVideoView;
-                                pipRoundVideoView.d(mediaController.K0, new a(this, 15));
-                            } catch (Exception unused) {
-                                mediaController.I0 = null;
+                    a0.h hVar = new a0.h();
+                    a0.h hVar2 = new a0.h();
+                    for (int i11 = 0; i11 < updates_difference.users.size(); i11++) {
+                        TLRPC.User user = updates_difference.users.get(i11);
+                        hVar.k(user, user.f27101id);
+                    }
+                    for (int i12 = 0; i12 < updates_difference.chats.size(); i12++) {
+                        TLRPC.Chat chat = updates_difference.chats.get(i12);
+                        hVar2.k(chat, chat.f26952id);
+                    }
+                    ArrayList arrayList = new ArrayList();
+                    if (!updates_difference.other_updates.isEmpty()) {
+                        while (i10 < updates_difference.other_updates.size()) {
+                            TLRPC.Update update = updates_difference.other_updates.get(i10);
+                            if (update instanceof TL_update.TL_updateMessageID) {
+                                arrayList.add((TL_update.TL_updateMessageID) update);
+                                updates_difference.other_updates.remove(i10);
+                            } else {
+                                if (qp.Y1(update) == 2) {
+                                    long V1 = qp.V1(update);
+                                    int i13 = longSparseIntArray.get(V1);
+                                    if (i13 == 0 && (i13 = qpVar.getMessagesStorage().N(V1)) != 0) {
+                                        longSparseIntArray.put(V1, i13);
+                                    }
+                                    if (i13 != 0 && qp.W1(update) <= i13) {
+                                        updates_difference.other_updates.remove(i10);
+                                    }
+                                }
+                                i10++;
                             }
-                        }
-                        PipRoundVideoView pipRoundVideoView2 = mediaController.I0;
-                        if (pipRoundVideoView2 != null) {
-                            if (pipRoundVideoView2.f31499c.getSurfaceTexture() != surfaceTexture) {
-                                mediaController.I0.f31499c.setSurfaceTexture(surfaceTexture);
-                            }
-                            mediaController.F0.A0(mediaController.I0.f31499c);
+                            i10--;
+                            i10++;
                         }
                     }
-                    mediaController.J0 = 0;
-                } else if (!PhotoViewer.F1() || PhotoViewer.v1().T2 == null) {
-                    return false;
-                } else {
-                    PhotoViewer.v1().U2 = surfaceTexture;
-                }
-                return true;
-        }
-    }
-
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        int i3 = this.f22480a;
-    }
-
-    @Override
-    public final void onVideoSizeChanged(int i3, int i10, int i11, float f10) {
-        float f11;
-        switch (this.f22480a) {
-            case 0:
-                return;
-            default:
-                if (i10 == 0) {
-                    f11 = 1.0f;
-                } else {
-                    f11 = (i3 * f10) / i10;
-                }
-                MediaController mediaController = this.d;
-                mediaController.P0 = f11;
-                org.telegram.ui.l4 l4Var = mediaController.M0;
-                if (l4Var != null) {
-                    l4Var.a(f11, 0);
+                    g0.h3(new hi(26, qpVar, updates_difference));
+                    qpVar.getMessagesStorage().f26688a.c(new mn(qpVar, updates_difference, arrayList, hVar, hVar2, 10));
                     return;
                 }
-                return;
-        }
-    }
-
-    @Override
-    public final void onRenderedFirstFrame() {
-        switch (this.f22480a) {
-            case 0:
+                qpVar.f24764f2 = false;
+                qpVar.getConnectionsManager().setIsUpdating(false);
+                a8.b("received: isUpdating = false");
                 return;
             default:
-                MediaController mediaController = this.d;
-                org.telegram.ui.l4 l4Var = mediaController.M0;
-                if (l4Var == null || l4Var.d) {
-                    return;
-                }
-                mediaController.N0 = true;
-                l4Var.setDrawingReady(true);
-                mediaController.O0.setTag(1);
+                g0.h3(new xo0((xs0) lsVar, tL_error, this.f22372b, this.f22373c, tLObject, 0));
                 return;
         }
-    }
-
-    private final void b() {
-    }
-
-    private final void c(l2.a aVar) {
-    }
-
-    private final void d(l2.a aVar) {
-    }
-
-    private final void e(l2.a aVar) {
-    }
-
-    private final void f(l2.a aVar) {
-    }
-
-    private final void g(l2.a aVar) {
-    }
-
-    private final void h(l2.a aVar) {
-    }
-
-    private final void i(SurfaceTexture surfaceTexture) {
-    }
-
-    private final void j(SurfaceTexture surfaceTexture) {
-    }
-
-    private final void a(m51 m51Var, Exception exc) {
-    }
-
-    private final void k(int i3, int i10, float f10, int i11) {
     }
 }

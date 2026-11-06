@@ -1,63 +1,77 @@
 package r2;
 
 import android.net.Uri;
-import android.os.SystemClock;
-import g9.g0;
-import g9.g2;
-import g9.t0;
-import java.util.HashMap;
-import org.telegram.ui.Cells.f1;
-public final class a implements u {
-    public final d f54068a;
+import j2.d0;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Map;
+import javax.crypto.Cipher;
+import javax.crypto.CipherInputStream;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
+public final class a implements j2.h {
+    public final j2.h f54160a;
+    public final byte[] f54161b;
+    public final byte[] f54162c;
+    public CipherInputStream d;
 
-    public a(d dVar) {
-        this.f54068a = dVar;
+    public a(j2.h hVar, byte[] bArr, byte[] bArr2) {
+        this.f54160a = hVar;
+        this.f54161b = bArr;
+        this.f54162c = bArr2;
     }
 
     @Override
-    public final void a() {
-        this.f54068a.f54086e.remove(this);
+    public final void addTransferListener(d0 d0Var) {
+        d0Var.getClass();
+        this.f54160a.addTransferListener(d0Var);
     }
 
     @Override
-    public final boolean b(Uri uri, e5.u uVar, boolean z10) {
-        c cVar;
-        d dVar = this.f54068a;
-        HashMap hashMap = dVar.d;
-        if (dVar.H == null) {
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            c cVar2 = (c) hashMap.get(uri);
-            cVar2.getClass();
-            w wVar = cVar2.f54080a;
-            int size = wVar.f54232b.size();
-            g2 it = t0.q(wVar.f54232b.values()).iterator();
-            int i3 = 0;
-            while (it.hasNext()) {
-                Uri uri2 = (Uri) it.next();
-                c cVar3 = (c) hashMap.get(uri2);
-                if (cVar3 != null) {
-                    b bVar = (b) f1.p(cVar3.f54081b, uri2, uri2);
-                    bVar.getClass();
-                    if (elapsedRealtime <= bVar.f54075r) {
-                        i3++;
-                    }
-                }
-            }
-            int size2 = dVar.f54092x.size();
-            g0 listIterator = dVar.f54092x.listIterator(0);
-            int i10 = 0;
-            while (listIterator.hasNext()) {
-                if (dVar.e((w) listIterator.next(), elapsedRealtime)) {
-                    i10++;
-                }
-            }
-            a3.h hVar = new a3.h(size, i3, size2, i10);
-            dVar.f54085c.getClass();
-            a3.i D4 = kb.a.D4(hVar, uVar);
-            if (D4 != null && (cVar = (c) hashMap.get(uri)) != null) {
-                return c.c(cVar, uri, D4.f93b);
-            }
+    public final void close() {
+        if (this.d != null) {
+            this.d = null;
+            this.f54160a.close();
         }
-        return false;
+    }
+
+    @Override
+    public final Map getResponseHeaders() {
+        return this.f54160a.getResponseHeaders();
+    }
+
+    @Override
+    public final Uri getUri() {
+        return this.f54160a.getUri();
+    }
+
+    @Override
+    public final long open(j2.m mVar) {
+        try {
+            Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
+            try {
+                cipher.init(2, new SecretKeySpec(this.f54161b, "AES"), new IvParameterSpec(this.f54162c));
+                j2.k kVar = new j2.k(this.f54160a, mVar);
+                this.d = new CipherInputStream(kVar, cipher);
+                kVar.a();
+                return -1L;
+            } catch (InvalidAlgorithmParameterException | InvalidKeyException e10) {
+                throw new RuntimeException(e10);
+            }
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e11) {
+            throw new RuntimeException(e11);
+        }
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i7, int i10) {
+        this.d.getClass();
+        int read = this.d.read(bArr, i7, i10);
+        if (read < 0) {
+            return -1;
+        }
+        return read;
     }
 }

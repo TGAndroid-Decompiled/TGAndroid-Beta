@@ -1,18 +1,10 @@
 package ab;
-public enum b implements pa.b {
-    UNKNOWN(0),
-    DATA_MESSAGE(1),
-    TOPIC(2),
-    DISPLAY_NOTIFICATION(3);
-    
-    public final int f294a;
-
-    b(int i3) {
-        this.f294a = i3;
-    }
+public final class b implements na.d {
+    public static final b f903a = new Object();
+    public static final na.c f904b = new na.c("messagingClientEvent", jg.g.q(jg.g.p(qa.d.class, new qa.a(1))));
 
     @Override
-    public final int a() {
-        return this.f294a;
+    public final void a(Object obj, Object obj2) {
+        ((na.e) obj2).a(f904b, ((bb.e) obj).f3156a);
     }
 }

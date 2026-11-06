@@ -1,29 +1,54 @@
 package l8;
-public final class c extends h {
-    public final int f18104c;
-    public final float d;
 
-    public c(float f10, int i3) {
-        super(0, Float.valueOf(Math.max(f10, 0.0f)));
-        this.f18104c = i3;
-        switch (i3) {
-            case 1:
-                super(2, Float.valueOf(Math.max(f10, 0.0f)));
-                this.d = Math.max(f10, 0.0f);
-                return;
-            default:
-                this.d = Math.max(f10, 0.0f);
-                return;
+import android.os.Bundle;
+import android.os.Parcelable;
+import q6.m;
+public abstract class c {
+    public static Parcelable a(String str, Bundle bundle) {
+        ClassLoader classLoader = c.class.getClassLoader();
+        m.g(classLoader);
+        bundle.setClassLoader(classLoader);
+        Bundle bundle2 = bundle.getBundle("map_state");
+        if (bundle2 == null) {
+            return null;
+        }
+        bundle2.setClassLoader(classLoader);
+        return bundle2.getParcelable(str);
+    }
+
+    public static void b(Bundle bundle, Bundle bundle2) {
+        if (bundle != null && bundle2 != null) {
+            Parcelable a10 = a("MapOptions", bundle);
+            if (a10 != null) {
+                c(bundle2, "MapOptions", a10);
+            }
+            Parcelable a11 = a("StreetViewPanoramaOptions", bundle);
+            if (a11 != null) {
+                c(bundle2, "StreetViewPanoramaOptions", a11);
+            }
+            Parcelable a12 = a("camera", bundle);
+            if (a12 != null) {
+                c(bundle2, "camera", a12);
+            }
+            if (bundle.containsKey("position")) {
+                bundle2.putString("position", bundle.getString("position"));
+            }
+            if (bundle.containsKey("com.google.android.wearable.compat.extra.LOWBIT_AMBIENT")) {
+                bundle2.putBoolean("com.google.android.wearable.compat.extra.LOWBIT_AMBIENT", bundle.getBoolean("com.google.android.wearable.compat.extra.LOWBIT_AMBIENT", false));
+            }
         }
     }
 
-    @Override
-    public final String toString() {
-        switch (this.f18104c) {
-            case 0:
-                return "[Dash: length=" + this.d + "]";
-            default:
-                return "[Gap: length=" + this.d + "]";
+    public static void c(Bundle bundle, String str, Parcelable parcelable) {
+        ClassLoader classLoader = c.class.getClassLoader();
+        m.g(classLoader);
+        bundle.setClassLoader(classLoader);
+        Bundle bundle2 = bundle.getBundle("map_state");
+        if (bundle2 == null) {
+            bundle2 = new Bundle();
         }
+        bundle2.setClassLoader(classLoader);
+        bundle2.putParcelable(str, parcelable);
+        bundle.putBundle("map_state", bundle2);
     }
 }

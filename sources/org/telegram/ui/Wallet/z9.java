@@ -1,33 +1,26 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Components.bi;
-public final class z9 extends AnimatorListenerAdapter {
-    public final bi f43516a;
-    public final u6 f43517b;
-    public final aa f43518c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.widget.FrameLayout;
+public final class z9 extends FrameLayout {
+    public final ba f43451a;
 
-    public z9(aa aaVar, bi biVar, u6 u6Var) {
-        this.f43518c = aaVar;
-        this.f43516a = biVar;
-        this.f43517b = u6Var;
+    public z9(ba baVar, Context context) {
+        super(context);
+        this.f43451a = baVar;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        this.f43518c.b();
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        this.f43518c.b();
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        if (this.f43516a != null) {
-            org.telegram.messenger.g0.v1(this.f43517b);
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        canvas.translate(-getLeft(), -getTop());
+        ba baVar = this.f43451a;
+        baVar.f42163j.c(canvas);
+        canvas.restore();
+        super.dispatchDraw(canvas);
+        if (baVar.f42163j.d()) {
+            postInvalidateOnAnimation();
         }
     }
 }

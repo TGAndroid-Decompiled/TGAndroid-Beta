@@ -1,26 +1,22 @@
 package org.telegram.ui.Components;
-public final class gw extends g.p {
-    public final ey f34210c;
 
-    public gw(ey eyVar) {
-        this.f34210c = eyVar;
+import androidx.recyclerview.widget.RecyclerView;
+public final class gw extends v4.s {
+    public final gy Q;
+
+    public gw(gy gyVar) {
+        super(8);
+        this.Q = gyVar;
     }
 
     @Override
-    public final int i(int i3) {
-        ey eyVar = this.f34210c;
-        ow owVar = eyVar.S;
-        fw fwVar = eyVar.R;
-        u4.h0 adapter = eyVar.Q.getAdapter();
-        ex exVar = eyVar.T;
-        if (adapter == exVar) {
-            int d = exVar.d(i3);
-            if (d == 1 || d == 3 || d == 2 || d == 4 || d == 5) {
-                return fwVar.J;
-            }
-        } else if ((eyVar.f33532e0 && i3 == 0) || i3 == owVar.d || i3 == owVar.f36949c || i3 == owVar.f36951f || owVar.f36953r.indexOfKey(i3) >= 0 || owVar.f36955w.indexOfKey(i3) >= 0) {
-            return fwVar.J;
+    public final void v0(RecyclerView recyclerView, v4.a1 a1Var, int i7) {
+        try {
+            fi.j1 j1Var = new fi.j1(2, recyclerView.getContext(), this);
+            j1Var.f57096a = i7;
+            w0(j1Var);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
-        return 1;
     }
 }

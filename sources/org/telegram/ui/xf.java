@@ -1,99 +1,262 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.os.SystemClock;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 public final class xf implements Runnable {
-    public final int f52014a;
-    public final wm f52015b;
-    public final org.telegram.ui.ActionBar.s1[] f52016c;
-    public final int d;
+    public final int f51837a;
+    public final an f51838b;
 
-    public xf(wm wmVar, org.telegram.ui.ActionBar.s1[] s1VarArr, int i3, int i10) {
-        this.f52014a = i10;
-        this.f52015b = wmVar;
-        this.f52016c = s1VarArr;
-        this.d = i3;
+    public xf(an anVar, int i7) {
+        this.f51837a = i7;
+        this.f51838b = anVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f52014a) {
+        qj qjVar;
+        View sendButton;
+        View sendButton2;
+        boolean z9;
+        boolean z10;
+        fi.m3 m3Var;
+        int i7 = this.f51837a;
+        boolean z11 = true;
+        an anVar = this.f51838b;
+        switch (i7) {
             case 0:
-                org.telegram.ui.ActionBar.s1[] s1VarArr = this.f52016c;
-                org.telegram.ui.ActionBar.s1 s1Var = s1VarArr[0];
-                if (s1Var != null) {
-                    final wm wmVar = this.f52015b;
-                    final int i3 = this.d;
-                    s1Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    wmVar.getConnectionsManager().cancelRequest(i3, true);
-                                    return;
-                                case 1:
-                                    wmVar.getConnectionsManager().cancelRequest(i3, true);
-                                    return;
-                                default:
-                                    wmVar.getConnectionsManager().cancelRequest(i3, true);
-                                    return;
-                            }
-                        }
-                    });
-                    wmVar.showDialog(s1VarArr[0]);
+                if (anVar.getParentActivity() != null && anVar.fragmentView != null && (qjVar = anVar.Z) != null && (sendButton = qjVar.getSendButton()) != null && anVar.Z.getEditField() != null && anVar.Z.getEditField().getText().length() >= 5) {
+                    int i10 = org.telegram.messenger.iz.f23357a;
+                    SharedPreferences.Editor edit = org.telegram.messenger.qp.e1().edit();
+                    org.telegram.messenger.iz.L = System.currentTimeMillis();
+                    int i11 = org.telegram.messenger.iz.K + 1;
+                    org.telegram.messenger.iz.K = i11;
+                    edit.putInt("scheduledOrNoSoundHintShows", i11);
+                    edit.putLong("scheduledOrNoSoundHintSeenAt", org.telegram.messenger.iz.L);
+                    edit.apply();
+                    if (anVar.f43950u2 == null) {
+                        fi.m3 D6 = anVar.D6(280.0f, 3, -1, true);
+                        anVar.f43950u2 = D6;
+                        D6.f12442u0 = 0.0f;
+                        D6.f12443v0 = org.telegram.messenger.g0.L(56.0f) / 2.0f;
+                        anVar.f43950u2.u(org.telegram.messenger.hd.M0(2131745848, null));
+                    }
+                    anVar.f43950u2.y(sendButton, true);
+                    anVar.f43963v2 = true;
                     return;
                 }
                 return;
             case 1:
-                org.telegram.ui.ActionBar.s1[] s1VarArr2 = this.f52016c;
-                org.telegram.ui.ActionBar.s1 s1Var2 = s1VarArr2[0];
-                if (s1Var2 != null) {
-                    final wm wmVar2 = this.f52015b;
-                    final int i10 = this.d;
-                    s1Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    wmVar2.getConnectionsManager().cancelRequest(i10, true);
-                                    return;
-                                case 1:
-                                    wmVar2.getConnectionsManager().cancelRequest(i10, true);
-                                    return;
-                                default:
-                                    wmVar2.getConnectionsManager().cancelRequest(i10, true);
-                                    return;
-                            }
-                        }
-                    });
-                    wmVar2.showDialog(s1VarArr2[0]);
+                qj qjVar2 = anVar.Z;
+                if (qjVar2 != null && anVar.f43787gd != null) {
+                    if (qjVar2.s0()) {
+                        anVar.Z.k0(false);
+                        org.telegram.messenger.g0.K3(anVar.f43787gd.f55166a);
+                        ((te.a) anVar.f43787gd.f55167b.f8841b).a(false, true);
+                        return;
+                    }
+                    anVar.Z.U0(false, false, false);
+                    anVar.Z.s1();
+                    ((te.a) anVar.f43787gd.f55167b.f8841b).a(true, true);
                     return;
                 }
                 return;
-            default:
-                org.telegram.ui.ActionBar.s1[] s1VarArr3 = this.f52016c;
-                org.telegram.ui.ActionBar.s1 s1Var3 = s1VarArr3[0];
-                if (s1Var3 != null) {
-                    final wm wmVar3 = this.f52015b;
-                    final int i11 = this.d;
-                    s1Var3.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    wmVar3.getConnectionsManager().cancelRequest(i11, true);
-                                    return;
-                                case 1:
-                                    wmVar3.getConnectionsManager().cancelRequest(i11, true);
-                                    return;
-                                default:
-                                    wmVar3.getConnectionsManager().cancelRequest(i11, true);
-                                    return;
-                            }
-                        }
-                    });
-                    wmVar3.showDialog(s1VarArr3[0]);
+            case 2:
+                anVar.Sa();
+                return;
+            case 3:
+                if (anVar.getParentActivity() != null && anVar.fragmentView != null && anVar.Z != null && anVar.Ya == null && anVar.getMessagesController().N1(anVar.a()) <= 0 && (sendButton2 = anVar.Z.getSendButton()) != null && anVar.Z.getEditField() != null && anVar.Z.getEditField().getText().length() != 0) {
+                    int i12 = org.telegram.messenger.iz.f23357a;
+                    SharedPreferences.Editor edit2 = org.telegram.messenger.qp.e1().edit();
+                    org.telegram.messenger.iz.N = System.currentTimeMillis();
+                    int i13 = org.telegram.messenger.iz.M + 1;
+                    org.telegram.messenger.iz.M = i13;
+                    edit2.putInt("scheduledHintShows", i13);
+                    edit2.putLong("scheduledHintSeenAt", org.telegram.messenger.iz.N);
+                    edit2.apply();
+                    if (anVar.f43977w2 == null) {
+                        fi.m3 D62 = anVar.D6(280.0f, 3, -1, true);
+                        anVar.f43977w2 = D62;
+                        D62.f12442u0 = 0.0f;
+                        D62.u(org.telegram.messenger.hd.M0(2131745850, null));
+                    }
+                    anVar.f43977w2.y(sendButton2, true);
+                    anVar.f43990x2 = true;
                     return;
                 }
+                return;
+            case 4:
+                anVar.z9();
+                anVar.cd(0, true);
+                return;
+            case 5:
+                anVar.v8(false, true, 0.0f);
+                return;
+            case 6:
+                ArrayList arrayList = anVar.K6;
+                anVar.f43799hc = System.currentTimeMillis();
+                if (anVar.f44013z0 != null && anVar.C0 != null) {
+                    int i14 = Integer.MAX_VALUE;
+                    int i15 = Integer.MIN_VALUE;
+                    for (int i16 = 0; i16 < anVar.f44013z0.getChildCount(); i16++) {
+                        View childAt = anVar.f44013z0.getChildAt(i16);
+                        if (childAt instanceof org.telegram.ui.Cells.q1) {
+                            org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) childAt;
+                            if (q1Var.getCurrentMessagesGroup() != null) {
+                                for (int i17 = 0; i17 < q1Var.getCurrentMessagesGroup().d.size(); i17++) {
+                                    int f12 = ((org.telegram.messenger.ij) q1Var.getCurrentMessagesGroup().d.get(i17)).f1();
+                                    i14 = Math.min(i14, f12);
+                                    i15 = Math.max(i15, f12);
+                                }
+                            } else if (q1Var.getMessageObject() != null) {
+                                int f13 = q1Var.getMessageObject().f1();
+                                i14 = Math.min(i14, f13);
+                                i15 = Math.max(i15, f13);
+                            }
+                        }
+                    }
+                    if (i14 <= i15) {
+                        ArrayList arrayList2 = new ArrayList();
+                        for (int i18 = 0; i18 < arrayList.size(); i18++) {
+                            org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) arrayList.get(i18);
+                            org.telegram.messenger.dj djVar = (org.telegram.messenger.dj) anVar.N6.f(ijVar.d1());
+                            if (djVar != null) {
+                                ArrayList arrayList3 = djVar.d;
+                                if (!arrayList2.contains(Long.valueOf(djVar.f22002a))) {
+                                    for (int i19 = 0; i19 < arrayList3.size(); i19++) {
+                                        org.telegram.messenger.ij ijVar2 = (org.telegram.messenger.ij) arrayList3.get(i19);
+                                        if (ijVar2 != null) {
+                                            int f14 = ijVar2.f1();
+                                            org.telegram.messenger.f10 f10Var = anVar.getMessagesController().f24881s7;
+                                            if (f14 >= i14 - 7 && f14 <= i15 + 7) {
+                                                z10 = true;
+                                            } else {
+                                                z10 = false;
+                                            }
+                                            f10Var.h(ijVar2, z10, false);
+                                        }
+                                    }
+                                    arrayList2.add(Long.valueOf(djVar.f22002a));
+                                }
+                            } else {
+                                int f15 = ijVar.f1();
+                                org.telegram.messenger.f10 f10Var2 = anVar.getMessagesController().f24881s7;
+                                if (f15 >= i14 - 7 && f15 <= i15 + 7) {
+                                    z9 = true;
+                                } else {
+                                    z9 = false;
+                                }
+                                f10Var2.h(ijVar, z9, false);
+                            }
+                        }
+                    }
+                }
+                if (anVar.X4 > 0 && anVar.V4 != null) {
+                    anVar.getMessagesController().f24881s7.h((org.telegram.messenger.ij) anVar.V4.get(Integer.valueOf(anVar.X4)), true, false);
+                }
+                anVar.Ad();
+                return;
+            case 7:
+                anVar.W5 = null;
+                anVar.z8();
+                return;
+            case 8:
+                anVar.W5 = null;
+                anVar.z8();
+                return;
+            case 9:
+                anVar.sa();
+                return;
+            case 10:
+                anVar.v8(false, true, 0.0f);
+                return;
+            case 11:
+                an.u0(anVar);
+                return;
+            case 12:
+                anVar.v8(false, true, 0.0f);
+                return;
+            case 13:
+                org.telegram.ui.ActionBar.u1 u1Var = new org.telegram.ui.ActionBar.u1(3, anVar.getParentActivity(), anVar.f43998xa);
+                anVar.Pb = u1Var;
+                u1Var.setOnShowListener(new ye(anVar, 1));
+                anVar.Pb.setOnCancelListener(anVar.Fa);
+                anVar.Pb.r(500L);
+                return;
+            case 14:
+                org.telegram.messenger.g0.E2(anVar.Z0);
+                return;
+            case 15:
+                anVar.O7(true);
+                org.telegram.messenger.k5.o(null, 2131743971, org.telegram.ui.Components.hc.a0(anVar), 2131623981, 36);
+                return;
+            case 16:
+                anVar.b7();
+                return;
+            case 17:
+                anVar.f43691a = (anVar.f43691a + 1) % 3;
+                return;
+            case 18:
+                anVar.f43706b = !anVar.f43706b;
+                return;
+            case 19:
+                anVar.C0.M.clear();
+                jl jlVar = anVar.C0;
+                jlVar.L = false;
+                jlVar.O(true);
+                anVar.sc(false);
+                return;
+            case 20:
+                anVar.C0.M.clear();
+                jl jlVar2 = anVar.C0;
+                jlVar2.L = false;
+                jlVar2.O(true);
+                anVar.sc(false);
+                return;
+            case 21:
+                anVar.Ra = false;
+                anVar.Yc();
+                return;
+            case 22:
+                anVar.Lc = 0;
+                anVar.Mc = false;
+                anVar.f44013z0.g1();
+                return;
+            case 23:
+                anVar.K9();
+                anVar.M9();
+                anVar.F7();
+                anVar.H7();
+                return;
+            case 24:
+                anVar.cd(0, (anVar.f43768f6 == 0 || SystemClock.elapsedRealtime() < anVar.f43768f6 + 150) ? false : false);
+                return;
+            case 25:
+                tj tjVar = anVar.f43765f3;
+                if ((tjVar == null || tjVar.getVisibility() != 0) && (m3Var = anVar.K1) != null) {
+                    m3Var.w();
+                    return;
+                }
+                return;
+            case 26:
+                anVar.y7();
+                return;
+            case 27:
+                anVar.o7(false);
+                return;
+            case 28:
+                FrameLayout.LayoutParams e10 = c8.ha.e(-1, -2, 87);
+                e10.bottomMargin = anVar.Z.getMeasuredHeight();
+                anVar.l1.addView(anVar.M1, e10);
+                anVar.M1.setTranslationY(-org.telegram.messenger.g0.f22532n);
+                anVar.M1.p(0.0f, anVar.Z.getEmojiButton().getX() + org.telegram.messenger.g0.L(22.0f));
+                anVar.M1.w();
+                return;
+            default:
+                int i20 = an.f43682id;
+                anVar.n7();
                 return;
         }
     }

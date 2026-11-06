@@ -1,33 +1,26 @@
 package org.telegram.messenger.video;
 public final class k implements Runnable {
-    public final int f25921a;
-    public final VideoPlayerHolderBase f25922b;
+    public final int f26012a;
+    public final VideoPlayerHolderBase f26013b;
+    public final float f26014c;
 
-    public k(VideoPlayerHolderBase videoPlayerHolderBase, int i3) {
-        this.f25921a = i3;
-        this.f25922b = videoPlayerHolderBase;
+    public k(VideoPlayerHolderBase videoPlayerHolderBase, float f10, int i7) {
+        this.f26012a = i7;
+        this.f26013b = videoPlayerHolderBase;
+        this.f26014c = f10;
     }
 
     @Override
     public final void run() {
-        switch (this.f25921a) {
+        switch (this.f26012a) {
             case 0:
-                VideoPlayerHolderBase.i(this.f25922b);
+                VideoPlayerHolderBase.d(this.f26013b, this.f26014c);
                 return;
             case 1:
-                VideoPlayerHolderBase.n(this.f25922b);
-                return;
-            case 2:
-                VideoPlayerHolderBase.f(this.f25922b);
-                return;
-            case 3:
-                VideoPlayerHolderBase.a(this.f25922b);
-                return;
-            case 4:
-                VideoPlayerHolderBase.c(this.f25922b);
+                VideoPlayerHolderBase.m(this.f26013b, this.f26014c);
                 return;
             default:
-                VideoPlayerHolderBase.o(this.f25922b);
+                VideoPlayerHolderBase.b(this.f26013b, this.f26014c);
                 return;
         }
     }

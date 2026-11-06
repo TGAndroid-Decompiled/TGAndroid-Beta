@@ -1,40 +1,52 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.text.TextUtils;
-import org.telegram.tgnet.ConnectionsManager;
-public final class c31 extends il0 {
-    public final n31 f32521f;
+import android.view.MotionEvent;
+public final class c31 extends pj0 {
+    public final j31 f32405e3;
+    public final n31 f32406f3;
 
-    public c31(n31 n31Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, 14.0f, e6Var);
-        this.f32521f = n31Var;
+    public c31(n31 n31Var, Context context, j31 j31Var) {
+        super(context, null);
+        this.f32406f3 = n31Var;
+        this.f32405e3 = j31Var;
     }
 
     @Override
-    public final void a(String str) {
-        kg.y1 y1Var = this.f32521f.f36362w;
-        kg.w1 w1Var = y1Var.T;
-        int i3 = y1Var.f17234c;
-        if (y1Var.O != 0) {
-            ConnectionsManager.getInstance(i3).cancelRequest(y1Var.O, true);
-            y1Var.O = 0;
+    public final boolean E0(float f10) {
+        if (f10 >= org.telegram.messenger.g0.L(58.0f) + this.f32406f3.E) {
+            return true;
         }
-        if (y1Var.P != 0) {
-            ConnectionsManager.getInstance(i3).cancelRequest(y1Var.P, true);
-            y1Var.P = 0;
+        return false;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.f32406f3.F = true;
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean d = this.f32405e3.d(this, motionEvent);
+        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
+            return false;
         }
-        if (TextUtils.isEmpty(str)) {
-            y1Var.S = null;
-            y1Var.G.clear();
-            y1Var.J.clear();
-            y1Var.F.clear();
-            y1Var.f17235e.b(false);
-            y1Var.f();
-        } else {
-            y1Var.S = str.toLowerCase();
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.f32406f3.L != null) {
+            return false;
         }
-        org.telegram.messenger.g0.r(w1Var);
-        org.telegram.messenger.g0.i3(w1Var, 300L);
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.f32406f3.H) {
+            super.requestLayout();
+        }
     }
 }

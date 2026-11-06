@@ -6,22 +6,22 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class pq implements RequestDelegate {
-    public final int f37219a;
-    public final tq f37220b;
-    public final gi.d f37221c;
+    public final int f37151a;
+    public final tq f37152b;
+    public final fi.d f37153c;
 
-    public pq(tq tqVar, gi.d dVar, int i3) {
-        this.f37219a = i3;
-        this.f37220b = tqVar;
-        this.f37221c = dVar;
+    public pq(tq tqVar, fi.d dVar, int i7) {
+        this.f37151a = i7;
+        this.f37152b = tqVar;
+        this.f37153c = dVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f37219a) {
+        switch (this.f37151a) {
             case 0:
-                final tq tqVar = this.f37220b;
-                final gi.d dVar = this.f37221c;
+                final tq tqVar = this.f37152b;
+                final fi.d dVar = this.f37153c;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -33,10 +33,10 @@ public final class pq implements RequestDelegate {
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
-                                    tqVar2.U1 = groupcallstreamrtmpurl.url;
-                                    tqVar2.V1 = groupcallstreamrtmpurl.key;
-                                    tqVar2.W1 = new SpannableStringBuilder(tqVar2.V1);
-                                    tqVar2.X1.O(true);
+                                    tqVar2.T1 = groupcallstreamrtmpurl.url;
+                                    tqVar2.U1 = groupcallstreamrtmpurl.key;
+                                    tqVar2.V1 = new SpannableStringBuilder(tqVar2.U1);
+                                    tqVar2.W1.O(true);
                                     return;
                                 }
                                 return;
@@ -47,10 +47,10 @@ public final class pq implements RequestDelegate {
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
-                                    tqVar3.U1 = groupcallstreamrtmpurl2.url;
-                                    tqVar3.V1 = groupcallstreamrtmpurl2.key;
-                                    tqVar3.W1 = new SpannableStringBuilder(tqVar3.V1);
-                                    tqVar3.X1.O(true);
+                                    tqVar3.T1 = groupcallstreamrtmpurl2.url;
+                                    tqVar3.U1 = groupcallstreamrtmpurl2.key;
+                                    tqVar3.V1 = new SpannableStringBuilder(tqVar3.U1);
+                                    tqVar3.W1.O(true);
                                     return;
                                 }
                                 return;
@@ -59,8 +59,8 @@ public final class pq implements RequestDelegate {
                 });
                 return;
             default:
-                final tq tqVar2 = this.f37220b;
-                final gi.d dVar2 = this.f37221c;
+                final tq tqVar2 = this.f37152b;
+                final fi.d dVar2 = this.f37153c;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -72,10 +72,10 @@ public final class pq implements RequestDelegate {
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && (tLObject2 instanceof TL_phone.groupCallStreamRtmpUrl)) {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl = (TL_phone.groupCallStreamRtmpUrl) tLObject2;
-                                    tqVar22.U1 = groupcallstreamrtmpurl.url;
-                                    tqVar22.V1 = groupcallstreamrtmpurl.key;
-                                    tqVar22.W1 = new SpannableStringBuilder(tqVar22.V1);
-                                    tqVar22.X1.O(true);
+                                    tqVar22.T1 = groupcallstreamrtmpurl.url;
+                                    tqVar22.U1 = groupcallstreamrtmpurl.key;
+                                    tqVar22.V1 = new SpannableStringBuilder(tqVar22.U1);
+                                    tqVar22.W1.O(true);
                                     return;
                                 }
                                 return;
@@ -86,10 +86,10 @@ public final class pq implements RequestDelegate {
                                 TLObject tLObject3 = tLObject;
                                 if (tLObject3 instanceof TL_phone.groupCallStreamRtmpUrl) {
                                     TL_phone.groupCallStreamRtmpUrl groupcallstreamrtmpurl2 = (TL_phone.groupCallStreamRtmpUrl) tLObject3;
-                                    tqVar3.U1 = groupcallstreamrtmpurl2.url;
-                                    tqVar3.V1 = groupcallstreamrtmpurl2.key;
-                                    tqVar3.W1 = new SpannableStringBuilder(tqVar3.V1);
-                                    tqVar3.X1.O(true);
+                                    tqVar3.T1 = groupcallstreamrtmpurl2.url;
+                                    tqVar3.U1 = groupcallstreamrtmpurl2.key;
+                                    tqVar3.V1 = new SpannableStringBuilder(tqVar3.U1);
+                                    tqVar3.W1.O(true);
                                     return;
                                 }
                                 return;

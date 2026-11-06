@@ -1,33 +1,57 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import java.util.HashSet;
-public final class vj0 extends View implements org.telegram.ui.ActionBar.z5 {
-    public Paint f50543a;
-    public Paint f50544b;
-    public float f50545c;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class vj0 implements TextWatcher {
+    public final int f50737a;
+    public final xj0 f50738b;
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float measuredWidth = (int) (getMeasuredWidth() * this.f50545c);
-        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f50544b);
-        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f50543a);
+    public vj0(xj0 xj0Var, int i7) {
+        this.f50738b = xj0Var;
+        this.f50737a = i7;
     }
 
     @Override
-    public final void updateColors() {
-        try {
-            this.f50543a.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ui, false));
-            this.f50544b.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Vi, false));
-            invalidate();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final void afterTextChanged(Editable editable) {
+        int length;
+        String code;
+        xj0 xj0Var = this.f50738b;
+        if (!xj0Var.H && (length = editable.length()) >= 1) {
+            int i7 = this.f50737a;
+            if (length > 1) {
+                String obj = editable.toString();
+                xj0Var.H = true;
+                for (int i10 = 0; i10 < Math.min(xj0Var.O - i7, length); i10++) {
+                    if (i10 == 0) {
+                        editable.replace(0, length, obj.substring(i10, i10 + 1));
+                    } else {
+                        xj0Var.d[i7 + i10].setText(obj.substring(i10, i10 + 1));
+                    }
+                }
+                xj0Var.H = false;
+            }
+            if (i7 != xj0Var.O - 1) {
+                int i11 = i7 + 1;
+                EditTextBoldCursor editTextBoldCursor = xj0Var.d[i11];
+                editTextBoldCursor.setSelection(editTextBoldCursor.length());
+                xj0Var.d[i11].requestFocus();
+            }
+            int i12 = xj0Var.O;
+            if (i7 == i12 - 1 || (i7 == i12 - 2 && length >= 2)) {
+                code = xj0Var.getCode();
+                if (code.length() == xj0Var.O) {
+                    xj0Var.h(null);
+                }
+            }
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

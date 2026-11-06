@@ -1,59 +1,65 @@
 package jc;
 
-import ed.e;
-import java.util.Arrays;
-import kotlin.jvm.internal.j;
-import ne.b;
-public final class a {
-    public final int f16235a;
-    public char[] f16236b;
-    public int f16237c;
+import java.io.FilterInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+public final class a extends FilterInputStream {
+    public int f16641a;
+    public int f16642b;
 
-    public void a(int i3, int i10) {
-        int i11 = i10 + i3;
-        char[] cArr = this.f16236b;
-        if (cArr.length <= i11) {
-            int i12 = i3 * 2;
-            if (i11 < i12) {
-                i11 = i12;
+    public a(InputStream inputStream) {
+        super(inputStream);
+        this.f16641a = -1;
+        this.f16642b = -1;
+    }
+
+    @Override
+    public final boolean markSupported() {
+        return false;
+    }
+
+    @Override
+    public final int read() {
+        int read = super.read();
+        if (read == 3 && this.f16641a == 0 && this.f16642b == 0) {
+            this.f16641a = -1;
+            this.f16642b = -1;
+            read = super.read();
+        }
+        this.f16641a = this.f16642b;
+        this.f16642b = read;
+        return read;
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i7, int i10) {
+        bArr.getClass();
+        if (i7 < 0 || i10 < 0 || i10 > bArr.length - i7) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (i10 == 0) {
+            return 0;
+        }
+        int read = read();
+        if (read == -1) {
+            return -1;
+        }
+        bArr[i7] = (byte) read;
+        int i11 = 1;
+        while (true) {
+            if (i11 < i10) {
+                try {
+                    int read2 = read();
+                    if (read2 == -1) {
+                        break;
+                    }
+                    bArr[i7 + i11] = (byte) read2;
+                    i11++;
+                } catch (IOException unused) {
+                }
             }
-            char[] copyOf = Arrays.copyOf(cArr, i11);
-            j.d(copyOf, "copyOf(...)");
-            this.f16236b = copyOf;
+            return i11;
         }
-    }
-
-    public void b() {
-        b bVar = b.f20345c;
-        char[] array = this.f16236b;
-        bVar.getClass();
-        j.e(array, "array");
-        synchronized (bVar) {
-            int i3 = bVar.f1632a;
-            if (array.length + i3 < ne.a.f20344a) {
-                bVar.f1632a = i3 + array.length;
-                ((e) bVar.f1633b).addLast(array);
-            }
-        }
-    }
-
-    public void c(String text) {
-        j.e(text, "text");
-        int length = text.length();
-        if (length == 0) {
-            return;
-        }
-        a(this.f16237c, length);
-        text.getChars(0, text.length(), this.f16236b, this.f16237c);
-        this.f16237c += length;
-    }
-
-    public final String toString() {
-        switch (this.f16235a) {
-            case 0:
-                return new String(this.f16236b, 0, this.f16237c);
-            default:
-                return new String(this.f16236b, 0, this.f16237c);
-        }
+        return i11;
     }
 }

@@ -1,65 +1,66 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import android.os.Bundle;
+import com.google.android.gms.tasks.CancellationToken;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import java.util.concurrent.CancellationException;
+import org.json.JSONObject;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.tgnet.tl.TL_stars;
-public final class h9 implements n10 {
-    public final int f22902a = 0;
-    public final q9 f22903b;
-    public final n9 f22904c;
-    public final Object d;
+import org.telegram.ui.zc0;
+public final class h9 implements v0.g {
+    public final CancellationToken f22846a;
+    public final TaskCompletionSource f22847b;
+    public final zc0 f22848c;
+    public final int d;
+    public final Runnable[] f22849e;
 
-    public h9(q9 q9Var, n9 n9Var, ai.r rVar) {
-        this.f22903b = q9Var;
-        this.f22904c = n9Var;
-        this.d = rVar;
+    public h9(CancellationToken cancellationToken, TaskCompletionSource taskCompletionSource, zc0 zc0Var, int i7, Runnable[] runnableArr) {
+        this.f22846a = cancellationToken;
+        this.f22847b = taskCompletionSource;
+        this.f22848c = zc0Var;
+        this.d = i7;
+        this.f22849e = runnableArr;
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f22902a) {
-            case 0:
-                q9 q9Var = this.f22903b;
-                n9 n9Var = this.f22904c;
-                ai.r rVar = (ai.r) this.d;
-                TLRPC.payments_PaymentResult payments_paymentresult = (TLRPC.payments_PaymentResult) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                n9Var.f24338f = false;
-                if (payments_paymentresult instanceof TLRPC.TL_payments_paymentResult) {
-                    Utilities.d.c(new b4(4, q9Var, (TLRPC.TL_payments_paymentResult) payments_paymentresult));
-                    rVar.a(Boolean.TRUE, null);
-                    return;
-                } else if (tL_error != null) {
-                    rVar.a(Boolean.FALSE, tL_error.text);
-                    return;
-                } else {
-                    rVar.a(Boolean.FALSE, null);
-                    return;
-                }
-            default:
-                q9 q9Var2 = this.f22903b;
-                u10 u10Var = (u10) this.d;
-                n9 n9Var2 = this.f22904c;
-                TL_payments.TL_StarGiftAuctionAcquiredGifts tL_StarGiftAuctionAcquiredGifts = (TL_payments.TL_StarGiftAuctionAcquiredGifts) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                if (tL_StarGiftAuctionAcquiredGifts == null) {
-                    q9Var2.getClass();
-                    u10Var.a(null);
-                    return;
-                }
-                q9Var2.getMessagesController().Y3(tL_StarGiftAuctionAcquiredGifts.users, false);
-                q9Var2.getMessagesController().S3(tL_StarGiftAuctionAcquiredGifts.chats, false);
-                ArrayList<TL_stars.TL_StarGiftAuctionAcquiredGift> arrayList = tL_StarGiftAuctionAcquiredGifts.gifts;
-                n9Var2.f24339g = arrayList;
-                u10Var.a(arrayList);
-                return;
+    public final void a(Object obj) {
+        w0.i iVar = (w0.i) obj;
+        if (this.f22846a.isCancellationRequested()) {
+            return;
+        }
+        boolean z9 = iVar instanceof w0.k;
+        TaskCompletionSource taskCompletionSource = this.f22847b;
+        if (z9) {
+            taskCompletionSource.trySetException(new Exception("EMPTY"));
+        } else if (!(iVar instanceof w0.g) && !(iVar instanceof w0.j)) {
+            taskCompletionSource.trySetException(iVar);
+        } else {
+            taskCompletionSource.trySetException(new CancellationException());
         }
     }
 
-    public h9(q9 q9Var, u10 u10Var, n9 n9Var) {
-        this.f22903b = q9Var;
-        this.d = u10Var;
-        this.f22904c = n9Var;
+    @Override
+    public final void onResult(Object obj) {
+        v0.o oVar = (v0.o) obj;
+        TaskCompletionSource taskCompletionSource = this.f22847b;
+        CancellationToken cancellationToken = this.f22846a;
+        if (!cancellationToken.isCancellationRequested()) {
+            try {
+                String string = new JSONObject(((Bundle) oVar.f56859a.f3500a).getString("androidx.credentials.BUNDLE_KEY_REQUEST_JSON")).getJSONObject("data").getJSONObject("vp_token").getJSONArray("firebase").getString(0);
+                this.f22848c.run();
+                TLRPC.TL_auth_finishFirebasePnvLogin tL_auth_finishFirebasePnvLogin = new TLRPC.TL_auth_finishFirebasePnvLogin();
+                tL_auth_finishFirebasePnvLogin.google_token = string;
+                int i7 = this.d;
+                g9 g9Var = new g9(i7, ConnectionsManager.getInstance(i7).sendRequestTyped(tL_auth_finishFirebasePnvLogin, new d3.b(1), new x3(1, cancellationToken, taskCompletionSource), 8), 1);
+                Runnable[] runnableArr = this.f22849e;
+                runnableArr[0] = g9Var;
+                if (cancellationToken.isCancellationRequested()) {
+                    runnableArr[0].run();
+                }
+            } catch (Exception e10) {
+                taskCompletionSource.trySetException(e10);
+            }
+        }
     }
 }

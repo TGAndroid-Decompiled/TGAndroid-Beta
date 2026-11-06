@@ -1,23 +1,21 @@
 package org.telegram.messenger;
 public final class pq implements Runnable {
-    public final int f24794a;
-    public final Object f24795b;
-    public final Object f24796c;
+    public final int f24593a;
+    public final yr f24594b;
+    public final long f24595c;
+    public final long d;
+    public final String f24596e;
 
-    public pq(int i3, Object obj, Object obj2) {
-        this.f24794a = i3;
-        this.f24795b = obj;
-        this.f24796c = obj2;
+    public pq(yr yrVar, long j3, long j10, String str, int i7) {
+        this.f24593a = i7;
+        this.f24594b = yrVar;
+        this.f24595c = j3;
+        this.d = j10;
+        this.f24596e = str;
     }
 
     @Override
     public final void run() {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.pq.run():void");
-    }
-
-    public pq(nv nvVar, qr qrVar) {
-        this.f24794a = 16;
-        this.f24796c = nvVar;
-        this.f24795b = qrVar;
     }
 }

@@ -1,0 +1,86 @@
+package li;
+
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.Editable;
+import android.text.style.ReplacementSpan;
+import android.view.View;
+import org.telegram.messenger.iu;
+import org.telegram.messenger.kv;
+import org.telegram.messenger.p10;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.ActionBar.f6;
+public final class i4 extends ReplacementSpan {
+    public final TL_iv.textButton f18638a;
+    public iu f18639b;
+    public View f18640c;
+    public int d = p10.f24459s0;
+    public f6 f18641e;
+
+    public i4(TL_iv.textButton textbutton) {
+        this.f18638a = textbutton;
+    }
+
+    public static boolean c(TL_keyboard.InlineButtonType inlineButtonType) {
+        if (!(inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUrl) && !(inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeCopy) && !(inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile)) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void a(int i7, View view, f6 f6Var) {
+        View view2;
+        iu iuVar = this.f18639b;
+        if (iuVar != null && (view2 = this.f18640c) != null) {
+            iuVar.h = null;
+            iuVar.f23336a.f22698a.f(view2);
+        }
+        this.f18640c = view;
+        this.d = i7;
+        this.f18641e = f6Var;
+        this.f18639b = null;
+        b();
+    }
+
+    public final iu b() {
+        if (this.f18639b == null) {
+            int i7 = this.d;
+            int L = org.telegram.messenger.g0.L(240.0f);
+            iu iuVar = new iu(new kv(i7, L, this.f18641e), L, this.f18638a, Boolean.FALSE);
+            this.f18639b = iuVar;
+            View view = this.f18640c;
+            if (view != null) {
+                iuVar.a(view);
+            }
+        }
+        return this.f18639b;
+    }
+
+    public final void d(Editable editable) {
+        ReplacementSpan[] replacementSpanArr;
+        int spanStart = editable.getSpanStart(this);
+        int spanEnd = editable.getSpanEnd(this);
+        if (spanStart >= 0 && spanEnd > spanStart) {
+            for (ReplacementSpan replacementSpan : (ReplacementSpan[]) editable.getSpans(spanStart, spanEnd, ReplacementSpan.class)) {
+                if (replacementSpan != this) {
+                    int spanStart2 = editable.getSpanStart(replacementSpan);
+                    int spanEnd2 = editable.getSpanEnd(replacementSpan);
+                    if (spanStart2 < spanEnd && spanEnd2 > spanStart) {
+                        editable.removeSpan(replacementSpan);
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        b().draw(canvas, charSequence, i7, i10, f10, i11, i12, i13, paint);
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        return b().getSize(paint, charSequence, i7, i10, fontMetricsInt);
+    }
+}

@@ -3,75 +3,82 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
 public final class bm implements Runnable {
-    public final int f21852a;
-    public final c1 f21853b;
-    public final long f21854c;
-    public final Object d;
-    public final Object f21855e;
-    public final Object f21856f;
+    public final int f21668a = 0;
+    public final qp f21669b;
+    public final TLObject f21670c;
+    public final long d;
 
-    public bm(c1 c1Var, Object obj, long j10, Object obj2, Object obj3, int i3) {
-        this.f21852a = i3;
-        this.f21853b = c1Var;
-        this.d = obj;
-        this.f21854c = j10;
-        this.f21855e = obj2;
-        this.f21856f = obj3;
-    }
-
-    private final void a() {
-        ArrayList arrayList;
-        ArrayList arrayList2;
-        x00 x00Var = (x00) this.f21853b;
-        s00 s00Var = (s00) this.d;
-        TLObject tLObject = (TLObject) this.f21855e;
-        TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f21856f;
-        long j10 = this.f21854c;
-        synchronized (x00Var) {
-            arrayList = s00Var.f25262b;
-            arrayList2 = s00Var.f25263c;
-        }
-        if (tLObject instanceof TLRPC.TL_messages_translatedRichMessage) {
-            ArrayList<TL_iv.RichMessage> arrayList3 = ((TLRPC.TL_messages_translatedRichMessage) tLObject).result;
-            int min = Math.min(arrayList2.size(), arrayList3.size());
-            for (int i3 = 0; i3 < min; i3++) {
-                ((p10) arrayList2.get(i3)).a((Integer) arrayList.get(i3), arrayList3.get(i3), s00Var.d);
-            }
-        } else if (tL_error != null && "TO_LANG_INVALID".equals(tL_error.text)) {
-            x00Var.K(j10, false);
-            hs.e().k(hs.P4, 1, bd.M0(2131743956, null));
-        } else {
-            if (tL_error != null && "QUOTA_EXCEEDED".equals(tL_error.text)) {
-                hs.e().k(hs.P4, 1, bd.M0(2131743957, null));
-            }
-            for (int i10 = 0; i10 < arrayList2.size(); i10++) {
-                ((p10) arrayList2.get(i10)).a((Integer) arrayList.get(i10), null, s00Var.d);
-            }
-        }
-        synchronized (x00Var) {
-            for (int i11 = 0; i11 < arrayList.size(); i11++) {
-                try {
-                    x00Var.f26331x.remove(arrayList.get(i11));
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
-        }
+    public bm(qp qpVar, long j3, TLObject tLObject) {
+        this.f21669b = qpVar;
+        this.d = j3;
+        this.f21670c = tLObject;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.bm.run():void");
+        int i7 = this.f21668a;
+        long j3 = this.d;
+        TLObject tLObject = this.f21670c;
+        qp qpVar = this.f21669b;
+        switch (i7) {
+            case 0:
+                qpVar.f24883t0.l(j3);
+                if (tLObject != null) {
+                    TLRPC.TL_messages_peerSettings tL_messages_peerSettings = (TLRPC.TL_messages_peerSettings) tLObject;
+                    TLRPC.PeerSettings peerSettings = tL_messages_peerSettings.settings;
+                    qpVar.Y3(tL_messages_peerSettings.users, false);
+                    qpVar.S3(tL_messages_peerSettings.chats, false);
+                    qpVar.u4(j3, peerSettings);
+                    return;
+                }
+                return;
+            default:
+                TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
+                TLRPC.User a22 = qpVar.a2(Long.valueOf(qpVar.getUserConfig().e()));
+                if (a22 == null) {
+                    a22 = qpVar.getUserConfig().f();
+                    qpVar.X3(a22, false, false);
+                } else {
+                    qpVar.getUserConfig().w(a22);
+                }
+                if (a22 != null) {
+                    ArrayList arrayList = new ArrayList();
+                    arrayList.add(a22);
+                    qpVar.getMessagesStorage().m1(arrayList, null, false, true);
+                    if (tL_photos_photo.photo instanceof TLRPC.TL_photo) {
+                        TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
+                        a22.photo = tL_userProfilePhoto;
+                        tL_userProfilePhoto.has_video = !tL_photos_photo.photo.video_sizes.isEmpty();
+                        TLRPC.UserProfilePhoto userProfilePhoto = a22.photo;
+                        TLRPC.Photo photo = tL_photos_photo.photo;
+                        userProfilePhoto.photo_id = photo.f26976id;
+                        userProfilePhoto.photo_small = w7.w(photo.sizes, 150, false, null, false).location;
+                        a22.photo.photo_big = w7.w(tL_photos_photo.photo.sizes, 800, false, null, false).location;
+                        a22.photo.dc_id = tL_photos_photo.photo.dc_id;
+                    } else {
+                        a22.photo = new TLRPC.TL_userProfilePhotoEmpty();
+                    }
+                    TLRPC.UserFull b22 = qpVar.b2(j3);
+                    if (b22 != null) {
+                        b22.profile_photo = tL_photos_photo.photo;
+                        qpVar.getMessagesStorage().j2(b22, false);
+                    }
+                    qpVar.getUserConfig().f().photo = a22.photo;
+                    qpVar.X3(a22, false, false);
+                    qpVar.getNotificationCenter().k(46, new Object[0]);
+                    qpVar.getNotificationCenter().k(2, Integer.valueOf(qp.C8));
+                    qpVar.getNotificationCenter().k(2, 2);
+                    qpVar.getUserConfig().v(true);
+                    return;
+                }
+                return;
+        }
     }
 
-    public bm(c1 c1Var, Object obj, Object obj2, TLObject tLObject, long j10, int i3) {
-        this.f21852a = i3;
-        this.f21853b = c1Var;
-        this.d = obj;
-        this.f21855e = obj2;
-        this.f21856f = tLObject;
-        this.f21854c = j10;
+    public bm(qp qpVar, TLObject tLObject, long j3) {
+        this.f21669b = qpVar;
+        this.f21670c = tLObject;
+        this.d = j3;
     }
 }

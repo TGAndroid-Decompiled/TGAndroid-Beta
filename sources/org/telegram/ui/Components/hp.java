@@ -6,28 +6,28 @@ import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import androidx.core.widget.NestedScrollView;
 public final class hp extends NestedScrollView {
-    public boolean f34467a0;
-    public final lp f34468b0;
+    public boolean W;
+    public final lp f34387a0;
 
     public hp(lp lpVar, Context context) {
         super(context);
-        this.f34468b0 = lpVar;
+        this.f34387a0 = lpVar;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        lp lpVar = this.f34468b0;
-        int scrollY = (int) ((getScrollY() + (lpVar.f35811o1 - lpVar.f28617t0)) - getTranslationY());
-        Drawable drawable = lpVar.f35808j1;
-        drawable.setBounds(0, scrollY, getMeasuredWidth(), org.telegram.messenger.g0.L(19.0f) + lpVar.f35809l1.getMeasuredHeight() + scrollY + lpVar.f28617t0);
+        lp lpVar = this.f34387a0;
+        int scrollY = (int) ((getScrollY() + (lpVar.n1 - lpVar.f28644s0)) - getTranslationY());
+        Drawable drawable = lpVar.f35686i1;
+        drawable.setBounds(0, scrollY, getMeasuredWidth(), org.telegram.messenger.g0.L(19.0f) + lpVar.f35688k1.getMeasuredHeight() + scrollY + lpVar.f28644s0);
         drawable.draw(canvas);
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            lp lpVar = this.f34468b0;
-            if (lpVar.f35811o1 != 0 && motionEvent.getY() < lpVar.f35811o1) {
+            lp lpVar = this.f34387a0;
+            if (lpVar.n1 != 0 && motionEvent.getY() < lpVar.n1) {
                 lpVar.dismiss();
                 return true;
             }
@@ -36,9 +36,9 @@ public final class hp extends NestedScrollView {
     }
 
     @Override
-    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
-        super.onLayout(z10, i3, i10, i11, i12);
-        lp.I0(this.f34468b0);
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        super.onLayout(z9, i7, i10, i11, i12);
+        lp.I0(this.f34387a0);
     }
 
     @Override
@@ -47,14 +47,14 @@ public final class hp extends NestedScrollView {
     }
 
     @Override
-    public final void onScrollChanged(int i3, int i10, int i11, int i12) {
-        super.onScrollChanged(i3, i10, i11, i12);
-        lp.I0(this.f34468b0);
+    public final void onScrollChanged(int i7, int i10, int i11, int i12) {
+        super.onScrollChanged(i7, i10, i11, i12);
+        lp.I0(this.f34387a0);
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f34468b0.J && super.onTouchEvent(motionEvent)) {
+        if (!this.f34387a0.I && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -62,7 +62,7 @@ public final class hp extends NestedScrollView {
 
     @Override
     public final void requestLayout() {
-        if (this.f34467a0) {
+        if (this.W) {
             return;
         }
         super.requestLayout();
@@ -71,6 +71,6 @@ public final class hp extends NestedScrollView {
     @Override
     public final void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        lp.I0(this.f34468b0);
+        lp.I0(this.f34387a0);
     }
 }

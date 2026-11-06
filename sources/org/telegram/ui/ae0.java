@@ -1,77 +1,48 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import android.os.Bundle;
+import org.telegram.ui.Components.RadialProgressView;
 public final class ae0 implements Runnable {
-    public final int f43764a;
-    public final ee0 f43765b;
+    public final int f43607a;
+    public final f f43608b;
+    public final pd0 f43609c;
 
-    public ae0(ee0 ee0Var, int i3) {
-        this.f43764a = i3;
-        this.f43765b = ee0Var;
+    public ae0(int i7, f fVar, pd0 pd0Var) {
+        this.f43607a = i7;
+        this.f43608b = fVar;
+        this.f43609c = pd0Var;
     }
 
     @Override
     public final void run() {
-        si.f fVar;
-        rh.b[] bVarArr;
-        int i3 = this.f43764a;
-        ee0 ee0Var = this.f43765b;
-        switch (i3) {
+        int i7 = this.f43607a;
+        pd0 pd0Var = this.f43609c;
+        f fVar = this.f43608b;
+        switch (i7) {
             case 0:
-                if (Build.VERSION.SDK_INT >= 31 && (fVar = ee0Var.T) != null) {
-                    fVar.f54754c.d = 0L;
-                    ee0Var.U.f54754c.d = 0L;
-                    ee0Var.i0();
-                    return;
-                }
-                return;
-            case 1:
-                ee0.g0(ee0Var);
-                return;
-            case 2:
-                ee0Var.getClass();
-                h9.l0(ee0Var);
-                return;
-            case 3:
-                ee0.h0(ee0Var);
-                return;
-            case 4:
-                ee0.f0(ee0Var);
-                return;
-            case 5:
-                org.telegram.messenger.g0.E2(ee0Var.Q);
-                return;
-            case 6:
-                ee0Var.getClass();
-                new vg0(ee0Var.getParentActivity(), ee0Var).show();
-                return;
-            case 7:
-                ee0Var.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("needFinishFragment", false);
-                ee0Var.presentFragment(new h9(bundle));
+                int i10 = pd0.F;
+                pd0Var.a();
+                org.telegram.messenger.g0.i3(new ae0(1, fVar, pd0Var), 150L);
                 return;
             default:
-                if (ee0Var.getParentActivity() != null && (bVarArr = ee0Var.L) != null) {
-                    rh.b bVar = bVarArr[4];
-                    float width = ((bVar.getWidth() / 2.0f) + (ee0Var.f45621b.getWidth() - ((bVar.getX() + ee0Var.G.getX()) + bVar.getWidth()))) / org.telegram.messenger.g0.f22607p;
-                    gi.l3 l3Var = new gi.l3(ee0Var.getParentActivity(), 3);
-                    ee0Var.Q = l3Var;
-                    l3Var.setTranslationY(org.telegram.messenger.g0.L(4.0f) + (-ee0Var.M));
-                    ee0Var.Q.setPadding(org.telegram.messenger.g0.L(7.33f), 0, org.telegram.messenger.g0.L(7.33f), 0);
-                    ee0Var.Q.r(false);
-                    ee0Var.Q.k(true);
-                    ee0Var.Q.u(org.telegram.messenger.bd.M0(2131744311, null));
-                    ee0Var.Q.o(1.0f, (-width) + 7.33f);
-                    ee0Var.f45621b.addView(ee0Var.Q, b8.mf.d(-1, 100.0f, 87, 0.0f, 0.0f, 0.0f, 72.0f));
-                    gi.l3 l3Var2 = ee0Var.Q;
-                    l3Var2.f13100r0 = new ae0(ee0Var, 5);
-                    l3Var2.d = 8000L;
-                    l3Var2.w();
-                    org.telegram.ui.Components.v20.f38964r.b();
-                    return;
-                }
+                be0 be0Var = (be0) fVar.f45446b;
+                be0Var.h(null);
+                RadialProgressView radialProgressView = be0Var.f44286g0.N.d;
+                RadialProgressView radialProgressView2 = pd0Var.h.d;
+                radialProgressView.getClass();
+                radialProgressView.f31494a = radialProgressView2.f31494a;
+                radialProgressView.f31495b = radialProgressView2.f31495b;
+                radialProgressView.H = radialProgressView2.H;
+                radialProgressView.I = radialProgressView2.I;
+                radialProgressView.J = radialProgressView2.J;
+                radialProgressView.f31496c = radialProgressView2.f31496c;
+                radialProgressView.f31499n = radialProgressView2.f31499n;
+                radialProgressView.f31497e = radialProgressView2.f31497e;
+                radialProgressView.D = radialProgressView2.D;
+                radialProgressView.F = radialProgressView2.F;
+                radialProgressView.G = radialProgressView2.G;
+                radialProgressView.d = radialProgressView2.d;
+                radialProgressView.E = radialProgressView2.E;
+                radialProgressView.b(85L);
                 return;
         }
     }

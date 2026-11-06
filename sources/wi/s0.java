@@ -1,20 +1,20 @@
 package wi;
 public final class s0 {
-    public final int f58047a;
-    public final long f58048b;
-    public final long f58049c;
+    public final int f58021a;
+    public final long f58022b;
+    public final long f58023c;
     public final long d;
-    public final boolean f58050e;
-    public final boolean f58051f;
-    public final boolean f58052g;
+    public final boolean f58024e;
+    public final boolean f58025f;
+    public final boolean f58026g;
 
-    public s0(int i3, long j10, long j11, long j12, boolean z10, boolean z11, boolean z12) {
-        this.f58047a = i3;
-        this.f58048b = j10;
-        this.f58049c = j11;
-        this.d = j12;
-        this.f58050e = z10;
-        this.f58051f = z11;
-        this.f58052g = z12;
+    public s0(int i7, long j3, long j10, long j11, boolean z9, boolean z10, boolean z11) {
+        this.f58021a = i7;
+        this.f58022b = j3;
+        this.f58023c = j10;
+        this.d = j11;
+        this.f58024e = z9;
+        this.f58025f = z10;
+        this.f58026g = z11;
     }
 }

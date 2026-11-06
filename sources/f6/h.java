@@ -1,20 +1,42 @@
 package f6;
-public interface h {
-    void a(f fVar, int i3);
 
-    void d(f fVar, int i3);
+import android.os.Parcel;
+import android.os.Parcelable;
+import c8.wb;
+import java.util.Arrays;
+public final class h extends r6.a {
+    public static final Parcelable.Creator<h> CREATOR = new v(1);
+    public final String f11265a;
+    public final String f11266b;
 
-    void f(f fVar, String str);
+    public h(String str, String str2) {
+        this.f11265a = str;
+        this.f11266b = str2;
+    }
 
-    void g(f fVar);
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof h)) {
+            return false;
+        }
+        h hVar = (h) obj;
+        if (q6.m.k(this.f11265a, hVar.f11265a) && q6.m.k(this.f11266b, hVar.f11266b)) {
+            return true;
+        }
+        return false;
+    }
 
-    void h(f fVar);
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{this.f11265a, this.f11266b});
+    }
 
-    void j(f fVar, String str);
-
-    void l(f fVar, boolean z10);
-
-    void m(f fVar, int i3);
-
-    void n(f fVar, int i3);
+    @Override
+    public final void writeToParcel(Parcel parcel, int i7) {
+        int r10 = wb.r(parcel, 20293);
+        wb.l(parcel, 1, this.f11265a);
+        wb.l(parcel, 2, this.f11266b);
+        wb.s(parcel, r10);
+    }
 }

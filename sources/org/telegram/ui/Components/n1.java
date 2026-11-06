@@ -1,52 +1,186 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.Calendar;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.LaunchActivity;
-public final class n1 implements DialogInterface.OnCancelListener {
-    public final int f36324a = 1;
-    public final int f36325b;
-    public final int[] f36326c;
-    public final Runnable d;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class n1 implements View.OnClickListener {
+    public final int f36201a;
+    public final KeyEvent.Callback f36202b;
+    public final Object f36203c;
+    public final Object d;
+    public final Object f36204e;
+    public final Object f36205f;
+    public final Object h;
 
-    public n1(int i3, int[] iArr, org.telegram.ui.ly lyVar) {
-        this.f36325b = i3;
-        this.f36326c = iArr;
-        this.d = lyVar;
+    public n1(KeyEvent.Callback callback, Object obj, Object obj2, Object obj3, Object obj4, Object obj5, int i7) {
+        this.f36201a = i7;
+        this.f36202b = callback;
+        this.f36204e = obj;
+        this.f36205f = obj2;
+        this.f36203c = obj3;
+        this.h = obj4;
+        this.d = obj5;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        int i3 = this.f36324a;
-        Runnable runnable = this.d;
-        int[] iArr = this.f36326c;
-        int i10 = this.f36325b;
-        switch (i3) {
+    public final void onClick(View view) {
+        boolean z9;
+        switch (this.f36201a) {
             case 0:
-                for (int i11 : iArr) {
-                    if (i11 != 0) {
-                        ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
+                hb0 hb0Var = (hb0) this.f36202b;
+                c4 c4Var = (c4) this.f36204e;
+                d4 d4Var = (d4) this.f36205f;
+                Calendar calendar = (Calendar) this.f36203c;
+                org.telegram.ui.lk0 lk0Var = (org.telegram.ui.lk0) this.h;
+                h9.f1 f1Var = (h9.f1) this.d;
+                boolean g10 = v4.g(null, null, 0L, 0L, 0, hb0Var, c4Var, d4Var);
+                calendar.setTimeInMillis(System.currentTimeMillis());
+                calendar.add(6, hb0Var.getValue());
+                calendar.set(11, c4Var.getValue());
+                calendar.set(12, d4Var.getValue());
+                if (g10) {
+                    calendar.set(13, 0);
+                    calendar.set(14, 0);
+                }
+                int timeInMillis = (int) (calendar.getTimeInMillis() / 1000);
+                ((boolean[]) lk0Var.f47529c)[0] = true;
+                ((org.telegram.ui.g01) lk0Var.f47528b).e(Integer.valueOf(timeInMillis));
+                ((org.telegram.ui.ActionBar.v2) f1Var.f14323b).f28651x0.run();
+                return;
+            case 1:
+                hb0 hb0Var2 = (hb0) this.f36202b;
+                u3 u3Var = (u3) this.f36204e;
+                v3 v3Var = (v3) this.f36205f;
+                Calendar calendar2 = (Calendar) this.f36203c;
+                t4 t4Var = (t4) this.h;
+                h9.f1 f1Var2 = (h9.f1) this.d;
+                boolean g11 = v4.g(null, null, 0L, 0L, 0, hb0Var2, u3Var, v3Var);
+                calendar2.setTimeInMillis(System.currentTimeMillis());
+                calendar2.add(6, hb0Var2.getValue());
+                calendar2.set(11, u3Var.getValue());
+                calendar2.set(12, v3Var.getValue());
+                if (g11) {
+                    calendar2.set(13, 0);
+                    calendar2.set(14, 0);
+                }
+                t4Var.L((int) (calendar2.getTimeInMillis() / 1000), 0, true);
+                ((org.telegram.ui.ActionBar.v2) f1Var2.f14323b).f28651x0.run();
+                return;
+            case 2:
+                hb0 hb0Var3 = (hb0) this.f36202b;
+                hb0 hb0Var4 = (hb0) this.f36204e;
+                hb0 hb0Var5 = (hb0) this.f36205f;
+                Calendar calendar3 = (Calendar) this.f36203c;
+                v4.b(hb0Var3, hb0Var4, hb0Var5);
+                calendar3.set(1, hb0Var5.getValue());
+                calendar3.set(2, hb0Var4.getValue());
+                calendar3.set(5, hb0Var3.getValue());
+                calendar3.set(12, 0);
+                calendar3.set(11, 0);
+                calendar3.set(13, 0);
+                ((org.telegram.messenger.sr) this.h).a((int) (calendar3.getTimeInMillis() / 1000));
+                ((org.telegram.ui.ActionBar.v2) ((h9.f1) this.d).f14323b).f28651x0.run();
+                return;
+            case 3:
+                yv0 yv0Var = (yv0) this.f36202b;
+                int[] iArr = (int[]) this.f36204e;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f36205f;
+                TextView textView = (TextView) this.f36203c;
+                TextView textView2 = (TextView) this.h;
+                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.d;
+                int i7 = iArr[0];
+                if (i7 != 1) {
+                    if (i7 == 0) {
+                        iArr[0] = 1;
+                        TLRPC.TL_stickers_suggestShortName tL_stickers_suggestShortName = new TLRPC.TL_stickers_suggestShortName();
+                        String obj = editTextBoldCursor.getText().toString();
+                        yv0Var.f40729i2 = obj;
+                        tL_stickers_suggestShortName.title = obj;
+                        ConnectionsManager.getInstance(yv0Var.f28612a).sendRequest(tL_stickers_suggestShortName, new bi.r8(yv0Var, editTextBoldCursor, textView, textView2, iArr, 7));
+                        return;
+                    } else if (i7 == 2) {
+                        iArr[0] = 3;
+                        if (!yv0Var.f40727h2) {
+                            org.telegram.messenger.g0.F3(editTextBoldCursor);
+                            try {
+                                editTextBoldCursor.performHapticFeedback(3, 2);
+                            } catch (Exception unused) {
+                            }
+                        }
+                        org.telegram.messenger.g0.v1(editTextBoldCursor);
+                        org.telegram.messenger.gz C = org.telegram.messenger.gz.C(yv0Var.f28612a);
+                        String str = yv0Var.f40729i2;
+                        String str2 = yv0Var.f40725f2;
+                        String str3 = yv0Var.R1;
+                        ArrayList arrayList = yv0Var.P1;
+                        hv0 hv0Var = new hv0(yv0Var);
+                        if (C.F.get(str2) != null) {
+                            hv0Var.a(null);
+                        } else {
+                            new Thread(new org.telegram.messenger.zj((Object) C, str, str2, (Object) str3, (Object) arrayList, (Object) hv0Var, 9)).start();
+                        }
+                        alertDialog$Builder.f27292a.L0.run();
+                        yv0Var.dismiss();
+                        return;
+                    } else {
+                        return;
                     }
                 }
-                if (runnable != null) {
-                    runnable.run();
-                    return;
+                return;
+            case 4:
+                org.telegram.ui.ActionBar.v2 v2Var = (org.telegram.ui.ActionBar.v2) this.f36202b;
+                ArrayList arrayList2 = (ArrayList) this.f36205f;
+                int[] iArr2 = (int[]) this.f36203c;
+                w8 w8Var = (w8) this.h;
+                l9 l9Var = (l9) this.d;
+                k60 F = k60.F(v2Var.f28618c, v2Var.I0, (FrameLayout) this.f36204e);
+                int size = arrayList2.size();
+                int i10 = 0;
+                while (i10 < size) {
+                    int i11 = i10 + 1;
+                    int intValue = ((Integer) arrayList2.get(i10)).intValue();
+                    TLRPC.User f10 = org.telegram.messenger.p10.i(intValue).f();
+                    if (f10 != null) {
+                        if (iArr2[0] == intValue) {
+                            z9 = true;
+                        } else {
+                            z9 = false;
+                        }
+                        F.e(intValue, z9, new bi.ub(iArr2, intValue, w8Var, f10, l9Var, 23));
+                    }
+                    i10 = i11;
                 }
+                F.f35217t = false;
+                F.Y = true;
+                F.f35216s = 0;
+                F.f35198i = 3;
+                F.a0(-org.telegram.messenger.g0.L(8.0f), -org.telegram.messenger.g0.L(8.0f));
+                F.Z();
                 return;
             default:
-                String str = LaunchActivity.E1;
-                ConnectionsManager.getInstance(i10).cancelRequest(iArr[0], true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                Calendar calendar4 = (Calendar) this.f36203c;
+                calendar4.setTimeInMillis((((hb0) this.f36202b).getValue() * 86400000) + System.currentTimeMillis());
+                calendar4.set(11, ((wg.f) this.f36204e).getValue());
+                calendar4.set(12, ((wg.g) this.f36205f).getValue() * 5);
+                ((wg.u) this.h).L((int) (calendar4.getTimeInMillis() / 1000), 0, true);
+                ((org.telegram.ui.ActionBar.v2) ((h9.f1) this.d).f14323b).f28651x0.run();
                 return;
         }
     }
 
-    public n1(int[] iArr, int i3, Runnable runnable) {
-        this.f36326c = iArr;
-        this.f36325b = i3;
-        this.d = runnable;
+    public n1(Calendar calendar, hb0 hb0Var, wg.f fVar, wg.g gVar, wg.u uVar, h9.f1 f1Var) {
+        this.f36201a = 5;
+        this.f36203c = calendar;
+        this.f36202b = hb0Var;
+        this.f36204e = fVar;
+        this.f36205f = gVar;
+        this.h = uVar;
+        this.d = f1Var;
     }
 }

@@ -1,100 +1,195 @@
 package ni;
 
-import android.content.Context;
-import android.graphics.PointF;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import u4.b0;
-import u4.o0;
-import u4.y0;
-import u4.z0;
-public class m extends z0 {
-    public final LinearInterpolator f20454i;
-    public final DecelerateInterpolator f20455j;
-    public final float f20456k;
-    public int f20457l;
-    public int f20458m;
-    public final int f20459n;
-    public final float f20460o;
-    public int f20461p;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.CharacterStyle;
+import com.google.android.gms.internal.play_billing.s0;
+import hi.n1;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.Map;
+public abstract class m {
+    public static int f20634c;
+    public static final s f20632a = new s(new a(0), new a(1));
+    public static final LinkedHashMap f20633b = new LinkedHashMap(8, 0.75f, true);
+    public static final Object d = new Object();
+    public static final ArrayList f20635e = new ArrayList();
 
-    public m(Context context, int i3) {
-        this.f20454i = new LinearInterpolator();
-        this.f20455j = new DecelerateInterpolator(1.5f);
-        this.f20457l = 0;
-        this.f20458m = 0;
-        this.f20460o = 1.0f;
-        this.f20456k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
-        this.f20459n = i3;
-    }
-
-    @Override
-    public final PointF a(int i3) {
-        o0 o0Var = this.f55706c;
-        if (o0Var instanceof b0) {
-            return ((b0) o0Var).E0(i3);
+    public static void a(Spannable spannable, int i7, s0 s0Var) {
+        Object[] spans;
+        f[] fVarArr;
+        Object[] spans2;
+        k[] kVarArr;
+        if (i7 != 0) {
+            boolean z9 = spannable instanceof g;
+            if (z9) {
+                spans = g.a((g) spannable, i7, f.class);
+            } else {
+                spans = spannable.getSpans(0, i7, f.class);
+            }
+            for (f fVar : (f[]) spans) {
+                d(spannable, i7, fVar);
+                spannable.removeSpan(fVar);
+            }
+            if (z9) {
+                spans2 = g.a((g) spannable, i7, k.class);
+            } else {
+                spans2 = spannable.getSpans(0, i7, k.class);
+            }
+            for (k kVar : (k[]) spans2) {
+                d(spannable, i7, kVar);
+                spannable.removeSpan(kVar);
+            }
+            if (s0Var != null) {
+                int[] b10 = s0Var.b();
+                for (int i10 = 0; i10 < b10.length; i10 += 3) {
+                    int i11 = b10[i10];
+                    int i12 = b10[i10 + 1];
+                    int i13 = b10[i10 + 2];
+                    if (i11 >= 0 && i12 <= i7 && i11 < i12) {
+                        int i14 = i13 & 255;
+                        if (i14 != 0) {
+                            spannable.setSpan(new f(i14), i11, i12, 33);
+                        }
+                        if ((i13 & 768) != 0) {
+                            spannable.setSpan(new k(i13), i11, i12, 33);
+                        }
+                    }
+                }
+            }
         }
-        return null;
     }
 
-    @Override
-    public final void d(int i3, int i10, y0 y0Var) {
-        if (this.f55705b.f2305y.r() == 0) {
-            h();
+    public static SpannableString b(CharSequence charSequence, String str) {
+        boolean z9;
+        if (charSequence == null) {
+            charSequence = "";
+        }
+        String b10 = s.b(str);
+        if (!b10.isEmpty() && charSequence.length() != 0) {
+            String charSequence2 = charSequence.toString();
+            e eVar = new e(b10, charSequence2);
+            if (!(charSequence instanceof Spanned) && charSequence2.length() <= 65536) {
+                z9 = true;
+            } else {
+                z9 = false;
+            }
+            LinkedHashMap linkedHashMap = f20633b;
+            synchronized (linkedHashMap) {
+                if (z9) {
+                    try {
+                        SpannableString spannableString = (SpannableString) linkedHashMap.get(eVar);
+                        if (spannableString != null) {
+                            return spannableString;
+                        }
+                    } catch (Throwable th2) {
+                        throw th2;
+                    }
+                }
+                g gVar = new g(charSequence);
+                if (z9) {
+                    linkedHashMap.put(eVar, gVar);
+                    f20634c += charSequence2.length();
+                    while (true) {
+                        LinkedHashMap linkedHashMap2 = f20633b;
+                        if (linkedHashMap2.size() <= 8 && f20634c <= 65536) {
+                            break;
+                        }
+                        Map.Entry entry = (Map.Entry) linkedHashMap2.entrySet().iterator().next();
+                        f20634c -= ((e) entry.getKey()).f20618b.length();
+                        linkedHashMap2.remove(entry.getKey());
+                    }
+                }
+                c(gVar, gVar.length(), b10);
+                return gVar;
+            }
+        }
+        return new SpannableString(charSequence);
+    }
+
+    public static void c(Spannable spannable, int i7, String str) {
+        l lVar;
+        l lVar2;
+        r rVar;
+        if (spannable == null) {
             return;
         }
-        int i11 = this.f20457l;
-        int i12 = i11 - i3;
-        int i13 = 0;
-        if (i11 * i12 <= 0) {
-            i12 = 0;
-        }
-        this.f20457l = i12;
-        int i14 = this.f20458m;
-        int i15 = i14 - i10;
-        if (i14 * i15 > 0) {
-            i13 = i15;
-        }
-        this.f20458m = i13;
-        if (i12 == 0 && i13 == 0) {
-            PointF a10 = a(this.f55704a);
-            if (a10 != null && (a10.x != 0.0f || a10.y != 0.0f)) {
-                z0.b(a10);
-                this.f20457l = (int) (a10.x * 10000.0f);
-                this.f20458m = (int) (a10.y * 10000.0f);
-                y0Var.b((int) (this.f20457l * 1.2f), (int) (this.f20458m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f20456k)) * 1.2f), this.f20454i);
-                return;
+        if (i7 >= 0 && i7 <= spannable.length()) {
+            i iVar = new i(spannable.subSequence(0, i7).toString());
+            long j3 = (0 << 32) | (i7 & 4294967295L);
+            synchronized (d) {
+                try {
+                    ArrayList arrayList = f20635e;
+                    Iterator it = arrayList.iterator();
+                    while (true) {
+                        if (it.hasNext()) {
+                            lVar = (l) it.next();
+                            Spannable spannable2 = (Spannable) lVar.f20630a.get();
+                            if (spannable2 == null) {
+                                it.remove();
+                            } else if (spannable2 == spannable) {
+                                break;
+                            }
+                        } else {
+                            lVar = new l(spannable);
+                            arrayList.add(lVar);
+                            break;
+                        }
+                    }
+                    lVar2 = lVar;
+                    i iVar2 = (i) lVar2.f20631b.put(Long.valueOf(j3), iVar);
+                    if (iVar2 != null && (rVar = iVar2.f20623b) != null) {
+                        rVar.f20643a = null;
+                    }
+                } finally {
+                }
             }
-            y0Var.d = this.f55704a;
-            h();
+            r d2 = f20632a.d(iVar.f20622a, str, new n1(i7, 2, j3, lVar2, iVar));
+            synchronized (d) {
+                try {
+                    if (lVar2.f20631b.get(Long.valueOf(j3)) == iVar) {
+                        iVar.f20623b = d2;
+                    } else {
+                        d2.f20643a = null;
+                    }
+                } finally {
+                }
+            }
+            return;
         }
+        throw new IndexOutOfBoundsException();
     }
 
-    @Override
-    public final void f() {
-        this.f20458m = 0;
-        this.f20457l = 0;
-    }
-
-    @Override
-    public final void g(android.view.View r8, u4.y0 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: ni.m.g(android.view.View, u4.y0):void");
-    }
-
-    public m(Context context, int i3, float f10) {
-        this.f20454i = new LinearInterpolator();
-        this.f20455j = new DecelerateInterpolator(1.5f);
-        this.f20457l = 0;
-        this.f20458m = 0;
-        this.f20460o = f10;
-        this.f20456k = (25.0f / context.getResources().getDisplayMetrics().densityDpi) * f10;
-        this.f20459n = i3;
-    }
-
-    @Override
-    public void e() {
-    }
-
-    public void i() {
+    public static void d(Spannable spannable, int i7, CharacterStyle characterStyle) {
+        int spanStart;
+        int spanEnd;
+        Object kVar;
+        Object kVar2;
+        if (spannable instanceof g) {
+            g gVar = (g) spannable;
+            spanStart = g.b(gVar, characterStyle);
+            spanEnd = g.c(gVar, characterStyle);
+        } else {
+            spanStart = spannable.getSpanStart(characterStyle);
+            spanEnd = spannable.getSpanEnd(characterStyle);
+        }
+        if (spanStart >= 0 && spanStart < 0) {
+            if (characterStyle instanceof f) {
+                kVar2 = new f(((f) characterStyle).f20619a);
+            } else {
+                kVar2 = new k(((k) characterStyle).f20629b);
+            }
+            spannable.setSpan(kVar2, spanStart, Math.min(0, spanEnd), 33);
+        }
+        if (spanEnd > i7) {
+            if (characterStyle instanceof f) {
+                kVar = new f(((f) characterStyle).f20619a);
+            } else {
+                kVar = new k(((k) characterStyle).f20629b);
+            }
+            spannable.setSpan(kVar, Math.max(i7, spanStart), spanEnd, 33);
+        }
     }
 }

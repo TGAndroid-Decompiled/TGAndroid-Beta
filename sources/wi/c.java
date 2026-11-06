@@ -1,24 +1,24 @@
 package wi;
 
-import org.telegram.ui.Components.nh;
+import org.telegram.ui.Components.qt;
 public final class c {
-    public final int f57793a;
-    public final nh f57794b;
+    public final int f57807a;
+    public final qt f57808b;
 
-    public c(nh nhVar, int i3) {
-        this.f57793a = i3;
-        this.f57794b = nhVar;
+    public c(qt qtVar, int i7) {
+        this.f57807a = i7;
+        this.f57808b = qtVar;
     }
 
     public void a(Exception exc) {
-        switch (this.f57793a) {
+        switch (this.f57807a) {
             case 0:
-                nh nhVar = this.f57794b;
-                ((t0) nhVar.f36540b).f58060i.post(new j0(nhVar, exc, 1));
+                qt qtVar = this.f57808b;
+                ((t0) qtVar.f37504b).f58080i.post(new j0(qtVar, exc, 1));
                 return;
             default:
-                nh nhVar2 = this.f57794b;
-                ((t0) nhVar2.f36540b).f58060i.post(new j0(nhVar2, exc, 0));
+                qt qtVar2 = this.f57808b;
+                ((t0) qtVar2.f37504b).f58080i.post(new j0(qtVar2, exc, 0));
                 return;
         }
     }

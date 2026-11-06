@@ -1,31 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.graphics.drawable.ShapeDrawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-public final class rv0 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public org.telegram.ui.ActionBar.e6 f37810a;
-    public ShapeDrawable f37811b;
-    public View f37812c;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.tgnet.TLRPC;
+public final class rv0 extends v4.x {
+    public int f37858e;
+    public final yv0 f37859f;
+
+    public rv0(yv0 yv0Var) {
+        this.f37859f = yv0Var;
+        this.d = 15;
+        this.f37858e = -1;
+    }
 
     @Override
-    public final void updateColors() {
-        try {
-            ShapeDrawable shapeDrawable = this.f37811b;
-            if (shapeDrawable != null) {
-                org.telegram.ui.ActionBar.k6.C1(org.telegram.ui.ActionBar.k6.r1(0.12f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Bf, this.f37810a)), shapeDrawable);
-                View view = this.f37812c;
-                if (view != null) {
-                    view.invalidate();
-                }
+    public final boolean n(RecyclerView recyclerView, v4.d1 d1Var, v4.d1 d1Var2) {
+        int i7 = d1Var.f56931f;
+        if (i7 != 3 && i7 == d1Var2.f56931f) {
+            yv0 yv0Var = this.f37859f;
+            if (yv0Var.J1 == null) {
+                return false;
             }
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+            int b10 = d1Var.b();
+            int b11 = d1Var2.b();
+            yv0Var.J1.documents.add(b11, yv0Var.J1.documents.remove(b10));
+            yv0Var.f40732k1.j(b10, b11);
+            this.f37858e = b11;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void p(v4.d1 d1Var, int i7) {
+        yv0 yv0Var = this.f37859f;
+        if (i7 == 0 && yv0Var.f40735m1 != null && this.f37858e > 0) {
+            TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
+            tL_stickers_changeStickerPosition.position = this.f37858e;
+            tL_stickers_changeStickerPosition.sticker = org.telegram.messenger.ui.a0(yv0Var.f40735m1, "").document;
+            this.f37858e = -1;
+            yv0Var.f40735m1 = null;
+        } else if (i7 == 2) {
+            yv0Var.f40735m1 = ((org.telegram.ui.Cells.z7) d1Var.f56927a).getSticker();
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void q(v4.d1 d1Var) {
+    }
+
+    @Override
+    public final void o(RecyclerView recyclerView, v4.d1 d1Var, v4.d1 d1Var2, int i7, int i10, int i11) {
     }
 }

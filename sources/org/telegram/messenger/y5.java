@@ -2,38 +2,38 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class y5 {
-    public final int[] f26524a;
-    public final long[] f26525b;
-    public boolean f26526c;
+    public final int[] f26572a;
+    public final long[] f26573b;
+    public boolean f26574c;
     public boolean d;
-    public boolean f26527e;
-    public boolean f26528f;
-    public boolean f26529g;
+    public boolean f26575e;
+    public boolean f26576f;
+    public boolean f26577g;
     public int h;
 
-    public y5(int[] iArr, long j10, long j11, long j12, boolean z10, boolean z11, boolean z12, boolean z13, int i3, boolean z14) {
+    public y5(int[] iArr, long j3, long j10, long j11, boolean z9, boolean z10, boolean z11, boolean z12, int i7, boolean z13) {
         int[] iArr2 = new int[4];
-        this.f26524a = iArr2;
-        this.f26525b = r2;
+        this.f26572a = iArr2;
+        this.f26573b = r2;
         System.arraycopy(iArr, 0, iArr2, 0, Math.max(iArr.length, 4));
-        long[] jArr = {j10, j11, j12, 524288};
-        this.f26526c = z10;
-        this.d = z11;
-        this.f26528f = z13;
-        this.h = i3;
-        this.f26529g = z12;
-        this.f26527e = z14;
+        long[] jArr = {j3, j10, j11, 524288};
+        this.f26574c = z9;
+        this.d = z10;
+        this.f26576f = z12;
+        this.h = i7;
+        this.f26577g = z11;
+        this.f26575e = z13;
     }
 
     public final boolean a(y5 y5Var) {
-        int[] iArr = this.f26524a;
-        int i3 = iArr[0];
-        int[] iArr2 = y5Var.f26524a;
-        if (i3 == iArr2[0] && iArr[1] == iArr2[1] && iArr[2] == iArr2[2] && iArr[3] == iArr2[3]) {
-            long[] jArr = this.f26525b;
-            long j10 = jArr[0];
-            long[] jArr2 = y5Var.f26525b;
-            if (j10 == jArr2[0] && jArr[1] == jArr2[1] && jArr[2] == jArr2[2] && jArr[3] == jArr2[3] && this.f26526c == y5Var.f26526c && this.d == y5Var.d && this.h == y5Var.h && this.f26527e == y5Var.f26527e) {
+        int[] iArr = this.f26572a;
+        int i7 = iArr[0];
+        int[] iArr2 = y5Var.f26572a;
+        if (i7 == iArr2[0] && iArr[1] == iArr2[1] && iArr[2] == iArr2[2] && iArr[3] == iArr2[3]) {
+            long[] jArr = this.f26573b;
+            long j3 = jArr[0];
+            long[] jArr2 = y5Var.f26573b;
+            if (j3 == jArr2[0] && jArr[1] == jArr2[1] && jArr[2] == jArr2[2] && jArr[3] == jArr2[3] && this.f26574c == y5Var.f26574c && this.d == y5Var.d && this.h == y5Var.h && this.f26575e == y5Var.f26575e) {
                 return true;
             }
         }
@@ -41,64 +41,64 @@ public final class y5 {
     }
 
     public final boolean b() {
-        int i3 = 0;
+        int i7 = 0;
         while (true) {
-            int[] iArr = this.f26524a;
-            if (i3 >= iArr.length) {
+            int[] iArr = this.f26572a;
+            if (i7 >= iArr.length) {
                 return false;
             }
-            if (iArr[i3] != 0) {
+            if (iArr[i7] != 0) {
                 return true;
             }
-            i3++;
+            i7++;
         }
     }
 
     public final void c(y5 y5Var) {
-        int[] iArr = y5Var.f26524a;
-        int[] iArr2 = this.f26524a;
+        int[] iArr = y5Var.f26572a;
+        int[] iArr2 = this.f26572a;
         System.arraycopy(iArr, 0, iArr2, 0, iArr2.length);
-        long[] jArr = y5Var.f26525b;
-        long[] jArr2 = this.f26525b;
+        long[] jArr = y5Var.f26573b;
+        long[] jArr2 = this.f26573b;
         System.arraycopy(jArr, 0, jArr2, 0, jArr2.length);
-        this.f26526c = y5Var.f26526c;
+        this.f26574c = y5Var.f26574c;
         this.d = y5Var.d;
-        this.f26528f = y5Var.f26528f;
+        this.f26576f = y5Var.f26576f;
         this.h = y5Var.h;
-        this.f26527e = y5Var.f26527e;
+        this.f26575e = y5Var.f26575e;
     }
 
     public final void d(TLRPC.TL_autoDownloadSettings tL_autoDownloadSettings) {
         this.d = tL_autoDownloadSettings.audio_preload_next;
-        this.f26526c = tL_autoDownloadSettings.video_preload_large;
-        this.f26528f = tL_autoDownloadSettings.phonecalls_less_data;
+        this.f26574c = tL_autoDownloadSettings.video_preload_large;
+        this.f26576f = tL_autoDownloadSettings.phonecalls_less_data;
         this.h = tL_autoDownloadSettings.video_upload_maxbitrate;
-        long[] jArr = this.f26525b;
-        int i3 = 0;
+        long[] jArr = this.f26573b;
+        int i7 = 0;
         jArr[0] = Math.max(512000, tL_autoDownloadSettings.photo_size_max);
         jArr[1] = Math.max(512000L, tL_autoDownloadSettings.video_size_max);
         jArr[2] = Math.max(512000L, tL_autoDownloadSettings.file_size_max);
         while (true) {
-            int[] iArr = this.f26524a;
-            if (i3 < iArr.length) {
+            int[] iArr = this.f26572a;
+            if (i7 < iArr.length) {
                 if (tL_autoDownloadSettings.photo_size_max != 0 && !tL_autoDownloadSettings.disabled) {
-                    iArr[i3] = iArr[i3] | 1;
+                    iArr[i7] = iArr[i7] | 1;
                 } else {
-                    iArr[i3] = iArr[i3] & (-2);
+                    iArr[i7] = iArr[i7] & (-2);
                 }
                 if (tL_autoDownloadSettings.video_size_max != 0 && !tL_autoDownloadSettings.disabled) {
-                    iArr[i3] = iArr[i3] | 4;
+                    iArr[i7] = iArr[i7] | 4;
                 } else {
-                    iArr[i3] = iArr[i3] & (-5);
+                    iArr[i7] = iArr[i7] & (-5);
                 }
                 if (tL_autoDownloadSettings.file_size_max != 0 && !tL_autoDownloadSettings.disabled) {
-                    iArr[i3] = iArr[i3] | 8;
+                    iArr[i7] = iArr[i7] | 8;
                 } else {
-                    iArr[i3] = iArr[i3] & (-9);
+                    iArr[i7] = iArr[i7] & (-9);
                 }
-                i3++;
+                i7++;
             } else {
-                this.f26527e = true;
+                this.f26575e = true;
                 return;
             }
         }
@@ -106,7 +106,7 @@ public final class y5 {
 
     public final String toString() {
         StringBuilder sb2 = new StringBuilder();
-        int[] iArr = this.f26524a;
+        int[] iArr = this.f26572a;
         sb2.append(iArr[0]);
         sb2.append("_");
         sb2.append(iArr[1]);
@@ -115,7 +115,7 @@ public final class y5 {
         sb2.append("_");
         sb2.append(iArr[3]);
         sb2.append("_");
-        long[] jArr = this.f26525b;
+        long[] jArr = this.f26573b;
         sb2.append(jArr[0]);
         sb2.append("_");
         sb2.append(jArr[1]);
@@ -124,26 +124,26 @@ public final class y5 {
         sb2.append("_");
         sb2.append(jArr[3]);
         sb2.append("_");
-        sb2.append(this.f26526c ? 1 : 0);
+        sb2.append(this.f26574c ? 1 : 0);
         sb2.append("_");
         sb2.append(this.d ? 1 : 0);
         sb2.append("_");
-        sb2.append(this.f26529g ? 1 : 0);
+        sb2.append(this.f26577g ? 1 : 0);
         sb2.append("_");
-        sb2.append(this.f26528f ? 1 : 0);
+        sb2.append(this.f26576f ? 1 : 0);
         sb2.append("_");
         sb2.append(this.h);
         sb2.append("_");
-        sb2.append(this.f26527e ? 1 : 0);
+        sb2.append(this.f26575e ? 1 : 0);
         return sb2.toString();
     }
 
     public y5(String str, String str2) {
         String[] split;
         int[] iArr = new int[4];
-        this.f26524a = iArr;
+        this.f26572a = iArr;
         long[] jArr = new long[4];
-        this.f26525b = jArr;
+        this.f26573b = jArr;
         String[] split2 = str.split("_");
         if (split2.length >= 11) {
             iArr[0] = Utilities.z(split2[0]).intValue();
@@ -154,15 +154,15 @@ public final class y5 {
             jArr[1] = Utilities.z(split2[5]).intValue();
             jArr[2] = Utilities.z(split2[6]).intValue();
             jArr[3] = Utilities.z(split2[7]).intValue();
-            this.f26526c = Utilities.z(split2[8]).intValue() == 1;
+            this.f26574c = Utilities.z(split2[8]).intValue() == 1;
             this.d = Utilities.z(split2[9]).intValue() == 1;
-            this.f26529g = Utilities.z(split2[10]).intValue() == 1;
+            this.f26577g = Utilities.z(split2[10]).intValue() == 1;
             if (split2.length >= 12) {
-                this.f26528f = Utilities.z(split2[11]).intValue() == 1;
+                this.f26576f = Utilities.z(split2[11]).intValue() == 1;
                 split = null;
             } else {
                 split = str2.split("_");
-                this.f26528f = Utilities.z(split[11]).intValue() == 1;
+                this.f26576f = Utilities.z(split[11]).intValue() == 1;
             }
             if (split2.length >= 13) {
                 this.h = Utilities.z(split2[12]).intValue();
@@ -171,9 +171,9 @@ public final class y5 {
                 this.h = Utilities.z(split[12]).intValue();
             }
             if (split2.length >= 14) {
-                this.f26527e = Utilities.z(split2[13]).intValue() == 1;
+                this.f26575e = Utilities.z(split2[13]).intValue() == 1;
             } else {
-                this.f26527e = Utilities.z((split == null ? str2.split("_") : split)[13]).intValue() == 1;
+                this.f26575e = Utilities.z((split == null ? str2.split("_") : split)[13]).intValue() == 1;
             }
         }
     }

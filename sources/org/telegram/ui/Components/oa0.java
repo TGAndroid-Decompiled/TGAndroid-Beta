@@ -1,68 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Paint;
+import android.content.Context;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Shader;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ImageSpan;
 public final class oa0 {
-    public final Paint f36791a;
-    public final pa0 f36792b;
-    public final pa0 f36793c;
-    public final pa0 d;
-    public final na0 f36794e;
-    public final na0 f36795f;
-    public final float[] f36796g;
-    public int h;
-    public float f36797i;
+    public SpannableStringBuilder f36684a;
+    public int f36685b;
+    public Drawable f36686c;
+    public float d;
+    public final int f36687e;
+    public final int f36688f;
+    public int f36689g = -1;
+    public int h = -1;
+    public float f36690i = 4.66f;
 
-    public oa0() {
-        Paint paint = new Paint();
-        this.f36791a = paint;
-        Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-        this.f36792b = new pa0(tileMode);
-        this.f36793c = new pa0(tileMode);
-        this.d = new pa0(Shader.TileMode.REPEAT);
-        this.f36794e = new na0(2131624361);
-        this.f36795f = new na0(2131624360);
-        this.f36796g = new float[4];
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+    public oa0(int i7, int i10) {
+        this.f36687e = i7;
+        this.f36688f = i10;
     }
 
-    public final Paint a(Bitmap bitmap, Bitmap bitmap2, Bitmap bitmap3, int i3, int i10) {
-        pa0 pa0Var = this.f36792b;
-        boolean b10 = pa0Var.b(bitmap);
-        pa0 pa0Var2 = this.d;
-        boolean b11 = b10 | pa0Var2.b(bitmap2);
-        Paint paint = this.f36791a;
-        if (i10 >= 0) {
-            pa0 pa0Var3 = this.f36793c;
-            if ((b11 | pa0Var3.b(bitmap3)) || this.h != 1) {
-                this.h = 1;
-                na0 na0Var = this.f36794e;
-                na0Var.f36423a.setInputBuffer("shaderPattern", pa0Var2.d);
-                na0Var.f36423a.setInputBuffer("shaderGradient", pa0Var.d);
-                na0Var.f36423a.setInputBuffer("shaderGradientSoftLight", pa0Var3.d);
-                na0Var.f36423a.setFloatUniform("transformGradient", na0Var.f36424b);
-                na0Var.f36423a.setFloatUniform("transformPattern", na0Var.f36425c);
-                paint.setShader(na0Var.f36423a);
-                return paint;
+    public final CharSequence a(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        int L;
+        int L2;
+        SpannableStringBuilder spannableStringBuilder = this.f36684a;
+        int i7 = this.f36688f;
+        if (spannableStringBuilder != null && this.f36686c != null && org.telegram.messenger.g0.f22536p == this.d) {
+            if (this.f36685b != org.telegram.ui.ActionBar.k6.w0(i7, f6Var)) {
+                Drawable drawable = this.f36686c;
+                int w02 = org.telegram.ui.ActionBar.k6.w0(i7, f6Var);
+                this.f36685b = w02;
+                drawable.setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.SRC_IN));
             }
+            return this.f36684a;
+        } else if (context == null) {
+            return null;
         } else {
-            float a10 = b8.be.a((i3 * (-i10)) / 25500.0f, 0.0f, 1.0f);
-            if (b11 || this.f36797i != a10 || this.h != 2) {
-                this.h = 2;
-                this.f36797i = a10;
-                na0 na0Var2 = this.f36795f;
-                na0Var2.f36423a.setInputBuffer("shaderPattern", pa0Var2.d);
-                na0Var2.f36423a.setInputBuffer("shaderGradient", pa0Var.d);
-                na0Var2.f36423a.setFloatUniform("intensity", a10);
-                na0Var2.f36423a.setFloatUniform("transformGradient", na0Var2.f36424b);
-                na0Var2.f36423a.setFloatUniform("transformPattern", na0Var2.f36425c);
-                paint.setShader(na0Var2.f36423a);
-                return paint;
+            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("v ");
+            this.d = org.telegram.messenger.g0.f22536p;
+            Drawable mutate = context.getResources().getDrawable(this.f36687e).mutate();
+            this.f36686c = mutate;
+            int w03 = org.telegram.ui.ActionBar.k6.w0(i7, f6Var);
+            this.f36685b = w03;
+            mutate.setColorFilter(new PorterDuffColorFilter(w03, PorterDuff.Mode.SRC_IN));
+            int i10 = this.f36689g;
+            if (i10 <= 0) {
+                L = this.f36686c.getIntrinsicWidth();
+            } else {
+                L = org.telegram.messenger.g0.L(i10);
             }
+            int i11 = this.h;
+            if (i11 <= 0) {
+                L2 = this.f36686c.getIntrinsicHeight();
+            } else {
+                L2 = org.telegram.messenger.g0.L(i11);
+            }
+            int L3 = org.telegram.messenger.g0.L(this.f36690i);
+            this.f36686c.setBounds(0, L3, L, L2 + L3);
+            spannableStringBuilder2.setSpan(new ImageSpan(this.f36686c, 2), 0, 1, 33);
+            spannableStringBuilder2.setSpan(new org.telegram.ui.Cells.r2(org.telegram.messenger.g0.L(2.0f)), 1, 2, 33);
+            this.f36684a = spannableStringBuilder2;
+            return spannableStringBuilder2;
         }
-        return paint;
     }
 }

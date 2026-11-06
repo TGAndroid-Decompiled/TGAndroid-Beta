@@ -1,34 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
+import android.os.Build;
+import android.view.KeyEvent;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-public final class hn0 {
-    public final nt f34458a;
-    public final long f34459b;
-    public final float f34460c;
-    public final float d;
-    public final float f34461e;
+import android.view.WindowInsets;
+public final class hn0 implements oi.m, r0.m, org.telegram.ui.ActionBar.e1, oi.n {
+    public final int f34383a;
+    public final mo0 f34384b;
 
-    public hn0(View view) {
-        nt ntVar = new nt(1, view);
-        this.f34459b = System.currentTimeMillis();
-        this.f34458a = ntVar;
-        f5.a aVar = Utilities.f21386c;
-        this.f34460c = org.telegram.messenger.g0.T1(5.0f, 9.0f, Utilities.l(aVar.nextFloat()));
-        this.d = org.telegram.messenger.g0.T1(2.5f, 5.0f, Utilities.l(aVar.nextFloat()));
-        this.f34461e = org.telegram.messenger.g0.T1(2.5f, 5.2f, Utilities.l(aVar.nextFloat()));
+    public hn0(mo0 mo0Var, int i7) {
+        this.f34383a = i7;
+        this.f34384b = mo0Var;
     }
 
-    public final void a(Canvas canvas, float f10) {
-        nt ntVar;
-        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f34459b)) / 1000.0f;
-        canvas.translate(0.0f, 0.0f);
-        canvas.rotate(((float) Math.sin(this.f34460c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f10);
-        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10, ((float) Math.sin(currentTimeMillis * this.f34461e * 3.141592653589793d)) * org.telegram.messenger.g0.L(0.5f) * f10);
-        canvas.translate(-0.0f, -0.0f);
-        if (f10 > 0.0f && (ntVar = this.f34458a) != null) {
-            ntVar.run();
+    @Override
+    public r0.k1 S0(View view, r0.k1 k1Var) {
+        WindowInsets g10 = k1Var.g();
+        mo0 mo0Var = this.f34384b;
+        mo0Var.t0(g10);
+        i0.b f10 = k1Var.f54084a.f(519);
+        if (!mo0Var.f36092y2.equals(f10)) {
+            mo0Var.f36092y2 = f10;
+            mo0Var.f28618c.requestLayout();
+        }
+        return r0.k1.f54083b;
+    }
+
+    @Override
+    public int h() {
+        mo0 mo0Var = this.f34384b;
+        mo0Var.getClass();
+        return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27848d6, mo0Var.I0);
+    }
+
+    @Override
+    public void j(KeyEvent keyEvent) {
+        org.telegram.ui.ActionBar.g1 g1Var;
+        org.telegram.ui.ActionBar.g1 g1Var2;
+        switch (this.f34383a) {
+            case 2:
+                mo0 mo0Var = this.f34384b;
+                mo0Var.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var = mo0Var.B2) != null && g1Var.isShowing()) {
+                    mo0Var.B2.d(true);
+                    return;
+                }
+                return;
+            default:
+                mo0 mo0Var2 = this.f34384b;
+                mo0Var2.getClass();
+                if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (g1Var2 = mo0Var2.B2) != null && g1Var2.isShowing()) {
+                    mo0Var2.B2.d(true);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void l(int i7) {
+        mo0 mo0Var = this.f34384b;
+        dh.g gVar = mo0Var.G2;
+        if (Build.VERSION.SDK_INT >= 31 && gVar != null) {
+            if (c8.yc.a(i7, 4)) {
+                gVar.h(mo0Var.X0.e());
+            }
+            gVar.e(mo0Var.L2, mo0Var.f28615b.getWidth(), mo0Var.f28615b.getHeight());
         }
     }
 }

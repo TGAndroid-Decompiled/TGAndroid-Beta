@@ -1,21 +1,36 @@
 package ni;
-public final class k extends u4.j {
-    public int f20438f;
-    public int f20439g;
-    public int h;
-    public int f20440i;
-    public boolean f20441j;
-    public boolean f20442k;
-    public boolean f20443l;
-    public boolean f20444m;
-    public boolean f20445n;
-    public float f20446o;
-    public float f20447p;
-    public float f20448q;
-    public float f20449r;
-    public int f20450s;
-    public int f20451t;
-    public int f20452u;
-    public int v;
-    public boolean f20453w;
+
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class k extends MetricAffectingSpan {
+    public static final Typeface[] f20627c;
+    public final int f20628a;
+    public final int f20629b;
+
+    static {
+        Typeface typeface = Typeface.MONOSPACE;
+        f20627c = new Typeface[]{typeface, Typeface.create(typeface, 1), Typeface.create(typeface, 2), Typeface.create(typeface, 3)};
+    }
+
+    public k(int i7) {
+        int i10;
+        this.f20629b = i7;
+        if ((i7 & 256) != 0) {
+            i10 = 1;
+        } else {
+            i10 = 0;
+        }
+        this.f20628a = i10 | ((i7 & 512) != 0 ? 2 : 0);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        updateMeasureState(textPaint);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        textPaint.setTypeface(f20627c[this.f20628a]);
+    }
 }

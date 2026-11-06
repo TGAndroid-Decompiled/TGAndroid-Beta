@@ -1,26 +1,74 @@
 package org.telegram.ui.Components;
-public final class a00 implements Runnable {
-    public final int f31693a;
-    public final FragmentContextView f31694b;
 
-    public a00(FragmentContextView fragmentContextView, int i3) {
-        this.f31693a = i3;
-        this.f31694b = fragmentContextView;
+import java.util.Iterator;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+public final class a00 implements org.telegram.ui.ActionBar.m0, te.i, org.telegram.ui.ActionBar.r1, zs0 {
+    public final FragmentContextView f31620a;
+
+    public a00(FragmentContextView fragmentContextView) {
+        this.f31620a = fragmentContextView;
     }
 
     @Override
-    public final void run() {
-        int i3 = this.f31693a;
-        FragmentContextView fragmentContextView = this.f31694b;
-        switch (i3) {
-            case 0:
-                fragmentContextView.P.f39350g = 0.0f;
-                fragmentContextView.N.invalidate();
-                return;
-            default:
-                float[] fArr = FragmentContextView.X0;
-                fragmentContextView.o(true);
-                return;
+    public void d(org.telegram.messenger.rd rdVar) {
+        float[] fArr = FragmentContextView.W0;
+        this.f31620a.k(rdVar);
+    }
+
+    @Override
+    public void f(te.j jVar) {
+        FragmentContextView fragmentContextView = this.f31620a;
+        te.j jVar2 = fragmentContextView.U0;
+        float f10 = 1.0f - jVar2.f55395a.d.f55386c.f55396a;
+        fragmentContextView.d.setAlpha(f10);
+        fragmentContextView.d.setScaleX(org.telegram.messenger.g0.T1(0.7f, 1.0f, f10));
+        fragmentContextView.d.setScaleY(org.telegram.messenger.g0.T1(0.7f, 1.0f, f10));
+        Iterator it = jVar2.iterator();
+        while (it.hasNext()) {
+            te.e eVar = (te.e) it.next();
+            float c10 = eVar.c();
+            Object obj = eVar.f55379a;
+            float T1 = org.telegram.messenger.g0.T1(0.7f, 1.0f, c10);
+            nh.c cVar = ((l00) obj).f35465b;
+            cVar.setAlpha(eVar.c());
+            cVar.setScaleX(T1);
+            cVar.setScaleY(T1);
         }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        FragmentContextView fragmentContextView = this.f31620a;
+        org.telegram.ui.ActionBar.f2 f2Var = fragmentContextView.h;
+        if (f2Var instanceof org.telegram.ui.ww) {
+            for (int i10 = 0; i10 < 4; i10++) {
+                Utilities.d.c(new org.telegram.messenger.id(org.telegram.messenger.sd.f(i10), 6));
+            }
+            return;
+        }
+        org.telegram.messenger.sd.f(f2Var.getCurrentAccount()).k(fragmentContextView.f31389n.a());
+    }
+
+    @Override
+    public void i(int i7) {
+        float[] fArr = FragmentContextView.W0;
+        if (i7 >= 0) {
+            float[] fArr2 = FragmentContextView.W0;
+            if (i7 < 6) {
+                MediaController B = MediaController.B();
+                FragmentContextView fragmentContextView = this.f31620a;
+                float C = B.C(fragmentContextView.W);
+                float f10 = fArr2[i7];
+                MediaController.B().m0(fragmentContextView.W, f10);
+                if (C != f10) {
+                    fragmentContextView.l(C, f10, false);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void a() {
     }
 }

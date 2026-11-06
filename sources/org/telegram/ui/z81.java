@@ -1,27 +1,54 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import java.util.ArrayList;
-public final class z81 extends k91 {
-    public final m91 f52585p3;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+public final class z81 extends v4.b0 {
+    public boolean I;
+    public final v91 J;
 
-    public z81(m91 m91Var, Context context) {
-        super(m91Var, context);
-        this.f52585p3 = m91Var;
+    public z81(v91 v91Var) {
+        this.J = v91Var;
     }
 
     @Override
-    public final boolean R0() {
-        ArrayList arrayList = this.f52585p3.f47578b;
-        if (getAdapter() == null || this.W1 || (arrayList == null || arrayList.size() != 1 || arrayList.get(0) == null || ((e91) arrayList.get(0)).f44941c == null || ((e91) arrayList.get(0)).f44941c.f27053id != 1 ? getAdapter().b() > 1 : getAdapter().b() > 2)) {
-            return false;
+    public final void b0(v4.v0 v0Var, v4.a1 a1Var) {
+        boolean z9 = org.telegram.messenger.r2.f25191a;
+        try {
+            super.b0(v0Var, a1Var);
+        } catch (IndexOutOfBoundsException e10) {
+            org.telegram.messenger.a8.g(e10, true);
+            org.telegram.messenger.g0.h3(new qu0(this, 21));
         }
-        return true;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
-        super.onLayout(z10, i3, i10, i11, i12);
-        this.f52585p3.C0();
+    public final void b1(View view, View view2, int i7, int i10) {
+        this.I = true;
+        super.b1(view, view2, i7, i10);
+        this.I = false;
+    }
+
+    @Override
+    public final void h1(int i7, int i10) {
+        if (this.I) {
+            i10 -= this.J.N.getPaddingTop();
+        }
+        super.h1(i7, i10);
+    }
+
+    @Override
+    public final int o0(int r19, v4.v0 r20, v4.a1 r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.z81.o0(int, v4.v0, v4.a1):int");
+    }
+
+    @Override
+    public final void v0(RecyclerView recyclerView, v4.a1 a1Var, int i7) {
+        if (this.J.f50666y > 0 && i7 == 1) {
+            super.v0(recyclerView, a1Var, i7);
+            return;
+        }
+        mi.m mVar = new mi.m(recyclerView.getContext(), 0);
+        mVar.f57096a = i7;
+        w0(mVar);
     }
 }

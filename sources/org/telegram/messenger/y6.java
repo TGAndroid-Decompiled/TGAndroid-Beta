@@ -2,56 +2,56 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.ConnectionsManager;
 public final class y6 implements Runnable {
-    public final int f26530a;
-    public final i7 f26531b;
+    public final int f26578a;
+    public final i7 f26579b;
 
-    public y6(i7 i7Var, int i3) {
-        this.f26530a = i3;
-        this.f26531b = i7Var;
+    public y6(i7 i7Var, int i7) {
+        this.f26578a = i7;
+        this.f26579b = i7Var;
     }
 
     @Override
     public final void run() {
-        int i3;
+        int i7;
         int i10;
-        switch (this.f26530a) {
+        switch (this.f26578a) {
             case 0:
-                i7.a(this.f26531b);
+                i7.a(this.f26579b);
                 return;
             case 1:
-                i7 i7Var = this.f26531b;
+                i7 i7Var = this.f26579b;
                 if (i7Var.Y == 5) {
                     i7Var.j(1, false);
                     return;
                 }
                 return;
             case 2:
-                this.f26531b.F0.clear();
+                this.f26579b.F0.clear();
                 return;
             case 3:
-                this.f26531b.s(-1);
+                this.f26579b.s(-1);
                 return;
             case 4:
-                i7 i7Var2 = this.f26531b;
-                if (i7Var2.f23485j) {
-                    if (r2.f25040a) {
+                i7 i7Var2 = this.f26579b;
+                if (i7Var2.f23095j) {
+                    if (r2.f25191a) {
                         a8.b("debug_loading: " + i7Var2.L0.getName() + " pause operation, clear requests");
                     }
                     i7Var2.e(null, false, true);
                     return;
                 }
                 for (int i11 = 0; i11 < i7Var2.G0.size(); i11++) {
-                    ConnectionsManager.getInstance(i7Var2.R).failNotRunningRequest(((h7) i7Var2.G0.get(i11)).f22890a);
+                    ConnectionsManager.getInstance(i7Var2.R).failNotRunningRequest(((h7) i7Var2.G0.get(i11)).f22834a);
                 }
                 return;
             case 5:
-                i7.b(this.f26531b);
+                i7.b(this.f26579b);
                 return;
             case 6:
-                this.f26531b.j(0, false);
+                this.f26579b.j(0, false);
                 return;
             default:
-                i7 i7Var3 = this.f26531b;
+                i7 i7Var3 = this.f26579b;
                 if (i7Var3.Y != 3 && i7Var3.Y != 2) {
                     i7Var3.Y = 5;
                     y6 y6Var = new y6(i7Var3, 1);
@@ -61,27 +61,27 @@ public final class y6 implements Runnable {
                         int[] iArr2 = new int[8];
                         for (int i12 = 0; i12 < i7Var3.G0.size(); i12++) {
                             h7 h7Var = (h7) i7Var3.G0.get(i12);
-                            if (h7Var.f22890a != 0) {
-                                h7Var.f22897j = true;
-                                h7Var.f22899l = new fg(h7Var, iArr, y6Var, 20);
+                            if (h7Var.f22834a != 0) {
+                                h7Var.f22841j = true;
+                                h7Var.f22843l = new ng(h7Var, iArr, y6Var, 20);
                                 iArr[0] = iArr[0] + 1;
-                                a8.b("cancelRequests cancel " + h7Var.f22890a + " with callback");
-                                ConnectionsManager.getInstance(i7Var3.R).cancelRequest(h7Var.f22890a, true, new b7(h7Var, 1));
+                                a8.b("cancelRequests cancel " + h7Var.f22834a + " with callback");
+                                ConnectionsManager.getInstance(i7Var3.R).cancelRequest(h7Var.f22834a, true, new b7(h7Var, 1));
                                 int i13 = h7Var.d >>> 16;
-                                iArr2[i13] = iArr2[i13] + h7Var.f22892c;
+                                iArr2[i13] = iArr2[i13] + h7Var.f22836c;
                             }
                         }
                         for (int i14 = 0; i14 < 8; i14++) {
                             int i15 = (i14 << 16) | 2;
                             int i16 = iArr2[i14];
-                            if (i7Var3.f23485j && !b6.g()) {
-                                i3 = 262144;
+                            if (i7Var3.f23095j && !b6.g()) {
+                                i7 = 262144;
                             } else {
-                                i3 = 1048576;
+                                i7 = 1048576;
                             }
-                            if (i16 > i3) {
-                                if (i7Var3.f23508u0) {
-                                    i10 = i7Var3.f23515y0;
+                            if (i16 > i7) {
+                                if (i7Var3.f23118u0) {
+                                    i10 = i7Var3.f23125y0;
                                 } else {
                                     i10 = i7Var3.T;
                                 }

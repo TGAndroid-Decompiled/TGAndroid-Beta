@@ -1,8 +1,13 @@
 package m;
 
+import android.transition.Transition;
 import android.widget.PopupWindow;
 public abstract class g2 {
-    public static void a(PopupWindow popupWindow, boolean z10) {
-        popupWindow.setTouchModal(z10);
+    public static void a(PopupWindow popupWindow, Transition transition) {
+        popupWindow.setEnterTransition(transition);
+    }
+
+    public static void b(PopupWindow popupWindow, Transition transition) {
+        popupWindow.setExitTransition(transition);
     }
 }

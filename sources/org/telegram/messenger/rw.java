@@ -1,34 +1,30 @@
 package org.telegram.messenger;
 
-import java.util.HashMap;
-import java.util.List;
+import java.util.ArrayList;
 public final class rw implements Runnable {
-    public final int f25238a;
-    public final yy f25239b;
-    public final String f25240c;
-    public final List d;
+    public final int f25345a;
+    public final gz f25346b;
+    public final long f25347c;
+    public final ArrayList d;
 
-    public rw(yy yyVar, String str, List list, int i3) {
-        this.f25238a = i3;
-        this.f25239b = yyVar;
-        this.f25240c = str;
-        this.d = list;
+    public rw(gz gzVar, long j3, ArrayList arrayList, int i7) {
+        this.f25345a = i7;
+        this.f25346b = gzVar;
+        this.f25347c = j3;
+        this.d = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f25238a) {
+        switch (this.f25345a) {
             case 0:
-                HashMap hashMap = this.f25239b.f26684r;
-                String str = this.f25240c;
-                hashMap.remove(str);
-                this.d.remove(str);
+                this.f25346b.getMessagesController().l3(this.d, this.f25347c);
+                return;
+            case 1:
+                this.f25346b.getMessagesController().l3(this.d, this.f25347c);
                 return;
             default:
-                HashMap hashMap2 = this.f25239b.f26684r;
-                String str2 = this.f25240c;
-                hashMap2.remove(str2);
-                this.d.remove(str2);
+                this.f25346b.getMessagesController().l3(this.d, this.f25347c);
                 return;
         }
     }

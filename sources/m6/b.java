@@ -1,36 +1,49 @@
 package m6;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
-import android.os.Bundle;
-public class b extends DialogFragment {
-    public Dialog f19180a;
-    public DialogInterface.OnCancelListener f19181b;
-    public AlertDialog f19182c;
+import android.os.Parcel;
+import android.os.Parcelable;
+import c8.wb;
+public final class b extends r6.a {
+    public static final Parcelable.Creator<b> CREATOR = new e(1);
+    public final String f19880a;
+    public final String f19881b;
+    public final String f19882c;
+    public final String d;
+    public final String f19883e;
+    public int f19884f;
+    public final String h;
 
-    @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        DialogInterface.OnCancelListener onCancelListener = this.f19181b;
-        if (onCancelListener != null) {
-            onCancelListener.onCancel(dialogInterface);
-        }
+    public b(String str, String str2, String str3, String str4, String str5) {
+        this.f19880a = str;
+        this.f19881b = str2;
+        this.f19882c = str3;
+        this.d = str4;
+        this.f19883e = str5;
+        this.h = "fcm-25.1.3";
     }
 
     @Override
-    public final Dialog onCreateDialog(Bundle bundle) {
-        Dialog dialog = this.f19180a;
-        if (dialog == null) {
-            setShowsDialog(false);
-            if (this.f19182c == null) {
-                Activity activity = getActivity();
-                p6.m.g(activity);
-                this.f19182c = new AlertDialog.Builder(activity).create();
-            }
-            return this.f19182c;
-        }
-        return dialog;
+    public final void writeToParcel(Parcel parcel, int i7) {
+        int r10 = wb.r(parcel, 20293);
+        wb.l(parcel, 1, this.f19880a);
+        wb.l(parcel, 2, this.f19881b);
+        wb.l(parcel, 3, this.f19882c);
+        wb.l(parcel, 4, this.d);
+        wb.l(parcel, 5, this.f19883e);
+        int i10 = this.f19884f;
+        wb.q(parcel, 6, 4);
+        parcel.writeInt(i10);
+        wb.l(parcel, 7, this.h);
+        wb.s(parcel, r10);
+    }
+
+    public b(String str, String str2, String str3, String str4, String str5, int i7, String str6) {
+        this.f19880a = str;
+        this.f19881b = str2;
+        this.f19882c = str3;
+        this.d = str4;
+        this.f19883e = str5;
+        this.f19884f = i7;
+        this.h = str6;
     }
 }

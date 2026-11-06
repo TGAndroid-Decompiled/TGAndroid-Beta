@@ -1,17 +1,17 @@
 package org.telegram.ui.Components;
-public abstract class ep extends b5.a {
+public abstract class ep extends c5.a {
     public abstract int j();
 
-    public final int k(int i3) {
-        int size = ((uf0) this).f38733c.size();
-        int j10 = j();
-        if (i3 < j10) {
-            return ((size - (j10 * 2)) - ((j10 - i3) - 1)) - 1;
+    public final int k(int i7) {
+        int size = ((rf0) this).f37724c.size();
+        int j3 = j();
+        if (i7 < j3) {
+            return ((size - (j3 * 2)) - ((j3 - i7) - 1)) - 1;
         }
-        int i10 = size - j10;
-        if (i3 >= i10) {
-            return i3 - i10;
+        int i10 = size - j3;
+        if (i7 >= i10) {
+            return i7 - i10;
         }
-        return i3 - j10;
+        return i7 - j3;
     }
 }

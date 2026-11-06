@@ -1,47 +1,73 @@
 package x3;
+
+import e2.r;
+import e2.t0;
+import e2.u;
+import f3.i0;
+import f3.j0;
+import f3.k0;
 public final class e {
-    public final int f58202a;
-    public final int f58203b;
-    public final float f58204c;
+    public int A;
+    public int B;
+    public int C;
+    public int D;
+    public int E;
+    public float F;
+    public float G;
+    public float H;
+    public float I;
+    public float J;
+    public float K;
+    public float L;
+    public float M;
+    public float N;
+    public float O;
+    public byte[] P;
+    public int Q;
+    public int R;
+    public int S;
+    public long T;
+    public long U;
+    public k0 V;
+    public boolean W;
+    public boolean X;
+    public boolean Y;
+    public String Z;
+    public boolean f58433a;
+    public j0 f58434a0;
+    public String f58435b;
+    public u f58436b0;
+    public String f58437c;
+    public int f58438c0;
+    public int d;
+    public int f58439e;
+    public int f58440f;
+    public int f58441g;
+    public int h;
+    public boolean f58442i;
+    public byte[] f58443j;
+    public i0 f58444k;
+    public byte[] f58445l;
+    public r f58446m;
+    public int f58447n;
+    public int f58448o;
+    public int f58449p;
+    public int f58450q;
+    public int f58451r;
+    public int f58452s;
+    public int f58453t;
+    public float f58454u;
+    public float v;
+    public float f58455w;
+    public byte[] f58456x;
+    public int f58457y;
+    public boolean f58458z;
 
-    public e(float f10, int i3, int i10) {
-        this.f58202a = i3;
-        this.f58203b = i10;
-        this.f58204c = f10;
-    }
-
-    public static e a(int i3) {
-        int i10;
-        int i11 = (i3 >> 13) & 7;
-        if (i11 == 0) {
-            return null;
+    public final byte[] a(String str) {
+        byte[] bArr = this.f58445l;
+        if (bArr != null) {
+            return bArr;
         }
-        int i12 = (i3 >> 10) & 7;
-        int i13 = i3 & 511;
-        if ((i3 & 512) != 0) {
-            i10 = -1;
-        } else {
-            i10 = 1;
-        }
-        return new e((i13 * i10) / 10.0f, i11, i12);
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof e)) {
-            return false;
-        }
-        e eVar = (e) obj;
-        if (this.f58202a != eVar.f58202a || this.f58203b != eVar.f58203b || Float.compare(this.f58204c, eVar.f58204c) != 0) {
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        return Float.floatToIntBits(this.f58204c) + (((this.f58202a * 31) + this.f58203b) * 31);
-    }
-
-    public final String toString() {
-        return "GainField{name=" + this.f58202a + ", originator=" + this.f58203b + ", gain=" + this.f58204c + '}';
+        throw t0.a(null, "Missing CodecPrivate for codec " + str);
     }
 }

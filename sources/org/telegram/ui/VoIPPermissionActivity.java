@@ -11,7 +11,7 @@ public class VoIPPermissionActivity extends Activity {
     @Override
     public final void onCreate(Bundle bundle) {
         boolean isVideo;
-        int i3;
+        int i7;
         super.onCreate(bundle);
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null) {
@@ -35,11 +35,11 @@ public class VoIPPermissionActivity extends Activity {
             try {
                 String[] strArr = (String[]) arrayList.toArray(new String[0]);
                 if (isVideo) {
-                    i3 = 102;
+                    i7 = 102;
                 } else {
-                    i3 = 101;
+                    i7 = 101;
                 }
-                requestPermissions(strArr, i3);
+                requestPermissions(strArr, i7);
             } catch (Exception e10) {
                 org.telegram.messenger.a8.g(e10, true);
             }
@@ -47,11 +47,11 @@ public class VoIPPermissionActivity extends Activity {
     }
 
     @Override
-    public final void onRequestPermissionsResult(int i3, String[] strArr, int[] iArr) {
-        if (i3 != 101 && i3 != 102) {
+    public final void onRequestPermissionsResult(int i7, String[] strArr, int[] iArr) {
+        if (i7 != 101 && i7 != 102) {
             return;
         }
-        boolean z10 = false;
+        boolean z9 = false;
         int i10 = 0;
         while (true) {
             if (i10 < iArr.length) {
@@ -60,11 +60,11 @@ public class VoIPPermissionActivity extends Activity {
                 }
                 i10++;
             } else {
-                z10 = true;
+                z9 = true;
                 break;
             }
         }
-        if (iArr.length > 0 && z10) {
+        if (iArr.length > 0 && z9) {
             if (VoIPService.getSharedInstance() != null) {
                 VoIPService.getSharedInstance().acceptIncomingCall();
             } else {
@@ -78,7 +78,7 @@ public class VoIPPermissionActivity extends Activity {
             } else {
                 VoIPPreNotificationService.decline(this, 1);
             }
-            org.telegram.ui.Components.voip.n1.h(this, new pu0(this, 27), i3);
+            org.telegram.ui.Components.voip.y1.h(this, new qu0(this, 28), i7);
         } else {
             finish();
         }

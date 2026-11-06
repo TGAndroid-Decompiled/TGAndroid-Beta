@@ -1,28 +1,41 @@
 package org.telegram.ui;
+public final class fg implements org.telegram.messenger.sr {
+    public final int f45623a;
+    public final an f45624b;
 
-import android.graphics.drawable.Drawable;
-import android.view.View;
-public final class fg implements View.OnClickListener {
-    public final int f45273a;
-    public final org.telegram.ui.Components.f60 f45274b;
-
-    public fg(org.telegram.ui.Components.f60 f60Var, int i3) {
-        this.f45273a = i3;
-        this.f45274b = f60Var;
+    public fg(an anVar, int i7) {
+        this.f45623a = i7;
+        this.f45624b = anVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i3 = this.f45273a;
-        org.telegram.ui.Components.f60 f60Var = this.f45274b;
-        switch (i3) {
+    public final void a(int i7) {
+        switch (this.f45623a) {
             case 0:
-                f60Var.s();
+                an anVar = this.f45624b;
+                if (anVar.getParentActivity() != null && anVar.fragmentView != null && i7 > 0) {
+                    org.telegram.ui.Components.hc.a0(anVar).m(org.telegram.ui.Components.gc.f33937r, i7, 0, 0, anVar.f43998xa).j();
+                    return;
+                }
+                return;
+            case 1:
+                an anVar2 = this.f45624b;
+                if (i7 == 0) {
+                    anVar2.C6 = false;
+                    anVar2.ha();
+                    return;
+                }
+                anVar2.l(i7, 0, false, 0, true, 0);
                 return;
             default:
-                Drawable[] drawableArr = PhotoViewer.V8;
-                f60Var.s();
-                return;
+                an anVar3 = this.f45624b;
+                if (i7 == 0) {
+                    anVar3.vd(true);
+                    return;
+                } else {
+                    anVar3.finishFragment();
+                    return;
+                }
         }
     }
 }

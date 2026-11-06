@@ -1,18 +1,21 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewTreeObserver;
-public final class me implements ViewTreeObserver.OnDrawListener {
-    public final ht0 f36140a;
-    public final dn0 f36141b;
+import android.view.View;
+public final class me implements b61, dj0 {
+    public final ChatActivityEnterView f35993a;
 
-    public me(ht0 ht0Var, dn0 dn0Var) {
-        this.f36140a = ht0Var;
-        this.f36141b = dn0Var;
+    public me(ChatActivityEnterView chatActivityEnterView) {
+        this.f35993a = chatActivityEnterView;
     }
 
     @Override
-    public final void onDraw() {
-        ht0 ht0Var = this.f36140a;
-        ht0Var.post(new e7(this, ht0Var, this.f36141b, 1));
+    public boolean c(int i7, View view) {
+        if (view instanceof hi.w) {
+            ChatActivityEnterView chatActivityEnterView = this.f35993a;
+            chatActivityEnterView.setFieldText(((hi.w) view).getCommand() + " ");
+            chatActivityEnterView.m0.c();
+            return true;
+        }
+        return false;
     }
 }

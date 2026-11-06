@@ -1,18 +1,42 @@
 package g9;
+public final class w implements u {
+    public static final d3.q d = new d3.q(1);
+    public final Object f13603a = new Object();
+    public volatile u f13604b;
+    public Object f13605c;
 
-import java.util.Comparator;
-public abstract class w {
-    public static final u f12160a = new Object();
-    public static final v f12161b = new v(-1);
-    public static final v f12162c = new v(1);
+    public w(u uVar) {
+        this.f13604b = uVar;
+    }
 
-    public abstract w a(int i3, int i10);
+    @Override
+    public final Object get() {
+        u uVar = this.f13604b;
+        d3.q qVar = d;
+        if (uVar != qVar) {
+            synchronized (this.f13603a) {
+                try {
+                    if (this.f13604b != qVar) {
+                        Object obj = this.f13604b.get();
+                        this.f13605c = obj;
+                        this.f13604b = qVar;
+                        return obj;
+                    }
+                } finally {
+                }
+            }
+        }
+        return this.f13605c;
+    }
 
-    public abstract w b(Object obj, Object obj2, Comparator comparator);
-
-    public abstract w c(boolean z10, boolean z11);
-
-    public abstract w d(boolean z10, boolean z11);
-
-    public abstract int e();
+    public final String toString() {
+        Object obj = this.f13604b;
+        StringBuilder sb2 = new StringBuilder("Suppliers.memoize(");
+        if (obj == d) {
+            obj = "<supplier that returned " + this.f13605c + ">";
+        }
+        sb2.append(obj);
+        sb2.append(")");
+        return sb2.toString();
+    }
 }

@@ -1,145 +1,137 @@
 package ae;
 
-import java.util.ArrayList;
-import wd.b0;
-public final class e implements g {
-    public final fd.h f394a;
-    public final int f395b;
-    public final yd.a f396c;
-    public final int d;
-    public final Object f397e;
+import android.os.Handler;
+import android.os.Looper;
+import ee.n;
+import id.h;
+import java.util.concurrent.CancellationException;
+import kotlin.jvm.internal.j;
+import m9.u;
+import zd.a1;
+import zd.g0;
+import zd.j0;
+import zd.l0;
+import zd.m;
+import zd.p1;
+import zd.x;
+import zd.y;
+import zd.y1;
+public final class e extends x implements g0 {
+    public final Handler f1051c;
+    public final boolean d;
+    public final e f1052e;
 
-    public e(Object obj, fd.h hVar, int i3, yd.a aVar, int i10) {
-        this.d = i10;
-        this.f394a = hVar;
-        this.f395b = i3;
-        this.f396c = aVar;
-        this.f397e = obj;
-    }
-
-    @Override
-    public Object U(zd.c cVar, hd.c cVar2) {
-        Object a10;
-        fd.h h;
-        switch (this.d) {
-            case 0:
-                int i3 = this.f395b;
-                dd.k kVar = dd.k.f8801a;
-                if (i3 == -3) {
-                    fd.h context = cVar2.getContext();
-                    Boolean bool = Boolean.FALSE;
-                    j jVar = new j(10);
-                    fd.h hVar = this.f394a;
-                    if (!((Boolean) hVar.fold(bool, jVar)).booleanValue()) {
-                        h = context.plus(hVar);
-                    } else {
-                        h = b0.h(context, hVar, false);
-                    }
-                    if (kotlin.jvm.internal.j.a(h, context)) {
-                        a10 = ((zd.b) this.f397e).U(cVar, cVar2);
-                        gd.a aVar = gd.a.f12241a;
-                        if (a10 != aVar) {
-                            a10 = kVar;
-                        }
-                        if (a10 != aVar) {
-                            return kVar;
-                        }
-                    } else {
-                        fd.d dVar = fd.d.f11566a;
-                        if (kotlin.jvm.internal.j.a(h.get(dVar), context.get(dVar))) {
-                            fd.h context2 = cVar2.getContext();
-                            if (!(cVar instanceof o)) {
-                                cVar = new q(cVar, context2);
-                            }
-                            a10 = i.a(h, cVar, be.a.k(h), new d(this, (fd.c) null, 1), cVar2);
-                            if (a10 != gd.a.f12241a) {
-                                return kVar;
-                            }
-                        }
-                    }
-                    return a10;
-                }
-                a10 = a(cVar, cVar2);
-                if (a10 != gd.a.f12241a) {
-                    return kVar;
-                }
-                return a10;
-            default:
-                return a(cVar, cVar2);
-        }
-    }
-
-    public final Object a(zd.c cVar, hd.c cVar2) {
-        Object e10 = b0.e(new c(cVar, this, (fd.c) null), cVar2);
-        if (e10 == gd.a.f12241a) {
-            return e10;
-        }
-        return dd.k.f8801a;
-    }
-
-    public final String b() {
-        ArrayList arrayList = new ArrayList(4);
-        fd.i iVar = fd.i.f11567a;
-        fd.h hVar = this.f394a;
-        if (hVar != iVar) {
-            arrayList.add("context=" + hVar);
-        }
-        int i3 = this.f395b;
-        if (i3 != -3) {
-            arrayList.add("capacity=" + i3);
-        }
-        yd.a aVar = yd.a.f59374a;
-        yd.a aVar2 = this.f396c;
-        if (aVar2 != aVar) {
-            arrayList.add("onBufferOverflow=" + aVar2);
-        }
-        return getClass().getSimpleName() + '[' + ed.g.g(arrayList, ", ", null, null, null, 62) + ']';
-    }
-
-    @Override
-    public final zd.b h(fd.h hVar, int i3, yd.a aVar) {
-        yd.a aVar2;
-        fd.h hVar2 = this.f394a;
-        fd.h plus = hVar.plus(hVar2);
-        yd.a aVar3 = yd.a.f59374a;
-        yd.a aVar4 = this.f396c;
-        int i10 = this.f395b;
-        if (aVar != aVar3) {
-            aVar2 = aVar;
+    public e(Handler handler, boolean z9) {
+        e eVar;
+        this.f1051c = handler;
+        this.d = z9;
+        if (z9) {
+            eVar = this;
         } else {
-            if (i10 != -3) {
-                if (i3 != -3) {
-                    if (i10 != -2) {
-                        if (i3 != -2) {
-                            i3 += i10;
-                            if (i3 < 0) {
-                                i3 = Integer.MAX_VALUE;
-                            }
-                        }
-                    }
-                }
-                i3 = i10;
-            }
-            aVar2 = aVar4;
+            eVar = new e(handler, true);
         }
-        int i11 = i3;
-        if (kotlin.jvm.internal.j.a(plus, hVar2) && i11 == i10 && aVar2 == aVar4) {
-            return this;
+        this.f1052e = eVar;
+    }
+
+    @Override
+    public final l0 a(long j3, y1 y1Var, h hVar) {
+        if (j3 > 4611686018427387903L) {
+            j3 = 4611686018427387903L;
         }
-        switch (this.d) {
-            case 0:
-                return new e((zd.b) this.f397e, plus, i11, aVar2, 0);
-            default:
-                return new e((c) this.f397e, plus, i11, aVar2, 1);
+        if (this.f1051c.postDelayed(y1Var, j3)) {
+            return new c(0, this, y1Var);
+        }
+        g(hVar, y1Var);
+        return p1.f59982a;
+    }
+
+    @Override
+    public final void b(long j3, m mVar) {
+        u uVar = new u(6, mVar, this);
+        if (j3 > 4611686018427387903L) {
+            j3 = 4611686018427387903L;
+        }
+        if (this.f1051c.postDelayed(uVar, j3)) {
+            mVar.u(new d(0, this, uVar));
+        } else {
+            g(mVar.f59970e, uVar);
         }
     }
 
-    public final String toString() {
-        switch (this.d) {
-            case 0:
-                return ((zd.b) this.f397e) + " -> " + b();
-            default:
-                return "block[" + ((c) this.f397e) + "] -> " + b();
+    @Override
+    public final void c(h hVar, Runnable runnable) {
+        if (!this.f1051c.post(runnable)) {
+            g(hVar, runnable);
         }
+    }
+
+    @Override
+    public final boolean d(h hVar) {
+        if (this.d && j.a(Looper.myLooper(), this.f1051c.getLooper())) {
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof e) {
+            e eVar = (e) obj;
+            if (eVar.f1051c == this.f1051c && eVar.d == this.d) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    public final void g(h hVar, Runnable runnable) {
+        CancellationException cancellationException = new CancellationException("The task was rejected, the handler underlying the dispatcher '" + this + "' was closed");
+        a1 a1Var = (a1) hVar.get(y.f60008b);
+        if (a1Var != null) {
+            a1Var.cancel(cancellationException);
+        }
+        ge.e eVar = j0.f59960a;
+        ge.d.f13851c.c(hVar, runnable);
+    }
+
+    public final int hashCode() {
+        int i7;
+        int identityHashCode = System.identityHashCode(this.f1051c);
+        if (this.d) {
+            i7 = 1231;
+        } else {
+            i7 = 1237;
+        }
+        return identityHashCode ^ i7;
+    }
+
+    @Override
+    public final String toString() {
+        e eVar;
+        String str;
+        ge.e eVar2 = j0.f59960a;
+        e eVar3 = n.f10792a;
+        if (this == eVar3) {
+            str = "Dispatchers.Main";
+        } else {
+            try {
+                eVar = eVar3.f1052e;
+            } catch (UnsupportedOperationException unused) {
+                eVar = null;
+            }
+            if (this == eVar) {
+                str = "Dispatchers.Main.immediate";
+            } else {
+                str = null;
+            }
+        }
+        if (str == null) {
+            String handler = this.f1051c.toString();
+            if (this.d) {
+                return rf.b.q(handler, ".immediate");
+            }
+            return handler;
+        }
+        return str;
     }
 }

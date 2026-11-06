@@ -1,40 +1,38 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.view.View;
-import java.util.HashSet;
-public final class s6 extends View implements org.telegram.ui.ActionBar.z5 {
-    public Paint f49371a;
-    public Paint f49372b;
-    public float f49373c;
-    public org.telegram.ui.Components.u5 d;
+import android.util.SparseArray;
+public final class s6 {
+    public long f49640a;
+    public int f49641b;
+    public long f49642c;
+    public final SparseArray d = new SparseArray();
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), this.f49372b);
-        rectF.set(0.0f, 0.0f, this.d.e(false, this.f49373c) * getMeasuredWidth(), getMeasuredHeight());
-        canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), this.f49371a);
+    public s6(long j3) {
+        this.f49640a = j3;
     }
 
-    @Override
-    public final void updateColors() {
-        try {
-            Paint paint = this.f49371a;
-            int i3 = org.telegram.ui.ActionBar.k6.N6;
-            paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, i3, false));
-            this.f49372b.setColor(org.telegram.ui.ActionBar.k6.r1(0.2f, org.telegram.ui.ActionBar.k6.x0(null, i3, false)));
-            invalidate();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final void a(ci.b bVar, int i7) {
+        SparseArray sparseArray = this.d;
+        t6 t6Var = (t6) sparseArray.get(i7, null);
+        if (t6Var == null) {
+            t6Var = new t6();
+            sparseArray.put(i7, t6Var);
         }
+        long j3 = bVar.f6419c;
+        t6Var.f49925a += j3;
+        this.f49642c += j3;
+        this.f49641b++;
+        t6Var.f49926b.add(bVar);
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void b(ci.b bVar) {
+        t6 t6Var = (t6) this.d.get(bVar.d, null);
+        if (t6Var != null && t6Var.f49926b.remove(bVar)) {
+            long j3 = t6Var.f49925a;
+            long j10 = bVar.f6419c;
+            t6Var.f49925a = j3 - j10;
+            this.f49642c -= j10;
+            this.f49641b--;
+        }
     }
 }

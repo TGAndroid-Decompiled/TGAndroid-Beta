@@ -1,95 +1,210 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import org.telegram.messenger.hp;
-import org.telegram.messenger.hs;
+import android.graphics.Bitmap;
+import java.util.Calendar;
+import org.telegram.messenger.c20;
 import org.telegram.messenger.p10;
-import org.telegram.messenger.yy;
-import org.telegram.messenger.zi;
+import org.telegram.messenger.qp;
+import org.telegram.messenger.qs;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class t implements p10 {
-    public final k0 f43177a;
-    public final e7 f43178b;
-    public final yy f43179c;
-    public final zi d;
-    public final TL_wallet.walletTransaction f43180e;
-    public final String f43181f;
-    public final j0 f43182g;
-    public final long h;
-    public final TLRPC.User f43183i;
+import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.l31;
+import org.telegram.ui.Components.up0;
+import org.telegram.ui.l60;
+public final class t implements c20 {
+    public final int f43119a;
+    public final Object f43120b;
+    public final Object f43121c;
 
-    public t(k0 k0Var, e7 e7Var, yy yyVar, zi ziVar, TL_wallet.walletTransaction wallettransaction, String str, j0 j0Var, long j10, TLRPC.User user) {
-        this.f43177a = k0Var;
-        this.f43178b = e7Var;
-        this.f43179c = yyVar;
-        this.d = ziVar;
-        this.f43180e = wallettransaction;
-        this.f43181f = str;
-        this.f43182g = j0Var;
-        this.h = j10;
-        this.f43183i = user;
+    public t(int i7, Object obj, Object obj2) {
+        this.f43119a = i7;
+        this.f43120b = obj;
+        this.f43121c = obj2;
     }
 
     @Override
-    public final void a(Object obj, Object obj2, Object obj3) {
-        TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj;
-        String str = (String) obj2;
-        String str2 = (String) obj3;
-        k0 k0Var = this.f43177a;
-        int i3 = k0Var.f42718a;
-        e7 e7Var = this.f43178b;
-        yy yyVar = this.f43179c;
-        zi ziVar = this.d;
-        boolean z10 = false;
-        if (sendtransfer == null) {
-            e7Var.run();
-            yyVar.k(ziVar, null, false);
-            if (str2 == null) {
-                str2 = "NULL_ERROR";
-            }
-            k0.j("failed sending: ".concat(str2));
-            return;
+    public final void a(Object obj) {
+        switch (this.f43119a) {
+            case 0:
+                ((k0) this.f43120b).close();
+                ((g8) this.f43121c).a((String) obj);
+                return;
+            case 1:
+                ((n0) this.f43120b).f42782q.put((TL_wallet.walletTransaction) obj, (bi.f4) this.f43121c);
+                return;
+            case 2:
+                i0 i0Var = (i0) this.f43120b;
+                h8 h8Var = (h8) this.f43121c;
+                String str = (String) obj;
+                if (str != null) {
+                    i0Var.close();
+                    n0.j("prepare disable backup, failed to save secret phrase to local storage: ".concat(str));
+                    h8Var.a(null, str);
+                    return;
+                }
+                n0.H("prepare disable backup: done!");
+                h8Var.a(i0Var, null);
+                return;
+            case 3:
+                ((k0) this.f43120b).close();
+                ((t) this.f43121c).a((String) obj);
+                return;
+            case 4:
+                org.telegram.messenger.g0.h3(new g((a2) this.f43120b, (k) this.f43121c, (String) obj, 2));
+                return;
+            case 5:
+                ((f2) this.f43120b).h = false;
+                ((l60) this.f43121c).a(null, (String) obj);
+                return;
+            case 6:
+                ((k0) this.f43120b).close();
+                ((m) this.f43121c).a((String) obj);
+                return;
+            case 7:
+                ((k0) this.f43120b).close();
+                ((m) this.f43121c).a((String) obj);
+                return;
+            case 8:
+                y5 y5Var = (y5) this.f43120b;
+                n0 n0Var = (n0) this.f43121c;
+                String str2 = (String) obj;
+                y5Var.C0.setLoading(false);
+                if ("NO_LOCAL_BACKUP".equalsIgnoreCase(str2)) {
+                    f8 f8Var = new f8();
+                    f8Var.f42471s = n0Var.y();
+                    y5Var.presentFragment(f8Var);
+                    return;
+                } else if (str2 != null) {
+                    hc.a0(y5Var).e0(str2, false);
+                    return;
+                } else {
+                    y5Var.presentFragment(new x9());
+                    return;
+                }
+            case 9:
+                f8 f8Var2 = (f8) this.f43120b;
+                n0 n0Var2 = (n0) this.f43121c;
+                String str3 = (String) obj;
+                f8Var2.d.setLoading(false);
+                if (str3 != null) {
+                    hc.a0(f8Var2).e0(str3, false);
+                    return;
+                }
+                f8Var2.finishFragment();
+                n0Var2.L();
+                return;
+            case 10:
+                o8 o8Var = (o8) this.f43120b;
+                org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) this.f43121c;
+                String str4 = (String) obj;
+                if (str4 != null) {
+                    hc.a0(o8Var).e0(str4, false);
+                    return;
+                }
+                o8Var.finishFragment();
+                if (f2Var instanceof y5) {
+                    org.telegram.messenger.g0.i3(new k3(2, f2Var), 300L);
+                    return;
+                }
+                return;
+            case 11:
+                x9 x9Var = (x9) this.f43120b;
+                String str5 = (String) obj;
+                ((c20) this.f43121c).a(str5);
+                if (str5 == null && !x9Var.f43319r) {
+                    if (x9Var.getParentLayout() != null) {
+                        for (org.telegram.ui.ActionBar.f2 f2Var2 : x9Var.getParentLayout().getFragmentStack()) {
+                            if (f2Var2 instanceof y5) {
+                                ((y5) f2Var2).O0();
+                            }
+                        }
+                    }
+                    x9Var.finishFragment();
+                    return;
+                }
+                return;
+            case 12:
+                ia.d0((ia) this.f43120b, (TL_wallet.tonConnectSession) this.f43121c, (c20) obj);
+                return;
+            case 13:
+                org.telegram.ui.web.o1 o1Var = (org.telegram.ui.web.o1) this.f43120b;
+                org.telegram.ui.web.y0 y0Var = (org.telegram.ui.web.y0) obj;
+                o1Var.getClass();
+                ((org.telegram.ui.web.z0[]) this.f43121c)[0].finishFragment();
+                c20 c20Var = o1Var.f51249f;
+                if (c20Var != null) {
+                    o1Var.finishFragment();
+                    c20Var.a(y0Var);
+                    return;
+                }
+                vf.c.t(o1Var.getParentActivity(), y0Var.f51392c);
+                return;
+            case 14:
+                org.telegram.ui.web.w1 w1Var = (org.telegram.ui.web.w1) this.f43120b;
+                w1Var.getClass();
+                org.telegram.messenger.g0.h3(new l31(w1Var, (org.telegram.ui.web.v1) this.f43121c, (Bitmap) obj, 9));
+                return;
+            case 15:
+                zh.h1 h1Var = (zh.h1) this.f43120b;
+                c20 c20Var2 = (c20) this.f43121c;
+                Boolean bool = (Boolean) obj;
+                h1Var.getClass();
+                if (c20Var2 != null) {
+                    c20Var2.a(bool);
+                }
+                if (bool.booleanValue()) {
+                    h1Var.N0 = true;
+                }
+                h1Var.dismiss();
+                return;
+            case 16:
+                bi.v9 v9Var = (bi.v9) this.f43120b;
+                bi.i0 i0Var2 = (bi.i0) this.f43121c;
+                if (((Object[]) obj)[1] == v9Var) {
+                    i0Var2.run();
+                    return;
+                }
+                return;
+            case 17:
+                up0 up0Var = (up0) this.f43120b;
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f43121c;
+                String str6 = (String) obj;
+                bi.t9 t9Var = up0Var.f60190e;
+                int i7 = tL_starGiftCollection.collection_id;
+                t9Var.getClass();
+                TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
+                int i10 = t9Var.f4757a;
+                updatestargiftcollection.peer = qp.s1(i10).j1(t9Var.f4758b);
+                updatestargiftcollection.collection_id = i7;
+                updatestargiftcollection.flags |= 1;
+                updatestargiftcollection.title = str6;
+                ConnectionsManager.getInstance(i10).sendRequest(updatestargiftcollection, null);
+                tL_starGiftCollection.title = str6;
+                up0Var.f(true);
+                return;
+            default:
+                zh.b4 b4Var = (zh.b4) this.f43120b;
+                TLRPC.User user = (TLRPC.User) this.f43121c;
+                Void r10 = (Void) obj;
+                long j3 = b4Var.R1;
+                Runnable runnable = b4Var.Y1;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                b4Var.dismiss();
+                qs.f(p10.f24459s0).k(188, new Object[0]);
+                org.telegram.messenger.g0.i3(new zh.s3(0, user), 250L);
+                qp.s1(b4Var.Q1).f24759e7.edit().putBoolean("show_gift_for_" + j3, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j3, true).apply();
+                return;
         }
-        TL_wallet.walletTransaction wallettransaction = this.f43180e;
-        if (str != null) {
-            wallettransaction.comment = str;
-            wallettransaction.comment_encrypted = true;
-        }
-        if (k0.b(k0Var.t(), this.f43181f)) {
-            sendtransfer.data_gasless = null;
-        }
-        wallettransaction.comment_encrypted_preparing = false;
-        String str3 = wallettransaction.comment;
-        boolean z11 = wallettransaction.comment_encrypted;
-        if (ziVar != null) {
-            TLRPC.MessageAction messageAction = ziVar.f26868k.action;
-            if (messageAction instanceof TLRPC.TL_messageActionGramTransfer) {
-                TLRPC.TL_messageActionGramTransfer tL_messageActionGramTransfer = (TLRPC.TL_messageActionGramTransfer) messageAction;
-                tL_messageActionGramTransfer.comment = str3;
-                tL_messageActionGramTransfer.comment_encrypted = z11;
-                tL_messageActionGramTransfer.comment_encrypted_preparing = false;
-                ziVar.K1 = true;
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(ziVar.f26868k);
-                yyVar.getMessagesStorage().j1(arrayList, false, true, false, 0, false, 0, 0L);
-                yyVar.getNotificationCenter().k(hs.m0, Long.valueOf(zi.B0(ziVar.f26868k)), org.telegram.messenger.k5.k(ziVar));
-            }
-        }
-        if (sendtransfer.data_gasless != null) {
-            z10 = true;
-        }
-        wallettransaction.gasless = z10;
-        wallettransaction.gaslessMessageBodyHash = sendtransfer.gaslessMessageBodyHash;
-        wallettransaction.normalMessageBodyHash = sendtransfer.normalMessageBodyHash;
-        j0 j0Var = this.f43182g;
-        j0Var.k();
-        j0Var.i();
-        sendtransfer.random_id = this.h;
-        sendtransfer.user_id = hp.s1(i3).q1(this.f43183i);
-        k0Var.S();
-        k0.H("prepared sendTransfer, sending");
-        ConnectionsManager.getInstance(i3).sendRequestTyped(sendtransfer, new c3.b(1), new ci.g3(k0Var, wallettransaction, yyVar, ziVar, e7Var, 4));
+    }
+
+    public t(n0 n0Var, i0 i0Var, h8 h8Var) {
+        this.f43119a = 2;
+        this.f43120b = i0Var;
+        this.f43121c = h8Var;
     }
 }

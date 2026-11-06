@@ -1,71 +1,55 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class yx implements TextWatcher {
-    public final int f52433a;
-    public boolean f52434b;
-    public final EditTextBoldCursor f52435c;
+import android.animation.ValueAnimator;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.ScrollView;
+import android.widget.TextView;
+public abstract class yx extends FrameLayout {
+    public float[] D;
+    public FrameLayout f52350a;
+    public org.telegram.ui.ActionBar.k5 f52351b;
+    public org.telegram.ui.ActionBar.k5 f52352c;
+    public ImageView d;
+    public xx f52353e;
+    public bi.md f52354f;
+    public bi.md h;
+    public TextView f52355n;
+    public org.telegram.ui.ActionBar.f2 f52356r;
+    public String f52357s;
+    public float f52358w;
+    public ValueAnimator f52359x;
+    public org.telegram.ui.ActionBar.g1 f52360y;
 
-    public yx(EditTextBoldCursor editTextBoldCursor, int i3) {
-        this.f52433a = i3;
-        this.f52435c = editTextBoldCursor;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        switch (this.f52433a) {
-            case 0:
-                if (!this.f52434b && editable.length() > 32) {
-                    this.f52434b = true;
-                    editable.delete(32, editable.length());
-                    EditTextBoldCursor editTextBoldCursor = this.f52435c;
-                    org.telegram.messenger.g0.F3(editTextBoldCursor);
-                    try {
-                        editTextBoldCursor.performHapticFeedback(3, 2);
-                    } catch (Exception unused) {
-                    }
-                    this.f52434b = false;
-                    return;
-                }
+    public static void a(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
+        float f10 = 0.0f;
+        float f11 = 0.0f;
+        FrameLayout frameLayout3 = frameLayout;
+        while (frameLayout3 != frameLayout2) {
+            float y10 = frameLayout3.getY() + f10;
+            f11 += frameLayout3.getX();
+            if (frameLayout3 instanceof ScrollView) {
+                y10 -= frameLayout3.getScrollY();
+            }
+            f10 = y10;
+            if (!(frameLayout3.getParent() instanceof View)) {
+                break;
+            }
+            ?? r32 = (View) frameLayout3.getParent();
+            boolean z9 = r32 instanceof ViewGroup;
+            frameLayout3 = r32;
+            if (!z9) {
                 return;
-            default:
-                if (!this.f52434b && editable.length() > 40) {
-                    this.f52434b = true;
-                    editable.delete(40, editable.length());
-                    EditTextBoldCursor editTextBoldCursor2 = this.f52435c;
-                    org.telegram.messenger.g0.F3(editTextBoldCursor2);
-                    try {
-                        editTextBoldCursor2.performHapticFeedback(3, 2);
-                    } catch (Exception unused2) {
-                    }
-                    this.f52434b = false;
-                    return;
-                }
-                return;
+            }
         }
+        fArr[0] = f11 - frameLayout2.getPaddingLeft();
+        fArr[1] = f10 - frameLayout2.getPaddingTop();
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
-        int i12 = this.f52433a;
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
-        int i12 = this.f52433a;
-    }
-
-    private final void a(int i3, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void b(int i3, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void c(int i3, int i10, int i11, CharSequence charSequence) {
-    }
-
-    private final void d(int i3, int i10, int i11, CharSequence charSequence) {
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(127.0f), 1073741824));
     }
 }

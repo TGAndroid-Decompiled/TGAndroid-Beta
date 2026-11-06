@@ -1,43 +1,54 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class lf0 extends org.telegram.ui.Components.bg {
-    public final org.telegram.ui.Components.bg f47321o0;
-    public final boolean f47322p0;
-    public final vf0 f47323q0;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.EditText;
+public final class lf0 implements Runnable {
+    public final int f47509a;
+    public final bg0 f47510b;
+    public final EditText f47511c;
 
-    public lf0(vf0 vf0Var, Context context, int i3, org.telegram.ui.ActionBar.e6 e6Var, org.telegram.ui.Components.bg bgVar, boolean z10) {
-        super(i3, context, e6Var, false);
-        this.f47323q0 = vf0Var;
-        this.f47321o0 = bgVar;
-        this.f47322p0 = z10;
+    public lf0(bg0 bg0Var, EditText editText, int i7) {
+        this.f47509a = i7;
+        this.f47510b = bg0Var;
+        this.f47511c = editText;
     }
 
     @Override
-    public final boolean b() {
-        return this.f47321o0.b();
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f47321o0.c();
-    }
-
-    @Override
-    public final boolean d() {
-        if (this.f47322p0 && this.f47323q0.f50493q0 && this.f32198r <= 0) {
-            return false;
+    public final void run() {
+        switch (this.f47509a) {
+            case 0:
+                bg0 bg0Var = this.f47510b;
+                if (!bg0Var.f44319o0) {
+                    try {
+                        Window window = bg0Var.getWindow();
+                        WindowManager.LayoutParams attributes = window.getAttributes();
+                        attributes.flags &= -131073;
+                        window.setAttributes(attributes);
+                        bg0Var.f44319o0 = true;
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
+                    }
+                }
+                org.telegram.messenger.g0.i3(new lf0(bg0Var, this.f47511c, 1), 100L);
+                return;
+            default:
+                bg0 bg0Var2 = this.f47510b;
+                int[] iArr = bg0Var2.f44318n0;
+                org.telegram.messenger.g0.K3(this.f47511c);
+                org.telegram.ui.Components.dg dgVar = bg0Var2.V;
+                if (dgVar != null) {
+                    dgVar.getLocationOnScreen(iArr);
+                    int i7 = iArr[0];
+                    int width = bg0Var2.V.getWidth();
+                    org.telegram.ui.Components.dg dgVar2 = bg0Var2.V;
+                    dgVar2.getHeight();
+                    iArr[0] = org.telegram.messenger.camera.q.D(6.0f, width - dgVar2.m(), i7);
+                    bg0Var2.W.setScaleX(bg0Var2.V.getScaleX());
+                    bg0Var2.W.setScaleY(bg0Var2.V.getScaleY());
+                    return;
+                }
+                return;
         }
-        return true;
-    }
-
-    @Override
-    public final int getFillColor() {
-        return this.f47321o0.getFillColor();
-    }
-
-    @Override
-    public final boolean j() {
-        return this.f47321o0.j();
     }
 }

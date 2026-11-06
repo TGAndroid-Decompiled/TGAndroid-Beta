@@ -63,7 +63,7 @@ public final class c implements Set {
     public final int hashCode() {
         int hashCode;
         f fVar = this.f6a;
-        int i3 = 0;
+        int i7 = 0;
         for (int i10 = fVar.f31c - 1; i10 >= 0; i10--) {
             Object f10 = fVar.f(i10);
             if (f10 == null) {
@@ -71,9 +71,9 @@ public final class c implements Set {
             } else {
                 hashCode = f10.hashCode();
             }
-            i3 += hashCode;
+            i7 += hashCode;
         }
-        return i3;
+        return i7;
     }
 
     @Override
@@ -105,13 +105,13 @@ public final class c implements Set {
     @Override
     public final boolean retainAll(Collection collection) {
         f fVar = this.f6a;
-        int i3 = fVar.f31c;
-        for (int i10 = i3 - 1; i10 >= 0; i10--) {
+        int i7 = fVar.f31c;
+        for (int i10 = i7 - 1; i10 >= 0; i10--) {
             if (!collection.contains(fVar.f(i10))) {
                 fVar.g(i10);
             }
         }
-        if (i3 != fVar.f31c) {
+        if (i7 != fVar.f31c) {
             return true;
         }
         return false;
@@ -125,9 +125,9 @@ public final class c implements Set {
     @Override
     public final Object[] toArray() {
         f fVar = this.f6a;
-        int i3 = fVar.f31c;
-        Object[] objArr = new Object[i3];
-        for (int i10 = 0; i10 < i3; i10++) {
+        int i7 = fVar.f31c;
+        Object[] objArr = new Object[i7];
+        for (int i10 = 0; i10 < i7; i10++) {
             objArr[i10] = fVar.f(i10);
         }
         return objArr;
@@ -136,15 +136,15 @@ public final class c implements Set {
     @Override
     public final Object[] toArray(Object[] objArr) {
         f fVar = this.f6a;
-        int i3 = fVar.f31c;
-        if (objArr.length < i3) {
-            objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), i3);
+        int i7 = fVar.f31c;
+        if (objArr.length < i7) {
+            objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), i7);
         }
-        for (int i10 = 0; i10 < i3; i10++) {
+        for (int i10 = 0; i10 < i7; i10++) {
             objArr[i10] = fVar.f(i10);
         }
-        if (objArr.length > i3) {
-            objArr[i3] = null;
+        if (objArr.length > i7) {
+            objArr[i7] = null;
         }
         return objArr;
     }

@@ -1,89 +1,30 @@
 package i9;
 
-import b8.vc;
-import b8.yc;
-import b8.zb;
-import java.math.RoundingMode;
-public abstract class c {
-    public static final int f14713a = 0;
-
-    static {
-        Math.log(2.0d);
+import a8.ia;
+public final class c extends d {
+    public c(java.lang.String r2, java.lang.String r3) {
+        throw new UnsupportedOperationException("Method not decompiled: i9.c.<init>(java.lang.String, java.lang.String):void");
     }
 
-    public static boolean a(double d) {
-        if (vc.b(d)) {
-            if (d == 0.0d || 52 - Long.numberOfTrailingZeros(vc.a(d)) <= Math.getExponent(d)) {
-                return true;
-            }
-            return false;
+    @Override
+    public final void b(StringBuilder sb2, byte[] bArr, int i7) {
+        int i10 = 0;
+        ia.n(0, i7, bArr.length);
+        for (int i11 = i7; i11 >= 3; i11 -= 3) {
+            int i12 = i10 + 2;
+            int i13 = (bArr[i10 + 1] & 255) << 8;
+            i10 += 3;
+            int i14 = i13 | ((bArr[i10] & 255) << 16) | (bArr[i12] & 255);
+            a aVar = this.f15404a;
+            char[] cArr = aVar.f15398b;
+            char[] cArr2 = aVar.f15398b;
+            sb2.append(cArr[i14 >>> 18]);
+            sb2.append(cArr2[(i14 >>> 12) & 63]);
+            sb2.append(cArr2[(i14 >>> 6) & 63]);
+            sb2.append(cArr2[i14 & 63]);
         }
-        return false;
-    }
-
-    public static boolean b(double d) {
-        if (d > 0.0d && vc.b(d)) {
-            long a10 = vc.a(d);
-            if ((a10 & (a10 - 1)) == 0) {
-                return true;
-            }
+        if (i10 < i7) {
+            a(sb2, bArr, i10, i7 - i10);
         }
-        return false;
-    }
-
-    public static int c(double d) {
-        boolean z10;
-        boolean b10;
-        RoundingMode roundingMode = RoundingMode.CEILING;
-        boolean z11 = false;
-        if (d > 0.0d && vc.b(d)) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        zb.e("x must be positive and finite", z10);
-        int exponent = Math.getExponent(d);
-        if (Math.getExponent(d) >= -1022) {
-            switch (b.f14712a[roundingMode.ordinal()]) {
-                case 1:
-                    yc.b(b(d));
-                    break;
-                case 2:
-                    break;
-                case 3:
-                    z11 = !b(d);
-                    break;
-                case 4:
-                    if (exponent < 0) {
-                        z11 = true;
-                    }
-                    b10 = b(d);
-                    z11 &= !b10;
-                    break;
-                case 5:
-                    if (exponent >= 0) {
-                        z11 = true;
-                    }
-                    b10 = b(d);
-                    z11 &= !b10;
-                    break;
-                case 6:
-                case 7:
-                case 8:
-                    double longBitsToDouble = Double.longBitsToDouble((Double.doubleToRawLongBits(d) & 4503599627370495L) | 4607182418800017408L);
-                    if (longBitsToDouble * longBitsToDouble > 2.0d) {
-                        z11 = true;
-                        break;
-                    }
-                    break;
-                default:
-                    throw new AssertionError();
-            }
-            if (z11) {
-                return exponent + 1;
-            }
-            return exponent;
-        }
-        return c(d * 4.503599627370496E15d) - 52;
     }
 }

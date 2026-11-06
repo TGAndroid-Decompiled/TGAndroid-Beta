@@ -4,20 +4,20 @@ import android.os.Build;
 import java.util.Locale;
 import kotlin.jvm.internal.j;
 public abstract class a {
-    public static final int f20106a = 0;
+    public static final int f20114a = 0;
 
     static {
-        int i3 = Build.VERSION.SDK_INT;
-        if (i3 >= 30) {
+        int i7 = Build.VERSION.SDK_INT;
+        if (i7 >= 30) {
             g0.f.f(30);
         }
-        if (i3 >= 30) {
+        if (i7 >= 30) {
             g0.f.f(31);
         }
-        if (i3 >= 30) {
+        if (i7 >= 30) {
             g0.f.f(33);
         }
-        if (i3 >= 30) {
+        if (i7 >= 30) {
             g0.f.f(1000000);
         }
     }
@@ -25,9 +25,9 @@ public abstract class a {
     public static final boolean a() {
         Integer num;
         Integer num2 = 0;
-        int i3 = Build.VERSION.SDK_INT;
-        if (i3 < 33) {
-            if (i3 >= 32) {
+        int i7 = Build.VERSION.SDK_INT;
+        if (i7 < 33) {
+            if (i7 >= 32) {
                 String CODENAME = Build.VERSION.CODENAME;
                 j.d(CODENAME, "CODENAME");
                 if (!"REL".equals(CODENAME)) {

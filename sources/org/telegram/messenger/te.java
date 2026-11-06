@@ -1,54 +1,33 @@
 package org.telegram.messenger;
-public final class te implements Runnable {
-    public final int f25508a;
-    public final ve f25509b;
-    public final int f25510c;
 
-    public te(ve veVar, int i3, int i10) {
-        this.f25508a = i10;
-        this.f25509b = veVar;
-        this.f25510c = i3;
+import org.telegram.ui.Components.f40;
+import org.telegram.ui.Components.g40;
+import org.telegram.ui.Components.o40;
+public final class te implements Runnable {
+    public final int f25602a;
+    public final double f25603b;
+    public final Runnable f25604c;
+
+    public te(Runnable runnable, double d, int i7) {
+        this.f25602a = i7;
+        this.f25604c = runnable;
+        this.f25603b = d;
     }
 
     @Override
     public final void run() {
-        switch (this.f25508a) {
+        int i7 = this.f25602a;
+        double d = this.f25603b;
+        Runnable runnable = this.f25604c;
+        switch (i7) {
             case 0:
-                ve veVar = this.f25509b;
-                try {
-                    veVar.f25854b.o(this.f25510c);
-                    return;
-                } catch (Exception e10) {
-                    a8.g(e10, true);
-                    return;
-                }
-            case 1:
-                ve veVar2 = this.f25509b;
-                try {
-                    veVar2.f25854b.o(this.f25510c);
-                    return;
-                } catch (Exception e11) {
-                    a8.g(e11, true);
-                    return;
-                }
-            case 2:
-                ve veVar3 = this.f25509b;
-                try {
-                    veVar3.f25854b.o(this.f25510c);
-                    return;
-                } catch (Exception e12) {
-                    a8.g(e12, true);
-                    return;
-                }
+                MediaController mediaController = (MediaController) ((m.f3) runnable).f19102b;
+                qs.f(mediaController.f21267h1).k(154, Integer.valueOf(mediaController.f21265g1), Double.valueOf(d));
+                return;
             default:
-                ve veVar4 = this.f25509b;
-                try {
-                    veVar4.f25854b.o(this.f25510c);
-                    return;
-                } catch (Exception e13) {
-                    a8.g(e13, true);
-                    return;
-                }
+                o40 o40Var = ((g40) ((f40) runnable).f33469b).H0;
+                qs.f(o40Var.f36596e).k(154, Integer.valueOf(o40Var.U), Double.valueOf(d));
+                return;
         }
     }
 }

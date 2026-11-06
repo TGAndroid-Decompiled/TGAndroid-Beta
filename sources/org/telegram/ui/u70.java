@@ -1,122 +1,101 @@
 package org.telegram.ui;
 
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.view.View;
-public final class u70 implements org.telegram.messenger.e9, org.telegram.messenger.xa, org.telegram.ui.ActionBar.p1, org.telegram.ui.Components.ya0, org.telegram.messenger.o10, org.telegram.ui.Components.tt0, org.telegram.ui.ActionBar.o6, org.telegram.ui.ActionBar.p6 {
-    public final int f50007a;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+import org.telegram.tgnet.TLRPC;
+public final class u70 implements Runnable {
+    public final LaunchActivity f50235a;
+    public final org.telegram.ui.ActionBar.f2 f50236b;
+    public final int f50237c;
+    public final TLRPC.User d;
+    public final TLRPC.TL_messages_botApp f50238e;
+    public final AtomicBoolean f50239f;
+    public final String h;
+    public final boolean f50240n;
+    public final boolean f50241r;
+    public final boolean f50242s;
+    public final boolean f50243w;
 
-    public u70(int i3) {
-        this.f50007a = i3;
+    public u70(LaunchActivity launchActivity, org.telegram.ui.ActionBar.f2 f2Var, int i7, TLRPC.User user, TLRPC.TL_messages_botApp tL_messages_botApp, AtomicBoolean atomicBoolean, String str, boolean z9, boolean z10, boolean z11, boolean z12) {
+        this.f50235a = launchActivity;
+        this.f50236b = f2Var;
+        this.f50237c = i7;
+        this.d = user;
+        this.f50238e = tL_messages_botApp;
+        this.f50239f = atomicBoolean;
+        this.h = str;
+        this.f50240n = z9;
+        this.f50241r = z10;
+        this.f50242s = z11;
+        this.f50243w = z12;
     }
 
     @Override
-    public Object d(Number number, Object obj) {
-        Integer num = (Integer) obj;
-        if (((Integer) number).intValue() == 0) {
-            return ci.wb.a1(false, org.telegram.messenger.bd.H(',', "Stars", num.intValue()), 0.66f, null);
+    public final void run() {
+        TLRPC.TL_attachMenuBot tL_attachMenuBot;
+        String a02;
+        String str = LaunchActivity.B1;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f50236b;
+        if (f2Var != null && LaunchActivity.D1) {
+            LaunchActivity launchActivity = this.f50235a;
+            if (!launchActivity.isFinishing() && !launchActivity.isDestroyed()) {
+                TLRPC.User user = this.d;
+                long j3 = user.f27101id;
+                TLRPC.TL_messages_botApp tL_messages_botApp = this.f50238e;
+                TLRPC.BotApp botApp = tL_messages_botApp.app;
+                boolean z9 = this.f50239f.get();
+                int i7 = this.f50237c;
+                String str2 = this.h;
+                boolean z10 = this.f50240n;
+                boolean z11 = this.f50241r;
+                hi.q4 b10 = hi.q4.b(i7, j3, j3, null, null, 3, 0, 0L, botApp, z9, str2, user, 0, z10, z11);
+                if (launchActivity.O() == null || launchActivity.O().k(b10) == null) {
+                    org.telegram.messenger.b6.n(launchActivity.O, user.f27101id);
+                    hi.a3 a3Var = new hi.a3(launchActivity, f2Var.getResourceProvider());
+                    hi.s2 s2Var = a3Var.D;
+                    if (s2Var != null) {
+                        s2Var.setWasOpenedByLinkIntent(this.f50242s);
+                    }
+                    a3Var.B(!z10);
+                    if (z11) {
+                        a3Var.C(true, false, a3Var.f14520f0);
+                    }
+                    a3Var.B0 = false;
+                    a3Var.f14526l0 = launchActivity;
+                    a3Var.x(f2Var, b10);
+                    a3Var.show();
+                    if (tL_messages_botApp.inactive || this.f50243w) {
+                        TLRPC.User a22 = org.telegram.messenger.qp.s1(a3Var.H).a2(Long.valueOf(a3Var.I));
+                        ArrayList<TLRPC.TL_attachMenuBot> arrayList = org.telegram.messenger.ui.b0(a3Var.H).f25791b.bots;
+                        int size = arrayList.size();
+                        int i10 = 0;
+                        while (true) {
+                            if (i10 < size) {
+                                TLRPC.TL_attachMenuBot tL_attachMenuBot2 = arrayList.get(i10);
+                                i10++;
+                                tL_attachMenuBot = tL_attachMenuBot2;
+                                if (tL_attachMenuBot.bot_id == a3Var.I) {
+                                    break;
+                                }
+                            } else {
+                                tL_attachMenuBot = null;
+                                break;
+                            }
+                        }
+                        if (tL_attachMenuBot != null) {
+                            boolean z12 = tL_attachMenuBot.show_in_side_menu;
+                            if (z12 && tL_attachMenuBot.show_in_attach_menu) {
+                                a02 = org.telegram.messenger.hd.a0(null, null, 2131753138, a22.first_name);
+                            } else if (z12) {
+                                a02 = org.telegram.messenger.hd.a0(null, null, 2131753137, a22.first_name);
+                            } else {
+                                a02 = org.telegram.messenger.hd.a0(null, null, 2131753139, a22.first_name);
+                            }
+                            org.telegram.messenger.g0.i3(new ha.b(4, a3Var, a02), 200L);
+                        }
+                    }
+                }
+            }
         }
-        return org.telegram.messenger.bd.E(num.intValue(), ',');
-    }
-
-    @Override
-    public String e(int i3) {
-        if (i3 == 0) {
-            return org.telegram.messenger.bd.M0(2131753799, null);
-        }
-        if (i3 == 1) {
-            return org.telegram.messenger.bd.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.bd.G(1, "Minutes", new Object[0]));
-        }
-        if (i3 == 2) {
-            return org.telegram.messenger.bd.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.bd.G(5, "Minutes", new Object[0]));
-        }
-        if (i3 == 3) {
-            return org.telegram.messenger.bd.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.bd.G(1, "Hours", new Object[0]));
-        }
-        if (i3 == 4) {
-            return org.telegram.messenger.bd.a0("AutoLockInTime", null, 2131753798, org.telegram.messenger.bd.G(5, "Hours", new Object[0]));
-        }
-        return "";
-    }
-
-    @Override
-    public void f(int i3, View view) {
-        org.telegram.ui.Wallet.u3 u3Var = (org.telegram.ui.Wallet.u3) view;
-        ShapeDrawable shapeDrawable = u3Var.f43232f0;
-        if (shapeDrawable != null) {
-            shapeDrawable.getPaint().setColor(i3);
-            u3Var.f43232f0.invalidateSelf();
-        }
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        switch (this.f50007a) {
-            case 2:
-                s1Var.dismiss();
-                return;
-            case 4:
-                Drawable[] drawableArr = PhotoViewer.V8;
-                return;
-            case 5:
-                s1Var.dismiss();
-                return;
-            case 6:
-                s1Var.dismiss();
-                return;
-            case 8:
-                RectF rectF = ProfileActivity.T6;
-                s1Var.dismiss();
-                return;
-            case 9:
-                s1Var.dismiss();
-                return;
-            case 15:
-                s1Var.dismiss();
-                return;
-            case 19:
-                s1Var.dismiss();
-                return;
-            case 20:
-                s1Var.dismiss();
-                return;
-            case 21:
-                s1Var.dismiss();
-                return;
-            default:
-                s1Var.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public int h(View view) {
-        ShapeDrawable shapeDrawable = ((org.telegram.ui.Wallet.u3) view).f43232f0;
-        if (shapeDrawable != null) {
-            return shapeDrawable.getPaint().getColor();
-        }
-        return 0;
-    }
-
-    @Override
-    public Object k(Object obj) {
-        Void r12 = (Void) obj;
-        String str = LaunchActivity.E1;
-        return new ee0();
-    }
-
-    @Override
-    public void l(int i3) {
-        org.telegram.messenger.az.f21617b1 = i3;
-        org.telegram.messenger.az.y();
-    }
-
-    @Override
-    public void onClick() {
-    }
-
-    @Override
-    public void p() {
     }
 }

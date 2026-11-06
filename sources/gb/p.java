@@ -1,45 +1,66 @@
 package gb;
 
-import db.i1;
-import java.util.concurrent.atomic.AtomicReference;
-import wd.b0;
-public final class p {
-    public final i1 f12236a;
-    public final l1.g f12237b;
-    public final AtomicReference f12238c;
+import android.util.Log;
+import j$.util.DesugarCollections;
+import j$.util.Objects;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+public final class p implements rd.l {
+    public final int f13739a;
 
-    public p(fd.h backgroundDispatcher, i1 timeProvider, l1.g sessionConfigsDataStore) {
-        kotlin.jvm.internal.j.e(backgroundDispatcher, "backgroundDispatcher");
-        kotlin.jvm.internal.j.e(timeProvider, "timeProvider");
-        kotlin.jvm.internal.j.e(sessionConfigsDataStore, "sessionConfigsDataStore");
-        this.f12236a = timeProvider;
-        this.f12237b = sessionConfigsDataStore;
-        this.f12238c = new AtomicReference();
-        b0.q(b0.b(backgroundDispatcher), new n(this, null, 0));
+    public p(int i7) {
+        this.f13739a = i7;
     }
 
-    public final i a() {
-        AtomicReference atomicReference = this.f12238c;
-        if (atomicReference.get() == null) {
-            Object u10 = b0.u(new n(this, null, 1));
-            while (!atomicReference.compareAndSet(null, u10) && atomicReference.get() == null) {
-            }
+    @Override
+    public final Object invoke(Object obj) {
+        switch (this.f13739a) {
+            case 0:
+                m1.b ex = (m1.b) obj;
+                kotlin.jvm.internal.j.e(ex, "ex");
+                Log.w("FirebaseSessions", "CorruptionException in session configs DataStore", ex);
+                return jb.j.f16625b;
+            case 1:
+                q1.b bVar = (q1.b) obj;
+                q1.e eVar = sa.h.f54879c;
+                long j3 = 0;
+                for (Map.Entry entry : bVar.a().entrySet()) {
+                    if (entry.getValue() instanceof Set) {
+                        q1.e eVar2 = (q1.e) entry.getKey();
+                        String c10 = sa.h.c(System.currentTimeMillis());
+                        if (((Set) entry.getValue()).contains(c10)) {
+                            Object[] objArr = {c10};
+                            HashSet hashSet = new HashSet(1);
+                            Object obj2 = objArr[0];
+                            Objects.requireNonNull(obj2);
+                            if (hashSet.add(obj2)) {
+                                bVar.d(eVar2, DesugarCollections.unmodifiableSet(hashSet));
+                                j3++;
+                            } else {
+                                throw new IllegalArgumentException("duplicate element: " + obj2);
+                            }
+                        } else {
+                            bVar.c(eVar2);
+                        }
+                    }
+                }
+                if (j3 == 0) {
+                    bVar.c(eVar);
+                } else {
+                    bVar.d(eVar, Long.valueOf(j3));
+                }
+                return null;
+            default:
+                id.f fVar = (id.f) obj;
+                if (!(fVar instanceof zd.x)) {
+                    return null;
+                }
+                return (zd.x) fVar;
         }
-        Object obj = atomicReference.get();
-        kotlin.jvm.internal.j.d(obj, "get(...)");
-        return (i) obj;
     }
 
-    public final boolean b() {
-        Long l10 = a().f12221e;
-        Integer num = a().d;
-        if (l10 != null && num != null && this.f12236a.a().f8671c - l10.longValue() < num.intValue()) {
-            return false;
-        }
-        return true;
-    }
-
-    public final java.lang.Object c(gb.i r6, hd.c r7) {
-        throw new UnsupportedOperationException("Method not decompiled: gb.p.c(gb.i, hd.c):java.lang.Object");
+    public p(sa.h hVar) {
+        this.f13739a = 1;
     }
 }

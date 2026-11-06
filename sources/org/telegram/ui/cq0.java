@@ -1,84 +1,108 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import androidx.core.widget.NestedScrollView;
-public final class cq0 extends org.telegram.ui.Components.vy0 {
-    public boolean f44418a;
-    public float f44419b;
-    public NestedScrollView f44420c;
-    public FrameLayout d;
+import android.media.MediaExtractor;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.camera.Size;
+import org.telegram.ui.Components.AnimatedFileNative;
+public final class cq0 implements Runnable {
+    public final String f44853a;
+    public final long f44854b;
+    public final int f44855c;
+    public final PhotoViewer d;
 
-    public cq0(Context context) {
-        super(context);
-        this.f44418a = false;
-        this.f44419b = 1.0f;
-    }
-
-    public final void b(int i3, boolean z10) {
-        super.setVisibility(i3);
-        if (this.f44418a && z10) {
-            this.f44420c.setVisibility(i3);
-        }
+    public cq0(PhotoViewer photoViewer, String str, long j3, int i7) {
+        this.d = photoViewer;
+        this.f44853a = str;
+        this.f44854b = j3;
+        this.f44855c = i7;
     }
 
     @Override
-    public float getAlpha() {
-        if (this.f44418a) {
-            return this.f44419b;
+    public final void run() {
+        boolean z9;
+        boolean z10;
+        if (this.d.f41522w8 == this) {
+            int E = MediaController.E(this.f44853a);
+            int[] iArr = new int[11];
+            AnimatedFileNative.d(this.f44853a, iArr, this.f44854b);
+            boolean z11 = false;
+            if (iArr[10] != 0) {
+                z9 = true;
+            } else {
+                z9 = false;
+            }
+            PhotoViewer photoViewer = this.d;
+            if (iArr[0] != 0 && (!z9 || iArr[9] != 0)) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            photoViewer.f41407j8 = z10;
+            PhotoViewer photoViewer2 = this.d;
+            if (E == -1) {
+                E = iArr[3];
+            }
+            photoViewer2.f41374f8 = E;
+            photoViewer2.f41383g8 = E;
+            if (this.d.f41407j8) {
+                PhotoViewer photoViewer3 = this.d;
+                int i7 = iArr[1];
+                photoViewer3.f41336b8 = i7;
+                photoViewer3.f41354d8 = i7;
+                PhotoViewer photoViewer4 = this.d;
+                int i10 = iArr[2];
+                photoViewer4.f41346c8 = i10;
+                photoViewer4.f41364e8 = i10;
+                PhotoViewer photoViewer5 = this.d;
+                int max = Math.max(photoViewer5.f41336b8, this.d.f41346c8);
+                if (max > 1280) {
+                    photoViewer5.Y7 = 4;
+                } else if (max > 854) {
+                    photoViewer5.Y7 = 3;
+                } else if (max > 640) {
+                    photoViewer5.Y7 = 2;
+                } else {
+                    photoViewer5.Y7 = 1;
+                }
+                PhotoViewer photoViewer6 = this.d;
+                int i11 = this.f44855c;
+                if (i11 == -1) {
+                    i11 = photoViewer6.s2();
+                }
+                photoViewer6.X7 = i11;
+                PhotoViewer photoViewer7 = this.d;
+                if (photoViewer7.f41374f8 != 0 && photoViewer7.f41340c2 != 1) {
+                    Size i02 = photoViewer7.i0();
+                    if (i02.getWidth() == photoViewer7.f41336b8 && i02.getHeight() == photoViewer7.f41346c8) {
+                        MediaController.v(i02.getWidth(), i02.getHeight(), photoViewer7.f41383g8, false);
+                    } else {
+                        MediaController.v(i02.getWidth(), i02.getHeight(), MediaController.Q(photoViewer7.f41346c8, photoViewer7.f41336b8, photoViewer7.f41383g8, i02.getHeight(), i02.getWidth()), false);
+                    }
+                }
+                PhotoViewer photoViewer8 = this.d;
+                String str = this.f44853a;
+                MediaExtractor mediaExtractor = new MediaExtractor();
+                try {
+                    try {
+                        mediaExtractor.setDataSource(str);
+                        int w10 = MediaController.w(mediaExtractor, false);
+                        if (w10 >= 0) {
+                            if (mediaExtractor.getTrackFormat(w10).getString("mime").equals("video/avc")) {
+                                z11 = true;
+                            }
+                        }
+                    } catch (Exception e10) {
+                        org.telegram.messenger.a8.g(e10, true);
+                    }
+                    photoViewer8.f41416k8 = z11;
+                } finally {
+                    mediaExtractor.release();
+                }
+            }
+            if (this.d.f41522w8 != this) {
+                return;
+            }
+            org.telegram.messenger.g0.h3(new mc0(this, this, iArr, 22));
         }
-        return super.getAlpha();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (this.d != null && getParent() == this.d) {
-            this.f44418a = true;
-            this.f44420c.setVisibility(getVisibility());
-            this.f44420c.setAlpha(this.f44419b);
-            super.setAlpha(1.0f);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        if (this.f44418a) {
-            this.f44418a = false;
-            this.f44420c.setVisibility(8);
-            super.setAlpha(this.f44419b);
-        }
-    }
-
-    @Override
-    public void setAlpha(float f10) {
-        this.f44419b = f10;
-        if (this.f44418a) {
-            this.f44420c.setAlpha(f10);
-        } else {
-            super.setAlpha(f10);
-        }
-    }
-
-    public void setContainer(FrameLayout frameLayout) {
-        this.d = frameLayout;
-    }
-
-    public void setScrollView(NestedScrollView nestedScrollView) {
-        this.f44420c = nestedScrollView;
-    }
-
-    @Override
-    public void setTranslationY(float f10) {
-        super.setTranslationY(f10);
-        if (this.f44418a) {
-            this.f44420c.invalidate();
-        }
-    }
-
-    @Override
-    public void setVisibility(int i3) {
-        b(i3, true);
     }
 }

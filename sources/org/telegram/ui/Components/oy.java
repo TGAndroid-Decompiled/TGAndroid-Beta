@@ -1,23 +1,40 @@
 package org.telegram.ui.Components;
 
 import android.graphics.SurfaceTexture;
-public final class oy implements SurfaceTexture.OnFrameAvailableListener {
-    public final int f36982a;
-    public final org.telegram.messenger.q5 f36983b;
+import android.os.Looper;
+import android.view.Surface;
+public final class oy implements Runnable {
+    public final int f36810a;
+    public final ry f36811b;
 
-    public oy(org.telegram.messenger.q5 q5Var, int i3) {
-        this.f36982a = i3;
-        this.f36983b = q5Var;
+    public oy(ry ryVar, int i7) {
+        this.f36810a = i7;
+        this.f36811b = ryVar;
     }
 
     @Override
-    public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
-        switch (this.f36982a) {
+    public final void run() {
+        switch (this.f36810a) {
             case 0:
-                ((py) this.f36983b).c(false, true, true);
+                this.f36811b.finish();
+                Looper myLooper = Looper.myLooper();
+                if (myLooper != null) {
+                    myLooper.quit();
+                    return;
+                }
+                return;
+            case 1:
+                ry.a(this.f36811b);
                 return;
             default:
-                ((w30) this.f36983b).requestRender(true, false);
+                ry ryVar = this.f36811b;
+                ax axVar = ryVar.f37875b0;
+                SurfaceTexture surfaceTexture = ryVar.f37885x;
+                c51 c51Var = (c51) axVar.f31929b;
+                if (c51Var.f32420a != null) {
+                    c51Var.f32420a.y0(new Surface(surfaceTexture));
+                    return;
+                }
                 return;
         }
     }

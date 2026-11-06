@@ -1,17 +1,25 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-public final class vk extends gi.l3 {
-    public final wm X0;
+import android.graphics.Bitmap;
+import java.util.ArrayList;
+public final class vk extends mq0 {
+    public final Bitmap f50739a;
+    public final ArrayList f50740b;
+    public final an f50741c;
 
-    public vk(wm wmVar, Activity activity) {
-        super(activity, 3);
-        this.X0 = wmVar;
+    public vk(an anVar, Bitmap bitmap, ArrayList arrayList) {
+        this.f50741c = anVar;
+        this.f50739a = bitmap;
+        this.f50740b = arrayList;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
-        super.onLayout(z10, i3, i10, i11, i12);
-        setTranslationY(((-getTop()) - org.telegram.messenger.g0.L(120.0f)) + this.X0.R1);
+    public final org.telegram.messenger.jc j(int i7) {
+        return new org.telegram.messenger.jc(this.f50739a, null, 0);
+    }
+
+    @Override
+    public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
+        this.f50741c.u((org.telegram.messenger.gf) this.f50740b.get(0), j20Var, z9, i10, 0, z10, 0L);
     }
 }

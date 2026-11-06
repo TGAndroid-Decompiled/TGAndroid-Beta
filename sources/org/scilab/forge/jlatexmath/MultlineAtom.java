@@ -8,15 +8,15 @@ public class MultlineAtom extends Atom {
     private boolean isPartial;
     private int type;
 
-    public MultlineAtom(boolean z10, ArrayOfAtoms arrayOfAtoms, int i3) {
-        this.isPartial = z10;
+    public MultlineAtom(boolean z9, ArrayOfAtoms arrayOfAtoms, int i7) {
+        this.isPartial = z9;
         this.column = arrayOfAtoms;
-        this.type = i3;
+        this.type = i7;
     }
 
     @Override
     public Box createBox(TeXEnvironment teXEnvironment) {
-        int i3;
+        int i7;
         ArrayOfAtoms arrayOfAtoms;
         int i10;
         float textwidth = teXEnvironment.getTextwidth();
@@ -26,15 +26,15 @@ public class MultlineAtom extends Atom {
                 VerticalBox verticalBox = new VerticalBox();
                 Atom atom = this.column.array.get(0).get(0);
                 if (this.type == 1) {
-                    i3 = 2;
+                    i7 = 2;
                 } else {
-                    i3 = 0;
+                    i7 = 0;
                 }
                 int i12 = atom.alignment;
                 if (i12 != -1) {
-                    i3 = i12;
+                    i7 = i12;
                 }
-                verticalBox.add(new HorizontalBox(atom.createBox(teXEnvironment), textwidth, i3));
+                verticalBox.add(new HorizontalBox(atom.createBox(teXEnvironment), textwidth, i7));
                 Box createBox = vsep_in.createBox(teXEnvironment);
                 int i13 = 1;
                 while (true) {
@@ -73,7 +73,7 @@ public class MultlineAtom extends Atom {
         return new MatrixAtom(this.isPartial, this.column, "").createBox(teXEnvironment);
     }
 
-    public MultlineAtom(ArrayOfAtoms arrayOfAtoms, int i3) {
-        this(false, arrayOfAtoms, i3);
+    public MultlineAtom(ArrayOfAtoms arrayOfAtoms, int i7) {
+        this(false, arrayOfAtoms, i7);
     }
 }

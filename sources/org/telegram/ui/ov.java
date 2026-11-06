@@ -1,19 +1,41 @@
 package org.telegram.ui;
-public final class ov extends u4.b0 {
-    public final tw I;
-    public final pv J;
 
-    public ov(pv pvVar, tw twVar) {
-        this.J = pvVar;
-        this.I = twVar;
+import android.view.View;
+public final class ov {
+    public final int f48555a;
+    public final pv f48556b;
+    public final View f48557c;
+
+    public ov(pv pvVar, View view, int i7) {
+        this.f48555a = i7;
+        this.f48556b = pvVar;
+        this.f48557c = view;
     }
 
-    @Override
-    public final int R0() {
-        tw twVar = this.I;
-        if (twVar.f49904s == 0 && this.J.f48673a0.l4() && twVar.f49905w == 2) {
-            return 1;
+    public final void a(boolean z9) {
+        switch (this.f48555a) {
+            case 0:
+                View view = this.f48557c;
+                if (view instanceof di.p) {
+                    this.f48556b.O0.E0.i((di.p) view, false);
+                    if (z9) {
+                        org.telegram.messenger.g0.i3(new org.telegram.ui.Components.l10(14), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                View view2 = this.f48557c;
+                if (view2 instanceof di.p) {
+                    this.f48556b.O0.E0.i((di.p) view2, false);
+                    if (z9) {
+                        org.telegram.messenger.g0.i3(new org.telegram.ui.Components.l10(14), 500L);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        return 0;
     }
 }

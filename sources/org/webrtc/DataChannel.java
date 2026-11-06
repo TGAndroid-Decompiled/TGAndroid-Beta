@@ -9,9 +9,9 @@ public class DataChannel {
         public final boolean binary;
         public final ByteBuffer data;
 
-        public Buffer(ByteBuffer byteBuffer, boolean z10) {
+        public Buffer(ByteBuffer byteBuffer, boolean z9) {
             this.data = byteBuffer;
-            this.binary = z10;
+            this.binary = z9;
         }
     }
 
@@ -21,10 +21,10 @@ public class DataChannel {
         public int maxRetransmitTimeMs = -1;
         public int maxRetransmits = -1;
         public String protocol = "";
-        public int f53002id = -1;
+        public int f52911id = -1;
 
         public int getId() {
-            return this.f53002id;
+            return this.f52911id;
         }
 
         public int getMaxRetransmitTimeMs() {
@@ -49,7 +49,7 @@ public class DataChannel {
     }
 
     public interface Observer {
-        void onBufferedAmountChange(long j10);
+        void onBufferedAmountChange(long j3);
 
         void onMessage(Buffer buffer);
 
@@ -62,13 +62,13 @@ public class DataChannel {
         CLOSING,
         CLOSED;
 
-        public static State fromNativeIndex(int i3) {
-            return values()[i3];
+        public static State fromNativeIndex(int i7) {
+            return values()[i7];
         }
     }
 
-    public DataChannel(long j10) {
-        this.nativeDataChannel = j10;
+    public DataChannel(long j3) {
+        this.nativeDataChannel = j3;
     }
 
     private void checkDataChannelExists() {
@@ -88,11 +88,11 @@ public class DataChannel {
 
     private native long nativeRegisterObserver(Observer observer);
 
-    private native boolean nativeSend(byte[] bArr, boolean z10);
+    private native boolean nativeSend(byte[] bArr, boolean z9);
 
     private native State nativeState();
 
-    private native void nativeUnregisterObserver(long j10);
+    private native void nativeUnregisterObserver(long j3);
 
     public long bufferedAmount() {
         checkDataChannelExists();
@@ -126,9 +126,9 @@ public class DataChannel {
 
     public void registerObserver(Observer observer) {
         checkDataChannelExists();
-        long j10 = this.nativeObserver;
-        if (j10 != 0) {
-            nativeUnregisterObserver(j10);
+        long j3 = this.nativeObserver;
+        if (j3 != 0) {
+            nativeUnregisterObserver(j3);
         }
         this.nativeObserver = nativeRegisterObserver(observer);
     }

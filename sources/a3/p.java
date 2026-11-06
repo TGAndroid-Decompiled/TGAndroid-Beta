@@ -1,8 +1,7 @@
 package a3;
 
-import java.io.IOException;
-public final class p extends IOException {
-    public p(java.lang.Throwable r4) {
-        throw new UnsupportedOperationException("Method not decompiled: a3.p.<init>(java.lang.Throwable):void");
-    }
+import e2.m1;
+import h9.t1;
+public interface p {
+    t1 h(int i7, m1 m1Var, int[] iArr);
 }

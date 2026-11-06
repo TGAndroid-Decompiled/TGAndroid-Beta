@@ -1,21 +1,22 @@
 package zd;
-public final class h extends hd.c {
-    public Object f60398a;
-    public int f60399b;
-    public final w9.b f60400c;
-    public w9.b d;
-    public c f60401e;
-    public ae.k f60402f;
 
-    public h(w9.b bVar, hd.c cVar) {
-        super(cVar);
-        this.f60400c = bVar;
+import java.util.concurrent.locks.LockSupport;
+public final class h extends a {
+    public final Thread d;
+    public final t0 f59951e;
+
+    public h(id.h hVar, Thread thread, t0 t0Var) {
+        super(hVar, true);
+        this.d = thread;
+        this.f59951e = t0Var;
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f60398a = obj;
-        this.f60399b |= Integer.MIN_VALUE;
-        return this.f60400c.U(null, this);
+    public final void g(Object obj) {
+        Thread currentThread = Thread.currentThread();
+        Thread thread = this.d;
+        if (!kotlin.jvm.internal.j.a(currentThread, thread)) {
+            LockSupport.unpark(thread);
+        }
     }
 }

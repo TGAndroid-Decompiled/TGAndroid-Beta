@@ -1,56 +1,113 @@
 package ii;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import b8.mf;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-public final class j extends FrameLayout {
-    public final ImageView f15021a;
-    public final TextView f15022b;
-    public final TextView f15023c;
+import java.util.ArrayList;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.m5;
+import org.telegram.messenger.t3;
+import org.telegram.messenger.v10;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_communities;
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.r31;
+public final class j implements v10 {
+    public final int f15546a;
+    public final p f15547b;
 
-    public j(Context context, e6 e6Var, boolean z10) {
-        super(context);
-        float f10;
-        ImageView imageView = new ImageView(context);
-        this.f15021a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int i3 = k6.G6;
-        r6.t(imageView, i3, e6Var, PorterDuff.Mode.SRC_IN);
-        addView(imageView, mf.d(24, 24.0f, 51, 20.0f, 11.46f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        if (z10) {
-            f10 = 2.0f;
-        } else {
-            f10 = 9.8f;
+    public j(p pVar, int i7) {
+        this.f15546a = i7;
+        this.f15547b = pVar;
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        ArrayList<TL_communities.CommunityPeer> arrayList;
+        String str;
+        String str2;
+        int i7;
+        TLRPC.ChatPhoto chatPhoto;
+        int i10 = this.f15546a;
+        int i11 = 0;
+        p pVar = this.f15547b;
+        switch (i10) {
+            case 0:
+                TLRPC.Bool bool = (TLRPC.Bool) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                pVar.getClass();
+                if (tL_error != null) {
+                    hc.a0(pVar).f0(tL_error, false);
+                    return;
+                }
+                return;
+            default:
+                ArrayList arrayList2 = (ArrayList) obj;
+                f41 f41Var = (f41) obj2;
+                arrayList2.add(r31.l(140, pVar.f15587s));
+                if (t3.y(1, pVar.I)) {
+                    TLRPC.Chat chat = pVar.I;
+                    if (chat != null && (chatPhoto = chat.photo) != null && !(chatPhoto instanceof TLRPC.TL_chatPhotoEmpty)) {
+                        i7 = 2131751852;
+                    } else {
+                        i7 = 2131751851;
+                    }
+                    r31 c10 = r31.c(141, 2131232496, hd.M0(i7, null));
+                    c10.f37603q = true;
+                    arrayList2.add(c10);
+                    arrayList2.add(r31.E(2, org.telegram.messenger.g0.L(14.0f)));
+                    arrayList2.add(r31.t(0, hd.M0(2131751874, null)));
+                    arrayList2.add(r31.j(7, pVar.f15586r));
+                    arrayList2.add(r31.E(1, org.telegram.messenger.g0.L(14.0f)));
+                }
+                if (t3.w(2, pVar.I)) {
+                    arrayList2.add(r31.t(3, hd.M0(2131751872, null)));
+                    r31 y10 = r31.y(150, hd.M0(2131751843, null), hd.M0(2131751842, null));
+                    y10.L(pVar.f15585n);
+                    arrayList2.add(y10);
+                    r31 y11 = r31.y(151, hd.M0(2131751841, null), hd.M0(2131751840, null));
+                    y11.L(!pVar.f15585n);
+                    arrayList2.add(y11);
+                    arrayList2.add(r31.E(4, org.telegram.messenger.g0.L(14.0f)));
+                }
+                if (t3.N(pVar.I)) {
+                    String M0 = hd.M0(2131751965, null);
+                    TLRPC.ChatFull chatFull = pVar.J;
+                    String str3 = "";
+                    if (chatFull == null) {
+                        str = "";
+                    } else {
+                        str = Integer.toString(chatFull.admins_count);
+                    }
+                    arrayList2.add(r31.d(142, 2131232049, M0, str));
+                    String M02 = hd.M0(2131751895, null);
+                    TLRPC.ChatFull chatFull2 = pVar.J;
+                    if (chatFull2 == null) {
+                        str2 = "";
+                    } else {
+                        str2 = Integer.toString(chatFull2.requests_pending);
+                    }
+                    arrayList2.add(r31.d(143, 2131231029, M02, str2));
+                    String M03 = hd.M0(2131751881, null);
+                    TLRPC.ChatFull chatFull3 = pVar.J;
+                    if (chatFull3 != null) {
+                        str3 = Integer.toString(chatFull3.kicked_count);
+                    }
+                    arrayList2.add(r31.d(144, 2131232415, M03, str3));
+                }
+                arrayList2.add(r31.E(5, org.telegram.messenger.g0.L(14.0f)));
+                r31 c11 = r31.c(146, 2131232176, hd.M0(2131751918, null));
+                c11.f37603q = true;
+                arrayList2.add(c11);
+                TLRPC.ChatFull chatFull4 = pVar.J;
+                if (chatFull4 != null && (arrayList = chatFull4.linked_peers) != null) {
+                    int size = arrayList.size();
+                    while (i11 < size) {
+                        TL_communities.CommunityPeer communityPeer = arrayList.get(i11);
+                        i11++;
+                        arrayList2.add(r31.w(pVar.getMessagesController().e2(m5.o(communityPeer.peer))));
+                    }
+                    return;
+                }
+                return;
         }
-        addView(linearLayout, mf.d(-1, -2.0f, 23, 64.0f, f10, 24.0f, z10 ? 4.0f : 9.8f));
-        TextView textView = new TextView(context);
-        this.f15022b = textView;
-        r6.V(textView, i3, e6Var);
-        textView.setTypeface(org.telegram.messenger.g0.o());
-        textView.setTextSize(1, 14.0f);
-        TextView f11 = org.telegram.messenger.camera.q.f(linearLayout, textView, mf.t(-1, -2, 55, 0, 0, 0, 1), context);
-        this.f15023c = f11;
-        r6.V(f11, k6.f28290z6, e6Var);
-        f11.setTextSize(1, 14.0f);
-        linearLayout.addView(f11, mf.t(-1, -2, 55, 0, 0, 0, 0));
-    }
-
-    public final void a(int i3, CharSequence charSequence, CharSequence charSequence2) {
-        this.f15021a.setImageResource(i3);
-        this.f15022b.setText(charSequence);
-        this.f15023c.setText(charSequence2);
-    }
-
-    public void setText(CharSequence charSequence) {
-        this.f15023c.setText(charSequence);
     }
 }

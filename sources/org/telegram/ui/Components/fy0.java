@@ -2,17 +2,17 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.TLRPC;
 public final class fy0 {
-    public final long f33883a;
-    public final TLRPC.InputFile f33884b;
-    public final TLRPC.InputEncryptedFile f33885c;
+    public final long f33714a;
+    public final TLRPC.InputFile f33715b;
+    public final TLRPC.InputEncryptedFile f33716c;
     public final byte[] d;
-    public final byte[] f33886e;
+    public final byte[] f33717e;
 
-    public fy0(long j10, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2) {
-        this.f33883a = j10;
-        this.f33884b = inputFile;
-        this.f33885c = inputEncryptedFile;
+    public fy0(long j3, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2) {
+        this.f33714a = j3;
+        this.f33715b = inputFile;
+        this.f33716c = inputEncryptedFile;
         this.d = bArr;
-        this.f33886e = bArr2;
+        this.f33717e = bArr2;
     }
 }

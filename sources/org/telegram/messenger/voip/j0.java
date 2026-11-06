@@ -1,52 +1,47 @@
 package org.telegram.messenger.voip;
 
-import java.util.ArrayList;
+import bi.nb;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Cells.q1;
 import org.telegram.ui.Components.f41;
-import org.telegram.ui.Components.yt0;
-import org.telegram.ui.nk;
-public final class j0 implements Runnable {
-    public final int f26016a;
-    public final int f26017b;
-    public final boolean f26018c;
+import org.telegram.ui.Components.vr;
+import org.telegram.ui.Components.xr;
+public final class j0 implements RequestDelegate {
+    public final int f26116a;
+    public final int f26117b;
+    public final boolean f26118c;
     public final Object d;
-    public final Object f26019e;
+    public final Object f26119e;
 
-    public j0(int i3, int i10, Object obj, Object obj2, boolean z10) {
-        this.f26016a = i10;
-        this.d = obj;
-        this.f26019e = obj2;
-        this.f26017b = i3;
-        this.f26018c = z10;
+    public j0(int i7, String str, VoIPService voIPService, boolean z9) {
+        this.f26116a = 0;
+        this.d = voIPService;
+        this.f26117b = i7;
+        this.f26118c = z9;
+        this.f26119e = str;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.voip.j0.run():void");
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f26116a) {
+            case 0:
+                ((VoIPService) this.d).lambda$startConferenceGroupCall$54(this.f26117b, this.f26118c, (String) this.f26119e, tLObject, tL_error);
+                return;
+            case 1:
+                org.telegram.messenger.g0.h3(new nb((vr) this.d, this.f26117b, (TLRPC.TL_messages_searchGlobal) this.f26119e, this.f26118c, tLObject, 3));
+                return;
+            default:
+                org.telegram.messenger.g0.h3(new nb((xr) this.d, this.f26117b, (TLRPC.TL_messages_searchGlobal) this.f26119e, this.f26118c, tLObject, 4));
+                return;
+        }
     }
 
-    public j0(nk nkVar, boolean z10, ArrayList arrayList, int i3) {
-        this.f26016a = 2;
-        this.d = nkVar;
-        this.f26018c = z10;
-        this.f26019e = arrayList;
-        this.f26017b = i3;
-    }
-
-    public j0(yt0 yt0Var, boolean z10, int i3, q1 q1Var) {
-        this.f26016a = 5;
-        this.d = yt0Var;
-        this.f26018c = z10;
-        this.f26017b = i3;
-        this.f26019e = q1Var;
-    }
-
-    public j0(f41 f41Var, int i3, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, int i10) {
-        this.f26016a = i10;
+    public j0(f41 f41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z9, int i10) {
+        this.f26116a = i10;
         this.d = f41Var;
-        this.f26017b = i3;
-        this.f26019e = tL_messages_searchGlobal;
-        this.f26018c = z10;
+        this.f26117b = i7;
+        this.f26119e = tL_messages_searchGlobal;
+        this.f26118c = z9;
     }
 }

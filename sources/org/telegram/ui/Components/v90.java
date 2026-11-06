@@ -1,35 +1,40 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class v90 extends org.telegram.ui.Cells.q1 {
-    public final org.telegram.ui.y7 f39055kd;
+import android.view.MotionEvent;
+public final class v90 extends org.telegram.ui.ActionBar.z0 {
+    public final int V;
 
-    public v90(org.telegram.ui.y7 y7Var, Context context, int i3, k4.j jVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, i3, false, jVar, e6Var);
-        this.f39055kd = y7Var;
+    public v90(int i7, int i10, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z9, boolean z10) {
+        super(i7, context, f6Var, z9, z10);
+        this.V = i10;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        ((x90) this.f39055kd.d).f40293f.invalidate();
+    public final void l() {
+        switch (this.V) {
+            case 0:
+                setBackground(null);
+                return;
+            default:
+                setBackground(null);
+                return;
+        }
     }
 
     @Override
-    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
-        super.onLayout(z10, i3, i10, i11, i12);
-        x90.b((x90) this.f39055kd.d, this);
-    }
-
-    @Override
-    public final void u3(org.telegram.messenger.zi ziVar, org.telegram.messenger.ui uiVar, boolean z10, boolean z11, boolean z12, boolean z13) {
-        super.u3(ziVar, uiVar, z10, z11, z12, z13);
-        x90.b((x90) this.f39055kd.d, this);
-    }
-
-    @Override
-    public final void invalidate(int i3, int i10, int i11, int i12) {
-        super.invalidate(i3, i10, i11, i12);
-        ((x90) this.f39055kd.d).f40293f.invalidate();
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.V) {
+            case 0:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+        }
     }
 }

@@ -1,48 +1,52 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-public final class ce implements DialogInterface.OnDismissListener {
-    public final int f44322a;
-    public final wm f44323b;
+import android.animation.ValueAnimator;
+public final class ce implements ValueAnimator.AnimatorUpdateListener {
+    public final int f44733a;
+    public final an f44734b;
 
-    public ce(wm wmVar, int i3) {
-        this.f44322a = i3;
-        this.f44323b = wmVar;
+    public ce(an anVar, int i7) {
+        this.f44733a = i7;
+        this.f44734b = anVar;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f44322a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f44733a) {
             case 0:
-                hj hjVar = this.f44323b.f51395m2;
-                if (hjVar != null) {
-                    hjVar.c(false);
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                an anVar = this.f44734b;
+                anVar.Y8 = floatValue;
+                ol olVar = anVar.l1;
+                if (olVar != null) {
+                    olVar.invalidate();
+                    anVar.f44013z0.invalidate();
                     return;
                 }
                 return;
             case 1:
-                wm.c1(this.f44323b);
+                an anVar2 = this.f44734b;
+                anVar2.getClass();
+                anVar2.f43978w3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                anVar2.Pc();
                 return;
             case 2:
-                this.f44323b.v8(false, true, 0.0f);
+                an anVar3 = this.f44734b;
+                anVar3.getClass();
+                anVar3.f43978w3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                anVar3.Pc();
                 return;
             case 3:
-                this.f44323b.v8(false, true, 0.0f);
-                return;
-            case 4:
-                this.f44323b.v8(false, true, 0.0f);
-                return;
-            case 5:
-                this.f44323b.v8(false, true, 0.0f);
-                return;
-            case 6:
-                this.f44323b.v8(false, true, 0.0f);
-                return;
-            case 7:
-                this.f44323b.v8(false, true, 0.0f);
+                an anVar4 = this.f44734b;
+                anVar4.getClass();
+                anVar4.Xa = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                anVar4.K9();
                 return;
             default:
-                this.f44323b.f51344hc = null;
+                an anVar5 = this.f44734b;
+                anVar5.getClass();
+                anVar5.Xa = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                anVar5.K9();
                 return;
         }
     }

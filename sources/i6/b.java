@@ -1,63 +1,81 @@
 package i6;
 
-import android.os.Build;
-import android.text.TextUtils;
-import android.util.Log;
-import java.util.Locale;
-public final class b {
-    public final String f14620a;
-    public final boolean f14621b;
-    public final String f14622c;
+import a8.r7;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Parcel;
+import android.os.RemoteException;
+import com.google.android.gms.internal.cast.t;
+import g6.j;
+public final class b extends AsyncTask {
+    public static final j6.b f15351c = new j6.b("FetchBitmapTask", null);
+    public final e f15352a;
+    public final r7 f15353b;
 
-    public b(String str, String str2) {
-        boolean z10;
-        String q10;
-        p6.m.f(str, "The log tag cannot be null or empty.");
-        this.f14620a = str;
-        if (str.length() <= 23) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public b(Context context, int i7, int i10, r7 r7Var) {
+        e eVar;
+        this.f15353b = r7Var;
+        Context applicationContext = context.getApplicationContext();
+        j jVar = new j(this);
+        j6.b bVar = com.google.android.gms.internal.cast.d.f6837a;
+        try {
+            com.google.android.gms.internal.cast.f b10 = com.google.android.gms.internal.cast.d.b(applicationContext.getApplicationContext());
+            a7.b bVar2 = new a7.b(applicationContext.getApplicationContext());
+            Parcel R0 = b10.R0(b10.P0(), 8);
+            int readInt = R0.readInt();
+            R0.recycle();
+            if (readInt >= 233700000) {
+                eVar = b10.b1(bVar2, new a7.b(this), jVar, i7, i10);
+            } else {
+                eVar = b10.a1(new a7.b(this), jVar, i7, i10);
+            }
+        } catch (RemoteException e10) {
+            e = e10;
+            com.google.android.gms.internal.cast.d.f6837a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
+            eVar = null;
+            this.f15352a = eVar;
+        } catch (g6.d e11) {
+            e = e11;
+            com.google.android.gms.internal.cast.d.f6837a.a(e, "Unable to call %s on %s.", "newFetchBitmapTaskImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
+            eVar = null;
+            this.f15352a = eVar;
         }
-        this.f14621b = z10;
-        if (TextUtils.isEmpty(str2)) {
-            q10 = null;
-        } else {
-            q10 = a1.g.q("[", str2, "] ");
-        }
-        this.f14622c = q10;
+        this.f15352a = eVar;
     }
 
-    public final void a(Exception exc, String str, Object... objArr) {
-        if (!Build.TYPE.equals("user") && this.f14621b) {
-            String str2 = this.f14620a;
-            if (Log.isLoggable(str2, 3)) {
-                Log.d(str2, d(str, objArr), exc);
+    @Override
+    public final Object doInBackground(Object[] objArr) {
+        Uri uri;
+        e eVar;
+        Uri[] uriArr = (Uri[]) objArr;
+        if (uriArr.length == 1 && (uri = uriArr[0]) != null && (eVar = this.f15352a) != null) {
+            try {
+                c cVar = (c) eVar;
+                Parcel P0 = cVar.P0();
+                t.c(P0, uri);
+                Parcel R0 = cVar.R0(P0, 1);
+                Bitmap bitmap = (Bitmap) t.a(R0, Bitmap.CREATOR);
+                R0.recycle();
+                return bitmap;
+            } catch (RemoteException e10) {
+                f15351c.a(e10, "Unable to call %s on %s.", "doFetch", e.class.getSimpleName());
             }
         }
+        return null;
     }
 
-    public final void b(String str, Object... objArr) {
-        if (!Build.TYPE.equals("user") && this.f14621b) {
-            String str2 = this.f14620a;
-            if (Log.isLoggable(str2, 3)) {
-                Log.d(str2, d(str, objArr));
+    @Override
+    public final void onPostExecute(Object obj) {
+        Bitmap bitmap = (Bitmap) obj;
+        r7 r7Var = this.f15353b;
+        if (r7Var != null) {
+            a aVar = (a) r7Var.f617f;
+            if (aVar != null) {
+                aVar.p(bitmap);
             }
+            r7Var.f616e = null;
         }
-    }
-
-    public final void c(Object... objArr) {
-        Log.e(this.f14620a, d("Bundle is null", objArr));
-    }
-
-    public final String d(String str, Object... objArr) {
-        if (objArr.length != 0) {
-            str = String.format(Locale.ROOT, str, objArr);
-        }
-        String str2 = this.f14622c;
-        if (!TextUtils.isEmpty(str2)) {
-            return String.valueOf(str2).concat(String.valueOf(str));
-        }
-        return str;
     }
 }

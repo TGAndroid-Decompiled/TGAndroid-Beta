@@ -1,66 +1,42 @@
 package org.telegram.ui;
-public final class di extends sf.b {
-    public final int d;
-    public final int f44715e;
-    public final org.telegram.ui.Cells.q1 f44716f;
-    public final wm f44717g;
+public final class di implements Runnable {
+    public final boolean f45048a;
+    public final boolean f45049b;
+    public final int f45050c;
+    public final boolean d;
+    public final org.telegram.ui.Components.ii0 f45051e;
+    public final float f45052f;
+    public final float h;
+    public final ch.o0 f45053n;
+    public final org.telegram.messenger.ij f45054r;
+    public final an f45055s;
 
-    public di(wm wmVar, int i3, org.telegram.ui.Cells.q1 q1Var, int i10) {
-        this.d = i10;
-        this.f44717g = wmVar;
-        this.f44715e = i3;
-        this.f44716f = q1Var;
+    public di(an anVar, boolean z9, boolean z10, int i7, boolean z11, org.telegram.ui.Components.ii0 ii0Var, float f10, float f11, ch.o0 o0Var, org.telegram.messenger.ij ijVar) {
+        this.f45055s = anVar;
+        this.f45048a = z9;
+        this.f45049b = z10;
+        this.f45050c = i7;
+        this.d = z11;
+        this.f45051e = ii0Var;
+        this.f45052f = f10;
+        this.h = f11;
+        this.f45053n = o0Var;
+        this.f45054r = ijVar;
     }
 
     @Override
-    public final void c(boolean z10) {
-        switch (this.d) {
-            case 0:
-                if (!z10) {
-                    org.telegram.messenger.g0.i3(new cg.l0(this, this.f44715e, 22), 240L);
-                    return;
+    public final void run() {
+        if (!this.f45048a) {
+            an anVar = this.f45055s;
+            if (anVar.Fc != null) {
+                anVar.Fc = null;
+                if (this.f45049b) {
+                    anVar.w8(new ci(this, this.f45050c, this.d, this.f45051e, this.f45052f, this.h, this.f45053n, 0));
+                } else {
+                    anVar.w8(new qf(15, this, this.f45054r));
                 }
-                return;
-            case 1:
-                if (!z10) {
-                    org.telegram.messenger.g0.i3(new cg.l0(this, this.f44715e, 25), 240L);
-                    return;
-                }
-                return;
-            default:
-                if (!z10) {
-                    org.telegram.messenger.g0.i3(new cg.l0(this, this.f44715e, 26), 240L);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void d() {
-        switch (this.d) {
-            case 0:
-                int i3 = this.f44715e;
-                wm wmVar = this.f44717g;
-                wmVar.Xb = i3;
-                wmVar.Yb = 6;
-                this.f44716f.invalidate();
-                return;
-            case 1:
-                int i10 = this.f44715e;
-                wm wmVar2 = this.f44717g;
-                wmVar2.Xb = i10;
-                wmVar2.Yb = 5;
-                wmVar2.ac = null;
-                this.f44716f.invalidate();
-                return;
-            default:
-                int i11 = this.f44715e;
-                wm wmVar3 = this.f44717g;
-                wmVar3.Xb = i11;
-                wmVar3.Yb = 7;
-                this.f44716f.invalidate();
-                return;
+                anVar.O7(true);
+            }
         }
     }
 }

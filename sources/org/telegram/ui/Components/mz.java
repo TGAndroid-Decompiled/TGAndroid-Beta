@@ -1,36 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class mz implements ValueAnimator.AnimatorUpdateListener {
-    public final int f36275a;
-    public final nz f36276b;
+import android.os.Bundle;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+public abstract class mz extends km0 {
+    public final boolean d;
 
-    public mz(nz nzVar, int i3) {
-        this.f36275a = i3;
-        this.f36276b = nzVar;
+    public mz(boolean z9) {
+        this.d = z9;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f36275a) {
-            case 0:
-                nz nzVar = this.f36276b;
-                nzVar.getClass();
-                nzVar.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                nzVar.invalidate();
-                return;
-            case 1:
-                nz nzVar2 = this.f36276b;
-                nzVar2.getClass();
-                nzVar2.f36660w = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                nzVar2.invalidate();
-                return;
-            default:
-                nz nzVar3 = this.f36276b;
-                nzVar3.getClass();
-                nzVar3.f36657n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                nzVar3.invalidate();
-                return;
+    public final boolean a() {
+        if (k() > j()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean b() {
+        if (k() < i()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void c(boolean z9) {
+        float h = h();
+        if (z9) {
+            h *= -1.0f;
+        }
+        l(Math.min(i(), Math.max(j(), k() + h)));
+    }
+
+    @Override
+    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.e(view, accessibilityNodeInfo);
+        if (this.d) {
+            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f54481a);
+            accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
         }
     }
+
+    @Override
+    public final boolean g(View view, int i7, Bundle bundle) {
+        if (super.g(view, i7, bundle)) {
+            return true;
+        }
+        if (i7 == ((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f54481a).getId()) {
+            l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
+            return true;
+        }
+        return false;
+    }
+
+    public float h() {
+        return 0.05f;
+    }
+
+    public float i() {
+        return 1.0f;
+    }
+
+    public float j() {
+        return 0.0f;
+    }
+
+    public abstract float k();
+
+    public abstract void l(float f10);
 }

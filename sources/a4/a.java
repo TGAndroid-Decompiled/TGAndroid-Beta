@@ -1,98 +1,40 @@
 package a4;
 
-import e3.d0;
-import e3.o;
-import e3.p;
-import e3.q;
-import e3.s;
-import g9.g0;
-import g9.i0;
-import g9.s1;
-import java.util.List;
-public final class a implements o {
-    public final int f125a;
-    public final d0 f126b;
+import f3.b0;
+import f3.c0;
+import f3.d0;
+import h2.m0;
+import java.math.BigInteger;
+public final class a implements c0 {
+    public final b f147a;
 
-    public a(int i3) {
-        this.f125a = i3;
-        switch (i3) {
-            case 1:
-                this.f126b = new d0(16973, 2, "image/bmp");
-                return;
-            default:
-                this.f126b = new d0(35152, 2, "image/png");
-                return;
-        }
+    public a(b bVar) {
+        this.f147a = bVar;
     }
 
     @Override
-    public final o a() {
-        int i3 = this.f125a;
-        return this;
+    public final boolean d() {
+        return true;
     }
 
     @Override
-    public final boolean b(p pVar) {
-        switch (this.f125a) {
-            case 0:
-                return this.f126b.b(pVar);
-            default:
-                return this.f126b.b(pVar);
-        }
+    public final boolean e() {
+        return false;
     }
 
     @Override
-    public final void c(q qVar) {
-        switch (this.f125a) {
-            case 0:
-                this.f126b.c(qVar);
-                return;
-            default:
-                this.f126b.c(qVar);
-                return;
-        }
+    public final b0 f(long j3) {
+        b bVar = this.f147a;
+        long j10 = bVar.f149b;
+        BigInteger valueOf = BigInteger.valueOf((bVar.d.f185i * j3) / 1000000);
+        long j11 = bVar.f150c;
+        d0 d0Var = new d0(j3, m0.j((valueOf.multiply(BigInteger.valueOf(j11 - j10)).divide(BigInteger.valueOf(bVar.f152f)).longValue() + j10) - 30000, bVar.f149b, j11 - 1));
+        return new b0(d0Var, d0Var);
     }
 
     @Override
-    public final void d(long j10, long j11) {
-        switch (this.f125a) {
-            case 0:
-                this.f126b.d(j10, j11);
-                return;
-            default:
-                this.f126b.d(j10, j11);
-                return;
-        }
-    }
-
-    @Override
-    public final List e() {
-        switch (this.f125a) {
-            case 0:
-            default:
-                g0 g0Var = i0.f12083b;
-                return s1.f12146e;
-        }
-    }
-
-    @Override
-    public final int f(p pVar, s sVar) {
-        switch (this.f125a) {
-            case 0:
-                return this.f126b.f(pVar, sVar);
-            default:
-                return this.f126b.f(pVar, sVar);
-        }
-    }
-
-    @Override
-    public final void release() {
-        int i3 = this.f125a;
-    }
-
-    private final void g() {
-    }
-
-    private final void h() {
+    public final long h() {
+        b bVar = this.f147a;
+        return (bVar.f152f * 1000000) / bVar.d.f185i;
     }
 }

@@ -4,61 +4,61 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.style.ReplacementSpan;
 public class wp extends ReplacementSpan {
+    public int D;
     public int E;
-    public int F;
-    public final int G;
+    public final int F;
+    public float G;
     public float H;
     public float I;
-    public float J;
-    public boolean K;
-    public Paint.FontMetricsInt L;
-    public boolean f40039a;
-    public int f40040b;
-    public Drawable f40041c;
+    public boolean J;
+    public Paint.FontMetricsInt K;
+    public boolean f40049a;
+    public int f40050b;
+    public Drawable f40051c;
     public boolean d;
-    public boolean f40042e;
-    public boolean f40043f;
+    public boolean f40052e;
+    public boolean f40053f;
     public int h;
-    public int f40044n;
-    public float f40045r;
-    public float f40046s;
-    public float f40047w;
-    public float f40048x;
-    public int f40049y;
+    public int f40054n;
+    public float f40055r;
+    public float f40056s;
+    public float f40057w;
+    public float f40058x;
+    public int f40059y;
 
-    public wp(int i3) {
-        this(i3, 0);
+    public wp(int i7) {
+        this(i7, 0);
     }
 
-    public final void a(int i3) {
-        boolean z10;
-        this.h = i3;
-        if (i3 < 0) {
-            z10 = true;
+    public final void a(int i7) {
+        boolean z9;
+        this.h = i7;
+        if (i7 < 0) {
+            z9 = true;
         } else {
-            z10 = false;
+            z9 = false;
         }
-        this.f40042e = z10;
+        this.f40052e = z9;
     }
 
     public final void b(Paint.FontMetricsInt fontMetricsInt) {
-        this.K = true;
-        this.L = fontMetricsInt;
+        this.J = true;
+        this.K = fontMetricsInt;
         if (fontMetricsInt != null) {
-            c(Math.abs(this.L.ascent) + Math.abs(fontMetricsInt.descent));
-            if (this.E == 0) {
+            c(Math.abs(this.K.ascent) + Math.abs(fontMetricsInt.descent));
+            if (this.D == 0) {
                 c(org.telegram.messenger.g0.L(20.0f));
             }
         }
     }
 
-    public final void c(int i3) {
-        this.E = i3;
-        this.f40041c.setBounds(0, 0, i3, i3);
+    public final void c(int i7) {
+        this.D = i7;
+        this.f40051c.setBounds(0, 0, i7, i7);
     }
 
     public final void d(float f10) {
-        this.f40045r = f10;
+        this.f40055r = f10;
     }
 
     @Override
@@ -67,29 +67,29 @@ public class wp extends ReplacementSpan {
     }
 
     public final void e(float f10) {
-        this.f40045r = 0.0f;
-        this.f40046s = f10;
+        this.f40055r = 0.0f;
+        this.f40056s = f10;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i3, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        if (this.K && this.L != null) {
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        if (this.J && this.K != null) {
             if (fontMetricsInt == null) {
                 fontMetricsInt = new Paint.FontMetricsInt();
             }
-            Paint.FontMetricsInt fontMetricsInt2 = this.L;
+            Paint.FontMetricsInt fontMetricsInt2 = this.K;
             fontMetricsInt.ascent = fontMetricsInt2.ascent;
             fontMetricsInt.descent = fontMetricsInt2.descent;
             fontMetricsInt.top = fontMetricsInt2.top;
             fontMetricsInt.bottom = fontMetricsInt2.bottom;
-            return (int) (Math.abs(this.H) * Math.abs(this.I) * this.E);
-        } else if (this.F != 0) {
-            return (int) (Math.abs(this.I) * this.F);
+            return (int) (Math.abs(this.G) * Math.abs(this.H) * this.D);
+        } else if (this.E != 0) {
+            return (int) (Math.abs(this.H) * this.E);
         } else {
-            float abs = Math.abs(this.H) * Math.abs(this.I);
-            int i11 = this.E;
+            float abs = Math.abs(this.G) * Math.abs(this.H);
+            int i11 = this.D;
             if (i11 == 0) {
-                i11 = this.f40041c.getIntrinsicWidth();
+                i11 = this.f40051c.getIntrinsicWidth();
             }
             return (int) (abs * i11);
         }
@@ -99,24 +99,24 @@ public class wp extends ReplacementSpan {
         this(0, drawable);
     }
 
-    public wp(int i3, int i10) {
-        this(i10, org.telegram.messenger.t0.f25457b.getDrawable(i3).mutate());
+    public wp(int i7, int i10) {
+        this(i10, org.telegram.messenger.t0.f25555b.getDrawable(i7).mutate());
     }
 
-    public wp(int i3, Drawable drawable) {
-        this.f40039a = true;
+    public wp(int i7, Drawable drawable) {
+        this.f40049a = true;
         this.d = true;
-        this.f40042e = true;
-        this.f40043f = false;
-        this.f40044n = 0;
-        this.f40048x = 1.0f;
+        this.f40052e = true;
+        this.f40053f = false;
+        this.f40054n = 0;
+        this.f40058x = 1.0f;
+        this.G = 1.0f;
         this.H = 1.0f;
         this.I = 1.0f;
-        this.J = 1.0f;
-        this.f40041c = drawable;
+        this.f40051c = drawable;
         if (drawable != null) {
             drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
         }
-        this.G = i3;
+        this.F = i7;
     }
 }

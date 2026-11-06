@@ -1,4 +1,10 @@
 package e5;
-public interface g {
-    void a(f fVar);
+
+import java.util.HashSet;
+public final class g {
+    public static final HashSet f10707a = new HashSet();
+
+    public g() {
+        f10707a.add(this);
+    }
 }

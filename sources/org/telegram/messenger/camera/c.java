@@ -3,25 +3,25 @@ package org.telegram.messenger.camera;
 import org.telegram.messenger.camera.Camera2Session;
 import org.telegram.messenger.camera.CameraView;
 public final class c implements Runnable {
-    public final int f21959a;
-    public final Object f21960b;
+    public final int f21756a;
+    public final Object f21757b;
 
-    public c(Object obj, int i3) {
-        this.f21959a = i3;
-        this.f21960b = obj;
+    public c(Object obj, int i7) {
+        this.f21756a = i7;
+        this.f21757b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f21959a) {
+        switch (this.f21756a) {
             case 0:
-                Camera2Session.AnonymousClass1.a((Camera2Session.AnonymousClass1) this.f21960b);
+                ((Camera2Session.AnonymousClass1) this.f21757b).lambda$onError$0();
                 return;
             case 1:
-                CameraView.VideoRecorder.a((CameraView.VideoRecorder) this.f21960b);
+                CameraView.VideoRecorder.a((CameraView.VideoRecorder) this.f21757b);
                 return;
             default:
-                CameraController.c((CameraController) this.f21960b);
+                CameraController.c((CameraController) this.f21757b);
                 return;
         }
     }

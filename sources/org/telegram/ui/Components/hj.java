@@ -1,57 +1,57 @@
 package org.telegram.ui.Components;
 
-import java.io.File;
-import java.util.Comparator;
-public final class hj implements Comparator {
-    public final int f34402a;
-    public final uj f34403b;
+import android.animation.ValueAnimator;
+import android.widget.FrameLayout;
+public final class hj implements ValueAnimator.AnimatorUpdateListener {
+    public final int f34353a;
+    public final int f34354b;
+    public final float f34355c;
+    public final FrameLayout d;
 
-    public hj(uj ujVar, int i3) {
-        this.f34402a = i3;
-        this.f34403b = ujVar;
+    public hj(FrameLayout frameLayout, int i7, float f10, int i10) {
+        this.f34353a = i10;
+        this.d = frameLayout;
+        this.f34354b = i7;
+        this.f34355c = f10;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        oj ojVar = (oj) obj;
-        oj ojVar2 = (oj) obj2;
-        switch (this.f34402a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f34353a) {
             case 0:
-                uj ujVar = this.f34403b;
-                ujVar.getClass();
-                File file = ojVar.f36843f;
-                if (file != null) {
-                    if (ojVar2.f36843f != null) {
-                        boolean isDirectory = file.isDirectory();
-                        if (isDirectory != ojVar2.f36843f.isDirectory()) {
-                            if (isDirectory) {
-                            }
-                        } else if (!isDirectory && !ujVar.f38765d0) {
-                            int i3 = (ojVar.f36843f.lastModified() > ojVar2.f36843f.lastModified() ? 1 : (ojVar.f36843f.lastModified() == ojVar2.f36843f.lastModified() ? 0 : -1));
-                            if (i3 == 0) {
-                                return 0;
-                            }
-                            if (i3 > 0) {
-                            }
-                        } else {
-                            return ojVar.f36843f.getName().compareToIgnoreCase(ojVar2.f36843f.getName());
-                        }
-                    }
-                    return 1;
+                vj vjVar = (vj) this.d;
+                kj kjVar = vjVar.f38967r;
+                kj kjVar2 = vjVar.f38968s;
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                int i7 = this.f34354b;
+                float f10 = this.f34355c;
+                if (i7 == 1) {
+                    kjVar.setTranslationX(f10 * floatValue);
+                    kjVar.setAlpha(1.0f - floatValue);
+                    kjVar.invalidate();
+                    kjVar2.setAlpha(floatValue);
+                    float f11 = (floatValue * 0.05f) + 0.95f;
+                    kjVar2.setScaleX(f11);
+                    kjVar2.setScaleY(f11);
+                    return;
                 }
-                return -1;
+                kjVar2.setTranslationX(f10 * floatValue);
+                kjVar2.setAlpha(Math.max(0.0f, 1.0f - floatValue));
+                kjVar2.invalidate();
+                kjVar.setAlpha(floatValue);
+                float f12 = (floatValue * 0.05f) + 0.95f;
+                kjVar.setScaleX(f12);
+                kjVar.setScaleY(f12);
+                kjVar2.invalidate();
+                return;
             default:
-                if (this.f34403b.f38765d0) {
-                    return ojVar.f36843f.getName().compareToIgnoreCase(ojVar2.f36843f.getName());
-                }
-                int i10 = (ojVar.f36843f.lastModified() > ojVar2.f36843f.lastModified() ? 1 : (ojVar.f36843f.lastModified() == ojVar2.f36843f.lastModified() ? 0 : -1));
-                if (i10 == 0) {
-                    return 0;
-                }
-                if (i10 > 0) {
-                    return -1;
-                }
-                return 1;
+                ca0 ca0Var = (ca0) this.d;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float f13 = 1.0f - floatValue2;
+                int i10 = (int) ((ca0Var.R * floatValue2) + (this.f34354b * f13));
+                ca0Var.T = i10;
+                ca0Var.f((ca0Var.S * floatValue2) + (this.f34355c * f13), i10);
+                return;
         }
     }
 }

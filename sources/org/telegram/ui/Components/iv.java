@@ -1,28 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
 import android.view.View;
-import android.widget.FrameLayout;
-public final class iv extends FrameLayout {
-    public final ey f34833a;
+public final class iv implements View.OnFocusChangeListener {
+    public final gy f34803a;
 
-    public iv(ey eyVar, Context context) {
-        super(context);
-        this.f34833a = eyVar;
+    public iv(gy gyVar) {
+        this.f34803a = gyVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        ey eyVar = this.f34833a;
-        lv lvVar = eyVar.f33564p0;
-        if (view == eyVar.f33545i0) {
-            canvas.save();
-            canvas.clipRect(0.0f, lvVar.getY() + lvVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            canvas.restore();
-            return drawChild;
+    public final void onFocusChange(View view, boolean z9) {
+        if (z9) {
+            String[] G0 = org.telegram.messenger.g0.G0();
+            gy gyVar = this.f34803a;
+            gyVar.W0 = G0;
+            org.telegram.messenger.ui.b0(gyVar.f34076c1).M(gyVar.W0, false);
         }
-        return super.drawChild(canvas, view, j10);
     }
 }

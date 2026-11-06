@@ -1,19 +1,22 @@
 package org.telegram.ui;
+public final class to0 extends org.telegram.ui.Cells.s9 {
+    public final int f50087q0 = 0;
 
-import android.content.DialogInterface;
-import android.widget.ImageView;
-public final class to0 implements DialogInterface.OnDismissListener {
-    public final PhotoViewer f49861a;
-
-    public to0(PhotoViewer photoViewer) {
-        this.f49861a = photoViewer;
+    public to0(di.g8 g8Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(g8Var, f6Var);
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        ImageView imageView = this.f49861a.F3;
-        if (imageView != null) {
-            imageView.animate().alpha(0.0f).withEndAction(new sg0(this, 18)).setDuration(150L).start();
+    public final int o() {
+        switch (this.f50087q0) {
+            case 0:
+                return 0;
+            default:
+                return 0;
         }
+    }
+
+    public to0(di.b bVar) {
+        super(null, bVar);
     }
 }

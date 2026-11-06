@@ -3,35 +3,35 @@ package org.telegram.messenger;
 import android.view.View;
 import java.util.List;
 import org.telegram.tgnet.TLRPC;
-public final class u3 implements u10 {
-    public final int f25646a;
-    public final Object f25647b;
+public final class u3 implements c20 {
+    public final int f25714a;
+    public final Object f25715b;
 
-    public u3(Object obj, int i3) {
-        this.f25646a = i3;
-        this.f25647b = obj;
+    public u3(Object obj, int i7) {
+        this.f25714a = i7;
+        this.f25715b = obj;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f25646a) {
+        switch (this.f25714a) {
             case 0:
-                d4 d4Var = (d4) this.f25647b;
+                d4 d4Var = (d4) this.f25715b;
                 List<TLRPC.TL_chatThemeUniqueGift> list = (List) obj;
                 if (list != null) {
                     for (TLRPC.TL_chatThemeUniqueGift tL_chatThemeUniqueGift : list) {
-                        d4Var.f22143e.put(tL_chatThemeUniqueGift.gift.slug, new org.telegram.ui.ActionBar.p3(d4Var.currentAccount, tL_chatThemeUniqueGift));
+                        d4Var.f21952e.put(tL_chatThemeUniqueGift.gift.slug, new org.telegram.ui.ActionBar.r3(d4Var.currentAccount, tL_chatThemeUniqueGift));
                     }
                     return;
                 }
                 return;
             case 1:
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                ((Runnable) this.f25647b).run();
+                ((Runnable) this.f25715b).run();
                 return;
             default:
                 Object[] objArr = (Object[]) obj;
-                ((View) this.f25647b).invalidate();
+                ((View) this.f25715b).invalidate();
                 return;
         }
     }

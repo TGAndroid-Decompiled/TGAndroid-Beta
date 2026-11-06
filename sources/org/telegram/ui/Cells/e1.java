@@ -7,26 +7,26 @@ import android.view.ViewConfiguration;
 import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashMap;
-import org.telegram.messenger.bd;
+import org.telegram.messenger.hd;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class e1 {
-    public final q1 f29104a;
-    public final HashMap f29105b;
-    public final HashMap f29106c;
+    public final q1 f29042a;
+    public final HashMap f29043b;
+    public final HashMap f29044c;
     public String d;
 
     public e1(q1 q1Var) {
         new Path();
-        this.f29105b = new HashMap();
-        this.f29106c = new HashMap();
-        this.f29104a = q1Var;
+        this.f29043b = new HashMap();
+        this.f29044c = new HashMap();
+        this.f29042a = q1Var;
     }
 
     public final boolean a(MotionEvent motionEvent) {
-        int i3;
+        int i7;
         float f10;
         int L;
-        q1 q1Var = this.f29104a;
+        q1 q1Var = this.f29042a;
         ArrayList arrayList = q1Var.H5;
         ArrayList arrayList2 = q1Var.H5;
         if (!arrayList.isEmpty()) {
@@ -49,25 +49,25 @@ public final class e1 {
                 }
                 for (int i11 = 0; i11 < arrayList2.size(); i11++) {
                     c0 c0Var = (c0) arrayList2.get(i11);
-                    int L2 = (c0Var.d + q1Var.f29887d7) - org.telegram.messenger.g0.L(2.0f);
+                    int L2 = (c0Var.d + q1Var.f29812d7) - org.telegram.messenger.g0.L(2.0f);
                     float f11 = x10;
                     float f12 = widthForButtons;
-                    float f13 = (c0Var.f29011c * f12) + L;
-                    if (f11 >= f13 && f11 <= (c0Var.f29012e * f12) + f13 && M1 >= L2 && M1 <= c0Var.f29013f + L2) {
+                    float f13 = (c0Var.f28949c * f12) + L;
+                    if (f11 >= f13 && f11 <= (c0Var.f28950e * f12) + f13 && M1 >= L2 && M1 <= c0Var.f28951f + L2) {
                         q1Var.M5 = i11;
                         q1Var.p2();
-                        if (c0Var.f29025s == null) {
-                            y a02 = org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27849bd, q1Var.Pb), 6, 6);
-                            c0Var.f29025s = a02;
+                        if (c0Var.f28963s == null) {
+                            y a02 = org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.bd, q1Var.Pb), 6, 6);
+                            c0Var.f28963s = a02;
                             a02.setCallback(q1Var);
-                            y yVar = c0Var.f29025s;
-                            int i12 = ((int) (c0Var.f29011c * f12)) + L;
-                            yVar.setBounds(i12, L2, ((int) (c0Var.f29012e * f12)) + i12, c0Var.f29013f + L2);
+                            y yVar = c0Var.f28963s;
+                            int i12 = ((int) (c0Var.f28949c * f12)) + L;
+                            yVar.setBounds(i12, L2, ((int) (c0Var.f28950e * f12)) + i12, c0Var.f28951f + L2);
                         }
-                        c0Var.f29025s.setHotspot(f11, M1);
-                        c0Var.f29025s.setState(q1Var.M2);
-                        c0Var.b(!c0Var.f29019m);
-                        q1Var.postDelayed(new cg.l0(this, q1Var.M5, 19), ViewConfiguration.getLongPressTimeout() - 1);
+                        c0Var.f28963s.setHotspot(f11, M1);
+                        c0Var.f28963s.setState(q1Var.M2);
+                        c0Var.b(!c0Var.f28957m);
+                        q1Var.postDelayed(new bg.m0(this, q1Var.M5, 19), ViewConfiguration.getLongPressTimeout() - 1);
                         return true;
                     }
                 }
@@ -75,23 +75,23 @@ public final class e1 {
                 if (q1Var.M5 != -1) {
                     q1Var.playSoundEffect(0);
                     c0 c0Var2 = (c0) arrayList2.get(q1Var.M5);
-                    y yVar2 = c0Var2.f29025s;
+                    y yVar2 = c0Var2.f28963s;
                     if (yVar2 != null) {
                         yVar2.setState(StateSet.NOTHING);
                     }
                     c0Var2.b(false);
-                    if (q1Var.P5.f26887p1) {
-                        Toast.makeText(q1Var.getContext(), bd.M0(2131748538, null), 1).show();
+                    if (q1Var.P5.f23256p1) {
+                        Toast.makeText(q1Var.getContext(), hd.M0(2131748529, null), 1).show();
                     } else {
                         l1 l1Var = q1Var.Ra;
-                        if (l1Var != null && !c0Var2.f29019m) {
-                            org.telegram.messenger.o2 o2Var = c0Var2.f29016j;
+                        if (l1Var != null && !c0Var2.f28957m) {
+                            org.telegram.messenger.o2 o2Var = c0Var2.f28954j;
                             if (o2Var != null) {
-                                l1Var.H(q1Var, o2Var);
+                                l1Var.G(q1Var, o2Var);
                             } else {
-                                TL_keyboard.KeyboardInlineButton keyboardInlineButton = c0Var2.f29015i;
+                                TL_keyboard.KeyboardInlineButton keyboardInlineButton = c0Var2.f28953i;
                                 if (keyboardInlineButton != null) {
-                                    l1Var.d1(q1Var, keyboardInlineButton);
+                                    l1Var.b1(q1Var, keyboardInlineButton);
                                 }
                             }
                         }
@@ -100,9 +100,9 @@ public final class e1 {
                     q1Var.p2();
                     return false;
                 }
-            } else if (motionEvent.getAction() == 3 && (i3 = q1Var.M5) != -1) {
-                c0 c0Var3 = (c0) arrayList2.get(i3);
-                y yVar3 = c0Var3.f29025s;
+            } else if (motionEvent.getAction() == 3 && (i7 = q1Var.M5) != -1) {
+                c0 c0Var3 = (c0) arrayList2.get(i7);
+                y yVar3 = c0Var3.f28963s;
                 if (yVar3 != null) {
                     yVar3.setState(StateSet.NOTHING);
                 }
@@ -118,7 +118,7 @@ public final class e1 {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.e1.b(android.graphics.Canvas, java.util.ArrayList, int):void");
     }
 
-    public final void c(org.telegram.messenger.zi r32, e5.u r33, int r34, boolean r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.e1.c(org.telegram.messenger.zi, e5.u, int, boolean):void");
+    public final void c(org.telegram.messenger.ij r32, f5.u r33, int r34, boolean r35) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.e1.c(org.telegram.messenger.ij, f5.u, int, boolean):void");
     }
 }

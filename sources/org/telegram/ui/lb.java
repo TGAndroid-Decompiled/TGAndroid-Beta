@@ -1,33 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.KeyEvent;
-public final class lb implements org.telegram.ui.Components.fj0 {
-    public final int f47278a = 1;
-    public final long f47279b;
-    public final Context f47280c;
-    public final KeyEvent.Callback d;
-    public final Object f47281e;
-    public final Object f47282f;
+import android.view.View;
+public final class lb extends c8.ja {
+    public org.telegram.messenger.ij f47472a;
+    public int f47473b = 0;
+    public boolean f47474c = true;
+    public int d = 0;
+    public int f47475e;
+    public final mb f47476f;
 
-    public lb(rb rbVar, Context context, long j10, org.telegram.ui.ActionBar.e6 e6Var, r41 r41Var) {
-        this.d = rbVar;
-        this.f47280c = context;
-        this.f47279b = j10;
-        this.f47281e = e6Var;
-        this.f47282f = r41Var;
+    public lb(mb mbVar) {
+        this.f47476f = mbVar;
     }
 
     @Override
-    public final void f(int r23, android.view.View r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.lb.f(int, android.view.View):void");
+    public final void a() {
+        org.telegram.messenger.ij ijVar = this.f47472a;
+        mb mbVar = this.f47476f;
+        if (ijVar != null) {
+            int indexOf = mbVar.f47736o0.indexOf(ijVar) + mbVar.E.f46895f;
+            if (indexOf >= 0) {
+                mbVar.f47750y.i1(indexOf, this.f47475e, false);
+            }
+        } else {
+            mbVar.f47750y.i1(this.f47473b, this.d, this.f47474c);
+        }
+        this.f47472a = null;
+        mbVar.V = true;
+        mbVar.i1();
+        org.telegram.messenger.g0.h3(new fq0(this, 21));
     }
 
-    public lb(org.telegram.ui.Components.t50 t50Var, long j10, org.telegram.ui.ActionBar.d2 d2Var, a0.h hVar, Context context) {
-        this.d = t50Var;
-        this.f47279b = j10;
-        this.f47281e = d2Var;
-        this.f47282f = hVar;
-        this.f47280c = context;
+    @Override
+    public final void c() {
+        mb mbVar = this.f47476f;
+        mbVar.K0 = mbVar.getNotificationCenter().q(mb.R0, mbVar.K0, true);
+    }
+
+    @Override
+    public final void d(View view) {
+        if (view instanceof org.telegram.ui.Cells.q1) {
+            this.f47476f.h.add((org.telegram.ui.Cells.q1) view);
+        }
     }
 }

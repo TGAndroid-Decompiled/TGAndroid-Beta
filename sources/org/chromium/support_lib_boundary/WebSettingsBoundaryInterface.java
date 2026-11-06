@@ -82,39 +82,39 @@ public interface WebSettingsBoundaryInterface {
 
     boolean isAlgorithmicDarkeningAllowed();
 
-    void setAlgorithmicDarkeningAllowed(boolean z10);
+    void setAlgorithmicDarkeningAllowed(boolean z9);
 
-    void setAttributionBehavior(int i3);
+    void setAttributionBehavior(int i7);
 
-    void setBackForwardCacheEnabled(boolean z10);
+    void setBackForwardCacheEnabled(boolean z9);
 
-    void setDisabledActionModeMenuItems(int i3);
+    void setDisabledActionModeMenuItems(int i7);
 
-    void setEnterpriseAuthenticationAppLinkPolicyEnabled(boolean z10);
+    void setEnterpriseAuthenticationAppLinkPolicyEnabled(boolean z9);
 
-    void setForceDark(int i3);
+    void setForceDark(int i7);
 
-    void setForceDarkBehavior(int i3);
+    void setForceDarkBehavior(int i7);
 
-    void setHasEnrolledInstrumentEnabled(boolean z10);
+    void setHasEnrolledInstrumentEnabled(boolean z9);
 
-    void setIncludeCookiesOnIntercept(boolean z10);
+    void setIncludeCookiesOnIntercept(boolean z9);
 
-    void setOffscreenPreRaster(boolean z10);
+    void setOffscreenPreRaster(boolean z9);
 
-    void setPaymentRequestEnabled(boolean z10);
+    void setPaymentRequestEnabled(boolean z9);
 
     void setRequestedWithHeaderOriginAllowList(Set<String> set);
 
-    void setSafeBrowsingEnabled(boolean z10);
+    void setSafeBrowsingEnabled(boolean z9);
 
-    void setSpeculativeLoadingStatus(int i3);
+    void setSpeculativeLoadingStatus(int i7);
 
     void setUserAgentMetadataFromMap(Map<String, Object> map);
 
-    void setWebViewMediaIntegrityApiStatus(int i3, Map<String, Integer> map);
+    void setWebViewMediaIntegrityApiStatus(int i7, Map<String, Integer> map);
 
-    void setWebauthnSupport(int i3);
+    void setWebauthnSupport(int i7);
 
-    void setWillSuppressErrorPage(boolean z10);
+    void setWillSuppressErrorPage(boolean z9);
 }

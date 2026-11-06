@@ -1,29 +1,29 @@
 package kotlin.jvm.internal;
 
-import k2.p1;
+import a8.p0;
 public abstract class u {
-    public static void a(int i3, Object obj) {
+    public static void a(int i7, Object obj) {
         int i10;
         if (obj != null) {
-            if (obj instanceof dd.a) {
+            if (obj instanceof gd.a) {
                 if (obj instanceof g) {
                     i10 = ((g) obj).getArity();
-                } else if (obj instanceof od.a) {
+                } else if (obj instanceof rd.a) {
                     i10 = 0;
-                } else if (obj instanceof od.l) {
+                } else if (obj instanceof rd.l) {
                     i10 = 1;
-                } else if (obj instanceof od.p) {
+                } else if (obj instanceof rd.p) {
                     i10 = 2;
-                } else if (obj instanceof od.q) {
+                } else if (obj instanceof rd.q) {
                     i10 = 3;
                 } else {
                     i10 = -1;
                 }
-                if (i10 == i3) {
+                if (i10 == i7) {
                     return;
                 }
             }
-            ClassCastException classCastException = new ClassCastException(a1.g.C(obj.getClass().getName(), " cannot be cast to ", p1.i(i3, "kotlin.jvm.functions.Function")));
+            ClassCastException classCastException = new ClassCastException(p0.D(obj.getClass().getName(), " cannot be cast to ", jg.g.j(i7, "kotlin.jvm.functions.Function")));
             j.g(classCastException, u.class.getName());
             throw classCastException;
         }

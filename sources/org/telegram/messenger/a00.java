@@ -1,17 +1,66 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
 public final class a00 {
-    public int f21411a = -1;
-    public long f21412b;
-    public long f21413c;
-    public int d;
-    public int f21414e;
-    public int f21415f;
-    public TLRPC.Message f21416g;
-    public ArrayList h;
-    public boolean f21417i;
-    public boolean f21418j;
-    public boolean f21419k;
+    public final String f21358b;
+    public int f21357a = 0;
+    public final ArrayList d = new ArrayList();
+    public final long f21359c = System.currentTimeMillis();
+
+    public a00(String str) {
+        this.f21358b = str;
+    }
+
+    public static void a(zz zzVar) {
+        if (zzVar != null) {
+            if (zzVar.f26945b < 0) {
+                a00 a00Var = zzVar.f26947e;
+                int i7 = a00Var.f21357a;
+                a00Var.f21357a = i7 - 1;
+                zzVar.d = i7;
+            }
+            zzVar.f26945b = System.currentTimeMillis();
+        }
+    }
+
+    public static void b(a00 a00Var) {
+        if (a00Var != null) {
+            ArrayList arrayList = a00Var.d;
+            long currentTimeMillis = System.currentTimeMillis() - a00Var.f21359c;
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(a00Var.f21358b);
+            sb2.append(" total=");
+            sb2.append(currentTimeMillis);
+            sb2.append("ms\n");
+            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                if (arrayList.get(i7) != null) {
+                    sb2.append("#");
+                    sb2.append(i7);
+                    int i10 = ((zz) arrayList.get(i7)).d;
+                    for (int i11 = 0; i11 < i10; i11++) {
+                        sb2.append(" ");
+                    }
+                    sb2.append(" ");
+                    sb2.append(arrayList.get(i7));
+                    sb2.append("\n");
+                }
+            }
+            a8.b(sb2.toString());
+        }
+    }
+
+    public static void c(a00 a00Var, String str) {
+        if (a00Var != null) {
+            a00Var.d.add(new zz(a00Var, str));
+        }
+    }
+
+    public static zz d(a00 a00Var, String str) {
+        if (a00Var != null) {
+            zz zzVar = new zz(a00Var, str);
+            a00Var.d.add(zzVar);
+            return zzVar;
+        }
+        return null;
+    }
 }

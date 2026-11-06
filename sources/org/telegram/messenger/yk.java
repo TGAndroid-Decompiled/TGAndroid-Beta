@@ -1,108 +1,116 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatActivityEnterView;
+import java.util.HashMap;
+import org.telegram.ui.Components.f41;
 public final class yk implements Runnable {
-    public final int f26595a;
-    public final cs f26596b;
-    public final long f26597c;
-    public final int d;
-    public final int f26598e;
-    public final boolean f26599f;
+    public final int f26650a;
+    public final long f26651b;
+    public final long f26652c;
+    public final Object d;
 
-    public yk(hp hpVar, long j10, int i3, int i10, boolean z10, int i11) {
-        this.f26595a = i11;
-        this.f26596b = hpVar;
-        this.f26597c = j10;
-        this.d = i3;
-        this.f26598e = i10;
-        this.f26599f = z10;
+    public yk(Object obj, long j3, long j10, int i7) {
+        this.f26650a = i7;
+        this.d = obj;
+        this.f26651b = j3;
+        this.f26652c = j10;
     }
 
     @Override
     public final void run() {
-        long j10;
-        int i3;
-        int i10 = this.f26595a;
-        cs csVar = this.f26596b;
-        switch (i10) {
+        f41 f41Var;
+        switch (this.f26650a) {
             case 0:
-                hp hpVar = (hp) csVar;
-                a0.h hVar = hpVar.R;
-                long j11 = this.f26597c;
-                TLRPC.Dialog dialog = (TLRPC.Dialog) hVar.f(j11);
-                int i11 = this.f26598e;
-                if (dialog != null) {
-                    int i12 = dialog.unread_count;
-                    int i13 = this.d;
-                    if (i13 != 0 && i11 < dialog.top_message) {
-                        int max = Math.max(i12 - i13, 0);
-                        dialog.unread_count = max;
-                        if (i11 != Integer.MIN_VALUE && max > (i3 = dialog.top_message - i11)) {
-                            dialog.unread_count = i3;
-                        }
-                    } else {
-                        dialog.unread_count = 0;
+                qp qpVar = (qp) this.d;
+                long j3 = this.f26651b;
+                long j10 = this.f26652c;
+                a0.h hVar = qpVar.Q1;
+                HashMap hashMap = qpVar.S1;
+                if (j3 != 0) {
+                    String str = j10 + "_" + j3;
+                    ip ipVar = (ip) hashMap.get(str);
+                    if (ipVar != null) {
+                        qpVar.R(ipVar);
+                        qpVar.R1.remove(ipVar);
+                        hashMap.remove(str);
+                        return;
                     }
-                    boolean z10 = dialog.unread_mark;
-                    if (z10) {
-                        dialog.unread_mark = false;
-                        hpVar.getMessagesStorage().F1(dialog.f27005id, false);
-                    }
-                    if ((i12 == 0 && !z10) || dialog.unread_count != 0) {
-                        j10 = j11;
-                    } else {
-                        j10 = j11;
-                        hpVar.r2(j10, 0L, null);
-                        int i14 = 0;
-                        while (true) {
-                            mo[] moVarArr = hpVar.N;
-                            if (i14 < moVarArr.length) {
-                                mo moVar = moVarArr[i14];
-                                if (moVar != null && (moVar.f24242g & 64) != 0) {
-                                    hpVar.T4(null);
-                                    hpVar.getNotificationCenter().k(3, new Object[0]);
-                                } else {
-                                    i14++;
-                                }
-                            }
-                        }
-                    }
-                    hpVar.getNotificationCenter().k(2, 256);
-                } else {
-                    j10 = j11;
-                }
-                if (!this.f26599f) {
-                    long j12 = j10;
-                    hpVar.getNotificationsController().L(null, j12, 0, i11, false);
-                    LongSparseIntArray longSparseIntArray = new LongSparseIntArray(1);
-                    longSparseIntArray.put(j12, 0);
-                    hpVar.getNotificationsController().J(longSparseIntArray);
                     return;
                 }
-                long j13 = j10;
-                hpVar.getNotificationsController().L(null, j13, 0, i11, true);
-                LongSparseIntArray longSparseIntArray2 = new LongSparseIntArray(1);
-                longSparseIntArray2.put(j13, -1);
-                hpVar.getNotificationsController().J(longSparseIntArray2);
+                ip ipVar2 = (ip) hVar.f(j10);
+                if (ipVar2 != null) {
+                    qpVar.R(ipVar2);
+                    qpVar.P1.remove(ipVar2);
+                    hVar.l(j10);
+                    return;
+                }
                 return;
             case 1:
-                g0.h3(new yk((hp) csVar, this.f26597c, this.d, this.f26598e, this.f26599f, 0));
+                org.telegram.ui.pn.b0((org.telegram.ui.pn) this.d, this.f26651b, this.f26652c);
+                return;
+            case 2:
+                org.telegram.ui.web.o1 o1Var = (org.telegram.ui.web.o1) this.d;
+                long j11 = this.f26651b;
+                long j12 = this.f26652c;
+                o1Var.h = j11;
+                o1Var.f51250n = j12;
+                fi.w3 w3Var = o1Var.f34211a;
+                if (w3Var != null && (f41Var = w3Var.f35167f3) != null && w3Var.G) {
+                    f41Var.O(true);
+                    return;
+                }
+                return;
+            case 3:
+                vi.h hVar2 = (vi.h) this.d;
+                long j13 = this.f26651b;
+                long j14 = this.f26652c;
+                if (hVar2.G == 7) {
+                    long j15 = ((j13 - j14) * 48000) / 1000;
+                    hVar2.f57437p = j15;
+                    hVar2.f57439r = 0L;
+                    hVar2.f57440s = vi.h.r(j15);
+                    hVar2.i();
+                    return;
+                }
                 return;
             default:
-                int i15 = ChatActivityEnterView.f31082t5;
-                ((ChatActivityEnterView) csVar).S0(this.f26599f, this.d, this.f26598e, this.f26597c, false);
+                long j16 = this.f26651b;
+                long j17 = this.f26652c;
+                vi.h hVar3 = (vi.h) ((ac.e) this.d).f1025c;
+                if (j16 == hVar3.f57436o) {
+                    hVar3.f57435n = null;
+                    hVar3.f57437p += j17;
+                    hVar3.f57438q = 0L;
+                    hVar3.f57430i.removeCallbacks(hVar3.D);
+                    int i7 = hVar3.G;
+                    if (i7 == 10) {
+                        hVar3.c();
+                        hVar3.t();
+                        hVar3.l("cancelled");
+                        return;
+                    } else if (i7 == 9) {
+                        hVar3.c();
+                        hVar3.t();
+                        return;
+                    } else if (hVar3.v) {
+                        hVar3.v = false;
+                        hVar3.i();
+                        return;
+                    } else if (i7 == 4) {
+                        vi.g gVar = hVar3.f57446z;
+                        if (gVar == null) {
+                            hVar3.g(new IllegalStateException("Output generation is missing"));
+                            return;
+                        }
+                        long j18 = hVar3.j();
+                        hVar3.f57439r = 0L;
+                        hVar3.f57440s = j18;
+                        hVar3.f57431j.execute(new org.telegram.utils.recorder.audio.c(1, hVar3, gVar));
+                        return;
+                    } else {
+                        return;
+                    }
+                }
                 return;
         }
-    }
-
-    public yk(ChatActivityEnterView chatActivityEnterView, boolean z10, int i3, int i10, long j10) {
-        this.f26595a = 2;
-        this.f26596b = chatActivityEnterView;
-        this.f26599f = z10;
-        this.d = i3;
-        this.f26598e = i10;
-        this.f26597c = j10;
     }
 }

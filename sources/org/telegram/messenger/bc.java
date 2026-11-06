@@ -1,68 +1,70 @@
 package org.telegram.messenger;
 
-import android.graphics.BitmapShader;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.ch0;
-public final class bc {
-    public Paint A;
-    public Path B;
-    public boolean f21761a;
-    public float f21762b;
-    public long f21763c;
-    public int d;
-    public BitmapShader f21764e;
-    public org.telegram.ui.Components.t5 f21765f;
-    public ch0 f21766g;
-    public int[] h;
-    public BitmapShader f21767i;
-    public Drawable f21768j;
-    public BitmapShader f21769k;
-    public Drawable f21770l;
-    public Drawable f21771m;
-    public BitmapShader f21772n;
-    public Drawable f21773o;
-    public float f21774p;
-    public float f21775q;
-    public BitmapShader f21776r;
-    public float f21777s;
-    public float f21778t;
-    public float f21779u;
-    public float v;
-    public boolean f21780w;
-    public Drawable f21781x;
-    public RectF f21782y;
-    public ColorFilter f21783z;
+import android.os.AsyncTask;
+import android.os.SystemClock;
+import java.io.RandomAccessFile;
+import java.net.HttpURLConnection;
+public final class bc extends AsyncTask {
+    public static final int f21606i = 0;
+    public final ub f21607a;
+    public RandomAccessFile f21608b;
+    public long f21609c;
+    public long d;
+    public boolean f21610e;
+    public final String f21611f;
+    public HttpURLConnection f21612g;
+    public final gc h;
 
-    public final void a() {
-        this.f21765f = null;
-        this.f21766g = null;
-        for (int i3 = 0; i3 < 4; i3++) {
-            int[] iArr = this.h;
-            iArr[i3] = iArr[i3];
-        }
-        this.f21768j = null;
-        this.f21767i = null;
-        this.f21770l = null;
-        this.f21769k = null;
-        this.f21771m = null;
-        this.f21772n = null;
-        this.f21764e = null;
-        this.f21773o = null;
-        this.f21781x = null;
-        this.f21783z = null;
+    public bc(gc gcVar, ub ubVar, long j3) {
+        this.h = gcVar;
+        this.f21610e = true;
+        this.f21607a = ubVar;
+        this.f21609c = j3;
     }
 
-    public final void b(Rect rect) {
-        if (rect != null) {
-            this.f21779u = rect.left;
-            this.v = rect.top;
-            this.f21778t = rect.width();
-            this.f21777s = rect.height();
+    public final void a(long j3, long j10) {
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (j3 != j10) {
+            long j11 = this.d;
+            if (j11 != 0 && j11 >= elapsedRealtime - 100) {
+                return;
+            }
         }
+        this.d = elapsedRealtime;
+        Utilities.d.c(new ac(this, j3, j10, 0));
+    }
+
+    @Override
+    public final java.lang.Object doInBackground(java.lang.Object[] r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.bc.doInBackground(java.lang.Object[]):java.lang.Object");
+    }
+
+    @Override
+    public final void onCancelled() {
+        this.h.f22625s.d(new yb(this, 0), this.f21607a.f25733a);
+        Utilities.d.c(new yb(this, 1));
+    }
+
+    @Override
+    public final void onPostExecute(Object obj) {
+        Boolean bool = (Boolean) obj;
+        if (!bool.booleanValue() && this.f21610e) {
+            gc gcVar = this.h;
+            gcVar.f22625s.c(new ib(gcVar, this.f21607a.f25736e, 4));
+        } else {
+            gc gcVar2 = this.h;
+            ub ubVar = this.f21607a;
+            gcVar2.f22625s.c(new dg(gcVar2, ubVar.f25736e, 0, ubVar.f25746p, 5));
+        }
+        Utilities.d.c(new zb(this, bool, 0));
+        this.h.f22625s.d(new yb(this, 2), this.f21607a.f25733a);
+    }
+
+    public bc(gc gcVar, ub ubVar, String str) {
+        this.h = gcVar;
+        this.f21610e = true;
+        this.f21607a = ubVar;
+        this.f21609c = 0;
+        this.f21611f = str;
     }
 }

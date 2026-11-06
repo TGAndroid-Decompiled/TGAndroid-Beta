@@ -1,32 +1,38 @@
 package b2;
 
-import android.app.Notification;
-import android.media.session.MediaSession;
-import android.support.v4.media.session.MediaSessionCompat$Token;
-public abstract class a {
-    public static Notification.MediaStyle a() {
-        return new Notification.MediaStyle();
-    }
+import android.os.Build;
+import android.text.TextUtils;
+public final class a {
+    public d f2907a;
 
-    public static Notification.MediaStyle b(Notification.MediaStyle mediaStyle, int[] iArr, MediaSessionCompat$Token mediaSessionCompat$Token) {
-        if (iArr != null) {
-            e(mediaStyle, iArr);
+    public a(String str, int i7, int i10) {
+        if (str != null) {
+            if (!TextUtils.isEmpty(str)) {
+                if (Build.VERSION.SDK_INT >= 28) {
+                    d dVar = new d(str, i7, i10);
+                    b.a(i7, i10, str);
+                    this.f2907a = dVar;
+                    return;
+                }
+                this.f2907a = new d(str, i7, i10);
+                return;
+            }
+            throw new IllegalArgumentException("packageName should be nonempty");
         }
-        if (mediaSessionCompat$Token != null) {
-            c(mediaStyle, (MediaSession.Token) mediaSessionCompat$Token.f1162b);
+        throw new NullPointerException("package shouldn't be null");
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        return mediaStyle;
+        if (!(obj instanceof a)) {
+            return false;
+        }
+        return this.f2907a.equals(((a) obj).f2907a);
     }
 
-    public static void c(Notification.MediaStyle mediaStyle, MediaSession.Token token) {
-        mediaStyle.setMediaSession(token);
-    }
-
-    public static void d(Notification.Builder builder, Notification.MediaStyle mediaStyle) {
-        builder.setStyle(mediaStyle);
-    }
-
-    public static void e(Notification.MediaStyle mediaStyle, int... iArr) {
-        mediaStyle.setShowActionsInCompactView(iArr);
+    public final int hashCode() {
+        return this.f2907a.hashCode();
     }
 }

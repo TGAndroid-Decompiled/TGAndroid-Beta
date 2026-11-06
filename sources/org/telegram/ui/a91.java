@@ -1,31 +1,61 @@
 package org.telegram.ui;
-public final class a91 implements Runnable {
-    public final int f43691a;
-    public final b91 f43692b;
 
-    public a91(b91 b91Var, int i3) {
-        this.f43691a = i3;
-        this.f43692b = b91Var;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+public final class a91 extends v4.s0 {
+    public final int f43580a;
+    public final v91 f43581b;
+
+    public a91(v91 v91Var, int i7) {
+        this.f43580a = i7;
+        this.f43581b = v91Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43691a) {
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        int i11;
+        boolean z9;
+        v91 v91Var;
+        dh.g gVar;
+        switch (this.f43580a) {
             case 0:
-                b91 b91Var = this.f43692b;
-                b91Var.F = null;
-                if (b91Var.G != -1) {
-                    b91Var.H.getNotificationCenter().j(b91Var.G);
-                    b91Var.G = -1;
+                v91 v91Var2 = this.f43581b;
+                int L0 = v91Var2.F.L0();
+                if (L0 != -1) {
+                    v4.d1 K = recyclerView.K(L0);
+                    boolean z10 = false;
+                    if (K != null) {
+                        i11 = K.f56927a.getTop();
+                    } else {
+                        i11 = 0;
+                    }
+                    if (L0 == 0) {
+                        int i12 = 0 - i11;
+                        if (i11 < 0) {
+                            z9 = true;
+                        } else {
+                            z9 = false;
+                        }
+                        Math.abs(i12);
+                    } else if (L0 > 0) {
+                        z9 = true;
+                    } else {
+                        z9 = false;
+                    }
+                    if (z9 || !v91Var2.K) {
+                        z10 = true;
+                    }
+                    v91Var2.K0(z10, true);
                     return;
                 }
                 return;
+            case 1:
+                this.f43581b.C0();
+                return;
             default:
-                b91 b91Var2 = this.f43692b;
-                b91Var2.F = null;
-                if (b91Var2.G != -1) {
-                    b91Var2.H.getNotificationCenter().j(b91Var2.G);
-                    b91Var2.G = -1;
+                if (Build.VERSION.SDK_INT >= 31 && (gVar = (v91Var = this.f43581b).f50637g1) != null) {
+                    gVar.f(i7, i10);
+                    v91Var.B0();
                     return;
                 }
                 return;

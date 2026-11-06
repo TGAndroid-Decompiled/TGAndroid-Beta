@@ -28,13 +28,13 @@ public abstract class FormatCache<F extends Format> {
         public int hashCode() {
             Object[] objArr;
             if (this.hashCode == 0) {
-                int i3 = 0;
+                int i7 = 0;
                 for (Object obj : this.keys) {
                     if (obj != null) {
-                        i3 = obj.hashCode() + (i3 * 7);
+                        i7 = obj.hashCode() + (i7 * 7);
                     }
                 }
-                this.hashCode = i3;
+                this.hashCode = i7;
             }
             return this.hashCode;
         }
@@ -76,16 +76,16 @@ public abstract class FormatCache<F extends Format> {
 
     public abstract F createInstance(String str, TimeZone timeZone, Locale locale);
 
-    public F getDateInstance(int i3, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance(Integer.valueOf(i3), (Integer) null, timeZone, locale);
+    public F getDateInstance(int i7, TimeZone timeZone, Locale locale) {
+        return getDateTimeInstance(Integer.valueOf(i7), (Integer) null, timeZone, locale);
     }
 
     public F getInstance() {
         return getDateTimeInstance(3, 3, TimeZone.getDefault(), Locale.getDefault());
     }
 
-    public F getTimeInstance(int i3, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance((Integer) null, Integer.valueOf(i3), timeZone, locale);
+    public F getTimeInstance(int i7, TimeZone timeZone, Locale locale) {
+        return getDateTimeInstance((Integer) null, Integer.valueOf(i7), timeZone, locale);
     }
 
     public F getInstance(String str, TimeZone timeZone, Locale locale) {
@@ -108,7 +108,7 @@ public abstract class FormatCache<F extends Format> {
         throw new NullPointerException("pattern must not be null");
     }
 
-    public F getDateTimeInstance(int i3, int i10, TimeZone timeZone, Locale locale) {
-        return getDateTimeInstance(Integer.valueOf(i3), Integer.valueOf(i10), timeZone, locale);
+    public F getDateTimeInstance(int i7, int i10, TimeZone timeZone, Locale locale) {
+        return getDateTimeInstance(Integer.valueOf(i7), Integer.valueOf(i10), timeZone, locale);
     }
 }

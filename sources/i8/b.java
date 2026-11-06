@@ -1,4 +1,16 @@
 package i8;
+
+import android.os.Build;
 public abstract class b {
-    public static final com.google.android.gms.common.api.e f14696a = t7.c.f54952l;
+    public static final int f15396a;
+
+    static {
+        int i7;
+        if (Build.VERSION.SDK_INT >= 31) {
+            i7 = 33554432;
+        } else {
+            i7 = 0;
+        }
+        f15396a = i7;
+    }
 }

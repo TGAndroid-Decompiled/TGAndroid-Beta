@@ -1,29 +1,60 @@
 package z7;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-public final class ia extends b8.a implements ka {
-    public final ha X0(z6.b bVar, ma maVar) {
-        ha aVar;
-        Parcel P0 = P0();
-        int i3 = x.f60126a;
-        P0.writeStrongBinder(bVar);
-        P0.writeInt(1);
-        maVar.writeToParcel(P0, 0);
-        Parcel R0 = R0(P0, 1);
-        IBinder readStrongBinder = R0.readStrongBinder();
-        if (readStrongBinder == null) {
-            aVar = 0;
-        } else {
-            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.mlkit.vision.label.aidls.IImageLabeler");
-            if (queryLocalInterface instanceof ha) {
-                aVar = (ha) queryLocalInterface;
-            } else {
-                aVar = new b8.a(readStrongBinder, "com.google.mlkit.vision.label.aidls.IImageLabeler", 11);
-            }
+import android.os.SystemClock;
+import java.io.Closeable;
+import java.util.HashMap;
+import java.util.Locale;
+public class ia implements Closeable {
+    public static final HashMap f59711f = new HashMap();
+    public int f59712a;
+    public long f59713b;
+    public long f59714c;
+    public long d = 2147483647L;
+    public long f59715e = -2147483648L;
+
+    public ia(String str) {
+    }
+
+    public void a() {
+        this.f59713b = SystemClock.elapsedRealtimeNanos() / 1000;
+    }
+
+    public void b(long j3) {
+        long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos() / 1000;
+        long j10 = this.f59714c;
+        if (j10 != 0 && elapsedRealtimeNanos - j10 >= 1000000) {
+            this.f59712a = 0;
+            this.f59713b = 0L;
+            this.d = 2147483647L;
+            this.f59715e = -2147483648L;
         }
-        R0.recycle();
-        return aVar;
+        this.f59714c = elapsedRealtimeNanos;
+        this.f59712a++;
+        this.d = Math.min(this.d, j3);
+        this.f59715e = Math.max(this.f59715e, j3);
+        if (this.f59712a % 50 == 0) {
+            Locale locale = Locale.US;
+            qa.b();
+        }
+        if (this.f59712a % 500 == 0) {
+            this.f59712a = 0;
+            this.f59713b = 0L;
+            this.d = 2147483647L;
+            this.f59715e = -2147483648L;
+        }
+    }
+
+    public void c(long j3) {
+        b((SystemClock.elapsedRealtimeNanos() / 1000) - j3);
+    }
+
+    @Override
+    public void close() {
+        long j3 = this.f59713b;
+        if (j3 != 0) {
+            c(j3);
+            return;
+        }
+        throw new IllegalStateException("Did you forget to call start()?");
     }
 }

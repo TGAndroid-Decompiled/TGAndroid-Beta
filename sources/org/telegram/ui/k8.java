@@ -1,65 +1,36 @@
 package org.telegram.ui;
 
 import android.view.View;
+import org.telegram.tgnet.TLRPC;
 public final class k8 implements View.OnClickListener {
-    public final int f46822a;
-    public final boolean[] f46823b;
+    public final int f47115a;
+    public final i9 f47116b;
 
-    public k8(int i3, boolean[] zArr) {
-        this.f46822a = i3;
-        this.f46823b = zArr;
+    public k8(i9 i9Var, int i7) {
+        this.f47115a = i7;
+        this.f47116b = i9Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f46822a) {
+        switch (this.f47115a) {
             case 0:
-                boolean[] zArr = this.f46823b;
-                boolean z10 = !zArr[0];
-                zArr[0] = z10;
-                ((org.telegram.ui.Cells.c2) view).c(z10, true);
-                return;
-            case 1:
-                boolean[] zArr2 = this.f46823b;
-                boolean z11 = !zArr2[1];
-                zArr2[1] = z11;
-                ((org.telegram.ui.Cells.c2) view).c(z11, true);
-                return;
-            case 2:
-                boolean[] zArr3 = this.f46823b;
-                boolean z12 = !zArr3[0];
-                zArr3[0] = z12;
-                ((org.telegram.ui.Cells.c2) view).c(z12, true);
-                return;
-            case 3:
-                boolean[] zArr4 = this.f46823b;
-                boolean z13 = !zArr4[0];
-                zArr4[0] = z13;
-                ((org.telegram.ui.Cells.c2) view).c(z13, true);
-                return;
-            case 4:
-                if (view.isEnabled()) {
-                    boolean[] zArr5 = this.f46823b;
-                    boolean z14 = !zArr5[0];
-                    zArr5[0] = z14;
-                    ((org.telegram.ui.Cells.c2) view).c(z14, true);
+                Long l10 = (Long) view.getTag();
+                i9 i9Var = this.f47116b;
+                org.telegram.messenger.r3 g12 = i9Var.getMessagesController().g1(l10.longValue(), false, null);
+                TLRPC.Chat M0 = i9Var.getMessagesController().M0(l10);
+                i9Var.M = M0;
+                if (g12 != null) {
+                    org.telegram.ui.Components.voip.y1.l(M0, null, false, null, i9Var.getParentActivity(), i9Var, i9Var.getAccountInstance());
                     return;
                 }
-                return;
-            case 5:
-                boolean[] zArr6 = this.f46823b;
-                boolean z15 = !zArr6[0];
-                zArr6[0] = z15;
-                ((org.telegram.ui.Cells.c2) view).c(z15, true);
+                i9Var.N = l10;
+                i9Var.getMessagesController().V2(0, l10.longValue(), true);
                 return;
             default:
-                if (view.isEnabled()) {
-                    boolean[] zArr7 = this.f46823b;
-                    boolean z16 = !zArr7[0];
-                    zArr7[0] = z16;
-                    ((org.telegram.ui.Cells.c2) view).c(z16, true);
-                    return;
-                }
+                i9 i9Var2 = this.f47116b;
+                i9Var2.getClass();
+                i9.l0(i9Var2);
                 return;
         }
     }

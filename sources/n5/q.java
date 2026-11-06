@@ -1,22 +1,41 @@
 package n5;
+public final class q extends c0 {
+    public final Integer f20463a;
 
-import java.util.Set;
-public final class q implements k5.f {
-    public final Set f20261a;
-    public final i f20262b;
-    public final s f20263c;
-
-    public q(Set set, i iVar, s sVar) {
-        this.f20261a = set;
-        this.f20262b = iVar;
-        this.f20263c = sVar;
+    public q(Integer num) {
+        this.f20463a = num;
     }
 
-    public final r a(String str, k5.c cVar, k5.e eVar) {
-        Set set = this.f20261a;
-        if (set.contains(cVar)) {
-            return new r(this.f20262b, str, cVar, eVar, this.f20263c);
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-        throw new IllegalArgumentException(String.format("%s is not supported byt this factory. Supported encodings are: %s.", cVar, set));
+        if (!(obj instanceof c0)) {
+            return false;
+        }
+        Integer num = this.f20463a;
+        q qVar = (q) ((c0) obj);
+        if (num == null) {
+            if (qVar.f20463a == null) {
+                return true;
+            }
+            return false;
+        }
+        return num.equals(qVar.f20463a);
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        Integer num = this.f20463a;
+        if (num == null) {
+            hashCode = 0;
+        } else {
+            hashCode = num.hashCode();
+        }
+        return hashCode ^ 1000003;
+    }
+
+    public final String toString() {
+        return "ExternalPRequestContext{originAssociatedProductId=" + this.f20463a + "}";
     }
 }

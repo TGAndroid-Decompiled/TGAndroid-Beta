@@ -6,9 +6,9 @@ import java.util.Locale;
 import org.json.JSONObject;
 public abstract class t {
     public static DateFormat a(JSONObject jSONObject, String str, Locale locale) {
+        boolean z9;
+        int i7;
         boolean z10;
-        int i3;
-        boolean z11;
         DateFormat dateFormat;
         String str2;
         String str3;
@@ -19,31 +19,83 @@ public abstract class t {
         String optString = jSONObject.optString("dateStyle");
         optString.getClass();
         int i10 = 2;
-        boolean z12 = true;
+        boolean z11 = true;
         switch (optString.hashCode()) {
             case -1078030475:
                 if (optString.equals("medium")) {
+                    z9 = false;
+                    break;
+                }
+                z9 = true;
+                break;
+            case 3154575:
+                if (optString.equals("full")) {
+                    z9 = true;
+                    break;
+                }
+                z9 = true;
+                break;
+            case 3327612:
+                if (optString.equals("long")) {
+                    z9 = true;
+                    break;
+                }
+                z9 = true;
+                break;
+            case 109413500:
+                if (optString.equals("short")) {
+                    z9 = true;
+                    break;
+                }
+                z9 = true;
+                break;
+            default:
+                z9 = true;
+                break;
+        }
+        switch (z9) {
+            case false:
+                i7 = 2;
+                break;
+            case true:
+                i7 = 0;
+                break;
+            case true:
+                i7 = 1;
+                break;
+            case true:
+                i7 = 3;
+                break;
+            default:
+                i7 = -1;
+                break;
+        }
+        String optString2 = jSONObject.optString("timeStyle");
+        optString2.getClass();
+        switch (optString2.hashCode()) {
+            case -1078030475:
+                if (optString2.equals("medium")) {
                     z10 = false;
                     break;
                 }
                 z10 = true;
                 break;
             case 3154575:
-                if (optString.equals("full")) {
+                if (optString2.equals("full")) {
                     z10 = true;
                     break;
                 }
                 z10 = true;
                 break;
             case 3327612:
-                if (optString.equals("long")) {
+                if (optString2.equals("long")) {
                     z10 = true;
                     break;
                 }
                 z10 = true;
                 break;
             case 109413500:
-                if (optString.equals("short")) {
+                if (optString2.equals("short")) {
                     z10 = true;
                     break;
                 }
@@ -54,58 +106,6 @@ public abstract class t {
                 break;
         }
         switch (z10) {
-            case false:
-                i3 = 2;
-                break;
-            case true:
-                i3 = 0;
-                break;
-            case true:
-                i3 = 1;
-                break;
-            case true:
-                i3 = 3;
-                break;
-            default:
-                i3 = -1;
-                break;
-        }
-        String optString2 = jSONObject.optString("timeStyle");
-        optString2.getClass();
-        switch (optString2.hashCode()) {
-            case -1078030475:
-                if (optString2.equals("medium")) {
-                    z11 = false;
-                    break;
-                }
-                z11 = true;
-                break;
-            case 3154575:
-                if (optString2.equals("full")) {
-                    z11 = true;
-                    break;
-                }
-                z11 = true;
-                break;
-            case 3327612:
-                if (optString2.equals("long")) {
-                    z11 = true;
-                    break;
-                }
-                z11 = true;
-                break;
-            case 109413500:
-                if (optString2.equals("short")) {
-                    z11 = true;
-                    break;
-                }
-                z11 = true;
-                break;
-            default:
-                z11 = true;
-                break;
-        }
-        switch (z11) {
             case false:
                 break;
             case true:
@@ -121,10 +121,10 @@ public abstract class t {
                 i10 = -1;
                 break;
         }
-        if (i3 >= 0 && i10 >= 0) {
-            dateFormat = DateFormat.getDateTimeInstance(i3, i10, locale);
-        } else if (i3 >= 0) {
-            dateFormat = DateFormat.getDateInstance(i3, locale);
+        if (i7 >= 0 && i10 >= 0) {
+            dateFormat = DateFormat.getDateTimeInstance(i7, i10, locale);
+        } else if (i7 >= 0) {
+            dateFormat = DateFormat.getDateInstance(i7, locale);
         } else if (i10 >= 0) {
             dateFormat = DateFormat.getTimeInstance(i10, locale);
         } else {
@@ -200,12 +200,12 @@ public abstract class t {
             if (sb2.length() == 0) {
                 boolean equals = str.equals("toLocaleTimeString");
                 if (!str.equals("toLocaleTimeString") && !str.equals("toLocaleString")) {
-                    z12 = false;
+                    z11 = false;
                 }
                 if (!equals) {
                     sb2.append("yMd");
                 }
-                if (z12) {
+                if (z11) {
                     sb2.append(c(jSONObject, false));
                     sb2.append("mmss");
                 }

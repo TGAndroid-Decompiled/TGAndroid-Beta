@@ -1,9 +1,10 @@
 package gf;
+public final class n {
+    public final kf.n f13940a;
+    public final int f13941b;
 
-import b8.lc;
-public abstract class n extends a {
-    @Override
-    public void a(lc lcVar) {
-        lcVar.k(this);
+    public n(kf.n nVar, int i7) {
+        this.f13940a = nVar;
+        this.f13941b = i7;
     }
 }

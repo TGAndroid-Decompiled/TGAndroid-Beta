@@ -1,5 +1,6 @@
 package f0;
 
+import ab.x;
 import android.app.AppOpsManager;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -9,15 +10,15 @@ import android.os.Handler;
 import android.os.Process;
 import android.text.TextUtils;
 import androidx.biometric.o;
-import e0.j0;
+import e0.i0;
 import j$.util.Objects;
 import java.util.concurrent.Executor;
 public abstract class d {
-    public static final Object f11330a = null;
+    public static final Object f10878a = null;
 
-    public static int a(Context context, String str, int i3, int i10, String str2) {
+    public static int a(Context context, String str, int i7, int i10, String str2) {
         int noteProxyOpNoThrow;
-        if (context.checkPermission(str, i3, i10) != -1) {
+        if (context.checkPermission(str, i7, i10) != -1) {
             String permissionToOp = AppOpsManager.permissionToOp(str);
             if (permissionToOp != null) {
                 if (str2 == null) {
@@ -39,7 +40,7 @@ public abstract class d {
                             noteProxyOpNoThrow = appOpsManager.checkOpNoThrow(permissionToOp, callingUid, str2);
                         }
                         if (noteProxyOpNoThrow == 0) {
-                            String f10 = d2.d.f(context);
+                            String f10 = x.f(context);
                             if (appOpsManager != null) {
                                 i11 = appOpsManager.checkOpNoThrow(permissionToOp, i10, f10);
                             }
@@ -63,7 +64,7 @@ public abstract class d {
     public static int b(Context context, String str) {
         if (str != null) {
             if (Build.VERSION.SDK_INT < 33 && TextUtils.equals("android.permission.POST_NOTIFICATIONS", str)) {
-                if (new j0(context).a()) {
+                if (new i0(context).a()) {
                     return 0;
                 }
                 return -1;
@@ -77,8 +78,8 @@ public abstract class d {
         return a(context, str, Process.myPid(), Process.myUid(), context.getPackageName());
     }
 
-    public static Drawable d(Context context, int i3) {
-        return context.getDrawable(i3);
+    public static Drawable d(Context context, int i7) {
+        return context.getDrawable(i7);
     }
 
     public static Executor e(Context context) {

@@ -58,21 +58,21 @@ public class DelimiterFactory {
         return new CharBox(r42);
     }
 
-    public static Box create(SymbolAtom symbolAtom, TeXEnvironment teXEnvironment, int i3) {
-        if (i3 > 4) {
+    public static Box create(SymbolAtom symbolAtom, TeXEnvironment teXEnvironment, int i7) {
+        if (i7 > 4) {
             return symbolAtom.createBox(teXEnvironment);
         }
         TeXFont teXFont = teXEnvironment.getTeXFont();
         int style = teXEnvironment.getStyle();
         Char r22 = teXFont.getChar(symbolAtom.getName(), style);
         int i10 = 1;
-        while (i10 <= i3 && teXFont.hasNextLarger(r22)) {
+        while (i10 <= i7 && teXFont.hasNextLarger(r22)) {
             r22 = teXFont.getNextLarger(r22, style);
             i10++;
         }
-        if (i10 <= i3 && !teXFont.hasNextLarger(r22)) {
+        if (i10 <= i7 && !teXFont.hasNextLarger(r22)) {
             CharBox charBox = new CharBox(teXFont.getChar('A', "mathnormal", style));
-            return create(symbolAtom.getName(), teXEnvironment, (charBox.getDepth() + charBox.getHeight()) * i3);
+            return create(symbolAtom.getName(), teXEnvironment, (charBox.getDepth() + charBox.getHeight()) * i7);
         }
         return new CharBox(r22);
     }

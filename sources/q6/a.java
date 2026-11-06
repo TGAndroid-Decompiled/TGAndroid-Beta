@@ -1,7 +1,4 @@
 package q6;
-public abstract class a implements b {
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
+public abstract class a extends a8.q implements i {
+    public static final int f53715b = 0;
 }

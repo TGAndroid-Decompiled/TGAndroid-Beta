@@ -1,162 +1,145 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.Paint;
-import androidx.recyclerview.widget.RecyclerView;
-public final class fi0 extends u4.t0 {
-    public boolean f33806a;
-    public boolean f33807b;
-    public ValueAnimator f33808c;
-    public ValueAnimator d;
-    public final li0 f33809e;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import org.telegram.messenger.ImageReceiver;
+public final class fi0 extends l9 {
+    public final int G;
+    public final gi0 H;
 
-    public fi0(li0 li0Var) {
-        this.f33809e = li0Var;
-    }
-
-    public static ValueAnimator c(float f10, float f11, q0.a aVar, Runnable runnable) {
-        ValueAnimator duration = ValueAnimator.ofFloat(f10, f11).setDuration(Math.abs(f11 - f10) * 150.0f);
-        duration.addUpdateListener(new y50(aVar, 8));
-        duration.addListener(new a60(runnable, 13));
-        duration.start();
-        return duration;
+    public fi0(gi0 gi0Var, Context context, int i7) {
+        super(context);
+        this.G = i7;
+        this.H = gi0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i3, int i10) {
-        boolean z10;
-        float f10;
-        li0 li0Var = this.f33809e;
-        kg.f0 f0Var = li0Var.f35734a0;
-        boolean z11 = false;
-        if (f0Var.L0() != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public ImageReceiver c() {
+        switch (this.G) {
+            case 0:
+                return new ei0(0, this);
+            case 1:
+                return new ei0(1, this);
+            default:
+                return super.c();
         }
-        float f11 = 0.0f;
-        if (z10 != this.f33806a) {
-            ValueAnimator valueAnimator = this.f33808c;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            float f12 = li0Var.f35766r;
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            this.f33808c = c(f12, f10, new q0.a(this) {
-                public final fi0 f33109b;
+    }
 
-                {
-                    this.f33109b = this;
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.G) {
+            case 0:
+                gi0 gi0Var = this.H;
+                fi0 fi0Var = gi0Var.f33968b;
+                super.dispatchDraw(canvas);
+                if (this.f35557a.B() != null && !gi0Var.E) {
+                    this.f35557a.B().start();
                 }
-
-                @Override
-                public final void accept(Object obj) {
-                    Float f13 = (Float) obj;
-                    switch (r2) {
-                        case 0:
-                            li0 li0Var2 = this.f33109b.f33809e;
-                            Paint paint = li0Var2.h;
-                            float floatValue = f13.floatValue();
-                            li0Var2.f35766r = floatValue;
-                            paint.setAlpha((int) (floatValue * 255.0f));
-                            li0Var2.invalidate();
-                            return;
-                        default:
-                            li0 li0Var3 = this.f33109b.f33809e;
-                            Paint paint2 = li0Var3.f35761n;
-                            float floatValue2 = f13.floatValue();
-                            li0Var3.f35768s = floatValue2;
-                            paint2.setAlpha((int) (floatValue2 * 255.0f));
-                            li0Var3.invalidate();
-                            return;
+                if (gi0Var.f33974s && !gi0Var.f33975w && this.f35557a.B() != null && this.f35557a.B().A() && fi0Var.f35557a.B() != null && fi0Var.f35557a.B().u()) {
+                    gi0Var.f33975w = true;
+                    fi0Var.f35557a.B().N(0, false, true);
+                    fi0Var.setVisibility(0);
+                    Runnable runnable = gi0Var.P.P0;
+                    if (runnable != null) {
+                        runnable.run();
                     }
+                    org.telegram.messenger.g0.h3(new ob0(this, 12));
                 }
-            }, new Runnable(this) {
-                public final fi0 f33403b;
-
-                {
-                    this.f33403b = this;
-                }
-
-                @Override
-                public final void run() {
-                    switch (r2) {
-                        case 0:
-                            this.f33403b.f33808c = null;
-                            return;
-                        default:
-                            this.f33403b.d = null;
-                            return;
-                    }
-                }
-            });
-            this.f33806a = z10;
+                invalidate();
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
-        if (f0Var.N0() != li0Var.f35737b0.b() - 1) {
-            z11 = true;
+    }
+
+    @Override
+    public void invalidate(Rect rect) {
+        switch (this.G) {
+            case 0:
+                gi0 gi0Var = this.H;
+                if (ch.e0.c(this, gi0Var.P)) {
+                    return;
+                }
+                super.invalidate(rect);
+                gi0Var.P.invalidate();
+                return;
+            default:
+                super.invalidate(rect);
+                return;
         }
-        if (z11 != this.f33807b) {
-            ValueAnimator valueAnimator2 = this.d;
-            if (valueAnimator2 != null) {
-                valueAnimator2.cancel();
-            }
-            float f13 = li0Var.f35768s;
-            if (z11) {
-                f11 = 1.0f;
-            }
-            this.d = c(f13, f11, new q0.a(this) {
-                public final fi0 f33109b;
+    }
 
-                {
-                    this.f33109b = this;
+    @Override
+    public void onDraw(Canvas canvas) {
+        ImageReceiver imageReceiver;
+        switch (this.G) {
+            case 1:
+                this.H.b();
+                super.onDraw(canvas);
+                return;
+            case 2:
+                i5 i5Var = this.f35560e;
+                if (i5Var != null) {
+                    imageReceiver = i5Var.f34505k;
+                } else {
+                    imageReceiver = this.f35557a;
                 }
+                if (imageReceiver != null && imageReceiver.B() != null) {
+                    imageReceiver.B().start();
+                }
+                super.onDraw(canvas);
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
 
-                @Override
-                public final void accept(Object obj) {
-                    Float f132 = (Float) obj;
-                    switch (r2) {
-                        case 0:
-                            li0 li0Var2 = this.f33109b.f33809e;
-                            Paint paint = li0Var2.h;
-                            float floatValue = f132.floatValue();
-                            li0Var2.f35766r = floatValue;
-                            paint.setAlpha((int) (floatValue * 255.0f));
-                            li0Var2.invalidate();
-                            return;
-                        default:
-                            li0 li0Var3 = this.f33109b.f33809e;
-                            Paint paint2 = li0Var3.f35761n;
-                            float floatValue2 = f132.floatValue();
-                            li0Var3.f35768s = floatValue2;
-                            paint2.setAlpha((int) (floatValue2 * 255.0f));
-                            li0Var3.invalidate();
-                            return;
-                    }
+    @Override
+    public void invalidate(int i7, int i10, int i11, int i12) {
+        switch (this.G) {
+            case 0:
+                if (ch.e0.c(this)) {
+                    return;
                 }
-            }, new Runnable(this) {
-                public final fi0 f33403b;
+                super.invalidate(i7, i10, i11, i12);
+                return;
+            case 1:
+                if (ch.e0.c(this)) {
+                    return;
+                }
+                super.invalidate(i7, i10, i11, i12);
+                return;
+            default:
+                super.invalidate(i7, i10, i11, i12);
+                return;
+        }
+    }
 
-                {
-                    this.f33403b = this;
+    @Override
+    public final void invalidate() {
+        int i7 = this.G;
+        gi0 gi0Var = this.H;
+        switch (i7) {
+            case 0:
+                if (ch.e0.c(this, gi0Var.P)) {
+                    return;
                 }
-
-                @Override
-                public final void run() {
-                    switch (r2) {
-                        case 0:
-                            this.f33403b.f33808c = null;
-                            return;
-                        default:
-                            this.f33403b.d = null;
-                            return;
-                    }
+                super.invalidate();
+                gi0Var.P.invalidate();
+                return;
+            case 1:
+                if (ch.e0.c(this)) {
+                    return;
                 }
-            });
-            this.f33807b = z11;
+                super.invalidate();
+                return;
+            default:
+                super.invalidate();
+                gi0Var.P.invalidate();
+                return;
         }
     }
 }

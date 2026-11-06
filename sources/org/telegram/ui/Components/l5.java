@@ -1,38 +1,35 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class l5 {
-    public ArrayList f35600a;
-    public HashMap f35601b;
-    public ArrayList f35602c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class l5 extends AnimatorListenerAdapter {
+    public final int f35518a;
+    public final r5 f35519b;
 
-    public final void a() {
-        ArrayList arrayList = this.f35600a;
-        for (int i3 = 0; i3 < arrayList.size(); i3++) {
-            ((k5) arrayList.get(i3)).d.spanDrawn = false;
-        }
+    public l5(r5 r5Var, int i7) {
+        this.f35518a = i7;
+        this.f35519b = r5Var;
     }
 
-    public final void b(int i3) {
-        k5 k5Var = (k5) this.f35600a.remove(i3);
-        HashMap hashMap = this.f35601b;
-        n5 n5Var = (n5) hashMap.get(k5Var.f35310c);
-        if (n5Var != null) {
-            ArrayList arrayList = n5Var.f36377b;
-            arrayList.remove(k5Var);
-            n5Var.a();
-            if (arrayList.isEmpty()) {
-                hashMap.remove(k5Var.f35310c);
-                this.f35602c.remove(n5Var);
-            }
-            g5 g5Var = k5Var.f35312f;
-            if (g5Var != null) {
-                g5Var.o(k5Var);
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f35518a) {
+            case 0:
+                r5.access$002(this.f35519b, null);
+                r5.access$102(false);
                 return;
-            }
-            return;
+            case 1:
+                r5 r5Var = this.f35519b;
+                r5.access$002(r5Var, null);
+                if (r5.access$200(r5Var) != null) {
+                    r5.access$200(r5Var).run();
+                    r5.access$202(r5Var, null);
+                    return;
+                }
+                return;
+            default:
+                r5.access$302(this.f35519b, null);
+                return;
         }
-        throw new RuntimeException("!!!");
     }
 }

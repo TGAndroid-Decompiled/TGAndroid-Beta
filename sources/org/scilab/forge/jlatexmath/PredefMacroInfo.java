@@ -1,15 +1,15 @@
 package org.scilab.forge.jlatexmath;
 class PredefMacroInfo extends MacroInfo {
-    private int f21192id;
+    private int f21139id;
 
-    public PredefMacroInfo(int i3, int i10, int i11) {
+    public PredefMacroInfo(int i7, int i10, int i11) {
         super(i10, i11);
-        this.f21192id = i3;
+        this.f21139id = i7;
     }
 
-    private static final Object invokeID(int i3, TeXParser teXParser, String[] strArr) {
+    private static final Object invokeID(int i7, TeXParser teXParser, String[] strArr) {
         try {
-            switch (i3) {
+            switch (i7) {
                 case 0:
                     return PredefMacros.newcommand_macro(teXParser, strArr);
                 case 1:
@@ -533,11 +533,11 @@ class PredefMacroInfo extends MacroInfo {
 
     @Override
     public Object invoke(TeXParser teXParser, String[] strArr) {
-        return invokeID(this.f21192id, teXParser, strArr);
+        return invokeID(this.f21139id, teXParser, strArr);
     }
 
-    public PredefMacroInfo(int i3, int i10) {
+    public PredefMacroInfo(int i7, int i10) {
         super(i10);
-        this.f21192id = i3;
+        this.f21139id = i7;
     }
 }

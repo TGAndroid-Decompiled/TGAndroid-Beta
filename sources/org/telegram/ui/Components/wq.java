@@ -5,14 +5,14 @@ import android.graphics.ColorFilter;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public final class wq extends Drawable {
-    public final Drawable f40053a;
-    public final Drawable f40054b;
-    public float f40055c;
+    public final Drawable f40063a;
+    public final Drawable f40064b;
+    public float f40065c;
     public float d = 255.0f;
 
     public wq(Drawable drawable, Drawable drawable2) {
-        this.f40053a = drawable;
-        this.f40054b = drawable2;
+        this.f40063a = drawable;
+        this.f40064b = drawable2;
         if (drawable != null) {
             drawable.setCallback(new vq(this, 0));
         }
@@ -22,19 +22,19 @@ public final class wq extends Drawable {
     }
 
     public final void a(float f10) {
-        this.f40055c = f10;
+        this.f40065c = f10;
         invalidateSelf();
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        int i3 = (int) ((1.0f - this.f40055c) * this.d);
-        Drawable drawable = this.f40053a;
-        drawable.setAlpha(i3);
-        int i10 = (int) (this.d * this.f40055c);
-        Drawable drawable2 = this.f40054b;
+        int i7 = (int) ((1.0f - this.f40065c) * this.d);
+        Drawable drawable = this.f40063a;
+        drawable.setAlpha(i7);
+        int i10 = (int) (this.d * this.f40065c);
+        Drawable drawable2 = this.f40064b;
         drawable2.setAlpha(i10);
-        if (i3 > 0) {
+        if (i7 > 0) {
             drawable.draw(canvas);
         }
         if (i10 > 0) {
@@ -44,12 +44,12 @@ public final class wq extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f40053a.getIntrinsicHeight();
+        return this.f40063a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f40053a.getIntrinsicWidth();
+        return this.f40063a.getIntrinsicWidth();
     }
 
     @Override
@@ -59,17 +59,17 @@ public final class wq extends Drawable {
 
     @Override
     public final void onBoundsChange(Rect rect) {
-        this.f40053a.setBounds(rect);
-        this.f40054b.setBounds(rect);
+        this.f40063a.setBounds(rect);
+        this.f40064b.setBounds(rect);
     }
 
     @Override
-    public final void setAlpha(int i3) {
-        this.d = i3;
+    public final void setAlpha(int i7) {
+        this.d = i7;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f40053a.setColorFilter(colorFilter);
+        this.f40063a.setColorFilter(colorFilter);
     }
 }

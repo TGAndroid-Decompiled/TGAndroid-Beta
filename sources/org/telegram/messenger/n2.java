@@ -2,15 +2,15 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class n2 extends m2 {
-    public final TL_keyboard.KeyboardInlineButton f24304a;
+    public final TL_keyboard.KeyboardInlineButton f24113a;
 
     public n2(TL_keyboard.KeyboardInlineButton keyboardInlineButton) {
-        this.f24304a = keyboardInlineButton;
+        this.f24113a = keyboardInlineButton;
     }
 
     @Override
     public final int a() {
-        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f24304a.style;
+        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f24113a.style;
         if (keyboardButtonStyle != null) {
             if (keyboardButtonStyle.bg_success) {
                 return 3;
@@ -28,7 +28,7 @@ public final class n2 extends m2 {
 
     @Override
     public final long b() {
-        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f24304a.style;
+        TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = this.f24113a.style;
         if (keyboardButtonStyle != null) {
             return keyboardButtonStyle.icon;
         }
@@ -37,6 +37,6 @@ public final class n2 extends m2 {
 
     @Override
     public final String d() {
-        return this.f24304a.text;
+        return this.f24113a.text;
     }
 }

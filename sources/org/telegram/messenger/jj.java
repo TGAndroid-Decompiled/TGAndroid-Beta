@@ -1,44 +1,29 @@
 package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
-public final class jj implements Runnable {
-    public final int f23676a;
-    public final hp f23677b;
-    public final TLRPC.Chat f23678c;
+public final class jj extends ij {
+    public final int f23542s3;
+    public final mj f23543t3;
 
-    public jj(hp hpVar, TLRPC.Chat chat, int i3) {
-        this.f23676a = i3;
-        this.f23677b = hpVar;
-        this.f23678c = chat;
+    public jj(mj mjVar, int i7, TLRPC.TL_message tL_message, int i10) {
+        super(i7, tL_message, true, false);
+        this.f23543t3 = mjVar;
+        this.f23542s3 = i10;
     }
 
     @Override
-    public final void run() {
-        int i3 = this.f23676a;
-        TLRPC.Chat chat = this.f23678c;
-        hp hpVar = this.f23677b;
-        switch (i3) {
-            case 0:
-                hpVar.j(chat);
-                return;
-            case 1:
-                hpVar.getNotificationCenter().k(90, chat);
-                return;
-            case 2:
-                hpVar.getClass();
-                hpVar.G(chat.f27001id, true);
-                return;
-            case 3:
-                hpVar.getNotificationCenter().k(90, chat);
-                return;
-            case 4:
-                hpVar.getNotificationCenter().k(320, Long.valueOf(chat.f27001id), Boolean.valueOf(chat.forum), Boolean.valueOf(chat.forum_tabs), Boolean.valueOf(chat.forum_sidebar));
-                return;
-            default:
-                hpVar.T4(null);
-                hpVar.getNotificationCenter().k(348, Long.valueOf(chat.f27001id), Boolean.valueOf(chat.collapsed_in_dialogs));
-                hpVar.getNotificationCenter().k(3, new Object[0]);
-                return;
+    public final void n0(TLRPC.User user) {
+        super.n0(user);
+        if (this.f23542s3 == 2) {
+            this.f23543t3.b(this);
         }
+    }
+
+    @Override
+    public final boolean o5() {
+        if (this.f23543t3.f24026k) {
+            return false;
+        }
+        return super.o5();
     }
 }

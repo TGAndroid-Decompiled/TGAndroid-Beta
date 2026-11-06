@@ -1,17 +1,10 @@
 package z7;
-public final class r2 implements ma.d {
-    public static final r2 f60024a = new Object();
+
+import java.util.logging.Logger;
+public abstract class r2 {
+    public static final int f59811a = 0;
 
     static {
-        t4.c.o(t4.c.k(b0.class, t4.c.n(t4.c.k(b0.class, t4.c.n(t4.c.k(b0.class, new y(1)), 2)), 3)));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ma.e eVar = (ma.e) obj2;
-            throw null;
-        }
-        throw new ClassCastException();
+        Logger.getLogger(r2.class.getName());
     }
 }

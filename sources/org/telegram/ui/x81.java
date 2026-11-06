@@ -1,50 +1,54 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.app.Activity;
-public final class x81 extends AnimatorListenerAdapter {
-    public final int f51889a;
-    public final boolean f51890b;
-    public final m91 f51891c;
+import android.view.View;
+import android.widget.TextView;
+import org.telegram.tgnet.TLRPC;
+public final class x81 implements yh.c, org.telegram.messenger.bp, r0.m, org.telegram.ui.Components.ej0 {
+    public final v91 f51785a;
 
-    public x81(m91 m91Var, boolean z10, int i3) {
-        this.f51889a = i3;
-        this.f51891c = m91Var;
-        this.f51890b = z10;
+    public x81(v91 v91Var) {
+        this.f51785a = v91Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f10;
-        int i3;
-        switch (this.f51889a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                boolean z10 = this.f51890b;
-                if (z10) {
-                    f10 = 1.0f;
-                } else {
-                    f10 = 0.0f;
-                }
-                m91 m91Var = this.f51891c;
-                m91Var.W0(f10);
-                if (z10) {
-                    m91Var.f47613r0.setVisibility(8);
-                    return;
-                }
-                Activity parentActivity = m91Var.getParentActivity();
-                i3 = ((org.telegram.ui.ActionBar.d2) m91Var).classGuid;
-                org.telegram.messenger.g0.l3(parentActivity, i3);
-                m91Var.f47615s0.setVisibility(8);
-                m91Var.U0(true);
-                return;
-            default:
-                if (!this.f51890b) {
-                    this.f51891c.f47608p0.setVisibility(8);
-                    return;
-                }
-                return;
+    public r0.k1 S0(View view, r0.k1 k1Var) {
+        int i7 = k1Var.f54084a.f(519).d;
+        v91 v91Var = this.f51785a;
+        v91Var.f50635f1 = i7;
+        r91 r91Var = v91Var.f50656r0;
+        if (r91Var != null) {
+            r91Var.setPadding(0, 0, 0, i7);
         }
+        s81 s81Var = v91Var.f50648n;
+        if (s81Var != null) {
+            ((TextView) s81Var.d).setTranslationY((-v91Var.f50635f1) - v91Var.f50632e1);
+        }
+        v91Var.h.setTranslationY(((-v91Var.X0) - v91Var.f50635f1) - v91Var.f50632e1);
+        v91Var.F0();
+        return r0.k1.f54083b;
+    }
+
+    @Override
+    public boolean a(TLRPC.TL_error tL_error) {
+        return v91.Z(this.f51785a, tL_error);
+    }
+
+    @Override
+    public void d(boolean z9, boolean z10) {
+        v91 v91Var = this.f51785a;
+        v91Var.U0.i(v91Var.R0.b(), z9, z10);
+    }
+
+    @Override
+    public boolean mo19f(float f10, float f11, int i7, View view) {
+        return v91.b0(this.f51785a, view, f10);
+    }
+
+    @Override
+    public void q(float f10) {
+    }
+
+    @Override
+    public void i() {
     }
 }

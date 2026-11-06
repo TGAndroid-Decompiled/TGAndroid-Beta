@@ -1,30 +1,36 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
+import org.telegram.tgnet.tl.TL_update;
 public final class jw implements Runnable {
-    public final int f23730a;
-    public final yy f23731b;
-    public final long f23732c;
-    public final ArrayList d;
+    public final int f23596a;
+    public final gz f23597b;
+    public final TL_update.TL_updateNewChannelMessage f23598c;
+    public final long d;
 
-    public jw(yy yyVar, long j10, ArrayList arrayList, int i3) {
-        this.f23730a = i3;
-        this.f23731b = yyVar;
-        this.f23732c = j10;
-        this.d = arrayList;
+    public jw(gz gzVar, TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage, long j3, int i7) {
+        this.f23596a = i7;
+        this.f23597b = gzVar;
+        this.f23598c = tL_updateNewChannelMessage;
+        this.d = j3;
     }
 
     @Override
     public final void run() {
-        switch (this.f23730a) {
+        switch (this.f23596a) {
             case 0:
-                this.f23731b.getMessagesController().l3(this.d, this.f23732c);
-                return;
-            case 1:
-                this.f23731b.getMessagesController().l3(this.d, this.f23732c);
+                gz gzVar = this.f23597b;
+                gzVar.getClass();
+                ArrayList arrayList = new ArrayList();
+                arrayList.add(Integer.valueOf(this.f23598c.message.f26973id));
+                gzVar.getMessagesStorage().c2(-this.d, arrayList, true, -1, 0, false, null);
                 return;
             default:
-                this.f23731b.getMessagesController().l3(this.d, this.f23732c);
+                gz gzVar2 = this.f23597b;
+                gzVar2.getClass();
+                ArrayList arrayList2 = new ArrayList();
+                arrayList2.add(Integer.valueOf(this.f23598c.message.f26973id));
+                gzVar2.getMessagesStorage().c2(-this.d, arrayList2, true, -1, 0, false, null);
                 return;
         }
     }

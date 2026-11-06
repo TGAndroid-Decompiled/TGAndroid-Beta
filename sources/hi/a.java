@@ -1,46 +1,32 @@
 package hi;
 
-import org.telegram.ui.Components.ct0;
-public final class a implements qe.b, ct0 {
-    public final int f14421a;
-    public final g f14422b;
+import org.telegram.messenger.c20;
+import org.telegram.tgnet.TLRPC;
+public final class a implements c20 {
+    public final int f14492a;
+    public final j f14493b;
 
-    public a(g gVar, int i3) {
-        this.f14421a = i3;
-        this.f14422b = gVar;
+    public a(j jVar, int i7) {
+        this.f14492a = i7;
+        this.f14493b = jVar;
     }
 
     @Override
-    public void F(float f10, int i3) {
-        int i10 = this.f14421a;
-    }
-
-    @Override
-    public void Y(int i3, float f10, float f11, qe.c cVar) {
-        switch (this.f14421a) {
+    public final void a(Object obj) {
+        switch (this.f14492a) {
             case 0:
-                this.f14422b.H0();
+                org.telegram.messenger.g0.h3(new ha.b(1, this.f14493b, (TLRPC.UserFull) obj));
                 return;
             case 1:
-                this.f14422b.H0();
+                j jVar = this.f14493b;
+                jVar.f14729a0.commission_permille = ((Integer) obj).intValue();
+                jVar.L0();
                 return;
             default:
-                this.f14422b.X.setAlpha(f10);
+                j jVar2 = this.f14493b;
+                jVar2.f14729a0.duration_months = ((Integer) jVar2.f14731c0.get(((Integer) obj).intValue())).intValue();
+                jVar2.L0();
                 return;
         }
-    }
-
-    @Override
-    public int c() {
-        return this.f14422b.f14433b0;
-    }
-
-    private final void a(float f10, int i3) {
-    }
-
-    private final void b(float f10, int i3) {
-    }
-
-    private final void d(float f10, int i3) {
     }
 }

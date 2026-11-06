@@ -7,27 +7,27 @@ import android.text.Spannable;
 import android.text.style.ClickableSpan;
 import android.view.accessibility.AccessibilityNodeProvider;
 import java.util.ArrayList;
-import org.telegram.messenger.cv;
-import org.telegram.messenger.xt;
-import org.telegram.messenger.zi;
+import org.telegram.messenger.fu;
+import org.telegram.messenger.ij;
+import org.telegram.messenger.kv;
 public final class z0 extends AccessibilityNodeProvider {
-    public final q1 f31021a;
-    public final Path f31022b = new Path();
-    public final RectF f31023c = new RectF();
+    public final q1 f30942a;
+    public final Path f30943b = new Path();
+    public final RectF f30944c = new RectF();
     public final Rect d = new Rect();
 
     public z0(q1 q1Var) {
-        this.f31021a = q1Var;
+        this.f30942a = q1Var;
     }
 
-    public final ClickableSpan a(int i3, boolean z10) {
-        if (i3 == 5000) {
+    public final ClickableSpan a(int i7, boolean z9) {
+        if (i7 == 5000) {
             return null;
         }
-        q1 q1Var = this.f31021a;
-        if (z10) {
-            int i10 = i3 - 3000;
-            CharSequence charSequence = q1Var.P5.f26924z;
+        q1 q1Var = this.f30942a;
+        if (z9) {
+            int i10 = i7 - 3000;
+            CharSequence charSequence = q1Var.P5.f23293z;
             if (!(charSequence instanceof Spannable) || i10 < 0) {
                 return null;
             }
@@ -38,7 +38,7 @@ public final class z0 extends AccessibilityNodeProvider {
             }
             return clickableSpanArr[i10];
         }
-        int i11 = i3 - 2000;
+        int i11 = i7 - 2000;
         CharSequence charSequence2 = q1Var.P5.v;
         if (!(charSequence2 instanceof Spannable) || i11 < 0) {
             return null;
@@ -51,27 +51,27 @@ public final class z0 extends AccessibilityNodeProvider {
         return clickableSpanArr2[i11];
     }
 
-    public final xt b(int[] iArr, int i3) {
-        cv cvVar;
+    public final fu b(int[] iArr, int i7) {
+        kv kvVar;
         int i10;
-        zi ziVar = this.f31021a.P5;
-        if (ziVar != null && (cvVar = ziVar.f26915w2) != null) {
-            ArrayList arrayList = cvVar.f22070g;
-            int i11 = i3 - 6000;
+        ij ijVar = this.f30942a.P5;
+        if (ijVar != null && (kvVar = ijVar.f23284w2) != null) {
+            ArrayList arrayList = kvVar.f23761g;
+            int i11 = i7 - 6000;
             if (i11 >= 0) {
                 int i12 = 0;
                 for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                    xt xtVar = (xt) arrayList.get(i13);
-                    if (xtVar.S()) {
-                        if (xtVar.f26440r == null) {
+                    fu fuVar = (fu) arrayList.get(i13);
+                    if (fuVar.S()) {
+                        if (fuVar.f22449r == null) {
                             i10 = 0;
                         } else {
                             i10 = 1;
                         }
-                        int B = xtVar.B() + i10 + i12;
+                        int B = fuVar.B() + i10 + i12;
                         if (i11 < B) {
                             iArr[0] = i11 - i12;
-                            return xtVar;
+                            return fuVar;
                         }
                         i12 = B;
                     }

@@ -5,72 +5,72 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class p7 implements Runnable {
-    public final int f24707a = 1;
-    public final int f24708b;
-    public final long f24709c;
+    public final int f24510a = 1;
+    public final int f24511b;
+    public final long f24512c;
     public final int d;
-    public final c1 f24710e;
-    public final Object f24711f;
+    public final c1 f24513e;
+    public final Object f24514f;
     public final Object h;
-    public final Object f24712n;
-    public final Object f24713r;
-    public final Object f24714s;
-    public final Object f24715w;
-    public final Object f24716x;
+    public final Object f24515n;
+    public final Object f24516r;
+    public final Object f24517s;
+    public final Object f24518w;
+    public final Object f24519x;
 
-    public p7(w7 w7Var, TLRPC.Document document, wv wvVar, e20 e20Var, TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, ac acVar, Object obj, String str, long j10, int i3, int i10) {
-        this.f24710e = w7Var;
-        this.f24711f = document;
-        this.h = wvVar;
-        this.f24712n = e20Var;
-        this.f24713r = tL_fileLocationToBeDeprecated;
-        this.f24714s = acVar;
-        this.f24715w = obj;
-        this.f24716x = str;
-        this.f24709c = j10;
-        this.f24708b = i3;
+    public p7(w7 w7Var, TLRPC.Document document, ew ewVar, m20 m20Var, TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated, hc hcVar, Object obj, String str, long j3, int i7, int i10) {
+        this.f24513e = w7Var;
+        this.f24514f = document;
+        this.h = ewVar;
+        this.f24515n = m20Var;
+        this.f24516r = tL_fileLocationToBeDeprecated;
+        this.f24517s = hcVar;
+        this.f24518w = obj;
+        this.f24519x = str;
+        this.f24512c = j3;
+        this.f24511b = i7;
         this.d = i10;
     }
 
     @Override
     public final void run() {
         a0.h hVar;
-        int i3 = this.f24707a;
-        Object obj = this.f24716x;
-        Object obj2 = this.f24714s;
-        Object obj3 = this.f24713r;
-        Object obj4 = this.f24712n;
+        int i7 = this.f24510a;
+        Object obj = this.f24519x;
+        Object obj2 = this.f24517s;
+        Object obj3 = this.f24516r;
+        Object obj4 = this.f24515n;
         Object obj5 = this.h;
-        Object obj6 = this.f24711f;
-        c1 c1Var = this.f24710e;
-        switch (i3) {
+        Object obj6 = this.f24514f;
+        c1 c1Var = this.f24513e;
+        switch (i7) {
             case 0:
-                ((w7) c1Var).Z((TLRPC.Document) obj6, (wv) obj5, (e20) obj4, (TLRPC.TL_fileLocationToBeDeprecated) obj3, (ac) obj2, this.f24715w, (String) obj, this.f24709c, this.f24708b, null, 0L, false, this.d);
+                ((w7) c1Var).Z((TLRPC.Document) obj6, (ew) obj5, (m20) obj4, (TLRPC.TL_fileLocationToBeDeprecated) obj3, (hc) obj2, this.f24518w, (String) obj, this.f24512c, this.f24511b, null, 0L, false, this.d);
                 return;
             default:
-                li liVar = (li) c1Var;
+                ui uiVar = (ui) c1Var;
                 a0.h hVar2 = (a0.h) obj6;
                 HashMap hashMap = (HashMap) obj5;
                 ArrayList arrayList = (ArrayList) obj4;
                 a0.h hVar3 = (a0.h) obj3;
                 HashMap hashMap2 = (HashMap) obj2;
-                a0.h hVar4 = (a0.h) this.f24715w;
+                a0.h hVar4 = (a0.h) this.f24518w;
                 Runnable runnable = (Runnable) obj;
-                a0.h hVar5 = liVar.K;
-                ConcurrentHashMap concurrentHashMap = liVar.O;
-                a0.h hVar6 = liVar.J;
-                ArrayList[] arrayListArr = liVar.H;
+                a0.h hVar5 = uiVar.J;
+                ConcurrentHashMap concurrentHashMap = uiVar.N;
+                a0.h hVar6 = uiVar.I;
+                ArrayList[] arrayListArr = uiVar.G;
                 int i10 = 0;
                 while (true) {
-                    int i11 = this.f24708b;
+                    int i11 = this.f24511b;
                     Runnable runnable2 = runnable;
                     if (i10 < arrayListArr[i11].size()) {
                         TLRPC.StickerSet stickerSet = ((TLRPC.TL_messages_stickerSet) arrayListArr[i11].get(i10)).set;
                         HashMap hashMap3 = hashMap2;
-                        hVar6.l(stickerSet.f27028id);
+                        hVar6.l(stickerSet.f26979id);
                         concurrentHashMap.remove(stickerSet.short_name);
                         if (i11 != 3 && i11 != 6 && i11 != 4) {
-                            hVar5.l(stickerSet.f27028id);
+                            hVar5.l(stickerSet.f26979id);
                         }
                         i10++;
                         runnable = runnable2;
@@ -91,16 +91,16 @@ public final class p7 implements Runnable {
                         }
                         concurrentHashMap.putAll(hashMap);
                         arrayListArr[i11] = arrayList;
-                        liVar.Y[i11] = this.f24709c;
-                        liVar.Z[i11] = this.d;
-                        liVar.I[i11] = hVar3;
+                        uiVar.X[i11] = this.f24512c;
+                        uiVar.Y[i11] = this.d;
+                        uiVar.H[i11] = hVar3;
                         if (i11 == 0) {
-                            liVar.f24020e0 = hashMap4;
-                            liVar.f24017d0 = hVar4;
+                            uiVar.f25797d0 = hashMap4;
+                            uiVar.f25795c0 = hVar4;
                         } else if (i11 == 3) {
-                            liVar.f24023f0 = hashMap4;
+                            uiVar.f25800e0 = hashMap4;
                         }
-                        liVar.getNotificationCenter().k(60, Integer.valueOf(i11), Boolean.TRUE);
+                        uiVar.getNotificationCenter().k(60, Integer.valueOf(i11), Boolean.TRUE);
                         if (runnable2 != null) {
                             runnable2.run();
                             return;
@@ -112,17 +112,17 @@ public final class p7 implements Runnable {
         }
     }
 
-    public p7(li liVar, int i3, a0.h hVar, HashMap hashMap, ArrayList arrayList, long j10, int i10, a0.h hVar2, HashMap hashMap2, a0.h hVar3, Runnable runnable) {
-        this.f24710e = liVar;
-        this.f24708b = i3;
-        this.f24711f = hVar;
+    public p7(ui uiVar, int i7, a0.h hVar, HashMap hashMap, ArrayList arrayList, long j3, int i10, a0.h hVar2, HashMap hashMap2, a0.h hVar3, Runnable runnable) {
+        this.f24513e = uiVar;
+        this.f24511b = i7;
+        this.f24514f = hVar;
         this.h = hashMap;
-        this.f24712n = arrayList;
-        this.f24709c = j10;
+        this.f24515n = arrayList;
+        this.f24512c = j3;
         this.d = i10;
-        this.f24713r = hVar2;
-        this.f24714s = hashMap2;
-        this.f24715w = hVar3;
-        this.f24716x = runnable;
+        this.f24516r = hVar2;
+        this.f24517s = hashMap2;
+        this.f24518w = hVar3;
+        this.f24519x = runnable;
     }
 }

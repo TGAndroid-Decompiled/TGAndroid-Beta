@@ -1,38 +1,70 @@
 package org.telegram.ui.Components;
+public final class ta implements r1.c {
+    public final int f38306a;
+    public final Object f38307b;
 
-import android.graphics.Rect;
-import android.view.GestureDetector;
-import android.widget.FrameLayout;
-public final class ta extends FrameLayout {
-    public final ac E;
-    public final fb f38364a;
-    public final Rect f38365b;
-    public final GestureDetector f38366c;
-    public boolean d;
-    public boolean f38367e;
-    public float f38368f;
-    public float h;
-    public float f38369n;
-    public boolean f38370r;
-    public boolean f38371s;
-    public boolean f38372w;
-    public boolean f38373x;
-    public final FrameLayout f38374y;
-
-    public ta(ac acVar, fb fbVar, FrameLayout frameLayout) {
-        super(fbVar.getContext());
-        this.E = acVar;
-        this.f38374y = frameLayout;
-        this.f38365b = new Rect();
-        this.f38364a = fbVar;
-        GestureDetector gestureDetector = new GestureDetector(fbVar.getContext(), new pb(this, fbVar));
-        this.f38366c = gestureDetector;
-        gestureDetector.setIsLongpressEnabled(false);
-        addView(fbVar);
+    public ta(Object obj, int i7) {
+        this.f38306a = i7;
+        this.f38307b = obj;
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ta.onTouchEvent(android.view.MotionEvent):boolean");
+    public final void a(r1.g gVar, boolean z9, float f10, float f11) {
+        switch (this.f38306a) {
+            case 0:
+                cc ccVar = (cc) this.f38307b;
+                if (ccVar.d == gVar) {
+                    ccVar.d = null;
+                    return;
+                }
+                return;
+            case 1:
+                pa paVar = (pa) this.f38307b;
+                if (!z9) {
+                    paVar.run();
+                    return;
+                }
+                return;
+            case 2:
+                ik ikVar = (ik) this.f38307b;
+                ikVar.f34704l0 = null;
+                ikVar.m0 = 1.0f;
+                ikVar.m0();
+                return;
+            case 3:
+                bn0 bn0Var = (bn0) this.f38307b;
+                bn0Var.f32225q = false;
+                bn0Var.dismiss();
+                return;
+            case 4:
+                cn0 cn0Var = (cn0) this.f38307b;
+                cn0Var.f32625s = false;
+                cn0Var.f32624r = false;
+                if (!z9) {
+                    gVar.d();
+                }
+                if (gVar == cn0Var.f32622f) {
+                    cn0Var.f32622f = null;
+                    return;
+                }
+                return;
+            case 5:
+                mo0 mo0Var = (mo0) this.f38307b;
+                mo0Var.f36087w1.setVisibility(8);
+                mo0Var.f36078r2.setVisibility(8);
+                ko0 ko0Var = mo0Var.D1;
+                ko0Var.f35385f = null;
+                ko0Var.f();
+                mo0Var.f36082t2 = null;
+                mo0Var.E2 = false;
+                return;
+            default:
+                mo0 mo0Var2 = ((vn0) this.f38307b).d;
+                mo0Var2.f36089x1.setVisibility(8);
+                mo0Var2.f36091y1.setVisibility(8);
+                mo0Var2.f36076q2.setVisibility(8);
+                mo0Var2.f36082t2 = null;
+                return;
+        }
     }
 }

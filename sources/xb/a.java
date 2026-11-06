@@ -1,23 +1,19 @@
 package xb;
 
-import b8.ke;
-import mb.g;
-public final class a implements t9.d {
-    public static final a f58593b = new a(0);
-    public static final a f58594c = new a(1);
-    public final int f58595a;
+import q6.m;
+import wb.c;
+public final class a extends c {
+    public static final a f58563b;
 
-    public a(int i3) {
-        this.f58595a = i3;
-    }
-
-    @Override
-    public final Object q1(ke keVar) {
-        switch (this.f58595a) {
-            case 0:
-                return new c((g) keVar.a(g.class));
-            default:
-                return new b((c) keVar.a(c.class), (mb.d) keVar.a(mb.d.class));
+    static {
+        ?? obj = new Object();
+        obj.f54132a = -1.0f;
+        boolean z9 = false;
+        if (Float.compare(0.5f, 0.0f) >= 0 && Float.compare(0.5f, 1.0f) <= 0) {
+            z9 = true;
         }
+        m.a("Confidence Threshold should be in range [0.0f, 1.0f].", z9);
+        obj.f54132a = 0.5f;
+        f58563b = new c(obj);
     }
 }

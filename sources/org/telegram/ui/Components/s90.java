@@ -1,34 +1,27 @@
 package org.telegram.ui.Components;
 public final class s90 implements Runnable {
-    public final int f37953a;
-    public final t90 f37954b;
+    public final int f37980a;
+    public final ca0 f37981b;
 
-    public s90(t90 t90Var, int i3) {
-        this.f37953a = i3;
-        this.f37954b = t90Var;
+    public s90(ca0 ca0Var, int i7) {
+        this.f37980a = i7;
+        this.f37981b = ca0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37953a) {
+        switch (this.f37980a) {
             case 0:
-                t90 t90Var = this.f37954b;
-                if (t90Var.W != -1) {
-                    org.telegram.messenger.hs.f(t90Var.Y.f40291d0.f33042x).j(t90Var.W);
-                    t90Var.W = -1;
+                ca0 ca0Var = this.f37981b;
+                bi.q1 q1Var = ca0Var.f32505f;
+                if (ca0Var.f32503c0.d.f24033r) {
+                    q1Var.x0(-q1Var.computeVerticalScrollOffset(), 250, mi.l.V);
                     return;
                 }
-                return;
-            case 1:
-                this.f37954b.Y.i();
+                q1Var.x0(q1Var.computeVerticalScrollRange() - (q1Var.computeVerticalScrollExtent() + q1Var.computeVerticalScrollOffset()), 250, mi.l.V);
                 return;
             default:
-                t90 t90Var2 = this.f37954b;
-                if (t90Var2.W != -1) {
-                    org.telegram.messenger.hs.f(t90Var2.Y.f40291d0.f33042x).j(t90Var2.W);
-                    t90Var2.W = -1;
-                    return;
-                }
+                this.f37981b.h(true, false);
                 return;
         }
     }

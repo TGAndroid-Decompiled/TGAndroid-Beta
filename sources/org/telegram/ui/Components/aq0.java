@@ -4,74 +4,74 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class aq0 extends hy {
-    public final lt0 X;
+public final class aq0 extends jy {
+    public final mt0 X;
     public final zp0 Y;
-    public final ws0 Z;
+    public final xs0 Z;
 
-    public aq0(ws0 ws0Var, zp0 zp0Var) {
+    public aq0(xs0 xs0Var, zp0 zp0Var) {
         super(100, false);
-        this.Z = ws0Var;
+        this.Z = xs0Var;
         this.Y = zp0Var;
         this.X = new Object();
     }
 
     @Override
     public final int A() {
-        if (this.Y.h.getAdapter() != this.Z.R) {
+        if (this.Y.h.getAdapter() != this.Z.Q) {
             return 0;
         }
         return B();
     }
 
     @Override
-    public final lt0 D1(int i3) {
+    public final mt0 D1(int i7) {
         TLRPC.Document document;
         int i10;
         int i11;
-        u4.h0 adapter = this.Y.h.getAdapter();
-        ws0 ws0Var = this.Z;
-        ls0[] ls0VarArr = ws0Var.f40136w1;
-        if (adapter == ws0Var.R && !ls0VarArr[5].f35854a.isEmpty()) {
-            document = ((org.telegram.messenger.zi) ls0VarArr[5].f35854a.get(i3)).F0();
+        v4.g0 adapter = this.Y.h.getAdapter();
+        xs0 xs0Var = this.Z;
+        ms0[] ms0VarArr = xs0Var.f40399v1;
+        if (adapter == xs0Var.Q && !ms0VarArr[5].f36109a.isEmpty()) {
+            document = ((org.telegram.messenger.ij) ms0VarArr[5].f36109a.get(i7)).F0();
         } else {
             document = null;
         }
-        lt0 lt0Var = this.X;
-        lt0Var.f35878b = 100.0f;
-        lt0Var.f35877a = 100.0f;
+        mt0 mt0Var = this.X;
+        mt0Var.f36133b = 100.0f;
+        mt0Var.f36132a = 100.0f;
         if (document != null) {
             TLRPC.PhotoSize w10 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false);
-            if (w10 != null && (i10 = w10.f27026w) != 0 && (i11 = w10.h) != 0) {
-                lt0Var.f35877a = i10;
-                lt0Var.f35878b = i11;
+            if (w10 != null && (i10 = w10.f26977w) != 0 && (i11 = w10.h) != 0) {
+                mt0Var.f36132a = i10;
+                mt0Var.f36133b = i11;
             }
             ArrayList<TLRPC.DocumentAttribute> arrayList = document.attributes;
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
                 TLRPC.DocumentAttribute documentAttribute = arrayList.get(i12);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                    lt0Var.f35877a = documentAttribute.f27008w;
-                    lt0Var.f35878b = documentAttribute.h;
+                    mt0Var.f36132a = documentAttribute.f26959w;
+                    mt0Var.f36133b = documentAttribute.h;
                     break;
                 }
             }
         }
-        return lt0Var;
+        return mt0Var;
     }
 
     @Override
-    public final void U(tf.e eVar, u4.a1 a1Var, View view, s0.d dVar) {
-        e.a aVar;
-        super.U(eVar, a1Var, view, dVar);
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54570a;
+    public final void U(v4.v0 v0Var, v4.a1 a1Var, View view, s0.d dVar) {
+        d9.o oVar;
+        super.U(v0Var, a1Var, view, dVar);
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54484a;
         AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
         if (collectionItemInfo != null) {
-            aVar = new e.a(collectionItemInfo);
+            oVar = new d9.o(collectionItemInfo);
         } else {
-            aVar = null;
+            oVar = null;
         }
-        if (aVar != null) {
-            Object obj = aVar.f9205a;
+        if (oVar != null) {
+            Object obj = oVar.f8253a;
             if (((AccessibilityNodeInfo.CollectionItemInfo) obj).isHeading()) {
                 accessibilityNodeInfo.setCollectionItemInfo(AccessibilityNodeInfo.CollectionItemInfo.obtain(((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getRowSpan(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnIndex(), ((AccessibilityNodeInfo.CollectionItemInfo) obj).getColumnSpan(), false));
             }
@@ -79,17 +79,17 @@ public final class aq0 extends hy {
     }
 
     @Override
-    public final void z0(u4.a1 a1Var, int[] iArr) {
+    public final void z0(v4.a1 a1Var, int[] iArr) {
         super.z0(a1Var, iArr);
         zp0 zp0Var = this.Y;
-        int i3 = zp0Var.F;
-        if (i3 != 0 && !ws0.z0(i3)) {
-            if (zp0Var.F == 1) {
+        int i7 = zp0Var.E;
+        if (i7 != 0 && !xs0.z0(i7)) {
+            if (zp0Var.E == 1) {
                 iArr[1] = Math.max(iArr[1], org.telegram.messenger.g0.L(56.0f) * 2);
                 return;
             }
             return;
         }
-        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.o7.a(1) * 2);
+        iArr[1] = Math.max(iArr[1], org.telegram.ui.Cells.p7.a(1) * 2);
     }
 }

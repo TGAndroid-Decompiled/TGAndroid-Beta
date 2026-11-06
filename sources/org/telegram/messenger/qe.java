@@ -1,8 +1,12 @@
 package org.telegram.messenger;
-public final class qe {
-    public String f24880a;
-    public String f24881b;
-    public int f24882c;
-    public String d;
-    public zi f24883e;
+
+import java.io.File;
+public final class qe extends File {
+    @Override
+    public final boolean delete() {
+        if (r2.f25191a) {
+            a8.d("delete voice file");
+        }
+        return super.delete();
+    }
 }

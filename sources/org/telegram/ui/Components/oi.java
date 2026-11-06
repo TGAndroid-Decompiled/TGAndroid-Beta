@@ -2,21 +2,21 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-public final class oi extends u4.c0 {
-    public final fi.g f36838r;
+public final class oi extends v4.c0 {
+    public final ei.h f36728r;
 
-    public oi(fi.g gVar, Context context) {
+    public oi(ei.h hVar, Context context) {
         super(context);
-        this.f36838r = gVar;
+        this.f36728r = hVar;
     }
 
     @Override
-    public final int k(int i3, View view) {
-        return org.telegram.messenger.k5.B(7.0f, ((qi) this.f36838r.R).f37464n.getPaddingTop(), super.k(i3, view));
+    public final int k(int i7, View view) {
+        return org.telegram.messenger.k5.B(7.0f, ((qi) this.f36728r.R).f37417n.getPaddingTop(), super.k(i7, view));
     }
 
     @Override
-    public final int m(int i3) {
-        return super.m(i3) * 2;
+    public final int m(int i7) {
+        return super.m(i7) * 2;
     }
 }

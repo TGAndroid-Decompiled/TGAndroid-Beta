@@ -1,12 +1,21 @@
 package c4;
-public final class a {
-    public final int f4137a;
-    public final boolean f4138b;
-    public int f4139c;
 
-    public a(int i3, boolean z10, int i10) {
-        this.f4137a = i3;
-        this.f4138b = z10;
-        this.f4139c = i10;
+import h9.i0;
+import java.util.List;
+public final class a {
+    public final i0 f5269a;
+    public final long f5270b;
+    public final long f5271c;
+    public final long d;
+
+    public a(long j3, long j10, List list) {
+        this.f5269a = i0.q(list);
+        this.f5270b = j3;
+        this.f5271c = j10;
+        long j11 = -9223372036854775807L;
+        if (j3 != -9223372036854775807L && j10 != -9223372036854775807L) {
+            j11 = j3 + j10;
+        }
+        this.d = j11;
     }
 }

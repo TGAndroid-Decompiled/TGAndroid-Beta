@@ -1,65 +1,202 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.text.SpannableString;
+import android.view.KeyEvent;
+import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class ir0 implements Runnable {
-    public final int f46375a = 1;
-    public final pr0 f46376b;
-    public final boolean f46377c;
-    public final TLRPC.PollAnswer d;
-    public final org.telegram.ui.ActionBar.d2 f46378e;
-    public final ArrayList f46379f;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class ir0 implements org.telegram.ui.Components.hx {
+    public final or0 f46714a;
 
-    public ir0(pr0 pr0Var, boolean z10, TLRPC.PollAnswer pollAnswer, org.telegram.ui.ActionBar.d2 d2Var, ArrayList arrayList) {
-        this.f46376b = pr0Var;
-        this.f46377c = z10;
-        this.d = pollAnswer;
-        this.f46378e = d2Var;
-        this.f46379f = arrayList;
+    public ir0(or0 or0Var) {
+        this.f46714a = or0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f46375a) {
-            case 0:
-                pr0 pr0Var = this.f46376b;
-                pr0Var.getClass();
-                boolean z10 = this.f46377c;
-                org.telegram.ui.ActionBar.d2 d2Var = this.f46378e;
-                if (!z10) {
-                    d2Var.getSendMessagesHelper().w0(pr0Var.I, null, null);
-                } else {
-                    ArrayList arrayList = this.f46379f;
-                    arrayList.remove(this.d);
-                    d2Var.getSendMessagesHelper().w0(pr0Var.I, arrayList, null);
-                }
-                pr0Var.c(true);
-                return;
-            default:
-                pr0 pr0Var2 = this.f46376b;
-                pr0Var2.getClass();
-                boolean z11 = this.f46377c;
-                TLRPC.PollAnswer pollAnswer = this.d;
-                org.telegram.ui.ActionBar.d2 d2Var2 = this.f46378e;
-                if (!z11) {
-                    ArrayList arrayList2 = new ArrayList(1);
-                    arrayList2.add(pollAnswer);
-                    d2Var2.getSendMessagesHelper().w0(pr0Var2.I, arrayList2, null);
-                } else {
-                    ArrayList arrayList3 = this.f46379f;
-                    arrayList3.add(pollAnswer);
-                    d2Var2.getSendMessagesHelper().w0(pr0Var2.I, arrayList3, null);
-                }
-                pr0Var2.c(true);
-                return;
+    public final boolean A() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void i(int i7) {
+        boolean z9;
+        if (i7 != 0) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        or0 or0Var = this.f46714a;
+        or0Var.B0 = z9;
+        or0Var.f48514e.requestLayout();
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        EditTextBoldCursor editField = this.f46714a.f48510b0.getEditField();
+        if (editField == null) {
+            return false;
+        }
+        editField.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
+    }
+
+    @Override
+    public final void l(String str) {
+        EditTextBoldCursor editField = this.f46714a.f48510b0.getEditField();
+        if (editField == null) {
+            return;
+        }
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            CharSequence m10 = org.telegram.messenger.i6.m(str, editField.getPaint().getFontMetricsInt(), false, null, 0);
+            editField.setText(editField.getText().insert(selectionEnd, m10));
+            int length = selectionEnd + m10.length();
+            editField.setSelection(length, length);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
     }
 
-    public ir0(pr0 pr0Var, boolean z10, org.telegram.ui.ActionBar.d2 d2Var, ArrayList arrayList, TLRPC.PollAnswer pollAnswer) {
-        this.f46376b = pr0Var;
-        this.f46377c = z10;
-        this.f46378e = d2Var;
-        this.f46379f = arrayList;
-        this.d = pollAnswer;
+    @Override
+    public final void n() {
+        org.telegram.ui.ActionBar.f6 f6Var;
+        or0 or0Var = this.f46714a;
+        Activity parentActivity = or0Var.getParentActivity();
+        f6Var = ((org.telegram.ui.ActionBar.f2) or0Var).resourceProvider;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, parentActivity, f6Var);
+        String M0 = org.telegram.messenger.hd.M0(2131752068, null);
+        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+        u1Var.R = M0;
+        u1Var.T = org.telegram.messenger.hd.M0(2131752069, null);
+        alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131752099, null), new li0(this, 4));
+        alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
+        alertDialog$Builder.p();
+    }
+
+    @Override
+    public final float p() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
+        org.telegram.ui.Components.r5 r5Var;
+        or0 or0Var = this.f46714a;
+        EditTextBoldCursor editField = or0Var.f48510b0.getEditField();
+        if (editField == null) {
+            return;
+        }
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            SpannableString spannableString = new SpannableString(str);
+            if (document != null) {
+                r5Var = new org.telegram.ui.Components.r5(document, editField.getPaint().getFontMetricsInt());
+            } else {
+                r5Var = new org.telegram.ui.Components.r5(j3, editField.getPaint().getFontMetricsInt());
+            }
+            r5Var.cacheType = or0Var.R.f34074c;
+            spannableString.setSpan(r5Var, 0, spannableString.length(), 33);
+            editField.setText(editField.getText().insert(selectionEnd, spannableString));
+            int length = selectionEnd + spannableString.length();
+            editField.setSelection(length, length);
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        return this.f46714a.B0;
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void o(org.telegram.ui.Components.n31 n31Var) {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i7) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j3) {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z9) {
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.ej ejVar, boolean z9, int i7) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z9, int i7, int i10) {
     }
 }

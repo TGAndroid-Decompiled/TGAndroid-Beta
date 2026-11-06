@@ -1,89 +1,77 @@
 package ni;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import java.util.ArrayList;
-import u4.d1;
-public final class f extends AnimatorListenerAdapter {
-    public final int f20422a = 1;
-    public final View f20423b;
-    public final d1 f20424c;
-    public final l d;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import java.util.HashMap;
+import org.telegram.ui.ActionBar.k6;
+public final class f extends CharacterStyle {
+    public final int f20619a;
 
-    public f(l lVar, d1 d1Var, View view) {
-        this.d = lVar;
-        this.f20424c = d1Var;
-        this.f20423b = view;
+    public f(int i7) {
+        this.f20619a = i7;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f20422a) {
-            case 0:
-                this.f20423b.setAlpha(1.0f);
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void updateDrawState(TextPaint textPaint) {
+        int i7;
+        HashMap hashMap = t.f20655b;
+        int i10 = this.f20619a & 255;
+        switch (i10) {
+            case 8:
+            case 18:
+                i10 = 1;
+                break;
+            case 9:
+            case 10:
+            case 14:
+            case 15:
+                i10 = 3;
+                break;
+            case 11:
+            case 13:
+                i10 = 7;
+                break;
+            case 12:
+            case 16:
+            case 17:
+            case 19:
+                i10 = 4;
+                break;
+            case 20:
+                i10 = 6;
+                break;
+            case 21:
+                i10 = 2;
+                break;
         }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f20422a) {
-            case 0:
-                animator.removeAllListeners();
-                View view = this.f20423b;
-                view.setAlpha(1.0f);
-                view.setScaleX(1.0f);
-                view.setScaleY(1.0f);
-                view.setTranslationY(0.0f);
-                view.setTranslationY(0.0f);
-                l lVar = this.d;
-                ArrayList arrayList = lVar.f55606y;
-                d1 d1Var = this.f20424c;
-                if (arrayList.remove(d1Var)) {
-                    lVar.u(d1Var);
-                    lVar.G();
-                    return;
-                }
-                return;
+        switch (i10) {
+            case 1:
+                i7 = k6.wl;
+                break;
+            case 2:
+                i7 = k6.xl;
+                break;
+            case 3:
+                i7 = k6.yl;
+                break;
+            case 4:
+                i7 = k6.zl;
+                break;
+            case 5:
+                i7 = k6.Al;
+                break;
+            case 6:
+                i7 = k6.Bl;
+                break;
+            case 7:
+                i7 = k6.Cl;
+                break;
             default:
-                animator.removeAllListeners();
-                View view2 = this.f20423b;
-                view2.setAlpha(1.0f);
-                view2.setScaleX(1.0f);
-                view2.setScaleY(1.0f);
-                view2.setTranslationX(0.0f);
-                view2.setTranslationY(0.0f);
-                l lVar2 = this.d;
-                ArrayList arrayList2 = lVar2.A;
-                d1 d1Var2 = this.f20424c;
-                if (arrayList2.remove(d1Var2)) {
-                    lVar2.d(d1Var2);
-                    lVar2.G();
-                    return;
-                }
-                return;
+                i7 = -1;
+                break;
         }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f20422a) {
-            case 0:
-                this.d.getClass();
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
+        if (i7 >= 0) {
+            textPaint.setColor(k6.x0(null, i7, false));
         }
-    }
-
-    public f(l lVar, View view, d1 d1Var) {
-        this.d = lVar;
-        this.f20423b = view;
-        this.f20424c = d1Var;
     }
 }

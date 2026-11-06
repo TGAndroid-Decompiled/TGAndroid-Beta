@@ -7,29 +7,29 @@ public final class m implements Cloneable {
     public int f34c;
 
     public m() {
-        int i3;
+        int i7;
         int i10 = 4;
         while (true) {
-            i3 = 40;
+            i7 = 40;
             if (i10 >= 32) {
                 break;
             }
             int i11 = (1 << i10) - 12;
             if (40 <= i11) {
-                i3 = i11;
+                i7 = i11;
                 break;
             }
             i10++;
         }
-        int i12 = i3 / 4;
+        int i12 = i7 / 4;
         this.f32a = new int[i12];
         this.f33b = new Object[i12];
     }
 
-    public final void a(int i3, Object obj) {
+    public final void a(int i7, Object obj) {
         int i10 = this.f34c;
-        if (i10 != 0 && i3 <= this.f32a[i10 - 1]) {
-            d(i3, obj);
+        if (i10 != 0 && i7 <= this.f32a[i10 - 1]) {
+            d(i7, obj);
             return;
         }
         if (i10 >= this.f32a.length) {
@@ -54,7 +54,7 @@ public final class m implements Cloneable {
             kotlin.jvm.internal.j.d(copyOf2, "copyOf(this, newSize)");
             this.f33b = copyOf2;
         }
-        this.f32a[i10] = i3;
+        this.f32a[i10] = i7;
         this.f33b[i10] = obj;
         this.f34c = i10 + 1;
     }
@@ -68,17 +68,17 @@ public final class m implements Cloneable {
         return mVar;
     }
 
-    public final Object c(int i3) {
+    public final Object c(int i7) {
         Object obj;
-        int a10 = b0.a.a(this.f34c, i3, this.f32a);
+        int a10 = b0.a.a(this.f34c, i7, this.f32a);
         if (a10 >= 0 && (obj = this.f33b[a10]) != i.f21b) {
             return obj;
         }
         return null;
     }
 
-    public final void d(int i3, Object obj) {
-        int a10 = b0.a.a(this.f34c, i3, this.f32a);
+    public final void d(int i7, Object obj) {
+        int a10 = b0.a.a(this.f34c, i7, this.f32a);
         if (a10 >= 0) {
             this.f33b[a10] = obj;
             return;
@@ -88,7 +88,7 @@ public final class m implements Cloneable {
         if (i10 < i11) {
             Object[] objArr = this.f33b;
             if (objArr[i10] == i.f21b) {
-                this.f32a[i10] = i3;
+                this.f32a[i10] = i7;
                 objArr[i10] = obj;
                 return;
             }
@@ -119,21 +119,21 @@ public final class m implements Cloneable {
         if (i16 - i10 != 0) {
             int[] iArr = this.f32a;
             int i17 = i10 + 1;
-            ed.f.b(i17, i10, i16, iArr, iArr);
+            hd.e.b(i17, i10, i16, iArr, iArr);
             Object[] objArr2 = this.f33b;
-            ed.f.c(i17, i10, this.f34c, objArr2, objArr2);
+            hd.e.c(i17, i10, this.f34c, objArr2, objArr2);
         }
-        this.f32a[i10] = i3;
+        this.f32a[i10] = i7;
         this.f33b[i10] = obj;
         this.f34c++;
     }
 
     public final String toString() {
-        int i3 = this.f34c;
-        if (i3 <= 0) {
+        int i7 = this.f34c;
+        if (i7 <= 0) {
             return "{}";
         }
-        StringBuilder sb2 = new StringBuilder(i3 * 28);
+        StringBuilder sb2 = new StringBuilder(i7 * 28);
         sb2.append('{');
         int i10 = this.f34c;
         for (int i11 = 0; i11 < i10; i11++) {

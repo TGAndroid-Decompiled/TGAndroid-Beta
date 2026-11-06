@@ -1,34 +1,48 @@
 package org.telegram.ui.Components;
-public final class yo0 implements Runnable {
-    public final int f40797a;
-    public final ws0 f40798b;
-    public final int f40799c;
 
-    public yo0(ws0 ws0Var, int i3, int i10) {
-        this.f40797a = i10;
-        this.f40798b = ws0Var;
-        this.f40799c = i3;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class yo0 implements View.OnClickListener {
+    public final int f40670a;
+    public final boolean f40671b;
+    public final int f40672c;
+    public final FrameLayout d;
+
+    public yo0(FrameLayout frameLayout, boolean z9, int i7, int i10) {
+        this.f40670a = i10;
+        this.d = frameLayout;
+        this.f40671b = z9;
+        this.f40672c = i7;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40797a) {
+    public final void onClick(View view) {
+        switch (this.f40670a) {
             case 0:
-                this.f40798b.q1(this.f40799c);
-                return;
-            case 1:
-                ws0 ws0Var = this.f40798b;
-                ws0Var.Y0(ws0Var.f40142y1, ws0Var.m1, this.f40799c);
-                return;
-            case 2:
-                this.f40798b.p1(this.f40799c, false);
-                return;
-            case 3:
-                this.f40798b.q1(this.f40799c);
+                xs0 xs0Var = (xs0) this.d;
+                org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40405x1;
+                if (this.f40671b) {
+                    xs0Var.Y0(f2Var, xs0Var.l1, this.f40672c);
+                    return;
+                }
+                f2Var.getMessagesController().f24759e7.edit().putBoolean("story_keep", true).apply();
+                fi.va.D(f2Var.getParentActivity(), f2Var.getCurrentAccount()).Q(null);
                 return;
             default:
-                ws0 ws0Var2 = this.f40798b;
-                ws0Var2.Z0(ws0Var2.f40142y1, ws0Var2.m1, this.f40799c);
+                up0 up0Var = (up0) this.d;
+                if (up0Var.f60190e.h() && up0Var.h.getCurrentPosition() != 0) {
+                    up0Var.a();
+                    return;
+                }
+                boolean z9 = this.f40671b;
+                int i7 = this.f40672c;
+                if (z9) {
+                    zh.h1 h1Var = new zh.h1(up0Var.getContext(), i7, up0Var.f60189c, null, null);
+                    h1Var.e1(org.telegram.messenger.v1.a(i7).c(up0Var.f60189c));
+                    h1Var.show();
+                    return;
+                }
+                wg.f1.l1(2, org.telegram.messenger.v1.a(i7).b());
                 return;
         }
     }

@@ -1,39 +1,23 @@
 package db;
 
-import android.os.Build;
-import b8.tb;
-import gi.w5;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.attribute.FileAttribute;
-public final class q {
-    public static l1.b0 a(l1.z0 z0Var, w5 w5Var, be.c cVar, od.a aVar) {
-        ed.o oVar = ed.o.f9953a;
-        try {
-            System.loadLibrary("datastore_shared_counter");
-            return new l1.b0(new l1.f0(z0Var, new l1.y(cVar, 1), aVar), tb.a(new ae.d(oVar, (fd.c) null, 7)), w5Var, cVar);
-        } catch (SecurityException | UnsatisfiedLinkError unused) {
-            return new l1.b0(new l1.f0(z0Var, l1.e0.f17523b, aVar), tb.a(new ae.d(oVar, (fd.c) null, 7)), w5Var, cVar);
-        }
+import android.os.Parcel;
+import android.os.Parcelable;
+import c8.wb;
+import java.util.List;
+public final class q extends r6.a {
+    public static final Parcelable.Creator<q> CREATOR = new k(4);
+    public final List f8592a;
+
+    public q(List simSlots) {
+        kotlin.jvm.internal.j.e(simSlots, "simSlots");
+        this.f8592a = simSlots;
     }
 
-    public static void b(File file) {
-        File parentFile = file.getParentFile();
-        if (parentFile != null) {
-            if (parentFile.exists() && !parentFile.isDirectory() && kotlin.jvm.internal.j.a(parentFile.getName(), "firebaseSessions") && !parentFile.delete()) {
-                throw new IOException("Failed to delete conflicting file: " + parentFile);
-            } else if (!parentFile.isDirectory()) {
-                if (Build.VERSION.SDK_INT >= 26) {
-                    try {
-                        Files.createDirectories(parentFile.toPath(), new FileAttribute[0]);
-                    } catch (Exception e10) {
-                        throw new IOException("Failed to create directory: " + parentFile, e10);
-                    }
-                } else if (!parentFile.mkdirs() && !parentFile.isDirectory()) {
-                    throw new IOException("Failed to create directory: " + parentFile);
-                }
-            }
-        }
+    @Override
+    public final void writeToParcel(Parcel dest, int i7) {
+        kotlin.jvm.internal.j.e(dest, "dest");
+        int r10 = wb.r(dest, 20293);
+        wb.h(dest, 1, this.f8592a);
+        wb.s(dest, r10);
     }
 }

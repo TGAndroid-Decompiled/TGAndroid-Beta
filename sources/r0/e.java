@@ -6,24 +6,24 @@ import android.os.Bundle;
 import android.view.ContentInfo;
 import java.util.Locale;
 public final class e implements d, f {
-    public final int f53998a = 0;
-    public ClipData f53999b;
-    public int f54000c;
+    public final int f54056a = 0;
+    public ClipData f54057b;
+    public int f54058c;
     public int d;
-    public Uri f54001e;
-    public Bundle f54002f;
+    public Uri f54059e;
+    public Bundle f54060f;
 
     public e() {
     }
 
     @Override
     public ClipData a() {
-        return this.f53999b;
+        return this.f54057b;
     }
 
     @Override
     public void b(Uri uri) {
-        this.f54001e = uri;
+        this.f54059e = uri;
     }
 
     @Override
@@ -32,8 +32,8 @@ public final class e implements d, f {
     }
 
     @Override
-    public void c(int i3) {
-        this.d = i3;
+    public void c(int i7) {
+        this.d = i7;
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class e implements d, f {
 
     @Override
     public int e() {
-        return this.f54000c;
+        return this.f54058c;
     }
 
     @Override
@@ -53,27 +53,27 @@ public final class e implements d, f {
 
     @Override
     public void setExtras(Bundle bundle) {
-        this.f54002f = bundle;
+        this.f54060f = bundle;
     }
 
     public String toString() {
         String str;
         String valueOf;
         String str2;
-        switch (this.f53998a) {
+        switch (this.f54056a) {
             case 1:
-                Uri uri = this.f54001e;
+                Uri uri = this.f54059e;
                 StringBuilder sb2 = new StringBuilder("ContentInfoCompat{clip=");
-                sb2.append(this.f53999b.getDescription());
+                sb2.append(this.f54057b.getDescription());
                 sb2.append(", source=");
-                int i3 = this.f54000c;
-                if (i3 != 0) {
-                    if (i3 != 1) {
-                        if (i3 != 2) {
-                            if (i3 != 3) {
-                                if (i3 != 4) {
-                                    if (i3 != 5) {
-                                        str = String.valueOf(i3);
+                int i7 = this.f54058c;
+                if (i7 != 0) {
+                    if (i7 != 1) {
+                        if (i7 != 2) {
+                            if (i7 != 3) {
+                                if (i7 != 4) {
+                                    if (i7 != 5) {
+                                        str = String.valueOf(i7);
                                     } else {
                                         str = "SOURCE_PROCESS_TEXT";
                                     }
@@ -108,30 +108,30 @@ public final class e implements d, f {
                     str2 = ", hasLinkUri(" + uri.toString().length() + ")";
                 }
                 sb2.append(str2);
-                if (this.f54002f != null) {
+                if (this.f54060f != null) {
                     str3 = ", hasExtras";
                 }
-                return a1.g.s(sb2, str3, "}");
+                return a8.p0.s(sb2, str3, "}");
             default:
                 return super.toString();
         }
     }
 
     public e(e eVar) {
-        ClipData clipData = eVar.f53999b;
+        ClipData clipData = eVar.f54057b;
         clipData.getClass();
-        this.f53999b = clipData;
-        int i3 = eVar.f54000c;
-        if (i3 < 0) {
+        this.f54057b = clipData;
+        int i7 = eVar.f54058c;
+        if (i7 < 0) {
             Locale locale = Locale.US;
             throw new IllegalArgumentException("source is out of range of [0, 5] (too low)");
-        } else if (i3 <= 5) {
-            this.f54000c = i3;
+        } else if (i7 <= 5) {
+            this.f54058c = i7;
             int i10 = eVar.d;
             if ((i10 & 1) == i10) {
                 this.d = i10;
-                this.f54001e = eVar.f54001e;
-                this.f54002f = eVar.f54002f;
+                this.f54059e = eVar.f54059e;
+                this.f54060f = eVar.f54060f;
                 return;
             }
             throw new IllegalArgumentException("Requested flags 0x" + Integer.toHexString(i10) + ", but only 0x" + Integer.toHexString(1) + " are allowed");

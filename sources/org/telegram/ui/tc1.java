@@ -1,15 +1,14 @@
 package org.telegram.ui;
 
-import android.webkit.JavascriptInterface;
-public final class tc1 {
-    public final uc1 f49773a;
-
-    public tc1(uc1 uc1Var) {
-        this.f49773a = uc1Var;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+public final class tc1 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f27792a7));
     }
 
-    @JavascriptInterface
-    public void postEvent(String str, String str2) {
-        org.telegram.messenger.g0.h3(new hc1(3, this, str));
+    @Override
+    public final void updateColors() {
     }
 }

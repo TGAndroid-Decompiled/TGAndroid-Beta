@@ -3,25 +3,25 @@ package wi;
 import android.content.Context;
 import android.view.TextureView;
 import java.io.File;
-import org.telegram.ui.Components.g40;
-import org.telegram.ui.Components.y00;
-import org.telegram.ui.Components.zw;
+import org.telegram.ui.Components.ax;
+import org.telegram.ui.Components.k40;
+import org.telegram.ui.Components.qt;
 public final class k0 {
-    public final Context f57931a;
-    public final TextureView f57932b;
-    public File f57933c;
+    public final Context f57948a;
+    public final TextureView f57949b;
+    public File f57950c;
     public m0 d;
-    public r0 f57934e;
-    public n0 f57935f;
-    public o0 f57936g;
+    public r0 f57951e;
+    public n0 f57952f;
+    public o0 f57953g;
     public int h;
-    public boolean f57937i = true;
-    public y00 f57938j;
-    public q0 f57939k;
-    public zw f57940l;
+    public boolean f57954i = true;
+    public qt f57955j;
+    public q0 f57956k;
+    public ax f57957l;
 
-    public k0(Context context, g40 g40Var) {
-        this.f57931a = context;
-        this.f57932b = g40Var;
+    public k0(Context context, k40 k40Var) {
+        this.f57948a = context;
+        this.f57949b = k40Var;
     }
 }

@@ -1,45 +1,47 @@
 package o2;
 
-import j$.util.Objects;
-public final class f {
-    public final String f20534a;
-    public final String f20535b;
-    public final String f20536c;
+import a8.wa;
+import b3.r;
+import j2.c0;
+import java.io.IOException;
+import x2.u;
+public final class f implements b3.j {
+    public final h f20735a;
 
-    public f(String str, String str2, String str3) {
-        this.f20534a = str;
-        this.f20535b = str2;
-        this.f20536c = str3;
+    @Override
+    public b3.i o0(b3.l lVar, long j3, long j10, IOException iOException, int i7) {
+        r rVar = (r) lVar;
+        h hVar = this.f20735a;
+        wa waVar = hVar.f20745q;
+        long j11 = rVar.f2965a;
+        j2.m mVar = rVar.f2966b;
+        c0 c0Var = rVar.d;
+        waVar.r(new u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b), rVar.f2967c, iOException, true);
+        hVar.f20741m.getClass();
+        hVar.y(iOException);
+        return b3.o.f2960e;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && f.class == obj.getClass()) {
-            f fVar = (f) obj;
-            if (Objects.equals(this.f20534a, fVar.f20534a) && Objects.equals(this.f20535b, fVar.f20535b) && Objects.equals(this.f20536c, fVar.f20536c)) {
-                return true;
-            }
-        }
-        return false;
+    @Override
+    public void o1(b3.l lVar, long j3, long j10) {
+        r rVar = (r) lVar;
+        h hVar = this.f20735a;
+        long j11 = rVar.f2965a;
+        j2.m mVar = rVar.f2966b;
+        c0 c0Var = rVar.d;
+        u uVar = new u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
+        hVar.f20741m.getClass();
+        hVar.f20745q.p(uVar, rVar.f2967c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        hVar.K = ((Long) rVar.f2969f).longValue() - j3;
+        hVar.z(true);
     }
 
-    public final int hashCode() {
-        int i3;
-        int hashCode = this.f20534a.hashCode() * 31;
-        int i10 = 0;
-        String str = this.f20535b;
-        if (str != null) {
-            i3 = str.hashCode();
-        } else {
-            i3 = 0;
-        }
-        int i11 = (hashCode + i3) * 31;
-        String str2 = this.f20536c;
-        if (str2 != null) {
-            i10 = str2.hashCode();
-        }
-        return i11 + i10;
+    @Override
+    public void q0(b3.l lVar, long j3, long j10, boolean z9) {
+        this.f20735a.x((r) lVar, j3, j10);
+    }
+
+    @Override
+    public void M0(b3.l lVar, long j3, long j10, int i7) {
     }
 }

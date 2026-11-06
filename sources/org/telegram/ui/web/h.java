@@ -1,42 +1,112 @@
 package org.telegram.ui.web;
 
-import android.content.Context;
 import android.text.TextUtils;
-import android.view.View;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
-import org.telegram.ui.Components.tj0;
-public final class h extends q31 {
-    public static final int f50854b = 0;
+import java.util.ArrayList;
+import org.telegram.messenger.ij;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.p10;
+import org.telegram.messenger.qs;
+import org.telegram.messenger.ui;
+import org.telegram.tgnet.ConnectionsManager;
+public final class h implements ls {
+    public final int f51137b;
+    public final Runnable f51138c;
+    public final String d;
+    public boolean f51140f;
+    public boolean h;
+    public boolean f51141n;
+    public final ArrayList f51136a = new ArrayList();
+    public final int f51139e = ConnectionsManager.generateClassGuid();
 
-    static {
-        q31.h(new q31());
+    public h(String str, int i7, Runnable runnable) {
+        this.f51137b = i7;
+        this.d = str;
+        this.f51138c = runnable;
     }
 
-    @Override
-    public final void b(android.view.View r27, org.telegram.ui.Components.r31 r28, boolean r29, org.telegram.ui.Components.f41 r30, org.telegram.ui.Components.l41 r31) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.h.b(android.view.View, org.telegram.ui.Components.r31, boolean, org.telegram.ui.Components.f41, org.telegram.ui.Components.l41):void");
-    }
-
-    @Override
-    public final boolean c(r31 r31Var, r31 r31Var2) {
-        if (r31Var.H == r31Var2.H && TextUtils.equals(r31Var.f37628m, r31Var2.f37628m)) {
-            return true;
+    public final void a() {
+        if (!this.h) {
+            this.h = true;
+            int i7 = this.f51137b;
+            qs.f(i7).c(this, qs.V);
+            qs.f(i7).c(this, qs.H1);
+            if (TextUtils.isEmpty(this.d)) {
+                d();
+            }
         }
-        return false;
     }
 
-    @Override
-    public final View d(Context context, tj0 tj0Var, int i3, e6 e6Var) {
-        return new i(context, e6Var);
-    }
-
-    @Override
-    public final boolean e(r31 r31Var, r31 r31Var2) {
-        if (r31Var.H == r31Var2.H && TextUtils.isEmpty(r31Var.f37628m) == TextUtils.isEmpty(r31Var2.f37628m)) {
-            return true;
+    public final void b(ArrayList arrayList) {
+        int i7 = 0;
+        while (true) {
+            ArrayList arrayList2 = this.f51136a;
+            if (i7 < arrayList2.size()) {
+                if (arrayList.contains(Integer.valueOf(((ij) arrayList2.get(i7)).f1()))) {
+                    arrayList2.remove(i7);
+                    i7--;
+                }
+                i7++;
+            } else {
+                return;
+            }
         }
-        return false;
+    }
+
+    public final void c() {
+        if (!this.h) {
+            return;
+        }
+        this.h = false;
+        int i7 = this.f51137b;
+        qs.f(i7).n(this, qs.V);
+        qs.f(i7).n(this, qs.H1);
+        ConnectionsManager.getInstance(i7).cancelRequestsForGuid(this.f51139e);
+        this.f51141n = false;
+    }
+
+    public final void d() {
+        ArrayList arrayList;
+        int i7;
+        if (!this.f51141n && !this.f51140f) {
+            this.f51141n = true;
+            int i10 = this.f51137b;
+            long e10 = p10.i(i10).e();
+            int i11 = 0;
+            int i12 = Integer.MAX_VALUE;
+            while (true) {
+                arrayList = this.f51136a;
+                if (i11 >= arrayList.size()) {
+                    break;
+                }
+                i12 = Math.min(i12, ((ij) arrayList.get(i11)).f1());
+                i11++;
+            }
+            ui b02 = ui.b0(i10);
+            if (arrayList.isEmpty()) {
+                i7 = 30;
+            } else {
+                i7 = 50;
+            }
+            if (i12 == Integer.MAX_VALUE) {
+                i12 = 0;
+            }
+            b02.N0(e10, i7, i12, 0, 3, 0L, 1, this.f51139e, 0, null, this.d);
+        }
+    }
+
+    @Override
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        int i11 = qs.V;
+        ArrayList arrayList = this.f51136a;
+        if (i7 == i11) {
+            if (((Integer) objArr[3]).intValue() == this.f51139e) {
+                this.f51141n = false;
+                this.f51140f = ((Boolean) objArr[5]).booleanValue();
+                arrayList.addAll((ArrayList) objArr[2]);
+                this.f51138c.run();
+            }
+        } else if (i7 == qs.H1) {
+            arrayList.add(0, (ij) objArr[0]);
+        }
     }
 }

@@ -1,26 +1,23 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class a50 implements RequestDelegate {
-    public final int f31727a;
-    public final c50 f31728b;
+import androidx.recyclerview.widget.RecyclerView;
+public final class a50 extends v4.s0 {
+    public final v4.b0 f31677a;
+    public final m50 f31678b;
 
-    public a50(c50 c50Var, int i3) {
-        this.f31727a = i3;
-        this.f31728b = c50Var;
+    public a50(m50 m50Var, v4.b0 b0Var) {
+        this.f31678b = m50Var;
+        this.f31677a = b0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f31727a) {
-            case 0:
-                org.telegram.messenger.g0.h3(new e7((Object) this.f31728b, (Object) tL_error, (Object) tLObject, 13));
-                return;
-            default:
-                org.telegram.messenger.g0.h3(new cl(29, this.f31728b, tL_error));
-                return;
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
+        m50 m50Var = this.f31678b;
+        m50.I0(m50Var);
+        if (m50Var.I1 && !m50Var.H1) {
+            if (m50Var.J1 - this.f31677a.N0() < 10) {
+                m50Var.K0();
+            }
         }
     }
 }

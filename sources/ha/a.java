@@ -1,27 +1,27 @@
 package ha;
-
-import m2.f;
 public final class a {
-    public boolean f14364a;
-    public boolean f14365b;
-    public boolean f14366c;
+    public static final ea.a f14425b = new Object();
+    public static final String f14426c = a("hts/cahyiseot-agolai.o/1frlglgc/aclg", "tp:/rsltcrprsp.ogepscmv/ieo/eaybtho");
+    public static final String d = a("AzSBpY4F0rHiHFdinTvM", "IayrSTFL9eJ69YeSUO2");
+    public static final g2.c f14427e = new g2.c(5);
+    public final c f14428a;
 
-    public a() {
-        this.f14364a = false;
-        this.f14365b = false;
-        this.f14366c = false;
+    public a(c cVar) {
+        this.f14428a = cVar;
     }
 
-    public f a() {
-        if (!this.f14364a && (this.f14365b || this.f14366c)) {
-            throw new IllegalStateException("Secondary offload attribute fields are true but primary isFormatSupported is false");
+    public static String a(String str, String str2) {
+        int length = str.length() - str2.length();
+        if (length >= 0 && length <= 1) {
+            StringBuilder sb2 = new StringBuilder(str2.length() + str.length());
+            for (int i7 = 0; i7 < str.length(); i7++) {
+                sb2.append(str.charAt(i7));
+                if (str2.length() > i7) {
+                    sb2.append(str2.charAt(i7));
+                }
+            }
+            return sb2.toString();
         }
-        return new f(this);
-    }
-
-    public a(boolean z10, boolean z11, boolean z12) {
-        this.f14364a = z10;
-        this.f14365b = z11;
-        this.f14366c = z12;
+        throw new IllegalArgumentException("Invalid input received");
     }
 }

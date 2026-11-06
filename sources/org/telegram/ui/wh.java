@@ -1,22 +1,21 @@
 package org.telegram.ui;
+public final class wh implements org.telegram.ui.Components.ej0 {
+    public final an f51429a;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-public final class wh extends org.telegram.ui.Components.on {
-    public final wm N;
-
-    public wh(wm wmVar, Activity activity, int i3, TLRPC.Document document, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(activity, i3, document, e6Var);
-        this.N = wmVar;
+    public wh(an anVar) {
+        this.f51429a = anVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
-        super.onLayout(z10, i3, i10, i11, i12);
-        float y9 = getY();
-        wm wmVar = this.N;
-        float y10 = wmVar.f51322g1.getY() + y9;
-        this.K = wmVar.m1.getBackgroundSizeY();
-        this.J = y10;
+    public final boolean mo19f(float r11, float r12, int r13, android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wh.mo19f(float, float, int, android.view.View):boolean");
+    }
+
+    @Override
+    public final void q(float f10) {
+    }
+
+    @Override
+    public final void i() {
     }
 }

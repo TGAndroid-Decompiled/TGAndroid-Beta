@@ -1,92 +1,62 @@
 package p4;
+public final class e implements Runnable {
+    public final int f53108a;
+    public final d0 f53109b;
+    public final v f53110c;
 
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.Parcel;
-import java.lang.ref.WeakReference;
-public final class e extends Binder implements b {
-    public static final int f53145b = 0;
-    public final WeakReference f53146a;
-
-    public e() {
-        attachInterface(this, "android.support.v4.media.session.IMediaControllerCallback");
-        this.f53146a = new WeakReference(null);
+    public e(d0 d0Var, v vVar, int i7) {
+        this.f53108a = i7;
+        this.f53109b = d0Var;
+        this.f53110c = vVar;
     }
 
     @Override
-    public final void c(int i3) {
-        if (this.f53146a.get() == null) {
-            return;
-        }
-        throw new ClassCastException();
-    }
-
-    @Override
-    public final void i(int i3) {
-        if (this.f53146a.get() == null) {
-            return;
-        }
-        throw new ClassCastException();
-    }
-
-    @Override
-    public final boolean onTransact(int i3, Parcel parcel, Parcel parcel2, int i10) {
-        w wVar;
-        if (i3 != 3) {
-            if (i3 != 9) {
-                if (i3 != 1598968902) {
-                    WeakReference weakReference = this.f53146a;
-                    switch (i3) {
-                        case 11:
-                            parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                            parcel.readInt();
-                            if (weakReference.get() != null) {
-                                throw new ClassCastException();
+    public final void run() {
+        switch (this.f53108a) {
+            case 0:
+                d0 d0Var = this.f53109b;
+                if (!d0Var.j()) {
+                    if (d0Var.f53103x) {
+                        v vVar = this.f53110c;
+                        if (!d0.k(vVar)) {
+                            if (d0Var.i(vVar)) {
+                                d0Var.f53103x = false;
                             }
-                            break;
-                        case 12:
-                            parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                            i(parcel.readInt());
-                            return true;
-                        case 13:
-                            parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-                            if (weakReference.get() != null) {
-                                throw new ClassCastException();
-                            }
-                            break;
-                        default:
-                            return super.onTransact(i3, parcel, parcel2, i10);
+                        } else {
+                            return;
+                        }
                     }
-                    return true;
+                    d0Var.f53086e.getClass();
+                    return;
                 }
-                parcel2.getClass();
-                parcel2.writeString("android.support.v4.media.session.IMediaControllerCallback");
-                return true;
-            }
-            parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-            c(parcel.readInt());
-            return true;
+                return;
+            case 1:
+                this.f53109b.f53088g.Q0(this.f53110c, Integer.MIN_VALUE, 1, c1.S0(new org.telegram.utils.twidget.a(20)));
+                return;
+            case 2:
+                this.f53109b.f53088g.Q0(this.f53110c, Integer.MIN_VALUE, 9, c1.S0(new org.telegram.utils.twidget.a(29)));
+                return;
+            case 3:
+                this.f53109b.f53088g.Q0(this.f53110c, Integer.MIN_VALUE, 7, c1.S0(new org.telegram.utils.twidget.a(25)));
+                return;
+            case 4:
+                this.f53109b.f53088g.Q0(this.f53110c, Integer.MIN_VALUE, 12, c1.S0(new org.telegram.utils.twidget.a(28)));
+                return;
+            case 5:
+                this.f53109b.f53088g.Q0(this.f53110c, Integer.MIN_VALUE, 11, c1.S0(new org.telegram.utils.twidget.a(24)));
+                return;
+            case 6:
+                this.f53109b.f53088g.Q0(this.f53110c, Integer.MIN_VALUE, 3, c1.S0(new r0(5)));
+                return;
+            case 7:
+                this.f53109b.f53088g.Q0(this.f53110c, Integer.MIN_VALUE, 1, c1.S0(new org.telegram.utils.twidget.a(20)));
+                return;
+            case 8:
+                this.f53109b.f53088g.O0(this.f53110c, Integer.MIN_VALUE);
+                return;
+            default:
+                this.f53109b.f53088g.O0(this.f53110c, Integer.MIN_VALUE);
+                return;
         }
-        parcel.enforceInterface("android.support.v4.media.session.IMediaControllerCallback");
-        if (parcel.readInt() != 0) {
-            wVar = w.CREATOR.createFromParcel(parcel);
-        } else {
-            wVar = null;
-        }
-        u0(wVar);
-        return true;
-    }
-
-    @Override
-    public final void u0(w wVar) {
-        if (this.f53146a.get() == null) {
-            return;
-        }
-        throw new ClassCastException();
-    }
-
-    @Override
-    public final IBinder asBinder() {
-        return this;
     }
 }

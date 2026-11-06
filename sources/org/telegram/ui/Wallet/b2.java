@@ -1,68 +1,51 @@
 package org.telegram.ui.Wallet;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
+import org.telegram.tgnet.tl.TL_wallet;
 public final class b2 {
-    public final long f42222a;
-    public final List f42223b;
-    public final long f42224c;
+    public final TL_wallet.tonConnectSession f42097a;
+    public final int f42098b;
+    public final int f42099c;
+    public final String d;
+    public final String f42100e;
+    public final e2 f42101f;
+    public final byte[] f42102g;
+    public final String h;
+    public final String f42103i;
+    public final String f42104j;
+    public final String f42105k;
+    public final int f42106l;
+    public boolean f42107m;
+    public boolean f42108n;
+    public boolean f42109o;
+    public boolean f42110p;
+    public boolean f42111q;
+    public Runnable f42112r;
 
-    public b2(JSONObject jSONObject) {
-        boolean z10;
-        long optLong = jSONObject.optLong("valid_until", 0L);
-        this.f42222a = optLong;
-        JSONArray jSONArray = jSONObject.getJSONArray("messages");
-        if (jSONArray.length() != 0 && jSONArray.length() <= 255 && optLong >= 0) {
-            ArrayList arrayList = new ArrayList();
-            long j10 = 0;
-            int i3 = 0;
-            while (i3 < jSONArray.length()) {
-                a2 a2Var = new a2(jSONArray.getJSONObject(i3));
-                long j11 = a2Var.f42127e;
-                long j12 = j10 + j11;
-                if ((j11 ^ j10) < 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (z10 | ((j10 ^ j12) >= 0)) {
-                    arrayList.add(a2Var);
-                    i3++;
-                    j10 = j12;
-                } else {
-                    throw new ArithmeticException();
-                }
-            }
-            this.f42224c = j10;
-            this.f42223b = DesugarCollections.unmodifiableList(arrayList);
-            return;
+    public b2(TL_wallet.tonConnectPending tonconnectpending, TL_wallet.tonConnectRequest tonconnectrequest, JSONObject jSONObject, String str, byte[] bArr) {
+        e2 e2Var;
+        this.f42097a = tonconnectpending.session;
+        this.f42098b = tonconnectrequest.msg_id;
+        this.f42099c = tonconnectrequest.expires;
+        tonconnectrequest.body.clone();
+        this.f42103i = tonconnectrequest.trace_id;
+        this.d = jSONObject.getString("id");
+        this.f42100e = jSONObject.optString("method");
+        int optInt = jSONObject.optInt("errorCode", -1);
+        this.f42106l = optInt;
+        String str2 = null;
+        this.f42104j = jSONObject.optString("errorMessage", null);
+        if (optInt < 0 && jSONObject.has("transaction")) {
+            e2Var = new e2(jSONObject.getJSONObject("transaction"));
+        } else {
+            e2Var = null;
         }
-        throw new JSONException("Invalid transaction");
-    }
-
-    public final String[] a() {
-        String str;
-        List list = this.f42223b;
-        String[] strArr = new String[list.size() * 5];
-        for (int i3 = 0; i3 < list.size(); i3++) {
-            a2 a2Var = (a2) list.get(i3);
-            int i10 = i3 * 5;
-            strArr[i10] = a2Var.f42124a;
-            strArr[i10 + 1] = Long.toString(a2Var.f42127e);
-            strArr[i10 + 2] = a2Var.f42125b;
-            strArr[i10 + 3] = a2Var.f42126c;
-            int i11 = i10 + 4;
-            if (a2Var.f42128f) {
-                str = "1";
-            } else {
-                str = "0";
-            }
-            strArr[i11] = str;
+        this.f42101f = e2Var;
+        if (optInt < 0 && jSONObject.has("data")) {
+            str2 = jSONObject.getJSONObject("data").toString();
         }
-        return strArr;
+        this.f42105k = str2;
+        this.h = str;
+        this.f42102g = (byte[]) bArr.clone();
     }
 }

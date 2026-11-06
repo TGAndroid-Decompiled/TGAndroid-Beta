@@ -1,43 +1,102 @@
 package wa;
 
-import o1.g;
+import a8.p0;
+import p1.g;
 public final class b {
-    public final String f57432a;
-    public final long f57433b;
-    public final int f57434c;
+    public static final int h = 0;
+    public final String f57511a;
+    public final int f57512b;
+    public final String f57513c;
+    public final String d;
+    public final long f57514e;
+    public final long f57515f;
+    public final String f57516g;
 
-    public b(String str, long j10, int i3) {
-        this.f57432a = str;
-        this.f57433b = j10;
-        this.f57434c = i3;
+    static {
+        byte b10 = (byte) (((byte) (0 | 2)) | 1);
+        if (b10 == 3) {
+            return;
+        }
+        StringBuilder sb2 = new StringBuilder();
+        if ((b10 & 1) == 0) {
+            sb2.append(" expiresInSecs");
+        }
+        if ((b10 & 2) == 0) {
+            sb2.append(" tokenCreationEpochInSecs");
+        }
+        throw new IllegalStateException(p0.q("Missing required properties:", sb2));
+    }
+
+    public b(String str, int i7, String str2, String str3, long j3, long j10, String str4) {
+        this.f57511a = str;
+        this.f57512b = i7;
+        this.f57513c = str2;
+        this.d = str3;
+        this.f57514e = j3;
+        this.f57515f = j10;
+        this.f57516g = str4;
+    }
+
+    public final a a() {
+        ?? obj = new Object();
+        obj.f57505a = this.f57511a;
+        obj.f57506b = this.f57512b;
+        obj.f57507c = this.f57513c;
+        obj.d = this.d;
+        obj.f57508e = this.f57514e;
+        obj.f57509f = this.f57515f;
+        obj.f57510g = this.f57516g;
+        obj.h = (byte) 3;
+        return obj;
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof b) {
                 b bVar = (b) obj;
-                int i3 = bVar.f57434c;
-                String str = bVar.f57432a;
-                String str2 = this.f57432a;
-                if (str2 == null) {
-                    if (str != null) {
+                String str = bVar.f57516g;
+                String str2 = bVar.d;
+                String str3 = bVar.f57513c;
+                String str4 = bVar.f57511a;
+                String str5 = this.f57511a;
+                if (str5 == null) {
+                    if (str4 != null) {
                         return false;
                     }
-                } else if (!str2.equals(str)) {
+                } else if (!str5.equals(str4)) {
                     return false;
                 }
-                if (this.f57433b == bVar.f57433b) {
-                    int i10 = this.f57434c;
-                    if (i10 == 0) {
-                        if (i3 == 0) {
-                            return true;
+                if (g.b(this.f57512b, bVar.f57512b)) {
+                    String str6 = this.f57513c;
+                    if (str6 == null) {
+                        if (str3 != null) {
+                            return false;
                         }
-                        return false;
-                    } else if (g.b(i10, i3)) {
-                        return true;
-                    } else {
+                    } else if (!str6.equals(str3)) {
                         return false;
                     }
+                    String str7 = this.d;
+                    if (str7 == null) {
+                        if (str2 != null) {
+                            return false;
+                        }
+                    } else if (!str7.equals(str2)) {
+                        return false;
+                    }
+                    if (this.f57514e == bVar.f57514e && this.f57515f == bVar.f57515f) {
+                        String str8 = this.f57516g;
+                        if (str8 == null) {
+                            if (str == null) {
+                                return true;
+                            }
+                            return false;
+                        } else if (str8.equals(str)) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                    return false;
                 }
                 return false;
             }
@@ -48,45 +107,76 @@ public final class b {
 
     public final int hashCode() {
         int hashCode;
-        int i3 = 0;
-        String str = this.f57432a;
+        int hashCode2;
+        int hashCode3;
+        int i7 = 0;
+        String str = this.f57511a;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
-        long j10 = this.f57433b;
-        int i10 = (((hashCode ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003;
-        int i11 = this.f57434c;
-        if (i11 != 0) {
-            i3 = g.c(i11);
+        int c10 = (((hashCode ^ 1000003) * 1000003) ^ g.c(this.f57512b)) * 1000003;
+        String str2 = this.f57513c;
+        if (str2 == null) {
+            hashCode2 = 0;
+        } else {
+            hashCode2 = str2.hashCode();
         }
-        return i3 ^ i10;
+        int i10 = (c10 ^ hashCode2) * 1000003;
+        String str3 = this.d;
+        if (str3 == null) {
+            hashCode3 = 0;
+        } else {
+            hashCode3 = str3.hashCode();
+        }
+        long j3 = this.f57514e;
+        long j10 = this.f57515f;
+        int i11 = (((((i10 ^ hashCode3) * 1000003) ^ ((int) (j3 ^ (j3 >>> 32)))) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003;
+        String str4 = this.f57516g;
+        if (str4 != null) {
+            i7 = str4.hashCode();
+        }
+        return i7 ^ i11;
     }
 
     public final String toString() {
         String str;
-        StringBuilder sb2 = new StringBuilder("TokenResult{token=");
-        sb2.append(this.f57432a);
-        sb2.append(", tokenExpirationTimestamp=");
-        sb2.append(this.f57433b);
-        sb2.append(", responseCode=");
-        int i3 = this.f57434c;
-        if (i3 != 1) {
-            if (i3 != 2) {
-                if (i3 != 3) {
-                    str = "null";
+        StringBuilder sb2 = new StringBuilder("PersistedInstallationEntry{firebaseInstallationId=");
+        sb2.append(this.f57511a);
+        sb2.append(", registrationStatus=");
+        int i7 = this.f57512b;
+        if (i7 != 1) {
+            if (i7 != 2) {
+                if (i7 != 3) {
+                    if (i7 != 4) {
+                        if (i7 != 5) {
+                            str = "null";
+                        } else {
+                            str = "REGISTER_ERROR";
+                        }
+                    } else {
+                        str = "REGISTERED";
+                    }
                 } else {
-                    str = "AUTH_ERROR";
+                    str = "UNREGISTERED";
                 }
             } else {
-                str = "BAD_CONFIG";
+                str = "NOT_GENERATED";
             }
         } else {
-            str = "OK";
+            str = "ATTEMPT_MIGRATION";
         }
         sb2.append(str);
-        sb2.append("}");
-        return sb2.toString();
+        sb2.append(", authToken=");
+        sb2.append(this.f57513c);
+        sb2.append(", refreshToken=");
+        sb2.append(this.d);
+        sb2.append(", expiresInSecs=");
+        sb2.append(this.f57514e);
+        sb2.append(", tokenCreationEpochInSecs=");
+        sb2.append(this.f57515f);
+        sb2.append(", fisError=");
+        return p0.s(sb2, this.f57516g, "}");
     }
 }

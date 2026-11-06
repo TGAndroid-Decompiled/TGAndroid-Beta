@@ -1,21 +1,49 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class hn extends org.telegram.ui.ActionBar.f1 {
-    public final jn f34457o;
+import org.telegram.tgnet.TLRPC;
+public final class hn implements f8 {
+    public final org.telegram.ui.ActionBar.g1[] f34381a;
+    public final kn f34382b;
 
-    public hn(jn jnVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout) {
-        super(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-        this.f34457o = jnVar;
+    public hn(kn knVar, org.telegram.ui.ActionBar.g1[] g1VarArr) {
+        this.f34382b = knVar;
+        this.f34381a = g1VarArr;
+    }
+
+    @Override
+    public final void X0(int i7, int i10) {
+        int i11;
+        org.telegram.ui.an anVar = this.f34382b.G;
+        if (anVar != null) {
+            anVar.getMessagesController().I4(i7, anVar.a());
+            TLRPC.ChatFull chatFull = anVar.f43892p8;
+            TLRPC.UserFull userFull = anVar.f43905q8;
+            if (userFull != null || chatFull != null) {
+                anVar.f8();
+                UndoView undoView = anVar.M3;
+                if (undoView != null) {
+                    long a10 = anVar.a();
+                    TLRPC.User j3 = anVar.j();
+                    if (userFull != null) {
+                        i11 = userFull.ttl_period;
+                    } else {
+                        i11 = chatFull.ttl_period;
+                    }
+                    undoView.k(a10, i10, j3, Integer.valueOf(i11), null, null);
+                }
+            }
+        }
     }
 
     @Override
     public final void dismiss() {
-        d(true);
-        org.telegram.ui.wm wmVar = this.f34457o.H;
-        if (wmVar != null) {
-            wmVar.getClass();
-            wmVar.v8(false, true, 0.0f);
+        org.telegram.ui.ActionBar.g1 g1Var = this.f34381a[0];
+        if (g1Var != null) {
+            g1Var.dismiss();
         }
+    }
+
+    @Override
+    public final void i1() {
     }
 }

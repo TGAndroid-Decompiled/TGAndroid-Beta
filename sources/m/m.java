@@ -2,309 +2,198 @@ package m;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.content.res.TypedArray;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.text.InputFilter;
+import android.text.method.KeyListener;
+import android.text.method.NumberKeyListener;
 import android.util.AttributeSet;
 import android.view.ActionMode;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-public final class m extends Button implements u0.k {
-    public final g2.d f18643a;
-    public final w0 f18644b;
-    public t f18645c;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+import android.widget.AutoCompleteTextView;
+import c8.h9;
+import c8.lc;
+public class m extends AutoCompleteTextView implements u0.k {
+    public static final int[] d = {16843126};
+    public final h2.c f19151a;
+    public final x0 f19152b;
+    public final z f19153c;
 
-    public m(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet, 2130968648);
-        a3.a(context);
-        z2.a(this, getContext());
-        g2.d dVar = new g2.d(this);
-        this.f18643a = dVar;
-        dVar.x(attributeSet, 2130968648);
-        w0 w0Var = new w0(this);
-        this.f18644b = w0Var;
-        w0Var.f(attributeSet, 2130968648);
-        w0Var.b();
-        getEmojiTextViewHelper().a(attributeSet, 2130968648);
-    }
-
-    private t getEmojiTextViewHelper() {
-        if (this.f18645c == null) {
-            this.f18645c = new t(this);
+    public m(Context context, AttributeSet attributeSet, int i7) {
+        super(context, attributeSet, i7);
+        b3.a(context);
+        a3.a(this, getContext());
+        h6.m x10 = h6.m.x(getContext(), attributeSet, d, i7);
+        if (((TypedArray) x10.f14265c).hasValue(0)) {
+            setDropDownBackgroundDrawable(x10.p(0));
         }
-        return this.f18645c;
+        x10.C();
+        h2.c cVar = new h2.c(this);
+        this.f19151a = cVar;
+        cVar.x(attributeSet, i7);
+        x0 x0Var = new x0(this);
+        this.f19152b = x0Var;
+        x0Var.f(attributeSet, i7);
+        x0Var.b();
+        z zVar = new z(this);
+        this.f19153c = zVar;
+        zVar.b(attributeSet, i7);
+        KeyListener keyListener = getKeyListener();
+        if (!(keyListener instanceof NumberKeyListener)) {
+            boolean isFocusable = super.isFocusable();
+            boolean isClickable = super.isClickable();
+            boolean isLongClickable = super.isLongClickable();
+            int inputType = super.getInputType();
+            KeyListener a10 = zVar.a(keyListener);
+            if (a10 != keyListener) {
+                super.setKeyListener(a10);
+                super.setRawInputType(inputType);
+                super.setFocusable(isFocusable);
+                super.setClickable(isClickable);
+                super.setLongClickable(isLongClickable);
+            }
+        }
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        g2.d dVar = this.f18643a;
-        if (dVar != null) {
-            dVar.b();
+        h2.c cVar = this.f19151a;
+        if (cVar != null) {
+            cVar.b();
         }
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            w0Var.b();
+        x0 x0Var = this.f19152b;
+        if (x0Var != null) {
+            x0Var.b();
         }
-    }
-
-    @Override
-    public int getAutoSizeMaxTextSize() {
-        if (r3.f18723b) {
-            return super.getAutoSizeMaxTextSize();
-        }
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            return Math.round(w0Var.f18756i.f18584e);
-        }
-        return -1;
-    }
-
-    @Override
-    public int getAutoSizeMinTextSize() {
-        if (r3.f18723b) {
-            return super.getAutoSizeMinTextSize();
-        }
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            return Math.round(w0Var.f18756i.d);
-        }
-        return -1;
-    }
-
-    @Override
-    public int getAutoSizeStepGranularity() {
-        if (r3.f18723b) {
-            return super.getAutoSizeStepGranularity();
-        }
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            return Math.round(w0Var.f18756i.f18583c);
-        }
-        return -1;
-    }
-
-    @Override
-    public int[] getAutoSizeTextAvailableSizes() {
-        if (r3.f18723b) {
-            return super.getAutoSizeTextAvailableSizes();
-        }
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            return w0Var.f18756i.f18585f;
-        }
-        return new int[0];
-    }
-
-    @Override
-    public int getAutoSizeTextType() {
-        if (r3.f18723b) {
-            if (super.getAutoSizeTextType() != 1) {
-                return 0;
-            }
-            return 1;
-        }
-        w0 w0Var = this.f18644b;
-        if (w0Var == null) {
-            return 0;
-        }
-        return w0Var.f18756i.f18581a;
     }
 
     @Override
     public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return x7.g0.d(super.getCustomSelectionActionModeCallback());
+        return lc.d(super.getCustomSelectionActionModeCallback());
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        g2.d dVar = this.f18643a;
-        if (dVar != null) {
-            return dVar.v();
+        h2.c cVar = this.f19151a;
+        if (cVar != null) {
+            return cVar.v();
         }
         return null;
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        g2.d dVar = this.f18643a;
-        if (dVar != null) {
-            return dVar.w();
+        h2.c cVar = this.f19151a;
+        if (cVar != null) {
+            return cVar.w();
         }
         return null;
     }
 
     public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f18644b.d();
+        return this.f19152b.d();
     }
 
     public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f18644b.e();
+        return this.f19152b.e();
     }
 
     @Override
-    public final void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        super.onInitializeAccessibilityEvent(accessibilityEvent);
-        accessibilityEvent.setClassName(Button.class.getName());
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName(Button.class.getName());
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
-        super.onLayout(z10, i3, i10, i11, i12);
-        w0 w0Var = this.f18644b;
-        if (w0Var != null && !r3.f18723b) {
-            w0Var.f18756i.a();
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
-        super.onTextChanged(charSequence, i3, i10, i11);
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            g1 g1Var = w0Var.f18756i;
-            if (!r3.f18723b && g1Var.f()) {
-                g1Var.a();
-            }
-        }
-    }
-
-    @Override
-    public void setAllCaps(boolean z10) {
-        super.setAllCaps(z10);
-        getEmojiTextViewHelper().b(z10);
-    }
-
-    @Override
-    public final void setAutoSizeTextTypeUniformWithConfiguration(int i3, int i10, int i11, int i12) {
-        if (r3.f18723b) {
-            super.setAutoSizeTextTypeUniformWithConfiguration(i3, i10, i11, i12);
-            return;
-        }
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            w0Var.i(i3, i10, i11, i12);
-        }
-    }
-
-    @Override
-    public final void setAutoSizeTextTypeUniformWithPresetSizes(int[] iArr, int i3) {
-        if (r3.f18723b) {
-            super.setAutoSizeTextTypeUniformWithPresetSizes(iArr, i3);
-            return;
-        }
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            w0Var.j(iArr, i3);
-        }
-    }
-
-    @Override
-    public void setAutoSizeTextTypeWithDefaults(int i3) {
-        if (r3.f18723b) {
-            super.setAutoSizeTextTypeWithDefaults(i3);
-            return;
-        }
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            w0Var.k(i3);
-        }
+    public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        h9.a(editorInfo, onCreateInputConnection, this);
+        return this.f19153c.c(onCreateInputConnection, editorInfo);
     }
 
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        g2.d dVar = this.f18643a;
-        if (dVar != null) {
-            dVar.y();
+        h2.c cVar = this.f19151a;
+        if (cVar != null) {
+            cVar.y();
         }
     }
 
     @Override
-    public void setBackgroundResource(int i3) {
-        super.setBackgroundResource(i3);
-        g2.d dVar = this.f18643a;
-        if (dVar != null) {
-            dVar.z(i3);
+    public void setBackgroundResource(int i7) {
+        super.setBackgroundResource(i7);
+        h2.c cVar = this.f19151a;
+        if (cVar != null) {
+            cVar.z(i7);
+        }
+    }
+
+    @Override
+    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
+        x0 x0Var = this.f19152b;
+        if (x0Var != null) {
+            x0Var.b();
+        }
+    }
+
+    @Override
+    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
+        x0 x0Var = this.f19152b;
+        if (x0Var != null) {
+            x0Var.b();
         }
     }
 
     @Override
     public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(x7.g0.e(callback, this));
-    }
-
-    public void setEmojiCompatEnabled(boolean z10) {
-        getEmojiTextViewHelper().c(z10);
+        super.setCustomSelectionActionModeCallback(lc.e(callback, this));
     }
 
     @Override
-    public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((x7.p) getEmojiTextViewHelper().f18730b.f40562a).a(inputFilterArr));
+    public void setDropDownBackgroundResource(int i7) {
+        setDropDownBackgroundDrawable(b5.a.b(getContext(), i7));
     }
 
-    public void setSupportAllCaps(boolean z10) {
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            w0Var.f18750a.setAllCaps(z10);
-        }
+    public void setEmojiCompatEnabled(boolean z9) {
+        this.f19153c.d(z9);
+    }
+
+    @Override
+    public void setKeyListener(KeyListener keyListener) {
+        super.setKeyListener(this.f19153c.a(keyListener));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        g2.d dVar = this.f18643a;
-        if (dVar != null) {
-            dVar.D(colorStateList);
+        h2.c cVar = this.f19151a;
+        if (cVar != null) {
+            cVar.D(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        g2.d dVar = this.f18643a;
-        if (dVar != null) {
-            dVar.E(mode);
+        h2.c cVar = this.f19151a;
+        if (cVar != null) {
+            cVar.E(mode);
         }
     }
 
     @Override
     public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        w0 w0Var = this.f18644b;
-        w0Var.l(colorStateList);
-        w0Var.b();
+        x0 x0Var = this.f19152b;
+        x0Var.l(colorStateList);
+        x0Var.b();
     }
 
     @Override
     public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        w0 w0Var = this.f18644b;
-        w0Var.m(mode);
-        w0Var.b();
+        x0 x0Var = this.f19152b;
+        x0Var.m(mode);
+        x0Var.b();
     }
 
     @Override
-    public final void setTextAppearance(Context context, int i3) {
-        super.setTextAppearance(context, i3);
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            w0Var.g(context, i3);
-        }
-    }
-
-    @Override
-    public final void setTextSize(int i3, float f10) {
-        boolean z10 = r3.f18723b;
-        if (z10) {
-            super.setTextSize(i3, f10);
-            return;
-        }
-        w0 w0Var = this.f18644b;
-        if (w0Var != null) {
-            g1 g1Var = w0Var.f18756i;
-            if (!z10 && !g1Var.f()) {
-                g1Var.g(f10, i3);
-            }
+    public final void setTextAppearance(Context context, int i7) {
+        super.setTextAppearance(context, i7);
+        x0 x0Var = this.f19152b;
+        if (x0Var != null) {
+            x0Var.g(context, i7);
         }
     }
 }

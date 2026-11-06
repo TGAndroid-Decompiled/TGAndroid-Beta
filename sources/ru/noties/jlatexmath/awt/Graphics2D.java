@@ -13,15 +13,15 @@ public interface Graphics2D extends Graphics {
 
     void draw(RoundRectangle2D.Float r12);
 
-    void drawArc(int i3, int i10, int i11, int i12, int i13, int i14);
+    void drawArc(int i7, int i10, int i11, int i12, int i13, int i14);
 
-    void drawChars(char[] cArr, int i3, int i10, int i11, int i12);
+    void drawChars(char[] cArr, int i7, int i10, int i11, int i12);
 
     void fill(Rectangle2D.Float r12);
 
-    void fillArc(int i3, int i10, int i11, int i12, int i13, int i14);
+    void fillArc(int i7, int i10, int i11, int i12, int i13, int i14);
 
-    void fillRect(int i3, int i10, int i11, int i12);
+    void fillRect(int i7, int i10, int i11, int i12);
 
     Color getColor();
 
@@ -37,9 +37,9 @@ public interface Graphics2D extends Graphics {
 
     void rotate(double d);
 
-    void rotate(double d, double d10, double d11);
+    void rotate(double d, double d2, double d10);
 
-    void scale(double d, double d10);
+    void scale(double d, double d2);
 
     void setColor(Color color);
 
@@ -53,5 +53,5 @@ public interface Graphics2D extends Graphics {
 
     void setTransform(AffineTransform affineTransform);
 
-    void translate(double d, double d10);
+    void translate(double d, double d2);
 }

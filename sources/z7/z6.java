@@ -1,20 +1,24 @@
 package z7;
+public enum z6 implements b {
+    UNKNOWN_FORMAT(0),
+    NV16(1),
+    NV21(2),
+    YV12(3),
+    YUV_420_888(7),
+    JPEG(8),
+    BITMAP(4),
+    CM_SAMPLE_BUFFER_REF(5),
+    UI_IMAGE(6),
+    CV_PIXEL_BUFFER_REF(9);
+    
+    public final int f59873a;
 
-import b8.sa;
-public final class z6 {
-    public final Long f60143a;
-    public final Long f60144b;
-    public final Long f60145c;
-    public final Long d;
-    public final Long f60146e;
-    public final Long f60147f;
+    z6(int i7) {
+        this.f59873a = i7;
+    }
 
-    public z6(sa saVar) {
-        this.f60143a = saVar.f3060a;
-        this.f60144b = saVar.f3061b;
-        this.f60145c = saVar.f3062c;
-        this.d = saVar.d;
-        this.f60146e = saVar.f3063e;
-        this.f60147f = saVar.f3064f;
+    @Override
+    public final int zza() {
+        return this.f59873a;
     }
 }

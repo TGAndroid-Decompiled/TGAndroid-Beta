@@ -1,11 +1,28 @@
 package org.telegram.ui.Cells;
+public final class i7 implements Runnable {
+    public final int f29309a;
+    public final k7 f29310b;
 
-import org.telegram.messenger.zi;
-import org.telegram.tgnet.TLRPC;
-public interface i7 {
-    void a(String str, boolean z10);
+    public i7(k7 k7Var, int i7) {
+        this.f29309a = i7;
+        this.f29310b = k7Var;
+    }
 
-    void b(TLRPC.WebPage webPage, zi ziVar);
-
-    boolean c();
+    @Override
+    public final void run() {
+        switch (this.f29309a) {
+            case 0:
+                k7 k7Var = this.f29310b;
+                k7Var.post(new i7(k7Var, 1));
+                return;
+            default:
+                k7 k7Var2 = this.f29310b;
+                k7Var2.f29431b0.L0 = true;
+                k7Var2.H.clear();
+                k7Var2.I.clear();
+                k7Var2.J.clear();
+                k7Var2.invalidate();
+                return;
+        }
+    }
 }

@@ -1,24 +1,26 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class v1 extends AnimatorListenerAdapter {
-    public final int f39656a;
-    public final w1 f39657b;
+import android.app.Activity;
+import android.content.Intent;
+public final class v1 implements org.telegram.ui.ActionBar.r1 {
+    public final int f39527a;
+    public final Activity f39528b;
+    public final Intent f39529c;
 
-    public v1(w1 w1Var, int i3) {
-        this.f39656a = i3;
-        this.f39657b = w1Var;
+    public v1(Activity activity, Intent intent, int i7) {
+        this.f39527a = i7;
+        this.f39528b = activity;
+        this.f39529c = intent;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f39656a) {
+    public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f39527a) {
             case 0:
-                this.f39657b.f39663b.setVisibility(8);
+                this.f39528b.startActivity(this.f39529c);
                 return;
             default:
-                this.f39657b.f39664c.setVisibility(8);
+                this.f39528b.startActivity(this.f39529c);
                 return;
         }
     }

@@ -1,88 +1,89 @@
 package c1;
 
 import android.util.Log;
-import db.j0;
-import db.k0;
-import dd.k;
+import gb.k0;
+import gb.l0;
+import gd.k;
 import java.util.concurrent.Executor;
 import kotlin.jvm.internal.j;
-import le.m;
-import od.l;
+import oe.m;
+import rd.l;
+import sa.h;
 import w0.i;
 public final class b implements l {
-    public final int f3961a;
-    public final Object f3962b;
+    public final int f5249a;
+    public final Object f5250b;
 
-    public b(fe.d dVar, fe.c cVar) {
-        this.f3961a = 5;
-        this.f3962b = dVar;
+    public b(ie.d dVar, ie.c cVar) {
+        this.f5249a = 5;
+        this.f5250b = dVar;
     }
 
     @Override
     public final Object invoke(Object obj) {
-        switch (this.f3961a) {
+        switch (this.f5249a) {
             case 0:
-                e eVar = (e) this.f3962b;
+                e eVar = (e) this.f5250b;
                 i e10 = (i) obj;
                 j.e(e10, "e");
-                eVar.f().execute(new a(eVar, e10, 2));
-                return k.f8801a;
+                eVar.g().execute(new a(eVar, e10, 2));
+                return k.f13829a;
             case 1:
-                d1.e eVar2 = (d1.e) this.f3962b;
+                d1.e eVar2 = (d1.e) this.f5250b;
                 w0.d e11 = (w0.d) obj;
                 j.e(e11, "e");
-                Executor executor = eVar2.f7997g;
+                Executor executor = eVar2.f7942g;
                 if (executor != null) {
                     executor.execute(new d1.a(eVar2, e11, 0));
-                    return k.f8801a;
+                    return k.f13829a;
                 }
                 j.h("executor");
                 throw null;
             case 2:
-                l1.b ex = (l1.b) obj;
-                j.e(ex, "ex");
-                Log.w("FirebaseSessions", "CorruptionException in session data DataStore", ex);
-                return new j0(((k0) this.f3962b).f8698a.a(null), null, null);
-            case 3:
-                e1.d dVar = (e1.d) this.f3962b;
+                e1.d dVar = (e1.d) this.f5250b;
                 w0.d e12 = (w0.d) obj;
                 j.e(e12, "e");
-                Executor executor2 = dVar.f9324g;
+                Executor executor2 = dVar.f10140g;
                 if (executor2 != null) {
                     executor2.execute(new e1.c(dVar, e12, 0));
-                    return k.f8801a;
+                    return k.f13829a;
                 }
                 j.h("executor");
                 throw null;
+            case 3:
+                m1.b ex = (m1.b) obj;
+                j.e(ex, "ex");
+                Log.w("FirebaseSessions", "CorruptionException in session data DataStore", ex);
+                return new k0(((l0) this.f5250b).f13727a.a(null), null, null);
             case 4:
-                if (obj == ((ed.d) this.f3962b)) {
+                if (obj == ((hd.c) this.f5250b)) {
                     return "(this Collection)";
                 }
                 return String.valueOf(obj);
             case 5:
                 Throwable th2 = (Throwable) obj;
-                ((fe.d) this.f3962b).f(null);
-                return k.f8801a;
+                ((ie.d) this.f5250b).f(null);
+                return k.f13829a;
             case 6:
-                m mVar = (m) this.f3962b;
+                m mVar = (m) this.f5250b;
                 int intValue = ((Integer) obj).intValue();
-                return mVar.f18203e[intValue] + ": " + mVar.i(intValue).a();
+                return mVar.f20922e[intValue] + ": " + mVar.i(intValue).a();
             default:
-                String str = (String) this.f3962b;
-                p1.b bVar = (p1.b) obj;
-                bVar.d(ra.i.d, str);
-                ra.i.f(bVar, str);
+                String str = (String) this.f5250b;
+                q1.b bVar = (q1.b) obj;
+                bVar.d(h.d, str);
+                h.f(bVar, str);
                 return null;
         }
     }
 
-    public b(Object obj, int i3) {
-        this.f3961a = i3;
-        this.f3962b = obj;
+    public b(Object obj, int i7) {
+        this.f5249a = i7;
+        this.f5250b = obj;
     }
 
-    public b(ra.i iVar, String str) {
-        this.f3961a = 7;
-        this.f3962b = str;
+    public b(h hVar, String str) {
+        this.f5249a = 7;
+        this.f5250b = str;
     }
 }

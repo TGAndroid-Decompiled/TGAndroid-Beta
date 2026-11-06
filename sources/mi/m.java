@@ -1,86 +1,100 @@
 package mi;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.hs;
-import org.telegram.messenger.ye;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.bi;
-import org.telegram.ui.Components.ng;
-import org.telegram.ui.Components.zh;
-public final class m implements zh {
-    public final bi f19737a;
-    public final p f19738b;
+import android.content.Context;
+import android.graphics.PointF;
+import android.view.animation.DecelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import v4.b0;
+import v4.n0;
+import v4.y0;
+import v4.z0;
+public class m extends z0 {
+    public final LinearInterpolator f20101i;
+    public final DecelerateInterpolator f20102j;
+    public final float f20103k;
+    public int f20104l;
+    public int f20105m;
+    public final int f20106n;
+    public final float f20107o;
+    public int f20108p;
 
-    public m(p pVar, bi biVar) {
-        this.f19738b = pVar;
-        this.f19737a = biVar;
+    public m(Context context, int i7) {
+        this.f20101i = new LinearInterpolator();
+        this.f20102j = new DecelerateInterpolator(1.5f);
+        this.f20104l = 0;
+        this.f20105m = 0;
+        this.f20107o = 1.0f;
+        this.f20103k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
+        this.f20106n = i7;
     }
 
     @Override
-    public final boolean L1() {
-        return false;
-    }
-
-    @Override
-    public final void Y(ng ngVar) {
-        hs.f(this.f19738b.f19792n).d(ngVar);
-    }
-
-    @Override
-    public final boolean g0() {
-        return false;
-    }
-
-    @Override
-    public final void o1(int i3, boolean z10, boolean z11, int i10, int i11, long j10, boolean z12, boolean z13, long j11) {
-        bi biVar = this.f19737a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = biVar.f32215b2;
-        t3 t3Var = this.f19738b.f19793r;
-        if (i3 == 7 || i3 == 8) {
-            HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
-            a aVar = t3Var.f19909j4;
-            t3Var.f19909j4 = null;
-            int i12 = 0;
-            while (true) {
-                if (i12 >= selectedPhotosOrder.size()) {
-                    break;
-                }
-                Object obj = selectedPhotos.get(selectedPhotosOrder.get(i12));
-                if (obj instanceof ye) {
-                    if (aVar != null) {
-                        t3Var.X1(aVar, (ye) obj);
-                    } else {
-                        t3Var.i2((ye) obj);
-                    }
-                } else {
-                    i12++;
-                }
-            }
+    public final PointF a(int i7) {
+        n0 n0Var = this.f57098c;
+        if (n0Var instanceof b0) {
+            return ((b0) n0Var).E0(i7);
         }
-        t3Var.f19909j4 = null;
-        biVar.a(true);
+        return null;
     }
 
     @Override
-    public final void r0() {
+    public final void d(int i7, int i10, y0 y0Var) {
+        if (this.f57097b.f2873y.r() == 0) {
+            h();
+            return;
+        }
+        int i11 = this.f20104l;
+        int i12 = i11 - i7;
+        int i13 = 0;
+        if (i11 * i12 <= 0) {
+            i12 = 0;
+        }
+        this.f20104l = i12;
+        int i14 = this.f20105m;
+        int i15 = i14 - i10;
+        if (i14 * i15 > 0) {
+            i13 = i15;
+        }
+        this.f20105m = i13;
+        if (i12 == 0 && i13 == 0) {
+            PointF a10 = a(this.f57096a);
+            if (a10 != null && (a10.x != 0.0f || a10.y != 0.0f)) {
+                z0.b(a10);
+                this.f20104l = (int) (a10.x * 10000.0f);
+                this.f20105m = (int) (a10.y * 10000.0f);
+                y0Var.b((int) (this.f20104l * 1.2f), (int) (this.f20105m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f20103k)) * 1.2f), this.f20101i);
+                return;
+            }
+            y0Var.d = this.f57096a;
+            h();
+        }
     }
 
     @Override
-    public final void v0() {
+    public final void f() {
+        this.f20105m = 0;
+        this.f20104l = 0;
     }
 
     @Override
-    public final void I0(Object obj) {
+    public final void g(android.view.View r8, v4.y0 r9) {
+        throw new UnsupportedOperationException("Method not decompiled: mi.m.g(android.view.View, v4.y0):void");
+    }
+
+    public m(Context context, int i7, float f10) {
+        this.f20101i = new LinearInterpolator();
+        this.f20102j = new DecelerateInterpolator(1.5f);
+        this.f20104l = 0;
+        this.f20105m = 0;
+        this.f20107o = f10;
+        this.f20103k = (25.0f / context.getResources().getDisplayMetrics().densityDpi) * f10;
+        this.f20106n = i7;
     }
 
     @Override
-    public final void a1(TLRPC.User user) {
+    public void e() {
     }
 
-    @Override
-    public final void R1(ArrayList arrayList, CharSequence charSequence, boolean z10, int i3, int i10, long j10, boolean z11, long j11) {
+    public void i() {
     }
 }

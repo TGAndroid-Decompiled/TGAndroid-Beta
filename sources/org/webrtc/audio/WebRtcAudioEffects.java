@@ -20,8 +20,8 @@ class WebRtcAudioEffects {
         Logging.d("WebRtcAudioEffectsExternal", "ctor" + WebRtcAudioUtils.getThreadInfo());
     }
 
-    private static void assertTrue(boolean z10) {
-        if (z10) {
+    private static void assertTrue(boolean z9) {
+        if (z9) {
             return;
         }
         throw new AssertionError("Expected condition to be true");
@@ -68,39 +68,39 @@ class WebRtcAudioEffects {
         return isEffectTypeAvailable(AudioEffect.EFFECT_TYPE_NS, AOSP_NOISE_SUPPRESSOR);
     }
 
-    public void enable(int i3) {
+    public void enable(int i7) {
+        boolean z9;
         boolean z10;
-        boolean z11;
         String str;
-        boolean z12;
+        boolean z11;
         String str2;
         String str3;
-        Logging.d("WebRtcAudioEffectsExternal", "enable(audioSession=" + i3 + ")");
-        boolean z13 = false;
+        Logging.d("WebRtcAudioEffectsExternal", "enable(audioSession=" + i7 + ")");
+        boolean z12 = false;
         if (this.aec == null) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        assertTrue(z9);
+        if (this.ns == null) {
             z10 = true;
         } else {
             z10 = false;
         }
         assertTrue(z10);
-        if (this.ns == null) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        assertTrue(z11);
         String str4 = "disabled";
         if (isAcousticEchoCancelerSupported()) {
-            AcousticEchoCanceler create = AcousticEchoCanceler.create(i3);
+            AcousticEchoCanceler create = AcousticEchoCanceler.create(i7);
             this.aec = create;
             if (create != null) {
                 boolean enabled = create.getEnabled();
                 if (this.shouldEnableAec && isAcousticEchoCancelerSupported()) {
-                    z12 = true;
+                    z11 = true;
                 } else {
-                    z12 = false;
+                    z11 = false;
                 }
-                if (this.aec.setEnabled(z12) != 0) {
+                if (this.aec.setEnabled(z11) != 0) {
                     Logging.e("WebRtcAudioEffectsExternal", "Failed to set the AcousticEchoCanceler state");
                 }
                 StringBuilder sb2 = new StringBuilder("AcousticEchoCanceler: was ");
@@ -111,7 +111,7 @@ class WebRtcAudioEffects {
                 }
                 sb2.append(str2);
                 sb2.append(", enable: ");
-                sb2.append(z12);
+                sb2.append(z11);
                 sb2.append(", is now: ");
                 if (!this.aec.getEnabled()) {
                     str3 = "disabled";
@@ -125,14 +125,14 @@ class WebRtcAudioEffects {
             }
         }
         if (isNoiseSuppressorSupported()) {
-            NoiseSuppressor create2 = NoiseSuppressor.create(i3);
+            NoiseSuppressor create2 = NoiseSuppressor.create(i7);
             this.ns = create2;
             if (create2 != null) {
                 boolean enabled2 = create2.getEnabled();
                 if (this.shouldEnableNs && isNoiseSuppressorSupported()) {
-                    z13 = true;
+                    z12 = true;
                 }
-                if (this.ns.setEnabled(z13) != 0) {
+                if (this.ns.setEnabled(z12) != 0) {
                     Logging.e("WebRtcAudioEffectsExternal", "Failed to set the NoiseSuppressor state");
                 }
                 StringBuilder sb3 = new StringBuilder("NoiseSuppressor: was ");
@@ -143,7 +143,7 @@ class WebRtcAudioEffects {
                 }
                 sb3.append(str);
                 sb3.append(", enable: ");
-                sb3.append(z13);
+                sb3.append(z12);
                 sb3.append(", is now: ");
                 if (this.ns.getEnabled()) {
                     str4 = "enabled";
@@ -170,43 +170,43 @@ class WebRtcAudioEffects {
         }
     }
 
-    public boolean setAEC(boolean z10) {
-        Logging.d("WebRtcAudioEffectsExternal", "setAEC(" + z10 + ")");
+    public boolean setAEC(boolean z9) {
+        Logging.d("WebRtcAudioEffectsExternal", "setAEC(" + z9 + ")");
         if (!isAcousticEchoCancelerSupported()) {
             Logging.w("WebRtcAudioEffectsExternal", "Platform AEC is not supported");
             this.shouldEnableAec = false;
             return false;
-        } else if (this.aec != null && z10 != this.shouldEnableAec) {
+        } else if (this.aec != null && z9 != this.shouldEnableAec) {
             Logging.e("WebRtcAudioEffectsExternal", "Platform AEC state can't be modified while recording");
             return false;
         } else {
-            this.shouldEnableAec = z10;
+            this.shouldEnableAec = z9;
             return true;
         }
     }
 
-    public boolean setNS(boolean z10) {
-        Logging.d("WebRtcAudioEffectsExternal", "setNS(" + z10 + ")");
+    public boolean setNS(boolean z9) {
+        Logging.d("WebRtcAudioEffectsExternal", "setNS(" + z9 + ")");
         if (!isNoiseSuppressorSupported()) {
             Logging.w("WebRtcAudioEffectsExternal", "Platform NS is not supported");
             this.shouldEnableNs = false;
             return false;
-        } else if (this.ns != null && z10 != this.shouldEnableNs) {
+        } else if (this.ns != null && z9 != this.shouldEnableNs) {
             Logging.e("WebRtcAudioEffectsExternal", "Platform NS state can't be modified while recording");
             return false;
         } else {
-            this.shouldEnableNs = z10;
+            this.shouldEnableNs = z9;
             return true;
         }
     }
 
-    public boolean toggleNS(boolean z10) {
+    public boolean toggleNS(boolean z9) {
         if (this.ns == null) {
             Logging.e("WebRtcAudioEffectsExternal", "Attempting to enable or disable nonexistent NoiseSuppressor.");
             return false;
         }
-        Logging.d("WebRtcAudioEffectsExternal", "toggleNS(" + z10 + ")");
-        if (this.ns.setEnabled(z10) != 0) {
+        Logging.d("WebRtcAudioEffectsExternal", "toggleNS(" + z9 + ")");
+        if (this.ns.setEnabled(z9) != 0) {
             return false;
         }
         return true;

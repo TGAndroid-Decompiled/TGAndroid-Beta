@@ -1,39 +1,98 @@
 package ei;
 
+import android.graphics.Rect;
 import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.u10;
-import org.telegram.tgnet.TLRPC;
-public final class g implements u10 {
-    public final int f10292a;
-    public final int f10293b;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.Cells.o7;
+import v4.a1;
+import v4.m0;
+public final class g extends m0 {
+    public final int f10816a;
+    public final n f10817b;
 
-    public g(int i3, int i10) {
-        this.f10292a = i10;
-        this.f10293b = i3;
+    public g(n nVar, int i7) {
+        this.f10816a = i7;
+        this.f10817b = nVar;
     }
 
     @Override
-    public final void a(Object obj) {
-        ArrayList<TLRPC.EmojiGroup> arrayList;
-        switch (this.f10292a) {
+    public final void e(Rect rect, View view, RecyclerView recyclerView, a1 a1Var) {
+        boolean z9;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        switch (this.f10816a) {
             case 0:
-                q qVar = (q) ((View) obj);
-                qVar.invalidate();
-                qVar.E.setTextColor(this.f10293b);
-                return;
-            default:
-                TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) obj;
-                if (tL_messages_emojiGroups != null && (arrayList = tL_messages_emojiGroups.groups) != null) {
-                    int size = arrayList.size();
-                    int i3 = 0;
-                    while (i3 < size) {
-                        TLRPC.EmojiGroup emojiGroup = arrayList.get(i3);
-                        i3++;
-                        org.telegram.ui.Components.g5.g(this.f10293b).b(emojiGroup.icon_emoji_id, null);
+                if (view instanceof o7) {
+                    o7 o7Var = (o7) view;
+                    n nVar = this.f10817b;
+                    nVar.f10833f.getClass();
+                    int R = RecyclerView.R(o7Var);
+                    int i7 = nVar.h.J;
+                    boolean z13 = true;
+                    if (R < i7) {
+                        z9 = true;
+                    } else {
+                        z9 = false;
                     }
+                    o7Var.f29657a0 = z9;
+                    int i10 = R % i7;
+                    if (i10 == 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    o7Var.V = z10;
+                    if (i10 != i7 - 1) {
+                        z13 = false;
+                    }
+                    o7Var.W = z13;
+                    rect.left = 0;
+                    rect.top = 0;
+                    rect.bottom = 0;
+                    rect.right = 0;
                     return;
                 }
+                rect.left = 0;
+                rect.top = 0;
+                rect.bottom = 0;
+                rect.right = 0;
+                return;
+            default:
+                if (view instanceof o7) {
+                    o7 o7Var2 = (o7) view;
+                    n nVar2 = this.f10817b;
+                    nVar2.f10835r.getClass();
+                    int R2 = RecyclerView.R(o7Var2);
+                    int i11 = nVar2.f10836s.J;
+                    boolean z14 = true;
+                    if (R2 < i11) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    o7Var2.f29657a0 = z11;
+                    int i12 = R2 % i11;
+                    if (i12 == 0) {
+                        z12 = true;
+                    } else {
+                        z12 = false;
+                    }
+                    o7Var2.V = z12;
+                    if (i12 != i11 - 1) {
+                        z14 = false;
+                    }
+                    o7Var2.W = z14;
+                    rect.left = 0;
+                    rect.top = 0;
+                    rect.bottom = 0;
+                    rect.right = 0;
+                    return;
+                }
+                rect.left = 0;
+                rect.top = 0;
+                rect.bottom = 0;
+                rect.right = 0;
                 return;
         }
     }

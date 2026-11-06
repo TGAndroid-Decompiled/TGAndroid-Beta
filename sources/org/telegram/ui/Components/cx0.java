@@ -1,36 +1,36 @@
 package org.telegram.ui.Components;
 public class cx0 {
-    public int f32850a;
-    public int f32851b;
-    public int f32852c;
+    public int f32690a;
+    public int f32691b;
+    public int f32692c;
 
     public cx0() {
         c();
     }
 
-    public int a(lx0 lx0Var, ex0 ex0Var, xw0 xw0Var, int i3, boolean z10) {
-        return this.f32850a - xw0Var.a(ex0Var, i3);
+    public int a(lx0 lx0Var, ex0 ex0Var, xw0 xw0Var, int i7, boolean z9) {
+        return this.f32690a - xw0Var.a(ex0Var, i7);
     }
 
-    public void b(int i3, int i10) {
-        this.f32850a = Math.max(this.f32850a, i3);
-        this.f32851b = Math.max(this.f32851b, i10);
+    public void b(int i7, int i10) {
+        this.f32690a = Math.max(this.f32690a, i7);
+        this.f32691b = Math.max(this.f32691b, i10);
     }
 
     public void c() {
-        this.f32850a = Integer.MIN_VALUE;
-        this.f32851b = Integer.MIN_VALUE;
-        this.f32852c = 2;
+        this.f32690a = Integer.MIN_VALUE;
+        this.f32691b = Integer.MIN_VALUE;
+        this.f32692c = 2;
     }
 
-    public int d(boolean z10) {
-        if (!z10) {
-            int i3 = this.f32852c;
-            xw0 xw0Var = lx0.S;
-            if ((i3 & 2) != 0) {
+    public int d(boolean z9) {
+        if (!z9) {
+            int i7 = this.f32692c;
+            xw0 xw0Var = lx0.R;
+            if ((i7 & 2) != 0) {
                 return 100000;
             }
         }
-        return this.f32850a + this.f32851b;
+        return this.f32690a + this.f32691b;
     }
 }

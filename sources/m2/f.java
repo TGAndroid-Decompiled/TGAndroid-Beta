@@ -1,31 +1,80 @@
 package m2;
-public final class f {
-    public static final f d = new Object().a();
-    public final boolean f18855a;
-    public final boolean f18856b;
-    public final boolean f18857c;
 
-    public f(ha.a aVar) {
-        this.f18855a = aVar.f14364a;
-        this.f18856b = aVar.f14365b;
-        this.f18857c = aVar.f14366c;
+import e2.l1;
+import x2.g0;
+public final class f {
+    public final String f19532a;
+    public int f19533b;
+    public long f19534c;
+    public final g0 d;
+    public boolean f19535e;
+    public boolean f19536f;
+    public final g f19537g;
+
+    public f(g gVar, String str, int i7, g0 g0Var) {
+        long j3;
+        this.f19537g = gVar;
+        this.f19532a = str;
+        this.f19533b = i7;
+        if (g0Var == null) {
+            j3 = -1;
+        } else {
+            j3 = g0Var.d;
+        }
+        this.f19534c = j3;
+        if (g0Var != null && g0Var.b()) {
+            this.d = g0Var;
+        }
     }
 
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj != null && f.class == obj.getClass()) {
-                f fVar = (f) obj;
-                if (this.f18855a == fVar.f18855a && this.f18856b == fVar.f18856b && this.f18857c == fVar.f18857c) {
-                    return true;
-                }
-                return false;
+    public final boolean a(a aVar) {
+        g0 g0Var = aVar.d;
+        l1 l1Var = aVar.f19516b;
+        if (g0Var == null) {
+            if (this.f19533b != aVar.f19517c) {
+                return true;
             }
             return false;
         }
-        return true;
+        long j3 = this.f19534c;
+        if (j3 != -1) {
+            if (g0Var.d <= j3) {
+                g0 g0Var2 = this.d;
+                if (g0Var2 != null) {
+                    int i7 = g0Var2.f58211b;
+                    int b10 = l1Var.b(g0Var.f58210a);
+                    int b11 = l1Var.b(g0Var2.f58210a);
+                    if (g0Var.d >= g0Var2.d && b10 >= b11) {
+                        if (b10 <= b11) {
+                            if (g0Var.b()) {
+                                int i10 = g0Var.f58211b;
+                                int i11 = g0Var.f58212c;
+                                if (i10 <= i7) {
+                                    if (i10 == i7 && i11 > g0Var2.f58212c) {
+                                        return true;
+                                    }
+                                    return false;
+                                }
+                                return true;
+                            }
+                            int i12 = g0Var.f58213e;
+                            if (i12 == -1 || i12 > i7) {
+                                return true;
+                            }
+                            return false;
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return true;
+        }
+        return false;
     }
 
-    public final int hashCode() {
-        return ((this.f18855a ? 1 : 0) << 2) + ((this.f18856b ? 1 : 0) << 1) + (this.f18857c ? 1 : 0);
+    public final boolean b(e2.l1 r7, e2.l1 r8) {
+        throw new UnsupportedOperationException("Method not decompiled: m2.f.b(e2.l1, e2.l1):boolean");
     }
 }

@@ -9,9 +9,9 @@ public class JavaFontRenderingBox extends Box {
     private float size;
     private TextLayout text;
 
-    public JavaFontRenderingBox(String str, int i3, float f10, Font font2, boolean z10) {
+    public JavaFontRenderingBox(String str, int i7, float f10, Font font2, boolean z9) {
         this.size = f10;
-        TextLayout textLayout = new TextLayout(str, font2.deriveFont(i3), null);
+        TextLayout textLayout = new TextLayout(str, font2.deriveFont(i7), null);
         this.text = textLayout;
         Rectangle2D bounds = textLayout.getBounds();
         this.height = ((-bounds.getY()) * f10) / 10.0f;
@@ -40,7 +40,7 @@ public class JavaFontRenderingBox extends Box {
         return 0;
     }
 
-    public JavaFontRenderingBox(String str, int i3, float f10) {
-        this(str, i3, f10, font, true);
+    public JavaFontRenderingBox(String str, int i7, float f10) {
+        this(str, i7, f10, font, true);
     }
 }

@@ -1,44 +1,76 @@
 package oi;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.CharacterStyle;
-import org.telegram.messenger.az;
-import org.telegram.messenger.g0;
+import c8.yc;
+import j$.util.Objects;
+import java.util.ArrayList;
+import java.util.Iterator;
 import org.telegram.ui.ActionBar.k6;
-public final class h extends CharacterStyle {
-    public final String f21141a;
-    public final float f21142b;
-    public final boolean f21143c;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Components.pj0;
+public final class h {
+    public final q f21077a;
 
-    public h(String str, String str2, boolean z10) {
-        int length;
-        int i3;
-        this.f21143c = z10;
-        this.f21141a = str;
-        if (str2 == null) {
-            length = 0;
-        } else {
-            length = str2.length();
-        }
-        q qVar = k.f21149a;
-        if (length > 120) {
-            i3 = 5;
-        } else if (length > 50) {
-            i3 = 3;
-        } else {
-            i3 = 2;
-        }
-        this.f21142b = i3;
+    public h(q qVar) {
+        this.f21077a = qVar;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        if (this.f21143c) {
-            textPaint.setTextSize(g0.L(az.W0 - this.f21142b));
+    public final void a() {
+        int i7;
+        q qVar = this.f21077a;
+        ArrayList arrayList = qVar.f21098c;
+        ArrayList arrayList2 = qVar.E;
+        long j3 = qVar.f21113t;
+        long j10 = q.G;
+        if (j3 != j10) {
+            qVar.f21113t = j10;
+            qVar.f21100f = true;
+            i7 = 32;
+        } else {
+            i7 = 0;
         }
-        textPaint.setColor(k6.x0(null, k6.Sc, false));
-        textPaint.setTypeface(Typeface.MONOSPACE);
-        textPaint.setUnderlineText(false);
+        long j11 = k6.Am + r6.f28475b;
+        if (qVar.f21112s != j11) {
+            qVar.f21112s = j11;
+            i7 |= 16;
+        }
+        Iterator it = qVar.f21107n.iterator();
+        while (it.hasNext()) {
+            if (((pj0) it.next()).b0()) {
+                qVar.f21102i++;
+            }
+        }
+        if (i7 == 0) {
+            return;
+        }
+        if (yc.a(i7, 16)) {
+            int size = arrayList2.size();
+            for (int i10 = 0; i10 < size; i10++) {
+                o oVar = (o) arrayList2.get(i10);
+                oVar.f21087a.a(oVar.f21088b.h());
+            }
+        }
+        int size2 = arrayList.size();
+        for (int i11 = 0; i11 < size2; i11++) {
+            p pVar = (p) arrayList.get(i11);
+            if (yc.a(i7, 32)) {
+                e eVar = pVar.f21090b;
+                r rVar = q.F;
+                if (!Objects.equals(eVar.f21072b, rVar)) {
+                    eVar.f21072b = rVar;
+                    eVar.g(rVar);
+                }
+            }
+            if (yc.a(i7, 16)) {
+                pVar.f21090b.updateColors();
+            }
+            pVar.f21090b.invalidateSelf();
+            pVar.f21089a.invalidate();
+            pVar.h = true;
+        }
+        qVar.f21114u |= i7;
+    }
+
+    public final void b() {
+        throw new UnsupportedOperationException("Method not decompiled: oi.h.b():void");
     }
 }

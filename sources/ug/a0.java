@@ -1,27 +1,20 @@
 package ug;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import org.telegram.ui.lp0;
-public final class a0 extends tg.u0 {
-    public final Bitmap F;
-    public final lp0 G;
+import android.view.View;
+import java.util.ArrayList;
+public final class a0 implements View.OnClickListener {
+    public final b0 f56408a;
 
-    public a0(lp0 lp0Var, Context context, tg.i0 i0Var, Bitmap bitmap, Bitmap bitmap2) {
-        super(context, i0Var, bitmap, null, null);
-        this.G = lp0Var;
-        this.F = bitmap2;
+    public a0(b0 b0Var) {
+        this.f56408a = b0Var;
     }
 
     @Override
-    public final void g(tg.h hVar) {
-        int indexOf = tg.h.f55183a.indexOf(hVar);
-        int i3 = indexOf + 1;
-        if (i3 <= 1 || this.F != null) {
-            indexOf = i3;
-        }
-        lp0 lp0Var = this.G;
-        lp0Var.f55967d1.b(indexOf);
-        lp0Var.C(hVar);
+    public final void onClick(View view) {
+        ArrayList arrayList = new ArrayList();
+        arrayList.add(((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel());
+        i0 i0Var = this.f56408a.f56411c;
+        int i7 = i0.O2;
+        i0Var.x1(arrayList);
     }
 }

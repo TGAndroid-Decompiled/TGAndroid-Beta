@@ -1,31 +1,124 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-public final class t0 implements DialogInterface.OnShowListener {
-    public final int f38211a;
-    public final s4 f38212b;
+import android.view.KeyEvent;
+import android.widget.TextView;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class t0 implements TextView.OnEditorActionListener {
+    public final int f38208a;
+    public final Object f38209b;
 
-    public t0(int i3, s4 s4Var) {
-        this.f38211a = i3;
-        this.f38212b = s4Var;
+    public t0(Object obj, int i7) {
+        this.f38208a = i7;
+        this.f38209b = obj;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f38211a) {
+    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
+        switch (this.f38208a) {
             case 0:
-                s4 s4Var = this.f38212b;
-                s4Var.requestFocus();
-                org.telegram.messenger.g0.K3(s4Var);
-                return;
+                org.telegram.ui.m6 m6Var = (org.telegram.ui.m6) this.f38209b;
+                if (i7 == 6) {
+                    m6Var.run();
+                    return true;
+                }
+                return false;
             case 1:
-                s4 s4Var2 = this.f38212b;
-                s4Var2.requestFocus();
-                org.telegram.messenger.g0.K3(s4Var2);
-                return;
+                ik ikVar = (ik) this.f38209b;
+                if (i7 == 6) {
+                    fi.d dVar = ikVar.f34707o0;
+                    if (dVar.f11752c0) {
+                        dVar.performClick();
+                        return true;
+                    }
+                } else {
+                    ikVar.getClass();
+                }
+                return false;
+            case 2:
+                org.telegram.ui.Cells.i3 i3Var = ((org.telegram.ui.Cells.k3) this.f38209b).d;
+                if (i7 == 5) {
+                    i3Var.requestFocus();
+                    i3Var.setSelection(i3Var.length());
+                    return true;
+                }
+                return false;
+            case 3:
+                iq iqVar = (iq) this.f38209b;
+                if (i7 == 6) {
+                    iqVar.run();
+                    return true;
+                }
+                return false;
+            case 4:
+                ec0 ec0Var = (ec0) this.f38209b;
+                if (i7 == 6) {
+                    ec0Var.n(false);
+                    return true;
+                }
+                ec0Var.getClass();
+                return false;
+            case 5:
+                k4 k4Var = (k4) this.f38209b;
+                if (i7 == 6) {
+                    k4Var.f32165i1.f31829a.callOnClick();
+                    return true;
+                }
+                return false;
+            case 6:
+                ah.i iVar = ((el0) this.f38209b).d;
+                if (keyEvent != null) {
+                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
+                        iVar.m();
+                        org.telegram.messenger.g0.v1(iVar);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            case 7:
+                mo0 mo0Var = (mo0) this.f38209b;
+                if (keyEvent != null) {
+                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
+                        org.telegram.messenger.g0.v1(mo0Var.f36076q2.f37557r);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            case 8:
+                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.f38209b;
+                if (i7 == 5) {
+                    alertDialog$Builder.f27292a.d(-1).callOnClick();
+                    return true;
+                }
+                return false;
+            case 9:
+                org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.f38209b;
+                if (i7 == 6) {
+                    u1Var.d(-1).callOnClick();
+                    return true;
+                }
+                return false;
+            case 10:
+                uz0 uz0Var = (uz0) this.f38209b;
+                if (keyEvent != null) {
+                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
+                        org.telegram.messenger.g0.v1(uz0Var.f38775b);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
             default:
-                org.telegram.messenger.g0.h3(new vf(this.f38212b, 2));
-                return;
+                v41 v41Var = (v41) this.f38209b;
+                if (keyEvent != null) {
+                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
+                        org.telegram.messenger.g0.v1(v41Var.J);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
         }
     }
 }

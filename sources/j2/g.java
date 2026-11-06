@@ -1,3 +1,4 @@
 package j2;
-public final class g extends IllegalStateException {
+public interface g {
+    h createDataSource();
 }

@@ -1,28 +1,20 @@
 package ug;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class y extends AnimatorListenerAdapter {
-    public final int f56313a;
-    public final f0 f56314b;
+import android.content.Context;
+import org.telegram.ui.ActionBar.f6;
+public final class y extends p0 {
+    public final i0 R;
 
-    public y(f0 f0Var, int i3) {
-        this.f56313a = i3;
-        this.f56314b = f0Var;
+    public y(i0 i0Var, Context context, f6 f6Var) {
+        super(context, f6Var, true);
+        this.R = i0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f56313a) {
-            case 0:
-                this.f56314b.P1.setTranslationY(0.0f);
-                return;
-            default:
-                f0 f0Var = this.f56314b;
-                f0Var.S1 = false;
-                f0Var.P1.setTranslationY(0.0f);
-                f0Var.l0();
-                return;
+    public final void invalidate() {
+        if (this.R.X1) {
+            return;
         }
+        super.invalidate();
     }
 }

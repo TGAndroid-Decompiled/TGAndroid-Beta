@@ -3,26 +3,26 @@ package e0;
 import android.app.Notification;
 public abstract class n {
     public static Notification.BubbleMetadata a(o oVar) {
-        boolean z10;
+        boolean z9;
         if (oVar == null) {
             return null;
         }
-        Notification.BubbleMetadata.Builder builder = new Notification.BubbleMetadata.Builder(oVar.f9275a, oVar.f9276b.m(null));
+        Notification.BubbleMetadata.Builder builder = new Notification.BubbleMetadata.Builder(oVar.f10091a, oVar.f10092b.m(null));
         Notification.BubbleMetadata.Builder deleteIntent = builder.setDeleteIntent(null);
-        boolean z11 = true;
+        boolean z10 = true;
         if ((oVar.d & 1) != 0) {
-            z10 = true;
+            z9 = true;
         } else {
+            z9 = false;
+        }
+        Notification.BubbleMetadata.Builder autoExpandBubble = deleteIntent.setAutoExpandBubble(z9);
+        if ((oVar.d & 2) == 0) {
             z10 = false;
         }
-        Notification.BubbleMetadata.Builder autoExpandBubble = deleteIntent.setAutoExpandBubble(z10);
-        if ((oVar.d & 2) == 0) {
-            z11 = false;
-        }
-        autoExpandBubble.setSuppressNotification(z11);
-        int i3 = oVar.f9277c;
-        if (i3 != 0) {
-            builder.setDesiredHeight(i3);
+        autoExpandBubble.setSuppressNotification(z10);
+        int i7 = oVar.f10093c;
+        if (i7 != 0) {
+            builder.setDesiredHeight(i7);
         }
         return builder.build();
     }

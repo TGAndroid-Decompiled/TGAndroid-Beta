@@ -1,34 +1,34 @@
 package org.telegram.ui;
-public final class l21 implements Runnable {
-    public final int f47080a;
-    public final n21 f47081b;
 
-    public l21(n21 n21Var, int i3) {
-        this.f47080a = i3;
-        this.f47081b = n21Var;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class l21 extends org.telegram.ui.ActionBar.v2 {
+    public static final int l1 = 0;
+    public TLRPC.TL_authorization f47364i1;
+    public SessionsActivity f47365j1;
+    public org.telegram.ui.Components.ch0 f47366k1;
+
+    public static void I0(l21 l21Var, String str) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(l21Var.getContext());
+        alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.hd.M0(2131751767, null)}, new og.j(12, l21Var, str));
+        alertDialog$Builder.p();
+    }
+
+    public static void J0(l21 l21Var) {
+        TL_account.changeAuthorizationSettings changeauthorizationsettings = new TL_account.changeAuthorizationSettings();
+        TLRPC.TL_authorization tL_authorization = l21Var.f47364i1;
+        changeauthorizationsettings.encrypted_requests_disabled = tL_authorization.encrypted_requests_disabled;
+        changeauthorizationsettings.call_requests_disabled = tL_authorization.call_requests_disabled;
+        changeauthorizationsettings.flags = 3;
+        changeauthorizationsettings.hash = tL_authorization.hash;
+        ConnectionsManager.getInstance(l21Var.f28612a).sendRequest(changeauthorizationsettings, new di.u5(28));
     }
 
     @Override
-    public final void run() {
-        String sb2;
-        int i3 = this.f47080a;
-        n21 n21Var = this.f47081b;
-        switch (i3) {
-            case 0:
-                String str = n21Var.f47856b.text;
-                if (str != null && str.equals("AUTH_TOKEN_EXCEPTION")) {
-                    sb2 = org.telegram.messenger.bd.M0(2131754709, null);
-                } else {
-                    StringBuilder sb3 = new StringBuilder();
-                    org.telegram.messenger.camera.q.q(null, 2131751106, sb3, "\n");
-                    sb3.append(n21Var.f47856b.text);
-                    sb2 = sb3.toString();
-                }
-                org.telegram.ui.Components.t4.t0(n21Var.f47857c, org.telegram.messenger.bd.M0(2131753894, null), sb2, null);
-                return;
-            default:
-                org.telegram.ui.Components.t4.t0(n21Var.f47857c, org.telegram.messenger.bd.M0(2131753894, null), org.telegram.messenger.bd.M0(2131751106, null), null);
-                return;
-        }
+    public final void show() {
+        super.show();
+        this.f47366k1.d();
     }
 }

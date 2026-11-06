@@ -1,58 +1,31 @@
 package of;
 
-import android.graphics.Bitmap;
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.RandomAccessFile;
-import qf.l;
-public abstract class a {
-    public String f21037a;
-    public long f21038b;
-    public String f21039c;
-    public String d;
-    public String f21040e;
-    public String f21041f;
-    public short f21042g;
-    public String h;
-    public String f21043i;
-    public short f21044j;
-    public short f21045k;
-    public String f21046l;
-    public String f21047m;
-    public String f21048n;
-    public Bitmap f21049o;
-    public Bitmap f21050p;
-    public File f21051q;
+import com.google.android.gms.internal.cast.b0;
+import com.google.android.gms.internal.cast.f4;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadPoolExecutor;
+import org.telegram.messenger.a8;
+public final class a extends ThreadPoolExecutor implements AutoCloseable {
+    public final b0 f20935a;
 
-    public static a a(File file) {
-        byte b10;
-        try {
-            byte[] bArr = new byte[12];
-            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
-            randomAccessFile.readFully(bArr, 0, 8);
-            randomAccessFile.close();
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(new FileInputStream(file));
-            if (bArr[4] == 102 && bArr[5] == 116 && bArr[6] == 121 && bArr[7] == 112) {
-                return new pf.a(bufferedInputStream);
+    public a(com.google.android.gms.internal.cast.b0 r8, java.util.concurrent.PriorityBlockingQueue r9) {
+        throw new UnsupportedOperationException("Method not decompiled: of.a.<init>(com.google.android.gms.internal.cast.b0, java.util.concurrent.PriorityBlockingQueue):void");
+    }
+
+    @Override
+    public final void beforeExecute(Thread thread, Runnable runnable) {
+        CountDownLatch countDownLatch = (CountDownLatch) this.f20935a.f6815c;
+        if (countDownLatch != null) {
+            try {
+                countDownLatch.await();
+            } catch (InterruptedException e10) {
+                a8.g(e10, true);
             }
-            if (bArr[0] == 102 && bArr[1] == 76 && bArr[2] == 97 && bArr[3] == 99) {
-                b bVar = new b(file);
-                if (!bVar.f21053s) {
-                    return bVar;
-                }
-                return null;
-            }
-            if (!file.getAbsolutePath().endsWith("mp3") && (((b10 = bArr[0]) != 73 || bArr[1] != 68 || bArr[2] != 51) && (b10 != 84 || bArr[1] != 65 || bArr[2] != 71))) {
-                b bVar2 = new b(file);
-                if (!bVar2.f21053s) {
-                    return bVar2;
-                }
-                return null;
-            }
-            return new l(bufferedInputStream, file.length());
-        } catch (Exception unused) {
-            return null;
         }
+    }
+
+    @Override
+    public final void close() {
+        f4.h(this);
     }
 }

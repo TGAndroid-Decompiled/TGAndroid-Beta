@@ -1,38 +1,60 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.ActionMode;
-import android.view.Menu;
-public final class xm extends org.telegram.ui.Cells.z5 {
-    public final org.telegram.ui.n4 G;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.text.style.ImageSpan;
+public final class xm implements TextWatcher {
+    public final wm f40284a;
+    public final int f40285b;
+    public final org.telegram.ui.l4 f40286c;
 
-    public xm(org.telegram.ui.n4 n4Var, Context context, int i3) {
-        super(context, i3, null, null);
-        this.G = n4Var;
+    public xm(org.telegram.ui.l4 l4Var, wm wmVar, int i7) {
+        this.f40286c = l4Var;
+        this.f40284a = wmVar;
+        this.f40285b = i7;
     }
 
     @Override
-    public final void g(ai.z zVar, ActionMode actionMode) {
-        if (zVar.isFocused() && zVar.hasSelection()) {
-            Menu menu = actionMode.getMenu();
-            if (menu.findItem(16908321) != null) {
-                org.telegram.ui.wm.A8(menu, ((org.telegram.ui.wm) ((an) this.G.f47865e).f38416b.X1).h, false, true, true, true);
-            }
+    public final void afterTextChanged(Editable editable) {
+        int i7;
+        bn bnVar = (bn) this.f40286c.f47379e;
+        wm wmVar = this.f40284a;
+        if (wmVar.getTag() != null) {
+            return;
         }
+        int i10 = this.f40285b;
+        if (i10 == 11) {
+            i7 = bnVar.f32202n0;
+        } else {
+            i7 = bnVar.m0;
+        }
+        v4.d1 K = bnVar.f32211s.K(i7);
+        if (K != null && bnVar.f32220y != null) {
+            for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
+                editable.removeSpan(imageSpan);
+            }
+            org.telegram.messenger.i6.l(editable, wmVar.getEditField().getPaint().getFontMetricsInt(), false);
+            bnVar.f32220y.setDirection(1);
+            bnVar.f32220y.setDelegate(wmVar);
+            bnVar.f32220y.setTranslationY(K.f56927a.getY());
+            bnVar.f32220y.e();
+        }
+        if (i10 == 11) {
+            bnVar.O = editable;
+        } else {
+            bnVar.N = editable;
+        }
+        if (K != null) {
+            bn.P(bnVar, K.f56927a, i7);
+        }
+        bnVar.X();
     }
 
     @Override
-    public final void i(boolean z10) {
-        an.Q((an) this.G.f47865e, this, z10);
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 
     @Override
-    public final void j(org.telegram.ui.Cells.z5 z5Var) {
-        an.R((an) this.G.f47865e, z5Var);
-    }
-
-    @Override
-    public final void k(ai.z zVar) {
-        ((an) this.G.f47865e).f38416b.h1(zVar, true);
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
     }
 }

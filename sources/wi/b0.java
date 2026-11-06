@@ -1,20 +1,12 @@
 package wi;
+public final class b0 extends b3.h {
+    public final int f57803e;
+    public final int f57804f;
+    public final int f57805g;
+    public final int h;
+    public final int f57806i;
 
-import java.nio.ByteBuffer;
-public final class b0 {
-    public final int f57788a;
-    public final int f57789b;
-    public final int f57790c;
-    public final int d;
-    public final int f57791e;
-    public final ByteBuffer f57792f;
-
-    public b0(int i3, int i10, int i11, int i12, int i13, ByteBuffer byteBuffer) {
-        this.f57788a = i3;
-        this.f57789b = i10;
-        this.f57790c = i11;
-        this.d = i12;
-        this.f57791e = i13;
-        this.f57792f = byteBuffer;
+    public b0(boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: wi.b0.<init>(boolean, boolean):void");
     }
 }

@@ -1,92 +1,88 @@
 package m6;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.text.TextUtils;
-import android.util.Log;
-public class e {
-    public static final int f19188a;
-    public static final e f19189b;
+import android.os.Parcelable;
+import com.google.android.gms.common.data.DataHolder;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import q4.p;
+import q4.v;
+import q4.w;
+public final class e implements Parcelable.Creator {
+    public final int f19896a;
 
-    static {
-        int i3 = g.f19194e;
-        f19188a = 12451000;
-        f19189b = new Object();
+    public e(int i7) {
+        this.f19896a = i7;
     }
 
-    public static int a(Context context) {
-        int i3 = g.f19194e;
-        try {
-            return context.getPackageManager().getPackageInfo("com.google.android.gms", 0).versionCode;
-        } catch (PackageManager.NameNotFoundException unused) {
-            Log.w("GooglePlayServicesUtil", "Google Play services is missing.");
-            return 0;
-        }
+    @Override
+    public final java.lang.Object createFromParcel(android.os.Parcel r23) {
+        throw new UnsupportedOperationException("Method not decompiled: m6.e.createFromParcel(android.os.Parcel):java.lang.Object");
     }
 
-    public Intent b(int i3, Context context, String str) {
-        if (i3 != 1 && i3 != 2) {
-            if (i3 != 3) {
-                return null;
-            }
-            Uri fromParts = Uri.fromParts("package", "com.google.android.gms", null);
-            Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-            intent.setData(fromParts);
-            return intent;
-        } else if (context != null && w6.b.f(context)) {
-            Intent intent2 = new Intent("com.google.android.clockwork.home.UPDATE_ANDROID_WEAR_ACTION");
-            intent2.setPackage("com.google.android.wearable.app");
-            return intent2;
-        } else {
-            StringBuilder sb2 = new StringBuilder("gcore_");
-            sb2.append(f19188a);
-            sb2.append("-");
-            if (!TextUtils.isEmpty(str)) {
-                sb2.append(str);
-            }
-            sb2.append("-");
-            if (context != null) {
-                sb2.append(context.getPackageName());
-            }
-            sb2.append("-");
-            if (context != null) {
-                try {
-                    sb2.append(y6.b.a(context).d(0, context.getPackageName()).versionCode);
-                } catch (PackageManager.NameNotFoundException unused) {
-                }
-            }
-            String sb3 = sb2.toString();
-            Intent intent3 = new Intent("android.intent.action.VIEW");
-            Uri.Builder appendQueryParameter = Uri.parse("market://details").buildUpon().appendQueryParameter("id", "com.google.android.gms");
-            if (!TextUtils.isEmpty(sb3)) {
-                appendQueryParameter.appendQueryParameter("pcampaignid", sb3);
-            }
-            intent3.setData(appendQueryParameter.build());
-            intent3.setPackage("com.android.vending");
-            intent3.addFlags(524288);
-            return intent3;
+    @Override
+    public final Object[] newArray(int i7) {
+        switch (this.f19896a) {
+            case 0:
+                return new g[i7];
+            case 1:
+                return new b[i7];
+            case 2:
+                return new CameraPosition[i7];
+            case 3:
+                return new m8.b[i7];
+            case 4:
+                return new LatLngBounds[i7];
+            case 5:
+                return new LatLng[i7];
+            case 6:
+                return new m8.e[i7];
+            case 7:
+                return new m8.g[i7];
+            case 8:
+                return new m8.h[i7];
+            case 9:
+                return new n6.a[i7];
+            case 10:
+                return new n6.c[i7];
+            case 11:
+                return new n8.a[i7];
+            case 12:
+                return new DataHolder[i7];
+            case 13:
+                return new o8.a[i7];
+            case 14:
+                return new o8.b[i7];
+            case 15:
+                return new o8.c[i7];
+            case 16:
+                return new o8.d[i7];
+            case 17:
+                return new p6.a[i7];
+            case 18:
+                return new p8.e[i7];
+            case 19:
+                return new p8.a[i7];
+            case 20:
+                return new p8.f[i7];
+            case 21:
+                return new p8.g[i7];
+            case 22:
+                return new p8.h[i7];
+            case 23:
+                return new p8.b[i7];
+            case 24:
+                return new q4.h[i7];
+            case 25:
+                return new q4.i[i7];
+            case 26:
+                return new q4.o[i7];
+            case 27:
+                return new p[i7];
+            case 28:
+                return new w[i7];
+            default:
+                return new v[i7];
         }
-    }
-
-    public int c(Context context) {
-        return d(context, f19188a);
-    }
-
-    public int d(Context context, int i3) {
-        int b10 = g.b(context, i3);
-        boolean z10 = true;
-        if (b10 != 18) {
-            if (b10 == 1) {
-                z10 = g.c(context);
-            } else {
-                z10 = false;
-            }
-        }
-        if (z10) {
-            return 18;
-        }
-        return b10;
     }
 }

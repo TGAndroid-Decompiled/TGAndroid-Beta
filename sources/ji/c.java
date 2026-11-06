@@ -1,47 +1,116 @@
 package ji;
 
-import org.telegram.messenger.cs;
-import org.telegram.messenger.hp;
-import org.telegram.messenger.lr;
-import org.telegram.ui.ActionBar.s1;
-public final class c implements lr {
-    public final int f16279a;
-    public final s1 f16280b;
-    public final long f16281c;
-    public final boolean d;
-    public final cs f16282e;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import bg.s;
+import c8.ha;
+import java.util.HashSet;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.m5;
+import org.telegram.messenger.qp;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.a6;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.l9;
+import org.telegram.ui.Components.w8;
+public final class c extends FrameLayout implements a6 {
+    public final f6 f17074a;
+    public final l9 f17075b;
+    public final TextView f17076c;
+    public final TextView d;
+    public final ImageView f17077e;
 
-    public c(cs csVar, s1 s1Var, long j10, boolean z10, int i3) {
-        this.f16279a = i3;
-        this.f16282e = csVar;
-        this.f16280b = s1Var;
-        this.f16281c = j10;
-        this.d = z10;
+    public c(Context context, f6 f6Var) {
+        super(context);
+        this.f17074a = f6Var;
+        l9 l9Var = new l9(context);
+        this.f17075b = l9Var;
+        l9Var.setRoundRadius(g0.L(9.0f));
+        addView(l9Var, ha.d(32, 32.0f, 19, 20.0f, 0.0f, 0.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(16);
+        TextView textView = new TextView(context);
+        this.f17076c = textView;
+        textView.setTypeface(g0.o());
+        textView.setTextSize(1, 16.0f);
+        textView.setSingleLine(true);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        linearLayout.addView(textView, ha.o(-1, -2));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setTextSize(1, 13.0f);
+        textView2.setSingleLine(true);
+        textView2.setEllipsize(truncateAt);
+        linearLayout.addView(textView2, ha.k(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
+        addView(linearLayout, ha.d(-1, -2.0f, 19, 67.0f, 0.0f, 48.0f, 1.0f));
+        ImageView imageView = new ImageView(context);
+        this.f17077e = imageView;
+        imageView.setImageResource(2131232189);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView(imageView, ha.d(24, 24.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
+        updateColors();
+    }
+
+    public final void a(int i7, TLRPC.Chat chat) {
+        int i10;
+        if (chat == null) {
+            return;
+        }
+        TLRPC.ChatFull N0 = qp.s1(i7).N0(chat.f26952id);
+        setTitle(m5.u(chat));
+        if (N0 != null) {
+            i10 = N0.linked_peers.size();
+        } else {
+            i10 = 0;
+        }
+        setSubtitle(hd.G(i10, "CommunityWithChats", new Object[0]));
+        this.f17075b.e(chat, new w8(chat));
     }
 
     @Override
-    public final void run(long j10) {
-        switch (this.f16279a) {
-            case 0:
-                e eVar = (e) this.f16282e;
-                eVar.getClass();
-                this.f16280b.dismiss();
-                if (j10 != 0) {
-                    eVar.f16294b = -j10;
-                    eVar.f16295c = eVar.getMessagesController().M0(Long.valueOf(j10));
-                    eVar.b0(this.f16281c, this.d);
-                    return;
-                }
-                return;
-            default:
-                b0 b0Var = (b0) this.f16282e;
-                b0Var.getClass();
-                this.f16280b.dismiss();
-                if (j10 != 0) {
-                    b0Var.K0(hp.s1(b0Var.f28583a).M0(Long.valueOf(j10)), this.f16281c, this.d);
-                    return;
-                }
-                return;
-        }
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(k6.f28258z6));
+        hashSet.add(Integer.valueOf(k6.G6));
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Drawable drawable = k6.S0;
+        l9 l9Var = this.f17075b;
+        s.a(canvas, drawable, (l9Var.getWidth() / 2.0f) + l9Var.getLeft(), (l9Var.getHeight() / 2.0f) + l9Var.getTop(), l9Var.getHeight());
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(g0.L(60.0f), 1073741824));
+    }
+
+    public void setSubtitle(CharSequence charSequence) {
+        this.d.setText(charSequence);
+    }
+
+    public void setTitle(CharSequence charSequence) {
+        this.f17076c.setText(charSequence);
+    }
+
+    @Override
+    public final void updateColors() {
+        int i7 = k6.f28258z6;
+        f6 f6Var = this.f17074a;
+        this.f17077e.setColorFilter(k6.w0(i7, f6Var));
+        this.f17076c.setTextColor(k6.w0(k6.G6, f6Var));
+        this.d.setTextColor(k6.w0(i7, f6Var));
     }
 }

@@ -1,7 +1,64 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class qf {
-    public String f37454a;
-    public ArrayList f37455b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class qf extends AnimatorListenerAdapter {
+    public final int f37400a;
+    public final int f37401b;
+    public final ChatActivityEnterView f37402c;
+
+    public qf(ChatActivityEnterView chatActivityEnterView, int i7, int i10) {
+        this.f37400a = i10;
+        this.f37402c = chatActivityEnterView;
+        this.f37401b = i7;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37400a) {
+            case 0:
+                int i7 = this.f37401b;
+                ChatActivityEnterView chatActivityEnterView = this.f37402c;
+                if (i7 == 0) {
+                    chatActivityEnterView.A2 = 0;
+                }
+                chatActivityEnterView.V0 = null;
+                chatActivityEnterView.H1.setTranslationY(0.0f);
+                chatActivityEnterView.H1.setVisibility(8);
+                chatActivityEnterView.L3.e();
+                wf wfVar = chatActivityEnterView.Z2;
+                if (wfVar != null) {
+                    wfVar.w(0.0f);
+                }
+                chatActivityEnterView.requestLayout();
+                return;
+            default:
+                ChatActivityEnterView chatActivityEnterView2 = this.f37402c;
+                rt0 rt0Var = chatActivityEnterView2.f31082m1;
+                chatActivityEnterView2.A3 = false;
+                chatActivityEnterView2.B3 = null;
+                mf mfVar = chatActivityEnterView2.U0;
+                if (mfVar != null) {
+                    if (chatActivityEnterView2.f31059h5 == null) {
+                        mfVar.getLayoutParams().height = this.f37401b;
+                    }
+                    chatActivityEnterView2.U0.setLayerType(0, null);
+                }
+                if (rt0Var != null) {
+                    rt0Var.requestLayout();
+                    rt0Var.setForeground(null);
+                    rt0Var.setWillNotDraw(false);
+                }
+                if (chatActivityEnterView2.f31158z2 && chatActivityEnterView2.s0()) {
+                    chatActivityEnterView2.t1(0, chatActivityEnterView2.f31044f2, true, true);
+                }
+                rd rdVar = chatActivityEnterView2.f31111r0;
+                if (rdVar != null) {
+                    rdVar.run();
+                    chatActivityEnterView2.f31111r0 = null;
+                }
+                chatActivityEnterView2.L3.e();
+                return;
+        }
+    }
 }

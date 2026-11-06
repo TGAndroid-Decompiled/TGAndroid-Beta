@@ -1,24 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class g50 extends org.telegram.ui.Cells.pa {
-    public final TextView f33978c0;
-    public final TextView f33979d0;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class g50 implements p70 {
+    public final h50 f33865a;
 
-    public g50(Context context) {
-        super(context, 6, 0, true);
-        LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
-        TextView textView = new TextView(context);
-        this.f33978c0 = textView;
-        org.telegram.messenger.k5.n(textView, org.telegram.ui.ActionBar.k6.G6, null, 1, 16.0f);
-        f10.addView(textView, b8.mf.r(-2, -2, 5));
-        TextView textView2 = new TextView(context);
-        this.f33979d0 = textView2;
-        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28290z6, null);
-        textView2.setTextSize(1, 13.0f);
-        f10.addView(textView2, b8.mf.t(-2, -2, 5, 0, 1, 0, 0));
-        addView(f10, b8.mf.d(-2, -2.0f, (org.telegram.messenger.bd.f21784a0 ? 3 : 5) | 16, 18.0f, 0.0f, 18.0f, 0.0f));
+    public g50(h50 h50Var) {
+        this.f33865a = h50Var;
+    }
+
+    @Override
+    public final void d() {
+        m50 m50Var = this.f33865a.f34217c;
+        org.telegram.ui.ActionBar.f2 f2Var = m50Var.L1;
+        if (f2Var instanceof org.telegram.ui.cf0) {
+            org.telegram.ui.cf0 cf0Var = (org.telegram.ui.cf0) f2Var;
+            TLRPC.TL_chatInviteExported tL_chatInviteExported = m50Var.f35908i1;
+            org.telegram.ui.h90 h90Var = new org.telegram.ui.h90(1, cf0Var.f44789n);
+            h90Var.S = cf0Var.f44797s0;
+            h90Var.d0(tL_chatInviteExported);
+            cf0Var.presentFragment(h90Var);
+        } else {
+            org.telegram.ui.h90 h90Var2 = new org.telegram.ui.h90(1, m50Var.X1);
+            h90Var2.d0(m50Var.f35908i1);
+            h90Var2.S = new f50(this);
+            m50Var.L1.presentFragment(h90Var2);
+        }
+        m50Var.dismiss();
+    }
+
+    @Override
+    public final void e() {
+        m50 m50Var = this.f33865a.f34217c;
+        org.telegram.ui.ActionBar.f2 f2Var = m50Var.L1;
+        if (f2Var instanceof org.telegram.ui.cf0) {
+            ((org.telegram.ui.cf0) f2Var).k0(m50Var.f35908i1);
+        } else {
+            TLRPC.TL_messages_editExportedChatInvite tL_messages_editExportedChatInvite = new TLRPC.TL_messages_editExportedChatInvite();
+            tL_messages_editExportedChatInvite.link = m50Var.f35908i1.link;
+            tL_messages_editExportedChatInvite.revoked = true;
+            tL_messages_editExportedChatInvite.peer = org.telegram.messenger.qp.s1(m50Var.f28612a).j1(-m50Var.X1);
+            ConnectionsManager.getInstance(m50Var.f28612a).sendRequest(tL_messages_editExportedChatInvite, new e50(this, 0));
+        }
+        m50Var.dismiss();
+    }
+
+    @Override
+    public final void k() {
+        m50 m50Var = this.f33865a.f34217c;
+        org.telegram.ui.ActionBar.f2 f2Var = m50Var.L1;
+        if (f2Var instanceof org.telegram.ui.cf0) {
+            ((org.telegram.ui.cf0) f2Var).h0(m50Var.f35908i1);
+        } else {
+            TLRPC.TL_messages_deleteExportedChatInvite tL_messages_deleteExportedChatInvite = new TLRPC.TL_messages_deleteExportedChatInvite();
+            tL_messages_deleteExportedChatInvite.link = m50Var.f35908i1.link;
+            tL_messages_deleteExportedChatInvite.peer = org.telegram.messenger.qp.s1(m50Var.f28612a).j1(-m50Var.X1);
+            ConnectionsManager.getInstance(m50Var.f28612a).sendRequest(tL_messages_deleteExportedChatInvite, new e50(this, 1));
+        }
+        m50Var.dismiss();
+    }
+
+    @Override
+    public final void f() {
     }
 }

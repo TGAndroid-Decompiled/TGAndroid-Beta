@@ -1,22 +1,24 @@
 package o2;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
+import h9.i0;
 public final class a {
-    public final long f20504a;
-    public final int f20505b;
-    public final List f20506c;
-    public final List d;
-    public final List f20507e;
-    public final List f20508f;
+    public final int[] f20706a;
+    public final int f20707b;
+    public final int f20708c;
+    public final int d;
+    public final int f20709e;
+    public final int f20710f;
+    public final int f20711g;
+    public final i0 h;
 
-    public a(long j10, int i3, ArrayList arrayList, List list, List list2, List list3) {
-        this.f20504a = j10;
-        this.f20505b = i3;
-        this.f20506c = DesugarCollections.unmodifiableList(arrayList);
-        this.d = DesugarCollections.unmodifiableList(list);
-        this.f20507e = DesugarCollections.unmodifiableList(list2);
-        this.f20508f = DesugarCollections.unmodifiableList(list3);
+    public a(int i7, int i10, int[] iArr, int i11, int i12, int i13, int i14, i0 i0Var) {
+        this.f20707b = i7;
+        this.f20706a = iArr;
+        this.f20708c = i10;
+        this.f20709e = i11;
+        this.f20710f = i12;
+        this.f20711g = i13;
+        this.d = i14;
+        this.h = i0Var;
     }
 }

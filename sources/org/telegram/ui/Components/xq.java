@@ -4,38 +4,38 @@ import android.graphics.PointF;
 import android.view.animation.Interpolator;
 import android.view.animation.PathInterpolator;
 public final class xq implements Interpolator {
-    public static final xq f40452f = new xq(0.25d, 0.1d, 0.25d, 1.0d);
-    public static final xq f40453g = new xq(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final xq f40310f = new xq(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final xq f40311g = new xq(0.0d, 0.0d, 0.58d, 1.0d);
     public static final xq h = new xq(0.23d, 1.0d, 0.32d, 1.0d);
-    public static final xq f40454i = new xq(0.42d, 0.0d, 1.0d, 1.0d);
-    public static final xq f40455j = new xq(0.42d, 0.0d, 0.58d, 1.0d);
-    public static final xq f40456k = new xq(0.34d, 1.56d, 0.64d, 1.0d);
-    public static final PathInterpolator f40457l;
-    public final PointF f40458a;
-    public final PointF f40459b;
-    public final PointF f40460c;
+    public static final xq f40312i = new xq(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final xq f40313j = new xq(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final xq f40314k = new xq(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f40315l;
+    public final PointF f40316a;
+    public final PointF f40317b;
+    public final PointF f40318c;
     public final PointF d;
-    public final PointF f40461e;
+    public final PointF f40319e;
 
     static {
-        new PathInterpolator(b8.rc.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
+        new PathInterpolator(c8.i0.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
         new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
         new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
-        f40457l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
+        f40315l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
     }
 
     public xq(float f10, float f11, float f12, float f13) {
         PointF pointF = new PointF(f10, f11);
         PointF pointF2 = new PointF(f12, f13);
-        this.f40460c = new PointF();
+        this.f40318c = new PointF();
         this.d = new PointF();
-        this.f40461e = new PointF();
+        this.f40319e = new PointF();
         float f14 = pointF.x;
         if (f14 >= 0.0f && f14 <= 1.0f) {
             float f15 = pointF2.x;
             if (f15 >= 0.0f && f15 <= 1.0f) {
-                this.f40458a = pointF;
-                this.f40459b = pointF2;
+                this.f40316a = pointF;
+                this.f40317b = pointF2;
                 return;
             }
             throw new IllegalArgumentException("endX value must be in the range [0, 1]");
@@ -50,15 +50,15 @@ public final class xq implements Interpolator {
         PointF pointF3;
         PointF pointF4;
         PointF pointF5;
-        int i3 = 1;
+        int i7 = 1;
         float f11 = f10;
         while (true) {
-            pointF = this.f40459b;
-            pointF2 = this.f40458a;
-            pointF3 = this.f40460c;
+            pointF = this.f40317b;
+            pointF2 = this.f40316a;
+            pointF3 = this.f40318c;
             pointF4 = this.d;
-            pointF5 = this.f40461e;
-            if (i3 >= 14) {
+            pointF5 = this.f40319e;
+            if (i7 >= 14) {
                 break;
             }
             float f12 = pointF2.x * 3.0f;
@@ -72,7 +72,7 @@ public final class xq implements Interpolator {
                 break;
             }
             f11 -= f15 / (((((pointF3.x * 3.0f) * f11) + (pointF4.x * 2.0f)) * f11) + pointF5.x);
-            i3++;
+            i7++;
         }
         float f16 = pointF2.y * 3.0f;
         pointF5.y = f16;
@@ -83,7 +83,7 @@ public final class xq implements Interpolator {
         return ((((f18 * f11) + pointF4.y) * f11) + pointF5.y) * f11;
     }
 
-    public xq(double d, double d10, double d11, double d12) {
-        this((float) d, (float) d10, (float) d11, (float) d12);
+    public xq(double d, double d2, double d10, double d11) {
+        this((float) d, (float) d2, (float) d10, (float) d11);
     }
 }

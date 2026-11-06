@@ -1,154 +1,118 @@
 package bi;
 
-import android.app.Activity;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.text.TextPaint;
+import android.content.Context;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
 import android.view.MotionEvent;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-public final class c extends View {
-    public static final long f3659g0 = System.currentTimeMillis();
-    public static final String[] f3660h0 = new String[100];
-    public float E;
-    public long F;
-    public final RectF G;
-    public float H;
-    public float I;
-    public final c1 J;
-    public final Path K;
-    public float L;
-    public final RectF M;
-    public final RectF N;
-    public final WeakHashMap O;
-    public final Path P;
-    public final int[] Q;
-    public LinearGradient R;
-    public final Paint S;
-    public final Paint.FontMetrics T;
-    public m U;
-    public float V;
-    public float W;
-    public final bb.c f3661a;
-    public float f3662a0;
-    public h0 f3663b;
-    public long f3664b0;
-    public final Paint f3665c;
-    public long f3666c0;
-    public final Paint d;
-    public boolean f3667d0;
-    public final TextPaint f3668e;
-    public final int[] f3669e0;
-    public final int[] f3670f;
-    public final RectF f3671f0;
-    public final int[] h;
-    public final HashMap f3672n;
-    public final ArrayList f3673r;
-    public final ArrayList f3674s;
-    public final ArrayList f3675w;
-    public float f3676x;
-    public float f3677y;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.ls;
+import org.telegram.messenger.qp;
+import org.telegram.messenger.qs;
+import org.telegram.ui.Components.w70;
+import org.telegram.ui.Components.wp;
+public final class c extends LinearLayout implements ls {
+    public final int f3544a;
+    public final org.telegram.ui.ActionBar.f6 f3545b;
+    public final TextView f3546c;
+    public final w70 d;
+    public cg.b f3547e;
+    public final wp[] f3548f;
 
-    public c(Activity activity, bb.c cVar) {
-        super(activity);
-        this.f3665c = new Paint(1);
-        Paint paint = new Paint(1);
-        this.d = paint;
-        TextPaint textPaint = new TextPaint(1);
-        this.f3668e = textPaint;
-        new RectF();
-        this.f3670f = new int[2];
-        this.h = new int[2];
-        this.f3672n = new HashMap();
-        this.f3673r = new ArrayList();
-        this.f3674s = new ArrayList();
-        this.f3675w = new ArrayList();
-        this.G = new RectF();
-        this.H = Float.NaN;
-        this.I = -1.0f;
-        this.J = new c1(0);
-        this.K = new Path();
-        this.L = Float.NaN;
-        this.M = new RectF();
-        this.N = new RectF();
-        this.O = new WeakHashMap();
-        this.P = new Path();
-        this.Q = new int[2];
-        this.S = new Paint(1);
-        this.T = new Paint.FontMetrics();
-        this.V = Float.NaN;
-        this.f3662a0 = 0.45f;
-        this.f3669e0 = new int[2];
-        this.f3671f0 = new RectF();
-        this.f3661a = cVar;
-        textPaint.setTypeface(org.telegram.messenger.g0.o());
-        textPaint.setTextSize(org.telegram.messenger.g0.L(10.0f));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        paint.setStyle(Paint.Style.STROKE);
+    public c(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        this(context, i7, cg.b.f6162a, f6Var);
     }
 
-    public static long b() {
-        return System.currentTimeMillis() - f3659g0;
-    }
-
-    public static float c(float[] fArr, long j10) {
-        float min = Math.min(1.0f, ((float) (j10 - fArr[2])) / 180.0f);
-        float f10 = fArr[1];
-        float max = 1.0f - Math.max(0.0f, Math.min(1.0f, min));
-        return ((1.0f - ((max * max) * max)) * (fArr[0] - f10)) + f10;
-    }
-
-    public final boolean a(android.graphics.Canvas r37, android.view.ViewGroup r38, java.util.List r39, long r40) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.c.a(android.graphics.Canvas, android.view.ViewGroup, java.util.List, long):boolean");
+    public final void a() {
+        cg.b bVar = this.f3547e;
+        int i7 = this.f3544a;
+        cg.a s5 = ea.x(i7, bVar).s();
+        cg.b bVar2 = this.f3547e;
+        cg.b bVar3 = cg.b.f6162a;
+        TextView textView = this.f3546c;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f3545b;
+        w70 w70Var = this.d;
+        if (bVar2 == bVar3) {
+            textView.setText(dd.a1(false, org.telegram.messenger.hd.a0(null, null, 2131750115, org.telegram.messenger.hd.E(s5.a(), ',')), 0.6f, null));
+            int i10 = org.telegram.ui.ActionBar.k6.uj;
+            org.telegram.ui.ActionBar.r6.V(w70Var, i10, f6Var);
+            org.telegram.ui.ActionBar.r6.H(w70Var, i10, f6Var);
+            w70Var.setText(org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131750114, null), new a3.f(this, 14)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f)));
+        } else if (bVar2 == cg.b.f6163b) {
+            SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131750113, s5.b()));
+            wp[] wpVarArr = this.f3548f;
+            textView.setText(dd.a1(true, X2, 0.6f, wpVarArr));
+            wpVarArr[0].a(org.telegram.ui.ActionBar.k6.uj);
+            StringBuilder sb2 = new StringBuilder(10);
+            sb2.append('~');
+            org.telegram.messenger.r1.i().getClass();
+            sb2.append(org.telegram.messenger.r1.g("USD", 2, (long) (s5.c() * ((org.telegram.messenger.i0) qp.s1(i7).f24927x7.f24438l.f14323b).f23003a * 100.0d), false));
+            int i11 = org.telegram.ui.ActionBar.k6.vj;
+            int i12 = org.telegram.ui.ActionBar.k6.tj;
+            org.telegram.ui.ActionBar.r6.n(w70Var, i11, i12, 3, 0.33f, f6Var);
+            org.telegram.ui.ActionBar.r6.o(w70Var, 2, i11, i12, 3, 0.33f, f6Var);
+            w70Var.setText(sb2);
+        }
     }
 
     @Override
-    public final boolean hasOverlappingRendering() {
-        return false;
+    public final void didReceivedNotification(int i7, int i10, Object... objArr) {
+        if (i7 == qs.f25097y3) {
+            a();
+        }
     }
 
     @Override
-    public final void onDraw(android.graphics.Canvas r30) {
-        throw new UnsupportedOperationException("Method not decompiled: bi.c.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int i3 = 0;
-        if (this.f3677y >= 0.5f) {
-            if (this.G.contains(motionEvent.getX(), motionEvent.getY())) {
-                if (motionEvent.getActionMasked() == 1) {
-                    int i10 = 0;
-                    while (true) {
-                        ArrayList arrayList = this.f3673r;
-                        if (i3 >= arrayList.size()) {
-                            break;
-                        }
-                        b bVar = (b) arrayList.get(i3);
-                        if (!bVar.d) {
-                            if (Math.abs(motionEvent.getX() - bVar.f3653b) < org.telegram.messenger.g0.L(34.0f) / 2.0f) {
-                                a1 a1Var = ((j0) this.f3661a.f3211b).d;
-                                ArrayList arrayList2 = a1Var.J;
-                                if (i10 >= 0 && i10 < arrayList2.size()) {
-                                    arrayList2.remove(i10);
-                                    a1Var.c();
-                                    a1Var.i0();
-                                }
-                                invalidate();
-                                return true;
-                            }
-                            i10++;
-                        }
-                        i3++;
-                    }
-                }
-                return true;
-            }
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (isEnabled() && super.dispatchTouchEvent(motionEvent)) {
+            return true;
         }
         return false;
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a();
+        int i7 = this.f3544a;
+        qs.f(i7).c(this, qs.f25097y3);
+        qs.f(i7).c(this, qs.C3);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        int i7 = this.f3544a;
+        qs.f(i7).n(this, qs.f25097y3);
+        qs.f(i7).n(this, qs.C3);
+    }
+
+    public c(Context context, int i7, cg.b bVar, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context);
+        this.f3548f = new wp[1];
+        this.f3544a = i7;
+        this.f3545b = f6Var;
+        this.f3547e = bVar;
+        setOrientation(1);
+        setPadding(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(9.0f));
+        int L = org.telegram.messenger.g0.L(24.0f);
+        int i10 = org.telegram.ui.ActionBar.k6.tj;
+        Drawable d02 = org.telegram.ui.ActionBar.k6.d0(L, org.telegram.ui.ActionBar.k6.w0(i10, f6Var));
+        org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i10);
+        setBackground(d02);
+        org.telegram.ui.ActionBar.r6.k(this, d02, N, null, f6Var);
+        TextView textView = new TextView(context);
+        this.f3546c = textView;
+        textView.setTextSize(1, 13.0f);
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.vj, f6Var);
+        textView.setGravity(17);
+        addView(textView, c8.ha.q(-2, -2, 0.0f, 17, 0, 0, 0, 0));
+        w70 w70Var = new w70(context, f6Var);
+        this.d = w70Var;
+        w70Var.setTextSize(1, 12.0f);
+        w70Var.setText(org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131750114, null), new b(0, context, f6Var)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f)));
+        w70Var.setGravity(17);
+        addView(w70Var, c8.ha.q(-2, -2, 0.0f, 17, 0, 1, 0, 0));
+        a();
     }
 }

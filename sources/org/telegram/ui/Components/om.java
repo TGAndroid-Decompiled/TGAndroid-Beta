@@ -1,46 +1,136 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
+import android.view.View;
 import java.util.ArrayList;
-public final class om implements lj {
-    public final org.telegram.messenger.u10 f36856a;
-    public final ei.x2 f36857b;
-    public final org.telegram.ui.ActionBar.d2 f36858c;
+import org.telegram.tgnet.TLRPC;
+public final class om implements hx {
+    public final org.telegram.messenger.c20 f36747a;
+    public final di.u2 f36748b;
 
-    public om(ei.x2 x2Var, org.telegram.messenger.u10 u10Var, org.telegram.ui.ActionBar.d2 d2Var) {
-        this.f36856a = u10Var;
-        this.f36857b = x2Var;
-        this.f36858c = d2Var;
+    public om(org.telegram.messenger.c20 c20Var, di.u2 u2Var) {
+        this.f36747a = c20Var;
+        this.f36748b = u2Var;
     }
 
     @Override
-    public final void A() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("*/*");
-            this.f36858c.getParentActivity().startActivityForResult(intent, 28);
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
-        }
+    public final boolean A() {
+        return false;
     }
 
     @Override
-    public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i3, long j10, boolean z11, long j11) {
-        if (!arrayList.isEmpty()) {
-            this.f36856a.a(new uh.c((String) arrayList.get(0)));
-        }
-        this.f36857b.a(true);
+    public final long a() {
+        return 0L;
     }
 
     @Override
-    public final void p(ArrayList arrayList, boolean z10, int i3, long j10) {
-        if (!arrayList.isEmpty()) {
-            this.f36856a.a(new uh.d((org.telegram.messenger.xy) arrayList.get(0)));
-        }
-        this.f36857b.a(true);
+    public final boolean b() {
+        return false;
     }
 
     @Override
-    public final void S() {
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, org.telegram.messenger.ej ejVar, boolean z9, int i7) {
+        this.f36747a.a(new th.h(obj, document));
+        this.f36748b.a(true);
+    }
+
+    @Override
+    public final float p() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
+        this.f36747a.a(new th.h(null, document));
+        this.f36748b.a(true);
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void i(int i7) {
+    }
+
+    @Override
+    public final void l(String str) {
+    }
+
+    @Override
+    public final void o(n31 n31Var) {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i7) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j3) {
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z9) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z9, int i7, int i10) {
     }
 }

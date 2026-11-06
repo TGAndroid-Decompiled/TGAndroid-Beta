@@ -14,9 +14,9 @@ public class ScriptsAtom extends Atom {
         this.base = atom;
         this.subscript = atom2;
         this.superscript = atom3;
-        int i3 = atom instanceof ScriptsAtom ? 1 + ((ScriptsAtom) atom).wrapDepth : 1;
-        this.wrapDepth = i3;
-        if (i3 > 64) {
+        int i7 = atom instanceof ScriptsAtom ? 1 + ((ScriptsAtom) atom).wrapDepth : 1;
+        this.wrapDepth = i7;
+        if (i7 > 64) {
             throw new DepthLimitExceededException();
         }
     }
@@ -36,9 +36,9 @@ public class ScriptsAtom extends Atom {
         return this.base.getRightType();
     }
 
-    public ScriptsAtom(Atom atom, Atom atom2, Atom atom3, boolean z10) {
+    public ScriptsAtom(Atom atom, Atom atom2, Atom atom3, boolean z9) {
         this(atom, atom2, atom3);
-        if (z10) {
+        if (z9) {
             return;
         }
         this.align = 1;

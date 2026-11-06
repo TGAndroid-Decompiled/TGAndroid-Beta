@@ -1,42 +1,33 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class g00 implements Runnable {
-    public final int f22617a;
-    public final x00 f22618b;
-    public final long f22619c;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class g00 implements RequestDelegate {
+    public final long f22546a;
+    public final int f22547b;
+    public final k00 f22548c;
 
-    public g00(x00 x00Var, long j10, int i3) {
-        this.f22617a = i3;
-        this.f22618b = x00Var;
-        this.f22619c = j10;
+    public g00(k00 k00Var, long j3, int i7) {
+        this.f22548c = k00Var;
+        this.f22546a = j3;
+        this.f22547b = i7;
     }
 
     @Override
-    public final void run() {
-        int i3 = this.f22617a;
-        long j10 = this.f22619c;
-        x00 x00Var = this.f22618b;
-        switch (i3) {
-            case 0:
-                hs.f(x00Var.currentAccount).k(130, Long.valueOf(j10));
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) x00Var.f26327n.S.f(j10);
-                if (arrayList != null) {
-                    ArrayList arrayList2 = new ArrayList();
-                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        zi ziVar = (zi) arrayList.get(i10);
-                        if (ziVar != null && ziVar.f26868k != null) {
-                            arrayList2.add(x00Var.getMessagesStorage().e0(ziVar.f1(), zi.B0(ziVar.f26868k)));
-                        } else {
-                            arrayList2.add(null);
-                        }
-                    }
-                    g0.h3(new fg(x00Var, arrayList2, arrayList, 5));
-                    return;
-                }
-                return;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        if (tL_error == null) {
+            TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory = (TLRPC.TL_messages_affectedHistory) tLObject;
+            k00 k00Var = this.f22548c;
+            qp messagesController = k00Var.getMessagesController();
+            int i7 = tL_messages_affectedHistory.pts;
+            int i10 = tL_messages_affectedHistory.pts_count;
+            long j3 = this.f22546a;
+            messagesController.L3(i7, i10, j3);
+            int i11 = tL_messages_affectedHistory.offset;
+            if (i11 > 0) {
+                k00Var.c(this.f22547b, i11, j3);
+            }
         }
     }
 }

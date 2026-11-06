@@ -1,151 +1,138 @@
 package wg;
 
-import android.content.Context;
-import android.graphics.Rect;
-import android.graphics.SurfaceTexture;
-import android.view.Choreographer;
-import android.view.MotionEvent;
-import android.view.Surface;
-import android.view.TextureView;
+import android.os.Handler;
+import android.os.SystemClock;
 import android.view.View;
-public abstract class r extends TextureView implements TextureView.SurfaceTextureListener, Choreographer.FrameCallback {
-    public static final o[] f57744y = new o[3];
-    public final o f57745a;
-    public final Rect f57746b;
-    public final Runnable f57747c;
-    public final int d;
-    public q f57748e;
-    public boolean f57749f;
-    public boolean h;
-    public boolean f57750n;
-    public float f57751r;
-    public float f57752s;
-    public boolean f57753w;
-    public boolean f57754x;
+import org.telegram.messenger.c20;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.k5;
+import org.telegram.messenger.u10;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.up0;
+import zh.a2;
+import zh.e2;
+public final class r implements Runnable {
+    public final int f57683a;
+    public final Object f57684b;
+    public final Object f57685c;
+    public final Object d;
+    public final Object f57686e;
 
-    public r(Context context, Runnable runnable, int i3) {
-        super(context);
-        this.f57746b = new Rect();
-        this.h = true;
-        this.f57747c = runnable;
-        o[] oVarArr = f57744y;
-        if (oVarArr[i3] == null) {
-            oVarArr[i3] = new o(context.getApplicationContext(), i3);
-        }
-        o oVar = oVarArr[i3];
-        this.f57745a = oVar;
-        this.d = oVar.d;
-        setOpaque(false);
-        setSurfaceTextureListener(this);
+    public r(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
+        this.f57683a = i7;
+        this.f57684b = obj;
+        this.f57685c = obj2;
+        this.d = obj3;
+        this.f57686e = obj4;
     }
 
-    public abstract void a();
-
     @Override
-    public final void doFrame(long j10) {
-        boolean z10;
-        p pVar;
-        if (this.f57749f && !this.h) {
-            this.f57747c.run();
-            if (this.f57748e != null) {
-                if (isShown() && getWindowVisibility() == 0 && getGlobalVisibleRect(this.f57746b)) {
-                    z10 = true;
+    public final void run() {
+        int a10;
+        int max;
+        int max2;
+        int i7 = 1;
+        switch (this.f57683a) {
+            case 0:
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f57684b;
+                c20 c20Var = (c20) this.f57685c;
+                TLObject tLObject = (TLObject) this.f57686e;
+                c20 c20Var2 = (c20) this.d;
+                if (tL_error != null) {
+                    c20Var.a(tL_error);
+                    return;
+                } else if (tLObject instanceof TLRPC.payments_GiveawayInfo) {
+                    c20Var2.a((TLRPC.payments_GiveawayInfo) tLObject);
+                    return;
                 } else {
-                    z10 = false;
+                    return;
                 }
-                q qVar = this.f57748e;
-                if (z10) {
-                    pVar = new p(this.f57751r, this.f57752s, this.f57753w, this.f57754x);
+            case 1:
+                wi.t tVar = (wi.t) this.f57684b;
+                wi.m0 m0Var = (wi.m0) this.f57685c;
+                wi.m0 m0Var2 = (wi.m0) this.d;
+                Handler handler = (Handler) this.f57686e;
+                if (tVar.f58059r0 && tVar.W == 0 && tVar.T) {
+                    tVar.N.g(tVar.L, tVar.D, false);
+                    tVar.U = false;
+                    tVar.V = false;
+                    tVar.f58032c0 = 0.0f;
+                    tVar.W = 1;
+                    long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
+                    tVar.X = elapsedRealtimeNanos;
+                    tVar.Y = elapsedRealtimeNanos;
+                    tVar.f58033d0 = m0Var;
+                    tVar.f58035e0 = m0Var2;
+                    String[] strArr = wi.u0.f58097a;
+                    synchronized (wi.u0.class) {
+                        wi.u0.b();
+                        if (m0Var != m0Var2) {
+                            if (m0Var == wi.m0.f57991b) {
+                                i7 = 0;
+                            }
+                            a10 = wi.u0.a(i7);
+                        } else {
+                            throw new IllegalArgumentException("Camera switch direction must change");
+                        }
+                    }
+                    tVar.f58030b0 = a10;
+                    tVar.Z = ((Math.max(210, Math.min(300, 300 - ((Math.max(0, a10 - 400) * 3) / 20))) * 45) / 100) * 1000000;
+                    tVar.f58028a0 = (max - max2) * 1000000;
+                    tVar.f58041i.b("synthetic camera switch started: from=" + m0Var + ", to=" + m0Var2 + ", expectedWaitMs=" + tVar.f58030b0 + ", targetBlurRadiusPx=" + (((tVar.N.f57817a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((tVar.Z + tVar.f58028a0) / 1000000));
+                    tVar.Q = -1L;
+                    handler.removeCallbacks(tVar.f58070x0);
+                    handler.post(tVar.f58070x0);
+                    return;
+                }
+                return;
+            default:
+                final a2 a2Var = (a2) this.f57684b;
+                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.f57685c;
+                zh.z0 z0Var = (zh.z0) this.d;
+                final View view = (View) this.f57686e;
+                up0 up0Var = a2Var.f60081a;
+                if (savedStarGift.unsaved) {
+                    savedStarGift.unsaved = false;
+                    z0Var.i(savedStarGift, true, false);
+                    TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
+                    savestargift.stargift = a2Var.f60084e.h(savedStarGift);
+                    savestargift.unsave = savedStarGift.unsaved;
+                    ConnectionsManager.getInstance(a2Var.f60082b).sendRequest(savestargift, null, 64);
+                }
+                boolean z9 = savedStarGift.pinned_to_top;
+                final boolean z10 = !z9;
+                if (a2Var.f60084e.o(savedStarGift, z10, false)) {
+                    new e2(a2Var.getContext(), up0Var.f60189c, savedStarGift, a2Var.f60083c, new u10() {
+                        @Override
+                        public final Object run() {
+                            ((z0) view).d(z10, true);
+                            a2 a2Var2 = a2.this;
+                            a2Var2.f60085f.v0(0);
+                            return hc.a0(a2Var2.f60081a.f60187a);
+                        }
+                    }).show();
+                    return;
+                }
+                if (!z9) {
+                    hc.a0(up0Var.f60187a).I(2131624054, hd.M0(2131750075, null), hd.M0(2131750076, null)).j();
                 } else {
-                    pVar = null;
+                    k5.o(null, 2131749879, hc.a0(up0Var.f60187a), 2131624060, 36);
                 }
-                qVar.f57737e = pVar;
-                this.f57745a.c();
-            }
-            Choreographer.getInstance().postFrameCallback(this);
+                ((zh.z0) view).d(z10, true);
+                a2Var.f60085f.v0(0);
+                return;
         }
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f57749f = true;
-        setPaused(this.h);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        this.f57750n = false;
-        this.f57749f = false;
-        Choreographer.getInstance().removeFrameCallback(this);
-        super.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i3, int i10) {
-        this.f57750n = false;
-        int i11 = this.d;
-        surfaceTexture.setDefaultBufferSize(i11, i11);
-        q qVar = new q(this, new Surface(surfaceTexture), this.d);
-        this.f57748e = qVar;
-        o oVar = this.f57745a;
-        oVar.f57718f.add(qVar);
-        oVar.f57719g = (q[]) oVar.f57718f.toArray(new q[0]);
-        oVar.c();
-        setPaused(this.h);
-    }
-
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        this.f57750n = false;
-        q qVar = this.f57748e;
-        this.f57748e = null;
-        if (qVar != null) {
-            o oVar = this.f57745a;
-            oVar.getClass();
-            qVar.f57736c = false;
-            oVar.f57718f.remove(qVar);
-            oVar.f57719g = (q[]) oVar.f57718f.toArray(new q[0]);
-            oVar.f57715b.post(new u9.a(17, oVar, qVar));
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i3, int i10) {
-        int i11 = this.d;
-        surfaceTexture.setDefaultBufferSize(i11, i11);
-    }
-
-    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        q qVar;
-        int i3 = this.d;
-        surfaceTexture.setDefaultBufferSize(i3, i3);
-        if (!this.f57750n && (qVar = this.f57748e) != null && qVar.d) {
-            this.f57750n = true;
-            if (getParent() instanceof View) {
-                ((View) getParent()).invalidate();
-            }
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return false;
-    }
-
-    public void setPaused(boolean z10) {
-        this.h = z10;
-        Choreographer.getInstance().removeFrameCallback(this);
-        if (this.f57749f && !z10) {
-            Choreographer.getInstance().postFrameCallback(this);
-            return;
-        }
-        q qVar = this.f57748e;
-        if (qVar != null) {
-            qVar.f57737e = null;
-            this.f57745a.c();
-        }
+    public r(TLRPC.TL_error tL_error, c20 c20Var, TLObject tLObject, c20 c20Var2) {
+        this.f57683a = 0;
+        this.f57684b = tL_error;
+        this.f57685c = c20Var;
+        this.f57686e = tLObject;
+        this.d = c20Var2;
     }
 }

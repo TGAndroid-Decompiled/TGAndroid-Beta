@@ -1,111 +1,139 @@
 package pi;
 
-import android.graphics.ColorFilter;
-import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import cg.n0;
-import org.telegram.messenger.g0;
-import org.telegram.ui.Cells.f1;
-public final class b {
-    public final RenderNode f53538e;
-    public final RenderNode f53539f;
-    public final RenderNode f53540g;
-    public final RenderNode h;
-    public final RenderNode f53541i;
-    public ColorFilter f53542j;
-    public int f53543k;
-    public int f53544l;
-    public int f53545m;
-    public int f53546n;
-    public int f53547o;
-    public int f53548p;
-    public float f53551s;
-    public float f53552t;
-    public int f53553u;
-    public int v;
-    public int f53554w;
-    public int f53555x;
-    public final RectF f53535a = new RectF();
-    public final Rect f53536b = new Rect();
-    public final RectF f53537c = new RectF();
-    public final RectF d = new RectF();
-    public int f53549q = 1;
-    public final RectF f53550r = new RectF();
+import c8.nb;
+public final class b extends nb {
+    public final boolean f53527a;
+    public final Paint f53528b = new Paint();
+    public final Paint f53529c;
+    public final Paint d;
+    public int f53530e;
+    public int f53531f;
+    public final f f53532g;
 
-    public b(int i3) {
-        RenderNode renderNode = new RenderNode("cap-" + i3);
-        this.f53538e = renderNode;
-        renderNode.setUseCompositingLayer(true, null);
-        RenderNode renderNode2 = new RenderNode("glass-" + i3);
-        this.f53539f = renderNode2;
-        renderNode2.setRenderEffect(n0.d());
-        this.f53540g = new RenderNode("glass-frosted-" + i3);
-        RenderNode renderNode3 = new RenderNode("filtered-" + i3);
-        this.h = renderNode3;
-        renderNode3.setRenderEffect(RenderEffect.createColorFilterEffect(d.v));
-        this.f53541i = new RenderNode("frosted-filtered-" + i3);
+    public b(f fVar, boolean z9) {
+        this.f53532g = fVar;
+        Paint paint = new Paint(1);
+        this.f53529c = paint;
+        this.d = new Paint(1);
+        this.f53530e = -1;
+        this.f53531f = -1;
+        this.f53527a = z9;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
     }
 
-    public final RenderNode a(int i3) {
-        int c2 = o1.g.c(i3);
-        if (c2 != 0) {
-            if (c2 != 1) {
-                if (c2 != 2) {
-                    if (c2 == 3) {
-                        return this.f53541i;
-                    }
-                    throw new IllegalArgumentException("Unknown source index: ".concat(f1.F(i3)));
-                }
-                return this.f53540g;
-            }
-            return this.f53539f;
+    @Override
+    public final void b() {
+        this.f53530e = -1;
+    }
+
+    @Override
+    public final void c(Canvas canvas) {
+        boolean z9;
+        Paint paint;
+        boolean z10;
+        boolean z11;
+        f fVar;
+        float f10;
+        float f11;
+        f fVar2 = this.f53532g;
+        Rect bounds = fVar2.getBounds();
+        int width = bounds.width();
+        int height = bounds.height();
+        float f12 = width;
+        int ceil = (int) Math.ceil(f12 / 5.0f);
+        float f13 = height;
+        int ceil2 = (int) Math.ceil(f13 / 5.0f);
+        boolean z12 = this.f53527a;
+        if (z12) {
+            z9 = fVar2.f53555w;
+        } else {
+            z9 = fVar2.f53556x;
         }
-        return this.f53538e;
-    }
-
-    public final void b(int i3, int i10, int i11) {
-        float max;
-        float f10 = 0.0f;
-        if (this.f53547o != i3) {
-            this.f53547o = i3;
-            float N = g0.N(7.0f);
-            if (N <= 0.0f) {
-                max = 0.0f;
+        Paint paint2 = this.f53529c;
+        Paint paint3 = this.d;
+        if (!z9 && this.f53530e == width && this.f53531f == height) {
+            fVar = fVar2;
+            paint = paint3;
+            z10 = z12;
+        } else {
+            int i7 = fVar2.f53557y;
+            if (i7 != 1 && i7 != 4) {
+                f13 = f12;
+            }
+            if (z12) {
+                g gVar = fVar2.D;
+                gVar.getClass();
+                float f14 = 0;
+                paint = paint3;
+                z10 = z12;
+                z11 = false;
+                paint2.setShader(f.k(fVar2, gVar, f13, f14, -1, 5));
+                g gVar2 = fVar2.E;
+                gVar2.getClass();
+                paint.setShader(f.k(fVar2, gVar2, f13, f14, fVar2.H, 5));
+                fVar = fVar2;
             } else {
-                max = Math.max(0.0f, ((((N * 0.57735f) + 0.5f) / i3) - 0.5f) / 0.57735f);
+                paint = paint3;
+                z10 = z12;
+                z11 = false;
+                g gVar3 = fVar2.F;
+                gVar3.getClass();
+                fVar = fVar2;
+                paint.setShader(f.k(fVar2, gVar3, f13, 0, fVar2.J, 5));
             }
-            this.f53551s = max;
-            this.f53538e.setRenderEffect(RenderEffect.createBlurEffect(max, max, Shader.TileMode.CLAMP));
-        }
-        if (this.f53548p != i10) {
-            this.f53548p = i10;
-            float N2 = g0.N(36.0f);
-            if (N2 > 0.0f) {
-                f10 = Math.max(0.0f, ((((N2 * 0.57735f) + 0.5f) / i10) - 0.5f) / 0.57735f);
+            this.f53530e = width;
+            this.f53531f = height;
+            if (z10) {
+                fVar.f53555w = z11;
+            } else {
+                fVar.f53556x = z11;
             }
-            this.f53552t = f10;
-            RenderNode renderNode = this.f53540g;
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            renderNode.setRenderEffect(RenderEffect.createBlurEffect(f10, f10, tileMode));
-            RenderNode renderNode2 = this.f53541i;
-            float f11 = this.f53552t;
-            renderNode2.setRenderEffect(RenderEffect.createBlurEffect(f11, f11, tileMode));
         }
-        this.f53549q = i11;
+        canvas.save();
+        canvas.scale(5.0f, 5.0f);
+        float f15 = ceil;
+        float f16 = ceil2;
+        int saveLayer = canvas.saveLayer(0.0f, 0.0f, f15, f16, this.f53528b);
+        if (z10) {
+            canvas.drawColor((fVar.H & 16777215) | (-16777216));
+            canvas.save();
+            canvas.scale(0.2f, 0.2f);
+            float f17 = fVar.d;
+            float f18 = bounds.left + f17;
+            float f19 = fVar.f21074e;
+            float f20 = bounds.top + f19;
+            canvas.translate(-f18, -f20);
+            fVar.f53551f.e(canvas, f18, f20, bounds.right + f17, bounds.bottom + f19);
+            canvas.restore();
+            f10 = f15;
+            f11 = f16;
+            canvas.drawRect(0.0f, 0.0f, f10, f11, paint2);
+        } else {
+            f10 = f15;
+            f11 = f16;
+        }
+        canvas.drawRect(0.0f, 0.0f, f10, f11, paint);
+        canvas.restoreToCount(saveLayer);
+        canvas.restore();
     }
 
-    public final void c(ColorMatrixColorFilter colorMatrixColorFilter) {
-        if (this.f53542j != colorMatrixColorFilter) {
-            this.f53542j = colorMatrixColorFilter;
-            RenderNode renderNode = this.h;
-            if (colorMatrixColorFilter == null) {
-                colorMatrixColorFilter = d.v;
-            }
-            renderNode.setRenderEffect(RenderEffect.createColorFilterEffect(colorMatrixColorFilter));
-        }
+    @Override
+    public final boolean d() {
+        return false;
+    }
+
+    @Override
+    public final void e(float f10) {
+        this.f53528b.setAlpha(Math.round(f10 * 255.0f));
+    }
+
+    @Override
+    public final void a(Rect rect, RectF rectF) {
     }
 }

@@ -1,6 +1,6 @@
 package kotlin.jvm.internal;
 
-import b8.ue;
+import c8.sb;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
@@ -9,27 +9,27 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import od.v;
-import od.w;
-public final class e implements sd.c, d {
-    public static final Map f17351b;
-    public static final LinkedHashMap f17352c;
-    public final Class f17353a;
+import rd.v;
+import rd.w;
+public final class e implements vd.c, d {
+    public static final Map f17602b;
+    public static final LinkedHashMap f17603c;
+    public final Class f17604a;
 
     static {
-        int i3 = 0;
-        List c2 = ed.h.c(od.a.class, od.l.class, od.p.class, od.q.class, od.r.class, od.s.class, od.t.class, od.u.class, v.class, w.class, od.b.class, od.c.class, od.d.class, od.e.class, od.f.class, od.g.class, od.h.class, od.i.class, od.j.class, od.k.class, od.m.class, od.n.class, od.o.class);
-        ArrayList arrayList = new ArrayList(ed.i.d(c2, 10));
-        for (Object obj : c2) {
-            int i10 = i3 + 1;
-            if (i3 >= 0) {
-                arrayList.add(new dd.e((Class) obj, Integer.valueOf(i3)));
-                i3 = i10;
+        int i7 = 0;
+        List c10 = hd.g.c(rd.a.class, rd.l.class, rd.p.class, rd.q.class, rd.r.class, rd.s.class, rd.t.class, rd.u.class, v.class, w.class, rd.b.class, rd.c.class, rd.d.class, rd.e.class, rd.f.class, rd.g.class, rd.h.class, rd.i.class, rd.j.class, rd.k.class, rd.m.class, rd.n.class, rd.o.class);
+        ArrayList arrayList = new ArrayList(hd.h.d(c10, 10));
+        for (Object obj : c10) {
+            int i10 = i7 + 1;
+            if (i7 >= 0) {
+                arrayList.add(new gd.e((Class) obj, Integer.valueOf(i7)));
+                i7 = i10;
             } else {
                 throw new ArithmeticException("Index overflow has happened.");
             }
         }
-        f17351b = ed.s.f(arrayList);
+        f17602b = hd.r.f(arrayList);
         HashMap hashMap = new HashMap();
         hashMap.put("boolean", "kotlin.Boolean");
         hashMap.put("char", "kotlin.Char");
@@ -75,38 +75,38 @@ public final class e implements sd.c, d {
         for (String str : values) {
             StringBuilder sb2 = new StringBuilder("kotlin.jvm.internal.");
             j.b(str);
-            sb2.append(ud.d.m(str, str));
+            sb2.append(xd.d.m(str, str));
             sb2.append("CompanionObject");
             hashMap3.put(sb2.toString(), str.concat(".Companion"));
         }
-        for (Map.Entry entry : f17351b.entrySet()) {
+        for (Map.Entry entry : f17602b.entrySet()) {
             int intValue = ((Number) entry.getValue()).intValue();
             String name = ((Class) entry.getKey()).getName();
             hashMap3.put(name, "kotlin.Function" + intValue);
         }
-        LinkedHashMap linkedHashMap = new LinkedHashMap(ed.s.b(hashMap3.size()));
+        LinkedHashMap linkedHashMap = new LinkedHashMap(hd.r.b(hashMap3.size()));
         for (Map.Entry entry2 : hashMap3.entrySet()) {
             Object key = entry2.getKey();
             String str2 = (String) entry2.getValue();
             j.b(str2);
-            linkedHashMap.put(key, ud.d.m(str2, str2));
+            linkedHashMap.put(key, xd.d.m(str2, str2));
         }
-        f17352c = linkedHashMap;
+        f17603c = linkedHashMap;
     }
 
     public e(Class jClass) {
         j.e(jClass, "jClass");
-        this.f17353a = jClass;
+        this.f17604a = jClass;
     }
 
     @Override
     public final Class a() {
-        return this.f17353a;
+        return this.f17604a;
     }
 
     public final String b() {
         String str;
-        Class jClass = this.f17353a;
+        Class jClass = this.f17604a;
         j.e(jClass, "jClass");
         String str2 = null;
         if (jClass.isAnonymousClass()) {
@@ -116,13 +116,13 @@ public final class e implements sd.c, d {
             String simpleName = jClass.getSimpleName();
             Method enclosingMethod = jClass.getEnclosingMethod();
             if (enclosingMethod != null) {
-                return ud.d.l(simpleName, enclosingMethod.getName() + '$', simpleName);
+                return xd.d.l(simpleName, enclosingMethod.getName() + '$', simpleName);
             }
             Constructor<?> enclosingConstructor = jClass.getEnclosingConstructor();
             if (enclosingConstructor != null) {
-                return ud.d.l(simpleName, enclosingConstructor.getName() + '$', simpleName);
+                return xd.d.l(simpleName, enclosingConstructor.getName() + '$', simpleName);
             }
-            int h = ud.d.h('$', 0, 6, simpleName);
+            int h = xd.d.h('$', 0, 6, simpleName);
             if (h == -1) {
                 return simpleName;
             }
@@ -131,7 +131,7 @@ public final class e implements sd.c, d {
             return substring;
         }
         boolean isArray = jClass.isArray();
-        LinkedHashMap linkedHashMap = f17352c;
+        LinkedHashMap linkedHashMap = f17603c;
         if (isArray) {
             Class<?> componentType = jClass.getComponentType();
             if (componentType.isPrimitive() && (str = (String) linkedHashMap.get(componentType.getName())) != null) {
@@ -150,17 +150,17 @@ public final class e implements sd.c, d {
     }
 
     public final boolean equals(Object obj) {
-        if ((obj instanceof e) && ue.a(this).equals(ue.a((sd.c) obj))) {
+        if ((obj instanceof e) && sb.a(this).equals(sb.a((vd.c) obj))) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return ue.a(this).hashCode();
+        return sb.a(this).hashCode();
     }
 
     public final String toString() {
-        return this.f17353a + " (Kotlin reflection is not available)";
+        return this.f17604a + " (Kotlin reflection is not available)";
     }
 }

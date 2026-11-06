@@ -2,9 +2,9 @@ package l;
 
 import android.content.Context;
 public interface x {
-    void b(k kVar, boolean z10);
+    boolean b(m mVar);
 
-    boolean c(m mVar);
+    void c(k kVar, boolean z9);
 
     boolean d();
 

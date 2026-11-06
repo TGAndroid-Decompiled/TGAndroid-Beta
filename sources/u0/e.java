@@ -8,16 +8,16 @@ import androidx.core.widget.NestedScrollView;
 public final class e extends r0.b {
     @Override
     public final void b(View view, AccessibilityEvent accessibilityEvent) {
-        boolean z10;
+        boolean z9;
         super.b(view, accessibilityEvent);
         NestedScrollView nestedScrollView = (NestedScrollView) view;
         accessibilityEvent.setClassName(ScrollView.class.getName());
         if (nestedScrollView.getScrollRange() > 0) {
-            z10 = true;
+            z9 = true;
         } else {
-            z10 = false;
+            z9 = false;
         }
-        accessibilityEvent.setScrollable(z10);
+        accessibilityEvent.setScrollable(z9);
         accessibilityEvent.setScrollX(nestedScrollView.getScrollX());
         accessibilityEvent.setScrollY(nestedScrollView.getScrollY());
         accessibilityEvent.setMaxScrollX(nestedScrollView.getScrollX());
@@ -27,19 +27,19 @@ public final class e extends r0.b {
     @Override
     public final void c(View view, s0.d dVar) {
         int scrollRange;
-        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54570a;
-        this.f53986a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
+        AccessibilityNodeInfo accessibilityNodeInfo = dVar.f54484a;
+        this.f54044a.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
         NestedScrollView nestedScrollView = (NestedScrollView) view;
         dVar.i("android.widget.ScrollView");
         if (nestedScrollView.isEnabled() && (scrollRange = nestedScrollView.getScrollRange()) > 0) {
             accessibilityNodeInfo.setScrollable(true);
             if (nestedScrollView.getScrollY() > 0) {
-                dVar.b(s0.c.f54564e);
-                dVar.b(s0.c.f54565f);
+                dVar.b(s0.c.f54478e);
+                dVar.b(s0.c.f54479f);
             }
             if (nestedScrollView.getScrollY() < scrollRange) {
                 dVar.b(s0.c.d);
-                dVar.b(s0.c.f54566g);
+                dVar.b(s0.c.f54480g);
             }
         }
     }

@@ -1,76 +1,102 @@
 package ch;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.bd;
-import org.telegram.messenger.g0;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Cells.pa;
-import org.telegram.ui.Components.u8;
-import xg.s;
-public final class c extends pa {
-    public final a f4780c0;
-    public TL_stories.PrepaidGiveaway f4781d0;
+import android.graphics.Rect;
+import java.util.ArrayList;
+import org.telegram.messenger.Utilities;
+public final class c {
+    public float f6206a;
+    public float f6207b;
+    public float f6208c;
+    public float d;
+    public float f6209e;
+    public float f6210f;
+    public float f6211g;
+    public float h;
+    public long f6212i;
+    public boolean f6213j;
+    public float f6214k;
+    public final d f6215l;
 
-    public c(Context context) {
-        super(context, 0, 0, false);
-        this.f4780c0 = new a(context);
+    public c(d dVar) {
+        this.f6215l = dVar;
     }
 
-    public TL_stories.PrepaidGiveaway getPrepaidGiveaway() {
-        return this.f4781d0;
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float L;
-        int i3;
-        if (this.T) {
-            if (bd.f21784a0) {
-                L = 0.0f;
-            } else {
-                L = g0.L(70.0f);
+    public final void a() {
+        float f10;
+        d dVar = this.f6215l;
+        boolean z9 = dVar.f6221f;
+        ArrayList arrayList = dVar.f6219c;
+        Rect rect = dVar.f6218b;
+        float f11 = 0.0f;
+        this.h = 0.0f;
+        float b10 = b();
+        float c10 = c();
+        for (int i7 = 0; i7 < 20; i7++) {
+            float b11 = b();
+            float c11 = c();
+            float f12 = 2.1474836E9f;
+            for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                float f13 = ((c) arrayList.get(i10)).f6208c - b11;
+                float f14 = ((c) arrayList.get(i10)).d - c11;
+                float f15 = (f14 * f14) + (f13 * f13);
+                if (f15 < f12) {
+                    f12 = f15;
+                }
             }
-            float f10 = L;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (bd.f21784a0) {
-                i3 = g0.L(70.0f);
-            } else {
-                i3 = 0;
+            if (f12 > f11) {
+                b10 = b11;
+                c10 = c11;
+                f11 = f12;
             }
-            canvas.drawLine(f10, measuredHeight, measuredWidth - i3, getMeasuredHeight() - 1, k6.f28002k0);
         }
+        if (z9) {
+            f10 = 0.8f;
+        } else {
+            f10 = 0.5f;
+        }
+        this.f6208c = b10;
+        if (b10 > rect.width() * f10) {
+            this.f6206a = rect.width() * f10;
+        } else {
+            float width = rect.width() * f10;
+            this.f6206a = width;
+            if (this.f6208c > width) {
+                this.f6208c = width - 0.1f;
+            }
+        }
+        g5.a aVar = Utilities.f21332c;
+        this.f6207b = com.google.android.recaptcha.internal.a.c(Math.abs(((int) aVar.nextLong()) % 100), 100.0f, rect.height() * 0.1f, rect.height() * 0.45f);
+        if (z9) {
+            float c12 = com.google.android.recaptcha.internal.a.c(Math.abs(((int) aVar.nextLong()) % 100), 100.0f, rect.width() * 0.1f, rect.width() * 0.05f);
+            this.f6210f = c12;
+            this.f6211g = (((Math.abs(((int) aVar.nextLong()) % 100) / 100.0f) * 1.5f) + 1.5f) * c12;
+            this.d = com.google.android.recaptcha.internal.a.c(Math.abs(((int) aVar.nextLong()) % 100), 100.0f, rect.height() * 0.1f, this.f6210f / 2.0f);
+            this.f6209e = rect.height() + this.f6210f;
+            this.f6212i = Math.abs(((int) aVar.nextLong()) % 600) + 1000;
+        } else {
+            float c13 = com.google.android.recaptcha.internal.a.c(Math.abs(((int) aVar.nextLong()) % 100), 100.0f, rect.width() * 0.1f, rect.width() * 0.05f);
+            this.f6210f = c13;
+            this.f6211g = (((Math.abs(((int) aVar.nextLong()) % 100) / 100.0f) * 0.5f) + 1.5f) * c13;
+            this.d = c10;
+            this.f6209e = c10 + rect.height();
+            this.f6212i = 1800L;
+        }
+        this.f6212i = ((float) this.f6212i) / 1.75f;
+        this.f6213j = aVar.nextBoolean();
+        this.f6214k = ((((int) aVar.nextLong()) % 100) / 100.0f) * 20.0f;
     }
 
-    public void setImage(TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        this.f4781d0 = prepaidGiveaway;
-        boolean z10 = prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway;
-        u8 u8Var = this.F;
-        if (z10) {
-            u8Var.g(26);
-            String valueOf = String.valueOf(((TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway).stars / 500);
-            a aVar = this.f4780c0;
-            aVar.f4773f = valueOf;
-            aVar.f4772e = aVar.f4769a.measureText(valueOf);
-            aVar.invalidateSelf();
-        } else if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
-            u8Var.g(16);
-            int i3 = ((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months;
-            if (i3 == 12) {
-                u8Var.i(-31392, -2796986);
-            } else if (i3 == 6) {
-                u8Var.i(-10703110, -12481584);
-            } else {
-                u8Var.i(-6631068, -11945404);
-            }
-            String valueOf2 = String.valueOf(s.g() * prepaidGiveaway.quantity);
-            a aVar2 = this.f4780c0;
-            aVar2.f4773f = valueOf2;
-            aVar2.f4772e = aVar2.f4769a.measureText(valueOf2);
-            aVar2.invalidateSelf();
+    public final float b() {
+        d dVar = this.f6215l;
+        Rect rect = dVar.f6218b;
+        if (dVar.f6221f) {
+            float width = rect.width() * 1.5f;
+            return com.google.android.recaptcha.internal.a.c(Math.abs(((int) Utilities.f21332c.nextLong()) % 100), 100.0f, width, rect.width() * (-0.25f));
         }
-        this.f29824b.i(this.f4780c0);
+        return (Math.abs(((int) Utilities.f21332c.nextLong()) % 100) / 100.0f) * rect.width();
+    }
+
+    public final float c() {
+        return (Math.abs(((int) Utilities.f21332c.nextLong()) % 100) / 100.0f) * this.f6215l.f6218b.height() * 0.5f;
     }
 }

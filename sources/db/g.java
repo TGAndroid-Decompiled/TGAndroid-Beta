@@ -1,17 +1,22 @@
 package db;
-public final class g implements ma.d {
-    public static final g f8658a = new Object();
-    public static final ma.c f8659b = ma.c.c("eventType");
-    public static final ma.c f8660c = ma.c.c("sessionData");
-    public static final ma.c d = ma.c.c("applicationInfo");
+
+import android.os.Parcel;
+import android.os.Parcelable;
+import c8.wb;
+public final class g extends r6.a {
+    public static final Parcelable.Creator<g> CREATOR = new w.a(29);
+    public final String f8580a;
+
+    public g(String digitalCredentialPayload) {
+        kotlin.jvm.internal.j.e(digitalCredentialPayload, "digitalCredentialPayload");
+        this.f8580a = digitalCredentialPayload;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        o0 o0Var = (o0) obj;
-        ma.e eVar = (ma.e) obj2;
-        o0Var.getClass();
-        eVar.a(f8659b, m.f8701b);
-        eVar.a(f8660c, o0Var.f8710a);
-        eVar.a(d, o0Var.f8711b);
+    public final void writeToParcel(Parcel dest, int i7) {
+        kotlin.jvm.internal.j.e(dest, "dest");
+        int r10 = wb.r(dest, 20293);
+        wb.l(dest, 1, this.f8580a);
+        wb.s(dest, r10);
     }
 }

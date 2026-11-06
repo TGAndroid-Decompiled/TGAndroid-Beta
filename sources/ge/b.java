@@ -1,53 +1,35 @@
 package ge;
 
-import b8.ib;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import kotlin.jvm.internal.j;
-import v0.c;
-import v0.h;
-import w0.d;
-import wd.m;
-public final class b implements OnCompleteListener, h {
-    public final m f12250a;
+import c8.j1;
+public final class b {
+    public static final b f13837a;
+    public static final b f13838b;
+    public static final b f13839c;
+    public static final b d;
+    public static final b f13840e;
+    public static final b[] f13841f;
 
-    public b(m mVar) {
-        this.f12250a = mVar;
+    static {
+        ?? r02 = new Enum("CPU_ACQUIRED", 0);
+        f13837a = r02;
+        ?? r12 = new Enum("BLOCKING", 1);
+        f13838b = r12;
+        ?? r32 = new Enum("PARKING", 2);
+        f13839c = r32;
+        ?? r52 = new Enum("DORMANT", 3);
+        d = r52;
+        ?? r72 = new Enum("TERMINATED", 4);
+        f13840e = r72;
+        b[] bVarArr = {r02, r12, r32, r52, r72};
+        f13841f = bVarArr;
+        j1.a(bVarArr);
     }
 
-    @Override
-    public void a(Object obj) {
-        d e10 = (d) obj;
-        j.e(e10, "e");
-        m mVar = this.f12250a;
-        if (mVar.w()) {
-            mVar.resumeWith(ib.a(e10));
-        }
+    public static b valueOf(String str) {
+        return (b) Enum.valueOf(b.class, str);
     }
 
-    @Override
-    public void onComplete(Task task) {
-        Exception exception = task.getException();
-        m mVar = this.f12250a;
-        if (exception == null) {
-            if (task.isCanceled()) {
-                mVar.n(null);
-                return;
-            } else {
-                mVar.resumeWith(task.getResult());
-                return;
-            }
-        }
-        mVar.resumeWith(ib.a(exception));
-    }
-
-    @Override
-    public void onResult(Object obj) {
-        c result = (c) obj;
-        j.e(result, "result");
-        m mVar = this.f12250a;
-        if (mVar.w()) {
-            mVar.resumeWith(result);
-        }
+    public static b[] values() {
+        return (b[]) f13841f.clone();
     }
 }

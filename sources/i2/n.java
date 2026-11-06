@@ -1,109 +1,44 @@
 package i2;
-
-import android.net.Uri;
-import b8.zb;
-import d2.o0;
-import j$.util.DesugarCollections;
-import java.util.HashMap;
-import java.util.Map;
 public final class n {
-    public static final int f14563i = 0;
-    public final Uri f14564a;
-    public final int f14565b;
-    public final byte[] f14566c;
-    public final Map d;
-    public final long f14567e;
-    public final long f14568f;
-    public final String f14569g;
+    public final int f15185a;
+    public final int f15186b;
+    public final int f15187c;
+    public final int d;
+    public final int f15188e;
+    public final int f15189f;
+    public final float f15190g;
     public final int h;
+    public final int f15191i;
+    public final boolean f15192j;
+    public final boolean f15193k;
+    public final int f15194l;
+    public final int f15195m;
+    public final int f15196n;
+    public final boolean f15197o;
+    public final int f15198p;
+    public final int f15199q;
+    public final int f15200r;
+    public final int f15201s;
 
-    static {
-        o0.a("media3.datasource");
-    }
-
-    public n(Uri uri, int i3, byte[] bArr, Map map, long j10, long j11, String str, int i10) {
-        boolean z10;
-        boolean z11;
-        boolean z12 = false;
-        if (j10 >= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        zb.f(z10);
-        if (j10 >= 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        zb.f(z11);
-        zb.f((j11 > 0 || j11 == -1) ? true : z12);
-        uri.getClass();
-        this.f14564a = uri;
-        this.f14565b = i3;
-        this.f14566c = (bArr == null || bArr.length == 0) ? null : null;
-        this.d = DesugarCollections.unmodifiableMap(new HashMap(map));
-        this.f14567e = j10;
-        this.f14568f = j11;
-        this.f14569g = str;
-        this.h = i10;
-    }
-
-    public final m a() {
-        ?? obj = new Object();
-        obj.f14560e = this.f14564a;
-        obj.f14557a = this.f14565b;
-        obj.f14561f = this.f14566c;
-        obj.f14562g = this.d;
-        obj.f14558b = this.f14567e;
-        obj.d = this.f14568f;
-        obj.h = this.f14569g;
-        obj.f14559c = this.h;
-        return obj;
-    }
-
-    public final n b(long j10) {
-        long j11 = this.f14568f;
-        long j12 = -1;
-        if (j11 != -1) {
-            j12 = j11 - j10;
-        }
-        long j13 = j12;
-        if (j10 == 0 && j11 == j13) {
-            return this;
-        }
-        String str = this.f14569g;
-        int i3 = this.h;
-        return new n(this.f14564a, this.f14565b, this.f14566c, this.d, this.f14567e + j10, j13, str, i3);
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("DataSpec[");
-        int i3 = this.f14565b;
-        if (i3 != 1) {
-            if (i3 != 2) {
-                if (i3 == 3) {
-                    str = "HEAD";
-                } else {
-                    throw new IllegalStateException();
-                }
-            } else {
-                str = "POST";
-            }
-        } else {
-            str = "GET";
-        }
-        sb2.append(str);
-        sb2.append(" ");
-        sb2.append(this.f14564a);
-        sb2.append(", ");
-        sb2.append(this.f14567e);
-        sb2.append(", ");
-        sb2.append(this.f14568f);
-        sb2.append(", ");
-        sb2.append(this.f14569g);
-        sb2.append(", ");
-        return a1.g.o(this.h, "]", sb2);
+    public n(int i7, int i10, int i11, int i12, int i13, int i14, float f10, int i15, int i16, boolean z9, boolean z10, int i17, int i18, int i19, boolean z11, int i20, int i21, int i22, int i23) {
+        this.f15185a = i7;
+        this.f15186b = i10;
+        this.f15187c = i11;
+        this.d = i12;
+        this.f15188e = i13;
+        this.f15189f = i14;
+        this.f15190g = f10;
+        this.h = i15;
+        this.f15191i = i16;
+        this.f15192j = z9;
+        this.f15193k = z10;
+        this.f15194l = i17;
+        this.f15195m = i18;
+        this.f15196n = i19;
+        this.f15197o = z11;
+        this.f15198p = i20;
+        this.f15199q = i21;
+        this.f15200r = i22;
+        this.f15201s = i23;
     }
 }

@@ -1,84 +1,50 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public abstract class ti0 extends sj0 {
-    public boolean f38421c;
-    public boolean d;
-    public ArrayList f38422e;
-    public ArrayList f38423f;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class ti0 extends Drawable {
+    public final Paint f38350a = new Paint(1);
+    public final View f38351b;
+    public final Path f38352c;
+    public final RectF d;
+    public final pj0 f38353e;
 
-    public final void E() {
-        this.f38421c = false;
-        if (!this.d && this.f38422e.isEmpty() && this.f38423f.isEmpty()) {
-            return;
-        }
-        ((org.telegram.ui.fl) this).O(false);
+    public ti0(pj0 pj0Var, View view, Path path, RectF rectF) {
+        this.f38353e = pj0Var;
+        this.f38351b = view;
+        this.f38352c = path;
+        this.d = rectF;
     }
 
     @Override
-    public void f() {
-        if (!this.f38421c) {
-            super.f();
-        } else {
-            this.d = true;
-        }
+    public final void draw(Canvas canvas) {
+        canvas.save();
+        View view = this.f38351b;
+        canvas.translate(-view.getX(), -view.getY());
+        canvas.clipPath(this.f38352c);
+        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27848d6, this.f38353e.f37060n2);
+        Paint paint = this.f38350a;
+        paint.setColor(i0.a.o(w02, paint.getAlpha()));
+        canvas.drawRect(this.d, paint);
+        canvas.restore();
     }
 
     @Override
-    public void g(int i3) {
-        if (!this.f38421c) {
-            super.g(i3);
-        }
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public void i(int i3) {
-        ArrayList arrayList = this.f38422e;
-        if (!this.f38421c) {
-            super.i(i3);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i3));
-        arrayList.add(1);
+    public final void setAlpha(int i7) {
+        this.f38350a.setAlpha(i7);
     }
 
     @Override
-    public void k(int i3, int i10) {
-        if (!this.f38421c) {
-            super.k(i3, i10);
-        }
-    }
-
-    @Override
-    public void o(int i3, int i10) {
-        ArrayList arrayList = this.f38422e;
-        if (!this.f38421c) {
-            super.o(i3, i10);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i3));
-        arrayList.add(Integer.valueOf(i10));
-    }
-
-    @Override
-    public void p(int i3, int i10) {
-        ArrayList arrayList = this.f38423f;
-        if (!this.f38421c) {
-            super.p(i3, i10);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i3));
-        arrayList.add(Integer.valueOf(i10));
-    }
-
-    @Override
-    public void s(int i3) {
-        ArrayList arrayList = this.f38423f;
-        if (!this.f38421c) {
-            super.s(i3);
-            return;
-        }
-        arrayList.add(Integer.valueOf(i3));
-        arrayList.add(1);
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

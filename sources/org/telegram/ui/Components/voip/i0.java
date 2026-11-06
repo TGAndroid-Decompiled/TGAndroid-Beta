@@ -1,40 +1,78 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-import android.view.GestureDetector;
-import android.view.MotionEvent;
-import org.telegram.ui.sb1;
-public final class i0 extends GestureDetector.SimpleOnGestureListener {
-    public boolean f39402a;
-    public boolean f39403b;
-    public final sb1 f39404c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class i0 extends AnimatorListenerAdapter {
+    public final int f39199a;
+    public final y f39200b;
+    public final k0 f39201c;
 
-    public i0(sb1 sb1Var) {
-        this.f39404c = sb1Var;
+    public i0(k0 k0Var, y yVar, int i7) {
+        this.f39199a = i7;
+        this.f39201c = k0Var;
+        this.f39200b = yVar;
     }
 
     @Override
-    public final boolean onDown(MotionEvent motionEvent) {
-        this.f39402a = true;
-        return super.onDown(motionEvent);
-    }
-
-    @Override
-    public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f10, float f11) {
-        float x10 = motionEvent.getX() - motionEvent2.getX();
-        float y9 = motionEvent.getY() - motionEvent2.getY();
-        if (Math.abs(x10) > org.telegram.messenger.g0.a1(true, 0.4f) && Math.abs(x10) / 3.0f > y9 && this.f39402a && !this.f39403b) {
-            this.f39402a = false;
-            org.telegram.ui.c0 c0Var = new org.telegram.ui.c0(this, x10, 2);
-            sb1 sb1Var = this.f39404c;
-            ValueAnimator valueAnimator = sb1Var.V;
-            if (valueAnimator != null) {
-                this.f39403b = true;
-                org.telegram.messenger.g0.i3(c0Var, (valueAnimator.getDuration() - sb1Var.V.getCurrentPlayTime()) + 50);
-            } else {
-                c0Var.run();
-            }
+    public final void onAnimationEnd(Animator animator) {
+        float f10;
+        switch (this.f39199a) {
+            case 0:
+                k0 k0Var = this.f39201c;
+                k0Var.N0 = null;
+                this.f39200b.E = false;
+                y yVar = k0Var.E;
+                if (yVar != null) {
+                    if (yVar.getParent() != null) {
+                        k0Var.removeView(k0Var.E);
+                        k0Var.E.e();
+                    }
+                    k0Var.E = null;
+                    return;
+                }
+                return;
+            case 1:
+                k0 k0Var2 = this.f39201c;
+                k0Var2.f39271y.e();
+                k0Var2.f39260r = null;
+                this.f39200b.f39594r = false;
+                if (!k0Var2.f39240b) {
+                    k0Var2.d();
+                    k0Var2.D = null;
+                    k0Var2.d = 0L;
+                }
+                if (k0Var2.f39240b) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                k0Var2.f39242c = f10;
+                k0Var2.l();
+                k0Var2.i(false);
+                if (!k0Var2.f39240b) {
+                    k0Var2.f39253k0.setVisibility(8);
+                    k0Var2.f39254l0.setVisibility(8);
+                    k0Var2.f39246e0.setVisibility(8);
+                    k0Var2.f39248f0.setVisibility(8);
+                    return;
+                }
+                return;
+            case 2:
+                y yVar2 = this.f39200b;
+                if (yVar2.getParent() != null) {
+                    this.f39201c.removeView(yVar2);
+                    yVar2.e();
+                    return;
+                }
+                return;
+            default:
+                y yVar3 = this.f39200b;
+                if (yVar3.getParent() != null) {
+                    this.f39201c.removeView(yVar3);
+                    yVar3.e();
+                    return;
+                }
+                return;
         }
-        return super.onScroll(motionEvent, motionEvent2, f10, f11);
     }
 }

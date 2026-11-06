@@ -1,55 +1,63 @@
 package kh;
 
-import android.graphics.RectF;
-import java.util.HashSet;
-import org.telegram.messenger.hp;
-import org.telegram.messenger.n10;
-import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lr;
-public final class b implements n10 {
-    public final int f17255a;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import c8.ha;
+import org.telegram.messenger.g0;
+import org.telegram.ui.ActionBar.f6;
+import org.telegram.ui.Components.cp;
+import org.telegram.ui.Components.cq;
+public final class b extends FrameLayout {
+    public final f6 f17595a;
+    public a f17596b;
+    public cq f17597c;
+    public boolean d;
 
-    public b(int i3) {
-        this.f17255a = i3;
+    public b(Context context, f6 f6Var) {
+        super(context);
+        this.f17595a = f6Var;
+    }
+
+    public final void a(int i7, boolean z9) {
+        if (this.f17597c == null) {
+            cq cqVar = new cq(getContext(), this.f17595a);
+            this.f17597c = cqVar;
+            cqVar.setReverse(this.d);
+            addView(this.f17597c, ha.e(-1, 28, 48));
+        }
+        this.f17597c.f32641a.c(i7, z9);
+    }
+
+    public final void b(boolean z9, boolean z10) {
+        super.setEnabled(z9);
+        this.f17596b.e(z9, z10);
+    }
+
+    public final void c(boolean z9, boolean z10) {
+        a aVar = this.f17596b;
+        if (aVar.d == null) {
+            if (!z9) {
+                return;
+            }
+            cp cpVar = new cp(g0.L(18.0f), g0.L(1.7f), -9079435);
+            aVar.f17591e = cpVar;
+            cpVar.f32635f = 90.0f;
+            ImageView imageView = new ImageView(aVar.getContext());
+            aVar.d = imageView;
+            imageView.setBackground(aVar.f17591e);
+            aVar.d.setVisibility(8);
+            aVar.addView(aVar.d, ha.e(46, 46, 17));
+        }
+        te.a aVar2 = aVar.f17588a;
+        if (!aVar2.f55371f && aVar2.f55370e == 0.0f) {
+            aVar.f17591e.f32633c = -1L;
+        }
+        aVar2.a(z9, z10);
     }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        switch (this.f17255a) {
-            case 0:
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                RectF rectF = e.I;
-                return;
-            case 1:
-                TLRPC.Bool bool2 = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                return;
-            case 2:
-                TLRPC.Updates updates = (TLRPC.Updates) obj;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                int i3 = hp.C8;
-                return;
-            case 3:
-                TLRPC.Bool bool3 = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
-                int i10 = hp.C8;
-                return;
-            case 4:
-                TLRPC.Bool bool4 = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
-                int i11 = lr.A2;
-                return;
-            default:
-                Boolean bool5 = (Boolean) obj;
-                HashSet<Long> hashSet = (HashSet) obj2;
-                VoIPService sharedInstance = VoIPService.getSharedInstance();
-                if (sharedInstance != null) {
-                    sharedInstance.convertToConferenceCall(bool5.booleanValue(), hashSet);
-                    return;
-                }
-                return;
-        }
+    public void setEnabled(boolean z9) {
+        b(z9, false);
     }
 }

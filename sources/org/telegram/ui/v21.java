@@ -1,9 +1,8 @@
 package org.telegram.ui;
+public final class v21 {
+    public final SessionsActivity f50558a;
 
-import android.view.MotionEvent;
-public final class v21 extends org.telegram.ui.Components.zf0 {
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        return false;
+    public v21(SessionsActivity sessionsActivity) {
+        this.f50558a = sessionsActivity;
     }
 }

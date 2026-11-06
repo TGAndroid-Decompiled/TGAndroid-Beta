@@ -1,12 +1,30 @@
 package wb;
 
-import androidx.lifecycle.b0;
-import androidx.lifecycle.m;
-import androidx.lifecycle.s;
-import com.google.android.gms.common.api.n;
-import java.io.Closeable;
-public interface c extends Closeable, s, n {
-    @Override
-    @b0(m.ON_DESTROY)
-    void close();
+import java.util.Arrays;
+import q6.m;
+import r1.f;
+public abstract class c {
+    public final float f57524a;
+
+    public c(f fVar) {
+        this.f57524a = fVar.f54132a;
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (!(obj instanceof c)) {
+            return false;
+        }
+        c cVar = (c) obj;
+        if (getClass().equals(cVar.getClass()) && Float.compare(this.f57524a, cVar.f57524a) == 0 && m.k(null, null)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{getClass(), Float.valueOf(this.f57524a), null});
+    }
 }

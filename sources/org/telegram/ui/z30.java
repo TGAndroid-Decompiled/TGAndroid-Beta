@@ -1,186 +1,437 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.drawable.ShapeDrawable;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.os.SystemClock;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-import j$.util.Collection;
-import j$.util.function.Predicate$CC;
-import j$.util.stream.Collectors;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
-import org.telegram.messenger.voip.ConferenceCall;
+import java.util.Locale;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public abstract class z30 {
-    public static void a(org.telegram.ui.ActionBar.s1 s1Var, sf.b bVar, TLObject tLObject, final int i3, Context context, TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug, TLRPC.TL_error tL_error) {
-        org.telegram.ui.ActionBar.d2 T;
-        ConferenceCall conferenceCall;
-        TLRPC.GroupCall groupCall;
-        LaunchActivity launchActivity;
-        if (s1Var != null) {
-            s1Var.dismiss();
+public final class z30 extends FrameLayout {
+    public final RectF D;
+    public int E;
+    public int F;
+    public float G;
+    public long H;
+    public final float[] I;
+    public boolean J;
+    public final c40 K;
+    public final org.telegram.ui.Components.ch0 f52449a;
+    public final TextView f52450b;
+    public final TLRPC.GroupCallParticipant f52451c;
+    public final org.telegram.ui.Components.zg0 d;
+    public boolean f52452e;
+    public float f52453f;
+    public float h;
+    public int f52454n;
+    public double f52455r;
+    public final Paint f52456s;
+    public final Paint f52457w;
+    public final Path f52458x;
+    public final float[] f52459y;
+
+    public z30(c40 c40Var, Context context, TLRPC.GroupCallParticipant groupCallParticipant) {
+        super(context);
+        Integer num;
+        int i7;
+        int i10;
+        int L;
+        int i11;
+        int i12;
+        this.K = c40Var;
+        this.f52456s = new Paint(1);
+        Paint paint = new Paint(1);
+        this.f52457w = paint;
+        this.f52458x = new Path();
+        this.f52459y = new float[8];
+        this.D = new RectF();
+        this.I = new float[3];
+        setWillNotDraw(false);
+        this.f52451c = groupCallParticipant;
+        this.f52455r = org.telegram.messenger.t3.H(groupCallParticipant) / 20000.0f;
+        this.G = 1.0f;
+        setPadding(org.telegram.messenger.g0.L(12.0f), 0, org.telegram.messenger.g0.L(12.0f), 0);
+        org.telegram.ui.Components.zg0 zg0Var = new org.telegram.ui.Components.zg0(2131624204, org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(24.0f), true, null);
+        this.d = zg0Var;
+        ?? imageView = new ImageView(context);
+        this.f52449a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setAnimation(zg0Var);
+        if (this.f52455r == 0.0d) {
+            num = 1;
+        } else {
+            num = null;
         }
-        if (bVar != null) {
-            bVar.b();
+        imageView.setTag(num);
+        if (org.telegram.messenger.hd.f22871a0) {
+            i7 = 5;
+        } else {
+            i7 = 3;
         }
-        if (tLObject instanceof TL_phone.groupCall) {
-            TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
-            org.telegram.messenger.hp.s1(i3).Y3(groupcall.users, false);
-            org.telegram.messenger.hp.s1(i3).S3(groupcall.chats, false);
-            if (VoIPService.getSharedInstance() != null && (conferenceCall = VoIPService.getSharedInstance().conference) != null && (groupCall = conferenceCall.groupCall) != null && groupcall.call.f27011id == groupCall.f27011id && (launchActivity = LaunchActivity.K1) != null) {
-                x30.e1(launchActivity, org.telegram.messenger.c.a(VoIPService.getSharedInstance().getAccount()), null, null, false, null);
+        addView((View) imageView, c8.ha.d(-2, 40.0f, i7 | 16, 0.0f, 0.0f, 0.0f, 0.0f));
+        if (this.f52455r == 0.0d) {
+            i10 = 17;
+        } else {
+            i10 = 34;
+        }
+        zg0Var.P(i10);
+        zg0Var.N(zg0Var.f40933f - 1, false, true);
+        TextView textView = new TextView(context);
+        this.f52450b = textView;
+        textView.setLines(1);
+        textView.setSingleLine(true);
+        textView.setGravity(3);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.Vg, null);
+        textView.setTextSize(1, 16.0f);
+        double H = org.telegram.messenger.t3.H(groupCallParticipant) / 100.0d;
+        Locale locale = Locale.US;
+        double max = H > 0.0d ? Math.max(H, 1.0d) : 0.0d;
+        textView.setText(((int) max) + "%");
+        if (org.telegram.messenger.hd.f22871a0) {
+            L = 0;
+        } else {
+            L = org.telegram.messenger.g0.L(43.0f);
+        }
+        if (org.telegram.messenger.hd.f22871a0) {
+            i11 = org.telegram.messenger.g0.L(43.0f);
+        } else {
+            i11 = 0;
+        }
+        textView.setPadding(L, 0, i11, 0);
+        addView(textView, c8.ha.e(-2, -2, (org.telegram.messenger.hd.f22871a0 ? 5 : 3) | 16));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setColor(-1);
+        int H2 = (int) (org.telegram.messenger.t3.H(groupCallParticipant) / 100.0d);
+        int i13 = 0;
+        while (true) {
+            float[] fArr = this.I;
+            if (i13 < fArr.length) {
+                if (i13 == 0) {
+                    i12 = 0;
+                } else if (i13 == 1) {
+                    i12 = 50;
+                } else {
+                    i12 = 150;
+                }
+                if (H2 > i12) {
+                    fArr[i13] = 1.0f;
+                } else {
+                    fArr[i13] = 0.0f;
+                }
+                i13++;
+            } else {
                 return;
             }
-            ArrayList<TLRPC.GroupCallParticipant> arrayList = groupcall.participants;
-            ei.b bVar2 = new ei.b();
-            org.telegram.ui.ActionBar.t2 t2Var = new org.telegram.ui.ActionBar.t2(1, context, (org.telegram.ui.ActionBar.e6) bVar2, false);
-            t2Var.N();
-            LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
-            f10.setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(8.0f));
-            FrameLayout frameLayout = new FrameLayout(context);
-            int L = org.telegram.messenger.g0.L(80.0f);
-            int i10 = org.telegram.ui.ActionBar.k6.Ci;
-            ShapeDrawable L2 = org.telegram.ui.ActionBar.k6.L(L, org.telegram.ui.ActionBar.k6.w0(i10, bVar2));
-            org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i10);
-            frameLayout.setBackground(L2);
-            org.telegram.ui.ActionBar.r6.k(frameLayout, L2, N, null, bVar2);
-            frameLayout.addView(org.telegram.messenger.camera.q.e(context, 2131231091), b8.mf.e(56, 56, 17));
-            f10.addView(frameLayout, b8.mf.t(80, 80, 1, 2, 21, 2, 13));
-            int i11 = org.telegram.ui.ActionBar.k6.G6;
-            org.telegram.ui.Components.s70 a10 = b8.rf.a(context, 20.0f, i11, true, bVar2);
-            a10.setText(org.telegram.messenger.bd.M0(2131749470, null));
-            a10.setGravity(17);
-            f10.addView(a10, b8.mf.t(-1, -2, 1, 2, 0, 2, 4));
-            List list = (List) Collection.EL.stream(arrayList).map(new fa.b(12)).filter(new Predicate() {
-                public Predicate and(Predicate predicate) {
-                    return Predicate$CC.$default$and(this, predicate);
-                }
-
-                public Predicate negate() {
-                    return Predicate$CC.$default$negate(this);
-                }
-
-                public Predicate or(Predicate predicate) {
-                    return Predicate$CC.$default$or(this, predicate);
-                }
-
-                @Override
-                public final boolean test(Object obj) {
-                    Long l10 = (Long) obj;
-                    if (l10.longValue() != org.telegram.messenger.h10.i(i3).e() && l10.longValue() != 0) {
-                        return true;
-                    }
-                    return false;
-                }
-            }).collect(Collectors.toList());
-            boolean isEmpty = list.isEmpty();
-            org.telegram.ui.Components.s70 a11 = b8.rf.a(context, 14.0f, i11, false, bVar2);
-            a11.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.bd.M0(2131749476, null)));
-            a11.setGravity(17);
-            a11.setMaxWidth(gi.l3.a(a11.getText(), a11.getPaint()));
-            f10.addView(a11, b8.mf.t(-1, -2, 1, 2, 0, 2, 23));
-            if (!isEmpty) {
-                View view = new View(context);
-                view.setBackgroundColor(-14012362);
-                f10.addView(view, b8.mf.n(0.66f, -1, 7, 0, 0, 0, 0));
-                org.telegram.ui.Components.x8 x8Var = new org.telegram.ui.Components.x8(context, false);
-                x8Var.setCentered(true);
-                x8Var.setSize(org.telegram.messenger.g0.L(38.0f));
-                int min = Math.min(3, list.size());
-                x8Var.setCount(min);
-                for (int i12 = 0; i12 < min; i12++) {
-                    x8Var.b(i12, i3, org.telegram.messenger.hp.s1(i3).a2((Long) list.get(i12)));
-                }
-                x8Var.a(false);
-                f10.addView(x8Var, b8.mf.k(2.0f, 11.0f, 5.0f, 0.0f, -1, 58));
-                org.telegram.ui.Components.s70 a12 = b8.rf.a(context, 14.0f, org.telegram.ui.ActionBar.k6.G6, false, bVar2);
-                a12.setGravity(17);
-                if (list.size() == 1) {
-                    a12.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.bd.a0(null, null, 2131749472, org.telegram.messenger.m5.s(i3, ((Long) list.get(0)).longValue()))));
-                } else if (list.size() == 2) {
-                    a12.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.bd.a0(null, null, 2131749471, org.telegram.messenger.m5.s(i3, ((Long) list.get(0)).longValue()), org.telegram.messenger.m5.s(i3, ((Long) list.get(1)).longValue()))));
-                } else {
-                    a12.setText(org.telegram.messenger.g0.X2(org.telegram.messenger.bd.K("GroupCallLinkText2Many", arrayList.size() - 2, ',', org.telegram.messenger.m5.s(i3, ((Long) list.get(0)).longValue()), org.telegram.messenger.m5.s(i3, ((Long) list.get(1)).longValue()))));
-                }
-                a12.setMaxWidth(gi.l3.a(a12.getText(), a12.getPaint()));
-                f10.addView(a12, b8.mf.t(-1, -2, 1, 2, 0, 2, 25));
-            }
-            LinearLayout linearLayout = new LinearLayout(context);
-            linearLayout.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f));
-            linearLayout.setClipToPadding(false);
-            linearLayout.setOrientation(0);
-            int i13 = org.telegram.ui.ActionBar.k6.f27972i6;
-            org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.w0(i13, bVar2), 20, 20);
-            org.telegram.ui.ActionBar.n6 N2 = org.telegram.ui.ActionBar.r6.N(i13);
-            linearLayout.setBackground(a02);
-            org.telegram.ui.ActionBar.r6.k(linearLayout, a02, null, N2, bVar2);
-            org.telegram.ui.Components.wo woVar = new org.telegram.ui.Components.wo(24, context, bVar2);
-            woVar.b(org.telegram.ui.ActionBar.k6.h7, org.telegram.ui.ActionBar.k6.f27990j7, org.telegram.ui.ActionBar.k6.f28008k7);
-            woVar.setDrawUnchecked(true);
-            woVar.a(org.telegram.messenger.hp.e1().getBoolean("callmiconstart", true), false);
-            woVar.setDrawBackgroundAsArc(10);
-            linearLayout.addView(woVar, b8.mf.t(26, 26, 16, 0, 0, 0, 0));
-            TextView textView = new TextView(context);
-            org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27988j5, bVar2);
-            k2.p1.u(textView, 1, 14.0f, null, 2131749477);
-            linearLayout.addView(textView, b8.mf.t(-2, -2, 16, 9, 0, 0, 0));
-            f10.addView(linearLayout, b8.mf.t(-2, 38, 1, 0, 4, 0, 12));
-            b8.pf.b(linearLayout, 0.025f, 1.5f);
-            linearLayout.setOnClickListener(new a(woVar, 29));
-            gi.d dVar = new gi.d(context, bVar2, true);
-            dVar.setRoundRadius(24);
-            dVar.i(org.telegram.messenger.bd.M0(2131749478, null), false, true);
-            f10.addView(dVar, b8.mf.k(2.0f, 0.0f, 2.0f, 0.0f, -1, 48));
-            t2Var.O = f10;
-            dVar.setOnClickListener(new org.telegram.ui.Components.un(t2Var, context, woVar, i3, tL_inputGroupCallSlug, 1));
-            t2Var.N();
-            t2Var.show();
-        } else if (tL_error != null && "GROUPCALL_INVALID".equalsIgnoreCase(tL_error.text)) {
-            org.telegram.ui.ActionBar.d2 T2 = LaunchActivity.T();
-            if (T2 != null) {
-                org.telegram.messenger.k5.o(null, 2131748909, org.telegram.ui.Components.fc.a0(T2), 2131624011, 36);
-            }
-        } else if (tL_error != null && (T = LaunchActivity.T()) != null) {
-            org.telegram.ui.Components.fc.a0(T).f0(tL_error, false);
         }
     }
 
-    public static void b(Activity activity, int i3, String str, sf.b bVar) {
-        org.telegram.ui.ActionBar.s1 s1Var;
-        ConferenceCall conferenceCall;
-        LaunchActivity launchActivity;
-        TLRPC.TL_inputGroupCallSlug tL_inputGroupCallSlug = new TLRPC.TL_inputGroupCallSlug();
-        tL_inputGroupCallSlug.slug = str;
-        if (VoIPService.getSharedInstance() != null && (conferenceCall = VoIPService.getSharedInstance().conference) != null) {
-            TLRPC.InputGroupCall inputGroupCall = conferenceCall.inputGroupCall;
-            if ((inputGroupCall instanceof TLRPC.TL_inputGroupCallSlug) && TextUtils.equals(inputGroupCall.slug, tL_inputGroupCallSlug.slug) && (launchActivity = LaunchActivity.K1) != null) {
-                x30.e1(launchActivity, org.telegram.messenger.c.a(VoIPService.getSharedInstance().getAccount()), null, null, false, null);
+    public final void a(double d, boolean z9) {
+        double d2;
+        int i7;
+        TLObject M0;
+        int i10;
+        c40 c40Var = this.K;
+        org.telegram.messenger.c cVar = c40Var.f44565k1;
+        if (VoIPService.getSharedInstance() != null) {
+            this.f52455r = d;
+            TLRPC.GroupCallParticipant groupCallParticipant = this.f52451c;
+            groupCallParticipant.volume = (int) (d * 20000.0d);
+            int i11 = 0;
+            groupCallParticipant.volume_by_admin = false;
+            groupCallParticipant.flags |= 128;
+            double H = org.telegram.messenger.t3.H(groupCallParticipant) / 100.0d;
+            Locale locale = Locale.US;
+            if (H > 0.0d) {
+                d2 = Math.max(H, 1.0d);
+            } else {
+                d2 = 0.0d;
+            }
+            this.f52450b.setText(((int) d2) + "%");
+            VoIPService.getSharedInstance().setParticipantVolume(groupCallParticipant, groupCallParticipant.volume);
+            Integer num = null;
+            if (z9) {
+                long C1 = org.telegram.messenger.ij.C1(groupCallParticipant.peer);
+                if (C1 > 0) {
+                    M0 = org.telegram.messenger.qp.s1(cVar.f21723a).a2(Long.valueOf(C1));
+                } else {
+                    M0 = org.telegram.messenger.qp.s1(cVar.f21723a).M0(Long.valueOf(-C1));
+                }
+                TLObject tLObject = M0;
+                if (groupCallParticipant.volume == 0) {
+                    e30 e30Var = c40Var.W4;
+                    if (e30Var != null) {
+                        e30Var.dismiss();
+                        c40Var.W4 = null;
+                    }
+                    c40Var.f1(true);
+                    if (c40Var.S0()) {
+                        i10 = 0;
+                    } else {
+                        i10 = 5;
+                    }
+                    c40Var.C1(groupCallParticipant, C1, i10);
+                } else {
+                    VoIPService.getSharedInstance().editCallMember(tLObject, null, null, Integer.valueOf(groupCallParticipant.volume), null, null);
+                }
+            }
+            if (this.f52455r == 0.0d) {
+                num = 1;
+            }
+            org.telegram.ui.Components.ch0 ch0Var = this.f52449a;
+            if ((ch0Var.getTag() == null && num != null) || (ch0Var.getTag() != null && num == null)) {
+                if (this.f52455r == 0.0d) {
+                    i7 = 17;
+                } else {
+                    i7 = 34;
+                }
+                org.telegram.ui.Components.zg0 zg0Var = this.d;
+                zg0Var.P(i7);
+                if (this.f52455r != 0.0d) {
+                    i11 = 17;
+                }
+                zg0Var.M(i11);
+                zg0Var.start();
+                ch0Var.setTag(num);
+            }
+        }
+    }
+
+    public final boolean b(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            this.f52453f = motionEvent.getX();
+            this.h = motionEvent.getY();
+            return true;
+        }
+        if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+            if (motionEvent.getAction() == 2) {
+                if (!this.f52452e) {
+                    ViewConfiguration viewConfiguration = ViewConfiguration.get(getContext());
+                    if (Math.abs(motionEvent.getY() - this.h) <= viewConfiguration.getScaledTouchSlop() && Math.abs(motionEvent.getX() - this.f52453f) > viewConfiguration.getScaledTouchSlop()) {
+                        this.f52452e = true;
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                        if (motionEvent.getY() >= 0.0f && motionEvent.getY() <= getMeasuredHeight()) {
+                            int x10 = (int) motionEvent.getX();
+                            this.f52454n = x10;
+                            if (x10 < 0) {
+                                this.f52454n = 0;
+                            } else if (x10 > getMeasuredWidth()) {
+                                this.f52454n = getMeasuredWidth();
+                            }
+                            this.J = true;
+                            invalidate();
+                            return true;
+                        }
+                    }
+                } else if (this.J) {
+                    int x11 = (int) motionEvent.getX();
+                    this.f52454n = x11;
+                    if (x11 < 0) {
+                        this.f52454n = 0;
+                    } else if (x11 > getMeasuredWidth()) {
+                        this.f52454n = getMeasuredWidth();
+                    }
+                    a(this.f52454n / getMeasuredWidth(), false);
+                    invalidate();
+                    return true;
+                }
+            }
+        } else {
+            this.f52452e = false;
+            if (motionEvent.getAction() == 1) {
+                if (Math.abs(motionEvent.getY() - this.h) < ViewConfiguration.get(getContext()).getScaledTouchSlop()) {
+                    int x12 = (int) motionEvent.getX();
+                    this.f52454n = x12;
+                    if (x12 < 0) {
+                        this.f52454n = 0;
+                    } else if (x12 > getMeasuredWidth()) {
+                        this.f52454n = getMeasuredWidth();
+                    }
+                    this.J = true;
+                }
+            }
+            if (this.J) {
+                if (motionEvent.getAction() == 1) {
+                    a(this.f52454n / getMeasuredWidth(), true);
+                }
+                this.J = false;
+                invalidate();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i7;
+        float f10;
+        float L;
+        int i10;
+        float f11;
+        int i11;
+        z30 z30Var = this;
+        int i12 = z30Var.E;
+        double d = z30Var.f52455r;
+        if (d < 0.25d) {
+            z30Var.E = -3385513;
+        } else if (d > 0.25d && d < 0.5d) {
+            z30Var.E = -3562181;
+        } else if (d >= 0.5d && d <= 0.75d) {
+            z30Var.E = -11027349;
+        } else {
+            z30Var.E = -11688225;
+        }
+        float f12 = 0.0f;
+        float f13 = 1.0f;
+        if (i12 == 0) {
+            i7 = z30Var.E;
+            z30Var.G = 1.0f;
+        } else {
+            int S0 = org.telegram.messenger.g0.S0(z30Var.G, 1.0f, z30Var.F, i12);
+            if (i12 != z30Var.E) {
+                z30Var.G = 0.0f;
+                z30Var.F = S0;
+            }
+            i7 = S0;
+        }
+        Paint paint = z30Var.f52456s;
+        paint.setColor(i7);
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j3 = elapsedRealtime - z30Var.H;
+        if (j3 > 17) {
+            j3 = 17;
+        }
+        z30Var.H = elapsedRealtime;
+        float f14 = z30Var.G;
+        if (f14 < 1.0f) {
+            float f15 = (((float) j3) / 200.0f) + f14;
+            z30Var.G = f15;
+            if (f15 > 1.0f) {
+                z30Var.G = 1.0f;
+            } else {
+                z30Var.invalidate();
+            }
+        }
+        Path path = z30Var.f52458x;
+        path.reset();
+        float f16 = 6.0f;
+        float L2 = org.telegram.messenger.g0.L(6.0f);
+        float[] fArr = z30Var.f52459y;
+        fArr[7] = L2;
+        fArr[6] = L2;
+        int i13 = 1;
+        fArr[1] = L2;
+        int i14 = 0;
+        fArr[0] = L2;
+        if (z30Var.f52454n < org.telegram.messenger.g0.L(12.0f)) {
+            f10 = Math.max(0.0f, (z30Var.f52454n - org.telegram.messenger.g0.L(6.0f)) / org.telegram.messenger.g0.L(6.0f));
+        } else {
+            f10 = 1.0f;
+        }
+        float L3 = org.telegram.messenger.g0.L(6.0f) * f10;
+        fArr[5] = L3;
+        fArr[4] = L3;
+        fArr[3] = L3;
+        fArr[2] = L3;
+        RectF rectF = z30Var.D;
+        rectF.set(0.0f, 0.0f, z30Var.f52454n, z30Var.getMeasuredHeight());
+        path.addRoundRect(rectF, fArr, Path.Direction.CW);
+        path.close();
+        Canvas canvas2 = canvas;
+        canvas2.drawPath(path, paint);
+        int H = (int) (org.telegram.messenger.t3.H(z30Var.f52451c) / 100.0d);
+        org.telegram.ui.Components.ch0 ch0Var = z30Var.f52449a;
+        int L4 = org.telegram.messenger.g0.L(5.0f) + (ch0Var.getMeasuredWidth() / 2) + ch0Var.getLeft();
+        int measuredHeight = (ch0Var.getMeasuredHeight() / 2) + ch0Var.getTop();
+        int i15 = 0;
+        while (true) {
+            float[] fArr2 = z30Var.I;
+            if (i15 < fArr2.length) {
+                if (i15 == 0) {
+                    L = org.telegram.messenger.g0.L(f16);
+                    f11 = f12;
+                    i11 = i14;
+                } else {
+                    if (i15 == i13) {
+                        L = org.telegram.messenger.g0.L(10.0f);
+                        i10 = 50;
+                    } else {
+                        L = org.telegram.messenger.g0.L(14.0f);
+                        i10 = 150;
+                    }
+                    f11 = f12;
+                    i11 = i10;
+                }
+                float f17 = f13;
+                float f18 = fArr2[i15];
+                float L5 = (f17 - f18) * org.telegram.messenger.g0.L(2.0f);
+                Paint paint2 = z30Var.f52457w;
+                paint2.setAlpha((int) (255.0f * f18));
+                float f19 = L4;
+                float f20 = measuredHeight;
+                rectF.set((f19 - L) + L5, (f20 - L) + L5, (f19 + L) - L5, (f20 + L) - L5);
+                canvas2.drawArc(rectF, -50.0f, 100.0f, false, paint2);
+                if (H > i11) {
+                    float f21 = fArr2[i15];
+                    if (f21 < f17) {
+                        float f22 = (((float) j3) / 180.0f) + f21;
+                        fArr2[i15] = f22;
+                        if (f22 > f17) {
+                            fArr2[i15] = f17;
+                        }
+                        invalidate();
+                    }
+                } else {
+                    float f23 = fArr2[i15];
+                    if (f23 > f11) {
+                        float f24 = f23 - (((float) j3) / 180.0f);
+                        fArr2[i15] = f24;
+                        if (f24 < f11) {
+                            fArr2[i15] = f11;
+                        }
+                        invalidate();
+                    }
+                }
+                i15++;
+                z30Var = this;
+                canvas2 = canvas;
+                f12 = f11;
+                f13 = f17;
+                f16 = 6.0f;
+                i13 = 1;
+                i14 = 0;
+            } else {
                 return;
             }
         }
-        if (bVar == null) {
-            org.telegram.ui.ActionBar.s1 s1Var2 = new org.telegram.ui.ActionBar.s1(3, activity, null);
-            s1Var2.r(300L);
-            s1Var = s1Var2;
-        } else {
-            s1Var = null;
-        }
-        TL_phone.getGroupCall getgroupcall = new TL_phone.getGroupCall();
-        getgroupcall.call = tL_inputGroupCallSlug;
-        getgroupcall.limit = 10;
-        int sendRequest = ConnectionsManager.getInstance(i3).sendRequest(getgroupcall, new cg.j0(s1Var, bVar, i3, activity, tL_inputGroupCallSlug, 10));
-        if (bVar != null) {
-            bVar.f54708b = new org.telegram.messenger.rd(i3, sendRequest, 4);
-            bVar.d();
-        }
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        return b(motionEvent);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(48.0f), 1073741824));
+        this.f52454n = (int) (View.MeasureSpec.getSize(i7) * this.f52455r);
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return b(motionEvent);
     }
 }

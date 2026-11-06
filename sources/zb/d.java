@@ -1,28 +1,50 @@
 package zb;
 
-import java.nio.charset.Charset;
-import java.nio.charset.CharsetEncoder;
-import java.nio.charset.UnsupportedCharsetException;
-import java.util.ArrayList;
+import a8.r7;
+import c8.te;
+import java.util.Arrays;
+import q6.m;
 public final class d {
-    public static final ArrayList f60357c = new ArrayList();
-    public final CharsetEncoder[] f60358a;
-    public final int f60359b;
+    public final boolean f59905a;
+    public final boolean f59906b;
+    public final boolean f59907c;
 
-    static {
-        String[] strArr = {"IBM437", "ISO-8859-2", "ISO-8859-3", "ISO-8859-4", "ISO-8859-5", "ISO-8859-6", "ISO-8859-7", "ISO-8859-8", "ISO-8859-9", "ISO-8859-10", "ISO-8859-11", "ISO-8859-13", "ISO-8859-14", "ISO-8859-15", "ISO-8859-16", "windows-1250", "windows-1251", "windows-1252", "windows-1256", "Shift_JIS"};
-        for (int i3 = 0; i3 < 20; i3++) {
-            String str = strArr[i3];
-            if (((c) c.d.get(str)) != null) {
-                try {
-                    f60357c.add(Charset.forName(str).newEncoder());
-                } catch (UnsupportedCharsetException unused) {
-                }
-            }
-        }
+    public d(ia.a aVar) {
+        this.f59905a = aVar.f15407a;
+        this.f59906b = aVar.f15408b;
+        this.f59907c = aVar.f15409c;
     }
 
-    public d(java.lang.String r12, java.nio.charset.Charset r13) {
-        throw new UnsupportedOperationException("Method not decompiled: zb.d.<init>(java.lang.String, java.nio.charset.Charset):void");
+    public final te a() {
+        r7 r7Var = new r7(4);
+        Boolean bool = Boolean.FALSE;
+        r7Var.d = bool;
+        r7Var.f616e = Boolean.valueOf(this.f59905a);
+        r7Var.f617f = Boolean.valueOf(this.f59906b);
+        r7Var.f614b = bool;
+        r7Var.f615c = Boolean.valueOf(this.f59907c);
+        return new te(r7Var);
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof d) {
+                d dVar = (d) obj;
+                if (this.f59905a == dVar.f59905a && this.f59906b == dVar.f59906b && this.f59907c == dVar.f59907c && m.k(null, null)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        Boolean valueOf = Boolean.valueOf(this.f59905a);
+        Boolean valueOf2 = Boolean.valueOf(this.f59906b);
+        Boolean valueOf3 = Boolean.valueOf(this.f59907c);
+        Boolean bool = Boolean.FALSE;
+        return Arrays.hashCode(new Object[]{bool, valueOf, valueOf2, bool, valueOf3, null});
     }
 }

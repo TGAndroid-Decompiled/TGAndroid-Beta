@@ -5,46 +5,46 @@ import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.AnimationUtils;
-import m.r1;
-import org.telegram.ui.Components.lt;
+import m.s1;
+import tg.y;
 public final class d implements View.OnTouchListener {
-    public static final int I = ViewConfiguration.getTapTimeout();
+    public static final int H = ViewConfiguration.getTapTimeout();
+    public boolean D;
     public boolean E;
     public boolean F;
-    public boolean G;
-    public final r1 H;
-    public final a f55454a;
-    public final AccelerateInterpolator f55455b;
-    public final r1 f55456c;
-    public lt d;
-    public final float[] f55457e;
-    public final float[] f55458f;
+    public final s1 G;
+    public final a f56049a;
+    public final AccelerateInterpolator f56050b;
+    public final s1 f56051c;
+    public y d;
+    public final float[] f56052e;
+    public final float[] f56053f;
     public final int h;
-    public final int f55459n;
-    public final float[] f55460r;
-    public final float[] f55461s;
-    public final float[] f55462w;
-    public boolean f55463x;
-    public boolean f55464y;
+    public final int f56054n;
+    public final float[] f56055r;
+    public final float[] f56056s;
+    public final float[] f56057w;
+    public boolean f56058x;
+    public boolean f56059y;
 
-    public d(r1 r1Var) {
+    public d(s1 s1Var) {
         ?? obj = new Object();
-        obj.f55450e = Long.MIN_VALUE;
-        obj.f55452g = -1L;
-        obj.f55451f = 0L;
-        this.f55454a = obj;
-        this.f55455b = new AccelerateInterpolator();
+        obj.f56045e = Long.MIN_VALUE;
+        obj.f56047g = -1L;
+        obj.f56046f = 0L;
+        this.f56049a = obj;
+        this.f56050b = new AccelerateInterpolator();
         float[] fArr = {0.0f, 0.0f};
-        this.f55457e = fArr;
+        this.f56052e = fArr;
         float[] fArr2 = {Float.MAX_VALUE, Float.MAX_VALUE};
-        this.f55458f = fArr2;
+        this.f56053f = fArr2;
         float[] fArr3 = {0.0f, 0.0f};
-        this.f55460r = fArr3;
+        this.f56055r = fArr3;
         float[] fArr4 = {0.0f, 0.0f};
-        this.f55461s = fArr4;
+        this.f56056s = fArr4;
         float[] fArr5 = {Float.MAX_VALUE, Float.MAX_VALUE};
-        this.f55462w = fArr5;
-        this.f55456c = r1Var;
+        this.f56057w = fArr5;
+        this.f56051c = s1Var;
         float f10 = Resources.getSystem().getDisplayMetrics().density;
         float f11 = ((int) ((1575.0f * f10) + 0.5f)) / 1000.0f;
         fArr5[0] = f11;
@@ -59,10 +59,10 @@ public final class d implements View.OnTouchListener {
         fArr[1] = 0.2f;
         fArr3[0] = 0.001f;
         fArr3[1] = 0.001f;
-        this.f55459n = I;
-        obj.f55447a = 500;
-        obj.f55448b = 500;
-        this.H = r1Var;
+        this.f56054n = H;
+        obj.f56042a = 500;
+        obj.f56043b = 500;
+        this.G = s1Var;
     }
 
     public static float b(float f10, float f11, float f12) {
@@ -81,16 +81,16 @@ public final class d implements View.OnTouchListener {
 
     public final float c(float f10, float f11) {
         if (f11 != 0.0f) {
-            int i3 = this.h;
-            if (i3 != 0 && i3 != 1) {
-                if (i3 == 2 && f10 < 0.0f) {
+            int i7 = this.h;
+            if (i7 != 0 && i7 != 1) {
+                if (i7 == 2 && f10 < 0.0f) {
                     return f10 / (-f11);
                 }
             } else if (f10 < f11) {
                 if (f10 >= 0.0f) {
                     return 1.0f - (f10 / f11);
                 }
-                if (this.F && i3 == 1) {
+                if (this.E && i7 == 1) {
                     return 1.0f;
                 }
             }
@@ -99,37 +99,37 @@ public final class d implements View.OnTouchListener {
     }
 
     public final void d() {
-        int i3 = 0;
-        if (this.f55464y) {
-            this.F = false;
+        int i7 = 0;
+        if (this.f56059y) {
+            this.E = false;
             return;
         }
         long currentAnimationTimeMillis = AnimationUtils.currentAnimationTimeMillis();
-        a aVar = this.f55454a;
-        int i10 = (int) (currentAnimationTimeMillis - aVar.f55450e);
-        int i11 = aVar.f55448b;
+        a aVar = this.f56049a;
+        int i10 = (int) (currentAnimationTimeMillis - aVar.f56045e);
+        int i11 = aVar.f56043b;
         if (i10 > i11) {
-            i3 = i11;
+            i7 = i11;
         } else if (i10 >= 0) {
-            i3 = i10;
+            i7 = i10;
         }
-        aVar.f55453i = i3;
+        aVar.f56048i = i7;
         aVar.h = aVar.a(currentAnimationTimeMillis);
-        aVar.f55452g = currentAnimationTimeMillis;
+        aVar.f56047g = currentAnimationTimeMillis;
     }
 
     public final boolean e() {
-        r1 r1Var;
+        s1 s1Var;
         int count;
-        a aVar = this.f55454a;
+        a aVar = this.f56049a;
         float f10 = aVar.d;
         int abs = (int) (f10 / Math.abs(f10));
-        Math.abs(aVar.f55449c);
-        if (abs != 0 && (count = (r1Var = this.H).getCount()) != 0) {
-            int childCount = r1Var.getChildCount();
-            int firstVisiblePosition = r1Var.getFirstVisiblePosition();
-            int i3 = firstVisiblePosition + childCount;
-            if (abs <= 0 ? !(abs >= 0 || (firstVisiblePosition <= 0 && r1Var.getChildAt(0).getTop() >= 0)) : !(i3 >= count && r1Var.getChildAt(childCount - 1).getBottom() <= r1Var.getHeight())) {
+        Math.abs(aVar.f56044c);
+        if (abs != 0 && (count = (s1Var = this.G).getCount()) != 0) {
+            int childCount = s1Var.getChildCount();
+            int firstVisiblePosition = s1Var.getFirstVisiblePosition();
+            int i7 = firstVisiblePosition + childCount;
+            if (abs <= 0 ? !(abs >= 0 || (firstVisiblePosition <= 0 && s1Var.getChildAt(0).getTop() >= 0)) : !(i7 >= count && s1Var.getChildAt(childCount - 1).getBottom() <= s1Var.getHeight())) {
                 return true;
             }
         }

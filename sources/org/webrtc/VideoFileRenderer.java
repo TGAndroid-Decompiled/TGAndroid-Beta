@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.util.concurrent.CountDownLatch;
-import org.telegram.ui.Components.iv0;
+import org.telegram.ui.Components.l31;
 import org.webrtc.EglBase;
 import org.webrtc.VideoFrame;
 public class VideoFileRenderer implements VideoSink {
@@ -26,17 +26,17 @@ public class VideoFileRenderer implements VideoSink {
     private final FileOutputStream videoOutFile;
     private YuvConverter yuvConverter;
 
-    public VideoFileRenderer(String str, int i3, int i10, final EglBase.Context context) {
-        if (i3 % 2 != 1 && i10 % 2 != 1) {
+    public VideoFileRenderer(String str, int i7, int i10, final EglBase.Context context) {
+        if (i7 % 2 != 1 && i10 % 2 != 1) {
             this.outputFileName = str;
-            this.outputFileWidth = i3;
+            this.outputFileWidth = i7;
             this.outputFileHeight = i10;
-            int i11 = ((i3 * i10) * 3) / 2;
+            int i11 = ((i7 * i10) * 3) / 2;
             this.outputFrameSize = i11;
             this.outputFrameBuffer = ByteBuffer.allocateDirect(i11);
             FileOutputStream fileOutputStream = new FileOutputStream(str);
             this.videoOutFile = fileOutputStream;
-            fileOutputStream.write(("YUV4MPEG2 C420 W" + i3 + " H" + i10 + " Ip F30:1 A1:1\n").getBytes(Charset.forName("US-ASCII")));
+            fileOutputStream.write(("YUV4MPEG2 C420 W" + i7 + " H" + i10 + " Ip F30:1 A1:1\n").getBytes(Charset.forName("US-ASCII")));
             HandlerThread handlerThread = new HandlerThread("VideoFileRendererRenderThread");
             this.renderThread = handlerThread;
             handlerThread.start();
@@ -94,15 +94,15 @@ public class VideoFileRenderer implements VideoSink {
     }
 
     public void lambda$onFrame$0(VideoFrame videoFrame) {
-        int i3;
+        int i7;
         int i10;
         VideoFrame.Buffer buffer = videoFrame.getBuffer();
         if (videoFrame.getRotation() % 180 == 0) {
-            i3 = this.outputFileWidth;
+            i7 = this.outputFileWidth;
         } else {
-            i3 = this.outputFileHeight;
+            i7 = this.outputFileHeight;
         }
-        int i11 = i3;
+        int i11 = i7;
         if (videoFrame.getRotation() % 180 == 0) {
             i10 = this.outputFileHeight;
         } else {
@@ -122,7 +122,7 @@ public class VideoFileRenderer implements VideoSink {
         videoFrame.release();
         VideoFrame.I420Buffer i420 = cropAndScale.toI420();
         cropAndScale.release();
-        this.fileThreadHandler.post(new iv0(this, i420, videoFrame, 16));
+        this.fileThreadHandler.post(new l31(this, i420, videoFrame, 12));
     }
 
     @Override

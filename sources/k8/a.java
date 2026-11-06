@@ -1,3 +1,19 @@
 package k8;
-public final class a extends b8.a {
+
+import q6.m;
+public final class a {
+    public final a7.a f17227a;
+
+    public a(a7.a aVar, int i7) {
+        switch (i7) {
+            case 1:
+                m.g(aVar);
+                this.f17227a = aVar;
+                return;
+            default:
+                m.g(aVar);
+                this.f17227a = aVar;
+                return;
+        }
+    }
 }

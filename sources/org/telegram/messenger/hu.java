@@ -1,209 +1,276 @@
 package org.telegram.messenger;
 
-import android.content.Intent;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class hu extends xt {
-    public static Paint f23371e0;
-    public final TL_iv.pageBlockMap X;
-    public final ImageReceiver Y;
-    public final int Z;
-    public final int f23372a0;
-    public final int f23373b0;
-    public boolean f23374c0;
-    public Drawable f23375d0;
+import org.telegram.tgnet.tl.TL_keyboard;
+public final class hu extends fu {
+    public final gu[] W;
+    public final int X;
+    public int Y;
+    public gu Z;
+    public gu f22979a0;
+    public final org.telegram.ui.Cells.l9 f22980b0;
 
-    public hu(cv cvVar, Rect rect, int i3, TL_iv.pageBlockMap pageblockmap) {
-        super(cvVar, rect, i3);
-        ImageReceiver imageReceiver = new ImageReceiver(null);
-        this.Y = imageReceiver;
-        this.X = pageblockmap;
-        imageReceiver.A1 = true;
-        int i10 = pageblockmap.f27226w;
-        i10 = i10 <= 0 ? 100 : i10;
-        int i11 = pageblockmap.h;
-        int i12 = i11 > 0 ? i11 : 100;
-        int i13 = this.f26436c;
-        int max = (int) ((i13 / Math.max(1, i10)) * i12);
-        Point point = g0.f22608q;
-        int max2 = (int) (Math.max(point.x, point.y) * 0.55f);
-        if (max > max2) {
-            i13 = (int) ((max2 / Math.max(1, i12)) * i10);
-            max = max2;
+    public hu(kv kvVar, Rect rect, int i7, TL_iv.pageBlockButtonRow pageblockbuttonrow) {
+        super(kvVar, rect, i7);
+        this.Y = -1;
+        this.f22980b0 = new org.telegram.ui.Cells.l9(new gf.g(this, 25));
+        this.W = new gu[pageblockbuttonrow.buttons.size()];
+        int size = pageblockbuttonrow.buttons.size();
+        for (int i10 = 0; i10 < size; i10++) {
+            gu[] guVarArr = this.W;
+            TL_keyboard.PageButton pageButton = pageblockbuttonrow.buttons.get(i10);
+            guVarArr[i10] = new gu(kvVar, i7, kvVar.l(pageButton.text, kv.R(16, 13)), pageButton, pageButton.type, pageButton.style, cg.c.c(pageButton, TL_keyboard.TL_inlineButtonTypeDisabled.class), false, false, false, false, null, new ds(this, 5));
         }
-        this.Z = i13;
-        this.f23372a0 = max;
-        float f10 = i13;
-        float f11 = max;
-        imageReceiver.y0(0.0f, 0.0f, f10, f11);
-        cv cvVar2 = this.f26434a;
-        if (pageblockmap.geo == null) {
-            return;
+        if (pageblockbuttonrow.align_left) {
+            this.X = 1;
+        } else if (pageblockbuttonrow.align_center) {
+            this.X = 3;
+        } else if (pageblockbuttonrow.align_right) {
+            this.X = 2;
+        } else {
+            this.X = 4;
         }
-        int i14 = cvVar2.f22065a;
-        int i15 = hp.s1(i14).f23072n3;
-        this.f23373b0 = i15;
-        float f12 = g0.f22607p;
-        int i16 = (int) (f10 / f12);
-        int i17 = (int) (f11 / f12);
-        int i18 = pageblockmap.zoom;
-        int i19 = i18 <= 0 ? 15 : i18;
-        if (i15 == 2) {
-            imageReceiver.q0(ac.p(e20.b(pageblockmap.geo, i16, i17, i19, Math.min(2, (int) Math.ceil(f12)))), null, null, null, cvVar2.f22066b, 0);
-            return;
+        l0(k0());
+    }
+
+    public static gu i0(hu huVar, float f10, float f11) {
+        int c10;
+        int i7;
+        huVar.m0();
+        gu[] guVarArr = huVar.W;
+        if (guVarArr.length == 0) {
+            c10 = g0.L(huVar.f22443a.M + 18);
+        } else {
+            c10 = guVarArr[0].c();
         }
-        TLRPC.GeoPoint geoPoint = pageblockmap.geo;
-        imageReceiver.o0(g0.e0(i14, geoPoint.lat, geoPoint._long, i16, i17, true, i19, -1), null, null, null, 0L);
+        float I = (huVar.I() - c10) / 2.0f;
+        if (f11 >= I && f11 <= I + c10) {
+            for (gu guVar : guVarArr) {
+                if (f10 >= guVar.d && f10 <= i7 + guVar.f22701e) {
+                    return guVar;
+                }
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public static void j0(hu huVar, gu guVar) {
+        gu guVar2 = huVar.Z;
+        if (guVar2 != guVar) {
+            if (guVar2 != null) {
+                guVar2.m(false);
+            }
+            huVar.Z = guVar;
+            if (guVar != null) {
+                guVar.m(true);
+            }
+        }
     }
 
     @Override
     public final int I() {
-        Rect rect = this.f26435b;
-        return rect.top + this.f23372a0 + rect.bottom;
-    }
-
-    @Override
-    public final int J() {
-        return K();
+        int c10;
+        gu[] guVarArr = this.W;
+        if (guVarArr.length == 0) {
+            c10 = g0.L(this.f22443a.M + 18);
+        } else {
+            c10 = guVarArr[0].c();
+        }
+        Rect rect = this.f22444b;
+        return g0.L(4.333f) + rect.top + c10 + rect.bottom;
     }
 
     @Override
     public final int K() {
-        Rect rect = this.f26435b;
-        return rect.left + this.Z + rect.right;
+        Rect rect = this.f22444b;
+        return k0() + rect.left + rect.right;
+    }
+
+    @Override
+    public final boolean Q() {
+        if (this.f22979a0 != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
     public final void T() {
-        View view = this.W;
-        ImageReceiver imageReceiver = this.Y;
-        imageReceiver.H0(view);
-        imageReceiver.P();
+        gu[] guVarArr;
+        for (gu guVar : this.W) {
+            guVar.f22698a.i(this.V);
+        }
     }
 
     @Override
     public final void V() {
-        this.Y.R();
-    }
-
-    @Override
-    public final void W(Canvas canvas) {
-        int i3;
-        Canvas canvas2;
-        Drawable drawable;
-        View view;
-        if (f23371e0 == null) {
-            f23371e0 = new Paint(1);
-        }
-        Paint paint = f23371e0;
-        int i10 = org.telegram.ui.ActionBar.k6.f27887df;
-        cv cvVar = this.f26434a;
-        paint.setColor(org.telegram.ui.ActionBar.k6.w0(i10, cvVar.D));
-        boolean R = R();
-        boolean D = cvVar.D();
-        int i11 = 0;
-        if (!R && !D) {
-            i3 = cvVar.S;
-        } else {
-            i3 = 0;
-        }
-        if (!R && !D) {
-            i11 = cvVar.T;
-        }
-        ImageReceiver imageReceiver = this.Y;
-        int i12 = this.f23372a0;
-        int i13 = this.Z;
-        if (D) {
-            RectF rectF = g0.P;
-            rectF.set(0.0f, 0.0f, i13, i12);
-            canvas.drawRoundRect(rectF, g0.L(12.0f), g0.L(12.0f), f23371e0);
-            imageReceiver.J0(g0.L(12.0f));
-            canvas2 = canvas;
-        } else {
-            canvas2 = canvas;
-            canvas2.drawRect(-i3, 0.0f, i13 + i11, i12, f23371e0);
-        }
-        Drawable drawable2 = org.telegram.ui.ActionBar.k6.S4[cvVar.E() ? 1 : 0];
-        if (drawable2 != null) {
-            int intrinsicWidth = drawable2.getIntrinsicWidth();
-            int intrinsicHeight = drawable2.getIntrinsicHeight();
-            int i14 = (i13 - intrinsicWidth) / 2;
-            int i15 = (i12 - intrinsicHeight) / 2;
-            drawable2.setBounds(i14, i15, intrinsicWidth + i14, intrinsicHeight + i15);
-            drawable2.draw(canvas2);
-        }
-        imageReceiver.y0(-i3, 0.0f, i3 + i13 + i11, i12);
-        imageReceiver.h(canvas2, null);
-        if (this.f23373b0 == 2 && imageReceiver.L()) {
-            if (this.f23375d0 == null && (view = this.W) != null) {
-                this.f23375d0 = view.getContext().getDrawable(2131231646).mutate();
-            }
-            if (this.f23375d0 != null) {
-                int intrinsicWidth2 = (int) (drawable.getIntrinsicWidth() * 0.8f);
-                int intrinsicHeight2 = (int) (this.f23375d0.getIntrinsicHeight() * 0.8f);
-                int i16 = (i13 - intrinsicWidth2) / 2;
-                int i17 = (i12 / 2) - intrinsicHeight2;
-                this.f23375d0.setAlpha((int) (imageReceiver.f21249i1 * 255.0f));
-                this.f23375d0.setBounds(i16, i17, intrinsicWidth2 + i16, intrinsicHeight2 + i17);
-                this.f23375d0.draw(canvas2);
-            }
+        gu[] guVarArr;
+        for (gu guVar : this.W) {
+            guVar.f22698a.f(this.V);
         }
     }
 
     @Override
     public final boolean Y(MotionEvent motionEvent) {
-        boolean z10;
-        View view;
-        int actionMasked = motionEvent.getActionMasked();
-        float x10 = motionEvent.getX();
-        Rect rect = this.f26435b;
-        float f10 = x10 - rect.left;
-        float y9 = motionEvent.getY() - rect.top;
-        if (f10 >= 0.0f && f10 <= this.Z && y9 >= 0.0f && y9 <= this.f23372a0) {
-            z10 = true;
-        } else {
-            z10 = false;
+        View view = this.V;
+        if (view == null) {
+            return false;
         }
-        if (actionMasked == 0) {
-            if (z10) {
-                this.f23374c0 = true;
-                return true;
+        return this.f22980b0.a(view, motionEvent);
+    }
+
+    public final int k0() {
+        gu[] guVarArr = this.W;
+        int length = guVarArr.length;
+        if (length == 0) {
+            return 0;
+        }
+        int L = (length - 1) * g0.L(7.0f);
+        for (gu guVar : guVarArr) {
+            L += guVar.h();
+        }
+        return Math.min(this.f22445c, L);
+    }
+
+    public final void l0(int i7) {
+        int i10;
+        int i11;
+        boolean z9;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        this.Y = i7;
+        gu[] guVarArr = this.W;
+        int length = guVarArr.length;
+        if (length != 0) {
+            int L = g0.L(7.0f);
+            int i17 = 1;
+            int i18 = (length - 1) * L;
+            int max = Math.max(0, i7 - i18);
+            int i19 = 0;
+            for (gu guVar : guVarArr) {
+                int h = guVar.h();
+                guVar.f22701e = h;
+                i19 += h;
             }
-        } else if (actionMasked == 1) {
-            if (this.f23374c0) {
-                this.f23374c0 = false;
-                if (z10) {
-                    TL_iv.pageBlockMap pageblockmap = this.X;
-                    if (pageblockmap.geo != null && (view = this.W) != null) {
-                        view.playSoundEffect(0);
-                        try {
-                            TLRPC.GeoPoint geoPoint = pageblockmap.geo;
-                            double d = geoPoint.lat;
-                            double d10 = geoPoint._long;
-                            this.W.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
-                            return true;
-                        } catch (Exception e10) {
-                            a8.g(e10, true);
-                            return true;
+            int i20 = this.X;
+            if (i19 > max) {
+                int i21 = 0;
+                for (gu guVar2 : guVarArr) {
+                    i21 += guVar2.f22701e - guVar2.e();
+                }
+                if (i21 <= 0) {
+                    for (gu guVar3 : guVarArr) {
+                        guVar3.f22701e = guVar3.e();
+                    }
+                } else {
+                    int min = Math.min(i19 - max, i21);
+                    int i22 = 0;
+                    int i23 = 0;
+                    while (i22 < guVarArr.length) {
+                        gu guVar4 = guVarArr[i22];
+                        int e10 = guVar4.f22701e - guVar4.e();
+                        if (i22 == guVarArr.length - i17) {
+                            i16 = min - i23;
+                            i14 = i17;
+                            i15 = min;
+                        } else {
+                            i14 = i17;
+                            i15 = min;
+                            i16 = (int) ((min * e10) / i21);
+                        }
+                        int min2 = Math.min(i16, e10);
+                        guVar4.f22701e -= min2;
+                        i23 += min2;
+                        i22++;
+                        i17 = i14;
+                        min = i15;
+                    }
+                }
+                i10 = i17;
+            } else {
+                i10 = 1;
+                if (i20 == 4) {
+                    boolean[] zArr = new boolean[guVarArr.length];
+                    int length2 = guVarArr.length;
+                    for (boolean z10 = true; z10 && length2 > 0; z10 = z9) {
+                        int i24 = max / length2;
+                        z9 = false;
+                        for (int i25 = 0; i25 < guVarArr.length; i25++) {
+                            if (!zArr[i25] && (i12 = guVarArr[i25].f22701e) > i24) {
+                                zArr[i25] = true;
+                                max -= i12;
+                                length2--;
+                                z9 = true;
+                            }
+                        }
+                    }
+                    if (length2 > 0) {
+                        int i26 = max / length2;
+                        int i27 = max - (length2 * i26);
+                        for (int i28 = 0; i28 < guVarArr.length; i28++) {
+                            if (!zArr[i28]) {
+                                gu guVar5 = guVarArr[i28];
+                                int i29 = i27 - 1;
+                                if (i27 > 0) {
+                                    i11 = 1;
+                                } else {
+                                    i11 = 0;
+                                }
+                                guVar5.f22701e = i11 + i26;
+                                i27 = i29;
+                            }
                         }
                     }
                 }
             }
-        } else {
-            if (actionMasked == 3) {
-                this.f23374c0 = false;
+            for (gu guVar6 : guVarArr) {
+                i18 += guVar6.f22701e;
             }
-            return this.f23374c0;
+            int c10 = p1.g.c(i20);
+            if (c10 != i10) {
+                if (c10 != 2) {
+                    i13 = 0;
+                } else {
+                    i13 = (i7 - i18) / 2;
+                }
+            } else {
+                i13 = i7 - i18;
+            }
+            for (gu guVar7 : guVarArr) {
+                guVar7.d = i13;
+                i13 += guVar7.f22701e + L;
+            }
         }
-        return false;
+    }
+
+    public final void m0() {
+        kv kvVar = this.f22443a;
+        int i7 = kvVar.C;
+        int i10 = kvVar.S;
+        Rect rect = this.f22444b;
+        int max = Math.max(0, ((((i7 + i10) + kvVar.T) - (i10 * 2)) - rect.left) - rect.right);
+        if (this.Y != max) {
+            l0(max);
+        }
+    }
+
+    @Override
+    public final void q(Canvas canvas) {
+        gu[] guVarArr;
+        m0();
+        for (gu guVar : this.W) {
+            canvas.save();
+            canvas.translate(guVar.d, Math.round((I() - guVar.c()) / 2.0f));
+            guVar.a(canvas);
+            canvas.restore();
+        }
     }
 }

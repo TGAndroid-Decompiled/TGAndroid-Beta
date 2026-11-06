@@ -1,12 +1,24 @@
 package y3;
-public final class g {
-    public final long f58915a;
-    public final boolean f58916b;
-    public final int f58917c;
 
-    public g(int i3, long j10, boolean z10) {
-        this.f58915a = j10;
-        this.f58916b = z10;
-        this.f58917c = i3;
+import f3.t;
+public final class g extends t implements h {
+    @Override
+    public final long a(long j3) {
+        return 0L;
+    }
+
+    @Override
+    public final long b() {
+        return -1L;
+    }
+
+    @Override
+    public final long c() {
+        return 0L;
+    }
+
+    @Override
+    public final int g() {
+        return -2147483647;
     }
 }

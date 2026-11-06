@@ -1,21 +1,45 @@
 package org.telegram.ui;
-public final class bb1 implements Runnable {
-    public final int f44013a;
-    public final cb1 f44014b;
-    public final String f44015c;
-    public final boolean d;
-    public final boolean f44016e;
 
-    public bb1(cb1 cb1Var, String str, boolean z10, boolean z11, int i3) {
-        this.f44013a = i3;
-        this.f44014b = cb1Var;
-        this.f44015c = str;
-        this.d = z10;
-        this.f44016e = z11;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class bb1 implements org.telegram.messenger.c20 {
+    public final int f44228a;
+    public final UserInfoActivity f44229b;
+
+    public bb1(UserInfoActivity userInfoActivity, int i7) {
+        this.f44228a = i7;
+        this.f44229b = userInfoActivity;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.bb1.run():void");
+    public final void a(Object obj) {
+        int i7 = this.f44228a;
+        UserInfoActivity userInfoActivity = this.f44229b;
+        switch (i7) {
+            case 0:
+                userInfoActivity.J = (TL_account.TL_birthday) obj;
+                fi.w3 w3Var = userInfoActivity.f42045y;
+                if (w3Var != null) {
+                    w3Var.f35167f3.O(true);
+                }
+                userInfoActivity.g0(true);
+                return;
+            default:
+                TLRPC.Chat chat = (TLRPC.Chat) obj;
+                if (userInfoActivity.K != chat) {
+                    userInfoActivity.K = chat;
+                    if (chat != null) {
+                        org.telegram.messenger.k5.o(null, 2131751234, org.telegram.ui.Components.hc.a0(userInfoActivity), 2131623989, 36);
+                    }
+                    userInfoActivity.g0(true);
+                    fi.w3 w3Var2 = userInfoActivity.f42045y;
+                    if (w3Var2 != null) {
+                        w3Var2.f35167f3.O(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

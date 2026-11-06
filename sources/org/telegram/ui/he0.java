@@ -1,26 +1,61 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class he0 implements RequestDelegate {
-    public final int f45911a;
-    public final xe0 f45912b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.text.TextPaint;
+import android.text.style.ReplacementSpan;
+public final class he0 extends ReplacementSpan {
+    public final String f46338a;
+    public final boolean f46339b;
+    public final TextPaint f46340c;
+    public final Paint d;
+    public final float f46341e;
+    public final je0 f46342f;
 
-    public he0(xe0 xe0Var, int i3) {
-        this.f45911a = i3;
-        this.f45912b = xe0Var;
+    public he0(je0 je0Var, int i7, boolean z9) {
+        this.f46342f = je0Var;
+        TextPaint textPaint = new TextPaint(1);
+        this.f46340c = textPaint;
+        this.d = new Paint(1);
+        String valueOf = String.valueOf(i7);
+        this.f46338a = valueOf;
+        this.f46339b = z9;
+        textPaint.setTextSize(org.telegram.messenger.g0.N(11.0f));
+        textPaint.setTypeface(org.telegram.messenger.g0.o());
+        this.f46341e = Math.max(org.telegram.messenger.g0.L(7.333f), textPaint.measureText(valueOf)) + org.telegram.messenger.g0.L(10.0f);
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f45911a) {
-            case 0:
-                org.telegram.messenger.g0.h3(new me0(this.f45912b, tL_error, tLObject, 0));
-                return;
-            default:
-                org.telegram.messenger.g0.h3(new tb0(12, this.f45912b, tL_error));
-                return;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        int i14;
+        float L = f10 + org.telegram.messenger.g0.L(5.0f);
+        float L2 = ((i11 + i13) / 2.0f) + org.telegram.messenger.g0.L(1.0f);
+        float L3 = org.telegram.messenger.g0.L(17.333f) / 2.0f;
+        if (this.f46339b) {
+            i14 = org.telegram.ui.ActionBar.k6.Ci;
+        } else {
+            i14 = org.telegram.ui.ActionBar.k6.U9;
         }
+        je0 je0Var = this.f46342f;
+        int themedColor = je0Var.getThemedColor(i14);
+        Paint paint2 = this.d;
+        paint2.setColor(themedColor);
+        int themedColor2 = je0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f28128s8);
+        TextPaint textPaint = this.f46340c;
+        textPaint.setColor(themedColor2);
+        RectF rectF = org.telegram.messenger.g0.P;
+        float f11 = this.f46341e;
+        rectF.set(L, L2 - L3, L + f11, L2 + L3);
+        canvas.drawRoundRect(rectF, L3, L3, paint2);
+        Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
+        float f12 = L2 - ((fontMetrics.ascent + fontMetrics.descent) / 2.0f);
+        String str = this.f46338a;
+        canvas.drawText(str, ((f11 - textPaint.measureText(str)) / 2.0f) + L, f12, textPaint);
+    }
+
+    @Override
+    public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        return (int) Math.ceil(org.telegram.messenger.g0.L(5.0f) + this.f46341e);
     }
 }

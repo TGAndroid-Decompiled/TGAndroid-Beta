@@ -1,13 +1,21 @@
 package oi;
 
-import android.text.Spannable;
-import java.lang.ref.WeakReference;
-import java.util.HashMap;
-public final class j {
-    public final WeakReference f21147a;
-    public final HashMap f21148b = new HashMap();
+import android.view.View;
+import v4.p0;
+public final class j implements p0 {
+    public final q f21081a;
 
-    public j(Spannable spannable) {
-        this.f21147a = new WeakReference(spannable);
+    public j(q qVar) {
+        this.f21081a = qVar;
+    }
+
+    @Override
+    public final void a(View view) {
+        this.f21081a.f21102i++;
+    }
+
+    @Override
+    public final void b() {
+        this.f21081a.f21102i++;
     }
 }

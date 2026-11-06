@@ -1,45 +1,44 @@
 package ug;
 
-import android.app.Activity;
-import org.telegram.messenger.h10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.e6;
-import org.telegram.ui.wm;
-public final class w extends wm {
-    public final f0 f56286sd;
+import android.view.View;
+import org.telegram.ui.ActionBar.u1;
+import org.telegram.ui.Components.dj0;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class w implements org.telegram.ui.ActionBar.r1, dj0 {
+    public final int f56725a;
+    public final i0 f56726b;
 
-    public w(f0 f0Var) {
-        super(null);
-        this.f56286sd = f0Var;
+    public w(i0 i0Var, int i7) {
+        this.f56725a = i7;
+        this.f56726b = i0Var;
     }
 
     @Override
-    public final boolean T9() {
+    public boolean c(int i7, View view) {
+        i0 i0Var = this.f56726b;
+        i0Var.f36328k1.getOnItemClickListener().c(i7, view);
+        if (i0Var.Z1 != 19) {
+            try {
+                view.performHapticFeedback(0);
+            } catch (Exception unused) {
+            }
+        }
         return false;
     }
 
     @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final Activity getParentActivity() {
-        return org.telegram.messenger.g0.W(this.f56286sd.getContext());
-    }
-
-    @Override
-    public final e6 getResourceProvider() {
-        return this.f56286sd.A1;
-    }
-
-    @Override
-    public final boolean isLightStatusBar() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.User j() {
-        return h10.i(this.currentAccount).f();
+    public void g(u1 u1Var, int i7) {
+        switch (this.f56725a) {
+            case 0:
+                i0 i0Var = this.f56726b;
+                i0Var.C2.presentFragment(new PremiumPreviewFragment(0, null));
+                i0Var.dismiss();
+                u1Var.dismiss();
+                return;
+            default:
+                u1Var.dismiss();
+                this.f56726b.i1();
+                return;
+        }
     }
 }

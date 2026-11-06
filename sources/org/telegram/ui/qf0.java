@@ -1,50 +1,45 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-public final class qf0 extends org.telegram.ui.Components.qt0 {
-    public final int[] f48877g0;
-    public final int[] f48878h0;
-    public int f48879i0;
-    public final int[] f48880j0;
-    public final k4.j f48881k0;
-    public final Paint f48882l0;
-    public final org.telegram.ui.ActionBar.e6 m0;
-    public final vf0 f48883n0;
+import org.telegram.messenger.Utilities;
+public final class qf0 extends ix {
+    public final int[] N;
+    public final bg0 O;
 
-    public qf0(vf0 vf0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, null);
-        this.f48883n0 = vf0Var;
-        this.m0 = e6Var;
-        this.f48877g0 = new int[2];
-        this.f48878h0 = new int[2];
-        this.f48879i0 = 0;
-        this.f48880j0 = new int[2];
-        this.f48881k0 = new k4.j(24);
-        org.telegram.ui.Components.xq xqVar = org.telegram.ui.Components.xq.f40452f;
-        this.f48882l0 = new Paint(1);
+    public qf0(bg0 bg0Var, pf0 pf0Var, int i7) {
+        super(i7, pf0Var);
+        this.O = bg0Var;
+        this.N = new int[2];
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.qf0.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        vf0 vf0Var = this.f48883n0;
-        if (vf0Var.f50501w) {
-            if (view != vf0Var.X) {
-                org.telegram.ui.Cells.q1 q1Var = vf0Var.Q;
-                if (view == q1Var && q1Var != null && q1Var.getCurrentPosition() == null) {
-                    return false;
-                }
-            } else {
-                return false;
+    public final void g(hx hxVar) {
+        bg0 bg0Var = this.O;
+        xf0 xf0Var = bg0Var.J;
+        if (hxVar != null) {
+            if (bg0Var.f44315k0 != null) {
+                hxVar.f46498c = true;
+                float f10 = (ix.f() * org.telegram.messenger.g0.f22536p) / 1.3f;
+                float f11 = f10 / 3.0f;
+                hxVar.d = f11;
+                hxVar.f46499e = f11;
+                hxVar.f46496a = Utilities.i(bg0Var.f44315k0.right - (0.75f * f10), org.telegram.messenger.g0.f22537q.x - f10, 0.0f);
+                hxVar.f46497b = bg0Var.f44315k0.bottom - (f10 / 2.0f);
+                return;
+            }
+            org.telegram.ui.Cells.q1 q1Var = bg0Var.P;
+            if (q1Var != null && q1Var.isAttachedToWindow() && bg0Var.P.getMessageObject() != null && bg0Var.P.getMessageObject().f1() == bg0Var.Q) {
+                org.telegram.ui.Cells.q1 q1Var2 = bg0Var.P;
+                int[] iArr = this.N;
+                q1Var2.getLocationOnScreen(iArr);
+                hxVar.f46498c = true;
+                float f12 = (ix.f() * org.telegram.messenger.g0.f22536p) / 1.3f;
+                float f13 = f12 / 3.0f;
+                hxVar.d = f13;
+                hxVar.f46499e = f13;
+                float f14 = f12 / 2.0f;
+                hxVar.f46496a = Utilities.i(((xf0Var.getScaleX() * bg0Var.P.getTimeX()) + iArr[0]) - f14, org.telegram.messenger.g0.f22537q.x - f12, 0.0f);
+                hxVar.f46497b = ((xf0Var.getScaleY() * bg0Var.P.getTimeY()) + iArr[1]) - f14;
             }
         }
-        return super.drawChild(canvas, view, j10);
     }
 }

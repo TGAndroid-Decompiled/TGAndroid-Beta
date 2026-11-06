@@ -3,33 +3,33 @@ package org.telegram.ui;
 import android.content.Intent;
 import android.os.Bundle;
 public class ContactsWidgetConfigActivity extends ExternalActionActivity {
-    public static final int G = 0;
-    public int F = 0;
+    public static final int F = 0;
+    public int E = 0;
 
     @Override
-    public final void d(Intent intent, boolean z10, boolean z11, boolean z12, int i3, int i10) {
-        if (!c(intent, z10, z11, z12, i3, i10)) {
+    public final void d(Intent intent, boolean z9, boolean z10, boolean z11, int i7, int i10) {
+        if (!c(intent, z9, z10, z11, i7, i10)) {
             return;
         }
         Bundle extras = intent.getExtras();
         if (extras != null) {
-            this.F = extras.getInt("appWidgetId", 0);
+            this.E = extras.getInt("appWidgetId", 0);
         }
-        if (this.F != 0) {
-            org.telegram.ui.Cells.f1.l(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
-            cx cxVar = new cx(1, this.F);
-            cxVar.E = new ur(this, 0);
+        if (this.E != 0) {
+            org.telegram.ui.Cells.f1.h(10, "onlySelect", "dialogsType", true).putBoolean("allowSwitchAccount", true);
+            ex exVar = new ex(1, this.E);
+            exVar.D = new wr(this, 0);
             if (org.telegram.messenger.g0.Q1()) {
                 if (this.d.getFragmentStack().isEmpty()) {
-                    this.d.c(-1, cxVar);
+                    this.d.c(-1, exVar);
                 }
-            } else if (this.f41257c.getFragmentStack().isEmpty()) {
-                this.f41257c.c(-1, cxVar);
+            } else if (this.f41200c.getFragmentStack().isEmpty()) {
+                this.f41200c.c(-1, exVar);
             }
             if (!org.telegram.messenger.g0.Q1()) {
-                this.f41258e.setVisibility(8);
+                this.f41201e.setVisibility(8);
             }
-            this.f41257c.f0();
+            this.f41200c.f0();
             if (org.telegram.messenger.g0.Q1()) {
                 this.d.f0();
             }

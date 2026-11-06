@@ -1,32 +1,65 @@
 package h2;
-public final class k {
-    public final int f14125a;
-    public final h f14126b;
-    public final int f14127c;
-    public final int d;
-    public final int f14128e;
-    public final int f14129f;
-    public final int f14130g;
-    public final int h;
-    public final float f14131i;
-    public final int f14132j;
-    public final int f14133k;
-    public final int f14134l;
-    public final int f14135m;
 
-    public k(int i3, h hVar, int i10, int i11, int i12, int i13, int i14, int i15, float f10, int i16, int i17, int i18, int i19) {
-        this.f14125a = i3;
-        this.f14126b = hVar;
-        this.f14127c = i10;
-        this.d = i11;
-        this.f14128e = i12;
-        this.f14129f = i13;
-        this.f14131i = f10;
-        this.f14132j = i16;
-        this.f14133k = i17;
-        this.f14134l = i18;
-        this.f14135m = i19;
-        this.f14130g = i14;
-        this.h = i15;
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+public final class k implements Iterable {
+    public final Object f14100a = new Object();
+    public final HashMap f14101b = new HashMap();
+    public Set f14102c = Collections.EMPTY_SET;
+    public List d = Collections.EMPTY_LIST;
+
+    public final int f(q2.j jVar) {
+        int i7;
+        synchronized (this.f14100a) {
+            try {
+                if (this.f14101b.containsKey(jVar)) {
+                    i7 = ((Integer) this.f14101b.get(jVar)).intValue();
+                } else {
+                    i7 = 0;
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        return i7;
+    }
+
+    public final void i(q2.j jVar) {
+        synchronized (this.f14100a) {
+            try {
+                Integer num = (Integer) this.f14101b.get(jVar);
+                if (num == null) {
+                    return;
+                }
+                ArrayList arrayList = new ArrayList(this.d);
+                arrayList.remove(jVar);
+                this.d = DesugarCollections.unmodifiableList(arrayList);
+                if (num.intValue() == 1) {
+                    this.f14101b.remove(jVar);
+                    HashSet hashSet = new HashSet(this.f14102c);
+                    hashSet.remove(jVar);
+                    this.f14102c = DesugarCollections.unmodifiableSet(hashSet);
+                } else {
+                    this.f14101b.put(jVar, Integer.valueOf(num.intValue() - 1));
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    @Override
+    public final Iterator iterator() {
+        Iterator it;
+        synchronized (this.f14100a) {
+            it = this.d.iterator();
+        }
+        return it;
     }
 }

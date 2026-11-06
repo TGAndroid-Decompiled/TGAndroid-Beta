@@ -1,115 +1,69 @@
 package org.telegram.messenger;
 
+import android.util.LongSparseArray;
+import android.util.SparseBooleanArray;
 import java.util.ArrayList;
-import org.telegram.ui.SecretMediaViewer;
-public final class kj implements Runnable {
-    public final int f23832a;
-    public final hp f23833b;
-    public final a0.h f23834c;
-    public final a0.h d;
+public final class kj {
+    public final Boolean f23686a;
+    public final int f23687b;
+    public final long f23688c;
+    public final ArrayList f23689e;
+    public final SparseBooleanArray f23691g;
+    public final boolean f23692i;
+    public final boolean f23693j;
+    public final mj f23694k;
+    public final LongSparseArray d = new LongSparseArray();
+    public final ArrayList f23690f = new ArrayList();
+    public final ArrayList h = new ArrayList();
 
-    public kj(hp hpVar, a0.h hVar, a0.h hVar2, int i3) {
-        this.f23832a = i3;
-        this.f23833b = hpVar;
-        this.f23834c = hVar;
-        this.d = hVar2;
+    public kj(org.telegram.messenger.mj r21, java.lang.Boolean r22, int r23, java.util.ArrayList r24, long r25, android.util.SparseBooleanArray r27) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.kj.<init>(org.telegram.messenger.mj, java.lang.Boolean, int, java.util.ArrayList, long, android.util.SparseBooleanArray):void");
     }
 
-    @Override
-    public final void run() {
-        boolean z10;
-        zi ziVar;
-        char c2;
-        ArrayList arrayList;
-        boolean z11;
-        char c10 = 0;
-        switch (this.f23832a) {
-            case 0:
-                hp hpVar = this.f23833b;
-                a0.h hVar = this.f23834c;
-                a0.h hVar2 = this.d;
-                if (hVar != null) {
-                    int i3 = 0;
-                    for (int m10 = hVar.m(); i3 < m10; m10 = m10) {
-                        ArrayList arrayList2 = (ArrayList) hVar.n(i3);
-                        long j10 = hVar.j(i3);
-                        if (!arrayList2.isEmpty() && ((Integer) arrayList2.get(0)).intValue() > 0) {
-                            z11 = true;
-                        } else {
-                            z11 = false;
-                        }
-                        hpVar.a0(arrayList2, null, null, j10, true, 0, z11, 0L, null, 0);
-                        i3++;
-                        hVar2 = hVar2;
-                    }
-                }
-                a0.h hVar3 = hVar2;
-                if (hVar3 != null) {
-                    if (SecretMediaViewer.g() && SecretMediaViewer.f().f41965s) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        ziVar = SecretMediaViewer.f().f41942g0;
-                    } else {
-                        ziVar = null;
-                    }
-                    int m11 = hVar3.m();
+    public final kj a(ArrayList arrayList) {
+        ArrayList arrayList2 = this.f23689e;
+        if (arrayList2 != null && arrayList2.size() <= 1 && arrayList != null) {
+            boolean z9 = false;
+            for (int i7 = 0; i7 < arrayList2.size(); i7++) {
+                ij ijVar = (ij) arrayList2.get(i7);
+                if (ijVar != null) {
                     int i10 = 0;
-                    while (i10 < m11) {
-                        long j11 = hVar3.j(i10);
-                        ArrayList arrayList3 = (ArrayList) hVar3.n(i10);
-                        if (z10 && ziVar != null && ziVar.I1 == hpVar.currentAccount && zi.B0(ziVar.f26868k) == j11 && arrayList3.contains(Integer.valueOf(ziVar.f1()))) {
-                            int f12 = ziVar.f1();
-                            arrayList3.remove(Integer.valueOf(f12));
-                            ziVar.G0 = true;
-                            long V = hpVar.V(f12, j11);
-                            c2 = c10;
-                            arrayList = arrayList3;
-                            hp hpVar2 = hpVar;
-                            hpVar = hpVar2;
-                            SecretMediaViewer.f().f41957o1 = new mk(f12, V, j11, hpVar2);
-                            hs notificationCenter = hpVar.getNotificationCenter();
-                            Object[] objArr = new Object[1];
-                            objArr[c2] = ziVar.f26868k;
-                            notificationCenter.k(48, objArr);
-                        } else {
-                            c2 = c10;
-                            arrayList = arrayList3;
+                    while (true) {
+                        if (i10 >= arrayList.size()) {
+                            break;
                         }
-                        if (!arrayList.isEmpty()) {
-                            qr messagesStorage = hpVar.getMessagesStorage();
-                            messagesStorage.f24934a.c(new dr(messagesStorage, arrayList, j11, 1));
+                        ij ijVar2 = (ij) arrayList.get(i10);
+                        if (ijVar2 != null && ijVar.f1() == ijVar2.f1() && ij.B0(ijVar.f23237k) == ij.B0(ijVar2.f23237k)) {
+                            arrayList2.set(i7, ijVar2);
+                            z9 = true;
+                            break;
                         }
                         i10++;
-                        c10 = c2;
                     }
                 }
-                Utilities.d.c(new kj(hpVar, hVar, hVar3, 3));
+            }
+            if (z9) {
+                return new kj(this.f23694k, this.f23686a, this.f23687b, this.f23689e, this.f23688c, null);
+            }
+            return null;
+        }
+        return null;
+    }
+
+    public final void b(ArrayList arrayList) {
+        arrayList.clear();
+        int i7 = 0;
+        while (true) {
+            ArrayList arrayList2 = this.f23689e;
+            if (i7 < arrayList2.size()) {
+                ij ijVar = (ij) arrayList2.get(i7);
+                if (this.f23691g.get(ijVar.f1(), false)) {
+                    arrayList.add(ijVar);
+                }
+                i7++;
+            } else {
                 return;
-            case 1:
-                hp hpVar3 = this.f23833b;
-                a0.h hVar4 = this.f23834c;
-                a0.h hVar5 = this.d;
-                hpVar3.X = hVar4;
-                hpVar3.Y = hVar5;
-                return;
-            case 2:
-                hp hpVar4 = this.f23833b;
-                a0.h hVar6 = this.f23834c;
-                a0.h hVar7 = this.d;
-                hpVar4.U1 = true;
-                qr messagesStorage2 = hpVar4.getMessagesStorage();
-                messagesStorage2.f24934a.c(new dg(messagesStorage2, hVar6, hVar7, 17));
-                return;
-            default:
-                hp hpVar5 = this.f23833b;
-                Utilities.d.c(new kj(hpVar5, this.f23834c, this.d, 2));
-                hpVar5.V1 = 0;
-                hpVar5.W1 = null;
-                hpVar5.X1 = null;
-                return;
+            }
         }
     }
 }

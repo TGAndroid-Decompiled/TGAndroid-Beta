@@ -1,6 +1,6 @@
 package org.telegram.ui.Components;
-public interface v70 {
-    boolean a();
 
-    void setLoading(boolean z10);
+import android.text.style.ClickableSpan;
+public interface v70 {
+    void a(ClickableSpan clickableSpan);
 }

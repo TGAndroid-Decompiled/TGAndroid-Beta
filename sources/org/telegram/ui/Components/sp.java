@@ -5,28 +5,28 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 public final class sp implements TextWatcher {
-    public final int f38102a = 1;
-    public final int f38103b;
-    public final View f38104c;
+    public final int f38132a = 1;
+    public final int f38133b;
+    public final View f38134c;
 
-    public sp(vp vpVar, int i3) {
-        this.f38104c = vpVar;
-        this.f38103b = i3;
+    public sp(vp vpVar, int i7) {
+        this.f38134c = vpVar;
+        this.f38133b = i7;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
-        int i3;
-        int i10 = this.f38102a;
-        int i11 = this.f38103b;
-        View view = this.f38104c;
-        boolean z10 = false;
+        int i7;
+        int i10 = this.f38132a;
+        int i11 = this.f38133b;
+        View view = this.f38134c;
+        boolean z9 = false;
         switch (i10) {
             case 0:
                 vp vpVar = (vp) view;
-                EditTextBoldCursor[] editTextBoldCursorArr = vpVar.F;
-                if (!vpVar.f39761r) {
-                    vpVar.f39761r = true;
+                EditTextBoldCursor[] editTextBoldCursorArr = vpVar.E;
+                if (!vpVar.f39641r) {
+                    vpVar.f39641r = true;
                     int i12 = 0;
                     while (i12 < editable.length()) {
                         char charAt = editable.charAt(i12);
@@ -37,23 +37,23 @@ public final class sp implements TextWatcher {
                         i12++;
                     }
                     if (editable.length() == 0) {
-                        vpVar.f39761r = false;
+                        vpVar.f39641r = false;
                         return;
                     }
                     try {
-                        i3 = Integer.parseInt(editTextBoldCursorArr[i11].getText().toString(), 16) | (-16777216);
+                        i7 = Integer.parseInt(editTextBoldCursorArr[i11].getText().toString(), 16) | (-16777216);
                     } catch (Exception unused) {
-                        i3 = -1;
+                        i7 = -1;
                     }
-                    vpVar.setColorInner(i3);
+                    vpVar.setColorInner(i7);
                     int color = vpVar.getColor();
                     if (editable.length() == 6) {
                         editable.replace(0, editable.length(), String.format("%02x%02x%02x", Byte.valueOf((byte) Color.red(color)), Byte.valueOf((byte) Color.green(color)), Byte.valueOf((byte) Color.blue(color))).toUpperCase());
                         editTextBoldCursorArr[i11].setSelection(editable.length());
                     }
-                    vpVar.f39763w[vpVar.T].a(color);
-                    vpVar.f39749a.c(color, vpVar.T, true);
-                    vpVar.f39761r = false;
+                    vpVar.f39643w[vpVar.S].a(color);
+                    vpVar.f39630a.c(color, vpVar.S, true);
+                    vpVar.f39641r = false;
                     return;
                 }
                 return;
@@ -62,9 +62,9 @@ public final class sp implements TextWatcher {
                 int codePointCount = i11 - Character.codePointCount(editable, 0, editable.length());
                 if (codePointCount < 30) {
                     if (numberTextView.getVisibility() == 0) {
-                        z10 = true;
+                        z9 = true;
                     }
-                    numberTextView.a(codePointCount, z10);
+                    numberTextView.a(codePointCount, z9);
                     org.telegram.messenger.g0.X3(numberTextView, true);
                     return;
                 }
@@ -74,29 +74,29 @@ public final class sp implements TextWatcher {
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
-        int i12 = this.f38102a;
+    public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f38132a;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
-        int i12 = this.f38102a;
+    public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
+        int i12 = this.f38132a;
     }
 
-    public sp(int i3, NumberTextView numberTextView) {
-        this.f38103b = i3;
-        this.f38104c = numberTextView;
+    public sp(int i7, NumberTextView numberTextView) {
+        this.f38133b = i7;
+        this.f38134c = numberTextView;
     }
 
-    private final void a(int i3, int i10, int i11, CharSequence charSequence) {
+    private final void a(int i7, int i10, int i11, CharSequence charSequence) {
     }
 
-    private final void b(int i3, int i10, int i11, CharSequence charSequence) {
+    private final void b(int i7, int i10, int i11, CharSequence charSequence) {
     }
 
-    private final void c(int i3, int i10, int i11, CharSequence charSequence) {
+    private final void c(int i7, int i10, int i11, CharSequence charSequence) {
     }
 
-    private final void d(int i3, int i10, int i11, CharSequence charSequence) {
+    private final void d(int i7, int i10, int i11, CharSequence charSequence) {
     }
 }

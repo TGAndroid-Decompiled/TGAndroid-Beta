@@ -1,28 +1,61 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class xx implements DialogInterface.OnDismissListener {
-    public final int f52115a;
-    public final EditTextBoldCursor f52116b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+public final class xx extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
+    public Paint f51989a;
+    public float[] f51990b;
+    public Path f51991c;
+    public float d;
 
-    public xx(EditTextBoldCursor editTextBoldCursor, int i3) {
-        this.f52115a = i3;
-        this.f52116b = editTextBoldCursor;
+    public final void a(float f10, float f11) {
+        float[] fArr = this.f51990b;
+        fArr[7] = f10;
+        fArr[6] = f10;
+        fArr[1] = f10;
+        fArr[0] = f10;
+        fArr[5] = f11;
+        fArr[4] = f11;
+        fArr[3] = f11;
+        fArr[2] = f11;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f52115a) {
-            case 0:
-                org.telegram.messenger.g0.v1(this.f52116b);
-                return;
-            case 1:
-                org.telegram.messenger.g0.v1(this.f52116b);
-                return;
-            default:
-                org.telegram.messenger.g0.v1(this.f52116b);
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        float measuredWidth = getMeasuredWidth() / 2.0f;
+        Path path = this.f51991c;
+        path.rewind();
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(0.0f, 0.0f, measuredWidth - org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), getMeasuredHeight());
+        a(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(8.0f)));
+        float[] fArr = this.f51990b;
+        Path.Direction direction = Path.Direction.CW;
+        path.addRoundRect(rectF, fArr, direction);
+        Paint paint = this.f51989a;
+        canvas.drawPath(path, paint);
+        path.rewind();
+        rectF.set(measuredWidth + org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(4.0f)), 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        a(org.telegram.messenger.g0.W1(this.d, 0, org.telegram.messenger.g0.L(8.0f)), org.telegram.messenger.g0.L(8.0f));
+        path.addRoundRect(rectF, fArr, direction);
+        canvas.drawPath(path, paint);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.f51989a.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false));
+            invalidate();
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -8,7 +8,7 @@ public class VideoFrame implements RefCounted {
     private final long timestampNs;
 
     public interface Buffer extends RefCounted {
-        Buffer cropAndScale(int i3, int i10, int i11, int i12, int i13, int i14);
+        Buffer cropAndScale(int i7, int i10, int i11, int i12, int i13, int i14);
 
         int getBufferType();
 
@@ -50,8 +50,8 @@ public class VideoFrame implements RefCounted {
             
             private final int glTarget;
 
-            Type(int i3) {
-                this.glTarget = i3;
+            Type(int i7) {
+                this.glTarget = i7;
             }
 
             public int getGlTarget() {
@@ -59,7 +59,7 @@ public class VideoFrame implements RefCounted {
             }
         }
 
-        TextureBuffer applyTransformMatrix(Matrix matrix, int i3, int i10);
+        TextureBuffer applyTransformMatrix(Matrix matrix, int i7, int i10);
 
         int getTextureId();
 
@@ -72,12 +72,12 @@ public class VideoFrame implements RefCounted {
         int getUnscaledWidth();
     }
 
-    public VideoFrame(Buffer buffer, int i3, long j10) {
+    public VideoFrame(Buffer buffer, int i7, long j3) {
         if (buffer != null) {
-            if (i3 % 90 == 0) {
+            if (i7 % 90 == 0) {
                 this.buffer = buffer;
-                this.rotation = i3;
-                this.timestampNs = j10;
+                this.rotation = i7;
+                this.timestampNs = j3;
                 return;
             }
             throw new IllegalArgumentException("rotation must be a multiple of 90");

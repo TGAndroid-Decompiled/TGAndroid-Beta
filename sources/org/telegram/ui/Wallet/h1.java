@@ -1,76 +1,48 @@
 package org.telegram.ui.Wallet;
 
-import android.text.TextUtils;
-import android.view.View;
-import org.json.JSONObject;
-import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.f60;
-import org.telegram.ui.Components.fc;
-import org.telegram.ui.ma1;
-public final class h1 implements View.OnClickListener {
-    public final int f42599a;
-    public final Object f42600b;
-    public final Object f42601c;
-    public final Object d;
+import org.telegram.messenger.c20;
+public final class h1 implements c20 {
+    public final b2 f42525a;
+    public final boolean[] f42526b;
+    public final fi.d f42527c;
+    public final fi.d d;
+    public final f2 f42528e;
+    public final z2 f42529f;
+    public final boolean[] f42530g;
+    public final org.telegram.ui.ActionBar.f6 h;
 
-    public h1(Object obj, Object obj2, Object obj3, int i3) {
-        this.f42599a = i3;
-        this.f42600b = obj;
-        this.f42601c = obj2;
-        this.d = obj3;
+    public h1(b2 b2Var, boolean[] zArr, fi.d dVar, fi.d dVar2, f2 f2Var, z2 z2Var, boolean[] zArr2, org.telegram.ui.ActionBar.f6 f6Var) {
+        this.f42525a = b2Var;
+        this.f42526b = zArr;
+        this.f42527c = dVar;
+        this.d = dVar2;
+        this.f42528e = f2Var;
+        this.f42529f = z2Var;
+        this.f42530g = zArr2;
+        this.h = f6Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f42599a) {
-            case 0:
-                x2 x2Var = (x2) this.f42601c;
-                org.telegram.ui.ActionBar.e6 e6Var = (org.telegram.ui.ActionBar.e6) this.d;
-                if (org.telegram.messenger.g0.g(((JSONObject) this.f42600b).optString("text"))) {
-                    org.telegram.messenger.camera.q.r(null, 2131743019, new fc(x2Var.F, e6Var));
-                    return;
+    public final void a(Object obj) {
+        fi.d dVar;
+        Boolean bool = (Boolean) obj;
+        b2 b2Var = this.f42525a;
+        if (!b2Var.f42107m && !b2Var.f42108n) {
+            boolean booleanValue = bool.booleanValue();
+            boolean[] zArr = this.f42526b;
+            if (booleanValue || zArr[0]) {
+                fi.d dVar2 = this.f42527c;
+                dVar2.setEnabled(false);
+                fi.d dVar3 = this.d;
+                dVar3.setEnabled(false);
+                if (bool.booleanValue()) {
+                    dVar = dVar3;
+                } else {
+                    dVar = dVar2;
                 }
-                return;
-            case 1:
-                n3 n3Var = (n3) this.f42600b;
-                org.telegram.ui.ActionBar.d2 d2Var = (org.telegram.ui.ActionBar.d2) this.f42601c;
-                TL_wallet.card cardVar = (TL_wallet.card) this.d;
-                if (!n3Var.S) {
-                    if (n3Var.f42916e) {
-                        n3Var.V = new i3(1, d2Var);
-                    } else if (n3Var.d) {
-                        n3Var.V = new i3(0, d2Var);
-                    } else if (n3Var.f42915c && !TextUtils.isEmpty(cardVar.address)) {
-                        n3Var.V = new ma1(12, d2Var, cardVar);
-                    } else {
-                        return;
-                    }
-                    n3Var.dismiss();
-                    return;
-                }
-                return;
-            case 2:
-                f60 f60Var = (f60) this.d;
-                f fVar = ((k0) this.f42600b).h;
-                String str = ((TL_wallet.currencyRate) this.f42601c).currency;
-                if (!TextUtils.equals(fVar.f42506f, str)) {
-                    fVar.f42506f = str;
-                    try {
-                        org.telegram.messenger.t0.f25457b.getSharedPreferences("gram_wallet", 0).edit().putString("currency", fVar.g()).apply();
-                    } catch (Exception e10) {
-                        org.telegram.messenger.a8.e("[gram-wallet] failed to save currency prefs", e10);
-                    }
-                    fVar.f42503b.L();
-                }
-                f60Var.u();
-                return;
-            default:
-                q8 q8Var = (q8) this.f42600b;
-                q8Var.getClass();
-                ((org.telegram.ui.ActionBar.s1[]) this.f42601c)[0].dismiss();
-                org.telegram.messenger.g0.g(q8Var.f43099s);
-                ((Runnable) this.d).run();
-                return;
+                dVar.setLoading(true);
+                this.f42528e.f(b2Var, bool.booleanValue(), new n1(dVar2, dVar3, this.f42529f, this.f42530g, this.h, b2Var, zArr));
+            }
         }
     }
 }

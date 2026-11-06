@@ -1,83 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.LaunchActivity;
-public final class hf implements Runnable {
-    public final org.telegram.messenger.zi f34374a;
-    public final long f34375b;
-    public final TL_keyboard.KeyboardButtonProto f34376c;
-    public final org.telegram.messenger.zi d;
-    public final TLRPC.User f34377e;
-    public final ChatActivityEnterView f34378f;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class hf extends AnimatorListenerAdapter {
+    public final boolean f34313a;
+    public final float f34314b;
+    public final float f34315c;
+    public final float d;
+    public final float f34316e;
+    public final ChatActivityEnterView f34317f;
 
-    public hf(ChatActivityEnterView chatActivityEnterView, org.telegram.messenger.zi ziVar, long j10, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.messenger.zi ziVar2, TLRPC.User user) {
-        this.f34378f = chatActivityEnterView;
-        this.f34374a = ziVar;
-        this.f34375b = j10;
-        this.f34376c = keyboardButtonProto;
-        this.d = ziVar2;
-        this.f34377e = user;
+    public hf(ChatActivityEnterView chatActivityEnterView, boolean z9, float f10, float f11, float f12, float f13) {
+        this.f34317f = chatActivityEnterView;
+        this.f34313a = z9;
+        this.f34314b = f10;
+        this.f34315c = f11;
+        this.d = f12;
+        this.f34316e = f13;
     }
 
     @Override
-    public final void run() {
-        int i3;
-        long h92;
-        String F1;
-        ChatActivityEnterView chatActivityEnterView = this.f34378f;
-        org.telegram.ui.wm wmVar = chatActivityEnterView.Q2;
-        if (chatActivityEnterView.f31163n1.Q() <= org.telegram.messenger.g0.L(20.0f) && !chatActivityEnterView.r0()) {
-            if (wmVar != null) {
-                int i10 = chatActivityEnterView.R;
-                long j10 = this.f34374a.f26868k.dialog_id;
-                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f34376c;
-                String text = keyboardButtonProto.getText();
-                String url = keyboardButtonProto.getUrl();
-                boolean c2 = dg.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
-                org.telegram.messenger.zi ziVar = this.d;
-                if (ziVar != null) {
-                    i3 = ziVar.f26868k.f27022id;
-                } else {
-                    i3 = 0;
-                }
-                if (wmVar == null) {
-                    h92 = 0;
-                } else {
-                    h92 = wmVar.h9();
-                }
-                ii.q4 b10 = ii.q4.b(i10, j10, this.f34375b, text, url, c2 ? 1 : 0, i3, h92, null, false, null, null, 0, false, false);
-                LaunchActivity launchActivity = LaunchActivity.K1;
-                if (launchActivity != null && launchActivity.O() != null && LaunchActivity.K1.O().k(b10) != null) {
-                    ii.a0 a0Var = chatActivityEnterView.m0;
-                    if (a0Var != null) {
-                        a0Var.setOpened(false);
-                        return;
-                    }
-                    return;
-                }
-                TLRPC.User user = this.f34377e;
-                if (user == null) {
-                    F1 = null;
-                } else {
-                    F1 = org.telegram.messenger.hp.s1(chatActivityEnterView.R).F1(user.restriction_reason);
-                }
-                if (!TextUtils.isEmpty(F1)) {
-                    org.telegram.messenger.hp.s1(chatActivityEnterView.R);
-                    org.telegram.messenger.hp.R4(F1, wmVar);
-                    return;
-                }
-                ii.a3 a3Var = new ii.a3(chatActivityEnterView.getContext(), chatActivityEnterView.X3);
-                a3Var.m0 = chatActivityEnterView.P2;
-                a3Var.x(wmVar, b10);
-                a3Var.show();
-                return;
-            }
-            return;
+    public final void onAnimationCancel(Animator animator) {
+        float f10;
+        int i7;
+        ChatActivityEnterView chatActivityEnterView = this.f34317f;
+        boolean z9 = this.f34313a;
+        if (z9) {
+            int i10 = ChatActivityEnterView.s5;
+            chatActivityEnterView.X();
         }
-        chatActivityEnterView.j0(false);
-        org.telegram.messenger.g0.v1(chatActivityEnterView);
-        org.telegram.messenger.g0.i3(this, 150L);
+        cn0 cn0Var = chatActivityEnterView.f31098p0;
+        if (cn0Var != null) {
+            if (z9) {
+                i7 = 0;
+            } else {
+                i7 = 8;
+            }
+            cn0Var.setVisibility(i7);
+            chatActivityEnterView.f31098p0.setAlpha(this.d);
+            chatActivityEnterView.f31098p0.setTranslationX(this.f34316e);
+            f10 = chatActivityEnterView.f31098p0.getTranslationX();
+        } else {
+            f10 = 0.0f;
+        }
+        chatActivityEnterView.Q0.setTranslationX(f10);
+        chatActivityEnterView.G = f10;
+        chatActivityEnterView.L1();
+        chatActivityEnterView.requestLayout();
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        if (!this.f34313a) {
+            ChatActivityEnterView chatActivityEnterView = this.f34317f;
+            cn0 cn0Var = chatActivityEnterView.f31098p0;
+            if (cn0Var != null) {
+                cn0Var.setVisibility(8);
+            }
+            chatActivityEnterView.Q0.setTranslationX(0.0f);
+            chatActivityEnterView.G = 0.0f;
+            chatActivityEnterView.L1();
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        float f10;
+        boolean z9 = this.f34313a;
+        ChatActivityEnterView chatActivityEnterView = this.f34317f;
+        if (z9) {
+            int i7 = ChatActivityEnterView.s5;
+            chatActivityEnterView.X();
+            chatActivityEnterView.f31098p0.setVisibility(0);
+        }
+        cn0 cn0Var = chatActivityEnterView.f31098p0;
+        if (cn0Var != null) {
+            cn0Var.setAlpha(this.f34314b);
+            chatActivityEnterView.f31098p0.setTranslationX(this.f34315c);
+            f10 = chatActivityEnterView.f31098p0.getTranslationX();
+        } else {
+            f10 = 0.0f;
+        }
+        chatActivityEnterView.Q0.setTranslationX(f10);
+        chatActivityEnterView.G = f10;
+        chatActivityEnterView.L1();
+        hi.y yVar = chatActivityEnterView.f31077l0;
+        if (yVar != null && yVar.getTag() == null) {
+            chatActivityEnterView.B0.clear();
+        }
     }
 }

@@ -11,7 +11,7 @@ public interface PrefetchOperationCallbackBoundaryInterface {
         public static final int NETWORK = 1;
     }
 
-    void onFailure(int i3, String str, int i10);
+    void onFailure(int i7, String str, int i10);
 
     void onSuccess();
 }

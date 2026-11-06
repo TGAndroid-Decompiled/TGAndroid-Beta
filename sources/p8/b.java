@@ -1,17 +1,29 @@
 package p8;
 
-import com.google.android.gms.common.api.Scope;
-import com.google.android.gms.common.api.e;
-public abstract class b {
-    public static final a6.b f53426a;
-    public static final e f53427b;
+import android.os.Parcel;
+import android.os.ParcelFileDescriptor;
+import android.os.Parcelable;
+import c8.wb;
+import com.google.android.gms.common.data.DataHolder;
+public final class b extends r6.a {
+    public static final Parcelable.Creator<b> CREATOR = new m6.e(23);
+    public String f53377a;
+    public DataHolder f53378b;
+    public ParcelFileDescriptor f53379c;
+    public long d;
+    public byte[] f53380e;
 
-    static {
-        ?? obj = new Object();
-        a6.b bVar = new a6.b(11);
-        f53426a = bVar;
-        new Scope(1, "profile");
-        new Scope(1, "email");
-        f53427b = new e("SignIn.API", bVar, obj);
+    @Override
+    public final void writeToParcel(Parcel parcel, int i7) {
+        int r10 = wb.r(parcel, 20293);
+        wb.l(parcel, 2, this.f53377a);
+        wb.k(parcel, 3, this.f53378b, i7);
+        wb.k(parcel, 4, this.f53379c, i7);
+        long j3 = this.d;
+        wb.q(parcel, 5, 8);
+        parcel.writeLong(j3);
+        wb.c(parcel, 6, this.f53380e);
+        wb.s(parcel, r10);
+        this.f53379c = null;
     }
 }

@@ -6,18 +6,18 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 public abstract class v0 {
     public static void a() {
-        t0.f25457b.getSharedPreferences("saved_tokens_login", 0).edit().clear().apply();
-        t0.f25457b.getSharedPreferences("saved_tokens", 0).edit().clear().apply();
+        t0.f25555b.getSharedPreferences("saved_tokens_login", 0).edit().clear().apply();
+        t0.f25555b.getSharedPreferences("saved_tokens", 0).edit().clear().apply();
     }
 
     public static ArrayList b() {
-        SharedPreferences sharedPreferences = t0.f25457b.getSharedPreferences("saved_tokens_login", 0);
-        int i3 = sharedPreferences.getInt("count", 0);
-        if (i3 == 0) {
+        SharedPreferences sharedPreferences = t0.f25555b.getSharedPreferences("saved_tokens_login", 0);
+        int i7 = sharedPreferences.getInt("count", 0);
+        if (i7 == 0) {
             return null;
         }
         ArrayList arrayList = new ArrayList();
-        for (int i10 = 0; i10 < i3; i10++) {
+        for (int i10 = 0; i10 < i7; i10++) {
             try {
                 SerializedData serializedData = new SerializedData(Utilities.v(sharedPreferences.getString("log_in_token_" + i10, "")));
                 TLRPC.auth_Authorization TLdeserialize = TLRPC.auth_Authorization.TLdeserialize(serializedData, serializedData.readInt32(true), true);

@@ -1,176 +1,159 @@
 package ai;
 
+import a8.wa;
+import android.animation.ValueAnimator;
 import android.view.View;
-import ci.lb;
-import ci.n9;
-import ci.nb;
-import ci.wb;
-import ei.k9;
-import ei.r9;
-import ei.t8;
-import ei.z8;
-import gi.c8;
-import gi.la;
-import gi.z7;
-import org.telegram.messenger.u10;
-import org.telegram.ui.Components.i20;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.xe;
-public final class b implements View.OnClickListener {
-    public final int f498a;
-    public final Object f499b;
+import androidx.recyclerview.widget.RecyclerView;
+import bi.q1;
+import di.k5;
+import fi.w6;
+import fi.z1;
+import kg.w1;
+import org.telegram.ui.Components.b8;
+import org.telegram.ui.Components.di;
+import org.telegram.ui.Components.n7;
+import org.telegram.ui.Components.qi;
+import org.telegram.ui.Components.xi0;
+public final class b extends v4.s0 {
+    public final int f1125a;
+    public final Object f1126b;
 
-    public b(Object obj, int i3) {
-        this.f498a = i3;
-        this.f499b = obj;
+    public b(Object obj, int i7) {
+        this.f1125a = i7;
+        this.f1126b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.ActionBar.d2 Q;
-        org.telegram.ui.ActionBar.d2 Q2;
-        u10 u10Var;
-        switch (this.f498a) {
+    public void a(RecyclerView recyclerView, int i7) {
+        xi0 xi0Var;
+        int i10;
+        xi0 xi0Var2;
+        switch (this.f1125a) {
             case 0:
-                ((g) this.f499b).dismiss();
+                d dVar = (d) this.f1126b;
+                boolean z9 = true;
+                if (i7 != 1) {
+                    z9 = false;
+                }
+                dVar.f1144c0 = z9;
+                if (i7 != 0) {
+                    dVar.f1140a0 = d.b();
+                }
+                dVar.invalidate();
                 return;
             case 1:
-                ((z0) this.f499b).dismiss();
-                return;
-            case 2:
-                if (((b3) this.f499b).X1.f5510f > 0 && (Q = LaunchActivity.Q()) != 0) {
-                    ?? obj = new Object();
-                    obj.f27395a = true;
-                    Q.showAsSheet(new wb(), obj);
+                if (i7 == 0) {
+                    ((q0) this.f1126b).f1679w = false;
                     return;
                 }
-                return;
-            case 3:
-                ((androidx.mediarouter.app.g) this.f499b).dismiss();
-                return;
-            case 4:
-                Runnable runnable = ((bh.d) this.f499b).f3310e;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 5:
-                ((bi.n) this.f499b).f3800c.f3839b.f3743a.presentFragment(new PremiumPreviewFragment(0, "qr_emoji"));
-                return;
-            case 6:
-                ((i20) this.f499b).dismiss();
-                return;
-            case 7:
-                ((ci.x0) this.f499b).dismiss();
-                return;
-            case 8:
-                ci.a1 a1Var = (ci.a1) this.f499b;
-                dg.b bVar = a1Var.f4802w1.f8923a;
-                dg.b bVar2 = dg.b.f8926b;
-                if (bVar == bVar2) {
-                    bVar2 = dg.b.f8925a;
-                }
-                a1Var.J0(dg.a.i(0L, bVar2), true, false, true);
-                a1Var.k1.setText("");
                 return;
             case 9:
-                ((ci.p1) this.f499b).dismiss();
-                return;
-            case 10:
-                ((ci.b3) this.f499b).run();
+                k5 k5Var = (k5) this.f1126b;
+                if (i7 == 0) {
+                    k5Var.V = true;
+                    k5Var.invalidate();
+                }
+                if (i7 == 1) {
+                    k5Var.V = false;
+                    wa waVar = k5Var.d;
+                    ValueAnimator valueAnimator = (ValueAnimator) waVar.f701c;
+                    if (valueAnimator != null) {
+                        valueAnimator.removeAllListeners();
+                        ((ValueAnimator) waVar.f701c).cancel();
+                        waVar.f701c = null;
+                    }
+                    org.telegram.messenger.g0.v1(k5Var);
+                    return;
+                }
                 return;
             case 11:
-                ((ci.b3) this.f499b).run();
+                z1 z1Var = (z1) this.f1126b;
+                if (i7 == 0 && z1Var.f13239n >= 0.0f && !z1Var.f13235b.canScrollVertically(-1)) {
+                    z1Var.f13239n = -1.0f;
+                    return;
+                }
                 return;
             case 12:
-                ci.n5 n5Var = (ci.n5) this.f499b;
-                n5Var.getClass();
-                new nb(n5Var.f5594b, n5Var.f5598g).show();
-                return;
-            case 13:
-                ((ci.h6) this.f499b).dismiss();
-                return;
-            case 14:
-                ((n9) this.f499b).run();
-                return;
-            case 15:
-                if (((lb) ((bh.a) this.f499b).f3300c).f5510f > 0 && (Q2 = LaunchActivity.Q()) != 0) {
-                    ?? obj2 = new Object();
-                    obj2.f27395a = true;
-                    Q2.showAsSheet(new wb(), obj2);
+                if (i7 == 0) {
+                    w6 w6Var = (w6) this.f1126b;
+                    if (w6Var.f13033a2) {
+                        w6Var.f13033a2 = false;
+                        return;
+                    }
                     return;
                 }
-                return;
-            case 16:
-                dh.a0 a0Var = (dh.a0) this.f499b;
-                if (a0Var.f8939k) {
-                    a0Var.d();
-                    return;
-                }
-                return;
-            case 17:
-                ei.k2 k2Var = (ei.k2) this.f499b;
-                k2Var.q(!k2Var.f11157g0, true);
                 return;
             case 18:
-                ((r9) this.f499b).b0();
-                return;
-            case 19:
-                ((ei.w5) this.f499b).dismiss();
-                org.telegram.ui.ActionBar.d2 Q3 = LaunchActivity.Q();
-                if (Q3 != null) {
-                    Q3.showDialog(new vg.v0(Q3, 14, false));
+                ii.b0 b0Var = (ii.b0) this.f1126b;
+                if (i7 == 0) {
+                    b0Var.f15490e = !b0Var.d.canScrollVertically(-1);
+                    b0Var.d.canScrollVertically(1);
                     return;
                 }
-                return;
-            case 20:
-                t8 t8Var = (t8) this.f499b;
-                t8Var.onClick(t8Var.f11056b);
-                return;
-            case 21:
-                z8 z8Var = (z8) this.f499b;
-                z8Var.f11301b.f10956v1.animate().alpha(0.0f).setDuration(150L).setListener(new k9(z8Var, 0)).start();
                 return;
             case 22:
-                ((ei.z5) this.f499b).run();
-                return;
-            case 23:
-                gi.m mVar = (gi.m) this.f499b;
-                gi.g gVar = mVar.f13144f;
-                gVar.d();
-                gVar.k(true);
-                gi.e eVar = mVar.f13141d0;
-                org.telegram.messenger.g0.r(eVar);
-                eVar.run();
-                return;
-            case 24:
-                ((la) this.f499b).B();
-                return;
-            case 25:
-                gi.t0.a((gi.t0) this.f499b);
-                return;
-            case 26:
-                ((e3) this.f499b).run();
-                return;
-            case 27:
-                gi.q5 q5Var = ((gi.p5) this.f499b).f13380y;
-                if (q5Var.f13433r && (u10Var = q5Var.f13431f) != null) {
-                    u10Var.a(5);
+                if (i7 == 1) {
+                    org.telegram.messenger.g0.v1(((w1) this.f1126b).getParentActivity().getCurrentFocus());
                     return;
                 }
                 return;
-            case 28:
-                c8 c8Var = (c8) ((z7) this.f499b).h;
-                if (c8Var != null) {
-                    c8Var.run();
+            case 23:
+                ((oi.q) this.f1126b).f21101g++;
+                return;
+            case 26:
+                b8 b8Var = (b8) this.f1126b;
+                n7 n7Var = b8Var.f32051o1;
+                if (i7 == 0) {
+                    int L = org.telegram.messenger.g0.L(13.0f);
+                    int i11 = b8Var.f32056q2;
+                    int i12 = b8Var.f28644s0;
+                    if (((i11 - i12) - L) + i12 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && n7Var.canScrollVertically(1) && (xi0Var = (xi0) n7Var.K(b8Var.f32047l2 ? 1 : 0)) != null) {
+                        View view = xi0Var.f56927a;
+                        if (view.getTop() > org.telegram.messenger.g0.L(7.0f)) {
+                            n7Var.w0(0, view.getTop() - org.telegram.messenger.g0.L(7.0f), null);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                } else if (i7 == 1) {
+                    org.telegram.messenger.g0.v1(b8Var.getCurrentFocus());
+                    return;
+                } else {
+                    return;
+                }
+            case 29:
+                qi qiVar = (qi) this.f1126b;
+                q1 q1Var = qiVar.f37417n;
+                di diVar = qiVar.f38951b;
+                if (i7 == 0) {
+                    int L2 = org.telegram.messenger.g0.L(13.0f);
+                    org.telegram.ui.ActionBar.r0 r0Var = diVar.U2;
+                    if (r0Var != null) {
+                        i10 = org.telegram.messenger.g0.L(r0Var.getAlpha() * 26.0f);
+                    } else {
+                        i10 = 0;
+                    }
+                    int i13 = L2 + i10;
+                    int i14 = diVar.f28644s0;
+                    if (((diVar.V3[0] - i14) - i13) + i14 < org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (xi0Var2 = (xi0) q1Var.K(0)) != null) {
+                        View view2 = xi0Var2.f56927a;
+                        if (view2.getTop() > org.telegram.messenger.g0.L(7.0f)) {
+                            q1Var.w0(0, view2.getTop() - org.telegram.messenger.g0.L(7.0f), null);
+                            return;
+                        }
+                        return;
+                    }
                     return;
                 }
                 return;
             default:
-                ((xe) this.f499b).run();
                 return;
         }
+    }
+
+    @Override
+    public void b(androidx.recyclerview.widget.RecyclerView r9, int r10, int r11) {
+        throw new UnsupportedOperationException("Method not decompiled: ai.b.b(androidx.recyclerview.widget.RecyclerView, int, int):void");
     }
 }

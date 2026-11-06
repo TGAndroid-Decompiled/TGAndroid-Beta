@@ -6,58 +6,58 @@ import android.provider.ContactsContract;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class x4 implements Runnable {
-    public final int f26343a;
-    public final g5 f26344b;
+    public final int f26424a;
+    public final g5 f26425b;
 
-    public x4(g5 g5Var, int i3) {
-        this.f26343a = i3;
-        this.f26344b = g5Var;
+    public x4(g5 g5Var, int i7) {
+        this.f26424a = i7;
+        this.f26425b = g5Var;
     }
 
     private final void a() {
-        g5 g5Var = this.f26344b;
-        if (g5Var.f22653f0.isEmpty() && !g5Var.h) {
+        g5 g5Var = this.f26425b;
+        if (g5Var.f22582e0.isEmpty() && !g5Var.h) {
             g5Var.A(0L, true);
             return;
         }
-        synchronized (g5Var.f22647c) {
-            g5Var.f22645b = false;
+        synchronized (g5Var.f22578c) {
+            g5Var.f22576b = false;
         }
     }
 
     private final void b() {
-        g5 g5Var = this.f26344b;
-        synchronized (g5Var.f22647c) {
-            g5Var.f22645b = false;
+        g5 g5Var = this.f26425b;
+        synchronized (g5Var.f22578c) {
+            g5Var.f22576b = false;
         }
-        g5Var.getNotificationCenter().k(hs.O, new Object[0]);
+        g5Var.getNotificationCenter().k(qs.O, new Object[0]);
     }
 
     @Override
     public final void run() {
         TLRPC.User f10;
-        switch (this.f26343a) {
+        switch (this.f26424a) {
             case 0:
-                g5 g5Var = this.f26344b;
-                AccountManager accountManager = AccountManager.get(t0.f25457b);
+                g5 g5Var = this.f26425b;
+                AccountManager accountManager = AccountManager.get(t0.f25555b);
                 try {
                     Account[] accountsByType = accountManager.getAccountsByType("org.telegram.messenger");
-                    for (int i3 = 0; i3 < accountsByType.length; i3++) {
-                        Account account = accountsByType[i3];
+                    for (int i7 = 0; i7 < accountsByType.length; i7++) {
+                        Account account = accountsByType[i7];
                         int i10 = 0;
                         while (true) {
                             if (i10 < 4) {
-                                if (h10.i(i10).f() != null) {
-                                    if (account.name.equals("" + f10.f27150id)) {
+                                if (p10.i(i10).f() != null) {
+                                    if (account.name.equals("" + f10.f27101id)) {
                                         if (i10 == g5Var.currentAccount) {
-                                            g5Var.f22643a = account;
+                                            g5Var.f22574a = account;
                                         }
                                     }
                                 }
                                 i10++;
                             } else {
                                 try {
-                                    accountManager.removeAccount(accountsByType[i3], null, null);
+                                    accountManager.removeAccount(accountsByType[i7], null, null);
                                 } catch (Exception unused) {
                                 }
                             }
@@ -66,19 +66,19 @@ public final class x4 implements Runnable {
                 } catch (Throwable unused2) {
                 }
                 if (g5Var.getUserConfig().p()) {
-                    synchronized (g5Var.f22647c) {
+                    synchronized (g5Var.f22578c) {
                         try {
-                            if (!g5Var.f22645b) {
-                                g5Var.f22645b = true;
+                            if (!g5Var.f22576b) {
+                                g5Var.f22576b = true;
                                 Utilities.d.c(new x4(g5Var, 2));
                             }
                         } finally {
                         }
                     }
-                    if (g5Var.f22643a == null) {
+                    if (g5Var.f22574a == null) {
                         try {
                             Account account2 = new Account("" + g5Var.getUserConfig().e(), "org.telegram.messenger");
-                            g5Var.f22643a = account2;
+                            g5Var.f22574a = account2;
                             accountManager.addAccountExplicitly(account2, "", null);
                             return;
                         } catch (Exception unused3) {
@@ -89,8 +89,8 @@ public final class x4 implements Runnable {
                 }
                 return;
             case 1:
-                g5 g5Var2 = this.f26344b;
-                if (r2.f25040a) {
+                g5 g5Var2 = this.f26425b;
+                if (r2.f25191a) {
                     a8.b("force import contacts");
                 }
                 g5Var2.F(new HashMap(), true, true, true, true, false, false);
@@ -99,40 +99,40 @@ public final class x4 implements Runnable {
                 a();
                 return;
             case 3:
-                this.f26344b.A(0L, false);
+                this.f26425b.A(0L, false);
                 return;
             case 4:
-                g5 g5Var3 = this.f26344b;
+                g5 g5Var3 = this.f26425b;
                 if (g5Var3.e()) {
-                    if (r2.f25040a) {
+                    if (r2.f25191a) {
                         a8.b("detected contacts change");
                     }
-                    g5Var3.F(g5.q(g5Var3.Z), true, false, true, false, true, false);
+                    g5Var3.F(g5.q(g5Var3.Y), true, false, true, false, true, false);
                     return;
                 }
                 return;
             case 5:
-                g5 g5Var4 = this.f26344b;
-                g5Var4.f22663s = false;
-                g5Var4.f22661n0 = 0;
+                g5 g5Var4 = this.f26425b;
+                g5Var4.f22593s = false;
+                g5Var4.m0 = 0;
                 return;
             case 6:
                 b();
                 return;
             case 7:
-                qr messagesStorage = this.f26344b.getMessagesStorage();
-                messagesStorage.f24934a.c(new vq(messagesStorage, true, 0));
+                yr messagesStorage = this.f26425b.getMessagesStorage();
+                messagesStorage.f26688a.c(new dr(messagesStorage, true, 0));
                 return;
             case 8:
-                g5 g5Var5 = this.f26344b;
-                g5Var5.f22660n = true;
+                g5 g5Var5 = this.f26425b;
+                g5Var5.f22591n = true;
                 g5Var5.getNotificationCenter().k(25, new Object[0]);
                 return;
             default:
-                g5 g5Var6 = this.f26344b;
+                g5 g5Var6 = this.f26425b;
                 try {
                     if (g5.w()) {
-                        t0.f25457b.getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, true, new e5(g5Var6));
+                        t0.f25555b.getContentResolver().registerContentObserver(ContactsContract.Contacts.CONTENT_URI, true, new e5(g5Var6));
                         return;
                     }
                     return;

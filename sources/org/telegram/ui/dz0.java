@@ -1,65 +1,129 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MediaController;
+import android.view.WindowManager;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Locale;
 public final class dz0 implements Runnable {
-    public final int f44840a;
-    public final iz0 f44841b;
+    public final int f45135a;
+    public final SecretMediaViewer f45136b;
 
-    public dz0(iz0 iz0Var, int i3) {
-        this.f44840a = i3;
-        this.f44841b = iz0Var;
+    public dz0(SecretMediaViewer secretMediaViewer, int i7) {
+        this.f45135a = i7;
+        this.f45136b = secretMediaViewer;
     }
 
     @Override
     public final void run() {
-        switch (this.f44840a) {
+        String format;
+        String format2;
+        int i7 = this.f45135a;
+        SecretMediaViewer secretMediaViewer = this.f45136b;
+        switch (i7) {
             case 0:
-                iz0 iz0Var = this.f44841b;
-                dz0 dz0Var = iz0Var.f46457a0;
-                org.telegram.ui.Components.m51 m51Var = iz0Var.f46471x;
-                if (m51Var != null) {
-                    iz0Var.f46459b0 = ((float) m51Var.S()) / ((float) iz0Var.f46471x.U());
-                    gz0 gz0Var = iz0Var.O;
-                    if (gz0Var != null) {
-                        gz0Var.f30017nc = (iz0Var.f46471x.U() - iz0Var.f46471x.S()) / 1000;
-                        iz0Var.O.Q3();
-                        org.telegram.ui.Components.sm0 seekBarWaveform = iz0Var.O.getSeekBarWaveform();
-                        if (seekBarWaveform != null) {
-                            float f10 = iz0Var.f46459b0;
-                            seekBarWaveform.J = true;
-                            seekBarWaveform.K = f10;
-                            org.telegram.ui.Cells.q1 q1Var = seekBarWaveform.f38076n;
-                            if (q1Var != null) {
-                                q1Var.invalidate();
-                            }
+                secretMediaViewer.I0 = null;
+                secretMediaViewer.f41894k0 = 0;
+                secretMediaViewer.f41880e.setLayerType(0, null);
+                secretMediaViewer.f41880e.setVisibility(4);
+                secretMediaViewer.f41909s = false;
+                secretMediaViewer.L = null;
+                secretMediaViewer.K = false;
+                secretMediaViewer.j();
+                new ArrayList();
+                org.telegram.messenger.g0.i3(new dz0(secretMediaViewer, 4), 50L);
+                return;
+            case 1:
+                bi.x5 x5Var = secretMediaViewer.f41880e;
+                if (x5Var != null) {
+                    x5Var.setLayerType(0, null);
+                    secretMediaViewer.f41880e.setVisibility(4);
+                    secretMediaViewer.f41894k0 = 0;
+                    secretMediaViewer.f41909s = false;
+                    secretMediaViewer.L = null;
+                    secretMediaViewer.K = false;
+                    secretMediaViewer.j();
+                    new ArrayList();
+                    org.telegram.messenger.g0.i3(new dz0(secretMediaViewer, 4), 50L);
+                    secretMediaViewer.f41880e.setScaleX(1.0f);
+                    secretMediaViewer.f41880e.setScaleY(1.0f);
+                    return;
+                }
+                return;
+            case 2:
+                jp0 jp0Var = secretMediaViewer.D;
+                if (jp0Var != null) {
+                    long S = jp0Var.S();
+                    long U = secretMediaViewer.D.U();
+                    if (U == -9223372036854775807L) {
+                        S = 0;
+                        U = 0;
+                    }
+                    if (U > 0) {
+                        org.telegram.ui.Components.q51 q51Var = secretMediaViewer.O;
+                        if (!q51Var.f37255f) {
+                            q51Var.h(false, ((float) S) / ((float) U));
+                            secretMediaViewer.P.invalidate();
                         }
                     }
-                    if (iz0Var.f46471x.d0()) {
-                        org.telegram.messenger.g0.r(dz0Var);
-                        org.telegram.messenger.g0.i3(dz0Var, 16L);
+                    int[] iArr = secretMediaViewer.f41889h1;
+                    Arrays.fill(iArr, 0);
+                    int[] iArr2 = secretMediaViewer.f41891i1;
+                    Arrays.fill(iArr2, 0);
+                    jp0 jp0Var2 = secretMediaViewer.D;
+                    if (jp0Var2 != null) {
+                        long max = Math.max(0L, jp0Var2.S()) / 1000;
+                        long max2 = Math.max(0L, secretMediaViewer.D.U()) / 1000;
+                        iArr[0] = (int) (max / 60);
+                        iArr[1] = (int) (max % 60);
+                        iArr2[0] = (int) (max2 / 60);
+                        iArr2[1] = (int) (max2 % 60);
+                    }
+                    int i10 = iArr[0];
+                    if (i10 >= 60) {
+                        format = String.format(Locale.ROOT, "%02d:%02d:%02d", Integer.valueOf(i10 / 60), Integer.valueOf(iArr[0] % 60), Integer.valueOf(iArr[1]));
+                    } else {
+                        format = String.format(Locale.ROOT, "%02d:%02d", Integer.valueOf(i10), Integer.valueOf(iArr[1]));
+                    }
+                    int i11 = iArr2[0];
+                    if (i11 >= 60) {
+                        format2 = String.format(Locale.ROOT, "%02d:%02d:%02d", Integer.valueOf(i11 / 60), Integer.valueOf(iArr2[0] % 60), Integer.valueOf(iArr2[1]));
+                    } else {
+                        format2 = String.format(Locale.ROOT, "%02d:%02d", Integer.valueOf(i11), Integer.valueOf(iArr2[1]));
+                    }
+                    org.telegram.ui.ActionBar.k5 k5Var = secretMediaViewer.Q;
+                    Locale locale = Locale.ROOT;
+                    k5Var.l(format + " / " + format2, false);
+                    if (secretMediaViewer.D.d0()) {
+                        org.telegram.messenger.g0.i3(secretMediaViewer.f41887g1, 17L);
                         return;
                     }
                     return;
                 }
                 return;
-            case 1:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            case 2:
-                super/*android.app.Dialog*/.dismiss();
+            case 3:
+                secretMediaViewer.n(false, true);
                 return;
             default:
-                iz0 iz0Var2 = this.f44841b;
-                if (iz0Var2.d == null) {
-                    org.telegram.messenger.g0.h3(new dz0(iz0Var2, 2));
-                    org.telegram.ui.Cells.q1 q1Var2 = iz0Var2.P;
-                    if (q1Var2 != null) {
-                        q1Var2.setVisibility(0);
-                        iz0Var2.P.invalidate();
-                    }
+                org.telegram.messenger.jc jcVar = secretMediaViewer.f41886g0;
+                if (jcVar != null) {
+                    jcVar.a();
+                    secretMediaViewer.f41886g0 = null;
                 }
-                MediaController.B().F0();
+                secretMediaViewer.h.w0(null);
+                try {
+                    if (secretMediaViewer.d.getParent() != null) {
+                        ((WindowManager) secretMediaViewer.f41872b.getSystemService("window")).removeView(secretMediaViewer.d);
+                    }
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                }
+                secretMediaViewer.f41888h0 = false;
                 return;
         }
+    }
+
+    public dz0(SecretMediaViewer secretMediaViewer, vq0 vq0Var, int i7) {
+        this.f45135a = i7;
+        this.f45136b = secretMediaViewer;
     }
 }

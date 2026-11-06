@@ -1,11 +1,20 @@
 package r2;
-public final class h extends k {
-    public final boolean f54133x;
-    public final boolean f54134y;
+public final class h {
+    public final s2.k f54177a;
+    public final long f54178b;
+    public final int f54179c;
+    public final boolean d;
 
-    public h(String str, j jVar, long j10, int i3, long j11, d2.s sVar, String str2, String str3, long j12, long j13, boolean z10, boolean z11, boolean z12) {
-        super(str, jVar, j10, i3, j11, sVar, str2, str3, j12, j13, z10);
-        this.f54133x = z11;
-        this.f54134y = z12;
+    public h(s2.k kVar, long j3, int i7) {
+        boolean z9;
+        this.f54177a = kVar;
+        this.f54178b = j3;
+        this.f54179c = i7;
+        if ((kVar instanceof s2.h) && ((s2.h) kVar).f54552y) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        this.d = z9;
     }
 }

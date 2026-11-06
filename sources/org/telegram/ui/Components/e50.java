@@ -1,13 +1,26 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class e50 extends FrameLayout {
-    public TextView f33293a;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class e50 implements RequestDelegate {
+    public final int f33141a;
+    public final g50 f33142b;
+
+    public e50(g50 g50Var, int i7) {
+        this.f33141a = i7;
+        this.f33142b = g50Var;
+    }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(84.0f), 1073741824));
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f33141a) {
+            case 0:
+                org.telegram.messenger.g0.h3(new ng(this.f33142b, tL_error, tLObject, 9));
+                return;
+            default:
+                org.telegram.messenger.g0.h3(new fq(24, this.f33142b, tL_error));
+                return;
+        }
     }
 }

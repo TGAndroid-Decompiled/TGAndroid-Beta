@@ -1,16 +1,28 @@
 package x1;
 
-import ci.u0;
-import java.util.LinkedHashMap;
-import kotlin.jvm.internal.j;
-public final class b extends u0 {
-    public b() {
-        this(a.f58124b);
+import android.view.animation.Interpolator;
+public abstract class b implements Interpolator {
+    public final float[] f58143a;
+    public final float f58144b;
+
+    public b(float[] fArr) {
+        this.f58143a = fArr;
+        this.f58144b = 1.0f / (fArr.length - 1);
     }
 
-    public b(u0 initialExtras) {
-        super(9);
-        j.e(initialExtras, "initialExtras");
-        ((LinkedHashMap) this.f6076a).putAll((LinkedHashMap) initialExtras.f6076a);
+    @Override
+    public final float getInterpolation(float f10) {
+        if (f10 >= 1.0f) {
+            return 1.0f;
+        }
+        if (f10 <= 0.0f) {
+            return 0.0f;
+        }
+        float[] fArr = this.f58143a;
+        int min = Math.min((int) ((fArr.length - 1) * f10), fArr.length - 2);
+        float f11 = this.f58144b;
+        float w10 = com.google.android.recaptcha.internal.a.w(min, f11, f10, f11);
+        float f12 = fArr[min];
+        return com.google.android.recaptcha.internal.a.z(fArr[min + 1], f12, w10, f12);
     }
 }

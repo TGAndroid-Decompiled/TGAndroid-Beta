@@ -1,7 +1,29 @@
 package org.telegram.ui.Components;
-public final class e4 extends cb0 {
+
+import android.content.Context;
+public final class e4 extends hb0 {
+    public final int[] f33132y0;
+
+    public e4(Context context, org.telegram.ui.ActionBar.f6 f6Var, int[] iArr) {
+        super(context, f6Var);
+        this.f33132y0 = iArr;
+    }
+
     @Override
-    public final CharSequence d(int i3) {
-        return org.telegram.messenger.bd.G(i3 + 1, "Times", new Object[0]);
+    public final CharSequence d(int i7) {
+        int i10 = this.f33132y0[i7];
+        if (i10 == 0) {
+            return org.telegram.messenger.hd.M0(2131753849, null);
+        }
+        if (i10 < 10080) {
+            return org.telegram.messenger.hd.G(i10 / 1440, "Days", new Object[0]);
+        }
+        if (i10 < 44640) {
+            return org.telegram.messenger.hd.G(i10 / 1440, "Weeks", new Object[0]);
+        }
+        if (i10 < 525600) {
+            return org.telegram.messenger.hd.G(i10 / 10080, "Months", new Object[0]);
+        }
+        return org.telegram.messenger.hd.G(((i10 * 5) / 31) * 1440, "Years", new Object[0]);
     }
 }

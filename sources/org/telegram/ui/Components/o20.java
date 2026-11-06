@@ -1,53 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.io.Serializable;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class o20 implements org.telegram.messenger.s10, org.telegram.messenger.t10 {
-    public final p20 f36684a;
+import android.content.Context;
+import android.util.SparseArray;
+public final class o20 extends xs0 {
+    public final r20 f36575w2;
 
-    public o20(p20 p20Var) {
-        this.f36684a = p20Var;
+    public o20(r20 r20Var, Context context, ps0 ps0Var, r20 r20Var2, n20 n20Var, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, 0L, ps0Var, 0, null, null, null, 8, 0, r20Var2, n20Var, 0, f6Var, null);
+        this.f36575w2 = r20Var;
     }
 
     @Override
-    public Boolean a(r31 r31Var, View view, Integer num, Float f10, Float f11) {
-        int i3 = r31Var.d;
-        boolean z10 = false;
-        if (i3 != 0) {
-            p20 p20Var = this.f36684a;
-            String str = (String) p20Var.f37036c.get(i3 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, p20Var.getContext(), p20Var.f37035b);
-            String M0 = org.telegram.messenger.bd.M0(2131752054, null);
-            org.telegram.ui.ActionBar.s1 s1Var = alertDialog$Builder.f27343a;
-            s1Var.S = M0;
-            s1Var.U = org.telegram.messenger.bd.a0(null, null, 2131752052, str);
-            alertDialog$Builder.k(org.telegram.messenger.bd.M0(2131752055, null), new org.telegram.ui.jo(25, p20Var, str));
-            alertDialog$Builder.h(org.telegram.messenger.bd.M0(2131752589, null), null);
-            s1Var.show();
-            z10 = true;
-        }
-        return Boolean.valueOf(z10);
+    public final boolean F0() {
+        return true;
     }
 
     @Override
-    public void j(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        View view = (View) obj2;
-        Integer num = (Integer) number;
-        Float f10 = (Float) serializable;
-        Float f11 = (Float) serializable2;
-        int i3 = ((r31) obj).d;
-        p20 p20Var = this.f36684a;
-        if (i3 == 0) {
-            org.telegram.messenger.ha a10 = org.telegram.messenger.ha.a(p20Var.f37034a);
-            a10.f22910f.clear();
-            a10.d();
-            p20Var.f37038f.O(true);
-            return;
-        }
-        org.telegram.messenger.u10 u10Var = p20Var.h;
-        if (u10Var != null) {
-            u10Var.a((String) p20Var.f37036c.get(i3 - 1));
-        }
+    public final int getInitialTab() {
+        return 8;
+    }
+
+    @Override
+    public final String getStoriesHashtag() {
+        return this.f36575w2.f37573b;
+    }
+
+    @Override
+    public final String getStoriesHashtagUsername() {
+        return this.f36575w2.f37574c;
+    }
+
+    @Override
+    public final void O0(SparseArray sparseArray) {
+    }
+
+    @Override
+    public final void V0(boolean z9) {
+    }
+
+    @Override
+    public final void X0(float f10) {
+    }
+
+    @Override
+    public final void o1(boolean z9) {
     }
 }

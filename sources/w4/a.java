@@ -1,17 +1,20 @@
 package w4;
 
-import android.content.ComponentName;
-public final class a implements Comparable {
-    public final g0.c f57376a;
-    public final ComponentName f57377b;
+import android.os.Bundle;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import m.q;
+public final class a implements d {
+    public final LinkedHashSet f57462a = new LinkedHashSet();
 
-    public a(g0.c cVar, ComponentName componentName) {
-        this.f57376a = cVar;
-        this.f57377b = componentName;
+    public a(q qVar) {
+        qVar.f("androidx.savedstate.Restarter", this);
     }
 
     @Override
-    public final int compareTo(Object obj) {
-        return this.f57376a.f11791m - ((a) obj).f57376a.f11791m;
+    public final Bundle c() {
+        Bundle bundle = new Bundle();
+        bundle.putStringArrayList("classes_to_restore", new ArrayList<>(this.f57462a));
+        return bundle;
     }
 }

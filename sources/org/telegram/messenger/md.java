@@ -1,30 +1,30 @@
 package org.telegram.messenger;
 public final class md implements Runnable {
-    public final int f24189a;
-    public final LocationSharingService f24190b;
+    public final int f23996a;
+    public final sd f23997b;
+    public final Integer f23998c;
 
-    public md(LocationSharingService locationSharingService, int i3) {
-        this.f24189a = i3;
-        this.f24190b = locationSharingService;
+    public md(sd sdVar, Integer num, int i7) {
+        this.f23996a = i7;
+        this.f23997b = sdVar;
+        this.f23998c = num;
     }
 
     @Override
     public final void run() {
-        switch (this.f24189a) {
+        int i7 = this.f23996a;
+        Integer num = this.f23998c;
+        sd sdVar = this.f23997b;
+        switch (i7) {
             case 0:
-                LocationSharingService locationSharingService = this.f24190b;
-                locationSharingService.f21292b.postDelayed(locationSharingService.f21293c, 1000L);
-                Utilities.d.c(new hc(5));
-                return;
-            default:
-                LocationSharingService locationSharingService2 = this.f24190b;
-                if (LocationSharingService.a().isEmpty()) {
-                    locationSharingService2.stopSelf();
-                    return;
-                } else {
-                    locationSharingService2.c(true);
+                if (!sdVar.f25442b.isEmpty()) {
+                    g0.h3(new md(sdVar, num, 1));
                     return;
                 }
+                return;
+            default:
+                sdVar.getNotificationCenter().k(76, num);
+                return;
         }
     }
 }

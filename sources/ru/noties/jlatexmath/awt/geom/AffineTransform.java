@@ -32,9 +32,9 @@ public class AffineTransform implements Cloneable {
     }
 
     public AffineTransform restore() {
-        int i3 = this.save;
-        if (i3 != -1) {
-            this.canvas.restoreToCount(i3);
+        int i7 = this.save;
+        if (i7 != -1) {
+            this.canvas.restoreToCount(i7);
             this.save = -1;
         }
         AffineTransform affineTransform = this.parent;
@@ -52,14 +52,14 @@ public class AffineTransform implements Cloneable {
         return affineTransform;
     }
 
-    public void scale(double d, double d10) {
-        setScale(d, d10);
-        this.canvas.scale((float) d, (float) d10);
+    public void scale(double d, double d2) {
+        setScale(d, d2);
+        this.canvas.scale((float) d, (float) d2);
     }
 
-    public void setScale(double d, double d10) {
+    public void setScale(double d, double d2) {
         this.scaleX = d;
-        this.scaleY = d10;
+        this.scaleY = d2;
     }
 
     public void setTranslate(float f10, float f11) {

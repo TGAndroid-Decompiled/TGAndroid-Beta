@@ -1,169 +1,133 @@
 package zh;
 
+import android.content.Context;
 import android.util.LongSparseArray;
-import android.view.View;
-import android.view.ViewGroup;
-import gi.q2;
+import android.widget.LinearLayout;
+import c8.ha;
 import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.bd;
-import org.telegram.messenger.l10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.d2;
-import org.telegram.ui.ActionBar.k5;
+import org.telegram.messenger.a8;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.s9;
+import org.telegram.messenger.u9;
+import org.telegram.messenger.w9;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Cells.e5;
-import org.telegram.ui.Components.sj0;
-import org.telegram.ui.Components.u8;
-import u4.d1;
-import vg.g1;
-public final class f extends sj0 {
-    public final k f60562c;
+import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.na;
+import org.telegram.ui.Components.oj0;
+import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.td0;
+public final class f extends na implements u9 {
+    public final r31 P1;
+    public final LongSparseArray Q1;
+    public ArrayList R1;
+    public boolean S1;
+    public f41 T1;
+    public int U1;
 
-    public f(k kVar) {
-        this.f60562c = kVar;
+    public f(Context context) {
+        super(context, null, false, false, 2, null);
+        int i7 = 0;
+        this.Q1 = new LongSparseArray();
+        this.R1 = new ArrayList();
+        int x02 = k6.x0(null, k6.f27792a7, false);
+        this.U1 = x02;
+        v0(x02);
+        w9.c(this.f28612a).f26270f.add(this);
+        this.C1 = false;
+        this.B1 = org.telegram.messenger.g0.L(12.0f);
+        N();
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        linearLayout.setClipChildren(false);
+        linearLayout.setClipToPadding(false);
+        linearLayout.setClickable(true);
+        this.P1 = r31.j(-1, linearLayout);
+        this.f36328k1.setPadding(this.f28645t0, org.telegram.messenger.g0.L(9.0f), this.f28645t0, org.telegram.messenger.g0.L(9.0f));
+        this.f36328k1.setOverScrollMode(2);
+        this.T1.O(false);
+        ArrayList arrayList = w9.c(this.f28612a).f26268c;
+        int size = arrayList.size();
+        while (i7 < size) {
+            Object obj = arrayList.get(i7);
+            i7++;
+            s9 s9Var = (s9) obj;
+            e eVar = new e(context, s9Var);
+            eVar.f60167a.setOnClickListener(new td0(this, context, s9Var, 4));
+            linearLayout.addView(eVar, ha.o(-1, -2));
+            this.Q1.put(s9Var.f25431b, eVar);
+        }
+        g(arrayList);
     }
 
     @Override
-    public final boolean D(d1 d1Var) {
-        if (d1Var.f55544f == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void E(List list) {
-        k kVar = this.f60562c;
-        ArrayList arrayList = kVar.f60582c;
-        boolean isEmpty = arrayList.isEmpty();
-        int i3 = 0;
-        while (i3 < list.size()) {
-            long j10 = ((TLRPC.TL_chatInviteImporter) list.get(i3)).user_id;
-            int i10 = i3 + 1;
-            while (true) {
-                if (i10 >= list.size()) {
-                    break;
-                } else if (((TLRPC.TL_chatInviteImporter) list.get(i10)).user_id == j10) {
-                    list.remove(i3);
-                    i3--;
-                    break;
-                } else {
-                    i10++;
-                }
-            }
-            i3++;
-        }
-        arrayList.clear();
-        arrayList.addAll(list);
-        if (isEmpty) {
-            o(!kVar.B ? 1 : 0, arrayList.size());
-        } else {
-            f();
-        }
+    public final oj0 L0(pj0 pj0Var) {
+        f41 f41Var = new f41(this.f36328k1, getContext(), this.f28612a, 0, true, new hi.u1(this, 26), this.I0);
+        this.T1 = f41Var;
+        f41Var.f33473r = false;
+        return f41Var;
     }
 
     @Override
-    public final int b() {
-        k kVar = this.f60562c;
-        int i3 = 1;
-        return ((kVar.f60582c.isEmpty() || !kVar.f60600x) ? 0 : 0) + kVar.f60582c.size() + (!kVar.B ? 1 : 0);
+    public final CharSequence O0() {
+        ArrayList arrayList = this.R1;
+        if (arrayList == null) {
+            return null;
+        }
+        return hd.a0(null, null, 2131750417, Integer.valueOf(arrayList.size()));
     }
 
     @Override
-    public final int d(int i3) {
-        k kVar = this.f60562c;
-        if (i3 == 0 && !kVar.B) {
-            return 2;
-        }
-        if (i3 == b() - 1 && !kVar.f60582c.isEmpty() && kVar.f60600x) {
-            return 4;
-        }
-        return 0;
+    public final void dismiss() {
+        w9.c(this.f28612a).f26270f.remove(this);
+        super.dismiss();
     }
 
     @Override
-    public final void t(d1 d1Var, int i3) {
-        boolean z10;
-        k kVar = this.f60562c;
-        ArrayList arrayList = kVar.f60582c;
-        int i10 = d1Var.f55544f;
-        View view = d1Var.f55540a;
-        if (i10 == 0) {
-            e5 e5Var = (e5) view;
-            int i11 = i3 - (!kVar.B ? 1 : 0);
-            LongSparseArray longSparseArray = kVar.d;
-            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) arrayList.get(i11);
-            if (i11 == arrayList.size() - 1 && !kVar.f60600x) {
-                z10 = false;
+    public final void g(ArrayList arrayList) {
+        int i7;
+        this.R1 = new ArrayList(arrayList);
+        this.l1.setTitle(O0());
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            s9 s9Var = (s9) obj;
+            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = s9Var.f25434f;
+            if (tL_starGiftAuctionState != null) {
+                i7 = tL_starGiftAuctionState.next_round_at;
             } else {
-                z10 = true;
+                i7 = 0;
             }
-            k5 k5Var = e5Var.d;
-            e5Var.f29123e = tL_chatInviteImporter;
-            e5Var.f29124f = z10;
-            e5Var.setWillNotDraw(!z10);
-            TLRPC.User user = (TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id);
-            u8 u8Var = e5Var.f29120a;
-            u8Var.r(user);
-            e5Var.f29121b.e(user, u8Var);
-            e5Var.f29122c.l(l10.p(user), false);
-            String s6 = bd.s(tL_chatInviteImporter.date, false);
-            if (tL_chatInviteImporter.via_chatlist) {
-                k5Var.l(bd.M0(2131749077, null), false);
-                return;
+            e eVar = (e) this.Q1.get(s9Var.f25431b);
+            if (eVar != null) {
+                eVar.b(this.S1);
+                long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f28612a).getCurrentTime());
+                eVar.a(max, this.S1);
+                eVar.f60171f.a(max);
             }
-            long j10 = tL_chatInviteImporter.approved_by;
-            if (j10 == 0) {
-                k5Var.l(bd.a0("RequestedToJoinAt", null, 2131746170, s6), false);
-                return;
-            }
-            TLRPC.User user2 = (TLRPC.User) longSparseArray.get(j10);
-            if (user2 != null) {
-                k5Var.l(bd.a0("AddedBy", null, 2131754361, l10.j(user2, true), s6), false);
-            } else {
-                k5Var.l("", false);
-            }
-        } else if (i10 == 2) {
-            view.requestLayout();
         }
     }
 
     @Override
-    public final d1 x(ViewGroup viewGroup, int i3) {
-        e5 e5Var;
-        k kVar = this.f60562c;
-        boolean z10 = kVar.f60580a;
-        if (i3 != 1) {
-            if (i3 != 2) {
-                if (i3 != 3) {
-                    if (i3 != 4) {
-                        e5Var = new e5(viewGroup.getContext(), kVar, z10);
-                    } else {
-                        d2 d2Var = kVar.f60585g;
-                        q2 q2Var = new q2(2, d2Var.getParentActivity(), d2Var.getResourceProvider());
-                        if (kVar.B) {
-                            r6.i(k6.f27878d6, q2Var, d2Var.getResourceProvider());
-                        }
-                        q2Var.e(k6.f27878d6, k6.f27824a7, -1);
-                        q2Var.setViewType(15);
-                        q2Var.setMemberRequestButton(z10);
-                        q2Var.setIsSingleCell(true);
-                        q2Var.setItemsCount(1);
-                        q2Var.setTag(-33024);
-                        e5Var = q2Var;
-                    }
-                } else {
-                    e5Var = new View(viewGroup.getContext());
-                }
-            } else {
-                g1 g1Var = new g1(viewGroup.getContext(), 1);
-                g1Var.setTag(-33024);
-                e5Var = g1Var;
+    public final void s0() {
+        try {
+            super.s0();
+            int x02 = k6.x0(null, k6.f27792a7, false);
+            if (x02 != this.U1) {
+                this.U1 = x02;
+                v0(x02);
             }
-        } else {
-            e5Var = new View(viewGroup.getContext());
+        } catch (Exception e10) {
+            a8.g(e10, true);
         }
-        return new d1(e5Var);
+    }
+
+    @Override
+    public final void v() {
+        this.S1 = true;
     }
 }

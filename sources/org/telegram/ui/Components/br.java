@@ -7,27 +7,27 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.EditText;
 public final class br extends ViewGroup {
-    public static final int f32366x = 0;
-    public final zq f32367a;
-    public EditText f32368b;
-    public final View[] f32369c;
+    public static final int f32280x = 0;
+    public final zq f32281a;
+    public EditText f32282b;
+    public final View[] f32283c;
     public View d;
-    public boolean f32370e;
-    public boolean f32371f;
+    public boolean f32284e;
+    public boolean f32285f;
     public final yq h;
-    public boolean f32372n;
-    public final yq f32373r;
-    public int f32374s;
-    public int f32375w;
+    public boolean f32286n;
+    public final yq f32287r;
+    public int f32288s;
+    public int f32289w;
 
     public br(Context context) {
         super(context);
         String str;
-        int i3;
-        this.f32369c = new View[12];
+        int i7;
+        this.f32283c = new View[12];
         int i10 = 0;
         this.h = new yq(this, 0);
-        this.f32373r = new yq(this, 1);
+        this.f32287r = new yq(this, 1);
         for (int i11 = 0; i11 < 11; i11++) {
             if (i11 != 9) {
                 switch (i11) {
@@ -64,31 +64,31 @@ public final class br extends ViewGroup {
                         break;
                 }
                 if (i11 != 10) {
-                    i3 = i11 + 1;
+                    i7 = i11 + 1;
                 } else {
-                    i3 = 0;
+                    i7 = 0;
                 }
-                String valueOf = String.valueOf(i3);
-                this.f32369c[i11] = new ar(context, valueOf, str);
-                this.f32369c[i11].setOnClickListener(new q2(11, this, valueOf));
-                addView(this.f32369c[i11]);
+                String valueOf = String.valueOf(i7);
+                this.f32283c[i11] = new ar(context, valueOf, str);
+                this.f32283c[i11].setOnClickListener(new lk(5, this, valueOf));
+                addView(this.f32283c[i11]);
             }
         }
-        zq zqVar = new zq(this, context, new y00(context, new ii.a4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f32367a = zqVar;
+        zq zqVar = new zq(this, context, new uy(context, new hi.z3(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
+        this.f32281a = zqVar;
         zqVar.setImageResource(2131232093);
         org.telegram.ui.ActionBar.r6.t(zqVar, org.telegram.ui.ActionBar.k6.G6, null, PorterDuff.Mode.SRC_ATOP);
         int L = org.telegram.messenger.g0.L(11.0f);
         zqVar.setPadding(L, L, L, L);
-        zqVar.setOnClickListener(new ai.t(15));
-        this.f32369c[11] = zqVar;
+        zqVar.setOnClickListener(new bi.l1(11));
+        this.f32283c[11] = zqVar;
         addView(zqVar);
         while (true) {
-            View[] viewArr = this.f32369c;
+            View[] viewArr = this.f32283c;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
-                    b8.pf.b(view, 0.02f, 1.2f);
+                    c8.ka.b(view, 0.02f, 1.2f);
                     a(i10, view);
                 }
                 i10++;
@@ -98,59 +98,59 @@ public final class br extends ViewGroup {
         }
     }
 
-    public static void a(int i3, View view) {
+    public static void a(int i7, View view) {
+        boolean z9;
         boolean z10;
         boolean z11;
-        boolean z12;
         float f10;
         float f11;
         float f12;
-        boolean z13 = true;
-        if (i3 < 3) {
+        boolean z12 = true;
+        if (i7 < 3) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        int i10 = i7 % 3;
+        if (i10 == 0) {
             z10 = true;
         } else {
             z10 = false;
         }
-        int i10 = i3 % 3;
-        if (i10 == 0) {
+        if (i10 == 2) {
             z11 = true;
         } else {
             z11 = false;
         }
-        if (i10 == 2) {
-            z12 = true;
-        } else {
+        if (i7 <= 8) {
             z12 = false;
         }
-        if (i3 <= 8) {
-            z13 = false;
-        }
-        int i11 = org.telegram.ui.ActionBar.k6.f27972i6;
+        int i11 = org.telegram.ui.ActionBar.k6.f27940i6;
         int x02 = org.telegram.ui.ActionBar.k6.x0(null, i11, false);
-        int o10 = i0.a.o(org.telegram.ui.ActionBar.k6.x0(null, i11, false), 30);
+        int o4 = i0.a.o(org.telegram.ui.ActionBar.k6.x0(null, i11, false), 30);
         float f13 = 12.0f;
-        if (z11 && z10) {
+        if (z10 && z9) {
             f10 = 24.0f;
         } else {
             f10 = 12.0f;
         }
         int L = org.telegram.messenger.g0.L(f10);
-        if (z12 && z10) {
+        if (z11 && z9) {
             f11 = 24.0f;
         } else {
             f11 = 12.0f;
         }
         int L2 = org.telegram.messenger.g0.L(f11);
-        if (z12 && z13) {
+        if (z11 && z12) {
             f12 = 24.0f;
         } else {
             f12 = 12.0f;
         }
         int L3 = org.telegram.messenger.g0.L(f12);
-        if (z11 && z13) {
+        if (z10 && z12) {
             f13 = 24.0f;
         }
-        org.telegram.ui.Cells.y k02 = org.telegram.ui.ActionBar.k6.k0(L, L2, L3, org.telegram.messenger.g0.L(f13), x02, o10, o10);
+        org.telegram.ui.Cells.y k02 = org.telegram.ui.ActionBar.k6.k0(L, L2, L3, org.telegram.messenger.g0.L(f13), x02, o4, o4);
         org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i11);
         org.telegram.ui.ActionBar.n6 h = org.telegram.ui.ActionBar.r6.h(i11, 30);
         view.setBackground(k02);
@@ -158,25 +158,25 @@ public final class br extends ViewGroup {
     }
 
     @Override
-    public final boolean canScrollHorizontally(int i3) {
+    public final boolean canScrollHorizontally(int i7) {
         return true;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i3, int i10, int i11, int i12) {
-        int y9 = org.telegram.messenger.camera.q.y(32.0f, getWidth(), 3);
-        int y10 = org.telegram.messenger.camera.q.y(42.0f, getHeight(), 4);
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        int y10 = org.telegram.messenger.camera.q.y(32.0f, getWidth(), 3);
+        int y11 = org.telegram.messenger.camera.q.y(42.0f, getHeight(), 4);
         int i13 = 0;
         while (true) {
-            View[] viewArr = this.f32369c;
+            View[] viewArr = this.f32283c;
             if (i13 < viewArr.length) {
-                int L = org.telegram.messenger.g0.L(6.0f) + y9;
+                int L = org.telegram.messenger.g0.L(6.0f) + y10;
                 int L2 = org.telegram.messenger.g0.L(10.0f) + (L * (i13 % 3));
-                int L3 = org.telegram.messenger.g0.L(6.0f) + y10;
+                int L3 = org.telegram.messenger.g0.L(6.0f) + y11;
                 int L4 = org.telegram.messenger.g0.L(10.0f) + (L3 * (i13 / 3));
                 View view = viewArr[i13];
                 if (view != null) {
-                    view.layout(L2, L4, L2 + y9, L4 + y10);
+                    view.layout(L2, L4, L2 + y10, L4 + y11);
                 }
                 i13++;
             } else {
@@ -186,25 +186,25 @@ public final class br extends ViewGroup {
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
+    public final void onMeasure(int i7, int i10) {
         View[] viewArr;
-        setMeasuredDimension(View.MeasureSpec.getSize(i3), View.MeasureSpec.getSize(i10));
-        int y9 = org.telegram.messenger.camera.q.y(32.0f, getWidth(), 3);
-        int y10 = org.telegram.messenger.camera.q.y(42.0f, getHeight(), 4);
-        for (View view : this.f32369c) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
+        int y10 = org.telegram.messenger.camera.q.y(32.0f, getWidth(), 3);
+        int y11 = org.telegram.messenger.camera.q.y(42.0f, getHeight(), 4);
+        for (View view : this.f32283c) {
             if (view != null) {
-                view.measure(View.MeasureSpec.makeMeasureSpec(y9, 1073741824), View.MeasureSpec.makeMeasureSpec(y10, 1073741824));
+                view.measure(View.MeasureSpec.makeMeasureSpec(y10, 1073741824), View.MeasureSpec.makeMeasureSpec(y11, 1073741824));
             }
         }
     }
 
-    public void setDispatchBackWhenEmpty(boolean z10) {
-        this.f32370e = z10;
+    public void setDispatchBackWhenEmpty(boolean z9) {
+        this.f32284e = z9;
     }
 
     public void setEditText(EditText editText) {
-        this.f32368b = editText;
-        this.f32370e = false;
+        this.f32282b = editText;
+        this.f32284e = false;
     }
 
     public void setViewToFindFocus(View view) {

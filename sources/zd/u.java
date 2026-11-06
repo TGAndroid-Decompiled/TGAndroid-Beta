@@ -1,101 +1,93 @@
 package zd;
+public final class u {
+    public final Object f59992a;
+    public final k f59993b;
+    public final rd.q f59994c;
+    public final Object d;
+    public final Throwable f59995e;
 
-import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public final class u extends ae.b implements s, b, ae.g {
-    public static final AtomicReferenceFieldUpdater f60441e = AtomicReferenceFieldUpdater.newUpdater(u.class, Object.class, "_state$volatile");
-    private volatile Object _state$volatile;
-    public int d;
-
-    public u(Object obj) {
-        this._state$volatile = obj;
+    public u(Object obj, k kVar, rd.q qVar, Object obj2, Throwable th2) {
+        this.f59992a = obj;
+        this.f59993b = kVar;
+        this.f59994c = qVar;
+        this.d = obj2;
+        this.f59995e = th2;
     }
 
-    @Override
-    public final java.lang.Object U(zd.c r18, hd.c r19) {
-        throw new UnsupportedOperationException("Method not decompiled: zd.u.U(zd.c, hd.c):java.lang.Object");
+    public static u a(u uVar, k kVar, Throwable th2, int i7) {
+        Object obj = uVar.f59992a;
+        if ((i7 & 2) != 0) {
+            kVar = uVar.f59993b;
+        }
+        k kVar2 = kVar;
+        rd.q qVar = uVar.f59994c;
+        Object obj2 = uVar.d;
+        if ((i7 & 16) != 0) {
+            th2 = uVar.f59995e;
+        }
+        return new u(obj, kVar2, qVar, obj2, th2);
     }
 
-    @Override
-    public final Object b(Object obj, fd.c cVar) {
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof u)) {
+            return false;
+        }
+        u uVar = (u) obj;
+        if (kotlin.jvm.internal.j.a(this.f59992a, uVar.f59992a) && kotlin.jvm.internal.j.a(this.f59993b, uVar.f59993b) && kotlin.jvm.internal.j.a(this.f59994c, uVar.f59994c) && kotlin.jvm.internal.j.a(this.d, uVar.d) && kotlin.jvm.internal.j.a(this.f59995e, uVar.f59995e)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        int hashCode2;
+        int hashCode3;
+        int hashCode4;
+        int i7 = 0;
+        Object obj = this.f59992a;
         if (obj == null) {
-            obj = ae.i.f401a;
+            hashCode = 0;
+        } else {
+            hashCode = obj.hashCode();
         }
-        c(null, obj);
-        return dd.k.f8801a;
+        int i10 = hashCode * 31;
+        k kVar = this.f59993b;
+        if (kVar == null) {
+            hashCode2 = 0;
+        } else {
+            hashCode2 = kVar.hashCode();
+        }
+        int i11 = (i10 + hashCode2) * 31;
+        rd.q qVar = this.f59994c;
+        if (qVar == null) {
+            hashCode3 = 0;
+        } else {
+            hashCode3 = qVar.hashCode();
+        }
+        int i12 = (i11 + hashCode3) * 31;
+        Object obj2 = this.d;
+        if (obj2 == null) {
+            hashCode4 = 0;
+        } else {
+            hashCode4 = obj2.hashCode();
+        }
+        int i13 = (i12 + hashCode4) * 31;
+        Throwable th2 = this.f59995e;
+        if (th2 != null) {
+            i7 = th2.hashCode();
+        }
+        return i13 + i7;
     }
 
-    public final boolean c(Object obj, Object obj2) {
-        int i3;
-        w[] wVarArr;
-        be.t tVar;
-        synchronized (this) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f60441e;
-            Object obj3 = atomicReferenceFieldUpdater.get(this);
-            if (obj != null && !kotlin.jvm.internal.j.a(obj3, obj)) {
-                return false;
-            }
-            if (kotlin.jvm.internal.j.a(obj3, obj2)) {
-                return true;
-            }
-            atomicReferenceFieldUpdater.set(this, obj2);
-            int i10 = this.d;
-            if ((i10 & 1) == 0) {
-                int i11 = i10 + 1;
-                this.d = i11;
-                w[] wVarArr2 = this.f384a;
-                while (true) {
-                    if (wVarArr2 != null) {
-                        for (w wVar : wVarArr2) {
-                            if (wVar != null) {
-                                AtomicReference atomicReference = wVar.f60444a;
-                                while (true) {
-                                    Object obj4 = atomicReference.get();
-                                    if (obj4 != null && obj4 != (tVar = v.f60443b)) {
-                                        be.t tVar2 = v.f60442a;
-                                        if (obj4 == tVar2) {
-                                            while (!atomicReference.compareAndSet(obj4, tVar)) {
-                                                if (atomicReference.get() != obj4) {
-                                                    break;
-                                                }
-                                            }
-                                        } else {
-                                            while (!atomicReference.compareAndSet(obj4, tVar2)) {
-                                                if (atomicReference.get() != obj4) {
-                                                    break;
-                                                }
-                                            }
-                                            ((wd.m) obj4).resumeWith(dd.k.f8801a);
-                                            break;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    synchronized (this) {
-                        i3 = this.d;
-                        if (i3 == i11) {
-                            this.d = i11 + 1;
-                            return true;
-                        }
-                        wVarArr = this.f384a;
-                    }
-                    wVarArr2 = wVarArr;
-                    i11 = i3;
-                }
-            } else {
-                this.d = i10 + 2;
-                return true;
-            }
-        }
+    public final String toString() {
+        return "CompletedContinuation(result=" + this.f59992a + ", cancelHandler=" + this.f59993b + ", onCancellation=" + this.f59994c + ", idempotentResume=" + this.d + ", cancelCause=" + this.f59995e + ')';
     }
 
-    @Override
-    public final b h(fd.h hVar, int i3, yd.a aVar) {
-        if ((((i3 >= 0 && i3 < 2) || i3 == -2) && aVar == yd.a.f59375b) || ((i3 == 0 || i3 == -3) && aVar == yd.a.f59374a)) {
-            return this;
-        }
-        return new ae.e(this, hVar, i3, aVar, 0);
+    public u(Object obj, k kVar, rd.q qVar, Throwable th2, int i7) {
+        this(obj, (i7 & 2) != 0 ? null : kVar, (i7 & 4) != 0 ? null : qVar, (Object) null, (i7 & 16) != 0 ? null : th2);
     }
 }

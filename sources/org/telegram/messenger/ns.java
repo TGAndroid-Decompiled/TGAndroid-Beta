@@ -1,22 +1,72 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class ns implements Runnable {
-    public final int f24430a;
-    public final us f24431b;
-    public final LongSparseIntArray f24432c;
-    public final ArrayList d;
+import java.util.Collection;
+import java.util.HashSet;
+public final class ns extends ArrayList {
+    public HashSet f24216a;
 
-    public ns(us usVar, LongSparseIntArray longSparseIntArray, ArrayList arrayList, int i3) {
-        this.f24430a = i3;
-        this.f24431b = usVar;
-        this.f24432c = longSparseIntArray;
-        this.d = arrayList;
+    @Override
+    public final boolean add(Object obj) {
+        if (this.f24216a.add(obj)) {
+            return super.add(obj);
+        }
+        return false;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ns.run():void");
+    public final boolean addAll(Collection collection) {
+        boolean z9 = false;
+        for (Object obj : collection) {
+            if (add(obj)) {
+                z9 = true;
+            }
+        }
+        return z9;
+    }
+
+    @Override
+    public final void clear() {
+        this.f24216a.clear();
+        super.clear();
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        return this.f24216a.contains(obj);
+    }
+
+    @Override
+    public final Object remove(int i7) {
+        Object remove = super.remove(i7);
+        if (remove != null) {
+            this.f24216a.remove(remove);
+        }
+        return remove;
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void add(int i7, Object obj) {
+        if (this.f24216a.add(obj)) {
+            super.add(i7, obj);
+        }
+    }
+
+    @Override
+    public final boolean addAll(int i7, Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        if (this.f24216a.remove(obj)) {
+            return super.remove(obj);
+        }
+        return false;
     }
 }

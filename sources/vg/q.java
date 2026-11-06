@@ -1,12 +1,26 @@
 package vg;
 
-import android.animation.ValueAnimator;
-import java.util.ArrayList;
+import android.opengl.EGL14;
+import android.opengl.EGLSurface;
+import android.view.Surface;
 public final class q {
-    public boolean f56784a;
-    public final ArrayList f56785b = new ArrayList();
-    public float f56786c;
-    public boolean d;
-    public float f56787e;
-    public ValueAnimator f56788f;
+    public final r f57362a;
+    public final Surface f57363b;
+    public volatile boolean d;
+    public volatile p f57365e;
+    public int f57366f;
+    public int f57367g;
+    public boolean f57368i;
+    public boolean f57369j;
+    public volatile boolean f57364c = true;
+    public EGLSurface h = EGL14.EGL_NO_SURFACE;
+    public int f57370k = -1;
+    public float f57371l = -1.0f;
+
+    public q(r rVar, Surface surface, int i7) {
+        this.f57362a = rVar;
+        this.f57363b = surface;
+        this.f57367g = i7;
+        this.f57366f = i7;
+    }
 }

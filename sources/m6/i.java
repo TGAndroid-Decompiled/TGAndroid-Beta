@@ -1,35 +1,11 @@
 package m6;
+public abstract class i {
+    public static final n6.c f19902a;
+    public static final n6.c[] f19903b;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import androidx.fragment.app.p;
-public class i extends p {
-    public Dialog B0;
-    public DialogInterface.OnCancelListener C0;
-    public AlertDialog D0;
-
-    @Override
-    public final Dialog O() {
-        Dialog dialog = this.B0;
-        if (dialog == null) {
-            this.f1886s0 = false;
-            if (this.D0 == null) {
-                Context n4 = n();
-                p6.m.g(n4);
-                this.D0 = new AlertDialog.Builder(n4).create();
-            }
-            return this.D0;
-        }
-        return dialog;
-    }
-
-    @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        DialogInterface.OnCancelListener onCancelListener = this.C0;
-        if (onCancelListener != null) {
-            onCancelListener.onCancel(dialogInterface);
-        }
+    static {
+        n6.c cVar = new n6.c("register", -1, 1L, true);
+        f19902a = cVar;
+        f19903b = new n6.c[]{cVar, new n6.c("unregister", -1, 1L, true)};
     }
 }

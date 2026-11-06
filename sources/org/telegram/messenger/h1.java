@@ -5,41 +5,41 @@ import android.text.TextUtils;
 import java.io.File;
 import org.telegram.ui.web.HttpGetFileTask;
 public final class h1 {
-    public static h1 f22818m;
-    public String f22819a;
-    public int f22820b;
-    public String f22821c;
+    public static h1 f22768m;
+    public String f22769a;
+    public int f22770b;
+    public String f22771c;
     public String d;
-    public long f22822e;
-    public String f22823f;
+    public long f22772e;
+    public String f22773f;
     public boolean h;
-    public boolean f22826j;
-    public float f22827k;
-    public HttpGetFileTask f22828l;
-    public boolean f22824g = true;
-    public final e1 f22825i = new e1(this, 0);
+    public boolean f22776j;
+    public float f22777k;
+    public HttpGetFileTask f22778l;
+    public boolean f22774g = true;
+    public final e1 f22775i = new e1(this, 0);
 
     public h1() {
-        SharedPreferences sharedPreferences = t0.f25457b.getSharedPreferences("beta", 0);
-        this.f22819a = sharedPreferences.getString("version", null);
-        this.f22820b = sharedPreferences.getInt("versionCode", 0);
-        this.f22821c = sharedPreferences.getString("changelog", null);
+        SharedPreferences sharedPreferences = t0.f25555b.getSharedPreferences("beta", 0);
+        this.f22769a = sharedPreferences.getString("version", null);
+        this.f22770b = sharedPreferences.getInt("versionCode", 0);
+        this.f22771c = sharedPreferences.getString("changelog", null);
         this.d = sharedPreferences.getString("path", null);
-        this.f22822e = sharedPreferences.getLong("lastCheck", 0L);
-        if (d() < this.f22820b && (TextUtils.isEmpty(this.d) || new File(this.d).exists())) {
+        this.f22772e = sharedPreferences.getLong("lastCheck", 0L);
+        if (d() < this.f22770b && (TextUtils.isEmpty(this.d) || new File(this.d).exists())) {
             return;
         }
-        this.f22819a = null;
-        this.f22820b = 0;
+        this.f22769a = null;
+        this.f22770b = 0;
         this.d = null;
-        this.f22821c = null;
-        this.f22822e = 0L;
+        this.f22771c = null;
+        this.f22772e = 0L;
         f();
     }
 
     public static String c() {
         try {
-            return t0.f25457b.getPackageManager().getPackageInfo(t0.f25457b.getPackageName(), 0).versionName;
+            return t0.f25555b.getPackageManager().getPackageInfo(t0.f25555b.getPackageName(), 0).versionName;
         } catch (Exception e10) {
             a8.g(e10, true);
             return "";
@@ -48,7 +48,7 @@ public final class h1 {
 
     public static int d() {
         try {
-            return t0.f25457b.getPackageManager().getPackageInfo(t0.f25457b.getPackageName(), 0).versionCode;
+            return t0.f25555b.getPackageManager().getPackageInfo(t0.f25555b.getPackageName(), 0).versionCode;
         } catch (Exception e10) {
             a8.g(e10, true);
             return 0;
@@ -56,27 +56,27 @@ public final class h1 {
     }
 
     public static h1 e() {
-        if (f22818m == null) {
-            f22818m = new h1();
+        if (f22768m == null) {
+            f22768m = new h1();
         }
-        return f22818m;
+        return f22768m;
     }
 
-    public final void a(Runnable runnable, boolean z10) {
-        long j10;
+    public final void a(Runnable runnable, boolean z9) {
+        long j3;
         if (!this.h) {
-            if (this.f22824g) {
-                z10 = true;
+            if (this.f22774g) {
+                z9 = true;
             }
-            if (!z10) {
-                long currentTimeMillis = System.currentTimeMillis() - this.f22822e;
-                if (t0.f25465x) {
-                    j10 = 86400000;
+            if (!z9) {
+                long currentTimeMillis = System.currentTimeMillis() - this.f22772e;
+                if (t0.f25563x) {
+                    j3 = 86400000;
                 } else {
-                    boolean z11 = r2.f25040a;
-                    j10 = 1200000;
+                    boolean z10 = r2.f25191a;
+                    j3 = 1200000;
                 }
-                if (currentTimeMillis < j10) {
+                if (currentTimeMillis < j3) {
                     if (runnable != null) {
                         runnable.run();
                         return;
@@ -85,97 +85,97 @@ public final class h1 {
                 }
             }
             this.h = true;
-            this.f22824g = false;
-            new org.telegram.ui.web.z0(new g1(0, this, runnable)).execute("https://telegram.org/dl/android/apk-public-beta.json");
+            this.f22774g = false;
+            new org.telegram.ui.web.a1(new g1(0, this, runnable)).execute("null");
         }
     }
 
-    public final void b(boolean z10) {
-        if (!this.f22826j && TextUtils.isEmpty(this.d)) {
-            this.f22826j = true;
-            this.f22827k = 0.0f;
-            hs.e().k(hs.R4, new Object[0]);
-            if (TextUtils.isEmpty(this.f22823f)) {
-                if (!z10) {
+    public final void b(boolean z9) {
+        if (!this.f22776j && TextUtils.isEmpty(this.d)) {
+            this.f22776j = true;
+            this.f22777k = 0.0f;
+            qs.e().k(qs.R4, new Object[0]);
+            if (TextUtils.isEmpty(this.f22773f)) {
+                if (!z9) {
                     a(new e1(this, 1), true);
                     return;
                 } else {
-                    this.f22826j = false;
+                    this.f22776j = false;
                     return;
                 }
             }
-            HttpGetFileTask overrideExtension = new HttpGetFileTask(new u10(this) {
-                public final h1 f22432b;
+            HttpGetFileTask overrideExtension = new HttpGetFileTask(new c20(this) {
+                public final h1 f22315b;
 
                 {
-                    this.f22432b = this;
+                    this.f22315b = this;
                 }
 
                 @Override
                 public final void a(Object obj) {
                     switch (r2) {
                         case 0:
-                            g0.h3(new b4(15, this.f22432b, (File) obj));
+                            g0.h3(new b4(15, this.f22315b, (File) obj));
                             return;
                         default:
-                            this.f22432b.f22827k = ((Float) obj).floatValue();
-                            hs.e().k(294, new Object[0]);
+                            this.f22315b.f22777k = ((Float) obj).floatValue();
+                            qs.e().k(294, new Object[0]);
                             return;
                     }
                 }
-            }, new u10(this) {
-                public final h1 f22432b;
+            }, new c20(this) {
+                public final h1 f22315b;
 
                 {
-                    this.f22432b = this;
+                    this.f22315b = this;
                 }
 
                 @Override
                 public final void a(Object obj) {
                     switch (r2) {
                         case 0:
-                            g0.h3(new b4(15, this.f22432b, (File) obj));
+                            g0.h3(new b4(15, this.f22315b, (File) obj));
                             return;
                         default:
-                            this.f22432b.f22827k = ((Float) obj).floatValue();
-                            hs.e().k(294, new Object[0]);
+                            this.f22315b.f22777k = ((Float) obj).floatValue();
+                            qs.e().k(294, new Object[0]);
                             return;
                     }
                 }
             }).setOverrideExtension("apk");
-            this.f22828l = overrideExtension;
-            overrideExtension.execute(this.f22823f);
+            this.f22778l = overrideExtension;
+            overrideExtension.execute(this.f22773f);
         }
     }
 
     public final void f() {
-        SharedPreferences.Editor edit = t0.f25457b.getSharedPreferences("beta", 0).edit();
-        if (TextUtils.isEmpty(this.f22819a)) {
+        SharedPreferences.Editor edit = t0.f25555b.getSharedPreferences("beta", 0).edit();
+        if (TextUtils.isEmpty(this.f22769a)) {
             edit.remove("version");
         } else {
-            edit.putString("version", this.f22819a);
+            edit.putString("version", this.f22769a);
         }
-        if (TextUtils.isEmpty(this.f22821c)) {
+        if (TextUtils.isEmpty(this.f22771c)) {
             edit.remove("changelog");
         } else {
-            edit.putString("changelog", this.f22821c);
+            edit.putString("changelog", this.f22771c);
         }
-        int i3 = this.f22820b;
-        if (i3 == 0) {
+        int i7 = this.f22770b;
+        if (i7 == 0) {
             edit.remove("versionCode");
         } else {
-            edit.putInt("versionCode", i3);
+            edit.putInt("versionCode", i7);
         }
         if (TextUtils.isEmpty(this.d)) {
             edit.remove("path");
         } else {
             edit.putString("path", this.d);
         }
-        long j10 = this.f22822e;
-        if (j10 == 0) {
+        long j3 = this.f22772e;
+        if (j3 == 0) {
             edit.remove("lastCheck");
         } else {
-            edit.putLong("lastCheck", j10);
+            edit.putLong("lastCheck", j3);
         }
         edit.apply();
     }

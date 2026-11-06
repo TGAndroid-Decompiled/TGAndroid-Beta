@@ -28,7 +28,7 @@ public interface a extends MenuItem {
     CharSequence getTooltipText();
 
     @Override
-    MenuItem setAlphabeticShortcut(char c2, int i3);
+    MenuItem setAlphabeticShortcut(char c10, int i7);
 
     @Override
     a setContentDescription(CharSequence charSequence);
@@ -40,10 +40,10 @@ public interface a extends MenuItem {
     MenuItem setIconTintMode(PorterDuff.Mode mode);
 
     @Override
-    MenuItem setNumericShortcut(char c2, int i3);
+    MenuItem setNumericShortcut(char c10, int i7);
 
     @Override
-    MenuItem setShortcut(char c2, char c10, int i3, int i10);
+    MenuItem setShortcut(char c10, char c11, int i7, int i10);
 
     @Override
     a setTooltipText(CharSequence charSequence);

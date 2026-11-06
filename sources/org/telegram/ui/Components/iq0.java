@@ -1,45 +1,45 @@
 package org.telegram.ui.Components;
 
 import androidx.recyclerview.widget.RecyclerView;
-public final class iq0 extends u4.t0 {
-    public final zp0 f34797a;
-    public final aq0 f34798b;
-    public final ws0 f34799c;
+public final class iq0 extends v4.s0 {
+    public final zp0 f34758a;
+    public final aq0 f34759b;
+    public final xs0 f34760c;
 
-    public iq0(ws0 ws0Var, zp0 zp0Var, aq0 aq0Var) {
-        this.f34799c = ws0Var;
-        this.f34797a = zp0Var;
-        this.f34798b = aq0Var;
+    public iq0(xs0 xs0Var, zp0 zp0Var, aq0 aq0Var) {
+        this.f34760c = xs0Var;
+        this.f34758a = zp0Var;
+        this.f34759b = aq0Var;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, int i3) {
-        boolean z10;
-        if (i3 != 0) {
-            z10 = true;
+    public final void a(RecyclerView recyclerView, int i7) {
+        boolean z9;
+        if (i7 != 0) {
+            z9 = true;
         } else {
-            z10 = false;
+            z9 = false;
         }
-        this.f34799c.f40083e1 = z10;
+        this.f34760c.f40347d1 = z9;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i3, int i10) {
+    public final void b(RecyclerView recyclerView, int i7, int i10) {
         int i11;
         int i12;
-        ws0 ws0Var = this.f34799c;
-        ls0[] ls0VarArr = ws0Var.f40136w1;
-        aq0 aq0Var = this.f34798b;
-        zp0 zp0Var = this.f34797a;
-        ws0Var.O(zp0Var, (tj0) recyclerView, aq0Var);
-        if (i10 != 0 && ((i12 = ws0Var.f40108n0[0].F) == 0 || i12 == 5)) {
-            ls0VarArr[0].f35854a.isEmpty();
+        xs0 xs0Var = this.f34760c;
+        ms0[] ms0VarArr = xs0Var.f40399v1;
+        aq0 aq0Var = this.f34759b;
+        zp0 zp0Var = this.f34758a;
+        xs0Var.O(zp0Var, (pj0) recyclerView, aq0Var);
+        if (i10 != 0 && ((i12 = xs0Var.m0[0].E) == 0 || i12 == 5)) {
+            ms0VarArr[0].f36109a.isEmpty();
         }
-        if (i10 != 0 && ((i11 = zp0Var.F) == 0 || ws0.z0(i11))) {
-            ws0.s(zp0Var, ls0VarArr, true);
+        if (i10 != 0 && ((i11 = zp0Var.E) == 0 || xs0.z0(i11))) {
+            xs0.s(zp0Var, ms0VarArr, true);
         }
         zp0Var.h.L0(true);
-        if (zp0Var.G != null) {
+        if (zp0Var.F != null) {
             zp0Var.invalidate();
         }
     }

@@ -1,116 +1,106 @@
 package ae;
 
-import db.e1;
-import db.j0;
-import db.x0;
-import java.util.List;
-import l1.b0;
-import l1.n0;
-import org.json.JSONObject;
-import wd.z;
-import yd.r;
-public final class d extends hd.j implements od.p {
-    public final int f391a;
-    public int f392b;
-    public Object f393c;
-    public final Object d;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.CancellationSignal;
+import androidx.credentials.playservices.CredentialProviderPlayServicesImpl;
+import androidx.credentials.playservices.controllers.identityauth.HiddenActivity;
+import androidx.credentials.playservices.controllers.identitycredentials.IdentityCredentialApiHiddenActivity;
+import b1.g;
+import bi.ab;
+import gd.k;
+import j7.m;
+import java.util.concurrent.Executor;
+import kotlin.jvm.internal.j;
+import m9.u;
+import rd.l;
+import w0.i;
+public final class d implements l {
+    public final int f1048a;
+    public final Object f1049b;
+    public final Object f1050c;
 
-    public d(Object obj, fd.c cVar, int i3) {
-        super(2, cVar);
-        this.f391a = i3;
-        this.d = obj;
+    public d(int i7, Object obj, Object obj2) {
+        this.f1048a = i7;
+        this.f1049b = obj;
+        this.f1050c = obj2;
     }
 
     @Override
-    public final fd.c create(Object obj, fd.c cVar) {
-        switch (this.f391a) {
+    public final Object invoke(Object obj) {
+        switch (this.f1048a) {
             case 0:
-                d dVar = new d((e) this.d, cVar, 0);
-                dVar.f393c = obj;
-                return dVar;
+                Throwable th2 = (Throwable) obj;
+                ((e) this.f1049b).f1051c.removeCallbacks((u) this.f1050c);
+                break;
             case 1:
-                d dVar2 = new d((e) this.d, cVar, 1);
-                dVar2.f393c = obj;
-                return dVar2;
+                i e10 = (i) obj;
+                j.e(e10, "e");
+                ((Executor) this.f1049b).execute(new g((v0.g) this.f1050c, e10, 1));
+                break;
             case 2:
-                d dVar3 = new d((zd.c) this.d, cVar, 2);
-                dVar3.f393c = obj;
-                return dVar3;
+                CancellationSignal cancellationSignal = (CancellationSignal) this.f1049b;
+                c1.e eVar = (c1.e) this.f1050c;
+                Context context = eVar.f5254e;
+                a6.f fVar = (a6.f) obj;
+                CredentialProviderPlayServicesImpl.Companion.getClass();
+                if (!a1.g.a(cancellationSignal)) {
+                    Intent intent = new Intent(context, HiddenActivity.class);
+                    b1.d.a(eVar.f5257i, intent, "BEGIN_SIGN_IN");
+                    intent.putExtra("EXTRA_FLOW_PENDING_INTENT", fVar.f291a);
+                    try {
+                        context.startActivity(intent);
+                    } catch (Exception unused) {
+                        CredentialProviderPlayServicesImpl.Companion.getClass();
+                        if (!a1.g.a(cancellationSignal)) {
+                            eVar.g().execute(new ab(eVar, 5));
+                        }
+                    }
+                }
+                return k.f13829a;
             case 3:
-                return new d((db.n) this.f393c, (x0) this.d, cVar, 3);
-            case 4:
-                return new d((e1) this.f393c, (j0) this.d, cVar, 4);
-            case 5:
-                d dVar4 = new d((gb.d) this.d, cVar, 5);
-                dVar4.f393c = obj;
-                return dVar4;
-            case 6:
-                return new d((ja.d) this.f393c, (od.l) this.d, cVar, 6);
-            case 7:
-                d dVar5 = new d((List) this.d, cVar, 7);
-                dVar5.f393c = obj;
-                return dVar5;
-            case 8:
-                return new d((od.p) ((hd.j) this.f393c), (l1.c) this.d, cVar);
-            case 9:
-                d dVar6 = new d((b0) this.d, cVar, 9);
-                dVar6.f393c = obj;
-                return dVar6;
-            case 10:
-                return new d((ui.f) this.d, cVar, 10);
+                CancellationSignal cancellationSignal2 = (CancellationSignal) this.f1049b;
+                d1.e eVar2 = (d1.e) this.f1050c;
+                Context context2 = eVar2.f7940e;
+                PendingIntent result = (PendingIntent) obj;
+                j.e(result, "result");
+                CredentialProviderPlayServicesImpl.Companion.getClass();
+                if (!a1.g.a(cancellationSignal2)) {
+                    Intent intent2 = new Intent(context2, HiddenActivity.class);
+                    b1.d.a(eVar2.f7943i, intent2, "CREATE_PUBLIC_KEY_CREDENTIAL");
+                    intent2.putExtra("EXTRA_FLOW_PENDING_INTENT", result);
+                    try {
+                        context2.startActivity(intent2);
+                    } catch (Exception unused2) {
+                        CredentialProviderPlayServicesImpl.Companion.getClass();
+                        if (!a1.g.a(cancellationSignal2)) {
+                            Executor executor = eVar2.f7942g;
+                            if (executor != null) {
+                                executor.execute(new d1.d(eVar2, 0));
+                            } else {
+                                j.h("executor");
+                                throw null;
+                            }
+                        }
+                    }
+                }
+                return k.f13829a;
             default:
-                d dVar7 = new d((r) this.d, cVar, 11);
-                dVar7.f393c = obj;
-                return dVar7;
+                g1.a aVar = (g1.a) this.f1050c;
+                Context context3 = aVar.f13410e;
+                m mVar = (m) obj;
+                CredentialProviderPlayServicesImpl.Companion.getClass();
+                if (!a1.g.a((CancellationSignal) this.f1049b)) {
+                    Intent intent3 = new Intent(context3, IdentityCredentialApiHiddenActivity.class);
+                    intent3.setFlags(65536);
+                    intent3.putExtra("RESULT_RECEIVER", b1.d.d(aVar.f13413i));
+                    intent3.putExtra("EXTRA_FLOW_PENDING_INTENT", mVar.f16575a);
+                    intent3.putExtra("EXTRA_ERROR_NAME", "GET_UNKNOWN");
+                    context3.startActivity(intent3);
+                }
+                return k.f13829a;
         }
-    }
-
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        switch (this.f391a) {
-            case 0:
-                return ((d) create((yd.p) obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-            case 1:
-                return ((d) create((zd.c) obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-            case 2:
-                return ((d) create(obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-            case 3:
-                return ((d) create((z) obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-            case 4:
-                return ((d) create((z) obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-            case 5:
-                return ((d) create((JSONObject) obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-            case 6:
-                return ((d) create((z) obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-            case 7:
-                return ((d) create((l1.j) obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-            case 8:
-                return ((d) create((z) obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-            case 9:
-                return ((d) create((n0) obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-            case 10:
-                return ((d) create((z) obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-            default:
-                return ((d) create((z) obj, (fd.c) obj2)).invokeSuspend(dd.k.f8801a);
-        }
-    }
-
-    @Override
-    public final java.lang.Object invokeSuspend(java.lang.Object r19) {
-        throw new UnsupportedOperationException("Method not decompiled: ae.d.invokeSuspend(java.lang.Object):java.lang.Object");
-    }
-
-    public d(Object obj, Object obj2, fd.c cVar, int i3) {
-        super(2, cVar);
-        this.f391a = i3;
-        this.f393c = obj;
-        this.d = obj2;
-    }
-
-    public d(od.p pVar, l1.c cVar, fd.c cVar2) {
-        super(2, cVar2);
-        this.f391a = 8;
-        this.f393c = (hd.j) pVar;
-        this.d = cVar;
+        return k.f13829a;
     }
 }

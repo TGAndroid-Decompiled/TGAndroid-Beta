@@ -1,10 +1,19 @@
 package z8;
-public interface a {
-    void a(a9.f fVar);
 
-    void b(a9.f fVar);
+import android.os.Parcel;
+import android.os.Parcelable;
+import c8.wb;
+import y8.v;
+public final class a extends r6.a {
+    public static final Parcelable.Creator<a> CREATOR = new v(8);
+    public String f59876a;
+    public String f59877b;
 
-    void c(a9.f fVar);
-
-    void d(a9.f fVar);
+    @Override
+    public final void writeToParcel(Parcel parcel, int i7) {
+        int r10 = wb.r(parcel, 20293);
+        wb.l(parcel, 2, this.f59876a);
+        wb.l(parcel, 3, this.f59877b);
+        wb.s(parcel, r10);
+    }
 }

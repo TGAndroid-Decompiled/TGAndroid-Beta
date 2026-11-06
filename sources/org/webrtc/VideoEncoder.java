@@ -12,13 +12,13 @@ public interface VideoEncoder {
 
         public int getSum() {
             int[][] iArr;
-            int i3 = 0;
+            int i7 = 0;
             for (int[] iArr2 : this.bitratesBbs) {
                 for (int i10 : iArr2) {
-                    i3 += i10;
+                    i7 += i10;
                 }
             }
-            return i3;
+            return i7;
         }
     }
 
@@ -29,8 +29,8 @@ public interface VideoEncoder {
     public static class Capabilities {
         public final boolean lossNotification;
 
-        public Capabilities(boolean z10) {
-            this.lossNotification = z10;
+        public Capabilities(boolean z9) {
+            this.lossNotification = z9;
         }
     }
 
@@ -61,9 +61,9 @@ public interface VideoEncoder {
         public final boolean applyAlignmentToAllSimulcastLayers;
         public final int requestedResolutionAlignment;
 
-        public EncoderInfo(int i3, boolean z10) {
-            this.requestedResolutionAlignment = i3;
-            this.applyAlignmentToAllSimulcastLayers = z10;
+        public EncoderInfo(int i7, boolean z9) {
+            this.requestedResolutionAlignment = i7;
+            this.applyAlignmentToAllSimulcastLayers = z9;
         }
 
         public boolean getApplyAlignmentToAllSimulcastLayers() {
@@ -91,8 +91,8 @@ public interface VideoEncoder {
         public final int minBitrateBps;
         public final int minStartBitrateBps;
 
-        public ResolutionBitrateLimits(int i3, int i10, int i11, int i12) {
-            this.frameSizePixels = i3;
+        public ResolutionBitrateLimits(int i7, int i10, int i11, int i12) {
+            this.frameSizePixels = i7;
             this.minStartBitrateBps = i10;
             this.minBitrateBps = i11;
             this.maxBitrateBps = i12;
@@ -126,18 +126,18 @@ public interface VideoEncoder {
         public final int width;
 
         @Deprecated
-        public Settings(int i3, int i10, int i11, int i12, int i13, int i14, boolean z10) {
-            this(i3, i10, i11, i12, i13, i14, z10, new Capabilities(false));
+        public Settings(int i7, int i10, int i11, int i12, int i13, int i14, boolean z9) {
+            this(i7, i10, i11, i12, i13, i14, z9, new Capabilities(false));
         }
 
-        public Settings(int i3, int i10, int i11, int i12, int i13, int i14, boolean z10, Capabilities capabilities) {
-            this.numberOfCores = i3;
+        public Settings(int i7, int i10, int i11, int i12, int i13, int i14, boolean z9, Capabilities capabilities) {
+            this.numberOfCores = i7;
             this.width = i10;
             this.height = i11;
             this.startBitrate = i12;
             this.maxFramerate = i13;
             this.numberOfSimulcastStreams = i14;
-            this.automaticResizeOn = z10;
+            this.automaticResizeOn = z9;
             this.capabilities = capabilities;
         }
     }
@@ -160,7 +160,7 @@ public interface VideoEncoder {
 
     VideoCodecStatus release();
 
-    VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i3);
+    VideoCodecStatus setRateAllocation(BitrateAllocation bitrateAllocation, int i7);
 
     VideoCodecStatus setRates(RateControlParameters rateControlParameters);
 
@@ -170,9 +170,9 @@ public interface VideoEncoder {
         public final Integer low;
         public final boolean on;
 
-        public ScalingSettings(int i3, int i10) {
+        public ScalingSettings(int i7, int i10) {
             this.on = true;
-            this.low = Integer.valueOf(i3);
+            this.low = Integer.valueOf(i7);
             this.high = Integer.valueOf(i10);
         }
 
@@ -190,16 +190,16 @@ public interface VideoEncoder {
         }
 
         @Deprecated
-        public ScalingSettings(boolean z10) {
-            this.on = z10;
+        public ScalingSettings(boolean z9) {
+            this.on = z9;
             this.low = null;
             this.high = null;
         }
 
         @Deprecated
-        public ScalingSettings(boolean z10, int i3, int i10) {
-            this.on = z10;
-            this.low = Integer.valueOf(i3);
+        public ScalingSettings(boolean z9, int i7, int i10) {
+            this.on = z9;
+            this.low = Integer.valueOf(i7);
             this.high = Integer.valueOf(i10);
         }
     }

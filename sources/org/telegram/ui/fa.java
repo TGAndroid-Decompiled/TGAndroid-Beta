@@ -1,91 +1,150 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+import android.view.KeyEvent;
 import android.widget.TextView;
-import java.util.HashSet;
 import org.telegram.ui.Components.EditTextBoldCursor;
-public final class fa extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final EditTextBoldCursor f45225a;
-    public final TextView f45226b;
-    public final ka f45227c;
+public final class fa implements TextView.OnEditorActionListener {
+    public final int f45573a;
+    public final Object f45574b;
 
-    public fa(ka kaVar, Activity activity) {
-        super(activity);
-        int i3;
-        this.f45227c = kaVar;
-        LinearLayout linearLayout = new LinearLayout(getContext());
-        linearLayout.setOrientation(0);
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
-        this.f45225a = editTextBoldCursor;
-        editTextBoldCursor.setTextSize(1, 17.0f);
-        org.telegram.ui.ActionBar.r6.E(editTextBoldCursor, org.telegram.ui.ActionBar.k6.H6, null);
-        int i10 = org.telegram.ui.ActionBar.k6.G6;
-        org.telegram.ui.ActionBar.r6.V(editTextBoldCursor, i10, null);
-        editTextBoldCursor.setBackgroundDrawable(null);
-        editTextBoldCursor.setMaxLines(1);
-        editTextBoldCursor.setLines(1);
-        editTextBoldCursor.setPadding(0, 0, 0, 0);
-        editTextBoldCursor.setSingleLine(true);
-        if (org.telegram.messenger.bd.f21784a0) {
-            i3 = 5;
-        } else {
-            i3 = 3;
-        }
-        editTextBoldCursor.setGravity(i3 | 48);
-        editTextBoldCursor.setInputType(180224);
-        editTextBoldCursor.setImeOptions(6);
-        editTextBoldCursor.setHint(org.telegram.messenger.bd.M0(2131743658, null));
-        org.telegram.ui.ActionBar.r6.m(editTextBoldCursor, 30, i10, null);
-        editTextBoldCursor.setCursorSize(org.telegram.messenger.g0.L(19.0f));
-        editTextBoldCursor.setCursorWidth(1.5f);
-        editTextBoldCursor.setOnEditorActionListener(new ea(this, 0));
-        String str = kaVar.f46844r;
-        long j10 = kaVar.f46848y;
-        editTextBoldCursor.setText(str);
-        editTextBoldCursor.addTextChangedListener(new n0(this, 1));
-        int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        if (i11 != 0) {
-            editTextBoldCursor.setEnabled(false);
-        }
-        TextView textView = new TextView(getContext());
-        this.f45226b = textView;
-        textView.setMaxLines(1);
-        textView.setLines(1);
-        textView.setPadding(0, 0, 0, 0);
-        textView.setSingleLine(true);
-        textView.setText(kaVar.getMessagesController().V2 + "/");
-        textView.setTextSize(1, 17.0f);
-        org.telegram.ui.ActionBar.r6.V(textView, i10, null);
-        textView.setGravity((org.telegram.messenger.bd.f21784a0 ? 5 : 3) | 48);
-        textView.setTranslationY(-org.telegram.messenger.g0.L(3.0f));
-        linearLayout.addView(textView, b8.mf.q(-2, -2, 0.0f, 16, 21, 15, 0, 15));
-        linearLayout.addView(editTextBoldCursor, b8.mf.q(-2, -2, 1.0f, 16, 0, 15, 21, 15));
-        addView(linearLayout, b8.mf.e(-1, -1, 48));
-        if (i11 != 0) {
-            editTextBoldCursor.setAlpha(0.6f);
-            textView.setAlpha(0.6f);
-        }
+    public fa(Object obj, int i7) {
+        this.f45573a = i7;
+        this.f45574b = obj;
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(50.0f), 1073741824));
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            this.f45225a.setCursorColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false));
-            invalidate();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
+        org.telegram.ui.Cells.q1 q1Var;
+        switch (this.f45573a) {
+            case 0:
+                ga gaVar = (ga) this.f45574b;
+                if (i7 == 6) {
+                    org.telegram.ui.ActionBar.b5 b5Var = gaVar.f45903c.f47455a;
+                    if (b5Var != null) {
+                        b5Var.performClick();
+                        return true;
+                    }
+                } else {
+                    gaVar.getClass();
+                }
+                return false;
+            case 1:
+                an anVar = (an) this.f45574b;
+                if (i7 == 6) {
+                    sh.b bVar = anVar.f43787gd;
+                    if (bVar != null && (q1Var = bVar.f55171n) != null) {
+                        anVar.Ta(q1Var);
+                        return true;
+                    }
+                } else {
+                    anVar.getClass();
+                }
+                return false;
+            case 2:
+                pn pnVar = (pn) this.f45574b;
+                if (i7 == 6) {
+                    org.telegram.ui.ActionBar.b5 b5Var2 = pnVar.f48862a;
+                    if (b5Var2 != null) {
+                        b5Var2.performClick();
+                        return true;
+                    }
+                } else {
+                    pnVar.getClass();
+                }
+                return false;
+            case 3:
+                yq yqVar = (yq) this.f45574b;
+                if (i7 == 5) {
+                    yqVar.a();
+                    return true;
+                }
+                yqVar.getClass();
+                return false;
+            case 4:
+                w40 w40Var = (w40) this.f45574b;
+                if (i7 == 6 && w40Var.t0()) {
+                    return true;
+                }
+                return false;
+            case 5:
+                xb0 xb0Var = (xb0) this.f45574b;
+                if (i7 == 5) {
+                    xb0Var.h(null);
+                    return true;
+                }
+                xb0Var.getClass();
+                return false;
+            case 6:
+                ec0 ec0Var = (ec0) this.f45574b;
+                if (i7 == 5) {
+                    ec0Var.h(null);
+                    return true;
+                }
+                ec0Var.getClass();
+                return false;
+            case 7:
+                sc0 sc0Var = (sc0) this.f45574b;
+                if (i7 == 5) {
+                    sc0Var.h(null);
+                    return true;
+                }
+                sc0Var.getClass();
+                return false;
+            case 8:
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f45574b;
+                int i10 = passcodeActivity.E;
+                if (i10 == 0) {
+                    passcodeActivity.v0();
+                    return true;
+                } else if (i10 == 1) {
+                    passcodeActivity.u0();
+                    return true;
+                } else {
+                    return false;
+                }
+            case 9:
+                xj0 xj0Var = (xj0) this.f45574b;
+                if (i7 == 5) {
+                    xj0Var.h(null);
+                    return true;
+                }
+                xj0Var.getClass();
+                return false;
+            case 10:
+                ux0 ux0Var = (ux0) this.f45574b;
+                ux0Var.getClass();
+                if (i7 == 5) {
+                    int intValue = ((Integer) textView.getTag()).intValue() + 1;
+                    EditTextBoldCursor[] editTextBoldCursorArr = ux0Var.f50509a;
+                    if (intValue >= editTextBoldCursorArr.length) {
+                        return true;
+                    }
+                    editTextBoldCursorArr[intValue].requestFocus();
+                    return true;
+                } else if (i7 == 6) {
+                    ux0Var.finishFragment();
+                    return true;
+                } else {
+                    return false;
+                }
+            case 11:
+                a21 a21Var = (a21) this.f45574b;
+                if (keyEvent != null) {
+                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
+                        org.telegram.messenger.g0.v1(a21Var.U1);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            default:
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f45574b;
+                twoStepVerificationActivity.getClass();
+                if (i7 != 5 && i7 != 6) {
+                    return false;
+                }
+                twoStepVerificationActivity.y0();
+                return true;
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

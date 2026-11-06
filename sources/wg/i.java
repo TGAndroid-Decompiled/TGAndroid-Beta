@@ -1,32 +1,21 @@
 package wg;
-
-import android.animation.AnimatorSet;
-import android.animation.ValueAnimator;
 public final class i implements Runnable {
-    public final int f57655a;
-    public final m f57656b;
+    public final int f57638a;
+    public final l f57639b;
 
-    public i(m mVar, int i3) {
-        this.f57655a = i3;
-        this.f57656b = mVar;
+    public i(l lVar, int i7) {
+        this.f57638a = i7;
+        this.f57639b = lVar;
     }
 
     @Override
     public final void run() {
-        ValueAnimator valueAnimator;
-        switch (this.f57655a) {
+        switch (this.f57638a) {
             case 0:
-                m mVar = this.f57656b;
-                AnimatorSet animatorSet = mVar.f57672e0;
-                if ((animatorSet != null && animatorSet.isRunning()) || ((valueAnimator = mVar.f57670d0) != null && valueAnimator.isRunning())) {
-                    mVar.j(mVar.M);
-                    return;
-                } else {
-                    mVar.n();
-                    return;
-                }
+                this.f57639b.dismiss();
+                return;
             default:
-                this.f57656b.l();
+                this.f57639b.onBackPressed();
                 return;
         }
     }

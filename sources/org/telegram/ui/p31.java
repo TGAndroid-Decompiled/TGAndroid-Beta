@@ -1,83 +1,49 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.MotionEvent;
-import android.view.View;
-public final class p31 extends org.telegram.ui.Components.n61 {
-    public boolean W;
-    public final r41 f48453a0;
+import android.os.SystemClock;
+import java.util.HashSet;
+public final class p31 implements Runnable {
+    public final int f48615a;
+    public final long f48616b;
+    public final Object f48617c;
 
-    public p31(r41 r41Var, Activity activity) {
-        super(activity, null);
-        this.f48453a0 = r41Var;
+    public p31(Object obj, long j3, int i7) {
+        this.f48615a = i7;
+        this.f48617c = obj;
+        this.f48616b = j3;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 0) {
-            r41 r41Var = this.f48453a0;
-            if (r41Var.f49078k0 != null) {
-                View currentView = getCurrentView();
-                xd xdVar = r41Var.f49078k0;
-                if (currentView == xdVar) {
-                    boolean G = xdVar.G(motionEvent.getX() - r41Var.f49078k0.getX(), motionEvent.getY() - r41Var.f49078k0.getY());
-                    xdVar.R0 = G;
-                    if (G && xdVar.f51915b1.f49776b.canScrollHorizontally(-1)) {
-                        z10 = true;
-                        this.W = z10;
-                    }
+    public final void run() {
+        int i7;
+        switch (this.f48615a) {
+            case 0:
+                ((org.telegram.messenger.voip.k) this.f48617c).a(Long.valueOf(this.f48616b));
+                return;
+            case 1:
+                org.telegram.ui.web.b0 b0Var = (org.telegram.ui.web.b0) this.f48617c;
+                b0Var.getClass();
+                b0Var.presentFragment(an.ra(this.f48616b));
+                return;
+            case 2:
+                vi.h hVar = (vi.h) ((ac.e) this.f48617c).f1025c;
+                if (this.f48616b == hVar.f57436o && (i7 = hVar.G) != 9 && i7 != 10 && i7 != 8) {
+                    SystemClock.elapsedRealtime();
+                    hVar.f57443w = false;
+                    hVar.s(3);
+                    hVar.f57430i.removeCallbacks(hVar.D);
+                    vi.b bVar = hVar.h;
+                    bVar.b("recording started: retainedDurationMs=" + vi.h.r(hVar.f57437p));
+                    return;
                 }
-            }
-            z10 = false;
-            this.W = z10;
-        }
-        try {
-            boolean dispatchTouchEvent = super.dispatchTouchEvent(motionEvent);
-            if (actionMasked != 1 && actionMasked != 3) {
-                return dispatchTouchEvent;
-            }
-            this.W = false;
-            return dispatchTouchEvent;
-        } catch (Throwable th2) {
-            if (actionMasked == 1 || actionMasked == 3) {
-                this.W = false;
-            }
-            throw th2;
-        }
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (!this.W && super.onInterceptTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.W && A(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final void s() {
-        r41 r41Var = this.f48453a0;
-        r41Var.p0(r41Var.f49076i0.getCurrentPosition(), true);
-        r41Var.q0(false, 0.0f);
-    }
-
-    @Override
-    public final void u(boolean z10) {
-        r41 r41Var = this.f48453a0;
-        float positionAnimated = r41Var.f49076i0.getPositionAnimated();
-        r41Var.q0(!z10, positionAnimated);
-        if (!z10) {
-            r41Var.p0(Math.round(positionAnimated), true);
+                return;
+            default:
+                wg.w0 w0Var = (wg.w0) this.f48617c;
+                HashSet hashSet = w0Var.W1;
+                hashSet.remove(Long.valueOf(this.f48616b));
+                w0Var.Q1.b(true, hashSet, new wg.r0(w0Var, 5), null);
+                w0Var.n1(true, false);
+                return;
         }
     }
 }

@@ -1,15 +1,102 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
 import org.telegram.tgnet.TLRPC;
-public interface z80 {
-    void e(TLRPC.BotInlineResult botInlineResult, boolean z10, int i3);
+public final class z80 extends jy {
+    public final mt0 X;
+    public final g90 Y;
 
-    Paint.FontMetricsInt n();
+    public z80(g90 g90Var) {
+        super(100, false);
+        this.Y = g90Var;
+        this.X = new Object();
+    }
 
-    void q(TLRPC.TL_document tL_document, String str, Object obj);
+    @Override
+    public final int A() {
+        g90 g90Var = this.Y;
+        if (g90Var.f33915f.I() == null && g90Var.f33915f.U == null) {
+            return B();
+        }
+        return B() - 1;
+    }
 
-    void t(int i3, int i10, CharSequence charSequence, boolean z10);
-
-    void w(String str);
+    @Override
+    public final mt0 D1(int i7) {
+        TLRPC.PhotoSize w10;
+        float f10;
+        mt0 mt0Var = this.X;
+        int i10 = 0;
+        mt0Var.f36134c = false;
+        g90 g90Var = this.Y;
+        if (i7 == 0) {
+            mt0Var.f36132a = this.f57024m;
+            mt0Var.f36133b = g90Var.f33914e.h;
+            mt0Var.f36134c = true;
+            return mt0Var;
+        }
+        int i11 = i7 - 1;
+        if (g90Var.f33915f.I() == null && g90Var.f33915f.U == null) {
+            i7 = i11;
+        }
+        mt0Var.f36132a = 0.0f;
+        mt0Var.f36133b = 0.0f;
+        Object J = g90Var.f33915f.J(i7);
+        if (J instanceof TLRPC.BotInlineResult) {
+            TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) J;
+            TLRPC.Document document = botInlineResult.document;
+            if (document != null) {
+                TLRPC.PhotoSize w11 = org.telegram.messenger.w7.w(document.thumbs, 90, false, null, false);
+                float f11 = 100.0f;
+                if (w11 != null) {
+                    f10 = w11.f26977w;
+                } else {
+                    f10 = 100.0f;
+                }
+                mt0Var.f36132a = f10;
+                if (w11 != null) {
+                    f11 = w11.h;
+                }
+                mt0Var.f36133b = f11;
+                while (i10 < botInlineResult.document.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute = botInlineResult.document.attributes.get(i10);
+                    if (!(documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i10++;
+                    } else {
+                        mt0Var.f36132a = documentAttribute.f26959w;
+                        mt0Var.f36133b = documentAttribute.h;
+                        break;
+                    }
+                }
+            } else if (botInlineResult.content != null) {
+                while (i10 < botInlineResult.content.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute2 = botInlineResult.content.attributes.get(i10);
+                    if (!(documentAttribute2 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute2 instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i10++;
+                    } else {
+                        mt0Var.f36132a = documentAttribute2.f26959w;
+                        mt0Var.f36133b = documentAttribute2.h;
+                        break;
+                    }
+                }
+            } else if (botInlineResult.thumb != null) {
+                while (i10 < botInlineResult.thumb.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute3 = botInlineResult.thumb.attributes.get(i10);
+                    if (!(documentAttribute3 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute3 instanceof TLRPC.TL_documentAttributeVideo)) {
+                        i10++;
+                    } else {
+                        mt0Var.f36132a = documentAttribute3.f26959w;
+                        mt0Var.f36133b = documentAttribute3.h;
+                        break;
+                    }
+                }
+            } else {
+                TLRPC.Photo photo = botInlineResult.photo;
+                if (photo != null && (w10 = org.telegram.messenger.w7.w(photo.sizes, org.telegram.messenger.g0.Z0(false), false, null, false)) != null) {
+                    mt0Var.f36132a = w10.f26977w;
+                    mt0Var.f36133b = w10.h;
+                }
+            }
+        }
+        return mt0Var;
+    }
 }

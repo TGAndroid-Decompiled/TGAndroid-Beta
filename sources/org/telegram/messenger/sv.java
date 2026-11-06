@@ -1,58 +1,57 @@
 package org.telegram.messenger;
 
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class sv implements Runnable {
-    public final int f25434a;
-    public final vv f25435b;
-    public final Context f25436c;
-    public final org.telegram.ui.ActionBar.s1 d;
+import android.content.SharedPreferences;
+import android.util.LongSparseArray;
+public final class sv extends rv {
+    public int d;
 
-    public sv(vv vvVar, Context context, org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        this.f25434a = i3;
-        this.f25435b = vvVar;
-        this.f25436c = context;
-        this.d = s1Var;
+    public static void c(sv svVar, String str, SharedPreferences sharedPreferences) {
+        svVar.getClass();
+        sharedPreferences.edit().putBoolean(str.concat("_save_gallery_photo"), svVar.f25342a).putBoolean(str.concat("_save_gallery_video"), svVar.f25343b).putLong(str.concat("_save_gallery_limitVideo"), svVar.f25344c).apply();
+    }
+
+    public static sv d(String str, SharedPreferences sharedPreferences) {
+        ?? rvVar = new rv();
+        rvVar.f25342a = sharedPreferences.getBoolean(str.concat("_save_gallery_photo"), false);
+        rvVar.f25343b = sharedPreferences.getBoolean(str.concat("_save_gallery_video"), false);
+        rvVar.f25344c = sharedPreferences.getLong(str.concat("_save_gallery_limitVideo"), 104857600L);
+        return rvVar;
     }
 
     @Override
-    public final void run() {
-        int i3 = this.f25434a;
-        org.telegram.ui.ActionBar.s1 s1Var = this.d;
-        Context context = this.f25436c;
-        vv vvVar = this.f25435b;
-        switch (i3) {
-            case 0:
-                vvVar.f26118n = false;
-                if (!((Activity) context).isFinishing()) {
-                    try {
-                        s1Var.dismiss();
-                        return;
-                    } catch (Exception e10) {
-                        a8.g(e10, true);
-                        return;
-                    }
+    public final void b() {
+        super.b();
+        b6.m(this.d);
+    }
+
+    public final CharSequence e(int i7) {
+        StringBuilder sb2 = new StringBuilder();
+        if (a()) {
+            if (this.f25342a) {
+                sb2.append(hd.M0(2131745921, null));
+            }
+            if (this.f25343b) {
+                if (sb2.length() != 0) {
+                    sb2.append(", ");
                 }
-                return;
-            default:
-                if (!((Activity) context).isFinishing()) {
-                    vvVar.f26118n = false;
-                    try {
-                        s1Var.dismiss();
-                    } catch (Exception e11) {
-                        a8.g(e11, true);
-                    }
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
-                    String M0 = bd.M0(2131689472, null);
-                    org.telegram.ui.ActionBar.s1 s1Var2 = alertDialog$Builder.f27343a;
-                    s1Var2.S = M0;
-                    s1Var2.U = bd.M0(2131751750, null);
-                    alertDialog$Builder.k(bd.M0(2131747839, null), null);
-                    alertDialog$Builder.p().setCanceledOnTouchOutside(true);
-                    return;
+                sb2.append(hd.M0(2131745914, null));
+                long j3 = this.f25344c;
+                if (j3 > 0 && j3 < 4194304000L) {
+                    sb2.append(" (");
+                    sb2.append(g0.i0(this.f25344c, true, false));
+                    sb2.append(")");
                 }
-                return;
+            }
+        } else {
+            sb2.append(hd.M0(2131745922, null));
         }
+        LongSparseArray m10 = p10.i(i7).m(this.d);
+        if (m10.size() != 0) {
+            if (sb2.length() != 0) {
+                sb2.append(", ");
+            }
+            sb2.append(hd.G(m10.size(), "Exception", Integer.valueOf(m10.size())));
+        }
+        return sb2;
     }
 }

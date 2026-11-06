@@ -1,45 +1,63 @@
 package org.telegram.ui;
 
-import android.util.SparseIntArray;
-public final class pm implements Runnable {
-    public final int f48607a;
-    public final um f48608b;
+import android.app.Activity;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.TextView;
+import java.util.HashSet;
+public final class pm extends TextView implements org.telegram.ui.ActionBar.a6 {
+    public final org.telegram.ui.Cells.y f48854a;
+    public int f48855b;
+    public boolean f48856c;
+    public final an d;
 
-    public pm(um umVar, int i3) {
-        this.f48607a = i3;
-        this.f48608b = umVar;
+    public pm(an anVar, Activity activity) {
+        super(activity);
+        this.d = anVar;
+        setSingleLine(true);
+        setLines(1);
+        setMaxLines(1);
+        setEllipsize(TextUtils.TruncateAt.END);
+        org.telegram.ui.ActionBar.r6.V(this, org.telegram.ui.ActionBar.k6.Gi, anVar.getResourceProvider());
+        int themedColor = anVar.getThemedColor(org.telegram.ui.ActionBar.k6.Ci);
+        this.f48855b = themedColor;
+        org.telegram.ui.Cells.y e10 = org.telegram.ui.ActionBar.z5.e(themedColor, 16.0f);
+        this.f48854a = e10;
+        setBackground(e10);
+        setTextSize(1, 14.0f);
+        setTypeface(org.telegram.messenger.g0.o());
+        setGravity(17);
+        setPadding(org.telegram.messenger.g0.L(14.0f), 0, org.telegram.messenger.g0.L(14.0f), 0);
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.ActionBar.q4 q4Var;
-        org.telegram.ui.ActionBar.q4 q4Var2;
-        switch (this.f48607a) {
-            case 0:
-                SparseIntArray sparseIntArray = new SparseIntArray();
-                um umVar = this.f48608b;
-                umVar.f50123e = sparseIntArray;
-                wm wmVar = umVar.G;
-                org.telegram.ui.ActionBar.t4 t4Var = (org.telegram.ui.ActionBar.t4) wmVar.getThemedDrawable("drawableMsgOut");
-                umVar.f50137t = t4Var;
-                q4Var = ((org.telegram.ui.ActionBar.d2) wmVar).parentLayout;
-                t4Var.J = q4Var.getMessageDrawableOutStart();
-                org.telegram.ui.ActionBar.t4 t4Var2 = (org.telegram.ui.ActionBar.t4) wmVar.getThemedDrawable("drawableMsgOutMedia");
-                umVar.f50138u = t4Var2;
-                q4Var2 = ((org.telegram.ui.ActionBar.d2) wmVar).parentLayout;
-                t4Var2.J = q4Var2.getMessageDrawableOutMediaStart();
-                umVar.f50137t.K = 0.0f;
-                umVar.f50138u.K = 0.0f;
-                wmVar.Yc();
-                umVar.u(0.0f);
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i7), (int) (org.telegram.messenger.g0.f22537q.x * 0.45f)), Integer.MIN_VALUE), i10);
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.k6.Ci);
+            if (themedColor == this.f48855b && this.f48856c == org.telegram.ui.ActionBar.k6.I.q()) {
                 return;
-            default:
-                um umVar2 = this.f48608b;
-                umVar2.f50137t.J = null;
-                umVar2.f50138u.J = null;
-                umVar2.f50123e = null;
-                umVar2.u(1.0f);
-                return;
+            }
+            Drawable background = getBackground();
+            org.telegram.ui.Cells.y yVar = this.f48854a;
+            if (background == yVar) {
+                this.f48856c = org.telegram.ui.ActionBar.k6.I.q();
+                org.telegram.ui.ActionBar.k6.H1(yVar, themedColor, false);
+                org.telegram.ui.ActionBar.k6.H1(yVar, org.telegram.ui.ActionBar.z5.b(themedColor), true);
+                this.f48855b = themedColor;
+                invalidate();
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
         }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -1,73 +1,75 @@
 package ha;
 
+import a3.g;
+import android.os.SystemClock;
 import android.util.Log;
-import gi.v5;
-import java.util.concurrent.atomic.AtomicReference;
-import o1.g;
-import org.json.JSONObject;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import l5.d;
+import o5.r;
+import q4.q;
 public final class c {
-    public Object f14372a;
-    public Object f14373b;
-    public Object f14374c;
-    public Object d;
-    public Object f14375e;
-    public Object f14376f;
-    public Object f14377g;
-    public Object h;
-    public Object f14378i;
+    public final double f14432a;
+    public final double f14433b;
+    public final long f14434c;
+    public final long d;
+    public final int f14435e;
+    public final ArrayBlockingQueue f14436f;
+    public final ThreadPoolExecutor f14437g;
+    public final r h;
+    public final q f14438i;
+    public int f14439j;
+    public long f14440k;
 
-    public static void d(String str, JSONObject jSONObject) {
-        StringBuilder l10 = com.google.android.recaptcha.internal.a.l(str);
-        l10.append(jSONObject.toString());
-        String sb2 = l10.toString();
+    public c(r rVar, ia.b bVar, q qVar) {
+        double d = bVar.d;
+        double d2 = bVar.f15413e;
+        this.f14432a = d;
+        this.f14433b = d2;
+        this.f14434c = bVar.f15414f * 1000;
+        this.h = rVar;
+        this.f14438i = qVar;
+        this.d = SystemClock.elapsedRealtime();
+        int i7 = (int) d;
+        this.f14435e = i7;
+        ArrayBlockingQueue arrayBlockingQueue = new ArrayBlockingQueue(i7);
+        this.f14436f = arrayBlockingQueue;
+        this.f14437g = new ThreadPoolExecutor(1, 1, 0L, TimeUnit.MILLISECONDS, arrayBlockingQueue);
+        this.f14439j = 0;
+        this.f14440k = 0L;
+    }
+
+    public final int a() {
+        int max;
+        if (this.f14440k == 0) {
+            this.f14440k = System.currentTimeMillis();
+        }
+        int currentTimeMillis = (int) ((System.currentTimeMillis() - this.f14440k) / this.f14434c);
+        if (this.f14436f.size() == this.f14435e) {
+            max = Math.min(100, this.f14439j + currentTimeMillis);
+        } else {
+            max = Math.max(0, this.f14439j - currentTimeMillis);
+        }
+        if (this.f14439j != max) {
+            this.f14439j = max;
+            this.f14440k = System.currentTimeMillis();
+        }
+        return max;
+    }
+
+    public final void b(aa.b bVar, TaskCompletionSource taskCompletionSource) {
+        boolean z9;
+        String str = "Sending report through Google DataTransport: " + bVar.f776b;
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", sb2, null);
+            Log.d("FirebaseCrashlytics", str, null);
         }
-    }
-
-    public b a(int i3) {
-        b bVar = null;
-        try {
-            if (!g.b(2, i3)) {
-                JSONObject n02 = ((android.support.v4.media.c) this.f14375e).n0();
-                if (n02 != null) {
-                    b k02 = ((v5) this.f14374c).k0(n02);
-                    d("Loaded cached settings: ", n02);
-                    ((nb.a) this.d).getClass();
-                    long currentTimeMillis = System.currentTimeMillis();
-                    if (!g.b(3, i3) && k02.f14369c < currentTimeMillis) {
-                        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                            Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
-                            return null;
-                        }
-                    } else {
-                        try {
-                            if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                                Log.v("FirebaseCrashlytics", "Returning cached settings.", null);
-                            }
-                            return k02;
-                        } catch (Exception e10) {
-                            e = e10;
-                            bVar = k02;
-                            Log.e("FirebaseCrashlytics", "Failed to get cached settings", e);
-                            return bVar;
-                        }
-                    }
-                } else if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                    Log.d("FirebaseCrashlytics", "No cached settings data found.", null);
-                }
-            }
-            return null;
-        } catch (Exception e11) {
-            e = e11;
+        if (SystemClock.elapsedRealtime() - this.d < 2000) {
+            z9 = true;
+        } else {
+            z9 = false;
         }
-    }
-
-    public b b() {
-        return (b) ((AtomicReference) this.h).get();
-    }
-
-    public void c(n5.i r47, int r48) {
-        throw new UnsupportedOperationException("Method not decompiled: ha.c.c(n5.i, int):void");
+        this.h.a(new l5.a(null, bVar.f775a, d.f18174c, null), new g(this, taskCompletionSource, z9, bVar, 1));
     }
 }

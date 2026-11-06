@@ -1,21 +1,15 @@
 package ui;
 
-import j$.util.function.IntUnaryOperator$CC;
-import java.util.function.IntUnaryOperator;
-public final class h implements IntUnaryOperator {
-    public IntUnaryOperator andThen(IntUnaryOperator intUnaryOperator) {
-        return IntUnaryOperator$CC.$default$andThen(this, intUnaryOperator);
-    }
+import java.net.Socket;
+public final class h {
+    public final int f56819a;
+    public final Socket f56820b;
+    public long f56821c = 4194304;
+    public long d = 4194304;
+    public boolean f56822e;
 
-    @Override
-    public final int applyAsInt(int i3) {
-        if (i3 >= 16777215) {
-            return 1;
-        }
-        return i3 + 1;
-    }
-
-    public IntUnaryOperator compose(IntUnaryOperator intUnaryOperator) {
-        return IntUnaryOperator$CC.$default$compose(this, intUnaryOperator);
+    public h(int i7, Socket socket) {
+        this.f56819a = i7;
+        this.f56820b = socket;
     }
 }

@@ -27,8 +27,8 @@ public class Color {
         RED = color2;
     }
 
-    public Color(int i3) {
-        this.color = i3;
+    public Color(int i7) {
+        this.color = i7;
     }
 
     public static Color decode(String str) {
@@ -55,8 +55,8 @@ public class Color {
         return android.graphics.Color.red(this.color);
     }
 
-    public Color(int i3, int i10, int i11) {
-        this(android.graphics.Color.rgb(i3, i10, i11));
+    public Color(int i7, int i10, int i11) {
+        this(android.graphics.Color.rgb(i7, i10, i11));
     }
 
     public Color(float f10, float f11, float f12) {

@@ -1,94 +1,297 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.ComponentName;
+import android.content.Intent;
+import android.net.Uri;
+import android.net.http.SslError;
+import android.text.TextUtils;
 import android.view.View;
-import android.webkit.WebChromeClient;
-import android.widget.FrameLayout;
-public final class n1 extends WebChromeClient {
-    public final int f47850a;
-    public final KeyEvent.Callback f47851b;
+import android.webkit.RenderProcessGoneDetail;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceError;
+import android.webkit.WebResourceRequest;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.ImageView;
+import java.io.ByteArrayInputStream;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class n1 extends WebViewClient {
+    public final int f47909a;
+    public final Object f47910b;
 
-    public n1(KeyEvent.Callback callback, int i3) {
-        this.f47850a = i3;
-        this.f47851b = callback;
+    public n1(Object obj, int i7) {
+        this.f47909a = i7;
+        this.f47910b = obj;
+    }
+
+    public boolean a(String str) {
+        if (!TextUtils.isEmpty(str)) {
+            Uri parse = Uri.parse(str);
+            if ("tg".equals(parse.getScheme())) {
+                ((yc1) this.f47910b).finishFragment(false);
+                try {
+                    Intent intent = new Intent("android.intent.action.VIEW", parse);
+                    intent.setComponent(new ComponentName(org.telegram.messenger.t0.f25555b.getPackageName(), LaunchActivity.class.getName()));
+                    intent.putExtra("com.android.browser.application_id", org.telegram.messenger.t0.f25555b.getPackageName());
+                    org.telegram.messenger.t0.f25555b.startActivity(intent);
+                    return true;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
-    public final void onHideCustomView() {
-        switch (this.f47850a) {
-            case 0:
-                super.onHideCustomView();
-                r1 r1Var = (r1) this.f47851b;
-                i4 i4Var = r1Var.f48999y;
-                if (i4Var.P != null) {
-                    i4Var.Q.setVisibility(4);
-                    i4 i4Var2 = r1Var.f48999y;
-                    i4Var2.Q.removeView(i4Var2.P);
-                    WebChromeClient.CustomViewCallback customViewCallback = r1Var.f48999y.T;
-                    if (customViewCallback != null && !customViewCallback.getClass().getName().contains(".chromium.")) {
-                        r1Var.f48999y.T.onCustomViewHidden();
-                    }
-                    r1Var.f48999y.P = null;
+    public void onLoadResource(WebView webView, String str) {
+        switch (this.f47909a) {
+            case 3:
+                if (!a(str)) {
+                    super.onLoadResource(webView, str);
                     return;
                 }
                 return;
             default:
-                super.onHideCustomView();
-                org.telegram.ui.Components.ut utVar = (org.telegram.ui.Components.ut) this.f47851b;
-                if (utVar.f38863l1 != null) {
-                    utVar.f28586b.setVisibility(0);
-                    utVar.m1.setVisibility(4);
-                    utVar.m1.removeView(utVar.f38863l1);
-                    WebChromeClient.CustomViewCallback customViewCallback2 = utVar.f38864n1;
-                    if (customViewCallback2 != null && !customViewCallback2.getClass().getName().contains(".chromium.")) {
-                        utVar.f38864n1.onCustomViewHidden();
-                    }
-                    utVar.f38863l1 = null;
-                    return;
-                }
+                super.onLoadResource(webView, str);
                 return;
         }
     }
 
     @Override
-    public final void onShowCustomView(View view, int i3, WebChromeClient.CustomViewCallback customViewCallback) {
-        switch (this.f47850a) {
-            case 0:
-                onShowCustomView(view, customViewCallback);
+    public void onPageFinished(WebView webView, String str) {
+        int i7 = this.f47909a;
+        Object obj = this.f47910b;
+        switch (i7) {
+            case 1:
+                super.onPageFinished(webView, str);
+                org.telegram.ui.Components.vt vtVar = (org.telegram.ui.Components.vt) obj;
+                ImageView imageView = vtVar.f39676t1;
+                if (!vtVar.f39677u1) {
+                    vtVar.f39671o1.setVisibility(4);
+                    vtVar.n1.setVisibility(4);
+                    imageView.setEnabled(true);
+                    imageView.setAlpha(1.0f);
+                    return;
+                }
+                return;
+            case 2:
+                super.onPageFinished(webView, str);
+                bq0 bq0Var = (bq0) obj;
+                View view = bq0Var.f31781r;
+                if (!bq0Var.f31785y) {
+                    bq0Var.f31780n.setVisibility(4);
+                    bq0Var.h.setVisibility(4);
+                    view.setEnabled(true);
+                    view.setAlpha(1.0f);
+                    return;
+                }
+                return;
+            case 3:
+                super.onPageFinished(webView, str);
+                yc1 yc1Var = (yc1) obj;
+                org.telegram.ui.Components.zp zpVar = yc1Var.f52194c;
+                if (zpVar != null && zpVar.getVisibility() == 0) {
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    yc1Var.f52193b.getContentView().setVisibility(0);
+                    yc1Var.f52193b.setEnabled(true);
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(yc1Var.f52194c, "scaleX", 1.0f, 0.1f), ObjectAnimator.ofFloat(yc1Var.f52194c, "scaleY", 1.0f, 0.1f), ObjectAnimator.ofFloat(yc1Var.f52194c, "alpha", 1.0f, 0.0f), ObjectAnimator.ofFloat(yc1Var.f52193b.getContentView(), "scaleX", 0.0f, 1.0f), ObjectAnimator.ofFloat(yc1Var.f52193b.getContentView(), "scaleY", 0.0f, 1.0f), ObjectAnimator.ofFloat(yc1Var.f52193b.getContentView(), "alpha", 0.0f, 1.0f));
+                    animatorSet.addListener(new r81(this, 12));
+                    animatorSet.setDuration(150L);
+                    animatorSet.start();
+                    return;
+                }
                 return;
             default:
-                onShowCustomView(view, customViewCallback);
+                super.onPageFinished(webView, str);
                 return;
         }
     }
 
     @Override
-    public final void onShowCustomView(View view, WebChromeClient.CustomViewCallback customViewCallback) {
-        switch (this.f47850a) {
-            case 0:
-                i4 i4Var = ((r1) this.f47851b).f48999y;
-                if (i4Var.P != null) {
-                    customViewCallback.onCustomViewHidden();
+    public void onReceivedError(WebView webView, WebResourceRequest webResourceRequest, WebResourceError webResourceError) {
+        switch (this.f47909a) {
+            case 4:
+                if (webResourceRequest.isForMainFrame()) {
+                    ui.i iVar = (ui.i) this.f47910b;
+                    if (webView == iVar.f56837o) {
+                        iVar.h();
+                        return;
+                    }
                     return;
                 }
-                i4Var.P = view;
-                i4Var.T = customViewCallback;
-                org.telegram.messenger.g0.i3(new xp0(this, 7), 100L);
                 return;
             default:
-                org.telegram.ui.Components.ut utVar = (org.telegram.ui.Components.ut) this.f47851b;
-                FrameLayout frameLayout = utVar.m1;
-                if (utVar.f38863l1 == null && !org.telegram.ui.Components.ie0.f34683q0.Q) {
-                    utVar.J0();
-                    utVar.f38863l1 = view;
-                    utVar.f28586b.setVisibility(4);
-                    frameLayout.setVisibility(0);
-                    frameLayout.addView(view, b8.mf.c(-1.0f, -1));
-                    utVar.f38864n1 = customViewCallback;
+                super.onReceivedError(webView, webResourceRequest, webResourceError);
+                return;
+        }
+    }
+
+    @Override
+    public void onReceivedHttpError(WebView webView, WebResourceRequest webResourceRequest, WebResourceResponse webResourceResponse) {
+        switch (this.f47909a) {
+            case 4:
+                if (webResourceRequest.isForMainFrame()) {
+                    ui.i iVar = (ui.i) this.f47910b;
+                    if (webView == iVar.f56837o) {
+                        iVar.h();
+                        return;
+                    }
                     return;
                 }
-                customViewCallback.onCustomViewHidden();
                 return;
+            default:
+                super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
+                return;
+        }
+    }
+
+    @Override
+    public void onReceivedSslError(WebView webView, SslErrorHandler sslErrorHandler, SslError sslError) {
+        switch (this.f47909a) {
+            case 4:
+                sslErrorHandler.cancel();
+                ui.i iVar = (ui.i) this.f47910b;
+                if (webView == iVar.f56837o) {
+                    iVar.h();
+                    return;
+                }
+                return;
+            default:
+                super.onReceivedSslError(webView, sslErrorHandler, sslError);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
+        int i7 = this.f47909a;
+        Object obj = this.f47910b;
+        switch (i7) {
+            case 0:
+                try {
+                    LaunchActivity launchActivity = LaunchActivity.G1;
+                    if (launchActivity == null || !launchActivity.isFinishing()) {
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ((q1) obj).getContext(), null);
+                        org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+                        u1Var.R = org.telegram.messenger.hd.M0(2131752104, null);
+                        u1Var.T = org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131752105, null), new fq0(this, 8));
+                        alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
+                        alertDialog$Builder.p();
+                    }
+                    return true;
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
+                    return false;
+                }
+            case 1:
+                org.telegram.ui.Components.vt vtVar = (org.telegram.ui.Components.vt) obj;
+                try {
+                    if (org.telegram.messenger.g0.M1(vtVar.getContext())) {
+                        AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, vtVar.getContext(), vtVar.I0);
+                        org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f27292a;
+                        u1Var2.R = org.telegram.messenger.hd.M0(2131752104, null);
+                        u1Var2.T = org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131752105, null), new org.telegram.ui.Components.gp(this, 9));
+                        alertDialog$Builder2.k(org.telegram.messenger.hd.M0(2131747830, null), null);
+                        alertDialog$Builder2.p();
+                    }
+                    return true;
+                } catch (Exception e11) {
+                    org.telegram.messenger.a8.g(e11, true);
+                    return false;
+                }
+            case 2:
+            case 3:
+            default:
+                return super.onRenderProcessGone(webView, renderProcessGoneDetail);
+            case 4:
+                ui.i iVar = (ui.i) obj;
+                if (webView == iVar.f56837o) {
+                    iVar.h();
+                }
+                return true;
+        }
+    }
+
+    @Override
+    public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
+        switch (this.f47909a) {
+            case 2:
+                String uri = webResourceRequest.getUrl().toString();
+                if (((bq0) this.f47910b).f31785y && uri.startsWith("https://www.youtube.com/youtubei/v1/player?key=")) {
+                    Utilities.f21337j.c(new org.telegram.ui.Components.ng(this, uri, webResourceRequest, 15));
+                    return null;
+                }
+                return null;
+            case 3:
+            default:
+                return super.shouldInterceptRequest(webView, webResourceRequest);
+            case 4:
+                Uri url = webResourceRequest.getUrl();
+                if ("http".equalsIgnoreCase(url.getScheme()) || "https".equalsIgnoreCase(url.getScheme())) {
+                    ui.i iVar = (ui.i) this.f47910b;
+                    iVar.getClass();
+                    String path = url.getPath();
+                    if (!"https".equalsIgnoreCase(url.getScheme()) || !iVar.f56827c.equalsIgnoreCase(url.getHost()) || url.getUserInfo() != null || ((url.getPort() != -1 && url.getPort() != 443) || path == null || !path.startsWith(iVar.d))) {
+                        return new WebResourceResponse("text/plain", "UTF-8", new ByteArrayInputStream(new byte[0]));
+                    }
+                }
+                return null;
+        }
+    }
+
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView webView, String str) {
+        switch (this.f47909a) {
+            case 0:
+                q1 q1Var = (q1) this.f47910b;
+                if (q1Var.f48979s) {
+                    vf.c.t(q1Var.f48982y.L, str);
+                    return true;
+                }
+                return false;
+            case 1:
+                if (((org.telegram.ui.Components.vt) this.f47910b).f39677u1) {
+                    vf.c.t(webView.getContext(), str);
+                    return true;
+                }
+                return super.shouldOverrideUrlLoading(webView, str);
+            case 2:
+                if (((bq0) this.f47910b).f31785y) {
+                    vf.c.t(webView.getContext(), str);
+                    return true;
+                }
+                return super.shouldOverrideUrlLoading(webView, str);
+            case 3:
+                return a(str) || super.shouldOverrideUrlLoading(webView, str);
+            default:
+                return super.shouldOverrideUrlLoading(webView, str);
+        }
+    }
+
+    @Override
+    public boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest webResourceRequest) {
+        switch (this.f47909a) {
+            case 4:
+                if (webResourceRequest.isForMainFrame()) {
+                    ui.i iVar = (ui.i) this.f47910b;
+                    Uri url = webResourceRequest.getUrl();
+                    if (url != null) {
+                        if (iVar.f56830g.equals(url.toString())) {
+                            return false;
+                        }
+                    } else {
+                        iVar.getClass();
+                    }
+                }
+                return true;
+            default:
+                return super.shouldOverrideUrlLoading(webView, webResourceRequest);
         }
     }
 }

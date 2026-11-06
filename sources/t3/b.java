@@ -1,42 +1,12 @@
 package t3;
 
-import b8.zb;
-import d2.p0;
-import d2.r0;
-import d2.v;
-import java.util.ArrayList;
-public final class b implements r0 {
-    public final ArrayList f54905a;
+import java.util.Arrays;
+public final class b extends i {
+    public final byte[] f55269b;
 
-    public b(ArrayList arrayList) {
-        this.f54905a = arrayList;
-        boolean z10 = false;
-        if (!arrayList.isEmpty()) {
-            long j10 = ((a) arrayList.get(0)).f54903b;
-            int i3 = 1;
-            while (true) {
-                if (i3 >= arrayList.size()) {
-                    break;
-                } else if (((a) arrayList.get(i3)).f54902a < j10) {
-                    z10 = true;
-                    break;
-                } else {
-                    j10 = ((a) arrayList.get(i3)).f54903b;
-                    i3++;
-                }
-            }
-        }
-        zb.f(!z10);
-    }
-
-    @Override
-    public final v b() {
-        return null;
-    }
-
-    @Override
-    public final byte[] c() {
-        return null;
+    public b(String str, byte[] bArr) {
+        super(str);
+        this.f55269b = bArr;
     }
 
     public final boolean equals(Object obj) {
@@ -44,20 +14,15 @@ public final class b implements r0 {
             return true;
         }
         if (obj != null && b.class == obj.getClass()) {
-            return this.f54905a.equals(((b) obj).f54905a);
+            b bVar = (b) obj;
+            if (this.f55286a.equals(bVar.f55286a) && Arrays.equals(this.f55269b, bVar.f55269b)) {
+                return true;
+            }
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f54905a.hashCode();
-    }
-
-    public final String toString() {
-        return "SlowMotion: segments=" + this.f54905a;
-    }
-
-    @Override
-    public final void a(p0 p0Var) {
+        return Arrays.hashCode(this.f55269b) + com.google.android.recaptcha.internal.a.h(527, 31, this.f55286a);
     }
 }

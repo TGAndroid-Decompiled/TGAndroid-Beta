@@ -1,32 +1,54 @@
 package ei;
 
-import android.animation.ValueAnimator;
-import org.telegram.ui.mv;
-public final class p implements Runnable {
-    public final int f10739a;
-    public final q f10740b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import c8.ha;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.hd;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
+public final class p extends LinearLayout {
+    public final TextView f10841a;
+    public final TextView f10842b;
+    public boolean f10843c;
 
-    public p(q qVar, int i3) {
-        this.f10739a = i3;
-        this.f10740b = qVar;
+    public p(Context context) {
+        super(context);
+        int i7;
+        setPadding(g0.L(22.0f), 0, g0.L(22.0f), 0);
+        setOrientation(1);
+        TextView textView = new TextView(context);
+        this.f10841a = textView;
+        textView.setTextSize(1, 16.0f);
+        r6.V(textView, k6.f27956j5, null);
+        if (hd.f22871a0) {
+            i7 = 5;
+        } else {
+            i7 = 3;
+        }
+        textView.setGravity(i7);
+        addView(textView, ha.t(-1, -2, 51, 0, 7, 0, 0));
+        TextView textView2 = new TextView(context);
+        this.f10842b = textView2;
+        textView2.setTextSize(1, 13.0f);
+        r6.V(textView2, k6.f28087q5, null);
+        textView2.setGravity(hd.f22871a0 ? 5 : 3);
+        addView(textView2, ha.t(-1, -2, 51, 0, 4, 0, 0));
     }
 
     @Override
-    public final void run() {
-        switch (this.f10739a) {
-            case 0:
-                mv mvVar = this.f10740b.f10785c0;
-                ValueAnimator valueAnimator = mvVar.f10837k0;
-                if (valueAnimator != null) {
-                    valueAnimator.start();
-                }
-                mvVar.f10838l0 = null;
-                return;
-            default:
-                q qVar = this.f10740b;
-                qVar.f10792x = false;
-                qVar.invalidate();
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f10843c) {
+            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), k6.f27971k0);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(g0.L(56.0f), 1073741824));
     }
 }

@@ -4,69 +4,69 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.WeakHashMap;
 public class f implements Iterable {
-    public c f20472a;
-    public c f20473b;
-    public final WeakHashMap f20474c = new WeakHashMap();
+    public c f20667a;
+    public c f20668b;
+    public final WeakHashMap f20669c = new WeakHashMap();
     public int d = 0;
 
     public final boolean equals(java.lang.Object r7) {
         throw new UnsupportedOperationException("Method not decompiled: o.f.equals(java.lang.Object):boolean");
     }
 
-    public c h(Object obj) {
-        c cVar = this.f20472a;
-        while (cVar != null && !cVar.f20466a.equals(obj)) {
-            cVar = cVar.f20468c;
+    public c f(Object obj) {
+        c cVar = this.f20667a;
+        while (cVar != null && !cVar.f20661a.equals(obj)) {
+            cVar = cVar.f20663c;
         }
         return cVar;
     }
 
     public final int hashCode() {
         Iterator it = iterator();
-        int i3 = 0;
+        int i7 = 0;
         while (true) {
             b bVar = (b) it;
             if (bVar.hasNext()) {
-                i3 += ((Map.Entry) bVar.next()).hashCode();
+                i7 += ((Map.Entry) bVar.next()).hashCode();
             } else {
-                return i3;
+                return i7;
             }
         }
     }
 
     public Object i(Object obj) {
-        c h = h(obj);
-        if (h == null) {
+        c f10 = f(obj);
+        if (f10 == null) {
             return null;
         }
         this.d--;
-        WeakHashMap weakHashMap = this.f20474c;
+        WeakHashMap weakHashMap = this.f20669c;
         if (!weakHashMap.isEmpty()) {
             for (e eVar : weakHashMap.keySet()) {
-                eVar.a(h);
+                eVar.a(f10);
             }
         }
-        c cVar = h.d;
+        c cVar = f10.d;
         if (cVar != null) {
-            cVar.f20468c = h.f20468c;
+            cVar.f20663c = f10.f20663c;
         } else {
-            this.f20472a = h.f20468c;
+            this.f20667a = f10.f20663c;
         }
-        c cVar2 = h.f20468c;
+        c cVar2 = f10.f20663c;
         if (cVar2 != null) {
             cVar2.d = cVar;
         } else {
-            this.f20473b = cVar;
+            this.f20668b = cVar;
         }
-        h.f20468c = null;
-        h.d = null;
-        return h.f20467b;
+        f10.f20663c = null;
+        f10.d = null;
+        return f10.f20662b;
     }
 
     @Override
     public final Iterator iterator() {
-        b bVar = new b(this.f20472a, this.f20473b, 0);
-        this.f20474c.put(bVar, Boolean.FALSE);
+        b bVar = new b(this.f20667a, this.f20668b, 0);
+        this.f20669c.put(bVar, Boolean.FALSE);
         return bVar;
     }
 

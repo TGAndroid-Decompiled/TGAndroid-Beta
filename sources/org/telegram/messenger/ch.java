@@ -1,17 +1,200 @@
 package org.telegram.messenger;
-public final class ch implements Runnable {
-    public final int f22020a;
-    public final li f22021b;
-    public final String f22022c;
 
-    public ch(li liVar, String str, int i3) {
-        this.f22020a = i3;
-        this.f22021b = liVar;
-        this.f22022c = str;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.os.SystemClock;
+import android.text.TextUtils;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_ephemeral;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.aj0;
+import org.telegram.ui.Components.ft0;
+import org.telegram.ui.Components.jt0;
+import org.telegram.ui.Components.kt0;
+import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.ut0;
+public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, org.telegram.ui.ActionBar.r1, ut0, w10, ft0, b20, jh.i, aj0, jt0, kt0 {
+    public final int f21815a;
+
+    public ch(int i7) {
+        this.f21815a = i7;
+    }
+
+    public static Shader.TileMode e() {
+        return Shader.TileMode.DECAL;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ch.run():void");
+    public Boolean a(r31 r31Var, View view, Integer num, Float f10, Float f11) {
+        return Boolean.FALSE;
+    }
+
+    @Override
+    public void b(RectF rectF, View view) {
+        view.invalidate();
+    }
+
+    @Override
+    public Object d(Number number, Object obj) {
+        Integer num = (Integer) number;
+        Integer num2 = (Integer) obj;
+        switch (this.f21815a) {
+            case 17:
+                if (num.intValue() == 0) {
+                    return hd.G(num2.intValue(), "MaximumReactionsValue", new Object[0]);
+                }
+                return "" + num2;
+            default:
+                if (num.intValue() == 0) {
+                    return hd.H(',', "Stars", num2.intValue());
+                }
+                return "" + num2;
+        }
+    }
+
+    @Override
+    public TLObject deserialize(InputSerializedData inputSerializedData, int i7, boolean z9) {
+        switch (this.f21815a) {
+            case 2:
+                return TLRPC.Peer.TLdeserialize(inputSerializedData, i7, z9);
+            case 3:
+                return TL_account.WebBrowserSettings.TLdeserialize(inputSerializedData, i7, z9);
+            case 4:
+                return TLRPC.MessageEntity.TLdeserialize(inputSerializedData, i7, z9);
+            case 5:
+                return TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, i7, z9);
+            case 6:
+            case 7:
+            case 8:
+            default:
+                return TLRPC.PollAnswer.TLdeserialize(inputSerializedData, i7, z9);
+            case 9:
+                return TL_iv.RichText.TLdeserialize(inputSerializedData, i7, z9);
+        }
+    }
+
+    @Override
+    public void f(Object obj, float f10) {
+        org.telegram.ui.br brVar = (org.telegram.ui.br) obj;
+        switch (this.f21815a) {
+            case 26:
+                brVar.G1 = f10;
+                if (brVar.getParent() != null) {
+                    ((View) brVar.getParent()).invalidate();
+                    return;
+                }
+                return;
+            default:
+                brVar.H1 = f10;
+                if (brVar.getParent() != null) {
+                    ((View) brVar.getParent()).invalidate();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
+        switch (this.f21815a) {
+            case 11:
+                int i10 = iz.f23357a;
+                return;
+            case 14:
+                u1Var.dismiss();
+                return;
+            case 18:
+                u1Var.dismiss();
+                return;
+            default:
+                u1Var.dismiss();
+                return;
+        }
+    }
+
+    @Override
+    public float get(Object obj) {
+        org.telegram.ui.br brVar = (org.telegram.ui.br) obj;
+        switch (this.f21815a) {
+            case 25:
+                return brVar.G1;
+            case 26:
+            default:
+                return brVar.I1;
+            case 27:
+                return brVar.H1;
+        }
+    }
+
+    @Override
+    public float h(RecyclerView recyclerView) {
+        return org.telegram.ui.Cells.f1.c(recyclerView);
+    }
+
+    @Override
+    public Object j(Object obj) {
+        Void r22 = (Void) obj;
+        switch (this.f21815a) {
+            case 0:
+                return new TLRPC.TL_messageEntitySpoiler();
+            default:
+                return new TLRPC.TL_messageEntityStrike();
+        }
+    }
+
+    @Override
+    public RecyclerView l(View view) {
+        return ((org.telegram.ui.td) view).f50008a;
+    }
+
+    @Override
+    public void m(int i7) {
+        if (i7 == 0) {
+            iz.A(3);
+        } else if (i7 == 1) {
+            iz.A(0);
+        } else if (i7 == 2) {
+            iz.A(1);
+        } else if (i7 == 3) {
+            iz.A(2);
+        }
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        iz.f23382j = SystemClock.elapsedRealtime();
+        if (!task.isSuccessful()) {
+            if (r2.f25191a) {
+                a8.b("Failed to get regid");
+            }
+            iz.h = "__FIREBASE_FAILED__";
+            PushListenerController.sendRegistrationToServer(2, null);
+            return;
+        }
+        String str = (String) task.getResult();
+        if (!TextUtils.isEmpty(str)) {
+            PushListenerController.sendRegistrationToServer(2, str);
+        }
+    }
+
+    @Override
+    public void s(RecyclerView recyclerView) {
+        org.telegram.ui.Cells.f1.b(recyclerView);
+    }
+
+    public ch(Object obj, int i7) {
+        this.f21815a = i7;
+    }
+
+    @Override
+    public void n() {
     }
 }

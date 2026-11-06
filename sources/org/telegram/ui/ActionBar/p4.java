@@ -1,28 +1,27 @@
 package org.telegram.ui.ActionBar;
 
-import ci.u8;
-import org.telegram.ui.pm;
-import org.telegram.ui.rm;
-import org.telegram.ui.um;
+import org.telegram.ui.tm;
+import org.telegram.ui.vm;
+import org.telegram.ui.ym;
 public final class p4 {
-    public final j6 f28425a;
-    public final int f28426b;
-    public final boolean f28427c;
+    public final j6 f28367a;
+    public final int f28368b;
+    public final boolean f28369c;
     public final boolean d;
-    public boolean f28428e;
-    public u8 h;
-    public pm f28431i;
-    public pm f28432j;
-    public rm f28433k;
-    public um f28435m;
-    public boolean f28429f = true;
-    public boolean f28430g = true;
-    public long f28434l = 200;
+    public boolean f28370e;
+    public aa.d0 h;
+    public tm f28373i;
+    public tm f28374j;
+    public vm f28375k;
+    public ym f28377m;
+    public boolean f28371f = true;
+    public boolean f28372g = true;
+    public long f28376l = 200;
 
-    public p4(j6 j6Var, int i3, boolean z10, boolean z11) {
-        this.f28425a = j6Var;
-        this.f28426b = i3;
-        this.f28427c = z10;
-        this.d = z11;
+    public p4(j6 j6Var, int i7, boolean z9, boolean z10) {
+        this.f28367a = j6Var;
+        this.f28368b = i7;
+        this.f28369c = z9;
+        this.d = z10;
     }
 }

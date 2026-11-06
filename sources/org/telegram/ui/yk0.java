@@ -1,45 +1,41 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class yk0 implements TextWatcher {
-    public int f52344a = -1;
-    public boolean f52345b;
-    public int f52346c;
-    public final dl0 d;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class yk0 implements fl0 {
+    public final hl0 f52240a;
 
-    public yk0(dl0 dl0Var) {
-        this.d = dl0Var;
+    public yk0(hl0 hl0Var) {
+        this.f52240a = hl0Var;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yk0.afterTextChanged(android.text.Editable):void");
+    public final void a(TL_account.Password password) {
+        this.f52240a.f46388a0 = password;
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
-        boolean z10 = false;
-        if (i10 == 0 && i11 == 1) {
-            if (TextUtils.indexOf((CharSequence) this.d.f44750f[1].getText(), '/') != -1) {
-                z10 = true;
-            }
-            this.f52345b = z10;
-            this.f52344a = 1;
-        } else if (i10 == 1 && i11 == 0) {
-            if (charSequence.charAt(i3) == '/' && i3 > 0) {
-                this.f52345b = false;
-                this.f52344a = 3;
-                this.f52346c = i3 - 1;
-                return;
-            }
-            this.f52344a = 2;
-        } else {
-            this.f52344a = -1;
+    public final void b() {
+        this.f52240a.f46402f0 = null;
+    }
+
+    @Override
+    public final boolean c(String str, String str2, boolean z9, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        hl0 hl0Var = this.f52240a;
+        fl0 fl0Var = hl0Var.T;
+        if (fl0Var != null) {
+            fl0Var.c(str, str2, z9, tL_inputPaymentCredentialsGooglePay, tL_paymentSavedCredentialsCard);
         }
+        if (hl0Var.S0) {
+            hl0Var.removeSelfFromStack();
+        }
+        if (hl0Var.T != null) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i3, int i10, int i11) {
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
     }
 }

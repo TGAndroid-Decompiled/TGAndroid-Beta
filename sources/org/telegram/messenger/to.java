@@ -1,44 +1,45 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.SerializedData;
+import java.util.ArrayList;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 public final class to {
-    public final String f25574a;
-    public final String[] f25575b;
-    public final String f25576c;
-    public int d;
+    public final int f25637a;
+    public final long f25638b;
+    public boolean f25639c;
+    public boolean d;
+    public final ArrayList f25640e;
+    public int f25641f;
+    public int f25642g;
 
-    public to(String str, String[] strArr, String str2) {
-        this.f25574a = str;
-        this.f25575b = strArr;
-        this.f25576c = str2;
-    }
-
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof to)) {
-            return false;
-        }
-        return this.f25574a.equals(((to) obj).f25574a);
-    }
-
-    public final String toString() {
-        int i3;
-        SerializedData serializedData = new SerializedData();
-        serializedData.writeInt32(this.d);
-        serializedData.writeInt32(0);
-        serializedData.writeString(this.f25574a);
-        String[] strArr = this.f25575b;
-        if (strArr != null) {
-            i3 = strArr.length;
-        } else {
-            i3 = 0;
-        }
-        serializedData.writeInt32(i3);
-        if (strArr != null) {
-            for (String str : strArr) {
-                serializedData.writeString(str);
+    public to(int i7, long j3) {
+        long j10;
+        int i10;
+        ArrayList arrayList = new ArrayList();
+        this.f25640e = arrayList;
+        this.f25641f = -1;
+        this.f25637a = i7;
+        this.f25638b = j3;
+        if (!this.f25639c && !this.d) {
+            boolean isEmpty = arrayList.isEmpty();
+            this.f25639c = true;
+            TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
+            tL_messages_getCommonChats.user_id = qp.s1(i7).o1(j3);
+            if (arrayList.isEmpty()) {
+                j10 = 0;
+            } else {
+                j10 = ((TLRPC.Chat) jg.g.i(1, arrayList)).f26952id;
             }
+            tL_messages_getCommonChats.max_id = j10;
+            if (isEmpty) {
+                i10 = 15;
+            } else {
+                i10 = 30;
+            }
+            tL_messages_getCommonChats.limit = i10;
+            int sendRequest = ConnectionsManager.getInstance(i7).sendRequest(tL_messages_getCommonChats, new n3(this, r7, isEmpty, 4));
+            this.f25641f = sendRequest;
+            int[] iArr = {sendRequest};
         }
-        serializedData.writeString(this.f25576c);
-        return Utilities.f(serializedData.toByteArray());
     }
 }

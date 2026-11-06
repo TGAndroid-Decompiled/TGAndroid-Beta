@@ -5,22 +5,22 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.view.ViewGroup;
 public final class e extends AnimatorListenerAdapter {
-    public final int f27467a;
-    public final k f27468b;
+    public final int f27442a;
+    public final k f27443b;
 
-    public e(k kVar, int i3) {
-        this.f27467a = i3;
-        this.f27468b = kVar;
+    public e(k kVar, int i7) {
+        this.f27442a = i7;
+        this.f27443b = kVar;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f27467a) {
+        switch (this.f27442a) {
             case 0:
-                k kVar = this.f27468b;
-                AnimatorSet animatorSet = kVar.Q;
+                k kVar = this.f27443b;
+                AnimatorSet animatorSet = kVar.P;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    kVar.Q = null;
+                    kVar.P = null;
                     return;
                 }
                 return;
@@ -32,27 +32,27 @@ public final class e extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f27467a) {
+        switch (this.f27442a) {
             case 0:
-                k kVar = this.f27468b;
-                AnimatorSet animatorSet = kVar.Q;
+                k kVar = this.f27443b;
+                AnimatorSet animatorSet = kVar.P;
                 if (animatorSet != null && animatorSet.equals(animator)) {
-                    kVar.Q = null;
-                    kVar.G.setVisibility(4);
+                    kVar.P = null;
+                    kVar.F.setVisibility(4);
                     return;
                 }
                 return;
             default:
-                k kVar2 = this.f27468b;
-                k5 k5Var = kVar2.f27725n[1];
+                k kVar2 = this.f27443b;
+                k5 k5Var = kVar2.f27675n[1];
                 if (k5Var != null && k5Var.getParent() != null) {
-                    ((ViewGroup) kVar2.f27725n[1].getParent()).removeView(kVar2.f27725n[1]);
+                    ((ViewGroup) kVar2.f27675n[1].getParent()).removeView(kVar2.f27675n[1]);
                 }
-                kVar2.P0.z(kVar2.f27725n[1]);
-                kVar2.f27725n[1] = null;
-                kVar2.f27721j1 = false;
-                Object[] objArr = kVar2.f27716h0;
-                kVar2.L((String) objArr[0], ((Integer) objArr[1]).intValue(), (Runnable) kVar2.f27716h0[2]);
+                kVar2.O0.x(kVar2.f27675n[1]);
+                kVar2.f27675n[1] = null;
+                kVar2.f27668i1 = false;
+                Object[] objArr = kVar2.f27663g0;
+                kVar2.L((String) objArr[0], ((Integer) objArr[1]).intValue(), (Runnable) kVar2.f27663g0[2]);
                 return;
         }
     }

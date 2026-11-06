@@ -1,19 +1,20 @@
 package l9;
 
-import java.util.concurrent.Executor;
-public final class c {
-    public static final c d = new c();
-    public final Runnable f18132a;
-    public final Executor f18133b;
-    public c f18134c;
+import java.util.Arrays;
+public abstract class c {
+    public static final byte[] f18206a;
 
-    public c(Runnable runnable, Executor executor) {
-        this.f18132a = runnable;
-        this.f18133b = executor;
-    }
-
-    public c() {
-        this.f18132a = null;
-        this.f18133b = null;
+    static {
+        byte[] bArr = new byte[128];
+        Arrays.fill(bArr, (byte) -1);
+        for (int i7 = 0; i7 < 10; i7++) {
+            bArr[i7 + 48] = (byte) i7;
+        }
+        for (int i10 = 0; i10 < 26; i10++) {
+            byte b10 = (byte) (i10 + 10);
+            bArr[i10 + 65] = b10;
+            bArr[i10 + 97] = b10;
+        }
+        f18206a = bArr;
     }
 }

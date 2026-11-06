@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
-public final class sw0 implements ya0, ab0 {
-    public final uw0 f38132a;
+public final class sw0 implements db0, fb0 {
+    public final uw0 f38179a;
 
     @Override
-    public String e(int i3) {
-        return this.f38132a.f38897n[i3];
+    public String h(int i7) {
+        return this.f38179a.f38753n[i7];
     }
 
     @Override
-    public void l(cb0 cb0Var, int i3) {
-        uw0 uw0Var = this.f38132a;
+    public void n(hb0 hb0Var, int i7) {
+        uw0 uw0Var = this.f38179a;
         uw0Var.b();
-        org.telegram.messenger.az.f21660r1 = i3;
-        org.telegram.messenger.t0.f25457b.getSharedPreferences("mainconfig", 0).edit().putInt("ChatSwipeAction", org.telegram.messenger.az.f21660r1).apply();
+        org.telegram.messenger.iz.f23405r1 = i7;
+        org.telegram.messenger.t0.f25555b.getSharedPreferences("mainconfig", 0).edit().putInt("ChatSwipeAction", org.telegram.messenger.iz.f23405r1).apply();
         uw0Var.invalidate();
         try {
-            cb0Var.performHapticFeedback(3, 2);
+            hb0Var.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
     }

@@ -2,18 +2,18 @@ package t0;
 
 import android.content.ClipDescription;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
+import org.telegram.ui.Components.qt;
 public final class d extends InputConnectionWrapper {
-    public final e f54770a;
+    public final e f55233a;
 
     public d(InputConnection inputConnection, e eVar) {
         super(inputConnection, false);
-        this.f54770a = eVar;
+        this.f55233a = eVar;
     }
 
     @Override
@@ -26,11 +26,11 @@ public final class d extends InputConnectionWrapper {
         String str5;
         String str6;
         String str7;
-        e eVar = this.f54770a;
-        boolean z10 = false;
-        z10 = false;
-        z10 = false;
-        z10 = false;
+        e eVar = this.f55233a;
+        boolean z9 = false;
+        z9 = false;
+        z9 = false;
+        z9 = false;
         if (bundle != null) {
             if (TextUtils.equals("androidx.core.view.inputmethod.InputConnectionCompat.COMMIT_CONTENT", str)) {
                 objArr = null;
@@ -49,57 +49,51 @@ public final class d extends InputConnectionWrapper {
                 } else {
                     str3 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_URI";
                 }
-            } catch (Throwable th2) {
-                th = th2;
-                resultReceiver = null;
-            }
-            try {
-                Uri uri = (Uri) bundle.getParcelable(str3);
-                if (objArr != null) {
-                    str4 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
-                } else {
-                    str4 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
-                }
-                ClipDescription clipDescription = (ClipDescription) bundle.getParcelable(str4);
-                if (objArr != null) {
-                    str5 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
-                } else {
-                    str5 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
-                }
-                Uri uri2 = (Uri) bundle.getParcelable(str5);
-                if (objArr != null) {
-                    str6 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
-                } else {
-                    str6 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
-                }
-                int i3 = bundle.getInt(str6);
-                if (objArr != null) {
-                    str7 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
-                } else {
-                    str7 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
-                }
-                Bundle bundle2 = (Bundle) bundle.getParcelable(str7);
-                if (uri != null && clipDescription != null) {
-                    ?? obj = new Object();
-                    if (Build.VERSION.SDK_INT >= 25) {
-                        obj.f40562a = new g(uri, clipDescription, uri2);
+                try {
+                    Uri uri = (Uri) bundle.getParcelable(str3);
+                    if (objArr != null) {
+                        str4 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
                     } else {
-                        obj.f40562a = new p7.d(uri, clipDescription, uri2, 12);
+                        str4 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_DESCRIPTION";
                     }
-                    z10 = eVar.m(obj, i3, bundle2);
-                }
-                if (resultReceiver != null) {
-                    resultReceiver.send(z10 ? 1 : 0, null);
+                    ClipDescription clipDescription = (ClipDescription) bundle.getParcelable(str4);
+                    if (objArr != null) {
+                        str5 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+                    } else {
+                        str5 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_LINK_URI";
+                    }
+                    Uri uri2 = (Uri) bundle.getParcelable(str5);
+                    if (objArr != null) {
+                        str6 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+                    } else {
+                        str6 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_FLAGS";
+                    }
+                    int i7 = bundle.getInt(str6);
+                    if (objArr != null) {
+                        str7 = "android.support.v13.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
+                    } else {
+                        str7 = "androidx.core.view.inputmethod.InputConnectionCompat.CONTENT_OPTS";
+                    }
+                    Bundle bundle2 = (Bundle) bundle.getParcelable(str7);
+                    if (uri != null && clipDescription != null) {
+                        z9 = eVar.k(new qt(uri, clipDescription, uri2), i7, bundle2);
+                    }
+                    if (resultReceiver != null) {
+                        resultReceiver.send(z9 ? 1 : 0, null);
+                    }
+                } catch (Throwable th2) {
+                    th = th2;
+                    if (resultReceiver != null) {
+                        resultReceiver.send(0, null);
+                    }
+                    throw th;
                 }
             } catch (Throwable th3) {
                 th = th3;
-                if (resultReceiver != null) {
-                    resultReceiver.send(0, null);
-                }
-                throw th;
+                resultReceiver = null;
             }
         }
-        if (z10) {
+        if (z9) {
             return true;
         }
         return super.performPrivateCommand(str, bundle);

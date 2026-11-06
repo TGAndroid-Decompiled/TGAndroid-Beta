@@ -1,30 +1,50 @@
 package n5;
 
-import android.os.Looper;
-import com.google.android.gms.internal.cast.z;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-public final class p implements Executor {
-    public final int f20259a = 1;
-    public final Object f20260b;
+import java.util.Arrays;
+public final class p extends b0 {
+    public final byte[] f20461a;
+    public final byte[] f20462b;
 
-    public p(Looper looper) {
-        this.f20260b = new z(looper, 4);
+    public p(byte[] bArr, byte[] bArr2) {
+        this.f20461a = bArr;
+        this.f20462b = bArr2;
     }
 
-    @Override
-    public final void execute(Runnable runnable) {
-        switch (this.f20259a) {
-            case 0:
-                ((Executor) this.f20260b).execute(new o(0, runnable));
-                return;
-            default:
-                ((z) this.f20260b).post(runnable);
-                return;
+    public final boolean equals(Object obj) {
+        byte[] bArr;
+        byte[] bArr2;
+        if (obj == this) {
+            return true;
         }
+        if (obj instanceof b0) {
+            b0 b0Var = (b0) obj;
+            boolean z9 = b0Var instanceof p;
+            p pVar = (p) b0Var;
+            if (z9) {
+                bArr = pVar.f20461a;
+            } else {
+                bArr = pVar.f20461a;
+            }
+            if (Arrays.equals(this.f20461a, bArr)) {
+                p pVar2 = (p) b0Var;
+                if (z9) {
+                    bArr2 = pVar2.f20462b;
+                } else {
+                    bArr2 = pVar2.f20462b;
+                }
+                if (Arrays.equals(this.f20462b, bArr2)) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    public p(ExecutorService executorService) {
-        this.f20260b = executorService;
+    public final int hashCode() {
+        return ((Arrays.hashCode(this.f20461a) ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f20462b);
+    }
+
+    public final String toString() {
+        return "ExperimentIds{clearBlob=" + Arrays.toString(this.f20461a) + ", encryptedBlob=" + Arrays.toString(this.f20462b) + "}";
     }
 }

@@ -1,25 +1,25 @@
 package org.scilab.forge.jlatexmath;
 public class CharAtom extends CharSymbol {
-    private final char f21179c;
+    private final char f21126c;
     private boolean mathMode;
     private String textStyle;
 
-    public CharAtom(char c2, String str, boolean z10) {
-        this.f21179c = c2;
+    public CharAtom(char c10, String str, boolean z9) {
+        this.f21126c = c10;
         this.textStyle = str;
-        this.mathMode = z10;
+        this.mathMode = z9;
     }
 
-    private Char getChar(TeXFont teXFont, int i3, boolean z10) {
-        char c2 = this.f21179c;
-        if (z10 && Character.isLowerCase(c2)) {
-            c2 = Character.toUpperCase(this.f21179c);
+    private Char getChar(TeXFont teXFont, int i7, boolean z9) {
+        char c10 = this.f21126c;
+        if (z9 && Character.isLowerCase(c10)) {
+            c10 = Character.toUpperCase(this.f21126c);
         }
         String str = this.textStyle;
         if (str == null) {
-            return teXFont.getDefaultChar(c2, i3);
+            return teXFont.getDefaultChar(c10, i7);
         }
-        return teXFont.getChar(c2, str, i3);
+        return teXFont.getChar(c10, str, i7);
     }
 
     @Override
@@ -30,7 +30,7 @@ public class CharAtom extends CharSymbol {
         }
         boolean smallCap = teXEnvironment.getSmallCap();
         CharBox charBox = new CharBox(getChar(teXEnvironment.getTeXFont(), teXEnvironment.getStyle(), smallCap));
-        if (smallCap && Character.isLowerCase(this.f21179c)) {
+        if (smallCap && Character.isLowerCase(this.f21126c)) {
             return new ScaleBox(charBox, 0.800000011920929d, 0.800000011920929d);
         }
         return charBox;
@@ -42,7 +42,7 @@ public class CharAtom extends CharSymbol {
     }
 
     public char getCharacter() {
-        return this.f21179c;
+        return this.f21126c;
     }
 
     public boolean isMathMode() {
@@ -50,10 +50,10 @@ public class CharAtom extends CharSymbol {
     }
 
     public String toString() {
-        return "CharAtom: '" + this.f21179c + "'";
+        return "CharAtom: '" + this.f21126c + "'";
     }
 
-    public CharAtom(char c2, String str) {
-        this(c2, str, false);
+    public CharAtom(char c10, String str) {
+        this(c10, str, false);
     }
 }

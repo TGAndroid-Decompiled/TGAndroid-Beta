@@ -1,233 +1,210 @@
 package y3;
 
-import android.util.Pair;
-import d2.u0;
-import g2.n0;
-import g2.y;
-import java.nio.charset.StandardCharsets;
-import w2.z0;
-public abstract class d {
-    public static final byte[] f58910a;
+import e2.q0;
+import f3.a0;
+import f3.j0;
+import f3.k;
+import f3.n;
+import f3.o;
+import f3.p;
+import f3.q;
+import f3.w;
+import f3.y;
+import h2.x;
+import h9.g0;
+import h9.i0;
+import h9.t1;
+import java.io.EOFException;
+import java.util.List;
+public final class d implements o {
+    public final int f58810a;
+    public final long f58811b;
+    public final x f58812c;
+    public final a0 d;
+    public final w f58813e;
+    public final y f58814f;
+    public final n f58815g;
+    public q h;
+    public j0 f58816i;
+    public j0 f58817j;
+    public int f58818k;
+    public q0 f58819l;
+    public q0 f58820m;
+    public long f58821n;
+    public long f58822o;
+    public long f58823p;
+    public long f58824q;
+    public int f58825r;
+    public h f58826s;
+    public boolean f58827t;
+    public boolean f58828u;
+    public long v;
 
-    static {
-        String str = n0.f11873a;
-        f58910a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+    public d(int i7) {
+        this(i7, -9223372036854775807L);
     }
 
-    public static void a(y yVar) {
-        int i3 = yVar.f11924b;
-        yVar.O(4);
-        if (yVar.m() != 1751411826) {
-            i3 += 4;
-        }
-        yVar.N(i3);
+    @Override
+    public final boolean b(p pVar) {
+        return j(pVar, true);
     }
 
-    public static void b(g2.y r49, int r50, int r51, int r52, int r53, java.lang.String r54, boolean r55, d2.s r56, g2.k0 r57, int r58) {
-        throw new UnsupportedOperationException("Method not decompiled: y3.d.b(g2.y, int, int, int, int, java.lang.String, boolean, d2.s, g2.k0, int):void");
+    @Override
+    public final void c(q qVar) {
+        this.h = qVar;
+        j0 O1 = qVar.O1(0, 1);
+        this.f58816i = O1;
+        this.f58817j = O1;
+        this.h.U0();
     }
 
-    public static z0 c(int i3, y yVar) {
-        long j10;
-        yVar.N(i3 + 12);
-        yVar.O(1);
-        d(yVar);
-        yVar.O(2);
-        int A = yVar.A();
-        if ((A & 128) != 0) {
-            yVar.O(2);
+    @Override
+    public final void d(long j3, long j10) {
+        this.f58818k = 0;
+        this.f58821n = -9223372036854775807L;
+        this.f58822o = 0L;
+        this.f58825r = 0;
+        this.f58824q = -1L;
+        this.v = j10;
+        if (!(this.f58826s instanceof b)) {
+            return;
         }
-        if ((A & 64) != 0) {
-            yVar.O(yVar.A());
-        }
-        if ((A & 32) != 0) {
-            yVar.O(2);
-        }
-        yVar.O(1);
-        d(yVar);
-        String e10 = u0.e(yVar.A());
-        if (!"audio/mpeg".equals(e10) && !"audio/vnd.dts".equals(e10) && !"audio/vnd.dts.hd".equals(e10)) {
-            yVar.O(4);
-            long C = yVar.C();
-            long C2 = yVar.C();
-            yVar.O(1);
-            int d = d(yVar);
-            long j11 = C2;
-            byte[] bArr = new byte[d];
-            yVar.k(0, d, bArr);
-            if (j11 <= 0) {
-                j11 = -1;
+        throw null;
+    }
+
+    @Override
+    public final List e() {
+        g0 g0Var = i0.f14329b;
+        return t1.f14397e;
+    }
+
+    @Override
+    public final int f(f3.p r52, f3.s r53) {
+        throw new UnsupportedOperationException("Method not decompiled: y3.d.f(f3.p, f3.s):int");
+    }
+
+    public final a g(p pVar, boolean z9) {
+        x xVar = this.f58812c;
+        pVar.b(0, 4, xVar.f14162a);
+        xVar.N(0);
+        int m10 = xVar.m();
+        a0 a0Var = this.d;
+        a0Var.a(m10);
+        return new a(pVar.getLength(), pVar.getPosition(), a0Var.f10967e, a0Var.f10965b, z9, true);
+    }
+
+    public final void h() {
+        h hVar = this.f58826s;
+        if ((hVar instanceof a) && ((k) hVar).d()) {
+            long j3 = this.f58824q;
+            if (j3 != -1 && j3 != this.f58826s.b()) {
+                a aVar = (a) this.f58826s;
+                this.f58826s = new a(this.f58824q, aVar.f58802i, aVar.f58803j, aVar.f58804k, aVar.f58805l, false);
+                q qVar = this.h;
+                qVar.getClass();
+                qVar.f(this.f58826s);
+                j0 j0Var = this.f58816i;
+                j0Var.getClass();
+                j0Var.d(this.f58826s.h());
             }
-            if (C > 0) {
-                j10 = C;
-            } else {
-                j10 = -1;
+        }
+    }
+
+    public final boolean i(f3.p r9) {
+        throw new UnsupportedOperationException("Method not decompiled: y3.d.i(f3.p):boolean");
+    }
+
+    public final boolean j(p pVar, boolean z9) {
+        int i7;
+        int i10;
+        int h;
+        pVar.q();
+        if (pVar.getPosition() == 0) {
+            q0 a10 = this.f58814f.a(pVar, null, 131072);
+            this.f58819l = a10;
+            if (a10 != null) {
+                this.f58813e.b(a10);
             }
-            return new z0(e10, bArr, j11, j10);
-        }
-        return new z0(e10, null, -1L, -1L);
-    }
-
-    public static int d(y yVar) {
-        int A = yVar.A();
-        int i3 = A & 127;
-        while ((A & 128) == 128) {
-            A = yVar.A();
-            i3 = (i3 << 7) | (A & 127);
-        }
-        return i3;
-    }
-
-    public static int e(int i3) {
-        return (i3 >> 24) & 255;
-    }
-
-    public static d2.s0 f(h2.c r14) {
-        throw new UnsupportedOperationException("Method not decompiled: y3.d.f(h2.c):d2.s0");
-    }
-
-    public static h2.f g(y yVar) {
-        long u10;
-        long u11;
-        yVar.N(8);
-        if (e(yVar.m()) == 0) {
-            u10 = yVar.C();
-            u11 = yVar.C();
+            i7 = (int) pVar.l();
+            if (!z9) {
+                pVar.s(i7);
+            }
+            i10 = 0;
         } else {
-            u10 = yVar.u();
-            u11 = yVar.u();
+            i7 = 0;
+            i10 = 0;
         }
-        return new h2.f(u10, u11, yVar.C());
-    }
-
-    public static Pair h(y yVar, int i3, int i10) {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        Integer num;
-        s sVar;
-        Pair create;
-        int i11;
-        int i12;
-        Integer num2;
-        boolean z13;
-        int i13 = yVar.f11924b;
-        while (i13 - i3 < i10) {
-            yVar.N(i13);
-            int m10 = yVar.m();
-            boolean z14 = false;
-            if (m10 > 0) {
-                z10 = true;
+        int i11 = i10;
+        int i12 = i11;
+        while (true) {
+            if (i(pVar)) {
+                if (i11 <= 0) {
+                    h();
+                    throw new EOFException();
+                }
             } else {
-                z10 = false;
-            }
-            e3.b.b("childAtomSize must be positive", z10);
-            if (yVar.m() == 1936289382) {
-                int i14 = i13 + 8;
-                int i15 = 0;
-                int i16 = -1;
-                Integer num3 = null;
-                String str = null;
-                while (i14 - i13 < m10) {
-                    yVar.N(i14);
-                    int m11 = yVar.m();
-                    int m12 = yVar.m();
-                    if (m12 == 1718775137) {
-                        num3 = Integer.valueOf(yVar.m());
-                    } else if (m12 == 1935894637) {
-                        yVar.O(4);
-                        str = yVar.y(4, StandardCharsets.UTF_8);
-                    } else if (m12 == 1935894633) {
-                        i16 = i14;
-                        i15 = m11;
-                    }
-                    i14 += m11;
-                }
-                byte[] bArr = null;
-                if (!"cenc".equals(str) && !"cbc1".equals(str) && !"cens".equals(str) && !"cbcs".equals(str)) {
-                    create = null;
-                } else {
-                    if (num3 != null) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    e3.b.b("frma atom is mandatory", z11);
-                    if (i16 != -1) {
-                        z12 = true;
-                    } else {
-                        z12 = false;
-                    }
-                    e3.b.b("schi atom is mandatory", z12);
-                    int i17 = i16 + 8;
-                    while (true) {
-                        if (i17 - i16 < i15) {
-                            yVar.N(i17);
-                            int m13 = yVar.m();
-                            if (yVar.m() == 1952804451) {
-                                int e10 = e(yVar.m());
-                                yVar.O(1);
-                                if (e10 == 0) {
-                                    yVar.O(1);
-                                    i12 = 0;
-                                    i11 = 0;
-                                } else {
-                                    int A = yVar.A();
-                                    i11 = A & 15;
-                                    i12 = (A & 240) >> 4;
-                                }
-                                if (yVar.A() == 1) {
-                                    num2 = num3;
-                                    z13 = true;
-                                } else {
-                                    num2 = num3;
-                                    z13 = false;
-                                }
-                                int A2 = yVar.A();
-                                byte[] bArr2 = new byte[16];
-                                yVar.k(0, 16, bArr2);
-                                if (z13 && A2 == 0) {
-                                    int A3 = yVar.A();
-                                    byte[] bArr3 = new byte[A3];
-                                    yVar.k(0, A3, bArr3);
-                                    bArr = bArr3;
-                                }
-                                num = num2;
-                                sVar = new s(z13, str, A2, bArr2, i12, i11, bArr);
-                            } else {
-                                i17 += m13;
-                            }
-                        } else {
-                            num = num3;
-                            sVar = null;
-                            break;
+                x xVar = this.f58812c;
+                xVar.N(0);
+                int m10 = xVar.m();
+                if ((i10 != 0 && ((-128000) & m10) != (i10 & (-128000))) || (h = f3.b.h(m10)) == -1) {
+                    int i13 = i12 + 1;
+                    if (i12 == 131072) {
+                        if (z9) {
+                            return false;
                         }
+                        h();
+                        throw new EOFException();
                     }
-                    if (sVar != null) {
-                        z14 = true;
+                    if (z9) {
+                        pVar.q();
+                        pVar.m(i7 + i13);
+                    } else {
+                        pVar.s(1);
                     }
-                    e3.b.b("tenc atom is mandatory", z14);
-                    String str2 = n0.f11873a;
-                    create = Pair.create(num, sVar);
-                }
-                if (create != null) {
-                    return create;
+                    i11 = 0;
+                    i12 = i13;
+                    i10 = 0;
+                } else {
+                    i11++;
+                    if (i11 == 1) {
+                        this.d.a(m10);
+                        i10 = m10;
+                    } else if (i11 == 4) {
+                        break;
+                    }
+                    pVar.m(h - 4);
                 }
             }
-            i13 += m10;
         }
-        return null;
+        if (z9) {
+            pVar.s(i7 + i12);
+        } else {
+            pVar.q();
+        }
+        this.f58818k = i10;
+        return true;
     }
 
-    public static java.util.ArrayList i(h2.c r59, e3.w r60, long r61, d2.s r63, boolean r64, boolean r65, f9.k r66, boolean r67) {
-        throw new UnsupportedOperationException("Method not decompiled: y3.d.i(h2.c, e3.w, long, d2.s, boolean, boolean, f9.k, boolean):java.util.ArrayList");
+    public d(int i7, long j3) {
+        this.f58810a = i7;
+        this.f58811b = j3;
+        this.f58812c = new x(10);
+        this.d = new Object();
+        this.f58813e = new w();
+        this.f58821n = -9223372036854775807L;
+        this.f58814f = new y(0);
+        n nVar = new n();
+        this.f58815g = nVar;
+        this.f58817j = nVar;
+        this.f58824q = -1L;
     }
 
-    public static d2.s0 j(h2.d r17) {
-        throw new UnsupportedOperationException("Method not decompiled: y3.d.j(h2.d):d2.s0");
+    @Override
+    public final o a() {
+        return this;
     }
 
-    public static void k(g2.y r58, int r59, int r60, int r61, int r62, java.lang.String r63, int r64, d2.s r65, g2.k0 r66, int r67) {
-        throw new UnsupportedOperationException("Method not decompiled: y3.d.k(g2.y, int, int, int, int, java.lang.String, int, d2.s, g2.k0, int):void");
+    @Override
+    public final void release() {
     }
 }

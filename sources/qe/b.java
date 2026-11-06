@@ -1,6 +1,12 @@
 package qe;
-public interface b {
-    void F(float f10, int i3);
 
-    void Y(int i3, float f10, float f11, c cVar);
+import androidx.datastore.preferences.protobuf.k;
+public final class b extends k {
+    public static final b f53972c;
+
+    static {
+        ?? obj = new Object();
+        obj.f2210b = new hd.d();
+        f53972c = obj;
+    }
 }

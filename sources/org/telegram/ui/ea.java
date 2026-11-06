@@ -1,150 +1,148 @@
 package org.telegram.ui;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ea implements TextView.OnEditorActionListener {
-    public final int f44942a;
-    public final Object f44943b;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class ea extends org.telegram.ui.Components.oj0 {
+    public final la f45218c;
 
-    public ea(Object obj, int i3) {
-        this.f44942a = i3;
-        this.f44943b = obj;
+    public ea(la laVar) {
+        this.f45218c = laVar;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i3, KeyEvent keyEvent) {
-        org.telegram.ui.Cells.q1 q1Var;
-        switch (this.f44942a) {
-            case 0:
-                fa faVar = (fa) this.f44943b;
-                if (i3 == 6) {
-                    org.telegram.ui.ActionBar.b5 b5Var = faVar.f45227c.f46838a;
-                    if (b5Var != null) {
-                        b5Var.performClick();
-                        return true;
-                    }
-                } else {
-                    faVar.getClass();
-                }
-                return false;
-            case 1:
-                wm wmVar = (wm) this.f44943b;
-                if (i3 == 6) {
-                    th.b bVar = wmVar.f51345hd;
-                    if (bVar != null && (q1Var = bVar.f55392n) != null) {
-                        wmVar.Ta(q1Var);
-                        return true;
-                    }
-                } else {
-                    wmVar.getClass();
-                }
-                return false;
-            case 2:
-                ln lnVar = (ln) this.f44943b;
-                if (i3 == 6) {
-                    org.telegram.ui.ActionBar.b5 b5Var2 = lnVar.f47364a;
-                    if (b5Var2 != null) {
-                        b5Var2.performClick();
-                        return true;
-                    }
-                } else {
-                    lnVar.getClass();
-                }
-                return false;
-            case 3:
-                xq xqVar = (xq) this.f44943b;
-                if (i3 == 5) {
-                    xqVar.a();
-                    return true;
-                }
-                xqVar.getClass();
-                return false;
-            case 4:
-                r40 r40Var = (r40) this.f44943b;
-                if (i3 == 6 && r40Var.t0()) {
-                    return true;
-                }
-                return false;
-            case 5:
-                vb0 vb0Var = (vb0) this.f44943b;
-                if (i3 == 5) {
-                    vb0Var.h(null);
-                    return true;
-                }
-                vb0Var.getClass();
-                return false;
-            case 6:
-                cc0 cc0Var = (cc0) this.f44943b;
-                if (i3 == 5) {
-                    cc0Var.h(null);
-                    return true;
-                }
-                cc0Var.getClass();
-                return false;
-            case 7:
-                qc0 qc0Var = (qc0) this.f44943b;
-                if (i3 == 5) {
-                    qc0Var.h(null);
-                    return true;
-                }
-                qc0Var.getClass();
-                return false;
-            case 8:
-                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f44943b;
-                int i10 = passcodeActivity.F;
-                if (i10 == 0) {
-                    passcodeActivity.v0();
-                    return true;
-                } else if (i10 == 1) {
-                    passcodeActivity.u0();
-                    return true;
-                } else {
-                    return false;
-                }
-            case 9:
-                uj0 uj0Var = (uj0) this.f44943b;
-                if (i3 == 5) {
-                    uj0Var.h(null);
-                    return true;
-                }
-                uj0Var.getClass();
-                return false;
-            case 10:
-                mx0 mx0Var = (mx0) this.f44943b;
-                mx0Var.getClass();
-                if (i3 == 5) {
-                    int intValue = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr = mx0Var.f47810a;
-                    if (intValue >= editTextBoldCursorArr.length) {
-                        return true;
-                    }
-                    editTextBoldCursorArr[intValue].requestFocus();
-                    return true;
-                } else if (i3 == 6) {
-                    mx0Var.finishFragment();
-                    return true;
-                } else {
-                    return false;
-                }
-            case 11:
-                q11 q11Var = (q11) this.f44943b;
-                if (keyEvent != null) {
-                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        org.telegram.messenger.g0.v1(q11Var.V1);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            default:
-                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f44943b;
-                twoStepVerificationActivity.getClass();
-                if (i3 != 5 && i3 != 6) {
-                    return false;
-                }
-                twoStepVerificationActivity.y0();
-                return true;
+    public final boolean D(v4.d1 d1Var) {
+        if (d1Var.f56931f == 4) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final int b() {
+        int i7;
+        la laVar = this.f45218c;
+        org.telegram.ui.Components.pj0 pj0Var = laVar.f47456b;
+        ArrayList arrayList = laVar.f47463w;
+        if (pj0Var != null) {
+            ArrayList arrayList2 = pj0Var.K2;
+            if (arrayList2 != null) {
+                arrayList2.clear();
+            } else {
+                pj0Var.K2 = new ArrayList();
+            }
+            if (arrayList.size() > 0) {
+                laVar.f47456b.K2.add(Long.valueOf(org.telegram.messenger.g0.w2(3, arrayList.size() + 3)));
+            }
+        }
+        if (laVar.f47463w.size() > 0) {
+            i7 = laVar.f47463w.size() + 2;
+        } else {
+            i7 = 0;
+        }
+        return i7 + 3;
+    }
+
+    @Override
+    public final int d(int i7) {
+        if (i7 == 0) {
+            return 0;
+        }
+        if (i7 == 1) {
+            return 3;
+        }
+        if (i7 == 2) {
+            return 1;
+        }
+        if (i7 == 3) {
+            return 0;
+        }
+        if (i7 == b() - 1) {
+            return 2;
+        }
+        return 4;
+    }
+
+    @Override
+    public final void t(v4.d1 d1Var, int i7) {
+        int i10;
+        int i11;
+        boolean z9;
+        la laVar = this.f45218c;
+        long j3 = laVar.f47465y;
+        int i12 = d1Var.f56931f;
+        View view = d1Var.f56927a;
+        if (i12 != 0) {
+            if (i12 != 2) {
+                if (i12 != 3) {
+                    if (i12 != 4) {
+                        return;
+                    }
+                    TLRPC.TL_username tL_username = (TLRPC.TL_username) laVar.f47463w.get(i7 - 4);
+                    ia iaVar = (ia) view;
+                    if (tL_username.editable) {
+                        laVar.E = iaVar;
+                    } else if (laVar.E == iaVar) {
+                        laVar.E = null;
+                    }
+                    if (i7 < b() - 2) {
+                        z9 = true;
+                    } else {
+                        z9 = false;
+                    }
+                    iaVar.a(tL_username, z9, false, laVar.f47465y);
+                    return;
+                }
+                laVar.f47460n = true;
+                ga gaVar = (ga) view;
+                laVar.D = gaVar;
+                gaVar.f45901a.setText(laVar.f47461r);
+                laVar.f47460n = false;
+                return;
+            }
+            org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
+            if (j3 != 0) {
+                i11 = 2131752937;
+            } else {
+                i11 = 2131743642;
+            }
+            z8Var.setText(org.telegram.messenger.hd.M0(i11, null));
+            return;
+        }
+        org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) view;
+        if (i7 == 0) {
+            if (j3 != 0) {
+                i10 = 2131752985;
+            } else {
+                i10 = 2131745499;
+            }
+        } else {
+            i10 = 2131743643;
+        }
+        n4Var.setText(org.telegram.messenger.hd.M0(i10, null));
+    }
+
+    @Override
+    public final v4.d1 x(ViewGroup viewGroup, int i7) {
+        la laVar = this.f45218c;
+        if (i7 != 0) {
+            if (i7 != 1) {
+                if (i7 != 2) {
+                    if (i7 != 3) {
+                        if (i7 != 4) {
+                            return null;
+                        }
+                        return new v4.d1(new da(this, laVar.getParentActivity(), laVar.getResourceProvider()));
+                    }
+                    return new v4.d1(new ga(laVar, laVar.getParentActivity()));
+                }
+                return new v4.d1(new org.telegram.ui.Cells.z8(laVar.getParentActivity()));
+            }
+            ka kaVar = new ka(laVar, laVar.getParentActivity());
+            kaVar.setTag(-33024);
+            return new v4.d1(kaVar);
+        }
+        return new v4.d1(new org.telegram.ui.Cells.n4(laVar.getParentActivity()));
     }
 }

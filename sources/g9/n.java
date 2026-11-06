@@ -1,41 +1,52 @@
 package g9;
 
 import java.io.Serializable;
-import java.util.Arrays;
-public final class n extends q1 implements Serializable {
-    public final f9.k f12104a;
-    public final q1 f12105b;
+import java.util.List;
+public final class n implements m, Serializable {
+    public final List f13592a;
 
-    public n(f9.k kVar, q1 q1Var) {
-        this.f12104a = kVar;
-        this.f12105b = q1Var;
+    public n(List list) {
+        this.f13592a = list;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        f9.k kVar = this.f12104a;
-        return this.f12105b.compare(kVar.apply(obj), kVar.apply(obj2));
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof n) {
-            n nVar = (n) obj;
-            if (this.f12104a.equals(nVar.f12104a) && this.f12105b.equals(nVar.f12105b)) {
+    public final boolean apply(Object obj) {
+        int i7 = 0;
+        while (true) {
+            List list = this.f13592a;
+            if (i7 < list.size()) {
+                if (!((m) list.get(i7)).apply(obj)) {
+                    return false;
+                }
+                i7++;
+            } else {
                 return true;
             }
+        }
+    }
+
+    public final boolean equals(Object obj) {
+        if (obj instanceof n) {
+            return this.f13592a.equals(((n) obj).f13592a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{this.f12104a, this.f12105b});
+        return this.f13592a.hashCode() + 306654252;
     }
 
     public final String toString() {
-        return this.f12105b + ".onResultOf(" + this.f12104a + ")";
+        StringBuilder sb2 = new StringBuilder("Predicates.and(");
+        boolean z9 = true;
+        for (Object obj : this.f13592a) {
+            if (!z9) {
+                sb2.append(',');
+            }
+            sb2.append(obj);
+            z9 = false;
+        }
+        sb2.append(')');
+        return sb2.toString();
     }
 }

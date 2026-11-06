@@ -1,70 +1,136 @@
 package gh;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import b8.mc;
-import java.lang.ref.WeakReference;
+import org.telegram.messenger.g0;
+import org.telegram.messenger.rc;
+import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-public final class b extends mc {
-    public final Paint f12276a;
-    public final Paint f12277b;
-    public final Matrix f12278c;
-    public WeakReference d;
-    public BitmapShader f12279e;
-    public final g f12280f;
+import org.telegram.ui.ActionBar.r6;
+public class b implements a {
+    public final f6 f13958a;
+    public final int f13959b;
+    public final float f13960c;
+    public int d;
+    public int f13961e;
+    public int f13962f;
+    public int h;
+    public int f13963n;
+    public int f13964r;
 
-    public b(g gVar) {
-        this.f12280f = gVar;
-        Paint paint = new Paint(1);
-        this.f12276a = paint;
-        this.f12277b = new Paint(1);
-        this.f12278c = new Matrix();
-        this.d = new WeakReference(null);
-        paint.setFilterBitmap(true);
+    public b(int i7, f6 f6Var) {
+        this(f6Var, i7, rc.e(262144) ? 0.85f : 0.76f);
     }
 
     @Override
-    public final void b(Canvas canvas, si.a aVar) {
-        si.b bVar = (si.b) g.v(aVar);
-        g gVar = this.f12280f;
-        int i3 = gVar.f53579c;
-        Bitmap bitmap = bVar.d;
-        Object obj = this.d.get();
-        Paint paint = this.f12276a;
-        if (bitmap != obj) {
-            this.d = new WeakReference(bitmap);
-            if (bitmap != null && !bitmap.isRecycled()) {
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(bitmap, tileMode, tileMode);
-                this.f12279e = bitmapShader;
-                paint.setShader(bitmapShader);
-            } else {
-                this.f12279e = null;
-                paint.setShader(null);
-            }
+    public int A() {
+        a();
+        if (b() && Color.alpha(k6.w0(this.f13963n, this.f13958a)) != 0) {
+            return 0;
         }
-        if (Color.alpha(gVar.f12335x) > 0) {
-            gVar.f12326d0.c(canvas, 0);
+        return this.f13962f;
+    }
+
+    @Override
+    public final int C0() {
+        if (b()) {
+            return k6.w0(k6.ya, this.f13958a);
         }
-        if (this.f12279e != null && bitmap != null && !bitmap.isRecycled() && i3 > 0) {
-            Matrix matrix = bVar.f54741b;
-            Matrix matrix2 = this.f12278c;
-            matrix2.set(matrix);
-            matrix2.postTranslate(-gVar.d, -gVar.f53580e);
-            this.f12279e.setLocalMatrix(matrix2);
-            paint.setAlpha(i3);
-            gVar.R.c(canvas, paint);
+        return 0;
+    }
+
+    @Override
+    public final int M() {
+        if (b()) {
+            return k6.w0(this.f13963n, this.f13958a);
         }
-        int r12 = k6.r1(i3 / 255.0f, gVar.f12336y);
-        if (Color.alpha(r12) > 0) {
-            Paint paint2 = this.f12277b;
-            paint2.setColor(r12);
-            gVar.R.c(canvas, paint2);
+        return 0;
+    }
+
+    @Override
+    public int O() {
+        a();
+        if (b() && Color.alpha(k6.w0(this.f13963n, this.f13958a)) != 0) {
+            return 0;
         }
+        return this.h;
+    }
+
+    @Override
+    public int R0() {
+        a();
+        if (b()) {
+            return k6.w0(k6.f28225xa, this.f13958a);
+        }
+        return this.f13961e;
+    }
+
+    public final void a() {
+        if (this.f13964r != r6.f28475b) {
+            d();
+        }
+    }
+
+    public final boolean b() {
+        if (this.f13963n >= 0 && k6.i1(this.f13958a)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean c() {
+        if (g0.B(k6.w0(this.f13959b, this.f13958a)) < 0.721f) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d() {
+        this.f13964r = r6.f28475b;
+        this.d = k6.r1(this.f13960c, k6.w0(this.f13959b, this.f13958a));
+        if (c()) {
+            this.f13962f = 687865855;
+            this.h = 352321535;
+            this.f13961e = 0;
+            return;
+        }
+        this.f13962f = -1;
+        this.h = -1;
+        this.f13961e = 536870912;
+    }
+
+    @Override
+    public int e1() {
+        a();
+        return this.d;
+    }
+
+    @Override
+    public final float j0() {
+        if (b()) {
+            return g0.N(1.0f);
+        }
+        return -1.0f;
+    }
+
+    @Override
+    public final float o0() {
+        if (b()) {
+            return g0.N(2.25f);
+        }
+        return -1.0f;
+    }
+
+    @Override
+    public final float v0() {
+        return g0.N(0.6f);
+    }
+
+    public b(f6 f6Var, int i7, float f10) {
+        this.f13963n = -1;
+        this.f13964r = r6.f28475b;
+        this.f13958a = f6Var;
+        this.f13959b = i7;
+        this.f13960c = f10;
+        d();
     }
 }

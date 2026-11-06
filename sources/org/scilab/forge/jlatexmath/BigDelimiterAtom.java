@@ -3,9 +3,9 @@ public class BigDelimiterAtom extends Atom {
     public SymbolAtom delim;
     private int size;
 
-    public BigDelimiterAtom(SymbolAtom symbolAtom, int i3) {
+    public BigDelimiterAtom(SymbolAtom symbolAtom, int i7) {
         this.delim = symbolAtom;
-        this.size = i3;
+        this.size = i7;
     }
 
     @Override

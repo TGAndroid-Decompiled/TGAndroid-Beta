@@ -1,44 +1,121 @@
 package ug;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
 import android.view.ViewGroup;
-public final class v0 extends u4.h0 {
-    public final Context f56280c;
-    public final x0 d;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import c8.ha;
+import org.telegram.messenger.k5;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Components.w70;
+import org.telegram.ui.us0;
+public final class v0 extends LinearLayout {
+    public int f56719a;
+    public final TextView f56720b;
+    public final w70 f56721c;
+    public LinearLayout d;
+    public final l0 f56722e;
+    public final ViewGroup f56723f;
+    public boolean h;
+    public final w0 f56724n;
 
-    public v0(x0 x0Var, Context context) {
-        this.d = x0Var;
-        this.f56280c = context;
-    }
-
-    @Override
-    public final int b() {
-        return 14;
-    }
-
-    @Override
-    public final void t(u4.d1 d1Var, int i3) {
-        float f10;
-        w0 w0Var = (w0) d1Var.f55540a;
-        ViewGroup.LayoutParams layoutParams = w0Var.getLayoutParams();
-        x0 x0Var = this.d;
-        layoutParams.height = ((x0Var.getHeight() - x0Var.getPaddingTop()) - x0Var.getPaddingBottom()) / 2;
-        tg.k0 k0Var = x0Var.i3;
-        if (k0Var != null) {
-            w0Var.f56287a = k0Var.b(i3);
-            w0Var.invalidate();
-            if (x0Var.f56300h3 == i3) {
-                f10 = 1.0f;
+    public v0(w0 w0Var, Context context, int i7) {
+        super(context);
+        int i10;
+        i iVar;
+        this.f56724n = w0Var;
+        setOrientation(1);
+        us0 us0Var = (us0) w0Var.f56729k1.get(i7);
+        int i11 = us0Var.f50485a;
+        if (i11 == 0) {
+            ?? aVar = new a(context, w0Var.I0);
+            aVar.f56406b.setOnScrollListener(new r0(w0Var, 1));
+            iVar = aVar;
+        } else if (i11 != 14 && i11 != 28) {
+            if (i11 == 5) {
+                iVar = new j1(context, w0Var.f28612a);
+            } else if (i11 == 10) {
+                iVar = new n0(context, w0Var.I0);
             } else {
-                f10 = 0.0f;
+                iVar = new t1(context, w0Var.f56736t1, w0Var.f28612a, us0Var.f50485a, w0Var.I0);
             }
-            w0Var.f56288b = f10;
-            w0Var.invalidate();
+        } else {
+            if (i11 == 28) {
+                i10 = 1;
+            } else {
+                i10 = 0;
+            }
+            i iVar2 = new i(i10, context, w0Var.I0);
+            iVar2.f56406b.setOnScrollListener(new r0(w0Var, 0));
+            iVar = iVar2;
         }
+        this.f56723f = iVar;
+        addView(iVar);
+        this.f56722e = iVar;
+        TextView textView = new TextView(context);
+        this.f56720b = textView;
+        textView.setGravity(1);
+        int i12 = k6.f27956j5;
+        k5.n(textView, i12, w0Var.I0, 1, 20.0f);
+        addView(textView, ha.d(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
+        w70 w70Var = new w70(context, null);
+        this.f56721c = w70Var;
+        w70Var.setGravity(1);
+        w70Var.setTextSize(1, 15.0f);
+        r6.V(w70Var, i12, w0Var.I0);
+        if (!w0Var.f56738v1) {
+            w70Var.setLines(2);
+        }
+        addView(w70Var, ha.t(-1, -2, 1, 21, 10, 21, 16));
+        setImportantForAccessibility(2);
+        setClipChildren(false);
     }
 
     @Override
-    public final u4.d1 x(ViewGroup viewGroup, int i3) {
-        return new u4.d1(new w0(this.d, this.f56280c));
+    public final boolean drawChild(Canvas canvas, View view, long j3) {
+        if (view == this.f56723f) {
+            boolean z9 = view instanceof a;
+            if (z9) {
+                setTranslationY(0.0f);
+            } else {
+                setTranslationY(this.f56724n.C1);
+            }
+            if (z9) {
+                return super.drawChild(canvas, view, j3);
+            }
+            canvas.save();
+            canvas.clipRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j3);
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j3);
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        TextView textView = this.f56720b;
+        textView.setVisibility(0);
+        ViewGroup viewGroup = this.f56723f;
+        boolean z9 = viewGroup instanceof a;
+        w0 w0Var = this.f56724n;
+        if (z9) {
+            ((a) viewGroup).setTopOffset(w0Var.C1);
+        }
+        viewGroup.getLayoutParams().height = w0Var.f56733q1;
+        w70 w70Var = this.f56721c;
+        w70Var.setVisibility(0);
+        ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = 0;
+        super.onMeasure(i7, i10);
+        if (this.h) {
+            viewGroup.getLayoutParams().height = getMeasuredHeight() - org.telegram.messenger.g0.L(16.0f);
+            ((ViewGroup.MarginLayoutParams) viewGroup.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(16.0f);
+            textView.setVisibility(8);
+            w70Var.setVisibility(8);
+            super.onMeasure(i7, i10);
+        }
     }
 }

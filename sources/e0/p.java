@@ -10,15 +10,15 @@ public abstract class p {
         return new AudioAttributes.Builder();
     }
 
-    public static AudioAttributes.Builder c(AudioAttributes.Builder builder, int i3) {
-        return builder.setContentType(i3);
+    public static AudioAttributes.Builder c(AudioAttributes.Builder builder, int i7) {
+        return builder.setContentType(i7);
     }
 
-    public static AudioAttributes.Builder d(AudioAttributes.Builder builder, int i3) {
-        return builder.setLegacyStreamType(i3);
+    public static AudioAttributes.Builder d(AudioAttributes.Builder builder, int i7) {
+        return builder.setLegacyStreamType(i7);
     }
 
-    public static AudioAttributes.Builder e(AudioAttributes.Builder builder, int i3) {
-        return builder.setUsage(i3);
+    public static AudioAttributes.Builder e(AudioAttributes.Builder builder, int i7) {
+        return builder.setUsage(i7);
     }
 }

@@ -1,11 +1,8 @@
 package k;
 
-import android.view.KeyboardShortcutGroup;
-import android.view.Menu;
 import android.view.Window;
-import java.util.List;
 public abstract class l {
-    public static void a(Window.Callback callback, List<KeyboardShortcutGroup> list, Menu menu, int i3) {
-        callback.onProvideKeyboardShortcuts(list, menu, i3);
+    public static void a(Window.Callback callback, boolean z9) {
+        callback.onPointerCaptureChanged(z9);
     }
 }

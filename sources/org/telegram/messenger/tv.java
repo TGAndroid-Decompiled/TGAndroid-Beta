@@ -1,52 +1,42 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
 public final class tv implements Runnable {
-    public final int f25597a;
-    public final vv f25598b;
-    public final ArrayList f25599c;
+    public final int f25675a;
+    public final vv f25676b;
 
-    public tv(vv vvVar, ArrayList arrayList, int i3) {
-        this.f25597a = i3;
-        this.f25598b = vvVar;
-        this.f25599c = arrayList;
+    public tv(vv vvVar, int i7) {
+        this.f25675a = i7;
+        this.f25676b = vvVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f25597a) {
+        switch (this.f25675a) {
             case 0:
-                vv vvVar = this.f25598b;
-                vvVar.getClass();
-                int i3 = 0;
-                while (true) {
-                    ArrayList arrayList = this.f25599c;
-                    if (i3 < arrayList.size()) {
-                        zi ziVar = new zi(vvVar.currentAccount, (TLRPC.Message) arrayList.get(i3), false, true);
-                        ziVar.A0 = true;
-                        vvVar.getSendMessagesHelper().k0(0L, ziVar, true);
-                        i3++;
-                    } else {
-                        return;
-                    }
-                }
+                this.f25676b.g(false);
+                return;
+            case 1:
+                this.f25676b.f26209o = false;
+                return;
+            case 2:
+                vv vvVar = this.f25676b;
+                vvVar.f26209o = false;
+                vvVar.f26206l = false;
+                return;
+            case 3:
+                this.f25676b.l();
+                return;
             default:
-                vv vvVar2 = this.f25598b;
-                vvVar2.getClass();
-                int i10 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f25599c;
-                    if (i10 < arrayList2.size()) {
-                        zi ziVar2 = (zi) vvVar2.getMessagesController().T.f(((Long) arrayList2.get(i10)).longValue());
-                        if (ziVar2 != null) {
-                            ziVar2.Z = true;
-                        }
-                        i10++;
-                    } else {
-                        return;
-                    }
+                vv vvVar2 = this.f25676b;
+                if (!vvVar2.f26209o) {
+                    vvVar2.f26209o = true;
+                    ArrayList arrayList = new ArrayList(vvVar2.f26204j);
+                    yr a02 = yr.a0(vvVar2.f26197a);
+                    a02.f26688a.c(new lg(vvVar2, a02, arrayList, 24));
+                    return;
                 }
+                return;
         }
     }
 }

@@ -1,37 +1,44 @@
 package uf;
 
-import android.app.Activity;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.g0;
-import org.telegram.ui.LaunchActivity;
-public final class a extends FrameLayout {
-    public final Activity f55822a;
-    public int f55823b;
-    public int f55824c;
-    public boolean d;
+import ab.d;
+import java.io.InputStream;
+public final class a extends d {
+    public final long d;
 
-    public a(LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f55822a = launchActivity;
+    public a(InputStream inputStream, long j3, long j10) {
+        super(inputStream, j3);
+        this.d = j3 + j10;
+    }
+
+    public final long e() {
+        return this.d - this.f915b;
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        boolean z10;
-        int size = View.MeasureSpec.getSize(i3);
-        int size2 = View.MeasureSpec.getSize(i10);
-        boolean H1 = g0.H1(this.f55822a);
-        if (!H1) {
-            this.f55823b = size;
-            this.f55824c = size2;
+    public final int read() {
+        if (this.f915b == this.d) {
+            return -1;
         }
-        if (H1 && size < this.f55823b && size2 < this.f55824c) {
-            z10 = true;
-        } else {
-            z10 = false;
+        return super.read();
+    }
+
+    @Override
+    public final long skip(long j3) {
+        long j10 = this.f915b;
+        long j11 = this.d;
+        if (j10 + j3 > j11) {
+            j3 = (int) (j11 - j10);
         }
-        this.d = z10;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        return super.skip(j3);
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i7, int i10) {
+        long j3 = this.f915b;
+        long j10 = this.d;
+        if (i10 + j3 <= j10 || (i10 = (int) (j10 - j3)) != 0) {
+            return super.read(bArr, i7, i10);
+        }
+        return -1;
     }
 }

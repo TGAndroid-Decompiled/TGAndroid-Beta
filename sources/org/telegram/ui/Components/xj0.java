@@ -1,135 +1,196 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
+import android.animation.Animator;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-public final class xj0 implements u4.s0 {
-    public RecyclerView f40375a;
-    public boolean f40377c;
-    public int d;
-    public int f40378e;
-    public int f40379f;
-    public boolean f40380g;
-    public boolean h;
-    public int f40381i;
-    public final wj0 f40383k;
-    public int f40376b = -1;
-    public final int f40382j = org.telegram.messenger.g0.L(80.0f);
-    public final lt f40384l = new lt(this, 11);
+import java.util.ArrayList;
+public final class xj0 extends Drawable implements Animator.AnimatorListener {
+    public final Context f40267a;
+    public ColorFilter f40268b;
+    public Drawable d;
+    public Drawable f40270e;
+    public ValueAnimator f40271f;
+    public boolean f40273r;
+    public int f40269c = 0;
+    public float h = 1.0f;
+    public final ArrayList f40272n = new ArrayList();
 
-    public xj0(wj0 wj0Var) {
-        this.f40383k = wj0Var;
+    public xj0(Context context) {
+        this.f40267a = context;
+    }
+
+    public final void a(int i7, boolean z9) {
+        if (this.f40269c == i7) {
+            return;
+        }
+        b(this.f40267a.getDrawable(i7).mutate(), z9);
+        this.f40269c = i7;
+    }
+
+    public final void b(Drawable drawable, boolean z9) {
+        if (drawable == null) {
+            this.d = null;
+            this.f40270e = null;
+            invalidateSelf();
+            return;
+        }
+        if (getBounds() == null || getBounds().isEmpty()) {
+            z9 = false;
+        }
+        Drawable drawable2 = this.d;
+        if (drawable == drawable2) {
+            drawable2.setColorFilter(this.f40268b);
+            return;
+        }
+        this.f40269c = 0;
+        this.f40270e = drawable2;
+        this.d = drawable;
+        drawable.setColorFilter(this.f40268b);
+        c(this.d, getBounds());
+        c(this.f40270e, getBounds());
+        ValueAnimator valueAnimator = this.f40271f;
+        if (valueAnimator != null) {
+            valueAnimator.removeAllListeners();
+            this.f40271f.cancel();
+        }
+        if (!z9) {
+            this.h = 1.0f;
+            this.f40270e = null;
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f40271f = ofFloat;
+        ofFloat.addUpdateListener(new c60(this, 9));
+        this.f40271f.addListener(this);
+        this.f40271f.setDuration(150L);
+        this.f40271f.start();
+    }
+
+    public final void c(Drawable drawable, Rect rect) {
+        int height;
+        int intrinsicHeight;
+        int width;
+        int intrinsicWidth;
+        if (drawable == null) {
+            return;
+        }
+        if (this.f40273r) {
+            drawable.setBounds(rect);
+            return;
+        }
+        if (drawable.getIntrinsicHeight() < 0) {
+            height = rect.top;
+            intrinsicHeight = rect.bottom;
+        } else {
+            height = ((rect.height() - drawable.getIntrinsicHeight()) / 2) + rect.top;
+            intrinsicHeight = drawable.getIntrinsicHeight() + height;
+        }
+        if (drawable.getIntrinsicWidth() < 0) {
+            width = rect.left;
+            intrinsicWidth = rect.right;
+        } else {
+            width = ((rect.width() - drawable.getIntrinsicWidth()) / 2) + rect.left;
+            intrinsicWidth = drawable.getIntrinsicWidth() + width;
+        }
+        drawable.setBounds(width, height, intrinsicWidth, intrinsicHeight);
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, MotionEvent motionEvent) {
-        int i3;
-        int i10;
-        View E = recyclerView.E(motionEvent.getX(), motionEvent.getY());
-        if (E != null) {
-            i3 = RecyclerView.R(E);
+    public final void draw(Canvas canvas) {
+        int centerX = getBounds().centerX();
+        int centerY = getBounds().centerY();
+        if (this.h != 1.0f && this.d != null) {
+            canvas.save();
+            float f10 = this.h;
+            canvas.scale(f10, f10, centerX, centerY);
+            this.d.setAlpha((int) (this.h * 255.0f));
+            this.d.draw(canvas);
+            canvas.restore();
         } else {
-            i3 = -1;
-        }
-        float y9 = motionEvent.getY();
-        int action = motionEvent.getAction();
-        wj0 wj0Var = this.f40383k;
-        lt ltVar = this.f40384l;
-        if (action != 1) {
-            if (action == 2) {
-                if (this.f40382j > -1) {
-                    float f10 = 0;
-                    if (y9 >= f10 && y9 <= this.d) {
-                        this.h = false;
-                        if (!this.f40380g) {
-                            this.f40380g = true;
-                            org.telegram.messenger.g0.r(ltVar);
-                            org.telegram.messenger.g0.h3(ltVar);
-                        }
-                        this.f40381i = ((int) (this.d - (y9 - f10))) / 2;
-                    } else if (y9 >= this.f40378e && y9 <= this.f40379f) {
-                        this.f40380g = false;
-                        if (!this.h) {
-                            this.h = true;
-                            org.telegram.messenger.g0.r(ltVar);
-                            org.telegram.messenger.g0.h3(ltVar);
-                        }
-                        this.f40381i = ((int) ((y9 + this.f40379f) - (this.f40378e + i10))) / 2;
-                    } else if (this.f40380g || this.h) {
-                        org.telegram.messenger.g0.r(ltVar);
-                        this.f40380g = false;
-                        this.h = false;
-                    }
-                }
-                if (i3 != -1 && this.f40376b != i3) {
-                    this.f40376b = i3;
-                    wj0Var.f(E, !wj0Var.m(i3));
-                    return;
-                }
-                return;
+            Drawable drawable = this.d;
+            if (drawable != null) {
+                drawable.setAlpha(255);
+                this.d.draw(canvas);
             }
+        }
+        float f11 = this.h;
+        if (f11 != 1.0f && this.f40270e != null) {
+            float f12 = 1.0f - f11;
+            canvas.save();
+            canvas.scale(f12, f12, centerX, centerY);
+            this.f40270e.setAlpha((int) (f12 * 255.0f));
+            this.f40270e.draw(canvas);
+            canvas.restore();
             return;
         }
-        this.f40377c = false;
-        this.f40380g = false;
-        this.h = false;
-        org.telegram.messenger.g0.r(ltVar);
-        wj0Var.b(false);
+        Drawable drawable2 = this.f40270e;
+        if (drawable2 != null) {
+            drawable2.setAlpha(255);
+            this.f40270e.draw(canvas);
+        }
     }
 
     @Override
-    public final boolean b(RecyclerView recyclerView, MotionEvent motionEvent) {
-        boolean z10;
-        boolean z11;
-        if (recyclerView.getAdapter() != null && recyclerView.getAdapter().b() != 0) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (this.f40377c && !z10) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (z11) {
-            this.f40375a = recyclerView;
-            int i3 = this.f40382j;
-            if (i3 > -1) {
-                this.d = i3;
-                this.f40378e = recyclerView.getMeasuredHeight() - i3;
-                this.f40379f = recyclerView.getMeasuredHeight();
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void invalidateSelf() {
+        super.invalidateSelf();
+        ArrayList arrayList = this.f40272n;
+        if (arrayList != null) {
+            for (int i7 = 0; i7 < arrayList.size(); i7++) {
+                ((View) arrayList.get(i7)).invalidate();
             }
         }
-        if (z11 && motionEvent.getAction() == 1) {
-            this.f40377c = false;
-            this.f40380g = false;
-            this.h = false;
-            org.telegram.messenger.g0.r(this.f40384l);
-            this.f40383k.b(false);
-        }
-        return z11;
-    }
-
-    public final void d(int i3, View view, boolean z10) {
-        if (this.f40377c) {
-            return;
-        }
-        this.f40376b = -1;
-        org.telegram.messenger.g0.r(this.f40384l);
-        this.f40380g = false;
-        this.h = false;
-        wj0 wj0Var = this.f40383k;
-        if (!wj0Var.c(i3)) {
-            this.f40377c = false;
-            return;
-        }
-        wj0Var.b(true);
-        wj0Var.f(view, z10);
-        this.f40377c = true;
-        this.f40376b = i3;
     }
 
     @Override
-    public final void c(boolean z10) {
+    public final void onAnimationEnd(Animator animator) {
+        this.f40270e = null;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        c(this.d, rect);
+        c(this.f40270e, rect);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f40268b = colorFilter;
+        Drawable drawable = this.d;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
+        }
+        Drawable drawable2 = this.f40270e;
+        if (drawable2 != null) {
+            drawable2.setColorFilter(colorFilter);
+        }
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+    }
+
+    @Override
+    public final void onAnimationRepeat(Animator animator) {
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
     }
 }

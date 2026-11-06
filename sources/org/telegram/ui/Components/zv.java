@@ -1,66 +1,36 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
+import android.content.Context;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-public final class zv extends k31 {
-    public final ey f41136b;
+public final class zv extends qu {
+    public final TLRPC.StickerSet N1;
+    public final gy O1;
 
-    public zv(ey eyVar) {
-        this.f41136b = eyVar;
+    public zv(gy gyVar, org.telegram.ui.ActionBar.f2 f2Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, ArrayList arrayList, TLRPC.StickerSet stickerSet) {
+        super(f2Var, context, f6Var, arrayList);
+        this.O1 = gyVar;
+        this.N1 = stickerSet;
     }
 
     @Override
-    public final boolean a() {
-        return this.f41136b.f33582u1.b();
-    }
-
-    @Override
-    public final String[] b() {
-        return this.f41136b.X0;
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f41136b.f33582u1.c();
-    }
-
-    @Override
-    public final boolean d(d31 d31Var, MotionEvent motionEvent) {
-        org.telegram.ui.is p10 = org.telegram.ui.is.p();
-        ey eyVar = this.f41136b;
-        eyVar.getMeasuredHeight();
-        return p10.q(motionEvent, d31Var, eyVar.f33544h2, eyVar.f33520a2);
-    }
-
-    @Override
-    public final boolean e(d31 d31Var, k kVar, MotionEvent motionEvent) {
-        org.telegram.ui.is p10 = org.telegram.ui.is.p();
-        ey eyVar = this.f41136b;
-        eyVar.getMeasuredHeight();
-        return p10.r(motionEvent, d31Var, kVar, eyVar.f33544h2, eyVar.f33520a2);
-    }
-
-    @Override
-    public final void f(TLRPC.Document document, Object obj, boolean z10, int i3) {
-        this.f41136b.f33582u1.m(null, document, null, obj, null, z10, i3);
-    }
-
-    @Override
-    public final void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10) {
-        ey eyVar = this.f41136b;
-        eyVar.f33582u1.r(stickerSetCovered);
-        if (z10) {
-            eyVar.X(true);
+    public final void K0(boolean z9) {
+        gy gyVar = this.O1;
+        ArrayList arrayList = gyVar.f34114p1;
+        TLRPC.StickerSet stickerSet = this.N1;
+        if (z9) {
+            if (!arrayList.contains(Long.valueOf(stickerSet.f26979id))) {
+                arrayList.add(Long.valueOf(stickerSet.f26979id));
+            }
+        } else {
+            arrayList.remove(Long.valueOf(stickerSet.f26979id));
         }
+        gyVar.T();
     }
 
     @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-        this.f41136b.f33582u1.h(stickerSetCovered);
-    }
-
-    @Override
-    public final void i(String[] strArr) {
-        this.f41136b.X0 = strArr;
+    public final void dismiss() {
+        this.O1.f34139w2 = false;
+        super.dismiss();
     }
 }

@@ -1,31 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class g30 extends FrameLayout {
-    public View f33948a;
-    public TextView f33949b;
-    public fh0 f33950c;
-    public LinearLayout d;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class g30 extends org.telegram.ui.mq0 {
+    public final ArrayList f33814a;
+    public final j30 f33815b;
+
+    public g30(j30 j30Var, ArrayList arrayList) {
+        this.f33815b = j30Var;
+        this.f33814a = arrayList;
+    }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
+    public final org.telegram.ui.vq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
+        i30 i30Var = this.f33815b.f34865b;
+        if (i30Var == null) {
+            return null;
+        }
+        return i30Var.getCloseIntoObject();
     }
 
-    public void setGravity(int i3) {
-        this.f33949b.setGravity(i3);
+    @Override
+    public final boolean T() {
+        return false;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f33949b.setText(charSequence);
+    @Override
+    public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
+        this.f33815b.s((org.telegram.messenger.gf) this.f33814a.get(0));
     }
 
-    public void setTextColor(int i3) {
-        TextView textView = this.f33949b;
-        org.telegram.ui.ActionBar.r6.r(textView);
-        textView.setTextColor(i3);
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

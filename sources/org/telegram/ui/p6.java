@@ -1,38 +1,49 @@
 package org.telegram.ui;
-public final class p6 implements Runnable {
-    public final int f48472a;
-    public final boolean[] f48473b;
-    public final ai.c0 f48474c;
-    public final long[] d;
-    public final q6 f48475e;
 
-    public p6(boolean[] zArr, ai.c0 c0Var, long[] jArr, q6 q6Var, int i3) {
-        this.f48472a = i3;
-        this.f48473b = zArr;
-        this.f48474c = c0Var;
-        this.d = jArr;
-        this.f48475e = q6Var;
+import android.content.Context;
+public final class p6 extends org.telegram.ui.ActionBar.v2 {
+    public static final int f48665j1 = 0;
+    public final int f48666i1;
+
+    public p6(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z9) {
+        super(i7, context, f6Var, z9);
+        this.f48666i1 = 2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f48472a) {
+    public boolean H() {
+        switch (this.f48666i1) {
             case 0:
-                org.telegram.messenger.g0.h3(new p6(this.f48473b, this.f48474c, this.d, this.f48475e, 1));
-                return;
+                return false;
             default:
-                this.f48473b[0] = true;
-                this.f48474c.f(1.0f);
-                long[] jArr = this.d;
-                int i3 = (jArr[0] > 0L ? 1 : (jArr[0] == 0L ? 0 : -1));
-                q6 q6Var = this.f48475e;
-                if (i3 > 0) {
-                    org.telegram.messenger.g0.i3(new xp0(q6Var, 16), Math.max(0L, 1000 - (System.currentTimeMillis() - jArr[0])));
+                return super.H();
+        }
+    }
+
+    @Override
+    public void s0() {
+        switch (this.f48666i1) {
+            case 2:
+                super.s0();
+                try {
+                    int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, this.I0);
+                    if (this.G0 != w02) {
+                        O(w02);
+                        return;
+                    }
                     return;
-                } else {
-                    q6Var.dismiss();
+                } catch (Exception e10) {
+                    org.telegram.messenger.a8.g(e10, true);
                     return;
                 }
+            default:
+                super.s0();
+                return;
         }
+    }
+
+    public p6(int i7, Context context, boolean z9) {
+        super(context, z9);
+        this.f48666i1 = i7;
     }
 }

@@ -1,32 +1,22 @@
 package org.telegram.ui.Components;
-public final class xd implements r4 {
-    public final int f40310a;
-    public final ChatActivityEnterView f40311b;
 
-    public xd(ChatActivityEnterView chatActivityEnterView, int i3) {
-        this.f40310a = i3;
-        this.f40311b = chatActivityEnterView;
+import android.view.View;
+import android.view.ViewGroup;
+public final class xd implements View.OnClickListener {
+    public final int f40236a;
+    public final Object f40237b;
+    public final Object f40238c;
+    public final ViewGroup d;
+
+    public xd(int i7, ViewGroup viewGroup, Object obj, Object obj2) {
+        this.f40236a = i7;
+        this.d = viewGroup;
+        this.f40237b = obj;
+        this.f40238c = obj2;
     }
 
     @Override
-    public final void L(int i3, int i10, boolean z10) {
-        switch (this.f40310a) {
-            case 0:
-                this.f40311b.S0(z10, i3, i10, 0L, true);
-                return;
-            case 1:
-                this.f40311b.S0(z10, i3, 0, 0L, true);
-                return;
-            default:
-                ChatActivityEnterView chatActivityEnterView = this.f40311b;
-                boolean S0 = chatActivityEnterView.S0(z10, i3, i10, 0L, true);
-                se seVar = chatActivityEnterView.M0;
-                if (seVar != null) {
-                    seVar.g(!S0);
-                    chatActivityEnterView.M0 = null;
-                    return;
-                }
-                return;
-        }
+    public final void onClick(android.view.View r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.xd.onClick(android.view.View):void");
     }
 }

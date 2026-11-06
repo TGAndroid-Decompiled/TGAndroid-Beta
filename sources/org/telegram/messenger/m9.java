@@ -3,166 +3,105 @@ package org.telegram.messenger;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class m9 {
-    public final int f24176a;
-    public final long f24177b;
-    public final long f24178c;
-    public TL_stars.StarGift d;
-    public TL_stars.TL_StarGiftAuctionUserState f24179e;
-    public TL_stars.TL_starGiftAuctionState f24180f;
-    public TL_stars.TL_starGiftAuctionStateFinished f24181g;
-    public ArrayList h;
-    public int f24182i;
+public final class m9 implements v10 {
+    public final int f23986a;
+    public final c1 f23987b;
+    public final Object f23988c;
+    public final Object d;
+    public final Object f23989e;
 
-    public m9(int i3, TL_stars.StarGift starGift, TL_stars.StarGiftAuctionState starGiftAuctionState, TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState) {
-        long j10;
-        this.f24176a = i3;
-        this.d = starGift;
-        this.f24179e = tL_StarGiftAuctionUserState;
-        this.f24177b = starGift.f27230id;
-        TLRPC.Document document = starGift.sticker;
-        if (document != null) {
-            j10 = document.f27007id;
-        } else {
-            j10 = 0;
-        }
-        this.f24178c = j10;
-        a(starGiftAuctionState);
+    public m9(c1 c1Var, Object obj, Object obj2, Object obj3, int i7) {
+        this.f23986a = i7;
+        this.f23987b = c1Var;
+        this.f23988c = obj;
+        this.d = obj2;
+        this.f23989e = obj3;
     }
 
-    public final boolean a(TL_stars.StarGiftAuctionState starGiftAuctionState) {
-        int i3;
-        if (starGiftAuctionState instanceof TL_stars.TL_starGiftAuctionState) {
-            TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = (TL_stars.TL_starGiftAuctionState) starGiftAuctionState;
-            if (f()) {
-                i3 = Integer.MAX_VALUE;
-            } else {
-                TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState2 = this.f24180f;
-                if (tL_starGiftAuctionState2 != null) {
-                    i3 = tL_starGiftAuctionState2.version;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        Integer num;
+        int i7 = this.f23986a;
+        Object obj3 = this.f23989e;
+        Object obj4 = this.d;
+        Object obj5 = this.f23988c;
+        c1 c1Var = this.f23987b;
+        switch (i7) {
+            case 0:
+                w9 w9Var = (w9) c1Var;
+                ii.g0 g0Var = (ii.g0) obj5;
+                t9 t9Var = (t9) obj4;
+                TLRPC.TL_payments_getPaymentForm tL_payments_getPaymentForm = (TLRPC.TL_payments_getPaymentForm) obj3;
+                TLRPC.PaymentForm paymentForm = (TLRPC.PaymentForm) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                if (tL_error != null) {
+                    g0Var.a(Boolean.FALSE, tL_error.text);
+                    t9Var.f25591f = false;
+                    return;
+                } else if (!(paymentForm instanceof TLRPC.TL_payments_paymentFormStarGift)) {
+                    g0Var.a(Boolean.FALSE, "NO_PAYMENT_FORM");
+                    t9Var.f25591f = false;
+                    return;
                 } else {
-                    i3 = 0;
+                    TL_stars.TL_payments_sendStarsForm tL_payments_sendStarsForm = new TL_stars.TL_payments_sendStarsForm();
+                    tL_payments_sendStarsForm.form_id = ((TLRPC.TL_payments_paymentFormStarGift) paymentForm).form_id;
+                    tL_payments_sendStarsForm.invoice = tL_payments_getPaymentForm.invoice;
+                    w9Var.getConnectionsManager().sendRequestTyped(tL_payments_sendStarsForm, new d3.b(1), new n9(w9Var, t9Var, g0Var));
+                    return;
                 }
-            }
-            if (tL_starGiftAuctionState.version > i3) {
-                this.f24180f = tL_starGiftAuctionState;
-                h();
-                return true;
-            }
-        } else if ((starGiftAuctionState instanceof TL_stars.TL_starGiftAuctionStateFinished) && !f()) {
-            this.f24181g = (TL_stars.TL_starGiftAuctionStateFinished) starGiftAuctionState;
-            return true;
-        }
-        return false;
-    }
-
-    public final long b(int i3) {
-        ArrayList<TL_stars.TL_AuctionBidLevel> arrayList;
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f24180f;
-        if (tL_starGiftAuctionState != null && (arrayList = tL_starGiftAuctionState.bid_levels) != null) {
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel = arrayList.get(i10);
-                i10++;
-                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel2 = tL_AuctionBidLevel;
-                if (i3 <= tL_AuctionBidLevel2.pos) {
-                    return tL_AuctionBidLevel2.amount;
+            case 1:
+                ui uiVar = (ui) c1Var;
+                si siVar = (si) obj5;
+                ti tiVar = (ti) obj4;
+                c20 c20Var = (c20) obj3;
+                TLRPC.messages_FoundStickers messages_foundstickers = (TLRPC.messages_FoundStickers) obj;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                uiVar.P1.remove(siVar);
+                if (tiVar == null) {
+                    tiVar = new ti();
                 }
-            }
-            return e();
-        }
-        return e();
-    }
-
-    public final int c(int i3, long j10) {
-        ArrayList<TL_stars.TL_AuctionBidLevel> arrayList;
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f24180f;
-        if (tL_starGiftAuctionState != null && (arrayList = tL_starGiftAuctionState.bid_levels) != null) {
-            int size = arrayList.size();
-            int i10 = 0;
-            int i11 = 0;
-            while (i11 < size) {
-                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel = arrayList.get(i11);
-                i11++;
-                TL_stars.TL_AuctionBidLevel tL_AuctionBidLevel2 = tL_AuctionBidLevel;
-                long j11 = tL_AuctionBidLevel2.amount;
-                if (j10 <= j11 && (j10 != j11 || i3 > tL_AuctionBidLevel2.date)) {
-                    i10 = tL_AuctionBidLevel2.pos;
-                } else {
-                    return tL_AuctionBidLevel2.pos;
-                }
-            }
-            return i10 + 1;
-        }
-        return -1;
-    }
-
-    public final int d() {
-        TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.f24179e;
-        if (tL_StarGiftAuctionUserState.returned) {
-            return 3;
-        }
-        if (tL_StarGiftAuctionUserState.bid_amount == 0) {
-            return 4;
-        }
-        if (this.f24182i <= this.d.gifts_per_round) {
-            return 1;
-        }
-        return 2;
-    }
-
-    public final long e() {
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f24180f;
-        if (tL_starGiftAuctionState != null) {
-            long j10 = this.f24179e.min_bid_amount;
-            if (j10 > 0) {
-                return Math.max(tL_starGiftAuctionState.min_bid_amount, j10);
-            }
-        }
-        long j11 = this.f24179e.min_bid_amount;
-        if (j11 > 0) {
-            return j11;
-        }
-        if (tL_starGiftAuctionState == null) {
-            return 0L;
-        }
-        return tL_starGiftAuctionState.min_bid_amount;
-    }
-
-    public final boolean f() {
-        if (this.f24181g != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final boolean g(int i3) {
-        if (this.d.auction_start_date > i3) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void h() {
-        TL_stars.TL_starGiftAuctionState tL_starGiftAuctionState = this.f24180f;
-        int i3 = -1;
-        if (tL_starGiftAuctionState != null) {
-            if (tL_starGiftAuctionState.top_bidders != null) {
-                long e10 = h10.i(this.f24176a).e();
-                for (int i10 = 0; i10 < this.f24180f.top_bidders.size(); i10++) {
-                    if (e10 == this.f24180f.top_bidders.get(i10).longValue()) {
-                        i3 = i10 + 1;
-                        break;
+                ArrayList arrayList = tiVar.f25620a;
+                if (messages_foundstickers instanceof TLRPC.TL_messages_foundStickers) {
+                    TLRPC.TL_messages_foundStickers tL_messages_foundStickers = (TLRPC.TL_messages_foundStickers) messages_foundstickers;
+                    arrayList.addAll(tL_messages_foundStickers.stickers);
+                    if ((tL_messages_foundStickers.flags & 1) != 0) {
+                        num = Integer.valueOf(tL_messages_foundStickers.next_offset);
+                    } else {
+                        num = null;
                     }
+                    tiVar.f25621b = num;
                 }
-            }
-            TL_stars.TL_StarGiftAuctionUserState tL_StarGiftAuctionUserState = this.f24179e;
-            long j10 = tL_StarGiftAuctionUserState.bid_amount;
-            if (j10 > 0 && !tL_StarGiftAuctionUserState.returned) {
-                i3 = c(tL_StarGiftAuctionUserState.bid_date, j10);
-            }
+                uiVar.Q1.put(siVar, tiVar);
+                c20Var.a(arrayList);
+                return;
+            default:
+                ui uiVar2 = (ui) c1Var;
+                c20 c20Var2 = (c20) obj4;
+                TLRPC.InputStickerSet inputStickerSet = (TLRPC.InputStickerSet) obj3;
+                Boolean bool = (Boolean) obj;
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
+                uiVar2.I0.remove((String) obj5);
+                if (c20Var2 != null) {
+                    c20Var2.a(tL_messages_stickerSet);
+                }
+                if (tL_messages_stickerSet != null) {
+                    TLRPC.StickerSet stickerSet = tL_messages_stickerSet.set;
+                    if (stickerSet != null) {
+                        uiVar2.I.k(tL_messages_stickerSet, stickerSet.f26979id);
+                        uiVar2.N.put(tL_messages_stickerSet.set.short_name.toLowerCase(), tL_messages_stickerSet);
+                        boolean z9 = inputStickerSet instanceof TLRPC.TL_inputStickerSetEmojiDefaultStatuses;
+                        if (z9) {
+                            uiVar2.O = tL_messages_stickerSet;
+                        }
+                        if (z9) {
+                            uiVar2.P = tL_messages_stickerSet;
+                        }
+                    }
+                    uiVar2.U1(tL_messages_stickerSet);
+                    uiVar2.getNotificationCenter().k(64, Long.valueOf(tL_messages_stickerSet.set.f26979id), tL_messages_stickerSet);
+                    return;
+                }
+                return;
         }
-        this.f24182i = i3;
     }
 }

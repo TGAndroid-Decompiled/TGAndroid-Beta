@@ -1,8 +1,19 @@
 package org.telegram.messenger;
 
-import android.location.Location;
-public interface uy {
-    void B(Location location);
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class uy implements RequestDelegate {
+    public final TLRPC.TL_messages_initHistoryImport f25910a;
+    public final xy f25911b;
 
-    void y();
+    public uy(xy xyVar, TLRPC.TL_messages_initHistoryImport tL_messages_initHistoryImport) {
+        this.f25911b = xyVar;
+        this.f25910a = tL_messages_initHistoryImport;
+    }
+
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        g0.h3(new em(this, tLObject, this.f25910a, tL_error, 25));
+    }
 }

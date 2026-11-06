@@ -1,46 +1,62 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.text.TextPaint;
 import android.view.View;
-public final class a41 {
-    public final org.telegram.ui.Components.hz f43593a;
-    public og.f f43594b;
-    public final int f43595c;
-    public final b41 d;
+import android.widget.FrameLayout;
+public final class a41 extends org.telegram.ui.Components.h61 {
+    public final boolean f43539a;
+    public final boolean f43540b;
+    public final boolean f43541c;
+    public final FrameLayout d;
+    public final c51 f43542e;
 
-    public a41(b41 b41Var, int i3) {
-        this.d = b41Var;
-        this.f43595c = i3;
-        ?? view = new View(b41Var.getContext());
-        view.f34541c = true;
-        TextPaint textPaint = new TextPaint(1);
-        view.f34542e = textPaint;
-        view.f34543f = new Paint(1);
-        Paint paint = new Paint(1);
-        view.h = paint;
-        Paint paint2 = new Paint(1);
-        view.f34544n = paint2;
-        view.f34548x = org.telegram.messenger.g0.L(35.0f);
-        view.f34549y = org.telegram.messenger.g0.L(22.0f);
-        view.E = org.telegram.messenger.g0.L(8.0f);
-        view.F = org.telegram.messenger.g0.L(3.5f);
-        view.G = new RectF();
-        view.H = 0.0f;
-        textPaint.setTextSize(org.telegram.messenger.g0.L(14.0f));
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
-        paint.setStrokeWidth(org.telegram.messenger.g0.N(1.5f));
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint2.setStyle(style);
-        paint2.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        this.f43593a = view;
-        view.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
-        b41Var.h.addView(view);
-        b41Var.f43922n.add(this);
+    public a41(c51 c51Var, boolean z9, boolean z10, boolean z11, FrameLayout frameLayout) {
+        this.f43542e = c51Var;
+        this.f43539a = z9;
+        this.f43540b = z10;
+        this.f43541c = z11;
+        this.d = frameLayout;
+    }
+
+    @Override
+    public final View d(int i7) {
+        c51 c51Var = this.f43542e;
+        if (c51Var.f44661n0) {
+            return c51Var.f44656i0;
+        }
+        boolean z9 = this.f43539a;
+        FrameLayout frameLayout = this.d;
+        if (z9) {
+            if (i7 == 0) {
+                return frameLayout;
+            }
+            i7--;
+        }
+        if (this.f43540b) {
+            if (i7 == 0) {
+                return c51Var.f44656i0;
+            }
+            i7--;
+        }
+        if (this.f43541c && i7 == 0) {
+            return c51Var.f44657j0;
+        }
+        return frameLayout;
+    }
+
+    @Override
+    public final int e() {
+        if (this.f43542e.f44661n0) {
+            return 1;
+        }
+        return (this.f43539a ? 1 : 0) + (this.f43540b ? 1 : 0) + (this.f43541c ? 1 : 0);
+    }
+
+    @Override
+    public final int h(int i7) {
+        return i7;
+    }
+
+    @Override
+    public final void b(View view, int i7, int i10) {
     }
 }

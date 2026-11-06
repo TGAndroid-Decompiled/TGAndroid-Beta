@@ -6,10 +6,10 @@ public final class CandidatePairChangeEvent {
     public final String reason;
     public final IceCandidate remote;
 
-    public CandidatePairChangeEvent(IceCandidate iceCandidate, IceCandidate iceCandidate2, int i3, String str, int i10) {
+    public CandidatePairChangeEvent(IceCandidate iceCandidate, IceCandidate iceCandidate2, int i7, String str, int i10) {
         this.local = iceCandidate;
         this.remote = iceCandidate2;
-        this.lastDataReceivedMs = i3;
+        this.lastDataReceivedMs = i7;
         this.reason = str;
         this.estimatedDisconnectedTimeMs = i10;
     }

@@ -1,20 +1,41 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
-import android.view.ViewGroup;
-public final class q20 extends Paint {
-    public final x30 f48737a;
+import android.widget.LinearLayout;
+public final class q20 extends LinearLayout {
+    public boolean f49054a;
+    public final org.telegram.ui.Components.hb0 f49055b;
+    public final m20 f49056c;
+    public final n20 d;
 
-    public q20(x30 x30Var) {
-        this.f48737a = x30Var;
+    public q20(LaunchActivity launchActivity, org.telegram.ui.Components.hb0 hb0Var, m20 m20Var, n20 n20Var) {
+        super(launchActivity);
+        this.f49055b = hb0Var;
+        this.f49056c = m20Var;
+        this.d = n20Var;
+        this.f49054a = false;
     }
 
     @Override
-    public final void setAlpha(int i3) {
-        super.setAlpha(i3);
-        ViewGroup viewGroup = this.f48737a.f28586b;
-        if (viewGroup != null) {
-            viewGroup.invalidate();
+    public final void onMeasure(int i7, int i10) {
+        this.f49054a = true;
+        org.telegram.ui.Components.hb0 hb0Var = this.f49055b;
+        hb0Var.setItemCount(5);
+        m20 m20Var = this.f49056c;
+        m20Var.setItemCount(5);
+        n20 n20Var = this.d;
+        n20Var.setItemCount(5);
+        hb0Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
+        m20Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
+        n20Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
+        this.f49054a = false;
+        super.onMeasure(i7, i10);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f49054a) {
+            return;
         }
+        super.requestLayout();
     }
 }

@@ -1,56 +1,27 @@
 package ii;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class b implements RequestDelegate {
-    public final int f14832a;
-    public final k f14833b;
-    public final org.telegram.ui.ActionBar.s1 f14834c;
+import ai.f1;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.messenger.a20;
+import org.telegram.messenger.wr;
+import org.telegram.ui.Components.r31;
+public final class b implements a20, wr {
+    public final f f15486a;
 
-    public b(k kVar, org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        this.f14832a = i3;
-        this.f14833b = kVar;
-        this.f14834c = s1Var;
+    @Override
+    public void a(String str) {
+        f fVar = this.f15486a;
+        fVar.getMessagesController().M0(Long.valueOf(-fVar.f15523b));
+        fVar.showDialog(new ki.a(fVar.getParentActivity(), null, fVar.f15523b, new f1(21, fVar, str)));
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f14832a) {
-            case 0:
-                final k kVar = this.f14833b;
-                final org.telegram.ui.ActionBar.s1 s1Var = this.f14834c;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r5) {
-                            case 0:
-                                k.B0(kVar, s1Var, tLObject, tL_error);
-                                return;
-                            default:
-                                k.C0(kVar, s1Var, tLObject, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
-            default:
-                final k kVar2 = this.f14833b;
-                final org.telegram.ui.ActionBar.s1 s1Var2 = this.f14834c;
-                org.telegram.messenger.g0.h3(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r5) {
-                            case 0:
-                                k.B0(kVar2, s1Var2, tLObject, tL_error);
-                                return;
-                            default:
-                                k.C0(kVar2, s1Var2, tLObject, tL_error);
-                                return;
-                        }
-                    }
-                });
-                return;
-        }
+    public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
+        View view = (View) obj2;
+        Integer num = (Integer) number;
+        Float f10 = (Float) serializable;
+        Float f11 = (Float) serializable2;
+        f.Z(this.f15486a, (r31) obj);
     }
 }

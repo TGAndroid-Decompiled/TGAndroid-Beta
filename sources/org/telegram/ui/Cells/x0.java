@@ -4,28 +4,28 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import java.util.Comparator;
 public final class x0 implements Comparator {
-    public final int f30836a;
-    public final Spanned f30837b;
+    public final int f30758a;
+    public final Spanned f30759b;
 
-    public x0(Spanned spanned, int i3) {
-        this.f30836a = i3;
-        this.f30837b = spanned;
+    public x0(Spanned spanned, int i7) {
+        this.f30758a = i7;
+        this.f30759b = spanned;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int spanStart;
         int spanStart2;
-        switch (this.f30836a) {
+        switch (this.f30758a) {
             case 0:
-                Spanned spanned = this.f30837b;
-                spanStart = spanned.getSpanStart((oi.h) obj2);
-                spanStart2 = spanned.getSpanStart((oi.h) obj);
+                Spanned spanned = this.f30759b;
+                spanStart = spanned.getSpanStart((ni.j) obj2);
+                spanStart2 = spanned.getSpanStart((ni.j) obj);
                 break;
             default:
-                SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) this.f30837b;
-                spanStart = spannableStringBuilder.getSpanStart((n9) obj2);
-                spanStart2 = spannableStringBuilder.getSpanStart((n9) obj);
+                SpannableStringBuilder spannableStringBuilder = (SpannableStringBuilder) this.f30759b;
+                spanStart = spannableStringBuilder.getSpanStart((o9) obj2);
+                spanStart2 = spannableStringBuilder.getSpanStart((o9) obj);
                 break;
         }
         return spanStart - spanStart2;

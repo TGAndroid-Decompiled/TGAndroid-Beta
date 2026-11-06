@@ -8,8 +8,8 @@ public abstract class r0 {
         return new WindowInsetsAnimation.Bounds(insets, insets2);
     }
 
-    public static WindowInsetsAnimation b(int i3, long j10, Interpolator interpolator) {
-        return new WindowInsetsAnimation(i3, interpolator, j10);
+    public static WindowInsetsAnimation b(int i7, long j3, Interpolator interpolator) {
+        return new WindowInsetsAnimation(i7, interpolator, j3);
     }
 
     public static void c() {

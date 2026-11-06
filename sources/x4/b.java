@@ -1,9 +1,8 @@
 package x4;
+public final class b {
+    public final String f58502a;
 
-import android.content.Context;
-import java.util.List;
-public interface b {
-    List a();
-
-    Object b(Context context);
+    public b(String str) {
+        this.f58502a = str;
+    }
 }

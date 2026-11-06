@@ -7,44 +7,44 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.SparseArray;
 public final class f4 extends e6 {
-    public static final Paint f22443i = new Paint(2);
-    public static final Rect f22444j = new Rect();
-    public g4 f22445c;
+    public static final Paint f22334i = new Paint(2);
+    public static final Rect f22335j = new Rect();
+    public g4 f22336c;
     public g4 d;
-    public org.telegram.ui.Components.u5 f22446e;
-    public org.telegram.ui.Components.u5 f22447f;
-    public g4 f22448g;
+    public org.telegram.ui.Components.w5 f22337e;
+    public org.telegram.ui.Components.w5 f22338f;
+    public g4 f22339g;
     public g4 h;
 
     public static void c(Canvas canvas, g4 g4Var, Rect rect, float f10) {
         Paint paint;
-        int i3;
-        Bitmap bitmap = (Bitmap) g4.f22633e.get(g4Var.f22637c);
+        int i7;
+        Bitmap bitmap = (Bitmap) g4.f22564e.get(g4Var.f22568c);
         if (bitmap != null) {
             if (g4Var.d) {
-                paint = h4.f22884b;
+                paint = h4.f22828b;
             } else {
-                paint = f22443i;
+                paint = f22334i;
             }
             int i10 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
             if (i10 < 0) {
-                i3 = paint.getAlpha();
-                paint.setAlpha((int) (i3 * f10));
+                i7 = paint.getAlpha();
+                paint.setAlpha((int) (i7 * f10));
             } else {
-                i3 = 255;
+                i7 = 255;
             }
             canvas.drawBitmap(bitmap, (Rect) null, rect, paint);
             if (i10 < 0) {
-                paint.setAlpha(i3);
+                paint.setAlpha(i7);
             }
         }
     }
 
     @Override
     public final boolean a() {
-        g4 g4Var = this.f22445c;
-        SparseArray sparseArray = g4.f22633e;
-        if (sparseArray.indexOfKey(g4Var.f22637c) >= 0 && sparseArray.indexOfKey(this.d.f22637c) >= 0) {
+        g4 g4Var = this.f22336c;
+        SparseArray sparseArray = g4.f22564e;
+        if (sparseArray.indexOfKey(g4Var.f22568c) >= 0 && sparseArray.indexOfKey(this.d.f22568c) >= 0) {
             return true;
         }
         return false;
@@ -53,7 +53,7 @@ public final class f4 extends e6 {
     @Override
     public final void b() {
         if (!a()) {
-            this.f22445c.a();
+            this.f22336c.a();
             this.d.a();
         }
     }
@@ -61,71 +61,71 @@ public final class f4 extends e6 {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds;
-        int i3;
+        int i7;
         int i10;
         int i11;
         int i12;
         if (!a()) {
             b();
             Paint paint = i6.d;
-            paint.setColor(this.f22320b);
+            paint.setColor(this.f22161b);
             Rect bounds2 = getBounds();
             canvas.drawCircle(bounds2.centerX(), bounds2.centerY(), bounds2.width() * 0.4f, paint);
             return;
         }
-        if (this.f22319a) {
+        if (this.f22160a) {
             Rect bounds3 = getBounds();
             int centerX = bounds3.centerX();
             int centerY = bounds3.centerY();
-            boolean z10 = this.f22319a;
-            if (z10) {
-                i3 = i6.f23448c;
+            boolean z9 = this.f22160a;
+            if (z9) {
+                i7 = i6.f23057c;
             } else {
-                i3 = i6.f23447b;
+                i7 = i6.f23056b;
             }
-            bounds = f22444j;
-            bounds.left = centerX - (i3 / 2);
-            if (z10) {
-                i10 = i6.f23448c;
+            bounds = f22335j;
+            bounds.left = centerX - (i7 / 2);
+            if (z9) {
+                i10 = i6.f23057c;
             } else {
-                i10 = i6.f23447b;
+                i10 = i6.f23056b;
             }
             bounds.right = (i10 / 2) + centerX;
-            if (z10) {
-                i11 = i6.f23448c;
+            if (z9) {
+                i11 = i6.f23057c;
             } else {
-                i11 = i6.f23447b;
+                i11 = i6.f23056b;
             }
             bounds.top = centerY - (i11 / 2);
-            if (z10) {
-                i12 = i6.f23448c;
+            if (z9) {
+                i12 = i6.f23057c;
             } else {
-                i12 = i6.f23447b;
+                i12 = i6.f23056b;
             }
             bounds.bottom = (i12 / 2) + centerY;
         } else {
             bounds = getBounds();
         }
         if (!canvas.quickReject(bounds.left, bounds.top, bounds.right, bounds.bottom, Canvas.EdgeType.AA)) {
-            if (this.f22448g != null) {
-                if (this.f22446e == null) {
-                    this.f22446e = new org.telegram.ui.Components.u5(0.0f, new a(this, 4), 0L, 320L, org.telegram.ui.Components.xq.f40453g);
+            if (this.f22339g != null) {
+                if (this.f22337e == null) {
+                    this.f22337e = new org.telegram.ui.Components.w5(0.0f, new a(this, 4), 0L, 320L, org.telegram.ui.Components.xq.f40311g);
                 }
-                float e10 = this.f22446e.e(false, 1.0f);
-                c(canvas, this.f22448g, bounds, Math.min(1.0f, e10 * 1.5f));
-                c(canvas, this.f22445c, bounds, 1.0f - e10);
+                float e10 = this.f22337e.e(false, 1.0f);
+                c(canvas, this.f22339g, bounds, Math.min(1.0f, e10 * 1.5f));
+                c(canvas, this.f22336c, bounds, 1.0f - e10);
                 if (e10 >= 1.0f) {
-                    this.f22445c = this.f22448g;
-                    this.f22448g = null;
+                    this.f22336c = this.f22339g;
+                    this.f22339g = null;
                 }
             } else {
-                c(canvas, this.f22445c, bounds, 1.0f);
+                c(canvas, this.f22336c, bounds, 1.0f);
             }
             if (this.h != null) {
-                if (this.f22447f == null) {
-                    this.f22447f = new org.telegram.ui.Components.u5(0.0f, new a(this, 4), 0L, 320L, org.telegram.ui.Components.xq.f40453g);
+                if (this.f22338f == null) {
+                    this.f22338f = new org.telegram.ui.Components.w5(0.0f, new a(this, 4), 0L, 320L, org.telegram.ui.Components.xq.f40311g);
                 }
-                float e11 = this.f22447f.e(false, 1.0f);
+                float e11 = this.f22338f.e(false, 1.0f);
                 c(canvas, this.h, bounds, Math.min(1.0f, 1.5f * e11));
                 c(canvas, this.d, bounds, 1.0f - e11);
                 if (e11 >= 1.0f) {
@@ -145,8 +145,8 @@ public final class f4 extends e6 {
     }
 
     @Override
-    public final void setAlpha(int i3) {
-        f22443i.setAlpha(i3);
+    public final void setAlpha(int i7) {
+        f22334i.setAlpha(i7);
     }
 
     @Override

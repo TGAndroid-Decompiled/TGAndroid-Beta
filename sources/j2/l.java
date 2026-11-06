@@ -1,303 +1,108 @@
 package j2;
 
-import b8.zb;
-import java.util.ArrayDeque;
-public abstract class l implements e {
-    public final k f16163a;
-    public final h[] f16166e;
-    public final j[] f16167f;
-    public int f16168g;
-    public int h;
-    public h f16169i;
-    public f f16170j;
-    public boolean f16171k;
-    public boolean f16172l;
-    public int f16173m;
-    public final Object f16164b = new Object();
-    public long f16174n = -9223372036854775807L;
-    public final ArrayDeque f16165c = new ArrayDeque();
-    public final ArrayDeque d = new ArrayDeque();
+import a8.ia;
+import android.net.Uri;
+import e2.s0;
+import e2.t0;
+import f3.j0;
+import h2.m0;
+import java.math.RoundingMode;
+import java.util.Map;
+public final class l implements n4.b {
+    public int f16439a;
+    public long f16440b;
+    public int f16441c;
+    public long d;
+    public Object f16442e;
+    public Object f16443f;
+    public Object f16444g;
+    public Object h;
 
-    public l(h[] hVarArr, j[] jVarArr) {
-        this.f16166e = hVarArr;
-        this.f16168g = hVarArr.length;
-        for (int i3 = 0; i3 < this.f16168g; i3++) {
-            this.f16166e[i3] = f();
+    public l(f3.q qVar, j0 j0Var, i2.s sVar, String str, int i7) {
+        this.f16442e = qVar;
+        this.f16443f = j0Var;
+        this.f16444g = sVar;
+        int i10 = sVar.f15220a;
+        int i11 = sVar.f15221b;
+        int i12 = (sVar.d * i10) / 8;
+        int i13 = sVar.f15222c;
+        if (i13 == i12) {
+            int i14 = i11 * i12;
+            int i15 = i14 * 8;
+            int max = Math.max(i12, i14 / 10);
+            this.f16439a = max;
+            e2.t tVar = new e2.t();
+            tVar.f10562q = s0.n("audio/wav");
+            tVar.f10563r = s0.n(str);
+            tVar.h = i15;
+            tVar.f10554i = i15;
+            tVar.f10564s = max;
+            tVar.J = i10;
+            tVar.K = i11;
+            tVar.L = i7;
+            this.h = new e2.u(tVar);
+            return;
         }
-        this.f16167f = jVarArr;
-        this.h = jVarArr.length;
-        for (int i10 = 0; i10 < this.h; i10++) {
-            this.f16167f[i10] = g();
-        }
-        k kVar = new k(this);
-        this.f16163a = kVar;
-        kVar.start();
+        throw t0.a(null, "Expected block size: " + i12 + "; got: " + i13);
     }
 
     @Override
-    public final void a(long j10) {
-        boolean z10;
-        synchronized (this.f16164b) {
-            try {
-                if (this.f16168g != this.f16166e.length && !this.f16171k) {
-                    z10 = false;
-                    zb.p(z10);
-                    this.f16174n = j10;
-                }
-                z10 = true;
-                zb.p(z10);
-                this.f16174n = j10;
-            } catch (Throwable th2) {
-                throw th2;
+    public boolean a(f3.p pVar, long j3) {
+        int i7;
+        int i10;
+        int i11;
+        long j10 = j3;
+        while (true) {
+            i7 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
+            if (i7 <= 0 || (i10 = this.f16441c) >= (i11 = this.f16439a)) {
+                break;
             }
-        }
-    }
-
-    @Override
-    public final Object d() {
-        boolean z10;
-        h hVar;
-        synchronized (this.f16164b) {
-            try {
-                f fVar = this.f16170j;
-                if (fVar == null) {
-                    if (this.f16169i == null) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    zb.p(z10);
-                    int i3 = this.f16168g;
-                    if (i3 == 0) {
-                        hVar = null;
-                    } else {
-                        h[] hVarArr = this.f16166e;
-                        int i10 = i3 - 1;
-                        this.f16168g = i10;
-                        hVar = hVarArr[i10];
-                    }
-                    this.f16169i = hVar;
-                } else {
-                    throw fVar;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        return hVar;
-    }
-
-    public abstract h f();
-
-    @Override
-    public final void flush() {
-        synchronized (this.f16164b) {
-            try {
-                this.f16171k = true;
-                this.f16173m = 0;
-                h hVar = this.f16169i;
-                if (hVar != null) {
-                    hVar.clear();
-                    h[] hVarArr = this.f16166e;
-                    int i3 = this.f16168g;
-                    this.f16168g = i3 + 1;
-                    hVarArr[i3] = hVar;
-                    this.f16169i = null;
-                }
-                while (!this.f16165c.isEmpty()) {
-                    h hVar2 = (h) this.f16165c.removeFirst();
-                    hVar2.clear();
-                    h[] hVarArr2 = this.f16166e;
-                    int i10 = this.f16168g;
-                    this.f16168g = i10 + 1;
-                    hVarArr2[i10] = hVar2;
-                }
-                while (!this.d.isEmpty()) {
-                    ((j) this.d.removeFirst()).release();
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-    }
-
-    public abstract j g();
-
-    public abstract f h(Throwable th2);
-
-    public abstract f i(h hVar, j jVar, boolean z10);
-
-    public final boolean j() {
-        f h;
-        boolean z10;
-        synchronized (this.f16164b) {
-            while (!this.f16172l) {
-                try {
-                    if (!this.f16165c.isEmpty() && this.h > 0) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    if (z10) {
-                        break;
-                    }
-                    this.f16164b.wait();
-                } finally {
-                }
-            }
-            if (this.f16172l) {
-                return false;
-            }
-            h hVar = (h) this.f16165c.removeFirst();
-            j[] jVarArr = this.f16167f;
-            int i3 = this.h - 1;
-            this.h = i3;
-            j jVar = jVarArr[i3];
-            boolean z11 = this.f16171k;
-            this.f16171k = false;
-            if (hVar.isEndOfStream()) {
-                jVar.addFlag(4);
+            int e10 = ((j0) this.f16443f).e(pVar, (int) Math.min(i11 - i10, j10), true);
+            if (e10 == -1) {
+                j10 = 0;
             } else {
-                jVar.timeUs = hVar.f16158e;
-                if (hVar.isFirstSample()) {
-                    jVar.addFlag(134217728);
-                }
-                if (!l(hVar.f16158e)) {
-                    jVar.shouldBeSkipped = true;
-                }
-                try {
-                    h = i(hVar, jVar, z11);
-                } catch (OutOfMemoryError e10) {
-                    h = h(e10);
-                } catch (RuntimeException e11) {
-                    h = h(e11);
-                }
-                if (h != null) {
-                    synchronized (this.f16164b) {
-                        this.f16170j = h;
-                    }
-                    return false;
-                }
+                this.f16441c += e10;
+                j10 -= e10;
             }
-            synchronized (this.f16164b) {
-                try {
-                    if (this.f16171k) {
-                        jVar.release();
-                    } else if (jVar.shouldBeSkipped) {
-                        this.f16173m++;
-                        jVar.release();
-                    } else {
-                        jVar.skippedOutputBufferCount = this.f16173m;
-                        this.f16173m = 0;
-                        this.d.addLast(jVar);
-                    }
-                    hVar.clear();
-                    h[] hVarArr = this.f16166e;
-                    int i10 = this.f16168g;
-                    this.f16168g = i10 + 1;
-                    hVarArr[i10] = hVar;
-                } finally {
-                }
-            }
+        }
+        i2.s sVar = (i2.s) this.f16444g;
+        int i12 = sVar.f15222c;
+        int i13 = this.f16441c / i12;
+        if (i13 > 0) {
+            long j11 = this.f16440b;
+            long j12 = this.d;
+            long j13 = sVar.f15221b;
+            String str = m0.f14112a;
+            int i14 = i13 * i12;
+            int i15 = this.f16441c - i14;
+            ((j0) this.f16443f).c(j11 + m0.a0(j12, 1000000L, j13, RoundingMode.DOWN), 1, i14, i15, null);
+            this.d += i13;
+            this.f16441c = i15;
+        }
+        if (i7 <= 0) {
             return true;
         }
+        return false;
     }
 
     @Override
-    public final j c() {
-        synchronized (this.f16164b) {
-            try {
-                f fVar = this.f16170j;
-                if (fVar == null) {
-                    if (this.d.isEmpty()) {
-                        return null;
-                    }
-                    return (j) this.d.removeFirst();
-                }
-                throw fVar;
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-    }
-
-    public final boolean l(long j10) {
-        boolean z10;
-        synchronized (this.f16164b) {
-            long j11 = this.f16174n;
-            if (j11 != -9223372036854775807L && j10 < j11) {
-                z10 = false;
-            }
-            z10 = true;
-        }
-        return z10;
+    public void b(long j3) {
+        this.f16440b = j3;
+        this.f16441c = 0;
+        this.d = 0L;
     }
 
     @Override
-    public final void e(h hVar) {
-        boolean z10;
-        synchronized (this.f16164b) {
-            try {
-                f fVar = this.f16170j;
-                if (fVar == null) {
-                    if (hVar == this.f16169i) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    zb.f(z10);
-                    this.f16165c.addLast(hVar);
-                    if (!this.f16165c.isEmpty() && this.h > 0) {
-                        this.f16164b.notify();
-                    }
-                    this.f16169i = null;
-                } else {
-                    throw fVar;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    public void c(int i7, long j3) {
+        n4.e eVar = new n4.e((i2.s) this.f16444g, 1, i7, j3);
+        ((f3.q) this.f16442e).f(eVar);
+        j0 j0Var = (j0) this.f16443f;
+        j0Var.g((e2.u) this.h);
+        j0Var.d(eVar.f20398e);
     }
 
-    public final void n(j jVar) {
-        synchronized (this.f16164b) {
-            jVar.clear();
-            j[] jVarArr = this.f16167f;
-            int i3 = this.h;
-            this.h = i3 + 1;
-            jVarArr[i3] = jVar;
-            if (!this.f16165c.isEmpty() && this.h > 0) {
-                this.f16164b.notify();
-            }
-        }
-    }
-
-    public final void o(int i3) {
-        boolean z10;
-        int i10 = this.f16168g;
-        h[] hVarArr = this.f16166e;
-        if (i10 == hVarArr.length) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        zb.p(z10);
-        for (h hVar : hVarArr) {
-            hVar.b(i3);
-        }
-    }
-
-    @Override
-    public void release() {
-        synchronized (this.f16164b) {
-            this.f16172l = true;
-            this.f16164b.notify();
-        }
-        try {
-            this.f16163a.join();
-        } catch (InterruptedException unused) {
-            Thread.currentThread().interrupt();
-        }
+    public m d() {
+        ia.k((Uri) this.f16442e, "The uri must be set.");
+        return new m((Uri) this.f16442e, this.f16439a, (byte[]) this.f16443f, (Map) this.f16444g, this.f16440b, this.d, (String) this.h, this.f16441c);
     }
 }

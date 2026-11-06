@@ -1,23 +1,23 @@
 package org.scilab.forge.jlatexmath;
 
-import a1.g;
+import a8.p0;
 import java.util.HashMap;
 public class NewCommandMacro {
     protected static HashMap<String, String> macrocode = new HashMap<>();
     protected static HashMap<String, String> macroreplacement = new HashMap<>();
 
-    public static void addNewCommand(String str, String str2, int i3) {
+    public static void addNewCommand(String str, String str2, int i7) {
         macrocode.put(str, str2);
-        MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i3));
+        MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i7));
     }
 
-    public static void addReNewCommand(String str, String str2, int i3) {
+    public static void addReNewCommand(String str, String str2, int i7) {
         if (macrocode.get(str) != null) {
             macrocode.put(str, str2);
-            MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i3));
+            MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i7));
             return;
         }
-        throw new ParseException(g.q("Command ", str, " is not defined ! Use newcommand instead ..."));
+        throw new ParseException(p0.p("Command ", str, " is not defined ! Use newcommand instead ..."));
     }
 
     public static boolean isMacro(String str) {
@@ -33,13 +33,13 @@ public class NewCommandMacro {
         throw new UnsupportedOperationException("Method not decompiled: org.scilab.forge.jlatexmath.NewCommandMacro.executeMacro(org.scilab.forge.jlatexmath.TeXParser, java.lang.String[]):java.lang.String");
     }
 
-    public static void addNewCommand(String str, String str2, int i3, String str3) {
+    public static void addNewCommand(String str, String str2, int i7, String str3) {
         if (macrocode.get(str) == null) {
             macrocode.put(str, str2);
             macroreplacement.put(str, str3);
-            MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i3, 1.0f));
+            MacroInfo.Commands.put(str, new MacroInfo("org.scilab.forge.jlatexmath.NewCommandMacro", "executeMacro", i7, 1.0f));
             return;
         }
-        throw new ParseException(g.q("Command ", str, " already exists ! Use renewcommand instead ..."));
+        throw new ParseException(p0.p("Command ", str, " already exists ! Use renewcommand instead ..."));
     }
 }

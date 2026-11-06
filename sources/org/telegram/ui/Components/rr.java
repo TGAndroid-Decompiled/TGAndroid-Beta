@@ -1,21 +1,21 @@
 package org.telegram.ui.Components;
 public final class rr implements Runnable {
-    public final int f37780a;
-    public final vr f37781b;
+    public final int f37821a;
+    public final vr f37822b;
 
-    public rr(vr vrVar, int i3) {
-        this.f37780a = i3;
-        this.f37781b = vrVar;
+    public rr(vr vrVar, int i7) {
+        this.f37821a = i7;
+        this.f37822b = vrVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f37780a) {
+        switch (this.f37821a) {
             case 0:
-                this.f37781b.X(false);
+                this.f37822b.X(false);
                 return;
             default:
-                this.f37781b.O(true);
+                this.f37822b.O(true);
                 return;
         }
     }

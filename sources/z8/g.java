@@ -1,31 +1,19 @@
 package z8;
-public final class g implements Runnable {
-    public final int f60156a;
-    public final d f60157b;
 
-    public g(d dVar, q6.a aVar, int i3) {
-        this.f60156a = i3;
-        this.f60157b = dVar;
-    }
+import android.os.Parcel;
+import android.os.Parcelable;
+import c8.wb;
+import y8.v;
+public final class g extends r6.a {
+    public static final Parcelable.Creator<g> CREATOR = new v(14);
+    public String f59893a;
+    public String f59894b;
 
     @Override
-    public final void run() {
-        switch (this.f60156a) {
-            case 0:
-                this.f60157b.f60152c.getClass();
-                return;
-            case 1:
-                this.f60157b.f60152c.getClass();
-                return;
-            case 2:
-                this.f60157b.f60152c.getClass();
-                return;
-            case 3:
-                this.f60157b.f60152c.getClass();
-                return;
-            default:
-                this.f60157b.f60152c.getClass();
-                return;
-        }
+    public final void writeToParcel(Parcel parcel, int i7) {
+        int r10 = wb.r(parcel, 20293);
+        wb.l(parcel, 2, this.f59893a);
+        wb.l(parcel, 3, this.f59894b);
+        wb.s(parcel, r10);
     }
 }

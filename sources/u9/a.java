@@ -1,40 +1,66 @@
 package u9;
 
-import java.io.File;
-public final class a implements Runnable {
-    public final int f55743a;
-    public final Object f55744b;
-    public final Object f55745c;
+import c8.sc;
+import e2.j0;
+import j$.util.DesugarCollections;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+public final class a {
+    public final String f56338a;
+    public final Set f56339b;
+    public final Set f56340c;
+    public final int d;
+    public final int f56341e;
+    public final d f56342f;
+    public final Set f56343g;
 
-    public a(int i3, Object obj, Object obj2) {
-        this.f55743a = i3;
-        this.f55744b = obj;
-        this.f55745c = obj2;
+    public a(String str, Set set, Set set2, int i7, int i10, d dVar, Set set3) {
+        this.f56338a = str;
+        this.f56339b = DesugarCollections.unmodifiableSet(set);
+        this.f56340c = DesugarCollections.unmodifiableSet(set2);
+        this.d = i7;
+        this.f56341e = i10;
+        this.f56342f = dVar;
+        this.f56343g = DesugarCollections.unmodifiableSet(set3);
     }
 
-    private final void a() {
-        vi.j jVar = (vi.j) this.f55744b;
-        File file = (File) this.f55745c;
-        synchronized (jVar.f56991m) {
-            for (int i3 = 0; i3 < jVar.f56991m.size(); i3++) {
-                try {
-                    File file2 = (File) jVar.f56991m.get(i3);
-                    if (file != null && file.equals(file2)) {
-                    }
-                    if (file2.exists() && !file2.delete()) {
-                        vi.b bVar = jVar.h;
-                        bVar.b("temporary file deletion failed: " + file2.getName());
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
-            jVar.f56991m.clear();
+    public static j0 a(Class cls) {
+        return new j0(cls, new Class[0]);
+    }
+
+    public static j0 b(q qVar) {
+        q[] qVarArr = new q[0];
+        ?? obj = new Object();
+        obj.d = null;
+        HashSet hashSet = new HashSet();
+        obj.f10290c = hashSet;
+        obj.f10291e = new HashSet();
+        obj.f10288a = 0;
+        obj.f10289b = 0;
+        obj.f10293g = new HashSet();
+        hashSet.add(qVar);
+        for (q qVar2 : qVarArr) {
+            sc.a(qVar2, "Null interface");
         }
+        Collections.addAll((HashSet) obj.f10290c, qVarArr);
+        return obj;
     }
 
-    @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: u9.a.run():void");
+    public static a c(Object obj, Class cls, Class... clsArr) {
+        HashSet hashSet = new HashSet();
+        HashSet hashSet2 = new HashSet();
+        HashSet hashSet3 = new HashSet();
+        hashSet.add(q.a(cls));
+        for (Class cls2 : clsArr) {
+            sc.a(cls2, "Null interface");
+            hashSet.add(q.a(cls2));
+        }
+        return new a(null, new HashSet(hashSet), new HashSet(hashSet2), 0, 0, new u5.e(obj, 1), hashSet3);
+    }
+
+    public final String toString() {
+        return "Component<" + Arrays.toString(this.f56339b.toArray()) + ">{" + this.d + ", type=" + this.f56341e + ", deps=" + Arrays.toString(this.f56340c.toArray()) + "}";
     }
 }

@@ -1,14 +1,14 @@
 package org.telegram.utils.twidget;
 public final class o {
-    public final int f52936a;
-    public final long f52937b;
-    public long f52938c;
-    public int f52939e;
+    public final int f52845a;
+    public final long f52846b;
+    public long f52847c;
+    public int f52848e;
     public int d = 30;
-    public final l f52940f = new l(this, 1);
+    public final l f52849f = new l(this, 1);
 
-    public o(int i3, long j10) {
-        this.f52936a = i3;
-        this.f52937b = j10;
+    public o(int i7, long j3) {
+        this.f52845a = i7;
+        this.f52846b = j3;
     }
 }

@@ -1,20 +1,20 @@
 package org.telegram.utils.twidget;
 public final class g0 {
-    public final g f52857a;
-    public final float[] f52858b;
-    public final float[] f52859c;
+    public final g f52766a;
+    public final float[] f52767b;
+    public final float[] f52768c;
     public final double d;
-    public final double f52860e;
-    public final boolean f52861f;
-    public final float[] f52862g;
+    public final double f52769e;
+    public final boolean f52770f;
+    public final float[] f52771g;
 
-    public g0(g gVar, float[] fArr, float[] fArr2, double d, double d10, boolean z10, float[] fArr3) {
-        this.f52857a = gVar;
-        this.f52858b = fArr;
-        this.f52859c = fArr2;
+    public g0(g gVar, float[] fArr, float[] fArr2, double d, double d2, boolean z9, float[] fArr3) {
+        this.f52766a = gVar;
+        this.f52767b = fArr;
+        this.f52768c = fArr2;
         this.d = d;
-        this.f52860e = d10;
-        this.f52861f = z10;
-        this.f52862g = fArr3;
+        this.f52769e = d2;
+        this.f52770f = z9;
+        this.f52771g = fArr3;
     }
 }

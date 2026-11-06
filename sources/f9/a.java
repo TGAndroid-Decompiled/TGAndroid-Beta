@@ -1,29 +1,21 @@
 package f9;
-public final class a extends i {
-    public final i f11499a;
-    public final i f11500b;
 
-    public a(i iVar, i iVar2) {
-        iVar.getClass();
-        this.f11499a = iVar;
-        iVar2.getClass();
-        this.f11500b = iVar2;
-    }
-
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import org.telegram.messenger.GoogleVoiceClientService;
+public abstract class a extends Activity {
     @Override
-    public final boolean apply(Object obj) {
-        return c(((Character) obj).charValue());
-    }
-
-    @Override
-    public final boolean c(char c2) {
-        if (this.f11499a.c(c2) && this.f11500b.c(c2)) {
-            return true;
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Intent intent = new Intent(this, GoogleVoiceClientService.class);
+        intent.putExtra("SearchActionVerificationClientExtraIntent", getIntent());
+        if (Build.VERSION.SDK_INT >= 26) {
+            startForegroundService(intent);
+        } else {
+            startService(intent);
         }
-        return false;
-    }
-
-    public final String toString() {
-        return "CharMatcher.and(" + this.f11499a + ", " + this.f11500b + ")";
+        finish();
     }
 }

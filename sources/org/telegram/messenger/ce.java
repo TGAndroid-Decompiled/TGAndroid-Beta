@@ -1,39 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.ui.Components.f60;
-public final class ce implements Runnable {
-    public final int f22011a;
-    public final float f22012b;
-    public final cs f22013c;
-    public final Object d;
+import android.content.DialogInterface;
+public final class ce implements DialogInterface.OnCancelListener {
+    public final int f21801a;
+    public final Object f21802b;
 
-    public ce(cs csVar, Object obj, float f10, int i3) {
-        this.f22011a = i3;
-        this.f22013c = csVar;
-        this.d = obj;
-        this.f22012b = f10;
+    public ce(Object obj, int i7) {
+        this.f21801a = i7;
+        this.f21802b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f22011a) {
+    public final void onCancel(DialogInterface dialogInterface) {
+        int i7 = this.f21801a;
+        Object obj = this.f21802b;
+        switch (i7) {
             case 0:
-                MediaController mediaController = (MediaController) this.f22013c;
-                zi ziVar = (zi) this.d;
-                if (mediaController.f21324j0 != null && mediaController.f21348v0 != null && !mediaController.f21320h0) {
-                    if (mediaController.L(ziVar)) {
-                        mediaController.i0(mediaController.f21348v0, this.f22012b);
-                    }
-                    mediaController.f21324j0.h0();
-                    return;
-                }
+                String[] strArr = MediaController.V1;
+                ((boolean[]) obj)[0] = true;
+                return;
+            case 1:
+                String[] strArr2 = MediaController.V1;
+                ((boolean[]) obj)[0] = true;
+                return;
+            case 2:
+                ((boolean[]) obj)[0] = true;
                 return;
             default:
-                org.telegram.ui.i4 i4Var = (org.telegram.ui.i4) this.f22013c;
-                f60 f60Var = (f60) this.d;
-                i4Var.f46088i0.N.c(true, 0.0f);
-                f60Var.f33742p = new org.telegram.ui.c0(i4Var, this.f22012b, 0);
-                f60Var.Z();
+                ((cf) obj).f21807f = true;
                 return;
         }
     }

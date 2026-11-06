@@ -1,186 +1,91 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.WindowManager;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.LaunchActivity;
-public final class lf0 implements org.telegram.ui.ActionBar.p1, org.telegram.ui.ActionBar.o6, org.telegram.ui.ActionBar.p6, it0, jt0, org.telegram.messenger.e9, org.telegram.messenger.ec, org.telegram.messenger.ic, ya0, org.telegram.messenger.d9 {
-    public final int f35717a;
+import org.telegram.tgnet.TLRPC;
+public final class lf0 implements c5.g {
+    public final sf0 f35645a;
 
-    public lf0(int i3) {
-        this.f35717a = i3;
+    public lf0(sf0 sf0Var) {
+        this.f35645a = sf0Var;
     }
 
     @Override
-    public void c(Object obj, float f10) {
-        switch (this.f35717a) {
-            case 6:
-                fn0 fn0Var = (fn0) obj;
-                fn0Var.f33827n = f10;
-                fn0Var.invalidate();
-                return;
-            case 17:
-                org.telegram.ui.Components.voip.s0 s0Var = (org.telegram.ui.Components.voip.s0) obj;
-                WindowManager.LayoutParams layoutParams = s0Var.f39594c;
-                s0Var.R = f10;
-                layoutParams.x = (int) f10;
-                org.telegram.messenger.g0.T3(s0Var.f39592b, s0Var.d, layoutParams);
-                return;
-            default:
-                org.telegram.ui.Components.voip.s0 s0Var2 = (org.telegram.ui.Components.voip.s0) obj;
-                WindowManager.LayoutParams layoutParams2 = s0Var2.f39594c;
-                s0Var2.S = f10;
-                layoutParams2.y = (int) f10;
-                org.telegram.messenger.g0.T3(s0Var2.f39592b, s0Var2.d, layoutParams2);
-                return;
-        }
-    }
-
-    @Override
-    public String e(int i3) {
-        switch (this.f35717a) {
-            case 24:
-                return String.format("%02d", Integer.valueOf(i3));
-            default:
-                return String.format("%02d", Integer.valueOf(i3));
-        }
-    }
-
-    @Override
-    public void f(int i3, View view) {
-        ((fm0) view).setTextColor(i3);
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-        switch (this.f35717a) {
-            case 1:
-                s1Var.dismiss();
-                return;
-            case 2:
-                s1Var.dismiss();
-                return;
-            case 8:
-                s1Var.dismiss();
-                return;
-            case 9:
-                s1Var.dismiss();
-                return;
-            case 10:
-                s1Var.dismiss();
-                return;
-            case 11:
-                int i10 = xv0.f40505o2;
-                return;
-            case 12:
-                s1Var.dismiss();
-                return;
-            case 14:
-                s1Var.dismiss();
-                return;
-            case 20:
-                s1Var.dismiss();
-                return;
-            case 21:
-                return;
-            case 22:
-                org.telegram.messenger.hp.f1().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
-                return;
-            default:
-                org.telegram.messenger.hp.f1().edit().putBoolean("askedAboutFSILockscreen", true).commit();
-                return;
-        }
-    }
-
-    @Override
-    public float get(Object obj) {
-        switch (this.f35717a) {
-            case 5:
-                return ((fn0) obj).f33827n;
-            case 16:
-                return ((org.telegram.ui.Components.voip.s0) obj).R;
-            default:
-                return ((org.telegram.ui.Components.voip.s0) obj).S;
-        }
-    }
-
-    @Override
-    public int h(View view) {
-        return ((fm0) view).f33820w;
-    }
-
-    @Override
-    public Object k(Object obj) {
-        switch (this.f35717a) {
-            case 7:
-                Integer num = (Integer) obj;
-                int i3 = oo0.R2;
-                return 0;
-            case 26:
-                Void r82 = (Void) obj;
-                int L = org.telegram.messenger.g0.L(150.0f);
-                Bitmap createBitmap = Bitmap.createBitmap(org.telegram.messenger.g0.L(200.0f), L, Bitmap.Config.ARGB_8888);
-                Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27878d6, false));
-                Paint paint = new Paint(1);
-                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-                canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, L / 2.0f, paint);
-                return createBitmap;
-            default:
-                Void r83 = (Void) obj;
-                Paint paint2 = new Paint(1);
-                paint2.setColor(-14509328);
-                int L2 = org.telegram.messenger.g0.L(150.0f);
-                Bitmap createBitmap2 = Bitmap.createBitmap(L2, L2, Bitmap.Config.ARGB_8888);
-                float f10 = L2 / 2.0f;
-                new Canvas(createBitmap2).drawCircle(f10, f10, f10, paint2);
-                return createBitmap2;
-        }
-    }
-
-    @Override
-    public void l0(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        boolean z13;
-        if (!(imageReceiver.f21252k0 instanceof org.telegram.messenger.o6) && !(imageReceiver.T instanceof org.telegram.messenger.o6) && !(imageReceiver.f21231b0 instanceof org.telegram.messenger.o6) && !(imageReceiver.f21256n0 instanceof org.telegram.messenger.o6)) {
-            z13 = false;
+    public final void a(int i7) {
+        boolean z9;
+        sf0 sf0Var = this.f35645a;
+        int i10 = sf0Var.f38080o1;
+        int i11 = 0;
+        if (i7 >= i10) {
+            z9 = true;
         } else {
-            z13 = true;
+            z9 = false;
         }
-        if (!z13) {
-            return;
+        if (i7 != i10) {
+            sf0Var.getClass();
+            sf0Var.f38080o1 = i7;
         }
-        imageReceiver.f21261p1 = new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f});
-    }
-
-    @Override
-    public boolean run() {
-        String str = LaunchActivity.E1;
-        if (org.telegram.messenger.az.f21661s.length() > 0 && !org.telegram.messenger.az.A) {
-            return true;
+        org.telegram.messenger.yo yoVar = sf0Var.S0;
+        if (yoVar != null) {
+            rf0 rf0Var = sf0Var.D0;
+            if (rf0Var != null) {
+                i11 = rf0Var.j();
+            }
+            yoVar.b(i7 - i11, z9);
         }
-        return false;
     }
 
     @Override
-    public void s(Exception exc) {
-        org.telegram.messenger.a8.g(exc, true);
+    public final void b(float f10, int i7, int i10) {
+        org.telegram.messenger.hc hcVar;
+        sf0 sf0Var = this.f35645a;
+        sf0Var.B(f10, i7);
+        if (i10 == 0) {
+            int k10 = sf0Var.D0.k(i7);
+            if (sf0Var.f38076i1) {
+                k10--;
+            }
+            sf0Var.getCurrentItemView();
+            int childCount = sf0Var.getChildCount();
+            for (int i11 = 0; i11 < childCount; i11++) {
+                View childAt = sf0Var.getChildAt(i11);
+                if (childAt instanceof l9) {
+                    rf0 rf0Var = sf0Var.D0;
+                    int k11 = rf0Var.k(rf0Var.d.indexOf(childAt));
+                    if (sf0Var.f38076i1) {
+                        k11--;
+                    }
+                    ImageReceiver imageReceiver = ((l9) childAt).getImageReceiver();
+                    boolean z9 = imageReceiver.f21217t0;
+                    if (k11 >= 0 && k11 < sf0Var.W0.size()) {
+                        if (k11 == k10) {
+                            if (!z9) {
+                                imageReceiver.f21217t0 = true;
+                                imageReceiver.P0(false);
+                            }
+                            org.telegram.messenger.hc hcVar2 = (org.telegram.messenger.hc) sf0Var.W0.get(k11);
+                            if (hcVar2 != null) {
+                                org.telegram.messenger.w7 G = org.telegram.messenger.w7.G(sf0Var.L0);
+                                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = hcVar2.f22856f;
+                                if (tL_fileLocationToBeDeprecated != null) {
+                                    org.telegram.messenger.w7.J.c(new org.telegram.messenger.y4(9, G, tL_fileLocationToBeDeprecated));
+                                }
+                            }
+                        } else if (z9) {
+                            v5 m10 = imageReceiver.m();
+                            if (m10 != null && (hcVar = (org.telegram.messenger.hc) sf0Var.W0.get(k11)) != null) {
+                                m10.y(hcVar.f22859j, false, true);
+                            }
+                            imageReceiver.f21217t0 = false;
+                            imageReceiver.Q0();
+                        }
+                    }
+                }
+            }
+        }
     }
 
     @Override
-    public void D(ImageReceiver imageReceiver) {
-    }
-
-    private final void b(org.telegram.ui.ActionBar.s1 s1Var, int i3) {
-    }
-
-    @Override
-    public void F0(int i3, Drawable drawable) {
+    public final void c(int i7) {
     }
 }

@@ -1,15 +1,84 @@
 package org.telegram.ui.Components;
-public final class mf0 implements Runnable {
-    public final int f36146a;
-    public final nf0 f36147b;
 
-    public mf0(nf0 nf0Var, int i3) {
-        this.f36146a = i3;
-        this.f36147b = nf0Var;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.tgnet.TLRPC;
+public final class mf0 implements c5.g {
+    public final org.telegram.ui.zu0 f35996a;
+
+    public mf0(org.telegram.ui.zu0 zu0Var) {
+        this.f35996a = zu0Var;
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mf0.run():void");
+    public final void a(int i7) {
+        boolean z9;
+        org.telegram.ui.zu0 zu0Var = this.f35996a;
+        int i10 = zu0Var.f38080o1;
+        int i11 = 0;
+        if (i7 >= i10) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        if (i7 != i10) {
+            zu0Var.f38080o1 = i7;
+        }
+        org.telegram.messenger.yo yoVar = zu0Var.S0;
+        if (yoVar != null) {
+            rf0 rf0Var = zu0Var.D0;
+            if (rf0Var != null) {
+                i11 = rf0Var.j();
+            }
+            yoVar.b(i7 - i11, z9);
+        }
+    }
+
+    @Override
+    public final void b(float f10, int i7, int i10) {
+        org.telegram.messenger.hc hcVar;
+        org.telegram.ui.zu0 zu0Var = this.f35996a;
+        zu0Var.B(f10, i7);
+        if (i10 == 0) {
+            int k10 = zu0Var.D0.k(i7);
+            zu0Var.getCurrentItemView();
+            int childCount = zu0Var.getChildCount();
+            for (int i11 = 0; i11 < childCount; i11++) {
+                View childAt = zu0Var.getChildAt(i11);
+                if (childAt instanceof l9) {
+                    rf0 rf0Var = zu0Var.D0;
+                    int k11 = rf0Var.k(rf0Var.d.indexOf(childAt));
+                    ImageReceiver imageReceiver = ((l9) childAt).getImageReceiver();
+                    boolean z9 = imageReceiver.f21217t0;
+                    if (k11 >= 0 && k11 < zu0Var.W0.size()) {
+                        if (k11 == k10) {
+                            if (!z9) {
+                                imageReceiver.f21217t0 = true;
+                                imageReceiver.P0(false);
+                            }
+                            org.telegram.messenger.hc hcVar2 = (org.telegram.messenger.hc) zu0Var.W0.get(k11);
+                            if (hcVar2 != null) {
+                                org.telegram.messenger.w7 G = org.telegram.messenger.w7.G(zu0Var.L0);
+                                TLRPC.TL_fileLocationToBeDeprecated tL_fileLocationToBeDeprecated = hcVar2.f22856f;
+                                if (tL_fileLocationToBeDeprecated != null) {
+                                    org.telegram.messenger.w7.J.c(new org.telegram.messenger.y4(9, G, tL_fileLocationToBeDeprecated));
+                                }
+                            }
+                        } else if (z9) {
+                            v5 m10 = imageReceiver.m();
+                            if (m10 != null && (hcVar = (org.telegram.messenger.hc) zu0Var.W0.get(k11)) != null) {
+                                m10.y(hcVar.f22859j, false, true);
+                            }
+                            imageReceiver.f21217t0 = false;
+                            imageReceiver.Q0();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void c(int i7) {
     }
 }

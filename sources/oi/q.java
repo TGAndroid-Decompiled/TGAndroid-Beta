@@ -1,172 +1,177 @@
 package oi;
 
-import g2.m0;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
+import c8.td;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import m2.s;
-import mi.h0;
-import o4.v0;
-public final class q implements AutoCloseable {
-    public final v0 f21162b;
-    public final v0 f21163c;
-    public long f21167r;
-    public boolean f21168s;
-    public b f21169w;
-    public Throwable f21170x;
-    public volatile Set f21171y;
-    public final Object f21161a = new Object();
-    public final LinkedHashMap h = new LinkedHashMap(16, 0.75f, true);
-    public final HashMap f21166n = new HashMap();
-    public final int f21164e = 256;
-    public final long f21165f = 8388608;
-    public final ExecutorService d = Executors.newSingleThreadExecutor(new m0(1));
+import org.telegram.messenger.rc;
+import org.telegram.ui.Components.ms;
+import org.telegram.ui.Components.p61;
+import org.telegram.ui.Components.pj0;
+public final class q {
+    public static r F;
+    public static int G;
+    public int A;
+    public m f21096a;
+    public boolean f21100f;
+    public long f21101g;
+    public long h;
+    public long f21102i;
+    public int f21103j;
+    public int f21104k;
+    public int f21105l;
+    public View f21106m;
+    public long f21109p;
+    public long f21110q;
+    public long f21111r;
+    public long f21112s;
+    public long f21113t;
+    public int f21114u;
+    public boolean f21117y;
+    public int f21118z;
+    public final h f21097b = new h(this);
+    public final ArrayList f21098c = new ArrayList();
+    public qi.b d = qi.b.f54037c;
+    public final RectF f21099e = new RectF();
+    public final xe.b f21107n = new xe.b();
+    public final ArrayList f21108o = new ArrayList();
+    public final RectF v = new RectF();
+    public final Rect f21115w = new Rect();
+    public final Rect f21116x = new Rect();
+    public final qi.a B = new qi.a();
+    public final qi.a C = new qi.a();
+    public final qi.a D = new qi.a();
+    public final ArrayList E = new ArrayList();
 
-    public q(v0 v0Var, v0 v0Var2) {
-        this.f21162b = v0Var;
-        this.f21163c = v0Var2;
+    public static r f() {
+        boolean e10 = rc.e(256);
+        boolean e11 = rc.e(262144);
+        r rVar = F;
+        if (rVar == null || rVar.f21119a != e10 || rVar.f21120b != e11) {
+            F = new r(e10, e11);
+            G++;
+        }
+        return F;
     }
 
-    public static String b(String str) {
-        if (str == null) {
-            return "";
-        }
-        String lowerCase = str.trim().toLowerCase(Locale.ROOT);
-        lowerCase.getClass();
-        char c2 = 65535;
-        switch (lowerCase.hashCode()) {
-            case 3104:
-                if (lowerCase.equals("c#")) {
-                    c2 = 0;
-                    break;
-                }
-                break;
-            case 3261:
-                if (lowerCase.equals("fc")) {
-                    c2 = 1;
-                    break;
-                }
-                break;
-            case 96515:
-                if (lowerCase.equals("c++")) {
-                    c2 = 2;
-                    break;
-                }
-                break;
-            case 101379:
-                if (lowerCase.equals("fif")) {
-                    c2 = 3;
-                    break;
-                }
-                break;
-            case 3561037:
-                if (lowerCase.equals("tl-b")) {
-                    c2 = 4;
-                    break;
-                }
-                break;
-        }
-        switch (c2) {
-            case 0:
-                return "csharp";
-            case 1:
-                return "func";
-            case 2:
-                return "cpp";
-            case 3:
-                return "fift";
-            case 4:
-                return "tlb";
-            default:
-                return lowerCase;
-        }
+    public final void a(dh.g gVar) {
+        this.f21108o.add(gVar);
     }
 
-    public final boolean a() {
-        throw new UnsupportedOperationException("Method not decompiled: oi.q.a():boolean");
+    public final void b(pj0 pj0Var) {
+        if (pj0Var == null) {
+            return;
+        }
+        this.f21107n.add(pj0Var);
+        pj0Var.D2.f36774b.add(new ms() {
+            @Override
+            public final void a(int i7, boolean z9) {
+                int i10;
+                q qVar = q.this;
+                qVar.h++;
+                int i11 = qVar.f21103j;
+                if (z9) {
+                    i10 = 1;
+                } else {
+                    i10 = -1;
+                }
+                qVar.f21103j = i11 + i10;
+            }
+        });
+        j jVar = new j(this);
+        if (pj0Var.P == null) {
+            pj0Var.P = new ArrayList();
+        }
+        pj0Var.P.add(jVar);
+        pj0Var.j(new ai.b(this, 23));
     }
 
-    public final void c(o oVar, h0 h0Var) {
-        m mVar = new m(oVar, h0Var);
-        int i3 = this.f21164e;
-        if (i3 != 0) {
-            long j10 = mVar.f21156b;
-            long j11 = this.f21165f;
-            if (j10 <= j11) {
-                LinkedHashMap linkedHashMap = this.h;
-                linkedHashMap.put(oVar, mVar);
-                this.f21167r += j10;
-                while (true) {
-                    if (linkedHashMap.size() > i3 || this.f21167r > j11) {
-                        Map.Entry entry = (Map.Entry) linkedHashMap.entrySet().iterator().next();
-                        this.f21167r -= ((m) entry.getValue()).f21156b;
-                        linkedHashMap.remove(entry.getKey());
-                    } else {
-                        return;
-                    }
-                }
+    public final void c(p61 p61Var) {
+        if (p61Var != null) {
+            g gVar = new g(this);
+            ArrayList arrayList = p61Var.R;
+            if (!arrayList.contains(gVar)) {
+                arrayList.add(gVar);
             }
         }
     }
 
-    @Override
-    public final void close() {
-        synchronized (this.f21161a) {
-            try {
-                if (this.f21168s) {
-                    return;
-                }
-                this.f21168s = true;
-                for (ArrayList arrayList : this.f21166n.values()) {
-                    int size = arrayList.size();
-                    int i3 = 0;
-                    while (i3 < size) {
-                        Object obj = arrayList.get(i3);
-                        i3++;
-                        ((p) obj).f21160a = null;
-                    }
-                }
-                this.f21166n.clear();
-                this.h.clear();
-                this.f21167r = 0L;
-                this.d.execute(new l(this, 0));
-                this.d.shutdown();
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    public final ri.c d(n nVar) {
+        ri.c cVar = new ri.c();
+        this.E.add(new o(cVar, nVar));
+        cVar.a(nVar.h());
+        return cVar;
     }
 
-    public final p d(String str, String str2, n nVar) {
-        if (str != null) {
-            o oVar = new o(str, b(str2));
-            ?? obj = new Object();
-            obj.f21160a = nVar;
-            synchronized (this.f21161a) {
-                try {
-                    if (!this.f21168s) {
-                        ArrayList arrayList = (ArrayList) this.f21166n.get(oVar);
-                        if (arrayList != null) {
-                            arrayList.add(obj);
-                            return obj;
-                        }
-                        ArrayList arrayList2 = new ArrayList();
-                        arrayList2.add(obj);
-                        this.f21166n.put(oVar, arrayList2);
-                        this.d.execute(new s(19, this, oVar));
-                        return obj;
+    public final qi.a e() {
+        qi.a aVar = this.D;
+        qi.a aVar2 = this.C;
+        if (aVar == aVar2) {
+            aVar.getClass();
+            return aVar;
+        }
+        aVar.f54036b = 0;
+        int i7 = aVar2.f54036b;
+        for (int i10 = 0; i10 < i7; i10++) {
+            RectF rectF = (RectF) aVar2.f54035a.get(i10);
+            aVar.a(rectF.left, rectF.top, rectF.right, rectF.bottom);
+        }
+        return aVar;
+    }
+
+    public final void g() {
+        this.f21102i++;
+    }
+
+    public final void h(int i7, int i10) {
+        if (i7 == 0 && i10 == 0) {
+            return;
+        }
+        this.f21101g++;
+        this.f21104k += i7;
+        this.f21105l += i10;
+    }
+
+    public final void i(View view) {
+        xf.a a10;
+        xf.c cVar;
+        View view2 = this.f21106m;
+        if (view2 != view) {
+            h hVar = this.f21097b;
+            if (view2 != null && (cVar = (xf.c) view2.getTag(2131296697)) != null) {
+                ArrayList arrayList = cVar.f58580a;
+                if (arrayList.remove(hVar)) {
+                    xf.a aVar = cVar.f58581b;
+                    if (aVar != null) {
+                        ((xe.b) aVar.f58579a.f8841b).remove(hVar);
                     }
-                    throw new IllegalStateException("Service is closed");
-                } catch (Throwable th2) {
-                    throw th2;
+                    if (arrayList.isEmpty()) {
+                        cVar.f58581b = null;
+                        view2.removeOnAttachStateChangeListener(cVar.f58582c);
+                        view2.setTag(2131296697, null);
+                    }
                 }
             }
+            if (view != null) {
+                if (view.isAttachedToWindow() && view == view.getRootView()) {
+                    throw new IllegalArgumentException("Cannot add OnPostDrawListener to root view");
+                }
+                xf.c cVar2 = (xf.c) view.getTag(2131296697);
+                if (cVar2 == null) {
+                    cVar2 = new xf.c();
+                    view.setTag(2131296697, cVar2);
+                    view.addOnAttachStateChangeListener(cVar2.f58582c);
+                }
+                ArrayList arrayList2 = cVar2.f58580a;
+                if (!arrayList2.contains(hVar)) {
+                    arrayList2.add(hVar);
+                    if (view.isAttachedToWindow() && (a10 = td.a(view, cVar2)) != null) {
+                        ((xe.b) a10.f58579a.f8841b).add(hVar);
+                    }
+                }
+            }
+            this.f21106m = view;
         }
-        throw null;
     }
 }

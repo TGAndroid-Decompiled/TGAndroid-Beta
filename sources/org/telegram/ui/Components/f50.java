@@ -1,64 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.HashSet;
-public final class f50 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public final ImageView f33706a;
-    public final TextView f33707b;
-    public final TextView f33708c;
-    public int d;
-    public int f33709e;
-    public final i50 f33710f;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class f50 implements org.telegram.ui.g90 {
+    public final g50 f33478a;
 
-    public f50(i50 i50Var, Context context) {
-        super(context);
-        this.f33710f = i50Var;
-        ImageView imageView = new ImageView(context);
-        this.f33706a = imageView;
-        imageView.setBackground(org.telegram.ui.ActionBar.k6.M(46, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.R7, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Y7, false)));
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageView.setImageResource(2131231609);
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        addView(imageView, b8.mf.d(46, 46.0f, 19, 13.0f, 0.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f33707b = textView;
-        k2.p1.t(textView, 1, 16.0f);
-        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.G6, null);
-        addView(textView, b8.mf.d(-1, -2.0f, 51, 72.0f, 9.0f, 0.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f33708c = textView2;
-        textView2.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28273y6, null);
-        addView(textView2, b8.mf.d(-1, -2.0f, 51, 72.0f, 32.0f, 0.0f, 0.0f));
+    public f50(g50 g50Var) {
+        this.f33478a = g50Var;
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(58.0f), 1073741824));
-    }
-
-    @Override
-    public final void updateColors() {
-        int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.R7, false);
-        int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Y7, false);
-        ImageView imageView = this.f33706a;
-        if (imageView != null) {
-            if (x02 != this.d || x03 != this.f33709e) {
-                this.d = x02;
-                this.f33709e = x03;
-                imageView.setBackground(org.telegram.ui.ActionBar.k6.M(46, x02, x03));
-                invalidate();
+    public final void b(TLRPC.TL_chatInviteExported tL_chatInviteExported, TLObject tLObject) {
+        int i7;
+        org.telegram.ui.bb bbVar = this.f33478a.f33865a.f34217c.f35905a2;
+        if (bbVar != null) {
+            TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = new TLRPC.TL_channelAdminLogEvent();
+            TLRPC.TL_channelAdminLogEventActionExportedInviteEdit tL_channelAdminLogEventActionExportedInviteEdit = new TLRPC.TL_channelAdminLogEventActionExportedInviteEdit();
+            tL_channelAdminLogEventActionExportedInviteEdit.new_invite = tL_chatInviteExported;
+            tL_channelAdminLogEventActionExportedInviteEdit.prev_invite = tL_chatInviteExported;
+            tL_channelAdminLogEvent.action = tL_channelAdminLogEventActionExportedInviteEdit;
+            tL_channelAdminLogEvent.date = (int) (System.currentTimeMillis() / 1000);
+            org.telegram.ui.mb mbVar = bbVar.f44225a;
+            tL_channelAdminLogEvent.user_id = org.telegram.messenger.p10.i(mbVar.getAccountInstance().f21723a).f24478n;
+            i7 = ((org.telegram.ui.ActionBar.f2) mbVar).currentAccount;
+            if (new org.telegram.messenger.ij(i7, tL_channelAdminLogEvent, mbVar.f47735n0, mbVar.m0, mbVar.f47726f, mbVar.T, true).U >= 0) {
+                mbVar.W0();
+                mbVar.E.f();
+                org.telegram.ui.mb.P0(mbVar);
             }
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void a(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+    }
+
+    @Override
+    public final void c(TLObject tLObject) {
     }
 }

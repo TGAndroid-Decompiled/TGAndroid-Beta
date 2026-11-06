@@ -4,49 +4,49 @@ import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 public final class u0 implements Runnable {
-    public final int f25634a;
-    public final m2.t f25635b;
-    public final long f25636c;
-    public final ge d;
-    public final File f25637e;
+    public final int f25700a;
+    public final m4.d0 f25701b;
+    public final long f25702c;
+    public final me d;
+    public final File f25703e;
 
-    public u0(m2.t tVar, long j10, ge geVar, File file, int i3) {
-        this.f25634a = i3;
-        this.f25635b = tVar;
-        this.f25636c = j10;
-        this.d = geVar;
-        this.f25637e = file;
+    public u0(m4.d0 d0Var, long j3, me meVar, File file, int i7) {
+        this.f25700a = i7;
+        this.f25701b = d0Var;
+        this.f25702c = j3;
+        this.d = meVar;
+        this.f25703e = file;
     }
 
     @Override
     public final void run() {
-        int i3 = this.f25634a;
-        File file = this.f25637e;
-        ge geVar = this.d;
-        long j10 = this.f25636c;
-        m2.t tVar = this.f25635b;
-        switch (i3) {
+        int i7 = this.f25700a;
+        File file = this.f25703e;
+        me meVar = this.d;
+        long j3 = this.f25702c;
+        m4.d0 d0Var = this.f25701b;
+        switch (i7) {
             case 0:
-                if (((HashSet) ((e0.g) tVar.f19007c).h).remove(Long.valueOf(j10))) {
+                if (((HashSet) ((e0.g) d0Var.f19609b).h).remove(Long.valueOf(j3))) {
                     z0.b(file);
-                    MediaController mediaController = geVar.f22707a;
-                    if (file.equals(mediaController.k1)) {
-                        mediaController.k1 = null;
+                    MediaController mediaController = meVar.f23999a;
+                    if (file.equals(mediaController.f21271j1)) {
+                        mediaController.f21271j1 = null;
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                e0.g gVar = (e0.g) tVar.f19007c;
-                if (!gVar.f9235c) {
-                    ((HashSet) gVar.h).add(Long.valueOf(j10));
-                    Set set = z0.f26694a;
+                e0.g gVar = (e0.g) d0Var.f19609b;
+                if (!gVar.f10053c) {
+                    ((HashSet) gVar.h).add(Long.valueOf(j3));
+                    Set set = z0.f26769a;
                     String absolutePath = file.getAbsolutePath();
                     if (absolutePath != null) {
-                        z0.f26694a.add(absolutePath);
+                        z0.f26769a.add(absolutePath);
                     }
-                    geVar.f22707a.k1 = file;
+                    meVar.f23999a.f21271j1 = file;
                     return;
                 }
                 return;

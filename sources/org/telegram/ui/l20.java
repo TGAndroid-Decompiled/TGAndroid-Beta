@@ -1,41 +1,45 @@
 package org.telegram.ui;
 
-import android.widget.LinearLayout;
-public final class l20 extends LinearLayout {
-    public boolean f47077a;
-    public final org.telegram.ui.Components.cb0 f47078b;
-    public final h20 f47079c;
-    public final i20 d;
+import android.content.SharedPreferences;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.voip.VoIPService;
+public final class l20 implements org.telegram.ui.ActionBar.p2 {
+    public final c40 f47363a;
 
-    public l20(LaunchActivity launchActivity, org.telegram.ui.Components.cb0 cb0Var, h20 h20Var, i20 i20Var) {
-        super(launchActivity);
-        this.f47078b = cb0Var;
-        this.f47079c = h20Var;
-        this.d = i20Var;
-        this.f47077a = false;
+    public l20(c40 c40Var) {
+        this.f47363a = c40Var;
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        this.f47077a = true;
-        org.telegram.ui.Components.cb0 cb0Var = this.f47078b;
-        cb0Var.setItemCount(5);
-        h20 h20Var = this.f47079c;
-        h20Var.setItemCount(5);
-        i20 i20Var = this.d;
-        i20Var.setItemCount(5);
-        cb0Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
-        h20Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
-        i20Var.getLayoutParams().height = org.telegram.messenger.g0.L(54.0f) * 5;
-        this.f47077a = false;
-        super.onMeasure(i3, i10);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f47077a) {
-            return;
+    public final void v() {
+        CountDownLatch groupCallBottomSheetLatch;
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance != null && (groupCallBottomSheetLatch = sharedInstance.getGroupCallBottomSheetLatch()) != null) {
+            groupCallBottomSheetLatch.countDown();
         }
-        super.requestLayout();
+        c40 c40Var = this.f47363a;
+        if (c40Var.f44621w3 == 6) {
+            SharedPreferences e12 = org.telegram.messenger.qp.e1();
+            if (!e12.getBoolean("reminderhint", false)) {
+                e12.edit().putBoolean("reminderhint", true).commit();
+                if (c40Var.f44540e2 == null) {
+                    org.telegram.ui.Components.y20 y20Var = new org.telegram.ui.Components.y20(c40Var.getContext(), 8);
+                    c40Var.f44540e2 = y20Var;
+                    y20Var.setAlpha(0.0f);
+                    c40Var.f44540e2.setVisibility(4);
+                    c40Var.f44540e2.setShowingDuration(4000L);
+                    c40Var.f28615b.addView(c40Var.f44540e2, c8.ha.d(-2, -2.0f, 51, 19.0f, 0.0f, 19.0f, 0.0f));
+                    c40Var.f44540e2.setText(org.telegram.messenger.hd.M0(2131743439, null));
+                    c40Var.f44540e2.b();
+                }
+                c40Var.f44540e2.setExtraTranslationY(-org.telegram.messenger.g0.f22531m);
+                c40Var.f44540e2.c(c40Var.f44602s1);
+            }
+        }
+    }
+
+    @Override
+    public final boolean x() {
+        return true;
     }
 }

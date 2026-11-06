@@ -1,492 +1,202 @@
 package org.telegram.ui.Components;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.text.TextUtils;
-import j$.util.DesugarCollections;
-import java.io.File;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.Executors;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public abstract class k80 {
-    public static final Pattern f35339a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
-    public static final Pattern f35340b = Pattern.compile("\\[\\^([^\\]]+)\\]");
-    public static final Pattern f35341c = Pattern.compile("^(\\d+)[.)]\\s");
+public final class k80 extends c8.b1 {
+    public int f35233a;
+    public final TL_iv.PageBlock f35234b;
+    public TL_iv.textConcat f35235c = new TL_iv.textConcat();
 
-    public static TL_iv.RichText a(gf.p pVar, TL_iv.PageBlock pageBlock) {
-        h80 h80Var = new h80(pageBlock);
-        pVar.a(h80Var);
-        return k(l(h80.x(h80Var.f34343c)));
+    public k80(TL_iv.PageBlock pageBlock) {
+        this.f35234b = pageBlock;
     }
 
-    public static List b(TL_iv.RichText richText) {
-        int i3;
-        if (richText == null) {
-            return Collections.singletonList(n(""));
+    public static TL_iv.RichText x(TL_iv.textConcat textconcat) {
+        if (textconcat.texts.isEmpty()) {
+            return new TL_iv.textEmpty();
         }
-        if (o(richText) <= 8192) {
-            return Collections.singletonList(richText);
+        if (textconcat.texts.size() == 1) {
+            return textconcat.texts.get(0);
         }
-        String p10 = p(richText);
-        ArrayList arrayList = new ArrayList();
-        int i10 = 0;
-        while (i10 < p10.length()) {
-            if (p10.length() - i10 <= 8192) {
-                arrayList.add(n(p10.substring(i10)));
-                return arrayList;
-            }
-            int i11 = i10 + 8192;
-            int i12 = i10 + 8191;
-            int lastIndexOf = p10.lastIndexOf(10, i12);
-            if (lastIndexOf <= i10) {
-                lastIndexOf = p10.lastIndexOf(32, i12);
-            }
-            if (lastIndexOf <= i10) {
-                i3 = 0;
-            } else {
-                i3 = 1;
-                i11 = lastIndexOf;
-            }
-            arrayList.add(n(p10.substring(i10, i11)));
-            i10 = i11 + i3;
-        }
-        return arrayList;
+        return textconcat;
     }
 
-    public static TL_iv.textMath c(String str) {
-        String trim;
-        TL_iv.textMath textmath = new TL_iv.textMath();
-        if (str == null) {
-            trim = "";
+    @Override
+    public final void a(kf.b bVar) {
+        int i7 = this.f35233a;
+        if (i7 >= 64) {
+            return;
+        }
+        this.f35233a = i7 + 1;
+        try {
+            v(bVar);
+        } finally {
+            this.f35233a--;
+        }
+    }
+
+    @Override
+    public final void b(kf.c cVar) {
+        int i7 = this.f35233a;
+        if (i7 >= 64) {
+            return;
+        }
+        this.f35233a = i7 + 1;
+        try {
+            v(cVar);
+        } finally {
+            this.f35233a--;
+        }
+    }
+
+    @Override
+    public final void c(kf.d dVar) {
+        TL_iv.textFixed textfixed = new TL_iv.textFixed();
+        textfixed.text = n80.n(dVar.h);
+        w(textfixed);
+    }
+
+    @Override
+    public final void d(kf.e eVar) {
+        if (eVar instanceof cf.a) {
+            TL_iv.textStrike textstrike = new TL_iv.textStrike();
+            textstrike.text = y(eVar);
+            w(textstrike);
+        } else if (eVar instanceof zc.d) {
+            w(n80.c(((zc.d) eVar).f59913g));
         } else {
-            trim = str.trim();
-        }
-        textmath.source = trim;
-        textmath.tried = true;
-        mi.q a10 = mi.q.a(trim, org.telegram.messenger.g0.L(20.0f), true);
-        if (a10 != null) {
-            textmath.f27228w = a10.f19825b;
-            textmath.h = a10.f19826c;
-            textmath.depth = a10.d;
-            textmath.bitmap = a10.f19824a;
-        }
-        return textmath;
-    }
-
-    public static java.lang.String d(java.lang.String r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k80.d(java.lang.String):java.lang.String");
-    }
-
-    public static TL_iv.RichText e(TL_iv.RichText richText) {
-        if (richText == null) {
-            return null;
-        }
-        if (o(richText) <= 8192) {
-            return richText;
-        }
-        String p10 = p(richText);
-        return n(p10.substring(0, Math.min(p10.length(), 8192)));
-    }
-
-    public static void f(ArrayList arrayList, List list) {
-        List unmodifiableList;
-        Iterator it = list.iterator();
-        while (it.hasNext()) {
-            xc.a aVar = (xc.a) it.next();
-            arrayList.add(aVar);
-            ArrayList arrayList2 = aVar.f58607f;
-            if (arrayList2 == null) {
-                unmodifiableList = Collections.EMPTY_LIST;
-            } else {
-                unmodifiableList = DesugarCollections.unmodifiableList(arrayList2);
-            }
-            f(arrayList, unmodifiableList);
+            v(eVar);
         }
     }
 
-    public static org.telegram.tgnet.TLRPC.TL_webPage g(org.telegram.messenger.zi r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k80.g(org.telegram.messenger.zi):org.telegram.tgnet.TLRPC$TL_webPage");
+    @Override
+    public final void e(kf.g gVar) {
+        TL_iv.textItalic textitalic = new TL_iv.textItalic();
+        textitalic.text = y(gVar);
+        w(textitalic);
     }
 
-    public static int h(int i3, CharSequence charSequence) {
-        char charAt;
-        if (i3 >= charSequence.length() || (charAt = charSequence.charAt(i3)) == '\n' || charAt == ' ') {
-            return 0;
-        }
-        if (charAt != '+' && charAt != '-') {
-            return 3;
-        }
-        int i10 = i3 + 3;
-        if (i10 < charSequence.length() && charSequence.charAt(i3 + 1) == charAt && charSequence.charAt(i3 + 2) == charAt && charSequence.charAt(i10) == ' ') {
-            return 3;
-        }
-        if (charAt != '+') {
-            return 2;
-        }
-        return 1;
+    @Override
+    public final void i(kf.k kVar) {
+        w(y(kVar));
     }
 
-    public static File i(org.telegram.messenger.zi ziVar) {
-        File file;
-        TLRPC.Message message = ziVar.f26868k;
-        int i3 = ziVar.I1;
-        if (!TextUtils.isEmpty(message.attachPath)) {
-            file = new File(ziVar.f26868k.attachPath);
-        } else {
-            file = null;
+    @Override
+    public final void k(kf.n nVar) {
+        if (nVar instanceof zc.a) {
+            if (!this.f35235c.texts.isEmpty()) {
+                w(n80.n("\n"));
+            }
+            w(n80.c(((zc.a) nVar).f59908g));
+            w(n80.n("\n"));
+            return;
         }
-        if (file == null || !file.exists()) {
-            org.telegram.messenger.w7.G(i3);
-            file = org.telegram.messenger.w7.N(ziVar.f26868k, false, true);
-        }
-        if (file == null || !file.exists()) {
-            org.telegram.messenger.w7.G(i3);
-            file = org.telegram.messenger.w7.N(ziVar.f26868k, true, true);
-        }
-        if (file == null || !file.exists()) {
-            return null;
-        }
-        return file;
+        v(nVar);
     }
 
-    public static boolean j(org.telegram.messenger.zi ziVar) {
-        String Q0 = ziVar.Q0();
-        if (!"diff".equalsIgnoreCase(Q0) && !"patch".equalsIgnoreCase(Q0)) {
-            String u12 = ziVar.u1();
-            if (u12 != null) {
-                String lowerCase = u12.toLowerCase();
-                if (!lowerCase.startsWith("text/x-diff") && !lowerCase.startsWith("text/x-patch")) {
-                    return false;
-                }
-                return true;
-            }
-            return false;
+    @Override
+    public final void l(kf.o oVar) {
+        int i7 = this.f35233a;
+        if (i7 >= 64) {
+            return;
         }
-        return true;
-    }
-
-    public static TL_iv.RichText k(TL_iv.RichText richText) {
-        if (richText == null) {
-            return null;
-        }
-        if (richText instanceof TL_iv.textConcat) {
-            TL_iv.textConcat textconcat = (TL_iv.textConcat) richText;
-            for (int i3 = 0; i3 < textconcat.texts.size(); i3++) {
-                ArrayList<TL_iv.RichText> arrayList = textconcat.texts;
-                arrayList.set(i3, k(arrayList.get(i3)));
-            }
-            return textconcat;
-        } else if (richText instanceof j80) {
-            j80 j80Var = (j80) richText;
-            TL_iv.textStrike k10 = k(j80Var.text);
-            int i10 = j80Var.f34997a;
-            if ((i10 & 4) != 0) {
-                TL_iv.textFixed textfixed = new TL_iv.textFixed();
-                textfixed.text = k10;
-                k10 = textfixed;
-            }
-            if ((i10 & 32) != 0) {
-                TL_iv.textStrike textstrike = new TL_iv.textStrike();
-                textstrike.text = k10;
-                k10 = textstrike;
-            }
-            if ((i10 & 16) != 0) {
-                TL_iv.textUnderline textunderline = new TL_iv.textUnderline();
-                textunderline.text = k10;
-                k10 = textunderline;
-            }
-            if ((i10 & 64) != 0) {
-                TL_iv.textMarked textmarked = new TL_iv.textMarked();
-                textmarked.text = k10;
-                k10 = textmarked;
-            }
-            if ((i10 & 128) != 0) {
-                TL_iv.textSubscript textsubscript = new TL_iv.textSubscript();
-                textsubscript.text = k10;
-                k10 = textsubscript;
-            }
-            if ((i10 & 256) != 0) {
-                TL_iv.textSuperscript textsuperscript = new TL_iv.textSuperscript();
-                textsuperscript.text = k10;
-                k10 = textsuperscript;
-            }
-            if ((i10 & 2) != 0) {
-                TL_iv.textItalic textitalic = new TL_iv.textItalic();
-                textitalic.text = k10;
-                k10 = textitalic;
-            }
-            if ((i10 & 1) != 0) {
-                TL_iv.textBold textbold = new TL_iv.textBold();
-                textbold.text = k10;
-                return textbold;
-            }
-            return k10;
-        } else {
-            TL_iv.RichText richText2 = richText.text;
-            if (richText2 != null) {
-                richText.text = k(richText2);
-            }
-            return richText;
+        this.f35233a = i7 + 1;
+        try {
+            v(oVar);
+        } finally {
+            this.f35233a--;
         }
     }
 
-    public static org.telegram.tgnet.tl.TL_iv.RichText l(org.telegram.tgnet.tl.TL_iv.RichText r17) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k80.l(org.telegram.tgnet.tl.TL_iv$RichText):org.telegram.tgnet.tl.TL_iv$RichText");
+    @Override
+    public final void m(kf.q qVar) {
+        int i7 = this.f35233a;
+        if (i7 >= 64) {
+            return;
+        }
+        this.f35233a = i7 + 1;
+        try {
+            v(qVar);
+        } finally {
+            this.f35233a--;
+        }
     }
 
-    public static String m(String str, ArrayList arrayList) {
-        String[] split;
-        TL_iv.RichText richText;
-        String substring;
-        LinkedHashMap linkedHashMap = new LinkedHashMap();
-        String[] split2 = str.split("\n", -1);
-        StringBuilder sb2 = new StringBuilder();
-        int i3 = 0;
-        while (i3 < split2.length) {
-            Matcher matcher = f35339a.matcher(split2[i3]);
-            if (matcher.matches()) {
-                String group = matcher.group(1);
-                StringBuilder sb3 = new StringBuilder(matcher.group(2));
-                i3++;
-                while (i3 < split2.length) {
-                    String str2 = split2[i3];
-                    if (!str2.startsWith("    ") && !str2.startsWith("\t")) {
-                        if (!str2.trim().isEmpty()) {
-                            break;
-                        }
-                        int i10 = i3 + 1;
-                        int i11 = i10;
-                        while (i11 < split2.length && split2[i11].trim().isEmpty()) {
-                            i11++;
-                        }
-                        if (i11 >= split2.length || (!split2[i11].startsWith("    ") && !split2[i11].startsWith("\t"))) {
-                            break;
-                        }
-                        sb3.append('\n');
-                        i3 = i10;
-                    } else {
-                        sb3.append('\n');
-                        if (str2.startsWith("\t")) {
-                            substring = str2.substring(1);
-                        } else {
-                            substring = str2.substring(4);
-                        }
-                        sb3.append(substring);
-                        i3++;
-                    }
-                }
-                linkedHashMap.put(group, sb3.toString().trim());
-            } else {
-                sb2.append(split2[i3]);
-                if (i3 < split2.length - 1) {
-                    sb2.append('\n');
-                }
-                i3++;
-            }
+    @Override
+    public final void n(kf.r rVar) {
+        if (!this.f35235c.texts.isEmpty()) {
+            w(n80.n("\n\n"));
         }
-        Matcher matcher2 = f35340b.matcher(sb2.toString());
-        StringBuffer stringBuffer = new StringBuffer();
-        while (matcher2.find()) {
-            String group2 = matcher2.group(1);
-            matcher2.appendReplacement(stringBuffer, Matcher.quoteReplacement("<sup>[\\[" + group2 + "\\]](#fn-" + group2 + ")</sup>"));
-        }
-        matcher2.appendTail(stringBuffer);
-        String stringBuffer2 = stringBuffer.toString();
-        List<ye.a> asList = Arrays.asList(new bf.g(1), new bf.g(0));
-        Pattern pattern = bd.j.f3235j;
-        ArrayList arrayList2 = new ArrayList(3);
-        ArrayList arrayList3 = new ArrayList(3);
-        arrayList2.addAll(Arrays.asList(new Object(), new Object(), new Object(), new bd.d(0), new Object(), new Object(), new Object(), new Object(), new bd.d(1)));
-        arrayList3.addAll(Arrays.asList(new ef.a(0), new ef.a(1)));
-        org.telegram.messenger.g0.L(18.0f);
-        Executors.newCachedThreadPool();
-        new Handler(Looper.getMainLooper());
-        new HashMap(3);
-        arrayList2.add(new Object());
-        arrayList2.add(new Object());
-        b8.ke keVar = new b8.ke();
-        if (asList != null) {
-            for (ye.a aVar : asList) {
-                if (aVar instanceof bf.g) {
-                    switch (((bf.g) aVar).f3295a) {
-                        case 0:
-                            ((ArrayList) keVar.f2716b).add(new cf.a(0));
-                            continue;
-                        default:
-                            ((ArrayList) keVar.f2717c).add(new Object());
-                            continue;
-                    }
-                }
-            }
-            keVar.f2719f = new p4.q(arrayList2, arrayList3);
-            ((ArrayList) keVar.f2716b).add(new cf.a(8));
-            ui.f fVar = new ui.f(keVar);
-            ArrayDeque arrayDeque = new ArrayDeque();
-            String str3 = null;
-            boolean z10 = false;
-            for (String str4 : stringBuffer2.split("\n", -1)) {
-                int i12 = 0;
-                while (i12 < str4.length() && i12 < 3 && str4.charAt(i12) == ' ') {
-                    i12++;
-                }
-                String substring2 = str4.substring(i12);
-                if (z10) {
-                    if (substring2.startsWith(str3)) {
-                        str3 = null;
-                        z10 = false;
-                    }
-                } else {
-                    String str5 = "```";
-                    if (!substring2.startsWith("```")) {
-                        str5 = "~~~";
-                        if (!substring2.startsWith("~~~")) {
-                            Matcher matcher3 = f35341c.matcher(str4);
-                            if (matcher3.find()) {
-                                arrayDeque.add(matcher3.group(1));
-                            }
-                        }
-                    }
-                    z10 = true;
-                    str3 = str5;
-                }
-            }
-            g80 g80Var = new g80(arrayList, arrayDeque);
-            g80Var.v(fVar.H(stringBuffer2));
-            g80Var.y();
-            if (!linkedHashMap.isEmpty()) {
-                TL_iv.pageBlockDetails pageblockdetails = new TL_iv.pageBlockDetails();
-                String M0 = org.telegram.messenger.bd.M0(2131749199, null);
-                TL_iv.textBold textbold = new TL_iv.textBold();
-                textbold.text = n(M0);
-                pageblockdetails.title = textbold;
-                for (Map.Entry entry : linkedHashMap.entrySet()) {
-                    String str6 = (String) entry.getKey();
-                    ArrayList arrayList4 = new ArrayList();
-                    g80 g80Var2 = new g80(arrayList4, new ArrayDeque());
-                    g80Var2.v(fVar.H((String) entry.getValue()));
-                    g80Var2.y();
-                    TL_iv.RichText textconcat = new TL_iv.textConcat();
-                    int size = arrayList4.size();
-                    int i13 = 0;
-                    while (i13 < size) {
-                        Object obj = arrayList4.get(i13);
-                        i13++;
-                        TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) obj;
-                        if (pageBlock instanceof TL_iv.pageBlockParagraph) {
-                            richText = ((TL_iv.pageBlockParagraph) pageBlock).text;
-                        } else if (pageBlock instanceof TL_iv.pageBlockHeader) {
-                            richText = ((TL_iv.pageBlockHeader) pageBlock).text;
-                        } else if (pageBlock instanceof TL_iv.pageBlockSubheader) {
-                            richText = ((TL_iv.pageBlockSubheader) pageBlock).text;
-                        } else if (pageBlock instanceof TL_iv.pageBlockTitle) {
-                            richText = ((TL_iv.pageBlockTitle) pageBlock).text;
-                        } else {
-                            richText = null;
-                        }
-                        if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
-                            if (!textconcat.texts.isEmpty()) {
-                                textconcat.texts.add(n("\n\n"));
-                            }
-                            textconcat.texts.add(richText);
-                        }
-                    }
-                    if (textconcat.texts.isEmpty()) {
-                        textconcat = new TL_iv.textEmpty();
-                    } else if (textconcat.texts.size() == 1) {
-                        textconcat = textconcat.texts.get(0);
-                    }
-                    TL_iv.RichText e10 = e(textconcat);
-                    TL_iv.textAnchor textanchor = new TL_iv.textAnchor();
-                    textanchor.name = t4.c.f("fn-", str6);
-                    textanchor.text = e10;
-                    TL_iv.pageBlockParagraph pageblockparagraph = new TL_iv.pageBlockParagraph();
-                    String q10 = t4.c.q(str6, ". ");
-                    TL_iv.textBold textbold2 = new TL_iv.textBold();
-                    textbold2.text = n(q10);
-                    TL_iv.RichText[] richTextArr = {textbold2, textanchor};
-                    TL_iv.textConcat textconcat2 = new TL_iv.textConcat();
-                    for (int i14 = 0; i14 < 2; i14++) {
-                        textconcat2.texts.add(richTextArr[i14]);
-                    }
-                    pageblockparagraph.text = textconcat2;
-                    pageblockdetails.blocks.add(pageblockparagraph);
-                }
-                arrayList.add(pageblockdetails);
-            }
-            TL_iv.RichText richText2 = g80Var.f34022b;
-            if (richText2 == null) {
-                return null;
-            }
-            return p(richText2);
-        }
-        throw new NullPointerException("extensions must not be null");
+        v(rVar);
     }
 
-    public static TL_iv.textPlain n(String str) {
-        TL_iv.textPlain textplain = new TL_iv.textPlain();
+    @Override
+    public final void o(kf.s sVar) {
+        w(n80.n(sVar.f17283g));
+    }
+
+    @Override
+    public final void q(kf.d dVar) {
+        w(n80.n(dVar.h));
+    }
+
+    @Override
+    public final void r(kf.g gVar) {
+        w(n80.n("\n"));
+    }
+
+    @Override
+    public final void s(kf.k kVar) {
+        String str = kVar.h;
         if (str == null) {
             str = "";
         }
-        textplain.text = str;
-        return textplain;
-    }
-
-    public static int o(TL_iv.RichText richText) {
-        int i3 = 0;
-        if (richText == null || (richText instanceof TL_iv.textEmpty)) {
-            return 0;
-        }
-        if (richText instanceof TL_iv.textPlain) {
-            String str = ((TL_iv.textPlain) richText).text;
-            if (str == null) {
-                return 0;
-            }
-            return str.length();
-        } else if (richText instanceof TL_iv.textConcat) {
-            ArrayList<TL_iv.RichText> arrayList = richText.texts;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                TL_iv.RichText richText2 = arrayList.get(i10);
-                i10++;
-                i3 += o(richText2);
-            }
-            return i3;
+        String trim = str.trim();
+        if (trim.startsWith("mailto:")) {
+            TL_iv.RichText textemail = new TL_iv.textEmail();
+            textemail.text = y(kVar);
+            textemail.email = trim.substring(7);
+            w(textemail);
+        } else if (trim.startsWith("tel:")) {
+            TL_iv.textPhone textphone = new TL_iv.textPhone();
+            textphone.text = y(kVar);
+            textphone.phone = trim.substring(4);
+            w(textphone);
         } else {
-            return o(richText.text);
+            TL_iv.RichText texturl = new TL_iv.textUrl();
+            texturl.text = y(kVar);
+            texturl.url = trim;
+            w(texturl);
         }
     }
 
-    public static String p(TL_iv.RichText richText) {
-        if (richText != null && !(richText instanceof TL_iv.textEmpty)) {
-            if (richText instanceof TL_iv.textPlain) {
-                return ((TL_iv.textPlain) richText).text;
-            }
-            if (richText instanceof TL_iv.textConcat) {
-                StringBuilder sb2 = new StringBuilder();
-                ArrayList<TL_iv.RichText> arrayList = richText.texts;
-                int size = arrayList.size();
-                int i3 = 0;
-                while (i3 < size) {
-                    TL_iv.RichText richText2 = arrayList.get(i3);
-                    i3++;
-                    sb2.append(p(richText2));
-                }
-                return sb2.toString();
-            }
-            return p(richText.text);
+    @Override
+    public final void t(kf.g gVar) {
+        String str;
+        if (this.f35234b instanceof TL_iv.pageBlockBlockquote) {
+            str = "\n";
+        } else {
+            str = " ";
         }
-        return "";
+        w(n80.n(str));
+    }
+
+    @Override
+    public final void u(kf.g gVar) {
+        TL_iv.textBold textbold = new TL_iv.textBold();
+        textbold.text = y(gVar);
+        w(textbold);
+    }
+
+    public final void w(TL_iv.RichText richText) {
+        this.f35235c.texts.add(richText);
+    }
+
+    public final TL_iv.RichText y(kf.p pVar) {
+        TL_iv.textConcat textconcat = this.f35235c;
+        this.f35235c = new TL_iv.textConcat();
+        v(pVar);
+        TL_iv.RichText x10 = x(this.f35235c);
+        this.f35235c = textconcat;
+        return x10;
     }
 }

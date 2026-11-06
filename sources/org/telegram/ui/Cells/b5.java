@@ -7,55 +7,55 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
-import org.telegram.messenger.bd;
+import org.telegram.messenger.hd;
 public abstract class b5 extends FrameLayout {
-    public TextView f28989a;
-    public TextView f28990b;
-    public h0 f28991c;
+    public TextView f28929a;
+    public TextView f28930b;
+    public h0 f28931c;
     public long d;
 
-    public final void a(ArrayList arrayList, boolean z10) {
+    public final void a(ArrayList arrayList, boolean z9) {
         float f10;
         float f11;
         float f12;
         float f13;
-        TextView textView = this.f28990b;
-        h0 h0Var = this.f28991c;
-        TextView textView2 = this.f28989a;
-        super.setEnabled(z10);
+        TextView textView = this.f28930b;
+        h0 h0Var = this.f28931c;
+        TextView textView2 = this.f28929a;
+        super.setEnabled(z9);
         float f14 = 0.5f;
         if (arrayList != null) {
-            if (z10) {
+            if (z9) {
                 f12 = 1.0f;
             } else {
                 f12 = 0.5f;
             }
             arrayList.add(ObjectAnimator.ofFloat(textView2, "alpha", f12));
-            if (z10) {
+            if (z9) {
                 f13 = 1.0f;
             } else {
                 f13 = 0.5f;
             }
             arrayList.add(ObjectAnimator.ofFloat(h0Var, "alpha", f13));
-            if (z10) {
+            if (z9) {
                 f14 = 1.0f;
             }
             arrayList.add(ObjectAnimator.ofFloat(textView, "alpha", f14));
             return;
         }
-        if (z10) {
+        if (z9) {
             f10 = 1.0f;
         } else {
             f10 = 0.5f;
         }
         textView2.setAlpha(f10);
-        if (z10) {
+        if (z9) {
             f11 = 1.0f;
         } else {
             f11 = 0.5f;
         }
         h0Var.setAlpha(f11);
-        if (z10) {
+        if (z9) {
             f14 = 1.0f;
         }
         textView.setAlpha(f14);
@@ -76,8 +76,8 @@ public abstract class b5 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         float L;
-        int i3;
-        if (bd.f21784a0) {
+        int i7;
+        if (hd.f22871a0) {
             L = 0.0f;
         } else {
             L = org.telegram.messenger.g0.L(20.0f);
@@ -85,12 +85,12 @@ public abstract class b5 extends FrameLayout {
         float f10 = L;
         float measuredHeight = getMeasuredHeight() - 1;
         int measuredWidth = getMeasuredWidth();
-        if (bd.f21784a0) {
-            i3 = org.telegram.messenger.g0.L(20.0f);
+        if (hd.f22871a0) {
+            i7 = org.telegram.messenger.g0.L(20.0f);
         } else {
-            i3 = 0;
+            i7 = 0;
         }
-        canvas.drawLine(f10, measuredHeight, measuredWidth - i3, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f28002k0);
+        canvas.drawLine(f10, measuredHeight, measuredWidth - i7, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f27971k0);
     }
 
     @Override
@@ -102,14 +102,14 @@ public abstract class b5 extends FrameLayout {
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i3), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
-        setMeasuredDimension(View.MeasureSpec.getSize(i3), org.telegram.messenger.g0.L(80.0f));
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(80.0f));
         int measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(42.0f);
-        TextView textView = this.f28990b;
+        TextView textView = this.f28930b;
         textView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824));
-        this.f28989a.measure(View.MeasureSpec.makeMeasureSpec(k2.p1.d(8.0f, measuredWidth - textView.getMeasuredWidth(), org.telegram.messenger.g0.L(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824));
-        this.f28991c.measure(org.telegram.messenger.camera.q.c(20.0f, getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824));
+        this.f28929a.measure(View.MeasureSpec.makeMeasureSpec(jg.g.e(8.0f, measuredWidth - textView.getMeasuredWidth(), org.telegram.messenger.g0.L(10.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824));
+        this.f28931c.measure(org.telegram.messenger.camera.q.c(20.0f, getMeasuredWidth(), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(30.0f), 1073741824));
     }
 
     @Override
@@ -120,35 +120,35 @@ public abstract class b5 extends FrameLayout {
         return super.onTouchEvent(motionEvent);
     }
 
-    public void setSize(long j10) {
+    public void setSize(long j3) {
         float max;
         float f10;
         float f11;
-        this.d = j10;
-        this.f28990b.setText(bd.a0("AutodownloadSizeLimitUpTo", null, 2131753772, org.telegram.messenger.g0.i0(j10, false, false)));
-        long j11 = j10 - 512000;
-        if (j11 < 536576) {
-            f11 = Math.max(0.0f, ((float) j11) / 536576.0f) * 0.25f;
+        this.d = j3;
+        this.f28930b.setText(hd.a0("AutodownloadSizeLimitUpTo", null, 2131753772, org.telegram.messenger.g0.i0(j3, false, false)));
+        long j10 = j3 - 512000;
+        if (j10 < 536576) {
+            f11 = Math.max(0.0f, ((float) j10) / 536576.0f) * 0.25f;
         } else {
-            long j12 = j10 - 1048576;
-            if (j12 < 9437184) {
-                f11 = (Math.max(0.0f, ((float) j12) / 9437184.0f) * 0.25f) + 0.25f;
+            long j11 = j3 - 1048576;
+            if (j11 < 9437184) {
+                f11 = (Math.max(0.0f, ((float) j11) / 9437184.0f) * 0.25f) + 0.25f;
             } else {
-                long j13 = j10 - 10485760;
-                if (j13 < 94371840) {
-                    max = Math.max(0.0f, ((float) j13) / 9.437184E7f) * 0.25f;
+                long j12 = j3 - 10485760;
+                if (j12 < 94371840) {
+                    max = Math.max(0.0f, ((float) j12) / 9.437184E7f) * 0.25f;
                     f10 = 0.5f;
                 } else {
-                    max = Math.max(0.0f, ((float) (j10 - 104857600)) / 1.9922944E9f) * 0.25f;
+                    max = Math.max(0.0f, ((float) (j3 - 104857600)) / 1.9922944E9f) * 0.25f;
                     f10 = 0.75f;
                 }
                 f11 = max + f10;
             }
         }
-        this.f28991c.setProgress(Math.min(1.0f, f11));
+        this.f28931c.setProgress(Math.min(1.0f, f11));
     }
 
     public void setText(String str) {
-        this.f28989a.setText(str);
+        this.f28929a.setText(str);
     }
 }

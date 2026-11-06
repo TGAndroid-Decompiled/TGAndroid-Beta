@@ -1,24 +1,48 @@
 package db;
 
-import android.os.Build;
-public final class c implements ma.d {
-    public static final c f8611a = new Object();
-    public static final ma.c f8612b = ma.c.c("packageName");
-    public static final ma.c f8613c = ma.c.c("versionName");
-    public static final ma.c d = ma.c.c("appBuildVersion");
-    public static final ma.c f8614e = ma.c.c("deviceManufacturer");
-    public static final ma.c f8615f = ma.c.c("currentProcessDetails");
-    public static final ma.c f8616g = ma.c.c("appProcessDetails");
+import android.os.Parcel;
+import android.os.Parcelable;
+import c8.wb;
+public final class c extends r6.a {
+    public static final Parcelable.Creator<c> CREATOR = new k(1);
+    public final int f8574a;
+    public final String f8575b;
+    public final int f8576c;
+
+    public c(int i7, int i10, String carrierId) {
+        kotlin.jvm.internal.j.e(carrierId, "carrierId");
+        this.f8574a = i7;
+        this.f8575b = carrierId;
+        this.f8576c = i10;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof c)) {
+            return false;
+        }
+        c cVar = (c) obj;
+        if (this.f8574a == cVar.f8574a && kotlin.jvm.internal.j.a(this.f8575b, cVar.f8575b) && this.f8576c == cVar.f8576c) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return com.google.android.recaptcha.internal.a.h(this.f8574a * 31, 31, this.f8575b) + this.f8576c;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        a aVar = (a) obj;
-        ma.e eVar = (ma.e) obj2;
-        eVar.a(f8612b, aVar.f8595a);
-        eVar.a(f8613c, aVar.f8596b);
-        eVar.a(d, aVar.f8597c);
-        eVar.a(f8614e, Build.MANUFACTURER);
-        eVar.a(f8615f, aVar.d);
-        eVar.a(f8616g, aVar.f8598e);
+    public final void writeToParcel(Parcel dest, int i7) {
+        kotlin.jvm.internal.j.e(dest, "dest");
+        int r10 = wb.r(dest, 20293);
+        wb.q(dest, 1, 4);
+        dest.writeInt(this.f8574a);
+        wb.l(dest, 2, this.f8575b);
+        wb.q(dest, 3, 4);
+        dest.writeInt(this.f8576c);
+        wb.s(dest, r10);
     }
 }

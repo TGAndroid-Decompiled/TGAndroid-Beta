@@ -1,49 +1,57 @@
 package l6;
 
+import a8.p0;
 import android.os.Parcel;
 import android.os.Parcelable;
-import i7.p;
-public final class b extends q6.a {
-    public static final Parcelable.Creator<b> CREATOR = new p(15);
-    public final String f18052a;
-    public final String f18053b;
-    public final String f18054c;
-    public final String d;
-    public final String f18055e;
-    public int f18056f;
-    public final String h;
+import c8.wb;
+import java.util.Arrays;
+public final class b extends r6.a {
+    public static final Parcelable.Creator<b> CREATOR = new j7.b(26);
+    public final boolean f18183a;
+    public final long f18184b;
+    public final long f18185c;
 
-    public b(String str, String str2, String str3, String str4, String str5) {
-        this.f18052a = str;
-        this.f18053b = str2;
-        this.f18054c = str3;
-        this.d = str4;
-        this.f18055e = str5;
-        this.h = "fcm-25.1.3";
+    public b(long j3, long j10, boolean z9) {
+        this.f18183a = z9;
+        this.f18184b = j3;
+        this.f18185c = j10;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj instanceof b) {
+            b bVar = (b) obj;
+            if (this.f18183a == bVar.f18183a && this.f18184b == bVar.f18184b && this.f18185c == bVar.f18185c) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f18183a), Long.valueOf(this.f18184b), Long.valueOf(this.f18185c)});
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("CollectForDebugParcelable[skipPersistentStorage: ");
+        sb2.append(this.f18183a);
+        sb2.append(",collectForDebugStartTimeMillis: ");
+        sb2.append(this.f18184b);
+        sb2.append(",collectForDebugExpiryTimeMillis: ");
+        return p0.r(sb2, this.f18185c, "]");
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i3) {
-        int s6 = j8.a.s(parcel, 20293);
-        j8.a.m(parcel, 1, this.f18052a);
-        j8.a.m(parcel, 2, this.f18053b);
-        j8.a.m(parcel, 3, this.f18054c);
-        j8.a.m(parcel, 4, this.d);
-        j8.a.m(parcel, 5, this.f18055e);
-        int i10 = this.f18056f;
-        j8.a.r(parcel, 6, 4);
-        parcel.writeInt(i10);
-        j8.a.m(parcel, 7, this.h);
-        j8.a.t(parcel, s6);
-    }
-
-    public b(String str, String str2, String str3, String str4, String str5, int i3, String str6) {
-        this.f18052a = str;
-        this.f18053b = str2;
-        this.f18054c = str3;
-        this.d = str4;
-        this.f18055e = str5;
-        this.f18056f = i3;
-        this.h = str6;
+    public final void writeToParcel(Parcel parcel, int i7) {
+        int r10 = wb.r(parcel, 20293);
+        wb.q(parcel, 1, 4);
+        parcel.writeInt(this.f18183a ? 1 : 0);
+        wb.q(parcel, 2, 8);
+        parcel.writeLong(this.f18185c);
+        wb.q(parcel, 3, 8);
+        parcel.writeLong(this.f18184b);
+        wb.s(parcel, r10);
     }
 }

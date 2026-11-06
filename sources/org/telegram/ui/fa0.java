@@ -1,32 +1,58 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.tl.TL_stories;
-public final class fa0 extends org.telegram.ui.Components.ws0 {
-    public final la0 f45228x2;
+import androidx.recyclerview.widget.RecyclerView;
+public final class fa0 extends v4.s0 {
+    public final int f45575a;
+    public final pa0 f45576b;
 
-    public fa0(la0 la0Var, Context context, org.telegram.ui.Components.os0 os0Var, la0 la0Var2, ea0 ea0Var, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, 0L, os0Var, 0, null, null, null, 8, 0, la0Var2, ea0Var, 0, e6Var, null);
-        this.f45228x2 = la0Var;
+    public fa0(pa0 pa0Var, int i7) {
+        this.f45575a = i7;
+        this.f45576b = pa0Var;
     }
 
     @Override
-    public final int N0() {
-        return 32;
+    public final void a(RecyclerView recyclerView, int i7) {
+        boolean z9;
+        switch (this.f45575a) {
+            case 0:
+                if (i7 == 1) {
+                    pa0 pa0Var = this.f45576b;
+                    if (pa0Var.f48760t0 && pa0Var.f48761u0) {
+                        org.telegram.messenger.g0.v1(pa0Var.getParentActivity().getCurrentFocus());
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                if (i7 != 0) {
+                    z9 = true;
+                } else {
+                    z9 = false;
+                }
+                pa0 pa0Var2 = this.f45576b;
+                pa0Var2.M = z9;
+                if (!z9 && pa0Var2.H != null) {
+                    pa0Var2.H = null;
+                    return;
+                }
+                return;
+        }
     }
 
     @Override
-    public final boolean Y() {
-        return true;
-    }
-
-    @Override
-    public final int c1() {
-        return 3;
-    }
-
-    @Override
-    public final TL_stories.MediaArea getStoriesArea() {
-        return this.f45228x2.O0;
+    public void b(RecyclerView recyclerView, int i7, int i10) {
+        switch (this.f45575a) {
+            case 1:
+                pa0 pa0Var = this.f45576b;
+                pa0Var.K0(false);
+                if (pa0Var.H != null) {
+                    pa0Var.J += i10;
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
     }
 }

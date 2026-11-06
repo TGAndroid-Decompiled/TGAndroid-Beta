@@ -1,47 +1,29 @@
 package z7;
+public final class a implements d {
+    public final int f59591a;
 
-import b8.ra;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map;
-public final class a extends b8.x {
-    public final Map f59794b;
-    public final e f59795c;
-
-    public a(e eVar, Map map) {
-        super(2);
-        this.f59795c = eVar;
-        map.getClass();
-        this.f59794b = map;
+    public a(int i7) {
+        this.f59591a = i7;
     }
 
     @Override
-    public final void clear() {
-        Iterator it = iterator();
-        while (true) {
-            ra raVar = (ra) it;
-            if (raVar.hasNext()) {
-                raVar.next();
-                raVar.remove();
-            } else {
-                return;
-            }
-        }
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        return this.f59794b.containsKey(obj);
-    }
-
-    @Override
-    public final boolean containsAll(Collection collection) {
-        return this.f59794b.keySet().containsAll(collection);
+    public final Class annotationType() {
+        return d.class;
     }
 
     @Override
     public final boolean equals(Object obj) {
-        if (this != obj && !this.f59794b.keySet().equals(obj)) {
+        if (this != obj) {
+            if (obj instanceof d) {
+                if (this.f59591a == ((a) ((d) obj)).f59591a) {
+                    Object obj2 = c.f59608a;
+                    if (obj2.equals(obj2)) {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
             return false;
         }
         return true;
@@ -49,36 +31,11 @@ public final class a extends b8.x {
 
     @Override
     public final int hashCode() {
-        return this.f59794b.keySet().hashCode();
+        return (this.f59591a ^ 14552422) + (c.f59608a.hashCode() ^ 2041407134);
     }
 
     @Override
-    public final boolean isEmpty() {
-        return this.f59794b.isEmpty();
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new ra(this, this.f59794b.entrySet().iterator(), 8);
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        Collection collection = (Collection) this.f59794b.remove(obj);
-        if (collection != null) {
-            int size = collection.size();
-            collection.clear();
-            this.f59795c.d -= size;
-            if (size > 0) {
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-
-    @Override
-    public final int size() {
-        return this.f59794b.size();
+    public final String toString() {
+        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f59591a + "intEncoding=" + c.f59608a + ')';
     }
 }

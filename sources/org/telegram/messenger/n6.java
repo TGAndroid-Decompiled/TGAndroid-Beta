@@ -12,26 +12,26 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 public final class n6 {
-    public static final String[] f24316e = {"/dev/socket/genyd", "/dev/socket/baseband_genyd"};
-    public static final String[] f24317f = {"goldfish"};
-    public static final String[] f24318g = {"/dev/socket/qemud", "/dev/qemu_pipe"};
+    public static final String[] f24125e = {"/dev/socket/genyd", "/dev/socket/baseband_genyd"};
+    public static final String[] f24126f = {"goldfish"};
+    public static final String[] f24127g = {"/dev/socket/qemud", "/dev/qemu_pipe"};
     public static final String[] h = {"ueventd.android_x86.rc", "x86.prop", "ueventd.ttVM_x86.rc", "init.ttVM_x86.rc", "fstab.ttVM_x86", "fstab.vbox86", "init.vbox86.rc", "ueventd.vbox86.rc"};
-    public static final String[] f24319i = {"fstab.andy", "ueventd.andy.rc"};
-    public static final String[] f24320j = {"fstab.nox", "init.nox.rc", "ueventd.nox.rc", "/BigNoxGameHD", "/YSLauncher"};
-    public static final String[] f24321k = {"/Android/data/com.bluestacks.home", "/Android/data/com.bluestacks.settings"};
-    public static final m6[] f24322l = {new m6("init.svc.qemud", null, false), new m6("init.svc.qemu-props", null, false), new m6("qemu.hw.mainkeys", null, false), new m6("qemu.sf.fake_camera", null, false), new m6("qemu.sf.lcd_density", null, false), new m6("ro.bootloader", "unknown", false), new m6("ro.bootmode", "unknown", false), new m6("ro.hardware", "goldfish", false), new m6("ro.kernel.android.qemud", null, false), new m6("ro.kernel.qemu.gles", null, false), new m6("ro.kernel.qemu", "1", false), new m6("ro.product.device", "generic", false), new m6("ro.product.model", "sdk", false), new m6("ro.product.name", "sdk", false), new m6("ro.serialno", null, false)};
-    public static n6 f24323m;
-    public static HashMap f24324n;
-    public boolean f24325a;
-    public boolean f24326b;
-    public final Object f24327c;
+    public static final String[] f24128i = {"fstab.andy", "ueventd.andy.rc"};
+    public static final String[] f24129j = {"fstab.nox", "init.nox.rc", "ueventd.nox.rc", "/BigNoxGameHD", "/YSLauncher"};
+    public static final String[] f24130k = {"/Android/data/com.bluestacks.home", "/Android/data/com.bluestacks.settings"};
+    public static final m6[] f24131l = {new m6(0, "init.svc.qemud", null), new m6(0, "init.svc.qemu-props", null), new m6(0, "qemu.hw.mainkeys", null), new m6(0, "qemu.sf.fake_camera", null), new m6(0, "qemu.sf.lcd_density", null), new m6(0, "ro.bootloader", "unknown"), new m6(0, "ro.bootmode", "unknown"), new m6(0, "ro.hardware", "goldfish"), new m6(0, "ro.kernel.android.qemud", null), new m6(0, "ro.kernel.qemu.gles", null), new m6(0, "ro.kernel.qemu", "1"), new m6(0, "ro.product.device", "generic"), new m6(0, "ro.product.model", "sdk"), new m6(0, "ro.product.name", "sdk"), new m6(0, "ro.serialno", null)};
+    public static n6 f24132m;
+    public static HashMap f24133n;
+    public boolean f24134a;
+    public boolean f24135b;
+    public final Object f24136c;
     public final Object d;
 
-    public n6(Window window, d9 d9Var) {
-        this.f24325a = false;
-        this.f24326b = false;
-        this.f24327c = window;
-        this.d = d9Var;
+    public n6(Window window, j9 j9Var) {
+        this.f24134a = false;
+        this.f24135b = false;
+        this.f24136c = window;
+        this.d = j9Var;
     }
 
     public static boolean c() {
@@ -40,33 +40,33 @@ public final class n6 {
 
     public static n6 h(Context context) {
         if (context != null) {
-            if (f24323m == null) {
-                f24323m = new n6(context.getApplicationContext());
+            if (f24132m == null) {
+                f24132m = new n6(context.getApplicationContext());
             }
-            return f24323m;
+            return f24132m;
         }
         throw new IllegalArgumentException("Context must not be null.");
     }
 
     public void a() {
-        if (this.f24325a) {
+        if (this.f24134a) {
             return;
         }
-        this.f24325a = true;
+        this.f24134a = true;
         g();
     }
 
     public boolean b() {
         String str;
         String[] split;
-        Context context = (Context) this.f24327c;
+        Context context = (Context) this.f24136c;
         f0.d.b(context, "android.permission.READ_PHONE_STATE");
-        if (d(1, f24316e) || d(2, f24319i) || d(3, f24320j) || d(4, f24321k)) {
+        if (d(1, f24125e) || d(2, f24128i) || d(3, f24129j) || d(4, f24130k)) {
             return true;
         }
         File[] fileArr = {new File("/proc/tty/drivers"), new File("/proc/cpuinfo")};
-        for (int i3 = 0; i3 < 2; i3++) {
-            File file = fileArr[i3];
+        for (int i7 = 0; i7 < 2; i7++) {
+            File file = fileArr[i7];
             if (file.exists() && file.canRead()) {
                 byte[] bArr = new byte[1024];
                 try {
@@ -76,12 +76,12 @@ public final class n6 {
                 } catch (Exception e10) {
                     e10.printStackTrace();
                 }
-                if (new String(bArr).contains(f24317f[0])) {
+                if (new String(bArr).contains(f24126f[0])) {
                     return true;
                 }
             }
         }
-        if (d(5, f24318g)) {
+        if (d(5, f24127g)) {
             return true;
         }
         if (f0.d.b(context, "android.permission.INTERNET") == 0) {
@@ -110,15 +110,15 @@ public final class n6 {
         }
         int i10 = 0;
         for (int i11 = 0; i11 < 15; i11++) {
-            m6 m6Var = f24322l[i11];
-            String str3 = m6Var.f24168a;
+            m6 m6Var = f24131l[i11];
+            String str3 = m6Var.f23978b;
             try {
                 Class<?> loadClass = context.getClassLoader().loadClass("android.os.SystemProperties");
                 str = (String) loadClass.getMethod("get", String.class).invoke(loadClass, str3);
             } catch (Exception unused2) {
                 str = null;
             }
-            String str4 = m6Var.f24169b;
+            String str4 = m6Var.f23979c;
             if (str4 == null && str != null) {
                 i10++;
             }
@@ -132,11 +132,11 @@ public final class n6 {
         return false;
     }
 
-    public boolean d(int i3, String[] strArr) {
+    public boolean d(int i7, String[] strArr) {
         File file;
         for (String str : strArr) {
-            if (f0.d.b((Context) this.f24327c, "android.permission.READ_EXTERNAL_STORAGE") == 0) {
-                if ((str.contains("/") && i3 == 3) || i3 == 4) {
+            if (f0.d.b((Context) this.f24136c, "android.permission.READ_EXTERNAL_STORAGE") == 0) {
+                if ((str.contains("/") && i7 == 3) || i7 == 4) {
                     file = new File(Environment.getExternalStorageDirectory() + str);
                 } else {
                     file = new File(str);
@@ -152,85 +152,85 @@ public final class n6 {
     }
 
     public void e() {
-        if (!this.f24325a) {
+        if (!this.f24134a) {
             return;
         }
-        this.f24325a = false;
+        this.f24134a = false;
         g();
     }
 
     public boolean f() {
-        if (this.f24325a) {
-            return this.f24326b;
+        if (this.f24134a) {
+            return this.f24135b;
         }
-        boolean z10 = true;
+        boolean z9 = true;
         try {
-            this.f24325a = true;
-            if (!this.f24326b) {
-                this.f24326b = c();
+            this.f24134a = true;
+            if (!this.f24135b) {
+                this.f24135b = c();
             }
-            if (!this.f24326b) {
-                this.f24326b = b();
+            if (!this.f24135b) {
+                this.f24135b = b();
             }
-            if (!this.f24326b) {
+            if (!this.f24135b) {
                 ArrayList arrayList = (ArrayList) this.d;
                 if (!arrayList.isEmpty()) {
-                    PackageManager packageManager = ((Context) this.f24327c).getPackageManager();
+                    PackageManager packageManager = ((Context) this.f24136c).getPackageManager();
                     int size = arrayList.size();
-                    int i3 = 0;
-                    while (i3 < size) {
-                        Object obj = arrayList.get(i3);
-                        i3++;
+                    int i7 = 0;
+                    while (i7 < size) {
+                        Object obj = arrayList.get(i7);
+                        i7++;
                         Intent launchIntentForPackage = packageManager.getLaunchIntentForPackage((String) obj);
                         if (launchIntentForPackage != null && !packageManager.queryIntentActivities(launchIntentForPackage, 65536).isEmpty()) {
                             break;
                         }
                     }
                 }
-                z10 = false;
-                this.f24326b = z10;
+                z9 = false;
+                this.f24135b = z9;
             }
-            if (!this.f24326b) {
-                this.f24326b = b6.b();
+            if (!this.f24135b) {
+                this.f24135b = b6.b();
             }
-            return this.f24326b;
+            return this.f24135b;
         } catch (Exception unused) {
             return false;
         }
     }
 
     public void g() {
-        boolean z10;
+        boolean z9;
         int intValue;
-        int i3 = 1;
-        if (this.f24325a && ((d9) this.d).run()) {
-            z10 = true;
+        int i7 = 1;
+        if (this.f24134a && ((j9) this.d).run()) {
+            z9 = true;
         } else {
-            z10 = false;
+            z9 = false;
         }
-        if (z10 != this.f24326b) {
-            this.f24326b = z10;
-            if (!z10) {
-                i3 = -1;
+        if (z9 != this.f24135b) {
+            this.f24135b = z9;
+            if (!z9) {
+                i7 = -1;
             }
-            Window window = (Window) this.f24327c;
-            if (f24324n == null) {
-                f24324n = new HashMap();
+            Window window = (Window) this.f24136c;
+            if (f24133n == null) {
+                f24133n = new HashMap();
             }
-            Integer num = (Integer) f24324n.get(window);
+            Integer num = (Integer) f24133n.get(window);
             if (num == null) {
                 intValue = 0;
             } else {
                 intValue = num.intValue();
             }
-            int max = Math.max(0, intValue + i3);
+            int max = Math.max(0, intValue + i7);
             if (max <= 0) {
-                f24324n.remove(window);
+                f24133n.remove(window);
             } else {
-                f24324n.put(window, Integer.valueOf(max));
+                f24133n.put(window, Integer.valueOf(max));
             }
             if (window != null) {
-                HashMap hashMap = f24324n;
+                HashMap hashMap = f24133n;
                 if (hashMap != null && hashMap.get(window) != null) {
                     window.addFlags(8192);
                     g0.h2();
@@ -245,7 +245,7 @@ public final class n6 {
     public n6(Context context) {
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
-        this.f24327c = context;
+        this.f24136c = context;
         arrayList.add("com.google.android.launcher.layouts.genymotion");
         arrayList.add("com.bluestacks");
         arrayList.add("com.bignox.app");

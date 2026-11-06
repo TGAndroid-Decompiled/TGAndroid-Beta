@@ -1,58 +1,40 @@
 package y3;
 
-import g2.y;
-public final class a {
-    public final int f58902a;
-    public int f58903b;
-    public int f58904c;
-    public long d;
-    public final boolean f58905e;
-    public final y f58906f;
-    public final y f58907g;
-    public int h;
-    public int f58908i;
+import f3.k;
+public final class a extends k implements h {
+    public final long f58802i;
+    public final int f58803j;
+    public final int f58804k;
+    public final boolean f58805l;
+    public final long f58806m;
 
-    public a(y yVar, y yVar2, boolean z10) {
-        this.f58907g = yVar;
-        this.f58906f = yVar2;
-        this.f58905e = z10;
-        yVar2.N(12);
-        this.f58902a = yVar2.E();
-        yVar.N(12);
-        this.f58908i = yVar.E();
-        e3.b.b("first_chunk must be 1", yVar.m() == 1);
-        this.f58903b = -1;
+    public a(long j3, long j10, int i7, int i10, boolean z9, boolean z10) {
+        super(j3, j10, i7, i10, z9, z10);
+        long j11 = j3;
+        this.f58802i = j10;
+        this.f58803j = i7;
+        this.f58804k = i10;
+        this.f58805l = z9;
+        this.f58806m = j11 == -1 ? -1L : j11;
     }
 
-    public final boolean a() {
-        long C;
-        int i3;
-        int i10 = this.f58903b + 1;
-        this.f58903b = i10;
-        if (i10 == this.f58902a) {
-            return false;
-        }
-        boolean z10 = this.f58905e;
-        y yVar = this.f58906f;
-        if (z10) {
-            C = yVar.G();
-        } else {
-            C = yVar.C();
-        }
-        this.d = C;
-        if (this.f58903b == this.h) {
-            y yVar2 = this.f58907g;
-            this.f58904c = yVar2.E();
-            yVar2.O(4);
-            int i11 = this.f58908i - 1;
-            this.f58908i = i11;
-            if (i11 > 0) {
-                i3 = yVar2.E() - 1;
-            } else {
-                i3 = -1;
-            }
-            this.h = i3;
-        }
-        return true;
+    @Override
+    public final long a(long j3) {
+        return (Math.max(0L, j3 - this.f11044b) * 8000000) / this.f11046e;
+    }
+
+    @Override
+    public final long b() {
+        return this.f58806m;
+    }
+
+    @Override
+    public final long c() {
+        return this.f58802i;
+    }
+
+    @Override
+    public final int g() {
+        return this.f58803j;
     }
 }

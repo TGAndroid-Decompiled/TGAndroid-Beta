@@ -1,49 +1,43 @@
 package org.telegram.ui.Components.voip;
 
 import android.animation.ValueAnimator;
+import org.telegram.ui.c40;
+import org.telegram.ui.z20;
 public final class g0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39359a;
-    public final l0 f39360b;
+    public final int f39162a;
+    public final k0 f39163b;
 
-    public g0(l0 l0Var, int i3) {
-        this.f39359a = i3;
-        this.f39360b = l0Var;
+    public g0(k0 k0Var, int i7) {
+        this.f39162a = i7;
+        this.f39163b = k0Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f39359a) {
+        float f10;
+        switch (this.f39162a) {
             case 0:
-                l0 l0Var = this.f39360b;
-                l0Var.getClass();
-                l0Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l0Var.invalidate();
-                return;
-            case 1:
-                l0 l0Var2 = this.f39360b;
-                l0Var2.getClass();
-                l0Var2.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float L = l0Var2.J + org.telegram.messenger.g0.L(28.0f);
-                float L2 = l0Var2.K + org.telegram.messenger.g0.L(52.0f);
-                float f10 = l0Var2.E;
-                l0Var2.H = L - (L * f10);
-                l0Var2.I = L2 - (f10 * L2);
-                l0Var2.invalidate();
-                return;
-            case 2:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l0 l0Var3 = this.f39360b;
-                l0Var3.F = floatValue;
-                int L3 = (org.telegram.messenger.g0.f22608q.x - org.telegram.messenger.g0.L(36.0f)) - org.telegram.messenger.g0.L(52.0f);
-                j0 j0Var = l0Var3.f39447c;
-                j0Var.getLayoutParams().width = org.telegram.messenger.g0.L(52.0f) + ((int) (L3 * l0Var3.F));
-                j0Var.requestLayout();
+                k0 k0Var = this.f39163b;
+                k0Var.getClass();
+                k0Var.I0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k0Var.invalidate();
                 return;
             default:
-                l0 l0Var4 = this.f39360b;
-                l0Var4.getClass();
-                l0Var4.f39452s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l0Var4.e();
+                k0 k0Var2 = this.f39163b;
+                k0Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k0Var2.f39242c = floatValue;
+                c40 c40Var = k0Var2.f39252j0;
+                c40Var.f44594q3.setAlpha(1.0f - floatValue);
+                z20 z20Var = c40Var.F1;
+                if (z20Var.getTag() != null) {
+                    f10 = 1.0f;
+                } else {
+                    f10 = 0.0f;
+                }
+                z20Var.setAlpha((1.0f - c40Var.R3.f39242c) * f10);
+                c40Var.J1(c40Var.f44588p2);
+                k0Var2.l();
                 return;
         }
     }

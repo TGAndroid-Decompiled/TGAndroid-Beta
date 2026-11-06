@@ -1,26 +1,34 @@
 package n5;
+public final class n extends y {
+    public final l f20459a;
 
-import java.util.HashMap;
-public abstract class n {
-    public static final p7.d f20256a;
+    public n(l lVar) {
+        this.f20459a = lVar;
+    }
 
-    static {
-        HashMap hashMap = new HashMap();
-        HashMap hashMap2 = new HashMap();
-        hashMap.put(n.class, e.f20230a);
-        hashMap2.remove(n.class);
-        hashMap.put(q5.a.class, a.f20218a);
-        hashMap2.remove(q5.a.class);
-        hashMap.put(q5.g.class, g.f20234a);
-        hashMap2.remove(q5.g.class);
-        hashMap.put(q5.e.class, d.f20227a);
-        hashMap2.remove(q5.e.class);
-        hashMap.put(q5.d.class, c.f20224a);
-        hashMap2.remove(q5.d.class);
-        hashMap.put(q5.b.class, b.f20222a);
-        hashMap2.remove(q5.b.class);
-        hashMap.put(q5.f.class, f.f20231a);
-        hashMap2.remove(q5.f.class);
-        f20256a = new p7.d(new HashMap(hashMap), new HashMap(hashMap2), pa.f.f53438a, 2);
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof y) {
+                y yVar = (y) obj;
+                Object obj2 = x.f20480a;
+                if (obj2.equals(obj2)) {
+                    if (this.f20459a.equals(((n) yVar).f20459a)) {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        return ((x.f20480a.hashCode() ^ 1000003) * 1000003) ^ this.f20459a.hashCode();
+    }
+
+    public final String toString() {
+        return "ClientInfo{clientType=" + x.f20480a + ", androidClientInfo=" + this.f20459a + "}";
     }
 }

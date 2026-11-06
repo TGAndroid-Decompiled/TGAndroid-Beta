@@ -16,6 +16,6 @@ public class VoIPFeedbackActivity extends Activity {
         super.onCreate(bundle);
         overridePendingTransition(0, 0);
         setContentView(new View(this));
-        org.telegram.ui.Components.voip.n1.k(this, new pu0(this, 22), getIntent().getBooleanExtra("call_video", false), getIntent().getLongExtra("call_id", 0L), getIntent().getLongExtra("call_access_hash", 0L), getIntent().getIntExtra("account", 0), false);
+        org.telegram.ui.Components.voip.y1.k(this, new qu0(this, 23), getIntent().getBooleanExtra("call_video", false), getIntent().getLongExtra("call_id", 0L), getIntent().getLongExtra("call_access_hash", 0L), getIntent().getIntExtra("account", 0), false);
     }
 }

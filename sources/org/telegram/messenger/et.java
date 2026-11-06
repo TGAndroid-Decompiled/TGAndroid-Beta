@@ -1,86 +1,66 @@
 package org.telegram.messenger;
 
-import android.content.Context;
-import android.content.DialogInterface;
-import android.os.Bundle;
-import android.util.Base64;
-import org.json.JSONObject;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.qd0;
-public final class et implements v0.h {
-    public final qd0 f22397a;
-    public final Context f22398b;
-    public final int f22399c;
+import android.content.SharedPreferences;
+public final class et {
+    public final int f22249a;
 
-    public et(qd0 qd0Var, Context context, int i3) {
-        this.f22397a = qd0Var;
-        this.f22398b = context;
-        this.f22399c = i3;
+    public et(int i7) {
+        this.f22249a = i7;
     }
 
-    @Override
-    public final void a(Object obj) {
-        w0.i iVar = (w0.i) obj;
-        boolean z10 = iVar instanceof w0.k;
-        qd0 qd0Var = this.f22397a;
-        if (z10) {
-            qd0Var.a(0L, null, "EMPTY");
-        } else if (iVar instanceof w0.g) {
-            qd0Var.a(0L, null, "CANCELLED");
-        } else if (iVar instanceof w0.j) {
-            qd0Var.a(0L, null, "CANCELLED");
-        } else if (iVar != null) {
-            qd0Var.a(0L, null, iVar.getMessage());
-        }
+    public final void a(org.telegram.tgnet.TLRPC.NotificationSound r17, android.content.SharedPreferences.Editor r18, long r19, long r21, int r23) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.et.a(org.telegram.tgnet.TLRPC$NotificationSound, android.content.SharedPreferences$Editor, long, long, int):void");
     }
 
-    @Override
-    public final void onResult(Object obj) {
-        final qd0 qd0Var = this.f22397a;
-        ci.u0 u0Var = ((v0.n) obj).f56433a;
-        TL_account.finishPasskeyLogin finishpasskeylogin = new TL_account.finishPasskeyLogin();
-        finishpasskeylogin.credential = new TL_account.inputPasskeyCredentialPublicKey();
-        try {
-            JSONObject jSONObject = new JSONObject(((Bundle) u0Var.f6076a).getString("androidx.credentials.BUNDLE_KEY_AUTHENTICATION_RESPONSE_JSON"));
-            finishpasskeylogin.credential.f27212id = jSONObject.getString("id");
-            finishpasskeylogin.credential.raw_id = jSONObject.getString("rawId");
-            JSONObject jSONObject2 = jSONObject.getJSONObject("response");
-            TL_account.inputPasskeyResponseLogin inputpasskeyresponselogin = new TL_account.inputPasskeyResponseLogin();
-            TLRPC.TL_dataJSON tL_dataJSON = new TLRPC.TL_dataJSON();
-            inputpasskeyresponselogin.client_data = tL_dataJSON;
-            tL_dataJSON.data = new String(Base64.decode(jSONObject2.getString("clientDataJSON"), 8));
-            inputpasskeyresponselogin.authenticator_data = Base64.decode(jSONObject2.getString("authenticatorData"), 8);
-            inputpasskeyresponselogin.signature = Base64.decode(jSONObject2.getString("signature"), 8);
-            String str = new String(Base64.decode(jSONObject2.getString("userHandle"), 8));
-            inputpasskeyresponselogin.user_handle = str;
-            int parseInt = Integer.parseInt(str.split(":")[0]);
-            final long parseLong = Long.parseLong(inputpasskeyresponselogin.user_handle.split(":")[1]);
-            finishpasskeylogin.credential.response = inputpasskeyresponselogin;
-            org.telegram.ui.ActionBar.s1 s1Var = new org.telegram.ui.ActionBar.s1(3, this.f22398b, null);
-            s1Var.r(500L);
-            int i3 = this.f22399c;
-            if (parseInt != ConnectionsManager.getInstance(i3).getCurrentDatacenterId()) {
-                int currentDatacenterId = ConnectionsManager.getInstance(i3).getCurrentDatacenterId();
-                long currentAuthKeyId = ConnectionsManager.getInstance(i3).getCurrentAuthKeyId();
-                ConnectionsManager.getInstance(i3).setDefaultDatacenterId(parseInt);
-                finishpasskeylogin.flags = 1 | finishpasskeylogin.flags;
-                finishpasskeylogin.from_dc_id = currentDatacenterId;
-                finishpasskeylogin.from_auth_key_id = currentAuthKeyId;
-            }
-            final int sendRequestTyped = ConnectionsManager.getInstance(i3).sendRequestTyped(finishpasskeylogin, new c3.b(1), new k9(s1Var, qd0Var, parseLong, 3), parseInt, 72);
-            final int i10 = this.f22399c;
-            s1Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                @Override
-                public final void onCancel(DialogInterface dialogInterface) {
-                    ConnectionsManager.getInstance(i10).cancelRequest(sendRequestTyped, true);
-                    qd0Var.a(Long.valueOf(parseLong), null, "CANCELLED");
-                }
-            });
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            qd0Var.a(0L, null, e10.getMessage());
+    public final SharedPreferences b() {
+        return qp.s1(this.f22249a).f24749d7;
+    }
+
+    public final int c(int i7, long j3, long j10, String str) {
+        String v = dt.v(j3, j10, true);
+        SharedPreferences b10 = b();
+        if (b10.contains(str + v)) {
+            SharedPreferences b11 = b();
+            return b11.getInt(str + v, i7);
         }
+        String v10 = dt.v(j3, 0L, true);
+        SharedPreferences b12 = b();
+        return b12.getInt(str + v10, i7);
+    }
+
+    public final long d(long j3, long j10) {
+        String v = dt.v(j3, j10, true);
+        SharedPreferences b10 = b();
+        if (b10.contains("sound_document_id_" + v)) {
+            SharedPreferences b11 = b();
+            return b11.getLong("sound_document_id_" + v, 0L);
+        }
+        String v10 = dt.v(j3, 0L, true);
+        SharedPreferences b12 = b();
+        return b12.getLong("sound_document_id_" + v10, 0L);
+    }
+
+    public final boolean e(long j3, long j10) {
+        String v = dt.v(j3, j10, false);
+        SharedPreferences b10 = b();
+        if (b10.contains("custom_" + v)) {
+            SharedPreferences b11 = b();
+            return b11.getBoolean("custom_" + v, false);
+        }
+        String v10 = dt.v(j3, 0L, false);
+        SharedPreferences b12 = b();
+        return b12.getBoolean("custom_" + v10, false);
+    }
+
+    public final String f(long j3, long j10) {
+        String v = dt.v(j3, j10, false);
+        SharedPreferences b10 = b();
+        if (b10.contains("sound_path_" + v)) {
+            SharedPreferences b11 = b();
+            return b11.getString("sound_path_" + v, null);
+        }
+        String v10 = dt.v(j3, 0L, false);
+        SharedPreferences b12 = b();
+        return b12.getString("sound_path_" + v10, null);
     }
 }

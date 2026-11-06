@@ -3,22 +3,22 @@ package org.telegram.messenger;
 import android.os.Handler;
 import android.os.Message;
 public final class n5 implements Handler.Callback {
-    public final int f24314a;
-    public final Thread f24315b;
+    public final int f24123a;
+    public final Thread f24124b;
 
-    public n5(Thread thread, int i3) {
-        this.f24314a = i3;
-        this.f24315b = thread;
+    public n5(Thread thread, int i7) {
+        this.f24123a = i7;
+        this.f24124b = thread;
     }
 
     @Override
     public final boolean handleMessage(Message message) {
-        switch (this.f24314a) {
+        switch (this.f24123a) {
             case 0:
-                ((q5) this.f24315b).handleMessage(message);
+                ((q5) this.f24124b).handleMessage(message);
                 return true;
             default:
-                ((p5) this.f24315b).getClass();
+                ((p5) this.f24124b).getClass();
                 return true;
         }
     }

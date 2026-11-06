@@ -1,29 +1,40 @@
 package qe;
 
-import android.view.animation.Interpolator;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
-import m2.t;
-public final class j implements Iterable {
-    public final h f53865a;
+import c8.j1;
+public final class j {
+    public static final j f53987c;
+    public static final j d;
+    public static final j f53988e;
+    public static final j f53989f;
+    public static final j[] h;
+    public static final ld.b f53990n;
+    public final char f53991a;
+    public final char f53992b;
 
-    public j(i iVar, Interpolator interpolator, long j10) {
-        this.f53865a = new h(new t(22, this, iVar), interpolator, j10);
+    static {
+        j jVar = new j("OBJ", 0, '{', '}');
+        f53987c = jVar;
+        j jVar2 = new j("LIST", 1, '[', ']');
+        d = jVar2;
+        j jVar3 = new j("MAP", 2, '{', '}');
+        f53988e = jVar3;
+        j jVar4 = new j("POLY_OBJ", 3, '[', ']');
+        f53989f = jVar4;
+        j[] jVarArr = {jVar, jVar2, jVar3, jVar4};
+        h = jVarArr;
+        f53990n = j1.a(jVarArr);
     }
 
-    public final void h(Object obj, boolean z10) {
-        List list;
-        if (obj != null) {
-            list = Collections.singletonList(obj);
-        } else {
-            list = null;
-        }
-        this.f53865a.m(list, z10);
+    public j(String str, int i7, char c10, char c11) {
+        this.f53991a = c10;
+        this.f53992b = c11;
     }
 
-    @Override
-    public final Iterator iterator() {
-        return this.f53865a.f53861b.iterator();
+    public static j valueOf(String str) {
+        return (j) Enum.valueOf(j.class, str);
+    }
+
+    public static j[] values() {
+        return (j[]) h.clone();
     }
 }

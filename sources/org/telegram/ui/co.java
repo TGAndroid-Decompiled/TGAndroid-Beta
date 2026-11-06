@@ -1,33 +1,56 @@
 package org.telegram.ui;
-public final class co implements Runnable {
-    public final int f44410a;
-    public final qo f44411b;
 
-    public co(qo qoVar, int i3) {
-        this.f44410a = i3;
-        this.f44411b = qoVar;
+import android.view.View;
+import android.widget.ScrollView;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class co implements org.telegram.ui.Components.bj0 {
+    public final fo f44843a;
+
+    public co(fo foVar) {
+        this.f44843a = foVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f44410a) {
-            case 0:
-                qo qoVar = this.f44411b;
-                org.telegram.ui.ActionBar.s1 s1Var = qoVar.f48926r;
-                if (s1Var != null) {
-                    s1Var.setOnCancelListener(new rf(qoVar, 2));
-                    qoVar.showDialog(qoVar.f48926r);
-                    return;
+    public final void c(int i7, View view) {
+        TLRPC.TL_username tL_username;
+        int i10;
+        int i11;
+        int i12;
+        fo foVar = this.f44843a;
+        go goVar = foVar.f45678h3;
+        if ((view instanceof ia) && (tL_username = ((ia) view).f46616w) != null) {
+            if (tL_username.editable) {
+                if (goVar.fragmentView instanceof ScrollView) {
+                    goVar.f46019a.smoothScrollTo(0, goVar.D.getTop() - org.telegram.messenger.g0.L(128.0f));
                 }
+                goVar.f46021b.requestFocus();
+                org.telegram.messenger.g0.K3(goVar.f46021b);
                 return;
-            case 1:
-                qo qoVar2 = this.f44411b;
-                qoVar2.getMessagesController().V2(0, qoVar2.F, true);
-                return;
-            default:
-                qo qoVar3 = this.f44411b;
-                qoVar3.getMessagesController().V2(0, qoVar3.F, true);
-                return;
+            }
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, foVar.getContext(), goVar.getResourceProvider());
+            if (tL_username.active) {
+                i10 = 2131743665;
+            } else {
+                i10 = 2131743672;
+            }
+            String M0 = org.telegram.messenger.hd.M0(i10, null);
+            org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
+            u1Var.R = M0;
+            if (tL_username.active) {
+                i11 = 2131743664;
+            } else {
+                i11 = 2131743671;
+            }
+            u1Var.T = org.telegram.messenger.hd.M0(i11, null);
+            if (tL_username.active) {
+                i12 = 2131749324;
+            } else {
+                i12 = 2131745354;
+            }
+            alertDialog$Builder.k(org.telegram.messenger.hd.M0(i12, null), new a7(this, tL_username, view, 8));
+            alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), new org.telegram.messenger.ch(23));
+            alertDialog$Builder.p();
         }
     }
 }

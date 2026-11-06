@@ -1,7 +1,3 @@
 package z7;
-
-import java.util.Collection;
-import java.util.Set;
-public interface q extends Collection {
-    Set zza();
+public abstract class q {
 }

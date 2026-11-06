@@ -1,37 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-public final class w2 implements View.OnClickListener {
-    public final int f39860a;
-    public final org.telegram.ui.ActionBar.t2 f39861b;
+public final class w2 implements Runnable {
+    public final int f39812a = 1;
+    public final int f39813b;
+    public final int[] f39814c;
+    public final Runnable d;
 
-    public w2(org.telegram.ui.ActionBar.t2 t2Var, int i3) {
-        this.f39860a = i3;
-        this.f39861b = t2Var;
+    public w2(int i7, int[] iArr, org.telegram.ui.q10 q10Var) {
+        this.f39813b = i7;
+        this.f39814c = iArr;
+        this.d = q10Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f39860a) {
+    public final void run() {
+        int i7 = this.f39812a;
+        Runnable runnable = this.d;
+        int[] iArr = this.f39814c;
+        int i10 = this.f39813b;
+        switch (i7) {
             case 0:
-                this.f39861b.dismiss();
+                iArr[0] = i10;
+                runnable.run();
                 return;
-            case 1:
-                org.telegram.ui.ActionBar.d2 Q = LaunchActivity.Q();
-                if (Q != null) {
-                    Q.presentFragment(new PremiumPreviewFragment(0, "contact"));
-                    this.f39861b.dismiss();
+            default:
+                String str = LaunchActivity.B1;
+                ConnectionsManager.getInstance(i10).cancelRequest(iArr[0], true);
+                if (runnable != null) {
+                    runnable.run();
                     return;
                 }
                 return;
-            case 2:
-                this.f39861b.dismiss();
-                return;
-            default:
-                this.f39861b.dismiss();
-                return;
         }
+    }
+
+    public w2(int[] iArr, int i7, Runnable runnable) {
+        this.f39814c = iArr;
+        this.f39813b = i7;
+        this.d = runnable;
     }
 }

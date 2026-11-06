@@ -1,12 +1,12 @@
 package kotlin.jvm.internal;
-public final class m extends n implements sd.f {
+public final class m extends n implements vd.f {
     public final void c() {
-        ((m) ((sd.f) getReflected())).c();
+        ((m) ((vd.f) getReflected())).c();
     }
 
     @Override
-    public final sd.b computeReflected() {
-        s.f17362a.getClass();
+    public final vd.b computeReflected() {
+        s.f17613a.getClass();
         return this;
     }
 

@@ -1,49 +1,78 @@
 package org.telegram.ui;
 
-import android.widget.TextView;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class pa1 extends org.telegram.ui.ActionBar.j {
-    public final ra1 f48503a;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class pa1 implements Runnable {
+    public final int f48770a;
+    public final ya1 f48771b;
 
-    public pa1(ra1 ra1Var) {
-        this.f48503a = ra1Var;
+    public pa1(ya1 ya1Var, int i7) {
+        this.f48770a = i7;
+        this.f48771b = ya1Var;
     }
 
     @Override
-    public final void b(int i3) {
-        String M0;
-        org.telegram.ui.ActionBar.q4 q4Var;
-        ra1 ra1Var = this.f48503a;
-        if (i3 == -1) {
-            if (ra1Var.H >= 0) {
-                q4Var = ((org.telegram.ui.ActionBar.d2) ra1Var).parentLayout;
-                if (q4Var.getFragmentStack().size() == 1) {
-                    ra1Var.N0();
+    public final void run() {
+        switch (this.f48770a) {
+            case 0:
+                int i7 = 0;
+                while (true) {
+                    br[] brVarArr = this.f48771b.f52180x.f52294f;
+                    if (i7 < brVarArr.length) {
+                        brVarArr[i7].z(0.0f);
+                        i7++;
+                    } else {
+                        return;
+                    }
+                }
+            case 1:
+                ya1 ya1Var = this.f48771b;
+                EditTextBoldCursor editTextBoldCursor = ya1Var.f52176n;
+                if (editTextBoldCursor != null) {
+                    if (editTextBoldCursor.length() != 0) {
+                        ya1Var.f52171f0[2].P(49);
+                        ya1Var.f52171f0[2].T(false, 0.0f);
+                        ya1Var.f52161a.d();
+                        return;
+                    }
+                    ya1Var.K0(true);
                     return;
                 }
-            }
-            ra1Var.finishFragment();
-        } else if (i3 == 1) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ra1Var.getParentActivity());
-            TL_account.Password password = ra1Var.V;
-            if (password != null && password.has_password) {
-                M0 = org.telegram.messenger.bd.M0(2131752586, null);
-            } else {
-                M0 = org.telegram.messenger.bd.M0(2131752578, null);
-            }
-            String M02 = org.telegram.messenger.bd.M0(2131752585, null);
-            String M03 = org.telegram.messenger.bd.M0(2131754950, null);
-            org.telegram.ui.ActionBar.s1 s1Var = alertDialog$Builder.f27343a;
-            s1Var.U = M0;
-            s1Var.S = M02;
-            alertDialog$Builder.k(M03, new ci0(this, 23));
-            alertDialog$Builder.h(org.telegram.messenger.bd.M0(2131752589, null), null);
-            ra1Var.showDialog(s1Var);
-            TextView textView = (TextView) s1Var.d(-1);
-            if (textView != null) {
-                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28122q7, null);
-            }
+                return;
+            case 2:
+                ya1 ya1Var2 = this.f48771b;
+                EditTextBoldCursor editTextBoldCursor2 = ya1Var2.f52176n;
+                if (editTextBoldCursor2 != null && editTextBoldCursor2.getVisibility() == 0) {
+                    ya1Var2.f52176n.requestFocus();
+                    org.telegram.messenger.g0.K3(ya1Var2.f52176n);
+                    return;
+                }
+                return;
+            case 3:
+                ya1 ya1Var3 = this.f48771b;
+                lb0 lb0Var = ya1Var3.f52180x;
+                if (lb0Var != null && lb0Var.getVisibility() == 0) {
+                    ya1Var3.f52180x.f52294f[0].requestFocus();
+                    return;
+                }
+                return;
+            case 4:
+                ya1 ya1Var4 = this.f48771b;
+                if (ya1Var4.f52172g0 != null) {
+                    ya1Var4.K0(false);
+                    return;
+                }
+                return;
+            case 5:
+                ya1.k0(this.f48771b);
+                return;
+            case 6:
+                org.telegram.messenger.g0.i3(new pa1(this.f48771b, 7), 150L);
+                return;
+            default:
+                for (br brVar : this.f48771b.f52180x.f52294f) {
+                    brVar.z(0.0f);
+                }
+                return;
         }
     }
 }

@@ -1,22 +1,22 @@
 package org.telegram.ui.Components;
-public final class qs implements org.telegram.messenger.m10 {
-    public final int f37519a;
-    public final Object f37520b;
+public final class qs implements org.telegram.messenger.u10 {
+    public final int f37501a;
+    public final Object f37502b;
 
-    public qs(Object obj, int i3) {
-        this.f37519a = i3;
-        this.f37520b = obj;
+    public qs(Object obj, int i7) {
+        this.f37501a = i7;
+        this.f37502b = obj;
     }
 
     @Override
     public final Object run() {
-        switch (this.f37519a) {
+        switch (this.f37501a) {
             case 0:
-                return Boolean.valueOf(((EditTextBoldCursor) this.f37520b).w());
+                return Boolean.valueOf(((EditTextBoldCursor) this.f37502b).w());
             case 1:
-                return ((e30) this.f37520b).getCloseIntoObject();
+                return ((i30) this.f37502b).getCloseIntoObject();
             default:
-                return Boolean.valueOf(((xs) this.f37520b).w());
+                return Boolean.valueOf(((ys) this.f37502b).w());
         }
     }
 }

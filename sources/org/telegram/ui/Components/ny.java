@@ -1,56 +1,75 @@
 package org.telegram.ui.Components;
-public final class ny implements Runnable {
-    public final int f36647a;
-    public final boolean f36648b;
-    public final boolean f36649c;
-    public final boolean d;
-    public final Object f36650e;
 
-    public ny(Object obj, boolean z10, boolean z11, boolean z12, int i3) {
-        this.f36647a = i3;
-        this.f36650e = obj;
-        this.f36648b = z10;
-        this.f36649c = z11;
-        this.d = z12;
+import android.graphics.Point;
+public final class ny implements Runnable {
+    public final int f36518a;
+    public final ry f36519b;
+    public final int f36520c;
+    public final int d;
+
+    public ny(ry ryVar, int i7, int i10, int i11) {
+        this.f36518a = i11;
+        this.f36519b = ryVar;
+        this.f36520c = i7;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        org.telegram.utils.twidget.u uVar;
-        h71 h71Var;
-        switch (this.f36647a) {
+        int i7;
+        switch (this.f36518a) {
             case 0:
-                py pyVar = (py) this.f36650e;
-                boolean z10 = this.f36648b;
-                boolean z11 = this.f36649c;
-                boolean z12 = this.d;
-                if (z10) {
-                    sy syVar = pyVar.K;
-                    syVar.f38136a = true;
-                    syVar.f38139b = true;
-                }
-                if (z11) {
-                    pyVar.f37283y = true;
-                }
-                long currentTimeMillis = System.currentTimeMillis();
-                if (z12 || Math.abs(pyVar.f37271b0 - currentTimeMillis) > 30) {
-                    pyVar.f37271b0 = currentTimeMillis;
-                    pyVar.f37276e0.run();
+                ry ryVar = this.f36519b;
+                int i10 = this.f36520c;
+                int i11 = this.d;
+                if (ryVar.W != i10 || ryVar.X != i11) {
+                    ryVar.W = i10;
+                    ryVar.X = i11;
+                    int o4 = org.telegram.messenger.iz.o();
+                    int i12 = 1920;
+                    if (o4 != 1) {
+                        if (o4 != 2) {
+                            i12 = 720;
+                        } else {
+                            Point point = org.telegram.messenger.g0.f22537q;
+                            i12 = Math.min(1920, Math.max(point.x, point.y));
+                        }
+                    }
+                    if (org.telegram.messenger.iz.o() == 0 && ((i7 = ryVar.W) > 1280 || ryVar.X > 1280)) {
+                        ryVar.W = i7 / 2;
+                        ryVar.X /= 2;
+                    }
+                    int i13 = ryVar.W;
+                    if (i13 > i12 || ryVar.X > i12) {
+                        int i14 = ryVar.X;
+                        if (i13 > i14) {
+                            ryVar.X = (int) (i14 / (i12 / i13));
+                            ryVar.W = i12;
+                        } else {
+                            ryVar.W = (int) (i13 / (i12 / i14));
+                            ryVar.X = i12;
+                        }
+                    }
+                    ryVar.Z = false;
+                    ryVar.f();
+                    ryVar.f37878d0.run();
                     return;
                 }
                 return;
             case 1:
-                ((org.telegram.ui.xd0) this.f36650e).F1(this.f36648b, this.f36649c, this.d);
+                ry ryVar2 = this.f36519b;
+                int i15 = this.f36520c;
+                int i16 = this.d;
+                ryVar2.f37881n = i15;
+                ryVar2.f37882r = i16;
                 return;
             default:
-                org.telegram.utils.twidget.h0 h0Var = (org.telegram.utils.twidget.h0) this.f36650e;
-                boolean z13 = this.f36648b;
-                boolean z14 = this.f36649c;
-                boolean z15 = this.d;
-                if (!h0Var.f52882u && (uVar = h0Var.J) != null && (h71Var = uVar.h) != null && h71Var.f34337w && !h71Var.f34338x) {
-                    h71Var.k(z13, z14, z15);
-                    return;
-                }
+                ry ryVar3 = this.f36519b;
+                int i17 = this.f36520c;
+                int i18 = this.d;
+                da daVar = ryVar3.I;
+                daVar.f32796l = i17;
+                daVar.f32797m = i18;
                 return;
         }
     }

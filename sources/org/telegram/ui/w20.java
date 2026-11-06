@@ -1,29 +1,32 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class w20 implements DialogInterface.OnShowListener {
-    public final int f50679a;
-    public final org.telegram.ui.ActionBar.s1 f50680b;
-    public final EditTextBoldCursor f50681c;
-    public final Object d;
+import android.view.ViewTreeObserver;
+public final class w20 implements ViewTreeObserver.OnPreDrawListener {
+    public final int f50887a;
+    public final c40 f50888b;
 
-    public w20(Object obj, org.telegram.ui.ActionBar.s1 s1Var, EditTextBoldCursor editTextBoldCursor, int i3) {
-        this.f50679a = i3;
-        this.d = obj;
-        this.f50680b = s1Var;
-        this.f50681c = editTextBoldCursor;
+    public w20(c40 c40Var, int i7) {
+        this.f50887a = i7;
+        this.f50888b = c40Var;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f50679a) {
+    public final boolean onPreDraw() {
+        switch (this.f50887a) {
             case 0:
-                ((c30) this.d).f44213b.u1(null, this.f50680b, this.f50681c, true);
-                return;
+                c40 c40Var = this.f50888b;
+                c40Var.H1.getViewTreeObserver().removeOnPreDrawListener(this);
+                c40Var.R3.j(null);
+                org.telegram.messenger.g0.b4(c40Var.f44538d4);
+                c40Var.f28615b.requestLayout();
+                return false;
             default:
-                ((x20) this.d).f51696p1.f44213b.u1(null, this.f50680b, this.f50681c, true);
-                return;
+                c40 c40Var2 = this.f50888b;
+                c40Var2.H1.getViewTreeObserver().removeOnPreDrawListener(this);
+                c40Var2.R3.j(null);
+                org.telegram.messenger.g0.b4(c40Var2.f44538d4);
+                c40Var2.f28615b.requestLayout();
+                return false;
         }
     }
 }

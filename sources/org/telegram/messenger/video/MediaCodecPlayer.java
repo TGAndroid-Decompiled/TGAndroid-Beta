@@ -11,9 +11,9 @@ public class MediaCodecPlayer {
     private boolean done;
     private final MediaExtractor extractor;
     private final int h;
-    private final int f25889o;
+    private final int f25981o;
     private final Surface outputSurface;
-    private final int f25890w;
+    private final int f25982w;
     private boolean first = true;
     private long lastPositionUs = 0;
 
@@ -23,28 +23,28 @@ public class MediaCodecPlayer {
         MediaExtractor mediaExtractor = new MediaExtractor();
         this.extractor = mediaExtractor;
         mediaExtractor.setDataSource(str);
-        int i3 = 0;
+        int i7 = 0;
         while (true) {
-            if (i3 < this.extractor.getTrackCount()) {
-                mediaFormat = this.extractor.getTrackFormat(i3);
+            if (i7 < this.extractor.getTrackCount()) {
+                mediaFormat = this.extractor.getTrackFormat(i7);
                 if (mediaFormat.getString("mime").startsWith("video/")) {
                     break;
                 }
-                i3++;
+                i7++;
             } else {
                 mediaFormat = null;
-                i3 = -1;
+                i7 = -1;
                 break;
             }
         }
-        if (i3 != -1 && mediaFormat != null) {
-            this.extractor.selectTrack(i3);
-            this.f25890w = mediaFormat.getInteger("width");
+        if (i7 != -1 && mediaFormat != null) {
+            this.extractor.selectTrack(i7);
+            this.f25982w = mediaFormat.getInteger("width");
             this.h = mediaFormat.getInteger("height");
             if (mediaFormat.containsKey("rotation-degrees")) {
-                this.f25889o = mediaFormat.getInteger("rotation-degrees");
+                this.f25981o = mediaFormat.getInteger("rotation-degrees");
             } else {
-                this.f25889o = 0;
+                this.f25981o = 0;
             }
             MediaCodec createDecoderByType = MediaCodec.createDecoderByType(mediaFormat.getString("mime"));
             this.codec = createDecoderByType;
@@ -55,19 +55,19 @@ public class MediaCodecPlayer {
         throw new IllegalArgumentException("No video track found in file.");
     }
 
-    public boolean ensure(long j10) {
+    public boolean ensure(long j3) {
         ByteBuffer inputBuffer;
         if (this.done) {
             return false;
         }
-        boolean z10 = this.first;
+        boolean z9 = this.first;
         this.first = false;
-        long j11 = j10 * 1000;
-        if (!z10 && j11 <= this.lastPositionUs) {
+        long j10 = j3 * 1000;
+        if (!z9 && j10 <= this.lastPositionUs) {
             return false;
         }
-        if (this.extractor.getSampleTime() > j11 || (z10 && j11 > 1000000)) {
-            this.extractor.seekTo(j11, 0);
+        if (this.extractor.getSampleTime() > j10 || (z9 && j10 > 1000000)) {
+            this.extractor.seekTo(j10, 0);
         }
         while (true) {
             int dequeueInputBuffer = this.codec.dequeueInputBuffer(10000L);
@@ -85,9 +85,9 @@ public class MediaCodecPlayer {
             MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
             int dequeueOutputBuffer = this.codec.dequeueOutputBuffer(bufferInfo, 10000L);
             if (dequeueOutputBuffer >= 0) {
-                long j12 = bufferInfo.presentationTimeUs;
-                if (j12 >= j11 - 16000) {
-                    this.lastPositionUs = j12;
+                long j11 = bufferInfo.presentationTimeUs;
+                if (j11 >= j10 - 16000) {
+                    this.lastPositionUs = j11;
                     this.codec.releaseOutputBuffer(dequeueOutputBuffer, true);
                     return true;
                 }
@@ -101,25 +101,25 @@ public class MediaCodecPlayer {
     }
 
     public int getOrientation() {
-        return this.f25889o;
+        return this.f25981o;
     }
 
     public int getOrientedHeight() {
-        if ((this.f25889o / 90) % 2 == 1) {
-            return this.f25890w;
+        if ((this.f25981o / 90) % 2 == 1) {
+            return this.f25982w;
         }
         return this.h;
     }
 
     public int getOrientedWidth() {
-        if ((this.f25889o / 90) % 2 == 1) {
+        if ((this.f25981o / 90) % 2 == 1) {
             return this.h;
         }
-        return this.f25890w;
+        return this.f25982w;
     }
 
     public int getWidth() {
-        return this.f25890w;
+        return this.f25982w;
     }
 
     public void release() {

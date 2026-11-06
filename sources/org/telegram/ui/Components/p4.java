@@ -1,4 +1,9 @@
 package org.telegram.ui.Components;
-public interface p4 {
-    void a(int i3);
+
+import android.widget.TextView;
+public final class p4 extends w70 {
+    @Override
+    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        super.setText(org.telegram.messenger.i6.m(charSequence, getPaint().getFontMetricsInt(), false, null, 0), bufferType);
+    }
 }

@@ -75,11 +75,11 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     public static void addAlphabet(Character.UnicodeBlock unicodeBlock, String str) {
-        String q10 = f1.q("fonts/", str, "/language_", str, ".xml");
-        String q11 = f1.q("fonts/", str, "/symbols_", str, ".xml");
-        String q12 = f1.q("fonts/", str, "/mappings_", str, ".xml");
+        String m10 = f1.m("fonts/", str, "/language_", str, ".xml");
+        String m11 = f1.m("fonts/", str, "/symbols_", str, ".xml");
+        String m12 = f1.m("fonts/", str, "/mappings_", str, ".xml");
         try {
-            addAlphabet(unicodeBlock, JLatexMathAndroid.getResourceAsStream(q10), q10, JLatexMathAndroid.getResourceAsStream(q11), q11, JLatexMathAndroid.getResourceAsStream(q12), q12);
+            addAlphabet(unicodeBlock, JLatexMathAndroid.getResourceAsStream(m10), m10, JLatexMathAndroid.getResourceAsStream(m11), m11, JLatexMathAndroid.getResourceAsStream(m12), m12);
         } catch (FontAlreadyLoadedException unused) {
         }
     }
@@ -92,35 +92,35 @@ public class DefaultTeXFont implements TeXFont {
         }
     }
 
-    public static void enableMagnification(boolean z10) {
-        magnificationEnable = z10;
+    public static void enableMagnification(boolean z9) {
+        magnificationEnable = z9;
     }
 
-    private Char getChar(char c2, CharFont[] charFontArr, int i3) {
-        char c10;
+    private Char getChar(char c10, CharFont[] charFontArr, int i7) {
+        char c11;
         int i10;
-        if (c2 >= '0' && c2 <= '9') {
-            i10 = c2 - '0';
-            c10 = 0;
-        } else if (c2 >= 'a' && c2 <= 'z') {
-            i10 = c2 - 'a';
-            c10 = 2;
-        } else if (c2 < 'A' || c2 > 'Z') {
-            c10 = 3;
-            i10 = c2;
+        if (c10 >= '0' && c10 <= '9') {
+            i10 = c10 - '0';
+            c11 = 0;
+        } else if (c10 >= 'a' && c10 <= 'z') {
+            i10 = c10 - 'a';
+            c11 = 2;
+        } else if (c10 < 'A' || c10 > 'Z') {
+            c11 = 3;
+            i10 = c10;
         } else {
-            i10 = c2 - 'A';
-            c10 = 1;
+            i10 = c10 - 'A';
+            c11 = 1;
         }
-        CharFont charFont = charFontArr[c10];
+        CharFont charFont = charFontArr[c11];
         if (charFont == null) {
-            return getDefaultChar(c2, i3);
+            return getDefaultChar(c10, i7);
         }
-        return getChar(new CharFont((char) (charFont.f21181c + i10), charFont.fontId), i3);
+        return getChar(new CharFont((char) (charFont.f21128c + i10), charFont.fontId), i7);
     }
 
     private Metrics getMetrics(CharFont charFont, float f10) {
-        float[] metrics = fontInfo[charFont.fontId].getMetrics(charFont.f21181c);
+        float[] metrics = fontInfo[charFont.fontId].getMetrics(charFont.f21128c);
         return new Metrics(metrics[0], metrics[1], metrics[2], metrics[3], f10 * TeXFormula.PIXELS_PER_POINT, f10);
     }
 
@@ -132,14 +132,14 @@ public class DefaultTeXFont implements TeXFont {
         return f10.floatValue();
     }
 
-    public static float getSizeFactor(int i3) {
-        if (i3 < 2) {
+    public static float getSizeFactor(int i7) {
+        if (i7 < 2) {
             return 1.0f;
         }
-        if (i3 < 4) {
+        if (i7 < 4) {
             return generalSettings.get("textfactor").floatValue();
         }
-        if (i3 < 6) {
+        if (i7 < 6) {
             return generalSettings.get("scriptfactor").floatValue();
         }
         return generalSettings.get("scriptscriptfactor").floatValue();
@@ -177,33 +177,33 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
-    public float getAxisHeight(int i3) {
-        return getSizeFactor(i3) * getParameter("axisheight") * TeXFormula.PIXELS_PER_POINT;
+    public float getAxisHeight(int i7) {
+        return getSizeFactor(i7) * getParameter("axisheight") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getBigOpSpacing1(int i3) {
-        return getSizeFactor(i3) * getParameter("bigopspacing1") * TeXFormula.PIXELS_PER_POINT;
+    public float getBigOpSpacing1(int i7) {
+        return getSizeFactor(i7) * getParameter("bigopspacing1") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getBigOpSpacing2(int i3) {
-        return getSizeFactor(i3) * getParameter("bigopspacing2") * TeXFormula.PIXELS_PER_POINT;
+    public float getBigOpSpacing2(int i7) {
+        return getSizeFactor(i7) * getParameter("bigopspacing2") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getBigOpSpacing3(int i3) {
-        return getSizeFactor(i3) * getParameter("bigopspacing3") * TeXFormula.PIXELS_PER_POINT;
+    public float getBigOpSpacing3(int i7) {
+        return getSizeFactor(i7) * getParameter("bigopspacing3") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getBigOpSpacing4(int i3) {
-        return getSizeFactor(i3) * getParameter("bigopspacing4") * TeXFormula.PIXELS_PER_POINT;
+    public float getBigOpSpacing4(int i7) {
+        return getSizeFactor(i7) * getParameter("bigopspacing4") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getBigOpSpacing5(int i3) {
-        return getSizeFactor(i3) * getParameter("bigopspacing5") * TeXFormula.PIXELS_PER_POINT;
+    public float getBigOpSpacing5(int i7) {
+        return getSizeFactor(i7) * getParameter("bigopspacing5") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
@@ -212,41 +212,41 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
-    public Char getDefaultChar(char c2, int i3) {
-        if (c2 >= '0' && c2 <= '9') {
-            return getChar(c2, defaultTextStyleMappings[0], i3);
+    public Char getDefaultChar(char c10, int i7) {
+        if (c10 >= '0' && c10 <= '9') {
+            return getChar(c10, defaultTextStyleMappings[0], i7);
         }
-        if (c2 >= 'a' && c2 <= 'z') {
-            return getChar(c2, defaultTextStyleMappings[2], i3);
+        if (c10 >= 'a' && c10 <= 'z') {
+            return getChar(c10, defaultTextStyleMappings[2], i7);
         }
-        return getChar(c2, defaultTextStyleMappings[1], i3);
+        return getChar(c10, defaultTextStyleMappings[1], i7);
     }
 
     @Override
-    public float getDefaultRuleThickness(int i3) {
-        return getSizeFactor(i3) * getParameter("defaultrulethickness") * TeXFormula.PIXELS_PER_POINT;
+    public float getDefaultRuleThickness(int i7) {
+        return getSizeFactor(i7) * getParameter("defaultrulethickness") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getDenom1(int i3) {
-        return getSizeFactor(i3) * getParameter("denom1") * TeXFormula.PIXELS_PER_POINT;
+    public float getDenom1(int i7) {
+        return getSizeFactor(i7) * getParameter("denom1") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getDenom2(int i3) {
-        return getSizeFactor(i3) * getParameter("denom2") * TeXFormula.PIXELS_PER_POINT;
+    public float getDenom2(int i7) {
+        return getSizeFactor(i7) * getParameter("denom2") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getEM(int i3) {
-        return getSizeFactor(i3) * TeXFormula.PIXELS_PER_POINT;
+    public float getEM(int i7) {
+        return getSizeFactor(i7) * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public Extension getExtension(Char r10, int i3) {
+    public Extension getExtension(Char r10, int i7) {
         Font font = r10.getFont();
         int fontCode = r10.getFontCode();
-        float sizeFactor = getSizeFactor(i3);
+        float sizeFactor = getSizeFactor(i7);
         int[] extension = fontInfo[fontCode].getExtension(r10.getChar());
         Char[] charArr = new Char[extension.length];
         for (int i10 = 0; i10 < extension.length; i10++) {
@@ -266,19 +266,19 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
-    public float getKern(CharFont charFont, CharFont charFont2, int i3) {
+    public float getKern(CharFont charFont, CharFont charFont2, int i7) {
         int i10 = charFont.fontId;
         if (i10 == charFont2.fontId) {
-            return fontInfo[i10].getKern(charFont.f21181c, charFont2.f21181c, getSizeFactor(i3) * TeXFormula.PIXELS_PER_POINT);
+            return fontInfo[i10].getKern(charFont.f21128c, charFont2.f21128c, getSizeFactor(i7) * TeXFormula.PIXELS_PER_POINT);
         }
         return 0.0f;
     }
 
     @Override
     public CharFont getLigature(CharFont charFont, CharFont charFont2) {
-        int i3 = charFont.fontId;
-        if (i3 == charFont2.fontId) {
-            return fontInfo[i3].getLigature(charFont.f21181c, charFont2.f21181c);
+        int i7 = charFont.fontId;
+        if (i7 == charFont2.fontId) {
+            return fontInfo[i7].getLigature(charFont.f21128c, charFont2.f21128c);
         }
         return null;
     }
@@ -289,29 +289,29 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
-    public Char getNextLarger(Char r5, int i3) {
-        CharFont nextLarger = fontInfo[r5.getFontCode()].getNextLarger(r5.getChar());
-        return new Char(nextLarger.f21181c, fontInfo[nextLarger.fontId].getFont(), nextLarger.fontId, getMetrics(nextLarger, getSizeFactor(i3)));
+    public Char getNextLarger(Char r52, int i7) {
+        CharFont nextLarger = fontInfo[r52.getFontCode()].getNextLarger(r52.getChar());
+        return new Char(nextLarger.f21128c, fontInfo[nextLarger.fontId].getFont(), nextLarger.fontId, getMetrics(nextLarger, getSizeFactor(i7)));
     }
 
     @Override
-    public float getNum1(int i3) {
-        return getSizeFactor(i3) * getParameter("num1") * TeXFormula.PIXELS_PER_POINT;
+    public float getNum1(int i7) {
+        return getSizeFactor(i7) * getParameter("num1") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getNum2(int i3) {
-        return getSizeFactor(i3) * getParameter("num2") * TeXFormula.PIXELS_PER_POINT;
+    public float getNum2(int i7) {
+        return getSizeFactor(i7) * getParameter("num2") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getNum3(int i3) {
-        return getSizeFactor(i3) * getParameter("num3") * TeXFormula.PIXELS_PER_POINT;
+    public float getNum3(int i7) {
+        return getSizeFactor(i7) * getParameter("num3") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getQuad(int i3, int i10) {
-        return fontInfo[i10].getQuad(getSizeFactor(i3) * TeXFormula.PIXELS_PER_POINT);
+    public float getQuad(int i7, int i10) {
+        return fontInfo[i10].getQuad(getSizeFactor(i7) * TeXFormula.PIXELS_PER_POINT);
     }
 
     @Override
@@ -330,17 +330,17 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
-    public float getSkew(CharFont charFont, int i3) {
+    public float getSkew(CharFont charFont, int i7) {
         char skewChar = fontInfo[charFont.fontId].getSkewChar();
         if (skewChar == 65535) {
             return 0.0f;
         }
-        return getKern(charFont, new CharFont(skewChar, charFont.fontId), i3);
+        return getKern(charFont, new CharFont(skewChar, charFont.fontId), i7);
     }
 
     @Override
-    public float getSpace(int i3) {
-        return fontInfo[generalSettings.get("spacefontid").intValue()].getSpace(getSizeFactor(i3) * TeXFormula.PIXELS_PER_POINT);
+    public float getSpace(int i7) {
+        return fontInfo[generalSettings.get("spacefontid").intValue()].getSpace(getSizeFactor(i7) * TeXFormula.PIXELS_PER_POINT);
     }
 
     @Override
@@ -349,38 +349,38 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
-    public float getSub1(int i3) {
-        return getSizeFactor(i3) * getParameter("sub1") * TeXFormula.PIXELS_PER_POINT;
+    public float getSub1(int i7) {
+        return getSizeFactor(i7) * getParameter("sub1") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getSub2(int i3) {
-        return getSizeFactor(i3) * getParameter("sub2") * TeXFormula.PIXELS_PER_POINT;
+    public float getSub2(int i7) {
+        return getSizeFactor(i7) * getParameter("sub2") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getSubDrop(int i3) {
-        return getSizeFactor(i3) * getParameter("subdrop") * TeXFormula.PIXELS_PER_POINT;
+    public float getSubDrop(int i7) {
+        return getSizeFactor(i7) * getParameter("subdrop") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getSup1(int i3) {
-        return getSizeFactor(i3) * getParameter("sup1") * TeXFormula.PIXELS_PER_POINT;
+    public float getSup1(int i7) {
+        return getSizeFactor(i7) * getParameter("sup1") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getSup2(int i3) {
-        return getSizeFactor(i3) * getParameter("sup2") * TeXFormula.PIXELS_PER_POINT;
+    public float getSup2(int i7) {
+        return getSizeFactor(i7) * getParameter("sup2") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getSup3(int i3) {
-        return getSizeFactor(i3) * getParameter("sup3") * TeXFormula.PIXELS_PER_POINT;
+    public float getSup3(int i7) {
+        return getSizeFactor(i7) * getParameter("sup3") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
-    public float getSupDrop(int i3) {
-        return getSizeFactor(i3) * getParameter("supdrop") * TeXFormula.PIXELS_PER_POINT;
+    public float getSupDrop(int i7) {
+        return getSizeFactor(i7) * getParameter("supdrop") * TeXFormula.PIXELS_PER_POINT;
     }
 
     @Override
@@ -389,8 +389,8 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
-    public float getXHeight(int i3, int i10) {
-        return fontInfo[i10].getXHeight(getSizeFactor(i3) * TeXFormula.PIXELS_PER_POINT);
+    public float getXHeight(int i7, int i10) {
+        return fontInfo[i10].getXHeight(getSizeFactor(i7) * TeXFormula.PIXELS_PER_POINT);
     }
 
     @Override
@@ -402,8 +402,8 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
-    public boolean hasSpace(int i3) {
-        return fontInfo[i3].hasSpace();
+    public boolean hasSpace(int i7) {
+        return fontInfo[i7].hasSpace();
     }
 
     @Override
@@ -420,28 +420,28 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
-    public void setBold(boolean z10) {
-        this.isBold = z10;
+    public void setBold(boolean z9) {
+        this.isBold = z9;
     }
 
     @Override
-    public void setIt(boolean z10) {
-        this.isIt = z10;
+    public void setIt(boolean z9) {
+        this.isIt = z9;
     }
 
     @Override
-    public void setRoman(boolean z10) {
-        this.isRoman = z10;
+    public void setRoman(boolean z9) {
+        this.isRoman = z9;
     }
 
     @Override
-    public void setSs(boolean z10) {
-        this.isSs = z10;
+    public void setSs(boolean z9) {
+        this.isSs = z9;
     }
 
     @Override
-    public void setTt(boolean z10) {
-        this.isTt = z10;
+    public void setTt(boolean z9) {
+        this.isTt = z9;
     }
 
     public static void addTeXFontDescription(InputStream inputStream, String str) {
@@ -452,46 +452,46 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
-    public Char getChar(char c2, String str, int i3) {
+    public Char getChar(char c10, String str, int i7) {
         CharFont[] charFontArr = textStyleMappings.get(str);
         if (charFontArr != null) {
-            return getChar(c2, charFontArr, i3);
+            return getChar(c10, charFontArr, i7);
         }
         throw new TextStyleMappingNotFoundException(str);
     }
 
     @Override
-    public Char getChar(CharFont charFont, int i3) {
-        float sizeFactor = getSizeFactor(i3);
-        boolean z10 = this.isBold;
-        int i10 = z10 ? charFont.boldFontId : charFont.fontId;
+    public Char getChar(CharFont charFont, int i7) {
+        float sizeFactor = getSizeFactor(i7);
+        boolean z9 = this.isBold;
+        int i10 = z9 ? charFont.boldFontId : charFont.fontId;
         FontInfo fontInfo2 = fontInfo[i10];
-        if (z10 && charFont.fontId == charFont.boldFontId) {
+        if (z9 && charFont.fontId == charFont.boldFontId) {
             i10 = fontInfo2.getBoldId();
             fontInfo2 = fontInfo[i10];
-            charFont = new CharFont(charFont.f21181c, i10, i3);
+            charFont = new CharFont(charFont.f21128c, i10, i7);
         }
         if (this.isRoman) {
             i10 = fontInfo2.getRomanId();
             fontInfo2 = fontInfo[i10];
-            charFont = new CharFont(charFont.f21181c, i10, i3);
+            charFont = new CharFont(charFont.f21128c, i10, i7);
         }
         if (this.isSs) {
             i10 = fontInfo2.getSsId();
             fontInfo2 = fontInfo[i10];
-            charFont = new CharFont(charFont.f21181c, i10, i3);
+            charFont = new CharFont(charFont.f21128c, i10, i7);
         }
         if (this.isTt) {
             i10 = fontInfo2.getTtId();
             fontInfo2 = fontInfo[i10];
-            charFont = new CharFont(charFont.f21181c, i10, i3);
+            charFont = new CharFont(charFont.f21128c, i10, i7);
         }
         if (this.isIt) {
             i10 = fontInfo2.getItId();
             fontInfo2 = fontInfo[i10];
-            charFont = new CharFont(charFont.f21181c, i10, i3);
+            charFont = new CharFont(charFont.f21128c, i10, i7);
         }
-        return new Char(charFont.f21181c, fontInfo2.getFont(), i10, getMetrics(charFont, this.factor * sizeFactor));
+        return new Char(charFont.f21128c, fontInfo2.getFont(), i10, getMetrics(charFont, this.factor * sizeFactor));
     }
 
     public static void addTeXFontDescription(Object obj, InputStream inputStream, String str) {
@@ -502,18 +502,18 @@ public class DefaultTeXFont implements TeXFont {
         symbolMappings.putAll(defaultTeXFontParser.parseSymbolMappings());
     }
 
-    public DefaultTeXFont(float f10, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
-        this(f10, 1.0f, z10, z11, z12, z13, z14);
+    public DefaultTeXFont(float f10, boolean z9, boolean z10, boolean z11, boolean z12, boolean z13) {
+        this(f10, 1.0f, z9, z10, z11, z12, z13);
     }
 
-    public DefaultTeXFont(float f10, float f11, boolean z10, boolean z11, boolean z12, boolean z13, boolean z14) {
+    public DefaultTeXFont(float f10, float f11, boolean z9, boolean z10, boolean z11, boolean z12, boolean z13) {
         this.size = f10;
         this.factor = f11;
-        this.isBold = z10;
-        this.isRoman = z11;
-        this.isSs = z12;
-        this.isTt = z13;
-        this.isIt = z14;
+        this.isBold = z9;
+        this.isRoman = z10;
+        this.isSs = z11;
+        this.isTt = z12;
+        this.isIt = z13;
     }
 
     public static void addAlphabet(Character.UnicodeBlock unicodeBlock, InputStream inputStream, String str, InputStream inputStream2, String str2, InputStream inputStream3, String str3) {
@@ -527,20 +527,20 @@ public class DefaultTeXFont implements TeXFont {
     }
 
     @Override
-    public Char getChar(String str, int i3) {
+    public Char getChar(String str, int i7) {
         CharFont charFont = symbolMappings.get(str);
         if (charFont != null) {
-            return getChar(charFont, i3);
+            return getChar(charFont, i7);
         }
         throw new SymbolMappingNotFoundException(str);
     }
 
     public static void addAlphabet(Object obj, Character.UnicodeBlock[] unicodeBlockArr, String str) {
-        boolean z10 = false;
-        for (int i3 = 0; !z10 && i3 < unicodeBlockArr.length; i3++) {
-            z10 = loadedAlphabets.contains(unicodeBlockArr[i3]) || z10;
+        boolean z9 = false;
+        for (int i7 = 0; !z9 && i7 < unicodeBlockArr.length; i7++) {
+            z9 = loadedAlphabets.contains(unicodeBlockArr[i7]) || z9;
         }
-        if (z10) {
+        if (z9) {
             return;
         }
         TeXParser.isLoading = true;

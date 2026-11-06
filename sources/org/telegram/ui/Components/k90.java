@@ -1,35 +1,22 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-public final class k90 extends f61 {
-    public final Context f35353a;
-    public final da0 f35354b;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.tgnet.TLRPC;
+public final class k90 extends r5 {
+    public final l90 f35242a;
 
-    public k90(da0 da0Var, Context context) {
-        this.f35354b = da0Var;
-        this.f35353a = context;
+    public k90(l90 l90Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
+        super(document, fontMetricsInt);
+        this.f35242a = l90Var;
     }
 
     @Override
-    public final void b(View view, int i3, int i10) {
-        x90 x90Var = (x90) view;
-        x90Var.i();
-        x90Var.l(false);
-    }
-
-    @Override
-    public final View d(int i3) {
-        return new x90(this.f35354b, this.f35353a, i3);
-    }
-
-    @Override
-    public final int e() {
-        return this.f35354b.f33036e.f32143a.size();
-    }
-
-    @Override
-    public final int h(int i3) {
-        return ((aa0) this.f35354b.f33036e.f32143a.get(i3)).f31781a;
+    public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
+        l90 l90Var = this.f35242a;
+        int i14 = l90Var.D;
+        int i15 = i13 + i11;
+        int i16 = this.measuredSize;
+        l90Var.f35570c.set((int) f10, jg.g.D(i15, i16, 2, i14), (int) (f10 + i16), ((i15 + i16) / 2) + i14);
     }
 }

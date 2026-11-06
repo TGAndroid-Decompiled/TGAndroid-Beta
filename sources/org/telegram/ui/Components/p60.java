@@ -1,18 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-public final class p60 extends FrameLayout {
-    public View f37071a;
-    public TextView f37072b;
+import android.content.Context;
+public final class p60 extends pj0 {
+    public final t60 f36902e3;
 
-    @Override
-    public final void onMeasure(int i3, int i10) {
-        super.onMeasure(i3, View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(80.0f), 1073741824));
+    public p60(t60 t60Var, Context context) {
+        super(context, null);
+        this.f36902e3 = t60Var;
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f37072b.setText(charSequence);
+    @Override
+    public final void requestLayout() {
+        if (this.f36902e3.f38269q1) {
+            return;
+        }
+        super.requestLayout();
     }
 }

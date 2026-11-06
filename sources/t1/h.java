@@ -1,17 +1,16 @@
 package t1;
 
-import android.system.Os;
-import java.io.FileDescriptor;
-public abstract class h {
-    public static void a(FileDescriptor fileDescriptor) {
-        Os.close(fileDescriptor);
+import android.widget.EditText;
+import java.lang.ref.WeakReference;
+public final class h extends androidx.emoji2.text.i {
+    public final WeakReference f55250a;
+
+    public h(EditText editText) {
+        this.f55250a = new WeakReference(editText);
     }
 
-    public static FileDescriptor b(FileDescriptor fileDescriptor) {
-        return Os.dup(fileDescriptor);
-    }
-
-    public static long c(FileDescriptor fileDescriptor, long j10, int i3) {
-        return Os.lseek(fileDescriptor, j10, i3);
+    @Override
+    public final void a() {
+        i.a((EditText) this.f55250a.get(), 1);
     }
 }

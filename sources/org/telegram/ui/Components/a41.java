@@ -7,10 +7,10 @@ import android.text.style.CharacterStyle;
 import android.view.MotionEvent;
 import android.widget.TextView;
 public final class a41 extends LinkMovementMethod {
-    public final UndoView f31723a;
+    public final UndoView f31674a;
 
     public a41(UndoView undoView) {
-        this.f31723a = undoView;
+        this.f31674a = undoView;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class a41 extends LinkMovementMethod {
                 if (motionEvent.getAction() == 1) {
                     CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
                     if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
-                        this.f31723a.b(characterStyleArr2[0]);
+                        this.f31674a.b(characterStyleArr2[0]);
                     }
                     Selection.removeSelection(spannable);
                     return true;

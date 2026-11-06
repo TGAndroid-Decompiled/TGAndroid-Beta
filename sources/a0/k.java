@@ -1,6 +1,6 @@
 package a0;
 
-import x7.n;
+import c8.tc;
 public final class k {
     public int[] f27a;
     public int f28b;
@@ -8,14 +8,14 @@ public final class k {
     public final boolean equals(Object obj) {
         if (obj instanceof k) {
             k kVar = (k) obj;
-            int i3 = kVar.f28b;
+            int i7 = kVar.f28b;
             int i10 = this.f28b;
-            if (i3 == i10) {
+            if (i7 == i10) {
                 int[] iArr = this.f27a;
                 int[] iArr2 = kVar.f27a;
-                rd.e a10 = n.a(0, i10);
-                int i11 = a10.f54497a;
-                int i12 = a10.f54498b;
+                ud.e a10 = tc.a(0, i10);
+                int i11 = a10.f56402a;
+                int i12 = a10.f56403b;
                 if (i11 <= i12) {
                     while (iArr[i11] == iArr2[i11]) {
                         if (i11 != i12) {
@@ -34,9 +34,9 @@ public final class k {
 
     public final int hashCode() {
         int[] iArr = this.f27a;
-        int i3 = this.f28b;
+        int i7 = this.f28b;
         int i10 = 0;
-        for (int i11 = 0; i11 < i3; i11++) {
+        for (int i11 = 0; i11 < i7; i11++) {
             i10 += iArr[i11] * 31;
         }
         return i10;
@@ -46,10 +46,10 @@ public final class k {
         StringBuilder sb2 = new StringBuilder();
         sb2.append((CharSequence) "[");
         int[] iArr = this.f27a;
-        int i3 = this.f28b;
+        int i7 = this.f28b;
         int i10 = 0;
         while (true) {
-            if (i10 < i3) {
+            if (i10 < i7) {
                 int i11 = iArr[i10];
                 if (i10 == -1) {
                     sb2.append((CharSequence) "...");

@@ -1,28 +1,23 @@
 package org.telegram.ui;
 
 import android.view.View;
-public final class ez0 implements View.OnClickListener {
-    public final int f45112a;
-    public final iz0 f45113b;
+import android.view.WindowInsets;
+public final class ez0 implements View.OnApplyWindowInsetsListener {
+    public final int f45443a;
+    public final Object f45444b;
 
-    public ez0(iz0 iz0Var, int i3) {
-        this.f45112a = i3;
-        this.f45113b = iz0Var;
+    public ez0(Object obj, int i7) {
+        this.f45443a = i7;
+        this.f45444b = obj;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f45112a) {
+    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
+        switch (this.f45443a) {
             case 0:
-                iz0 iz0Var = this.f45113b;
-                if (iz0Var.Z == null) {
-                    iz0Var.dismiss();
-                    return;
-                }
-                return;
+                return SecretMediaViewer.a((SecretMediaViewer) this.f45444b, windowInsets);
             default:
-                this.f45113b.dismiss();
-                return;
+                return m11.b((g01) this.f45444b, view, windowInsets);
         }
     }
 }

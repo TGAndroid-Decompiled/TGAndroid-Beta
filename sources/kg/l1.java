@@ -1,39 +1,41 @@
 package kg;
 
-import java.util.ArrayList;
-import org.telegram.ui.pr;
-public final class l1 implements u1 {
-    public final pr f17086a;
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.ActionBar.q4;
+import org.telegram.ui.Components.rt0;
+public final class l1 extends rt0 {
+    public final int f17424f0;
 
-    public l1(pr prVar) {
-        this.f17086a = prVar;
+    public l1(Context context, q4 q4Var, int i7) {
+        super(context, q4Var);
+        this.f17424f0 = i7;
     }
 
     @Override
-    public final a0.h C0() {
-        return null;
-    }
-
-    @Override
-    public final boolean J1(int i3) {
-        return true;
-    }
-
-    @Override
-    public final a0.h k1() {
-        return null;
-    }
-
-    @Override
-    public final void r(int i3) {
-        pr prVar = this.f17086a;
-        prVar.f();
-        if (i3 != 0) {
-            prVar.F();
+    public boolean O() {
+        switch (this.f17424f0) {
+            case 2:
+                return false;
+            case 3:
+                return false;
+            default:
+                return super.O();
         }
     }
 
     @Override
-    public final void b2(ArrayList arrayList) {
+    public void onMeasure(int i7, int i10) {
+        switch (this.f17424f0) {
+            case 0:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
+                return;
+            default:
+                super.onMeasure(i7, i10);
+                return;
+        }
     }
 }

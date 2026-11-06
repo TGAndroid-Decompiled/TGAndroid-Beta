@@ -1,65 +1,181 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import java.util.IdentityHashMap;
+import android.graphics.Point;
+import android.graphics.Rect;
+import java.io.File;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class ev {
-    public final cv f22400a;
-    public final ArrayList f22401b;
-    public final int f22402c;
-    public final int d;
-    public final fv f22403e;
-    public int f22404f;
-    public int f22405g;
-    public fv h;
+public final class ev extends ru {
+    public final TL_iv.pageBlockVideo f22252q0;
+    public final TLRPC.Document f22253r0;
+    public final TLRPC.PhotoSize f22254s0;
+    public final TLRPC.TL_photoStrippedSize f22255t0;
+    public final boolean f22256u0;
+    public final boolean f22257v0;
 
-    public ev(cv cvVar, ArrayList arrayList, int i3, int i10, fv fvVar, int i11, int i12, fv fvVar2) {
-        this.f22400a = cvVar;
-        this.f22401b = arrayList;
-        this.f22402c = i3;
-        this.d = i10;
-        this.f22403e = fvVar;
-        this.f22404f = i11;
-        this.f22405g = i12;
-        this.h = fvVar2;
-    }
-
-    public final TL_iv.RichText a(int i3) {
+    public ev(kv kvVar, Rect rect, int i7, TL_iv.pageBlockVideo pageblockvideo, boolean z9) {
+        super(kvVar, rect, i7, z9);
+        boolean z10;
         int i10;
         int i11;
-        if (i3 == this.f22402c) {
-            i10 = this.d;
+        this.f22252q0 = pageblockvideo;
+        TLRPC.Document s5 = kvVar.s(pageblockvideo.video_id);
+        this.f22253r0 = s5;
+        boolean L4 = ij.L4(s5);
+        this.f22257v0 = L4;
+        int i12 = 0;
+        if (!L4 && !ij.t3(s5, false)) {
+            z10 = false;
         } else {
-            i10 = 0;
+            z10 = true;
         }
-        if (i3 == this.f22404f) {
-            i11 = this.f22405g;
+        this.f22256u0 = z10;
+        if (s5 != null) {
+            this.f22254s0 = w7.w(s5.thumbs, 320, false, null, true);
+            this.f22255t0 = w7.R(s5.thumbs);
         } else {
-            i11 = Integer.MAX_VALUE;
+            this.f22254s0 = null;
+            this.f22255t0 = null;
         }
-        if (i10 == 0 && i11 == Integer.MAX_VALUE) {
-            return (TL_iv.RichText) this.f22401b.get(i3);
+        if (s5 != null) {
+            while (true) {
+                if (i12 < this.f22253r0.attributes.size()) {
+                    TLRPC.DocumentAttribute documentAttribute = this.f22253r0.attributes.get(i12);
+                    if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
+                        i11 = documentAttribute.f26959w;
+                        i10 = documentAttribute.h;
+                        break;
+                    }
+                    i12++;
+                } else {
+                    i10 = 100;
+                    i11 = 100;
+                    break;
+                }
+            }
+            if (i11 <= 0 || i10 <= 0) {
+                TLRPC.PhotoSize photoSize = this.f22254s0;
+                if (photoSize != null) {
+                    i11 = photoSize.f26977w;
+                } else {
+                    i11 = 100;
+                }
+                i10 = photoSize != null ? photoSize.h : 100;
+            }
+            r4 = i11;
+        } else {
+            i10 = 100;
         }
-        return b(i3).b(i10, i11);
+        int i13 = this.f22445c;
+        int max = (int) ((i13 / Math.max(1, r4)) * i10);
+        Point point = g0.f22537q;
+        int max2 = (int) (Math.max(point.x, point.y) * 0.55f);
+        if (max > max2) {
+            i13 = (int) ((max2 / Math.max(1, i10)) * r4);
+            max = max2;
+        }
+        this.f25330b0 = i13;
+        this.f25331c0 = max;
+        m0();
     }
 
-    public final fv b(int i3) {
-        if (i3 == this.f22402c) {
-            return this.f22403e;
+    @Override
+    public final boolean i0() {
+        if (this.f22257v0) {
+            int i7 = iz.f23357a;
+            return rc.e(1024);
         }
-        int i10 = this.f22404f;
-        ArrayList arrayList = this.f22401b;
-        cv cvVar = this.f22400a;
-        if (i3 == i10) {
-            if (this.h == null) {
-                TL_iv.RichText richText = (TL_iv.RichText) arrayList.get(i3);
-                IdentityHashMap identityHashMap = new IdentityHashMap();
-                this.h = new fv(richText, identityHashMap, cvVar.o(richText, 0, identityHashMap).length(), 0);
+        int i10 = iz.f23357a;
+        return rc.e(2048);
+    }
+
+    @Override
+    public final void j0(boolean z9) {
+        hc hcVar;
+        TLRPC.Document document = this.f22253r0;
+        if (document == null) {
+            return;
+        }
+        hc hcVar2 = null;
+        TLRPC.TL_photoStrippedSize tL_photoStrippedSize = this.f22255t0;
+        if (tL_photoStrippedSize != null) {
+            hcVar = hc.c(tL_photoStrippedSize, document);
+        } else {
+            hcVar = null;
+        }
+        TLRPC.PhotoSize photoSize = this.f22254s0;
+        if (photoSize != null) {
+            hcVar2 = hc.c(photoSize, document);
+        }
+        hc hcVar3 = hcVar2;
+        kv kvVar = this.f22443a;
+        ImageReceiver imageReceiver = this.X;
+        if (z9 && this.f22256u0 && (i0() || this.f25340l0)) {
+            imageReceiver.f21217t0 = true;
+            imageReceiver.W(1);
+            imageReceiver.u0(hc.b(document), "g", hcVar3, null, hcVar, "b1", null, document.size, "mp4", kvVar.f23757b, 1);
+            return;
+        }
+        imageReceiver.u0(null, null, hcVar3, null, hcVar, "b1", null, document.size, "mp4", kvVar.f23757b, 1);
+    }
+
+    @Override
+    public final boolean k0() {
+        TLRPC.Document document = this.f22253r0;
+        if (document == null) {
+            return false;
+        }
+        if (!this.f22256u0) {
+            return true;
+        }
+        if (!i0() || !z5.q(this.f22443a.f23756a).c(4, document.size)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean l0() {
+        TLRPC.Document document = this.f22253r0;
+        if (document != null) {
+            kv kvVar = this.f22443a;
+            w7.G(kvVar.f23756a);
+            File I = w7.I(document);
+            w7.G(kvVar.f23756a);
+            File K = w7.K(document, null, true, true);
+            if ((I == null || !I.exists()) && (K == null || !K.exists())) {
+                return false;
             }
-            return this.h;
         }
-        TL_iv.RichText richText2 = (TL_iv.RichText) arrayList.get(i3);
-        IdentityHashMap identityHashMap2 = new IdentityHashMap();
-        return new fv(richText2, identityHashMap2, cvVar.o(richText2, 0, identityHashMap2).length(), 0);
+        return true;
+    }
+
+    @Override
+    public final TL_iv.PageBlock n0() {
+        return this.f22252q0;
+    }
+
+    @Override
+    public final String o0() {
+        return w7.r(null, this.f22253r0);
+    }
+
+    @Override
+    public final boolean p0() {
+        return this.f22256u0;
+    }
+
+    @Override
+    public final boolean q0() {
+        return this.f22257v0;
+    }
+
+    @Override
+    public final boolean r0() {
+        TL_iv.pageBlockVideo pageblockvideo = this.f22252q0;
+        if (pageblockvideo != null && pageblockvideo.spoiler) {
+            return true;
+        }
+        return false;
     }
 }

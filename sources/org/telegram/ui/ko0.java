@@ -1,21 +1,110 @@
 package org.telegram.ui;
-public final class ko0 implements org.telegram.ui.Components.g20 {
-    public final PhotoViewer f46994a;
 
-    public ko0(PhotoViewer photoViewer) {
-        this.f46994a = photoViewer;
+import android.graphics.RectF;
+import android.widget.Toast;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_stats;
+public final class ko0 implements RequestDelegate {
+    public final int f47194a;
+    public final Object f47195b;
+    public final Object f47196c;
+    public final Object d;
+
+    public ko0(Object obj, Object obj2, Object obj3, int i7) {
+        this.f47194a = i7;
+        this.f47195b = obj;
+        this.f47196c = obj2;
+        this.d = obj3;
     }
 
-    public final void a(int i3) {
-        PhotoViewer photoViewer = this.f46994a;
-        photoViewer.Q4 = -1;
-        org.telegram.messenger.cc ccVar = photoViewer.f41466k5;
-        if (ccVar != null) {
-            ccVar.a();
-            photoViewer.f41466k5 = null;
+    @Override
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f47194a) {
+            case 0:
+                org.telegram.messenger.g0.h3(new io0((po0) this.f47195b, tLObject, (org.telegram.messenger.p10) this.f47196c, (TLRPC.Photo) this.d, 0));
+                return;
+            case 1:
+                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.jv0((Object) ((it0) this.f47195b), (Object) ((TLRPC.UserFull) this.f47196c), tL_error, tLObject, (Object) ((TL_account.TL_birthday) this.d), 24));
+                return;
+            case 2:
+                org.telegram.messenger.g0.h3(new io0((org.telegram.ui.ActionBar.f2) ((PrivacySettingsActivity) this.f47195b), (Object) ((org.telegram.ui.ActionBar.u1) this.f47196c), tLObject, (Object) ((TL_account.setAccountTTL) this.d), 3));
+                return;
+            case 3:
+                ProfileActivity profileActivity = (ProfileActivity) this.f47195b;
+                TLRPC.UserFull userFull = (TLRPC.UserFull) this.f47196c;
+                TL_account.TL_birthday tL_birthday = (TL_account.TL_birthday) this.d;
+                RectF rectF = ProfileActivity.S6;
+                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.jv0((Object) profileActivity, (Object) userFull, tL_error, tLObject, (Object) tL_birthday, 28));
+                return;
+            case 4:
+                ProfileActivity profileActivity2 = (ProfileActivity) this.f47195b;
+                TLRPC.TL_username tL_username = (TLRPC.TL_username) this.f47196c;
+                jv0 jv0Var = (jv0) this.d;
+                RectF rectF2 = ProfileActivity.S6;
+                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.jv0((Object) profileActivity2, (Object) tL_username, tL_error, tLObject, (Object) jv0Var, 26));
+                return;
+            case 5:
+                ProfileActivity profileActivity3 = (ProfileActivity) this.f47195b;
+                String str = (String) this.f47196c;
+                TLRPC.User user = (TLRPC.User) this.d;
+                RectF rectF3 = ProfileActivity.S6;
+                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.jv0((Object) profileActivity3, (Object) str, tL_error, tLObject, (Object) user, 27));
+                return;
+            case 6:
+                org.telegram.messenger.g0.h3(new io0((qv0) this.f47195b, tLObject, (org.telegram.messenger.p10) this.f47196c, (TLRPC.Photo) this.d, 9));
+                return;
+            case 7:
+                org.telegram.messenger.g0.h3(new c01((a21) this.f47195b, tL_error, tLObject, (TwoStepVerificationActivity) this.f47196c, (TLRPC.User) this.d, 1));
+                return;
+            case 8:
+                org.telegram.messenger.g0.h3(new io0((Object) ((SessionsActivity) this.f47195b), (Object) ((org.telegram.ui.ActionBar.u1) this.f47196c), (Object) tL_error, (Object) ((TLRPC.TL_authorization) this.d), 12));
+                return;
+            case 9:
+                org.telegram.messenger.g0.h3(new io0((Object) ((SessionsActivity) this.f47195b), (Object) ((org.telegram.ui.ActionBar.u1) this.f47196c), (Object) tL_error, (Object) ((TLRPC.TL_webAuthorization) this.d), 11));
+                return;
+            case 10:
+                m41 m41Var = (m41) this.f47195b;
+                String str2 = (String) this.f47196c;
+                b51 b51Var = (b51) this.d;
+                boolean z9 = true;
+                mg.b bVar = null;
+                if (tLObject instanceof TL_stats.TL_statsGraph) {
+                    try {
+                        JSONObject jSONObject = new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data);
+                        o41 o41Var = m41Var.f47388r;
+                        int i7 = o41Var.f48231i;
+                        if (o41Var != m41Var.f47637x.f44674x) {
+                            z9 = false;
+                        }
+                        bVar = c51.h0(jSONObject, i7, z9);
+                    } catch (JSONException e10) {
+                        e10.printStackTrace();
+                    }
+                } else if (tLObject instanceof TL_stats.TL_statsGraphError) {
+                    Toast.makeText(m41Var.getContext(), ((TL_stats.TL_statsGraphError) tLObject).error, 1).show();
+                }
+                org.telegram.messenger.g0.h3(new io0(m41Var, bVar, str2, b51Var, 15));
+                return;
+            case 11:
+                org.telegram.messenger.g0.h3(new io0((p81) this.f47195b, tLObject, (String) this.f47196c, (org.telegram.ui.ActionBar.u1) this.d, 17));
+                return;
+            default:
+                TwoStepVerificationActivity twoStepVerificationActivity = (TwoStepVerificationActivity) this.f47195b;
+                byte[] bArr = (byte[]) this.f47196c;
+                byte[] bArr2 = (byte[]) this.d;
+                if (tL_error == null) {
+                    Utilities.f21333e.c(new io0((org.telegram.ui.ActionBar.f2) twoStepVerificationActivity, (Object) bArr, tLObject, (Object) bArr2, 18));
+                    return;
+                } else {
+                    org.telegram.messenger.g0.h3(new by0(24, twoStepVerificationActivity, tL_error));
+                    return;
+                }
         }
-        photoViewer.f41482m5 = true;
-        photoViewer.E2(i3);
-        photoViewer.f41482m5 = false;
     }
 }

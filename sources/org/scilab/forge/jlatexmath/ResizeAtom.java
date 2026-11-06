@@ -4,20 +4,20 @@ public class ResizeAtom extends Atom {
     private float h;
     private int hunit;
     private boolean keepaspectratio;
-    private float f21194w;
+    private float f21141w;
     private int wunit;
 
-    public ResizeAtom(Atom atom, String str, String str2, boolean z10) {
+    public ResizeAtom(Atom atom, String str, String str2, boolean z9) {
         this.type = atom.type;
         this.base = atom;
-        this.keepaspectratio = z10;
+        this.keepaspectratio = z9;
         float[] length = SpaceAtom.getLength(str == null ? "" : str);
         float[] length2 = SpaceAtom.getLength(str2 == null ? "" : str2);
         if (length.length != 2) {
             this.wunit = -1;
         } else {
             this.wunit = (int) length[0];
-            this.f21194w = length[1];
+            this.f21141w = length[1];
         }
         if (length2.length != 2) {
             this.hunit = -1;
@@ -32,26 +32,26 @@ public class ResizeAtom extends Atom {
         float factor;
         float f10;
         double d;
+        double d2;
         double d10;
-        double d11;
         Box createBox = this.base.createBox(teXEnvironment);
-        int i3 = this.wunit;
-        if (i3 == -1 && this.hunit == -1) {
+        int i7 = this.wunit;
+        if (i7 == -1 && this.hunit == -1) {
             return createBox;
         }
-        if (i3 != -1 && this.hunit != -1) {
-            double factor2 = (SpaceAtom.getFactor(i3, teXEnvironment) * this.f21194w) / createBox.width;
+        if (i7 != -1 && this.hunit != -1) {
+            double factor2 = (SpaceAtom.getFactor(i7, teXEnvironment) * this.f21141w) / createBox.width;
             double factor3 = (SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h) / createBox.height;
             if (this.keepaspectratio) {
                 d = Math.min(factor2, factor3);
             } else {
-                d10 = factor3;
-                d11 = factor2;
-                return new ScaleBox(createBox, d11, d10);
+                d2 = factor3;
+                d10 = factor2;
+                return new ScaleBox(createBox, d10, d2);
             }
         } else {
-            if (i3 != -1 && this.hunit == -1) {
-                factor = SpaceAtom.getFactor(i3, teXEnvironment) * this.f21194w;
+            if (i7 != -1 && this.hunit == -1) {
+                factor = SpaceAtom.getFactor(i7, teXEnvironment) * this.f21141w;
                 f10 = createBox.width;
             } else {
                 factor = SpaceAtom.getFactor(this.hunit, teXEnvironment) * this.h;
@@ -59,9 +59,9 @@ public class ResizeAtom extends Atom {
             }
             d = factor / f10;
         }
-        d11 = d;
-        d10 = d11;
-        return new ScaleBox(createBox, d11, d10);
+        d10 = d;
+        d2 = d10;
+        return new ScaleBox(createBox, d10, d2);
     }
 
     @Override

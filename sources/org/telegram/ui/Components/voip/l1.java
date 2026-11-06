@@ -1,35 +1,46 @@
 package org.telegram.ui.Components.voip;
 
-import android.app.Activity;
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.q60;
-public final class l1 extends q60 {
-    public final TLRPC.User k1;
-    public final TLRPC.Chat f39456l1;
-    public final String m1;
-    public final TLRPC.InputPeer f39457n1;
-    public final boolean f39458o1;
-    public final boolean f39459p1;
-    public final Activity f39460q1;
-    public final org.telegram.ui.ActionBar.d2 f39461r1;
-    public final org.telegram.messenger.c f39462s1;
+import android.animation.ValueAnimator;
+import android.view.ViewTreeObserver;
+import org.telegram.ui.Components.xq;
+import org.telegram.ui.va;
+public final class l1 implements ViewTreeObserver.OnPreDrawListener {
+    public final float f39297a;
+    public final float f39298b;
+    public final n1 f39299c;
 
-    public l1(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, Activity activity, org.telegram.ui.ActionBar.d2 d2Var, org.telegram.messenger.c cVar) {
-        super(context, chat);
-        this.k1 = user;
-        this.f39456l1 = chat2;
-        this.m1 = str;
-        this.f39457n1 = inputPeer;
-        this.f39458o1 = z10;
-        this.f39459p1 = z11;
-        this.f39460q1 = activity;
-        this.f39461r1 = d2Var;
-        this.f39462s1 = cVar;
+    public l1(n1 n1Var, float f10, float f11) {
+        this.f39299c = n1Var;
+        this.f39297a = f10;
+        this.f39298b = f11;
     }
 
     @Override
-    public final void I0() {
-        n1.b(this.k1, this.f39456l1, this.m1, this.f39457n1, true, this.f39458o1, this.f39459p1, false, this.f39460q1, this.f39461r1, this.f39462s1, false, false, false);
+    public final boolean onPreDraw() {
+        n1 n1Var = this.f39299c;
+        if (!n1Var.P) {
+            ValueAnimator valueAnimator = n1Var.f39348d0;
+            if (valueAnimator != null) {
+                valueAnimator.cancel();
+            }
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(n1Var.J, 0.0f);
+            n1Var.f39348d0 = ofFloat;
+            ofFloat.addUpdateListener(n1Var.f39350e0);
+            n1Var.f39348d0.setDuration(300L);
+            n1Var.f39348d0.start();
+            float measuredWidth = this.f39297a - ((n1Var.getMeasuredWidth() - (n1Var.getMeasuredWidth() * 0.23f)) / 2.0f);
+            float measuredHeight = this.f39298b - ((n1Var.getMeasuredHeight() - (n1Var.getMeasuredHeight() * 0.23f)) / 2.0f);
+            n1Var.getViewTreeObserver().removeOnPreDrawListener(this);
+            n1Var.setTranslationX(measuredWidth);
+            n1Var.setTranslationY(measuredHeight);
+            n1Var.setScaleX(0.23f);
+            n1Var.setScaleY(0.23f);
+            n1Var.animate().setListener(null).cancel();
+            n1Var.animate().setListener(new va(this, 15)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(xq.f40310f).start();
+            return false;
+        }
+        n1Var.M = false;
+        n1Var.requestLayout();
+        return false;
     }
 }

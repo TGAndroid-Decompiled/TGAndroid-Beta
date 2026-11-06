@@ -4,35 +4,35 @@ import android.content.Context;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public abstract class xr extends f41 {
+    public final int P;
     public final int Q;
-    public final int R;
+    public final ArrayList R;
     public final ArrayList S;
     public final ArrayList T;
     public final ArrayList U;
-    public final ArrayList V;
+    public boolean V;
     public boolean W;
-    public boolean X;
-    public final ArrayList Y;
+    public final ArrayList X;
+    public boolean Y;
     public boolean Z;
-    public boolean f40464a0;
-    public boolean f40465b0;
-    public int f40466c0;
-    public int f40467d0;
-    public String f40468e0;
-    public final gp f40469f0;
+    public boolean f40322a0;
+    public int f40323b0;
+    public int f40324c0;
+    public String f40325d0;
+    public final gp f40326e0;
 
-    public xr(tj0 tj0Var, Context context, int i3, int i10) {
-        super(tj0Var, context, i3, 0, false, null, null);
+    public xr(pj0 pj0Var, Context context, int i7, int i10) {
+        super(pj0Var, context, i7, 0, false, null, null);
+        this.R = new ArrayList();
         this.S = new ArrayList();
         this.T = new ArrayList();
         this.U = new ArrayList();
-        this.V = new ArrayList();
-        this.Y = new ArrayList();
-        dm0 dm0Var = (dm0) this;
-        this.f40469f0 = new gp(dm0Var, 6);
-        this.f33700w = new e(dm0Var, 9);
-        this.Q = i3;
-        this.R = i10;
+        this.X = new ArrayList();
+        am0 am0Var = (am0) this;
+        this.f40326e0 = new gp(am0Var, 6);
+        this.f33475w = new d(am0Var, 9);
+        this.P = i7;
+        this.Q = i10;
         O(false);
     }
 
@@ -42,14 +42,14 @@ public abstract class xr extends f41 {
 
     public final void X() {
         ArrayList arrayList = new ArrayList();
-        int i3 = this.Q;
-        ArrayList arrayList2 = org.telegram.messenger.hp.s1(i3).f23169y;
+        int i7 = this.P;
+        ArrayList arrayList2 = org.telegram.messenger.qp.s1(i7).f24929y;
         int size = arrayList2.size();
         int i10 = 0;
         while (i10 < size) {
             Object obj = arrayList2.get(i10);
             i10++;
-            TLRPC.Chat M0 = org.telegram.messenger.hp.s1(i3).M0(Long.valueOf(-((TLRPC.Dialog) obj).f27005id));
+            TLRPC.Chat M0 = org.telegram.messenger.qp.s1(i7).M0(Long.valueOf(-((TLRPC.Dialog) obj).f26956id));
             if (M0 != null && org.telegram.messenger.t3.V(M0) && org.telegram.messenger.t3.t0(M0) && !org.telegram.messenger.t3.r0(M0)) {
                 arrayList.add(M0);
                 if (arrayList.size() >= 100) {
@@ -57,7 +57,7 @@ public abstract class xr extends f41 {
                 }
             }
         }
-        ArrayList arrayList3 = this.Y;
+        ArrayList arrayList3 = this.X;
         arrayList3.clear();
         arrayList3.addAll(arrayList);
     }

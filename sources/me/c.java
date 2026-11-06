@@ -1,8 +1,5 @@
 package me;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-@Retention(RetentionPolicy.RUNTIME)
-public @interface c {
-    String discriminator();
+import c8.v9;
+public abstract class c extends v9 {
 }

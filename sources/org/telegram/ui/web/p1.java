@@ -1,90 +1,126 @@
 package org.telegram.ui.web;
 
-import android.webkit.WebResourceResponse;
+import android.app.Activity;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.JavascriptInterface;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import c8.ha;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.HashMap;
+import org.json.JSONObject;
+import org.telegram.messenger.a00;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.r2;
-public final class p1 extends WebViewClient {
-    public boolean f50987a = true;
-    public boolean f50988b;
-    public final InputStream f50989c;
-    public final u1 d;
+import org.telegram.messenger.c20;
+import org.telegram.messenger.zz;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.rq0;
+public final class p1 implements c20 {
+    public final int f51260a;
+    public final zz f51261b;
+    public final boolean[] f51262c;
+    public final a00 d;
+    public final w1 f51263e;
+    public final c20 f51264f;
 
-    public p1(u1 u1Var, InputStream inputStream) {
-        this.d = u1Var;
-        this.f50989c = inputStream;
+    public p1(zz zzVar, boolean[] zArr, a00 a00Var, w1 w1Var, c20 c20Var, int i7) {
+        this.f51260a = i7;
+        this.f51261b = zzVar;
+        this.f51262c = zArr;
+        this.d = a00Var;
+        this.f51263e = w1Var;
+        this.f51264f = c20Var;
     }
 
     @Override
-    public final WebResourceResponse shouldInterceptRequest(WebView webView, String str) {
-        b1 b1Var;
-        String str2;
-        InputStream a10;
-        String str3;
-        b1 b1Var2;
-        if (this.f50987a) {
-            this.f50987a = false;
-            String y22 = org.telegram.messenger.g0.y2(null, 2131624068);
-            boolean z10 = r2.f25040a;
-            return new WebResourceResponse("text/html", "UTF-8", new ByteArrayInputStream(a1.g.q("<script>\n", y22.replace("$DEBUG$", "true"), "\n</script>").getBytes(StandardCharsets.UTF_8)));
+    public final void a(Object obj) {
+        switch (this.f51260a) {
+            case 0:
+                zz zzVar = this.f51261b;
+                boolean[] zArr = this.f51262c;
+                a00 a00Var = this.d;
+                w1 w1Var = this.f51263e;
+                c20 c20Var = this.f51264f;
+                InputStream inputStream = (InputStream) obj;
+                a00.a(zzVar);
+                if (!zArr[0]) {
+                    zz d = a00.d(a00Var, "readHTML");
+                    String str = w1Var.f51340a;
+                    final p1 p1Var = new p1(d, zArr, a00Var, w1Var, c20Var, 1);
+                    if (inputStream == null) {
+                        p1Var.a(null);
+                        return;
+                    }
+                    Context context = LaunchActivity.G1;
+                    if (context == null) {
+                        context = org.telegram.messenger.t0.f25555b;
+                    }
+                    Activity W = org.telegram.messenger.g0.W(context);
+                    if (W == null) {
+                        p1Var.a(null);
+                        return;
+                    }
+                    View rootView = W.findViewById(16908290).getRootView();
+                    if (!(rootView instanceof ViewGroup)) {
+                        p1Var.a(null);
+                        return;
+                    }
+                    final rq0 rq0Var = new rq0(context, 14);
+                    ((ViewGroup) rootView).addView(rq0Var);
+                    final WebView webView = new WebView(context);
+                    WebSettings settings = webView.getSettings();
+                    settings.setAllowContentAccess(false);
+                    settings.setDatabaseEnabled(false);
+                    settings.setAllowFileAccess(false);
+                    settings.setJavaScriptEnabled(true);
+                    settings.setSaveFormData(false);
+                    settings.setGeolocationEnabled(false);
+                    settings.setDomStorageEnabled(false);
+                    settings.setAllowFileAccessFromFileURLs(false);
+                    settings.setAllowUniversalAccessFromFileURLs(false);
+                    webView.setWebViewClient(new r1(w1Var, inputStream));
+                    webView.setWebChromeClient(new WebChromeClient());
+                    rq0Var.addView(webView, ha.c(-1.0f, -1));
+                    final boolean[] zArr2 = {false};
+                    webView.addJavascriptInterface(new Object() {
+                        @JavascriptInterface
+                        public void done(String str2) {
+                            org.telegram.messenger.g0.h3(new x(zArr2, webView, rq0Var, str2, p1Var, 6));
+                        }
+                    }, "Instant");
+                    webView.loadUrl(str);
+                    return;
+                }
+                return;
+            default:
+                zz zzVar2 = this.f51261b;
+                boolean[] zArr3 = this.f51262c;
+                a00 a00Var2 = this.d;
+                w1 w1Var2 = this.f51263e;
+                c20 c20Var2 = this.f51264f;
+                JSONObject jSONObject = (JSONObject) obj;
+                a00.a(zzVar2);
+                if (!zArr3[0]) {
+                    zz d2 = a00.d(a00Var2, "parseJSON");
+                    try {
+                        w1Var2.f51342c = w1Var2.i(w1Var2.f51340a, jSONObject);
+                    } catch (Exception e10) {
+                        a00.c(a00Var2, "error: " + e10);
+                        a8.g(e10, true);
+                    }
+                    a00.a(d2);
+                    c20Var2.a(w1Var2);
+                    TLRPC.TL_webPage tL_webPage = w1Var2.f51342c;
+                    if (tL_webPage != null) {
+                        w1.f51338e.put(tL_webPage, w1Var2);
+                    }
+                    a00.b(a00Var2);
+                    return;
+                }
+                return;
         }
-        u1 u1Var = this.d;
-        if (str != null && str.endsWith("/index.html")) {
-            str3 = "application/octet-stream";
-            if (this.f50988b) {
-                za.p pVar = u1Var.f51047b;
-                if (pVar != null) {
-                    b1Var2 = (b1) ((ArrayList) pVar.f60312b).get(0);
-                } else {
-                    b1Var2 = null;
-                }
-                if (b1Var2 == null) {
-                    return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
-                }
-                try {
-                    a10 = b1Var2.a();
-                } catch (IOException e10) {
-                    a8.g(e10, true);
-                    return new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
-                }
-            } else {
-                this.f50988b = true;
-                a10 = this.f50989c;
-            }
-        } else {
-            za.p pVar2 = u1Var.f51047b;
-            if (pVar2 != null) {
-                b1Var = (b1) ((HashMap) pVar2.f60313c).get(str);
-            } else {
-                b1Var = null;
-            }
-            if (b1Var == null) {
-                return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
-            }
-            c1 c1Var = (c1) b1Var.f50818a.get("content-type");
-            if (c1Var == null) {
-                str2 = null;
-            } else {
-                str2 = c1Var.f50824a;
-            }
-            if (!"text/html".equalsIgnoreCase(str2) && !"text/css".equalsIgnoreCase(str2)) {
-                return new WebResourceResponse("text/plain", "utf-8", 404, "Not Found", null, null);
-            }
-            try {
-                a10 = b1Var.a();
-                str3 = str2;
-            } catch (IOException e11) {
-                a8.g(e11, true);
-                return new WebResourceResponse("text/plain", "utf-8", 503, "Server error", null, null);
-            }
-        }
-        return new WebResourceResponse(str3, null, a10);
     }
 }

@@ -1,42 +1,68 @@
 package org.telegram.ui;
-public final class ed0 implements Runnable {
-    public final int f44967a;
-    public final id0 f44968b;
 
-    public ed0(id0 id0Var, int i3) {
-        this.f44967a = i3;
-        this.f44968b = id0Var;
+import android.content.Context;
+public final class ed0 extends db0 {
+    public final int f45292e;
+    public final org.telegram.ui.Components.wt0 f45293f;
+
+    public ed0(gd0 gd0Var, Context context, int i7) {
+        super(gd0Var.f45954u0, context);
+        this.f45292e = i7;
+        switch (i7) {
+            case 1:
+                this.f45293f = gd0Var;
+                super(gd0Var.f45954u0, context);
+                return;
+            default:
+                this.f45293f = gd0Var;
+                return;
+        }
     }
 
     @Override
-    public final void run() {
-        int i3;
-        int i10 = this.f44967a;
-        id0 id0Var = this.f44968b;
-        switch (i10) {
+    public final boolean a() {
+        switch (this.f45292e) {
             case 0:
-                id0Var.o();
-                return;
+                return ((gd0) this.f45293f).f45942k0;
             case 1:
-                PremiumPreviewFragment premiumPreviewFragment = new PremiumPreviewFragment(0, "sms");
-                xd0 xd0Var = id0Var.f46252w;
-                i3 = ((org.telegram.ui.ActionBar.d2) xd0Var).currentAccount;
-                premiumPreviewFragment.setCurrentAccount(i3);
-                xd0Var.presentFragment(premiumPreviewFragment);
-                return;
-            case 2:
-                xd0 xd0Var2 = id0Var.f46252w;
-                xd0Var2.D1(0, true, null, true);
-                xd0Var2.u1(org.telegram.messenger.bd.M0(2131746081, null), org.telegram.messenger.bd.M0(2131752021, null));
-                return;
-            case 3:
-                xd0 xd0Var3 = id0Var.f46252w;
-                xd0Var3.D1(0, true, null, true);
-                xd0Var3.u1(org.telegram.messenger.bd.M0(2131746081, null), org.telegram.messenger.bd.M0(2131752021, null));
-                return;
+                return ((gd0) this.f45293f).f45942k0;
             default:
-                id0Var.f46245b.setLoading(false);
-                return;
+                return ((ec0) this.f45293f).M;
         }
+    }
+
+    @Override
+    public final boolean b() {
+        ed0 ed0Var;
+        switch (this.f45292e) {
+            case 0:
+                if (getVisibility() == 0) {
+                    gd0 gd0Var = (gd0) this.f45293f;
+                    if (gd0Var.f45928a0 <= 0 || gd0Var.T == null) {
+                        return true;
+                    }
+                }
+                return false;
+            case 1:
+                gd0 gd0Var2 = (gd0) this.f45293f;
+                if (isClickable() && getVisibility() == 0 && !gd0Var2.f45937f0 && (((ed0Var = gd0Var2.f45955w) == null || ed0Var.getVisibility() == 8) && !gd0Var2.f45942k0)) {
+                    return true;
+                }
+                return false;
+            default:
+                if (getVisibility() == 0) {
+                    ec0 ec0Var = (ec0) this.f45293f;
+                    if (ec0Var.P <= 0 || ec0Var.N == null) {
+                        return true;
+                    }
+                }
+                return false;
+        }
+    }
+
+    public ed0(ec0 ec0Var, Context context) {
+        super(ec0Var.f45231a0, context);
+        this.f45292e = 2;
+        this.f45293f = ec0Var;
     }
 }

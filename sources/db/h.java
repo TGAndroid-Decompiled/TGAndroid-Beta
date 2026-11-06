@@ -1,24 +1,21 @@
 package db;
-public final class h implements ma.d {
-    public static final h f8662a = new Object();
-    public static final ma.c f8663b = ma.c.c("sessionId");
-    public static final ma.c f8664c = ma.c.c("firstSessionId");
-    public static final ma.c d = ma.c.c("sessionIndex");
-    public static final ma.c f8665e = ma.c.c("eventTimestampUs");
-    public static final ma.c f8666f = ma.c.c("dataCollectionStatus");
-    public static final ma.c f8667g = ma.c.c("firebaseInstallationId");
-    public static final ma.c h = ma.c.c("firebaseAuthenticationToken");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        w0 w0Var = (w0) obj;
-        ma.e eVar = (ma.e) obj2;
-        eVar.a(f8663b, w0Var.f8746a);
-        eVar.a(f8664c, w0Var.f8747b);
-        eVar.e(d, w0Var.f8748c);
-        eVar.f(f8665e, w0Var.d);
-        eVar.a(f8666f, w0Var.f8749e);
-        eVar.a(f8667g, w0Var.f8750f);
-        eVar.a(h, w0Var.f8751g);
+import android.util.Log;
+public final class h {
+    static {
+        String[] strArr = {"TestSessionManager"};
+        if (strArr.length != 0) {
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append('[');
+            for (String str : strArr) {
+                if (sb2.length() > 1) {
+                    sb2.append(",");
+                }
+                sb2.append(str);
+            }
+            sb2.append("] ");
+        }
+        for (int i7 = 2; i7 <= 7 && !Log.isLoggable("fpnvsdk", i7); i7++) {
+        }
     }
 }

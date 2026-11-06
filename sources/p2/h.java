@@ -1,26 +1,18 @@
 package p2;
-public final class h implements Runnable {
-    public final int f53110a;
-    public final j f53111b;
-    public final Object f53112c;
 
-    public h(j jVar, k kVar, int i3) {
-        this.f53110a = i3;
-        this.f53111b = jVar;
-        this.f53112c = kVar;
-    }
+import j$.util.DesugarCollections;
+import java.util.ArrayList;
+import java.util.List;
+public final class h {
+    public final String f53008a;
+    public final long f53009b;
+    public final List f53010c;
+    public final List d;
 
-    @Override
-    public final void run() {
-        switch (this.f53110a) {
-            case 0:
-                j jVar = this.f53111b;
-                this.f53112c.b(jVar.f53115a, jVar.f53116b);
-                return;
-            default:
-                j jVar2 = this.f53111b;
-                this.f53112c.I(jVar2.f53115a, jVar2.f53116b);
-                return;
-        }
+    public h(String str, long j3, ArrayList arrayList, List list) {
+        this.f53008a = str;
+        this.f53009b = j3;
+        this.f53010c = DesugarCollections.unmodifiableList(arrayList);
+        this.d = DesugarCollections.unmodifiableList(list);
     }
 }

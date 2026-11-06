@@ -5,29 +5,29 @@ import android.os.SystemClock;
 import android.view.Choreographer;
 import java.util.ArrayList;
 public final class wy0 implements Choreographer.FrameCallback {
-    public final int f40170a;
-    public final Object f40171b;
+    public final int f40103a;
+    public final Object f40104b;
 
-    public wy0(Object obj, int i3) {
-        this.f40170a = i3;
-        this.f40171b = obj;
+    public wy0(Object obj, int i7) {
+        this.f40103a = i7;
+        this.f40104b = obj;
     }
 
     @Override
-    public final void doFrame(long j10) {
-        boolean z10;
+    public final void doFrame(long j3) {
+        boolean z9;
         float min;
-        int i3;
-        boolean z11;
-        switch (this.f40170a) {
+        int i7;
+        boolean z10;
+        switch (this.f40103a) {
             case 0:
-                az0 az0Var = ((cz0) this.f40171b).f32868a;
+                az0 az0Var = ((cz0) this.f40104b).f32722a;
                 if (az0Var != null) {
                     Handler handler = az0Var.getHandler();
-                    if (handler != null && az0Var.f32008b.get()) {
+                    if (handler != null && az0Var.f31944b.get()) {
                         handler.sendMessage(handler.obtainMessage(0));
                     }
-                    if (((cz0) this.f40171b).f32868a.T) {
+                    if (((cz0) this.f40104b).f32722a.S) {
                         Choreographer.getInstance().postFrameCallback(this);
                         return;
                     }
@@ -35,89 +35,89 @@ public final class wy0 implements Choreographer.FrameCallback {
                 }
                 return;
             default:
-                q1.a aVar = (q1.a) ((nh) ((p7.d) this.f40171b).f53345b).f36540b;
+                r1.a aVar = (r1.a) ((qt) ((org.telegram.ui.hy0) this.f40104b).f46519b).f37504b;
                 long uptimeMillis = SystemClock.uptimeMillis();
-                ArrayList arrayList = aVar.f53631b;
+                ArrayList arrayList = aVar.f54128b;
                 long uptimeMillis2 = SystemClock.uptimeMillis();
                 int i10 = 0;
                 while (i10 < arrayList.size()) {
-                    q1.g gVar = (q1.g) arrayList.get(i10);
+                    r1.g gVar = (r1.g) arrayList.get(i10);
                     if (gVar != null) {
-                        a0.l lVar = aVar.f53630a;
+                        a0.l lVar = aVar.f54127a;
                         Long l10 = (Long) lVar.get(gVar);
                         if (l10 != null) {
                             if (l10.longValue() < uptimeMillis2) {
                                 lVar.remove(gVar);
                             }
                         }
-                        long j11 = gVar.f53649i;
-                        if (j11 == 0) {
-                            gVar.f53649i = uptimeMillis;
-                            gVar.g(gVar.f53644b);
+                        long j10 = gVar.f54146i;
+                        if (j10 == 0) {
+                            gVar.f54146i = uptimeMillis;
+                            gVar.g(gVar.f54141b);
                         } else {
-                            long j12 = uptimeMillis - j11;
-                            gVar.f53649i = uptimeMillis;
-                            if (gVar.f53654n != Float.MAX_VALUE) {
-                                q1.h hVar = gVar.f53653m;
-                                double d = hVar.f53661i;
-                                z10 = true;
-                                long j13 = j12 / 2;
-                                org.telegram.ui.Cells.i c2 = hVar.c(gVar.f53644b, gVar.f53643a, j13);
-                                q1.h hVar2 = gVar.f53653m;
-                                hVar2.f53661i = gVar.f53654n;
-                                gVar.f53654n = Float.MAX_VALUE;
-                                org.telegram.ui.Cells.i c10 = hVar2.c(c2.f29364a, c2.f29365b, j13);
-                                gVar.f53644b = c10.f29364a;
-                                gVar.f53643a = c10.f29365b;
+                            long j11 = uptimeMillis - j10;
+                            gVar.f54146i = uptimeMillis;
+                            if (gVar.f54151n != Float.MAX_VALUE) {
+                                r1.h hVar = gVar.f54150m;
+                                double d = hVar.f54158i;
+                                z9 = true;
+                                long j12 = j11 / 2;
+                                org.telegram.ui.Cells.i c10 = hVar.c(gVar.f54141b, gVar.f54140a, j12);
+                                r1.h hVar2 = gVar.f54150m;
+                                hVar2.f54158i = gVar.f54151n;
+                                gVar.f54151n = Float.MAX_VALUE;
+                                org.telegram.ui.Cells.i c11 = hVar2.c(c10.f29294a, c10.f29295b, j12);
+                                gVar.f54141b = c11.f29294a;
+                                gVar.f54140a = c11.f29295b;
                             } else {
-                                z10 = true;
-                                org.telegram.ui.Cells.i c11 = gVar.f53653m.c(gVar.f53644b, gVar.f53643a, j12);
-                                gVar.f53644b = c11.f29364a;
-                                gVar.f53643a = c11.f29365b;
+                                z9 = true;
+                                org.telegram.ui.Cells.i c12 = gVar.f54150m.c(gVar.f54141b, gVar.f54140a, j11);
+                                gVar.f54141b = c12.f29294a;
+                                gVar.f54140a = c12.f29295b;
                             }
-                            float max = Math.max(gVar.f53644b, gVar.h);
-                            gVar.f53644b = max;
-                            gVar.f53644b = Math.min(max, gVar.f53648g);
-                            float f10 = gVar.f53643a;
-                            q1.h hVar3 = gVar.f53653m;
+                            float max = Math.max(gVar.f54141b, gVar.h);
+                            gVar.f54141b = max;
+                            gVar.f54141b = Math.min(max, gVar.f54145g);
+                            float f10 = gVar.f54140a;
+                            r1.h hVar3 = gVar.f54150m;
                             hVar3.getClass();
                             double abs = Math.abs(f10);
-                            i3 = i10;
-                            if (abs < hVar3.f53658e && Math.abs(min - ((float) hVar3.f53661i)) < hVar3.d) {
-                                gVar.f53644b = (float) gVar.f53653m.f53661i;
-                                gVar.f53643a = 0.0f;
-                                z11 = z10;
+                            i7 = i10;
+                            if (abs < hVar3.f54155e && Math.abs(min - ((float) hVar3.f54158i)) < hVar3.d) {
+                                gVar.f54141b = (float) gVar.f54150m.f54158i;
+                                gVar.f54140a = 0.0f;
+                                z10 = z9;
                             } else {
-                                z11 = false;
+                                z10 = false;
                             }
-                            float min2 = Math.min(gVar.f53644b, gVar.f53648g);
-                            gVar.f53644b = min2;
+                            float min2 = Math.min(gVar.f54141b, gVar.f54145g);
+                            gVar.f54141b = min2;
                             float max2 = Math.max(min2, gVar.h);
-                            gVar.f53644b = max2;
+                            gVar.f54141b = max2;
                             gVar.g(max2);
-                            if (z11) {
+                            if (z10) {
                                 gVar.e(false);
                             }
-                            i10 = i3 + 1;
+                            i10 = i7 + 1;
                         }
                     }
-                    i3 = i10;
-                    i10 = i3 + 1;
+                    i7 = i10;
+                    i10 = i7 + 1;
                 }
-                if (aVar.f53633e) {
+                if (aVar.f54130e) {
                     for (int size = arrayList.size() - 1; size >= 0; size--) {
                         if (arrayList.get(size) == null) {
                             arrayList.remove(size);
                         }
                     }
-                    aVar.f53633e = false;
+                    aVar.f54130e = false;
                 }
                 if (arrayList.size() > 0) {
                     if (aVar.d == null) {
-                        aVar.d = new p7.d(aVar.f53632c);
+                        aVar.d = new org.telegram.ui.hy0(aVar.f54129c);
                     }
-                    p7.d dVar = aVar.d;
-                    ((Choreographer) dVar.d).postFrameCallback((wy0) dVar.f53346c);
+                    org.telegram.ui.hy0 hy0Var = aVar.d;
+                    ((Choreographer) hy0Var.f46520c).postFrameCallback((wy0) hy0Var.d);
                     return;
                 }
                 return;

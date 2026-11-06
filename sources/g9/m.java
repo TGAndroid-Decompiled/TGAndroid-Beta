@@ -1,3 +1,4 @@
 package g9;
-public abstract class m extends l {
+public interface m {
+    boolean apply(Object obj);
 }

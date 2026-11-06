@@ -1,66 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.TextPaint;
-import android.text.TextUtils;
-public final class yy {
-    public int f40853a;
-    public CharSequence f40854b;
-    public int f40855c;
-    public int d;
-    public boolean f40856e;
-    public boolean f40857f;
-    public boolean f40858g;
-    public final bz h;
+import android.animation.ValueAnimator;
+import android.view.View;
+public final class yy extends v4.k {
+    public final ez F;
 
-    public yy(bz bzVar, int i3, Spannable spannable, boolean z10) {
-        this.h = bzVar;
-        this.f40853a = i3;
-        this.f40854b = spannable;
-        this.f40858g = z10;
+    public yy(ez ezVar) {
+        this.F = ezVar;
     }
 
-    public final int a(boolean z10) {
-        int i3;
-        int i10;
-        CharSequence charSequence = this.f40854b;
-        bz bzVar = this.h;
-        int ceil = (int) Math.ceil(gi.l3.h(charSequence, bzVar.f32444b));
-        this.f40855c = ceil;
-        int i11 = 0;
-        if (z10) {
-            i3 = ((org.telegram.ui.kw) bzVar.K).a(this.f40853a);
-            if (i3 < 0) {
-                i3 = 0;
+    @Override
+    public final void C(v4.d1 d1Var, v4.j jVar) {
+        super.C(d1Var, jVar);
+        View view = d1Var.f56927a;
+        if (view instanceof cz) {
+            cz czVar = (cz) view;
+            if (czVar.f32719x) {
+                ValueAnimator valueAnimator = czVar.f32698a;
+                if (valueAnimator != null) {
+                    valueAnimator.removeAllListeners();
+                    czVar.f32698a.removeAllUpdateListeners();
+                    czVar.f32698a.cancel();
+                }
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                ofFloat.addUpdateListener(new xy(czVar, 0));
+                ofFloat.addListener(new z5(czVar, 26));
+                czVar.f32698a = ofFloat;
+                ofFloat.setDuration(this.f57000e);
+                ofFloat.start();
             }
-            if (z10) {
-                this.d = i3;
-            }
-        } else {
-            i3 = this.d;
         }
-        if (i3 > 0) {
-            i10 = org.telegram.messenger.g0.L(-2.0f) + org.telegram.messenger.g0.L(10.0f) + Math.max(org.telegram.messenger.g0.L(7.333f), (int) Math.ceil(bzVar.f32446c.measureText(String.format("%d", Integer.valueOf(i3)))));
-        } else {
-            if (!this.f40856e && bzVar.f32459n) {
-                i11 = org.telegram.messenger.g0.L(12.333f);
-            }
-            i10 = i11;
-        }
-        return Math.max(org.telegram.messenger.g0.L(16.0f), ceil + i10);
     }
 
-    public final void b(String str) {
-        TextPaint textPaint = this.h.f32444b;
-        if (TextUtils.equals(this.f40854b, str)) {
-            return;
+    @Override
+    public final void f(v4.d1 d1Var) {
+        super.f(d1Var);
+        View view = d1Var.f56927a;
+        view.setTranslationX(0.0f);
+        if (view instanceof cz) {
+            ((cz) view).a();
         }
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-        this.f40854b = spannableStringBuilder;
-        CharSequence m10 = org.telegram.messenger.i6.m(spannableStringBuilder, textPaint.getFontMetricsInt(), false, null, 0);
-        this.f40854b = m10;
-        this.f40854b = org.telegram.messenger.zi.C5(m10, null, textPaint.getFontMetricsInt(), false);
-        this.f40858g = false;
+    }
+
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f56984p.isEmpty();
+        boolean isEmpty2 = this.f56986r.isEmpty();
+        boolean isEmpty3 = this.f56987s.isEmpty();
+        boolean isEmpty4 = this.f56985q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.1f);
+            ofFloat.addUpdateListener(new e6(this, 23));
+            ofFloat.setDuration(this.f57000e);
+            ofFloat.start();
+        }
+        super.m();
+    }
+
+    @Override
+    public final boolean r(v4.d1 r34, e2.r0 r35, int r36, int r37, int r38, int r39) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yy.r(v4.d1, e2.r0, int, int, int, int):boolean");
+    }
+
+    @Override
+    public final void x(v4.d1 d1Var) {
+        d1Var.f56927a.setTranslationX(0.0f);
+        View view = d1Var.f56927a;
+        if (view instanceof cz) {
+            ((cz) view).a();
+        }
     }
 }

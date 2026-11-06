@@ -1,90 +1,210 @@
 package s2;
 
-import android.content.Context;
-import android.graphics.Point;
-import b8.zb;
-import d2.v;
-import d2.v0;
-import g2.n0;
-import j2.h;
-import j2.j;
-import j2.l;
+import a8.ia;
+import a8.wa;
+import android.net.Uri;
+import android.os.SystemClock;
+import e2.t0;
+import h2.m0;
+import h9.i0;
+import j2.c0;
+import j2.y;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-public final class b extends l {
-    public final Context f54594o;
-    public final int f54595p;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.Map;
+public final class b implements b3.j {
+    public final Uri f54487a;
+    public final String f54488b;
+    public final b3.o f54489c = new b3.o("DefaultHlsPlaylistTracker:MediaPlaylist");
+    public final j2.h d;
+    public m f54490e;
+    public long f54491f;
+    public long h;
+    public long f54492n;
+    public long f54493r;
+    public boolean f54494s;
+    public IOException f54495w;
+    public boolean f54496x;
+    public final d f54497y;
 
-    public b(Context context) {
-        super(new h[1], new a[1]);
-        this.f54594o = context;
-        this.f54595p = -1;
+    public b(d dVar, Uri uri, String str) {
+        this.f54497y = dVar;
+        this.f54487a = uri;
+        this.f54488b = str;
+        this.d = ((j2.g) dVar.f54501a.f36166a).createDataSource();
     }
 
     @Override
-    public final h f() {
-        return new h(1, 0);
-    }
-
-    @Override
-    public final j g() {
-        return new a(this);
-    }
-
-    @Override
-    public final String getName() {
-        return "BitmapFactoryImageDecoder";
-    }
-
-    @Override
-    public final j2.f h(Throwable th2) {
-        return new Exception("Unexpected decode error", th2);
-    }
-
-    @Override
-    public final j2.f i(h hVar, j jVar, boolean z10) {
-        boolean z11;
-        a aVar = (a) jVar;
-        ByteBuffer byteBuffer = hVar.f16157c;
-        byteBuffer.getClass();
-        zb.p(byteBuffer.hasArray());
-        if (byteBuffer.arrayOffset() == 0) {
-            z11 = true;
+    public final void M0(b3.l lVar, long j3, long j10, int i7) {
+        x2.u uVar;
+        b3.r rVar = (b3.r) lVar;
+        if (i7 == 0) {
+            long j11 = rVar.f2965a;
+            uVar = new x2.u(rVar.f2966b, j3);
         } else {
-            z11 = false;
+            long j12 = rVar.f2965a;
+            j2.m mVar = rVar.f2966b;
+            c0 c0Var = rVar.d;
+            uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
         }
-        zb.f(z11);
-        try {
-            int i3 = this.f54595p;
-            if (i3 == -1) {
-                Context context = this.f54594o;
-                if (context != null) {
-                    Point y9 = n0.y(context);
-                    int i10 = y9.x;
-                    int i11 = y9.y;
-                    v vVar = hVar.f16155a;
-                    if (vVar != null) {
-                        int i12 = vVar.R;
-                        if (i12 != -1) {
-                            i10 *= i12;
+        this.f54497y.f54505f.t(uVar, rVar.f2967c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
+    }
+
+    public final Uri a() {
+        String str;
+        m mVar = this.f54490e;
+        Uri uri = this.f54487a;
+        if (mVar != null) {
+            l lVar = mVar.v;
+            if (lVar.f54567a != -9223372036854775807L || lVar.f54570e) {
+                Uri.Builder buildUpon = uri.buildUpon();
+                m mVar2 = this.f54490e;
+                if (mVar2.v.f54570e) {
+                    buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(mVar2.f54576k + mVar2.f54583r.size()));
+                    m mVar3 = this.f54490e;
+                    if (mVar3.f54579n != -9223372036854775807L) {
+                        i0 i0Var = mVar3.f54584s;
+                        int size = i0Var.size();
+                        if (!i0Var.isEmpty() && ((h) h9.o.n(i0Var)).f54552y) {
+                            size--;
                         }
-                        int i13 = vVar.S;
-                        if (i13 != -1) {
-                            i11 *= i13;
-                        }
+                        buildUpon.appendQueryParameter("_HLS_part", String.valueOf(size));
                     }
-                    i3 = (Math.max(i10, i11) * 2) - 1;
-                } else {
-                    i3 = 4096;
                 }
+                l lVar2 = this.f54490e.v;
+                if (lVar2.f54567a != -9223372036854775807L) {
+                    if (lVar2.f54568b) {
+                        str = "v2";
+                    } else {
+                        str = "YES";
+                    }
+                    buildUpon.appendQueryParameter("_HLS_skip", str);
+                }
+                return buildUpon.build();
             }
-            aVar.f54592a = cg.n0.b(byteBuffer.remaining(), i3, byteBuffer.array());
-            aVar.timeUs = hVar.f16158e;
-            return null;
-        } catch (v0 e10) {
-            return new Exception("Could not decode image data with BitmapFactory.", e10);
-        } catch (IOException e11) {
-            return new Exception(e11);
         }
+        return uri;
+    }
+
+    public final void b(Uri uri) {
+        d dVar = this.f54497y;
+        b3.q I = dVar.f54502b.I(dVar.f54508s, this.f54490e);
+        Map map = Collections.EMPTY_MAP;
+        ia.k(uri, "The uri must be set.");
+        b3.r rVar = new b3.r(this.d, new j2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, I);
+        this.f54489c.f(rVar, this, dVar.f54503c.X0(rVar.f2967c));
+    }
+
+    public final void c(Uri uri) {
+        this.f54493r = 0L;
+        if (!this.f54494s) {
+            b3.o oVar = this.f54489c;
+            if (!oVar.d() && !oVar.c()) {
+                long elapsedRealtime = SystemClock.elapsedRealtime();
+                long j3 = this.f54492n;
+                if (elapsedRealtime < j3) {
+                    this.f54494s = true;
+                    this.f54497y.f54506n.postDelayed(new org.telegram.ui.web.w(22, this, uri), j3 - elapsedRealtime);
+                    return;
+                }
+                b(uri);
+            }
+        }
+    }
+
+    public final void d(s2.m r75, x2.u r76) {
+        throw new UnsupportedOperationException("Method not decompiled: s2.b.d(s2.m, x2.u):void");
+    }
+
+    @Override
+    public final b3.i o0(b3.l lVar, long j3, long j10, IOException iOException, int i7) {
+        boolean z9;
+        int i10;
+        b3.i iVar;
+        b3.r rVar = (b3.r) lVar;
+        long j11 = rVar.f2965a;
+        int i11 = rVar.f2967c;
+        j2.m mVar = rVar.f2966b;
+        c0 c0Var = rVar.d;
+        Uri uri = c0Var.f16414c;
+        x2.u uVar = new x2.u(mVar, uri, c0Var.d, j3, j10, c0Var.f16413b);
+        if (uri.getQueryParameter("_HLS_msn") != null) {
+            z9 = true;
+        } else {
+            z9 = false;
+        }
+        boolean z10 = iOException instanceof r;
+        b3.i iVar2 = b3.o.f2960e;
+        Uri uri2 = this.f54487a;
+        d dVar = this.f54497y;
+        if (z9 || z10) {
+            if (iOException instanceof y) {
+                i10 = ((y) iOException).f16486c;
+            } else {
+                i10 = Integer.MAX_VALUE;
+            }
+            if (z10 || i10 == 400 || i10 == 503) {
+                this.f54492n = SystemClock.elapsedRealtime();
+                c(uri2);
+                wa waVar = dVar.f54505f;
+                String str = m0.f14112a;
+                waVar.r(uVar, i11, iOException, true);
+                return iVar2;
+            }
+        }
+        f5.u uVar2 = new f5.u(iOException, i7, 2);
+        Iterator it = dVar.f54504e.iterator();
+        boolean z11 = false;
+        while (it.hasNext()) {
+            z11 |= !((u) it.next()).d(uri2, uVar2, false);
+        }
+        pb.b bVar = dVar.f54503c;
+        if (z11) {
+            bVar.getClass();
+            long a12 = pb.b.a1(uVar2);
+            if (a12 != -9223372036854775807L) {
+                iVar = new b3.i(0, a12, false);
+            } else {
+                iVar = b3.o.f2961f;
+            }
+            iVar2 = iVar;
+        }
+        boolean a10 = iVar2.a();
+        dVar.f54505f.r(uVar, i11, iOException, !a10);
+        if (!a10) {
+            bVar.getClass();
+        }
+        return iVar2;
+    }
+
+    @Override
+    public final void o1(b3.l lVar, long j3, long j10) {
+        b3.r rVar = (b3.r) lVar;
+        q qVar = (q) rVar.f2969f;
+        j2.m mVar = rVar.f2966b;
+        c0 c0Var = rVar.d;
+        x2.u uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
+        if (qVar instanceof m) {
+            d((m) qVar, uVar);
+            this.f54497y.f54505f.p(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        } else {
+            t0 b10 = t0.b("Loaded playlist has unexpected type.", null);
+            this.f54495w = b10;
+            this.f54497y.f54505f.r(uVar, 4, b10, true);
+        }
+        this.f54497y.f54503c.getClass();
+    }
+
+    @Override
+    public final void q0(b3.l lVar, long j3, long j10, boolean z9) {
+        b3.r rVar = (b3.r) lVar;
+        long j11 = rVar.f2965a;
+        j2.m mVar = rVar.f2966b;
+        c0 c0Var = rVar.d;
+        x2.u uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
+        d dVar = this.f54497y;
+        dVar.f54503c.getClass();
+        dVar.f54505f.o(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 }

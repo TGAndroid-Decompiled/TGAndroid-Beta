@@ -11,23 +11,23 @@ import android.graphics.Rect;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 public final class e0 extends Drawable {
-    public final Drawable f29099a;
-    public final Paint f29100b;
-    public final Paint f29101c;
+    public final Drawable f29037a;
+    public final Paint f29038b;
+    public final Paint f29039c;
     public final Paint d;
-    public int f29102e;
-    public ColorFilter f29103f;
+    public int f29040e;
+    public ColorFilter f29041f;
 
     public e0(Context context) {
         Paint paint = new Paint(1);
-        this.f29100b = paint;
+        this.f29038b = paint;
         Paint paint2 = new Paint(1);
-        this.f29101c = paint2;
+        this.f29039c = paint2;
         this.d = new Paint();
-        this.f29102e = 255;
-        Drawable g7 = k2.p1.g(context, 2131232158);
-        this.f29099a = g7;
-        g7.setColorFilter(new PorterDuffColorFilter(-13628751, PorterDuff.Mode.SRC_IN));
+        this.f29040e = 255;
+        Drawable h = jg.g.h(context, 2131232158);
+        this.f29037a = h;
+        h.setColorFilter(new PorterDuffColorFilter(-13628751, PorterDuff.Mode.SRC_IN));
         paint.setShader(new RadialGradient(400.0f, 213.0f, 500.0f, -4811527, -9674273, Shader.TileMode.CLAMP));
         paint2.setColor(-1);
         paint2.setStyle(Paint.Style.STROKE);
@@ -35,11 +35,11 @@ public final class e0 extends Drawable {
     }
 
     public final void a(Canvas canvas, float f10, float f11, float f12, float f13) {
-        Drawable drawable = this.f29099a;
+        Drawable drawable = this.f29037a;
         int intrinsicWidth = drawable.getIntrinsicWidth();
         int intrinsicHeight = drawable.getIntrinsicHeight();
         if (intrinsicWidth > 0 && intrinsicHeight > 0) {
-            drawable.setAlpha(Math.round(this.f29102e * f13));
+            drawable.setAlpha(Math.round(this.f29040e * f13));
             drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
             canvas.save();
             canvas.translate(f10, f11);
@@ -53,29 +53,29 @@ public final class e0 extends Drawable {
     public final void b(Canvas canvas, Rect rect, float f10, float f11, float f12, float f13, float f14, float f15) {
         float f16 = rect.left;
         float f17 = rect.top;
-        canvas.drawLine((f12 * f10) + f16, (f13 * f11) + f17, (f14 * f10) + f16, (f15 * f11) + f17, this.f29101c);
+        canvas.drawLine((f12 * f10) + f16, (f13 * f11) + f17, (f14 * f10) + f16, (f15 * f11) + f17, this.f29039c);
     }
 
     @Override
     public final void draw(Canvas canvas) {
         Canvas canvas2;
-        int i3;
+        int i7;
         Rect bounds = getBounds();
-        if (!bounds.isEmpty() && this.f29102e != 0) {
-            ColorFilter colorFilter = this.f29103f;
+        if (!bounds.isEmpty() && this.f29040e != 0) {
+            ColorFilter colorFilter = this.f29041f;
             if (colorFilter != null) {
                 Paint paint = this.d;
                 paint.setColorFilter(colorFilter);
-                i3 = canvas.saveLayer(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
+                i7 = canvas.saveLayer(bounds.left, bounds.top, bounds.right, bounds.bottom, paint);
                 canvas2 = canvas;
             } else {
                 canvas2 = canvas;
-                i3 = -1;
+                i7 = -1;
             }
             float width = bounds.width() / 800.0f;
             float height = bounds.height() / 427.0f;
-            int i10 = this.f29102e;
-            Paint paint2 = this.f29100b;
+            int i10 = this.f29040e;
+            Paint paint2 = this.f29038b;
             paint2.setAlpha(i10);
             canvas2.save();
             canvas2.translate(bounds.left, bounds.top);
@@ -83,8 +83,8 @@ public final class e0 extends Drawable {
             Canvas canvas3 = canvas2;
             canvas3.drawRect(0.0f, 0.0f, 800.0f, 427.0f, paint2);
             canvas3.restore();
-            int i11 = this.f29102e;
-            Paint paint3 = this.f29101c;
+            int i11 = this.f29040e;
+            Paint paint3 = this.f29039c;
             paint3.setAlpha(i11);
             paint3.setStrokeWidth(Math.min(width, height) * 16.4f);
             b(canvas3, bounds, width, height, 449.809f, 246.04f, 483.703f, 212.418f);
@@ -114,8 +114,8 @@ public final class e0 extends Drawable {
             a(canvas3, 678.299f, 408.888f, 42.0f, 0.075f);
             a(canvas3, 655.947f, 316.916f, 42.0f, 0.15f);
             canvas3.restore();
-            if (i3 >= 0) {
-                canvas3.restoreToCount(i3);
+            if (i7 >= 0) {
+                canvas3.restoreToCount(i7);
             }
         }
     }
@@ -136,18 +136,18 @@ public final class e0 extends Drawable {
     }
 
     @Override
-    public final void setAlpha(int i3) {
-        int max = Math.max(0, Math.min(255, i3));
-        if (this.f29102e != max) {
-            this.f29102e = max;
+    public final void setAlpha(int i7) {
+        int max = Math.max(0, Math.min(255, i7));
+        if (this.f29040e != max) {
+            this.f29040e = max;
             invalidateSelf();
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        if (this.f29103f != colorFilter) {
-            this.f29103f = colorFilter;
+        if (this.f29041f != colorFilter) {
+            this.f29041f = colorFilter;
             invalidateSelf();
         }
     }

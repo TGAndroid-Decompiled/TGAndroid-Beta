@@ -1,27 +1,35 @@
 package org.telegram.ui.Components;
+public final class in0 implements Runnable {
+    public final int f34738a;
+    public final mo0 f34739b;
 
-import android.view.View;
-public final class in0 implements q1.d {
-    public final int f34774a;
-    public final int[] f34775b;
-    public final org.telegram.messenger.cs f34776c;
-    public final View d;
-
-    public in0(org.telegram.messenger.cs csVar, View view, int[] iArr, int i3) {
-        this.f34774a = i3;
-        this.f34776c = csVar;
-        this.d = view;
-        this.f34775b = iArr;
+    public in0(mo0 mo0Var, int i7) {
+        this.f34738a = i7;
+        this.f34739b = mo0Var;
     }
 
     @Override
-    public final void a(q1.g gVar, float f10, float f11) {
-        switch (this.f34774a) {
+    public final void run() {
+        switch (this.f34738a) {
             case 0:
-                ((oo0) this.f34776c).Q0((org.telegram.ui.Cells.c7) this.d, this.f34775b, f10 / 1000.0f);
+                mo0 mo0Var = this.f34739b;
+                mo0Var.f36080s2 = true;
+                r00 r00Var = mo0Var.f36076q2;
+                r00Var.f37557r.setText("");
+                org.telegram.messenger.g0.K3(r00Var.f37557r);
                 return;
             default:
-                ((xn0) this.f34776c).d.Q0(this.d, this.f34775b, f10 / 1000.0f);
+                l10 l10Var = new l10(3);
+                mo0 mo0Var2 = this.f34739b;
+                if (mo0Var2.d) {
+                    r00 r00Var2 = mo0Var2.f36076q2;
+                    if (r00Var2 != null) {
+                        org.telegram.messenger.g0.v1(r00Var2.f37557r);
+                    }
+                    org.telegram.messenger.g0.i3(l10Var, 300L);
+                    return;
+                }
+                l10Var.run();
                 return;
         }
     }

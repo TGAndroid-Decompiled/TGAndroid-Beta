@@ -1,40 +1,14 @@
 package db;
-
-import b8.zc;
-public final class j implements oa.f {
-    public static final j f8687b;
-    public static final j f8688c;
-    public static final j d;
-    public static final j[] f8689e;
-    public final int f8690a;
+public abstract class j {
+    public static final n6.c f8584a;
+    public static final n6.c[] f8585b;
 
     static {
-        j jVar = new j("COLLECTION_UNKNOWN", 0, 0);
-        j jVar2 = new j("COLLECTION_SDK_NOT_INSTALLED", 1, 1);
-        f8687b = jVar2;
-        j jVar3 = new j("COLLECTION_ENABLED", 2, 2);
-        f8688c = jVar3;
-        j jVar4 = new j("COLLECTION_DISABLED", 3, 3);
-        d = jVar4;
-        j[] jVarArr = {jVar, jVar2, jVar3, jVar4, new j("COLLECTION_DISABLED_REMOTE", 4, 4), new j("COLLECTION_SAMPLED", 5, 5)};
-        f8689e = jVarArr;
-        zc.a(jVarArr);
-    }
-
-    public j(String str, int i3, int i10) {
-        this.f8690a = i10;
-    }
-
-    public static j valueOf(String str) {
-        return (j) Enum.valueOf(j.class, str);
-    }
-
-    public static j[] values() {
-        return (j[]) f8689e.clone();
-    }
-
-    @Override
-    public final int a() {
-        return this.f8690a;
+        n6.c cVar = new n6.c("fpnv_exchange_credential_response_for_phone_number_api", -1, 1L, true);
+        n6.c cVar2 = new n6.c("fpnv_get_consent_screen_intent", -1, 1L, true);
+        n6.c cVar3 = new n6.c("fpnv_get_digital_credential_payload_api", -1, 1L, true);
+        n6.c cVar4 = new n6.c("fpnv_get_verification_support_info", -1, 1L, true);
+        f8584a = cVar4;
+        f8585b = new n6.c[]{cVar, cVar2, cVar3, cVar4, new n6.c("fpnv_test_sessions", -1, 1L, true), new n6.c("fpnv_verify_phone_number", -1, 1L, true)};
     }
 }

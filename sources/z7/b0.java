@@ -1,3 +1,3 @@
 package z7;
-public @interface b0 {
+public abstract class b0 {
 }

@@ -5,40 +5,32 @@ import android.view.MenuItem;
 import android.view.View;
 import androidx.appcompat.widget.ActionBarContextView;
 import java.lang.ref.WeakReference;
+import q4.q;
 public final class d extends a implements l.i {
-    public Context f16389c;
+    public Context f17107c;
     public ActionBarContextView d;
-    public tf.b f16390e;
-    public WeakReference f16391f;
+    public q f17108e;
+    public WeakReference f17109f;
     public boolean h;
-    public l.k f16392n;
+    public l.k f17110n;
 
     @Override
-    public final boolean U0(l.k kVar, MenuItem menuItem) {
-        return ((ui.f) this.f16390e.f55094a).A(this, menuItem);
+    public final boolean F0(l.k kVar, MenuItem menuItem) {
+        return ((ui.e) this.f17108e.f53686b).N(this, menuItem);
     }
 
     @Override
-    public final void b(l.k kVar) {
-        i();
-        m.h hVar = this.d.d;
-        if (hVar != null) {
-            hVar.l();
-        }
-    }
-
-    @Override
-    public final void c() {
+    public final void b() {
         if (this.h) {
             return;
         }
         this.h = true;
-        this.f16390e.v(this);
+        this.f17108e.c(this);
     }
 
     @Override
-    public final View d() {
-        WeakReference weakReference = this.f16391f;
+    public final View c() {
+        WeakReference weakReference = this.f17109f;
         if (weakReference != null) {
             return (View) weakReference.get();
         }
@@ -46,37 +38,46 @@ public final class d extends a implements l.i {
     }
 
     @Override
-    public final l.k e() {
-        return this.f16392n;
+    public final l.k d() {
+        return this.f17110n;
     }
 
     @Override
-    public final h f() {
+    public final h e() {
         return new h(this.d.getContext());
     }
 
     @Override
-    public final CharSequence g() {
+    public final CharSequence f() {
         return this.d.getSubtitle();
     }
 
     @Override
-    public final CharSequence h() {
+    public final CharSequence g() {
         return this.d.getTitle();
     }
 
     @Override
-    public final void i() {
-        this.f16390e.w(this, this.f16392n);
+    public final void h() {
+        this.f17108e.d(this, this.f17110n);
     }
 
     @Override
-    public final boolean j() {
-        return this.d.J;
+    public final boolean i() {
+        return this.d.I;
     }
 
     @Override
-    public final void m(View view) {
+    public final void j0(l.k kVar) {
+        h();
+        m.i iVar = this.d.d;
+        if (iVar != null) {
+            iVar.l();
+        }
+    }
+
+    @Override
+    public final void l(View view) {
         WeakReference weakReference;
         this.d.setCustomView(view);
         if (view != null) {
@@ -84,32 +85,32 @@ public final class d extends a implements l.i {
         } else {
             weakReference = null;
         }
-        this.f16391f = weakReference;
+        this.f17109f = weakReference;
     }
 
     @Override
-    public final void n(int i3) {
-        o(this.f16389c.getString(i3));
+    public final void m(int i7) {
+        n(this.f17107c.getString(i7));
     }
 
     @Override
-    public final void o(CharSequence charSequence) {
+    public final void n(CharSequence charSequence) {
         this.d.setSubtitle(charSequence);
     }
 
     @Override
-    public final void p(int i3) {
-        q(this.f16389c.getString(i3));
+    public final void o(int i7) {
+        p(this.f17107c.getString(i7));
     }
 
     @Override
-    public final void q(CharSequence charSequence) {
+    public final void p(CharSequence charSequence) {
         this.d.setTitle(charSequence);
     }
 
     @Override
-    public final void r(boolean z10) {
-        this.f16384a = z10;
-        this.d.setTitleOptional(z10);
+    public final void q(boolean z9) {
+        this.f17102a = z9;
+        this.d.setTitleOptional(z9);
     }
 }

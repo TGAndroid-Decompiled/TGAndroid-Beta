@@ -1,18 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
-public final class sv0 extends org.telegram.ui.Cells.y7 {
-    public final tv0 P;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+public final class sv0 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
+    public org.telegram.ui.ActionBar.f6 f38168a;
+    public ShapeDrawable f38169b;
+    public View f38170c;
 
-    public sv0(tv0 tv0Var, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context, e6Var, false);
-        this.P = tv0Var;
+    @Override
+    public final void updateColors() {
+        try {
+            ShapeDrawable shapeDrawable = this.f38169b;
+            if (shapeDrawable != null) {
+                org.telegram.ui.ActionBar.k6.C1(org.telegram.ui.ActionBar.k6.r1(0.12f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Bf, this.f38168a)), shapeDrawable);
+                View view = this.f38170c;
+                if (view != null) {
+                    view.invalidate();
+                }
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
     }
 
     @Override
-    public final void onMeasure(int i3, int i10) {
-        tv0 tv0Var = this.P;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(tv0Var.f38564r.G1, 1073741824), View.MeasureSpec.makeMeasureSpec(tv0Var.f38564r.G1, 1073741824));
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -2,61 +2,61 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.widget.ImageView;
-public final class zp0 extends rr0 {
-    public final ws0 Q;
+public final class zp0 extends sr0 {
+    public final xs0 P;
 
-    public zp0(ws0 ws0Var, Context context) {
+    public zp0(xs0 xs0Var, Context context) {
         super(context);
-        this.Q = ws0Var;
+        this.P = xs0Var;
     }
 
     @Override
     public final void setTranslationX(float f10) {
-        rr0 rr0Var;
-        int i3;
+        sr0 sr0Var;
+        int i7;
         float translationX = getTranslationX();
         super.setTranslationX(f10);
-        ws0 ws0Var = this.Q;
-        rr0[] rr0VarArr = ws0Var.f40108n0;
-        if (rr0VarArr[0] == this) {
+        xs0 xs0Var = this.P;
+        sr0[] sr0VarArr = xs0Var.m0;
+        if (sr0VarArr[0] == this) {
             float f11 = translationX - f10;
-            pi.q qVar = ws0Var.f40094h2;
+            oi.q qVar = xs0Var.f40358g2;
             if (qVar != null) {
-                float f12 = ws0Var.f40097i2 + f11;
-                ws0Var.f40097i2 = f12;
+                float f12 = xs0Var.f40361h2 + f11;
+                xs0Var.f40361h2 = f12;
                 int i10 = (int) f12;
                 if (i10 != 0) {
-                    ws0Var.f40097i2 = f12 - i10;
+                    xs0Var.f40361h2 = f12 - i10;
                     qVar.h(i10, 0);
                 }
             }
         }
-        if (ws0Var.f40099j1 && (rr0Var = rr0VarArr[0]) == this) {
-            float abs = Math.abs(rr0Var.getTranslationX()) / rr0VarArr[0].getMeasuredWidth();
-            ws0Var.j1(abs, rr0VarArr[1].F);
-            if (ws0Var.I()) {
-                int i11 = ws0Var.A0;
+        if (xs0Var.f40363i1 && (sr0Var = sr0VarArr[0]) == this) {
+            float abs = Math.abs(sr0Var.getTranslationX()) / sr0VarArr[0].getMeasuredWidth();
+            xs0Var.j1(abs, sr0VarArr[1].E);
+            if (xs0Var.I()) {
+                int i11 = xs0Var.f40409z0;
                 if (i11 == 2) {
-                    ws0Var.f40121r0 = 1.0f - abs;
+                    xs0Var.f40384q0 = 1.0f - abs;
                 } else if (i11 == 1) {
-                    ws0Var.f40121r0 = abs;
+                    xs0Var.f40384q0 = abs;
                 }
-                ws0Var.K1(abs);
-                float k02 = ws0Var.k0(abs);
-                ws0Var.f40125s0 = k02;
-                ImageView imageView = ws0Var.f40130u0;
-                if (k02 != 0.0f && ws0Var.I() && !ws0Var.A0()) {
-                    i3 = 0;
+                xs0Var.K1(abs);
+                float k02 = xs0Var.k0(abs);
+                xs0Var.f40388r0 = k02;
+                ImageView imageView = xs0Var.f40394t0;
+                if (k02 != 0.0f && xs0Var.I() && !xs0Var.A0()) {
+                    i7 = 0;
                 } else {
-                    i3 = 4;
+                    i7 = 4;
                 }
-                imageView.setVisibility(i3);
+                imageView.setVisibility(i7);
             } else {
-                ws0Var.f40121r0 = 0.0f;
+                xs0Var.f40384q0 = 0.0f;
             }
-            ws0Var.G1(false);
+            xs0Var.G1(false);
         }
-        ws0Var.S();
-        ws0Var.U();
+        xs0Var.S();
+        xs0Var.U();
     }
 }

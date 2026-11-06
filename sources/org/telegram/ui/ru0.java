@@ -1,18 +1,44 @@
 package org.telegram.ui;
 
-import android.content.Context;
-public final class ru0 extends org.telegram.ui.Components.vf0 {
-    public final ProfileActivity f49291t1;
+import android.animation.ValueAnimator;
+import android.graphics.RectF;
+public final class ru0 extends v4.k {
+    public int F = -1;
+    public final ProfileActivity G;
 
-    public ru0(ProfileActivity profileActivity, Context context, long j10, org.telegram.ui.ActionBar.k kVar, hu0 hu0Var, qu0 qu0Var, org.telegram.ui.Components.rf0 rf0Var, org.telegram.ui.Components.nf0 nf0Var) {
-        super(context, j10, kVar, hu0Var, qu0Var, rf0Var, nf0Var);
-        this.f49291t1 = profileActivity;
+    public ru0(ProfileActivity profileActivity) {
+        this.G = profileActivity;
     }
 
     @Override
-    public final void setCustomAvatarProgress(float f10) {
-        ProfileActivity profileActivity = this.f49291t1;
-        profileActivity.f41822o5 = f10;
-        profileActivity.Q3();
+    public final long K(long j3, long j10, long j11) {
+        return 0L;
+    }
+
+    @Override
+    public final void N() {
+        org.telegram.messenger.g0.h3(new qu0(this, 0));
+    }
+
+    @Override
+    public final void P(v4.d1 d1Var) {
+        RectF rectF = ProfileActivity.S6;
+        this.G.p5();
+    }
+
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f56984p.isEmpty();
+        boolean isEmpty2 = this.f56986r.isEmpty();
+        boolean isEmpty3 = this.f56987s.isEmpty();
+        boolean isEmpty4 = this.f56985q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+            ofFloat.addUpdateListener(new a3(this, 24));
+            ofFloat.setDuration(this.f57000e);
+            ofFloat.start();
+            this.F = this.G.getNotificationCenter().q(null, this.F, true);
+        }
+        super.m();
     }
 }

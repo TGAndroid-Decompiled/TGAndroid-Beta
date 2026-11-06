@@ -1,99 +1,76 @@
 package bi;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.xq;
-public final class p extends View {
-    public final g5 f3817a;
-    public final Drawable f3818b;
-    public float f3819c;
-    public boolean d;
+import android.text.TextUtils;
+import android.view.KeyEvent;
+import android.widget.TextView;
+public final class p implements TextView.OnEditorActionListener {
+    public final int f4497a;
+    public final Object f4498b;
 
-    public p(h0 h0Var, Context context, int i3, TLRPC.Document document) {
-        super(context);
-        int i10;
-        if (document != null) {
-            this.f3817a = g5.l(h0Var.f3838a, 5, document);
-            this.f3818b = null;
-            return;
-        }
-        this.f3817a = null;
-        if (i3 == 0) {
-            i10 = 2131231064;
-        } else {
-            i10 = 2131232125;
-        }
-        Drawable mutate = context.getDrawable(i10).mutate();
-        this.f3818b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
+    public p(Object obj, int i7) {
+        this.f4497a = i7;
+        this.f4498b = obj;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        g5 g5Var = this.f3817a;
-        if (g5Var != null) {
-            g5Var.a(this);
+    public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
+        li.f1 f1Var;
+        switch (this.f4497a) {
+            case 0:
+                z zVar = (z) this.f4498b;
+                if (i7 == 5) {
+                    zVar.y0();
+                    return true;
+                }
+                zVar.getClass();
+                return false;
+            case 1:
+                kg.q0 q0Var = (kg.q0) this.f4498b;
+                kg.k0 k0Var = q0Var.F;
+                boolean z9 = false;
+                if (i7 == 6) {
+                    q0Var.f17507y = false;
+                    org.telegram.messenger.g0.r(k0Var);
+                    z9 = true;
+                    if (TextUtils.isEmpty(q0Var.f17501f.getText())) {
+                        q0Var.D = null;
+                        q0Var.d.b();
+                        q0Var.f17499c.f35167f3.O(true);
+                    } else {
+                        org.telegram.messenger.g0.h3(k0Var);
+                    }
+                    q0Var.g0();
+                }
+                return z9;
+            case 2:
+                li.g1 g1Var = (li.g1) this.f4498b;
+                if (i7 == 5 && (f1Var = g1Var.Y1) != null && !g1Var.f18587h2) {
+                    if (g1Var.f18584e2) {
+                        g1Var.L();
+                    } else {
+                        f1Var.F(g1Var);
+                    }
+                    return true;
+                }
+                return false;
+            case 3:
+                org.telegram.ui.ActionBar.r0 r0Var = (org.telegram.ui.ActionBar.r0) this.f4498b;
+                if (keyEvent != null) {
+                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
+                        org.telegram.messenger.g0.v1(r0Var.f28425e);
+                        org.telegram.ui.ActionBar.n0 n0Var = r0Var.H;
+                        if (n0Var != null) {
+                            n0Var.k(r0Var.f28425e);
+                            return false;
+                        }
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            default:
+                org.telegram.ui.ActionBar.y4.e((org.telegram.ui.ActionBar.y4) this.f4498b, i7, keyEvent);
+                return false;
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        g5 g5Var = this.f3817a;
-        if (g5Var != null) {
-            g5Var.n(this);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f10;
-        if (this.d) {
-            f10 = 1.0f;
-        } else {
-            f10 = 0.0f;
-        }
-        float f11 = this.f3819c;
-        if (f11 != f10) {
-            if (Math.abs(f11 - f10) >= 0.02f) {
-                float f12 = this.f3819c;
-                f10 = com.google.android.recaptcha.internal.a.y(f10, f12, 0.35f, f12);
-            }
-            this.f3819c = f10;
-            invalidate();
-        }
-        float interpolation = (1.0f - (xq.f40453g.getInterpolation(this.f3819c) * 0.15f)) * org.telegram.messenger.g0.L(26.0f);
-        float f13 = interpolation / 2.0f;
-        int width = (int) ((getWidth() / 2.0f) - f13);
-        int height = (int) ((getHeight() / 2.0f) - f13);
-        Drawable drawable = this.f3817a;
-        if (drawable == null) {
-            drawable = this.f3818b;
-        }
-        if (drawable != null) {
-            drawable.setBounds(width, height, (int) (width + interpolation), (int) (height + interpolation));
-            s.b(canvas, drawable);
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 0) {
-            this.d = true;
-            invalidate();
-        } else if (actionMasked == 1 || actionMasked == 3) {
-            this.d = false;
-            invalidate();
-        }
-        return super.onTouchEvent(motionEvent);
     }
 }

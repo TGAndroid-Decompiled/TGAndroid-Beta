@@ -1,120 +1,217 @@
 package ci;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.view.MotionEvent;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import b8.mf;
-import org.telegram.messenger.bd;
-import org.telegram.messenger.cs;
-import org.telegram.messenger.hp;
-import org.telegram.messenger.hs;
-import org.telegram.ui.Components.s70;
-import org.telegram.ui.Components.wp;
-public final class c extends LinearLayout implements cs {
-    public final int f4897a;
-    public final org.telegram.ui.ActionBar.e6 f4898b;
-    public final TextView f4899c;
-    public final s70 d;
-    public dg.b f4900e;
-    public final wp[] f4901f;
+import android.util.LongSparseArray;
+import android.util.SparseArray;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import org.telegram.ui.s6;
+import org.telegram.ui.t6;
+public final class c {
+    public final boolean f6423a;
+    public long f6431k;
+    public boolean f6433m;
+    public boolean f6434n;
+    public boolean f6435o;
+    public boolean f6436p;
+    public boolean f6437q;
+    public long f6438r;
+    public long f6439s;
+    public long f6440t;
+    public long f6441u;
+    public long v;
+    public ArrayList f6424b = new ArrayList();
+    public final LongSparseArray f6425c = new LongSparseArray();
+    public final ArrayList d = new ArrayList();
+    public final ArrayList f6426e = new ArrayList();
+    public final ArrayList f6427f = new ArrayList();
+    public final ArrayList f6428g = new ArrayList();
+    public final ArrayList h = new ArrayList();
+    public final HashSet f6429i = new HashSet();
+    public final HashSet f6430j = new HashSet();
+    public final HashSet f6432l = new HashSet();
 
-    public c(int i3, Context context, org.telegram.ui.ActionBar.e6 e6Var) {
-        this(context, i3, dg.b.f8925a, e6Var);
+    public c(boolean z9) {
+        this.f6423a = z9;
     }
 
-    public final void a() {
-        dg.b bVar = this.f4900e;
-        int i3 = this.f4897a;
-        dg.a s6 = e9.x(i3, bVar).s();
-        dg.b bVar2 = this.f4900e;
-        dg.b bVar3 = dg.b.f8925a;
-        TextView textView = this.f4899c;
-        org.telegram.ui.ActionBar.e6 e6Var = this.f4898b;
-        s70 s70Var = this.d;
-        if (bVar2 == bVar3) {
-            textView.setText(wb.a1(false, bd.a0(null, null, 2131750124, bd.E(s6.a(), ',')), 0.6f, null));
-            int i10 = org.telegram.ui.ActionBar.k6.uj;
-            org.telegram.ui.ActionBar.r6.V(s70Var, i10, e6Var);
-            org.telegram.ui.ActionBar.r6.H(s70Var, i10, e6Var);
-            s70Var.setText(org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(bd.M0(2131750123, null), new ai.s(this, 24)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f)));
-        } else if (bVar2 == dg.b.f8926b) {
-            SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(bd.a0(null, null, 2131750122, s6.b()));
-            wp[] wpVarArr = this.f4901f;
-            textView.setText(wb.a1(true, X2, 0.6f, wpVarArr));
-            wpVarArr[0].a(org.telegram.ui.ActionBar.k6.uj);
-            StringBuilder sb2 = new StringBuilder(10);
-            sb2.append('~');
-            org.telegram.messenger.r1.i().getClass();
-            sb2.append(org.telegram.messenger.r1.g("USD", 2, (long) (s6.c() * ((org.telegram.messenger.i0) hp.s1(i3).f23167x7.f24665l.f14429b).f23413a * 100.0d), false));
-            int i11 = org.telegram.ui.ActionBar.k6.vj;
-            int i12 = org.telegram.ui.ActionBar.k6.tj;
-            org.telegram.ui.ActionBar.r6.n(s70Var, i11, i12, 3, 0.33f, e6Var);
-            org.telegram.ui.ActionBar.r6.o(s70Var, 2, i11, i12, 3, 0.33f, e6Var);
-            s70Var.setText(sb2);
+    public final void a(int i7, boolean z9) {
+        if (this.f6423a) {
+            if (!z9) {
+                if (i7 == 0) {
+                    this.f6433m = false;
+                    return;
+                } else if (i7 == 1) {
+                    this.f6434n = false;
+                    return;
+                } else if (i7 == 2) {
+                    this.f6435o = false;
+                    return;
+                } else if (i7 == 3) {
+                    this.f6436p = false;
+                    return;
+                } else if (i7 == 4) {
+                    this.f6437q = false;
+                    return;
+                } else {
+                    return;
+                }
+            }
+            ArrayList arrayList = this.d;
+            if (i7 == 0) {
+                this.f6433m = b(i7, arrayList);
+            } else if (i7 == 1) {
+                this.f6434n = b(i7, arrayList);
+            } else if (i7 == 2) {
+                this.f6435o = b(i7, this.f6426e);
+            } else if (i7 == 3) {
+                this.f6436p = b(i7, this.f6427f);
+            } else if (i7 == 4) {
+                this.f6437q = b(i7, this.f6428g);
+            } else if (i7 == 7) {
+                b(i7, this.h);
+            }
         }
     }
 
-    @Override
-    public final void didReceivedNotification(int i3, int i10, Object... objArr) {
-        if (i3 == hs.f23343y3) {
-            a();
+    public final boolean b(int i7, ArrayList arrayList) {
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            if (((b) arrayList.get(i10)).d == i7 && !this.f6430j.contains(arrayList.get(i10))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public final void c() {
+        if (!this.f6423a) {
+            HashSet hashSet = this.f6429i;
+            hashSet.clear();
+            HashSet hashSet2 = this.f6430j;
+            Iterator it = hashSet2.iterator();
+            while (it.hasNext()) {
+                long j3 = ((b) it.next()).f6418b;
+                if (j3 != 0) {
+                    hashSet.add(Long.valueOf(j3));
+                }
+            }
+            HashSet hashSet3 = this.f6432l;
+            hashSet3.clear();
+            Iterator it2 = hashSet.iterator();
+            while (it2.hasNext()) {
+                s6 s6Var = (s6) this.f6425c.get(((Long) it2.next()).longValue());
+                if (s6Var != null) {
+                    SparseArray sparseArray = s6Var.d;
+                    int i7 = 0;
+                    while (true) {
+                        if (i7 < sparseArray.size()) {
+                            ArrayList arrayList = ((t6) sparseArray.valueAt(i7)).f49926b;
+                            int size = arrayList.size();
+                            int i10 = 0;
+                            while (i10 < size) {
+                                Object obj = arrayList.get(i10);
+                                i10++;
+                                if (!hashSet2.contains((b) obj)) {
+                                    break;
+                                }
+                            }
+                            i7++;
+                        } else {
+                            hashSet3.add(Long.valueOf(s6Var.f49640a));
+                            break;
+                        }
+                    }
+                }
+            }
         }
     }
 
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (isEnabled() && super.dispatchTouchEvent(motionEvent)) {
-            return true;
+    public final void d() {
+        this.f6431k = 0L;
+        this.f6430j.clear();
+        this.f6432l.clear();
+    }
+
+    public final ArrayList e(int i7) {
+        if (i7 == 0 || i7 == 1) {
+            return this.d;
+        }
+        if (i7 == 2) {
+            return this.f6426e;
+        }
+        if (i7 == 3) {
+            return this.f6427f;
+        }
+        if (i7 == 4) {
+            return this.f6428g;
+        }
+        if (i7 == 7) {
+            return this.h;
+        }
+        return null;
+    }
+
+    public final long f(int i7) {
+        if (i7 == 0) {
+            return this.f6438r;
+        }
+        if (i7 == 1) {
+            return this.f6439s;
+        }
+        if (i7 == 2) {
+            return this.f6440t;
+        }
+        if (i7 == 3) {
+            return this.f6441u;
+        }
+        if (i7 == 4) {
+            return this.v;
+        }
+        return -1L;
+    }
+
+    public final void g(b bVar, boolean z9) {
+        long j3 = bVar.f6419c;
+        if (!z9) {
+            j3 = -j3;
+        }
+        int i7 = bVar.d;
+        if (i7 == 0) {
+            this.f6438r += j3;
+        } else if (i7 == 1) {
+            this.f6439s += j3;
+        } else if (i7 == 2) {
+            this.f6440t += j3;
+        } else if (i7 == 3) {
+            this.f6441u += j3;
+        } else if (i7 == 4) {
+            this.v += j3;
+        }
+    }
+
+    public final boolean h() {
+        if (this.d.isEmpty() && this.f6426e.isEmpty() && this.f6427f.isEmpty()) {
+            if (this.f6423a || this.f6424b.isEmpty()) {
+                return true;
+            }
+            return false;
         }
         return false;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a();
-        int i3 = this.f4897a;
-        hs.f(i3).c(this, hs.f23343y3);
-        hs.f(i3).c(this, hs.C3);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        int i3 = this.f4897a;
-        hs.f(i3).n(this, hs.f23343y3);
-        hs.f(i3).n(this, hs.C3);
-    }
-
-    public c(Context context, int i3, dg.b bVar, org.telegram.ui.ActionBar.e6 e6Var) {
-        super(context);
-        this.f4901f = new wp[1];
-        this.f4897a = i3;
-        this.f4898b = e6Var;
-        this.f4900e = bVar;
-        setOrientation(1);
-        setPadding(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(9.0f));
-        int L = org.telegram.messenger.g0.L(24.0f);
-        int i10 = org.telegram.ui.ActionBar.k6.tj;
-        Drawable d02 = org.telegram.ui.ActionBar.k6.d0(L, org.telegram.ui.ActionBar.k6.w0(i10, e6Var));
-        org.telegram.ui.ActionBar.n6 N = org.telegram.ui.ActionBar.r6.N(i10);
-        setBackground(d02);
-        org.telegram.ui.ActionBar.r6.k(this, d02, N, null, e6Var);
-        TextView textView = new TextView(context);
-        this.f4899c = textView;
-        textView.setTextSize(1, 13.0f);
-        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.vj, e6Var);
-        textView.setGravity(17);
-        addView(textView, mf.q(-2, -2, 0.0f, 17, 0, 0, 0, 0));
-        s70 s70Var = new s70(context, e6Var);
-        this.d = s70Var;
-        s70Var.setTextSize(1, 12.0f);
-        s70Var.setText(org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(bd.M0(2131750123, null), new b(0, context, e6Var)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(1.0f)));
-        s70Var.setGravity(17);
-        addView(s70Var, mf.q(-2, -2, 0.0f, 17, 0, 1, 0, 0));
-        a();
+    public final void i(b bVar) {
+        HashSet hashSet = this.f6430j;
+        if (hashSet.contains(bVar)) {
+            hashSet.remove(bVar);
+            g(bVar, false);
+            this.f6431k -= bVar.f6419c;
+            a(bVar.d, false);
+        } else {
+            hashSet.add(bVar);
+            g(bVar, true);
+            this.f6431k += bVar.f6419c;
+            a(bVar.d, true);
+        }
+        c();
     }
 }

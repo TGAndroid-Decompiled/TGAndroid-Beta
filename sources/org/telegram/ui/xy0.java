@@ -1,151 +1,172 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class xy0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f52127a;
-    public final Object f52128b;
+import android.widget.FrameLayout;
+import java.util.Locale;
+import org.telegram.messenger.MediaController;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class xy0 extends org.telegram.ui.ActionBar.f2 {
+    public static final int[] d = {750000, 1000000, 1200000, 2000000};
+    public final int f51996a;
+    public org.telegram.ui.Components.pj0 f51997b;
+    public org.telegram.ui.Components.oj0 f51998c;
 
-    public xy0(Object obj, int i3) {
-        this.f52127a = i3;
-        this.f52128b = obj;
+    public xy0(int i7, Bundle bundle) {
+        super(bundle);
+        this.f51996a = i7;
+    }
+
+    public static void Z(xy0 xy0Var, int i7) {
+        if (i7 == 1) {
+            xi.a aVar = xi.e.f58738b;
+            boolean z9 = !MediaController.s0(xy0Var.currentAccount);
+            synchronized (aVar) {
+                aVar.d = z9;
+                aVar.f58730c = true;
+                aVar.f58729b = true;
+                xi.d.f58736a.edit().putBoolean("audio_recorder_v2_enabled", z9).apply();
+            }
+            ((l4) xy0Var.f51998c).f();
+        } else if (MediaController.s0(xy0Var.currentAccount) && i7 == 2) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(xy0Var.getParentActivity());
+            alertDialog$Builder.f27292a.R = org.telegram.messenger.hd.M0(2131753922, null);
+            alertDialog$Builder.f(new CharSequence[]{org.telegram.messenger.hd.M0(2131753921, null), org.telegram.messenger.hd.M0(2131753920, null)}, new k4(xy0Var, 0));
+            xy0Var.showDialog(alertDialog$Builder.f27292a);
+        }
+    }
+
+    public static void a0(xy0 xy0Var, int i7) {
+        if (i7 == 1) {
+            xi.a aVar = xi.e.d;
+            boolean z9 = !org.telegram.ui.Components.t40.d(xy0Var.currentAccount);
+            synchronized (aVar) {
+                aVar.d = z9;
+                aVar.f58730c = true;
+                aVar.f58729b = true;
+                xi.d.f58736a.edit().putBoolean("round_video_camera2_enabled", z9).apply();
+            }
+            ((l4) xy0Var.f51998c).f();
+        } else if (org.telegram.ui.Components.t40.d(xy0Var.currentAccount)) {
+            int i10 = 0;
+            if (i7 == 2) {
+                xy0Var.g0(2131745987, new CharSequence[]{"480p", "360p"}, new fo0(6));
+            } else if (i7 == 3) {
+                xy0Var.g0(2131745997, new CharSequence[]{org.telegram.messenger.hd.M0(2131745996, null), org.telegram.messenger.hd.M0(2131745994, null), org.telegram.messenger.hd.M0(2131745995, null)}, new fo0(7));
+            } else if (i7 == 4) {
+                xy0Var.g0(2131745990, new CharSequence[]{"30 FPS", "60 FPS"}, new fo0(8));
+            } else if (i7 == 5) {
+                CharSequence[] charSequenceArr = new CharSequence[4];
+                while (true) {
+                    int[] iArr = d;
+                    if (i10 < 3) {
+                        charSequenceArr[i10] = f0(iArr[i10]);
+                        i10++;
+                    } else {
+                        xy0Var.g0(2131745998, charSequenceArr, new fo0(9));
+                        return;
+                    }
+                }
+            } else if (i7 == 8) {
+                xi.a aVar2 = xi.e.f58743i;
+                aVar2.a();
+                aVar2.b(true ^ aVar2.d);
+                ((l4) xy0Var.f51998c).g(i7);
+            }
+        }
+    }
+
+    public static String f0(int i7) {
+        if (i7 % 1000000 == 0) {
+            return (i7 / 1000000) + " Mbps";
+        } else if (i7 > 1000000) {
+            return String.format(Locale.US, "%.1f Mbps", Float.valueOf(i7 / 1000000.0f));
+        } else {
+            return (i7 / 1000) + " kbps";
+        }
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f52127a) {
+    public final View createView(Context context) {
+        switch (this.f51996a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = ((yy0) this.f52128b).d;
-                secretMediaViewer.Z.f52735l0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                secretMediaViewer.Z.invalidate();
-                return;
-            case 1:
-                SecretMediaViewer secretMediaViewer2 = ((yy0) this.f52128b).d;
-                secretMediaViewer2.Z.f52735l0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                secretMediaViewer2.Z.invalidate();
-                return;
-            case 2:
-                ((SecretMediaViewer) ((org.telegram.ui.Components.rk0) this.f52128b).f37747b).Z.scrollTo(0, ((Integer) valueAnimator.getAnimatedValue()).intValue());
-                return;
-            case 3:
-                iz0 iz0Var = (iz0) this.f52128b;
-                iz0Var.f46470w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (iz0Var.T) {
-                    iz0Var.O.invalidate();
-                    return;
-                }
-                return;
-            case 4:
-                ((xz0) this.f52128b).f52134e.V0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 5:
-                yz0 yz0Var = (yz0) this.f52128b;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                yz0Var.f52471r = floatValue;
-                View view = yz0Var.f52468e;
-                if (view != null) {
-                    view.setAlpha(floatValue);
-                    return;
-                }
-                gi.q3 q3Var = yz0Var.d;
-                if (q3Var != null) {
-                    q3Var.invalidate();
-                    return;
-                }
-                return;
-            case 6:
-                c11 c11Var = (c11) this.f52128b;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                c11Var.M = floatValue2;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = c11Var.f44198w;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setBackScaleY(floatValue2);
-                s51 s51Var = actionBarPopupWindow$ActionBarPopupWindowLayout.M;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(org.telegram.ui.Components.xq.f40453g.getInterpolation(c11Var.M));
-                int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
-                for (int i3 = 0; i3 < itemsCount; i3++) {
-                    float s6 = org.telegram.messenger.g0.s(c11Var.M, i3, itemsCount, 4.0f);
-                    s51Var.getChildAt(i3).setTranslationY((1.0f - s6) * org.telegram.messenger.g0.L(-12.0f));
-                    s51Var.getChildAt(i3).setAlpha(s6);
-                }
-                return;
-            case 7:
-                c31 c31Var = (c31) this.f52128b;
-                c31Var.getClass();
-                c31Var.l0(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 8:
-                b41 b41Var = (b41) this.f52128b;
-                b41Var.getClass();
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                b41Var.f43920e.setAlpha(1.0f - floatValue3);
-                mg.g gVar = b41Var.f43918b;
-                gVar.A0.f21106f = floatValue3;
-                b41Var.f43919c.invalidate();
-                gVar.invalidate();
-                return;
-            case 9:
-                l71 l71Var = (l71) this.f52128b;
-                l71Var.getClass();
-                l71Var.f47188q1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l71Var.f47210z0.invalidate();
-                l71Var.E0.invalidate();
-                l71Var.T1.setAlpha(l71Var.f47188q1);
-                l71Var.S1.invalidate();
-                l71Var.a1();
-                return;
-            case 10:
-                l71 l71Var2 = ((a71) this.f52128b).f43680a;
-                l71Var2.f47188q1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l71Var2.f47210z0.invalidate();
-                l71Var2.E0.invalidate();
-                l71Var2.T1.setAlpha(l71Var2.f47188q1);
-                l71Var2.S1.invalidate();
-                l71Var2.a1();
-                return;
-            case 11:
-                d81 d81Var = (d81) this.f52128b;
-                d81Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                int childCount = d81Var.f44593a.getChildCount();
-                for (int i10 = 0; i10 < childCount; i10++) {
-                    int R = RecyclerView.R(d81Var.f44593a.getChildAt(i10));
-                    int i11 = d81Var.d.f43685e;
-                    if (R >= i11 && i11 > 0) {
-                        d81Var.f44593a.getChildAt(i10).setAlpha(d81Var.F);
-                    } else {
-                        d81Var.f44593a.getChildAt(i10).setAlpha(1.0f);
-                    }
-                }
-                return;
-            case 12:
-                j81 j81Var = (j81) this.f52128b;
-                j81Var.getClass();
-                j81Var.f46561b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                j81Var.invalidate();
-                return;
-            case 13:
-                m91 m91Var = (m91) this.f52128b;
-                m91Var.getClass();
-                m91Var.W0(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 14:
-                j91 j91Var = (j91) this.f52128b;
-                j91Var.getClass();
-                j91Var.f46574k5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                j91Var.n0();
-                return;
-            case 15:
-                k91 k91Var = (k91) this.f52128b;
-                k91Var.getClass();
-                k91Var.setViewsOffset(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
+                setHasOwnBackground(true);
+                this.simpleActionBar.setBackButtonImage(2131231240);
+                this.simpleActionBar.setTitle(org.telegram.messenger.hd.M0(2131745986, null));
+                this.simpleActionBar.setActionBarMenuOnItemClick(new mt0(this, 7));
+                FrameLayout frameLayout = new FrameLayout(context);
+                this.fragmentView = frameLayout;
+                org.telegram.ui.Components.pj0 pj0Var = new org.telegram.ui.Components.pj0(context, null);
+                this.f51997b = pj0Var;
+                pj0Var.r1();
+                this.f51997b.setSectionsDrawBackground(true);
+                this.f51997b.setLayoutManager(new v4.b0());
+                this.f51997b.setVerticalScrollBarEnabled(false);
+                org.telegram.ui.Components.pj0 pj0Var2 = this.f51997b;
+                l4 l4Var = new l4(17, this, context);
+                this.f51998c = l4Var;
+                pj0Var2.setAdapter(l4Var);
+                this.f51997b.setOnItemClickListener(new vx0(this, 2));
+                frameLayout.addView(this.f51997b, c8.ha.c(-1.0f, -1));
+                return this.fragmentView;
             default:
-                zb1 zb1Var = (zb1) this.f52128b;
-                zb1Var.getClass();
-                zb1Var.f52651z0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                zb1Var.F();
-                return;
+                setHasOwnBackground(true);
+                this.simpleActionBar.setBackButtonImage(2131231240);
+                this.simpleActionBar.setTitle(org.telegram.messenger.hd.M0(2131753919, null));
+                this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 23));
+                FrameLayout frameLayout2 = new FrameLayout(context);
+                this.fragmentView = frameLayout2;
+                org.telegram.ui.Components.pj0 pj0Var3 = new org.telegram.ui.Components.pj0(context, null);
+                this.f51997b = pj0Var3;
+                pj0Var3.setSectionsDrawBackground(true);
+                this.f51997b.r1();
+                this.f51997b.setLayoutManager(new v4.b0());
+                this.f51997b.setVerticalScrollBarEnabled(false);
+                org.telegram.ui.Components.pj0 pj0Var4 = this.f51997b;
+                l4 l4Var2 = new l4(0, this, context);
+                this.f51998c = l4Var2;
+                pj0Var4.setAdapter(l4Var2);
+                this.f51997b.setOnItemClickListener(new h(this, 2));
+                frameLayout2.addView(this.f51997b, c8.ha.c(-1.0f, -1));
+                return this.fragmentView;
+        }
+    }
+
+    public void g0(int i7, CharSequence[] charSequenceArr, fo0 fo0Var) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+        alertDialog$Builder.f27292a.R = org.telegram.messenger.hd.M0(i7, null);
+        alertDialog$Builder.f(charSequenceArr, new og.j(11, this, fo0Var));
+        showDialog(alertDialog$Builder.f27292a);
+    }
+
+    @Override
+    public final org.telegram.ui.Components.pj0 getListViewForSimpleGlass() {
+        switch (this.f51996a) {
+            case 0:
+                return this.f51997b;
+            default:
+                return this.f51997b;
+        }
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        switch (this.f51996a) {
+            case 0:
+                return true;
+            default:
+                return true;
+        }
+    }
+
+    @Override
+    public final boolean useSimpleActionBar() {
+        switch (this.f51996a) {
+            case 0:
+                return true;
+            default:
+                return true;
         }
     }
 }

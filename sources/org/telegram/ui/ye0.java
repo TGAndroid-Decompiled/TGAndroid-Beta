@@ -1,68 +1,34 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
+import android.content.Context;
 import org.telegram.tgnet.TLRPC;
-public abstract class ye0 extends FrameLayout implements org.telegram.ui.ActionBar.z5 {
-    public TLRPC.User f52264a;
-    public org.telegram.ui.Components.s70 f52265b;
-    public org.telegram.ui.Components.iz f52266c;
-    public boolean d;
-    public int f52267e;
+public final class ye0 extends org.telegram.ui.Components.mo0 {
+    public final ze0 R2;
 
-    @Override
-    public final void onMeasure(int i3, int i10) {
-        org.telegram.ui.Components.s70 s70Var = this.f52265b;
-        org.telegram.ui.Components.iz izVar = this.f52266c;
-        View view = (View) getParent();
-        if (view != null && view.getWidth() > 0) {
-            i3 = View.MeasureSpec.makeMeasureSpec(view.getWidth(), 1073741824);
-        }
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(36.0f), 1073741824);
-        boolean z10 = true;
-        this.d = true;
-        if (izVar.getVisibility() != 0) {
-            z10 = false;
-        }
-        s70Var.setVisibility(8);
-        if (z10) {
-            izVar.setVisibility(8);
-        }
-        super.onMeasure(i3, makeMeasureSpec);
-        if (z10) {
-            izVar.getLayoutParams().width = getMeasuredWidth();
-            izVar.setVisibility(0);
-        }
-        s70Var.setVisibility(0);
-        s70Var.getLayoutParams().width = getMeasuredWidth() - org.telegram.messenger.g0.L(24.0f);
-        this.d = false;
-        super.onMeasure(i3, makeMeasureSpec);
+    public ye0(ze0 ze0Var, Context context, String str, String str2, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, null, str, false, str2, false, f6Var);
+        this.R2 = ze0Var;
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.d) {
+    public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
+        String a02;
+        cf0 cf0Var = this.R2.K;
+        if (!z9) {
             return;
         }
-        super.requestLayout();
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.I5, false);
-            if (x02 != this.f52267e) {
-                this.f52267e = x02;
-                org.telegram.ui.ActionBar.k6.H1(getBackground(), x02, true);
+        if (hVar != null && hVar.m() == 1) {
+            long j3 = ((TLRPC.Dialog) hVar.n(0)).f26956id;
+            if (j3 != 0 && j3 != cf0Var.getUserConfig().e()) {
+                a02 = org.telegram.messenger.hd.a0(null, null, 2131749183, cf0Var.getMessagesController().B1(j3, true));
+            } else {
+                a02 = org.telegram.messenger.hd.M0(2131749184, null);
             }
-            invalidate();
-        } catch (Exception e10) {
-            org.telegram.messenger.a8.g(e10, true);
+        } else {
+            a02 = org.telegram.messenger.hd.a0(null, null, 2131749186, org.telegram.messenger.hd.G(i7, "Chats", new Object[0]));
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+        org.telegram.ui.Components.cc Q = org.telegram.ui.Components.hc.a0(cf0Var).Q(2131624028, 36, org.telegram.messenger.g0.X2(a02));
+        Q.f32531r = false;
+        Q.k(true);
     }
 }

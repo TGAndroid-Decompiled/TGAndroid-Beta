@@ -1,48 +1,30 @@
 package org.telegram.ui.Components;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-public final class g61 implements gj0, hj0 {
-    public final m61 f34013a;
+public final class g61 extends AnimatorListenerAdapter {
+    public boolean f33871a;
+    public final View f33872b;
+    public final float f33873c;
+    public final p61 d;
 
-    public g61(m61 m61Var) {
-        this.f34013a = m61Var;
+    public g61(p61 p61Var, View view, float f10) {
+        this.d = p61Var;
+        this.f33872b = view;
+        this.f33873c = f10;
     }
 
     @Override
-    public void b(float f10, float f11, int i3, View view) {
-        m61 m61Var = this.f34013a;
-        l61 l61Var = m61Var.E;
-        if (l61Var != null) {
-            n61 n61Var = (n61) ((y00) l61Var).f40562a;
-            if (n61Var.f36393y || n61Var.I) {
-                return;
-            }
+    public final void onAnimationCancel(Animator animator) {
+        super.onAnimationCancel(animator);
+        this.f33871a = true;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        if (!this.f33871a) {
+            this.d.F(this.f33872b, this.f33873c);
         }
-        k61 k61Var = (k61) view;
-        if (i3 != m61Var.G || l61Var == null) {
-            org.telegram.messenger.o10 o10Var = m61Var.m0;
-            if (o10Var != null && ((Boolean) o10Var.d(Integer.valueOf(k61Var.f35329a.f34971a), Integer.valueOf(i3))).booleanValue()) {
-                return;
-            }
-            m61Var.d(k61Var.f35329a.f34971a, i3);
-        }
-    }
-
-    @Override
-    public boolean b1(View view) {
-        return false;
-    }
-
-    @Override
-    public boolean f(int i3, View view) {
-        org.telegram.messenger.o10 o10Var = this.f34013a.f36028b;
-        if (o10Var == null) {
-            return false;
-        }
-        return ((Boolean) o10Var.d(Integer.valueOf(((k61) view).f35329a.f34971a), view)).booleanValue();
-    }
-
-    @Override
-    public void r0(View view, float f10, float f11) {
     }
 }

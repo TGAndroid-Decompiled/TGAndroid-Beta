@@ -1,107 +1,82 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.text.StaticLayout;
 public final class ik0 extends Drawable {
-    public long f34724a;
-    public boolean f34725b;
-    public Paint f34726c;
-    public float d;
-    public float f34727e;
-    public float f34728f;
-    public int f34729g;
-    public int h;
-    public int f34730i;
-    public org.telegram.ui.Cells.q1 f34731j;
-    public float f34732k;
-    public int f34733l;
-    public int f34734m;
-    public org.telegram.ui.ActionBar.e6 f34735n;
+    public int f34724a = 255;
+    public final r70 f34725b;
+    public final int[] f34726c;
+    public final org.telegram.ui.Cells.q1 d;
+    public final int[] f34727e;
+    public final Bitmap f34728f;
+    public final RectF f34729g;
+    public final Paint h;
+    public final Paint f34730i;
+    public final StaticLayout f34731j;
 
-    public final void a() {
-        if (this.f34725b) {
-            return;
-        }
-        this.f34724a = System.currentTimeMillis();
-        this.f34725b = true;
-        this.f34731j.invalidate();
-    }
-
-    public final void b() {
-        if (!this.f34725b) {
-            return;
-        }
-        this.f34725b = false;
+    public ik0(r70 r70Var, int[] iArr, org.telegram.ui.Cells.q1 q1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
+        this.f34725b = r70Var;
+        this.f34726c = iArr;
+        this.d = q1Var;
+        this.f34727e = iArr2;
+        this.f34728f = bitmap;
+        this.f34729g = rectF;
+        this.h = paint;
+        this.f34730i = paint2;
+        this.f34731j = staticLayout;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Paint paint = this.f34726c;
-        paint.setColor(i0.a.f(this.f34732k, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Wc, this.f34735n), this.f34733l));
-        int i3 = this.f34734m;
-        if (i3 != 255) {
-            paint.setAlpha((int) ((paint.getAlpha() / 255.0f) * i3));
+        if (this.f34724a <= 0) {
+            return;
         }
-        int i10 = getBounds().left;
-        int i11 = getBounds().top;
-        int i12 = 0;
-        while (i12 < 3) {
-            Canvas canvas2 = canvas;
-            canvas2.drawRect(org.telegram.messenger.g0.L(2.0f) + i10, org.telegram.messenger.g0.L((this.d * 7.0f) + 2.0f) + i11, org.telegram.messenger.g0.L(4.0f) + i10, org.telegram.messenger.g0.L(10.0f) + i11, paint);
-            canvas2.drawRect(org.telegram.messenger.g0.L(5.0f) + i10, org.telegram.messenger.g0.L((this.f34727e * 7.0f) + 2.0f) + i11, org.telegram.messenger.g0.L(7.0f) + i10, org.telegram.messenger.g0.L(10.0f) + i11, paint);
-            canvas2.drawRect(org.telegram.messenger.g0.L(8.0f) + i10, org.telegram.messenger.g0.L((this.f34728f * 7.0f) + 2.0f) + i11, org.telegram.messenger.g0.L(10.0f) + i10, org.telegram.messenger.g0.L(10.0f) + i11, paint);
-            i12++;
-            canvas = canvas2;
+        RectF rectF = org.telegram.messenger.g0.P;
+        rectF.set(getBounds());
+        float f10 = rectF.left;
+        CornerPathEffect cornerPathEffect = r70.f37622w;
+        rectF.left = f10 - (org.telegram.messenger.g0.L(5.0f) / 2.0f);
+        canvas.save();
+        canvas.saveLayerAlpha(rectF, this.f34724a, 31);
+        int[] iArr = this.f34726c;
+        canvas.translate(iArr[0], iArr[1]);
+        r70 r70Var = this.f34725b;
+        org.telegram.ui.Cells.q1 q1Var = this.d;
+        if (q1Var != null && q1Var.L0()) {
+            org.telegram.ui.ActionBar.t4 t4Var = q1Var.K6;
+            if (t4Var != null && t4Var.f28508c != null) {
+                canvas.save();
+                q1Var.setBackgroundTopY(true);
+                canvas.translate(0.0f, -q1Var.K6.f28521r);
+                canvas.drawPaint(q1Var.K6.f28508c);
+                canvas.restore();
+            } else {
+                canvas.translate(-iArr[0], -iArr[1]);
+                int[] iArr2 = this.f34727e;
+                canvas.translate(iArr2[0], q1Var.getPaddingTop() + iArr2[1]);
+                q1Var.M0(canvas, true, false);
+                canvas.translate(-iArr2[0], (-iArr2[1]) - q1Var.getPaddingTop());
+                canvas.translate(iArr[0], iArr[1]);
+            }
+            Bitmap bitmap = this.f34728f;
+            if (bitmap != null) {
+                canvas.save();
+                RectF rectF2 = this.f34729g;
+                canvas.drawBitmap(bitmap, rectF2.left, rectF2.top, this.h);
+                canvas.restore();
+            }
+        } else {
+            canvas.drawPath(r70Var, this.f34730i);
         }
-        if (this.f34725b) {
-            long currentTimeMillis = System.currentTimeMillis();
-            long j10 = currentTimeMillis - this.f34724a;
-            this.f34724a = currentTimeMillis;
-            if (j10 > 50) {
-                j10 = 50;
-            }
-            float f10 = (float) j10;
-            float f11 = ((f10 / 300.0f) * this.f34729g) + this.d;
-            this.d = f11;
-            if (f11 > 1.0f) {
-                this.f34729g = -1;
-                this.d = 1.0f;
-            } else if (f11 < 0.0f) {
-                this.f34729g = 1;
-                this.d = 0.0f;
-            }
-            float f12 = ((f10 / 310.0f) * this.h) + this.f34727e;
-            this.f34727e = f12;
-            if (f12 > 1.0f) {
-                this.h = -1;
-                this.f34727e = 1.0f;
-            } else if (f12 < 0.0f) {
-                this.h = 1;
-                this.f34727e = 0.0f;
-            }
-            float f13 = ((f10 / 320.0f) * this.f34730i) + this.f34728f;
-            this.f34728f = f13;
-            if (f13 > 1.0f) {
-                this.f34730i = -1;
-                this.f34728f = 1.0f;
-            } else if (f13 < 0.0f) {
-                this.f34730i = 1;
-                this.f34728f = 0.0f;
-            }
-            this.f34731j.invalidate();
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return org.telegram.messenger.g0.L(12.0f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return org.telegram.messenger.g0.L(12.0f);
+        canvas.clipPath(r70Var);
+        this.f34731j.draw(canvas);
+        canvas.restore();
     }
 
     @Override
@@ -110,8 +85,8 @@ public final class ik0 extends Drawable {
     }
 
     @Override
-    public final void setAlpha(int i3) {
-        this.f34734m = i3;
+    public final void setAlpha(int i7) {
+        this.f34724a = i7;
     }
 
     @Override

@@ -1,94 +1,200 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.view.View;
+import android.graphics.Paint;
+import android.text.SpannableStringBuilder;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_chatlists;
-public final class vy extends sg.a {
-    public View.OnClickListener f50632c;
-    public CharSequence d;
-    public String f50633e;
-    public boolean f50634f;
-    public boolean f50635g;
-    public long h;
-    public String f50636i;
-    public int f50637j;
-    public int f50638k;
-    public boolean f50639l;
-    public TL_chatlists.TL_exportedChatlistInvite f50640m;
+public final class vy extends org.telegram.ui.Components.na {
+    public int P1;
+    public final org.telegram.messenger.vo Q1;
+    public final ArrayList R1;
+    public final FrameLayout S1;
+    public uy T1;
+    public final TextView U1;
+    public final ArrayList V1;
+    public final ArrayList W1;
 
-    public static vy b(int i3, String str, boolean z10) {
-        ?? aVar = new sg.a(4, false);
-        aVar.f50638k = i3;
-        aVar.d = str;
-        aVar.f50639l = z10;
-        return aVar;
-    }
-
-    public static vy c(int i3, String str, String str2, boolean z10) {
-        ?? aVar = new sg.a(1, false);
-        aVar.f50635g = z10;
-        aVar.d = str;
-        aVar.f50636i = str2;
-        aVar.f50637j = i3;
-        return aVar;
-    }
-
-    public static vy d(String str) {
-        int i3;
-        if (TextUtils.isEmpty(str)) {
-            i3 = 3;
-        } else {
-            i3 = 6;
+    public vy(org.telegram.ui.ActionBar.f2 f2Var, org.telegram.messenger.vo voVar, ArrayList arrayList) {
+        super(f2Var, false);
+        ArrayList arrayList2 = new ArrayList();
+        this.R1 = arrayList2;
+        this.V1 = new ArrayList();
+        this.W1 = new ArrayList();
+        this.Q1 = voVar;
+        if (arrayList != null) {
+            arrayList2.addAll(arrayList);
         }
-        ?? aVar = new sg.a(i3, false);
-        aVar.d = str;
-        return aVar;
+        h1(false);
+        this.l1.setTitle(e1(null));
+        O(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27921h5, false));
+        this.P1 = this.G0;
+        TextView textView = new TextView(getContext());
+        this.U1 = textView;
+        textView.setTextSize(1, 14.0f);
+        org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.Gi, null);
+        textView.setTypeface(org.telegram.messenger.g0.o());
+        textView.setBackground(org.telegram.ui.ActionBar.z5.f(org.telegram.ui.ActionBar.k6.Ci, 8.0f));
+        textView.setText(org.telegram.messenger.hd.M0(2131750647, null));
+        textView.setGravity(17);
+        textView.setOnClickListener(new a(this, 21));
+        FrameLayout.LayoutParams d = c8.ha.d(-1, 48.0f, 87, 16.0f, 10.0f, 16.0f, 10.0f);
+        int i7 = d.leftMargin;
+        int i10 = this.f28645t0;
+        d.leftMargin = i7 + i10;
+        d.rightMargin += i10;
+        this.f28615b.addView(textView, d);
+        FrameLayout frameLayout = new FrameLayout(getContext());
+        this.S1 = frameLayout;
+        this.f28615b.addView(frameLayout, c8.ha.d(-1, 100.0f, 80, 6.0f, 0.0f, 6.0f, 0.0f));
+        g1();
     }
 
-    public final boolean equals(Object obj) {
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite;
-        TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite2;
-        if (this != obj) {
-            if (obj != null && vy.class == obj.getClass()) {
-                vy vyVar = (vy) obj;
-                int i3 = this.f54715a;
-                if (i3 == vyVar.f54715a) {
-                    if (i3 == 11) {
-                        if (!TextUtils.equals(this.d, vyVar.d) || !TextUtils.equals(this.f50633e, vyVar.f50633e)) {
-                            return false;
-                        }
-                    } else if ((i3 != 0 && i3 != 1 && i3 != 3 && i3 != 4) || TextUtils.equals(this.d, vyVar.d)) {
-                        int i10 = this.f54715a;
-                        if (i10 == 0) {
-                            if (this.f50634f != vyVar.f50634f) {
-                                return false;
-                            }
-                        } else if (i10 == 1) {
-                            if (this.h != vyVar.h || !TextUtils.equals(this.f50636i, vyVar.f50636i) || this.f50637j != vyVar.f50637j) {
-                                return false;
-                            }
-                        } else if (i10 == 7 && (tL_exportedChatlistInvite = this.f50640m) != (tL_exportedChatlistInvite2 = vyVar.f50640m)) {
-                            if (TextUtils.equals(tL_exportedChatlistInvite.url, tL_exportedChatlistInvite2.url)) {
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite3 = this.f50640m;
-                                boolean z10 = tL_exportedChatlistInvite3.revoked;
-                                TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite4 = vyVar.f50640m;
-                                if (z10 != tL_exportedChatlistInvite4.revoked || !TextUtils.equals(tL_exportedChatlistInvite3.title, tL_exportedChatlistInvite4.title) || this.f50640m.peers.size() != vyVar.f50640m.peers.size()) {
-                                    return false;
-                                }
-                            } else {
-                                return false;
-                            }
-                        }
-                    } else {
-                        return false;
-                    }
-                } else {
-                    return false;
-                }
+    public static void f1(org.telegram.ui.ActionBar.f2 f2Var, org.telegram.messenger.vo voVar, hz hzVar) {
+        long currentTimeMillis = System.currentTimeMillis();
+        TL_chatlists.TL_chatlists_getExportedInvites tL_chatlists_getExportedInvites = new TL_chatlists.TL_chatlists_getExportedInvites();
+        TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
+        tL_chatlists_getExportedInvites.chatlist = tL_inputChatlistDialogFilter;
+        tL_inputChatlistDialogFilter.filter_id = voVar.f26056a;
+        f2Var.getConnectionsManager().sendRequest(tL_chatlists_getExportedInvites, new bi.f0(f2Var, voVar, hzVar, currentTimeMillis, 4));
+    }
+
+    @Override
+    public final org.telegram.ui.Components.oj0 L0(org.telegram.ui.Components.pj0 pj0Var) {
+        uy uyVar = new uy(this);
+        this.T1 = uyVar;
+        return uyVar;
+    }
+
+    @Override
+    public final CharSequence O0() {
+        return e1(null);
+    }
+
+    @Override
+    public final void U0(org.telegram.ui.Components.rt0 rt0Var) {
+        org.telegram.ui.Components.pj0 pj0Var = this.f36328k1;
+        pj0Var.setOverScrollMode(2);
+        pj0Var.setOnItemClickListener(new h(this, 11));
+        v4.k kVar = new v4.k();
+        kVar.f56954m = false;
+        kVar.C = false;
+        kVar.o(org.telegram.ui.Components.xq.h);
+        kVar.n(350L);
+        pj0Var.setItemAnimator(kVar);
+    }
+
+    public final void d1() {
+        org.telegram.messenger.vo voVar;
+        org.telegram.ui.ActionBar.f2 f2Var;
+        ArrayList<TLRPC.InputPeer> arrayList = new ArrayList<>();
+        int i7 = 0;
+        while (true) {
+            voVar = this.Q1;
+            int size = voVar.h.size();
+            f2Var = this.f36330o1;
+            if (i7 >= size) {
+                break;
+            }
+            long longValue = ((Long) voVar.h.get(i7)).longValue();
+            if (longValue < 0 && gz.m0(f2Var.getMessagesController().M0(Long.valueOf(-longValue)))) {
+                arrayList.add(f2Var.getMessagesController().j1(longValue));
+            }
+            i7++;
+        }
+        if (arrayList.isEmpty()) {
+            dismiss();
+            f2Var.presentFragment(new gy(voVar, null));
+            return;
+        }
+        TL_chatlists.TL_chatlists_exportChatlistInvite tL_chatlists_exportChatlistInvite = new TL_chatlists.TL_chatlists_exportChatlistInvite();
+        TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
+        tL_chatlists_exportChatlistInvite.chatlist = tL_inputChatlistDialogFilter;
+        tL_inputChatlistDialogFilter.filter_id = voVar.f26056a;
+        tL_chatlists_exportChatlistInvite.peers = arrayList;
+        tL_chatlists_exportChatlistInvite.title = "";
+        f2Var.getConnectionsManager().sendRequest(tL_chatlists_exportChatlistInvite, new l(this, 7));
+    }
+
+    public final CharSequence e1(xh.l lVar) {
+        Object obj;
+        Paint.FontMetricsInt fontMetricsInt;
+        org.telegram.messenger.vo voVar = this.Q1;
+        if (voVar != null) {
+            if (lVar == null) {
+                fontMetricsInt = null;
             } else {
-                return false;
+                fontMetricsInt = lVar.getPaint().getFontMetricsInt();
+            }
+            obj = org.telegram.messenger.ij.C5(org.telegram.messenger.i6.m(new SpannableStringBuilder(voVar.f26057b), fontMetricsInt, false, null, 0), voVar.f26058c, fontMetricsInt, false);
+        } else {
+            obj = "";
+        }
+        return org.telegram.messenger.hd.V(null, null, 2131750644, obj);
+    }
+
+    public final void g1() {
+        int i7;
+        int i10;
+        ArrayList arrayList = this.R1;
+        if (arrayList.isEmpty()) {
+            i7 = 0;
+        } else {
+            i7 = 8;
+        }
+        this.U1.setVisibility(i7);
+        int L = org.telegram.messenger.g0.L(6.0f);
+        int L2 = org.telegram.messenger.g0.L(6.0f);
+        if (arrayList.isEmpty()) {
+            i10 = org.telegram.messenger.g0.L(68.0f);
+        } else {
+            i10 = 0;
+        }
+        this.f36328k1.setPadding(L, 0, L2, i10);
+    }
+
+    public final void h1(boolean z9) {
+        ArrayList arrayList = this.V1;
+        arrayList.clear();
+        ArrayList arrayList2 = this.W1;
+        arrayList.addAll(arrayList2);
+        arrayList2.clear();
+        ?? aVar = new rg.a(0, false);
+        aVar.d = null;
+        arrayList2.add(aVar);
+        ArrayList arrayList3 = this.R1;
+        if (!arrayList3.isEmpty()) {
+            arrayList2.add(yy.d(null));
+            arrayList2.add(new rg.a(8, false));
+            for (int i7 = 0; i7 < arrayList3.size(); i7++) {
+                ?? aVar2 = new rg.a(7, false);
+                aVar2.f52370m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i7);
+                arrayList2.add(aVar2);
             }
         }
-        return true;
+        uy uyVar = this.T1;
+        if (uyVar != null) {
+            if (z9) {
+                uyVar.E(arrayList, arrayList2);
+            } else {
+                this.f36328k1.getAdapter().f();
+            }
+        }
+    }
+
+    @Override
+    public final void s0() {
+        int x02;
+        super.s0();
+        try {
+            if (this.G0 == this.P1 && (x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27921h5, false)) != this.G0) {
+                O(x02);
+                this.P1 = this.G0;
+            }
+        } catch (Exception e10) {
+            org.telegram.messenger.a8.g(e10, true);
+        }
     }
 }

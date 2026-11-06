@@ -1,13 +1,50 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-public final class t00 {
-    public z3 f25467a;
-    public String f25470e;
-    public int f25472g;
-    public final ArrayList f25468b = new ArrayList();
-    public final ArrayList f25469c = new ArrayList();
-    public final ArrayList d = new ArrayList();
-    public int f25471f = 80;
-    public int h = -1;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_payments;
+public final class t00 implements c20 {
+    public final int f25565a = 0;
+    public final long f25566b;
+    public final c1 f25567c;
+    public final Object d;
+
+    public t00(w9 w9Var, long j3, TL_payments.TL_StarGiftAuctionState tL_StarGiftAuctionState) {
+        this.f25567c = w9Var;
+        this.f25566b = j3;
+        this.d = tL_StarGiftAuctionState;
+    }
+
+    @Override
+    public final void a(Object obj) {
+        int i7 = this.f25565a;
+        Object obj2 = this.d;
+        long j3 = this.f25566b;
+        c1 c1Var = this.f25567c;
+        switch (i7) {
+            case 0:
+                f10 f10Var = (f10) c1Var;
+                ij ijVar = (ij) obj2;
+                TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) obj;
+                TLRPC.Message message = ijVar.f23237k;
+                message.summaryText = tL_textWithEntities;
+                if (tL_textWithEntities == null) {
+                    message.summarizedOpen = false;
+                }
+                f10Var.getMessagesStorage().X1(j3, ijVar.f23237k);
+                qs.f(f10Var.currentAccount).k(128, ijVar, Boolean.TRUE);
+                return;
+            default:
+                w9 w9Var = (w9) c1Var;
+                w9Var.d(j3).f25589c = (ArrayList) obj;
+                w9Var.f(j3, (TL_payments.TL_StarGiftAuctionState) obj2);
+                return;
+        }
+    }
+
+    public t00(f10 f10Var, ij ijVar, long j3) {
+        this.f25567c = f10Var;
+        this.d = ijVar;
+        this.f25566b = j3;
+    }
 }

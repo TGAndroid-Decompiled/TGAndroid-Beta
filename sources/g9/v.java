@@ -1,35 +1,44 @@
 package g9;
 
-import java.util.Comparator;
-public final class v extends w {
-    public final int d;
+import java.io.Serializable;
+public final class v implements u, Serializable {
+    public final transient Object f13600a = new Object();
+    public final u f13601b;
+    public volatile transient boolean f13602c;
+    public transient Object d;
 
-    public v(int i3) {
-        this.d = i3;
+    public v(u uVar) {
+        this.f13601b = uVar;
     }
 
     @Override
-    public final int e() {
+    public final Object get() {
+        if (!this.f13602c) {
+            synchronized (this.f13600a) {
+                try {
+                    if (!this.f13602c) {
+                        Object obj = this.f13601b.get();
+                        this.d = obj;
+                        this.f13602c = true;
+                        return obj;
+                    }
+                } finally {
+                }
+            }
+        }
         return this.d;
     }
 
-    @Override
-    public final w a(int i3, int i10) {
-        return this;
-    }
-
-    @Override
-    public final w c(boolean z10, boolean z11) {
-        return this;
-    }
-
-    @Override
-    public final w d(boolean z10, boolean z11) {
-        return this;
-    }
-
-    @Override
-    public final w b(Object obj, Object obj2, Comparator comparator) {
-        return this;
+    public final String toString() {
+        Object obj;
+        StringBuilder sb2 = new StringBuilder("Suppliers.memoize(");
+        if (this.f13602c) {
+            obj = "<supplier that returned " + this.d + ">";
+        } else {
+            obj = this.f13601b;
+        }
+        sb2.append(obj);
+        sb2.append(")");
+        return sb2.toString();
     }
 }

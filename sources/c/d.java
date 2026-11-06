@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 public class d implements Parcelable {
-    public static final Parcelable.Creator<d> CREATOR = new w.a(16);
-    public b f3931a;
+    public static final Parcelable.Creator<d> CREATOR = new w.a(22);
+    public b f5219a;
 
     @Override
     public final int describeContents() {
@@ -13,19 +13,19 @@ public class d implements Parcelable {
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i3) {
+    public final void writeToParcel(Parcel parcel, int i7) {
         synchronized (this) {
             try {
-                if (this.f3931a == null) {
-                    this.f3931a = new c(this);
+                if (this.f5219a == null) {
+                    this.f5219a = new c(this);
                 }
-                parcel.writeStrongBinder(this.f3931a.asBinder());
+                parcel.writeStrongBinder(this.f5219a.asBinder());
             } catch (Throwable th2) {
                 throw th2;
             }
         }
     }
 
-    public void a(int i3, Bundle bundle) {
+    public void a(int i7, Bundle bundle) {
     }
 }

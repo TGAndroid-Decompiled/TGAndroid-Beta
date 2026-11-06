@@ -1,37 +1,36 @@
 package gd;
-
-import b8.ib;
-import hd.h;
-import kotlin.jvm.internal.j;
-import kotlin.jvm.internal.u;
-import od.p;
-public final class b extends h {
-    public int f12243a;
-    public final p f12244b;
-    public final fd.c f12245c;
-
-    public b(fd.c cVar, fd.c cVar2, p pVar) {
-        super(cVar);
-        this.f12244b = pVar;
-        this.f12245c = cVar2;
-    }
+public final class b implements Comparable {
+    public static final b f13815b = new b();
+    public final int f13816a = 131348;
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        int i3 = this.f12243a;
-        if (i3 != 0) {
-            if (i3 == 1) {
-                this.f12243a = 2;
-                ib.b(obj);
-                return obj;
-            }
-            throw new IllegalStateException("This coroutine had already completed");
+    public final int compareTo(Object obj) {
+        b other = (b) obj;
+        kotlin.jvm.internal.j.e(other, "other");
+        return this.f13816a - other.f13816a;
+    }
+
+    public final boolean equals(Object obj) {
+        b bVar;
+        if (this == obj) {
+            return true;
         }
-        this.f12243a = 1;
-        ib.b(obj);
-        p pVar = this.f12244b;
-        j.c(pVar, "null cannot be cast to non-null type kotlin.Function2<R of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted, kotlin.coroutines.Continuation<T of kotlin.coroutines.intrinsics.IntrinsicsKt__IntrinsicsJvmKt.createCoroutineUnintercepted>, kotlin.Any?>");
-        u.a(2, pVar);
-        return pVar.invoke(this.f12245c, this);
+        if (obj instanceof b) {
+            bVar = (b) obj;
+        } else {
+            bVar = null;
+        }
+        if (bVar != null && this.f13816a == bVar.f13816a) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f13816a;
+    }
+
+    public final String toString() {
+        return "2.1.20";
     }
 }

@@ -1,10 +1,17 @@
 package y7;
-
-import java.util.logging.Logger;
-public abstract class r2 {
-    public static final int f59259a = 0;
+public final class r2 implements na.d {
+    public static final r2 f59026a = new Object();
 
     static {
-        Logger.getLogger(r2.class.getName());
+        rf.b.p(rf.b.k(h.class, rf.b.m(rf.b.k(h.class, rf.b.m(rf.b.k(h.class, rf.b.m(rf.b.k(h.class, rf.b.m(rf.b.k(h.class, rf.b.m(rf.b.k(h.class, rf.b.m(rf.b.k(h.class, new e(1)), 2)), 3)), 4)), 5)), 6)), 7)));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            na.e eVar = (na.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

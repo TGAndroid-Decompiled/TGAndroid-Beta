@@ -1,126 +1,89 @@
 package org.telegram.ui.web;
 
-import android.app.Activity;
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.webkit.JavascriptInterface;
-import android.webkit.WebChromeClient;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
-import b8.mf;
-import java.io.InputStream;
-import org.json.JSONObject;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import c8.ha;
+import java.util.HashSet;
 import org.telegram.messenger.a8;
-import org.telegram.messenger.rz;
-import org.telegram.messenger.sz;
-import org.telegram.messenger.u10;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.yg0;
-public final class n1 implements u10 {
-    public final int f50966a;
-    public final rz f50967b;
-    public final boolean[] f50968c;
-    public final sz d;
-    public final u1 f50969e;
-    public final u10 f50970f;
+import org.telegram.ui.ActionBar.a6;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.m2;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Components.i5;
+public final class n1 extends FrameLayout implements a6 {
+    public final ImageView f51237a;
+    public final TextView f51238b;
+    public final m2 f51239c;
+    public i5 d;
+    public String f51240e;
+    public boolean f51241f;
+    public ShapeDrawable h;
 
-    public n1(rz rzVar, boolean[] zArr, sz szVar, u1 u1Var, u10 u10Var, int i3) {
-        this.f50966a = i3;
-        this.f50967b = rzVar;
-        this.f50968c = zArr;
-        this.d = szVar;
-        this.f50969e = u1Var;
-        this.f50970f = u10Var;
+    public n1(Context context) {
+        super(context);
+        ImageView imageView = new ImageView(context);
+        this.f51237a = imageView;
+        addView(imageView, ha.d(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(context);
+        this.f51238b = textView;
+        r6.V(textView, k6.G6, null);
+        textView.setTextSize(1, 16.0f);
+        textView.setMaxLines(1);
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        addView(textView, ha.d(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
+        m2 m2Var = new m2(11, context, this);
+        this.f51239c = m2Var;
+        r6.V(m2Var, k6.f28240y6, null);
+        m2Var.setTextSize(1, 13.0f);
+        m2Var.setMaxLines(1);
+        m2Var.setEllipsize(truncateAt);
+        m2Var.setPivotX(0.0f);
+        addView(m2Var, ha.d(-1, -2.0f, 55, 68.0f, 30.0f, 54.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        imageView2.setScaleType(ImageView.ScaleType.CENTER);
+        imageView2.setImageResource(2131231244);
+        r6.t(imageView2, k6.A6, null, PorterDuff.Mode.SRC_IN);
+        addView(imageView2, ha.d(32, 32.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
     }
 
     @Override
-    public final void a(Object obj) {
-        switch (this.f50966a) {
-            case 0:
-                rz rzVar = this.f50967b;
-                boolean[] zArr = this.f50968c;
-                sz szVar = this.d;
-                u1 u1Var = this.f50969e;
-                u10 u10Var = this.f50970f;
-                InputStream inputStream = (InputStream) obj;
-                sz.a(rzVar);
-                if (!zArr[0]) {
-                    rz d = sz.d(szVar, "readHTML");
-                    String str = u1Var.f51046a;
-                    final n1 n1Var = new n1(d, zArr, szVar, u1Var, u10Var, 1);
-                    if (inputStream == null) {
-                        n1Var.a(null);
-                        return;
-                    }
-                    Context context = LaunchActivity.K1;
-                    if (context == null) {
-                        context = org.telegram.messenger.t0.f25457b;
-                    }
-                    Activity W = org.telegram.messenger.g0.W(context);
-                    if (W == null) {
-                        n1Var.a(null);
-                        return;
-                    }
-                    View rootView = W.findViewById(16908290).getRootView();
-                    if (!(rootView instanceof ViewGroup)) {
-                        n1Var.a(null);
-                        return;
-                    }
-                    final yg0 yg0Var = new yg0(context, 16);
-                    ((ViewGroup) rootView).addView(yg0Var);
-                    final WebView webView = new WebView(context);
-                    WebSettings settings = webView.getSettings();
-                    settings.setAllowContentAccess(false);
-                    settings.setDatabaseEnabled(false);
-                    settings.setAllowFileAccess(false);
-                    settings.setJavaScriptEnabled(true);
-                    settings.setSaveFormData(false);
-                    settings.setGeolocationEnabled(false);
-                    settings.setDomStorageEnabled(false);
-                    settings.setAllowFileAccessFromFileURLs(false);
-                    settings.setAllowUniversalAccessFromFileURLs(false);
-                    webView.setWebViewClient(new p1(u1Var, inputStream));
-                    webView.setWebChromeClient(new WebChromeClient());
-                    yg0Var.addView(webView, mf.c(-1.0f, -1));
-                    final boolean[] zArr2 = {false};
-                    webView.addJavascriptInterface(new Object() {
-                        @JavascriptInterface
-                        public void done(String str2) {
-                            org.telegram.messenger.g0.h3(new y(zArr2, webView, yg0Var, str2, n1Var, 6));
-                        }
-                    }, "Instant");
-                    webView.loadUrl(str);
-                    return;
-                }
-                return;
-            default:
-                rz rzVar2 = this.f50967b;
-                boolean[] zArr3 = this.f50968c;
-                sz szVar2 = this.d;
-                u1 u1Var2 = this.f50969e;
-                u10 u10Var2 = this.f50970f;
-                JSONObject jSONObject = (JSONObject) obj;
-                sz.a(rzVar2);
-                if (!zArr3[0]) {
-                    rz d10 = sz.d(szVar2, "parseJSON");
-                    try {
-                        u1Var2.f51048c = u1Var2.i(u1Var2.f51046a, jSONObject);
-                    } catch (Exception e10) {
-                        sz.c(szVar2, "error: " + e10);
-                        a8.g(e10, true);
-                    }
-                    sz.a(d10);
-                    u10Var2.a(u1Var2);
-                    TLRPC.TL_webPage tL_webPage = u1Var2.f51048c;
-                    if (tL_webPage != null) {
-                        u1.f51044e.put(tL_webPage, u1Var2);
-                    }
-                    sz.b(szVar2);
-                    return;
-                }
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.f51241f) {
+            canvas.drawRect(org.telegram.messenger.g0.L(64.0f), getHeight() - 1, getWidth(), getHeight(), k6.f27971k0);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(56.0f), 1073741824));
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            ShapeDrawable shapeDrawable = this.h;
+            if (shapeDrawable != null) {
+                k6.C1(k6.r1(0.1f, k6.x0(null, k6.G6, false)), shapeDrawable);
+                ImageView imageView = this.f51237a;
+                if (imageView != null) {
+                    imageView.invalidate();
+                }
+            }
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

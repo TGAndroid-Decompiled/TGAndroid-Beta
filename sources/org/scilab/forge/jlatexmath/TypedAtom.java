@@ -4,8 +4,8 @@ public class TypedAtom extends Atom {
     private final int leftType;
     private final int rightType;
 
-    public TypedAtom(int i3, int i10, Atom atom) {
-        this.leftType = i3;
+    public TypedAtom(int i7, int i10, Atom atom) {
+        this.leftType = i7;
         this.rightType = i10;
         this.atom = atom;
         this.type_limits = atom.type_limits;

@@ -1,3 +1,3 @@
 package zd;
-public interface s extends b, c {
+public interface s extends e0 {
 }

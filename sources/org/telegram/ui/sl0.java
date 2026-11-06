@@ -1,67 +1,59 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class sl0 extends g11 {
-    public final vl0 f49534f2;
-    public final x01[] f49535g2;
-    public final wl0 f49536h2;
+import android.graphics.Canvas;
+public final class sl0 extends org.telegram.ui.Components.pj0 {
+    public final int f49767e3;
+    public final bm0 f49768f3;
 
-    public sl0(wl0 wl0Var, org.telegram.ui.ActionBar.d2 d2Var, Context context, Integer num, int i3, org.telegram.ui.ActionBar.e6 e6Var, int i10, int i11, vl0 vl0Var, x01[] x01VarArr) {
-        super(d2Var, context, true, num, i3, true, e6Var, i10, i11);
-        this.f49536h2 = wl0Var;
-        this.f49534f2 = vl0Var;
-        this.f49535g2 = x01VarArr;
+    public sl0(bm0 bm0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i7) {
+        super(context, f6Var);
+        this.f49768f3 = bm0Var;
+        this.f49767e3 = i7;
     }
 
     @Override
-    public final float getScrimDrawableTranslationY() {
-        return 0.0f;
+    public final Integer V0(int i7) {
+        bm0 bm0Var = this.f49768f3;
+        if ((i7 >= bm0Var.f44414b0 && i7 < bm0Var.f44416c0) || (i7 >= bm0Var.f44417d0 && i7 < bm0Var.f44419e0)) {
+            return 0;
+        }
+        return super.V0(i7);
     }
 
     @Override
-    public final void p(View view, Long l10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        long longValue;
-        wl0 wl0Var = this.f49536h2;
-        if (tL_starGiftUnique != null) {
-            if (wl0Var.f51218n0 == 0) {
-                TLRPC.PeerColor peerColor = tL_starGiftUnique.peer_color;
-                if (peerColor instanceof TLRPC.TL_peerColorCollectible) {
-                    wl0Var.f51223s = (TLRPC.TL_peerColorCollectible) peerColor;
-                    wl0Var.f51222r = null;
-                } else {
-                    return;
-                }
-            } else {
-                wl0Var.f51223s = null;
-                wl0Var.f51222r = org.telegram.messenger.hp.q0(tL_starGiftUnique);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        bm0 bm0Var = this.f49768f3;
+        if (bm0Var.G && bm0Var.E != null && bm0Var.F != null) {
+            int save = canvas.save();
+            canvas.translate(bm0Var.E.getLeft() + bm0Var.F.getLeft(), bm0Var.F.getTop());
+            bm0Var.E.draw(canvas);
+            canvas.restoreToCount(save);
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
+        bi.v9 v9Var;
+        super.onLayout(z9, i7, i10, i11, i12);
+        bm0 bm0Var = this.f49768f3;
+        hm0 hm0Var = bm0Var.f44431p0;
+        bm0Var.h();
+        if (bm0Var.K != null) {
+            if (bm0Var.J != null && bm0Var.c()) {
+                bm0Var.J.g(false);
+                return;
             }
-            wl0Var.J = null;
-            wl0Var.h = -1;
+            return;
+        }
+        if (this.f49767e3 == 1) {
+            v9Var = hm0Var.f46434c;
         } else {
-            if (l10 == null) {
-                longValue = 0;
-            } else {
-                longValue = l10.longValue();
-            }
-            wl0Var.f51217n = longValue;
-            wl0Var.f51222r = null;
-            wl0Var.f51223s = null;
-            wl0Var.J = null;
+            v9Var = hm0Var.f46432b;
         }
-        vl0 vl0Var = this.f49534f2;
-        if (vl0Var != null) {
-            vl0Var.b(true);
-        }
-        wl0Var.j(true);
-        wl0Var.i();
-        wl0Var.f(true);
-        x01 x01Var = this.f49535g2[0];
-        if (x01Var != null) {
-            wl0Var.f51220p0 = null;
-            x01Var.dismiss();
+        if (v9Var != null && bm0Var.c()) {
+            v9Var.a();
         }
     }
 }

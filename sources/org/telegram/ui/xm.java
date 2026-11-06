@@ -1,20 +1,17 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-public final class xm extends wm {
-    public final ym f52050sd;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class xm extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Components.qa0 f51894a;
 
-    public xm(ym ymVar, Bundle bundle) {
-        super(bundle);
-        this.f52050sd = ymVar;
+    public xm(org.telegram.ui.Components.qa0 qa0Var) {
+        this.f51894a = qa0Var;
     }
 
     @Override
-    public final void va(boolean z10) {
-        this.f52050sd.b(z10);
-    }
-
-    @Override
-    public final void setNavigationBarColor(int i3) {
+    public final void onAnimationEnd(Animator animator) {
+        super.onAnimationEnd(animator);
+        this.f51894a.r(1.0f);
     }
 }

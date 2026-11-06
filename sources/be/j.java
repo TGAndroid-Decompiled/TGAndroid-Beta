@@ -1,93 +1,31 @@
 package be;
+public final class j {
+    public static final i f3218b = new Object();
+    public final Object f3219a;
 
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-import wd.b0;
-public class j {
-    public static final AtomicReferenceFieldUpdater f3269a = AtomicReferenceFieldUpdater.newUpdater(j.class, Object.class, "_next$volatile");
-    public static final AtomicReferenceFieldUpdater f3270b = AtomicReferenceFieldUpdater.newUpdater(j.class, Object.class, "_prev$volatile");
-    public static final AtomicReferenceFieldUpdater f3271c = AtomicReferenceFieldUpdater.newUpdater(j.class, Object.class, "_removedRef$volatile");
-    private volatile Object _next$volatile = this;
-    private volatile Object _prev$volatile = this;
-    private volatile Object _removedRef$volatile;
-
-    public final boolean c(j jVar, int i3) {
-        while (true) {
-            j d = d();
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f3270b;
-            if (d == null) {
-                Object obj = atomicReferenceFieldUpdater.get(this);
-                while (true) {
-                    d = (j) obj;
-                    if (!d.g()) {
-                        break;
-                    }
-                    obj = atomicReferenceFieldUpdater.get(d);
-                }
-            }
-            if (d instanceof h) {
-                if ((((h) d).d & i3) == 0 && d.c(jVar, i3)) {
-                    return true;
-                }
+    public final boolean equals(Object obj) {
+        if (obj instanceof j) {
+            if (!kotlin.jvm.internal.j.a(this.f3219a, ((j) obj).f3219a)) {
                 return false;
             }
-            atomicReferenceFieldUpdater.set(jVar, d);
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater2 = f3269a;
-            atomicReferenceFieldUpdater2.set(jVar, this);
-            while (!atomicReferenceFieldUpdater2.compareAndSet(d, this, jVar)) {
-                if (atomicReferenceFieldUpdater2.get(d) != this) {
-                    break;
-                }
-            }
-            jVar.e(this);
             return true;
         }
+        return false;
     }
 
-    public final be.j d() {
-        throw new UnsupportedOperationException("Method not decompiled: be.j.d():be.j");
-    }
-
-    public final void e(j jVar) {
-        while (true) {
-            AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f3270b;
-            j jVar2 = (j) atomicReferenceFieldUpdater.get(jVar);
-            if (f3269a.get(this) == jVar) {
-                while (!atomicReferenceFieldUpdater.compareAndSet(jVar, jVar2, this)) {
-                    if (atomicReferenceFieldUpdater.get(jVar) != jVar2) {
-                        break;
-                    }
-                }
-                if (g()) {
-                    jVar.d();
-                    return;
-                }
-                return;
-            }
-            return;
+    public final int hashCode() {
+        Object obj = this.f3219a;
+        if (obj == null) {
+            return 0;
         }
+        return obj.hashCode();
     }
 
-    public final j f() {
-        o oVar;
-        j jVar;
-        Object obj = f3269a.get(this);
-        if (obj instanceof o) {
-            oVar = (o) obj;
-        } else {
-            oVar = null;
+    public final String toString() {
+        Object obj = this.f3219a;
+        if (obj instanceof h) {
+            return ((h) obj).toString();
         }
-        if (oVar != null && (jVar = oVar.f3281a) != null) {
-            return jVar;
-        }
-        kotlin.jvm.internal.j.c(obj, "null cannot be cast to non-null type kotlinx.coroutines.internal.LockFreeLinkedListNode");
-        return (j) obj;
-    }
-
-    public boolean g() {
-        return f3269a.get(this) instanceof o;
-    }
-
-    public String toString() {
-        return new kotlin.jvm.internal.n(this, b0.class, "classSimpleName", "getClassSimpleName(Ljava/lang/Object;)Ljava/lang/String;", 1) + '@' + b0.j(this);
+        return "Value(" + obj + ')';
     }
 }

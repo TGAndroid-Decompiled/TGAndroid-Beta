@@ -65,9 +65,9 @@ public interface CameraVideoCapturer extends VideoCapturer {
         }
 
         public static int access$104(CameraStatistics cameraStatistics) {
-            int i3 = cameraStatistics.freezePeriodCount + 1;
-            cameraStatistics.freezePeriodCount = i3;
-            return i3;
+            int i7 = cameraStatistics.freezePeriodCount + 1;
+            cameraStatistics.freezePeriodCount = i7;
+            return i7;
         }
 
         private void checkThread() {
@@ -88,7 +88,7 @@ public interface CameraVideoCapturer extends VideoCapturer {
     }
 
     public interface CameraSwitchHandler {
-        void onCameraSwitchDone(boolean z10);
+        void onCameraSwitchDone(boolean z9);
 
         void onCameraSwitchError(String str);
     }

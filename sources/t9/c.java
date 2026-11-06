@@ -1,44 +1,70 @@
 package t9;
 
-import android.util.Log;
-import com.google.firebase.components.ComponentRegistrar;
-import java.lang.reflect.InvocationTargetException;
-public final class c implements ta.b {
-    public final int f55047a;
-    public final Object f55048b;
+import ab.a0;
+import android.os.Parcel;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.e;
+import com.google.android.gms.common.api.internal.t;
+import com.google.android.gms.common.api.q;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class c extends t implements e {
+    public TaskCompletionSource d;
+    public final b[] f55350e;
 
-    public c(Object obj, int i3) {
-        this.f55047a = i3;
-        this.f55048b = obj;
+    public c(b[] bVarArr) {
+        super(null, false, 9004);
+        this.f55350e = bVarArr;
     }
 
     @Override
-    public final Object get() {
-        switch (this.f55047a) {
-            case 0:
-                String str = (String) this.f55048b;
-                try {
-                    Class<?> cls = Class.forName(str);
-                    if (ComponentRegistrar.class.isAssignableFrom(cls)) {
-                        return (ComponentRegistrar) cls.getDeclaredConstructor(null).newInstance(null);
-                    }
-                    throw new RuntimeException("Class " + str + " is not an instance of com.google.firebase.components.ComponentRegistrar");
-                } catch (ClassNotFoundException unused) {
-                    Log.w("ComponentDiscovery", "Class " + str + " is not an found.");
-                    return null;
-                } catch (IllegalAccessException e10) {
-                    throw new RuntimeException(a1.g.q("Could not instantiate ", str, "."), e10);
-                } catch (InstantiationException e11) {
-                    throw new RuntimeException(a1.g.q("Could not instantiate ", str, "."), e11);
-                } catch (NoSuchMethodException e12) {
-                    throw new RuntimeException(t4.c.f("Could not instantiate ", str), e12);
-                } catch (InvocationTargetException e13) {
-                    throw new RuntimeException(t4.c.f("Could not instantiate ", str), e13);
-                }
-            case 1:
-                return (ComponentRegistrar) this.f55048b;
+    public final void a(q qVar) {
+        a0 a0Var;
+        Status status = (Status) qVar;
+        if (status.b()) {
+            this.d.setResult(null);
+            return;
+        }
+        TaskCompletionSource taskCompletionSource = this.d;
+        String str = status.f6530b;
+        str = (str == null || str.isEmpty()) ? "User Action indexing error, please try again." : "User Action indexing error, please try again.";
+        switch (status.f6529a) {
+            case 17510:
+                a0Var = new a0(str);
+                break;
+            case 17511:
+                a0Var = new a0(str);
+                break;
+            case 17512:
             default:
-                return new va.c((n9.h) this.f55048b);
+                a0Var = new a0(str);
+                break;
+            case 17513:
+                a0Var = new a0(str);
+                break;
+            case 17514:
+                a0Var = new a0(str);
+                break;
+        }
+        taskCompletionSource.setException(a0Var);
+    }
+
+    @Override
+    public final void c(com.google.android.gms.common.api.c cVar, TaskCompletionSource taskCompletionSource) {
+        this.d = taskCompletionSource;
+        s7.a aVar = (s7.a) ((s7.b) cVar).n();
+        e7.b bVar = new e7.b(this);
+        Parcel obtain = Parcel.obtain();
+        obtain.writeInterfaceToken("com.google.android.gms.appdatasearch.internal.ILightweightAppDataSearch");
+        int i7 = s7.c.f54818a;
+        obtain.writeStrongBinder(bVar);
+        obtain.writeTypedArray(this.f55350e, 0);
+        Parcel obtain2 = Parcel.obtain();
+        try {
+            aVar.f54817a.transact(7, obtain, obtain2, 0);
+            obtain2.readException();
+        } finally {
+            obtain.recycle();
+            obtain2.recycle();
         }
     }
 }

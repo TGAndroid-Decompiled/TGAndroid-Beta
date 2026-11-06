@@ -1,303 +1,146 @@
 package org.telegram.messenger;
 
-import android.util.Pair;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-import org.xmlpull.v1.XmlPullParserException;
-public final class ye extends se {
-    public static q5 Z;
-    public final int B;
-    public final int C;
-    public final long D;
-    public int E;
-    public final int F;
-    public final int G;
-    public final long H;
-    public final String I;
-    public int J;
-    public int K;
-    public boolean L;
-    public boolean M;
-    public long N;
-    public Boolean O;
-    public long P;
-    public int Q;
-    public boolean R;
-    public TLRPC.VideoSize S;
-    public int T;
-    public int U;
-    public volatile boolean V;
-    public boolean W;
-    public boolean X;
-    public ArrayList Y;
-
-    public ye(int i3, int i10, long j10, String str, int i11, int i12, boolean z10, int i13, int i14, long j11) {
-        this.Q = -1;
-        this.B = i3;
-        this.C = i10;
-        this.D = j10;
-        this.I = str;
-        this.F = i13;
-        this.G = i14;
-        this.H = j11;
-        this.E = i12;
-        this.J = i11;
-        this.f25310b = z10;
-    }
-
-    @Override
-    public final String a() {
-        return this.I;
-    }
-
-    @Override
-    public final boolean d() {
-        if (this.V) {
-            return this.W;
-        }
-        synchronized (this) {
-            try {
-                if (!this.V) {
-                    if (!this.f25310b) {
-                        l();
-                    }
-                    this.V = true;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-        return this.W;
-    }
-
-    @Override
-    public final void e() {
-        if (this.f25310b && this.f25315i != null) {
-            new File(this.f25315i).delete();
-            this.f25315i = null;
-        }
-        this.M = false;
-        this.N = 0L;
-        super.e();
-    }
+import android.graphics.Matrix;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+public final class ye extends TLObject {
+    public Matrix B;
+    public boolean C;
+    public float f26618a;
+    public float f26619b;
+    public float d;
+    public int f26623i;
+    public int f26624j;
+    public int f26625k;
+    public boolean f26626l;
+    public float f26627m;
+    public float f26628o;
+    public Matrix f26629r;
+    public int f26630s;
+    public int f26631t;
+    public boolean f26632u;
+    public float v;
+    public int f26633z;
+    public float f26620c = 1.0f;
+    public float f26621e = 1.0f;
+    public float f26622f = 1.0f;
 
     public final ye clone() {
-        ye yeVar = new ye(this.B, this.C, this.D, this.I, this.J, this.E, this.f25310b, this.F, this.G, this.H);
-        yeVar.K = this.K;
-        yeVar.L = this.L;
-        yeVar.M = this.M;
-        yeVar.N = this.N;
-        yeVar.R = this.R;
-        yeVar.S = this.S;
-        yeVar.T = this.T;
-        yeVar.U = this.U;
-        yeVar.O = this.O;
-        yeVar.g(this);
+        ye yeVar = new ye();
+        yeVar.f26618a = this.f26618a;
+        yeVar.f26619b = this.f26619b;
+        yeVar.f26620c = this.f26620c;
+        yeVar.d = this.d;
+        yeVar.f26621e = this.f26621e;
+        yeVar.f26622f = this.f26622f;
+        yeVar.f26623i = this.f26623i;
+        yeVar.f26624j = this.f26624j;
+        yeVar.f26625k = this.f26625k;
+        yeVar.f26626l = this.f26626l;
+        yeVar.f26627m = this.f26627m;
+        yeVar.f26628o = this.f26628o;
+        yeVar.f26629r = this.f26629r;
+        yeVar.f26630s = this.f26630s;
+        yeVar.f26631t = this.f26631t;
+        yeVar.f26632u = this.f26632u;
+        yeVar.v = this.v;
+        yeVar.f26633z = this.f26633z;
+        yeVar.C = this.C;
+        yeVar.B = this.B;
         return yeVar;
     }
 
-    public final void g(ye yeVar) {
-        this.f25309a = yeVar.f25309a;
-        this.f25311c = yeVar.f25311c;
-        this.h = yeVar.h;
-        this.f25315i = yeVar.f25315i;
-        this.f25316j = yeVar.f25316j;
-        this.f25317k = yeVar.f25317k;
-        this.f25318l = yeVar.f25318l;
-        this.f25320n = yeVar.f25320n;
-        this.f25321o = yeVar.f25321o;
-        this.f25322p = yeVar.f25322p;
-        this.f25323q = yeVar.f25323q;
-        this.f25324r = yeVar.f25324r;
-        this.f25325s = yeVar.f25325s;
-        this.f25326t = yeVar.f25326t;
-        this.f25327u = yeVar.f25327u;
-        this.v = yeVar.v;
-        this.f25328w = yeVar.f25328w;
-        this.f25319m = yeVar.f25319m;
-        this.f25329x = yeVar.f25329x;
-        this.A = yeVar.A;
-        this.f25314g = yeVar.f25314g;
-        this.f25331z = yeVar.f25331z;
-        this.M = yeVar.M;
-        this.N = yeVar.N;
-        this.V = yeVar.V;
-        this.W = yeVar.W;
-        this.f25319m = yeVar.f25319m;
-        this.P = yeVar.P;
-    }
-
-    public final void h() {
-        String str = this.I;
-        if (str != null) {
-            try {
-                new File(str).delete();
-            } catch (Exception unused) {
+    public final boolean b() {
+        Matrix matrix = this.f26629r;
+        if (matrix == null || matrix.isIdentity()) {
+            Matrix matrix2 = this.B;
+            if ((matrix2 == null || matrix2.isIdentity()) && this.f26621e == 1.0f && this.f26622f == 1.0f && this.f26620c == 1.0f && this.d == 0.0f && this.f26623i == 0 && this.f26624j == 0 && this.f26625k == 0 && !this.f26626l && this.f26627m == 0.0f && this.f26628o == 0.0f && this.f26630s == 0 && this.f26631t == 0 && !this.f26632u && this.v == 0.0f) {
+                return true;
             }
-        }
-        if (this.f25318l != null) {
-            try {
-                new File(this.f25318l).delete();
-            } catch (Exception unused2) {
-            }
-        }
-        if (this.f25316j != null) {
-            try {
-                new File(this.f25316j).delete();
-            } catch (Exception unused3) {
-            }
-        }
-        if (this.h != null) {
-            try {
-                new File(this.h).delete();
-            } catch (Exception unused4) {
-            }
-        }
-        if (this.f25315i != null) {
-            try {
-                new File(this.f25315i).delete();
-            } catch (Exception unused5) {
-            }
-        }
-        if (this.f25317k != null) {
-            try {
-                new File(this.f25317k).delete();
-            } catch (Exception unused6) {
-            }
-        }
-    }
-
-    public final boolean i() {
-        if (!this.V) {
-            if (!this.f25310b || this.X) {
-                return false;
-            }
-            return true;
-        }
-        return true;
-    }
-
-    public final boolean j() {
-        Boolean bool = this.O;
-        if (bool == null) {
-            return !az.f21636i1;
-        }
-        return bool.booleanValue();
-    }
-
-    public final boolean k(org.telegram.ui.Cells.f fVar) {
-        if (i()) {
-            return true;
-        }
-        if (fVar != null) {
-            if (this.Y == null) {
-                this.Y = new ArrayList();
-            }
-            if (!this.Y.contains(fVar)) {
-                this.Y.add(fVar);
-            }
-        }
-        if (!this.X) {
-            this.X = true;
-            if (Z == null) {
-                Z = new q5("livePhotoQueue", true);
-            }
-            Z.postRunnable(new xe(this, 0));
             return false;
         }
         return false;
     }
 
-    public final void l() {
-        c3.x xVar;
-        b8.ig igVar;
-        String str = this.I;
-        long currentTimeMillis = System.currentTimeMillis();
-        m3.c cVar = null;
-        try {
-            xVar = c3.x.b(new File(str));
-        } catch (Exception e10) {
-            a8.g(e10, true);
-            xVar = null;
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z9) {
+        this.f26618a = inputSerializedData.readFloat(z9);
+        this.f26619b = inputSerializedData.readFloat(z9);
+        this.f26620c = inputSerializedData.readFloat(z9);
+        this.d = inputSerializedData.readFloat(z9);
+        this.f26621e = inputSerializedData.readFloat(z9);
+        this.f26622f = inputSerializedData.readFloat(z9);
+        this.f26623i = inputSerializedData.readInt32(z9);
+        this.f26624j = inputSerializedData.readInt32(z9);
+        this.f26625k = inputSerializedData.readInt32(z9);
+        this.f26626l = inputSerializedData.readBool(z9);
+        this.f26627m = inputSerializedData.readFloat(z9);
+        this.f26628o = inputSerializedData.readFloat(z9);
+        float[] fArr = new float[9];
+        for (int i7 = 0; i7 < 9; i7++) {
+            fArr[i7] = inputSerializedData.readFloat(z9);
         }
-        if (xVar != null) {
-            long j10 = xVar.f4119a;
-            if (j10 > 0) {
-                this.f25310b = true;
-                this.W = true;
-                this.f25319m = j10;
-                this.P = xVar.f4120b;
+        Matrix matrix = new Matrix();
+        this.f26629r = matrix;
+        matrix.setValues(fArr);
+        this.f26630s = inputSerializedData.readInt32(z9);
+        this.f26631t = inputSerializedData.readInt32(z9);
+        this.f26632u = inputSerializedData.readBool(z9);
+        this.v = inputSerializedData.readFloat(z9);
+        if (inputSerializedData.readInt32(z9) == 178403937) {
+            for (int i10 = 0; i10 < 9; i10++) {
+                fArr[i10] = inputSerializedData.readFloat(z9);
             }
+            Matrix matrix2 = new Matrix();
+            this.B = matrix2;
+            matrix2.setValues(fArr);
+        }
+        this.C = inputSerializedData.readBool(z9);
+        this.f26633z = inputSerializedData.readInt32(z9);
+    }
+
+    @Override
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeInt32(1151577037);
+        outputSerializedData.writeFloat(this.f26618a);
+        outputSerializedData.writeFloat(this.f26619b);
+        outputSerializedData.writeFloat(this.f26620c);
+        outputSerializedData.writeFloat(this.d);
+        outputSerializedData.writeFloat(this.f26621e);
+        outputSerializedData.writeFloat(this.f26622f);
+        outputSerializedData.writeInt32(this.f26623i);
+        outputSerializedData.writeInt32(this.f26624j);
+        outputSerializedData.writeInt32(this.f26625k);
+        outputSerializedData.writeBool(this.f26626l);
+        outputSerializedData.writeFloat(this.f26627m);
+        outputSerializedData.writeFloat(this.f26628o);
+        float[] fArr = new float[9];
+        Matrix matrix = this.f26629r;
+        if (matrix != null) {
+            matrix.getValues(fArr);
         } else {
-            try {
-                String b10 = new t1.g(new File(str)).b("Xmp");
-                if (b10 != null) {
-                    try {
-                        igVar = m3.d.a(b10);
-                    } catch (d2.v0 | NumberFormatException | XmlPullParserException unused) {
-                        g2.a.l("MotionPhotoXmpParser", "Ignoring unexpected XMP metadata");
-                        igVar = null;
-                    }
-                    if (igVar != null) {
-                        g9.s1 s1Var = (g9.s1) igVar.f2683c;
-                        m3.c cVar2 = null;
-                        for (int i3 = 0; i3 < s1Var.d; i3++) {
-                            m3.c cVar3 = (m3.c) s1Var.get(i3);
-                            String str2 = cVar3.f19061b;
-                            if ("Primary".equalsIgnoreCase(str2)) {
-                                cVar = cVar3;
-                            } else if ("MotionPhoto".equalsIgnoreCase(str2)) {
-                                cVar2 = cVar3;
-                            }
-                        }
-                        if (cVar != null && cVar2 != null && cVar2.f19062c > 0) {
-                            try {
-                                this.f25310b = true;
-                                this.W = true;
-                                this.f25319m = new File(str).length() - cVar2.f19062c;
-                                this.P = igVar.f2682b;
-                            } catch (Exception e11) {
-                                a8.g(e11, true);
-                            }
-                        }
-                    }
-                }
-            } catch (Exception e12) {
-                a8.g(e12, true);
-                this.W = false;
+            for (int i7 = 0; i7 < 9; i7++) {
+                fArr[i7] = 0.0f;
             }
         }
-        StringBuilder sb2 = new StringBuilder("parsed isLivePhoto()=");
-        sb2.append(this.W);
-        sb2.append(" in ");
-        sb2.append(System.currentTimeMillis() - currentTimeMillis);
-        k2.p1.w("ms", sb2);
-    }
-
-    public final void m() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ye.m():void");
-    }
-
-    public final void n(Pair pair) {
-        this.J = ((Integer) pair.first).intValue();
-        this.K = ((Integer) pair.second).intValue();
-    }
-
-    public ye(int i3, String str, int i10, boolean z10, int i11, int i12) {
-        this.Q = -1;
-        this.B = 0;
-        this.C = i3;
-        this.D = 0L;
-        this.I = str;
-        this.F = i11;
-        this.G = i12;
-        this.H = 0L;
-        if (z10) {
-            this.E = i10;
-        } else {
-            this.J = i10;
+        for (int i10 = 0; i10 < 9; i10++) {
+            outputSerializedData.writeFloat(fArr[i10]);
         }
-        this.f25310b = z10;
+        outputSerializedData.writeInt32(this.f26630s);
+        outputSerializedData.writeInt32(this.f26631t);
+        outputSerializedData.writeBool(this.f26632u);
+        outputSerializedData.writeFloat(this.v);
+        if (this.B == null) {
+            outputSerializedData.writeInt32(1450380236);
+        } else {
+            outputSerializedData.writeInt32(178403937);
+            this.B.getValues(fArr);
+            for (int i11 = 0; i11 < 9; i11++) {
+                outputSerializedData.writeFloat(fArr[i11]);
+            }
+        }
+        outputSerializedData.writeBool(this.C);
+        outputSerializedData.writeInt32(this.f26633z);
     }
 }

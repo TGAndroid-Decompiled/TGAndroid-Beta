@@ -1,6 +1,80 @@
 package c8;
 
-import com.google.android.gms.common.api.j;
-public final class e extends j implements n8.e {
-    public static final com.google.android.gms.common.api.e f4242l = new com.google.android.gms.common.api.e("RecaptchaBase.API", new a6.b(1), new Object());
+import java.io.Serializable;
+import java.util.AbstractCollection;
+import java.util.Arrays;
+import java.util.Collection;
+public abstract class e extends AbstractCollection implements Serializable {
+    public static final Object[] f5439a = new Object[0];
+
+    @Override
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean addAll(Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    public abstract int f(Object[] objArr);
+
+    public int i() {
+        throw new UnsupportedOperationException();
+    }
+
+    public int j() {
+        throw new UnsupportedOperationException();
+    }
+
+    public Object[] k() {
+        return null;
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final Object[] toArray() {
+        return toArray(f5439a);
+    }
+
+    @Override
+    public final Object[] toArray(Object[] objArr) {
+        objArr.getClass();
+        int size = size();
+        int length = objArr.length;
+        if (length < size) {
+            Object[] k10 = k();
+            if (k10 == null) {
+                if (length != 0) {
+                    objArr = Arrays.copyOf(objArr, 0);
+                }
+                objArr = Arrays.copyOf(objArr, size);
+            } else {
+                return Arrays.copyOfRange(k10, j(), i(), objArr.getClass());
+            }
+        } else if (length > size) {
+            objArr[size] = null;
+        }
+        f(objArr);
+        return objArr;
+    }
 }

@@ -5,16 +5,16 @@ import android.os.Trace;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class RLottieNative {
-    public final int[] f31545a;
-    public long f31546b;
-    public final AtomicBoolean f31547c = new AtomicBoolean(false);
+    public final int[] f31468a;
+    public long f31469b;
+    public final AtomicBoolean f31470c = new AtomicBoolean(false);
 
-    public RLottieNative(long j10, int[] iArr) {
-        this.f31546b = j10;
-        this.f31545a = iArr;
+    public RLottieNative(long j3, int[] iArr) {
+        this.f31469b = j3;
+        this.f31468a = iArr;
     }
 
-    public static RLottieNative a(String str, String str2, int[] iArr, int[] iArr2, int i3, HashMap hashMap) {
+    public static RLottieNative a(String str, String str2, int[] iArr, int[] iArr2, int i7, HashMap hashMap) {
         String[] strArr;
         int[] iArr3;
         String str3;
@@ -38,7 +38,7 @@ public final class RLottieNative {
             str4 = str;
             str3 = str2;
             iArr4 = iArr2;
-            i10 = i3;
+            i10 = i7;
         } else {
             int[] iArr6 = new int[strArr.length];
             for (int i11 = 0; i11 < strArr.length; i11++) {
@@ -47,7 +47,7 @@ public final class RLottieNative {
             iArr3 = iArr6;
             str3 = str2;
             iArr4 = iArr2;
-            i10 = i3;
+            i10 = i7;
             str4 = str;
         }
         long nCreate = nCreate(str4, str3, iArr5, iArr4, i10, strArr, iArr3);
@@ -75,8 +75,8 @@ public final class RLottieNative {
                 iArr3 = null;
             } else {
                 iArr3 = new int[strArr.length];
-                for (int i3 = 0; i3 < strArr.length; i3++) {
-                    iArr3[i3] = ((Integer) hashMap.get(strArr[i3])).intValue();
+                for (int i7 = 0; i7 < strArr.length; i7++) {
+                    iArr3[i7] = ((Integer) hashMap.get(strArr[i7])).intValue();
                 }
             }
             Trace.beginSection("RLottieNative#createWithJson");
@@ -97,20 +97,20 @@ public final class RLottieNative {
         return null;
     }
 
-    private static native long nCreate(String str, String str2, int[] iArr, int[] iArr2, int i3, String[] strArr, int[] iArr3);
+    private static native long nCreate(String str, String str2, int[] iArr, int[] iArr2, int i7, String[] strArr, int[] iArr3);
 
     private static native long nCreateWithJson(String str, int[] iArr, int[] iArr2, String[] strArr, int[] iArr3);
 
-    private static native void nDestroy(long j10);
+    private static native void nDestroy(long j3);
 
-    private static native int nGetFrame(long j10, int i3, Bitmap bitmap, boolean z10);
+    private static native int nGetFrame(long j3, int i7, Bitmap bitmap, boolean z9);
 
-    public final int c(int i3, Bitmap bitmap, boolean z10) {
-        if (!this.f31547c.get()) {
-            long j10 = this.f31546b;
+    public final int c(int i7, Bitmap bitmap, boolean z9) {
+        if (!this.f31470c.get()) {
+            long j3 = this.f31469b;
             Trace.beginSection("RLottieNative#getFrame");
             try {
-                return nGetFrame(j10, i3, bitmap, z10);
+                return nGetFrame(j3, i7, bitmap, z9);
             } finally {
                 Trace.endSection();
             }
@@ -119,13 +119,13 @@ public final class RLottieNative {
     }
 
     public final void d() {
-        if (this.f31547c.compareAndSet(false, true)) {
-            long j10 = this.f31546b;
-            this.f31546b = 0L;
-            if (j10 != 0) {
+        if (this.f31470c.compareAndSet(false, true)) {
+            long j3 = this.f31469b;
+            this.f31469b = 0L;
+            if (j3 != 0) {
                 Trace.beginSection("RLottieNative#destroy");
                 try {
-                    nDestroy(j10);
+                    nDestroy(j3);
                 } finally {
                     Trace.endSection();
                 }
@@ -135,7 +135,7 @@ public final class RLottieNative {
 
     public final void finalize() {
         try {
-            if (!this.f31547c.get()) {
+            if (!this.f31470c.get()) {
                 d();
             }
         } finally {

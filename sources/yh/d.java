@@ -1,325 +1,214 @@
 package yh;
 
-import android.graphics.SurfaceTexture;
-import android.opengl.GLES20;
-import android.opengl.GLES30;
-import javax.microedition.khronos.egl.EGL10;
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.egl.EGLContext;
-import javax.microedition.khronos.egl.EGLDisplay;
-import javax.microedition.khronos.egl.EGLSurface;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.a8;
+import android.graphics.PorterDuff;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import c8.ha;
+import di.u;
+import java.util.List;
 import org.telegram.messenger.g0;
-public final class d extends Thread {
-    public EGLSurface E;
-    public EGLContext F;
-    public int G;
-    public int H;
-    public int I;
-    public int J;
-    public int K;
-    public int L;
-    public int M;
-    public int[] P;
-    public float Q;
-    public final e R;
-    public final c f59486c;
-    public final SurfaceTexture d;
-    public boolean f59488f;
-    public int h;
-    public int f59489n;
-    public int f59490r;
-    public EGL10 f59492w;
-    public EGLDisplay f59493x;
-    public EGLConfig f59494y;
-    public volatile boolean f59484a = true;
-    public volatile boolean f59485b = false;
-    public final Object f59487e = new Object();
-    public final float f59491s = g0.N(1.2f);
-    public boolean N = true;
-    public int O = 0;
+import org.telegram.messenger.hd;
+import org.telegram.messenger.qp;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.f2;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Cells.y;
+import org.telegram.ui.Components.y8;
+import org.telegram.ui.fe;
+public final class d {
+    public final f2 f59386a;
+    public final TLRPC.Chat f59387b;
+    public final int f59388c;
+    public FrameLayout d;
+    public u f59389e;
+    public LinearLayout f59390f;
+    public TextView f59391g;
+    public ImageView h;
+    public b f59392i;
+    public TLRPC.ChatFull f59393j;
+    public int f59394k;
+    public int f59395l = -1;
+    public c f59396m;
 
-    public d(e eVar, SurfaceTexture surfaceTexture, int i3, int i10, c cVar) {
-        this.R = eVar;
-        this.f59486c = cVar;
-        this.d = surfaceTexture;
-        this.h = i3;
-        this.f59489n = i10;
-        this.f59490r = (int) Utilities.i(((i3 * i10) / 250000.0f) * 1000.0f, 10000.0f, 500.0f);
+    public d(TLRPC.Chat chat, f2 f2Var) {
+        this.f59386a = f2Var;
+        this.f59387b = chat;
+        this.f59388c = f2Var.getCurrentAccount();
     }
 
-    public static void a() {
-        while (true) {
-            int glGetError = GLES20.glGetError();
-            if (glGetError != 0) {
-                a8.d("spoiler gles error " + glGetError);
-            } else {
-                return;
-            }
-        }
-    }
-
-    public final void b() {
-        int[] iArr = this.P;
-        if (iArr != null) {
-            GLES20.glDeleteBuffers(2, iArr, 0);
-        }
-        int[] iArr2 = new int[2];
-        this.P = iArr2;
-        GLES20.glGenBuffers(2, iArr2, 0);
-        for (int i3 = 0; i3 < 2; i3++) {
-            GLES20.glBindBuffer(34962, this.P[i3]);
-            GLES20.glBufferData(34962, this.f59490r * 24, null, 35048);
-        }
-        a();
-    }
-
-    @Override
-    public final void run() {
-        float f10;
-        int i3;
-        int i10;
-        EGL10 egl10 = (EGL10) EGLContext.getEGL();
-        this.f59492w = egl10;
-        EGLDisplay eglGetDisplay = egl10.eglGetDisplay(0);
-        this.f59493x = eglGetDisplay;
-        int i11 = 3;
-        int i12 = 2;
-        if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
-            this.f59484a = false;
+    public final void a(boolean z9, boolean z10) {
+        boolean z11;
+        if (this.d.getVisibility() == 0) {
+            z11 = true;
         } else {
-            if (!this.f59492w.eglInitialize(eglGetDisplay, new int[2])) {
-                this.f59484a = false;
-            } else {
-                EGLConfig[] eGLConfigArr = new EGLConfig[1];
-                if (!this.f59492w.eglChooseConfig(this.f59493x, new int[]{12324, 8, 12323, 8, 12322, 8, 12321, 8, 12352, 64, 12344}, eGLConfigArr, 1, new int[1])) {
-                    this.f59484a = false;
+            z11 = false;
+        }
+        if (z9 != z11) {
+            if (z9) {
+                int i7 = this.f59395l;
+                f2 f2Var = this.f59386a;
+                TLRPC.Chat chat = this.f59387b;
+                if (i7 == -1 && chat != null) {
+                    qp messagesController = f2Var.getMessagesController();
+                    long j3 = chat.f26952id;
+                    this.f59395l = messagesController.f24759e7.getInt("chatPendingRequests" + j3, 0);
+                }
+                int i10 = this.f59394k;
+                int i11 = this.f59395l;
+                if (i10 != i11) {
+                    if (i11 != 0 && chat != null) {
+                        f2Var.getMessagesController().E4(0, chat.f26952id);
+                    }
                 } else {
-                    EGLConfig eGLConfig = eGLConfigArr[0];
-                    this.f59494y = eGLConfig;
-                    EGLContext eglCreateContext = this.f59492w.eglCreateContext(this.f59493x, eGLConfig, EGL10.EGL_NO_CONTEXT, new int[]{12440, 3, 12344});
-                    this.F = eglCreateContext;
-                    if (eglCreateContext == null) {
-                        this.f59484a = false;
-                    } else {
-                        EGLSurface eglCreateWindowSurface = this.f59492w.eglCreateWindowSurface(this.f59493x, this.f59494y, this.d, null);
-                        this.E = eglCreateWindowSurface;
-                        if (eglCreateWindowSurface == null) {
-                            this.f59484a = false;
-                        } else if (!this.f59492w.eglMakeCurrent(this.f59493x, eglCreateWindowSurface, eglCreateWindowSurface, this.F)) {
-                            this.f59484a = false;
-                        } else {
-                            b();
-                            int glCreateShader = GLES20.glCreateShader(35633);
-                            int glCreateShader2 = GLES20.glCreateShader(35632);
-                            if (glCreateShader != 0 && glCreateShader2 != 0) {
-                                GLES20.glShaderSource(glCreateShader, g0.y2(null, 2131624213));
-                                GLES20.glCompileShader(glCreateShader);
-                                int[] iArr = new int[1];
-                                GLES20.glGetShaderiv(glCreateShader, 35713, iArr, 0);
-                                if (iArr[0] == 0) {
-                                    a8.d("SpoilerEffect2, compile vertex shader error: " + GLES20.glGetShaderInfoLog(glCreateShader));
-                                    GLES20.glDeleteShader(glCreateShader);
-                                    this.f59484a = false;
-                                } else {
-                                    GLES20.glShaderSource(glCreateShader2, g0.y2(null, 2131624212));
-                                    GLES20.glCompileShader(glCreateShader2);
-                                    GLES20.glGetShaderiv(glCreateShader2, 35713, iArr, 0);
-                                    if (iArr[0] == 0) {
-                                        a8.d("SpoilerEffect2, compile fragment shader error: " + GLES20.glGetShaderInfoLog(glCreateShader2));
-                                        GLES20.glDeleteShader(glCreateShader2);
-                                        this.f59484a = false;
-                                    } else {
-                                        int glCreateProgram = GLES20.glCreateProgram();
-                                        this.G = glCreateProgram;
-                                        if (glCreateProgram == 0) {
-                                            this.f59484a = false;
-                                        } else {
-                                            GLES20.glAttachShader(glCreateProgram, glCreateShader);
-                                            GLES20.glAttachShader(this.G, glCreateShader2);
-                                            GLES30.glTransformFeedbackVaryings(this.G, new String[]{"outPosition", "outVelocity", "outTime", "outDuration"}, 35980);
-                                            GLES20.glLinkProgram(this.G);
-                                            GLES20.glGetProgramiv(this.G, 35714, iArr, 0);
-                                            if (iArr[0] == 0) {
-                                                a8.d("SpoilerEffect2, link draw program error: " + GLES20.glGetProgramInfoLog(this.G));
-                                                this.f59484a = false;
-                                            } else {
-                                                this.H = GLES20.glGetUniformLocation(this.G, "reset");
-                                                this.I = GLES20.glGetUniformLocation(this.G, "time");
-                                                this.J = GLES20.glGetUniformLocation(this.G, "deltaTime");
-                                                this.K = GLES20.glGetUniformLocation(this.G, "size");
-                                                this.L = GLES20.glGetUniformLocation(this.G, "r");
-                                                this.M = GLES20.glGetUniformLocation(this.G, "seed");
-                                                GLES20.glViewport(0, 0, this.h, this.f59489n);
-                                                GLES20.glEnable(3042);
-                                                GLES20.glBlendFunc(770, 771);
-                                                GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-                                                GLES20.glUseProgram(this.G);
-                                                GLES20.glUniform2f(this.K, this.h, this.f59489n);
-                                                int i13 = this.H;
-                                                if (this.N) {
-                                                    f10 = 1.0f;
-                                                } else {
-                                                    f10 = 0.0f;
-                                                }
-                                                GLES20.glUniform1f(i13, f10);
-                                                GLES20.glUniform1f(this.L, this.f59491s);
-                                                GLES20.glUniform1f(this.M, Utilities.f21386c.nextInt(256) / 256.0f);
-                                            }
-                                        }
-                                    }
-                                }
-                            } else {
-                                this.f59484a = false;
+                    return;
+                }
+            }
+            c cVar = this.f59396m;
+            if (cVar != null) {
+                cVar.d(z9, z10);
+            }
+        }
+    }
+
+    public final FrameLayout b() {
+        if (this.d == null) {
+            f2 f2Var = this.f59386a;
+            FrameLayout frameLayout = new FrameLayout(f2Var.getParentActivity());
+            this.d = frameLayout;
+            frameLayout.setBackground(k6.N0(false));
+            this.d.setOnClickListener(new View.OnClickListener(this) {
+                public final d f59385b;
+
+                {
+                    this.f59385b = this;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            d dVar = this.f59385b;
+                            f2 f2Var2 = dVar.f59386a;
+                            if (dVar.f59392i == null) {
+                                dVar.f59392i = new b(dVar, f2Var2, dVar.f59387b.f26952id);
                             }
-                        }
+                            f2Var2.showDialog(dVar.f59392i);
+                            return;
+                        default:
+                            d dVar2 = this.f59385b;
+                            dVar2.f59386a.getMessagesController().E4(dVar2.f59394k, dVar2.f59387b.f26952id);
+                            dVar2.f59395l = dVar2.f59394k;
+                            dVar2.a(false, true);
+                            return;
                     }
                 }
+            });
+            LinearLayout linearLayout = new LinearLayout(f2Var.getParentActivity());
+            this.f59390f = linearLayout;
+            linearLayout.setOrientation(0);
+            this.d.addView(this.f59390f, ha.d(-1, -1.0f, 48, 0.0f, 0.0f, 100.0f, 0.0f));
+            u uVar = new u(1, f2Var.getParentActivity(), false);
+            this.f59389e = uVar;
+            uVar.setAvatarsTextSize(g0.L(18.0f));
+            y8 y8Var = this.f59389e.f40861a;
+            for (int i7 = 0; i7 < y8Var.f40547c.length; i7++) {
+                y8Var.j(0, 0, null);
             }
-        }
-        long nanoTime = System.nanoTime();
-        while (this.f59484a) {
-            long nanoTime2 = System.nanoTime();
-            double d = (nanoTime2 - nanoTime) / 1.0E9d;
-            e eVar = this.R;
-            double d10 = eVar.f59496a;
-            if (d < d10) {
-                double d11 = d10 - d;
-                long j10 = (long) (d11 * 1000.0d);
-                i3 = i11;
-                i10 = i12;
-                try {
-                    Thread.sleep(j10, (int) ((d11 - (j10 / 1000.0d)) * 1.0E9d));
-                } catch (Exception unused) {
-                }
-                d = this.R.f59496a;
+            this.f59390f.addView(this.f59389e, ha.d(-2, -1.0f, 48, 8.0f, 0.0f, 10.0f, 0.0f));
+            TextView textView = new TextView(f2Var.getParentActivity());
+            this.f59391g = textView;
+            textView.setEllipsize(TextUtils.TruncateAt.END);
+            this.f59391g.setGravity(16);
+            this.f59391g.setSingleLine();
+            this.f59391g.setText((CharSequence) null);
+            r6.V(this.f59391g, k6.Te, f2Var.getResourceProvider());
+            this.f59391g.setTypeface(g0.o());
+            this.f59390f.addView(this.f59391g, ha.d(-1, -1.0f, 48, 0.0f, 0.0f, 0.0f, 0.0f));
+            this.h = new ImageView(f2Var.getParentActivity());
+            int i10 = k6.f28222x7;
+            int themedColor = f2Var.getThemedColor(i10);
+            y h02 = k6.h0(436207615 & themedColor, 1, g0.L(14.0f));
+            if ((themedColor >>> 24) == 255) {
+                r6.R(this.h, h02, null, r6.h(i10, 25), f2Var.getResourceProvider());
             } else {
-                i3 = i11;
-                i10 = i12;
-                double d12 = eVar.f59497b;
-                if (d > d12) {
-                    d = d12;
-                }
+                this.h.setBackground(h02);
             }
-            while (this.f59485b) {
-                try {
-                    Thread.sleep(1000L);
-                } catch (Exception unused2) {
+            r6.t(this.h, k6.Re, f2Var.getResourceProvider(), PorterDuff.Mode.MULTIPLY);
+            this.h.setContentDescription(hd.M0(2131752041, null));
+            this.h.setImageResource(2131231983);
+            this.h.setScaleType(ImageView.ScaleType.CENTER);
+            this.h.setOnClickListener(new View.OnClickListener(this) {
+                public final d f59385b;
+
+                {
+                    this.f59385b = this;
                 }
-            }
-            synchronized (this.f59487e) {
-                try {
-                    if (this.f59488f) {
-                        GLES20.glUniform2f(this.K, this.h, this.f59489n);
-                        GLES20.glViewport(0, 0, this.h, this.f59489n);
-                        int i14 = (int) Utilities.i(((this.h * this.f59489n) / 250000.0f) * 1000.0f, 10000.0f, 500.0f);
-                        if (i14 > this.f59490r) {
-                            this.N = true;
-                            b();
-                        }
-                        this.f59490r = i14;
-                        this.f59488f = false;
+
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            d dVar = this.f59385b;
+                            f2 f2Var2 = dVar.f59386a;
+                            if (dVar.f59392i == null) {
+                                dVar.f59392i = new b(dVar, f2Var2, dVar.f59387b.f26952id);
+                            }
+                            f2Var2.showDialog(dVar.f59392i);
+                            return;
+                        default:
+                            d dVar2 = this.f59385b;
+                            dVar2.f59386a.getMessagesController().E4(dVar2.f59394k, dVar2.f59387b.f26952id);
+                            dVar2.f59395l = dVar2.f59394k;
+                            dVar2.a(false, true);
+                            return;
                     }
-                } catch (Throwable th2) {
-                    throw th2;
+                }
+            });
+            this.d.addView(this.h, ha.d(36, -1.0f, 53, 0.0f, 0.0f, 4.0f, 0.0f));
+            TLRPC.ChatFull chatFull = this.f59393j;
+            if (chatFull != null) {
+                d(chatFull.requests_pending, chatFull.recent_requesters, false);
+            }
+        }
+        return this.d;
+    }
+
+    public final void c(fe feVar) {
+        this.f59396m = feVar;
+    }
+
+    public final void d(int i7, List list, boolean z9) {
+        if (this.d != null) {
+            f2 f2Var = this.f59386a;
+            if (i7 <= 0) {
+                TLRPC.Chat chat = this.f59387b;
+                if (chat != null) {
+                    f2Var.getMessagesController().E4(0, chat.f26952id);
+                    this.f59395l = 0;
+                }
+                a(false, z9);
+                this.f59394k = 0;
+            } else if (this.f59394k != i7) {
+                this.f59394k = i7;
+                this.f59391g.setText(hd.G(i7, "JoinUsersRequests", new Object[0]));
+                a(true, z9);
+                if (list != null && !list.isEmpty()) {
+                    int min = Math.min(3, list.size());
+                    for (int i10 = 0; i10 < min; i10++) {
+                        TLRPC.User a22 = f2Var.getMessagesController().a2((Long) list.get(i10));
+                        if (a22 != null) {
+                            this.f59389e.b(i10, this.f59388c, a22);
+                        }
+                    }
+                    this.f59389e.setCount(min);
+                    this.f59389e.a(true);
                 }
             }
-            float f11 = (float) d;
-            EGL10 egl102 = this.f59492w;
-            EGLDisplay eGLDisplay = this.f59493x;
-            EGLSurface eGLSurface = this.E;
-            if (!egl102.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, this.F)) {
-                this.f59484a = false;
-            } else {
-                float f12 = f11 * 0.65f;
-                float f13 = this.Q + f12;
-                this.Q = f13;
-                if (f13 > 1000.0f) {
-                    this.Q = 0.0f;
-                }
-                GLES20.glClear(16384);
-                GLES20.glBindBuffer(34962, this.P[this.O]);
-                GLES20.glVertexAttribPointer(0, 2, 5126, false, 24, 0);
-                GLES20.glEnableVertexAttribArray(0);
-                GLES20.glVertexAttribPointer(1, 2, 5126, false, 24, 8);
-                GLES20.glEnableVertexAttribArray(1);
-                GLES20.glVertexAttribPointer(2, 1, 5126, false, 24, 16);
-                GLES20.glEnableVertexAttribArray(i10);
-                GLES20.glVertexAttribPointer(3, 1, 5126, false, 24, 20);
-                GLES20.glEnableVertexAttribArray(i3);
-                GLES30.glBindBufferBase(35982, 0, this.P[1 - this.O]);
-                GLES20.glVertexAttribPointer(0, 2, 5126, false, 24, 0);
-                GLES20.glEnableVertexAttribArray(0);
-                GLES20.glVertexAttribPointer(1, 2, 5126, false, 24, 8);
-                GLES20.glEnableVertexAttribArray(1);
-                GLES20.glVertexAttribPointer(2, 1, 5126, false, 24, 16);
-                GLES20.glEnableVertexAttribArray(i10);
-                GLES20.glVertexAttribPointer(3, 1, 5126, false, 24, 20);
-                GLES20.glEnableVertexAttribArray(i3);
-                GLES20.glUniform1f(this.I, this.Q);
-                GLES20.glUniform1f(this.J, f12);
-                GLES30.glBeginTransformFeedback(0);
-                GLES20.glDrawArrays(0, 0, this.f59490r);
-                GLES30.glEndTransformFeedback();
-                if (this.N) {
-                    this.N = false;
-                    GLES20.glUniform1f(this.H, 0.0f);
-                }
-                this.O = 1 - this.O;
-                this.f59492w.eglSwapBuffers(this.f59493x, this.E);
-                a();
-            }
-            g0.r(this.f59486c);
-            g0.h3(this.f59486c);
-            i11 = i3;
-            nanoTime = nanoTime2;
-            i12 = i10;
         }
-        int i15 = i12;
-        int[] iArr2 = this.P;
-        if (iArr2 != null) {
-            try {
-                GLES20.glDeleteBuffers(i15, iArr2, 0);
-            } catch (Exception e10) {
-                a8.g(e10, true);
-            }
-            this.P = null;
-        }
-        int i16 = this.G;
-        if (i16 != 0) {
-            try {
-                GLES20.glDeleteProgram(i16);
-            } catch (Exception e11) {
-                a8.g(e11, true);
-            }
-            this.G = 0;
-        }
-        EGL10 egl103 = this.f59492w;
-        if (egl103 != null) {
-            try {
-                EGLDisplay eGLDisplay2 = this.f59493x;
-                EGLSurface eGLSurface2 = EGL10.EGL_NO_SURFACE;
-                egl103.eglMakeCurrent(eGLDisplay2, eGLSurface2, eGLSurface2, EGL10.EGL_NO_CONTEXT);
-            } catch (Exception e12) {
-                a8.g(e12, true);
-            }
-            try {
-                this.f59492w.eglDestroySurface(this.f59493x, this.E);
-            } catch (Exception e13) {
-                a8.g(e13, true);
-            }
-            try {
-                this.f59492w.eglDestroyContext(this.f59493x, this.F);
-            } catch (Exception e14) {
-                a8.g(e14, true);
-            }
-        }
-        try {
-            this.d.release();
-        } catch (Exception e15) {
-            a8.g(e15, true);
-        }
-        a();
     }
 }

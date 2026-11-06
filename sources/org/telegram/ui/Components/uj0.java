@@ -1,32 +1,45 @@
 package org.telegram.ui.Components;
-public final class uj0 {
-    public float f38775a;
-    public float f38776b;
-    public float f38777c;
-    public float d;
-    public float f38778e;
-    public boolean f38779f;
 
-    public final void a(float f10, float f11, float f12, float f13) {
-        boolean z10;
-        this.f38775a = f10;
-        this.d = f12;
-        this.f38776b = f10 - Math.max(0.0f, Math.min(f11, Math.max(0.0f, f12 - f13)));
-        this.f38777c = Math.max(f10, f12);
-        if (this.f38776b <= f13 + 0.5f) {
-            z10 = true;
-        } else {
-            z10 = false;
+import android.view.View;
+import android.view.ViewParent;
+import android.widget.FrameLayout;
+import androidx.recyclerview.widget.RecyclerView;
+public final class uj0 extends FrameLayout {
+    public View f38681a;
+
+    @Override
+    public final void onMeasure(int i7, int i10) {
+        View view = this.f38681a;
+        if (view == null) {
+            ViewParent parent = getParent();
+            while (true) {
+                if (parent instanceof View) {
+                    if (parent instanceof RecyclerView) {
+                        view = (RecyclerView) parent;
+                        break;
+                    }
+                    parent = parent.getParent();
+                } else {
+                    view = null;
+                    break;
+                }
+            }
         }
-        this.f38779f = z10;
-        this.f38778e = 0.0f;
+        int i11 = 0;
+        if (view != null) {
+            i11 = Math.max(0, (view.getMeasuredHeight() - view.getPaddingTop()) - view.getPaddingBottom());
+        }
+        if (i11 > 0) {
+            i10 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), i10);
     }
 
-    public final float b() {
-        if (this.f38779f) {
-            return this.f38777c;
+    public void setViewportView(View view) {
+        if (this.f38681a == view) {
+            return;
         }
-        float f10 = this.f38776b;
-        return ((this.f38777c - f10) * this.f38778e) + f10;
+        this.f38681a = view;
+        requestLayout();
     }
 }

@@ -1,13 +1,13 @@
 package zd;
-public final class e extends hd.c {
-    public Throwable f60389a;
-    public Object f60390b;
-    public int f60391c;
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f60390b = obj;
-        this.f60391c |= Integer.MIN_VALUE;
-        return v.a(null, null, null, this);
+import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
+public final class e {
+    public static final AtomicIntegerFieldUpdater f59938b = AtomicIntegerFieldUpdater.newUpdater(e.class, "notCompletedCount$volatile");
+    public final e0[] f59939a;
+    private volatile int notCompletedCount$volatile;
+
+    public e(e0[] e0VarArr) {
+        this.f59939a = e0VarArr;
+        this.notCompletedCount$volatile = e0VarArr.length;
     }
 }

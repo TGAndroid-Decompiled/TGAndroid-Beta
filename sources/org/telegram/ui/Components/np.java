@@ -7,42 +7,42 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class np extends Drawable {
-    public final Drawable f36598a;
-    public Path f36599b;
-    public final RectF f36600c;
+    public final Drawable f36460a;
+    public Path f36461b;
+    public final RectF f36462c;
     public final RectF d;
-    public boolean f36601e;
-    public final float[] f36602f;
+    public boolean f36463e;
+    public final float[] f36464f;
 
     public np(Drawable drawable) {
-        ah.a aVar = new ah.a(this, 7);
-        this.f36600c = new RectF();
+        a5.b bVar = new a5.b(this, 6);
+        this.f36462c = new RectF();
         this.d = new RectF();
-        this.f36601e = false;
-        this.f36602f = new float[8];
-        Drawable drawable2 = this.f36598a;
+        this.f36463e = false;
+        this.f36464f = new float[8];
+        Drawable drawable2 = this.f36460a;
         if (drawable2 != null) {
             drawable2.setCallback(null);
         }
-        this.f36598a = drawable;
+        this.f36460a = drawable;
         if (drawable != null) {
             drawable.setBounds(getBounds());
-            this.f36598a.setCallback(aVar);
+            this.f36460a.setCallback(bVar);
         }
     }
 
     public final void a() {
-        if (!this.f36601e) {
+        if (!this.f36463e) {
             return;
         }
-        Path path = this.f36599b;
+        Path path = this.f36461b;
         if (path == null) {
-            this.f36599b = new Path();
+            this.f36461b = new Path();
         } else {
             path.rewind();
         }
         Rect bounds = getBounds();
-        RectF rectF = this.f36600c;
+        RectF rectF = this.f36462c;
         rectF.set(bounds);
         float f10 = rectF.left;
         RectF rectF2 = this.d;
@@ -50,32 +50,32 @@ public final class np extends Drawable {
         rectF.top += rectF2.top;
         rectF.right -= rectF2.right;
         rectF.bottom -= rectF2.bottom;
-        this.f36599b.addRoundRect(rectF, this.f36602f, Path.Direction.CW);
+        this.f36461b.addRoundRect(rectF, this.f36464f, Path.Direction.CW);
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Drawable drawable = this.f36598a;
+        Drawable drawable = this.f36460a;
         if (drawable != null) {
             drawable.setBounds(getBounds());
-            if (!this.f36601e) {
+            if (!this.f36463e) {
                 canvas.save();
                 canvas.clipRect(getBounds());
-                this.f36598a.draw(canvas);
+                this.f36460a.draw(canvas);
                 canvas.restore();
                 return;
             }
             canvas.save();
             a();
-            canvas.clipPath(this.f36599b);
-            this.f36598a.draw(canvas);
+            canvas.clipPath(this.f36461b);
+            this.f36460a.draw(canvas);
             canvas.restore();
         }
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        Drawable drawable = this.f36598a;
+        Drawable drawable = this.f36460a;
         if (drawable != null) {
             return drawable.getIntrinsicHeight();
         }
@@ -84,7 +84,7 @@ public final class np extends Drawable {
 
     @Override
     public final int getIntrinsicWidth() {
-        Drawable drawable = this.f36598a;
+        Drawable drawable = this.f36460a;
         if (drawable != null) {
             return drawable.getIntrinsicWidth();
         }
@@ -97,16 +97,16 @@ public final class np extends Drawable {
     }
 
     @Override
-    public final void setAlpha(int i3) {
-        Drawable drawable = this.f36598a;
+    public final void setAlpha(int i7) {
+        Drawable drawable = this.f36460a;
         if (drawable != null) {
-            drawable.setAlpha(i3);
+            drawable.setAlpha(i7);
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        Drawable drawable = this.f36598a;
+        Drawable drawable = this.f36460a;
         if (drawable != null) {
             drawable.setColorFilter(colorFilter);
         }

@@ -1,35 +1,64 @@
 package org.telegram.ui.Components;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.view.MotionEvent;
-import android.widget.ImageView;
-public final class vv extends ImageView {
-    public final ey f39806a;
+import android.view.ViewGroup;
+public final class vv extends c5.k {
+    public final gy f39696w0;
 
-    public vv(ey eyVar, Context context) {
+    public vv(gy gyVar, Context context) {
         super(context);
-        this.f39806a = eyVar;
+        this.f39696w0 = gyVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        fx fxVar;
-        int action = motionEvent.getAction();
-        ey eyVar = this.f39806a;
-        if (action == 0) {
-            eyVar.Q1 = true;
-            eyVar.R1 = false;
-            org.telegram.messenger.g0.i3(new o2(eyVar, 350, 6), 350);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            eyVar.Q1 = false;
-            if (!eyVar.R1 && (fxVar = eyVar.f33582u1) != null && fxVar.k()) {
-                try {
-                    eyVar.f33595y.performHapticFeedback(3);
-                } catch (Exception unused) {
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f39696w0.f34084f) {
+            return false;
+        }
+        if (getParent() != null) {
+            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+        }
+        try {
+            return super.onInterceptTouchEvent(motionEvent);
+        } catch (IllegalArgumentException unused) {
+            return false;
+        }
+    }
+
+    @Override
+    public final void x(int i7, boolean z9) {
+        boolean z10;
+        gy gyVar = this.f39696w0;
+        kw kwVar = gyVar.I;
+        if (i7 == 1) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        gy.a(gyVar, z10);
+        if (i7 == getCurrentItem()) {
+            if (i7 == 0) {
+                gyVar.Q0[1] = 0;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(kwVar, ViewGroup.TRANSLATION_Y, 0.0f);
+                ofFloat.setDuration(150L);
+                ofFloat.setInterpolator(xq.h);
+                ofFloat.start();
+                gyVar.G(1, 0);
+                if (kwVar != null) {
+                    kwVar.j(0, true);
+                    return;
                 }
+                return;
+            } else if (i7 == 1) {
+                gyVar.f34091h0.y0(0);
+                return;
+            } else {
+                gyVar.D0.y0(1);
+                return;
             }
         }
-        super.onTouchEvent(motionEvent);
-        return true;
+        super.x(i7, z9);
     }
 }
