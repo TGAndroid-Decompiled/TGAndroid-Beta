@@ -15545,16 +15545,25 @@ public class an extends org.telegram.ui.ActionBar.f2 implements org.telegram.mes
     public final void pb() {
         org.telegram.ui.Cells.q1 q1Var = null;
         int i7 = 0;
-        for (int i10 = 0; i10 < this.f44037z0.getChildCount(); i10++) {
-            View childAt = this.f44037z0.getChildAt(i10);
+        int i10 = 0;
+        while (true) {
+            if (i7 >= this.f44037z0.getChildCount()) {
+                break;
+            }
+            View childAt = this.f44037z0.getChildAt(i7);
+            if ((childAt instanceof org.telegram.ui.Cells.z1) && childAt.getBottom() > 0 && childAt.getTop() < this.f44037z0.getHeight()) {
+                q1Var = childAt;
+                break;
+            }
             if (childAt instanceof org.telegram.ui.Cells.q1) {
                 org.telegram.ui.Cells.q1 q1Var2 = (org.telegram.ui.Cells.q1) childAt;
                 int min = Math.min(q1Var2.getBottom(), this.f44037z0.getHeight()) - Math.max(0, q1Var2.getTop());
-                if (min > i7) {
+                if (min > i10) {
                     q1Var = q1Var2;
-                    i7 = min;
+                    i10 = min;
                 }
             }
+            i7++;
         }
         if (q1Var != null) {
             dj djVar = this.B0;

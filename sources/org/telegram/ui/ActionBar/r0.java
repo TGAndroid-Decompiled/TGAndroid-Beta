@@ -537,7 +537,7 @@ public class r0 extends FrameLayout {
                             }
                             i5Var.f27595f = popupLayout;
                         }
-                        i5Var.h(popupLayout, org.telegram.messenger.g0.L(5.0f));
+                        i5Var.i(popupLayout, org.telegram.messenger.g0.L(5.0f));
                         popupLayout.setTranslationX(0.0f);
                         popupLayout.setTranslationY(0.0f);
                         popupLayout.setAlpha(1.0f);
@@ -560,7 +560,7 @@ public class r0 extends FrameLayout {
                             for (int i7 = 1; i7 < swipeBack.getChildCount(); i7++) {
                                 if (swipeBack.getChildAt(i7) instanceof ActionBarPopupWindow$ActionBarPopupWindowLayout) {
                                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout3 = (ActionBarPopupWindow$ActionBarPopupWindowLayout) swipeBack.getChildAt(i7);
-                                    i5Var.h(actionBarPopupWindow$ActionBarPopupWindowLayout3, 0);
+                                    i5Var.i(actionBarPopupWindow$ActionBarPopupWindowLayout3, 0);
                                     r6.d0(actionBarPopupWindow$ActionBarPopupWindowLayout3, false);
                                     k60.U(actionBarPopupWindow$ActionBarPopupWindowLayout3, k6.r1(0.06f, k6.w0(k6.E8, i5Var.d.getMenuResourcesProvider())));
                                 }
@@ -599,7 +599,7 @@ public class r0 extends FrameLayout {
                         i5Var.setVisibility(0);
                         i5Var.f27601y = true;
                         i5Var.F = SystemClock.uptimeMillis();
-                        i5Var.f();
+                        i5Var.g();
                         subMenuOverlayHost.d(i5Var, this);
                         i5Var.b();
                         if (!i5Var.D) {

@@ -2435,7 +2435,6 @@ public class LaunchActivity extends g5 implements org.telegram.ui.ActionBar.n4, 
         w9.b bVar;
         String str2;
         String str3;
-        String str4;
         ActionBarLayout actionBarLayout;
         Intent intent;
         Uri data;
@@ -2519,8 +2518,8 @@ public class LaunchActivity extends g5 implements org.telegram.ui.ActionBar.n4, 
             final String packageName = context.getPackageName();
             ?? r72 = new AppOpsManager.OnOpChangedListener() {
                 @Override
-                public final void onOpChanged(String str5, String str6) {
-                    if (packageName.equals(str6)) {
+                public final void onOpChanged(String str4, String str5) {
+                    if (packageName.equals(str5)) {
                         g0.h3(t0Var);
                     }
                 }
@@ -2685,22 +2684,22 @@ public class LaunchActivity extends g5 implements org.telegram.ui.ActionBar.n4, 
         }
         W(intent2, false, z9, false, null, true, true);
         try {
-            String str5 = Build.DISPLAY;
-            String str6 = Build.USER;
+            String str4 = Build.DISPLAY;
+            String str5 = Build.USER;
+            if (str4 == null) {
+                str2 = "";
+            } else {
+                str2 = str4.toLowerCase();
+            }
             if (str5 == null) {
                 str3 = "";
             } else {
-                str3 = str5.toLowerCase();
-            }
-            if (str6 == null) {
-                str4 = "";
-            } else {
-                str4 = str3.toLowerCase();
+                str3 = str2.toLowerCase();
             }
             if (org.telegram.messenger.r2.f25199a) {
-                org.telegram.messenger.a8.b("OS name " + str3 + " " + str4);
+                org.telegram.messenger.a8.b("OS name " + str2 + " " + str3);
             }
-            if ((str3.contains("flyme") || str4.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
+            if ((str2.contains("flyme") || str3.contains("flyme")) && Build.VERSION.SDK_INT <= 24) {
                 org.telegram.messenger.g0.f22551y = true;
                 View rootView = getWindow().getDecorView().getRootView();
                 ViewTreeObserver viewTreeObserver = rootView.getViewTreeObserver();
@@ -2736,8 +2735,7 @@ public class LaunchActivity extends g5 implements org.telegram.ui.ActionBar.n4, 
             bVar.b("model", Build.MODEL);
             bVar.b("manufacturer", Build.MANUFACTURER);
             if (Build.VERSION.SDK_INT >= 31) {
-                str2 = Build.SOC_MODEL;
-                bVar.b("soc_model", str2);
+                bVar.b("soc_model", org.telegram.messenger.ch.i());
                 bVar.b("soc_manufacturer", Build.SOC_MANUFACTURER);
             }
             bVar.b("device", Build.DEVICE);
