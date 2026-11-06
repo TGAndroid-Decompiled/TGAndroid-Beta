@@ -61,7 +61,7 @@ public final class p7 extends View {
         i6Var.s(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(3.5f), 0);
         i6Var.M = org.telegram.messenger.g0.f22537q.x;
         i6Var.u(-1);
-        i6Var.f34516b = 17;
+        i6Var.f34477b = 17;
         this.H = new n7(this, 0);
         this.f4528y = new a4(5, this, anVar);
     }

@@ -114,7 +114,7 @@ public final class a2 implements View.OnClickListener {
             case 3:
                 c61 c61Var = (c61) obj;
                 for (int i12 = 0; i12 < 2; i12++) {
-                    org.telegram.ui.Cells.v0 v0Var = ((org.telegram.ui.Cells.v0[]) c61Var.f44685b)[i12];
+                    org.telegram.ui.Cells.v0 v0Var = ((org.telegram.ui.Cells.v0[]) c61Var.f44706b)[i12];
                     org.telegram.ui.Cells.u0 u0Var = (org.telegram.ui.Cells.u0) v0Var.d;
                     if (v0Var == view) {
                         z9 = true;
@@ -155,12 +155,12 @@ public final class a2 implements View.OnClickListener {
                 ArrayList arrayList = new ArrayList();
                 an0 an0Var = new an0(hashMap, arrayList, 0, true, (an) f2Var);
                 sh shVar = new sh(diVar, hashMap, arrayList);
-                xm0 xm0Var = an0Var.f44025a;
-                xm0Var.f51920s0 = shVar;
-                xm0 xm0Var2 = an0Var.f44026b;
-                xm0Var2.f51920s0 = shVar;
-                xm0Var.f51921t0 = new ym0(an0Var, 1);
-                xm0Var2.f51921t0 = new ym0(an0Var, 2);
+                xm0 xm0Var = an0Var.f44050a;
+                xm0Var.f51937s0 = shVar;
+                xm0 xm0Var2 = an0Var.f44051b;
+                xm0Var2.f51937s0 = shVar;
+                xm0Var.f51938t0 = new ym0(an0Var, 1);
+                xm0Var2.f51938t0 = new ym0(an0Var, 2);
                 int i13 = diVar.M3;
                 boolean z13 = diVar.N3;
                 xm0Var.k0(i13, z13);
@@ -175,7 +175,7 @@ public final class a2 implements View.OnClickListener {
             default:
                 h90 h90Var = (h90) obj;
                 if (!z10) {
-                    org.telegram.ui.Cells.r8 r8Var = h90Var.f46281n;
+                    org.telegram.ui.Cells.r8 r8Var = h90Var.f46301n;
                     if (r8Var != null && r8Var.f30205e.h) {
                         int i14 = -h90Var.M;
                         h90Var.M = i14;
@@ -186,14 +186,14 @@ public final class a2 implements View.OnClickListener {
                     boolean z14 = r8Var2.f30205e.h;
                     r8Var2.setChecked(!z14);
                     h90Var.e0(z14);
-                    org.telegram.ui.Cells.r8 r8Var3 = h90Var.f46281n;
+                    org.telegram.ui.Cells.r8 r8Var3 = h90Var.f46301n;
                     if (r8Var3 != null) {
                         if (r8Var2.f30205e.h) {
                             r8Var3.setChecked(false);
-                            h90Var.f46281n.setCheckBoxIcon(2131232513);
-                            h90Var.f46282r.setVisibility(8);
+                            h90Var.f46301n.setCheckBoxIcon(2131232513);
+                            h90Var.f46302r.setVisibility(8);
                             return;
-                        } else if (h90Var.f46279e == null) {
+                        } else if (h90Var.f46299e == null) {
                             r8Var3.setCheckBoxIcon(0);
                             return;
                         } else {

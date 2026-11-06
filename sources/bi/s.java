@@ -86,17 +86,17 @@ public final class s extends org.telegram.ui.ActionBar.j {
                         d0Var.dismiss();
                         return;
                     }
-                    d0Var.f15507r1.d.f35167f3.O(false);
+                    d0Var.f15507r1.d.f36781f3.O(false);
                     d0Var.f15502k1.E(0);
                     return;
                 } else if (i7 == 3) {
                     d0Var.f15501j1.a(true, true);
                     d0Var.u0(false);
                     d0Var.J1 = null;
-                    d0Var.f15513x1.f35167f3.O(true);
-                    d0Var.f15511v1.f37557r.getText().clear();
-                    d0Var.f15511v1.f37557r.requestFocus();
-                    org.telegram.messenger.g0.K3(d0Var.f15511v1.f37557r);
+                    d0Var.f15513x1.f36781f3.O(true);
+                    d0Var.f15511v1.f37447r.getText().clear();
+                    d0Var.f15511v1.f37447r.requestFocus();
+                    org.telegram.messenger.g0.K3(d0Var.f15511v1.f37447r);
                     return;
                 } else {
                     return;
@@ -115,9 +115,9 @@ public final class s extends org.telegram.ui.ActionBar.j {
                     TextUtils.isEmpty(d0Var2.I1);
                     d0Var2.I1 = null;
                     d0Var2.f15512w1.h(0L, d0Var2.l1, 0L, 0L, null, false, null, true);
-                    d0Var2.f15510u1.f37557r.getText().clear();
-                    d0Var2.f15510u1.f37557r.requestFocus();
-                    org.telegram.messenger.g0.K3(d0Var2.f15510u1.f37557r);
+                    d0Var2.f15510u1.f37447r.getText().clear();
+                    d0Var2.f15510u1.f37447r.requestFocus();
+                    org.telegram.messenger.g0.K3(d0Var2.f15510u1.f37447r);
                     return;
                 } else {
                     return;
@@ -125,7 +125,7 @@ public final class s extends org.telegram.ui.ActionBar.j {
             case 10:
                 ii.d0 d0Var3 = ((ii.y) obj).f15614n;
                 if (i7 == -1) {
-                    d0Var3.f15507r1.d.f35167f3.O(false);
+                    d0Var3.f15507r1.d.f36781f3.O(false);
                     d0Var3.f15502k1.E(0);
                     return;
                 }
@@ -301,7 +301,7 @@ public final class s extends org.telegram.ui.ActionBar.j {
                 org.telegram.ui.y6 y6Var = (org.telegram.ui.y6) obj;
                 if (i7 == -1) {
                     if (org.telegram.ui.y6.e0(y6Var).s()) {
-                        ci.c cVar2 = y6Var.f52091d0;
+                        ci.c cVar2 = y6Var.f52112d0;
                         if (cVar2 != null) {
                             cVar2.d();
                         }

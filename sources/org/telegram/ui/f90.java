@@ -23,7 +23,7 @@ public final class f90 extends org.telegram.ui.Cells.k3 {
         boolean isEmpty = TextUtils.isEmpty(editable);
         h90 h90Var = this.F;
         if (isEmpty) {
-            h90Var.f46283s.setText("");
+            h90Var.f46303s.setText("");
             return;
         }
         try {
@@ -34,7 +34,7 @@ public final class f90 extends org.telegram.ui.Cells.k3 {
                 setText(Long.toString(parseLong));
                 this.E = false;
             }
-            TextView textView = h90Var.f46283s;
+            TextView textView = h90Var.f46303s;
             if (h90Var.getConnectionsManager().isTestBackend()) {
                 i7 = 2131746153;
             } else {

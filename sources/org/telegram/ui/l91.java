@@ -4,13 +4,13 @@ import android.app.Activity;
 import android.view.View;
 import java.util.HashMap;
 public final class l91 extends View {
-    public final HashMap f47453a;
-    public final m91 f47454b;
+    public final HashMap f47480a;
+    public final m91 f47481b;
 
     public l91(m91 m91Var, Activity activity) {
         super(activity);
-        this.f47454b = m91Var;
-        this.f47453a = new HashMap();
+        this.f47481b = m91Var;
+        this.f47480a = new HashMap();
     }
 
     @Override
@@ -22,16 +22,16 @@ public final class l91 extends View {
         int L;
         boolean z9;
         int i14;
-        m91 m91Var = this.f47454b;
+        m91 m91Var = this.f47481b;
         v91 v91Var = m91Var.d;
         int size = View.MeasureSpec.getSize(i7);
         int L2 = org.telegram.messenger.g0.L(64.0f);
         int i15 = 0;
         int i16 = 0;
         for (int i17 = 0; i17 < m91Var.F().size(); i17++) {
-            if (m91Var.F().get(i17) != null && ((n91) m91Var.F().get(i17)).f47974c != null) {
-                String str = ((n91) m91Var.F().get(i17)).f47974c.title;
-                HashMap hashMap = this.f47453a;
+            if (m91Var.F().get(i17) != null && ((n91) m91Var.F().get(i17)).f48000c != null) {
+                String str = ((n91) m91Var.F().get(i17)).f48000c.title;
+                HashMap hashMap = this.f47480a;
                 Boolean bool = (Boolean) hashMap.get(str);
                 if (bool == null) {
                     int i18 = 50;
@@ -70,10 +70,10 @@ public final class l91 extends View {
                     i12 = 0;
                 }
                 int L4 = org.telegram.messenger.g0.L(i12 + 64);
-                if (((n91) m91Var.F().get(i17)).f47974c.f27004id == 1) {
+                if (((n91) m91Var.F().get(i17)).f48000c.f27004id == 1) {
                     L2 = L4;
                 }
-                if (((n91) m91Var.F().get(i17)).f47974c.hidden) {
+                if (((n91) m91Var.F().get(i17)).f48000c.hidden) {
                     i15++;
                 }
                 i16 += L4;

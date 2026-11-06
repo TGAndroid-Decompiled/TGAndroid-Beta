@@ -36,9 +36,9 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.Components.ac;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.f41;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.vb;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.wb;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.zg0;
@@ -79,7 +79,7 @@ public abstract class u0 extends FrameLayout implements ls {
     public boolean f9819f0;
     public final a0 f9820g0;
     public final v4.b0 h;
-    public final f41 f9821n;
+    public final k41 f9821n;
     public final ArrayList f9822r;
     public final ArrayList f9823s;
     public final HashMap f9824w;
@@ -119,7 +119,7 @@ public abstract class u0 extends FrameLayout implements ls {
                 int i11 = 0;
                 g2 g2Var2 = g2Var;
                 ArrayList arrayList = (ArrayList) obj;
-                f41 f41Var = (f41) obj2;
+                k41 k41Var = (k41) obj2;
                 switch (i10) {
                     case 0:
                         ArrayList arrayList2 = g2Var2.f9822r;
@@ -134,7 +134,7 @@ public abstract class u0 extends FrameLayout implements ls {
                             s0 s0Var = (s0) arrayList2.get(i11);
                             if (s0Var.f9737b || !s0Var.f9739e || s0Var.f9741g >= j3) {
                                 int i12 = m0.f9342b;
-                                r31 K = r31.K(m0.class);
+                                w31 K = w31.K(m0.class);
                                 K.G = s0Var;
                                 arrayList.add(K);
                             }
@@ -145,7 +145,7 @@ public abstract class u0 extends FrameLayout implements ls {
                         ArrayList arrayList3 = g2Var2.f9823s;
                         while (i11 < arrayList3.size()) {
                             int i13 = q0.f9621b;
-                            r31 K2 = r31.K(q0.class);
+                            w31 K2 = w31.K(q0.class);
                             K2.G = (t0) arrayList3.get(i11);
                             arrayList.add(K2);
                             i11++;
@@ -156,13 +156,13 @@ public abstract class u0 extends FrameLayout implements ls {
         }, new b(), 1);
         this.f9816e = hcVar;
         q1Var.setAdapter(hcVar);
-        hcVar.f33473r = false;
+        hcVar.f35132r = false;
         q1Var.setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(7.5f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(7.5f));
         q1Var.setClipToPadding(false);
         addView(q1Var, ha.d(-1, -1.0f, 87, 0.0f, 0.0f, 0.0f, 34.0f));
         q1Var.setOnItemClickListener(new f0(g2Var, viewGroup, p9Var, 0));
         g0 g0Var = new g0(g2Var);
-        g0Var.f56954m = false;
+        g0Var.f56979m = false;
         g0Var.C = false;
         xq xqVar = xq.h;
         g0Var.o(xqVar);
@@ -181,7 +181,7 @@ public abstract class u0 extends FrameLayout implements ls {
         v4.b0 b0Var2 = new v4.b0(0, false);
         this.h = b0Var2;
         e61Var.setLayoutManager(b0Var2);
-        f41 f41Var = new f41(e61Var, context, i7, 0, false, new v10() {
+        k41 k41Var = new k41(e61Var, context, i7, 0, false, new v10() {
             @Override
             public final void a(Object obj, Object obj2) {
                 long j3;
@@ -189,7 +189,7 @@ public abstract class u0 extends FrameLayout implements ls {
                 int i11 = 0;
                 g2 g2Var2 = g2Var;
                 ArrayList arrayList = (ArrayList) obj;
-                f41 f41Var2 = (f41) obj2;
+                k41 k41Var2 = (k41) obj2;
                 switch (i10) {
                     case 0:
                         ArrayList arrayList2 = g2Var2.f9822r;
@@ -204,7 +204,7 @@ public abstract class u0 extends FrameLayout implements ls {
                             s0 s0Var = (s0) arrayList2.get(i11);
                             if (s0Var.f9737b || !s0Var.f9739e || s0Var.f9741g >= j3) {
                                 int i12 = m0.f9342b;
-                                r31 K = r31.K(m0.class);
+                                w31 K = w31.K(m0.class);
                                 K.G = s0Var;
                                 arrayList.add(K);
                             }
@@ -215,7 +215,7 @@ public abstract class u0 extends FrameLayout implements ls {
                         ArrayList arrayList3 = g2Var2.f9823s;
                         while (i11 < arrayList3.size()) {
                             int i13 = q0.f9621b;
-                            r31 K2 = r31.K(q0.class);
+                            w31 K2 = w31.K(q0.class);
                             K2.G = (t0) arrayList3.get(i11);
                             arrayList.add(K2);
                             i11++;
@@ -224,15 +224,15 @@ public abstract class u0 extends FrameLayout implements ls {
                 }
             }
         }, null);
-        this.f9821n = f41Var;
-        e61Var.setAdapter(f41Var);
-        f41Var.f33473r = false;
+        this.f9821n = k41Var;
+        e61Var.setAdapter(k41Var);
+        k41Var.f35132r = false;
         e61Var.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
         e61Var.setClipToPadding(false);
         addView(e61Var, ha.d(-1, 26.0f, 87, 0.0f, 0.0f, 0.0f, 9.66f));
         e61Var.setOnItemClickListener(new a1.c(g2Var, 29));
         v4.k kVar = new v4.k();
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.C = false;
         kVar.o(xqVar);
         kVar.n(350L);
@@ -245,7 +245,7 @@ public abstract class u0 extends FrameLayout implements ls {
         u0Var.R = l10.longValue();
         cc I = new org.telegram.ui.Components.hc(u0Var.f9811b, new b()).I(2131624226, u0Var.getStarsToastTitle(), u0Var.getStarsToastSubtitle());
         boolean z9 = false;
-        I.f32531r = false;
+        I.f32535r = false;
         I.k(true);
         long j3 = 0;
         u0Var.R = 0L;
@@ -939,35 +939,35 @@ public abstract class u0 extends FrameLayout implements ls {
         int[] iArr;
         cc ccVar = this.W;
         a0 a0Var = this.f9815d0;
-        if (ccVar == null || !ccVar.f32525l) {
+        if (ccVar == null || !ccVar.f32529l) {
             b bVar = new b();
             wb wbVar = new wb(getContext(), bVar);
             this.f9810a0 = wbVar;
             wbVar.c(2131624226, new String[0]);
-            this.f9810a0.f39940b.setText(getStarsToastTitle());
+            this.f9810a0.f39947b.setText(getStarsToastTitle());
             ac acVar = new ac(getContext(), bVar, true, false);
             this.f9812b0 = acVar;
             acVar.e(hd.M0(2131745024, null));
-            this.f9812b0.f31748b = new z((g2) this, 0);
+            this.f9812b0.f31760b = new z((g2) this, 0);
             vb vbVar = new vb(getContext(), bVar);
             this.f9814c0 = vbVar;
-            vbVar.f38913b = 5000L;
+            vbVar.f38910b = 5000L;
             vbVar.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.uj, bVar));
             this.f9812b0.addView(this.f9814c0, ha.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-            this.f9812b0.f31750e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
+            this.f9812b0.f31762e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
             this.f9810a0.setButton(this.f9812b0);
             cc f10 = cc.f(this.f9811b, this.f9810a0, -1);
             this.W = f10;
-            f10.f32531r = false;
+            f10.f32535r = false;
             f10.k(true);
             this.W.v = a0Var;
         }
         this.R++;
         h(getDefaultPeerId());
         i(getTotalMyStars(), (int) this.R, getDefaultPeerId());
-        this.f9810a0.f39940b.setText(getStarsToastTitle());
-        this.f9810a0.f39941c.setText(getStarsToastSubtitle());
-        this.f9814c0.f38913b = 5000L;
+        this.f9810a0.f39947b.setText(getStarsToastTitle());
+        this.f9810a0.f39948c.setText(getStarsToastSubtitle());
+        this.f9814c0.f38910b = 5000L;
         org.telegram.messenger.g0.r(a0Var);
         org.telegram.messenger.g0.i3(a0Var, 5000L);
         long j3 = this.R;

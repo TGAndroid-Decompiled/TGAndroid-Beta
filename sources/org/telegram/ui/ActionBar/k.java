@@ -45,7 +45,7 @@ import org.telegram.ui.Components.kn;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.rt0;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.qu0;
+import org.telegram.ui.ru0;
 public class k extends FrameLayout implements te.b, a6, s4 {
     public CharSequence A0;
     public int A1;
@@ -112,7 +112,7 @@ public class k extends FrameLayout implements te.b, a6, s4 {
     public Runnable f27656d1;
     public ImageView f27657e;
     public View.OnClickListener f27658e0;
-    public qu0 f27659e1;
+    public ru0 f27659e1;
     public l9 f27660f;
     public String f27661f0;
     public AnimatorSet f27662f1;
@@ -942,7 +942,7 @@ public class k extends FrameLayout implements te.b, a6, s4 {
             transitionSet.addTransition(new i(0));
             this.f27704z0 = false;
             transitionSet.setDuration(220L);
-            transitionSet.setInterpolator((TimeInterpolator) xq.f40310f);
+            transitionSet.setInterpolator((TimeInterpolator) xq.f40329f);
             TransitionManager.beginDelayedTransition(this, transitionSet);
         }
     }
@@ -1117,7 +1117,7 @@ public class k extends FrameLayout implements te.b, a6, s4 {
         if (knVar == null) {
             return;
         }
-        gn gnVar = knVar.f35347e;
+        gn gnVar = knVar.f35350e;
         if (gnVar != null && gnVar.getVisibility() == 0) {
             z10 = true;
         } else {
@@ -1127,9 +1127,9 @@ public class k extends FrameLayout implements te.b, a6, s4 {
         te.c cVar = this.l1;
         if (z9) {
             if (cVar.h) {
-                f10 = cVar.f55377g;
+                f10 = cVar.f55402g;
             } else {
-                f10 = cVar.f55376f;
+                f10 = cVar.f55401f;
             }
             float f11 = min;
             if (f10 != f11) {
@@ -1192,9 +1192,9 @@ public class k extends FrameLayout implements te.b, a6, s4 {
         this.f27678o1.a(z9, this.f27690t1);
         te.c cVar = this.n1;
         if (cVar.h) {
-            f10 = cVar.f55377g;
+            f10 = cVar.f55402g;
         } else {
-            f10 = cVar.f55376f;
+            f10 = cVar.f55401f;
         }
         float f11 = max;
         if (f10 != f11) {
@@ -1342,10 +1342,10 @@ public class k extends FrameLayout implements te.b, a6, s4 {
             } else {
                 this.S = null;
                 ?? obj = new Object();
-                obj.f34455c = new ArrayList();
+                obj.f34405c = new ArrayList();
                 obj.d = new ArrayList();
                 Paint paint = new Paint(1);
-                obj.f34454b = paint;
+                obj.f34404b = paint;
                 paint.setStrokeWidth(org.telegram.messenger.g0.L(1.5f));
                 paint.setColor(k6.x0(null, k6.A8, false) & (-1644826));
                 paint.setStrokeCap(Paint.Cap.ROUND);

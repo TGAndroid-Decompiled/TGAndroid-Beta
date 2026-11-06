@@ -4,18 +4,18 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class af extends AnimatorListenerAdapter {
-    public final ChatActivityEnterView f31786a;
+    public final ChatActivityEnterView f31798a;
 
     public af(ChatActivityEnterView chatActivityEnterView) {
-        this.f31786a = chatActivityEnterView;
+        this.f31798a = chatActivityEnterView;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        ChatActivityEnterView chatActivityEnterView = this.f31786a;
-        c61 c61Var = chatActivityEnterView.f31043f1;
-        if (c61Var != null) {
-            c61Var.setVisibility(8);
+        ChatActivityEnterView chatActivityEnterView = this.f31798a;
+        g61 g61Var = chatActivityEnterView.f31043f1;
+        if (g61Var != null) {
+            g61Var.setVisibility(8);
         }
         ji0 ji0Var = chatActivityEnterView.f31055h1;
         if (ji0Var != null) {

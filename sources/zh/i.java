@@ -4,18 +4,18 @@ import android.view.View;
 import org.telegram.messenger.hd;
 import org.telegram.ui.Components.hc;
 public final class i implements View.OnClickListener {
-    public final int f60237a;
-    public final m f60238b;
+    public final int f60262a;
+    public final m f60263b;
 
     public i(m mVar, int i7) {
-        this.f60237a = i7;
-        this.f60238b = mVar;
+        this.f60262a = i7;
+        this.f60263b = mVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f60237a;
-        m mVar = this.f60238b;
+        int i7 = this.f60262a;
+        m mVar = this.f60263b;
         switch (i7) {
             case 0:
                 mVar.dismiss();

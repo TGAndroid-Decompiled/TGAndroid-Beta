@@ -128,7 +128,7 @@ public final class q implements f3.q, wm0 {
     }
 
     public static boolean i(w4 w4Var) {
-        if (w4Var.f50910a == null && w4Var.f50911b == null) {
+        if (w4Var.f50916a == null && w4Var.f50917b == null) {
             return false;
         }
         return true;
@@ -165,7 +165,7 @@ public final class q implements f3.q, wm0 {
             r4 r4Var = new r4(this, context, f6Var, u4Var);
             this.d = r4Var;
             w0 w0Var = new w0(this, 3);
-            WeakHashMap weakHashMap = r0.i0.f54073a;
+            WeakHashMap weakHashMap = r0.i0.f54098a;
             r0.a0.i(r4Var, w0Var);
         }
         ((r4) this.d).a(w4Var);
@@ -216,7 +216,7 @@ public final class q implements f3.q, wm0 {
                     return;
                 }
                 pb.s sVar = (pb.s) ((ArrayDeque) this.f991c).remove();
-                G(sVar.f53442b, sVar.f53441a);
+                G(sVar.f53468b, sVar.f53467a);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -286,8 +286,8 @@ public final class q implements f3.q, wm0 {
             try {
                 try {
                     rc.u uVar = (rc.u) this.f990b;
-                    a1 a1Var = z0Var.f43385c;
-                    int i10 = z0Var.f43383a;
+                    a1 a1Var = z0Var.f43410c;
+                    int i10 = z0Var.f43408a;
                     org.telegram.messenger.g0.h3(new pp0(a1Var, uVar, i10, "websocket error: " + a1.a(vVar), 18));
                 } catch (Throwable unused) {
                 }
@@ -299,7 +299,7 @@ public final class q implements f3.q, wm0 {
 
     @Override
     public boolean e() {
-        return ((j30) this.d).f34865b.e();
+        return ((j30) this.d).f34844b.e();
     }
 
     @Override
@@ -345,7 +345,7 @@ public final class q implements f3.q, wm0 {
         ofInt.addUpdateListener(new de(16, this, tVar));
         ofInt.setDuration(i12);
         ofInt.setStartDelay(i11);
-        ofInt.setInterpolator(xq.f40310f);
+        ofInt.setInterpolator(xq.f40329f);
         return ofInt;
     }
 
@@ -389,7 +389,7 @@ public final class q implements f3.q, wm0 {
 
     public q2.v m(UUID uuid, q2.o oVar) {
         String str;
-        String str2 = oVar.f53625b;
+        String str2 = oVar.f53650b;
         if (this.f989a || TextUtils.isEmpty(str2)) {
             str2 = (String) this.f991c;
         }
@@ -410,7 +410,7 @@ public final class q implements f3.q, wm0 {
             synchronized (((HashMap) this.d)) {
                 hashMap.putAll((HashMap) this.d);
             }
-            return qb.a(((j2.p) this.f990b).createDataSource(), str2, oVar.f53624a, hashMap);
+            return qb.a(((j2.p) this.f990b).createDataSource(), str2, oVar.f53649a, hashMap);
         }
         Map map = Collections.EMPTY_MAP;
         Uri uri = Uri.EMPTY;
@@ -421,7 +421,7 @@ public final class q implements f3.q, wm0 {
     public q2.v n(q2.p pVar) {
         boolean z9;
         Charset charset = StandardCharsets.UTF_8;
-        byte[][] bArr = {"{\"signedRequest\":\"".getBytes(charset), pVar.f53626a, "\"}".getBytes(charset)};
+        byte[][] bArr = {"{\"signedRequest\":\"".getBytes(charset), pVar.f53651a, "\"}".getBytes(charset)};
         long j3 = 0;
         for (int i7 = 0; i7 < 3; i7++) {
             j3 += bArr[i7].length;
@@ -441,7 +441,7 @@ public final class q implements f3.q, wm0 {
             i11 += bArr3.length;
         }
         j2.h createDataSource = ((j2.p) this.f990b).createDataSource();
-        String str = pVar.f53627b;
+        String str = pVar.f53652b;
         String aVar = k9.a.f17234i.toString();
         String valueOf = String.valueOf(i10);
         h9.o.f("Content-Type", aVar);
@@ -601,7 +601,7 @@ public final class q implements f3.q, wm0 {
         ArrayList arrayList = (ArrayList) this.f991c;
         j30 j30Var = (j30) this.d;
         HashMap hashMap = (HashMap) this.f990b;
-        if (!hashMap.isEmpty() && j30Var.f34865b != null && !this.f989a && !z9) {
+        if (!hashMap.isEmpty() && j30Var.f34844b != null && !this.f989a && !z9) {
             this.f989a = true;
             ArrayList arrayList2 = new ArrayList();
             for (int i10 = 0; i10 < arrayList.size(); i10++) {

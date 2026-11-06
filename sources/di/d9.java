@@ -125,7 +125,7 @@ public final class d9 extends rt0 {
                 ofFloat.addUpdateListener(new a9(this, 0));
                 p9Var.G.addListener(new b9(this, 0));
                 p9Var.G.setDuration(250L);
-                p9Var.G.setInterpolator(xq.f40310f);
+                p9Var.G.setInterpolator(xq.f40329f);
                 p9Var.G.start();
             }
             if (p9Var.V >= 0.3f) {
@@ -284,7 +284,7 @@ public final class d9 extends rt0 {
                 ofFloat.addUpdateListener(new a9(this, 1));
                 p9Var.G.addListener(new b9(this, 1));
                 p9Var.G.setDuration(150L);
-                p9Var.G.setInterpolator(xq.f40310f);
+                p9Var.G.setInterpolator(xq.f40329f);
                 p9Var.G.start();
             }
             i4 z9 = p9Var.z();

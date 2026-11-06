@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class nm implements bi {
-    public final org.telegram.ui.ActionBar.f2 f36438a;
-    public final org.telegram.messenger.c20 f36439b;
-    public final di.u2 f36440c;
+    public final org.telegram.ui.ActionBar.f2 f36332a;
+    public final org.telegram.messenger.c20 f36333b;
+    public final di.u2 f36334c;
 
     public nm(di.u2 u2Var, org.telegram.messenger.c20 c20Var, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f36438a = f2Var;
-        this.f36439b = c20Var;
-        this.f36440c = u2Var;
+        this.f36332a = f2Var;
+        this.f36333b = c20Var;
+        this.f36334c = u2Var;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class nm implements bi {
 
     @Override
     public final void c0(qg qgVar) {
-        org.telegram.messenger.qs.f(this.f36438a.getCurrentAccount()).d(qgVar);
+        org.telegram.messenger.qs.f(this.f36332a.getCurrentAccount()).d(qgVar);
     }
 
     @Override
@@ -31,11 +31,11 @@ public final class nm implements bi {
 
     @Override
     public final void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
-        di.u2 u2Var = this.f36440c;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = u2Var.f32882a2;
-        org.telegram.messenger.c20 c20Var = this.f36439b;
+        di.u2 u2Var = this.f36334c;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = u2Var.f32895a2;
+        org.telegram.messenger.c20 c20Var = this.f36333b;
         if (i7 == 15) {
-            org.telegram.ui.ActionBar.f2 f2Var = this.f36438a;
+            org.telegram.ui.ActionBar.f2 f2Var = this.f36332a;
             v4.d0(f2Var.getContext(), f2Var.getResourceProvider(), null, null, new mm(c20Var, 0), null);
         } else if (i7 == 7 || i7 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();

@@ -8,12 +8,12 @@ import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class er implements Runnable {
-    public final int f33317a;
-    public final lr f33318b;
+    public final int f33313a;
+    public final lr f33314b;
 
     public er(lr lrVar, int i7) {
-        this.f33317a = i7;
-        this.f33318b = lrVar;
+        this.f33313a = i7;
+        this.f33314b = lrVar;
     }
 
     @Override
@@ -21,8 +21,8 @@ public final class er implements Runnable {
         Context context;
         boolean z9;
         CharSequence charSequence;
-        int i7 = this.f33317a;
-        lr lrVar = this.f33318b;
+        int i7 = this.f33313a;
+        lr lrVar = this.f33314b;
         boolean z10 = false;
         switch (i7) {
             case 0:
@@ -32,10 +32,10 @@ public final class er implements Runnable {
                 Context context2 = lrVar.getContext();
                 org.telegram.ui.ActionBar.f6 f6Var = lrVar.I0;
                 int i10 = lrVar.f28612a;
-                long j3 = lrVar.f35709i2;
-                ArrayList<Long> arrayList = lrVar.f35710j2.joined_chat_ids;
+                long j3 = lrVar.f35714i2;
+                ArrayList<Long> arrayList = lrVar.f35715j2.joined_chat_ids;
                 fr frVar = new fr(lrVar, 5);
-                Pattern pattern = v4.f38823a;
+                Pattern pattern = v4.f38814a;
                 LinearLayout f10 = org.telegram.messenger.k5.f(context2, 1);
                 org.telegram.ui.ActionBar.u1[] u1VarArr = new org.telegram.ui.ActionBar.u1[1];
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context2, f6Var);

@@ -10,23 +10,23 @@ import org.json.JSONObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class dk0 implements View.OnClickListener {
-    public final int f45062a;
-    public final hl0 f45063b;
+    public final int f45087a;
+    public final hl0 f45088b;
 
     public dk0(hl0 hl0Var, int i7) {
-        this.f45062a = i7;
-        this.f45063b = hl0Var;
+        this.f45087a = i7;
+        this.f45088b = hl0Var;
     }
 
     @Override
     public final void onClick(View view) {
         boolean z9;
-        int i7 = this.f45062a;
-        hl0 hl0Var = this.f45063b;
+        int i7 = this.f45087a;
+        hl0 hl0Var = this.f45088b;
         switch (i7) {
             case 0:
-                hl0Var.f46401f[0].requestFocus();
-                org.telegram.messenger.g0.K3(hl0Var.f46401f[0]);
+                hl0Var.f46421f[0].requestFocus();
+                org.telegram.messenger.g0.K3(hl0Var.f46421f[0]);
                 return;
             case 1:
                 if (hl0Var.getParentActivity() != null) {
@@ -35,30 +35,30 @@ public final class dk0 implements View.OnClickListener {
                 }
                 return;
             case 2:
-                hl0 hl0Var2 = new hl0(hl0Var.f46392b1, hl0Var.C0, hl0Var.N0, hl0Var.O0, 0, hl0Var.E0, hl0Var.G0, hl0Var.H0, null, hl0Var.f46425x0, hl0Var.I0, hl0Var.U0, null, hl0Var.f46416r0, hl0Var.W0);
-                hl0Var2.f46395c1 = hl0Var.f46395c1;
-                hl0Var2.f46397d1 = hl0Var.f46397d1;
+                hl0 hl0Var2 = new hl0(hl0Var.f46412b1, hl0Var.C0, hl0Var.N0, hl0Var.O0, 0, hl0Var.E0, hl0Var.G0, hl0Var.H0, null, hl0Var.f46445x0, hl0Var.I0, hl0Var.U0, null, hl0Var.f46436r0, hl0Var.W0);
+                hl0Var2.f46415c1 = hl0Var.f46415c1;
+                hl0Var2.f46417d1 = hl0Var.f46417d1;
                 hl0Var2.T = new pk0(hl0Var);
                 hl0Var.presentFragment(hl0Var2);
                 return;
             case 3:
-                hl0 hl0Var3 = new hl0(hl0Var.f46392b1, hl0Var.C0, hl0Var.N0, hl0Var.O0, 0, hl0Var.E0, hl0Var.G0, hl0Var.H0, null, hl0Var.f46425x0, hl0Var.I0, hl0Var.U0, null, hl0Var.f46416r0, hl0Var.W0);
-                hl0Var3.f46395c1 = hl0Var.f46395c1;
-                hl0Var3.f46397d1 = hl0Var.f46397d1;
+                hl0 hl0Var3 = new hl0(hl0Var.f46412b1, hl0Var.C0, hl0Var.N0, hl0Var.O0, 0, hl0Var.E0, hl0Var.G0, hl0Var.H0, null, hl0Var.f46445x0, hl0Var.I0, hl0Var.U0, null, hl0Var.f46436r0, hl0Var.W0);
+                hl0Var3.f46415c1 = hl0Var.f46415c1;
+                hl0Var3.f46417d1 = hl0Var.f46417d1;
                 hl0Var3.T = new qk0(hl0Var);
                 hl0Var.presentFragment(hl0Var3);
                 return;
             case 4:
-                hl0 hl0Var4 = new hl0(hl0Var.f46392b1, hl0Var.C0, hl0Var.N0, hl0Var.O0, 0, hl0Var.E0, hl0Var.G0, hl0Var.H0, null, hl0Var.f46425x0, hl0Var.I0, hl0Var.U0, null, hl0Var.f46416r0, hl0Var.W0);
-                hl0Var4.f46395c1 = hl0Var.f46395c1;
-                hl0Var4.f46397d1 = hl0Var.f46397d1;
+                hl0 hl0Var4 = new hl0(hl0Var.f46412b1, hl0Var.C0, hl0Var.N0, hl0Var.O0, 0, hl0Var.E0, hl0Var.G0, hl0Var.H0, null, hl0Var.f46445x0, hl0Var.I0, hl0Var.U0, null, hl0Var.f46436r0, hl0Var.W0);
+                hl0Var4.f46415c1 = hl0Var.f46415c1;
+                hl0Var4.f46417d1 = hl0Var.f46417d1;
                 hl0Var4.T = new rk0(hl0Var);
                 hl0Var.presentFragment(hl0Var4);
                 return;
             case 5:
-                hl0 hl0Var5 = new hl0(hl0Var.f46392b1, hl0Var.C0, hl0Var.N0, hl0Var.O0, 0, hl0Var.E0, hl0Var.G0, hl0Var.H0, null, hl0Var.f46425x0, hl0Var.I0, hl0Var.U0, null, hl0Var.f46416r0, hl0Var.W0);
-                hl0Var5.f46395c1 = hl0Var.f46395c1;
-                hl0Var5.f46397d1 = hl0Var.f46397d1;
+                hl0 hl0Var5 = new hl0(hl0Var.f46412b1, hl0Var.C0, hl0Var.N0, hl0Var.O0, 0, hl0Var.E0, hl0Var.G0, hl0Var.H0, null, hl0Var.f46445x0, hl0Var.I0, hl0Var.U0, null, hl0Var.f46436r0, hl0Var.W0);
+                hl0Var5.f46415c1 = hl0Var.f46415c1;
+                hl0Var5.f46417d1 = hl0Var.f46417d1;
                 hl0Var5.T = new sk0(hl0Var);
                 hl0Var.presentFragment(hl0Var5);
                 return;
@@ -77,7 +77,7 @@ public final class dk0 implements View.OnClickListener {
             case 8:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hl0Var.getParentActivity());
                 String M0 = org.telegram.messenger.hd.M0(2131743941, null);
-                if (hl0Var.f46388a0.has_secure_values) {
+                if (hl0Var.f46408a0.has_secure_values) {
                     M0 = jg.g.l(2131743942, null, rf.b.j(M0, "\n\n"));
                 }
                 org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
@@ -151,17 +151,17 @@ public final class dk0 implements View.OnClickListener {
                     jSONObject.put("currencyCode", hl0Var.C0.invoice.currency);
                     jSONObject.put("checkoutOption", "COMPLETE_IMMEDIATE_PURCHASE");
                     put.put("transactionInfo", jSONObject);
-                    put.put("merchantInfo", new JSONObject().put("merchantName", hl0Var.f46413p0));
+                    put.put("merchantInfo", new JSONObject().put("merchantName", hl0Var.f46433p0));
                     String jSONObject2 = put.toString();
                     ?? obj = new Object();
-                    obj.f59180r = true;
+                    obj.f59205r = true;
                     q6.m.h(jSONObject2, "paymentDataRequestJson cannot be null!");
-                    obj.f59181s = jSONObject2;
-                    b9.j0 j0Var = hl0Var.f46398e;
+                    obj.f59206s = jSONObject2;
+                    b9.j0 j0Var = hl0Var.f46418e;
                     j0Var.getClass();
                     com.google.android.gms.common.api.internal.s b10 = com.google.android.gms.common.api.internal.t.b();
                     b10.f6682c = new org.telegram.ui.Components.uy((Object) obj, 29);
-                    b10.d = new n6.c[]{y8.p.f59193b};
+                    b10.d = new n6.c[]{y8.p.f59218b};
                     b10.f6681b = true;
                     b10.f6680a = 23707;
                     y8.a.a(j0Var.e(1, b10.a()), hl0Var.getParentActivity());
@@ -171,7 +171,7 @@ public final class dk0 implements View.OnClickListener {
                     return;
                 }
             default:
-                hl0Var.f46421v0 = false;
+                hl0Var.f46441v0 = false;
                 hl0Var.z0();
                 return;
         }

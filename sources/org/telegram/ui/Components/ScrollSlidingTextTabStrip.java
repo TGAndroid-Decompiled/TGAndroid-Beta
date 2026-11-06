@@ -501,7 +501,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements o
                         ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
                         ofFloat.addUpdateListener(new fi.k4(this, i16 - D, i13 - i15, 3));
                         ofFloat.setDuration(200L);
-                        ofFloat.setInterpolator(xq.f40310f);
+                        ofFloat.setInterpolator(xq.f40329f);
                         ofFloat.start();
                     }
                     this.U = 0;
@@ -654,7 +654,7 @@ public class ScrollSlidingTextTabStrip extends HorizontalScrollView implements o
             return;
         }
         this.f31534n0 = z9;
-        org.telegram.messenger.g0.c0(this.f31516a, new pg.c(0));
+        org.telegram.messenger.g0.c0(this.f31516a, new org.telegram.ui.web.z0(1));
     }
 
     public void setUseMinimalWidth(boolean z9) {

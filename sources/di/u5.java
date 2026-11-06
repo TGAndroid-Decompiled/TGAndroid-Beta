@@ -81,13 +81,13 @@ public final class u5 implements RequestDelegate {
                 Paint paint = la.H;
                 return;
             case 16:
-                int i11 = fo.f45674i3;
+                int i11 = fo.f45679i3;
                 return;
             case 17:
                 org.telegram.messenger.g0.h3(new ai.m0(22));
                 return;
             case 18:
-                Pattern pattern2 = org.telegram.ui.Components.v4.f38823a;
+                Pattern pattern2 = org.telegram.ui.Components.v4.f38814a;
                 return;
             case 19:
                 int i12 = tv.H0;
@@ -99,10 +99,10 @@ public final class u5 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new ai.m0(22));
                 return;
             case 22:
-                int i14 = ky0.f35437e;
+                int i14 = ky0.f35440e;
                 return;
             case 23:
-                int i15 = gd0.f45926v0;
+                int i15 = gd0.f45953v0;
                 return;
             case 24:
                 org.telegram.messenger.g0.h3(new ef0(tLObject, 5));
@@ -111,7 +111,7 @@ public final class u5 implements RequestDelegate {
                 int i16 = xj0.R;
                 return;
             case 26:
-                List list = hl0.f46385g1;
+                List list = hl0.f46405g1;
                 return;
             case 27:
                 RectF rectF = ProfileActivity.S6;

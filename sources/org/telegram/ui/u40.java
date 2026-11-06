@@ -18,17 +18,17 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
     public int G;
     public int H;
     public final w40 I;
-    public final Context f50191c;
-    public final jg.z1 f50193f;
+    public final Context f50213c;
+    public final jg.z1 f50215f;
     public Runnable h;
-    public boolean f50194n;
-    public int f50196s;
-    public int f50197w;
-    public int f50198x;
-    public int f50199y;
+    public boolean f50216n;
+    public int f50218s;
+    public int f50219w;
+    public int f50220x;
+    public int f50221y;
     public ArrayList d = new ArrayList();
-    public ArrayList f50192e = new ArrayList();
-    public final ArrayList f50195r = new ArrayList();
+    public ArrayList f50214e = new ArrayList();
+    public final ArrayList f50217r = new ArrayList();
 
     public u40(w40 w40Var, Context context) {
         TLRPC.Chat M0;
@@ -36,7 +36,7 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
         String substring2;
         TLRPC.User a22;
         this.I = w40Var;
-        this.f50191c = context;
+        this.f50213c = context;
         HashSet hashSet = new HashSet();
         org.telegram.messenger.g5 contactsController = w40Var.getContactsController();
         boolean z9 = w40Var.Q;
@@ -44,7 +44,7 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             TLRPC.User a23 = w40Var.getMessagesController().a2(Long.valueOf(((TLRPC.TL_contact) arrayList.get(i7)).user_id));
             if (a23 != null && !a23.self && !a23.deleted) {
-                this.f50195r.add(a23);
+                this.f50217r.add(a23);
                 hashSet.add(Long.valueOf(a23.f27101id));
             }
         }
@@ -55,7 +55,7 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
                 for (int i10 = 0; i10 < size; i10++) {
                     TLRPC.Dialog dialog = (TLRPC.Dialog) arrayList2.get(i10);
                     if (org.telegram.messenger.m5.E(dialog.f26956id) && !hashSet.contains(Long.valueOf(dialog.f26956id)) && (a22 = w40Var.getMessagesController().a2(Long.valueOf(dialog.f26956id))) != null && !org.telegram.messenger.t10.x(a22) && !org.telegram.messenger.t10.B(a22) && !org.telegram.messenger.t10.t(a22) && !org.telegram.messenger.t10.A(dialog.f26956id) && !org.telegram.messenger.qp.F2(a22)) {
-                        this.f50195r.add(a22);
+                        this.f50217r.add(a22);
                         hashSet.add(Long.valueOf(a22.f27101id));
                     }
                 }
@@ -64,15 +64,15 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
                 for (int i11 = 0; i11 < size2; i11++) {
                     TLRPC.Dialog dialog2 = (TLRPC.Dialog) arrayList2.get(i11);
                     if (org.telegram.messenger.m5.z(dialog2.f26956id) && (M0 = w40Var.getMessagesController().M0(Long.valueOf(-dialog2.f26956id))) != null && M0.migrated_to == null && (!org.telegram.messenger.t3.T(M0) || M0.megagroup)) {
-                        this.f50195r.add(M0);
+                        this.f50217r.add(M0);
                     }
                 }
             }
-            Collections.sort(this.f50195r, new Object());
+            Collections.sort(this.f50217r, new Object());
             TLObject tLObject = null;
             int i12 = 0;
-            while (i12 < this.f50195r.size()) {
-                TLObject tLObject2 = (TLObject) this.f50195r.get(i12);
+            while (i12 < this.f50217r.size()) {
+                TLObject tLObject2 = (TLObject) this.f50217r.get(i12);
                 if (tLObject != null) {
                     String a10 = q40.a(tLObject);
                     if (TextUtils.isEmpty(a10)) {
@@ -91,7 +91,7 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
                         tLObject = tLObject2;
                     }
                 }
-                ArrayList arrayList3 = this.f50195r;
+                ArrayList arrayList3 = this.f50217r;
                 String a12 = q40.a(tLObject2);
                 arrayList3.add(i12, new v40(TextUtils.isEmpty(a12) ? "" : a12.substring(0, 1)));
                 i12++;
@@ -99,13 +99,13 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
             }
         }
         jg.z1 z1Var = new jg.z1(false);
-        this.f50193f = z1Var;
+        this.f50215f = z1Var;
         z1Var.f16989a = new wr(this, 13);
     }
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         if (view instanceof org.telegram.ui.Cells.h4) {
             ((org.telegram.ui.Cells.h4) view).f29258a.getImageReceiver().c();
         }
@@ -113,10 +113,10 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f != 0) {
+        if (d1Var.f56956f != 0) {
             w40 w40Var = this.I;
             if (w40Var.J != null) {
-                View view = d1Var.f56927a;
+                View view = d1Var.f56952a;
                 if (view instanceof org.telegram.ui.Cells.h4) {
                     Object object = ((org.telegram.ui.Cells.h4) view).getObject();
                     if ((object instanceof TLRPC.User) && w40Var.J.h(((TLRPC.User) object).f27101id) >= 0) {
@@ -135,14 +135,14 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
     public final String F(int i7) {
         String str;
         String str2;
-        if (!this.f50194n && i7 >= this.E) {
-            ArrayList arrayList = this.f50195r;
+        if (!this.f50216n && i7 >= this.E) {
+            ArrayList arrayList = this.f50217r;
             int size = arrayList.size();
             int i10 = this.E;
             if (i7 < size + i10) {
                 TLObject tLObject = (TLObject) arrayList.get(i7 - i10);
                 if (tLObject instanceof v40) {
-                    return ((v40) tLObject).f50563a;
+                    return ((v40) tLObject).f50573a;
                 }
                 if (tLObject instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) tLObject;
@@ -186,9 +186,9 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
             this.h = null;
         }
         this.d.clear();
-        this.f50192e.clear();
-        this.f50193f.f(null, null);
-        jg.z1 z1Var = this.f50193f;
+        this.f50214e.clear();
+        this.f50215f.f(null, null);
+        jg.z1 z1Var = this.f50215f;
         w40 w40Var = this.I;
         if (!w40Var.O && !w40Var.P) {
             z9 = false;
@@ -213,14 +213,14 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
         long j3 = w40Var.H;
         long j10 = w40Var.G;
         this.G = -1;
-        this.f50196s = -1;
-        this.f50198x = -1;
-        this.f50197w = -1;
-        this.f50199y = -1;
+        this.f50218s = -1;
+        this.f50220x = -1;
+        this.f50219w = -1;
+        this.f50221y = -1;
         this.D = -1;
-        if (this.f50194n) {
+        if (this.f50216n) {
             int size = this.d.size();
-            jg.z1 z1Var = this.f50193f;
+            jg.z1 z1Var = this.f50215f;
             int size2 = z1Var.d.size();
             int size3 = z1Var.f16992e.size();
             int i11 = size + size2;
@@ -231,28 +231,28 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
             return i11;
         }
         if (w40Var.Q) {
-            this.f50198x = 0;
+            this.f50220x = 0;
             i7 = 1;
         } else {
             i7 = 0;
         }
         if (w40Var.V) {
             int i12 = i7 + 1;
-            this.f50197w = i7;
-            this.f50196s = i7;
+            this.f50219w = i7;
+            this.f50218s = i7;
             i7 += 2;
-            this.f50199y = i12;
+            this.f50221y = i12;
         } else if (w40Var.W) {
             int i13 = i7 + 1;
-            this.f50197w = i7;
-            this.f50196s = i7;
+            this.f50219w = i7;
+            this.f50218s = i7;
             i7 += 2;
             this.D = i13;
         } else {
-            this.f50197w = i7;
+            this.f50219w = i7;
         }
         this.E = i7;
-        int size4 = this.f50195r.size() + i7;
+        int size4 = this.f50217r.size() + i7;
         if (w40Var.R) {
             if (j10 != 0) {
                 this.F = org.telegram.messenger.t3.y(3, w40Var.getMessagesController().M0(Long.valueOf(j10))) ? 1 : 0;
@@ -282,14 +282,14 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
 
     @Override
     public final int d(int i7) {
-        if (this.f50194n) {
-            if (i7 == this.f50193f.d.size() + this.d.size()) {
+        if (this.f50216n) {
+            if (i7 == this.f50215f.d.size() + this.d.size()) {
                 return 0;
             }
             return 1;
-        } else if (i7 != this.f50198x) {
-            if (i7 != this.f50196s) {
-                if (i7 != this.f50199y && i7 != this.D) {
+        } else if (i7 != this.f50220x) {
+            if (i7 != this.f50218s) {
+                if (i7 != this.f50221y && i7 != this.D) {
                     if (this.F != 0 && i7 == 0) {
                         return 2;
                     }
@@ -298,7 +298,7 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
                     }
                     int i10 = i7 - this.E;
                     if (i10 >= 0) {
-                        ArrayList arrayList = this.f50195r;
+                        ArrayList arrayList = this.f50217r;
                         if (i10 < arrayList.size() && (arrayList.get(i7 - this.E) instanceof v40)) {
                             return 0;
                         }
@@ -329,9 +329,9 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
         boolean z9;
         CharSequence charSequence;
         String K;
-        int i10 = d1Var.f56931f;
-        View view = d1Var.f56927a;
-        ArrayList arrayList = this.f50195r;
+        int i10 = d1Var.f56956f;
+        View view = d1Var.f56952a;
+        ArrayList arrayList = this.f50217r;
         w40 w40Var = this.I;
         SpannableStringBuilder spannableStringBuilder2 = null;
         boolean z10 = true;
@@ -339,7 +339,7 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
             if (i10 != 1) {
                 if (i10 == 2) {
                     org.telegram.ui.Cells.m8 m8Var = (org.telegram.ui.Cells.m8) view;
-                    if (i7 == this.f50198x) {
+                    if (i7 == this.f50220x) {
                         m8Var.o(2131231841, org.telegram.messenger.hd.M0(2131749484, null), false);
                         m8Var.g(org.telegram.ui.ActionBar.k6.f28183v6, org.telegram.ui.ActionBar.k6.f28164u6);
                         return;
@@ -356,9 +356,9 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
                 return;
             }
             org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) view;
-            if (this.f50194n) {
+            if (this.f50216n) {
                 int size = this.d.size();
-                jg.z1 z1Var = this.f50193f;
+                jg.z1 z1Var = this.f50215f;
                 ArrayList arrayList2 = z1Var.f16992e;
                 ArrayList arrayList3 = z1Var.d;
                 int size2 = arrayList2.size();
@@ -381,7 +381,7 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
                         return;
                     }
                     if (i7 < size) {
-                        charSequence = (CharSequence) this.f50192e.get(i7);
+                        charSequence = (CharSequence) this.f50214e.get(i7);
                         if (charSequence != null && !TextUtils.isEmpty(K)) {
                             if (charSequence.toString().startsWith("@" + K)) {
                                 spannableStringBuilder2 = charSequence;
@@ -422,7 +422,7 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
                 SpannableStringBuilder spannableStringBuilder42 = spannableStringBuilder2;
                 spannableStringBuilder2 = charSequence;
                 spannableStringBuilder = spannableStringBuilder42;
-            } else if (i7 == this.f50199y) {
+            } else if (i7 == this.f50221y) {
                 h4Var.f29264r = true;
                 h4Var.f29262f = "premium";
                 h4Var.f29258a.setImageDrawable(org.telegram.ui.Cells.h4.b(h4Var.getContext(), false));
@@ -493,20 +493,20 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
             return;
         }
         org.telegram.ui.Cells.x3 x3Var = (org.telegram.ui.Cells.x3) view;
-        if (this.f50194n) {
+        if (this.f50216n) {
             x3Var.setText(org.telegram.messenger.hd.M0(2131749534, null));
-        } else if (i7 == this.f50196s) {
+        } else if (i7 == this.f50218s) {
             x3Var.setText(org.telegram.messenger.hd.M0(2131746767, null));
         } else {
             int i13 = i7 - this.E;
             if (i13 >= 0 && i13 < arrayList.size()) {
                 TLObject tLObject2 = (TLObject) arrayList.get(i7 - this.E);
                 if (tLObject2 instanceof v40) {
-                    x3Var.setText(((v40) tLObject2).f50563a.toUpperCase());
+                    x3Var.setText(((v40) tLObject2).f50573a.toUpperCase());
                 }
             }
         }
-        if (i7 == this.f50197w) {
+        if (i7 == this.f50219w) {
             if (w40Var.X == null && w40Var.Z.i()) {
                 M0 = "";
             } else {
@@ -519,7 +519,7 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View x3Var;
-        Context context = this.f50191c;
+        Context context = this.f50213c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 3) {
@@ -527,7 +527,7 @@ public final class u40 extends org.telegram.ui.Components.vi0 {
                 } else {
                     org.telegram.ui.Components.p50 p50Var = new org.telegram.ui.Components.p50(context, null, 0, null, 1);
                     p50Var.setLayoutParams(new v4.o0(-1, -1));
-                    p50Var.f31917e.setVisibility(8);
+                    p50Var.f31929e.setVisibility(8);
                     p50Var.d.setText(org.telegram.messenger.hd.M0(2131748222, null));
                     p50Var.setAnimateLayoutChange(true);
                     x3Var = p50Var;

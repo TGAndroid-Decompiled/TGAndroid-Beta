@@ -42,8 +42,8 @@ public final class b5 extends View implements te.b {
         this.f27354y = new te.a(1, this, xqVar, 250L, false);
         this.f27344a = y4Var;
         this.f27345b = 1;
-        this.f27346c = (a5) xi.e.f58745k.a();
-        this.d = (z4) xi.e.f58746l.a();
+        this.f27346c = (a5) xi.e.f58770k.a();
+        this.d = (z4) xi.e.f58771l.a();
         this.f27351s = charSequence;
         this.f27347e = context.getDrawable(2131231242).mutate();
         cp cpVar = new cp(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(2.0f), -1);
@@ -75,7 +75,7 @@ public final class b5 extends View implements te.b {
         boolean z11;
         te.c cVar;
         te.a aVar = this.f27353x;
-        if (aVar.f55371f == z9 && (z10 || (cVar = aVar.h) == null || !cVar.h)) {
+        if (aVar.f55396f == z9 && (z10 || (cVar = aVar.h) == null || !cVar.h)) {
             return;
         }
         y4 y4Var = this.f27344a;
@@ -85,7 +85,7 @@ public final class b5 extends View implements te.b {
             z11 = false;
         }
         aVar.a(z9, z11);
-        Y(0, aVar.f55370e, 0.0f, null);
+        Y(0, aVar.f55395e, 0.0f, null);
         y4Var.requestLayout();
     }
 
@@ -140,7 +140,7 @@ public final class b5 extends View implements te.b {
     }
 
     public float getTargetVisibleFactor() {
-        if (this.f27346c != a5.f27328b && !this.f27353x.f55371f) {
+        if (this.f27346c != a5.f27328b && !this.f27353x.f55396f) {
             return 0.0f;
         }
         return 1.0f;
@@ -150,7 +150,7 @@ public final class b5 extends View implements te.b {
         if (this.f27346c == a5.f27328b) {
             return 1.0f;
         }
-        return this.f27353x.f55370e;
+        return this.f27353x.f55395e;
     }
 
     @Override
@@ -159,7 +159,7 @@ public final class b5 extends View implements te.b {
         float width = getWidth();
         float height = getHeight();
         if (this.f27346c == a5.f27328b) {
-            int f11 = i0.a.f(this.f27353x.f55370e, this.E, this.D);
+            int f11 = i0.a.f(this.f27353x.f55395e, this.E, this.D);
             Paint paint = this.f27349n;
             paint.setColor(f11);
             RectF rectF = this.f27350r;
@@ -167,7 +167,7 @@ public final class b5 extends View implements te.b {
             float f12 = height / 2.0f;
             canvas.drawRoundRect(rectF, f12, f12, paint);
         }
-        float f13 = this.f27354y.f55370e;
+        float f13 = this.f27354y.f55395e;
         if (f13 < 1.0f) {
             float T1 = org.telegram.messenger.g0.T1(1.0f, 0.6f, f13);
             canvas.save();

@@ -241,11 +241,11 @@ public final class p0 {
                         }
                         y8 y8Var3 = m0Var.S;
                         if (y8Var3 != null && (y8Var = m0Var2.S) != null) {
-                            ValueAnimator valueAnimator = y8Var.f40549f;
+                            ValueAnimator valueAnimator = y8Var.f40568f;
                             if (valueAnimator != null) {
                                 valueAnimator.cancel();
-                                if (y8Var3.f40564w) {
-                                    y8Var3.f40564w = false;
+                                if (y8Var3.f40583w) {
+                                    y8Var3.f40583w = false;
                                     y8Var3.k();
                                 }
                             }
@@ -256,8 +256,8 @@ public final class p0 {
                                 if (i17 >= 3) {
                                     break;
                                 }
-                                tLObjectArr[i17] = y8Var3.f40546b[i17].h;
-                                y8Var3.j(i17, i7, y8Var.f40546b[i17].h);
+                                tLObjectArr[i17] = y8Var3.f40565b[i17].h;
+                                y8Var3.j(i17, i7, y8Var.f40565b[i17].h);
                                 i17++;
                             }
                             y8Var3.a(false, true);
@@ -735,7 +735,7 @@ public final class p0 {
                 if (m0Var.f6332t) {
                     m0Var.f6337z = (int) (i6Var.d + org.telegram.messenger.g0.L(8.0f) + m0Var.f6337z);
                 } else if (bqVar != null && m0Var.v > 1) {
-                    m0Var.f6337z = k5.C(8.0f, (int) Math.ceil(bqVar.f32266m), m0Var.f6337z);
+                    m0Var.f6337z = k5.C(8.0f, (int) Math.ceil(bqVar.f32260m), m0Var.f6337z);
                 }
             } else {
                 int L2 = org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.L(8.0f);
@@ -753,11 +753,11 @@ public final class p0 {
                         i11 = 0;
                     }
                     m0Var.f6337z = (int) ((org.telegram.messenger.g0.L(20.0f) * i11 * 0.8f) + org.telegram.messenger.g0.L(20.0f) + org.telegram.messenger.g0.L(2.0f) + org.telegram.messenger.g0.L(1.0f) + m0Var.f6337z);
-                    m0Var.S.f40557o = org.telegram.messenger.g0.L(26.0f);
+                    m0Var.S.f40576o = org.telegram.messenger.g0.L(26.0f);
                 } else if (m0Var.f6332t) {
                     m0Var.f6337z = (int) (i6Var.d + org.telegram.messenger.g0.L(8.0f) + m0Var.f6337z);
-                } else if (((int) Math.ceil(bqVar.f32266m)) > 0) {
-                    m0Var.f6337z = k5.C(8.0f, (int) Math.ceil(bqVar.f32266m), m0Var.f6337z);
+                } else if (((int) Math.ceil(bqVar.f32260m)) > 0) {
+                    m0Var.f6337z = k5.C(8.0f, (int) Math.ceil(bqVar.f32260m), m0Var.f6337z);
                 } else {
                     m0Var.f6337z -= org.telegram.messenger.g0.L(1.0f);
                 }

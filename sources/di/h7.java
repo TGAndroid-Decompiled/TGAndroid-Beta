@@ -59,7 +59,7 @@ public final class h7 implements l9 {
             m9Var.h = iArr[0];
             m9Var.f9368i = iArr[1] - this.f9093s;
         } else if (view instanceof org.telegram.ui.Components.x9) {
-            m9Var.h = ((org.telegram.ui.Components.x9) view).f40212e3;
+            m9Var.h = ((org.telegram.ui.Components.x9) view).f40231e3;
             m9Var.f9368i = (view.getMeasuredHeight() - m9Var.f9367g.getPaddingBottom()) - this.f9093s;
         } else {
             m9Var.h = view.getPaddingTop();

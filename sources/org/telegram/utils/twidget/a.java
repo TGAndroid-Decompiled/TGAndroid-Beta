@@ -6,10 +6,10 @@ import p4.a1;
 import p4.g1;
 import p4.i1;
 public final class a implements p4.c0, a1, h2.j {
-    public final int f52718a;
+    public final int f52744a;
 
     public a(int i7) {
-        this.f52718a = i7;
+        this.f52744a = i7;
     }
 
     public static AudioRecordingConfiguration a(Object obj) {
@@ -19,7 +19,7 @@ public final class a implements p4.c0, a1, h2.j {
     @Override
     public void accept(Object obj) {
         g1 g1Var = (g1) obj;
-        switch (this.f52718a) {
+        switch (this.f52744a) {
             case 19:
                 g1Var.B0();
                 return;
@@ -54,7 +54,7 @@ public final class a implements p4.c0, a1, h2.j {
 
     @Override
     public void b(p4.u uVar, int i7) {
-        switch (this.f52718a) {
+        switch (this.f52744a) {
             case 14:
                 uVar.getClass();
                 return;
@@ -69,7 +69,7 @@ public final class a implements p4.c0, a1, h2.j {
 
     @Override
     public Object i(p4.d0 d0Var, p4.v vVar, int i7) {
-        switch (this.f52718a) {
+        switch (this.f52744a) {
             case 17:
                 d0Var.getClass();
                 throw new ClassCastException();
@@ -85,14 +85,14 @@ public final class a implements p4.c0, a1, h2.j {
     }
 
     public a(Object obj, int i7) {
-        this.f52718a = i7;
+        this.f52744a = i7;
     }
 
     public a(String str, int i7, int i10, p4.q qVar) {
-        this.f52718a = 18;
+        this.f52744a = 18;
     }
 
     public a(boolean z9, i1 i1Var, Bundle bundle) {
-        this.f52718a = 22;
+        this.f52744a = 22;
     }
 }

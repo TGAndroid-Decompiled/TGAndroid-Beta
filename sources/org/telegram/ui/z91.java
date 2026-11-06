@@ -16,7 +16,7 @@ public final class z91 extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56931f;
+        int i7 = d1Var.f56956f;
         if (i7 == 1 || i7 == 2 || i7 == 4) {
             return true;
         }
@@ -30,7 +30,7 @@ public final class z91 extends rg.b {
 
     @Override
     public final int d(int i7) {
-        return ((aa1) this.d.d.get(i7)).f54415a;
+        return ((aa1) this.d.d.get(i7)).f54440a;
     }
 
     @Override
@@ -39,10 +39,10 @@ public final class z91 extends rg.b {
         String M0;
         ba1 ba1Var = this.d;
         ArrayList arrayList = ba1Var.d;
-        if (((aa1) arrayList.get(i7)).f54415a == 2) {
-            org.telegram.ui.Cells.ia iaVar = (org.telegram.ui.Cells.ia) d1Var.f56927a;
-            long j10 = ba1Var.f44223c;
-            TLRPC.TL_forumTopic tL_forumTopic = ((aa1) arrayList.get(i7)).f43587c;
+        if (((aa1) arrayList.get(i7)).f54440a == 2) {
+            org.telegram.ui.Cells.ia iaVar = (org.telegram.ui.Cells.ia) d1Var.f56952a;
+            long j10 = ba1Var.f44239c;
+            TLRPC.TL_forumTopic tL_forumTopic = ((aa1) arrayList.get(i7)).f43612c;
             org.telegram.ui.Components.l9 l9Var = iaVar.f29325b;
             boolean z9 = false;
             qg.d.p(l9Var, tL_forumTopic, false, false, null);
@@ -63,7 +63,7 @@ public final class z91 extends rg.b {
                 M0 = org.telegram.messenger.hd.M0(2131747855, null);
             }
             textView.setText(M0);
-            if (i7 == arrayList.size() - 1 || ((aa1) arrayList.get(i7 + 1)).f54415a == 2) {
+            if (i7 == arrayList.size() - 1 || ((aa1) arrayList.get(i7 + 1)).f54440a == 2) {
                 z9 = true;
             }
             iaVar.f29324a = z9;

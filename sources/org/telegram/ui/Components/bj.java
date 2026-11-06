@@ -6,21 +6,21 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class bj extends oj0 {
-    public final Context f32159c;
+    public final Context f32153c;
     public ArrayList d = new ArrayList();
-    public ArrayList f32160e = new ArrayList();
-    public aj f32161f;
+    public ArrayList f32154e = new ArrayList();
+    public aj f32155f;
     public int h;
-    public final fj f32162n;
+    public final fj f32156n;
 
     public bj(fj fjVar, Context context) {
-        this.f32162n = fjVar;
-        this.f32159c = context;
+        this.f32156n = fjVar;
+        this.f32153c = context;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f == 0) {
+        if (d1Var.f56956f == 0) {
             return true;
         }
         return false;
@@ -53,15 +53,15 @@ public final class bj extends oj0 {
     @Override
     public final void f() {
         super.f();
-        this.f32162n.R();
+        this.f32156n.R();
     }
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
         TLRPC.User user;
-        if (d1Var.f56931f == 0) {
-            ej ejVar = (ej) d1Var.f56927a;
+        if (d1Var.f56956f == 0) {
+            ej ejVar = (ej) d1Var.f56952a;
             if (i7 != b() - 2) {
                 z9 = true;
             } else {
@@ -73,16 +73,16 @@ public final class bj extends oj0 {
                 user = d5Var.f21966m;
                 if (user == null) {
                     ejVar.setCurrentId(d5Var.f21956a);
-                    ejVar.a(null, (CharSequence) this.f32160e.get(i7 - 1), new xi(d5Var, 1), z9);
+                    ejVar.a(null, (CharSequence) this.f32154e.get(i7 - 1), new xi(d5Var, 1), z9);
                     user = null;
                 }
             } else {
                 user = (TLRPC.User) E;
             }
             if (user != null) {
-                ejVar.a(user, (CharSequence) this.f32160e.get(i7 - 1), new yi(1, user), z9);
+                ejVar.a(user, (CharSequence) this.f32154e.get(i7 - 1), new yi(1, user), z9);
             }
-            boolean containsKey = this.f32162n.f33602x.containsKey(vi.a(E));
+            boolean containsKey = this.f32156n.f33546x.containsKey(vi.a(E));
             wo woVar = ejVar.d;
             if (woVar.getVisibility() != 0) {
                 woVar.setVisibility(0);
@@ -94,7 +94,7 @@ public final class bj extends oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View ejVar;
-        Context context = this.f32159c;
+        Context context = this.f32153c;
         if (i7 != 0) {
             if (i7 != 1) {
                 ejVar = new View(context);
@@ -105,7 +105,7 @@ public final class bj extends oj0 {
                 ejVar.setTag(-33024);
             }
         } else {
-            ejVar = new ej(context, this.f32162n.f38950a);
+            ejVar = new ej(context, this.f32156n.f38947a);
         }
         return new v4.d1(ejVar);
     }

@@ -53,7 +53,7 @@ public final class f8 {
         this.f9011k = new gf.c(g8Var, arrayList, new q4(this, 3));
         a80 a80Var = new a80();
         this.f9019s = a80Var;
-        a80Var.f31735y = path;
+        a80Var.f31747y = path;
         a80Var.k(4.0f);
         a80Var.g(org.telegram.ui.ActionBar.k6.r1(0.3f, -1), org.telegram.ui.ActionBar.k6.r1(0.1f, -1), org.telegram.ui.ActionBar.k6.r1(0.2f, -1), org.telegram.ui.ActionBar.k6.r1(0.7f, -1));
         a80Var.setCallback(g8Var);
@@ -201,7 +201,7 @@ public final class f8 {
                             arrayList2 = arrayList;
                             i10 = i12;
                             float T1 = org.telegram.messenger.g0.T1(f12, f13, g8Var.f9060x);
-                            float T12 = org.telegram.messenger.g0.T1(d8Var.d, d8Var.f8938f, xq.f40311g.getInterpolation(g8Var.f9060x));
+                            float T12 = org.telegram.messenger.g0.T1(d8Var.d, d8Var.f8938f, xq.f40330g.getInterpolation(g8Var.f9060x));
                             canvas.translate(g8Var.E + T1, g8Var.F + i7 + T12);
                             if (z9) {
                                 f(d8Var.f8935b, g8Var.E + T1, g8Var.F + i7 + T12);
@@ -442,8 +442,8 @@ public final class f8 {
             c8Var.f8895s = e8Var;
             new zj0(g8Var);
             c8Var.f8886j.setCallback(g8Var);
-            c8Var.h.f39847a = g8Var;
-            c8Var.f8885i.f34586a = g8Var;
+            c8Var.h.f39855a = g8Var;
+            c8Var.f8885i.f34549a = g8Var;
             c8Var.c();
         }
         c8 c8Var3 = this.f9016p;
@@ -453,8 +453,8 @@ public final class f8 {
             c8Var3.f8895s = e8Var2;
             new zj0(g8Var);
             c8Var3.f8886j.setCallback(g8Var);
-            c8Var3.h.f39847a = g8Var;
-            c8Var3.f8885i.f34586a = g8Var;
+            c8Var3.h.f39855a = g8Var;
+            c8Var3.f8885i.f34549a = g8Var;
             c8Var3.c();
         }
         g8Var.f9058s = 0;

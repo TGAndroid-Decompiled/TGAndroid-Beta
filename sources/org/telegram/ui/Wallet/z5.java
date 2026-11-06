@@ -24,9 +24,9 @@ import java.lang.reflect.Array;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class z5 {
-    public static volatile boolean f43400j0;
+    public static volatile boolean f43425j0;
     public static Bitmap[] m0;
-    public static Bitmap[][] f43403n0;
+    public static Bitmap[][] f43428n0;
     public PorterDuffColorFilter A;
     public int B;
     public PorterDuffColorFilter C;
@@ -40,42 +40,42 @@ public final class z5 {
     public float W;
     public float X;
     public float Z;
-    public final Runnable f43406a;
-    public float f43407a0;
-    public SweepGradient f43411c0;
-    public final SweepGradient f43412d0;
-    public final ComposeShader f43414e0;
-    public int f43416f0;
-    public boolean f43421i0;
-    public float f43429q;
-    public boolean f43430r;
+    public final Runnable f43431a;
+    public float f43432a0;
+    public SweepGradient f43436c0;
+    public final SweepGradient f43437d0;
+    public final ComposeShader f43439e0;
+    public int f43441f0;
+    public boolean f43446i0;
+    public float f43454q;
+    public boolean f43455r;
     public final SweepGradient v;
-    public final SweepGradient f43434w;
-    public final ComposeShader f43436y;
-    public int f43437z;
-    public static final AtomicBoolean f43401k0 = new AtomicBoolean();
-    public static final org.telegram.messenger.q5 f43402l0 = new org.telegram.messenger.q5("walletCardAssets", 10);
-    public static final int[] f43404o0 = {-16748837, -16747809, -16746781, -16745754, -16744728, -16743955, -16743183, -16742412, -16741643};
-    public static final LruCache f43405p0 = new LruCache(2);
-    public final Paint f43408b = new Paint(3);
-    public final Paint f43410c = new Paint(3);
+    public final SweepGradient f43459w;
+    public final ComposeShader f43461y;
+    public int f43462z;
+    public static final AtomicBoolean f43426k0 = new AtomicBoolean();
+    public static final org.telegram.messenger.q5 f43427l0 = new org.telegram.messenger.q5("walletCardAssets", 10);
+    public static final int[] f43429o0 = {-16748837, -16747809, -16746781, -16745754, -16744728, -16743955, -16743183, -16742412, -16741643};
+    public static final LruCache f43430p0 = new LruCache(2);
+    public final Paint f43433b = new Paint(3);
+    public final Paint f43435c = new Paint(3);
     public final Paint d = new Paint(1);
-    public final Matrix f43413e = new Matrix();
-    public final RectF f43415f = new RectF(0.0f, 0.0f, 336.0f, 205.0f);
-    public final RectF f43417g = new RectF();
+    public final Matrix f43438e = new Matrix();
+    public final RectF f43440f = new RectF(0.0f, 0.0f, 336.0f, 205.0f);
+    public final RectF f43442g = new RectF();
     public final RectF h = new RectF(-42.0f, -107.5f, 378.0f, 312.5f);
-    public final float[] f43420i = new float[152];
-    public final float[] f43422j = new float[152];
-    public final float[] f43423k = new float[152];
-    public final float[] f43424l = new float[152];
-    public final float[] f43425m = new float[76];
-    public final float[] f43426n = new float[76];
-    public final int[] f43427o = new int[76];
-    public final Path f43428p = new Path();
-    public final Path f43431s = new Path();
-    public final Path f43432t = new Path();
-    public final Path f43433u = new Path();
-    public final Shader[] f43435x = new Shader[2];
+    public final float[] f43445i = new float[152];
+    public final float[] f43447j = new float[152];
+    public final float[] f43448k = new float[152];
+    public final float[] f43449l = new float[152];
+    public final float[] f43450m = new float[76];
+    public final float[] f43451n = new float[76];
+    public final int[] f43452o = new int[76];
+    public final Path f43453p = new Path();
+    public final Path f43456s = new Path();
+    public final Path f43457t = new Path();
+    public final Path f43458u = new Path();
+    public final Shader[] f43460x = new Shader[2];
     public final int[] D = new int[2];
     public final Shader[] E = new Shader[2];
     public final SweepGradient[] F = new SweepGradient[2];
@@ -89,9 +89,9 @@ public final class z5 {
     public final Bitmap[] O = new Bitmap[8];
     public final Bitmap[] P = new Bitmap[8];
     public float Y = 1.0f;
-    public float f43409b0 = 1.0f;
-    public int f43418g0 = -14456619;
-    public int f43419h0 = -14184457;
+    public float f43434b0 = 1.0f;
+    public int f43443g0 = -14456619;
+    public int f43444h0 = -14184457;
 
     public z5(Context context, int i7, int i10, Runnable runnable) {
         double d;
@@ -110,7 +110,7 @@ public final class z5 {
         int i16 = 0;
         char c10 = 6;
         float f14 = 1.0f;
-        this.f43406a = runnable;
+        this.f43431a = runnable;
         this.R = context;
         int i17 = 0;
         while (i17 < 4) {
@@ -132,12 +132,12 @@ public final class z5 {
                 int i21 = i15;
                 float cos = (float) Math.cos(radians);
                 float sin = (float) Math.sin(radians);
-                float[] fArr = this.f43420i;
+                float[] fArr = this.f43445i;
                 int i22 = ((i17 * 19) + i19) * 2;
                 fArr[i22] = com.google.android.recaptcha.internal.a.y(cos, 25.2f, f15, 336.0f);
                 int i23 = i22 + 1;
                 fArr[i23] = com.google.android.recaptcha.internal.a.y(25.368736f, sin, f11, 205.0f);
-                float[] fArr2 = this.f43422j;
+                float[] fArr2 = this.f43447j;
                 fArr2[i22] = cos;
                 fArr2[i23] = sin;
                 i19++;
@@ -177,7 +177,7 @@ public final class z5 {
                 }
             }
         }
-        if (f43403n0 == null) {
+        if (f43428n0 == null) {
             int[] iArr = new int[i25];
             iArr[1] = i26;
             iArr[i27] = i25;
@@ -204,7 +204,7 @@ public final class z5 {
                 i26 = i30;
                 i25 = 2;
             }
-            f43403n0 = bitmapArr;
+            f43428n0 = bitmapArr;
         }
         int[] iArr2 = new int[129];
         int[] iArr3 = new int[129];
@@ -229,15 +229,15 @@ public final class z5 {
         float f21 = f13;
         this.v = new SweepGradient(168.0f, 102.5f, iArr2, (float[]) null);
         SweepGradient sweepGradient = new SweepGradient(168.0f, 102.5f, iArr3, (float[]) null);
-        this.f43434w = sweepGradient;
+        this.f43459w = sweepGradient;
         if (m0[c12] != null) {
             Bitmap bitmap3 = m0[c12];
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader = new BitmapShader(bitmap3, tileMode, tileMode);
             f10 = 0.88f;
-            this.f43413e.setScale(f20 / m0[c12].getWidth(), f21 / m0[c12].getHeight());
-            bitmapShader.setLocalMatrix(this.f43413e);
-            this.f43436y = new ComposeShader(bitmapShader, sweepGradient, PorterDuff.Mode.DST_IN);
+            this.f43438e.setScale(f20 / m0[c12].getWidth(), f21 / m0[c12].getHeight());
+            bitmapShader.setLocalMatrix(this.f43438e);
+            this.f43461y = new ComposeShader(bitmapShader, sweepGradient, PorterDuff.Mode.DST_IN);
         } else {
             f10 = 0.88f;
         }
@@ -248,9 +248,9 @@ public final class z5 {
                 Shader.TileMode tileMode2 = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader2 = new BitmapShader(bitmap4, tileMode2, tileMode2);
                 d2 = d;
-                this.f43413e.setScale(f20 / m0[i33].getWidth(), f21 / m0[i33].getHeight());
-                bitmapShader2.setLocalMatrix(this.f43413e);
-                this.f43435x[i33] = new ComposeShader(bitmapShader2, this.f43434w, PorterDuff.Mode.DST_IN);
+                this.f43438e.setScale(f20 / m0[i33].getWidth(), f21 / m0[i33].getHeight());
+                bitmapShader2.setLocalMatrix(this.f43438e);
+                this.f43460x[i33] = new ComposeShader(bitmapShader2, this.f43459w, PorterDuff.Mode.DST_IN);
             } else {
                 d2 = d;
             }
@@ -259,8 +259,8 @@ public final class z5 {
                 Bitmap bitmap5 = m0[i34];
                 Shader.TileMode tileMode3 = Shader.TileMode.CLAMP;
                 BitmapShader bitmapShader3 = new BitmapShader(bitmap5, tileMode3, tileMode3);
-                this.f43413e.setScale(f20 / m0[i34].getWidth(), f21 / m0[i34].getHeight());
-                bitmapShader3.setLocalMatrix(this.f43413e);
+                this.f43438e.setScale(f20 / m0[i34].getWidth(), f21 / m0[i34].getHeight());
+                bitmapShader3.setLocalMatrix(this.f43438e);
                 int[] iArr4 = new int[129];
                 int i35 = i27;
                 while (i35 <= i11) {
@@ -282,7 +282,7 @@ public final class z5 {
             d = d2;
             i11 = 128;
         }
-        this.f43410c.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
+        this.f43435c.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SCREEN));
         this.d.setStyle(Paint.Style.STROKE);
         Random random = new Random(24560118926758988L);
         int i36 = i27;
@@ -324,22 +324,22 @@ public final class z5 {
             iArr5[i39] = a((((float) Math.pow(Math.abs(Math.cos(((i39 * 3.141592653589793d) * 2.0d) / 64.0d)), 8.0d)) * f10) + 0.12f, -1);
         }
         SweepGradient sweepGradient2 = new SweepGradient(this.M.centerX(), this.M.centerY(), iArr5, (float[]) null);
-        this.f43412d0 = sweepGradient2;
+        this.f43437d0 = sweepGradient2;
         if (m0[4] != null) {
             Bitmap bitmap6 = m0[4];
             Shader.TileMode tileMode4 = Shader.TileMode.CLAMP;
             BitmapShader bitmapShader4 = new BitmapShader(bitmap6, tileMode4, tileMode4);
-            this.f43413e.setScale(this.M.width() / m0[4].getWidth(), this.M.height() / m0[4].getHeight());
-            Matrix matrix = this.f43413e;
+            this.f43438e.setScale(this.M.width() / m0[4].getWidth(), this.M.height() / m0[4].getHeight());
+            Matrix matrix = this.f43438e;
             RectF rectF = this.M;
             matrix.postTranslate(rectF.left, rectF.top);
-            bitmapShader4.setLocalMatrix(this.f43413e);
-            this.f43414e0 = new ComposeShader(bitmapShader4, sweepGradient2, PorterDuff.Mode.DST_IN);
+            bitmapShader4.setLocalMatrix(this.f43438e);
+            this.f43439e0 = new ComposeShader(bitmapShader4, sweepGradient2, PorterDuff.Mode.DST_IN);
         }
         f(h(context, i7));
-        this.f43416f0 = i7;
+        this.f43441f0 = i7;
         k(0.0f, 0.0f);
-        f43400j0 = z9;
+        f43425j0 = z9;
     }
 
     public static int a(float f10, int i7) {
@@ -369,7 +369,7 @@ public final class z5 {
         int i10;
         String sb3;
         Integer valueOf = Integer.valueOf(i7);
-        LruCache lruCache = f43405p0;
+        LruCache lruCache = f43430p0;
         Bitmap[] bitmapArr = (Bitmap[]) lruCache.get(valueOf);
         if (bitmapArr != null) {
             return bitmapArr;
@@ -429,7 +429,7 @@ public final class z5 {
         if (bitmap == null) {
             return;
         }
-        Paint paint = this.f43408b;
+        Paint paint = this.f43433b;
         paint.setAlpha(i7);
         canvas.drawBitmap(bitmap, (Rect) null, rectF, paint);
         paint.setAlpha(255);
@@ -446,26 +446,26 @@ public final class z5 {
     }
 
     public final void j(int i7) {
-        if (i7 == this.f43416f0) {
+        if (i7 == this.f43441f0) {
             return;
         }
-        this.f43416f0 = i7;
-        Bitmap[] bitmapArr = (Bitmap[]) f43405p0.get(Integer.valueOf(i7));
+        this.f43441f0 = i7;
+        Bitmap[] bitmapArr = (Bitmap[]) f43430p0.get(Integer.valueOf(i7));
         if (bitmapArr != null) {
             f(bitmapArr);
             return;
         }
-        f43402l0.postRunnable(new h2(this, i7, 1));
+        f43427l0.postRunnable(new h2(this, i7, 1));
     }
 
     public final void k(float f10, float f11) {
         float f12;
         float f13;
         SweepGradient[] sweepGradientArr;
-        if (this.f43421i0 && this.S == f10 && this.T == f11) {
+        if (this.f43446i0 && this.S == f10 && this.T == f11) {
             return;
         }
-        this.f43421i0 = true;
+        this.f43446i0 = true;
         this.S = f10;
         this.T = f11;
         double d = f10;
@@ -489,21 +489,21 @@ public final class z5 {
         float f19 = this.Y / sqrt;
         this.Y = f19;
         this.Z = f17 + sin;
-        this.f43407a0 = f18 + sin2;
+        this.f43432a0 = f18 + sin2;
         float f20 = f19 + cos;
-        this.f43409b0 = f20;
+        this.f43434b0 = f20;
         float f21 = f20 * f20;
         float sqrt2 = (float) Math.sqrt(f21 + (f13 * f13) + (f12 * f12));
         this.Z /= sqrt2;
-        this.f43407a0 /= sqrt2;
-        this.f43409b0 /= sqrt2;
+        this.f43432a0 /= sqrt2;
+        this.f43434b0 /= sqrt2;
         this.U = (float) Math.toRadians(((f11 * 2.0f) + 1.72d) - (d * 1.25d));
-        float f22 = (this.f43407a0 * 4.0f) + ((this.Z - 0.103713065f) * (-2.0f));
+        float f22 = (this.f43432a0 * 4.0f) + ((this.Z - 0.103713065f) * (-2.0f));
         this.V = f22;
-        Matrix matrix = this.f43413e;
+        Matrix matrix = this.f43438e;
         matrix.setRotate((float) Math.toDegrees(f22), 168.0f, 102.5f);
         this.v.setLocalMatrix(matrix);
-        this.f43434w.setLocalMatrix(matrix);
+        this.f43459w.setLocalMatrix(matrix);
         for (SweepGradient sweepGradient : this.F) {
             if (sweepGradient != null) {
                 sweepGradient.setLocalMatrix(matrix);
@@ -533,10 +533,10 @@ public final class z5 {
                 i11++;
             } else {
                 RectF rectF = this.M;
-                this.f43411c0 = new SweepGradient(rectF.centerX(), rectF.centerY(), iArr, (float[]) null);
+                this.f43436c0 = new SweepGradient(rectF.centerX(), rectF.centerY(), iArr, (float[]) null);
                 matrix.setRotate((float) Math.toDegrees(this.V), rectF.centerX(), rectF.centerY());
-                this.f43411c0.setLocalMatrix(matrix);
-                this.f43412d0.setLocalMatrix(matrix);
+                this.f43436c0.setLocalMatrix(matrix);
+                this.f43437d0.setLocalMatrix(matrix);
                 return;
             }
         }

@@ -57,8 +57,8 @@ public final class j5 extends View {
         r70Var.rewind();
         int i10 = this.h;
         int i11 = this.f4089n;
-        r70Var.f31874e = i10;
-        r70Var.f31875f = i11;
+        r70Var.f31886e = i10;
+        r70Var.f31887f = i11;
         if (this.f4088f) {
             r70Var.e(null, 0, 0.0f, 0.0f);
             float f10 = Float.MAX_VALUE;

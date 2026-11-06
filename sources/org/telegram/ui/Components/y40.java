@@ -7,15 +7,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class y40 extends FrameLayout {
-    public final RectF f40492a;
-    public boolean f40493b;
-    public Boolean f40494c;
+    public final RectF f40517a;
+    public boolean f40518b;
+    public Boolean f40519c;
     public final m50 d;
 
     public y40(m50 m50Var, Context context) {
         super(context);
         this.d = m50Var;
-        this.f40492a = new RectF();
+        this.f40517a = new RectF();
     }
 
     @Override
@@ -32,7 +32,7 @@ public final class y40 extends FrameLayout {
         int i12 = L + i11;
         int i13 = (L2 + i10) - i11;
         boolean z11 = false;
-        if (this.f40493b) {
+        if (this.f40518b) {
             int i14 = i11 * 2;
             if (i12 + i10 < i14) {
                 int min = Math.min(i11, (i14 - i12) - i10);
@@ -59,7 +59,7 @@ public final class y40 extends FrameLayout {
         if (f10 != 1.0f) {
             org.telegram.ui.ActionBar.k6.f28139t0.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27921h5, false));
             int i18 = m50Var.f28644s0 + i12;
-            RectF rectF = this.f40492a;
+            RectF rectF = this.f40517a;
             rectF.set(m50Var.f28645t0, m50Var.f28644s0 + i12, getMeasuredWidth() - m50Var.f28645t0, org.telegram.messenger.g0.L(24.0f) + i18);
             canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(12.0f) * f10, org.telegram.messenger.g0.L(12.0f) * f10, org.telegram.ui.ActionBar.k6.f28139t0);
         }
@@ -72,7 +72,7 @@ public final class y40 extends FrameLayout {
         } else {
             z9 = false;
         }
-        Boolean bool = this.f40494c;
+        Boolean bool = this.f40519c;
         if (bool != null && bool.booleanValue() == z9) {
             return;
         }
@@ -84,7 +84,7 @@ public final class y40 extends FrameLayout {
         if (org.telegram.messenger.g0.B(org.telegram.ui.ActionBar.k6.w(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28128s8, m50Var.I0), 855638016)) > 0.721f) {
             z11 = true;
         }
-        this.f40494c = Boolean.valueOf(z9);
+        this.f40519c = Boolean.valueOf(z9);
         if (!z9) {
             z10 = z11;
         }
@@ -118,7 +118,7 @@ public final class y40 extends FrameLayout {
         setPadding(i11, org.telegram.messenger.g0.f22531m, i11, 0);
         m50Var.R1 = false;
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(size, 1073741824));
-        this.f40493b = true;
+        this.f40518b = true;
     }
 
     @Override

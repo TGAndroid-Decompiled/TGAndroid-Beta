@@ -4,19 +4,19 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 public final class k0 implements org.telegram.ui.ActionBar.r1 {
-    public final int f35130a;
-    public final Context f35131b;
+    public final int f35091a;
+    public final Context f35092b;
 
     public k0(Context context, int i7) {
-        this.f35130a = i7;
-        this.f35131b = context;
+        this.f35091a = i7;
+        this.f35092b = context;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f35130a) {
+        switch (this.f35091a) {
             case 0:
-                Context context = this.f35131b;
+                Context context = this.f35092b;
                 try {
                     context.startActivity(new Intent("android.settings.MANAGE_UNKNOWN_APP_SOURCES", Uri.parse("package:" + context.getPackageName())));
                     return;
@@ -25,10 +25,10 @@ public final class k0 implements org.telegram.ui.ActionBar.r1 {
                     return;
                 }
             case 1:
-                vf.c.t(this.f35131b, org.telegram.messenger.r2.f25196g);
+                vf.c.t(this.f35092b, org.telegram.messenger.r2.f25196g);
                 return;
             default:
-                Context context2 = this.f35131b;
+                Context context2 = this.f35092b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25555b.getPackageName()));

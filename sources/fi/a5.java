@@ -13,8 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.List;
 import org.telegram.ui.Components.en0;
-import org.telegram.ui.Components.f11;
 import org.telegram.ui.Components.hb0;
+import org.telegram.ui.Components.k11;
 import org.telegram.ui.Components.ly0;
 import org.telegram.ui.Components.xq;
 public final class a5 extends LinearLayout {
@@ -55,14 +55,14 @@ public final class a5 extends LinearLayout {
                 return;
             case 5:
                 canvas.save();
-                f11 f11Var = (f11) this.f11605c;
-                float d = ((org.telegram.ui.Components.w5) this.f11604b).d(f11Var.f33455y);
+                k11 k11Var = (k11) this.f11605c;
+                float d = ((org.telegram.ui.Components.w5) this.f11604b).d(k11Var.f35116y);
                 if (d > 0.0f) {
-                    if (f11Var.f33447c == null) {
-                        f11Var.f33447c = new en0(this);
+                    if (k11Var.f35108c == null) {
+                        k11Var.f35108c = new en0(this);
                     }
                     canvas.translate(getWidth() / 2.0f, getHeight() / 2.0f);
-                    f11Var.f33447c.a(canvas, d);
+                    k11Var.f35108c.a(canvas, d);
                     canvas.translate((-getWidth()) / 2.0f, (-getHeight()) / 2.0f);
                 }
                 super.dispatchDraw(canvas);
@@ -186,7 +186,7 @@ public final class a5 extends LinearLayout {
                     if (layout == null) {
                         interpolation = 0.0f;
                     } else {
-                        interpolation = xq.f40310f.getInterpolation(o5Var.J0);
+                        interpolation = xq.f40329f.getInterpolation(o5Var.J0);
                     }
                     float primaryHorizontal = layout2.getPrimaryHorizontal(layout2.getLineStart(0)) + textView3.getX();
                     if (layout != null) {
@@ -234,7 +234,7 @@ public final class a5 extends LinearLayout {
                 if (layout3 == null) {
                     interpolation2 = 0.0f;
                 } else {
-                    interpolation2 = xq.f40310f.getInterpolation(g0Var.R0);
+                    interpolation2 = xq.f40329f.getInterpolation(g0Var.R0);
                 }
                 float primaryHorizontal3 = layout4.getPrimaryHorizontal(layout4.getLineStart(0)) + textView4.getX();
                 if (textView2 != null) {
@@ -312,10 +312,10 @@ public final class a5 extends LinearLayout {
         setWillNotDraw(false);
     }
 
-    public a5(f11 f11Var, Context context) {
+    public a5(k11 k11Var, Context context) {
         super(context);
         this.f11603a = 5;
-        this.f11605c = f11Var;
+        this.f11605c = k11Var;
         this.f11604b = new org.telegram.ui.Components.w5(this, 360L, xq.h);
     }
 

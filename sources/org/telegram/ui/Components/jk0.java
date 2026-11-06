@@ -27,42 +27,42 @@ public final class jk0 extends Dialog {
     public boolean L;
     public boolean M;
     public ValueAnimator N;
-    public final Context f34996a;
-    public final org.telegram.ui.ActionBar.f6 f34997b;
-    public Bitmap f34998c;
+    public final Context f34957a;
+    public final org.telegram.ui.ActionBar.f6 f34958b;
+    public Bitmap f34959c;
     public BitmapShader d;
-    public Paint f34999e;
-    public Matrix f35000f;
+    public Paint f34960e;
+    public Matrix f34961f;
     public final ri.b h;
-    public final dh.c f35001n;
-    public float f35002r;
-    public final bi.e5 f35003s;
-    public final rt0 f35004w;
-    public k60 f35005x;
-    public FrameLayout f35006y;
+    public final dh.c f34962n;
+    public float f34963r;
+    public final bi.e5 f34964s;
+    public final rt0 f34965w;
+    public k60 f34966x;
+    public FrameLayout f34967y;
 
     public jk0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, 2131755352);
         this.J = 1.0f;
         this.K = 1.0f;
         this.M = false;
-        this.f34996a = context;
-        this.f34997b = f6Var;
+        this.f34957a = context;
+        this.f34958b = f6Var;
         bi.e5 e5Var = new bi.e5(23, context, this);
-        this.f35003s = e5Var;
+        this.f34964s = e5Var;
         e5Var.setOnClickListener(new la0(this, 6));
         rt0 rt0Var = new rt0(context, null);
-        this.f35004w = rt0Var;
+        this.f34965w = rt0Var;
         rt0Var.setClipToPadding(false);
         e5Var.addView(rt0Var, c8.ha.e(-1, -1, 119));
         ri.b bVar = new ri.b();
         this.h = bVar;
         dh.c cVar = new dh.c(bVar, bVar, bVar);
-        this.f35001n = cVar;
+        this.f34962n = cVar;
         cVar.h = new jh.k(e5Var);
         cVar.f8708i = e5Var;
         qt qtVar = new qt(this, 3);
-        WeakHashMap weakHashMap = r0.i0.f54073a;
+        WeakHashMap weakHashMap = r0.i0.f54098a;
         r0.a0.i(e5Var, qtVar);
     }
 
@@ -76,7 +76,7 @@ public final class jk0 extends Dialog {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        float f11 = this.f35002r;
+        float f11 = this.f34963r;
         if (z9) {
             f10 = 1.0f;
         } else {
@@ -98,20 +98,20 @@ public final class jk0 extends Dialog {
         }
         this.M = true;
         c(new hk0(this, 1), false);
-        this.f35003s.invalidate();
+        this.f34964s.invalidate();
     }
 
     public final void e(k60 k60Var) {
         int i7 = org.telegram.ui.ActionBar.k6.E8;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f34997b;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f34958b;
         k60Var.T(org.telegram.ui.ActionBar.k6.r1(0.06f, org.telegram.ui.ActionBar.k6.w0(i7, f6Var)));
-        k60Var.Q(this.f35001n, c8.g0.k(f6Var), false);
-        this.f35005x = k60Var;
+        k60Var.Q(this.f34962n, c8.g0.k(f6Var), false);
+        this.f34966x = k60Var;
         this.D = k60Var.A;
-        FrameLayout frameLayout = new FrameLayout(this.f34996a);
-        this.f35006y = frameLayout;
+        FrameLayout frameLayout = new FrameLayout(this.f34957a);
+        this.f34967y = frameLayout;
         frameLayout.addView(this.D, c8.ha.c(-2.0f, -2));
-        this.f35004w.addView(this.f35006y, c8.ha.c(-2.0f, -2));
+        this.f34965w.addView(this.f34967y, c8.ha.c(-2.0f, -2));
     }
 
     public final void f(org.telegram.ui.Cells.q1 r28, android.text.style.CharacterStyle r29, java.lang.CharSequence r30, boolean r31) {
@@ -129,7 +129,7 @@ public final class jk0 extends Dialog {
         Window window = getWindow();
         window.setWindowAnimations(2131755178);
         ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(-1, -1);
-        bi.e5 e5Var = this.f35003s;
+        bi.e5 e5Var = this.f34964s;
         setContentView(e5Var, layoutParams);
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;

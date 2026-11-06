@@ -30,7 +30,7 @@ public final class la extends r {
     @Override
     public final boolean e() {
         cc ccVar;
-        if (qp.s1(this.U).D3() || ((ccVar = cc.f32515w) != null && ccVar.f32516a == 2)) {
+        if (qp.s1(this.U).D3() || ((ccVar = cc.f32519w) != null && ccVar.f32520a == 2)) {
             return false;
         }
         int i7 = qp.s1(this.U).W4;
@@ -46,8 +46,8 @@ public final class la extends r {
             }
         }
         cc I = new hc(this.R1.f12971l0, this.f12356a).I(2131623970, hd.M0(2131752556, null), X2);
-        I.f32516a = 2;
-        I.f32523j = 5000;
+        I.f32520a = 2;
+        I.f32527j = 5000;
         I.k(false);
         return true;
     }
@@ -106,9 +106,9 @@ public final class la extends r {
                     if (childAt instanceof tg.j) {
                         ki0 selectionBounds = ((tg.j) childAt).getSelectionBounds();
                         RectF rectF = org.telegram.messenger.g0.P;
-                        float f12 = selectionBounds.f35319a;
-                        float f13 = selectionBounds.f35320b;
-                        rectF.set(f12, f13, selectionBounds.f35321c + f12, selectionBounds.d + f13);
+                        float f12 = selectionBounds.f35322a;
+                        float f13 = selectionBounds.f35323b;
+                        rectF.set(f12, f13, selectionBounds.f35324c + f12, selectionBounds.d + f13);
                         if (rectF.contains(x12, y12)) {
                             return true;
                         }

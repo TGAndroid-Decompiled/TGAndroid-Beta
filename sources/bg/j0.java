@@ -3,8 +3,8 @@ package bg;
 import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.g11;
 import org.telegram.ui.Components.hc;
+import org.telegram.ui.Components.l11;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.an;
 public final class j0 implements Runnable {
@@ -34,12 +34,12 @@ public final class j0 implements Runnable {
                 anVar.getMessagesController().V2(0, j3, true);
                 return;
             case 3:
-                anVar.f43727c6.put(j3, 0);
-                g11 g11Var = anVar.f43764f2;
-                if (g11Var != null) {
-                    g11Var.setAllTopicsHidden(false);
+                anVar.f43752c6.put(j3, 0);
+                l11 l11Var = anVar.f43789f2;
+                if (l11Var != null) {
+                    l11Var.setAllTopicsHidden(false);
                 }
-                if (j3 == anVar.f43915r4) {
+                if (j3 == anVar.f43940r4) {
                     anVar.C0.O(false);
                     return;
                 }
@@ -47,7 +47,7 @@ public final class j0 implements Runnable {
             case 4:
                 an anVar2 = this.f3331b;
                 cc v = hc.v(anVar2.getParentActivity(), anVar2, null, 1, this.f3332c, 1, anVar2.getThemedColor(k6.tj), anVar2.getThemedColor(k6.vj), 5000, true, null);
-                v.f32524k = true;
+                v.f32528k = true;
                 v.k(true);
                 return;
             case 5:

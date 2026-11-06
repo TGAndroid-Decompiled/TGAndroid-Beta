@@ -15,16 +15,16 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.b5;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 public final class c extends f2 implements ls {
     public int D;
     public int E;
     public int F;
     public b5 f17315a;
-    public k41 f17316b;
+    public p41 f17316b;
     public a0 f17317c;
     public boolean d;
     public boolean f17318e;
@@ -37,35 +37,35 @@ public final class c extends f2 implements ls {
     public int f17324x;
     public int f17325y;
 
-    public static void Z(c cVar, ArrayList arrayList, f41 f41Var) {
+    public static void Z(c cVar, ArrayList arrayList, k41 k41Var) {
         boolean z9;
         boolean z10;
         String M0 = hd.M0(2131752838, null);
         String M02 = hd.M0(2131752835, null);
-        r31 r31Var = new r31(2);
-        r31Var.f37598l = M0;
-        r31Var.f37601o = M02;
-        r31Var.f37599m = "RestrictedEmoji";
-        r31Var.f37600n = "💤";
-        arrayList.add(r31Var);
-        r31 i7 = r31.i(1, hd.M0(2131752821, null));
+        w31 w31Var = new w31(2);
+        w31Var.f39830l = M0;
+        w31Var.f39833o = M02;
+        w31Var.f39831m = "RestrictedEmoji";
+        w31Var.f39832n = "💤";
+        arrayList.add(w31Var);
+        w31 i7 = w31.i(1, hd.M0(2131752821, null));
         i7.L(cVar.f17321r);
         arrayList.add(i7);
-        arrayList.add(r31.C(null));
+        arrayList.add(w31.C(null));
         if (cVar.f17321r) {
             s1 d = t1.f(cVar.currentAccount).d("away");
             if (d != null) {
-                r31 r31Var2 = new r31(17);
-                r31Var2.G = d;
-                arrayList.add(r31Var2);
+                w31 w31Var2 = new w31(17);
+                w31Var2.G = d;
+                arrayList.add(w31Var2);
             } else {
-                r31 c10 = r31.c(2, 2131232022, hd.M0(2131752837, null));
-                c10.f37603q = true;
+                w31 c10 = w31.c(2, 2131232022, hd.M0(2131752837, null));
+                c10.f39835q = true;
                 arrayList.add(c10);
             }
-            arrayList.add(r31.C(null));
-            arrayList.add(r31.u(hd.M0(2131752830, null)));
-            r31 x10 = r31.x(3, hd.M0(2131752829, null));
+            arrayList.add(w31.C(null));
+            arrayList.add(w31.u(hd.M0(2131752830, null)));
+            w31 x10 = w31.x(3, hd.M0(2131752829, null));
             boolean z11 = false;
             if (cVar.f17324x == 0) {
                 z9 = true;
@@ -75,7 +75,7 @@ public final class c extends f2 implements ls {
             x10.L(z9);
             arrayList.add(x10);
             if (cVar.d) {
-                r31 x11 = r31.x(4, hd.M0(2131752822, null));
+                w31 x11 = w31.x(4, hd.M0(2131752822, null));
                 if (cVar.f17324x == 1) {
                     z10 = true;
                 } else {
@@ -84,33 +84,33 @@ public final class c extends f2 implements ls {
                 x11.L(z10);
                 arrayList.add(x11);
             }
-            r31 x12 = r31.x(5, hd.M0(2131752828, null));
+            w31 x12 = w31.x(5, hd.M0(2131752828, null));
             if (cVar.f17324x == 2) {
                 z11 = true;
             }
             x12.L(z11);
             arrayList.add(x12);
             if (cVar.f17324x == 2) {
-                arrayList.add(r31.C(null));
-                arrayList.add(r31.u(hd.M0(2131752830, null)));
-                arrayList.add(r31.f(hd.M0(2131752824, null), hd.Q(cVar.E), 8));
-                arrayList.add(r31.f(hd.M0(2131752827, null), hd.Q(cVar.F), 9));
+                arrayList.add(w31.C(null));
+                arrayList.add(w31.u(hd.M0(2131752830, null)));
+                arrayList.add(w31.f(hd.M0(2131752824, null), hd.Q(cVar.E), 8));
+                arrayList.add(w31.f(hd.M0(2131752827, null), hd.Q(cVar.F), 9));
             }
-            arrayList.add(r31.C(null));
-            r31 i10 = r31.i(10, hd.M0(2131752832, null));
+            arrayList.add(w31.C(null));
+            w31 i10 = w31.i(10, hd.M0(2131752832, null));
             i10.L(cVar.f17323w);
             arrayList.add(i10);
-            arrayList.add(r31.C(hd.M0(2131752831, null)));
-            arrayList.add(r31.u(hd.M0(2131752688, null)));
-            r31 x13 = r31.x(6, hd.M0(2131752781, null));
+            arrayList.add(w31.C(hd.M0(2131752831, null)));
+            arrayList.add(w31.u(hd.M0(2131752688, null)));
+            w31 x13 = w31.x(6, hd.M0(2131752781, null));
             x13.L(cVar.f17322s);
             arrayList.add(x13);
-            r31 x14 = r31.x(7, hd.M0(2131752776, null));
+            w31 x14 = w31.x(7, hd.M0(2131752776, null));
             x14.L(!cVar.f17322s);
             arrayList.add(x14);
-            arrayList.add(r31.C(null));
-            cVar.f17317c.a(arrayList, f41Var, true);
-            arrayList.add(r31.C(null));
+            arrayList.add(w31.C(null));
+            cVar.f17317c.a(arrayList, k41Var, true);
+            arrayList.add(w31.C(null));
         }
     }
 
@@ -148,7 +148,7 @@ public final class c extends f2 implements ls {
     }
 
     public final void c0() {
-        if (!this.f17315a.f27354y.f55371f) {
+        if (!this.f17315a.f27354y.f55396f) {
             if (!b0()) {
                 finishFragment();
                 return;
@@ -161,8 +161,8 @@ public final class c extends f2 implements ls {
                 int i7 = -this.f17319f;
                 this.f17319f = i7;
                 org.telegram.messenger.g0.G3(i7, B1, null);
-                k41 k41Var = this.f17316b;
-                k41Var.y0(k41Var.A1(2));
+                p41 p41Var = this.f17316b;
+                p41Var.y0(p41Var.A1(2));
             } else if (z9 && !this.f17317c.k(this.f17316b)) {
             } else {
                 this.f17315a.b(true);
@@ -225,13 +225,13 @@ public final class c extends f2 implements ls {
             tL_businessRecipients = tL_businessAwayMessage.recipients;
         }
         a0Var.j(tL_businessRecipients);
-        k41 k41Var = new k41(this, new hi.u1(this, 5), new a(this, 0), null);
-        this.f17316b = k41Var;
-        k41Var.r1();
+        p41 p41Var = new p41(this, new hi.u1(this, 5), new a(this, 0), null);
+        this.f17316b = p41Var;
+        p41Var.r1();
         this.f17316b.setSectionsDrawBackground(true);
-        k41 k41Var2 = this.f17316b;
-        k41Var2.f35167f3.f33473r = false;
-        frameLayout.addView(k41Var2, ha.c(-1.0f, -1));
+        p41 p41Var2 = this.f17316b;
+        p41Var2.f36781f3.f35132r = false;
+        frameLayout.addView(p41Var2, ha.c(-1.0f, -1));
         d0();
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -242,8 +242,8 @@ public final class c extends f2 implements ls {
         boolean z10;
         boolean z11;
         boolean z12;
+        p41 p41Var;
         k41 k41Var;
-        f41 f41Var;
         TL_account.TL_businessRecipients tL_businessRecipients;
         if (this.f17318e) {
             return;
@@ -301,9 +301,9 @@ public final class c extends f2 implements ls {
                 int i10 = tL_businessAwayMessageScheduleCustom.end_date;
                 this.D = i10;
                 this.F = i10;
-                k41Var = this.f17316b;
-                if (k41Var != null && (f41Var = k41Var.f35167f3) != null) {
-                    f41Var.O(true);
+                p41Var = this.f17316b;
+                if (p41Var != null && (k41Var = p41Var.f36781f3) != null) {
+                    k41Var.O(true);
                 }
                 a0(true);
                 this.f17318e = true;
@@ -322,9 +322,9 @@ public final class c extends f2 implements ls {
             this.f17320n = 0;
             this.f17324x = 0;
         }
-        k41Var = this.f17316b;
-        if (k41Var != null) {
-            f41Var.O(true);
+        p41Var = this.f17316b;
+        if (p41Var != null) {
+            k41Var.O(true);
         }
         a0(true);
         this.f17318e = true;
@@ -332,11 +332,11 @@ public final class c extends f2 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        f41 f41Var;
+        k41 k41Var;
         if (i7 == qs.F1) {
-            k41 k41Var = this.f17316b;
-            if (k41Var != null && (f41Var = k41Var.f35167f3) != null) {
-                f41Var.O(true);
+            p41 p41Var = this.f17316b;
+            if (p41Var != null && (k41Var = p41Var.f36781f3) != null) {
+                k41Var.O(true);
             }
             a0(true);
         } else if (i7 == qs.E0) {

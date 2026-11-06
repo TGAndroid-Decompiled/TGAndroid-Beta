@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.tl.TL_stats;
 public final class z41 {
-    public TL_stats.PostInteractionCounters f52466a;
-    public org.telegram.messenger.ij f52467b;
+    public TL_stats.PostInteractionCounters f52473a;
+    public org.telegram.messenger.ij f52474b;
 
     public final int a() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f52466a;
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f52473a;
         if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
             return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).forwards;
         }
@@ -17,7 +17,7 @@ public final class z41 {
     }
 
     public final int b() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f52466a;
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f52473a;
         if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
             return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).msg_id;
         }
@@ -28,7 +28,7 @@ public final class z41 {
     }
 
     public final int c() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f52466a;
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f52473a;
         if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
             return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).reactions;
         }
@@ -39,7 +39,7 @@ public final class z41 {
     }
 
     public final int d() {
-        TL_stats.PostInteractionCounters postInteractionCounters = this.f52466a;
+        TL_stats.PostInteractionCounters postInteractionCounters = this.f52473a;
         if (postInteractionCounters instanceof TL_stats.TL_postInteractionCountersMessage) {
             return ((TL_stats.TL_postInteractionCountersMessage) postInteractionCounters).views;
         }

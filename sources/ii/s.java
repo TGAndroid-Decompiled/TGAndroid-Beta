@@ -22,15 +22,15 @@ import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.ActionBar.y1;
 import org.telegram.ui.Components.av0;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.an;
 public final class s extends f2 implements te.b {
     public final te.a f15594a;
     public long f15595b;
     public FrameLayout f15596c;
-    public k41 d;
+    public p41 d;
     public lh.f f15597e;
     public LinearLayout f15598f;
     public fi.d h;
@@ -45,8 +45,8 @@ public final class s extends f2 implements te.b {
         this.f15594a = new te.a(0, this, xq.h, 320L, false);
     }
 
-    public static void Z(s sVar, r31 r31Var) {
-        Object obj = r31Var.G;
+    public static void Z(s sVar, w31 w31Var) {
+        Object obj = w31Var.G;
         if (obj instanceof ji.f) {
             ji.f fVar = (ji.f) obj;
             long j3 = fVar.f17080a;
@@ -107,12 +107,12 @@ public final class s extends f2 implements te.b {
         this.f15596c = frameLayout;
         int i7 = k6.f27792a7;
         r6.i(i7, frameLayout, null);
-        k41 k41Var = new k41(this, new u1(this, 3), new q(this), new x3(this, 7));
-        this.d = k41Var;
-        k41Var.setClipToPadding(false);
-        k41 k41Var2 = this.d;
-        k41Var2.f35167f3.f33473r = false;
-        k41Var2.r1();
+        p41 p41Var = new p41(this, new u1(this, 3), new q(this), new x3(this, 7));
+        this.d = p41Var;
+        p41Var.setClipToPadding(false);
+        p41 p41Var2 = this.d;
+        p41Var2.f36781f3.f35132r = false;
+        p41Var2.r1();
         this.d.j(new ai.b(this, 16));
         this.actionBar.setAdaptiveBackground(this.d);
         this.f15596c.addView(this.d, ha.c(-1.0f, -1));
@@ -184,7 +184,7 @@ public final class s extends f2 implements te.b {
         av0 av0Var = new av0(getParentActivity(), null, 16, this.resourceProvider);
         this.f15600r = av0Var;
         av0Var.d.setText(hd.M0(2131748224, null));
-        this.f15600r.f31917e.setText(hd.M0(2131748223, null));
+        this.f15600r.f31929e.setText(hd.M0(2131748223, null));
         this.f15600r.setAnimateLayoutChange(true);
         this.f15600r.setVisibility(8);
         this.f15596c.addView(this.f15600r, ha.e(-2, -2, 17));
@@ -196,7 +196,7 @@ public final class s extends f2 implements te.b {
         a0(0);
         FrameLayout frameLayout2 = this.f15596c;
         q qVar = new q(this);
-        WeakHashMap weakHashMap = r0.i0.f54073a;
+        WeakHashMap weakHashMap = r0.i0.f54098a;
         r0.a0.i(frameLayout2, qVar);
         setBulletinDelegate(new r7(4));
         FrameLayout frameLayout3 = this.f15596c;

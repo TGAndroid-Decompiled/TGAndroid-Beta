@@ -9,22 +9,22 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashMap;
 public final class sb0 extends FrameLayout {
-    public Bitmap f37992a;
-    public HashMap f37993b;
-    public boolean f37994c;
+    public Bitmap f37952a;
+    public HashMap f37953b;
+    public boolean f37954c;
     public BitmapDrawable d;
-    public boolean f37995e;
+    public boolean f37955e;
 
     public sb0(Context context) {
         super(context);
-        this.f37995e = true;
+        this.f37955e = true;
     }
 
     public final void a() {
-        this.f37992a = null;
+        this.f37952a = null;
         this.d = null;
         setBackground(null);
-        HashMap hashMap = this.f37993b;
+        HashMap hashMap = this.f37953b;
         if (hashMap != null) {
             hashMap.clear();
         }
@@ -50,14 +50,14 @@ public final class sb0 extends FrameLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f37995e) {
+        if (!this.f37955e) {
             return false;
         }
         return super.drawChild(canvas, view, j3);
     }
 
     public Bitmap getBitmap() {
-        return this.f37992a;
+        return this.f37952a;
     }
 
     public Bitmap getThumb() {
@@ -83,13 +83,13 @@ public final class sb0 extends FrameLayout {
         int i14;
         int i15;
         int measuredHeight;
-        if (this.f37993b != null) {
+        if (this.f37953b != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight2 = getMeasuredHeight();
             int childCount = getChildCount();
             for (int i16 = 0; i16 < childCount; i16++) {
                 View childAt = getChildAt(i16);
-                org.telegram.messenger.h20 h20Var = (org.telegram.messenger.h20) this.f37993b.get(childAt);
+                org.telegram.messenger.h20 h20Var = (org.telegram.messenger.h20) this.f37953b.get(childAt);
                 if (h20Var != null) {
                     int measuredWidth2 = childAt.getMeasuredWidth();
                     int measuredHeight3 = childAt.getMeasuredHeight();
@@ -117,15 +117,15 @@ public final class sb0 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         float f10;
-        this.f37994c = true;
+        this.f37954c = true;
         setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
-        if (this.f37993b != null) {
+        if (this.f37953b != null) {
             int measuredWidth = getMeasuredWidth();
             int measuredHeight = getMeasuredHeight();
             int childCount = getChildCount();
             for (int i11 = 0; i11 < childCount; i11++) {
                 View childAt = getChildAt(i11);
-                org.telegram.messenger.h20 h20Var = (org.telegram.messenger.h20) this.f37993b.get(childAt);
+                org.telegram.messenger.h20 h20Var = (org.telegram.messenger.h20) this.f37953b.get(childAt);
                 if (h20Var != null) {
                     if (childAt instanceof tg.b) {
                         childAt.measure(View.MeasureSpec.makeMeasureSpec(h20Var.f22814q, 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
@@ -142,7 +142,7 @@ public final class sb0 extends FrameLayout {
                 }
             }
         }
-        this.f37994c = false;
+        this.f37954c = false;
     }
 
     @Override
@@ -152,7 +152,7 @@ public final class sb0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f37994c) {
+        if (this.f37954c) {
             return;
         }
         super.requestLayout();
@@ -175,7 +175,7 @@ public final class sb0 extends FrameLayout {
     }
 
     public void setBitmap(Bitmap bitmap) {
-        this.f37992a = bitmap;
+        this.f37952a = bitmap;
         BitmapDrawable bitmapDrawable = new BitmapDrawable(bitmap);
         this.d = bitmapDrawable;
         setBackground(bitmapDrawable);

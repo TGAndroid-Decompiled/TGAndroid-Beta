@@ -7,19 +7,19 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
 public final class yd0 implements ViewSwitcher.ViewFactory {
-    public final int f52205a;
-    public final Object f52206b;
+    public final int f52226a;
+    public final Object f52227b;
 
     public yd0(Object obj, int i7) {
-        this.f52205a = i7;
-        this.f52206b = obj;
+        this.f52226a = i7;
+        this.f52227b = obj;
     }
 
     @Override
     public final View makeView() {
         int i7;
-        int i10 = this.f52205a;
-        Object obj = this.f52206b;
+        int i10 = this.f52226a;
+        Object obj = this.f52227b;
         switch (i10) {
             case 0:
                 TextView textView = new TextView((Context) obj);
@@ -47,7 +47,7 @@ public final class yd0 implements ViewSwitcher.ViewFactory {
             default:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
                 Drawable[] drawableArr = PhotoViewer.Y8;
-                return new jq0(photoViewer.E, photoViewer.T1, photoViewer.Q, new kn0(photoViewer, 0), new td0(photoViewer, 1));
+                return new kq0(photoViewer.E, photoViewer.T1, photoViewer.Q, new kn0(photoViewer, 0), new td0(photoViewer, 1));
         }
     }
 }

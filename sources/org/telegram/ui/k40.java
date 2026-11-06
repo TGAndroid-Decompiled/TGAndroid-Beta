@@ -2,18 +2,18 @@ package org.telegram.ui;
 
 import android.view.View;
 public final class k40 implements org.telegram.ui.Components.s00, org.telegram.ui.ActionBar.r1, r0.m {
-    public final int f47079a;
-    public final w40 f47080b;
+    public final int f47102a;
+    public final w40 f47103b;
 
     public k40(w40 w40Var, int i7) {
-        this.f47079a = i7;
-        this.f47080b = w40Var;
+        this.f47102a = i7;
+        this.f47103b = w40Var;
     }
 
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
         int i7 = org.telegram.messenger.g0.I0(k1Var, false).d;
-        w40 w40Var = this.f47080b;
+        w40 w40Var = this.f47103b;
         w40Var.m0 = i7;
         bi.s1 s1Var = w40Var.F;
         if (s1Var != null) {
@@ -21,23 +21,23 @@ public final class k40 implements org.telegram.ui.Components.s00, org.telegram.u
         }
         w40Var.o0();
         w40Var.m0();
-        return r0.k1.f54083b;
+        return r0.k1.f54108b;
     }
 
     @Override
     public void a(int i7) {
-        w40 w40Var = this.f47080b;
-        w40Var.f50920b.a(Math.min(i7, w40Var.f50923c0));
+        w40 w40Var = this.f47103b;
+        w40Var.f50926b.a(Math.min(i7, w40Var.f50929c0));
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f47079a) {
+        switch (this.f47102a) {
             case 1:
-                this.f47080b.t0();
+                this.f47103b.t0();
                 return;
             default:
-                this.f47080b.finishFragment();
+                this.f47103b.finishFragment();
                 return;
         }
     }

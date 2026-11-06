@@ -34,14 +34,14 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.b80;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.ht0;
 import org.telegram.ui.Components.jz;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.lb0;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.px0;
-import org.telegram.ui.Components.r31;
 import org.telegram.ui.Components.sx0;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w70;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.xq;
@@ -109,10 +109,10 @@ public final class dd extends o00 implements ls {
         throw new UnsupportedOperationException("Method not decompiled: bi.dd.C0(bi.dd, int):void");
     }
 
-    public static void D0(dd ddVar, r31 r31Var, Boolean bool, String str) {
+    public static void D0(dd ddVar, w31 w31Var, Boolean bool, String str) {
         if (ddVar.getParentActivity() != null) {
             if (bool.booleanValue()) {
-                org.telegram.ui.Components.hc.a0(ddVar).I(2131624226, org.telegram.messenger.hd.M0(2131745160, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G((int) r31Var.B, "StarsAcquiredInfo", new Object[0]))).j();
+                org.telegram.ui.Components.hc.a0(ddVar).I(2131624226, org.telegram.messenger.hd.M0(2131745160, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G((int) w31Var.B, "StarsAcquiredInfo", new Object[0]))).j();
                 ddVar.f3715h0.c(true);
                 ea.y(ddVar.currentAccount, false).S(true);
             } else if (str != null) {
@@ -463,8 +463,8 @@ public final class dd extends o00 implements ls {
         SpannableString spannableString = new SpannableString("💎 ");
         wp wpVar = new wp(2131231054, 0);
         wpVar.d = false;
-        wpVar.f40055r = 0.0f;
-        wpVar.f40056s = f11;
+        wpVar.f40062r = 0.0f;
+        wpVar.f40063s = f11;
         wpVar.G = f12;
         wpVar.H = f10;
         wpVar.I = f10;
@@ -523,8 +523,8 @@ public final class dd extends o00 implements ls {
                 wpVarArr[0] = wpVar;
             }
         }
-        wpVar.f40055r = 0.0f;
-        wpVar.f40056s = f11;
+        wpVar.f40062r = 0.0f;
+        wpVar.f40063s = f11;
         wpVar.G = f12;
         if (z9) {
             wpVar.d = false;
@@ -760,8 +760,8 @@ public final class dd extends o00 implements ls {
         gc gcVar = new gc(context, 70, 0, 0);
         frameLayout.addView(gcVar, c8.ha.c(-1.0f, -1));
         vg.m mVar = new vg.m(context, 1, 2);
-        vg.f fVar = mVar.f57295b;
-        fVar.f57279z = org.telegram.ui.ActionBar.k6.Tk;
+        vg.f fVar = mVar.f57320b;
+        fVar.f57304z = org.telegram.ui.ActionBar.k6.Tk;
         fVar.A = org.telegram.ui.ActionBar.k6.Uk;
         fVar.b();
         mVar.setStarParticlesView(gcVar);
@@ -787,8 +787,8 @@ public final class dd extends o00 implements ls {
         sb2.append(org.telegram.messenger.hd.H(' ', "BoostingBoostsCount", i10));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sb2.toString());
         wp wpVar = new wp(2131231928, 2);
-        wpVar.f40055r = 0.0f;
-        wpVar.f40056s = org.telegram.messenger.g0.L(0.66f);
+        wpVar.f40062r = 0.0f;
+        wpVar.f40063s = org.telegram.messenger.g0.L(0.66f);
         spannableStringBuilder.setSpan(wpVar, 0, 1, 33);
         f11.setText(spannableStringBuilder);
         f10.addView(f11, c8.ha.t(-2, 20, 17, 20, 4, 20, 4));
@@ -1034,10 +1034,10 @@ public final class dd extends o00 implements ls {
         a5.q c10;
         if (z9 && com.google.android.recaptcha.internal.a.u(spannableStringBuilder)) {
             for (wp wpVar : (wp[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), wp.class)) {
-                Drawable drawable = wpVar.f40051c;
+                Drawable drawable = wpVar.f40058c;
                 if (drawable != null && !(drawable instanceof a5.q) && (c10 = a5.q.c(org.telegram.messenger.t0.f25555b.getResources(), 2131231958, null)) != null) {
-                    c10.setBounds(wpVar.f40051c.getBounds());
-                    wpVar.f40051c = c10;
+                    c10.setBounds(wpVar.f40058c.getBounds());
+                    wpVar.f40058c = c10;
                     wpVar.d = false;
                 }
             }
@@ -1047,25 +1047,25 @@ public final class dd extends o00 implements ls {
 
     public final void J0() {
         q1();
-        pj0 pj0Var = this.f48165c;
+        pj0 pj0Var = this.f48194c;
         if (pj0Var != null && this.U != null && pj0Var.getLayoutParams() != null) {
             int C = org.telegram.messenger.camera.q.C(48.0f, this.f3709b0, -org.telegram.messenger.g0.L(8.0f));
             int C2 = org.telegram.messenger.camera.q.C(48.0f, this.f3710c0, -org.telegram.messenger.g0.L(8.0f));
-            org.telegram.messenger.g0.B3(this.f48165c, 0, C, 0, C2);
-            pj0 pj0Var2 = this.f48165c;
+            org.telegram.messenger.g0.B3(this.f48194c, 0, C, 0, C2);
+            pj0 pj0Var2 = this.f48194c;
             int i7 = -C;
-            pj0Var2.setPadding(pj0Var2.getPaddingLeft(), i7, this.f48165c.getPaddingRight(), this.f3710c0 - C2);
+            pj0Var2.setPadding(pj0Var2.getPaddingLeft(), i7, this.f48194c.getPaddingRight(), this.f3710c0 - C2);
             this.U.z(i7, -C2);
         }
     }
 
-    public final void K0(ArrayList arrayList, f41 f41Var) {
+    public final void K0(ArrayList arrayList, k41 k41Var) {
         boolean z9;
         pj0 pj0Var;
         int i7;
         n1("FILL_BEFORE");
         ht0 ht0Var = this.U;
-        if (ht0Var != null && ht0Var.f34422e0) {
+        if (ht0Var != null && ht0Var.f34372e0) {
             z9 = true;
         } else {
             z9 = false;
@@ -1076,10 +1076,10 @@ public final class dd extends o00 implements ls {
         }
         ea y10 = ea.y(this.currentAccount, false);
         ArrayList arrayList2 = y10.v;
-        r31 r31Var = new r31(-2);
-        r31Var.f37591c = (l00) super.o0(getParentActivity());
-        arrayList.add(r31Var);
-        arrayList.add(r31.k(this.f3716i0));
+        w31 w31Var = new w31(-2);
+        w31Var.f39823c = (l00) super.o0(getParentActivity());
+        arrayList.add(w31Var);
+        arrayList.add(w31.k(this.f3716i0));
         fi.d dVar = this.f3724r0;
         if (dVar != null) {
             if (getMessagesController().X5) {
@@ -1089,40 +1089,40 @@ public final class dd extends o00 implements ls {
             }
             dVar.setVisibility(i7);
         }
-        arrayList.add(r31.C(null));
+        arrayList.add(w31.C(null));
         if (getMessagesController().f24777g6) {
             arrayList.add(hi.f.i(-4, getThemedColor(org.telegram.ui.ActionBar.k6.ik), pn.i0(org.telegram.messenger.hd.M0(2131743767, null)), org.telegram.messenger.hd.M0(2131743768, null)));
-            arrayList.add(r31.C(null));
+            arrayList.add(w31.C(null));
         }
         if (y10.f3810e && !arrayList2.isEmpty()) {
-            arrayList.add(r31.u(org.telegram.messenger.hd.M0(2131745204, null)));
+            arrayList.add(w31.u(org.telegram.messenger.hd.M0(2131745204, null)));
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 int i11 = vc.f4927b;
-                r31 K = r31.K(vc.class);
+                w31 K = w31.K(vc.class);
                 K.G = (TL_stars.StarsSubscription) arrayList2.get(i10);
                 arrayList.add(K);
             }
             if (y10.f3827x) {
-                arrayList.add(r31.q(arrayList.size(), 33));
+                arrayList.add(w31.q(arrayList.size(), 33));
             } else if (!y10.f3828y) {
-                r31 c10 = r31.c(-3, 2131230871, org.telegram.messenger.hd.M0(2131745203, null));
-                c10.f37603q = true;
+                w31 c10 = w31.c(-3, 2131230871, org.telegram.messenger.hd.M0(2131745203, null));
+                c10.f39835q = true;
                 arrayList.add(c10);
             }
-            arrayList.add(r31.C(null));
+            arrayList.add(w31.C(null));
         }
         boolean N = y10.N(0);
         this.f3725s0 = N;
         if (N) {
             this.f3708a0 = arrayList.size();
-            arrayList.add(r31.n(this.V, -2));
-            if (z9 && (pj0Var = this.f48165c) != null) {
+            arrayList.add(w31.n(this.V, -2));
+            if (z9 && (pj0Var = this.f48194c) != null) {
                 a3.f fVar = this.f3713f0;
                 pj0Var.removeCallbacks(fVar);
-                this.f48165c.post(fVar);
+                this.f48194c.post(fVar);
             }
         } else {
-            arrayList.add(r31.m(this.f3714g0));
+            arrayList.add(w31.m(this.f3714g0));
         }
         n1("FILL_AFTER");
     }
@@ -1157,13 +1157,13 @@ public final class dd extends o00 implements ls {
         this.T = new cd(context, this.currentAccount, false, 0L, getClassGuid(), getResourceProvider(), this.U);
         this.f3714g0 = new ec(0, context, this);
         super.createView(context);
-        n00 n00Var = this.f48170s;
-        getBaseSimpleGlass().f(n00Var, this.f48165c, this.simpleActionBar, this.resourceProvider);
+        n00 n00Var = this.f48199s;
+        getBaseSimpleGlass().f(n00Var, this.f48194c, this.simpleActionBar, this.resourceProvider);
         this.simpleActionBar.setBackground(null);
         this.D.bringToFront();
         this.simpleActionBar.bringToFront();
         getBaseSimpleGlass().f21027n = this.U;
-        this.f48165c.setCaptureSectionsDecoratorAllowed(true);
+        this.f48194c.setCaptureSectionsDecoratorAllowed(true);
         this.T.setGlassEngine(this.glassEngine);
         getBaseSimpleGlass().f21028o = new g(1, this, new f(1, n00Var));
         FrameLayout frameLayout = this.T.d;
@@ -1179,14 +1179,14 @@ public final class dd extends o00 implements ls {
         this.X = aVar;
         this.Y = new te.a(1, new ka(this, 1), xqVar, 380L, false);
         this.Z = new te.a(2, new ka(this, 2), xqVar, 380L, false);
-        if (!this.f48165c.canScrollVertically(-1) && !this.simpleActionBar.s()) {
+        if (!this.f48194c.canScrollVertically(-1) && !this.simpleActionBar.s()) {
             z9 = false;
         } else {
             z9 = true;
         }
         aVar.a(z9, false);
-        this.Y.a(this.U.f34422e0, false);
-        this.f48165c.j(new ai.b(this, 5));
+        this.Y.a(this.U.f34372e0, false);
+        this.f48194c.j(new ai.b(this, 5));
         q1();
         fh.g c10 = getBaseSimpleGlass().f21018c.c(frameLayout, null, false);
         c10.p(c8.g0.m(this.resourceProvider));
@@ -1202,24 +1202,24 @@ public final class dd extends o00 implements ls {
         frameLayout2.setClickable(true);
         vg.m mVar = new vg.m(context, 1, 2);
         this.S = mVar;
-        vg.f fVar = mVar.f57295b;
-        fVar.f57279z = org.telegram.ui.ActionBar.k6.Tk;
+        vg.f fVar = mVar.f57320b;
+        fVar.f57304z = org.telegram.ui.ActionBar.k6.Tk;
         fVar.A = org.telegram.ui.ActionBar.k6.Uk;
         fVar.b();
-        this.S.setStarParticlesView(this.f48166e);
+        this.S.setStarParticlesView(this.f48195e);
         this.R.addView(this.S, c8.ha.d(190, 190.0f, 17, 0.0f, 12.0f, 0.0f, 24.0f));
         j0(org.telegram.messenger.hd.M0(2131744216, null), org.telegram.messenger.g0.H2(org.telegram.messenger.g0.U2(org.telegram.messenger.hd.M0(2131744213, null), new pa(context, 0)), true), this.R, null);
-        this.f48165c.setOverScrollMode(2);
+        this.f48194c.setOverScrollMode(2);
         v4.k kVar = new v4.k();
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.C = false;
         kVar.o(xqVar);
         kVar.n(350L);
-        this.f48165c.setItemAnimator(kVar);
-        this.f48165c.setOnItemClickListener(new ai.k(this, 1));
+        this.f48194c.setItemAnimator(kVar);
+        this.f48194c.setOnItemClickListener(new ai.k(this, 1));
         jz jzVar = new jz(getParentActivity());
         this.f3715h0 = jzVar;
-        this.f48170s.addView(jzVar, c8.ha.c(-1.0f, -1));
+        this.f48199s.addView(jzVar, c8.ha.c(-1.0f, -1));
         ea y10 = ea.y(this.currentAccount, false);
         LinearLayout linearLayout = new LinearLayout(getParentActivity());
         this.f3716i0 = linearLayout;
@@ -1234,10 +1234,10 @@ public final class dd extends o00 implements ls {
         this.f3717j0 = new SpannableStringBuilder("S");
         q50 q50Var = new q50(42.0f, this.currentAccount, this.f3718k0);
         zg0 zg0Var = new zg0(2131624217, org.telegram.messenger.g0.L(42.0f), org.telegram.messenger.g0.L(42.0f));
-        ImageReceiver imageReceiver = q50Var.f49083b;
+        ImageReceiver imageReceiver = q50Var.f49110b;
         imageReceiver.w0(zg0Var);
         imageReceiver.W(2);
-        q50Var.f49086f = false;
+        q50Var.f49113f = false;
         q50Var.h = -org.telegram.messenger.g0.L(3.0f);
         this.f3717j0.setSpan(q50Var, 0, 1, 33);
         this.f3716i0.addView(this.f3718k0, c8.ha.d(-1, 40.0f, 17, 24.0f, 0.0f, 24.0f, 0.0f));
@@ -1430,8 +1430,8 @@ public final class dd extends o00 implements ls {
 
     @Override
     public final void i0() {
-        this.f48170s.addView(this.U, c8.ha.c(-1.0f, -1));
-        this.U.u(this.f48165c, new ka(this, 3));
+        this.f48199s.addView(this.U, c8.ha.c(-1.0f, -1));
+        this.U.u(this.f48194c, new ka(this, 3));
         ht0 ht0Var = this.U;
         cd cdVar = this.T;
         ht0Var.x(cdVar, cdVar.f3610b, new a3.l(26));
@@ -1443,7 +1443,7 @@ public final class dd extends o00 implements ls {
     @Override
     public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
         ht0 ht0Var = this.U;
-        if (ht0Var == null || motionEvent == null || ht0Var.j(motionEvent.getX(), motionEvent.getY()) || !this.U.c() || this.T.f3610b.f36904b == 0) {
+        if (ht0Var == null || motionEvent == null || ht0Var.j(motionEvent.getX(), motionEvent.getY()) || !this.U.c() || this.T.f3610b.f38532b == 0) {
             return true;
         }
         return false;
@@ -1451,9 +1451,9 @@ public final class dd extends o00 implements ls {
 
     @Override
     public final v4.g0 k0() {
-        hc hcVar = new hc(this, this.f48165c, getParentActivity(), this.currentAccount, this.classGuid, new ai.e(this, 8), getResourceProvider(), 0);
+        hc hcVar = new hc(this, this.f48194c, getParentActivity(), this.currentAccount, this.classGuid, new ai.e(this, 8), getResourceProvider(), 0);
         this.f3727u0 = hcVar;
-        hcVar.f33473r = false;
+        hcVar.f35132r = false;
         return hcVar;
     }
 
@@ -1510,10 +1510,10 @@ public final class dd extends o00 implements ls {
             u10.append(height);
             Log.d("SiblingScroll", u10.toString());
             ht0 ht0Var = this.U;
-            if (!ht0Var.f34414a) {
+            if (!ht0Var.f34364a) {
                 return;
             }
-            ht0Var.f34416b = Math.max(ht0Var.f34416b, Math.min(60, Math.max(0, 30)));
+            ht0Var.f34366b = Math.max(ht0Var.f34366b, Math.min(60, Math.max(0, 30)));
             ht0Var.f(str, null, 0, 0, true);
         }
     }
@@ -1561,7 +1561,7 @@ public final class dd extends o00 implements ls {
 
     @Override
     public final void onFragmentDestroy() {
-        pj0 pj0Var = this.f48165c;
+        pj0 pj0Var = this.f48194c;
         if (pj0Var != null) {
             pj0Var.removeCallbacks(this.f3713f0);
         }
@@ -1703,7 +1703,7 @@ public final class dd extends o00 implements ls {
 
     @Override
     public final float q0() {
-        pj0 pj0Var = this.f48165c;
+        pj0 pj0Var = this.f48194c;
         if (pj0Var == null) {
             return 0.0f;
         }
@@ -1739,11 +1739,11 @@ public final class dd extends o00 implements ls {
         if (aVar == null) {
             f10 = 0.0f;
         } else {
-            f10 = aVar.f55370e;
+            f10 = aVar.f55395e;
         }
         te.a aVar2 = this.Y;
         if (aVar2 != null) {
-            f11 = aVar2.f55370e;
+            f11 = aVar2.f55395e;
         }
         view.setTranslationY(((-(1.0f - f10)) * org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - ((1.0f - f11) * org.telegram.messenger.g0.L(44.0f)));
     }
@@ -1751,7 +1751,7 @@ public final class dd extends o00 implements ls {
     @Override
     public final void s0(boolean z9) {
         te.a aVar = this.Z;
-        if (aVar != null && aVar.f55371f != z9) {
+        if (aVar != null && aVar.f55396f != z9) {
             aVar.a(z9, true);
         }
     }
@@ -1762,13 +1762,13 @@ public final class dd extends o00 implements ls {
         n1("SAVE_BEFORE");
         super.u0();
         ht0 ht0Var = this.U;
-        if (ht0Var != null && ht0Var.f34422e0) {
+        if (ht0Var != null && ht0Var.f34372e0) {
             z9 = true;
         } else {
             z9 = false;
         }
         this.f3712e0 = z9;
-        pj0 pj0Var = this.f48165c;
+        pj0 pj0Var = this.f48194c;
         if (pj0Var != null && this.P >= 0) {
             this.Q -= pj0Var.getPaddingTop();
         }

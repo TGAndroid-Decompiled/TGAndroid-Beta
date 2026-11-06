@@ -9,9 +9,9 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 import java.util.HashSet;
 public class db0 extends TextView implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.Cells.y f45012a;
-    public final org.telegram.ui.Components.a80 f45013b;
-    public int f45014c;
+    public final org.telegram.ui.Cells.y f45037a;
+    public final org.telegram.ui.Components.a80 f45038b;
+    public int f45039c;
     public final ce0 d;
 
     public db0(ce0 ce0Var, Context context) {
@@ -19,14 +19,14 @@ public class db0 extends TextView implements org.telegram.ui.ActionBar.a6 {
         this.d = ce0Var;
         int i7 = org.telegram.ui.ActionBar.k6.I6;
         org.telegram.ui.Cells.y h02 = org.telegram.ui.ActionBar.k6.h0(org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.x0(null, i7, false)), 7, -1);
-        this.f45012a = h02;
+        this.f45037a = h02;
         org.telegram.ui.Components.a80 a80Var = new org.telegram.ui.Components.a80();
-        this.f45013b = a80Var;
+        this.f45038b = a80Var;
         org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f28474a;
-        this.f45014c = org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.x0(null, i7, false));
+        this.f45039c = org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.x0(null, i7, false));
         h02.setCallback(this);
         a80Var.D = true;
-        a80Var.f31732u = 0.8f;
+        a80Var.f31744u = 0.8f;
     }
 
     public boolean a() {
@@ -50,16 +50,16 @@ public class db0 extends TextView implements org.telegram.ui.ActionBar.a6 {
             return;
         }
         org.telegram.ui.Components.r70 r70Var = new org.telegram.ui.Components.r70(0);
-        r70Var.f37632q = org.telegram.messenger.g0.L(3.0f);
-        r70Var.f37633r = org.telegram.messenger.g0.L(6.0f);
+        r70Var.f37575q = org.telegram.messenger.g0.L(3.0f);
+        r70Var.f37576r = org.telegram.messenger.g0.L(6.0f);
         int length = text.length();
         r70Var.d(layout, 0, 0.0f);
         layout.getSelectionPath(0, length, r70Var);
         RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(r70Var.f37634s, r70Var.f37636u, r70Var.f37635t, r70Var.v);
-        this.f45012a.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
-        org.telegram.ui.Components.a80 a80Var = this.f45013b;
-        a80Var.f31735y = r70Var;
+        rectF.set(r70Var.f37577s, r70Var.f37579u, r70Var.f37578t, r70Var.v);
+        this.f45037a.setBounds((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+        org.telegram.ui.Components.a80 a80Var = this.f45038b;
+        a80Var.f31747y = r70Var;
         a80Var.k(4.0f);
         int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.k6.f28265ze);
         a80Var.g(org.telegram.ui.ActionBar.k6.r1(0.85f, themedColor), org.telegram.ui.ActionBar.k6.r1(2.0f, themedColor), org.telegram.ui.ActionBar.k6.r1(3.5f, themedColor), org.telegram.ui.ActionBar.k6.r1(6.0f, themedColor));
@@ -76,11 +76,11 @@ public class db0 extends TextView implements org.telegram.ui.ActionBar.a6 {
             paddingTop = getPaddingTop();
         }
         canvas.translate(getPaddingLeft(), paddingTop);
-        this.f45012a.draw(canvas);
+        this.f45037a.draw(canvas);
         canvas.restore();
         super.onDraw(canvas);
         boolean a10 = a();
-        org.telegram.ui.Components.a80 a80Var = this.f45013b;
+        org.telegram.ui.Components.a80 a80Var = this.f45038b;
         if (!a10 && !a80Var.d()) {
             return;
         }
@@ -100,7 +100,7 @@ public class db0 extends TextView implements org.telegram.ui.ActionBar.a6 {
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean b10 = b();
-        org.telegram.ui.Cells.y yVar = this.f45012a;
+        org.telegram.ui.Cells.y yVar = this.f45037a;
         if (b10 && motionEvent.getAction() == 0) {
             yVar.setHotspot(motionEvent.getX(), motionEvent.getY());
             yVar.setState(new int[]{16842910, 16842919});
@@ -120,12 +120,12 @@ public class db0 extends TextView implements org.telegram.ui.ActionBar.a6 {
     public final void updateColors() {
         try {
             int r12 = org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.I6, false));
-            org.telegram.ui.Cells.y yVar = this.f45012a;
-            if (yVar != null && r12 != this.f45014c) {
+            org.telegram.ui.Cells.y yVar = this.f45037a;
+            if (yVar != null && r12 != this.f45039c) {
                 org.telegram.ui.ActionBar.k6.H1(yVar, r12, true);
             }
-            this.f45014c = r12;
-            org.telegram.ui.Components.a80 a80Var = this.f45013b;
+            this.f45039c = r12;
+            org.telegram.ui.Components.a80 a80Var = this.f45038b;
             if (a80Var != null) {
                 int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.k6.f28265ze);
                 a80Var.g(org.telegram.ui.ActionBar.k6.r1(0.85f, themedColor), org.telegram.ui.ActionBar.k6.r1(2.0f, themedColor), org.telegram.ui.ActionBar.k6.r1(3.5f, themedColor), org.telegram.ui.ActionBar.k6.r1(6.0f, themedColor));
@@ -138,7 +138,7 @@ public class db0 extends TextView implements org.telegram.ui.ActionBar.a6 {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f45012a && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f45037a && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

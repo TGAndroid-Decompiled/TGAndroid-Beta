@@ -3,7 +3,7 @@ package org.telegram.messenger;
 import android.animation.ValueAnimator;
 import android.view.View;
 import android.view.Window;
-import org.telegram.ui.Components.n51;
+import org.telegram.ui.Components.s51;
 public final class q implements ValueAnimator.AnimatorUpdateListener {
     public final int f24644a;
     public final Object f24645b;
@@ -24,7 +24,7 @@ public final class q implements ValueAnimator.AnimatorUpdateListener {
                 Window window = (Window) this.f24646c;
                 int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
                 if (mgVar != null) {
-                    org.telegram.ui.Components.di diVar = mgVar.f35998b;
+                    org.telegram.ui.Components.di diVar = mgVar.f35936b;
                     diVar.F0 = -1;
                     diVar.G0 = intValue;
                     diVar.f28615b.invalidate();
@@ -36,13 +36,13 @@ public final class q implements ValueAnimator.AnimatorUpdateListener {
                     return;
                 }
             case 1:
-                n51 n51Var = (n51) this.f24646c;
+                s51 s51Var = (s51) this.f24646c;
                 if (((MediaController) this.f24645b).X != 1) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.2f;
                 }
-                n51Var.B0(((Float) valueAnimator.getAnimatedValue()).floatValue() * f10);
+                s51Var.B0(((Float) valueAnimator.getAnimatedValue()).floatValue() * f10);
                 return;
             default:
                 fv fvVar = (fv) this.f24645b;

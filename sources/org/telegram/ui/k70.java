@@ -2,21 +2,21 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class k70 implements DialogInterface.OnDismissListener {
-    public final int f47113a;
-    public final LaunchActivity f47114b;
+    public final int f47136a;
+    public final LaunchActivity f47137b;
 
     public k70(LaunchActivity launchActivity, int i7) {
-        this.f47113a = i7;
-        this.f47114b = launchActivity;
+        this.f47136a = i7;
+        this.f47137b = launchActivity;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i7 = this.f47113a;
-        LaunchActivity launchActivity = this.f47114b;
+        int i7 = this.f47136a;
+        LaunchActivity launchActivity = this.f47137b;
         switch (i7) {
             case 0:
-                launchActivity.f41266v1 = false;
+                launchActivity.f41291v1 = false;
                 return;
             case 1:
                 String str = LaunchActivity.B1;

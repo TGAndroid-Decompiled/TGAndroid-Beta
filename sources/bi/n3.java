@@ -48,13 +48,13 @@ public final class n3 implements c20 {
                 byte[] bArr = (byte[]) obj;
                 if (!f2Var.j(b2Var) && f2Var.A(b2Var)) {
                     TL_wallet.tonConnectClaimRequest tonconnectclaimrequest = new TL_wallet.tonConnectClaimRequest();
-                    tonconnectclaimrequest.session_id = b2Var.f42097a.f27214id;
-                    tonconnectclaimrequest.msg_id = b2Var.f42098b;
+                    tonconnectclaimrequest.session_id = b2Var.f42122a.f27214id;
+                    tonconnectclaimrequest.msg_id = b2Var.f42123b;
                     tonconnectclaimrequest.app_request_id = b2Var.d;
                     boolean z9 = this.f4397b;
                     tonconnectclaimrequest.declined = z9;
                     tonconnectclaimrequest.challenge_answer = bArr;
-                    f2Var.f42439f.sendRequestTyped(tonconnectclaimrequest, new d3.b(1), new org.telegram.ui.Wallet.w1(f2Var, bArr, b2Var, tVar, z9, k0Var));
+                    f2Var.f42464f.sendRequestTyped(tonconnectclaimrequest, new d3.b(1), new org.telegram.ui.Wallet.w1(f2Var, bArr, b2Var, tVar, z9, k0Var));
                     return;
                 }
                 if (bArr != null) {

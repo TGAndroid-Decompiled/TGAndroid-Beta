@@ -156,7 +156,7 @@ public abstract class o0 {
 
     public static void j(q4.q qVar, ComponentName componentName) {
         try {
-            MediaSession mediaSession = ((q4.l) qVar.f53686b).f53668a;
+            MediaSession mediaSession = ((q4.l) qVar.f53711b).f53693a;
             mediaSession.getClass();
             mediaSession.setMediaButtonBroadcastReceiver(componentName);
         } catch (IllegalArgumentException e10) {

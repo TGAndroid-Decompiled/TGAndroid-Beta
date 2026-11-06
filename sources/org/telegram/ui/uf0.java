@@ -5,12 +5,12 @@ import android.graphics.RectF;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class uf0 implements org.telegram.ui.Components.hi0 {
-    public final org.telegram.ui.ActionBar.f2 f50403a;
-    public final bg0 f50404b;
+    public final org.telegram.ui.ActionBar.f2 f50425a;
+    public final bg0 f50426b;
 
     public uf0(bg0 bg0Var, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f50404b = bg0Var;
-        this.f50403a = f2Var;
+        this.f50426b = bg0Var;
+        this.f50425a = f2Var;
     }
 
     @Override
@@ -36,10 +36,10 @@ public final class uf0 implements org.telegram.ui.Components.hi0 {
         ch.o0 o0Var3;
         ch.o0 o0Var4 = o0Var;
         if (o0Var4 != null) {
-            bg0 bg0Var = this.f50404b;
-            sf0 sf0Var = bg0Var.f44306d0;
+            bg0 bg0Var = this.f50426b;
+            sf0 sf0Var = bg0Var.f44322d0;
             qf0 qf0Var = bg0Var.Z;
-            int i7 = bg0Var.f44304c;
+            int i7 = bg0Var.f44320c;
             if (sf0Var != null) {
                 boolean z14 = true;
                 if (!org.telegram.messenger.p10.i(i7).q() && o0Var4.d) {
@@ -72,20 +72,20 @@ public final class uf0 implements org.telegram.ui.Components.hi0 {
                             j3 = 0;
                             j10 = j11;
                             q1Var2.v3(messageObject, k10, z14, false, false, false);
-                            sf0 sf0Var2 = bg0Var.f44306d0;
+                            sf0 sf0Var2 = bg0Var.f44322d0;
                             if (z13) {
                                 o0Var3 = null;
                             } else {
                                 o0Var3 = o0Var4;
                             }
                             sf0Var2.setSelectedReactionAnimated(o0Var3);
-                            if (bg0Var.f44306d0.getReactionsWindow() != null && bg0Var.f44306d0.getReactionsWindow().f6193m != null) {
-                                ch.w wVar = bg0Var.f44306d0.getReactionsWindow().f6193m;
+                            if (bg0Var.f44322d0.getReactionsWindow() != null && bg0Var.f44322d0.getReactionsWindow().f6193m != null) {
+                                ch.w wVar = bg0Var.f44322d0.getReactionsWindow().f6193m;
                                 if (z13) {
                                     o0Var4 = null;
                                 }
                                 wVar.setSelectedReaction(o0Var4);
-                                bg0Var.f44306d0.getReactionsWindow().f6183a.invalidate();
+                                bg0Var.f44322d0.getReactionsWindow().f6183a.invalidate();
                             }
                         } else {
                             j3 = 0;
@@ -110,7 +110,7 @@ public final class uf0 implements org.telegram.ui.Components.hi0 {
                     } else {
                         return;
                     }
-                } else if (bg0Var.f44315k0 != null) {
+                } else if (bg0Var.f44331k0 != null) {
                     long j13 = o0Var4.f6354c;
                     if (j13 == bg0Var.H) {
                         bg0Var.H = 0L;
@@ -138,20 +138,20 @@ public final class uf0 implements org.telegram.ui.Components.hi0 {
                                 g5Var.g(null, true);
                             }
                         }
-                        sf0 sf0Var3 = bg0Var.f44306d0;
+                        sf0 sf0Var3 = bg0Var.f44322d0;
                         if (z12) {
                             o0Var2 = null;
                         } else {
                             o0Var2 = o0Var4;
                         }
                         sf0Var3.setSelectedReactionAnimated(o0Var2);
-                        if (bg0Var.f44306d0.getReactionsWindow() != null && bg0Var.f44306d0.getReactionsWindow().f6193m != null) {
-                            ch.w wVar2 = bg0Var.f44306d0.getReactionsWindow().f6193m;
+                        if (bg0Var.f44322d0.getReactionsWindow() != null && bg0Var.f44322d0.getReactionsWindow().f6193m != null) {
+                            ch.w wVar2 = bg0Var.f44322d0.getReactionsWindow().f6193m;
                             if (z12) {
                                 o0Var4 = null;
                             }
                             wVar2.setSelectedReaction(o0Var4);
-                            bg0Var.f44306d0.getReactionsWindow().f6183a.invalidate();
+                            bg0Var.f44322d0.getReactionsWindow().f6183a.invalidate();
                         }
                     }
                     qf0Var.c();
@@ -165,8 +165,8 @@ public final class uf0 implements org.telegram.ui.Components.hi0 {
                         bg0Var.Z.d(null, 0, null, new org.telegram.messenger.ij(i7, tL_message, false, false), 0, false, false, 0.0f, 0.0f, true);
                     }
                 }
-                if (z11 && (f2Var = this.f50403a) != null) {
-                    new org.telegram.ui.Components.hc(bg0Var.F, bg0Var.f44302b).Q(2131624216, 36, org.telegram.messenger.g0.x2(org.telegram.messenger.hd.M0(2131754253, null), new tf0(0, f2Var))).j();
+                if (z11 && (f2Var = this.f50425a) != null) {
+                    new org.telegram.ui.Components.hc(bg0Var.F, bg0Var.f44318b).Q(2131624216, 36, org.telegram.messenger.g0.x2(org.telegram.messenger.hd.M0(2131754253, null), new tf0(0, f2Var))).j();
                 }
                 bg0Var.G.invalidate();
             }

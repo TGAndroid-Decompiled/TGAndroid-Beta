@@ -111,20 +111,20 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
             case 8:
                 an anVar = (an) this.f20614b;
                 anVar.C8();
-                gz.Y(anVar.getAccountInstance(), (Uri) this.f20615c, anVar.f43818j6, anVar.D5, anVar.f43840l4, null, anVar.F5, z9, i7, anVar.W8());
+                gz.Y(anVar.getAccountInstance(), (Uri) this.f20615c, anVar.f43843j6, anVar.D5, anVar.f43865l4, null, anVar.F5, z9, i7, anVar.W8());
                 return;
             case 9:
             default:
                 lm lmVar = (lm) this.f20614b;
                 ij ijVar = (ij) this.f20615c;
                 if (z9) {
-                    lmVar.f47534a.getMessagesController().v(ijVar.f23237k.f26973id, i7, m5.o(ijVar.f23237k.peer_id), null, false);
+                    lmVar.f47561a.getMessagesController().v(ijVar.f23237k.f26973id, i7, m5.o(ijVar.f23237k.peer_id), null, false);
                     return;
                 }
                 return;
             case 10:
                 an anVar2 = (an) this.f20614b;
-                anVar2.getSendMessagesHelper().r0(ez.b((String) this.f20615c, anVar2.f43818j6, anVar2.D5, anVar2.f43840l4, null, false, null, null, null, z9, i7, 0, null, false));
+                anVar2.getSendMessagesHelper().r0(ez.b((String) this.f20615c, anVar2.f43843j6, anVar2.D5, anVar2.f43865l4, null, false, null, null, null, z9, i7, 0, null, false));
                 anVar2.Z.setFieldText("");
                 anVar2.B9(false);
                 return;
@@ -145,7 +145,7 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
     @Override
     public void b(long j3, TLRPC.MessagePeerReaction messagePeerReaction) {
         ij ijVar = (ij) this.f20615c;
-        an anVar = ((oh) this.f20614b).f48383p;
+        an anVar = ((oh) this.f20614b).f48412p;
         Bundle bundle = new Bundle();
         if (j3 > 0) {
             bundle.putLong("user_id", j3);
@@ -153,7 +153,7 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
             bundle.putLong("chat_id", -j3);
         }
         bundle.putInt("report_reaction_message_id", ijVar.f1());
-        bundle.putLong("report_reaction_from_dialog_id", anVar.f43818j6);
+        bundle.putLong("report_reaction_from_dialog_id", anVar.f43843j6);
         anVar.presentFragment(new ProfileActivity(bundle, null));
         anVar.O7(true);
     }
@@ -165,11 +165,11 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
         int ordinal = c5Var.ordinal();
         if (ordinal != 0) {
             if (ordinal == 3) {
-                jb jbVar = ebVar.f45224a;
+                jb jbVar = ebVar.f45254a;
                 if (user != null) {
                     Bundle bundle = new Bundle();
                     bundle.putLong("user_id", user.f27101id);
-                    f2 f2Var = jbVar.f46896n;
+                    f2 f2Var = jbVar.f46920n;
                     if (f2Var.getMessagesController().E(bundle, f2Var, null, null)) {
                         f2Var.presentFragment(new an(bundle));
                         return;
@@ -209,7 +209,7 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
             if ((view instanceof n3) && adapter.E != null) {
                 n3 n3Var = (n3) view;
                 if (g4Var.H0 == 0) {
-                    if ((!n3Var.f47921c || f10 >= view.getMeasuredWidth() / 2) && !n3Var.d) {
+                    if ((!n3Var.f47947c || f10 >= view.getMeasuredWidth() / 2) && !n3Var.d) {
                         TLObject f22 = qp.s1(g4Var.X).f2("previews");
                         if (f22 instanceof TLRPC.TL_user) {
                             g4Var.N(adapter.E.f27107id, (TLRPC.User) f22);
@@ -227,27 +227,27 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) adapter.d.get(i7);
                 TL_iv.PageBlock x10 = g4.x(pageBlock);
                 if (x10 instanceof u3) {
-                    x10 = ((u3) x10).f50188b;
+                    x10 = ((u3) x10).f50210b;
                 }
                 if (x10 instanceof TL_iv.pageBlockChannel) {
                     qp.s1(g4Var.X).y3(t3.K(((TL_iv.pageBlockChannel) x10).channel, false), g4Var.M, 2, null);
                     g4Var.m(false, true);
                 } else if (x10 instanceof a4) {
                     a4 a4Var = (a4) x10;
-                    g4Var.O(a4Var.f43534a.articles.get(a4Var.f43535b).url, null, null);
+                    g4Var.O(a4Var.f43559a.articles.get(a4Var.f43560b).url, null, null);
                 } else if (x10 instanceof TL_iv.pageBlockDetails) {
                     View w10 = g4.w(view);
                     if (w10 instanceof j1) {
                         g4Var.d = null;
-                        g4Var.f48242f = null;
-                        if (adapter.f45162e.indexOf(pageBlock) >= 0) {
+                        g4Var.f48271f = null;
+                        if (adapter.f45192e.indexOf(pageBlock) >= 0) {
                             TL_iv.pageBlockDetails pageblockdetails = (TL_iv.pageBlockDetails) x10;
                             pageblockdetails.open = !pageblockdetails.open;
                             int b10 = adapter.b();
                             adapter.M();
                             int abs = Math.abs(adapter.b() - b10);
                             j1 j1Var = (j1) w10;
-                            AnimatedArrowDrawable animatedArrowDrawable = j1Var.f46788f;
+                            AnimatedArrowDrawable animatedArrowDrawable = j1Var.f46812f;
                             if (pageblockdetails.open) {
                                 f12 = 0.0f;
                             } else {
@@ -344,8 +344,8 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                 boolean[] zArr = (boolean[]) this.f20615c;
                 boolean z9 = zArr[0];
                 boolean z10 = zArr[1];
-                ww wwVar = (ww) f2Var.f33457b;
-                ArrayList arrayList = (ArrayList) f2Var.f33458c;
+                ww wwVar = (ww) f2Var.f33443b;
+                ArrayList arrayList = (ArrayList) f2Var.f33444c;
                 wwVar.getClass();
                 int size = arrayList.size();
                 for (int i11 = 0; i11 < size; i11++) {
@@ -411,8 +411,8 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
     @Override
     public void k(boolean z9) {
         long j3 = ((TLRPC.User) this.f20615c).f27101id;
-        an anVar = ((si) this.f20614b).f49758b;
-        long j10 = anVar.f43915r4;
+        an anVar = ((si) this.f20614b).f49779b;
+        long j10 = anVar.f43940r4;
         if (j3 != j10) {
             return;
         }
@@ -428,9 +428,9 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
         if (pair != null) {
             long longValue = ((Long) pair.first).longValue();
             Bitmap bitmap = (Bitmap) pair.second;
-            r3 r3Var = ymVar.f52251f;
-            if (r3Var != null && longValue == r3Var.h(ymVar.f52261q ? 1 : 0) && bitmap != null) {
-                qa0Var.f37357x = bitmap;
+            r3 r3Var = ymVar.f52272f;
+            if (r3Var != null && longValue == r3Var.h(ymVar.f52282q ? 1 : 0) && bitmap != null) {
+                qa0Var.f37247x = bitmap;
                 qa0Var.i();
             }
         }
@@ -463,10 +463,10 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                 boolean z10 = false;
                 pnVar.N0 = false;
                 if (j3 != 0) {
-                    pnVar.f48890v0 = j3;
+                    pnVar.f48885v0 = j3;
                     TLRPC.Chat M0 = pnVar.getMessagesController().M0(Long.valueOf(j3));
-                    pnVar.f48892w0 = M0;
-                    TLRPC.ChatFull chatFull = pnVar.f48894x0;
+                    pnVar.f48887w0 = M0;
+                    TLRPC.ChatFull chatFull = pnVar.f48889x0;
                     if (chatFull != null) {
                         chatFull.hidden_prehistory = true;
                     }
@@ -478,8 +478,8 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                     if (M0.forum_sidebar != pnVar.H0) {
                         z10 = true;
                     }
-                    pnVar.getMessagesController().a5(pnVar.f48890v0, pnVar.E0, pnVar.G0, pnVar.H0);
-                    TLRPC.Chat chat = pnVar.f48892w0;
+                    pnVar.getMessagesController().a5(pnVar.f48885v0, pnVar.E0, pnVar.G0, pnVar.H0);
+                    TLRPC.Chat chat = pnVar.f48887w0;
                     chat.forum = pnVar.E0;
                     chat.forum_tabs = pnVar.G0;
                     chat.forum_sidebar = pnVar.H0;
@@ -495,12 +495,12 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                 oo ooVar = (oo) this.f20614b;
                 Runnable runnable = (Runnable) this.f20615c;
                 if (j3 != 0) {
-                    so soVar = ooVar.f48434y.d;
-                    if (soVar.f49783s) {
-                        soVar.f49784w.set(0, soVar.getMessagesController().M0(Long.valueOf(j3)));
+                    so soVar = ooVar.f48463y.d;
+                    if (soVar.f49804s) {
+                        soVar.f49805w.set(0, soVar.getMessagesController().M0(Long.valueOf(j3)));
                     } else {
                         soVar.E = j3;
-                        soVar.f49780f = soVar.getMessagesController().M0(Long.valueOf(j3));
+                        soVar.f49801f = soVar.getMessagesController().M0(Long.valueOf(j3));
                     }
                     runnable.run();
                     return;
@@ -523,7 +523,7 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
     @Override
     public boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, v91 v91Var) {
         x5 x5Var = (x5) this.f20614b;
-        ArrayList arrayList2 = x5Var.f51750c;
+        ArrayList arrayList2 = x5Var.f51767c;
         ((ww) this.f20615c).finishFragment();
         s2 s2Var = null;
         int i11 = 0;
@@ -548,7 +548,7 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
             }
             if (!z11) {
                 int i14 = 2;
-                if (x5Var.getMessagesController().f24872r7.c(x5Var.f51751e) == 2) {
+                if (x5Var.getMessagesController().f24872r7.c(x5Var.f51768e) == 2) {
                     i14 = 3;
                 }
                 ArrayList arrayList3 = x5Var.d;
@@ -558,13 +558,13 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
             }
             i12++;
         }
-        x5Var.getMessagesController().f24872r7.h(x5Var.f51751e, x5Var.d);
+        x5Var.getMessagesController().f24872r7.h(x5Var.f51768e, x5Var.d);
         x5Var.Z();
         if (s2Var != null) {
             int i15 = 0;
             while (true) {
                 if (i15 < arrayList2.size()) {
-                    if (((w5) arrayList2.get(i15)).f50952c != null && ((w5) arrayList2.get(i15)).f50952c.f25403a == s2Var.f25403a) {
+                    if (((w5) arrayList2.get(i15)).f50958c != null && ((w5) arrayList2.get(i15)).f50958c.f25403a == s2Var.f25403a) {
                         i11 = i15;
                         break;
                     }
@@ -573,7 +573,7 @@ public final class c implements p, u, cj0, r1, qw, u4, t4, bp, oc, qi0, qh0, qr,
                     break;
                 }
             }
-            x5Var.f51749b.v0(i11);
+            x5Var.f51766b.v0(i11);
             org.telegram.messenger.g0.i3(new org.telegram.ui.ActionBar.p(11, x5Var, s2Var), 150L);
         }
         return true;

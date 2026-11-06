@@ -4,20 +4,20 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import org.telegram.tgnet.TLRPC;
 public final class el implements Comparator {
-    public final int f33279a;
-    public final Object f33280b;
+    public final int f33275a;
+    public final Object f33276b;
 
     public el(Object obj, int i7) {
-        this.f33279a = i7;
-        this.f33280b = obj;
+        this.f33275a = i7;
+        this.f33276b = obj;
     }
 
     @Override
     public final int compare(Object obj, Object obj2) {
         int indexOf;
         int indexOf2;
-        int i7 = this.f33279a;
-        Object obj3 = this.f33280b;
+        int i7 = this.f33275a;
+        Object obj3 = this.f33276b;
         switch (i7) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj3;
@@ -36,8 +36,8 @@ public final class el implements Comparator {
                 return -1;
             default:
                 gy gyVar = ((tv) obj3).G0;
-                int indexOf3 = gyVar.f34079d1.indexOf((TLRPC.TL_messages_stickerSet) obj);
-                int indexOf4 = gyVar.f34079d1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
+                int indexOf3 = gyVar.f34027d1.indexOf((TLRPC.TL_messages_stickerSet) obj);
+                int indexOf4 = gyVar.f34027d1.indexOf((TLRPC.TL_messages_stickerSet) obj2);
                 if (indexOf3 < 0 || indexOf4 < 0) {
                     return 0;
                 }

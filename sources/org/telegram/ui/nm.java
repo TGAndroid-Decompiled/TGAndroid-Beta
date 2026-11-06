@@ -6,31 +6,31 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Collections;
 public final class nm extends View {
-    public final ArrayList f48052a;
-    public final ArrayList f48053b;
-    public final an f48054c;
+    public final ArrayList f48078a;
+    public final ArrayList f48079b;
+    public final an f48080c;
 
     public nm(an anVar, Context context) {
         super(context);
-        this.f48054c = anVar;
-        this.f48052a = new ArrayList();
-        this.f48053b = new ArrayList();
+        this.f48080c = anVar;
+        this.f48078a = new ArrayList();
+        this.f48079b = new ArrayList();
     }
 
     public final void a() {
-        ArrayList arrayList = this.f48052a;
+        ArrayList arrayList = this.f48078a;
         arrayList.clear();
-        an anVar = this.f48054c;
+        an anVar = this.f48080c;
         arrayList.add(anVar.Y1);
-        arrayList.add(anVar.f44013z0);
+        arrayList.add(anVar.f44038z0);
         arrayList.add(anVar.Y);
         arrayList.add(anVar.Y3);
         arrayList.add(anVar.W1);
-        arrayList.add(anVar.f43839l3);
+        arrayList.add(anVar.f43864l3);
         arrayList.add(anVar.Z);
-        arrayList.add(anVar.f43989x1);
+        arrayList.add(anVar.f44014x1);
         arrayList.add(anVar.T);
-        arrayList.add(anVar.f43764f2);
+        arrayList.add(anVar.f43789f2);
         arrayList.removeAll(Collections.singleton(null));
     }
 
@@ -42,9 +42,9 @@ public final class nm extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        an anVar = this.f48054c;
+        an anVar = this.f48080c;
         anVar.Vc = true;
-        ArrayList arrayList = this.f48053b;
+        ArrayList arrayList = this.f48079b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -60,9 +60,9 @@ public final class nm extends View {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         a();
-        an anVar = this.f48054c;
+        an anVar = this.f48080c;
         anVar.Vc = true;
-        ArrayList arrayList = this.f48052a;
+        ArrayList arrayList = this.f48078a;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -71,7 +71,7 @@ public final class nm extends View {
             View view = (View) obj;
             if (view.getVisibility() == 0) {
                 view.setVisibility(8);
-                this.f48053b.add(view);
+                this.f48079b.add(view);
             }
         }
         anVar.Vc = false;
@@ -81,7 +81,7 @@ public final class nm extends View {
     public void setTranslationX(float f10) {
         super.setTranslationX(f10);
         a();
-        ArrayList arrayList = this.f48052a;
+        ArrayList arrayList = this.f48078a;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {

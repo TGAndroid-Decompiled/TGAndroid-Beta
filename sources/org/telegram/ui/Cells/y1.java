@@ -8,9 +8,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import java.util.HashSet;
 import org.telegram.messenger.hd;
-import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.r41;
 public final class y1 extends View implements org.telegram.ui.ActionBar.a6 {
-    public final m41 f30909a;
+    public final r41 f30909a;
     public final org.telegram.ui.ActionBar.f6 f30910b;
     public int f30911c;
     public int d;
@@ -21,13 +21,13 @@ public final class y1 extends View implements org.telegram.ui.ActionBar.a6 {
     public y1(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         this.f30910b = f6Var;
-        m41 m41Var = new m41();
-        this.f30909a = m41Var;
-        m41Var.setCallback(this);
-        m41Var.f35884n = hd.M0(2131743828, null);
-        m41Var.f35885o = hd.M0(2131743829, null);
-        m41Var.f35886p = hd.M0(2131743827, null);
-        m41Var.f35880j = new f(this, 1);
+        r41 r41Var = new r41();
+        this.f30909a = r41Var;
+        r41Var.setCallback(this);
+        r41Var.f37542n = hd.M0(2131743828, null);
+        r41Var.f37543o = hd.M0(2131743829, null);
+        r41Var.f37544p = hd.M0(2131743827, null);
+        r41Var.f37538j = new f(this, 1);
     }
 
     public final void a(Canvas canvas) {
@@ -75,9 +75,9 @@ public final class y1 extends View implements org.telegram.ui.ActionBar.a6 {
         int L2 = org.telegram.messenger.g0.L(6.0f);
         int L3 = org.telegram.messenger.g0.L(18.0f) + this.f30911c;
         int L4 = org.telegram.messenger.g0.L(6.0f) + this.d;
-        m41 m41Var = this.f30909a;
-        m41Var.setBounds(L, L2, L3, L4);
-        m41Var.draw(canvas);
+        r41 r41Var = this.f30909a;
+        r41Var.setBounds(L, L2, L3, L4);
+        r41Var.draw(canvas);
     }
 
     @Override
@@ -92,7 +92,7 @@ public final class y1 extends View implements org.telegram.ui.ActionBar.a6 {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f30909a.f35879i.a(this, motionEvent);
+        return this.f30909a.f37537i.a(this, motionEvent);
     }
 
     public void setDelegate(l1 l1Var) {

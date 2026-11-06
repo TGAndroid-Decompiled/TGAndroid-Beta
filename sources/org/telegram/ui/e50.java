@@ -7,19 +7,19 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public final class e50 extends org.telegram.ui.Components.oj0 {
-    public final Context f45172c;
+    public final Context f45202c;
     public final f50 d;
 
     public e50(f50 f50Var, Context context) {
         this.d = f50Var;
-        this.f45172c = context;
+        this.f45202c = context;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
         int b10 = d1Var.b();
         f50 f50Var = this.d;
-        if (b10 != f50Var.f45491r && b10 != f50Var.f45490n && b10 != f50Var.f45492s && b10 != 0) {
+        if (b10 != f50Var.f45496r && b10 != f50Var.f45495n && b10 != f50Var.f45497s && b10 != 0) {
             return false;
         }
         return true;
@@ -28,17 +28,17 @@ public final class e50 extends org.telegram.ui.Components.oj0 {
     @Override
     public final int b() {
         f50 f50Var = this.d;
-        if (f50Var.f45488e) {
+        if (f50Var.f45493e) {
             return 0;
         }
-        return f50Var.f45494x;
+        return f50Var.f45499x;
     }
 
     @Override
     public final int d(int i7) {
         f50 f50Var = this.d;
-        if (i7 != f50Var.f45490n && i7 != f50Var.f45492s && i7 != f50Var.f45491r) {
-            if (i7 != f50Var.f45493w && i7 != f50Var.h) {
+        if (i7 != f50Var.f45495n && i7 != f50Var.f45497s && i7 != f50Var.f45496r) {
+            if (i7 != f50Var.f45498w && i7 != f50Var.h) {
                 if (i7 == 0) {
                     return 2;
                 }
@@ -52,14 +52,14 @@ public final class e50 extends org.telegram.ui.Components.oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         String str;
-        int i10 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        int i10 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         f50 f50Var = this.d;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 == 2) {
                     org.telegram.ui.Cells.k8 k8Var = (org.telegram.ui.Cells.k8) view;
-                    TLRPC.TL_chatInviteExported tL_chatInviteExported = f50Var.f45489f;
+                    TLRPC.TL_chatInviteExported tL_chatInviteExported = f50Var.f45494f;
                     if (tL_chatInviteExported != null) {
                         str = tL_chatInviteExported.link;
                     } else {
@@ -72,7 +72,7 @@ public final class e50 extends org.telegram.ui.Components.oj0 {
                 return;
             }
             org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
-            if (i7 == f50Var.f45493w) {
+            if (i7 == f50Var.f45498w) {
                 z8Var.setText("");
                 return;
             } else if (i7 == f50Var.h) {
@@ -89,11 +89,11 @@ public final class e50 extends org.telegram.ui.Components.oj0 {
             }
         }
         org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) view;
-        if (i7 == f50Var.f45490n) {
+        if (i7 == f50Var.f45495n) {
             w9Var.b(org.telegram.messenger.hd.M0(2131751762, null), true);
-        } else if (i7 == f50Var.f45492s) {
+        } else if (i7 == f50Var.f45497s) {
             w9Var.b(org.telegram.messenger.hd.M0(2131745459, null), false);
-        } else if (i7 == f50Var.f45491r) {
+        } else if (i7 == f50Var.f45496r) {
             w9Var.b(org.telegram.messenger.hd.M0(2131746024, null), true);
         }
     }
@@ -102,7 +102,7 @@ public final class e50 extends org.telegram.ui.Components.oj0 {
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         FrameLayout frameLayout;
         int i10;
-        Context context = this.f45172c;
+        Context context = this.f45202c;
         if (i7 != 0) {
             if (i7 != 1) {
                 ?? frameLayout2 = new FrameLayout(context);

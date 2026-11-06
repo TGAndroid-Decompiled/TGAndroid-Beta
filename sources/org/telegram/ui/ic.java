@@ -7,23 +7,23 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashSet;
 public final class ic extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.ActionBar.f6 f46632a;
-    public final e61 f46633b;
-    public final v4.b0 f46634c;
+    public final org.telegram.ui.ActionBar.f6 f46641a;
+    public final e61 f46642b;
+    public final v4.b0 f46643c;
     public final int d;
-    public int f46635e;
+    public int f46644e;
 
     public ic(int i7, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
         super(activity);
         this.d = i7;
-        this.f46632a = f6Var;
+        this.f46641a = f6Var;
         e61 e61Var = new e61(3, activity, f6Var);
-        this.f46633b = e61Var;
+        this.f46642b = e61Var;
         e61Var.setPadding(org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(6.0f), 0);
         e61Var.setClipToPadding(false);
         e61Var.setAdapter(new gc(this, activity, f6Var, i7));
         v4.b0 b0Var = new v4.b0();
-        this.f46634c = b0Var;
+        this.f46643c = b0Var;
         b0Var.j1(0);
         e61Var.setLayoutManager(b0Var);
         addView(e61Var, c8.ha.c(-1.0f, -1));
@@ -46,12 +46,12 @@ public final class ic extends FrameLayout implements org.telegram.ui.ActionBar.a
                 }
             }
         }
-        if (i10 != this.f46635e) {
-            this.f46635e = i10;
+        if (i10 != this.f46644e) {
+            this.f46644e = i10;
             if (!z9) {
-                this.f46634c.h1(i10, (org.telegram.messenger.g0.f22537q.x - org.telegram.messenger.g0.L(56.0f)) / 2);
+                this.f46643c.h1(i10, (org.telegram.messenger.g0.f22537q.x - org.telegram.messenger.g0.L(56.0f)) / 2);
             }
-            org.telegram.messenger.g0.d0(this.f46633b, new bi.b9(4, this, z9));
+            org.telegram.messenger.g0.d0(this.f46642b, new bi.b9(4, this, z9));
         }
     }
 
@@ -70,7 +70,7 @@ public final class ic extends FrameLayout implements org.telegram.ui.ActionBar.a
 
     @Override
     public final void updateColors() {
-        org.telegram.messenger.g0.d0(this.f46633b, new org.telegram.messenger.voip.k(7, this, org.telegram.messenger.qp.s1(this.d).f24859q4));
+        org.telegram.messenger.g0.d0(this.f46642b, new org.telegram.messenger.voip.k(7, this, org.telegram.messenger.qp.s1(this.d).f24859q4));
     }
 
     @Override

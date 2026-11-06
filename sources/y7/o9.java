@@ -3,16 +3,16 @@ package y7;
 import c8.xd;
 import java.util.AbstractMap;
 public final class o9 extends l9 {
-    public final a f59006c;
+    public final a f59031c;
 
     public o9(a aVar) {
-        this.f59006c = aVar;
+        this.f59031c = aVar;
     }
 
     @Override
     public final Object get(int i7) {
-        a aVar = this.f59006c;
-        xd.a(i7, aVar.f58856e);
+        a aVar = this.f59031c;
+        xd.a(i7, aVar.f58881e);
         int i10 = i7 + i7;
         Object[] objArr = aVar.d;
         Object obj = objArr[i10];
@@ -24,6 +24,6 @@ public final class o9 extends l9 {
 
     @Override
     public final int size() {
-        return this.f59006c.f58856e;
+        return this.f59031c.f58881e;
     }
 }

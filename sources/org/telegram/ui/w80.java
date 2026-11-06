@@ -10,26 +10,26 @@ public enum w80 {
     TURBO("TurboIcon", 2131231482, 2131558414, 2131754234, true),
     NOX("NoxIcon", 2131558402, 2131558426, 2131754236, true);
     
-    public final String f51015a;
-    public final int f51016b;
-    public final int f51017c;
+    public final String f51021a;
+    public final int f51022b;
+    public final int f51023c;
     public final int d;
-    public final boolean f51018e;
-    public ComponentName f51019f;
+    public final boolean f51024e;
+    public ComponentName f51025f;
 
     w80(String str, int i7, int i10, int i11, boolean z9) {
-        this.f51015a = str;
-        this.f51016b = i7;
-        this.f51017c = i10;
+        this.f51021a = str;
+        this.f51022b = i7;
+        this.f51023c = i10;
         this.d = i11;
-        this.f51018e = z9;
+        this.f51024e = z9;
     }
 
     public final ComponentName a(Context context) {
-        if (this.f51019f == null) {
+        if (this.f51025f == null) {
             String packageName = context.getPackageName();
-            this.f51019f = new ComponentName(packageName, "org.telegram.messenger." + this.f51015a);
+            this.f51025f = new ComponentName(packageName, "org.telegram.messenger." + this.f51021a);
         }
-        return this.f51019f;
+        return this.f51025f;
     }
 }

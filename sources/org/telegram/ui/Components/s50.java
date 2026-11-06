@@ -9,23 +9,23 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class s50 extends oj0 {
-    public ArrayList f37946c = new ArrayList();
+    public ArrayList f37892c = new ArrayList();
     public ArrayList d = new ArrayList();
-    public final jg.z1 f37947e;
-    public int f37948f;
+    public final jg.z1 f37893e;
+    public int f37894f;
     public Runnable h;
-    public final x50 f37949n;
+    public final x50 f37895n;
 
     public s50(x50 x50Var) {
-        this.f37949n = x50Var;
+        this.f37895n = x50Var;
         jg.z1 z1Var = new jg.z1(false);
-        this.f37947e = z1Var;
+        this.f37893e = z1Var;
         z1Var.f16989a = new ax(this, 7);
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f == 1) {
+        if (d1Var.f56956f == 1) {
             return true;
         }
         return false;
@@ -33,8 +33,8 @@ public final class s50 extends oj0 {
 
     @Override
     public final int b() {
-        int size = this.f37946c.size();
-        jg.z1 z1Var = this.f37947e;
+        int size = this.f37892c.size();
+        jg.z1 z1Var = this.f37893e;
         int size2 = z1Var.d.size();
         int size3 = z1Var.f16992e.size();
         int i7 = size + size2;
@@ -42,7 +42,7 @@ public final class s50 extends oj0 {
             i7 += size3 + 1;
         }
         int i10 = i7 + 2;
-        this.f37948f = i10;
+        this.f37894f = i10;
         return i10;
     }
 
@@ -51,10 +51,10 @@ public final class s50 extends oj0 {
         if (i7 == 0) {
             return 2;
         }
-        if (i7 == this.f37948f - 1) {
+        if (i7 == this.f37894f - 1) {
             return 4;
         }
-        if (i7 - 1 != this.f37947e.d.size() + this.f37946c.size()) {
+        if (i7 - 1 != this.f37893e.d.size() + this.f37892c.size()) {
             return 1;
         }
         return 0;

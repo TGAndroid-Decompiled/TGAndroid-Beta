@@ -5,25 +5,25 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import j$.util.Objects;
 public final class pv extends rg.d {
-    public boolean f37180f3;
-    public final gy f37181g3;
+    public boolean f37059f3;
+    public final gy f37060g3;
 
     public pv(gy gyVar, Context context) {
         super(context, null);
-        this.f37181g3 = gyVar;
+        this.f37060g3 = gyVar;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        this.f37181g3.f34109n2.g();
+        this.f37060g3.f34057n2.g();
     }
 
     @Override
     public final void l0(int i7) {
         int i10;
-        gy gyVar = this.f37181g3;
-        ay ayVar = gyVar.f34148z0;
+        gy gyVar = this.f37060g3;
+        ay ayVar = gyVar.f34096z0;
         if (gyVar.C0 != null) {
             tv tvVar = gyVar.B0;
             if (gyVar.D0.canScrollVertically(-1)) {
@@ -34,7 +34,7 @@ public final class pv extends rg.d {
             tvVar.setUnderlineHeight(i10);
         }
         if (ayVar != null && getAdapter() == ayVar && ayVar.d == 0) {
-            ay ayVar2 = ayVar.O.f41110x;
+            ay ayVar2 = ayVar.O.f41135x;
             if (!ayVar2.Q.G0.F && !ayVar2.D) {
                 if (gyVar.E0.N0() + 50 > ayVar.b()) {
                     zx zxVar = ayVar.O;
@@ -47,12 +47,12 @@ public final class pv extends rg.d {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        gy gyVar = this.f37181g3;
-        if (!gyVar.f34084f) {
+        gy gyVar = this.f37060g3;
+        if (!gyVar.f34032f) {
             org.telegram.ui.ks p10 = org.telegram.ui.ks.p();
             pv pvVar = gyVar.D0;
             gyVar.getMeasuredHeight();
-            boolean q10 = p10.q(motionEvent, pvVar, gyVar.f34090g2, this.f37060n2);
+            boolean q10 = p10.q(motionEvent, pvVar, gyVar.f34038g2, this.f36939n2);
             if (!super.onInterceptTouchEvent(motionEvent) && !q10) {
                 return false;
             }
@@ -63,12 +63,12 @@ public final class pv extends rg.d {
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        gy gyVar = this.f37181g3;
-        if (gyVar.I0 && gyVar.f34145y0.b() > 0) {
-            this.f37180f3 = true;
+        gy gyVar = this.f37060g3;
+        if (gyVar.I0 && gyVar.f34093y0.b() > 0) {
+            this.f37059f3 = true;
             gyVar.E0.h1(0, 0);
             gyVar.I0 = false;
-            this.f37180f3 = false;
+            this.f37059f3 = false;
         }
         super.onLayout(z9, i7, i10, i11, i12);
         gyVar.q(true);
@@ -76,7 +76,7 @@ public final class pv extends rg.d {
 
     @Override
     public final void requestLayout() {
-        if (this.f37180f3) {
+        if (this.f37059f3) {
             return;
         }
         super.requestLayout();

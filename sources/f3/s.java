@@ -42,7 +42,7 @@ public final class s implements fb {
     public void c(gb gbVar, ra raVar, pa paVar, sa saVar) {
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(gbVar, gb.IN_OUT_OFFSET_Y2, gbVar.getHeight());
         ofFloat.setDuration(175L);
-        ofFloat.setInterpolator(ks.f35408c);
+        ofFloat.setInterpolator(ks.f35411c);
         ofFloat.addListener(new ah.l(raVar, paVar, 20));
         ofFloat.addUpdateListener(new de(13, saVar, gbVar));
         ofFloat.start();

@@ -2,37 +2,37 @@ package org.telegram.ui;
 
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class bb0 implements Runnable {
-    public final int f44226a;
-    public final pc0 f44227b;
+    public final int f44242a;
+    public final pc0 f44243b;
 
     public bb0(pc0 pc0Var, int i7) {
-        this.f44226a = i7;
-        this.f44227b = pc0Var;
+        this.f44242a = i7;
+        this.f44243b = pc0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f44226a) {
+        switch (this.f44242a) {
             case 0:
-                this.f44227b.M.m();
+                this.f44243b.M.m();
                 return;
             case 1:
-                pc0 pc0Var = this.f44227b;
+                pc0 pc0Var = this.f44243b;
                 pc0Var.N = null;
                 pc0Var.O = null;
                 pc0Var.o(true);
-                pc0Var.f48795e.j(null, null, pc0Var.f48796f, null);
-                yc ycVar = pc0Var.f48797n;
+                pc0Var.f48790e.j(null, null, pc0Var.f48791f, null);
+                yc ycVar = pc0Var.f48792n;
                 org.telegram.ui.Components.zg0 zg0Var = pc0Var.J;
                 ycVar.setAnimation(zg0Var);
                 zg0Var.M(0);
                 pc0Var.L = true;
                 return;
             case 2:
-                this.f44227b.L = true;
+                this.f44243b.L = true;
                 return;
             default:
-                EditTextBoldCursor editTextBoldCursor = this.f44227b.f48794c;
+                EditTextBoldCursor editTextBoldCursor = this.f44243b.f48789c;
                 if (editTextBoldCursor != null) {
                     editTextBoldCursor.requestFocus();
                     editTextBoldCursor.setSelection(editTextBoldCursor.length());

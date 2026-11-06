@@ -9,9 +9,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class ry extends FrameLayout {
-    public final TextView f49564a;
-    public final ImageView f49565b;
-    public boolean f49566c;
+    public final TextView f49585a;
+    public final ImageView f49586b;
+    public boolean f49587c;
 
     public ry(Context context) {
         super(context);
@@ -23,7 +23,7 @@ public final class ry extends FrameLayout {
         float f12;
         float f13;
         TextView textView = new TextView(context);
-        this.f49564a = textView;
+        this.f49585a = textView;
         org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28088q6, null);
         jg.g.v(textView, 1, 16.0f, null, 2131751714);
         if (org.telegram.messenger.hd.f22871a0) {
@@ -57,7 +57,7 @@ public final class ry extends FrameLayout {
         }
         addView(textView, c8.ha.d(-1, -2.0f, 23, f10, 0.0f, f11, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f49565b = imageView;
+        this.f49586b = imageView;
         Drawable drawable = context.getResources().getDrawable(2131232559);
         Drawable drawable2 = context.getResources().getDrawable(2131232560);
         int i12 = org.telegram.ui.ActionBar.k6.Ci;
@@ -84,8 +84,8 @@ public final class ry extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f49566c) {
-            TextView textView = this.f49564a;
+        if (this.f49587c) {
+            TextView textView = this.f49585a;
             canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f27971k0);
         }
     }
@@ -105,10 +105,10 @@ public final class ry extends FrameLayout {
         } else {
             f10 = 0.5f;
         }
-        this.f49564a.setAlpha(f10);
+        this.f49585a.setAlpha(f10);
         if (z9) {
             f11 = 1.0f;
         }
-        this.f49565b.setAlpha(f11);
+        this.f49586b.setAlpha(f11);
     }
 }

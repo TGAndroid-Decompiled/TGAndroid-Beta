@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class hm implements hx {
-    public final bn f34369a;
+    public final bn f34319a;
 
     public hm(bn bnVar) {
-        this.f34369a = bnVar;
+        this.f34319a = bnVar;
     }
 
     @Override
@@ -51,9 +51,9 @@ public final class hm implements hx {
         } else {
             z9 = false;
         }
-        bn bnVar = this.f34369a;
-        bnVar.f32192h1 = z9;
-        bnVar.f38951b.f32917l3.requestLayout();
+        bn bnVar = this.f34319a;
+        bnVar.f32186h1 = z9;
+        bnVar.f38948b.f32930l3.requestLayout();
     }
 
     @Override
@@ -64,7 +64,7 @@ public final class hm implements hx {
     @Override
     public final boolean k() {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.a6 a6Var = this.f34369a.f32190g1;
+        org.telegram.ui.Cells.a6 a6Var = this.f34319a.f32184g1;
         if (a6Var == null || (editField = a6Var.getEditField()) == null) {
             return false;
         }
@@ -75,7 +75,7 @@ public final class hm implements hx {
     @Override
     public final void l(String str) {
         EditTextBoldCursor editField;
-        org.telegram.ui.Cells.a6 a6Var = this.f34369a.f32190g1;
+        org.telegram.ui.Cells.a6 a6Var = this.f34319a.f32184g1;
         if (a6Var == null || (editField = a6Var.getEditField()) == null) {
             return;
         }
@@ -95,8 +95,8 @@ public final class hm implements hx {
 
     @Override
     public final void n() {
-        bn bnVar = this.f34369a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, bnVar.getContext(), bnVar.f38950a);
+        bn bnVar = this.f34319a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, bnVar.getContext(), bnVar.f38947a);
         String M0 = org.telegram.messenger.hd.M0(2131752068, null);
         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
         u1Var.R = M0;
@@ -115,7 +115,7 @@ public final class hm implements hx {
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
         EditTextBoldCursor editField;
         r5 r5Var;
-        org.telegram.ui.Cells.a6 a6Var = this.f34369a.f32190g1;
+        org.telegram.ui.Cells.a6 a6Var = this.f34319a.f32184g1;
         if (a6Var == null || (editField = a6Var.getEditField()) == null) {
             return;
         }
@@ -142,7 +142,7 @@ public final class hm implements hx {
 
     @Override
     public final boolean z() {
-        return this.f34369a.f32192h1;
+        return this.f34319a.f32186h1;
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class hm implements hx {
     }
 
     @Override
-    public final void o(n31 n31Var) {
+    public final void o(s31 s31Var) {
     }
 
     @Override

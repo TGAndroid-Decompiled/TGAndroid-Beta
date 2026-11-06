@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ey extends oj0 {
-    public final boolean f33367c;
+    public final boolean f33363c;
     public final gy d;
 
     public ey(gy gyVar, boolean z9) {
         this.d = gyVar;
-        this.f33367c = z9;
+        this.f33363c = z9;
     }
 
     @Override
@@ -22,12 +22,12 @@ public final class ey extends oj0 {
     @Override
     public final int b() {
         ArrayList arrayList;
-        boolean z9 = this.f33367c;
+        boolean z9 = this.f33363c;
         gy gyVar = this.d;
         if (z9) {
             arrayList = gyVar.n1;
         } else {
-            arrayList = gyVar.f34105m1;
+            arrayList = gyVar.f34053m1;
         }
         return arrayList.size();
     }
@@ -45,20 +45,20 @@ public final class ey extends oj0 {
         int i10;
         String str;
         ColorFilter colorFilter;
-        l9 l9Var = (l9) d1Var.f56927a;
+        l9 l9Var = (l9) d1Var.f56952a;
         gy gyVar = this.d;
-        boolean z9 = this.f33367c;
+        boolean z9 = this.f33363c;
         if (z9) {
             arrayList = gyVar.n1;
         } else {
-            arrayList = gyVar.f34105m1;
+            arrayList = gyVar.f34053m1;
         }
         TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i7);
         l9Var.setTag(stickerSetCovered);
         if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
             arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
         } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-            TLRPC.TL_messages_stickerSet m0 = org.telegram.messenger.ui.b0(gyVar.f34076c1).m0(org.telegram.messenger.ui.Z(stickerSetCovered.set), false);
+            TLRPC.TL_messages_stickerSet m0 = org.telegram.messenger.ui.b0(gyVar.f34024c1).m0(org.telegram.messenger.ui.Z(stickerSetCovered.set), false);
             if (m0 == null) {
                 arrayList2 = null;
             } else {

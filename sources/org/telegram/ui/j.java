@@ -13,7 +13,7 @@ public final class j extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56931f;
+        int i7 = d1Var.f56956f;
         if (i7 != 2 && i7 != 0) {
             return true;
         }
@@ -30,7 +30,7 @@ public final class j extends rg.b {
         if (i7 >= 0) {
             k kVar = this.d;
             if (i7 < kVar.h.size()) {
-                return ((i) kVar.h.get(i7)).f54415a;
+                return ((i) kVar.h.get(i7)).f54440a;
             }
             return 0;
         }
@@ -47,24 +47,24 @@ public final class j extends rg.b {
             i iVar = (i) arrayList.get(i7);
             int i10 = i7 + 1;
             int i11 = 0;
-            if (i10 < arrayList.size() && ((i) arrayList.get(i10)).f54415a == iVar.f54415a) {
+            if (i10 < arrayList.size() && ((i) arrayList.get(i10)).f54440a == iVar.f54440a) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            int i12 = d1Var.f56931f;
-            View view = d1Var.f56927a;
+            int i12 = d1Var.f56956f;
+            View view = d1Var.f56952a;
             if (i12 == 0) {
-                ((org.telegram.ui.Cells.n4) view).setText(iVar.f46526c);
+                ((org.telegram.ui.Cells.n4) view).setText(iVar.f46535c);
             } else if (i12 == 2) {
                 org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
-                if (TextUtils.isEmpty(iVar.f46526c)) {
+                if (TextUtils.isEmpty(iVar.f46535c)) {
                     z8Var.setFixedSize(12);
                     z8Var.setText(null);
                     return;
                 }
                 z8Var.setFixedSize(0);
-                z8Var.setText(iVar.f46526c);
+                z8Var.setText(iVar.f46535c);
             } else if (i12 == 1) {
                 org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
                 int i13 = iVar.d;
@@ -84,7 +84,7 @@ public final class j extends rg.b {
                 } else {
                     return;
                 }
-                r8Var.f(iVar.f46526c, z10, z9);
+                r8Var.f(iVar.f46535c, z10, z9);
             }
         }
     }

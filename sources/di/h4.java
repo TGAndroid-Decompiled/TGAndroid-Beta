@@ -23,7 +23,7 @@ public final class h4 {
     public h4(Context context, int i7) {
         switch (i7) {
             case 3:
-                this.d = vi.f.f57417a;
+                this.d = vi.f.f57442a;
                 this.f9074a = true;
                 this.f9079g = vi.h.H;
                 this.f9075b = context;
@@ -122,9 +122,9 @@ public final class h4 {
                     this.f9074a = true;
                 }
                 pu puVar = (pu) this.d;
-                Intent intent = (Intent) puVar.f48924c;
+                Intent intent = (Intent) puVar.f48953c;
                 String str = LaunchActivity.B1;
-                ((LaunchActivity) puVar.f48923b).W(intent, true, false, false, null, true, false);
+                ((LaunchActivity) puVar.f48952b).W(intent, true, false, false, null, true, false);
                 return true;
             }
             return false;

@@ -71,7 +71,7 @@ public final class a5 extends FrameLayout {
         linearLayout2.setOrientation(0);
         xj0 xj0Var = new xj0(getContext());
         this.f8812w = xj0Var;
-        xj0Var.f40273r = true;
+        xj0Var.f40292r = true;
         xj0Var.a(2131231918, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);

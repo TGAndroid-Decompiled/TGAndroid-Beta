@@ -183,7 +183,7 @@ public final class h2 extends View {
             f10 = 18.0f;
             L = 0.0f;
         } else {
-            float f21 = ly0Var.f35777c;
+            float f21 = ly0Var.f35782c;
             f10 = 18.0f;
             if (this.U != null) {
                 f11 = 30.0f;
@@ -193,7 +193,7 @@ public final class h2 extends View {
             L = f21 + g0.L(f11);
         }
         float min = Math.min(L4, L);
-        float T1 = g0.T1(g0.T1(this.R.f35777c, this.Q.f35777c, d) + g0.L(12.0f), min, d2);
+        float T1 = g0.T1(g0.T1(this.R.f35782c, this.Q.f35782c, d) + g0.L(12.0f), min, d2);
         RectF rectF5 = this.f22794n;
         rectF5.set(rectF.left + g0.L(8.0f), rectF.top + g0.L(8.0f), rectF.left + g0.L(38.0f) + T1, rectF.top + g0.L(38.0f));
         float f22 = rectF5.left;
@@ -259,7 +259,7 @@ public final class h2 extends View {
             } else {
                 f14 = 12.0f;
             }
-            ly0Var2.f35788p = ((f25 - g0.L(f14)) - (rectF5.left + g0.L(30.0f))) + 2.0f;
+            ly0Var2.f35793p = ((f25 - g0.L(f14)) - (rectF5.left + g0.L(30.0f))) + 2.0f;
             f13 = 1.0f;
             ly0Var2.c(0.0f, 0.0f, d2, -1, canvas);
             f12 = d2;

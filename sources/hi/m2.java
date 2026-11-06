@@ -142,11 +142,11 @@ public final class m2 extends AnimatorListenerAdapter {
                 ((i6) obj).u(i13);
                 return;
             case 8:
-                ((w7) obj).f39870a[i13].setVisibility(8);
+                ((w7) obj).f39877a[i13].setVisibility(8);
                 return;
             case 9:
                 xw xwVar = (xw) obj;
-                ug.p0 p0Var = xwVar.f40428r;
+                ug.p0 p0Var = xwVar.f40447r;
                 if (i13 == 1) {
                     i7 = 0;
                 } else {
@@ -160,7 +160,7 @@ public final class m2 extends AnimatorListenerAdapter {
                     i10 = 8;
                 }
                 textView.setVisibility(i10);
-                TextView textView2 = xwVar.f40427n;
+                TextView textView2 = xwVar.f40446n;
                 if (i13 == 3) {
                     i12 = 0;
                 }
@@ -168,10 +168,10 @@ public final class m2 extends AnimatorListenerAdapter {
                 return;
             case 10:
                 n40 n40Var = (n40) obj;
-                if (i13 == n40Var.f36264s0) {
-                    n40Var.f36270x.setRotationY(0.0f);
-                    n40Var.f36260q0 = true;
-                    n40Var.f36243b0 = null;
+                if (i13 == n40Var.f36181s0) {
+                    n40Var.f36187x.setRotationY(0.0f);
+                    n40Var.f36177q0 = true;
+                    n40Var.f36160b0 = null;
                     a8.b("RoundVideo camera flip visual animation completed: elapsedMs=" + n40.l(n40Var));
                     n40.m(n40Var);
                     return;
@@ -180,25 +180,25 @@ public final class m2 extends AnimatorListenerAdapter {
             case 11:
                 nf0 nf0Var = (nf0) obj;
                 nf0Var.H = null;
-                nf0Var.P.f38071d1.delete(i13);
+                nf0Var.P.f38031d1.delete(i13);
                 return;
             case 12:
                 vp vpVar = (vp) obj;
-                ((si0) vpVar.d).f38108b.remove(i13);
+                ((si0) vpVar.d).f38068b.remove(i13);
                 si0 si0Var = (si0) vpVar.d;
                 si0Var.d = true;
-                si0Var.f38107a.invalidate();
+                si0Var.f38067a.invalidate();
                 return;
             case 13:
                 yq0 yq0Var = (yq0) obj;
-                yq0Var.f40680e.R1.remove(i13);
-                yq0Var.f40677a.invalidate();
+                yq0Var.f40699e.R1.remove(i13);
+                yq0Var.f40696a.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.z0 z0Var = (org.telegram.ui.Components.voip.z0) obj;
-                z0Var.f39623y = -1;
-                z0Var.f39621w = i13;
-                z0Var.f39620s = 0.0f;
+                z0Var.f39620y = -1;
+                z0Var.f39618w = i13;
+                z0Var.f39617s = 0.0f;
                 z0Var.U = null;
                 z0Var.e();
                 return;
@@ -210,9 +210,9 @@ public final class m2 extends AnimatorListenerAdapter {
         switch (this.f14792a) {
             case 9:
                 xw xwVar = (xw) this.f14794c;
-                xwVar.f40428r.setVisibility(0);
+                xwVar.f40447r.setVisibility(0);
                 xwVar.h.setVisibility(0);
-                xwVar.f40427n.setVisibility(0);
+                xwVar.f40446n.setVisibility(0);
                 return;
             default:
                 super.onAnimationStart(animator);

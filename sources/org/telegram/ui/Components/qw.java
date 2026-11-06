@@ -24,7 +24,7 @@ public final class qw extends is {
         boolean z10;
         int i11;
         sw swVar = this.R;
-        gy gyVar = swVar.f38178m3;
+        gy gyVar = swVar.f38138m3;
         ArrayList arrayList = this.O;
         if (arrayList == null) {
             return;
@@ -36,14 +36,14 @@ public final class qw extends is {
             z9 = true;
         }
         if (!z9) {
-            if (gyVar.f34135v2 > 0 && SystemClock.elapsedRealtime() - gyVar.f34135v2 < swVar.z1()) {
+            if (gyVar.f34083v2 > 0 && SystemClock.elapsedRealtime() - gyVar.f34083v2 < swVar.z1()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             for (int i12 = 0; i12 < this.O.size(); i12++) {
                 px pxVar = (px) this.O.get(i12);
-                if (pxVar.h != 0.0f || pxVar.f37198n != null || ((i11 = pxVar.f37193a) > gyVar.f34129t2 && i11 < gyVar.f34132u2 && z10)) {
+                if (pxVar.h != 0.0f || pxVar.f37077n != null || ((i11 = pxVar.f37072a) > gyVar.f34077t2 && i11 < gyVar.f34080u2 && z10)) {
                     break;
                 }
             }
@@ -65,13 +65,13 @@ public final class qw extends is {
             ArrayList arrayList = this.P;
             if (i7 < arrayList.size()) {
                 px pxVar = (px) arrayList.get(i7);
-                i5 i5Var = pxVar.f37194b;
+                i5 i5Var = pxVar.f37073b;
                 if (i5Var != null) {
-                    org.telegram.messenger.ic icVar = pxVar.f37197f[this.K];
-                    di.z2 z2Var = i5Var.f34505k;
+                    org.telegram.messenger.ic icVar = pxVar.f37076f[this.K];
+                    di.z2 z2Var = i5Var.f34450k;
                     if (z2Var != null) {
-                        z2Var.setAlpha(i5Var.f34506l);
-                        i5Var.f34505k.h(canvas, icVar);
+                        z2Var.setAlpha(i5Var.f34451l);
+                        i5Var.f34450k.h(canvas, icVar);
                     }
                 }
                 i7++;
@@ -92,13 +92,13 @@ public final class qw extends is {
         while (true) {
             ArrayList arrayList = this.P;
             if (i7 < arrayList.size()) {
-                org.telegram.messenger.ic[] icVarArr = ((px) arrayList.get(i7)).f37197f;
+                org.telegram.messenger.ic[] icVarArr = ((px) arrayList.get(i7)).f37076f;
                 if (icVarArr != null) {
                     icVarArr[this.K].a();
                 }
                 i7++;
             } else {
-                this.R.f38178m3.P.invalidate();
+                this.R.f38138m3.P.invalidate();
                 return;
             }
         }
@@ -108,16 +108,16 @@ public final class qw extends is {
     public final void i(long j3) {
         i5 i5Var;
         PorterDuffColorFilter porterDuffColorFilter;
-        gy gyVar = this.R.f38178m3;
+        gy gyVar = this.R.f38138m3;
         ArrayList arrayList = this.P;
         arrayList.clear();
         for (int i7 = 0; i7 < this.O.size(); i7++) {
             px pxVar = (px) this.O.get(i7);
             r5 span = pxVar.getSpan();
-            org.telegram.messenger.ic[] icVarArr = pxVar.f37197f;
-            if (span != null && (i5Var = (i5) gyVar.d2.get(pxVar.d.getDocumentId())) != null && i5Var.f34505k != null) {
+            org.telegram.messenger.ic[] icVarArr = pxVar.f37076f;
+            if (span != null && (i5Var = (i5) gyVar.d2.get(pxVar.d.getDocumentId())) != null && i5Var.f34450k != null) {
                 i5Var.s(j3);
-                di.z2 z2Var = i5Var.f34505k;
+                di.z2 z2Var = i5Var.f34450k;
                 int i10 = this.K;
                 org.telegram.messenger.ic e02 = z2Var.e0(icVarArr[i10], i10);
                 icVarArr[i10] = e02;
@@ -128,10 +128,10 @@ public final class qw extends is {
                 Rect rect = org.telegram.messenger.g0.Q;
                 rect.set((pxVar.getPaddingLeft() + pxVar.getLeft()) - this.N, height, (pxVar.getRight() - pxVar.getPaddingRight()) - this.N, ((pxVar.getMeasuredHeight() + height) - pxVar.getPaddingTop()) - pxVar.getPaddingBottom());
                 icVarArr[i10].b(rect);
-                pxVar.f37194b = i5Var;
+                pxVar.f37073b = i5Var;
                 org.telegram.messenger.ic icVar = icVarArr[i10];
                 if (i5Var.c()) {
-                    porterDuffColorFilter = gyVar.f34083e2;
+                    porterDuffColorFilter = gyVar.f34031e2;
                 } else {
                     porterDuffColorFilter = null;
                 }

@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class rl extends mq0 {
-    public final ArrayList f49508a;
-    public final int[] f49509b = new int[2];
-    public final an f49510c;
+public final class rl extends nq0 {
+    public final ArrayList f49528a;
+    public final int[] f49529b = new int[2];
+    public final an f49530c;
 
     public rl(an anVar, ArrayList arrayList) {
-        this.f49510c = anVar;
-        this.f49508a = arrayList;
+        this.f49530c = anVar;
+        this.f49528a = arrayList;
     }
 
     @Override
-    public final vq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
+    public final wq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
         char c10;
         char c11;
         ImageReceiver imageReceiver;
@@ -27,19 +27,19 @@ public final class rl extends mq0 {
         TL_iv.PageBlock pageBlock;
         ImageReceiver imageReceiver2;
         rl rlVar = this;
-        an anVar = rlVar.f49510c;
-        if (anVar.f44013z0 != null && i7 >= 0) {
-            ArrayList arrayList = rlVar.f49508a;
+        an anVar = rlVar.f49530c;
+        if (anVar.f44038z0 != null && i7 >= 0) {
+            ArrayList arrayList = rlVar.f49528a;
             if (i7 >= arrayList.size()) {
                 return null;
             }
             TL_iv.PageBlock pageBlock2 = (TL_iv.PageBlock) arrayList.get(i7);
-            int childCount = anVar.f44013z0.getChildCount();
+            int childCount = anVar.f44038z0.getChildCount();
             int i10 = 0;
             while (i10 < childCount) {
-                View childAt = anVar.f44013z0.getChildAt(i10);
+                View childAt = anVar.f44038z0.getChildAt(i10);
                 boolean z11 = childAt instanceof org.telegram.ui.Cells.q1;
-                int[] iArr = rlVar.f49509b;
+                int[] iArr = rlVar.f49529b;
                 if (z11 && (messageObject = (q1Var = (org.telegram.ui.Cells.q1) childAt).getMessageObject()) != null && (kvVar = messageObject.f23284w2) != null) {
                     int[] iArr2 = new int[2];
                     ArrayList arrayList2 = kvVar.f23761g;
@@ -135,16 +135,16 @@ public final class rl extends mq0 {
                     i10++;
                     rlVar = this;
                 } else {
-                    vq0 vq0Var = new vq0();
-                    vq0Var.f50791b = iArr[c10];
-                    vq0Var.f50792c = iArr[c11];
-                    vq0Var.d = anVar.f44013z0;
-                    vq0Var.f50790a = imageReceiver;
-                    vq0Var.f50793e = imageReceiver.p();
-                    vq0Var.h = imageReceiver.E();
-                    vq0Var.f50797j = (int) ((anVar.L9 - anVar.N9) - org.telegram.messenger.g0.L(4.0f));
-                    vq0Var.f50796i = (int) (anVar.r9(org.telegram.ui.Components.c11.f32362c) + anVar.f43974w.d() + org.telegram.messenger.g0.L(9.0f) + anVar.Ua + anVar.Wc);
-                    return vq0Var;
+                    wq0 wq0Var = new wq0();
+                    wq0Var.f51479b = iArr[c10];
+                    wq0Var.f51480c = iArr[c11];
+                    wq0Var.d = anVar.f44038z0;
+                    wq0Var.f51478a = imageReceiver;
+                    wq0Var.f51481e = imageReceiver.p();
+                    wq0Var.h = imageReceiver.E();
+                    wq0Var.f51485j = (int) ((anVar.L9 - anVar.N9) - org.telegram.messenger.g0.L(4.0f));
+                    wq0Var.f51484i = (int) (anVar.r9(org.telegram.ui.Components.h11.f34137c) + anVar.f43999w.d() + org.telegram.messenger.g0.L(9.0f) + anVar.Ua + anVar.Wc);
+                    return wq0Var;
                 }
             }
             return null;

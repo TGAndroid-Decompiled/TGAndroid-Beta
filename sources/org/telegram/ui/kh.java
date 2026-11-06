@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class kh extends AnimatorListenerAdapter {
-    public final zm f47164a;
-    public final boolean f47165b;
-    public final org.telegram.ui.ActionBar.k5 f47166c;
+    public final zm f47187a;
+    public final boolean f47188b;
+    public final org.telegram.ui.ActionBar.k5 f47189c;
     public final boolean d;
-    public final pm f47167e;
-    public final boolean f47168f;
+    public final pm f47190e;
+    public final boolean f47191f;
     public final an h;
 
     public kh(an anVar, zm zmVar, boolean z9, org.telegram.ui.ActionBar.k5 k5Var, boolean z10, pm pmVar, boolean z11) {
         this.h = anVar;
-        this.f47164a = zmVar;
-        this.f47165b = z9;
-        this.f47166c = k5Var;
+        this.f47187a = zmVar;
+        this.f47188b = z9;
+        this.f47189c = k5Var;
         this.d = z10;
-        this.f47167e = pmVar;
-        this.f47168f = z11;
+        this.f47190e = pmVar;
+        this.f47191f = z11;
     }
 
     @Override
@@ -35,18 +35,18 @@ public final class kh extends AnimatorListenerAdapter {
         anVar.R2[0].setTranslationX(0.0f);
         anVar.R2[1].setTranslationX(0.0f);
         anVar.T2.setTranslationX(anVar.U2 + 0.0f);
-        zm zmVar = this.f47164a;
+        zm zmVar = this.f47187a;
         zmVar.setTranslationY(0.0f);
-        boolean z9 = this.f47165b;
+        boolean z9 = this.f47188b;
         if (!z9) {
             zmVar.setTranslationY(0.0f);
         }
-        org.telegram.ui.ActionBar.k5 k5Var = this.f47166c;
+        org.telegram.ui.ActionBar.k5 k5Var = this.f47189c;
         if (!z9) {
             k5Var.setTranslationY(0.0f);
         }
         boolean z10 = this.d;
-        pm pmVar = this.f47167e;
+        pm pmVar = this.f47190e;
         if (!z10) {
             pmVar.setTranslationY(0.0f);
         }
@@ -75,7 +75,7 @@ public final class kh extends AnimatorListenerAdapter {
             zmVarArr[0] = zmVar;
             zmVar2.setVisibility(4);
         }
-        if (this.f47168f) {
+        if (this.f47191f) {
             anVar.P2[1].setImageBitmap(null);
             anVar.P2[1].setVisibility(4);
         }

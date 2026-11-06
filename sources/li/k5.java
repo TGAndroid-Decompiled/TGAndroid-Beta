@@ -10,24 +10,24 @@ import org.telegram.messenger.i6;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
-public final class k5 extends q31 {
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.w31;
+public final class k5 extends v31 {
     public static final int f18674b = 0;
 
     static {
-        q31.h(new q31());
+        v31.h(new v31());
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
+    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
         boolean z10;
         m5 m5Var = (m5) view;
-        a aVar = (a) r31Var.G;
-        a3 a3Var = (a3) r31Var.H;
+        a aVar = (a) w31Var.G;
+        a3 a3Var = (a3) w31Var.H;
         o5 o5Var = m5Var.f18708w;
         boolean z11 = true;
         if (m5Var.f18986a != aVar) {

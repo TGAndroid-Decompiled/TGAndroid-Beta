@@ -118,11 +118,11 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.UndoView;
 import org.telegram.ui.Components.cq0;
 import org.telegram.ui.Components.ee0;
-import org.telegram.ui.Components.o31;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.qa0;
 import org.telegram.ui.Components.qx0;
 import org.telegram.ui.Components.sx0;
+import org.telegram.ui.Components.t31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.qn0;
 import org.telegram.ui.u71;
@@ -787,11 +787,11 @@ public abstract class g0 {
         }
         view.setTag(2131296664, Float.valueOf(view.getTranslationX()));
         float translationX = view.getTranslationX();
-        r1.g gVar = new r1.g(view, r1.g.f54133o, translationX);
+        r1.g gVar = new r1.g(view, r1.g.f54158o, translationX);
         r1.h hVar = new r1.h(translationX);
         hVar.b(600.0f);
-        gVar.f54150m = hVar;
-        gVar.f54140a = (-L2) * 100;
+        gVar.f54175m = hVar;
+        gVar.f54165a = (-L2) * 100;
         gVar.a(new fi.h3(translationX, view, runnable));
         view.setTag(2131296663, gVar);
         gVar.h();
@@ -853,8 +853,8 @@ public abstract class g0 {
     }
 
     public static i0.b I0(r0.k1 k1Var, boolean z9) {
-        i0.b g10 = k1Var.f54084a.g(647);
-        r0.h1 h1Var = k1Var.f54084a;
+        i0.b g10 = k1Var.f54109a.g(647);
+        r0.h1 h1Var = k1Var.f54109a;
         i0.b a10 = i0.b.a(g10, h1Var.f(647));
         if (z9) {
             return i0.b.a(a10, h1Var.f(8));
@@ -989,11 +989,11 @@ public abstract class g0 {
         float f13 = f12 * 0.88f;
         wpVar.H = f13;
         wpVar.I = f13;
-        wpVar.f40055r = -f10;
-        wpVar.f40056s = f11;
+        wpVar.f40062r = -f10;
+        wpVar.f40063s = f11;
         wpVar.G = 0.8f;
         if (z9) {
-            wpVar.f40053f = z9;
+            wpVar.f40060f = z9;
         }
         SpannableString spannableString = new SpannableString(" >");
         spannableString.setSpan(wpVar, spannableString.length() - 1, spannableString.length(), 33);
@@ -1004,12 +1004,12 @@ public abstract class g0 {
         org.telegram.ui.Components.wp wpVar2 = new org.telegram.ui.Components.wp(i7, 0);
         wpVar2.H = f13;
         wpVar2.I = f13;
-        wpVar2.f40055r = f10;
-        wpVar2.f40056s = f11;
-        wpVar2.f40057w = 180.0f;
+        wpVar2.f40062r = f10;
+        wpVar2.f40063s = f11;
+        wpVar2.f40064w = 180.0f;
         wpVar2.G = 0.8f;
         if (z9) {
-            wpVar2.f40053f = z9;
+            wpVar2.f40060f = z9;
         }
         SpannableString spannableString3 = new SpannableString("<");
         spannableString3.setSpan(wpVar2, 0, 1, 33);
@@ -1161,11 +1161,11 @@ public abstract class g0 {
         if (!aVar.g()) {
             return;
         }
-        String str = aVar.f56800b;
-        int i7 = aVar.f56801c;
+        String str = aVar.f56825b;
+        int i7 = aVar.f56826c;
         String str2 = aVar.d;
-        String str3 = aVar.f56802e;
-        String str4 = aVar.f56803f;
+        String str3 = aVar.f56827e;
+        String str4 = aVar.f56828f;
         org.telegram.ui.ActionBar.v2 v2Var = new org.telegram.ui.ActionBar.v2(1, (Context) launchActivity, (org.telegram.ui.ActionBar.f6) null, false);
         v2Var.N();
         v2Var.f28646u0 = false;
@@ -2110,7 +2110,7 @@ public abstract class g0 {
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
             for (int i7 = 0; i7 < arrayList.size() / 2; i7++) {
                 int i10 = i7 * 2;
-                spannableStringBuilder2.setSpan(new o31(o()), ((Integer) arrayList.get(i10)).intValue(), ((Integer) arrayList.get(i10 + 1)).intValue(), 33);
+                spannableStringBuilder2.setSpan(new t31(o()), ((Integer) arrayList.get(i10)).intValue(), ((Integer) arrayList.get(i10 + 1)).intValue(), 33);
             }
             return spannableStringBuilder2;
         } catch (Exception e10) {
@@ -2251,7 +2251,7 @@ public abstract class g0 {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(sb2);
             for (int i7 = 0; i7 < arrayList.size() / 2; i7++) {
                 int i10 = i7 * 2;
-                spannableStringBuilder.setSpan(new o31(o()), ((Integer) arrayList.get(i10)).intValue(), ((Integer) arrayList.get(i10 + 1)).intValue(), 33);
+                spannableStringBuilder.setSpan(new t31(o()), ((Integer) arrayList.get(i10)).intValue(), ((Integer) arrayList.get(i10 + 1)).intValue(), 33);
             }
             return spannableStringBuilder;
         } catch (Exception e10) {
@@ -3913,7 +3913,7 @@ public abstract class g0 {
             } else if (drawable instanceof ColorDrawable) {
                 i7 = ((ColorDrawable) drawable).getColor();
             } else if (drawable instanceof org.telegram.ui.Components.k9) {
-                int[] iArr2 = ((org.telegram.ui.Components.k9) drawable).f35236a;
+                int[] iArr2 = ((org.telegram.ui.Components.k9) drawable).f35239a;
                 if (iArr2 != null) {
                     if (iArr2.length > 1) {
                         i7 = w0(iArr2[0], iArr2[1]);
@@ -4522,7 +4522,7 @@ public abstract class g0 {
         }
         if (!z9) {
             if (mgVar != null) {
-                org.telegram.ui.Components.di diVar = mgVar.f35998b;
+                org.telegram.ui.Components.di diVar = mgVar.f35936b;
                 diVar.F0 = -1;
                 diVar.G0 = i7;
                 diVar.f28615b.invalidate();
@@ -4538,7 +4538,7 @@ public abstract class g0 {
         ofArgb.addUpdateListener(new q(0, mgVar, window));
         ofArgb.addListener(new m.a(window, 4));
         ofArgb.setDuration(200L);
-        ofArgb.setInterpolator(org.telegram.ui.Components.xq.f40310f);
+        ofArgb.setInterpolator(org.telegram.ui.Components.xq.f40329f);
         ofArgb.start();
         if (f22530l0 == null) {
             f22530l0 = new HashMap();

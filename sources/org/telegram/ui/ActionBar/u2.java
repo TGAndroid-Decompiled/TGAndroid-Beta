@@ -84,7 +84,7 @@ public final class u2 extends Drawable {
                 Rect bounds2 = getBounds();
                 float L = org.telegram.messenger.g0.L(25.0f);
                 mo0 mo0Var = (mo0) this.d;
-                float min = Math.min(bounds2.top, mo0Var.f36071o1 - mo0Var.f36061i1.getY());
+                float min = Math.min(bounds2.top, mo0Var.f36009o1 - mo0Var.f35999i1.getY());
                 Paint paint3 = (Paint) this.f28593b;
                 paint3.setColor(k6.w0(k6.f27921h5, mo0Var.I0));
                 Path path = (Path) this.f28594c;
@@ -103,7 +103,7 @@ public final class u2 extends Drawable {
                 rectF.set(i7, f10 - (org.telegram.messenger.g0.L(18.33f) / 2.0f), getIntrinsicWidth() + i7, (org.telegram.messenger.g0.L(18.33f) / 2.0f) + f10);
                 ug.y0 y0Var = (ug.y0) this.d;
                 y0Var.e(rectF);
-                canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), y0Var.f56752f);
+                canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), y0Var.f56777f);
                 Drawable drawable3 = (Drawable) this.f28594c;
                 drawable3.setBounds(org.telegram.messenger.g0.L(3.33f) + i7, (int) (f10 - ((drawable3.getIntrinsicHeight() * 0.875f) / 2.0f)), (int) ((drawable3.getIntrinsicWidth() * 0.875f) + org.telegram.messenger.g0.L(3.33f) + i7), (int) a8.p0.f(drawable3.getIntrinsicHeight(), 0.875f, 2.0f, f10));
                 drawable3.draw(canvas);

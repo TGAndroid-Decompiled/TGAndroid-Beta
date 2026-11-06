@@ -5,23 +5,23 @@ import android.graphics.PorterDuffColorFilter;
 import android.graphics.RectF;
 import android.view.View;
 public final class f6 implements org.telegram.ui.ActionBar.s6 {
-    public final int f45498a;
-    public final org.telegram.ui.ActionBar.f2 f45499b;
+    public final int f45503a;
+    public final org.telegram.ui.ActionBar.f2 f45504b;
 
     public f6(int i7, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f45498a = i7;
-        this.f45499b = f2Var;
+        this.f45503a = i7;
+        this.f45504b = f2Var;
     }
 
     @Override
     public final void a(float f10) {
-        int i7 = this.f45498a;
+        int i7 = this.f45503a;
     }
 
     @Override
     public final void b() {
-        int i7 = this.f45498a;
-        org.telegram.ui.ActionBar.f2 f2Var = this.f45499b;
+        int i7 = this.f45503a;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f45504b;
         switch (i7) {
             case 0:
                 wt wtVar = ((y6) f2Var).Z;
@@ -92,7 +92,7 @@ public final class f6 implements org.telegram.ui.ActionBar.s6 {
                 ((PremiumPreviewFragment) f2Var).z0();
                 return;
             case 17:
-                ((rt0) f2Var).getClass();
+                ((st0) f2Var).getClass();
                 return;
             case 18:
                 RectF rectF = ProfileActivity.S6;
@@ -102,39 +102,39 @@ public final class f6 implements org.telegram.ui.ActionBar.s6 {
                 ((gx0) f2Var).getClass();
                 return;
             case 20:
-                ((ay0) f2Var).f44102b.f();
+                ((ay0) f2Var).f44118b.f();
                 return;
             case 21:
                 ((c51) f2Var).s0();
                 return;
             case 22:
                 ThemeActivity themeActivity = (ThemeActivity) f2Var;
-                for (int i10 = 0; i10 < themeActivity.f41985b.getChildCount(); i10++) {
-                    View childAt = themeActivity.f41985b.getChildAt(i10);
+                for (int i10 = 0; i10 < themeActivity.f42010b.getChildCount(); i10++) {
+                    View childAt = themeActivity.f42010b.getChildAt(i10);
                     if (childAt instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) childAt).getAdapter().f();
                     } else if (childAt instanceof nl0) {
                         ((nl0) childAt).updateColors();
                     }
                 }
-                for (int i11 = 0; i11 < themeActivity.f41985b.getCachedChildCount(); i11++) {
-                    View P = themeActivity.f41985b.P(i11);
+                for (int i11 = 0; i11 < themeActivity.f42010b.getCachedChildCount(); i11++) {
+                    View P = themeActivity.f42010b.P(i11);
                     if (P instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) P).getAdapter().f();
                     } else if (P instanceof nl0) {
                         ((nl0) P).updateColors();
                     }
                 }
-                for (int i12 = 0; i12 < themeActivity.f41985b.getHiddenChildCount(); i12++) {
-                    View V = themeActivity.f41985b.V(i12);
+                for (int i12 = 0; i12 < themeActivity.f42010b.getHiddenChildCount(); i12++) {
+                    View V = themeActivity.f42010b.V(i12);
                     if (V instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) V).getAdapter().f();
                     } else if (V instanceof nl0) {
                         ((nl0) V).updateColors();
                     }
                 }
-                for (int i13 = 0; i13 < themeActivity.f41985b.getAttachedScrapChildCount(); i13++) {
-                    View O = themeActivity.f41985b.O(i13);
+                for (int i13 = 0; i13 < themeActivity.f42010b.getAttachedScrapChildCount(); i13++) {
+                    View O = themeActivity.f42010b.O(i13);
                     if (O instanceof org.telegram.ui.Cells.t) {
                         ((org.telegram.ui.Cells.t) O).getAdapter().f();
                     } else if (O instanceof nl0) {

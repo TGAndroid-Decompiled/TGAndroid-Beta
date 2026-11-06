@@ -3,10 +3,10 @@ package org.telegram.ui;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class kj implements is {
-    public final an f47177a;
+    public final an f47200a;
 
     public kj(an anVar) {
-        this.f47177a = anVar;
+        this.f47200a = anVar;
     }
 
     @Override
@@ -47,12 +47,12 @@ public final class kj implements is {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z9) {
         if (inputStickerSet != null) {
-            an anVar = this.f47177a;
+            an anVar = this.f47200a;
             if (anVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
                 tL_inputStickerSetID.f26972id = inputStickerSet.f26972id;
-                org.telegram.ui.Components.yv0 yv0Var = new org.telegram.ui.Components.yv0(anVar.getParentActivity(), anVar, tL_inputStickerSetID, null, anVar.Z, anVar.f43998xa);
+                org.telegram.ui.Components.yv0 yv0Var = new org.telegram.ui.Components.yv0(anVar.getParentActivity(), anVar, tL_inputStickerSetID, null, anVar.Z, anVar.f44023xa);
                 boolean T9 = anVar.T9();
                 yv0Var.f28631h0 = T9;
                 yv0Var.f28636n = T9;
@@ -79,17 +79,17 @@ public final class kj implements is {
 
     @Override
     public final long a() {
-        return this.f47177a.f43818j6;
+        return this.f47200a.f43843j6;
     }
 
     @Override
     public final boolean b() {
-        return this.f47177a.R6();
+        return this.f47200a.R6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f47177a.f43766f4 == 1) {
+        if (this.f47200a.f43791f4 == 1) {
             return true;
         }
         return false;
@@ -132,7 +132,7 @@ public final class kj implements is {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z9, int i7, int i10) {
-        this.f47177a.Z.a(document, str, obj, null, true, z9, i7, i10);
+        this.f47200a.Z.a(document, str, obj, null, true, z9, i7, i10);
     }
 
     @Override

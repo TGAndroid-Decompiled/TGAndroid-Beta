@@ -5,20 +5,20 @@ import android.graphics.Canvas;
 import android.view.MotionEvent;
 import android.view.View;
 public final class ia extends rt0 {
-    public final boolean f34572f0;
-    public final boolean f34573g0;
-    public final na f34574h0;
+    public final boolean f34535f0;
+    public final boolean f34536g0;
+    public final na f34537h0;
 
     public ia(na naVar, Context context, boolean z9, boolean z10) {
         super(context, null);
-        this.f34574h0 = naVar;
-        this.f34572f0 = z9;
-        this.f34573g0 = z10;
+        this.f34537h0 = naVar;
+        this.f34535f0 = z9;
+        this.f34536g0 = z10;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        na naVar = this.f34574h0;
+        na naVar = this.f34537h0;
         naVar.W0(canvas, this);
         super.dispatchDraw(canvas);
         naVar.V0(canvas, this);
@@ -28,7 +28,7 @@ public final class ia extends rt0 {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
             float y10 = motionEvent.getY();
-            na naVar = this.f34574h0;
+            na naVar = this.f34537h0;
             if (y10 < naVar.f28642r0.getBounds().top) {
                 naVar.dismiss();
             }
@@ -38,8 +38,8 @@ public final class ia extends rt0 {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (!this.f34573g0) {
-            this.f34574h0.getClass();
+        if (!this.f34536g0) {
+            this.f34537h0.getClass();
         }
         return super.drawChild(canvas, view, j3);
     }
@@ -56,10 +56,10 @@ public final class ia extends rt0 {
         int i12;
         kt ktVar;
         int size = View.MeasureSpec.getSize(i10);
-        na naVar = this.f34574h0;
+        na naVar = this.f34537h0;
         naVar.n1 = size;
         naVar.S0(i7, i10);
-        if (this.f34572f0) {
+        if (this.f34535f0) {
             i10 = View.MeasureSpec.makeMeasureSpec(naVar.n1, 1073741824);
         }
         if (naVar.H1 != null) {
@@ -69,7 +69,7 @@ public final class ia extends rt0 {
             kt ktVar2 = naVar.H1;
             if (ktVar2 != null && !ktVar2.N && org.telegram.messenger.g0.L(20.0f) >= 0) {
                 kt ktVar3 = naVar.H1;
-                if (!ktVar3.f35416e && !ktVar3.O) {
+                if (!ktVar3.f35419e && !ktVar3.O) {
                     ktVar3.j();
                 }
             }

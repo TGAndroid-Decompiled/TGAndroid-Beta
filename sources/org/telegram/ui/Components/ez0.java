@@ -4,18 +4,18 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import java.io.File;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class ez0 implements u61 {
-    public final ThemeEditorView f33411a;
+public final class ez0 implements z61 {
+    public final ThemeEditorView f33407a;
 
     public ez0(ThemeEditorView themeEditorView) {
-        this.f33411a = themeEditorView;
+        this.f33407a = themeEditorView;
     }
 
     @Override
     public final void a() {
         int i7 = 0;
         while (true) {
-            ThemeEditorView themeEditorView = this.f33411a;
+            ThemeEditorView themeEditorView = this.f33407a;
             if (i7 < themeEditorView.f31565e.size()) {
                 org.telegram.ui.ActionBar.t6 t6Var = (org.telegram.ui.ActionBar.t6) themeEditorView.f31565e.get(i7);
                 int x02 = org.telegram.ui.ActionBar.k6.x0(t6Var.f28537i, t6Var.f28534e, false);
@@ -35,7 +35,7 @@ public final class ez0 implements u61 {
 
     @Override
     public final void b(File file, Bitmap bitmap, boolean z9) {
-        org.telegram.ui.ActionBar.j6 j6Var = this.f33411a.f31574o;
+        org.telegram.ui.ActionBar.j6 j6Var = this.f33407a.f31574o;
         org.telegram.ui.ActionBar.k6.im.delete(org.telegram.ui.ActionBar.k6.Be);
         org.telegram.ui.ActionBar.k6.im.delete(org.telegram.ui.ActionBar.k6.Ce);
         org.telegram.ui.ActionBar.k6.im.delete(org.telegram.ui.ActionBar.k6.De);

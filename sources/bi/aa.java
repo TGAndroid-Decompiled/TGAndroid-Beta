@@ -39,13 +39,13 @@ public final class aa implements Runnable {
                 }
                 if (!caVar.f3597m) {
                     caVar.f3597m = true;
-                    caVar.f3591f.f38913b = 5000L;
+                    caVar.f3591f.f38910b = 5000L;
                     org.telegram.messenger.g0.r(aaVar);
                     org.telegram.messenger.g0.i3(aaVar, 5000L);
                     ccVar.k(true);
                     ccVar.v = aaVar;
                 }
-                caVar.f3590e.f39940b.setText(caVar.d());
+                caVar.f3590e.f39947b.setText(caVar.d());
                 return;
         }
     }

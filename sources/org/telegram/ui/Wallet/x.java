@@ -8,29 +8,29 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class x implements v10 {
-    public final int f43288a;
-    public final boolean f43289b;
-    public final Object f43290c;
+    public final int f43313a;
+    public final boolean f43314b;
+    public final Object f43315c;
     public final Object d;
-    public final Object f43291e;
+    public final Object f43316e;
 
     public x(Object obj, Object obj2, Object obj3, boolean z9, int i7) {
-        this.f43288a = i7;
-        this.f43290c = obj;
+        this.f43313a = i7;
+        this.f43315c = obj;
         this.d = obj2;
-        this.f43291e = obj3;
-        this.f43289b = z9;
+        this.f43316e = obj3;
+        this.f43314b = z9;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         String str;
-        switch (this.f43288a) {
+        switch (this.f43313a) {
             case 0:
-                n0 n0Var = (n0) this.f43290c;
+                n0 n0Var = (n0) this.f43315c;
                 k0 k0Var = (k0) this.d;
-                v10 v10Var = (v10) this.f43291e;
-                boolean z9 = this.f43289b;
+                v10 v10Var = (v10) this.f43316e;
+                boolean z9 = this.f43314b;
                 TL_wallet.proofChallenge proofchallenge = (TL_wallet.proofChallenge) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (proofchallenge == null) {
@@ -43,7 +43,7 @@ public final class x implements v10 {
                     v10Var.a(null, str);
                     return;
                 }
-                int currentTime = ConnectionsManager.getInstance(n0Var.f42768a).getCurrentTime();
+                int currentTime = ConnectionsManager.getInstance(n0Var.f42793a).getCurrentTime();
                 StringBuilder sb2 = new StringBuilder("received proof challenge, expires at ");
                 jg.g.x(sb2, proofchallenge.expires, ", now = ", currentTime, ", expires in ");
                 sb2.append(proofchallenge.expires - currentTime);
@@ -52,20 +52,20 @@ public final class x implements v10 {
                 Utilities.d.c(new li.p2(n0Var, z9, k0Var, proofchallenge, currentTime, v10Var));
                 return;
             default:
-                f2 f2Var = (f2) this.f43290c;
+                f2 f2Var = (f2) this.f43315c;
                 m mVar = (m) this.d;
-                b2 b2Var = (b2) this.f43291e;
-                boolean z10 = this.f43289b;
+                b2 b2Var = (b2) this.f43316e;
+                boolean z10 = this.f43314b;
                 k0 k0Var2 = (k0) obj;
                 String str2 = (String) obj2;
                 if (k0Var2 != null && str2 == null) {
                     k0 b10 = k0Var2.b();
                     t tVar = new t(7, b10, mVar);
-                    String str3 = b2Var.f42100e;
-                    TL_wallet.tonConnectSession tonconnectsession = b2Var.f42097a;
+                    String str3 = b2Var.f42125e;
+                    TL_wallet.tonConnectSession tonconnectsession = b2Var.f42122a;
                     if ("sendTransaction".equals(str3)) {
-                        SharedPreferences sharedPreferences = qp.s1(f2Var.f42435a).f24759e7;
-                        if (sharedPreferences.contains(f2.l(tonconnectsession.f27214id, b2Var.f42098b) + ".transfer")) {
+                        SharedPreferences sharedPreferences = qp.s1(f2Var.f42460a).f24759e7;
+                        if (sharedPreferences.contains(f2.l(tonconnectsession.f27214id, b2Var.f42123b) + ".transfer")) {
                             f2Var.B(b2Var, b10, tVar);
                             return;
                         }
@@ -78,7 +78,7 @@ public final class x implements v10 {
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
                     tonconnectregisterkey.session_id = tonconnectsession.f27214id;
                     tonconnectregisterkey.client_id = tonconnectsession.client_id;
-                    f2Var.f42439f.sendRequestTyped(tonconnectregisterkey, new d3.b(1), new r(tVar, b10, b2Var, n3Var, 6));
+                    f2Var.f42464f.sendRequestTyped(tonconnectregisterkey, new d3.b(1), new r(tVar, b10, b2Var, n3Var, 6));
                     return;
                 }
                 if (str2 == null) {

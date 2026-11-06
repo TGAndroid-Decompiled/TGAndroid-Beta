@@ -191,7 +191,7 @@ public class r0 extends FrameLayout {
             changeBounds.setDuration(150L);
             transitionSet.addTransition(new i0(0).setDuration(150L)).addTransition(changeBounds);
             transitionSet.setOrdering(0);
-            transitionSet.setInterpolator((TimeInterpolator) xq.f40311g);
+            transitionSet.setInterpolator((TimeInterpolator) xq.f40330g);
             transitionSet.addListener((Transition.TransitionListener) new j0(0, this));
             TransitionManager.beginDelayedTransition(this.f28427f, transitionSet);
         }
@@ -385,7 +385,7 @@ public class r0 extends FrameLayout {
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = this.f28420b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (findViewWithTag = actionBarPopupWindow$ActionBarPopupWindowLayout.findViewWithTag(Integer.valueOf(i7))) != null && findViewWithTag.getVisibility() != 0) {
             findViewWithTag.setAlpha(0.0f);
-            org.telegram.messenger.camera.q.l(findViewWithTag.animate().alpha(1.0f), xq.f40310f, 150L);
+            org.telegram.messenger.camera.q.l(findViewWithTag.animate().alpha(1.0f), xq.f40329f, 150L);
             findViewWithTag.setVisibility(0);
         }
     }
@@ -550,7 +550,7 @@ public class r0 extends FrameLayout {
                             swipeBack.setForegroundOnGlass(true);
                             if (i5Var.f27588b != swipeBack) {
                                 i5Var.f27588b = swipeBack;
-                                swipeBack.f38944y.add(new ue0() {
+                                swipeBack.f38941y.add(new ue0() {
                                     @Override
                                     public final void a(float f10, float f11) {
                                         i5.this.invalidate();
@@ -1747,12 +1747,12 @@ public class r0 extends FrameLayout {
             return;
         }
         if (z9) {
-            c2Var.f36761e = true;
-            c2Var.f36759b = System.currentTimeMillis();
+            c2Var.f36639e = true;
+            c2Var.f36637b = System.currentTimeMillis();
             c2Var.invalidateSelf();
             return;
         }
-        c2Var.f36761e = false;
+        c2Var.f36639e = false;
     }
 
     public void setShowSubmenuByMove(boolean z9) {

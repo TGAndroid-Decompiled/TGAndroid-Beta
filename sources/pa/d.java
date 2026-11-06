@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.HashMap;
 import na.g;
 public final class d implements oa.a {
-    public static final a f53392e = new a(0);
-    public static final b f53393f = new na.f() {
+    public static final a f53418e = new a(0);
+    public static final b f53419f = new na.f() {
         @Override
         public final void a(Object obj, Object obj2) {
             switch (r1) {
@@ -31,31 +31,31 @@ public final class d implements oa.a {
             }
         }
     };
-    public static final c f53394n = new Object();
-    public final HashMap f53395a;
-    public final HashMap f53396b;
-    public final a f53397c;
+    public static final c f53420n = new Object();
+    public final HashMap f53421a;
+    public final HashMap f53422b;
+    public final a f53423c;
     public boolean d;
 
     public d() {
         HashMap hashMap = new HashMap();
-        this.f53395a = hashMap;
+        this.f53421a = hashMap;
         HashMap hashMap2 = new HashMap();
-        this.f53396b = hashMap2;
-        this.f53397c = f53392e;
+        this.f53422b = hashMap2;
+        this.f53423c = f53418e;
         this.d = false;
-        hashMap2.put(String.class, f53393f);
+        hashMap2.put(String.class, f53419f);
         hashMap.remove(String.class);
         hashMap2.put(Boolean.class, h);
         hashMap.remove(Boolean.class);
-        hashMap2.put(Date.class, f53394n);
+        hashMap2.put(Date.class, f53420n);
         hashMap.remove(Date.class);
     }
 
     @Override
     public final oa.a b(Class cls, na.d dVar) {
-        this.f53395a.put(cls, dVar);
-        this.f53396b.remove(cls);
+        this.f53421a.put(cls, dVar);
+        this.f53422b.remove(cls);
         return this;
     }
 }

@@ -2,15 +2,15 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class g7 implements bj0 {
-    public final int f33874a;
+    public final int f33818a;
 
     public g7(int i7) {
-        this.f33874a = i7;
+        this.f33818a = i7;
     }
 
     @Override
     public final void c(int i7, View view) {
-        switch (this.f33874a) {
+        switch (this.f33818a) {
             case 0:
                 if (view instanceof org.telegram.ui.Cells.w) {
                     ((org.telegram.ui.Cells.w) view).a();
@@ -31,7 +31,7 @@ public final class g7 implements bj0 {
                 int i10 = zh.d.S1;
                 return;
             default:
-                int i11 = zh.m.f60317s2;
+                int i11 = zh.m.f60342s2;
                 return;
         }
     }

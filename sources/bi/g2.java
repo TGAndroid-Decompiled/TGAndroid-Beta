@@ -22,8 +22,8 @@ import org.telegram.ui.ce0;
 import org.telegram.ui.ef0;
 import org.telegram.ui.kj0;
 import org.telegram.ui.kp;
-import org.telegram.ui.oo0;
 import org.telegram.ui.oy0;
+import org.telegram.ui.po0;
 import org.telegram.ui.sj0;
 import org.telegram.ui.so;
 public final class g2 implements RequestDelegate {
@@ -93,15 +93,15 @@ public final class g2 implements RequestDelegate {
                 TLRPC.TL_chatInviteExported tL_chatInviteExported = (TLRPC.TL_chatInviteExported) obj3;
                 boolean[] zArr = (boolean[]) obj2;
                 org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) obj;
-                org.telegram.ui.mb mbVar = hbVar.f46295a.f46896n;
+                org.telegram.ui.mb mbVar = hbVar.f46315a.f46920n;
                 if (tL_error == null) {
                     tL_messages_exportedChatInvite = (TLRPC.TL_messages_exportedChatInvite) tLObject;
                     for (int i10 = 0; i10 < tL_messages_exportedChatInvite.users.size(); i10++) {
                         TLRPC.User user = tL_messages_exportedChatInvite.users.get(i10);
-                        if (mbVar.f47752z0 == null) {
-                            mbVar.f47752z0 = new HashMap();
+                        if (mbVar.f47779z0 == null) {
+                            mbVar.f47779z0 = new HashMap();
                         }
-                        mbVar.f47752z0.put(Long.valueOf(user.f27101id), user);
+                        mbVar.f47779z0.put(Long.valueOf(user.f27101id), user);
                     }
                 } else {
                     tL_messages_exportedChatInvite = null;
@@ -115,11 +115,11 @@ public final class g2 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new u0((Object) ((kp) obj4), tL_error, (Object) ((TLRPC.InputCheckPasswordSRP) obj3), (Object) ((TwoStepVerificationActivity) obj2), (TLObject) ((TLRPC.TL_channels_editCreator) obj), 27));
                 return;
             case 12:
-                oo0 oo0Var = (oo0) obj4;
+                po0 po0Var = (po0) obj4;
                 TLRPC.TL_messages_getAttachedStickers tL_messages_getAttachedStickers2 = (TLRPC.TL_messages_getAttachedStickers) obj2;
                 org.telegram.ui.ld ldVar = (org.telegram.ui.ld) obj;
                 if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text) && obj3 != null) {
-                    org.telegram.messenger.r8.n(oo0Var.f28612a).u(new Object[]{tL_messages_getAttachedStickers2, ldVar}, obj3);
+                    org.telegram.messenger.r8.n(po0Var.f28612a).u(new Object[]{tL_messages_getAttachedStickers2, ldVar}, obj3);
                     return;
                 } else {
                     ldVar.run(tLObject, tL_error);

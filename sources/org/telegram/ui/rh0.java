@@ -7,11 +7,11 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.ui.Components.RadioButton;
 public final class rh0 extends FrameLayout {
-    public TextView f49496a;
-    public RadioButton f49497b;
-    public org.telegram.ui.Components.wo f49498c;
+    public TextView f49516a;
+    public RadioButton f49517b;
+    public org.telegram.ui.Components.wo f49518c;
     public boolean d;
-    public qh0 f49499e;
+    public qh0 f49519e;
 
     @Override
     public final void onDraw(Canvas canvas) {
@@ -38,7 +38,7 @@ public final class rh0 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.RadioButton");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f49497b.f31512f);
+        accessibilityNodeInfo.setChecked(this.f49517b.f31512f);
     }
 
     @Override

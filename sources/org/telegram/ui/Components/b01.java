@@ -8,13 +8,13 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
 public final class b01 {
-    public long f31958a;
-    public boolean f31959b;
-    public final ArrayList f31960c;
+    public long f31970a;
+    public boolean f31971b;
+    public final ArrayList f31972c;
     public final ArrayList d;
-    public final int f31961e;
-    public boolean f31962f;
-    public float f31963g;
+    public final int f31973e;
+    public boolean f31974f;
+    public float f31975g;
     public float h;
 
     public b01() {
@@ -23,7 +23,7 @@ public final class b01 {
 
     public final void a(float f10, float f11, Canvas canvas, Paint paint, RectF rectF) {
         a01 a01Var;
-        ArrayList arrayList = this.f31960c;
+        ArrayList arrayList = this.f31972c;
         int size = arrayList.size();
         int i7 = 0;
         for (int i10 = 0; i10 < size; i10++) {
@@ -48,9 +48,9 @@ public final class b01 {
             } else {
                 a01Var = new Object();
             }
-            if (this.f31959b && this.f31962f) {
+            if (this.f31971b && this.f31974f) {
                 float f12 = (i11 + 1) / j3;
-                a01Var.f31621a = org.telegram.messenger.g0.T1(this.f31963g, centerX, f12);
+                a01Var.f31621a = org.telegram.messenger.g0.T1(this.f31975g, centerX, f12);
                 a01Var.f31622b = org.telegram.messenger.g0.T1(this.h, centerY, f12);
             } else {
                 a01Var.f31621a = centerX;
@@ -68,7 +68,7 @@ public final class b01 {
             a01Var3.d = (float) jg.g.d(d11, d2, Math.sin(nextInt) * d10);
             a01Var3.f31625f = 1.0f;
             a01Var3.h = 0.0f;
-            if (this.f31959b) {
+            if (this.f31971b) {
                 a01Var3.f31626g = secureRandom.nextInt(200) + 600;
                 a01Var3.f31624e = (secureRandom.nextFloat() * 20.0f) + 30.0f;
             } else {
@@ -81,11 +81,11 @@ public final class b01 {
             i7 = 0;
             z9 = true;
         }
-        this.f31962f = z9;
-        this.f31963g = centerX;
+        this.f31974f = z9;
+        this.f31975g = centerX;
         this.h = centerY;
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long min = Math.min(20L, elapsedRealtime - this.f31958a);
+        long min = Math.min(20L, elapsedRealtime - this.f31970a);
         int size2 = arrayList.size();
         int i12 = 0;
         while (i12 < size2) {
@@ -93,7 +93,7 @@ public final class b01 {
             float f13 = a01Var4.h;
             float f14 = a01Var4.f31626g;
             if (f13 >= f14) {
-                if (arrayList2.size() < this.f31961e) {
+                if (arrayList2.size() < this.f31973e) {
                     arrayList2.add(a01Var4);
                 }
                 arrayList.remove(i12);
@@ -111,13 +111,13 @@ public final class b01 {
             }
             i12++;
         }
-        this.f31958a = elapsedRealtime;
+        this.f31970a = elapsedRealtime;
     }
 
     public b01(int i7) {
-        this.f31960c = new ArrayList();
+        this.f31972c = new ArrayList();
         this.d = new ArrayList();
-        this.f31961e = i7;
+        this.f31973e = i7;
         for (int i10 = 0; i10 < i7; i10++) {
             this.d.add(new Object());
         }

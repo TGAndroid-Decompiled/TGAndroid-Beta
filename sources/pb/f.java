@@ -9,26 +9,26 @@ import com.google.android.gms.tasks.TaskCompletionSource;
 import java.util.concurrent.Callable;
 import org.telegram.ui.fx;
 public final class f {
-    public static final Object f53409b = new Object();
-    public static f f53410c;
-    public final y f53411a;
+    public static final Object f53435b = new Object();
+    public static f f53436c;
+    public final y f53437a;
 
     public f(Looper looper) {
         ?? handler = new Handler(looper);
         Looper.getMainLooper();
-        this.f53411a = handler;
+        this.f53437a = handler;
     }
 
     public static f a() {
         f fVar;
-        synchronized (f53409b) {
+        synchronized (f53435b) {
             try {
-                if (f53410c == null) {
+                if (f53436c == null) {
                     HandlerThread handlerThread = new HandlerThread("MLHandler", 9);
                     handlerThread.start();
-                    f53410c = new f(handlerThread.getLooper());
+                    f53436c = new f(handlerThread.getLooper());
                 }
-                fVar = f53410c;
+                fVar = f53436c;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -38,7 +38,7 @@ public final class f {
 
     public static Task b(Callable callable) {
         TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-        m.f53427a.execute(new fx(callable, taskCompletionSource, false, 2));
+        m.f53453a.execute(new fx(callable, taskCompletionSource, false, 2));
         return taskCompletionSource.getTask();
     }
 }

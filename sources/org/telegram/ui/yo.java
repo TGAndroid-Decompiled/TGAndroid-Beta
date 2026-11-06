@@ -6,12 +6,12 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class yo extends v4.g0 {
-    public final Context f52277c;
+    public final Context f52295c;
     public final zo d;
 
     public yo(zo zoVar, Context context) {
         this.d = zoVar;
-        this.f52277c = context;
+        this.f52295c = context;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class yo extends v4.g0 {
         int i7;
         zo zoVar = this.d;
         if (!zoVar.d.isEmpty()) {
-            i7 = zoVar.f52624n.size() + 1;
+            i7 = zoVar.f52629n.size() + 1;
         } else {
             i7 = 0;
         }
@@ -43,13 +43,13 @@ public final class yo extends v4.g0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         int i10;
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         int d = d(i7);
         zo zoVar = this.d;
         if (d != 0) {
             if (d != 1) {
                 if (d == 2) {
-                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) zoVar.f52624n.get(i7 - 3);
+                    TLRPC.TL_availableReaction tL_availableReaction = (TLRPC.TL_availableReaction) zoVar.f52629n.get(i7 - 3);
                     boolean contains = zoVar.d.contains(tL_availableReaction.reaction);
                     i10 = ((org.telegram.ui.ActionBar.f2) zoVar).currentAccount;
                     ((org.telegram.ui.Cells.x) view).a(tL_availableReaction, contains, i10);
@@ -62,7 +62,7 @@ public final class yo extends v4.g0 {
         }
         org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
         org.telegram.ui.ActionBar.r6.V(z8Var.getTextView(), org.telegram.ui.ActionBar.k6.B6, null);
-        int i11 = zoVar.f52626s;
+        int i11 = zoVar.f52631s;
         if (i11 == 1) {
             z8Var.setText(org.telegram.messenger.hd.M0(2131751148, null));
         } else if (i11 == 0) {
@@ -74,7 +74,7 @@ public final class yo extends v4.g0 {
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        Context context = this.f52277c;
+        Context context = this.f52295c;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 3) {
@@ -82,8 +82,8 @@ public final class yo extends v4.g0 {
                 }
                 FrameLayout frameLayout = new FrameLayout(context);
                 zo zoVar = this.d;
-                org.telegram.messenger.g0.E2(zoVar.f52625r);
-                frameLayout.addView(zoVar.f52625r);
+                org.telegram.messenger.g0.E2(zoVar.f52630r);
+                frameLayout.addView(zoVar.f52630r);
                 frameLayout.setLayoutParams(new v4.o0(-1, -2));
                 return new v4.d1(frameLayout);
             }

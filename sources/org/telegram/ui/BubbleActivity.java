@@ -297,7 +297,7 @@ public class BubbleActivity extends g5 implements org.telegram.ui.ActionBar.n4 {
             return;
         }
         org.telegram.messenger.iz.f23420x = true;
-        if (SecretMediaViewer.g() && SecretMediaViewer.f().f41909s) {
+        if (SecretMediaViewer.g() && SecretMediaViewer.f().f41934s) {
             SecretMediaViewer.f().e(false, false);
         } else if (PhotoViewer.A1() && PhotoViewer.p1().P1()) {
             PhotoViewer.p1().z0(false, true);

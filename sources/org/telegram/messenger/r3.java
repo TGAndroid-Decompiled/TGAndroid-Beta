@@ -1282,7 +1282,7 @@ public final class r3 {
                 }
             }
         }
-        if (!c40.f44521w5 && arrayList3.size() % 2 == 1) {
+        if (!c40.f44542w5 && arrayList3.size() % 2 == 1) {
             arrayList3.add((s3) arrayList3.remove(i16));
         }
     }

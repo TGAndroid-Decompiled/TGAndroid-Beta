@@ -1,69 +1,136 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.graphics.RectF;
-import android.view.View;
-import android.view.ViewGroup;
 import org.telegram.messenger.ImageReceiver;
-public final class dv0 extends er0 {
-    public final ProfileActivity T;
+public final class dv0 extends AnimatorListenerAdapter {
+    public final int f45147a;
+    public final ProfileActivity f45148b;
 
-    public dv0(ProfileActivity profileActivity, ViewGroup viewGroup, ViewGroup viewGroup2) {
-        super(viewGroup, viewGroup2);
-        this.T = profileActivity;
+    public dv0(ProfileActivity profileActivity, int i7) {
+        this.f45147a = i7;
+        this.f45148b = profileActivity;
     }
 
     @Override
-    public final void c(Canvas canvas, float f10, float f11, float f12, float f13, float f14) {
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f45147a) {
+            case 1:
+                this.f45148b.O5 = null;
+                return;
+            case 4:
+                ProfileActivity profileActivity = this.f45148b;
+                profileActivity.N1 = false;
+                profileActivity.f41688a.O0 = true;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        oi.q qVar;
         org.telegram.ui.ActionBar.k kVar;
-        org.telegram.ui.ActionBar.k kVar2;
-        org.telegram.ui.ActionBar.k kVar3;
-        if (f10 > 0.0f) {
-            RectF rectF = org.telegram.messenger.g0.P;
-            ProfileActivity profileActivity = this.T;
-            rectF.set(0.0f, 0.0f, profileActivity.f41756n0.getMeasuredWidth(), org.telegram.messenger.g0.L(30.0f) + profileActivity.f41756n0.getMeasuredHeight());
-            canvas.saveLayerAlpha(rectF, (int) (255.0f * f10), 31);
-            profileActivity.Y.draw(canvas);
-            canvas.save();
-            kVar = ((org.telegram.ui.ActionBar.f2) profileActivity).actionBar;
-            float x10 = kVar.getX();
-            kVar2 = ((org.telegram.ui.ActionBar.f2) profileActivity).actionBar;
-            canvas.translate(x10, kVar2.getY());
-            kVar3 = ((org.telegram.ui.ActionBar.f2) profileActivity).actionBar;
-            kVar3.draw(canvas);
-            canvas.restore();
-            org.telegram.ui.Components.ch0 ch0Var = profileActivity.f41790s;
-            if (ch0Var != null && ch0Var.getVisibility() == 0 && profileActivity.f41790s.getAlpha() > 0.0f) {
-                canvas.save();
-                float f15 = (f10 * 0.5f) + 0.5f;
-                canvas.scale(f15, f15, (profileActivity.f41790s.getMeasuredWidth() / 2.0f) + profileActivity.f41790s.getX(), (profileActivity.f41790s.getMeasuredHeight() / 2.0f) + profileActivity.f41790s.getY());
-                canvas.translate(profileActivity.f41790s.getX(), profileActivity.f41790s.getY());
-                profileActivity.f41790s.draw(canvas);
-                canvas.restore();
-            }
-            canvas.restore();
+        int w02;
+        int i7 = this.f45147a;
+        ProfileActivity profileActivity = this.f45148b;
+        switch (i7) {
+            case 0:
+                qVar = ((org.telegram.ui.ActionBar.f2) profileActivity).glassEngine;
+                qVar.g();
+                kVar = ((org.telegram.ui.ActionBar.f2) profileActivity).actionBar;
+                if (profileActivity.f41789o2) {
+                    w02 = 1090519039;
+                } else if (profileActivity.f41740g6 != null) {
+                    w02 = 553648127;
+                } else {
+                    w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27888f8, profileActivity.f41866z0);
+                }
+                kVar.C(w02, false);
+                zu0 zu0Var = profileActivity.f41719e0;
+                ImageReceiver imageReceiver = zu0Var.U;
+                org.telegram.ui.Components.v5 m10 = imageReceiver.m();
+                if (m10 != null) {
+                    m10.w(zu0Var);
+                }
+                imageReceiver.f();
+                org.telegram.messenger.jc jcVar = zu0Var.W;
+                if (jcVar != null) {
+                    jcVar.a();
+                    zu0Var.W = null;
+                }
+                zu0Var.V = 0.0f;
+                zu0Var.invalidate();
+                profileActivity.H0 = false;
+                profileActivity.L5(false);
+                return;
+            case 1:
+                if (profileActivity.O5 != null && !profileActivity.R5) {
+                    AnimatorSet animatorSet = new AnimatorSet();
+                    profileActivity.P5 = animatorSet;
+                    animatorSet.playTogether(ObjectAnimator.ofFloat(profileActivity, profileActivity.f41759j5, 1.0f));
+                    profileActivity.P5.setDuration(100L);
+                    profileActivity.P5.addListener(new d30(this, 21));
+                    profileActivity.P5.start();
+                }
+                profileActivity.L5(false);
+                profileActivity.O5 = null;
+                return;
+            case 2:
+                super.onAnimationEnd(animator);
+                RectF rectF = ProfileActivity.S6;
+                profileActivity.y4(true);
+                return;
+            case 3:
+                AnimatorSet animatorSet2 = profileActivity.f41842w;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    profileActivity.f41842w = null;
+                    return;
+                }
+                return;
+            case 4:
+                profileActivity.N1 = false;
+                profileActivity.f41688a.O0 = true;
+                profileActivity.f41750i2.removeListener(this);
+                profileActivity.f41706c1.setBackgroundColor(-16777216);
+                profileActivity.X.setVisibility(8);
+                profileActivity.f41781n0.setVisibility(0);
+                profileActivity.f41781n0.setAlpha(1.0f);
+                return;
+            case 5:
+                profileActivity.f41750i2.removeListener(this);
+                profileActivity.f41781n0.setVisibility(8);
+                profileActivity.f41781n0.setAlpha(1.0f);
+                return;
+            default:
+                profileActivity.f41843w0 = null;
+                profileActivity.fragmentView.invalidate();
+                return;
         }
     }
 
     @Override
-    public final void e() {
-        super.e();
-        ProfileActivity profileActivity = this.T;
-        profileActivity.fragmentView.invalidate();
-        for (int i7 = 0; i7 < profileActivity.f41756n0.getChildCount(); i7++) {
-            profileActivity.f41756n0.getChildAt(i7).invalidate();
-        }
-        org.telegram.ui.Components.ch0 ch0Var = profileActivity.f41790s;
-        if (ch0Var != null) {
-            ch0Var.invalidate();
+    public void onAnimationStart(Animator animator) {
+        switch (this.f45147a) {
+            case 0:
+                return;
+            case 4:
+                ProfileActivity profileActivity = this.f45148b;
+                ProfileActivity.G3(profileActivity, false);
+                profileActivity.f41781n0.setAnimatedFileMaybe(profileActivity.f41719e0.getImageReceiver().m());
+                profileActivity.f41781n0.L();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 
-    @Override
-    public final boolean j(View view, ImageReceiver imageReceiver) {
-        if (super.j(view, imageReceiver) && this.T.f41663a.getScrollState() != 1) {
-            return true;
-        }
-        return false;
+    private final void a(Animator animator) {
     }
 }

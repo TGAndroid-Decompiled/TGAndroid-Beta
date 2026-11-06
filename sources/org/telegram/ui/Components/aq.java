@@ -6,52 +6,52 @@ import android.os.Build;
 import java.util.ArrayList;
 import java.util.List;
 public class aq extends Path {
-    public static ArrayList f31870g;
-    public int f31874e;
-    public int f31875f;
-    public boolean f31872b = false;
-    public boolean f31873c = true;
+    public static ArrayList f31882g;
+    public int f31886e;
+    public int f31887f;
+    public boolean f31884b = false;
+    public boolean f31885c = true;
     public float d = 0.0f;
-    public final ArrayList f31871a = new ArrayList(1);
+    public final ArrayList f31883a = new ArrayList(1);
 
     public aq() {
     }
 
     public final void a() {
-        if (Build.VERSION.SDK_INT >= 34 && this.f31873c && !this.f31872b) {
-            b(this.f31871a);
-            this.f31872b = true;
+        if (Build.VERSION.SDK_INT >= 34 && this.f31885c && !this.f31884b) {
+            b(this.f31883a);
+            this.f31884b = true;
         }
     }
 
     @Override
     public final void addRect(RectF rectF, Path.Direction direction) {
         RectF rectF2;
-        if (Build.VERSION.SDK_INT >= 34 && this.f31873c) {
-            ArrayList arrayList = this.f31871a;
+        if (Build.VERSION.SDK_INT >= 34 && this.f31885c) {
+            ArrayList arrayList = this.f31883a;
             if (arrayList.size() <= 0 || !((RectF) jg.g.i(1, arrayList)).contains(rectF)) {
                 if (arrayList.size() > 0 && Math.abs(rectF.top - ((RectF) jg.g.i(1, arrayList)).top) <= this.d && Math.abs(rectF.bottom - ((RectF) jg.g.i(1, arrayList)).bottom) <= this.d) {
                     ((RectF) jg.g.i(1, arrayList)).union(rectF);
                 } else {
-                    ArrayList arrayList2 = f31870g;
+                    ArrayList arrayList2 = f31882g;
                     if (arrayList2 != null && arrayList2.size() > 0) {
-                        rectF2 = (RectF) f31870g.remove(0);
+                        rectF2 = (RectF) f31882g.remove(0);
                     } else {
                         rectF2 = new RectF();
                     }
                     rectF2.set(rectF);
                     arrayList.add(rectF2);
                 }
-                this.f31872b = false;
+                this.f31884b = false;
                 return;
             }
             return;
         }
         float f10 = rectF.left;
-        int i7 = this.f31874e;
+        int i7 = this.f31886e;
         float f11 = f10 - i7;
         float f12 = rectF.top;
-        int i10 = this.f31875f;
+        int i10 = this.f31887f;
         super.addRect(f11, f12 - i10, rectF.right + i7, rectF.bottom + i10, direction);
     }
 
@@ -59,17 +59,17 @@ public class aq extends Path {
         if (!list.isEmpty()) {
             boolean z9 = false;
             if (list.size() == 1) {
-                super.addRect(((RectF) list.get(0)).left - this.f31874e, ((RectF) list.get(0)).top - this.f31875f, ((RectF) list.get(0)).right + this.f31874e, ((RectF) list.get(0)).bottom + this.f31875f, Path.Direction.CW);
+                super.addRect(((RectF) list.get(0)).left - this.f31886e, ((RectF) list.get(0)).top - this.f31887f, ((RectF) list.get(0)).right + this.f31886e, ((RectF) list.get(0)).bottom + this.f31887f, Path.Direction.CW);
                 return;
             }
             RectF rectF = (RectF) list.get(0);
             int size = list.size() - 1;
-            super.moveTo(rectF.left - this.f31874e, rectF.top - this.f31875f);
+            super.moveTo(rectF.left - this.f31886e, rectF.top - this.f31887f);
             for (int i7 = 1; i7 < list.size(); i7++) {
                 RectF rectF2 = (RectF) list.get(i7);
                 if (rectF2.width() != 0.0f) {
                     float f10 = rectF.bottom;
-                    int i10 = this.f31875f;
+                    int i10 = this.f31887f;
                     float f11 = f10 + i10;
                     float f12 = rectF2.top;
                     if (f11 >= f12 - i10) {
@@ -79,8 +79,8 @@ public class aq extends Path {
                             float f15 = rectF2.left;
                             if (f14 >= f15) {
                                 if (f13 != f15) {
-                                    super.lineTo(f13 - this.f31874e, f12);
-                                    super.lineTo(rectF2.left - this.f31874e, rectF2.top);
+                                    super.lineTo(f13 - this.f31886e, f12);
+                                    super.lineTo(rectF2.left - this.f31886e, rectF2.top);
                                 }
                                 rectF = rectF2;
                             }
@@ -91,20 +91,20 @@ public class aq extends Path {
                     break;
                 }
             }
-            super.lineTo(rectF.left - this.f31874e, rectF.bottom + this.f31875f);
-            super.lineTo(rectF.right + this.f31874e, rectF.bottom + this.f31875f);
+            super.lineTo(rectF.left - this.f31886e, rectF.bottom + this.f31887f);
+            super.lineTo(rectF.right + this.f31886e, rectF.bottom + this.f31887f);
             for (int i11 = size - 1; i11 >= 0; i11--) {
                 RectF rectF3 = (RectF) list.get(i11);
                 if (rectF3.width() != 0.0f) {
                     float f16 = rectF.right;
                     if (f16 != rectF3.right) {
-                        super.lineTo(f16 + this.f31874e, rectF.top);
-                        super.lineTo(rectF3.right + this.f31874e, rectF.top);
+                        super.lineTo(f16 + this.f31886e, rectF.top);
+                        super.lineTo(rectF3.right + this.f31886e, rectF.top);
                     }
                     rectF = rectF3;
                 }
             }
-            super.lineTo(rectF.right + this.f31874e, rectF.top - this.f31875f);
+            super.lineTo(rectF.right + this.f31886e, rectF.top - this.f31887f);
             super.close();
             if (z9) {
                 b(list.subList(size, list.size()));
@@ -115,30 +115,30 @@ public class aq extends Path {
     @Override
     public void reset() {
         super.reset();
-        if (Build.VERSION.SDK_INT >= 34 && this.f31873c) {
-            ArrayList arrayList = f31870g;
-            ArrayList arrayList2 = this.f31871a;
+        if (Build.VERSION.SDK_INT >= 34 && this.f31885c) {
+            ArrayList arrayList = f31882g;
+            ArrayList arrayList2 = this.f31883a;
             if (arrayList == null) {
-                f31870g = new ArrayList(arrayList2.size());
+                f31882g = new ArrayList(arrayList2.size());
             }
-            f31870g.addAll(arrayList2);
+            f31882g.addAll(arrayList2);
             arrayList2.clear();
-            this.f31872b = false;
+            this.f31884b = false;
         }
     }
 
     @Override
     public final void rewind() {
         super.rewind();
-        if (Build.VERSION.SDK_INT >= 34 && this.f31873c) {
-            ArrayList arrayList = f31870g;
-            ArrayList arrayList2 = this.f31871a;
+        if (Build.VERSION.SDK_INT >= 34 && this.f31885c) {
+            ArrayList arrayList = f31882g;
+            ArrayList arrayList2 = this.f31883a;
             if (arrayList == null) {
-                f31870g = new ArrayList(arrayList2.size());
+                f31882g = new ArrayList(arrayList2.size());
             }
-            f31870g.addAll(arrayList2);
+            f31882g.addAll(arrayList2);
             arrayList2.clear();
-            this.f31872b = false;
+            this.f31884b = false;
         }
     }
 
@@ -148,29 +148,29 @@ public class aq extends Path {
     @Override
     public void addRect(float f10, float f11, float f12, float f13, Path.Direction direction) {
         RectF rectF;
-        if (Build.VERSION.SDK_INT >= 34 && this.f31873c) {
-            ArrayList arrayList = this.f31871a;
+        if (Build.VERSION.SDK_INT >= 34 && this.f31885c) {
+            ArrayList arrayList = this.f31883a;
             if (arrayList.size() <= 0 || !((RectF) jg.g.i(1, arrayList)).contains(f10, f11, f12, f13)) {
                 if (arrayList.size() > 0 && Math.abs(f11 - ((RectF) jg.g.i(1, arrayList)).top) <= this.d && Math.abs(f13 - ((RectF) jg.g.i(1, arrayList)).bottom) <= this.d) {
                     ((RectF) jg.g.i(1, arrayList)).union(f10, f11, f12, f13);
                 } else {
-                    ArrayList arrayList2 = f31870g;
+                    ArrayList arrayList2 = f31882g;
                     if (arrayList2 != null && arrayList2.size() > 0) {
-                        rectF = (RectF) f31870g.remove(0);
+                        rectF = (RectF) f31882g.remove(0);
                     } else {
                         rectF = new RectF();
                     }
                     rectF.set(f10, f11, f12, f13);
                     arrayList.add(rectF);
                 }
-                this.f31872b = false;
+                this.f31884b = false;
                 return;
             }
             return;
         }
-        int i7 = this.f31874e;
+        int i7 = this.f31886e;
         float f14 = f10 - i7;
-        int i10 = this.f31875f;
+        int i10 = this.f31887f;
         super.addRect(f14, f11 - i10, f12 + i7, f13 + i10, direction);
     }
 }

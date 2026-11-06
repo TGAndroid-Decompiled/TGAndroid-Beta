@@ -16,7 +16,7 @@ public final class up0 extends zh.f2 {
         float f10;
         float f11;
         xs0 xs0Var = this.V;
-        TextView textView = xs0Var.f40392s0;
+        TextView textView = xs0Var.f40411s0;
         textView.setVisibility(0);
         ViewPropertyAnimator animate = textView.animate();
         float f12 = 1.0f;

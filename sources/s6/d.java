@@ -7,8 +7,8 @@ import com.google.android.gms.tasks.Task;
 import org.telegram.ui.Components.qt;
 import q6.p;
 public final class d extends j {
-    public static final com.google.android.gms.common.api.e f54815l = new com.google.android.gms.common.api.e("ClientNotification.API", new a9.e(15), new Object());
-    public static final com.google.android.gms.common.api.e f54816m = new com.google.android.gms.common.api.e("ClientTelemetry.API", new a9.e(16), new Object());
+    public static final com.google.android.gms.common.api.e f54840l = new com.google.android.gms.common.api.e("ClientNotification.API", new a9.e(15), new Object());
+    public static final com.google.android.gms.common.api.e f54841m = new com.google.android.gms.common.api.e("ClientTelemetry.API", new a9.e(16), new Object());
 
     public Task f(p pVar) {
         s b10 = t.b();

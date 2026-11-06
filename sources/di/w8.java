@@ -42,8 +42,8 @@ public final class w8 extends r8 {
         f0Var.e(d);
         ixVar.getClass();
         String str = d.f6356f;
-        str = str == null ? ij.U(org.telegram.ui.Components.i5.e(ixVar.f46737b, d.f6357g)) : str;
-        if (str != null && (arrayList = (ArrayList) ixVar.f46739e.get(str)) != null && !arrayList.isEmpty()) {
+        str = str == null ? ij.U(org.telegram.ui.Components.i5.e(ixVar.f46761b, d.f6357g)) : str;
+        if (str != null && (arrayList = (ArrayList) ixVar.f46763e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i7 = 0; i7 < min; i7++) {
                 ixVar.l((TLRPC.Document) arrayList.get(i7));
@@ -53,7 +53,7 @@ public final class w8 extends r8 {
             this.L.q0(hc.b(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
         org.telegram.ui.Components.i6 i6Var = this.N;
-        i6Var.f34516b = 17;
+        i6Var.f34477b = 17;
         i6Var.x(org.telegram.messenger.g0.o1("fonts/rcondensedbold.ttf"));
         this.N.w(org.telegram.messenger.g0.L(18.0f));
         this.N.M = org.telegram.messenger.g0.f22537q.x;

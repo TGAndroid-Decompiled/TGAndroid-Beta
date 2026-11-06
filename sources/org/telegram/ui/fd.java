@@ -3,19 +3,19 @@ package org.telegram.ui;
 import android.view.View;
 import android.widget.EditText;
 public final class fd implements View.OnFocusChangeListener {
-    public final int f45605a;
-    public final Object f45606b;
+    public final int f45610a;
+    public final Object f45611b;
 
     public fd(Object obj, int i7) {
-        this.f45605a = i7;
-        this.f45606b = obj;
+        this.f45610a = i7;
+        this.f45611b = obj;
     }
 
     @Override
     public final void onFocusChange(View view, boolean z9) {
-        int i7 = this.f45605a;
+        int i7 = this.f45610a;
         float f10 = 0.0f;
-        Object obj = this.f45606b;
+        Object obj = this.f45611b;
         switch (i7) {
             case 0:
                 bi.u uVar = ((zd) obj).K0;
@@ -34,8 +34,8 @@ public final class fd implements View.OnFocusChangeListener {
             case 2:
                 ce0 ce0Var = ((ob0) obj).W;
                 if (z9) {
-                    ce0Var.f44740c.setEditText((EditText) view);
-                    ce0Var.f44740c.setDispatchBackWhenEmpty(true);
+                    ce0Var.f44761c.setEditText((EditText) view);
+                    ce0Var.f44761c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
@@ -47,14 +47,14 @@ public final class fd implements View.OnFocusChangeListener {
                 lb0Var.b(f10, f10, true);
                 return;
             case 4:
-                org.telegram.ui.Components.lb0 lb0Var2 = ((xb0) obj).f51811y;
+                org.telegram.ui.Components.lb0 lb0Var2 = ((xb0) obj).f51828y;
                 if (z9) {
                     f10 = 1.0f;
                 }
                 lb0Var2.b(f10, f10, true);
                 return;
             case 5:
-                org.telegram.ui.Components.lb0 lb0Var3 = ((ec0) obj).f45232b;
+                org.telegram.ui.Components.lb0 lb0Var3 = ((ec0) obj).f45262b;
                 if (z9) {
                     f10 = 1.0f;
                 }
@@ -63,35 +63,35 @@ public final class fd implements View.OnFocusChangeListener {
             case 6:
                 ce0 ce0Var2 = ((hc0) obj).D;
                 if (z9) {
-                    ce0Var2.f44740c.setEditText((EditText) view);
-                    ce0Var2.f44740c.setDispatchBackWhenEmpty(true);
+                    ce0Var2.f44761c.setEditText((EditText) view);
+                    ce0Var2.f44761c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 7:
-                org.telegram.ui.Components.lb0 lb0Var4 = ((sc0) obj).f49716a;
+                org.telegram.ui.Components.lb0 lb0Var4 = ((sc0) obj).f49737a;
                 if (z9) {
                     f10 = 1.0f;
                 }
                 lb0Var4.b(f10, f10, true);
                 return;
             case 8:
-                ce0 ce0Var3 = ((gd0) obj).f45954u0;
+                ce0 ce0Var3 = ((gd0) obj).f45981u0;
                 if (z9) {
-                    ce0Var3.f44740c.setEditText((EditText) view);
-                    ce0Var3.f44740c.setDispatchBackWhenEmpty(true);
+                    ce0Var3.f44761c.setEditText((EditText) view);
+                    ce0Var3.f44761c.setDispatchBackWhenEmpty(true);
                     return;
                 }
                 return;
             case 9:
-                org.telegram.ui.Components.lb0 lb0Var5 = ((be0) obj).f44282e;
+                org.telegram.ui.Components.lb0 lb0Var5 = ((be0) obj).f44298e;
                 if (z9) {
                     f10 = 1.0f;
                 }
                 lb0Var5.b(f10, f10, true);
                 return;
             case 10:
-                org.telegram.ui.Components.lb0 lb0Var6 = ((PasscodeActivity) obj).f41301f;
+                org.telegram.ui.Components.lb0 lb0Var6 = ((PasscodeActivity) obj).f41326f;
                 if (z9) {
                     f10 = 1.0f;
                 }
@@ -107,7 +107,7 @@ public final class fd implements View.OnFocusChangeListener {
                     return;
                 }
             default:
-                org.telegram.ui.Components.lb0 lb0Var7 = ((TwoStepVerificationActivity) obj).f42035w;
+                org.telegram.ui.Components.lb0 lb0Var7 = ((TwoStepVerificationActivity) obj).f42060w;
                 if (z9) {
                     f10 = 1.0f;
                 }

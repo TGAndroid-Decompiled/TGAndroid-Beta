@@ -41,7 +41,7 @@ import org.telegram.ui.Components.xp;
 import org.telegram.ui.an;
 import org.telegram.ui.v91;
 public abstract class d {
-    public static final int f54008a = 0;
+    public static final int f54033a = 0;
 
     static {
         new SparseArray();
@@ -68,10 +68,10 @@ public abstract class d {
                 if (t3.A(p10.f24459s0, M0, 24)) {
                     int i7 = f10.read_inbox_max_id;
                     int i10 = f10.read_outbox_max_id;
-                    anVar.f44005y4 = i7;
-                    anVar.f44017z4 = i10;
+                    anVar.f44030y4 = i7;
+                    anVar.f44042z4 = i10;
                     anVar.A4 = Math.max(1, i7);
-                    anVar.f43915r4 = m5.o(f10.from_id);
+                    anVar.f43940r4 = m5.o(f10.from_id);
                     anVar.dd();
                     anVar.vd(false);
                     anVar.Lc(false);
@@ -109,8 +109,8 @@ public abstract class d {
         } else {
             i10 = 2131232144;
         }
-        drawable.f54005a = resources.getDrawable(i10).mutate();
-        drawable.f54006b = f10;
+        drawable.f54030a = resources.getDrawable(i10).mutate();
+        drawable.f54031b = f10;
         drawable.a(i7);
         return drawable;
     }
@@ -127,7 +127,7 @@ public abstract class d {
         }
         g70Var.a(str2);
         xp xpVar = new xp(aVar, g70Var, 0, 0);
-        xpVar.f40305x = true;
+        xpVar.f40324x = true;
         return xpVar;
     }
 
@@ -177,7 +177,7 @@ public abstract class d {
                 arrayList.add(new ij(f2Var.getCurrentAccount(), message, false, false));
                 anVar.Rb(arrayList, M0, tL_forumTopic2.f27004id, tL_forumTopic2.read_inbox_max_id, tL_forumTopic2.read_outbox_max_id, tL_forumTopic2);
                 if (i7 != 0) {
-                    anVar.f43715b8 = i7;
+                    anVar.f43740b8 = i7;
                 }
                 return anVar;
             }
@@ -262,12 +262,12 @@ public abstract class d {
                 spannableStringBuilder.append((CharSequence) " ");
                 xp e10 = e(tL_forumTopic);
                 if (drawableArr != null) {
-                    drawableArr[0] = e10.f40296a;
+                    drawableArr[0] = e10.f40315a;
                 }
                 e10.setBounds(0, 0, (int) (e10.getIntrinsicWidth() * 0.65f), (int) (e10.getIntrinsicHeight() * 0.65f));
-                Drawable drawable = e10.f40297b;
+                Drawable drawable = e10.f40316b;
                 if (drawable instanceof g70) {
-                    ((g70) drawable).f33885i = 0.7f;
+                    ((g70) drawable).f33829i = 0.7f;
                 }
                 if (paint != null) {
                     wp wpVar = new wp(0, e10);
@@ -372,7 +372,7 @@ public abstract class d {
                 }
             } else if (tL_forumTopic.icon_emoji_id != 0) {
                 l9Var.setImageDrawable(null);
-                i5 i5Var = l9Var.f35560e;
+                i5 i5Var = l9Var.f35565e;
                 if (i5Var == null || tL_forumTopic.icon_emoji_id != i5Var.h()) {
                     if (z10) {
                         i7 = 11;
@@ -409,7 +409,7 @@ public abstract class d {
         }
         if (lastFragment instanceof v91) {
             v91 v91Var = (v91) lastFragment;
-            long j10 = v91Var.f50619a;
+            long j10 = v91Var.f50629a;
             if ((-(-j10)) == j3 && !v91Var.getMessagesController().M0(Long.valueOf(j3)).forum) {
                 if (v91Var.getParentLayout() != null && ((ActionBarLayout) v91Var.getParentLayout()).i()) {
                     g0.i3(new org.telegram.ui.ActionBar.m5(v91Var, 22), 500L);

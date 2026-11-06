@@ -12,10 +12,10 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.ActionBar.o6, org.telegram.ui.ActionBar.p6, jt0, kt0, org.telegram.messenger.k9, org.telegram.messenger.lc, org.telegram.messenger.oc, db0, org.telegram.messenger.j9, org.telegram.messenger.eb {
-    public final int f34734a;
+    public final int f34697a;
 
     public il0(int i7) {
-        this.f34734a = i7;
+        this.f34697a = i7;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
     @Override
     public void f(Object obj, float f10) {
         cn0 cn0Var = (cn0) obj;
-        cn0Var.f32623n = f10;
+        cn0Var.f32627n = f10;
         cn0Var.invalidate();
     }
 
@@ -46,7 +46,7 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f34734a) {
+        switch (this.f34697a) {
             case 0:
                 u1Var.dismiss();
                 return;
@@ -63,7 +63,7 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
                 u1Var.dismiss();
                 return;
             case 10:
-                int i10 = yv0.f40720n2;
+                int i10 = yv0.f40739n2;
                 return;
             case 11:
                 u1Var.dismiss();
@@ -93,12 +93,12 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
 
     @Override
     public float get(Object obj) {
-        return ((cn0) obj).f32623n;
+        return ((cn0) obj).f32627n;
     }
 
     @Override
     public String h(int i7) {
-        switch (this.f34734a) {
+        switch (this.f34697a) {
             case 19:
                 return String.format("%02d", Integer.valueOf(i7));
             case 20:
@@ -125,12 +125,12 @@ public final class il0 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
 
     @Override
     public int i(View view) {
-        return ((cm0) view).f32611w;
+        return ((cm0) view).f32615w;
     }
 
     @Override
     public Object j(Object obj) {
-        switch (this.f34734a) {
+        switch (this.f34697a) {
             case 6:
                 Integer num = (Integer) obj;
                 int i7 = mo0.Q2;

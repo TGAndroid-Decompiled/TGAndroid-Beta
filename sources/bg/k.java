@@ -175,8 +175,8 @@ public final class k implements Choreographer.FrameCallback {
                         Iterator it2 = jVar.f3328b.iterator();
                         while (it2.hasNext()) {
                             u5 u5Var = (u5) it2.next();
-                            int i10 = u5Var.f38525a;
-                            Object obj = u5Var.f38526b;
+                            int i10 = u5Var.f38500a;
+                            Object obj = u5Var.f38501b;
                             switch (i10) {
                                 case 0:
                                     v5 v5Var = (v5) obj;

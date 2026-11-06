@@ -5,12 +5,12 @@ import android.view.View;
 import j$.util.Objects;
 import java.util.ArrayList;
 public abstract class kj0 extends vi0 {
-    public SparseIntArray f35325c;
+    public SparseIntArray f35328c;
     public SparseIntArray d;
-    public SparseIntArray f35326e;
-    public int f35327f;
+    public SparseIntArray f35329e;
+    public int f35330f;
     public int h;
-    public final ArrayList f35328n = new ArrayList();
+    public final ArrayList f35331n = new ArrayList();
 
     public kj0() {
         L();
@@ -26,15 +26,15 @@ public abstract class kj0 extends vi0 {
         SparseIntArray sparseIntArray = this.d;
         if (sparseIntArray == null) {
             this.d = new SparseIntArray();
-            this.f35325c = new SparseIntArray();
-            this.f35326e = new SparseIntArray();
+            this.f35328c = new SparseIntArray();
+            this.f35329e = new SparseIntArray();
         } else {
             sparseIntArray.clear();
-            this.f35325c.clear();
-            this.f35326e.clear();
+            this.f35328c.clear();
+            this.f35329e.clear();
         }
         this.h = -1;
-        this.f35327f = -1;
+        this.f35330f = -1;
     }
 
     public abstract int M(int i7);
@@ -48,14 +48,14 @@ public abstract class kj0 extends vi0 {
     public abstract int P(int i7, int i10);
 
     public final int Q(int i7) {
-        int i10 = this.f35325c.get(i7, Integer.MAX_VALUE);
+        int i10 = this.f35328c.get(i7, Integer.MAX_VALUE);
         if (i10 != Integer.MAX_VALUE) {
             return i10;
         }
-        int i11 = this.f35327f;
+        int i11 = this.f35330f;
         if (i11 < 0) {
             i11 = R();
-            this.f35327f = i11;
+            this.f35330f = i11;
         }
         int i12 = 0;
         int i13 = 0;
@@ -63,7 +63,7 @@ public abstract class kj0 extends vi0 {
             int U = U(i12) + i13;
             if (i7 >= i13 && i7 < U) {
                 int i14 = i7 - i13;
-                this.f35325c.put(i7, i14);
+                this.f35328c.put(i7, i14);
                 return i14;
             }
             i12++;
@@ -79,10 +79,10 @@ public abstract class kj0 extends vi0 {
         if (i10 != Integer.MAX_VALUE) {
             return i10;
         }
-        int i11 = this.f35327f;
+        int i11 = this.f35330f;
         if (i11 < 0) {
             i11 = R();
-            this.f35327f = i11;
+            this.f35330f = i11;
         }
         int i12 = 0;
         int i13 = 0;
@@ -101,12 +101,12 @@ public abstract class kj0 extends vi0 {
     public abstract View T(int i7, View view);
 
     public final int U(int i7) {
-        int i10 = this.f35326e.get(i7, Integer.MAX_VALUE);
+        int i10 = this.f35329e.get(i7, Integer.MAX_VALUE);
         if (i10 != Integer.MAX_VALUE) {
             return i10;
         }
         int M = M(i7);
-        this.f35326e.put(i7, M);
+        this.f35329e.put(i7, M);
         return M;
     }
 
@@ -115,14 +115,14 @@ public abstract class kj0 extends vi0 {
     public abstract void W(int i7, int i10, v4.d1 d1Var);
 
     public final void X(boolean z9) {
-        ArrayList arrayList = this.f35328n;
+        ArrayList arrayList = this.f35331n;
         ArrayList arrayList2 = new ArrayList(arrayList);
         L();
         arrayList.clear();
-        int i7 = this.f35327f;
+        int i7 = this.f35330f;
         if (i7 < 0) {
             i7 = R();
-            this.f35327f = i7;
+            this.f35330f = i7;
         }
         for (int i10 = 0; i10 < i7; i10++) {
             int U = U(i10);
@@ -144,10 +144,10 @@ public abstract class kj0 extends vi0 {
             return i7;
         }
         this.h = 0;
-        int i10 = this.f35327f;
+        int i10 = this.f35330f;
         if (i10 < 0) {
             i10 = R();
-            this.f35327f = i10;
+            this.f35330f = i10;
         }
         for (int i11 = 0; i11 < i10; i11++) {
             this.h = U(i11) + this.h;

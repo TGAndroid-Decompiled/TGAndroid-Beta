@@ -23,7 +23,7 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
@@ -31,7 +31,7 @@ import org.telegram.ui.Components.rt0;
 public final class i1 extends na {
     public final int P1;
     public final String Q1;
-    public f41 R1;
+    public k41 R1;
     public final f1 S1;
     public boolean T1;
     public boolean U1;
@@ -56,7 +56,7 @@ public final class i1 extends na {
         this.Q1 = t10.p(qp.s1(i7).a2(Long.valueOf(j3)));
         this.V1 = t0Var;
         Y0();
-        this.f36341z1 = org.telegram.messenger.g0.L(4.0f);
+        this.f36235z1 = org.telegram.messenger.g0.L(4.0f);
         this.A1 = org.telegram.messenger.g0.L(-10.0f);
         TLRPC.BotInlineResult botInlineResult = tL_messages_preparedInlineMessage.result;
         if (file == null || !file.exists() || webPage != null) {
@@ -361,10 +361,10 @@ public final class i1 extends na {
         ViewGroup viewGroup = this.f28615b;
         int i13 = this.f28645t0;
         viewGroup.addView(frameLayout, ha.f(-2.0f, -1, 87, i13, 0, i13, 0));
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int i14 = this.f28645t0;
         pj0Var.setPadding(i14, 0, i14, org.telegram.messenger.g0.L(68.0f) + r11);
-        this.f36328k1.r1();
+        this.f36222k1.r1();
         int i15 = k6.f27792a7;
         v0(k6.w0(i15, this.I0));
         P(i15);
@@ -386,9 +386,9 @@ public final class i1 extends na {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(pj0Var, getContext(), this.P1, 0, true, new ai.e(this, 29), this.I0);
-        this.R1 = f41Var;
-        return f41Var;
+        k41 k41Var = new k41(pj0Var, getContext(), this.P1, 0, true, new ai.e(this, 29), this.I0);
+        this.R1 = k41Var;
+        return k41Var;
     }
 
     @Override
@@ -412,7 +412,7 @@ public final class i1 extends na {
     public final void onCreate(Bundle bundle) {
         int b10;
         super.onCreate(bundle);
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         if (pj0Var.getAdapter() == null) {
             b10 = 0;
         } else {

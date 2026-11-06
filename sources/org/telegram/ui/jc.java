@@ -16,7 +16,7 @@ public final class jc extends fm0 {
         kc kcVar = this.G;
         TextView textView = kcVar.d;
         if (textView != null) {
-            textView.setTextColor(kcVar.f47140b.h.getTextColor());
+            textView.setTextColor(kcVar.f47163b.h.getTextColor());
         }
     }
 }

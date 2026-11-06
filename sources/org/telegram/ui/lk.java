@@ -17,10 +17,10 @@ public final class lk extends org.telegram.ui.Components.ia0 {
         qm qmVar;
         an anVar = this.H;
         qm qmVar2 = anVar.B5;
-        if (qmVar2 != null && (ijVar = qmVar2.f49236a) != null && ((qmVar = anVar.f43966v5.d) == null || qmVar.f49236a == null || ijVar.f1() == anVar.f43966v5.d.f49236a.f1())) {
+        if (qmVar2 != null && (ijVar = qmVar2.f49263a) != null && ((qmVar = anVar.f43991v5.d) == null || qmVar.f49263a == null || ijVar.f1() == anVar.f43991v5.d.f49263a.f1())) {
             return;
         }
-        anVar.B5 = anVar.f43966v5.d;
+        anVar.B5 = anVar.f43991v5.d;
     }
 
     @Override
@@ -34,7 +34,7 @@ public final class lk extends org.telegram.ui.Components.ia0 {
         int i11 = 0;
         a(false);
         an anVar = this.H;
-        org.telegram.messenger.mj mjVar = anVar.f43966v5;
+        org.telegram.messenger.mj mjVar = anVar.f43991v5;
         if (mjVar != null) {
             if (!z9) {
                 anVar.C5 = true;
@@ -45,7 +45,7 @@ public final class lk extends org.telegram.ui.Components.ia0 {
                 i7 = 0;
                 z10 = false;
                 for (int i12 = 0; i12 < size; i12++) {
-                    org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) anVar.f43966v5.f24019b.f23689e.get(i12);
+                    org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) anVar.f43991v5.f24019b.f23689e.get(i12);
                     if (ijVar.E4()) {
                         i7 = 3;
                     } else if (ijVar.U3()) {
@@ -59,7 +59,7 @@ public final class lk extends org.telegram.ui.Components.ia0 {
                     } else if (ijVar.A3()) {
                         z10 = true;
                     }
-                    anVar.f43854m6[0].put(ijVar.f1(), ijVar);
+                    anVar.f43879m6[0].put(ijVar.f1(), ijVar);
                 }
             } else {
                 i7 = 0;
@@ -67,18 +67,18 @@ public final class lk extends org.telegram.ui.Components.ia0 {
             }
             Bundle h = org.telegram.ui.Cells.f1.h(3, "onlySelect", "dialogsType", true);
             h.putBoolean("quote", !z9);
-            if (!z9 && (kjVar = anVar.f43966v5.f24018a) != null && !kjVar.f23689e.isEmpty() && anVar.f43966v5.d == null) {
+            if (!z9 && (kjVar = anVar.f43991v5.f24018a) != null && !kjVar.f23689e.isEmpty() && anVar.f43991v5.d == null) {
                 z11 = true;
             } else {
                 z11 = false;
             }
             h.putBoolean("reply_to", z11);
-            if (z11 && (org.telegram.messenger.m5.o(((org.telegram.messenger.ij) anVar.f43966v5.f24018a.f23689e.get(0)).b1())) != 0 && o4 != anVar.a() && o4 != anVar.getUserConfig().e() && i10 > 0) {
+            if (z11 && (org.telegram.messenger.m5.o(((org.telegram.messenger.ij) anVar.f43991v5.f24018a.f23689e.get(0)).b1())) != 0 && o4 != anVar.a() && o4 != anVar.getUserConfig().e() && i10 > 0) {
                 h.putLong("reply_to_author", o4);
             }
             h.putInt("hasPoll", i7);
             h.putBoolean("hasInvoice", z10);
-            org.telegram.messenger.kj kjVar3 = anVar.f43966v5.f24019b;
+            org.telegram.messenger.kj kjVar3 = anVar.f43991v5.f24019b;
             if (kjVar3 != null) {
                 i11 = kjVar3.f23689e.size();
             }

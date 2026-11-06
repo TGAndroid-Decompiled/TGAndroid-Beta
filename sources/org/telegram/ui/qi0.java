@@ -4,18 +4,18 @@ import android.view.View;
 import android.widget.TextView;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class qi0 implements View.OnClickListener {
-    public final int f49215a;
-    public final bk0 f49216b;
+    public final int f49242a;
+    public final bk0 f49243b;
 
     public qi0(bk0 bk0Var, int i7) {
-        this.f49215a = i7;
-        this.f49216b = bk0Var;
+        this.f49242a = i7;
+        this.f49243b = bk0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f49215a;
-        bk0 bk0Var = this.f49216b;
+        int i7 = this.f49242a;
+        bk0 bk0Var = this.f49243b;
         switch (i7) {
             case 0:
                 bk0Var.S0 = 2;
@@ -46,9 +46,9 @@ public final class qi0 implements View.OnClickListener {
                 bk0Var.presentFragment(s9Var);
                 return;
             case 6:
-                bk0Var.f44358f = true;
+                bk0Var.f44374f = true;
                 bk0Var.L.callOnClick();
-                bk0Var.f44358f = false;
+                bk0Var.f44374f = false;
                 return;
             case 7:
                 bk0Var.S0 = 0;
@@ -92,9 +92,9 @@ public final class qi0 implements View.OnClickListener {
                 bk0.a0(bk0Var);
                 return;
             default:
-                bk0Var.f44358f = true;
+                bk0Var.f44374f = true;
                 bk0Var.L.callOnClick();
-                bk0Var.f44358f = false;
+                bk0Var.f44374f = false;
                 return;
         }
     }

@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class l30 implements org.telegram.ui.Components.i30 {
-    public float f47369a;
-    public TLRPC.FileLocation f47370b;
-    public TLRPC.FileLocation f47371c;
+    public float f47396a;
+    public TLRPC.FileLocation f47397b;
+    public TLRPC.FileLocation f47398c;
     public org.telegram.messenger.hc d;
-    public final long f47372e;
-    public final c40 f47373f;
+    public final long f47399e;
+    public final c40 f47400f;
 
     public l30(c40 c40Var, long j3) {
-        this.f47373f = c40Var;
-        this.f47372e = j3;
+        this.f47400f = c40Var;
+        this.f47399e = j3;
     }
 
     @Override
     public final void H(float f10) {
-        this.f47373f.f44556i1.O(this.d, f10);
+        this.f47400f.f44577i1.O(this.d, f10);
         a(f10);
     }
 
@@ -27,8 +27,8 @@ public final class l30 implements org.telegram.ui.Components.i30 {
     }
 
     public final void a(float f10) {
-        this.f47369a = f10;
-        k30 k30Var = this.f47373f.H1;
+        this.f47396a = f10;
+        k30 k30Var = this.f47400f.H1;
         if (k30Var != null) {
             for (int i7 = 0; i7 < k30Var.getChildCount(); i7++) {
                 View childAt = k30Var.getChildAt(i7);
@@ -54,7 +54,7 @@ public final class l30 implements org.telegram.ui.Components.i30 {
     }
 
     @Override
-    public final vq0 getCloseIntoObject() {
+    public final wq0 getCloseIntoObject() {
         return null;
     }
 

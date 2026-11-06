@@ -40,12 +40,12 @@ public final class w1 extends dg {
     public final boolean d() {
         switch (this.f18948n0) {
             case 0:
-                if (!((b2) this.f18949o0).L0 && this.f32852r <= 0) {
+                if (!((b2) this.f18949o0).L0 && this.f32865r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((y3) this.f18949o0).W && this.f32852r <= 0) {
+                if (!((y3) this.f18949o0).W && this.f32865r <= 0) {
                     return false;
                 }
                 return true;

@@ -31,9 +31,9 @@ import org.telegram.ui.Cells.c2;
 import org.telegram.ui.Cells.q8;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.LaunchActivity;
 public final class q0 extends f2 {
@@ -77,7 +77,7 @@ public final class q0 extends f2 {
     public boolean T;
     public b5 f17497a;
     public j7 f17498b;
-    public k41 f17499c;
+    public p41 f17499c;
     public z1 d;
     public FrameLayout f17500e;
     public EditTextBoldCursor f17501f;
@@ -134,27 +134,27 @@ public final class q0 extends f2 {
         }
     }
 
-    public static void b0(q0 q0Var, r31 r31Var, final View view) {
-        if (r31Var.f37594g && !q0Var.f17505w.h(r31Var)) {
-            int i7 = r31Var.d;
+    public static void b0(q0 q0Var, w31 w31Var, final View view) {
+        if (w31Var.f39826g && !q0Var.f17505w.h(w31Var)) {
+            int i7 = w31Var.d;
             if (i7 == U) {
                 a0 a0Var = q0Var.f17505w;
                 q0Var.I = true;
                 a0Var.h = true;
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
                 q0Var.d0(true);
             } else if (i7 == V) {
                 a0 a0Var2 = q0Var.f17505w;
                 q0Var.I = false;
                 a0Var2.h = false;
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
                 q0Var.d0(true);
             } else if (i7 == W) {
                 q0Var.M = null;
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
                 q0Var.d0(true);
-            } else if (r31Var.f54415a == 13) {
-                TLRPC.User user = (TLRPC.User) q0Var.N.get(r31Var.f37609x);
+            } else if (w31Var.f54440a == 13) {
+                TLRPC.User user = (TLRPC.User) q0Var.N.get(w31Var.f39841x);
                 if (user != null) {
                     if (!user.bot_business) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, q0Var.getParentActivity(), q0Var.resourceProvider);
@@ -168,14 +168,14 @@ public final class q0 extends f2 {
                     }
                     q0Var.M = user;
                     org.telegram.messenger.g0.v1(q0Var.f17501f);
-                    q0Var.f17499c.f35167f3.O(true);
+                    q0Var.f17499c.f36781f3.O(true);
                     q0Var.d0(true);
                 }
             } else if (i7 == X) {
                 boolean z9 = !q0Var.P;
                 q0Var.P = z9;
                 ((q8) view).setChecked(z9);
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
             } else if (i7 == Y) {
                 int i10 = -q0Var.O;
                 q0Var.O = i10;
@@ -185,54 +185,54 @@ public final class q0 extends f2 {
                 boolean z10 = !tL_businessBotRights.reply;
                 tL_businessBotRights.reply = z10;
                 ((c2) view).c(z10, true);
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
                 q0Var.d0(true);
             } else if (i7 == f17483a0) {
                 TL_account.TL_businessBotRights tL_businessBotRights2 = q0Var.J;
                 boolean z11 = !tL_businessBotRights2.read_messages;
                 tL_businessBotRights2.read_messages = z11;
                 ((c2) view).c(z11, true);
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
                 q0Var.d0(true);
             } else if (i7 == f17484b0) {
                 TL_account.TL_businessBotRights tL_businessBotRights3 = q0Var.J;
                 boolean z12 = !tL_businessBotRights3.delete_sent_messages;
                 tL_businessBotRights3.delete_sent_messages = z12;
                 ((c2) view).c(z12, true);
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
                 q0Var.d0(true);
             } else if (i7 == f17485c0) {
                 TL_account.TL_businessBotRights tL_businessBotRights4 = q0Var.J;
                 boolean z13 = !tL_businessBotRights4.delete_received_messages;
                 tL_businessBotRights4.delete_received_messages = z13;
                 ((c2) view).c(z13, true);
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
                 q0Var.d0(true);
             } else if (i7 == f17486d0) {
                 boolean z14 = !q0Var.Q;
                 q0Var.Q = z14;
                 ((q8) view).setChecked(z14);
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
             } else if (i7 == f17487e0) {
                 TL_account.TL_businessBotRights tL_businessBotRights5 = q0Var.J;
                 boolean z15 = !tL_businessBotRights5.edit_name;
                 tL_businessBotRights5.edit_name = z15;
                 ((c2) view).c(z15, true);
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
                 q0Var.d0(true);
             } else if (i7 == f17488f0) {
                 TL_account.TL_businessBotRights tL_businessBotRights6 = q0Var.J;
                 boolean z16 = !tL_businessBotRights6.edit_bio;
                 tL_businessBotRights6.edit_bio = z16;
                 ((c2) view).c(z16, true);
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
                 q0Var.d0(true);
             } else if (i7 == f17489g0) {
                 TL_account.TL_businessBotRights tL_businessBotRights7 = q0Var.J;
                 boolean z17 = !tL_businessBotRights7.edit_profile_photo;
                 tL_businessBotRights7.edit_profile_photo = z17;
                 ((c2) view).c(z17, true);
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
                 q0Var.d0(true);
             } else if (i7 == f17490h0) {
                 q0Var.c0(i7, !q0Var.J.edit_username, new Runnable(q0Var) {
@@ -252,7 +252,7 @@ public final class q0 extends f2 {
                                 boolean z18 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z18;
                                 ((c2) view).c(z18, true);
-                                q0Var2.f17499c.f35167f3.O(true);
+                                q0Var2.f17499c.f36781f3.O(true);
                                 q0Var2.d0(true);
                                 return;
                             case 1:
@@ -262,7 +262,7 @@ public final class q0 extends f2 {
                                 boolean z19 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z19;
                                 ((c2) view).c(z19, true);
-                                q0Var3.f17499c.f35167f3.O(true);
+                                q0Var3.f17499c.f36781f3.O(true);
                                 q0Var3.d0(true);
                                 return;
                             case 2:
@@ -272,7 +272,7 @@ public final class q0 extends f2 {
                                 boolean z20 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z20;
                                 ((c2) view).c(z20, true);
-                                q0Var4.f17499c.f35167f3.O(true);
+                                q0Var4.f17499c.f36781f3.O(true);
                                 q0Var4.d0(true);
                                 return;
                             case 3:
@@ -282,7 +282,7 @@ public final class q0 extends f2 {
                                 boolean z21 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z21;
                                 ((c2) view).c(z21, true);
-                                q0Var5.f17499c.f35167f3.O(true);
+                                q0Var5.f17499c.f36781f3.O(true);
                                 q0Var5.d0(true);
                                 return;
                             case 4:
@@ -292,7 +292,7 @@ public final class q0 extends f2 {
                                 boolean z22 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z22;
                                 ((c2) view).c(z22, true);
-                                q0Var6.f17499c.f35167f3.O(true);
+                                q0Var6.f17499c.f36781f3.O(true);
                                 q0Var6.d0(true);
                                 return;
                             default:
@@ -302,7 +302,7 @@ public final class q0 extends f2 {
                                 boolean z23 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z23;
                                 ((c2) view).c(z23, true);
-                                q0Var7.f17499c.f35167f3.O(true);
+                                q0Var7.f17499c.f36781f3.O(true);
                                 q0Var7.d0(true);
                                 return;
                         }
@@ -312,7 +312,7 @@ public final class q0 extends f2 {
                 boolean z18 = !q0Var.R;
                 q0Var.R = z18;
                 ((q8) view).setChecked(z18);
-                q0Var.f17499c.f35167f3.O(true);
+                q0Var.f17499c.f36781f3.O(true);
             } else if (i7 == f17492j0) {
                 q0Var.c0(i7, !q0Var.J.view_gifts, new Runnable(q0Var) {
                     public final q0 f17407b;
@@ -331,7 +331,7 @@ public final class q0 extends f2 {
                                 boolean z182 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z182;
                                 ((c2) view).c(z182, true);
-                                q0Var2.f17499c.f35167f3.O(true);
+                                q0Var2.f17499c.f36781f3.O(true);
                                 q0Var2.d0(true);
                                 return;
                             case 1:
@@ -341,7 +341,7 @@ public final class q0 extends f2 {
                                 boolean z19 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z19;
                                 ((c2) view).c(z19, true);
-                                q0Var3.f17499c.f35167f3.O(true);
+                                q0Var3.f17499c.f36781f3.O(true);
                                 q0Var3.d0(true);
                                 return;
                             case 2:
@@ -351,7 +351,7 @@ public final class q0 extends f2 {
                                 boolean z20 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z20;
                                 ((c2) view).c(z20, true);
-                                q0Var4.f17499c.f35167f3.O(true);
+                                q0Var4.f17499c.f36781f3.O(true);
                                 q0Var4.d0(true);
                                 return;
                             case 3:
@@ -361,7 +361,7 @@ public final class q0 extends f2 {
                                 boolean z21 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z21;
                                 ((c2) view).c(z21, true);
-                                q0Var5.f17499c.f35167f3.O(true);
+                                q0Var5.f17499c.f36781f3.O(true);
                                 q0Var5.d0(true);
                                 return;
                             case 4:
@@ -371,7 +371,7 @@ public final class q0 extends f2 {
                                 boolean z22 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z22;
                                 ((c2) view).c(z22, true);
-                                q0Var6.f17499c.f35167f3.O(true);
+                                q0Var6.f17499c.f36781f3.O(true);
                                 q0Var6.d0(true);
                                 return;
                             default:
@@ -381,7 +381,7 @@ public final class q0 extends f2 {
                                 boolean z23 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z23;
                                 ((c2) view).c(z23, true);
-                                q0Var7.f17499c.f35167f3.O(true);
+                                q0Var7.f17499c.f36781f3.O(true);
                                 q0Var7.d0(true);
                                 return;
                         }
@@ -405,7 +405,7 @@ public final class q0 extends f2 {
                                 boolean z182 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z182;
                                 ((c2) view).c(z182, true);
-                                q0Var2.f17499c.f35167f3.O(true);
+                                q0Var2.f17499c.f36781f3.O(true);
                                 q0Var2.d0(true);
                                 return;
                             case 1:
@@ -415,7 +415,7 @@ public final class q0 extends f2 {
                                 boolean z19 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z19;
                                 ((c2) view).c(z19, true);
-                                q0Var3.f17499c.f35167f3.O(true);
+                                q0Var3.f17499c.f36781f3.O(true);
                                 q0Var3.d0(true);
                                 return;
                             case 2:
@@ -425,7 +425,7 @@ public final class q0 extends f2 {
                                 boolean z20 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z20;
                                 ((c2) view).c(z20, true);
-                                q0Var4.f17499c.f35167f3.O(true);
+                                q0Var4.f17499c.f36781f3.O(true);
                                 q0Var4.d0(true);
                                 return;
                             case 3:
@@ -435,7 +435,7 @@ public final class q0 extends f2 {
                                 boolean z21 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z21;
                                 ((c2) view).c(z21, true);
-                                q0Var5.f17499c.f35167f3.O(true);
+                                q0Var5.f17499c.f36781f3.O(true);
                                 q0Var5.d0(true);
                                 return;
                             case 4:
@@ -445,7 +445,7 @@ public final class q0 extends f2 {
                                 boolean z22 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z22;
                                 ((c2) view).c(z22, true);
-                                q0Var6.f17499c.f35167f3.O(true);
+                                q0Var6.f17499c.f36781f3.O(true);
                                 q0Var6.d0(true);
                                 return;
                             default:
@@ -455,7 +455,7 @@ public final class q0 extends f2 {
                                 boolean z23 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z23;
                                 ((c2) view).c(z23, true);
-                                q0Var7.f17499c.f35167f3.O(true);
+                                q0Var7.f17499c.f36781f3.O(true);
                                 q0Var7.d0(true);
                                 return;
                         }
@@ -479,7 +479,7 @@ public final class q0 extends f2 {
                                 boolean z182 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z182;
                                 ((c2) view).c(z182, true);
-                                q0Var2.f17499c.f35167f3.O(true);
+                                q0Var2.f17499c.f36781f3.O(true);
                                 q0Var2.d0(true);
                                 return;
                             case 1:
@@ -489,7 +489,7 @@ public final class q0 extends f2 {
                                 boolean z19 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z19;
                                 ((c2) view).c(z19, true);
-                                q0Var3.f17499c.f35167f3.O(true);
+                                q0Var3.f17499c.f36781f3.O(true);
                                 q0Var3.d0(true);
                                 return;
                             case 2:
@@ -499,7 +499,7 @@ public final class q0 extends f2 {
                                 boolean z20 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z20;
                                 ((c2) view).c(z20, true);
-                                q0Var4.f17499c.f35167f3.O(true);
+                                q0Var4.f17499c.f36781f3.O(true);
                                 q0Var4.d0(true);
                                 return;
                             case 3:
@@ -509,7 +509,7 @@ public final class q0 extends f2 {
                                 boolean z21 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z21;
                                 ((c2) view).c(z21, true);
-                                q0Var5.f17499c.f35167f3.O(true);
+                                q0Var5.f17499c.f36781f3.O(true);
                                 q0Var5.d0(true);
                                 return;
                             case 4:
@@ -519,7 +519,7 @@ public final class q0 extends f2 {
                                 boolean z22 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z22;
                                 ((c2) view).c(z22, true);
-                                q0Var6.f17499c.f35167f3.O(true);
+                                q0Var6.f17499c.f36781f3.O(true);
                                 q0Var6.d0(true);
                                 return;
                             default:
@@ -529,7 +529,7 @@ public final class q0 extends f2 {
                                 boolean z23 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z23;
                                 ((c2) view).c(z23, true);
-                                q0Var7.f17499c.f35167f3.O(true);
+                                q0Var7.f17499c.f36781f3.O(true);
                                 q0Var7.d0(true);
                                 return;
                         }
@@ -553,7 +553,7 @@ public final class q0 extends f2 {
                                 boolean z182 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z182;
                                 ((c2) view).c(z182, true);
-                                q0Var2.f17499c.f35167f3.O(true);
+                                q0Var2.f17499c.f36781f3.O(true);
                                 q0Var2.d0(true);
                                 return;
                             case 1:
@@ -563,7 +563,7 @@ public final class q0 extends f2 {
                                 boolean z19 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z19;
                                 ((c2) view).c(z19, true);
-                                q0Var3.f17499c.f35167f3.O(true);
+                                q0Var3.f17499c.f36781f3.O(true);
                                 q0Var3.d0(true);
                                 return;
                             case 2:
@@ -573,7 +573,7 @@ public final class q0 extends f2 {
                                 boolean z20 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z20;
                                 ((c2) view).c(z20, true);
-                                q0Var4.f17499c.f35167f3.O(true);
+                                q0Var4.f17499c.f36781f3.O(true);
                                 q0Var4.d0(true);
                                 return;
                             case 3:
@@ -583,7 +583,7 @@ public final class q0 extends f2 {
                                 boolean z21 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z21;
                                 ((c2) view).c(z21, true);
-                                q0Var5.f17499c.f35167f3.O(true);
+                                q0Var5.f17499c.f36781f3.O(true);
                                 q0Var5.d0(true);
                                 return;
                             case 4:
@@ -593,7 +593,7 @@ public final class q0 extends f2 {
                                 boolean z22 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z22;
                                 ((c2) view).c(z22, true);
-                                q0Var6.f17499c.f35167f3.O(true);
+                                q0Var6.f17499c.f36781f3.O(true);
                                 q0Var6.d0(true);
                                 return;
                             default:
@@ -603,7 +603,7 @@ public final class q0 extends f2 {
                                 boolean z23 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z23;
                                 ((c2) view).c(z23, true);
-                                q0Var7.f17499c.f35167f3.O(true);
+                                q0Var7.f17499c.f36781f3.O(true);
                                 q0Var7.d0(true);
                                 return;
                         }
@@ -627,7 +627,7 @@ public final class q0 extends f2 {
                                 boolean z182 = !tL_businessBotRights8.view_gifts;
                                 tL_businessBotRights8.view_gifts = z182;
                                 ((c2) view).c(z182, true);
-                                q0Var2.f17499c.f35167f3.O(true);
+                                q0Var2.f17499c.f36781f3.O(true);
                                 q0Var2.d0(true);
                                 return;
                             case 1:
@@ -637,7 +637,7 @@ public final class q0 extends f2 {
                                 boolean z19 = !tL_businessBotRights9.sell_gifts;
                                 tL_businessBotRights9.sell_gifts = z19;
                                 ((c2) view).c(z19, true);
-                                q0Var3.f17499c.f35167f3.O(true);
+                                q0Var3.f17499c.f36781f3.O(true);
                                 q0Var3.d0(true);
                                 return;
                             case 2:
@@ -647,7 +647,7 @@ public final class q0 extends f2 {
                                 boolean z20 = !tL_businessBotRights10.change_gift_settings;
                                 tL_businessBotRights10.change_gift_settings = z20;
                                 ((c2) view).c(z20, true);
-                                q0Var4.f17499c.f35167f3.O(true);
+                                q0Var4.f17499c.f36781f3.O(true);
                                 q0Var4.d0(true);
                                 return;
                             case 3:
@@ -657,7 +657,7 @@ public final class q0 extends f2 {
                                 boolean z21 = !tL_businessBotRights11.transfer_and_upgrade_gifts;
                                 tL_businessBotRights11.transfer_and_upgrade_gifts = z21;
                                 ((c2) view).c(z21, true);
-                                q0Var5.f17499c.f35167f3.O(true);
+                                q0Var5.f17499c.f36781f3.O(true);
                                 q0Var5.d0(true);
                                 return;
                             case 4:
@@ -667,7 +667,7 @@ public final class q0 extends f2 {
                                 boolean z22 = !tL_businessBotRights12.transfer_stars;
                                 tL_businessBotRights12.transfer_stars = z22;
                                 ((c2) view).c(z22, true);
-                                q0Var6.f17499c.f35167f3.O(true);
+                                q0Var6.f17499c.f36781f3.O(true);
                                 q0Var6.d0(true);
                                 return;
                             default:
@@ -677,7 +677,7 @@ public final class q0 extends f2 {
                                 boolean z23 = !tL_businessBotRights13.edit_username;
                                 tL_businessBotRights13.edit_username = z23;
                                 ((c2) view).c(z23, true);
-                                q0Var7.f17499c.f35167f3.O(true);
+                                q0Var7.f17499c.f36781f3.O(true);
                                 q0Var7.d0(true);
                                 return;
                         }
@@ -850,13 +850,13 @@ public final class q0 extends f2 {
             tL_businessBotRecipients = tL_connectedBot.recipients;
         }
         a0Var.i(tL_businessBotRecipients);
-        k41 k41Var = new k41(this, new hi.u1(this, 8), new n0(this, 3), null);
-        this.f17499c = k41Var;
-        k41Var.r1();
+        p41 p41Var = new p41(this, new hi.u1(this, 8), new n0(this, 3), null);
+        this.f17499c = p41Var;
+        p41Var.r1();
         this.f17499c.setSectionsDrawBackground(true);
-        k41 k41Var2 = this.f17499c;
-        k41Var2.f35167f3.f33473r = false;
-        frameLayout.addView(k41Var2, ha.c(-1.0f, -1));
+        p41 p41Var2 = this.f17499c;
+        p41Var2.f36781f3.f35132r = false;
+        frameLayout.addView(p41Var2, ha.c(-1.0f, -1));
         this.fragmentView = frameLayout;
         return frameLayout;
     }
@@ -908,7 +908,7 @@ public final class q0 extends f2 {
         boolean z9;
         TLRPC.User user;
         TL_account.TL_connectedBot tL_connectedBot;
-        if (!this.f17497a.f27354y.f55371f) {
+        if (!this.f17497a.f27354y.f55396f) {
             if (!e0()) {
                 finishFragment();
             } else if (this.f17505w.k(this.f17499c)) {

@@ -6,24 +6,24 @@ import android.util.StateSet;
 import android.view.ViewGroup;
 import java.util.ArrayList;
 public final class ob0 implements Runnable {
-    public final int f36693a;
-    public final Object f36694b;
+    public final int f36571a;
+    public final Object f36572b;
 
     public ob0(Object obj, int i7) {
-        this.f36693a = i7;
-        this.f36694b = obj;
+        this.f36571a = i7;
+        this.f36572b = obj;
     }
 
     @Override
     public final void run() {
         float f10;
-        n51 n51Var;
-        switch (this.f36693a) {
+        s51 s51Var;
+        switch (this.f36571a) {
             case 0:
-                ((qb0) this.f36694b).d();
+                ((qb0) this.f36572b).d();
                 return;
             case 1:
-                yb0 yb0Var = (yb0) this.f36694b;
+                yb0 yb0Var = (yb0) this.f36572b;
                 yb0Var.getClass();
                 try {
                     yb0Var.d.M.performHapticFeedback(3, 2);
@@ -32,43 +32,43 @@ public final class ob0 implements Runnable {
                     return;
                 }
             case 2:
-                ((mc0) this.f36694b).f35983k1.start();
+                ((mc0) this.f36572b).f35921k1.start();
                 return;
             case 3:
-                ry ryVar = ((pd0) this.f36694b).f36986c.f38041l0;
+                ry ryVar = ((pd0) this.f36572b).f36865c.f38001l0;
                 if (ryVar != null) {
                     ryVar.c(false, true, false);
                     return;
                 }
                 return;
             case 4:
-                rd0 rd0Var = (rd0) this.f36694b;
-                rd0Var.f37708r = false;
+                rd0 rd0Var = (rd0) this.f36572b;
+                rd0Var.f37651r = false;
                 rd0Var.invalidate();
                 return;
             case 5:
-                ((ud0) this.f36694b).h = null;
+                ((ud0) this.f36572b).h = null;
                 return;
             case 6:
-                ud0 ud0Var = (ud0) ((j2.n) this.f36694b).f16454c;
-                ud0Var.d.q0(ud0Var.f38614e, false);
+                ud0 ud0Var = (ud0) ((j2.n) this.f36572b).f16454c;
+                ud0Var.d.q0(ud0Var.f38605e, false);
                 return;
             case 7:
-                org.telegram.ui.bq0 bq0Var = (org.telegram.ui.bq0) this.f36694b;
-                if (bq0Var.f31785y) {
-                    bq0Var.h("pollPosition();");
+                org.telegram.ui.cq0 cq0Var = (org.telegram.ui.cq0) this.f36572b;
+                if (cq0Var.f31797y) {
+                    cq0Var.h("pollPosition();");
                 }
-                if (bq0Var.G) {
-                    org.telegram.messenger.g0.i3(bq0Var.L, 500L);
+                if (cq0Var.G) {
+                    org.telegram.messenger.g0.i3(cq0Var.L, 500L);
                     return;
                 }
                 return;
             case 8:
-                ((ie0) this.f36694b).f();
+                ((ie0) this.f36572b).f();
                 return;
             case 9:
                 try {
-                    hg0 hg0Var = ((gg0) this.f36694b).f33957b;
+                    hg0 hg0Var = ((gg0) this.f36572b).f33905b;
                     if (hg0Var.getParent() instanceof ViewGroup) {
                         ((ViewGroup) hg0Var.getParent()).removeView(hg0Var);
                     }
@@ -79,41 +79,41 @@ public final class ob0 implements Runnable {
                     return;
                 }
             case 10:
-                ((RLottieNative) this.f36694b).d();
+                ((RLottieNative) this.f36572b).d();
                 return;
             case 11:
-                ii0 ii0Var = (ii0) this.f36694b;
-                ii0Var.f34685x0 = null;
+                ii0 ii0Var = (ii0) this.f36572b;
+                ii0Var.f34648x0 = null;
                 ii0Var.j();
-                hi0 hi0Var = ii0Var.f34659g0;
+                hi0 hi0Var = ii0Var.f34622g0;
                 if (hi0Var != null) {
                     hi0Var.M();
                     return;
                 }
                 return;
             case 12:
-                ((fi0) this.f36694b).H.f33967a.setVisibility(4);
+                ((fi0) this.f36572b).H.f33915a.setVisibility(4);
                 return;
             case 13:
-                ji0 ji0Var = (ji0) this.f36694b;
-                n51 n51Var2 = ji0Var.f34981n;
-                if (n51Var2 != null) {
-                    boolean d02 = n51Var2.d0();
-                    float S = ((float) ji0Var.f34981n.S()) / ((float) ji0Var.f34981n.U());
-                    if (S < ji0Var.f34983s) {
-                        ji0Var.f34981n.q0(f10 * ((float) n51Var.U()), false);
-                    } else if (S > ji0Var.f34984w) {
+                ji0 ji0Var = (ji0) this.f36572b;
+                s51 s51Var2 = ji0Var.f34942n;
+                if (s51Var2 != null) {
+                    boolean d02 = s51Var2.d0();
+                    float S = ((float) ji0Var.f34942n.S()) / ((float) ji0Var.f34942n.U());
+                    if (S < ji0Var.f34944s) {
+                        ji0Var.f34942n.q0(f10 * ((float) s51Var.U()), false);
+                    } else if (S > ji0Var.f34945w) {
                         ji0Var.setPlaying(false);
                         d02 = false;
                     }
                     if (d02) {
-                        org.telegram.messenger.g0.i3(ji0Var.f34986y, 16L);
+                        org.telegram.messenger.g0.i3(ji0Var.f34947y, 16L);
                     }
                 }
                 ji0Var.invalidate();
                 return;
             case 14:
-                pj0 pj0Var = (pj0) this.f36694b;
+                pj0 pj0Var = (pj0) this.f36572b;
                 pj0Var.T1 = null;
                 pj0Var.S1 = null;
                 org.telegram.ui.Cells.y yVar = pj0Var.B1;
@@ -130,14 +130,14 @@ public final class ob0 implements Runnable {
                 }
                 return;
             case 15:
-                ck0 ck0Var = (ck0) this.f36694b;
-                if (ck0Var.f32592e0 && ck0Var.k0() != ck0Var.f32596i0) {
+                ck0 ck0Var = (ck0) this.f36572b;
+                if (ck0Var.f32596e0 && ck0Var.k0() != ck0Var.f32600i0) {
                     ck0Var.q0("on screen, settled after start", true);
                     return;
                 }
                 return;
             case 16:
-                dl0 dl0Var = (dl0) this.f36694b;
+                dl0 dl0Var = (dl0) this.f36572b;
                 ArrayList arrayList = new ArrayList();
                 ArrayList arrayList2 = new ArrayList();
                 ArrayList arrayList3 = new ArrayList();
@@ -160,42 +160,42 @@ public final class ob0 implements Runnable {
                 org.telegram.messenger.g0.h3(new ng(dl0Var, arrayList3, arrayList4, 17));
                 return;
             case 17:
-                ((fl0) this.f36694b).invalidateSelf();
+                ((fl0) this.f36572b).invalidateSelf();
                 return;
             case 18:
-                ((ql0) this.f36694b).f37446f.setVisibility(8);
+                ((ql0) this.f36572b).f37336f.setVisibility(8);
                 return;
             case 19:
-                ((org.telegram.ui.fw) this.f36694b).s();
+                ((org.telegram.ui.fw) this.f36572b).s();
                 return;
             case 20:
-                ((k60) this.f36694b).s();
+                ((k60) this.f36572b).s();
                 return;
             case 21:
-                ((hm0) this.f36694b).setOverscrolling(false);
+                ((hm0) this.f36572b).setOverscrolling(false);
                 return;
             case 22:
-                ((mm0) this.f36694b).getClass();
+                ((mm0) this.f36572b).getClass();
                 return;
             case 23:
-                org.telegram.ui.Cells.q1 q1Var = ((pm0) this.f36694b).f37110n;
+                org.telegram.ui.Cells.q1 q1Var = ((pm0) this.f36572b).f36989n;
                 if (q1Var != null) {
                     q1Var.invalidate();
                     return;
                 }
                 return;
             case 24:
-                qm0 qm0Var = (qm0) this.f36694b;
-                qm0Var.f37467q = false;
-                qm0Var.f37454b.run();
+                qm0 qm0Var = (qm0) this.f36572b;
+                qm0Var.f37357q = false;
+                qm0Var.f37344b.run();
                 return;
             case 25:
-                ((tn0) this.f36694b).f38389b.b1(1);
+                ((tn0) this.f36572b).f38380b.b1(1);
                 return;
             case 26:
-                po0 po0Var = (po0) this.f36694b;
-                fi.i1[] i1VarArr = po0Var.f37135a;
-                if (po0Var.f37136b != 1) {
+                po0 po0Var = (po0) this.f36572b;
+                fi.i1[] i1VarArr = po0Var.f37014a;
+                if (po0Var.f37015b != 1) {
                     for (fi.i1 i1Var : i1VarArr) {
                         org.telegram.ui.ActionBar.k5 k5Var = (org.telegram.ui.ActionBar.k5) i1Var.f12164e;
                         k5Var.setAlpha(1.0f);
@@ -224,17 +224,17 @@ public final class ob0 implements Runnable {
                 org.telegram.messenger.g0.i3(po0Var.G, 4000L);
                 return;
             case 27:
-                ((fi.i1) this.f36694b).setVisibility(8);
+                ((fi.i1) this.f36572b).setVisibility(8);
                 return;
             case 28:
-                xs0 xs0Var = ((sp0) this.f36694b).G;
+                xs0 xs0Var = ((sp0) this.f36572b).G;
                 if (xs0Var.E1) {
                     xs0Var.o1(false);
                     return;
                 }
                 return;
             default:
-                ((cr0) this.f36694b).f32648a.z1(false);
+                ((cr0) this.f36572b).f32652a.z1(false);
                 return;
         }
     }

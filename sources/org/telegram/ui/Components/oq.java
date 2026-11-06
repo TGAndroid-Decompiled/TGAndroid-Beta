@@ -27,7 +27,7 @@ public final class oq extends na {
         TLRPC.Chat M0 = org.telegram.messenger.qp.s1(this.f28612a).M0(Long.valueOf(-j3));
         this.X1 = f2Var;
         this.Y1 = j3;
-        this.f36333r1 = 0.26f;
+        this.f36227r1 = 0.26f;
         ArrayList arrayList2 = new ArrayList(arrayList);
         this.Q1 = arrayList2;
         this.P1 = r60Var;
@@ -92,22 +92,22 @@ public final class oq extends na {
         org.telegram.ui.ActionBar.r6.k(textView2, k03, null, h7, null);
         this.f28615b.addView(textView2, c8.ha.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 6.0f));
         textView.setOnClickListener(new View.OnClickListener(this) {
-            public final oq f36102b;
+            public final oq f36040b;
 
             {
-                this.f36102b = this;
+                this.f36040b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        oq oqVar = this.f36102b;
+                        oq oqVar = this.f36040b;
                         oqVar.W1 = org.telegram.messenger.qp.s1(oqVar.f28612a).j1(org.telegram.messenger.ij.C1(oqVar.V1));
                         oqVar.dismiss();
                         return;
                     default:
-                        oq oqVar2 = this.f36102b;
+                        oq oqVar2 = this.f36040b;
                         oqVar2.W1 = org.telegram.messenger.qp.s1(oqVar2.f28612a).j1(org.telegram.messenger.ij.C1(oqVar2.V1));
                         oqVar2.U1 = true;
                         oqVar2.dismiss();
@@ -116,22 +116,22 @@ public final class oq extends na {
             }
         });
         textView2.setOnClickListener(new View.OnClickListener(this) {
-            public final oq f36102b;
+            public final oq f36040b;
 
             {
-                this.f36102b = this;
+                this.f36040b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        oq oqVar = this.f36102b;
+                        oq oqVar = this.f36040b;
                         oqVar.W1 = org.telegram.messenger.qp.s1(oqVar.f28612a).j1(org.telegram.messenger.ij.C1(oqVar.V1));
                         oqVar.dismiss();
                         return;
                     default:
-                        oq oqVar2 = this.f36102b;
+                        oq oqVar2 = this.f36040b;
                         oqVar2.W1 = org.telegram.messenger.qp.s1(oqVar2.f28612a).j1(org.telegram.messenger.ij.C1(oqVar2.V1));
                         oqVar2.U1 = true;
                         oqVar2.dismiss();
@@ -139,10 +139,10 @@ public final class oq extends na {
                 }
             }
         });
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int i11 = this.f28645t0;
         pj0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(120.0f));
-        this.f36328k1.setOnItemClickListener(new k(this, 4));
+        this.f36222k1.setOnItemClickListener(new k(this, 4));
         N();
         b1();
     }

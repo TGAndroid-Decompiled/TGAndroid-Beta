@@ -10,9 +10,9 @@ import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 public final class r6 implements v10 {
     public final int f12743a;
     public final w6 f12744b;
@@ -32,22 +32,22 @@ public final class r6 implements v10 {
         switch (this.f12743a) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
-                f41 f41Var = (f41) obj2;
+                k41 k41Var = (k41) obj2;
                 w6 w6Var = this.f12744b;
                 kp kpVar = w6Var.W1;
-                f41Var.F = 1;
+                k41Var.F = 1;
                 int L = org.telegram.messenger.g0.L(64.0f);
-                arrayList.add(r31.D(org.telegram.messenger.g0.L(64.0f)));
+                arrayList.add(w31.D(org.telegram.messenger.g0.L(64.0f)));
                 if (w6Var.R1 || w6Var.Z1) {
                     L += w6Var.d1(true, arrayList, hd.M0(2131753905, null), w6Var.T1, false, false, -1);
                 }
                 if (!w6Var.R1) {
                     if (TextUtils.isEmpty(w6Var.f13041j2) && !w6Var.Z1) {
-                        f41Var.V();
-                        r31 c10 = r31.c(1, 2131232027, hd.M0(2131744610, null));
-                        c10.f37603q = true;
+                        k41Var.V();
+                        w31 c10 = w31.c(1, 2131232027, hd.M0(2131744610, null));
+                        c10.f39835q = true;
                         arrayList.add(c10);
-                        f41Var.U();
+                        k41Var.U();
                         L += org.telegram.messenger.g0.L(50.0f);
                     }
                     if (!w6Var.Z1 && kpVar != null) {
@@ -80,10 +80,10 @@ public final class r6 implements v10 {
                     if (TextUtils.isEmpty(w6Var.f13041j2)) {
                         String M03 = hd.M0(2131748242, null);
                         String M04 = hd.M0(2131748243, null);
-                        int i11 = li.f35659b;
-                        r31 K = r31.K(li.class);
-                        K.f37598l = M03;
-                        K.f37599m = M04;
+                        int i11 = li.f35664b;
+                        w31 K = w31.K(li.class);
+                        K.f39830l = M03;
+                        K.f39831m = M04;
                         arrayList.add(K);
                     } else {
                         String M05 = hd.M0(2131748242, null);
@@ -93,15 +93,15 @@ public final class r6 implements v10 {
                             i10 = 2131748241;
                         }
                         SpannableStringBuilder X2 = org.telegram.messenger.g0.X2(hd.a0(null, null, i10, w6Var.f13041j2));
-                        int i12 = li.f35659b;
-                        r31 K2 = r31.K(li.class);
-                        K2.f37598l = M05;
-                        K2.f37599m = X2;
+                        int i12 = li.f35664b;
+                        w31 K2 = w31.K(li.class);
+                        K2.f39830l = M05;
+                        K2.f39831m = X2;
                         arrayList.add(K2);
                     }
                 }
-                arrayList.add(r31.C(null));
-                arrayList.add(r31.D(Math.max(0, org.telegram.messenger.g0.L(24.0f) + (((org.telegram.messenger.g0.f22537q.y - (org.telegram.messenger.g0.L(12.0f) + L)) - org.telegram.messenger.g0.f22531m) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()))));
+                arrayList.add(w31.C(null));
+                arrayList.add(w31.D(Math.max(0, org.telegram.messenger.g0.L(24.0f) + (((org.telegram.messenger.g0.f22537q.y - (org.telegram.messenger.g0.L(12.0f) + L)) - org.telegram.messenger.g0.f22531m) - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()))));
                 return;
             default:
                 TLRPC.messages_BotResults messages_botresults = (TLRPC.messages_BotResults) obj;

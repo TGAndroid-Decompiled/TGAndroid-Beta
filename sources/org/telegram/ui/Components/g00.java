@@ -1,15 +1,15 @@
 package org.telegram.ui.Components;
 public final class g00 implements Runnable {
-    public final FragmentContextView f33757a;
+    public final FragmentContextView f33701a;
 
     public g00(FragmentContextView fragmentContextView) {
-        this.f33757a = fragmentContextView;
+        this.f33701a = fragmentContextView;
     }
 
     @Override
     public final void run() {
         String j02;
-        FragmentContextView fragmentContextView = this.f33757a;
+        FragmentContextView fragmentContextView = this.f33701a;
         org.telegram.ui.ActionBar.f2 f2Var = fragmentContextView.h;
         if (fragmentContextView.f31383g0 != null && (f2Var instanceof org.telegram.ui.an)) {
             org.telegram.messenger.r3 groupCall = fragmentContextView.f31389n.getGroupCall();

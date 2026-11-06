@@ -10,24 +10,24 @@ import java.util.ArrayList;
 import java.util.HashSet;
 public abstract class ns0 extends rr0 {
     public final HashSet j3;
-    public final ArrayList f36479k3;
-    public final ArrayList f36480l3;
-    public final ArrayList f36481m3;
-    public TextPaint f36482n3;
-    public StaticLayout f36483o3;
-    public float f36484p3;
-    public float f36485q3;
-    public di.x9 f36486r3;
-    public int f36487s3;
-    public final ArrayList f36488t3;
+    public final ArrayList f36373k3;
+    public final ArrayList f36374l3;
+    public final ArrayList f36375m3;
+    public TextPaint f36376n3;
+    public StaticLayout f36377o3;
+    public float f36378p3;
+    public float f36379q3;
+    public di.x9 f36380r3;
+    public int f36381s3;
+    public final ArrayList f36382t3;
 
     public ns0(Context context) {
         super(context, null);
         this.j3 = new HashSet();
-        this.f36479k3 = new ArrayList();
-        this.f36480l3 = new ArrayList();
-        this.f36481m3 = new ArrayList();
-        this.f36488t3 = new ArrayList();
+        this.f36373k3 = new ArrayList();
+        this.f36374l3 = new ArrayList();
+        this.f36375m3 = new ArrayList();
+        this.f36382t3 = new ArrayList();
     }
 
     public abstract boolean A1();

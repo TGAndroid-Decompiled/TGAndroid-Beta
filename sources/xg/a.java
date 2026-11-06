@@ -10,47 +10,47 @@ import zh.h3;
 import zh.k3;
 import zh.m3;
 public final class a implements c20 {
-    public final int f58583a;
-    public final Object f58584b;
+    public final int f58608a;
+    public final Object f58609b;
 
     public a(Object obj, int i7) {
-        this.f58583a = i7;
-        this.f58584b = obj;
+        this.f58608a = i7;
+        this.f58609b = obj;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f58583a) {
+        switch (this.f58608a) {
             case 0:
-                HashMap hashMap = ((c) this.f58584b).f58600x;
+                HashMap hashMap = ((c) this.f58609b).f58625x;
                 hashMap.clear();
                 hashMap.putAll((HashMap) obj);
                 return;
             case 1:
-                ((f) this.f58584b).F((TLObject) obj);
+                ((f) this.f58609b).F((TLObject) obj);
                 return;
             case 2:
-                HashMap hashMap2 = ((i) this.f58584b).f58628r;
+                HashMap hashMap2 = ((i) this.f58609b).f58653r;
                 hashMap2.clear();
                 hashMap2.putAll((HashMap) obj);
                 return;
             case 3:
                 Boolean bool = (Boolean) obj;
-                ((e1) this.f58584b).a();
+                ((e1) this.f58609b).a();
                 return;
             case 4:
-                ((m3) this.f58584b).j0(((Boolean) obj).booleanValue());
+                ((m3) this.f58609b).j0(((Boolean) obj).booleanValue());
                 return;
             case 5:
                 ((Boolean) obj).getClass();
-                h3 h3Var = ((k3) this.f58584b).d;
+                h3 h3Var = ((k3) this.f58609b).d;
                 if (h3Var != null) {
                     h3Var.run();
                     return;
                 }
                 return;
             default:
-                wg.h.j(((b4) this.f58584b).getContext(), (TLRPC.TL_error) obj);
+                wg.h.j(((b4) this.f58609b).getContext(), (TLRPC.TL_error) obj);
                 return;
         }
     }

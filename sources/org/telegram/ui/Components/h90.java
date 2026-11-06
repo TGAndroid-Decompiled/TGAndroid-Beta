@@ -8,9 +8,9 @@ import android.view.MenuItem;
 import android.view.SubMenu;
 import j$.util.Objects;
 public final class h90 implements Menu {
-    public final k60 f34242a;
-    public final s2 f34243b;
-    public final Runnable f34244c;
+    public final k60 f34192a;
+    public final s2 f34193b;
+    public final Runnable f34194c;
     public final qs d;
 
     public h90(k60 k60Var, ys ysVar) {
@@ -18,9 +18,9 @@ public final class h90 implements Menu {
         s2 s2Var = new s2(ysVar, 5);
         Runnable onPremiumMenuLockClickListener = ysVar.getOnPremiumMenuLockClickListener();
         qs qsVar = new qs(ysVar, 2);
-        this.f34242a = k60Var;
-        this.f34243b = s2Var;
-        this.f34244c = onPremiumMenuLockClickListener;
+        this.f34192a = k60Var;
+        this.f34193b = s2Var;
+        this.f34194c = onPremiumMenuLockClickListener;
         this.d = qsVar;
     }
 
@@ -88,10 +88,10 @@ public final class h90 implements Menu {
     public final MenuItem add(int i7, int i10, int i11, CharSequence charSequence) {
         qs qsVar;
         if (i10 != 2131296502 || (qsVar = this.d) == null || ((Boolean) qsVar.run()).booleanValue()) {
-            Runnable runnable = this.f34244c;
+            Runnable runnable = this.f34194c;
             if ((i10 != 2131296503 || runnable == null) && (runnable == null || !org.telegram.ui.ActionBar.k4.f27734r.contains(Integer.valueOf(i10)) || !org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24459s0).D3())) {
                 r2 r2Var = new r2(this, i10, 7);
-                k60 k60Var = this.f34242a;
+                k60 k60Var = this.f34192a;
                 k60Var.c(0, charSequence, r2Var, false);
                 if (runnable != null && org.telegram.ui.ActionBar.k4.f27734r.contains(Integer.valueOf(i10))) {
                     k60Var.M(runnable);

@@ -14,51 +14,51 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class j81 extends org.telegram.ui.Components.oj0 {
-    public int f46876c;
+    public int f46900c;
     public int d;
-    public int f46877e;
-    public int f46878f;
+    public int f46901e;
+    public int f46902f;
     public int h;
-    public int f46879n;
-    public final m81 f46880r;
+    public int f46903n;
+    public final m81 f46904r;
 
     public j81(m81 m81Var) {
-        this.f46880r = m81Var;
+        this.f46904r = m81Var;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.b() >= this.f46878f && d1Var.b() < this.h) {
+        if (d1Var.b() >= this.f46902f && d1Var.b() < this.h) {
             return true;
         }
         return false;
     }
 
     public final void E() {
-        this.f46877e = -1;
-        this.f46878f = -1;
+        this.f46901e = -1;
+        this.f46902f = -1;
         this.h = -1;
-        this.f46879n = -1;
-        this.f46876c = 2;
+        this.f46903n = -1;
+        this.f46900c = 2;
         this.d = 1;
-        ArrayList arrayList = this.f46880r.f47703f;
+        ArrayList arrayList = this.f46904r.f47730f;
         if (!arrayList.isEmpty()) {
-            int i7 = this.f46876c;
+            int i7 = this.f46900c;
             int i10 = i7 + 1;
-            this.f46877e = i7;
+            this.f46901e = i7;
             int i11 = i7 + 2;
-            this.f46876c = i11;
-            this.f46878f = i10;
+            this.f46900c = i11;
+            this.f46902f = i10;
             int size = (arrayList.size() - 1) + i11;
             this.h = size;
-            this.f46876c = size + 1;
-            this.f46879n = size;
+            this.f46900c = size + 1;
+            this.f46903n = size;
         }
     }
 
     @Override
     public final int b() {
-        return this.f46876c;
+        return this.f46900c;
     }
 
     @Override
@@ -69,10 +69,10 @@ public final class j81 extends org.telegram.ui.Components.oj0 {
         if (i7 == this.d) {
             return 2;
         }
-        if (i7 == this.f46877e) {
+        if (i7 == this.f46901e) {
             return 3;
         }
-        if (i7 == this.f46879n) {
+        if (i7 == this.f46903n) {
             return 5;
         }
         return 4;
@@ -86,9 +86,9 @@ public final class j81 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        View view = d1Var.f56927a;
-        int i10 = this.f46877e;
-        m81 m81Var = this.f46880r;
+        View view = d1Var.f56952a;
+        int i10 = this.f46901e;
+        m81 m81Var = this.f46904r;
         if (i7 >= i10 && i10 > 0) {
             view.setAlpha(m81Var.E);
         } else {
@@ -96,15 +96,15 @@ public final class j81 extends org.telegram.ui.Components.oj0 {
         }
         if (d(i7) == 4) {
             org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) view;
-            TLRPC.Chat chat = (TLRPC.Chat) m81Var.f47703f.get(i7 - this.f46878f);
-            String str = (String) m81Var.h.get(i7 - this.f46878f);
+            TLRPC.Chat chat = (TLRPC.Chat) m81Var.f47730f.get(i7 - this.f46902f);
+            String str = (String) m81Var.h.get(i7 - this.f46902f);
             String str2 = chat.title;
             boolean z9 = true;
             if (i7 == this.h - 1) {
                 z9 = false;
             }
             h4Var.e(chat, str2, str, z9);
-            h4Var.c(m81Var.f47708x.contains(Long.valueOf(chat.f26952id)), false);
+            h4Var.c(m81Var.f47735x.contains(Long.valueOf(chat.f26952id)), false);
         }
     }
 
@@ -133,7 +133,7 @@ public final class j81 extends org.telegram.ui.Components.oj0 {
                 int i10 = org.telegram.ui.ActionBar.k6.f27792a7;
                 ColorDrawable colorDrawable = new ColorDrawable(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
                 org.telegram.ui.Components.xp xpVar = new org.telegram.ui.Components.xp(colorDrawable, Y0);
-                xpVar.f40305x = true;
+                xpVar.f40324x = true;
                 y6Var.setBackground(xpVar);
                 org.telegram.ui.ActionBar.r6.y(y6Var, colorDrawable, i10, null, PorterDuff.Mode.SRC_IN);
                 h4Var = y6Var;
@@ -165,8 +165,8 @@ public final class j81 extends org.telegram.ui.Components.oj0 {
             frameLayout.addView(s1Var, c8.ha.d(-2, -2.0f, 49, 0.0f, 12.0f, 0.0f, 6.0f));
             textView.setText(org.telegram.messenger.hd.M0(2131744041, null));
             imageView.setImageResource(2131231234);
-            m81 m81Var = this.f46880r;
-            m81Var.f47709y = frameLayout;
+            m81 m81Var = this.f46904r;
+            m81Var.f47736y = frameLayout;
             int i12 = m81Var.G;
             if (i12 == 0) {
                 M0 = org.telegram.messenger.hd.M0(2131744038, null);
@@ -175,11 +175,11 @@ public final class j81 extends org.telegram.ui.Components.oj0 {
             } else {
                 M0 = org.telegram.messenger.hd.M0(2131744040, null);
             }
-            m81Var.f47709y.setMessageText(M0);
+            m81Var.f47736y.setMessageText(M0);
             v4.o0 o0Var = new v4.o0(-1, -2);
             ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin = org.telegram.messenger.g0.L(16.0f);
             ((ViewGroup.MarginLayoutParams) o0Var).topMargin = org.telegram.messenger.g0.L(23.0f);
-            m81Var.f47709y.setLayoutParams(o0Var);
+            m81Var.f47736y.setLayoutParams(o0Var);
             n4Var = frameLayout;
         }
         return new v4.d1(n4Var);

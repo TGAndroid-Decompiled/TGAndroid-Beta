@@ -30,7 +30,7 @@ public final class x0 extends EditTextBoldCursor {
         i6Var.n(0.2f, 160L, xq.h);
         i6Var.w(org.telegram.messenger.g0.L(15.33f));
         i6Var.setCallback(this);
-        i6Var.f34516b = 5;
+        i6Var.f34477b = 5;
     }
 
     @Override
@@ -73,7 +73,7 @@ public final class x0 extends EditTextBoldCursor {
                 } else {
                     i11 = k6.P5;
                 }
-                int a12 = this.H1.a(k6.w0(i11, ((ik) this.K1).f38950a), false);
+                int a12 = this.H1.a(k6.w0(i11, ((ik) this.K1).f38947a), false);
                 i6 i6Var3 = this.J1;
                 i6Var3.u(a12);
                 int scrollX = getScrollX();
@@ -218,7 +218,7 @@ public final class x0 extends EditTextBoldCursor {
         i6Var.n(0.2f, 160L, xq.h);
         i6Var.w(org.telegram.messenger.g0.L(15.33f));
         i6Var.setCallback(this);
-        i6Var.f34516b = 5;
+        i6Var.f34477b = 5;
     }
 
     public x0(ik ikVar, Context context) {
@@ -230,7 +230,7 @@ public final class x0 extends EditTextBoldCursor {
         this.J1 = i6Var;
         i6Var.n(0.2f, 160L, xq.h);
         i6Var.w(org.telegram.messenger.g0.L(15.33f));
-        i6Var.f34516b = 5;
+        i6Var.f34477b = 5;
         i6Var.setCallback(this);
     }
 
@@ -243,7 +243,7 @@ public final class x0 extends EditTextBoldCursor {
         this.J1 = i6Var;
         i6Var.n(0.2f, 160L, xq.h);
         i6Var.w(org.telegram.messenger.g0.L(15.33f));
-        i6Var.f34516b = 5;
+        i6Var.f34477b = 5;
         i6Var.setCallback(this);
     }
 }

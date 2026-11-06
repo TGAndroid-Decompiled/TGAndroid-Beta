@@ -4,7 +4,7 @@ public final class d {
     public final String f11145b;
 
     public d(q4.q qVar) {
-        this.f11144a = (l) qVar.f53686b;
-        this.f11145b = (String) qVar.f53687c;
+        this.f11144a = (l) qVar.f53711b;
+        this.f11145b = (String) qVar.f53712c;
     }
 }

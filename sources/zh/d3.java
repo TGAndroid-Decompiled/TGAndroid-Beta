@@ -9,33 +9,33 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.n41;
 public final class d3 implements w9 {
-    public final int f60148a;
-    public final long f60149b;
-    public final c20 f60150c;
-    public int f60151e;
-    public long f60154i;
-    public String f60162q;
-    public boolean f60163r;
-    public boolean f60164s;
-    public boolean f60165t;
+    public final int f60173a;
+    public final long f60174b;
+    public final c20 f60175c;
+    public int f60176e;
+    public long f60179i;
+    public String f60187q;
+    public boolean f60188r;
+    public boolean f60189s;
+    public boolean f60190t;
     public final ArrayList d = new ArrayList();
-    public final ArrayList f60152f = new ArrayList();
-    public final ArrayList f60153g = new ArrayList();
+    public final ArrayList f60177f = new ArrayList();
+    public final ArrayList f60178g = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final HashSet f60155j = new HashSet();
-    public final HashSet f60156k = new HashSet();
-    public final HashSet f60157l = new HashSet();
-    public final HashMap f60158m = new HashMap();
-    public final HashMap f60159n = new HashMap();
-    public final HashMap f60160o = new HashMap();
-    public c3 f60161p = c3.f60130a;
-    public boolean f60166u = false;
+    public final HashSet f60180j = new HashSet();
+    public final HashSet f60181k = new HashSet();
+    public final HashSet f60182l = new HashSet();
+    public final HashMap f60183m = new HashMap();
+    public final HashMap f60184n = new HashMap();
+    public final HashMap f60185o = new HashMap();
+    public c3 f60186p = c3.f60155a;
+    public boolean f60191u = false;
     public int v = -1;
 
     public d3(int i7, long j3, c20 c20Var) {
-        this.f60148a = i7;
-        this.f60149b = j3;
-        this.f60150c = c20Var;
+        this.f60173a = i7;
+        this.f60174b = j3;
+        this.f60175c = c20Var;
     }
 
     @Override
@@ -50,7 +50,7 @@ public final class d3 implements w9 {
 
     @Override
     public final int c() {
-        return this.f60151e;
+        return this.f60176e;
     }
 
     @Override
@@ -60,43 +60,43 @@ public final class d3 implements w9 {
 
     public final void f() {
         if (this.v >= 0) {
-            ConnectionsManager.getInstance(this.f60148a).cancelRequest(this.v, true);
+            ConnectionsManager.getInstance(this.f60173a).cancelRequest(this.v, true);
             this.v = -1;
         }
-        this.f60165t = false;
+        this.f60190t = false;
     }
 
     public final void g(boolean z9) {
-        if (!this.f60165t) {
-            if (z9 || !this.f60166u) {
-                this.f60165t = true;
+        if (!this.f60190t) {
+            if (z9 || !this.f60191u) {
+                this.f60190t = true;
                 TL_stars.getResaleStarGifts getresalestargifts = new TL_stars.getResaleStarGifts();
-                getresalestargifts.gift_id = this.f60149b;
-                String str = this.f60162q;
+                getresalestargifts.gift_id = this.f60174b;
+                String str = this.f60187q;
                 if (str == null) {
                     str = "";
                 }
                 getresalestargifts.offset = str;
                 getresalestargifts.limit = 15;
-                getresalestargifts.for_craft = this.f60164s;
-                getresalestargifts.stars_only = this.f60163r;
-                c3 c3Var = this.f60161p;
+                getresalestargifts.for_craft = this.f60189s;
+                getresalestargifts.stars_only = this.f60188r;
+                c3 c3Var = this.f60186p;
                 int i7 = 0;
-                if (c3Var == c3.f60132c) {
+                if (c3Var == c3.f60157c) {
                     getresalestargifts.sort_by_num = true;
                     getresalestargifts.sort_by_price = false;
-                } else if (c3Var == c3.f60131b) {
+                } else if (c3Var == c3.f60156b) {
                     getresalestargifts.sort_by_num = false;
                     getresalestargifts.sort_by_price = false;
-                } else if (c3Var == c3.f60130a) {
+                } else if (c3Var == c3.f60155a) {
                     getresalestargifts.sort_by_num = false;
                     getresalestargifts.sort_by_price = true;
                 }
-                long j3 = this.f60154i;
+                long j3 = this.f60179i;
                 int i10 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
                 ArrayList arrayList = this.h;
-                ArrayList arrayList2 = this.f60153g;
-                ArrayList arrayList3 = this.f60152f;
+                ArrayList arrayList2 = this.f60178g;
+                ArrayList arrayList3 = this.f60177f;
                 if (i10 != 0) {
                     getresalestargifts.flags = 1 | getresalestargifts.flags;
                     getresalestargifts.attributes_hash = j3;
@@ -104,10 +104,10 @@ public final class d3 implements w9 {
                     getresalestargifts.flags = 1 | getresalestargifts.flags;
                     getresalestargifts.attributes_hash = 0L;
                 }
-                HashSet hashSet = this.f60155j;
+                HashSet hashSet = this.f60180j;
                 boolean isEmpty = hashSet.isEmpty();
-                HashSet hashSet2 = this.f60157l;
-                HashSet hashSet3 = this.f60156k;
+                HashSet hashSet2 = this.f60182l;
+                HashSet hashSet3 = this.f60181k;
                 if (!isEmpty || !hashSet3.isEmpty() || !hashSet2.isEmpty()) {
                     getresalestargifts.flags |= 8;
                     if (!hashSet.isEmpty()) {
@@ -152,7 +152,7 @@ public final class d3 implements w9 {
                         }
                     }
                 }
-                this.v = ConnectionsManager.getInstance(this.f60148a).sendRequest(getresalestargifts, new n41(11, this, getresalestargifts));
+                this.v = ConnectionsManager.getInstance(this.f60173a).sendRequest(getresalestargifts, new n41(11, this, getresalestargifts));
             }
         }
     }
@@ -164,18 +164,18 @@ public final class d3 implements w9 {
 
     public final void h() {
         f();
-        this.f60162q = null;
+        this.f60187q = null;
         this.d.clear();
         g(true);
-        c20 c20Var = this.f60150c;
+        c20 c20Var = this.f60175c;
         if (c20Var != null) {
             c20Var.a(Boolean.TRUE);
         }
     }
 
     public final void i(c3 c3Var) {
-        if (this.f60161p != c3Var) {
-            this.f60161p = c3Var;
+        if (this.f60186p != c3Var) {
+            this.f60186p = c3Var;
             h();
         }
     }

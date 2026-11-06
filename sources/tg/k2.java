@@ -19,23 +19,23 @@ import org.telegram.ui.Components.r5;
 import org.telegram.ui.tb0;
 public final class k2 extends j {
     public String A0;
-    public final j2 f55691q0;
-    public sg.j1 f55692r0;
-    public int f55693s0;
-    public int f55694t0;
-    public int f55695u0;
-    public sg.b0 f55696v0;
-    public int f55697w0;
-    public int f55698x0;
-    public Runnable f55699y0;
-    public boolean f55700z0;
+    public final j2 f55716q0;
+    public sg.j1 f55717r0;
+    public int f55718s0;
+    public int f55719t0;
+    public int f55720u0;
+    public sg.b0 f55721v0;
+    public int f55722w0;
+    public int f55723x0;
+    public Runnable f55724y0;
+    public boolean f55725z0;
 
     public k2(Context context, PointF pointF, int i7, CharSequence charSequence, sg.j1 j1Var, int i10) {
         super(context, pointF);
-        this.f55696v0 = sg.b0.f54897e;
-        this.f55694t0 = i7;
+        this.f55721v0 = sg.b0.f54922e;
+        this.f55719t0 = i7;
         j2 j2Var = new j2(this, context);
-        this.f55691q0 = j2Var;
+        this.f55716q0 = j2Var;
         qs.i(j2Var);
         j2Var.setGravity(19);
         j2Var.setBackgroundColor(0);
@@ -43,11 +43,11 @@ public final class k2 extends j {
         j2Var.setClickable(false);
         j2Var.setEnabled(false);
         j2Var.setCursorColor(-1);
-        j2Var.setTextSize(0, this.f55694t0);
-        j2Var.setCursorSize(org.telegram.messenger.g0.L(this.f55694t0 * 0.4f));
+        j2Var.setTextSize(0, this.f55719t0);
+        j2Var.setCursorSize(org.telegram.messenger.g0.L(this.f55719t0 * 0.4f));
         j2Var.setText(charSequence);
         s();
-        j2Var.setTextColor(j1Var.f54992a);
+        j2Var.setTextColor(j1Var.f55017a);
         j2Var.setTypeface(null, 1);
         j2Var.setHorizontallyScrolling(false);
         int i11 = Build.VERSION.SDK_INT;
@@ -77,27 +77,27 @@ public final class k2 extends j {
     }
 
     public int getAlign() {
-        return this.f55695u0;
+        return this.f55720u0;
     }
 
     public int getBaseFontSize() {
-        return this.f55694t0;
+        return this.f55719t0;
     }
 
     public b getEditText() {
-        return this.f55691q0;
+        return this.f55716q0;
     }
 
     public View getFocusedView() {
-        return this.f55691q0;
+        return this.f55716q0;
     }
 
     public Paint.FontMetricsInt getFontMetricsInt() {
-        return this.f55691q0.getPaint().getFontMetricsInt();
+        return this.f55716q0.getPaint().getFontMetricsInt();
     }
 
     public float getFontSize() {
-        return this.f55691q0.getTextSize();
+        return this.f55716q0.getTextSize();
     }
 
     @Override
@@ -111,13 +111,13 @@ public final class k2 extends j {
         float L2 = (org.telegram.messenger.g0.L(52.0f) / scaleX) + (getScale() * getMeasuredHeight());
         float x10 = org.telegram.messenger.camera.q.x(L, 2.0f, getPositionX(), scaleX);
         float positionY = getPositionY();
-        j2 j2Var = this.f55691q0;
+        j2 j2Var = this.f55716q0;
         return new ki0(x10, (positionY - (((L2 - j2Var.getExtendedPaddingTop()) - org.telegram.messenger.g0.N(4.0f)) / 2.0f)) * scaleX, ((L * scaleX) + x10) - x10, (L2 - j2Var.getExtendedPaddingBottom()) * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        RectF rectF = this.f55691q0.Q1;
+        RectF rectF = this.f55716q0.Q1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -126,7 +126,7 @@ public final class k2 extends j {
 
     @Override
     public float getStickyPaddingLeft() {
-        RectF rectF = this.f55691q0.Q1;
+        RectF rectF = this.f55716q0.Q1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -135,7 +135,7 @@ public final class k2 extends j {
 
     @Override
     public float getStickyPaddingRight() {
-        RectF rectF = this.f55691q0.Q1;
+        RectF rectF = this.f55716q0.Q1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -144,7 +144,7 @@ public final class k2 extends j {
 
     @Override
     public float getStickyPaddingTop() {
-        RectF rectF = this.f55691q0.Q1;
+        RectF rectF = this.f55716q0.Q1;
         if (rectF == null) {
             return 0.0f;
         }
@@ -152,23 +152,23 @@ public final class k2 extends j {
     }
 
     public sg.j1 getSwatch() {
-        return this.f55692r0;
+        return this.f55717r0;
     }
 
     public CharSequence getText() {
-        return this.f55691q0.getText();
+        return this.f55716q0.getText();
     }
 
     public int getTextSize() {
-        return (int) this.f55691q0.getTextSize();
+        return (int) this.f55716q0.getTextSize();
     }
 
     public int getType() {
-        return this.f55693s0;
+        return this.f55718s0;
     }
 
     public sg.b0 getTypeface() {
-        return this.f55696v0;
+        return this.f55721v0;
     }
 
     @Override
@@ -184,7 +184,7 @@ public final class k2 extends j {
     }
 
     public final void q() {
-        j2 j2Var = this.f55691q0;
+        j2 j2Var = this.f55716q0;
         j2Var.setEnabled(true);
         j2Var.setClickable(true);
         j2Var.requestFocus();
@@ -194,14 +194,14 @@ public final class k2 extends j {
 
     public final void r() {
         int i7;
-        j2 j2Var = this.f55691q0;
+        j2 j2Var = this.f55716q0;
         j2Var.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-        int i10 = this.f55692r0.f54992a;
-        int i11 = this.f55693s0;
+        int i10 = this.f55717r0.f55017a;
+        int i11 = this.f55718s0;
         int i12 = -1;
         if (i11 == 0) {
             j2Var.setFrameColor(i10);
-            i10 = org.telegram.messenger.g0.B(this.f55692r0.f54992a) >= 0.721f ? -16777216 : -1;
+            i10 = org.telegram.messenger.g0.B(this.f55717r0.f55017a) >= 0.721f ? -16777216 : -1;
         } else if (i11 == 1) {
             if (org.telegram.messenger.g0.B(i10) >= 0.25f) {
                 i7 = -1728053248;
@@ -224,7 +224,7 @@ public final class k2 extends j {
     }
 
     public final void s() {
-        j2 j2Var = this.f55691q0;
+        j2 j2Var = this.f55716q0;
         if (j2Var.getText().length() <= 0) {
             j2Var.setHint(hd.M0(2131744194, null));
             j2Var.setHintTextColor(1627389951);
@@ -234,13 +234,13 @@ public final class k2 extends j {
     }
 
     public void setAlign(int i7) {
-        this.f55695u0 = i7;
+        this.f55720u0 = i7;
     }
 
     public void setBaseFontSize(int i7) {
-        this.f55694t0 = i7;
+        this.f55719t0 = i7;
         float f10 = i7;
-        j2 j2Var = this.f55691q0;
+        j2 j2Var = this.f55716q0;
         j2Var.setTextSize(0, f10);
         j2Var.setCursorSize(org.telegram.messenger.g0.L(f10 * 0.4f));
         if (j2Var.getText() != null) {
@@ -267,28 +267,28 @@ public final class k2 extends j {
     }
 
     public void setMaxWidth(int i7) {
-        this.f55691q0.setMaxWidth(i7);
+        this.f55716q0.setMaxWidth(i7);
     }
 
     public void setSwatch(sg.j1 j1Var) {
-        this.f55692r0 = new sg.j1(j1Var.f54993b, j1Var.f54994c, j1Var.f54992a);
+        this.f55717r0 = new sg.j1(j1Var.f55018b, j1Var.f55019c, j1Var.f55017a);
         r();
     }
 
     public void setText(CharSequence charSequence) {
-        this.f55691q0.setText(charSequence);
+        this.f55716q0.setText(charSequence);
         s();
     }
 
     public void setType(int i7) {
-        this.f55693s0 = i7;
+        this.f55718s0 = i7;
         r();
     }
 
     public void setTypeface(sg.b0 b0Var) {
-        this.f55696v0 = b0Var;
+        this.f55721v0 = b0Var;
         if (b0Var != null) {
-            this.f55691q0.setTypeface(b0Var.d());
+            this.f55716q0.setTypeface(b0Var.d());
         }
         m();
     }
@@ -300,7 +300,7 @@ public final class k2 extends j {
                 break;
             }
             sg.b0 b0Var = (sg.b0) it.next();
-            if (b0Var.f54901a.equals(str)) {
+            if (b0Var.f54926a.equals(str)) {
                 setTypeface(b0Var);
                 str = null;
                 break;
@@ -311,20 +311,20 @@ public final class k2 extends j {
     }
 
     public k2(Context context, k2 k2Var, PointF pointF) {
-        this(context, pointF, k2Var.f55694t0, k2Var.getText(), k2Var.getSwatch(), k2Var.f55693s0);
+        this(context, pointF, k2Var.f55719t0, k2Var.getText(), k2Var.getSwatch(), k2Var.f55718s0);
         setRotation(k2Var.getRotation());
         setScale(k2Var.getScale());
         setTypeface(k2Var.getTypeface());
         setAlign(k2Var.getAlign());
         int align = getAlign();
         int i7 = 2;
-        this.f55691q0.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
+        this.f55716q0.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
         int align2 = getAlign();
         if (align2 == 1) {
             i7 = 4;
         } else if (align2 == 2 ? !hd.f22871a0 : hd.f22871a0) {
             i7 = 3;
         }
-        this.f55691q0.setTextAlignment(i7);
+        this.f55716q0.setTextAlignment(i7);
     }
 }

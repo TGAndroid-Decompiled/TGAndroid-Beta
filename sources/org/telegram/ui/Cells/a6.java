@@ -205,7 +205,7 @@ public class a6 extends FrameLayout implements mw0, te.b {
                             a6 a6Var = this.f30925b;
                             wo woVar2 = a6Var.f28890r;
                             if (woVar2.getTag() != null) {
-                                a6Var.h(a6Var, !woVar2.f40043a.f31258q);
+                                a6Var.h(a6Var, !woVar2.f40050a.f31258q);
                                 return;
                             }
                             return;
@@ -240,7 +240,7 @@ public class a6 extends FrameLayout implements mw0, te.b {
             jg jgVar = new jg(context);
             this.D = jgVar;
             org.telegram.ui.ActionBar.r6.t(jgVar, org.telegram.ui.ActionBar.k6.f28013m6, f6Var, PorterDuff.Mode.SRC_IN);
-            jgVar.j(hg.f34326e, false);
+            jgVar.j(hg.f34276e, false);
             int L = org.telegram.messenger.g0.L(9.5f);
             jgVar.setPadding(L, L, L, L);
             jgVar.setVisibility(8);
@@ -280,7 +280,7 @@ public class a6 extends FrameLayout implements mw0, te.b {
                             a6 a6Var = this.f30925b;
                             wo woVar2 = a6Var.f28890r;
                             if (woVar2.getTag() != null) {
-                                a6Var.h(a6Var, !woVar2.f40043a.f31258q);
+                                a6Var.h(a6Var, !woVar2.f40050a.f31258q);
                                 return;
                             }
                             return;
@@ -303,7 +303,7 @@ public class a6 extends FrameLayout implements mw0, te.b {
             wo woVar = this.f28890r;
             if (woVar != null) {
                 CheckBoxBase checkBoxBase = woVar.getCheckBoxBase();
-                float f12 = this.f28884a.f55370e;
+                float f12 = this.f28884a.f55395e;
                 if (checkBoxBase.f31263w != f12) {
                     checkBoxBase.f31263w = f12;
                     checkBoxBase.b();
@@ -311,7 +311,7 @@ public class a6 extends FrameLayout implements mw0, te.b {
                 woVar.invalidate();
             }
         } else if (i7 == 1 && (jgVar = this.D) != null) {
-            float f13 = this.f28885b.f55370e;
+            float f13 = this.f28885b.f55395e;
             float f14 = 0.85f * f13;
             jgVar.setScaleX(f14);
             jgVar.setScaleY(f14);

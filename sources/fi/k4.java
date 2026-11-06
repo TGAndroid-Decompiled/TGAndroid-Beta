@@ -30,7 +30,7 @@ public final class k4 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 o5 o5Var = (o5) obj;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o5Var.f12531j1.f54992a = i0.a.f(floatValue, i11, i10);
+                o5Var.f12531j1.f55017a = i0.a.f(floatValue, i11, i10);
                 o5Var.C0.invalidate();
                 return;
             case 1:
@@ -58,20 +58,20 @@ public final class k4 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 4:
                 float animatedFraction = valueAnimator.getAnimatedFraction();
-                yv0 yv0Var = (yv0) ((nk0) obj).f36433b;
-                yv0Var.f40730j1.setAlpha(animatedFraction);
+                yv0 yv0Var = (yv0) ((nk0) obj).f36327b;
+                yv0Var.f40749j1.setAlpha(animatedFraction);
                 yv0Var.n1.setAlpha(animatedFraction);
                 if (i11 != 0) {
                     int i13 = (int) ((1.0f - animatedFraction) * i11);
                     yv0Var.W0(i10 + i13);
-                    yv0Var.f40730j1.setTranslationY(i13);
+                    yv0Var.f40749j1.setTranslationY(i13);
                     return;
                 }
                 return;
             default:
                 tg.g0 g0Var = (tg.g0) obj;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g0Var.f55576t1.f54992a = i0.a.f(floatValue3, i11, i10);
+                g0Var.f55601t1.f55017a = i0.a.f(floatValue3, i11, i10);
                 g0Var.L0.invalidate();
                 return;
         }

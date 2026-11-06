@@ -66,8 +66,8 @@ public class m8 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
         spannableStringBuilder.append((CharSequence) "  d");
         ez ezVar = new ez();
-        ezVar.f45438f = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.zk, false);
-        ezVar.f45439n = false;
+        ezVar.f45443f = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.zk, false);
+        ezVar.f45444n = false;
         spannableStringBuilder.setSpan(ezVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
         return spannableStringBuilder;
     }
@@ -224,7 +224,7 @@ public class m8 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
         super.dispatchDraw(canvas);
         org.telegram.ui.Components.g5 g5Var3 = this.K;
         if (g5Var3 != null) {
-            g5Var3.setBounds((getWidth() - this.K.f33861s) - org.telegram.messenger.g0.L(18.0f), (getHeight() - this.K.f33861s) / 2, getWidth() - org.telegram.messenger.g0.L(18.0f), (getHeight() + this.K.f33861s) / 2);
+            g5Var3.setBounds((getWidth() - this.K.f33792s) - org.telegram.messenger.g0.L(18.0f), (getHeight() - this.K.f33792s) / 2, getWidth() - org.telegram.messenger.g0.L(18.0f), (getHeight() + this.K.f33792s) / 2);
             this.K.draw(canvas);
         }
     }
@@ -253,7 +253,7 @@ public class m8 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
         }
         da0 da0Var = new da0(1);
         da0Var.b(i7, i10);
-        da0Var.f32807b = q10;
+        da0Var.f32820b = q10;
         ch0Var.setBackground(da0Var);
     }
 

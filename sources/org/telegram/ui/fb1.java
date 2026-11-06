@@ -9,27 +9,27 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class fb1 extends LinearLayout implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.ActionBar.f6 f45583a;
-    public final ImageView f45584b;
-    public final LinearLayout f45585c;
+    public final org.telegram.ui.ActionBar.f6 f45588a;
+    public final ImageView f45589b;
+    public final LinearLayout f45590c;
     public final TextView d;
-    public final TextView f45586e;
-    public final ImageView f45587f;
+    public final TextView f45591e;
+    public final ImageView f45592f;
     public boolean h;
-    public boolean f45588n;
-    public int f45589r;
+    public boolean f45593n;
+    public int f45594r;
 
     public fb1(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         setOrientation(0);
-        this.f45583a = f6Var;
+        this.f45588a = f6Var;
         ImageView imageView = new ImageView(context);
-        this.f45584b = imageView;
+        this.f45589b = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         addView(imageView, c8.ha.t(40, 40, 19, 12, 0, 12, 0));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f45585c = linearLayout;
+        this.f45590c = linearLayout;
         linearLayout.setOrientation(1);
         linearLayout.setPadding(0, org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f));
         addView(linearLayout, c8.ha.q(0, -2, 1.0f, 23, 0, 0, 32, 0));
@@ -37,11 +37,11 @@ public final class fb1 extends LinearLayout implements org.telegram.ui.ActionBar
         this.d = textView;
         textView.setTextSize(1, 16.0f);
         TextView f10 = org.telegram.messenger.camera.q.f(linearLayout, textView, c8.ha.t(-1, -2, 7, 0, 0, 0, 0), context);
-        this.f45586e = f10;
+        this.f45591e = f10;
         f10.setTextSize(1, 13.0f);
         linearLayout.addView(f10, c8.ha.s(-1, -2, 7, 0.0f, 4.33f, 0.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f45587f = imageView2;
+        this.f45592f = imageView2;
         imageView2.setScaleType(scaleType);
         addView(imageView2, c8.ha.t(40, 40, 21, 12, 0, 12, 0));
     }
@@ -56,25 +56,25 @@ public final class fb1 extends LinearLayout implements org.telegram.ui.ActionBar
         int i7;
         int i10;
         int i11;
-        if (this.f45588n) {
+        if (this.f45593n) {
             i7 = org.telegram.ui.ActionBar.k6.f28089q7;
         } else if (this.h) {
             i7 = org.telegram.ui.ActionBar.k6.f28030n6;
         } else {
             i7 = org.telegram.ui.ActionBar.k6.G6;
         }
-        org.telegram.ui.ActionBar.f6 f6Var = this.f45583a;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f45588a;
         int w02 = org.telegram.ui.ActionBar.k6.w0(i7, f6Var);
-        int i12 = this.f45589r;
-        ImageView imageView = this.f45587f;
-        ImageView imageView2 = this.f45584b;
+        int i12 = this.f45594r;
+        ImageView imageView = this.f45592f;
+        ImageView imageView2 = this.f45589b;
         if (w02 != i12 || imageView2.getColorFilter() == null || imageView.getColorFilter() == null) {
-            this.f45589r = w02;
+            this.f45594r = w02;
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
             imageView2.setColorFilter(new PorterDuffColorFilter(w02, mode));
             imageView.setColorFilter(new PorterDuffColorFilter(w02, mode));
         }
-        if (this.f45588n) {
+        if (this.f45593n) {
             i10 = org.telegram.ui.ActionBar.k6.f28069p7;
         } else if (this.h) {
             i10 = org.telegram.ui.ActionBar.k6.f28030n6;
@@ -82,14 +82,14 @@ public final class fb1 extends LinearLayout implements org.telegram.ui.ActionBar
             i10 = org.telegram.ui.ActionBar.k6.G6;
         }
         this.d.setTextColor(org.telegram.ui.ActionBar.k6.w0(i10, f6Var));
-        if (this.f45588n) {
+        if (this.f45593n) {
             i11 = org.telegram.ui.ActionBar.k6.f28069p7;
         } else if (this.h) {
             i11 = org.telegram.ui.ActionBar.k6.f28030n6;
         } else {
             i11 = org.telegram.ui.ActionBar.k6.f28240y6;
         }
-        this.f45586e.setTextColor(org.telegram.ui.ActionBar.k6.w0(i11, f6Var));
+        this.f45591e.setTextColor(org.telegram.ui.ActionBar.k6.w0(i11, f6Var));
     }
 
     @Override

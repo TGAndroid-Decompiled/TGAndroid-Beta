@@ -1,22 +1,22 @@
 package org.telegram.ui;
 public final class ei0 implements Runnable {
-    public final int f45324a;
-    public final PasscodeActivity f45325b;
-    public final boolean f45326c;
+    public final int f45354a;
+    public final PasscodeActivity f45355b;
+    public final boolean f45356c;
 
     public ei0(PasscodeActivity passcodeActivity, boolean z9, int i7) {
-        this.f45324a = i7;
-        this.f45325b = passcodeActivity;
-        this.f45326c = z9;
+        this.f45354a = i7;
+        this.f45355b = passcodeActivity;
+        this.f45356c = z9;
     }
 
     @Override
     public final void run() {
-        switch (this.f45324a) {
+        switch (this.f45354a) {
             case 0:
-                PasscodeActivity passcodeActivity = this.f45325b;
+                PasscodeActivity passcodeActivity = this.f45355b;
                 passcodeActivity.getMediaDataController().m();
-                if (this.f45326c) {
+                if (this.f45356c) {
                     passcodeActivity.presentFragment(new PasscodeActivity(0), true);
                     l90 l90Var = passcodeActivity.U;
                     if (l90Var != null) {
@@ -29,8 +29,8 @@ public final class ei0 implements Runnable {
                 org.telegram.messenger.qs.e().k(50, new Object[0]);
                 return;
             default:
-                PasscodeActivity passcodeActivity2 = this.f45325b;
-                passcodeActivity2.f41306x.e(true, this.f45326c);
+                PasscodeActivity passcodeActivity2 = this.f45355b;
+                passcodeActivity2.f41331x.e(true, this.f45356c);
                 org.telegram.messenger.g0.r(passcodeActivity2.T);
                 return;
         }

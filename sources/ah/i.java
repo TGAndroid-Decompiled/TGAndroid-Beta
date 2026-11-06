@@ -154,7 +154,7 @@ public final class i extends EditTextBoldCursor {
                 return super.onKeyDown(i7, keyEvent);
             case 6:
                 r00 r00Var = (r00) this.H1;
-                if (i7 == 67 && r00Var.f37557r.length() == 0 && r00Var.d()) {
+                if (i7 == 67 && r00Var.f37447r.length() == 0 && r00Var.d()) {
                     if (!r00Var.d()) {
                         return true;
                     }

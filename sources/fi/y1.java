@@ -89,8 +89,8 @@ public final class y1 extends v4.g0 {
         TLRPC.StickerSet stickerSet;
         z1 z1Var = this.N;
         k2 k2Var = z1Var.f13241s;
-        int i10 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        int i10 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         if (i10 == 0) {
             view.setTag(34);
             view.setLayoutParams(new v4.o0(-1, (int) k2Var.f12256o1));
@@ -150,12 +150,12 @@ public final class y1 extends v4.g0 {
                     int L2 = org.telegram.messenger.g0.L(56.0f);
                     int L3 = org.telegram.messenger.g0.L(56.0f);
                     xpVar.h = L2;
-                    xpVar.f40301n = L3;
+                    xpVar.f40320n = L3;
                     int L4 = org.telegram.messenger.g0.L(24.0f);
                     int L5 = org.telegram.messenger.g0.L(24.0f);
-                    xpVar.f40299e = L4;
-                    xpVar.f40300f = L5;
-                    xpVar.f40302r = true;
+                    xpVar.f40318e = L4;
+                    xpVar.f40319f = L5;
+                    xpVar.f40321r = true;
                     l1Var.f12302a = xpVar;
                 }
                 l1Var.setDrawable(l1Var.f12302a);

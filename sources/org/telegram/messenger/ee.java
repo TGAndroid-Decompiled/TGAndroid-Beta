@@ -8,7 +8,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ExternalActionActivity;
-import org.telegram.ui.vs0;
+import org.telegram.ui.ws0;
 public final class ee implements Runnable {
     public final int f22183a = 0;
     public final Object f22184b;
@@ -36,11 +36,11 @@ public final class ee implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ee.run():void");
     }
 
-    public ee(TLObject tLObject, org.telegram.ui.ActionBar.f2 f2Var, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, vs0 vs0Var, com.google.android.gms.internal.clearcut.z0 z0Var, int i7, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
+    public ee(TLObject tLObject, org.telegram.ui.ActionBar.f2 f2Var, TLRPC.TL_inputStorePaymentPremiumSubscription tL_inputStorePaymentPremiumSubscription, ws0 ws0Var, com.google.android.gms.internal.clearcut.z0 z0Var, int i7, TLRPC.TL_error tL_error, TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore) {
         this.f22187f = tLObject;
         this.d = f2Var;
         this.f22186e = tL_inputStorePaymentPremiumSubscription;
-        this.f22184b = vs0Var;
+        this.f22184b = ws0Var;
         this.h = z0Var;
         this.f22185c = i7;
         this.f22188n = tL_error;

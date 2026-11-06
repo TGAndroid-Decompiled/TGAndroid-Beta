@@ -55,7 +55,7 @@ public final class c4 extends org.telegram.ui.Components.l9 {
         Canvas canvas2;
         switch (this.G) {
             case 0:
-                if (this.f35557a.Q0) {
+                if (this.f35562a.Q0) {
                     RectF rectF = org.telegram.messenger.g0.P;
                     rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     ((e4) this.H).b(1.0f, canvas, rectF, true);
@@ -78,7 +78,7 @@ public final class c4 extends org.telegram.ui.Components.l9 {
                 org.telegram.ui.Cells.k6 k6Var = paVar.T;
                 if (paVar.F) {
                     k6Var.F.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                    r7.h(paVar.U, canvas, this.f35557a, k6Var);
+                    r7.h(paVar.U, canvas, this.f35562a, k6Var);
                     return;
                 }
                 super.onDraw(canvas);
@@ -108,14 +108,14 @@ public final class c4 extends org.telegram.ui.Components.l9 {
                 }
                 return;
             case 11:
-                if (((org.telegram.ui.web.x0) this.H).f51377w) {
+                if (((org.telegram.ui.web.x0) this.H).f51387w) {
                     super.onDraw(canvas);
                     return;
                 }
-                Drawable t6 = this.f35557a.t();
+                Drawable t6 = this.f35562a.t();
                 if (t6 != null) {
-                    this.f35557a.y0(0.0f, 0.0f, getWidth(), (getWidth() / t6.getIntrinsicWidth()) * t6.getIntrinsicHeight());
-                    this.f35557a.h(canvas, null);
+                    this.f35562a.y0(0.0f, 0.0f, getWidth(), (getWidth() / t6.getIntrinsicWidth()) * t6.getIntrinsicHeight());
+                    this.f35562a.h(canvas, null);
                     return;
                 }
                 return;
@@ -167,7 +167,7 @@ public final class c4 extends org.telegram.ui.Components.l9 {
         super(context);
         this.G = 11;
         this.H = x0Var;
-        this.f35557a = new z2(this, this, 7);
+        this.f35562a = new z2(this, this, 7);
     }
 
     @Override
@@ -181,7 +181,7 @@ public final class c4 extends org.telegram.ui.Components.l9 {
                 super.invalidate();
                 return;
             case 6:
-                fi.p5 p5Var2 = ((pn) this.H).f48871f;
+                fi.p5 p5Var2 = ((pn) this.H).f48866f;
                 if (p5Var2 != null) {
                     p5Var2.invalidate();
                 }
@@ -199,7 +199,7 @@ public final class c4 extends org.telegram.ui.Components.l9 {
                 ((wu) this.H).f();
                 return;
             case 9:
-                fi.p5 p5Var3 = ((d50) this.H).f44925e;
+                fi.p5 p5Var3 = ((d50) this.H).f44950e;
                 if (p5Var3 != null) {
                     p5Var3.invalidate();
                 }
@@ -229,7 +229,7 @@ public final class c4 extends org.telegram.ui.Components.l9 {
                 super.invalidate(i7, i10, i11, i12);
                 return;
             case 6:
-                fi.p5 p5Var2 = ((pn) this.H).f48871f;
+                fi.p5 p5Var2 = ((pn) this.H).f48866f;
                 if (p5Var2 != null) {
                     p5Var2.invalidate();
                 }
@@ -246,7 +246,7 @@ public final class c4 extends org.telegram.ui.Components.l9 {
                 super.invalidate(i7, i10, i11, i12);
                 return;
             case 9:
-                fi.p5 p5Var3 = ((d50) this.H).f44925e;
+                fi.p5 p5Var3 = ((d50) this.H).f44950e;
                 if (p5Var3 != null) {
                     p5Var3.invalidate();
                 }

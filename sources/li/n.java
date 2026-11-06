@@ -21,7 +21,7 @@ public final class n implements mj {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f18712b.f38951b.W1.startActivityForResult(intent, 21);
+            this.f18712b.f38948b.W1.startActivityForResult(intent, 21);
         } catch (Exception e10) {
             a8.g(e10, true);
         }

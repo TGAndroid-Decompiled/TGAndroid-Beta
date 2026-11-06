@@ -30,7 +30,7 @@ public final class u0 extends mz {
             default:
                 return super.d();
             case 2:
-                lm0 lm0Var = ((mm0) viewGroup).f36041y;
+                lm0 lm0Var = ((mm0) viewGroup).f35979y;
                 if (lm0Var == null) {
                     return null;
                 }
@@ -47,7 +47,7 @@ public final class u0 extends mz {
             default:
                 return super.h();
             case 2:
-                int q02 = ((mm0) this.f28545f).f36041y.q0();
+                int q02 = ((mm0) this.f28545f).f35979y.q0();
                 if (q02 > 0) {
                     return 1.0f / q02;
                 }
@@ -87,16 +87,16 @@ public final class u0 extends mz {
                 org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.f28545f;
                 org.telegram.ui.Cells.i1 i1Var = q1Var.C4;
                 if (q1Var.P5.J3()) {
-                    f10 = i1Var.f35013b;
-                    i7 = i1Var.f35016f;
+                    f10 = i1Var.f34974b;
+                    i7 = i1Var.f34977f;
                     i10 = jm0.E;
                 } else if (ij.S4(q1Var.P5.f23237k)) {
                     if (q1Var.B4) {
                         pm0 pm0Var = q1Var.D4;
-                        return pm0Var.f37099a / pm0Var.f37104g;
+                        return pm0Var.f36978a / pm0Var.f36983g;
                     }
-                    f10 = i1Var.f35013b;
-                    i7 = i1Var.f35016f;
+                    f10 = i1Var.f34974b;
+                    i7 = i1Var.f34977f;
                     i10 = jm0.E;
                 } else if (q1Var.P5.i4()) {
                     return q1Var.P5.f23197b0;
@@ -144,10 +144,10 @@ public final class u0 extends mz {
                 return;
             default:
                 mm0 mm0Var = (mm0) this.f28545f;
-                mm0Var.f36040x = true;
+                mm0Var.f35978x = true;
                 mm0Var.setProgress(f10);
                 mm0Var.f(true, f10);
-                mm0Var.f36040x = false;
+                mm0Var.f35978x = false;
                 return;
         }
     }

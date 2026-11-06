@@ -10,12 +10,12 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class s2 implements org.telegram.messenger.c20 {
-    public final int f37916a;
-    public final Object f37917b;
+    public final int f37862a;
+    public final Object f37863b;
 
     public s2(Object obj, int i7) {
-        this.f37916a = i7;
-        this.f37917b = obj;
+        this.f37862a = i7;
+        this.f37863b = obj;
     }
 
     @Override
@@ -26,27 +26,27 @@ public final class s2 implements org.telegram.messenger.c20 {
         float f11;
         float f12;
         TL_account.TL_birthday tL_birthday;
-        switch (this.f37916a) {
+        switch (this.f37862a) {
             case 0:
                 Object[] objArr = (Object[]) obj;
-                ((r2) this.f37917b).run();
+                ((r2) this.f37863b).run();
                 return;
             case 1:
                 CharSequence charSequence = (CharSequence) obj;
-                fi.g gVar = ((uc) this.f37917b).f12365f;
+                fi.g gVar = ((uc) this.f37863b).f12365f;
                 gVar.setText(charSequence);
                 gVar.w(charSequence.length(), charSequence.length());
                 return;
             case 2:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((tl) this.f37917b).f38378w;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((tl) this.f37863b).f38369w;
                 chatAttachAlertPhotoLayout.u0(null, null, ((Long) obj).longValue());
-                chatAttachAlertPhotoLayout.f38951b.dismiss();
+                chatAttachAlertPhotoLayout.f38948b.dismiss();
                 return;
             case 3:
-                org.telegram.messenger.qp.s1(((vr) this.f37917b).P).x3(null, (TLRPC.User) obj, null, 0, null, false, false);
+                org.telegram.messenger.qp.s1(((vr) this.f37863b).P).x3(null, (TLRPC.User) obj, null, 0, null, false, false);
                 return;
             case 4:
-                Runnable runnable = (Runnable) this.f37917b;
+                Runnable runnable = (Runnable) this.f37863b;
                 ArrayList arrayList = (ArrayList) obj;
                 if (runnable != null) {
                     runnable.run();
@@ -54,19 +54,19 @@ public final class s2 implements org.telegram.messenger.c20 {
                 }
                 return;
             case 5:
-                ((ys) this.f37917b).G(((Integer) obj).intValue());
+                ((ys) this.f37863b).G(((Integer) obj).intValue());
                 return;
             case 6:
-                ia0 ia0Var = (ia0) this.f37917b;
+                ia0 ia0Var = (ia0) this.f37863b;
                 Integer num = (Integer) obj;
-                ArrayList arrayList2 = ia0Var.f34578e.f33922a;
-                n90 n90Var = ia0Var.f34579f;
-                if (((fa0) arrayList2.get(n90Var.getCurrentPosition())).f33548a != num.intValue()) {
+                ArrayList arrayList2 = ia0Var.f34541e.f33870a;
+                n90 n90Var = ia0Var.f34542f;
+                if (((fa0) arrayList2.get(n90Var.getCurrentPosition())).f33492a != num.intValue()) {
                     int i7 = 0;
                     int i10 = 0;
                     while (true) {
                         if (i10 < arrayList2.size()) {
-                            if (((fa0) arrayList2.get(i10)).f33548a == num.intValue()) {
+                            if (((fa0) arrayList2.get(i10)).f33492a == num.intValue()) {
                                 i7 = i10;
                             } else {
                                 i10++;
@@ -81,11 +81,11 @@ public final class s2 implements org.telegram.messenger.c20 {
                 }
                 return;
             case 7:
-                ca0 ca0Var = (ca0) this.f37917b;
-                ca0Var.f32506n.y(ca0Var.f32505f.T((View) obj));
+                ca0 ca0Var = (ca0) this.f37863b;
+                ca0Var.f32510n.y(ca0Var.f32509f.T((View) obj));
                 return;
             case 8:
-                ec0 ec0Var = (ec0) this.f37917b;
+                ec0 ec0Var = (ec0) this.f37863b;
                 Integer num2 = (Integer) obj;
                 FrameLayout frameLayout = ec0Var.h;
                 if (ec0Var.getContext() != null) {
@@ -123,12 +123,12 @@ public final class s2 implements org.telegram.messenger.c20 {
                 }
                 return;
             case 9:
-                ad0 ad0Var = (ad0) this.f37917b;
+                ad0 ad0Var = (ad0) this.f37863b;
                 ad0Var.B1.a(ad0Var.E1, true, 0, ((Long) obj).longValue());
                 ad0Var.dismiss();
                 return;
             case 10:
-                org.telegram.messenger.v10 v10Var = (org.telegram.messenger.v10) this.f37917b;
+                org.telegram.messenger.v10 v10Var = (org.telegram.messenger.v10) this.f37863b;
                 Bitmap bitmap = (Bitmap) obj;
                 ColorMatrix colorMatrix = new ColorMatrix();
                 if (org.telegram.ui.ActionBar.k6.I.q()) {
@@ -165,12 +165,12 @@ public final class s2 implements org.telegram.messenger.c20 {
                 v10Var.a(l10, l11);
                 return;
             case 11:
-                jw0 jw0Var = (jw0) this.f37917b;
+                jw0 jw0Var = (jw0) this.f37863b;
                 TL_account.TL_birthday tL_birthday2 = (TL_account.TL_birthday) obj;
                 TL_account.updateBirthday updatebirthday = new TL_account.updateBirthday();
                 updatebirthday.flags |= 1;
                 updatebirthday.birthday = tL_birthday2;
-                int i11 = jw0Var.f35097a;
+                int i11 = jw0Var.f35058a;
                 TLRPC.UserFull b22 = org.telegram.messenger.qp.s1(i11).b2(org.telegram.messenger.p10.i(i11).e());
                 if (b22 != null) {
                     tL_birthday = b22.birthday;
@@ -188,8 +188,8 @@ public final class s2 implements org.telegram.messenger.c20 {
                 org.telegram.messenger.qs.f(i11).k(107, new Object[0]);
                 return;
             default:
-                k41 k41Var = (k41) this.f37917b;
-                k41Var.f35167f3.R(k41Var.T((View) obj), k41Var.j3);
+                p41 p41Var = (p41) this.f37863b;
+                p41Var.f36781f3.R(p41Var.T((View) obj), p41Var.j3);
                 return;
         }
     }

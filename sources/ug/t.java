@@ -18,46 +18,46 @@ import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Components.hr;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class t implements View.OnClickListener {
-    public final int f56697a;
-    public final i0 f56698b;
+    public final int f56722a;
+    public final i0 f56723b;
 
     public t(i0 i0Var, int i7) {
-        this.f56697a = i7;
-        this.f56698b = i0Var;
+        this.f56722a = i7;
+        this.f56723b = i0Var;
     }
 
     @Override
     public final void onClick(View view) {
         long j3;
-        int i7 = this.f56697a;
-        i0 i0Var = this.f56698b;
+        int i7 = this.f56722a;
+        i0 i0Var = this.f56723b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.g0.g(i0Var.k1());
                 i0Var.dismiss();
                 return;
             case 1:
-                y yVar = i0Var.f56508w2;
-                if (yVar.f56642r) {
+                y yVar = i0Var.f56533w2;
+                if (yVar.f56667r) {
                     yVar.h.performClick();
                     return;
                 } else {
-                    yVar.f56644w.performClick();
+                    yVar.f56669w.performClick();
                     return;
                 }
             case 2:
-                y yVar2 = i0Var.f56508w2;
-                if (yVar2.f56642r) {
+                y yVar2 = i0Var.f56533w2;
+                if (yVar2.f56667r) {
                     yVar2.h.performClick();
                     return;
                 } else {
-                    yVar2.f56644w.performClick();
+                    yVar2.f56669w.performClick();
                     return;
                 }
             default:
                 int i10 = i0Var.Z1;
-                HashSet hashSet = i0Var.f56502q2;
-                if (i0Var.f56488b2) {
+                HashSet hashSet = i0Var.f56527q2;
+                if (i0Var.f56513b2) {
                     f2 f2Var = i0Var.C2;
                     if (f2Var != 0) {
                         ?? obj = new Object();
@@ -69,7 +69,7 @@ public final class t implements View.OnClickListener {
                 } else if (i10 == 19 || i10 == 32 || i0Var.s1()) {
                     e3 e3Var = i0Var.U1;
                     if (e3Var.f22140a) {
-                        i0Var.f56508w2.f56644w.callOnClick();
+                        i0Var.f56533w2.f56669w.callOnClick();
                         e3 e3Var2 = i0Var.U1;
                         if (e3Var2.d && e3Var2.f22149l) {
                             v vVar = new v(i0Var, 1);
@@ -96,7 +96,7 @@ public final class t implements View.OnClickListener {
                             ArrayList arrayList = new ArrayList();
                             Iterator it = hashSet.iterator();
                             while (it.hasNext()) {
-                                i0Var.f56487a2.add((TLRPC.Chat) it.next());
+                                i0Var.f56512a2.add((TLRPC.Chat) it.next());
                             }
                             i0Var.x1(arrayList);
                             return;

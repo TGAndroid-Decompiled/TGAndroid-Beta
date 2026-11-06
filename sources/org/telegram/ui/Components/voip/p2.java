@@ -9,30 +9,30 @@ import android.view.View;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.m5;
 public final class p2 extends View {
-    public final TextPaint f39418a;
-    public final Paint f39419b;
-    public final float f39420c;
+    public final TextPaint f39415a;
+    public final Paint f39416b;
+    public final float f39417c;
     public final String d;
-    public volatile Bitmap f39421e;
+    public volatile Bitmap f39418e;
 
     public p2(Context context, String str) {
         super(context);
         TextPaint textPaint = new TextPaint(1);
-        this.f39418a = textPaint;
-        this.f39419b = new Paint(1);
+        this.f39415a = textPaint;
+        this.f39416b = new Paint(1);
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setTextSize(org.telegram.messenger.g0.L(13.0f));
         textPaint.setColor(-1);
         textPaint.setTypeface(org.telegram.messenger.g0.o());
-        this.f39420c = textPaint.measureText(str);
+        this.f39417c = textPaint.measureText(str);
         this.d = str;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f39421e != null) {
-            canvas.drawBitmap(this.f39421e, 0.0f, 0.0f, this.f39419b);
+        if (this.f39418e != null) {
+            canvas.drawBitmap(this.f39418e, 0.0f, 0.0f, this.f39416b);
         }
     }
 
@@ -46,6 +46,6 @@ public final class p2 extends View {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.f39420c), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.f39417c), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824));
     }
 }

@@ -10,17 +10,17 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import kotlin.jvm.internal.j;
 import org.telegram.ui.Components.qt;
 public final class b {
-    public final LinkedHashMap f53563a;
-    public final qt f53564b;
+    public final LinkedHashMap f53588a;
+    public final qt f53589b;
 
     public b(LinkedHashMap linkedHashMap, boolean z9) {
-        this.f53563a = linkedHashMap;
-        this.f53564b = new qt(z9);
+        this.f53588a = linkedHashMap;
+        this.f53589b = new qt(z9);
     }
 
     public final Map a() {
         gd.e eVar;
-        Set<Map.Entry> entrySet = this.f53563a.entrySet();
+        Set<Map.Entry> entrySet = this.f53588a.entrySet();
         int b10 = r.b(hd.h.d(entrySet, 10));
         if (b10 < 16) {
             b10 = 16;
@@ -45,7 +45,7 @@ public final class b {
     }
 
     public final void b() {
-        if (!((AtomicBoolean) this.f53564b.f37504b).get()) {
+        if (!((AtomicBoolean) this.f53589b.f37394b).get()) {
             return;
         }
         throw new IllegalStateException("Do mutate preferences once returned to DataStore.");
@@ -54,7 +54,7 @@ public final class b {
     public final void c(e key) {
         j.e(key, "key");
         b();
-        this.f53563a.remove(key);
+        this.f53588a.remove(key);
     }
 
     public final void d(e key, Object obj) {
@@ -70,7 +70,7 @@ public final class b {
             return;
         }
         boolean z9 = obj instanceof Set;
-        LinkedHashMap linkedHashMap = this.f53563a;
+        LinkedHashMap linkedHashMap = this.f53588a;
         if (z9) {
             Set unmodifiableSet = DesugarCollections.unmodifiableSet(hd.f.o((Set) obj));
             j.d(unmodifiableSet, "unmodifiableSet(set.toSet())");
@@ -92,7 +92,7 @@ public final class b {
     public final int hashCode() {
         int hashCode;
         int i7 = 0;
-        for (Map.Entry entry : this.f53563a.entrySet()) {
+        for (Map.Entry entry : this.f53588a.entrySet()) {
             Object value = entry.getValue();
             if (value instanceof byte[]) {
                 hashCode = Arrays.hashCode((byte[]) value);
@@ -105,7 +105,7 @@ public final class b {
     }
 
     public final String toString() {
-        return hd.f.g(this.f53563a.entrySet(), ",\n", "{\n", "\n}", a.f53562b, 24);
+        return hd.f.g(this.f53588a.entrySet(), ",\n", "{\n", "\n}", a.f53587b, 24);
     }
 
     public b(boolean z9) {

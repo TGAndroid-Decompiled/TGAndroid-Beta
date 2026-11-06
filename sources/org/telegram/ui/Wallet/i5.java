@@ -16,12 +16,12 @@ public final class i5 extends pr {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int ceil = (int) Math.ceil(getMetadata().f55389g.f55396a);
+        int ceil = (int) Math.ceil(getMetadata().f55414g.f55421a);
         if (ceil > 0) {
             ShapeDrawable shapeDrawable = this.G;
             shapeDrawable.getPaint().setColor(this.H.getThemedColor(org.telegram.ui.ActionBar.k6.f27848d6));
             shapeDrawable.setBounds(0, 0, getWidth(), ceil);
-            shapeDrawable.setAlpha((int) (getMetadata().f55386c.f55396a * 255.0f));
+            shapeDrawable.setAlpha((int) (getMetadata().f55411c.f55421a * 255.0f));
             shapeDrawable.draw(canvas);
         }
         super.dispatchDraw(canvas);

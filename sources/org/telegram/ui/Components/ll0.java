@@ -5,18 +5,18 @@ import android.view.View;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public final class ll0 implements TextView.OnEditorActionListener {
-    public final kl0 f35671a;
-    public final int f35672b;
-    public final TLRPC.Reaction f35673c;
+    public final kl0 f35676a;
+    public final int f35677b;
+    public final TLRPC.Reaction f35678c;
     public final org.telegram.ui.ActionBar.u1[] d;
-    public final View f35674e;
+    public final View f35679e;
 
     public ll0(kl0 kl0Var, int i7, TLRPC.Reaction reaction, org.telegram.ui.ActionBar.u1[] u1VarArr, View view) {
-        this.f35671a = kl0Var;
-        this.f35672b = i7;
-        this.f35673c = reaction;
+        this.f35676a = kl0Var;
+        this.f35677b = i7;
+        this.f35678c = reaction;
         this.d = u1VarArr;
-        this.f35674e = view;
+        this.f35679e = view;
     }
 
     @Override
@@ -24,13 +24,13 @@ public final class ll0 implements TextView.OnEditorActionListener {
         if (i7 != 6) {
             return false;
         }
-        kl0 kl0Var = this.f35671a;
+        kl0 kl0Var = this.f35676a;
         String obj = kl0Var.getText().toString();
         if (obj.length() > 12) {
             org.telegram.messenger.g0.F3(kl0Var);
             return true;
         }
-        org.telegram.messenger.qp.s1(this.f35672b).l4(ch.o0.d(this.f35673c), obj);
+        org.telegram.messenger.qp.s1(this.f35677b).l4(ch.o0.d(this.f35678c), obj);
         org.telegram.ui.ActionBar.u1[] u1VarArr = this.d;
         org.telegram.ui.ActionBar.u1 u1Var = u1VarArr[0];
         if (u1Var != null) {
@@ -39,7 +39,7 @@ public final class ll0 implements TextView.OnEditorActionListener {
         if (u1VarArr[0] == ql0.H) {
             ql0.H = null;
         }
-        View view = this.f35674e;
+        View view = this.f35679e;
         if (view != null) {
             view.requestFocus();
         }

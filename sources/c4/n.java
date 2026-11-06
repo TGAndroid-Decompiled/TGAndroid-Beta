@@ -173,12 +173,12 @@ public final class n implements h2.j, h2.o, RequestDelegateTimestamp, r1, wr, y0
         List list = (List) this.d;
         int i11 = this.f5294b;
         if (i11 == -1) {
-            i10 = d0Var.f53100t.o0();
+            i10 = d0Var.f53126t.o0();
         } else {
             i10 = i11;
         }
         if (i11 == -1) {
-            j3 = d0Var.f53100t.l();
+            j3 = d0Var.f53126t.l();
         } else {
             j3 = this.f5295c;
         }

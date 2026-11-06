@@ -15,6 +15,6 @@ public final class pt extends org.telegram.ui.Components.mo0 {
         if (!z9) {
             return;
         }
-        org.telegram.messenger.g0.i3(new org.telegram.ui.Components.g51(this, hVar, i7), 250L);
+        org.telegram.messenger.g0.i3(new org.telegram.ui.Components.k51(this, hVar, i7), 250L);
     }
 }

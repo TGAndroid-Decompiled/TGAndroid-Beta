@@ -5,20 +5,20 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class ac extends q11 {
-    public final vb f43593e2;
-    public final h11[] f43594f2;
-    public final rc f43595g2;
+    public final vb f43618e2;
+    public final h11[] f43619f2;
+    public final rc f43620g2;
 
     public ac(rc rcVar, rc rcVar2, Activity activity, Integer num, int i7, org.telegram.ui.ActionBar.f6 f6Var, int i10, int i11, vb vbVar, h11[] h11VarArr) {
         super(rcVar2, activity, true, num, i7, true, f6Var, i10, i11);
-        this.f43595g2 = rcVar;
-        this.f43593e2 = vbVar;
-        this.f43594f2 = h11VarArr;
+        this.f43620g2 = rcVar;
+        this.f43618e2 = vbVar;
+        this.f43619f2 = h11VarArr;
     }
 
     @Override
     public final long getDialogId() {
-        return this.f43595g2.f49427a;
+        return this.f43620g2.f49447a;
     }
 
     @Override
@@ -34,10 +34,10 @@ public final class ac extends q11 {
         } else {
             longValue = l10.longValue();
         }
-        this.f43593e2.a(Long.valueOf(longValue), num, tL_starGiftUnique);
-        h11 h11Var = this.f43594f2[0];
+        this.f43618e2.a(Long.valueOf(longValue), num, tL_starGiftUnique);
+        h11 h11Var = this.f43619f2[0];
         if (h11Var != null) {
-            this.f43595g2.Q = null;
+            this.f43620g2.Q = null;
             h11Var.dismiss();
         }
     }

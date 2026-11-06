@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import java.util.ArrayList;
 public final class q8 implements Runnable {
-    public final int f49139a;
-    public final int f49140b;
-    public final Object f49141c;
+    public final int f49166a;
+    public final int f49167b;
+    public final Object f49168c;
     public final Object d;
 
     public q8(int i7, Object obj, Object obj2, int i10) {
-        this.f49139a = i10;
-        this.f49140b = i7;
-        this.f49141c = obj;
+        this.f49166a = i10;
+        this.f49167b = i7;
+        this.f49168c = obj;
         this.d = obj2;
     }
 
     private final void a() {
         int i7;
         org.telegram.ui.Components.qz0 qz0Var = (org.telegram.ui.Components.qz0) this.d;
-        String str = (String) this.f49141c;
-        int i10 = this.f49140b;
-        org.telegram.ui.Components.pz0 pz0Var = qz0Var.f37544r.f31579o1;
+        String str = (String) this.f49168c;
+        int i10 = this.f49167b;
+        org.telegram.ui.Components.pz0 pz0Var = qz0Var.f37434r.f31579o1;
         try {
             String lowerCase = str.trim().toLowerCase();
             if (lowerCase.length() == 0) {
@@ -76,30 +76,30 @@ public final class q8 implements Runnable {
     }
 
     public q8(Object obj, int i7, Object obj2, int i10) {
-        this.f49139a = i10;
-        this.f49141c = obj;
-        this.f49140b = i7;
+        this.f49166a = i10;
+        this.f49168c = obj;
+        this.f49167b = i7;
         this.d = obj2;
     }
 
     public q8(Object obj, Object obj2, int i7, int i10) {
-        this.f49139a = i10;
-        this.f49141c = obj;
+        this.f49166a = i10;
+        this.f49168c = obj;
         this.d = obj2;
-        this.f49140b = i7;
+        this.f49167b = i7;
     }
 
     public q8(Object obj, String str, int i7, int i10) {
-        this.f49139a = i10;
+        this.f49166a = i10;
         this.d = obj;
-        this.f49141c = str;
-        this.f49140b = i7;
+        this.f49168c = str;
+        this.f49167b = i7;
     }
 
     public q8(org.telegram.ui.Components.u20 u20Var, int i7, String str) {
-        this.f49139a = 10;
+        this.f49166a = 10;
         this.d = u20Var;
-        this.f49140b = i7;
-        this.f49141c = str;
+        this.f49167b = i7;
+        this.f49168c = str;
     }
 }

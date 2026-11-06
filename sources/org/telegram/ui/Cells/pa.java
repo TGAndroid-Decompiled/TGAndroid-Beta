@@ -22,7 +22,7 @@ import org.telegram.messenger.t10;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.CheckBoxSquare;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.wo;
 import org.telegram.ui.oh0;
 public class pa extends FrameLayout implements ls, org.telegram.ui.ActionBar.a6 {
@@ -288,11 +288,11 @@ public class pa extends FrameLayout implements ls, org.telegram.ui.ActionBar.a6 
     public final void f(oh0 oh0Var, CharSequence charSequence, boolean z9) {
         String M0;
         Object a22;
-        boolean z10 = oh0Var.f48387e;
+        boolean z10 = oh0Var.f48416e;
         int i7 = this.P;
         if (z10) {
-            int i10 = oh0Var.f48386c;
-            if (i10 <= 0 && oh0Var.f48388f) {
+            int i10 = oh0Var.f48415c;
+            if (i10 <= 0 && oh0Var.f48417f) {
                 M0 = hd.M0(2131748038, null);
             } else if (i10 <= 0) {
                 M0 = hd.M0(2131748039, null);
@@ -300,9 +300,9 @@ public class pa extends FrameLayout implements ls, org.telegram.ui.ActionBar.a6 
                 M0 = hd.M0(2131748043, null);
             }
         } else {
-            boolean z11 = oh0Var.f48385b;
-            int i11 = oh0Var.f48386c;
-            int i12 = oh0Var.f48384a;
+            boolean z11 = oh0Var.f48414b;
+            int i11 = oh0Var.f48415c;
+            int i12 = oh0Var.f48413a;
             int i13 = 2131747855;
             boolean z12 = true;
             if (i11 == 3 && i12 != Integer.MAX_VALUE) {
@@ -338,7 +338,7 @@ public class pa extends FrameLayout implements ls, org.telegram.ui.ActionBar.a6 
             if (M0 == null) {
                 M0 = hd.M0(2131747893, null);
             }
-            if (oh0Var.f48388f) {
+            if (oh0Var.f48417f) {
                 M0 = rf.b.q(M0, ", Auto");
             }
         }
@@ -360,10 +360,10 @@ public class pa extends FrameLayout implements ls, org.telegram.ui.ActionBar.a6 
         }
     }
 
-    public final void g(int i7, r31 r31Var, boolean z9) {
+    public final void g(int i7, w31 w31Var, boolean z9) {
         CharSequence M0;
         CharSequence M02;
-        long j3 = r31Var.f37609x;
+        long j3 = w31Var.f39841x;
         if (j3 > 0) {
             TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(j3));
             String n10 = t10.n(a22);
@@ -519,7 +519,7 @@ public class pa extends FrameLayout implements ls, org.telegram.ui.ActionBar.a6 
             wo woVar = this.f29751e;
             if (woVar != null && woVar.getVisibility() == 0) {
                 accessibilityNodeInfo.setCheckable(true);
-                accessibilityNodeInfo.setChecked(woVar.f40043a.f31258q);
+                accessibilityNodeInfo.setChecked(woVar.f40050a.f31258q);
                 accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             }
         }

@@ -12,7 +12,7 @@ public final class v7 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f == 2) {
+        if (d1Var.f56956f == 2) {
             return true;
         }
         return false;

@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import androidx.recyclerview.widget.RecyclerView;
 public final class fa0 extends v4.s0 {
-    public final int f45575a;
-    public final pa0 f45576b;
+    public final int f45580a;
+    public final pa0 f45581b;
 
     public fa0(pa0 pa0Var, int i7) {
-        this.f45575a = i7;
-        this.f45576b = pa0Var;
+        this.f45580a = i7;
+        this.f45581b = pa0Var;
     }
 
     @Override
     public final void a(RecyclerView recyclerView, int i7) {
         boolean z9;
-        switch (this.f45575a) {
+        switch (this.f45580a) {
             case 0:
                 if (i7 == 1) {
-                    pa0 pa0Var = this.f45576b;
-                    if (pa0Var.f48760t0 && pa0Var.f48761u0) {
+                    pa0 pa0Var = this.f45581b;
+                    if (pa0Var.f48755t0 && pa0Var.f48756u0) {
                         org.telegram.messenger.g0.v1(pa0Var.getParentActivity().getCurrentFocus());
                         return;
                     }
@@ -30,7 +30,7 @@ public final class fa0 extends v4.s0 {
                 } else {
                     z9 = false;
                 }
-                pa0 pa0Var2 = this.f45576b;
+                pa0 pa0Var2 = this.f45581b;
                 pa0Var2.M = z9;
                 if (!z9 && pa0Var2.H != null) {
                     pa0Var2.H = null;
@@ -42,9 +42,9 @@ public final class fa0 extends v4.s0 {
 
     @Override
     public void b(RecyclerView recyclerView, int i7, int i10) {
-        switch (this.f45575a) {
+        switch (this.f45580a) {
             case 1:
-                pa0 pa0Var = this.f45576b;
+                pa0 pa0Var = this.f45581b;
                 pa0Var.K0(false);
                 if (pa0Var.H != null) {
                     pa0Var.J += i10;

@@ -6,7 +6,7 @@ import m.z2;
 import org.telegram.messenger.g0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.mw0;
-import org.telegram.ui.qu0;
+import org.telegram.ui.ru0;
 public final class h extends DataSetObserver {
     public final int f5318a;
     public final Object f5319b;
@@ -36,16 +36,16 @@ public final class h extends DataSetObserver {
                 return;
             default:
                 mw0 mw0Var = (mw0) this.f5319b;
-                ProfileActivity profileActivity = mw0Var.f47867n;
-                int realCount = profileActivity.f41756n0.getRealCount();
+                ProfileActivity profileActivity = mw0Var.f47893n;
+                int realCount = profileActivity.f41781n0.getRealCount();
                 if (profileActivity.A0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.M.E) {
                     profileActivity.A0 = 1;
                 }
                 mw0Var.a(false);
                 mw0Var.b(1.0f);
-                if (profileActivity.f41775q0 != null) {
+                if (profileActivity.f41800q0 != null) {
                     if (profileActivity.S0.x()) {
-                        g0.i3(new qu0(mw0Var, 4), 500L);
+                        g0.i3(new ru0(mw0Var, 4), 500L);
                         return;
                     } else {
                         mw0Var.c();

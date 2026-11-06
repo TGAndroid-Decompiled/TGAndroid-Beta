@@ -17,7 +17,7 @@ public final class z81 extends v4.b0 {
             super.b0(v0Var, a1Var);
         } catch (IndexOutOfBoundsException e10) {
             org.telegram.messenger.a8.g(e10, true);
-            org.telegram.messenger.g0.h3(new qu0(this, 21));
+            org.telegram.messenger.g0.h3(new ru0(this, 21));
         }
     }
 
@@ -43,12 +43,12 @@ public final class z81 extends v4.b0 {
 
     @Override
     public final void v0(RecyclerView recyclerView, v4.a1 a1Var, int i7) {
-        if (this.J.f50666y > 0 && i7 == 1) {
+        if (this.J.f50676y > 0 && i7 == 1) {
             super.v0(recyclerView, a1Var, i7);
             return;
         }
         mi.m mVar = new mi.m(recyclerView.getContext(), 0);
-        mVar.f57096a = i7;
+        mVar.f57121a = i7;
         w0(mVar);
     }
 }

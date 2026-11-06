@@ -168,14 +168,14 @@ public abstract class i1 {
                 }
                 float f52 = f27;
                 if (i11 == 18 || i11 == 19 || i11 == 6 || i11 == 7) {
-                    l10 = xq.f40312i.getInterpolation(l10);
+                    l10 = xq.f40331i.getInterpolation(l10);
                 }
                 float[] fArr3 = fArr2;
                 float f53 = f46;
                 float v = com.google.android.recaptcha.internal.a.v(f53, f16, org.telegram.messenger.g0.L(12.0f), f48);
                 int i13 = (l10 > f53 ? 1 : (l10 == f53 ? 0 : -1));
                 if (i13 < 0) {
-                    f47 = org.telegram.messenger.g0.T1(f19, f47, xq.f40312i.getInterpolation(l10));
+                    f47 = org.telegram.messenger.g0.T1(f19, f47, xq.f40331i.getInterpolation(l10));
                     v = org.telegram.messenger.g0.T1(f20, v, l10);
                     N7 = org.telegram.messenger.g0.T1(org.telegram.messenger.g0.N(8.0f), N7, l10);
                 }
@@ -191,7 +191,7 @@ public abstract class i1 {
                     l12 = org.telegram.messenger.g0.T1(0.0f, l12, l10);
                 }
                 g5Var.setBounds((int) (f47 - N7), (int) (v - N7), (int) (f47 + N7), (int) (v + N7));
-                g5Var.f33862w = (int) (l12 * 255.0f);
+                g5Var.f33793w = (int) (l12 * 255.0f);
                 g5Var.draw(canvas);
                 i11 += 3;
                 i10 += 2;

@@ -20,11 +20,11 @@ public final class e4 {
         org.telegram.ui.Components.r9 r9Var2 = new org.telegram.ui.Components.r9(8);
         this.f29055g = r9Var2;
         float f10 = i7;
-        r9Var.f37649a = f10;
+        r9Var.f37592a = f10;
         float f11 = i10;
-        r9Var.f37650b = f11;
-        r9Var2.f37649a = f10;
-        r9Var2.f37650b = f11;
+        r9Var.f37593b = f11;
+        r9Var2.f37592a = f10;
+        r9Var2.f37593b = f11;
         r9Var.b();
         r9Var2.b();
         int i11 = org.telegram.ui.ActionBar.k6.f27877eh;
@@ -37,7 +37,7 @@ public final class e4 {
     }
 
     public final float b() {
-        float interpolation = xq.f40311g.getInterpolation(this.d);
+        float interpolation = xq.f40330g.getInterpolation(this.d);
         return com.google.android.recaptcha.internal.a.z(1.0f, interpolation, 1.0f, ((this.f29050a * 0.2f) + 0.9f) * interpolation);
     }
 

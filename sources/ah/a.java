@@ -129,8 +129,8 @@ public final class a extends LinearLayout {
         frameLayout.addView(gcVar, ha.c(-1.0f, -1));
         vg.m mVar = new vg.m(context, 1, 2);
         this.f1057b = mVar;
-        vg.f fVar = mVar.f57295b;
-        fVar.f57279z = k6.Tk;
+        vg.f fVar = mVar.f57320b;
+        fVar.f57304z = k6.Tk;
         fVar.A = k6.Uk;
         fVar.b();
         mVar.setStarParticlesView(gcVar);

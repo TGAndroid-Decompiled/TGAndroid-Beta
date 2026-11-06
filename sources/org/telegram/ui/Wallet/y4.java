@@ -16,29 +16,29 @@ import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.p61;
-public final class y4 extends p61 {
+import org.telegram.ui.Components.u61;
+public final class y4 extends u61 {
     public boolean V;
     public final x4 W;
-    public final ArrayList f43336a0;
-    public final m0 f43337b0;
-    public final int f43338c0;
-    public final Rect f43339d0;
-    public final View[] f43340e0;
+    public final ArrayList f43361a0;
+    public final m0 f43362b0;
+    public final int f43363c0;
+    public final Rect f43364d0;
+    public final View[] f43365e0;
 
     public y4(Context context, org.telegram.ui.ActionBar.f6 f6Var, final ArrayList arrayList, final m0 m0Var, int i7, Rect rect, View[] viewArr) {
         super(context, f6Var);
-        this.f43336a0 = arrayList;
-        this.f43337b0 = m0Var;
-        this.f43338c0 = i7;
-        this.f43339d0 = rect;
-        this.f43340e0 = viewArr;
+        this.f43361a0 = arrayList;
+        this.f43362b0 = m0Var;
+        this.f43363c0 = i7;
+        this.f43364d0 = rect;
+        this.f43365e0 = viewArr;
         this.W = new ls() {
             @Override
             public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
                 int i12;
                 ArrayList arrayList2 = arrayList;
-                ArrayList arrayList3 = m0Var.f42732c;
+                ArrayList arrayList3 = m0Var.f42757c;
                 n0[] n0VarArr = n0.O;
                 IdentityHashMap identityHashMap = new IdentityHashMap();
                 HashMap hashMap = new HashMap();
@@ -95,7 +95,7 @@ public final class y4 extends p61 {
         view.setTranslationX(f10);
         if (getMeasuredWidth() > 0) {
             float i7 = Utilities.i(f10 / getMeasuredWidth(), 1.0f, -1.0f);
-            view.setTranslationX(f10 - ((2.0f * i7) * this.f43339d0.left));
+            view.setTranslationX(f10 - ((2.0f * i7) * this.f43364d0.left));
             if (i7 > 0.0f) {
                 measuredWidth = 0.0f;
             } else {
@@ -127,26 +127,26 @@ public final class y4 extends p61 {
                     float L = (-(f12 - w6Var.Q)) * org.telegram.messenger.g0.L(140.0f);
                     w6Var.Q = f12;
                     if (w6Var.O == null) {
-                        r1.g gVar = new r1.g(w6Var, r1.g.f54133o);
+                        r1.g gVar = new r1.g(w6Var, r1.g.f54158o);
                         w6Var.O = gVar;
                         r1.h hVar = new r1.h(0.0f);
                         hVar.a(0.32f);
                         hVar.b(300.0f);
-                        gVar.f54150m = hVar;
+                        gVar.f54175m = hVar;
                         w6Var.O.b(new q6(w6Var, 1));
                     }
                     float z10 = org.telegram.messenger.camera.q.z(w6Var.P, L, org.telegram.messenger.g0.L(1600.0f), -org.telegram.messenger.g0.L(1600.0f));
                     w6Var.P = z10;
                     r1.g gVar2 = w6Var.O;
-                    gVar2.f54140a = z10;
+                    gVar2.f54165a = z10;
                     gVar2.c(0.0f);
                 }
                 if (f11 != 0.0f) {
                     w6Var.U = Math.max(-720.0f, Math.min(720.0f, w6Var.U - (f11 * 300.0f)));
-                    if (!w6Var.W && w6Var.f43278n) {
+                    if (!w6Var.W && w6Var.f43303n) {
                         w6Var.W = true;
                         w6Var.V = 0L;
-                        Choreographer.getInstance().postFrameCallback(w6Var.f43262a0);
+                        Choreographer.getInstance().postFrameCallback(w6Var.f43287a0);
                     }
                 }
             }
@@ -154,8 +154,8 @@ public final class y4 extends p61 {
     }
 
     public final void L() {
-        if (this.f36904b >= this.f43336a0.size() - 2) {
-            m0 m0Var = this.f43337b0;
+        if (this.f38532b >= this.f43361a0.size() - 2) {
+            m0 m0Var = this.f43362b0;
             if (!m0Var.h) {
                 m0Var.h();
             }
@@ -165,7 +165,7 @@ public final class y4 extends p61 {
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
-        Rect rect = this.f43339d0;
+        Rect rect = this.f43364d0;
         canvas.clipRect(rect.left, -getHeight(), getWidth() - rect.right, getHeight() * 2);
         super.dispatchDraw(canvas);
         canvas.restore();
@@ -185,21 +185,21 @@ public final class y4 extends p61 {
     @Override
     public final float getAvailableTranslationX() {
         int measuredWidth = getMeasuredWidth();
-        Rect rect = this.f43339d0;
+        Rect rect = this.f43364d0;
         return Math.max(1, (measuredWidth - rect.left) - rect.right);
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        qs.f(this.f43338c0).c(this.W, qs.f24960b4);
+        qs.f(this.f43363c0).c(this.W, qs.f24960b4);
         L();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        qs.f(this.f43338c0).n(this.W, qs.f24960b4);
+        qs.f(this.f43363c0).n(this.W, qs.f24960b4);
     }
 
     @Override
@@ -226,7 +226,7 @@ public final class y4 extends p61 {
             ((Runnable) childAt.getTag()).run();
         }
         L();
-        cc ccVar = cc.f32515w;
+        cc ccVar = cc.f32519w;
         if (ccVar != null) {
             ccVar.c(0L, false);
         }
@@ -235,7 +235,7 @@ public final class y4 extends p61 {
     @Override
     public final void w(boolean z9) {
         requestLayout();
-        View view = this.f43340e0[0];
+        View view = this.f43365e0[0];
         if (view != null) {
             view.invalidate();
         }

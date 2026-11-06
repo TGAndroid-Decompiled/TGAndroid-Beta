@@ -9,14 +9,14 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class x6 extends FrameLayout implements org.telegram.messenger.ls {
-    public s6 f51758a;
-    public final org.telegram.ui.ActionBar.f6 f51759b;
-    public final TextView f51760c;
+    public s6 f51775a;
+    public final org.telegram.ui.ActionBar.f6 f51776b;
+    public final TextView f51777c;
     public final org.telegram.ui.Components.j6 d;
-    public final org.telegram.ui.Components.l9 f51761e;
-    public boolean f51762f;
+    public final org.telegram.ui.Components.l9 f51778e;
+    public boolean f51779f;
     public boolean h;
-    public org.telegram.ui.Components.wo f51763n;
+    public org.telegram.ui.Components.wo f51780n;
 
     public x6(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
@@ -28,9 +28,9 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.ls {
         int i12;
         float f12;
         float f13;
-        this.f51759b = f6Var;
+        this.f51776b = f6Var;
         TextView textView = new TextView(context);
-        this.f51760c = textView;
+        this.f51777c = textView;
         textView.setSingleLine();
         textView.setLines(1);
         textView.setMaxLines(1);
@@ -91,15 +91,15 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.ls {
         }
         addView(j6Var, c8.ha.d(-2, -1.0f, i14, f12, 0.0f, f13, 0.0f));
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
-        this.f51761e = l9Var;
-        l9Var.getAvatarDrawable().f39905p = 0.8f;
+        this.f51778e = l9Var;
+        l9Var.getAvatarDrawable().f39912p = 0.8f;
         addView(l9Var, c8.ha.d(38, 38.0f, (org.telegram.messenger.hd.f22871a0 ? 5 : 3) | 16, 17.0f, 0.0f, 17.0f, 0.0f));
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         TextView textView;
-        if (i7 == org.telegram.messenger.qs.f25001i4 && (textView = this.f51760c) != null) {
+        if (i7 == org.telegram.messenger.qs.f25001i4 && (textView = this.f51777c) != null) {
             textView.invalidate();
         }
     }
@@ -109,7 +109,7 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.ls {
         float L;
         int i7;
         super.dispatchDraw(canvas);
-        if (this.f51762f) {
+        if (this.f51779f) {
             if (org.telegram.messenger.hd.f22871a0) {
                 L = 0.0f;
             } else {
@@ -128,11 +128,11 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.ls {
     }
 
     public org.telegram.ui.Components.l9 getImageView() {
-        return this.f51761e;
+        return this.f51778e;
     }
 
     public TextView getTextView() {
-        return this.f51760c;
+        return this.f51777c;
     }
 
     public org.telegram.ui.Components.j6 getValueTextView() {
@@ -156,7 +156,7 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.ls {
         String str;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         StringBuilder sb2 = new StringBuilder();
-        sb2.append((Object) this.f51760c.getText());
+        sb2.append((Object) this.f51777c.getText());
         org.telegram.ui.Components.j6 j6Var = this.d;
         if (j6Var != null && j6Var.getVisibility() == 0) {
             str = "\n" + ((Object) j6Var.getText());
@@ -170,10 +170,10 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.ls {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(50.0f) + (this.f51762f ? 1 : 0));
+        setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(50.0f) + (this.f51779f ? 1 : 0));
         int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - org.telegram.messenger.g0.L(34.0f);
         int i11 = measuredWidth / 2;
-        org.telegram.ui.Components.l9 l9Var = this.f51761e;
+        org.telegram.ui.Components.l9 l9Var = this.f51778e;
         if (l9Var.getVisibility() == 0) {
             l9Var.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(38.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(38.0f), 1073741824));
         }
@@ -184,14 +184,14 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.ls {
         }
         int L = org.telegram.messenger.g0.L(12.0f) + j6Var.getMeasuredWidth();
         boolean z9 = org.telegram.messenger.hd.f22871a0;
-        TextView textView = this.f51760c;
+        TextView textView = this.f51777c;
         if (z9) {
             ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).leftMargin = L;
         } else {
             ((ViewGroup.MarginLayoutParams) textView.getLayoutParams()).rightMargin = L;
         }
         textView.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth - L, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-        org.telegram.ui.Components.wo woVar = this.f51763n;
+        org.telegram.ui.Components.wo woVar = this.f51780n;
         if (woVar != null) {
             woVar.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(24.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(24.0f), 1073741824));
         }
@@ -211,7 +211,7 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.ls {
         } else {
             f10 = 1.0f;
         }
-        this.f51760c.setAlpha(f10);
+        this.f51777c.setAlpha(f10);
         org.telegram.ui.Components.j6 j6Var = this.d;
         if (j6Var.getVisibility() == 0) {
             if (!z9 && this.h) {
@@ -222,7 +222,7 @@ public final class x6 extends FrameLayout implements org.telegram.messenger.ls {
     }
 
     public void setTextColor(int i7) {
-        this.f51760c.setTextColor(i7);
+        this.f51777c.setTextColor(i7);
     }
 
     public void setTextValueColor(int i7) {

@@ -28,7 +28,7 @@ public final class j8 extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56931f;
+        int i7 = d1Var.f56956f;
         if ((i7 != 3 || !this.f12241n.W.f12815w1) && i7 != 7 && i7 != 9 && i7 != 10) {
             return false;
         }
@@ -49,7 +49,7 @@ public final class j8 extends rg.b {
         n8 n8Var = this.f12241n;
         ArrayList arrayList = n8Var.L;
         if (arrayList != null && i7 >= 0 && i7 < arrayList.size()) {
-            return ((b8) n8Var.L.get(i7)).f54415a;
+            return ((b8) n8Var.L.get(i7)).f54440a;
         }
         return -1;
     }
@@ -66,8 +66,8 @@ public final class j8 extends rg.b {
         ArrayList arrayList = n8Var.L;
         if (arrayList != null && i7 >= 0 && i7 < arrayList.size()) {
             b8 b8Var2 = (b8) arrayList.get(i7);
-            int i13 = d1Var.f56931f;
-            View view = d1Var.f56927a;
+            int i13 = d1Var.f56956f;
+            View view = d1Var.f56952a;
             boolean z10 = true;
             int i14 = i7 + 1;
             if (i14 < arrayList.size()) {
@@ -75,7 +75,7 @@ public final class j8 extends rg.b {
             } else {
                 b8Var = null;
             }
-            if (b8Var != null && ((i12 = b8Var.f54415a) == i13 || (i12 == 9 && b8Var.f11703q == 1))) {
+            if (b8Var != null && ((i12 = b8Var.f54440a) == i13 || (i12 == 9 && b8Var.f11703q == 1))) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -148,7 +148,7 @@ public final class j8 extends rg.b {
                     z7Var2.f13252b.setText((CharSequence) null);
                 } else if (i13 == 5) {
                     try {
-                        ((av0) view).f31915b.getImageReceiver().P0(false);
+                        ((av0) view).f31927b.getImageReceiver().P0(false);
                     } catch (Exception unused) {
                     }
                 } else if (i13 == 6) {
@@ -223,8 +223,8 @@ public final class j8 extends rg.b {
                 } else if (i7 == 5) {
                     av0 av0Var2 = new av0(context, null, 1, f6Var);
                     av0Var2.d.setText(hd.M0(2131748166, null));
-                    av0Var2.f31917e.setText(hd.M0(2131745808, null));
-                    av0Var2.f31914a.setTranslationY(org.telegram.messenger.g0.L(24.0f));
+                    av0Var2.f31929e.setText(hd.M0(2131745808, null));
+                    av0Var2.f31926a.setTranslationY(org.telegram.messenger.g0.L(24.0f));
                     av0Var = av0Var2;
                 } else if (i7 == 6) {
                     t7Var = new org.telegram.ui.Cells.z8(context, f6Var);

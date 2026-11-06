@@ -10,25 +10,25 @@ import android.text.TextPaint;
 import android.view.View;
 import java.util.HashSet;
 public final class ch0 extends View implements org.telegram.ui.ActionBar.a6 {
-    public final Paint f44809a;
-    public final Paint f44810b;
-    public final org.telegram.ui.Components.w5 f44811c;
+    public final Paint f44830a;
+    public final Paint f44831b;
+    public final org.telegram.ui.Components.w5 f44832c;
     public final org.telegram.ui.Components.i6 d;
-    public int f44812e;
-    public float f44813f;
+    public int f44833e;
+    public float f44834f;
     public ValueAnimator h;
 
     public ch0(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f44809a = paint;
+        this.f44830a = paint;
         Paint paint2 = new Paint(1);
-        this.f44810b = paint2;
+        this.f44831b = paint2;
         org.telegram.ui.Components.xq xqVar = org.telegram.ui.Components.xq.h;
-        this.f44811c = new org.telegram.ui.Components.w5(this, 0L, 320L, xqVar);
+        this.f44832c = new org.telegram.ui.Components.w5(this, 0L, 320L, xqVar);
         org.telegram.ui.Components.i6 i6Var = new org.telegram.ui.Components.i6(false, true, true);
         this.d = i6Var;
-        this.f44813f = 1.0f;
+        this.f44834f = 1.0f;
         paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false));
         paint2.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27921h5, false));
         paint2.setStyle(Paint.Style.STROKE);
@@ -36,27 +36,27 @@ public final class ch0 extends View implements org.telegram.ui.ActionBar.a6 {
         i6Var.setCallback(this);
         i6Var.n(0.35f, 200L, xqVar);
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = i6Var.f34514a;
+        TextPaint textPaint = i6Var.f34475a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(org.telegram.messenger.g0.L(0.24f));
         textPaint.setStrokeJoin(Paint.Join.ROUND);
         i6Var.w(org.telegram.messenger.g0.L(13.3f));
         i6Var.u(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Gi, false));
         i6Var.M = org.telegram.messenger.g0.L(64.0f);
-        i6Var.f34516b = 1;
+        i6Var.f34477b = 1;
     }
 
     public final boolean a(int i7) {
-        int i10 = this.f44812e;
+        int i10 = this.f44833e;
         boolean z9 = false;
         if (i10 != i7) {
             if (i10 < i7) {
                 z9 = true;
             }
-            this.f44812e = i7;
+            this.f44833e = i7;
             String str = "";
             if (i7 > 0) {
-                str = "" + this.f44812e;
+                str = "" + this.f44833e;
             }
             this.d.t(str, true, true);
             if (z9) {
@@ -80,14 +80,14 @@ public final class ch0 extends View implements org.telegram.ui.ActionBar.a6 {
     @Override
     public final void onDraw(Canvas canvas) {
         float f10;
-        if (this.f44812e > 0) {
+        if (this.f44833e > 0) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
-        float e10 = this.f44811c.e(false, f10);
+        float e10 = this.f44832c.e(false, f10);
         canvas.save();
-        float f11 = this.f44813f;
+        float f11 = this.f44834f;
         canvas.scale(f11 * e10, f11 * e10, getWidth() / 2.0f, getHeight() / 2.0f);
         org.telegram.ui.Components.i6 i6Var = this.d;
         float N = org.telegram.messenger.g0.N(12.66f) + i6Var.c();
@@ -95,10 +95,10 @@ public final class ch0 extends View implements org.telegram.ui.ActionBar.a6 {
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set((getWidth() - N) / 2.0f, (getHeight() - N2) / 2.0f, (getWidth() + N) / 2.0f, (getHeight() + N2) / 2.0f);
         int i7 = (int) (e10 * 255.0f);
-        Paint paint = this.f44810b;
+        Paint paint = this.f44831b;
         paint.setAlpha(i7);
         canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(30.0f), paint);
-        Paint paint2 = this.f44809a;
+        Paint paint2 = this.f44830a;
         paint2.setAlpha(i7);
         canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(30.0f), paint2);
         canvas.save();
@@ -112,8 +112,8 @@ public final class ch0 extends View implements org.telegram.ui.ActionBar.a6 {
     @Override
     public final void updateColors() {
         try {
-            this.f44809a.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false));
-            this.f44810b.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27921h5, false));
+            this.f44830a.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false));
+            this.f44831b.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27921h5, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

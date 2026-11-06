@@ -6,24 +6,24 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class hi0 extends org.telegram.ui.ActionBar.j {
-    public final int f46369a;
-    public final Object f46370b;
-    public final org.telegram.ui.ActionBar.f2 f46371c;
+    public final int f46389a;
+    public final Object f46390b;
+    public final org.telegram.ui.ActionBar.f2 f46391c;
 
     public hi0(org.telegram.ui.ActionBar.f2 f2Var, Object obj, int i7) {
-        this.f46369a = i7;
-        this.f46371c = f2Var;
-        this.f46370b = obj;
+        this.f46389a = i7;
+        this.f46391c = f2Var;
+        this.f46390b = obj;
     }
 
     @Override
     public final void b(int i7) {
         int i10;
         int i11;
-        int i12 = this.f46369a;
-        Object obj = this.f46370b;
+        int i12 = this.f46389a;
+        Object obj = this.f46390b;
         int i13 = 0;
-        org.telegram.ui.ActionBar.f2 f2Var = this.f46371c;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f46391c;
         int i14 = 1;
         switch (i12) {
             case 0:
@@ -38,7 +38,7 @@ public final class hi0 extends org.telegram.ui.ActionBar.j {
                     passcodeActivity.D = i14;
                     org.telegram.messenger.g0.i3(new zc0(17, this, (org.telegram.ui.ActionBar.z0) obj), 150L);
                     passcodeActivity.h.setText("");
-                    br[] brVarArr = passcodeActivity.f41302n.f52294f;
+                    br[] brVarArr = passcodeActivity.f41327n.f52311f;
                     int length = brVarArr.length;
                     while (i13 < length) {
                         brVarArr[i13].setText("");
@@ -77,7 +77,7 @@ public final class hi0 extends org.telegram.ui.ActionBar.j {
                             Intent createChooser = Intent.createChooser(intent, org.telegram.messenger.hd.M0(i11, null));
                             createChooser.setFlags(268435456);
                             ((Context) obj).startActivity(createChooser);
-                            l4 l4Var = proxyListActivity.f41848a;
+                            l4 l4Var = proxyListActivity.f41873a;
                             if (l4Var != null) {
                                 l4Var.F();
                                 return;
@@ -109,7 +109,7 @@ public final class hi0 extends org.telegram.ui.ActionBar.j {
                     proxyListActivity.finishFragment();
                     return;
                 } else {
-                    proxyListActivity.f41848a.F();
+                    proxyListActivity.f41873a.F();
                     return;
                 }
         }

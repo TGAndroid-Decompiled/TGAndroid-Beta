@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PhotoViewer;
-public final class nf implements org.telegram.ui.tq0 {
-    public boolean f36390a;
-    public final Object f36391b;
-    public final Object f36392c;
+public final class nf implements org.telegram.ui.uq0 {
+    public boolean f36284a;
+    public final Object f36285b;
+    public final Object f36286c;
     public final org.telegram.messenger.gf d;
-    public final pf f36393e;
+    public final pf f36287e;
 
     public nf(pf pfVar, Object obj, Object obj2, org.telegram.messenger.gf gfVar) {
-        this.f36393e = pfVar;
-        this.f36391b = obj;
-        this.f36392c = obj2;
+        this.f36287e = pfVar;
+        this.f36285b = obj;
+        this.f36286c = obj2;
         this.d = gfVar;
     }
 
     @Override
     public final boolean A() {
-        return this.f36390a;
+        return this.f36284a;
     }
 
     @Override
@@ -29,13 +29,13 @@ public final class nf implements org.telegram.ui.tq0 {
     }
 
     @Override
-    public final org.telegram.ui.vq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
+    public final org.telegram.ui.wq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
         return null;
     }
 
     @Override
     public final void F(boolean z9) {
-        this.f36390a = z9;
+        this.f36284a = z9;
     }
 
     @Override
@@ -138,7 +138,7 @@ public final class nf implements org.telegram.ui.tq0 {
         fi.g gVar;
         uc a12 = PhotoViewer.p1().a1();
         if (a12 != null && (gVar = a12.f12365f) != null) {
-            et etVar = gVar.f35413a;
+            et etVar = gVar.f35416a;
             etVar.requestFocus();
             org.telegram.messenger.g0.K3(etVar);
         }
@@ -171,7 +171,7 @@ public final class nf implements org.telegram.ui.tq0 {
 
     @Override
     public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
-        this.f36393e.B(null, this.f36391b, null, this.f36392c, z9, i10, i11, this.d, this.f36390a);
+        this.f36287e.B(null, this.f36285b, null, this.f36286c, z9, i10, i11, this.d, this.f36284a);
     }
 
     @Override

@@ -3,36 +3,36 @@ package org.telegram.ui.Components;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 public final class tj implements ViewTreeObserver.OnPreDrawListener {
-    public final int f38354a;
-    public final org.telegram.messenger.ij f38355b;
-    public final boolean f38356c;
+    public final int f38345a;
+    public final org.telegram.messenger.ij f38346b;
+    public final boolean f38347c;
     public final ViewGroup d;
-    public final oj0 f38357e;
+    public final oj0 f38348e;
 
     public tj(oj0 oj0Var, ViewGroup viewGroup, org.telegram.messenger.ij ijVar, boolean z9, int i7) {
-        this.f38354a = i7;
-        this.f38357e = oj0Var;
+        this.f38345a = i7;
+        this.f38348e = oj0Var;
         this.d = viewGroup;
-        this.f38355b = ijVar;
-        this.f38356c = z9;
+        this.f38346b = ijVar;
+        this.f38347c = z9;
     }
 
     @Override
     public final boolean onPreDraw() {
-        switch (this.f38354a) {
+        switch (this.f38345a) {
             case 0:
                 org.telegram.ui.Cells.h7 h7Var = (org.telegram.ui.Cells.h7) this.d;
                 h7Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                uj ujVar = (uj) this.f38357e;
+                uj ujVar = (uj) this.f38348e;
                 org.telegram.ui.rz rzVar = ujVar.H;
                 vj vjVar = ujVar.X;
-                boolean v = vjVar.f38951b.R2.v();
-                boolean z9 = this.f38356c;
+                boolean v = vjVar.f38948b.R2.v();
+                boolean z9 = this.f38347c;
                 if (v) {
-                    org.telegram.messenger.ij ijVar = this.f38355b;
+                    org.telegram.messenger.ij ijVar = this.f38346b;
                     int f12 = ijVar.f1();
-                    rzVar.f49569a = org.telegram.messenger.ij.B0(ijVar.f23237k);
-                    rzVar.f49570b = f12;
+                    rzVar.f49590a = org.telegram.messenger.ij.B0(ijVar.f23237k);
+                    rzVar.f49591b = f12;
                     h7Var.b(vjVar.T.containsKey(rzVar), z9);
                     return true;
                 }
@@ -41,16 +41,16 @@ public final class tj implements ViewTreeObserver.OnPreDrawListener {
             case 1:
                 org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) this.d;
                 t2Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                org.telegram.ui.yz yzVar = ((org.telegram.ui.sz) this.f38357e).f49841c;
-                boolean i7 = yzVar.f52392o0.i();
-                boolean z10 = this.f38356c;
+                org.telegram.ui.yz yzVar = ((org.telegram.ui.sz) this.f38348e).f49869c;
+                boolean i7 = yzVar.f52399o0.i();
+                boolean z10 = this.f38347c;
                 if (i7) {
                     org.telegram.ui.rz rzVar2 = yzVar.S;
-                    org.telegram.messenger.ij ijVar2 = this.f38355b;
+                    org.telegram.messenger.ij ijVar2 = this.f38346b;
                     int f13 = ijVar2.f1();
-                    rzVar2.f49569a = org.telegram.messenger.ij.B0(ijVar2.f23237k);
-                    rzVar2.f49570b = f13;
-                    t2Var.c0(yzVar.f52392o0.f(yzVar.S), z10);
+                    rzVar2.f49590a = org.telegram.messenger.ij.B0(ijVar2.f23237k);
+                    rzVar2.f49591b = f13;
+                    t2Var.c0(yzVar.f52399o0.f(yzVar.S), z10);
                     return true;
                 }
                 t2Var.c0(false, z10);
@@ -58,16 +58,16 @@ public final class tj implements ViewTreeObserver.OnPreDrawListener {
             case 2:
                 org.telegram.ui.Cells.h7 h7Var2 = (org.telegram.ui.Cells.h7) this.d;
                 h7Var2.getViewTreeObserver().removeOnPreDrawListener(this);
-                org.telegram.ui.yz yzVar2 = ((org.telegram.ui.tz) this.f38357e).f50161w;
-                boolean i10 = yzVar2.f52392o0.i();
-                boolean z11 = this.f38356c;
+                org.telegram.ui.yz yzVar2 = ((org.telegram.ui.tz) this.f38348e).f50183w;
+                boolean i10 = yzVar2.f52399o0.i();
+                boolean z11 = this.f38347c;
                 if (i10) {
                     org.telegram.ui.rz rzVar3 = yzVar2.S;
-                    org.telegram.messenger.ij ijVar3 = this.f38355b;
+                    org.telegram.messenger.ij ijVar3 = this.f38346b;
                     int f14 = ijVar3.f1();
-                    rzVar3.f49569a = org.telegram.messenger.ij.B0(ijVar3.f23237k);
-                    rzVar3.f49570b = f14;
-                    h7Var2.b(yzVar2.f52392o0.f(yzVar2.S), z11);
+                    rzVar3.f49590a = org.telegram.messenger.ij.B0(ijVar3.f23237k);
+                    rzVar3.f49591b = f14;
+                    h7Var2.b(yzVar2.f52399o0.f(yzVar2.S), z11);
                     return true;
                 }
                 h7Var2.b(false, z11);
@@ -75,16 +75,16 @@ public final class tj implements ViewTreeObserver.OnPreDrawListener {
             case 3:
                 org.telegram.ui.Cells.g7 g7Var = (org.telegram.ui.Cells.g7) this.d;
                 g7Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                org.telegram.ui.yz yzVar3 = ((org.telegram.ui.tz) this.f38357e).f50161w;
-                boolean i11 = yzVar3.f52392o0.i();
-                boolean z12 = this.f38356c;
+                org.telegram.ui.yz yzVar3 = ((org.telegram.ui.tz) this.f38348e).f50183w;
+                boolean i11 = yzVar3.f52399o0.i();
+                boolean z12 = this.f38347c;
                 if (i11) {
                     org.telegram.ui.rz rzVar4 = yzVar3.S;
-                    org.telegram.messenger.ij ijVar4 = this.f38355b;
+                    org.telegram.messenger.ij ijVar4 = this.f38346b;
                     int f15 = ijVar4.f1();
-                    rzVar4.f49569a = org.telegram.messenger.ij.B0(ijVar4.f23237k);
-                    rzVar4.f49570b = f15;
-                    g7Var.e(yzVar3.f52392o0.f(yzVar3.S), z12);
+                    rzVar4.f49590a = org.telegram.messenger.ij.B0(ijVar4.f23237k);
+                    rzVar4.f49591b = f15;
+                    g7Var.e(yzVar3.f52399o0.f(yzVar3.S), z12);
                     return true;
                 }
                 g7Var.e(false, z12);
@@ -92,16 +92,16 @@ public final class tj implements ViewTreeObserver.OnPreDrawListener {
             default:
                 org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) this.d;
                 k7Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                org.telegram.ui.yz yzVar4 = ((org.telegram.ui.vz) this.f38357e).f50852w;
-                boolean i12 = yzVar4.f52392o0.i();
-                boolean z13 = this.f38356c;
+                org.telegram.ui.yz yzVar4 = ((org.telegram.ui.vz) this.f38348e).f50858w;
+                boolean i12 = yzVar4.f52399o0.i();
+                boolean z13 = this.f38347c;
                 if (i12) {
                     org.telegram.ui.rz rzVar5 = yzVar4.S;
-                    org.telegram.messenger.ij ijVar5 = this.f38355b;
+                    org.telegram.messenger.ij ijVar5 = this.f38346b;
                     int f16 = ijVar5.f1();
-                    rzVar5.f49569a = org.telegram.messenger.ij.B0(ijVar5.f23237k);
-                    rzVar5.f49570b = f16;
-                    k7Var.f(yzVar4.f52392o0.f(yzVar4.S), z13);
+                    rzVar5.f49590a = org.telegram.messenger.ij.B0(ijVar5.f23237k);
+                    rzVar5.f49591b = f16;
+                    k7Var.f(yzVar4.f52399o0.f(yzVar4.S), z13);
                     return true;
                 }
                 k7Var.f(false, z13);

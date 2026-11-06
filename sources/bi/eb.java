@@ -60,14 +60,14 @@ public final class eb implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 11:
-                org.telegram.ui.web.x0 x0Var = ((org.telegram.ui.web.j0) this.f3831b).f51166e.Q;
-                if (x0Var != null && (d0Var = x0Var.f51352c) != null) {
+                org.telegram.ui.web.x0 x0Var = ((org.telegram.ui.web.j0) this.f3831b).f51179e.Q;
+                if (x0Var != null && (d0Var = x0Var.f51362c) != null) {
                     d0Var.z();
                     return;
                 }
                 return;
             case 12:
-                org.telegram.ui.web.d0 d0Var2 = ((org.telegram.ui.web.q0) this.f3831b).f51270b.f51281e.Q.f51352c;
+                org.telegram.ui.web.d0 d0Var2 = ((org.telegram.ui.web.q0) this.f3831b).f51280b.f51292e.Q.f51362c;
                 if (d0Var2 != null) {
                     d0Var2.z();
                     return;
@@ -76,20 +76,20 @@ public final class eb implements DialogInterface.OnDismissListener {
             case 13:
                 ug.i0 i0Var = (ug.i0) this.f3831b;
                 i0Var.X1 = false;
-                i0Var.f56501p2.f31450d0 = true;
-                i0Var.f56508w2.invalidate();
-                i0Var.f56501p2.invalidate();
+                i0Var.f56526p2.f31450d0 = true;
+                i0Var.f56533w2.invalidate();
+                i0Var.f56526p2.invalidate();
                 return;
             case 14:
                 ug.f1 f1Var = (ug.f1) this.f3831b;
-                qd qdVar = f1Var.f56454j2;
+                qd qdVar = f1Var.f56479j2;
                 if (qdVar != null) {
                     qdVar.setDialogVisible(false);
                 }
-                f1Var.f56453i2.setPaused(false);
+                f1Var.f56478i2.setPaused(false);
                 return;
             default:
-                ((yh.m) this.f3831b).f59436s = null;
+                ((yh.m) this.f3831b).f59461s = null;
                 return;
         }
     }

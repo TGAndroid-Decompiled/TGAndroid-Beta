@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public final class vq0 implements View.OnLayoutChangeListener {
-    public final xs0 f39651a;
+    public final xs0 f39648a;
 
     public vq0(xs0 xs0Var) {
-        this.f39651a = xs0Var;
+        this.f39648a = xs0Var;
     }
 
     @Override
     public final void onLayoutChange(View view, int i7, int i10, int i11, int i12, int i13, int i14, int i15, int i16) {
-        xs0 xs0Var = this.f39651a;
-        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40381p0;
+        xs0 xs0Var = this.f39648a;
+        org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40400p0;
         if (r0Var == null) {
             return;
         }
-        xs0Var.f40381p0.setTranslationX(((View) r0Var.getParent()).getMeasuredWidth() - xs0Var.f40381p0.getRight());
+        xs0Var.f40400p0.setTranslationX(((View) r0Var.getParent()).getMeasuredWidth() - xs0Var.f40400p0.getRight());
     }
 }

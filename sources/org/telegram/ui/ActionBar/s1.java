@@ -4,7 +4,7 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.iz;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 public final class s1 implements f6 {
     public final int f28480a;
     public final Object f28481b;
@@ -119,7 +119,7 @@ public final class s1 implements f6 {
             case 1:
                 return ((f2) this.f28481b).getThemedColor(i7);
             default:
-                return ((f41) this.f28481b).I(i7);
+                return ((k41) this.f28481b).I(i7);
         }
     }
 

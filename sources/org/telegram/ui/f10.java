@@ -1,9 +1,9 @@
 package org.telegram.ui;
 public final class f10 extends g.p {
-    public final c40 f45456c;
+    public final c40 f45461c;
 
     public f10(c40 c40Var) {
-        this.f45456c = c40Var;
+        this.f45461c = c40Var;
     }
 
     @Override
@@ -13,19 +13,19 @@ public final class f10 extends g.p {
         int i11;
         int i12;
         int i13;
-        if (c40.f44521w5) {
+        if (c40.f44542w5) {
             i10 = 6;
         } else {
             i10 = 2;
         }
-        if (!c40.f44522x5 && i7 >= (i11 = (w30Var = this.f45456c.G1).G) && i7 < (i12 = w30Var.H)) {
+        if (!c40.f44543x5 && i7 >= (i11 = (w30Var = this.f45461c.G1).G) && i7 < (i12 = w30Var.H)) {
             int i14 = i12 - i11;
-            if (i7 == i12 - 1 && (c40.f44521w5 || i14 % 2 != 0)) {
+            if (i7 == i12 - 1 && (c40.f44542w5 || i14 % 2 != 0)) {
                 i13 = 2;
             } else {
                 i13 = 1;
             }
-            if (c40.f44521w5) {
+            if (c40.f44542w5) {
                 if (i14 == 1) {
                     return 6;
                 }

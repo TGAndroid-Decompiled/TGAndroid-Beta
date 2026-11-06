@@ -5,22 +5,22 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class o21 implements RequestDelegate {
-    public final int f48194a;
-    public final SessionsActivity f48195b;
+    public final int f48223a;
+    public final SessionsActivity f48224b;
 
     public o21(SessionsActivity sessionsActivity, int i7) {
-        this.f48194a = i7;
-        this.f48195b = sessionsActivity;
+        this.f48223a = i7;
+        this.f48224b = sessionsActivity;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f48194a) {
+        switch (this.f48223a) {
             case 0:
-                org.telegram.messenger.g0.h3(new qu0(this.f48195b, 19));
+                org.telegram.messenger.g0.h3(new ru0(this.f48224b, 19));
                 return;
             case 1:
-                final SessionsActivity sessionsActivity = this.f48195b;
+                final SessionsActivity sessionsActivity = this.f48224b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -68,7 +68,7 @@ public final class o21 implements RequestDelegate {
                 }
                 return;
             case 2:
-                final SessionsActivity sessionsActivity2 = this.f48195b;
+                final SessionsActivity sessionsActivity2 = this.f48224b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -116,7 +116,7 @@ public final class o21 implements RequestDelegate {
                 }
                 return;
             default:
-                final SessionsActivity sessionsActivity3 = this.f48195b;
+                final SessionsActivity sessionsActivity3 = this.f48224b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {

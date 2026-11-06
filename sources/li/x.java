@@ -31,7 +31,7 @@ import org.telegram.ui.Cells.h9;
 import org.telegram.ui.Cells.i9;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.jm0;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.t31;
 public final class x extends y implements org.telegram.ui.ActionBar.a6, h9, k0, ls, org.telegram.messenger.x5 {
     public final int D;
     public int E;
@@ -349,7 +349,7 @@ public final class x extends y implements org.telegram.ui.ActionBar.a6, h9, k0, 
                 spannableStringBuilder = new SpannableStringBuilder(str);
             }
             if (!TextUtils.isEmpty(str)) {
-                spannableStringBuilder.setSpan(new o31(org.telegram.messenger.g0.o()), 0, str.length(), 18);
+                spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o()), 0, str.length(), 18);
             }
             TextPaint textPaint = this.f18963w;
             textPaint.setTextSize(org.telegram.messenger.g0.L(16.0f));
@@ -445,7 +445,7 @@ public final class x extends y implements org.telegram.ui.ActionBar.a6, h9, k0, 
         super.onAttachedToWindow();
         this.T = true;
         this.f18964x.n(this);
-        this.f18965y.f35028s = this;
+        this.f18965y.f34989s = this;
         n(false);
         int i7 = this.f18960n;
         qs.f(i7).c(this, qs.f24993h2);
@@ -610,7 +610,7 @@ public final class x extends y implements org.telegram.ui.ActionBar.a6, h9, k0, 
                                 f2Var.d();
                             }
                             arrayList.remove(indexOf);
-                            t3Var.f35167f3.O(true);
+                            t3Var.f36781f3.O(true);
                             f2 f2Var2 = t3Var.Q3;
                             if (f2Var2 != null) {
                                 f2Var2.h();
@@ -674,7 +674,7 @@ public final class x extends y implements org.telegram.ui.ActionBar.a6, h9, k0, 
         ij ijVar;
         if (!l() && (ijVar = this.P) != null) {
             jm0 jm0Var = this.f18965y;
-            if (!jm0Var.f35015e) {
+            if (!jm0Var.f34976e) {
                 jm0Var.h(ijVar.f23197b0);
             }
         }

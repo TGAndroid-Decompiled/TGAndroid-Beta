@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.ui.Components.oe0;
 import org.telegram.ui.Components.qe0;
-import org.telegram.ui.Components.s41;
+import org.telegram.ui.Components.x41;
 import org.telegram.ui.u90;
 public final class a2 extends org.telegram.ui.Components.j6 {
     public final int f28866s;
@@ -25,8 +25,8 @@ public final class a2 extends org.telegram.ui.Components.j6 {
                 super.invalidate();
                 oe0 oe0Var = (oe0) this.f28867w;
                 qe0 qe0Var = oe0Var.d;
-                if (oe0Var == qe0Var.f37384i1.getPinnedHeader()) {
-                    qe0Var.f37384i1.invalidate();
+                if (oe0Var == qe0Var.f37274i1.getPinnedHeader()) {
+                    qe0Var.f37274i1.invalidate();
                     return;
                 }
                 return;
@@ -53,7 +53,7 @@ public final class a2 extends org.telegram.ui.Components.j6 {
                 canvas.translate(org.telegram.messenger.g0.L(15.0f), 0.0f);
                 super.onDraw(canvas);
                 canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(11.0f));
-                ((s41) this.f28867w).f37938b.draw(canvas);
+                ((x41) this.f28867w).f40162b.draw(canvas);
                 canvas.restore();
                 return;
             case 3:
@@ -77,7 +77,7 @@ public final class a2 extends org.telegram.ui.Components.j6 {
                 if (size <= 0) {
                     size = org.telegram.messenger.g0.f22537q.x - org.telegram.messenger.g0.L(20.0f);
                 }
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - u90Var.d.getPaint().measureText(u90Var.d.getText().toString())) - u90Var.f50331f.getPaint().measureText(u90Var.f50331f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(24.0f), 1073741824));
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - u90Var.d.getPaint().measureText(u90Var.d.getText().toString())) - u90Var.f50353f.getPaint().measureText(u90Var.f50353f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(24.0f), 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -115,10 +115,10 @@ public final class a2 extends org.telegram.ui.Components.j6 {
         this.f28867w = frameLayout;
     }
 
-    public a2(s41 s41Var, Context context) {
+    public a2(x41 x41Var, Context context) {
         super(context, true, true, true);
         this.f28866s = 2;
-        this.f28867w = s41Var;
+        this.f28867w = x41Var;
     }
 
     public a2(u90 u90Var, Context context) {

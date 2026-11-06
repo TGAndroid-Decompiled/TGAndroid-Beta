@@ -38,7 +38,7 @@ public final class t7 extends FrameLayout {
         float T1 = org.telegram.messenger.g0.T1(max, 0.0f, w5Var.d(z9));
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(w7Var.f28645t0, T1, getWidth() - w7Var.f28645t0, org.telegram.messenger.g0.L(14.0f) + getHeight());
-        float L = (1.0f - w5Var.f39849c) * org.telegram.messenger.g0.L(14.0f);
+        float L = (1.0f - w5Var.f39857c) * org.telegram.messenger.g0.L(14.0f);
         canvas.drawRoundRect(rectF, L, L, paint);
         w7Var.n1.setTranslationY(Math.max(org.telegram.messenger.g0.L(8.0f) + org.telegram.messenger.g0.f22531m, org.telegram.messenger.g0.L(14.0f) + T1));
         canvas.save();

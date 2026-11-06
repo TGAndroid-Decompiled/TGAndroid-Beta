@@ -2,25 +2,25 @@ package org.telegram.ui;
 
 import android.animation.ValueAnimator;
 public final class wz0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f51674a;
-    public final q11 f51675b;
-    public final boolean f51676c;
+    public final int f51691a;
+    public final q11 f51692b;
+    public final boolean f51693c;
 
     public wz0(q11 q11Var, boolean z9, int i7) {
-        this.f51674a = i7;
-        this.f51675b = q11Var;
-        this.f51676c = z9;
+        this.f51691a = i7;
+        this.f51692b = q11Var;
+        this.f51693c = z9;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f51674a) {
+        switch (this.f51691a) {
             case 0:
-                q11 q11Var = this.f51675b;
-                o01 o01Var = q11Var.f49008h0;
-                e01 e01Var = q11Var.f49010i0;
+                q11 q11Var = this.f51692b;
+                o01 o01Var = q11Var.f49035h0;
+                e01 e01Var = q11Var.f49037i0;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f51676c) {
+                if (!this.f51693c) {
                     floatValue = 1.0f - floatValue;
                 }
                 float f10 = 1.0f - floatValue;
@@ -28,15 +28,15 @@ public final class wz0 implements ValueAnimator.AnimatorUpdateListener {
                 o01Var.setTranslationY(org.telegram.messenger.g0.L(8.0f) * floatValue);
                 e01Var.setAlpha(floatValue);
                 e01Var.setTranslationY(org.telegram.messenger.g0.L(8.0f) * f10);
-                q11Var.f49012j0.setAlpha(e01Var.getAlpha() * floatValue);
+                q11Var.f49039j0.setAlpha(e01Var.getAlpha() * floatValue);
                 return;
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                if (!this.f51676c) {
+                if (!this.f51693c) {
                     floatValue2 = 1.0f - floatValue2;
                 }
-                q11 q11Var2 = this.f51675b;
-                q11Var2.f49012j0.setAlpha(q11Var2.f49010i0.getAlpha() * floatValue2);
+                q11 q11Var2 = this.f51692b;
+                q11Var2.f49039j0.setAlpha(q11Var2.f49037i0.getAlpha() * floatValue2);
                 return;
         }
     }

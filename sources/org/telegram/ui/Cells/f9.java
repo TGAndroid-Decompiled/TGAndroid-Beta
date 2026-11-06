@@ -7,7 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.ij;
-import org.telegram.ui.Components.e21;
+import org.telegram.ui.Components.j21;
 import org.telegram.ui.Components.ys;
 import org.telegram.ui.qy0;
 public final class f9 implements ActionMode.Callback {
@@ -78,8 +78,8 @@ public final class f9 implements ActionMode.Callback {
                             org.telegram.ui.s sVar = v9Var.f30662k0;
                             CharSequence r11 = v9Var.r();
                             f fVar2 = new f(this, 9);
-                            org.telegram.ui.g4 g4Var = sVar.f49587a;
-                            e21.U0(g4Var.L, g4Var.M, (String) this.f29129b, language, r11, null, fVar2);
+                            org.telegram.ui.g4 g4Var = sVar.f49608a;
+                            j21.U0(g4Var.L, g4Var.M, (String) this.f29129b, language, r11, null, fVar2);
                         }
                         v9Var.u();
                     } else if (itemId == 2131296502) {

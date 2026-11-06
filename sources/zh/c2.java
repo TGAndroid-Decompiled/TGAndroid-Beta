@@ -13,30 +13,30 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.cj0;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.jl0;
 import org.telegram.ui.ql0;
 public final class c2 implements a20, cj0 {
-    public final org.telegram.ui.ActionBar.v2 f60128a;
-    public final Object f60129b;
+    public final org.telegram.ui.ActionBar.v2 f60153a;
+    public final Object f60154b;
 
     public c2(org.telegram.ui.ActionBar.v2 v2Var, Object obj) {
-        this.f60128a = v2Var;
-        this.f60129b = obj;
+        this.f60153a = v2Var;
+        this.f60154b = obj;
     }
 
     @Override
     public void f(float f10, float f11, int i7, View view) {
         TL_stars.SavedStarGift savedStarGift;
         cg.b bVar;
-        l3 l3Var = (l3) this.f60128a;
-        k3 k3Var = (k3) this.f60129b;
-        r31 G = l3Var.f60315a2.G(i7 - 1);
+        l3 l3Var = (l3) this.f60153a;
+        k3 k3Var = (k3) this.f60154b;
+        w31 G = l3Var.f60340a2.G(i7 - 1);
         if (G != null) {
             Object obj = G.G;
             if (obj instanceof TL_stars.StarGift) {
                 TL_stars.StarGift starGift = (TL_stars.StarGift) obj;
-                boolean z9 = G.f37604r;
+                boolean z9 = G.f39836r;
                 if (!TextUtils.isEmpty(starGift.gift_address) && l3Var.Z1) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, l3Var.getContext(), l3Var.I0);
                     String M0 = hd.M0(2131749791, null);
@@ -58,7 +58,7 @@ public final class c2 implements a20, cj0 {
                     ea.x(l3Var.f28612a, bVar2).H(tL_starGiftUnique, e10, null, true, new jl0(l3Var, u1Var2, bVar2, tL_starGiftUnique, e10));
                 } else {
                     if (!z9) {
-                        ArrayList arrayList = k3Var.f60299b.f4915l;
+                        ArrayList arrayList = k3Var.f60324b.f4915l;
                         int size = arrayList.size();
                         int i10 = 0;
                         while (true) {
@@ -100,19 +100,19 @@ public final class c2 implements a20, cj0 {
     public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
         boolean z9;
         boolean z10;
-        e2 e2Var = (e2) this.f60128a;
-        fi.d dVar = (fi.d) this.f60129b;
+        e2 e2Var = (e2) this.f60153a;
+        fi.d dVar = (fi.d) this.f60154b;
         View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        long j3 = ((TL_stars.SavedStarGift) ((r31) obj).G).gift.f27181id;
-        if (e2Var.f60181i1 == j3) {
-            e2Var.f60181i1 = 0L;
+        long j3 = ((TL_stars.SavedStarGift) ((w31) obj).G).gift.f27181id;
+        if (e2Var.f60206i1 == j3) {
+            e2Var.f60206i1 = 0L;
         } else {
-            e2Var.f60181i1 = j3;
+            e2Var.f60206i1 = j3;
         }
-        if (e2Var.f60181i1 != 0) {
+        if (e2Var.f60206i1 != 0) {
             z9 = true;
         } else {
             z9 = false;
@@ -124,7 +124,7 @@ public final class c2 implements a20, cj0 {
                 View childAt = viewGroup.getChildAt(i7);
                 if (childAt instanceof ql0) {
                     ql0 ql0Var = (ql0) childAt;
-                    if (e2Var.f60181i1 == ql0Var.getGiftId()) {
+                    if (e2Var.f60206i1 == ql0Var.getGiftId()) {
                         z10 = true;
                     } else {
                         z10 = false;

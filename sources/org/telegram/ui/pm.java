@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class pm extends TextView implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.Cells.y f48854a;
-    public int f48855b;
-    public boolean f48856c;
+    public final org.telegram.ui.Cells.y f48849a;
+    public int f48850b;
+    public boolean f48851c;
     public final an d;
 
     public pm(an anVar, Activity activity) {
@@ -21,9 +21,9 @@ public final class pm extends TextView implements org.telegram.ui.ActionBar.a6 {
         setEllipsize(TextUtils.TruncateAt.END);
         org.telegram.ui.ActionBar.r6.V(this, org.telegram.ui.ActionBar.k6.Gi, anVar.getResourceProvider());
         int themedColor = anVar.getThemedColor(org.telegram.ui.ActionBar.k6.Ci);
-        this.f48855b = themedColor;
+        this.f48850b = themedColor;
         org.telegram.ui.Cells.y e10 = org.telegram.ui.ActionBar.z5.e(themedColor, 16.0f);
-        this.f48854a = e10;
+        this.f48849a = e10;
         setBackground(e10);
         setTextSize(1, 14.0f);
         setTypeface(org.telegram.messenger.g0.o());
@@ -40,16 +40,16 @@ public final class pm extends TextView implements org.telegram.ui.ActionBar.a6 {
     public final void updateColors() {
         try {
             int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.k6.Ci);
-            if (themedColor == this.f48855b && this.f48856c == org.telegram.ui.ActionBar.k6.I.q()) {
+            if (themedColor == this.f48850b && this.f48851c == org.telegram.ui.ActionBar.k6.I.q()) {
                 return;
             }
             Drawable background = getBackground();
-            org.telegram.ui.Cells.y yVar = this.f48854a;
+            org.telegram.ui.Cells.y yVar = this.f48849a;
             if (background == yVar) {
-                this.f48856c = org.telegram.ui.ActionBar.k6.I.q();
+                this.f48851c = org.telegram.ui.ActionBar.k6.I.q();
                 org.telegram.ui.ActionBar.k6.H1(yVar, themedColor, false);
                 org.telegram.ui.ActionBar.k6.H1(yVar, org.telegram.ui.ActionBar.z5.b(themedColor), true);
-                this.f48855b = themedColor;
+                this.f48850b = themedColor;
                 invalidate();
             }
         } catch (Exception e10) {

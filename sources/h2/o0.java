@@ -103,9 +103,9 @@ public final class o0 implements Runnable {
                 c20 c20Var = (c20) this.f14130e;
                 boolean z15 = this.f14128b;
                 boolean z16 = this.f14129c;
-                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) n0Var.f42771e;
-                r0 r0Var = n0Var.f42770c;
-                if (r0Var != null && TextUtils.equals(r0Var.f43059c, tL_walletState.address) && n0Var.f42770c.f(tL_walletState.public_key)) {
+                TL_wallet.TL_walletState tL_walletState = (TL_wallet.TL_walletState) n0Var.f42796e;
+                r0 r0Var = n0Var.f42795c;
+                if (r0Var != null && TextUtils.equals(r0Var.f43084c, tL_walletState.address) && n0Var.f42795c.f(tL_walletState.public_key)) {
                     c20Var.a(null);
                     return;
                 } else {
@@ -118,10 +118,10 @@ public final class o0 implements Runnable {
                 boolean z17 = this.f14128b;
                 boolean z18 = this.f14129c;
                 org.telegram.ui.Wallet.n0.H("getSecretPhrase: ready!");
-                TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) n0Var2.f42771e;
-                if (n0Var2.f42770c.f(tL_walletState2.public_key)) {
+                TL_wallet.TL_walletState tL_walletState2 = (TL_wallet.TL_walletState) n0Var2.f42796e;
+                if (n0Var2.f42795c.f(tL_walletState2.public_key)) {
                     org.telegram.ui.Wallet.n0.H("getSecretPhrase: device has secured phrase, requesting");
-                    r0 r0Var2 = n0Var2.f42770c;
+                    r0 r0Var2 = n0Var2.f42795c;
                     byte[] bArr = tL_walletState2.public_key;
                     org.telegram.ui.Wallet.k kVar = new org.telegram.ui.Wallet.k(v10Var, 1);
                     if (bArr == null) {
@@ -138,7 +138,7 @@ public final class o0 implements Runnable {
                     return;
                 } else {
                     org.telegram.ui.Wallet.n0.H("getSecretPhrase: exportSecretPhrase through password request");
-                    i3.a(n0Var2.f42768a, new ai.c0(9), null, null, null, new di.b0(4, n0Var2, v10Var), z17, z18, new v0((Object) null, 2));
+                    i3.a(n0Var2.f42793a, new ai.c0(9), null, null, null, new di.b0(4, n0Var2, v10Var), z17, z18, new v0((Object) null, 2));
                     return;
                 }
         }

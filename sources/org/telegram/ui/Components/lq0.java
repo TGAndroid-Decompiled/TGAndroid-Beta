@@ -14,7 +14,7 @@ public final class lq0 extends lz {
 
     @Override
     public final int getColumnsCount() {
-        return this.V.f40379o1[xs0.z0(this.U.E) ? 1 : 0];
+        return this.V.f40398o1[xs0.z0(this.U.E) ? 1 : 0];
     }
 
     @Override

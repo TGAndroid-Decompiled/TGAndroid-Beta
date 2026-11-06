@@ -36,8 +36,8 @@ public final class y3 implements View.OnLayoutChangeListener {
                 }
                 return;
             default:
-                ((mm0) this.f28775b).setProgress(org.telegram.ui.h5.f46198j1);
-                ((mm0) this.f28776c).setProgress(org.telegram.ui.h5.f46199k1);
+                ((mm0) this.f28775b).setProgress(org.telegram.ui.h5.f46218j1);
+                ((mm0) this.f28776c).setProgress(org.telegram.ui.h5.f46219k1);
                 ((mm0) this.d).setProgress(org.telegram.ui.h5.l1);
                 return;
         }

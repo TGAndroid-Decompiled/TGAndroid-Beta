@@ -6,18 +6,18 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class a30 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.Components.r60 {
-    public final h30 f43531a;
+    public final h30 f43556a;
 
     public a30(h30 h30Var) {
-        this.f43531a = h30Var;
+        this.f43556a = h30Var;
     }
 
     @Override
     public void a(TLRPC.InputPeer inputPeer, boolean z9, boolean z10, boolean z11) {
         TLObject M0;
-        c40 c40Var = this.f43531a.f46186b;
+        c40 c40Var = this.f43556a.f46206b;
         org.telegram.messenger.r3 r3Var = c40Var.R2;
-        org.telegram.messenger.c cVar = c40Var.f44565k1;
+        org.telegram.messenger.c cVar = c40Var.f44586k1;
         if (r3Var != null) {
             boolean z12 = inputPeer instanceof TLRPC.TL_inputPeerUser;
             if (z12) {
@@ -32,21 +32,21 @@ public final class a30 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
                 c40Var.n1().k(0L, 37, tLObject, c40Var.Q2, null, null);
                 if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
                     TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
-                    c40Var.f44598r2 = tL_peerChannel;
+                    c40Var.f44619r2 = tL_peerChannel;
                     tL_peerChannel.channel_id = inputPeer.channel_id;
                 } else if (z12) {
                     TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                    c40Var.f44598r2 = tL_peerUser;
+                    c40Var.f44619r2 = tL_peerUser;
                     tL_peerUser.user_id = inputPeer.user_id;
                 } else if (inputPeer instanceof TLRPC.TL_inputPeerChat) {
                     TLRPC.TL_peerChat tL_peerChat = new TLRPC.TL_peerChat();
-                    c40Var.f44598r2 = tL_peerChat;
+                    c40Var.f44619r2 = tL_peerChat;
                     tL_peerChat.chat_id = inputPeer.chat_id;
                 }
                 c40Var.P2 = inputPeer;
                 TLRPC.ChatFull N0 = org.telegram.messenger.qp.s1(cVar.f21723a).N0(c40Var.l1());
                 if (N0 != null) {
-                    N0.groupcall_default_join_as = c40Var.f44598r2;
+                    N0.groupcall_default_join_as = c40Var.f44619r2;
                     if (N0 instanceof TLRPC.TL_chatFull) {
                         N0.flags |= 32768;
                     } else {
@@ -59,19 +59,19 @@ public final class a30 implements org.telegram.ui.ActionBar.r1, org.telegram.ui.
                 ConnectionsManager.getInstance(cVar.f21723a).sendRequest(savedefaultgroupcalljoinas, new di.u5(9));
                 c40Var.O1();
             } else if (VoIPService.getSharedInstance() != null && z9) {
-                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) c40Var.R2.d.f(org.telegram.messenger.ij.C1(c40Var.f44598r2));
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) c40Var.R2.d.f(org.telegram.messenger.ij.C1(c40Var.f44619r2));
                 VoIPService.getSharedInstance().setGroupCallPeer(inputPeer);
-                c40Var.f44603s2 = tLObject;
+                c40Var.f44624s2 = tLObject;
             }
         }
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        h30 h30Var = this.f43531a;
-        c40 c40Var = h30Var.f46186b;
+        h30 h30Var = this.f43556a;
+        c40 c40Var = h30Var.f46206b;
         org.telegram.messenger.r3 r3Var = c40Var.R2;
-        org.telegram.messenger.c cVar = c40Var.f44565k1;
+        org.telegram.messenger.c cVar = c40Var.f44586k1;
         if (r3Var.j()) {
             int i10 = cVar.f21723a;
             TLRPC.ChatFull N0 = org.telegram.messenger.qp.s1(i10).N0(c40Var.l1());

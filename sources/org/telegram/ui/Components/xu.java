@@ -6,7 +6,7 @@ public final class xu extends wu {
     public final yu O;
 
     public xu(yu yuVar, Context context, int i7) {
-        super(yuVar.f40696s, context, i7);
+        super(yuVar.f40715s, context, i7);
         this.O = yuVar;
     }
 

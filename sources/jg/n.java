@@ -147,7 +147,7 @@ public class n extends oj0 implements p2 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56931f;
+        int i7 = d1Var.f56956f;
         if (i7 != 1 && i7 != 5 && i7 != 3 && i7 != 8 && i7 != 7 && i7 != 10 && i7 != 11 && i7 != 13 && i7 != 15 && i7 != 16 && i7 != 18 && i7 != 19 && i7 != 20) {
             return true;
         }
@@ -357,7 +357,7 @@ public class n extends oj0 implements p2 {
 
     @Override
     public final int d(int i7) {
-        return ((l) this.M.get(i7)).f54415a;
+        return ((l) this.M.get(i7)).f54440a;
     }
 
     @Override
@@ -537,7 +537,7 @@ public class n extends oj0 implements p2 {
                 r22 = new org.telegram.ui.Cells.y6(context, (org.telegram.ui.Cells.f1) null);
                 Drawable Y0 = k6.Y0(context, 2131231229, k6.f27812b7);
                 xp xpVar = new xp(new ColorDrawable(k6.x0(null, k6.f27792a7, false)), Y0);
-                xpVar.f40305x = true;
+                xpVar.f40324x = true;
                 r22.setBackgroundDrawable(xpVar);
                 E(r22, Y0);
                 break;
@@ -557,7 +557,7 @@ public class n extends oj0 implements p2 {
                 r22 = new j(this, context);
                 Drawable Y02 = k6.Y0(context, 2131231229, k6.f27812b7);
                 xp xpVar2 = new xp(new ColorDrawable(k6.x0(null, k6.f27792a7, false)), Y02);
-                xpVar2.f40305x = true;
+                xpVar2.f40324x = true;
                 r22.setBackgroundDrawable(xpVar2);
                 E(r22, Y02);
                 break;
@@ -615,7 +615,7 @@ public class n extends oj0 implements p2 {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         if (view instanceof t2) {
             t2 t2Var = (t2) view;
             t2Var.a0(this.H, false);

@@ -6,22 +6,22 @@ import android.graphics.Paint;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class dl0 extends FrameLayout {
-    public final Paint f45067a;
-    public float f45068b;
-    public r1.g f45069c;
+    public final Paint f45092a;
+    public float f45093b;
+    public r1.g f45094c;
     public final hl0 d;
 
     public dl0(hl0 hl0Var, Context context) {
         super(context);
         this.d = hl0Var;
-        this.f45067a = new Paint(1);
+        this.f45092a = new Paint(1);
         setWillNotDraw(false);
     }
 
     public final void a(boolean z9, boolean z10) {
         float f10;
         float f11;
-        r1.g gVar = this.f45069c;
+        r1.g gVar = this.f45094c;
         if (gVar != null) {
             gVar.d();
         }
@@ -31,7 +31,7 @@ public final class dl0 extends FrameLayout {
             f10 = 0.0f;
         }
         if (z10) {
-            float f12 = this.f45068b;
+            float f12 = this.f45093b;
             if (f12 == f10) {
                 return;
             }
@@ -44,14 +44,14 @@ public final class dl0 extends FrameLayout {
             }
             hVar.b(f11);
             hVar.a(1.0f);
-            gVar2.f54150m = hVar;
-            this.f45069c = gVar2;
+            gVar2.f54175m = hVar;
+            this.f45094c = gVar2;
             gVar2.b(new ab0(this, 1));
-            this.f45069c.a(new l9(this, 1));
-            this.f45069c.h();
+            this.f45094c.a(new l9(this, 1));
+            this.f45094c.h();
             return;
         }
-        this.f45068b = f10;
+        this.f45093b = f10;
         TextView textView = this.d.U;
         if (textView != null) {
             textView.setAlpha((f10 * 0.2f) + 0.8f);
@@ -67,13 +67,13 @@ public final class dl0 extends FrameLayout {
         hl0 hl0Var = this.d;
         canvas.drawColor(hl0Var.getThemedColor(i7));
         int themedColor = hl0Var.getThemedColor(org.telegram.ui.ActionBar.k6.Si);
-        Paint paint = this.f45067a;
+        Paint paint = this.f45092a;
         paint.setColor(themedColor);
         if (org.telegram.messenger.hd.f22871a0) {
             L = getWidth() - org.telegram.messenger.g0.L(28.0f);
         } else {
             L = org.telegram.messenger.g0.L(28.0f);
         }
-        canvas.drawCircle(L, -org.telegram.messenger.g0.L(28.0f), Math.max(getWidth(), getHeight()) * this.f45068b, paint);
+        canvas.drawCircle(L, -org.telegram.messenger.g0.L(28.0f), Math.max(getWidth(), getHeight()) * this.f45093b, paint);
     }
 }

@@ -89,7 +89,7 @@ public final class z8 implements GestureDetector.OnGestureListener {
                 p9Var.f9541e0 = f13 + f11;
             }
             d9 d9Var = p9Var.f9569s;
-            cc ccVar2 = cc.f32515w;
+            cc ccVar2 = cc.f32519w;
             if (ccVar2 != null && ccVar2.h == d9Var) {
                 ccVar2.b();
             }
@@ -109,7 +109,7 @@ public final class z8 implements GestureDetector.OnGestureListener {
                 f12 = 0.3f;
                 p9Var.W -= f11 * f12;
                 d9 d9Var2 = p9Var.f9569s;
-                ccVar = cc.f32515w;
+                ccVar = cc.f32519w;
                 if (ccVar != null && ccVar.h == d9Var2) {
                     ccVar.b();
                 }
@@ -120,7 +120,7 @@ public final class z8 implements GestureDetector.OnGestureListener {
         f12 = 0.6f;
         p9Var.W -= f11 * f12;
         d9 d9Var22 = p9Var.f9569s;
-        ccVar = cc.f32515w;
+        ccVar = cc.f32519w;
         if (ccVar != null) {
             ccVar.b();
         }

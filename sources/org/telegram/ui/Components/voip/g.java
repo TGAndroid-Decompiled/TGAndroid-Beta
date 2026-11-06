@@ -12,7 +12,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.c40;
 import org.telegram.ui.oe;
 public abstract class g {
-    public static boolean f39161a;
+    public static boolean f39158a;
 
     public static void a(int i7, List list, boolean z9) {
         boolean z10;
@@ -51,7 +51,7 @@ public abstract class g {
             int videoState = sharedInstance.getVideoState(false);
             if (videoState == 2) {
                 arrayList.add(new f(new ti.l(2, 2131232541, hd.M0(2131743238, null), true), 90, 1));
-            } else if (f39161a || videoState == 1) {
+            } else if (f39158a || videoState == 1) {
                 String M0 = hd.M0(2131743239, null);
                 if (org.telegram.messenger.t0.f25555b.checkSelfPermission("android.permission.CAMERA") != 0 || (z9 && ((r3Var = sharedInstance.groupCall) == null || !r3Var.c()))) {
                     z10 = false;
@@ -66,16 +66,16 @@ public abstract class g {
                 i10 = 2131743413;
             }
             arrayList.add(new f(new ti.l(3, 2131232129, hd.M0(i10, null), true), 80, 2));
-            Collections.sort(arrayList, new oe(20));
+            Collections.sort(arrayList, new oe(21));
             while (arrayList.size() > i7) {
                 a8.p0.z(1, arrayList);
             }
-            Collections.sort(arrayList, new oe(21));
+            Collections.sort(arrayList, new oe(22));
             int size = arrayList.size();
             while (i12 < size) {
                 Object obj = arrayList.get(i12);
                 i12++;
-                list.add(((f) obj).f39130a);
+                list.add(((f) obj).f39127a);
             }
         }
     }

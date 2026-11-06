@@ -4,23 +4,23 @@ import android.content.DialogInterface;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.ui.LaunchActivity;
 public final class o1 implements DialogInterface.OnCancelListener {
-    public final int f36559a = 1;
-    public final int f36560b;
-    public final int[] f36561c;
+    public final int f36454a = 1;
+    public final int f36455b;
+    public final int[] f36456c;
     public final Runnable d;
 
     public o1(int i7, int[] iArr, org.telegram.ui.q10 q10Var) {
-        this.f36560b = i7;
-        this.f36561c = iArr;
+        this.f36455b = i7;
+        this.f36456c = iArr;
         this.d = q10Var;
     }
 
     @Override
     public final void onCancel(DialogInterface dialogInterface) {
-        int i7 = this.f36559a;
+        int i7 = this.f36454a;
         Runnable runnable = this.d;
-        int[] iArr = this.f36561c;
-        int i10 = this.f36560b;
+        int[] iArr = this.f36456c;
+        int i10 = this.f36455b;
         switch (i7) {
             case 0:
                 for (int i11 : iArr) {
@@ -45,8 +45,8 @@ public final class o1 implements DialogInterface.OnCancelListener {
     }
 
     public o1(int[] iArr, int i7, Runnable runnable) {
-        this.f36561c = iArr;
-        this.f36560b = i7;
+        this.f36456c = iArr;
+        this.f36455b = i7;
         this.d = runnable;
     }
 }

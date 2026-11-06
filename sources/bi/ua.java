@@ -9,7 +9,7 @@ import org.telegram.messenger.yr;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PrivacyControlActivity;
 import org.telegram.ui.an;
-import org.telegram.ui.gs0;
+import org.telegram.ui.hs0;
 import org.telegram.ui.oq;
 public final class ua implements Runnable {
     public final int f4835a;
@@ -36,7 +36,7 @@ public final class ua implements Runnable {
                     int i7 = this.f4836b;
                     long j10 = -j3;
                     if (org.telegram.messenger.t3.V(qp.s1(i7).M0(Long.valueOf(j10)))) {
-                        T.presentFragment(new gs0(j10));
+                        T.presentFragment(new hs0(j10));
                         return;
                     }
                     Bundle bundle = new Bundle();

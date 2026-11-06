@@ -21,10 +21,10 @@ import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.ActionBar.y1;
 import org.telegram.ui.Cells.g6;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.v4;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w8;
 public final class f extends f2 implements ls {
     public ri.c f15522a;
@@ -32,20 +32,20 @@ public final class f extends f2 implements ls {
     public TLRPC.Chat f15524c;
     public TLRPC.User d;
     public FrameLayout f15525e;
-    public k41 f15526f;
+    public p41 f15526f;
     public e h;
     public ArrayList f15527n;
     public ab.b0 f15528r;
 
-    public static void Z(f fVar, r31 r31Var) {
+    public static void Z(f fVar, w31 w31Var) {
         f fVar2;
-        if (r31Var.d == 1) {
+        if (w31Var.d == 1) {
             fVar2 = fVar;
             v4.O(fVar.getParentActivity(), fVar2, hd.M0(2131751906, null), null, hd.M0(2131751907, null), null, Integer.MAX_VALUE, hd.M0(2131751753, null), fVar.resourceProvider, new b(fVar));
         } else {
             fVar2 = fVar;
         }
-        Object obj = r31Var.G;
+        Object obj = w31Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             fVar2.getMessagesController().M0(Long.valueOf(-fVar2.f15523b));
@@ -124,14 +124,14 @@ public final class f extends f2 implements ls {
                 this.h.f15516a.e(chat, new w8(this.f15524c));
             }
         }
-        k41 k41Var = new k41(this, new a(this, 0), new b(this), new x3(this, 6));
-        this.f15526f = k41Var;
-        k41Var.setClipToPadding(false);
-        k41 k41Var2 = this.f15526f;
-        f41 f41Var = k41Var2.f35167f3;
-        f41Var.f33473r = false;
-        f41Var.f33474s = true;
-        k41Var2.r1();
+        p41 p41Var = new p41(this, new a(this, 0), new b(this), new x3(this, 6));
+        this.f15526f = p41Var;
+        p41Var.setClipToPadding(false);
+        p41 p41Var2 = this.f15526f;
+        k41 k41Var = p41Var2.f36781f3;
+        k41Var.f35132r = false;
+        k41Var.f35133s = true;
+        p41Var2.r1();
         this.f15525e.addView(this.f15526f, ha.c(-1.0f, -1));
         this.f15525e.addView(this.actionBar, ha.e(-1, -2, 48));
         FrameLayout frameLayout2 = this.f15525e;
@@ -157,7 +157,7 @@ public final class f extends f2 implements ls {
                 g6Var.setSubLabel(hd.G(i11, "Chats", new Object[0]));
                 return;
             }
-            this.f15526f.f35167f3.O(false);
+            this.f15526f.f36781f3.O(false);
         }
     }
 

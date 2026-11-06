@@ -15,26 +15,26 @@ import org.telegram.ui.Components.w5;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.c61;
 public final class g1 extends FrameLayout implements a6 {
-    public final c61 f60204a;
-    public int f60205b;
-    public final w5 f60206c;
+    public final c61 f60229a;
+    public int f60230b;
+    public final w5 f60231c;
     public final ArrayList d;
-    public final RectF f60207e;
-    public final RectF f60208f;
+    public final RectF f60232e;
+    public final RectF f60233f;
     public final RectF h;
-    public final Paint f60209n;
-    public int f60210r;
+    public final Paint f60234n;
+    public int f60235r;
 
     public g1(Context context) {
         super(context);
         this.d = new ArrayList();
-        this.f60207e = new RectF();
-        this.f60208f = new RectF();
+        this.f60232e = new RectF();
+        this.f60233f = new RectF();
         this.h = new RectF();
-        this.f60209n = new Paint(1);
-        this.f60210r = Integer.MIN_VALUE;
+        this.f60234n = new Paint(1);
+        this.f60235r = Integer.MIN_VALUE;
         c61 c61Var = new c61(25, context, this);
-        this.f60204a = c61Var;
+        this.f60229a = c61Var;
         c61Var.setClipToPadding(false);
         c61Var.setClipChildren(false);
         c61Var.setOrientation(0);
@@ -43,7 +43,7 @@ public final class g1 extends FrameLayout implements a6 {
         setHorizontalScrollBarEnabled(false);
         setClipToPadding(false);
         setClipChildren(false);
-        this.f60206c = new w5(c61Var, 0L, 320L, xq.h);
+        this.f60231c = new w5(c61Var, 0L, 320L, xq.h);
     }
 
     @Override
@@ -60,7 +60,7 @@ public final class g1 extends FrameLayout implements a6 {
                 ((TextView) arrayList.get(i7)).setTextColor(k6.w(k6.x0(null, k6.f27811b6, false), k6.x0(null, k6.f27830c6, false)));
                 i7++;
             } else {
-                this.f60204a.invalidate();
+                this.f60229a.invalidate();
                 return;
             }
         }

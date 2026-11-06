@@ -10,19 +10,19 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class vb0 implements RequestDelegate {
-    public final int f50679a;
-    public final xb0 f50680b;
+    public final int f50689a;
+    public final xb0 f50690b;
 
     public vb0(xb0 xb0Var, int i7) {
-        this.f50679a = i7;
-        this.f50680b = xb0Var;
+        this.f50689a = i7;
+        this.f50690b = xb0Var;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f50679a) {
+        switch (this.f50689a) {
             case 0:
-                final xb0 xb0Var = this.f50680b;
+                final xb0 xb0Var = this.f50690b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -37,7 +37,7 @@ public final class vb0 implements RequestDelegate {
                             case 0:
                                 xb0Var2.getClass();
                                 if (tL_error2 == null) {
-                                    xb0Var2.f51806n = (TL_account.Password) tLObject2;
+                                    xb0Var2.f51823n = (TL_account.Password) tLObject2;
                                     xb0Var2.h(null);
                                     return;
                                 }
@@ -55,10 +55,10 @@ public final class vb0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f38442a |= 256;
-                                            obj.f38443b = indexOf;
+                                            obj.f38433a |= 256;
+                                            obj.f38434b = indexOf;
                                             int i11 = lastIndexOf + 1;
-                                            obj.f38444c = i11;
+                                            obj.f38435c = i11;
                                             valueOf.setSpan(new org.telegram.ui.Components.uy0(obj, 0), indexOf, i11, 0);
                                         }
                                         SpannableStringBuilder m0 = org.telegram.messenger.g0.m0(org.telegram.messenger.hd.M0(2131746081, null), valueOf);
@@ -104,8 +104,8 @@ public final class vb0 implements RequestDelegate {
                                     ce0Var2.C1(false, true);
                                     if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
                                         if (ce0Var2.getParentActivity() != null) {
-                                            xb0Var2.f51801a.setText("");
-                                            ce0.c1(ce0Var2, xb0Var2.f51811y, true);
+                                            xb0Var2.f51818a.setText("");
+                                            ce0.c1(ce0Var2, xb0Var2.f51828y, true);
                                             return;
                                         }
                                         return;
@@ -128,7 +128,7 @@ public final class vb0 implements RequestDelegate {
                 });
                 return;
             case 1:
-                final xb0 xb0Var2 = this.f50680b;
+                final xb0 xb0Var2 = this.f50690b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -143,7 +143,7 @@ public final class vb0 implements RequestDelegate {
                             case 0:
                                 xb0Var22.getClass();
                                 if (tL_error2 == null) {
-                                    xb0Var22.f51806n = (TL_account.Password) tLObject2;
+                                    xb0Var22.f51823n = (TL_account.Password) tLObject2;
                                     xb0Var22.h(null);
                                     return;
                                 }
@@ -161,10 +161,10 @@ public final class vb0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f38442a |= 256;
-                                            obj.f38443b = indexOf;
+                                            obj.f38433a |= 256;
+                                            obj.f38434b = indexOf;
                                             int i11 = lastIndexOf + 1;
-                                            obj.f38444c = i11;
+                                            obj.f38435c = i11;
                                             valueOf.setSpan(new org.telegram.ui.Components.uy0(obj, 0), indexOf, i11, 0);
                                         }
                                         SpannableStringBuilder m0 = org.telegram.messenger.g0.m0(org.telegram.messenger.hd.M0(2131746081, null), valueOf);
@@ -210,8 +210,8 @@ public final class vb0 implements RequestDelegate {
                                     ce0Var2.C1(false, true);
                                     if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
                                         if (ce0Var2.getParentActivity() != null) {
-                                            xb0Var22.f51801a.setText("");
-                                            ce0.c1(ce0Var2, xb0Var22.f51811y, true);
+                                            xb0Var22.f51818a.setText("");
+                                            ce0.c1(ce0Var2, xb0Var22.f51828y, true);
                                             return;
                                         }
                                         return;
@@ -234,7 +234,7 @@ public final class vb0 implements RequestDelegate {
                 });
                 return;
             default:
-                final xb0 xb0Var3 = this.f50680b;
+                final xb0 xb0Var3 = this.f50690b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -249,7 +249,7 @@ public final class vb0 implements RequestDelegate {
                             case 0:
                                 xb0Var22.getClass();
                                 if (tL_error2 == null) {
-                                    xb0Var22.f51806n = (TL_account.Password) tLObject2;
+                                    xb0Var22.f51823n = (TL_account.Password) tLObject2;
                                     xb0Var22.h(null);
                                     return;
                                 }
@@ -267,10 +267,10 @@ public final class vb0 implements RequestDelegate {
                                         int lastIndexOf = str.lastIndexOf(42);
                                         if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
                                             ?? obj = new Object();
-                                            obj.f38442a |= 256;
-                                            obj.f38443b = indexOf;
+                                            obj.f38433a |= 256;
+                                            obj.f38434b = indexOf;
                                             int i11 = lastIndexOf + 1;
-                                            obj.f38444c = i11;
+                                            obj.f38435c = i11;
                                             valueOf.setSpan(new org.telegram.ui.Components.uy0(obj, 0), indexOf, i11, 0);
                                         }
                                         SpannableStringBuilder m0 = org.telegram.messenger.g0.m0(org.telegram.messenger.hd.M0(2131746081, null), valueOf);
@@ -316,8 +316,8 @@ public final class vb0 implements RequestDelegate {
                                     ce0Var2.C1(false, true);
                                     if (tL_error2.text.equals("PASSWORD_HASH_INVALID")) {
                                         if (ce0Var2.getParentActivity() != null) {
-                                            xb0Var22.f51801a.setText("");
-                                            ce0.c1(ce0Var2, xb0Var22.f51811y, true);
+                                            xb0Var22.f51818a.setText("");
+                                            ce0.c1(ce0Var2, xb0Var22.f51828y, true);
                                             return;
                                         }
                                         return;

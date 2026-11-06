@@ -46,11 +46,11 @@ public final class g0 extends vh implements a6, ls, te.b {
         ciVar.setVisibility(4);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f17382r = frameLayout;
-        zh zhVar = new zh(context, f6Var, this.f38951b);
+        zh zhVar = new zh(context, f6Var, this.f38948b);
         this.F = zhVar;
         zhVar.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
         ah.j jVar = new ah.j(this, 8);
-        ah.i iVar = zhVar.f37557r;
+        ah.i iVar = zhVar.f37447r;
         iVar.addTextChangedListener(jVar);
         iVar.setHint(hd.M0(2131752656, null));
         frameLayout.addView(ciVar, ha.g());
@@ -67,7 +67,7 @@ public final class g0 extends vh implements a6, ls, te.b {
         setBlur3Capture(q1Var);
         this.d = q1Var;
         this.h = true;
-        this.f38954f = true;
+        this.f38951f = true;
         qs.e().h(q1Var, qs.f25001i4, new ii.c(this, 4));
         q1Var.setClipToPadding(false);
         getContext();
@@ -116,8 +116,8 @@ public final class g0 extends vh implements a6, ls, te.b {
     @Override
     public final void B(int i7, int i10) {
         int i11;
-        di diVar = this.f38951b;
-        if (diVar.f32917l3.Q() > org.telegram.messenger.g0.L(20.0f)) {
+        di diVar = this.f38948b;
+        if (diVar.f32930l3.Q() > org.telegram.messenger.g0.L(20.0f)) {
             i11 = org.telegram.messenger.g0.L(8.0f);
             diVar.f28640q0 = false;
         } else {
@@ -131,7 +131,7 @@ public final class g0 extends vh implements a6, ls, te.b {
             i11 = (i10 / 5) * 2;
             diVar.f28640q0 = true;
         }
-        this.f17383s.q1(0, i11 + org.telegram.messenger.g0.f22531m, 0, this.f38953e);
+        this.f17383s.q1(0, i11 + org.telegram.messenger.g0.f22531m, 0, this.f38950e);
     }
 
     @Override
@@ -243,13 +243,13 @@ public final class g0 extends vh implements a6, ls, te.b {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f38951b.f28615b.invalidate();
+        this.f38948b.f28615b.invalidate();
     }
 
     public void setupBlurredSearchField(dh.c cVar) {
         zh zhVar = this.F;
         if (zhVar != null) {
-            zhVar.setupBlurredBackground(cVar.c(zhVar, c8.g0.a(this.f38950a), false));
+            zhVar.setupBlurredBackground(cVar.c(zhVar, c8.g0.a(this.f38947a), false));
         }
     }
 

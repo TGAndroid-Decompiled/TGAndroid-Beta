@@ -86,7 +86,7 @@ public final class h1 {
             }
             this.h = true;
             this.f22774g = false;
-            new org.telegram.ui.web.a1(new g1(0, this, runnable)).execute("null");
+            new org.telegram.ui.web.b1(new g1(0, this, runnable)).execute("null");
         }
     }
 

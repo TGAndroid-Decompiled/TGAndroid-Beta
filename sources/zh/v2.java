@@ -11,7 +11,7 @@ import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.wp;
 public final class v2 extends TextView {
-    public final wp f60436a;
+    public final wp f60461a;
 
     public v2(Context context, f6 f6Var) {
         super(context);
@@ -28,10 +28,10 @@ public final class v2 extends TextView {
         setTypeface(org.telegram.messenger.g0.o());
         ka.a(this);
         wp wpVar = new wp(2131230873, 0);
-        this.f60436a = wpVar;
+        this.f60461a = wpVar;
         wpVar.G = 0.8f;
-        wpVar.f40055r = 0.0f;
-        wpVar.f40056s = org.telegram.messenger.g0.L(1.0f);
+        wpVar.f40062r = 0.0f;
+        wpVar.f40063s = org.telegram.messenger.g0.L(1.0f);
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class v2 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f60436a, append.length() - 1, length, 33);
+        append.setSpan(this.f60461a, append.length() - 1, length, 33);
         setText(append);
     }
 }

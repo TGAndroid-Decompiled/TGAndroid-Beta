@@ -78,7 +78,7 @@ public final class b4 implements Runnable {
             case 7:
                 org.telegram.messenger.g0.g(str);
                 org.telegram.ui.Components.cc k10 = k7Var.k().k(false);
-                k10.f32533t = true;
+                k10.f32537t = true;
                 k10.j();
                 return;
             default:

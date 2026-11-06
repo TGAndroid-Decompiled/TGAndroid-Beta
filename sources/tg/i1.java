@@ -16,13 +16,13 @@ public final class i1 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        d1 d1Var2 = (d1) d1Var.f56927a;
+        d1 d1Var2 = (d1) d1Var.f56952a;
         sg.b0 b0Var = (sg.b0) sg.b0.c().get(i7);
         d1Var2.getClass();
         d1Var2.setTypeface(b0Var.d());
-        String str = b0Var.f54903c;
+        String str = b0Var.f54928c;
         if (str == null) {
-            str = hd.N0(b0Var.f54902b);
+            str = hd.N0(b0Var.f54927b);
         }
         d1Var2.setText(str);
     }

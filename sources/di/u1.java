@@ -44,7 +44,7 @@ public final class u1 implements View.OnClickListener {
                 b70 b70Var = (b70) this.f9829c;
                 b70Var.dismiss();
                 TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite = new TLRPC.TL_messages_importChatInvite();
-                tL_messages_importChatInvite.hash = b70Var.f32018j1;
+                tL_messages_importChatInvite.hash = b70Var.f32021j1;
                 ConnectionsManager.getInstance(b70Var.f28612a).sendRequestTyped(tL_messages_importChatInvite, null, new mc(b70Var, this.f9828b, tL_messages_importChatInvite), 2);
                 return;
             case 2:
@@ -61,7 +61,7 @@ public final class u1 implements View.OnClickListener {
                 wwVar.finishPreviewFragment();
                 return;
             case 3:
-                c20 c20Var = ((sh.m) this.f9829c).f55211f;
+                c20 c20Var = ((sh.m) this.f9829c).f55236f;
                 if (c20Var != null) {
                     c20Var.a(Long.valueOf(this.f9828b));
                     return;
@@ -89,7 +89,7 @@ public final class u1 implements View.OnClickListener {
                         return;
                     }
                 }
-                Runnable runnable = mVar.f60322f2;
+                Runnable runnable = mVar.f60347f2;
                 if (runnable != null) {
                     runnable.run();
                 }

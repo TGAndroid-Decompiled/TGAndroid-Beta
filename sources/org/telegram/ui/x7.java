@@ -11,11 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class x7 extends v4.g0 {
-    public final int f51769c;
+    public final int f51786c;
     public final Object d;
 
     public x7(Object obj, int i7) {
-        this.f51769c = i7;
+        this.f51786c = i7;
         this.d = obj;
     }
 
@@ -105,31 +105,31 @@ public final class x7 extends v4.g0 {
 
     @Override
     public final int b() {
-        switch (this.f51769c) {
+        switch (this.f51786c) {
             case 0:
                 return ((h8) this.d).K;
             case 1:
                 return ((org.telegram.ui.Cells.t) this.d).f30287e3.size();
             case 2:
-                return ((org.telegram.ui.Components.q8) this.d).f37304e3.size() + 1;
+                return ((org.telegram.ui.Components.q8) this.d).f37194e3.size() + 1;
             case 3:
                 return 1;
             case 4:
                 return 1;
             case 5:
-                org.telegram.messenger.kj kjVar = ((org.telegram.ui.Components.ca0) this.d).f32507r;
+                org.telegram.messenger.kj kjVar = ((org.telegram.ui.Components.ca0) this.d).f32511r;
                 if (kjVar == null) {
                     return 0;
                 }
                 return kjVar.f23690f.size();
             default:
-                return ((gm0) this.d).f46006f.size();
+                return ((gm0) this.d).f46033f.size();
         }
     }
 
     @Override
     public long c(int i7) {
-        switch (this.f51769c) {
+        switch (this.f51786c) {
             case 0:
                 h8 h8Var = (h8) this.d;
                 return ((h8Var.I - (i7 / 12)) * 100) + (h8Var.J - (i7 % 12));
@@ -138,18 +138,18 @@ public final class x7 extends v4.g0 {
                 return super.c(i7);
             case 2:
                 org.telegram.ui.Components.q8 q8Var = (org.telegram.ui.Components.q8) this.d;
-                if (i7 >= q8Var.f37304e3.size()) {
+                if (i7 >= q8Var.f37194e3.size()) {
                     return 1L;
                 }
-                return ((org.telegram.ui.Components.p8) q8Var.f37304e3.get(i7)).f36916a;
+                return ((org.telegram.ui.Components.p8) q8Var.f37194e3.get(i7)).f36795a;
         }
     }
 
     @Override
     public int d(int i7) {
-        switch (this.f51769c) {
+        switch (this.f51786c) {
             case 2:
-                if (i7 >= ((org.telegram.ui.Components.q8) this.d).f37304e3.size()) {
+                if (i7 >= ((org.telegram.ui.Components.q8) this.d).f37194e3.size()) {
                     return 1;
                 }
                 return 0;
@@ -167,7 +167,7 @@ public final class x7 extends v4.g0 {
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        switch (this.f51769c) {
+        switch (this.f51786c) {
             case 0:
                 return new v4.d1(new e8((h8) this.d, viewGroup.getContext()));
             case 1:
@@ -197,14 +197,14 @@ public final class x7 extends v4.g0 {
                 org.telegram.ui.Components.q8 q8Var = (org.telegram.ui.Components.q8) this.d;
                 return new v4.d1(new org.telegram.ui.Components.r8(q8Var.j3, q8Var.getContext()));
             case 3:
-                return new v4.d1(((org.telegram.ui.Components.bm) this.d).f32173w);
+                return new v4.d1(((org.telegram.ui.Components.bm) this.d).f32167w);
             case 4:
                 return new v4.d1(new bi.ec(16, ((org.telegram.ui.Components.cn) this.d).getContext(), this));
             case 5:
                 Context context2 = viewGroup.getContext();
                 org.telegram.ui.Components.ca0 ca0Var = (org.telegram.ui.Components.ca0) this.d;
-                org.telegram.ui.Components.ia0 ia0Var = ca0Var.f32503c0;
-                org.telegram.ui.Components.aa0 aa0Var = new org.telegram.ui.Components.aa0(this, context2, ia0Var.f34584x, ca0Var.J, ia0Var.F);
+                org.telegram.ui.Components.ia0 ia0Var = ca0Var.f32507c0;
+                org.telegram.ui.Components.aa0 aa0Var = new org.telegram.ui.Components.aa0(this, context2, ia0Var.f34547x, ca0Var.J, ia0Var.F);
                 aa0Var.setClipChildren(false);
                 aa0Var.setClipToPadding(false);
                 aa0Var.setDelegate(new org.telegram.ui.Components.ba0(this));
@@ -231,13 +231,13 @@ public final class x7 extends v4.g0 {
         boolean z10;
         int i10;
         int[] f10;
-        switch (this.f51769c) {
+        switch (this.f51786c) {
             case 5:
                 org.telegram.ui.Components.ca0 ca0Var = (org.telegram.ui.Components.ca0) this.d;
-                org.telegram.ui.Components.w90 w90Var = ca0Var.f32504e;
-                org.telegram.ui.Components.ia0 ia0Var = ca0Var.f32503c0;
-                if (ca0Var.f32507r != null && (i7 = ca0Var.f32498a) != 1) {
-                    View view = d1Var.f56927a;
+                org.telegram.ui.Components.w90 w90Var = ca0Var.f32508e;
+                org.telegram.ui.Components.ia0 ia0Var = ca0Var.f32507c0;
+                if (ca0Var.f32511r != null && (i7 = ca0Var.f32502a) != 1) {
+                    View view = d1Var.f56952a;
                     if (view instanceof org.telegram.ui.Cells.q1) {
                         org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view;
                         if (i7 == 0) {
@@ -260,19 +260,19 @@ public final class x7 extends v4.g0 {
                                 org.telegram.messenger.mj mjVar2 = ia0Var.d;
                                 org.telegram.messenger.mj mjVar3 = ia0Var.d;
                                 qm qmVar = mjVar3.d;
-                                if (qmVar.f49246m && messageObject != null && messageObject.f23284w2 != null && ((i10 = mjVar3.f24021e) < 0 || mjVar3.f24022f <= i10)) {
-                                    String str = qmVar.f49242i;
+                                if (qmVar.f49273m && messageObject != null && messageObject.f23284w2 != null && ((i10 = mjVar3.f24021e) < 0 || mjVar3.f24022f <= i10)) {
+                                    String str = qmVar.f49269i;
                                     if (str == null) {
                                         f10 = null;
                                     } else {
-                                        f10 = org.telegram.messenger.ov.f(messageObject, str, qmVar.f49248o);
+                                        f10 = org.telegram.messenger.ov.f(messageObject, str, qmVar.f49275o);
                                     }
                                     if (f10 != null) {
                                         mjVar2.f24021e = f10[0];
                                         mjVar2.f24022f = f10[1];
                                     } else {
                                         mjVar2.f24021e = 0;
-                                        mjVar2.f24022f = Math.min(org.telegram.messenger.qp.s1(ia0Var.f34584x).o4, qm.d(messageObject));
+                                        mjVar2.f24022f = Math.min(org.telegram.messenger.qp.s1(ia0Var.f34547x).o4, qm.d(messageObject));
                                     }
                                 }
                             }
@@ -280,11 +280,11 @@ public final class x7 extends v4.g0 {
                             if (!mjVar4.f24024i && mjVar4.d != null && mjVar4.f24021e >= 0 && ca0Var.e(q1Var) && !w90Var.x()) {
                                 org.telegram.messenger.mj mjVar5 = ia0Var.d;
                                 w90Var.a0(q1Var, mjVar5.f24021e, mjVar5.f24022f);
-                                if (ca0Var.f32501b0) {
+                                if (ca0Var.f32505b0) {
                                     ca0Var.L = D(q1Var, ia0Var.d.f24021e, false);
                                     ca0Var.M = D(q1Var, ia0Var.d.f24022f, true);
                                     ca0Var.N = true;
-                                    ca0Var.f32501b0 = false;
+                                    ca0Var.f32505b0 = false;
                                     return;
                                 }
                                 return;

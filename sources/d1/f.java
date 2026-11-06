@@ -35,7 +35,7 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.qs;
 import org.telegram.messenger.t0;
-import org.telegram.ui.Components.n51;
+import org.telegram.ui.Components.s51;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.t9;
@@ -98,9 +98,9 @@ public abstract class f {
                         ij ijVar = B.f21292u0;
                         if ((B.f21268i0 != null || B.E0 != null) && ijVar != null && B.L(ijVar)) {
                             try {
-                                n51 n51Var = B.f21268i0;
-                                if (n51Var != null) {
-                                    j3 = n51Var.U();
+                                s51 s51Var = B.f21268i0;
+                                if (s51Var != null) {
+                                    j3 = s51Var.U();
                                     if (j3 != -9223372036854775807L) {
                                         ijVar.f23197b0 = Utilities.l(((float) a10) / ((float) j3));
                                     }
@@ -109,9 +109,9 @@ public abstract class f {
                                         v(a10);
                                     }
                                 } else {
-                                    n51 n51Var2 = B.E0;
-                                    if (n51Var2 != null) {
-                                        j3 = n51Var2.U();
+                                    s51 s51Var2 = B.E0;
+                                    if (s51Var2 != null) {
+                                        j3 = s51Var2.U();
                                         B.E0.p0(a10);
                                         if (!B.T1) {
                                             v(a10);

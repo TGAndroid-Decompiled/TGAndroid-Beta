@@ -20,7 +20,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public abstract class bi0 {
-    public static org.telegram.ui.ActionBar.v2 f44340a;
+    public static org.telegram.ui.ActionBar.v2 f44356a;
 
     public static org.telegram.ui.Components.hc a() {
         Context context;
@@ -48,7 +48,7 @@ public abstract class bi0 {
                 return new org.telegram.ui.Components.hc(org.telegram.ui.Components.xa.a(context2), null);
             }
         }
-        HashSet hashSet2 = g4.f45773c1;
+        HashSet hashSet2 = g4.f45800c1;
         if (!hashSet2.isEmpty()) {
             Iterator it2 = hashSet2.iterator();
             g4 g4Var = null;
@@ -157,7 +157,7 @@ public abstract class bi0 {
                     arrayList2.add(Integer.valueOf(i10));
                 }
             }
-            Collections.sort(arrayList2, new oe(27));
+            Collections.sort(arrayList2, new oe(28));
             final boolean z14 = tL_messages_requestUrlAuth.peer != null;
             boolean z15 = tL_urlAuthResultRequest2.is_app;
             FrameLayout frameLayout2 = new FrameLayout(context);
@@ -185,10 +185,11 @@ public abstract class bi0 {
             imageView.setImageResource(2131230873);
             frameLayout3.addView(imageView, c8.ha.d(18, 18.0f, 21, 0.0f, 0.0f, 4.0f, 0.0f));
             frameLayout2.addView(frameLayout3, c8.ha.e(52, 28, 17));
+            ArrayList arrayList3 = arrayList2;
             frameLayout2.setPadding(org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(8.0f), 0);
             frameLayout.addView(frameLayout2, c8.ha.q(-2, -2, 0.0f, 51, 6, 4, 6, 0));
             c8.ka.a(frameLayout2);
-            if (arrayList2.size() <= 1 || tL_messages_requestUrlAuth.peer != null) {
+            if (arrayList3.size() <= 1 || tL_messages_requestUrlAuth.peer != null) {
                 frameLayout2.setVisibility(8);
             }
             LinearLayout f11 = org.telegram.messenger.k5.f(context, 1);
@@ -336,7 +337,6 @@ public abstract class bi0 {
             l10.w0(org.telegram.ui.ActionBar.k6.f27792a7);
             final String[] strArr = {str2};
             org.telegram.ui.Cells.r8 r8Var3 = r8Var;
-            ArrayList arrayList3 = arrayList2;
             yh0 yh0Var = new yh0(iArr, dVar3, dVar2, tL_messages_requestUrlAuth, l10, z9, str, urlAuthResult2, strArr, z10, x0Var, str6, resourceProvider);
             fi.d dVar4 = dVar3;
             if (tL_urlAuthResultRequest2.user_id_hint != 0 && org.telegram.messenger.p10.i(i7).e() != tL_urlAuthResultRequest2.user_id_hint) {
@@ -429,14 +429,14 @@ public abstract class bi0 {
                 }
             });
             l10.setOnDismissListener(new bi.s7(zArr, inputtonconnectoauthsessionArr, v2VarArr, new org.telegram.ui.ActionBar.v2[1]));
-            org.telegram.ui.ActionBar.v2 v2Var = f44340a;
+            org.telegram.ui.ActionBar.v2 v2Var = f44356a;
             if (v2Var != null) {
                 v2Var.dismiss();
-                f44340a = null;
+                f44356a = null;
             }
-            final org.telegram.ui.Components.s21 s21Var = new org.telegram.ui.Components.s21(tL_urlAuthResultRequest2, l10, v2VarArr, context, iArr, resourceProvider, zArr, inputtonconnectoauthsessionArr, l0Var);
+            final org.telegram.ui.Components.x21 x21Var = new org.telegram.ui.Components.x21(tL_urlAuthResultRequest2, l10, v2VarArr, context, iArr, resourceProvider, zArr, inputtonconnectoauthsessionArr, l0Var);
             if (tL_urlAuthResultRequest2.match_codes_first && !tL_urlAuthResultRequest2.match_codes.isEmpty() && TextUtils.isEmpty(strArr[0])) {
-                f44340a = c(context, i7, tL_urlAuthResultRequest2.match_codes, str6, new org.telegram.messenger.c20() {
+                f44356a = c(context, i7, tL_urlAuthResultRequest2.match_codes, str6, new org.telegram.messenger.c20() {
                     @Override
                     public final void a(Object obj2) {
                         String str7 = (String) obj2;
@@ -446,11 +446,11 @@ public abstract class bi0 {
                         strArr[0] = str7;
                         tL_messages_checkUrlAuthMatchCode.match_code = str7;
                         tL_messages_checkUrlAuthMatchCode.url = tL_messages_requestUrlAuth.url;
-                        ConnectionsManager.getInstance(i7).sendRequestTyped(tL_messages_checkUrlAuthMatchCode, new d3.b(1), new bi.q2(u1Var, s21Var, str6, resourceProvider, 2));
+                        ConnectionsManager.getInstance(i7).sendRequestTyped(tL_messages_checkUrlAuthMatchCode, new d3.b(1), new bi.q2(u1Var, x21Var, str6, resourceProvider, 2));
                     }
                 }, false, new org.telegram.ui.Components.pp0(zArr2, x0Var, tL_messages_requestUrlAuth, i7, 11), T5.getResourceProvider());
             } else {
-                s21Var.run();
+                x21Var.run();
             }
         }
     }

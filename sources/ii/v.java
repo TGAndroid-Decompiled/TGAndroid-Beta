@@ -16,21 +16,21 @@ public final class v implements Runnable {
         switch (this.f15608a) {
             case 0:
                 d0 d0Var = this.f15609b;
-                d0Var.f15507r1.d.f35166e3.h1(1, d0Var.L1.f15118b);
+                d0Var.f15507r1.d.f36780e3.h1(1, d0Var.L1.f15118b);
                 d0Var.f15500i1.a(false, true);
                 d0Var.f28640q0 = true;
                 r00 r00Var = d0Var.f15510u1;
-                org.telegram.messenger.g0.v1(r00Var.f37557r);
-                r00Var.f37557r.clearFocus();
+                org.telegram.messenger.g0.v1(r00Var.f37447r);
+                r00Var.f37447r.clearFocus();
                 return;
             case 1:
                 d0 d0Var2 = this.f15609b;
-                d0Var2.f15509t1.d.f35166e3.h1(1, d0Var2.L1.f15118b);
+                d0Var2.f15509t1.d.f36780e3.h1(1, d0Var2.L1.f15118b);
                 d0Var2.f15501j1.a(false, true);
                 d0Var2.f28640q0 = true;
                 r00 r00Var2 = d0Var2.f15511v1;
-                org.telegram.messenger.g0.v1(r00Var2.f37557r);
-                r00Var2.f37557r.clearFocus();
+                org.telegram.messenger.g0.v1(r00Var2.f37447r);
+                r00Var2.f37447r.clearFocus();
                 return;
             default:
                 d0 d0Var3 = this.f15609b;

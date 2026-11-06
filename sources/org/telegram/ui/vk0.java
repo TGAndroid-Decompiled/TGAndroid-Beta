@@ -1,23 +1,23 @@
 package org.telegram.ui;
 public final class vk0 extends org.telegram.ui.ActionBar.j {
-    public final hl0 f50742a;
+    public final hl0 f50752a;
 
     public vk0(hl0 hl0Var) {
-        this.f50742a = hl0Var;
+        this.f50752a = hl0Var;
     }
 
     @Override
     public final void b(int i7) {
-        hl0 hl0Var = this.f50742a;
+        hl0 hl0Var = this.f50752a;
         if (i7 == -1) {
             if (!hl0Var.P0) {
                 hl0Var.finishFragment();
             }
         } else if (i7 == 1 && !hl0Var.P0) {
-            if (hl0Var.f46420u0 != 3) {
+            if (hl0Var.f46440u0 != 3) {
                 org.telegram.messenger.g0.v1(hl0Var.getParentActivity().getCurrentFocus());
             }
-            int i10 = hl0Var.f46420u0;
+            int i10 = hl0Var.f46440u0;
             if (i10 != 0) {
                 int i11 = 0;
                 if (i10 != 1) {

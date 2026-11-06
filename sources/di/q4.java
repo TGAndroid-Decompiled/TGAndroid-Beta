@@ -41,8 +41,8 @@ import org.telegram.ui.Cells.m8;
 import org.telegram.ui.Components.dj0;
 import org.telegram.ui.Components.ft0;
 import org.telegram.ui.Components.qi0;
-import org.telegram.ui.Components.r31;
 import org.telegram.ui.Components.sp0;
+import org.telegram.ui.Components.w31;
 public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0, org.telegram.ui.ActionBar.r1, qi0, a20, sg.l1, CameraController.VideoTakeCallback, ft0, h9.h1, f3.g, h2.o {
     public final int f9633a;
     public final Object f9634b;
@@ -64,7 +64,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         }
         marginLayoutParams.topMargin = i7;
         if (p9Var.f9535c) {
-            a10 = k1Var.f54084a.f(2).d;
+            a10 = k1Var.f54109a.f(2).d;
         } else {
             a10 = k1Var.a();
         }
@@ -79,7 +79,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         if (e9Var != null) {
             e9Var.requestLayout();
         }
-        return r0.k1.f54083b;
+        return r0.k1.f54108b;
     }
 
     @Override
@@ -253,13 +253,13 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         switch (this.f9633a) {
             case 12:
                 fi.o9 o9Var = (fi.o9) this.f9634b;
-                r31 r31Var = (r31) obj;
+                w31 w31Var = (w31) obj;
                 View view = (View) obj2;
                 Integer num = (Integer) number;
                 Float f10 = (Float) serializable;
                 Float f11 = (Float) serializable2;
-                int i11 = r31Var.d;
-                fi.e7 e7Var = (fi.e7) r31Var.G;
+                int i11 = w31Var.d;
+                fi.e7 e7Var = (fi.e7) w31Var.G;
                 o9Var.c(false, true);
                 va vaVar = o9Var.O;
                 if (e7Var != vaVar.K1 && !vaVar.X1) {
@@ -286,28 +286,28 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                 Integer num2 = (Integer) number;
                 Float f12 = (Float) serializable;
                 Float f13 = (Float) serializable2;
-                hi.q.a0((hi.q) this.f9634b, (r31) obj);
+                hi.q.a0((hi.q) this.f9634b, (w31) obj);
                 return;
             case 22:
                 View view3 = (View) obj2;
                 Integer num3 = (Integer) number;
                 Float f14 = (Float) serializable;
                 Float f15 = (Float) serializable2;
-                ((hi.p4) this.f9634b).a0((r31) obj);
+                ((hi.p4) this.f9634b).a0((w31) obj);
                 return;
             case 24:
                 kg.c1 c1Var = (kg.c1) this.f9634b;
-                r31 r31Var2 = (r31) obj;
+                w31 w31Var2 = (w31) obj;
                 View view4 = (View) obj2;
                 Integer num4 = (Integer) number;
                 float floatValue = ((Float) serializable).floatValue();
                 Float f16 = (Float) serializable2;
-                int i12 = r31Var2.d;
+                int i12 = w31Var2.d;
                 if (i12 == -1) {
                     boolean z9 = !c1Var.d;
                     c1Var.d = z9;
                     ((org.telegram.ui.Cells.r8) view4).setChecked(z9);
-                    c1Var.f17326a.f35167f3.O(true);
+                    c1Var.f17326a.f36781f3.O(true);
                     c1Var.d0(true);
                     return;
                 } else if (i12 == -2) {
@@ -316,21 +316,21 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                     f2Var.f17569c = new ai.f1(25, c1Var, view4);
                     c1Var.presentFragment((org.telegram.ui.ActionBar.f2) f2Var);
                     return;
-                } else if (r31Var2.f54415a == 5 && i12 >= 0 && i12 < c1Var.f17330f.length) {
+                } else if (w31Var2.f54440a == 5 && i12 >= 0 && i12 < c1Var.f17330f.length) {
                     if (!hd.f22871a0 ? floatValue >= view4.getMeasuredWidth() - org.telegram.messenger.g0.L(76.0f) : floatValue <= org.telegram.messenger.g0.L(76.0f)) {
-                        if (c1Var.f17330f[r31Var2.d].isEmpty()) {
+                        if (c1Var.f17330f[w31Var2.d].isEmpty()) {
                             ((org.telegram.ui.Cells.h5) view4).setChecked(true);
-                            c1Var.f17330f[r31Var2.d].add(new kg.b1(0, 1439));
-                            c1Var.c0(r31Var2.d);
+                            c1Var.f17330f[w31Var2.d].add(new kg.b1(0, 1439));
+                            c1Var.c0(w31Var2.d);
                         } else {
-                            c1Var.f17330f[r31Var2.d].clear();
+                            c1Var.f17330f[w31Var2.d].clear();
                             ((org.telegram.ui.Cells.h5) view4).setChecked(false);
                         }
-                        ((org.telegram.ui.Cells.h5) view4).setValue(kg.c1.f0(c1Var.f17330f[r31Var2.d]));
+                        ((org.telegram.ui.Cells.h5) view4).setValue(kg.c1.f0(c1Var.f17330f[w31Var2.d]));
                         c1Var.d0(true);
                         return;
                     }
-                    int i13 = (r31Var2.d + 6) % 7;
+                    int i13 = (w31Var2.d + 6) % 7;
                     int i14 = 0;
                     for (int i15 = 0; i15 < c1Var.f17330f[i13].size(); i15++) {
                         if (((kg.b1) c1Var.f17330f[i13].get(i15)).f17314b > i14) {
@@ -338,7 +338,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                         }
                     }
                     int max = Math.max(0, i14 - 1439);
-                    int i16 = (r31Var2.d + 1) % 7;
+                    int i16 = (w31Var2.d + 1) % 7;
                     int i17 = 1440;
                     for (int i18 = 0; i18 < c1Var.f17330f[i16].size(); i18++) {
                         if (((kg.b1) c1Var.f17330f[i16].get(i18)).f17313a < i17) {
@@ -346,8 +346,8 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                         }
                     }
                     int i19 = i17 + 1439;
-                    CharSequence charSequence = r31Var2.f37598l;
-                    ArrayList arrayList = c1Var.f17330f[r31Var2.d];
+                    CharSequence charSequence = w31Var2.f39830l;
+                    ArrayList arrayList = c1Var.f17330f[w31Var2.d];
                     int i20 = 0;
                     for (int i21 = 0; i21 < 7; i21++) {
                         ArrayList arrayList2 = c1Var.f17330f[i21];
@@ -357,7 +357,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                     }
                     kg.e1 e1Var = new kg.e1(charSequence, arrayList, max, i19, 28 - i20);
                     e1Var.f17359f = new fi.h9(c1Var, 27);
-                    e1Var.h = new ha.b(19, c1Var, r31Var2);
+                    e1Var.h = new ha.b(19, c1Var, w31Var2);
                     c1Var.presentFragment(e1Var);
                     return;
                 } else {
@@ -365,7 +365,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                 }
             case 25:
                 final kg.e1 e1Var2 = (kg.e1) this.f9634b;
-                r31 r31Var3 = (r31) obj;
+                w31 w31Var3 = (w31) obj;
                 final View view5 = (View) obj2;
                 Integer num5 = (Integer) number;
                 Float f17 = (Float) serializable;
@@ -373,7 +373,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                 int i22 = e1Var2.f17357c;
                 int i23 = e1Var2.d;
                 ArrayList arrayList3 = e1Var2.f17356b;
-                int i24 = r31Var3.d;
+                int i24 = w31Var3.d;
                 if (i24 == -1) {
                     e1Var2.f17361r = !e1Var2.f17361r;
                     arrayList3.clear();
@@ -382,7 +382,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                     }
                     org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view5;
                     boolean z10 = e1Var2.f17361r;
-                    r31Var3.f37592e = z10;
+                    w31Var3.f39824e = z10;
                     r8Var.setChecked(z10);
                     boolean z11 = e1Var2.f17361r;
                     if (z11) {
@@ -391,7 +391,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                         i10 = org.telegram.ui.ActionBar.k6.f27867e6;
                     }
                     r8Var.b(org.telegram.ui.ActionBar.k6.x0(null, i10, false), z11);
-                    e1Var2.f17360n.f35167f3.O(true);
+                    e1Var2.f17360n.f36781f3.O(true);
                     fi.h9 h9Var = e1Var2.f17359f;
                     if (h9Var != null) {
                         h9Var.run();
@@ -414,9 +414,9 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                     if (h9Var2 != null) {
                         h9Var2.run();
                     }
-                    e1Var2.f17360n.f35167f3.O(true);
+                    e1Var2.f17360n.f36781f3.O(true);
                     return;
-                } else if (r31Var3.f54415a == 3 && (i7 = i24 / 3) >= 0 && i7 < arrayList3.size()) {
+                } else if (w31Var3.f54440a == 3 && (i7 = i24 / 3) >= 0 && i7 < arrayList3.size()) {
                     int i26 = i7 - 1;
                     if (i26 >= 0) {
                         b1Var = (kg.b1) arrayList3.get(i26);
@@ -430,7 +430,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                     } else {
                         b1Var2 = null;
                     }
-                    int i28 = r31Var3.d % 3;
+                    int i28 = w31Var3.d % 3;
                     if (i28 == 0) {
                         Activity parentActivity = e1Var2.getParentActivity();
                         String M0 = hd.M0(2131752750, null);
@@ -450,7 +450,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                                         b1Var3.f17313a = intValue;
                                         ((m8) view5).w(b1.a(intValue), true);
                                         if (a02 != e1Var3.a0()) {
-                                            e1Var3.f17360n.f35167f3.O(true);
+                                            e1Var3.f17360n.f36781f3.O(true);
                                         }
                                         h9 h9Var3 = e1Var3.f17359f;
                                         if (h9Var3 != null) {
@@ -465,7 +465,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                                         b1Var3.f17314b = intValue2;
                                         ((m8) view5).w(b1.a(intValue2), true);
                                         if (a03 != e1Var4.a0()) {
-                                            e1Var4.f17360n.f35167f3.O(true);
+                                            e1Var4.f17360n.f36781f3.O(true);
                                         }
                                         h9 h9Var4 = e1Var4.f17359f;
                                         if (h9Var4 != null) {
@@ -497,7 +497,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                                         b1Var3.f17313a = intValue;
                                         ((m8) view5).w(b1.a(intValue), true);
                                         if (a02 != e1Var3.a0()) {
-                                            e1Var3.f17360n.f35167f3.O(true);
+                                            e1Var3.f17360n.f36781f3.O(true);
                                         }
                                         h9 h9Var3 = e1Var3.f17359f;
                                         if (h9Var3 != null) {
@@ -512,7 +512,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                                         b1Var3.f17314b = intValue2;
                                         ((m8) view5).w(b1.a(intValue2), true);
                                         if (a03 != e1Var4.a0()) {
-                                            e1Var4.f17360n.f35167f3.O(true);
+                                            e1Var4.f17360n.f36781f3.O(true);
                                         }
                                         h9 h9Var4 = e1Var4.f17359f;
                                         if (h9Var4 != null) {
@@ -529,7 +529,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                         if (arrayList3.isEmpty()) {
                             arrayList3.add(new kg.b1(0, 1439));
                         }
-                        e1Var2.f17360n.f35167f3.O(true);
+                        e1Var2.f17360n.f36781f3.O(true);
                         fi.h9 h9Var3 = e1Var2.f17359f;
                         if (h9Var3 != null) {
                             h9Var3.run();
@@ -546,7 +546,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
                 Integer num6 = (Integer) number;
                 Float f19 = (Float) serializable;
                 Float f20 = (Float) serializable2;
-                kg.w1.Z((kg.w1) this.f9634b, (r31) obj, (View) obj2);
+                kg.w1.Z((kg.w1) this.f9634b, (w31) obj, (View) obj2);
                 return;
         }
     }
@@ -591,7 +591,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         g8 g8Var;
         f8 f8Var = (f8) this.f9634b;
         if (!f8Var.v.f9061y) {
-            fVar.f58684q = new e8(f8Var, 2);
+            fVar.f58709q = new e8(f8Var, 2);
             float sqrt = (float) Math.sqrt(Math.pow(g8Var.getHeight(), 2.0d) + Math.pow(g8Var.getWidth(), 2.0d));
             ArrayList arrayList = f8Var.f9009i;
             int size = arrayList.size();

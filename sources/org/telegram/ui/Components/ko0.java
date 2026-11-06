@@ -7,20 +7,20 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class ko0 extends oj0 {
-    public final Context f35383c;
+    public final Context f35386c;
     public boolean d;
-    public boolean f35384e;
-    public ArrayList f35385f;
+    public boolean f35387e;
+    public ArrayList f35388f;
     public final mo0 h;
 
     public ko0(mo0 mo0Var, Context context) {
         this.h = mo0Var;
-        this.f35383c = context;
+        this.f35386c = context;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f != 1) {
+        if (d1Var.f56956f != 1) {
             return true;
         }
         return false;
@@ -31,9 +31,9 @@ public final class ko0 extends oj0 {
         if (this.d) {
             i10 = i7 - 2;
         }
-        ArrayList arrayList = this.f35385f;
+        ArrayList arrayList = this.f35388f;
         if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
-            return (TLRPC.TL_forumTopic) this.f35385f.get(i10);
+            return (TLRPC.TL_forumTopic) this.f35388f.get(i10);
         }
         return null;
     }
@@ -41,7 +41,7 @@ public final class ko0 extends oj0 {
     @Override
     public final int b() {
         int i7;
-        ArrayList arrayList = this.f35385f;
+        ArrayList arrayList = this.f35388f;
         if (arrayList != null) {
             i7 = arrayList.size() + 1;
         } else {
@@ -63,14 +63,14 @@ public final class ko0 extends oj0 {
         boolean z9;
         long j3;
         int L;
-        if (d1Var.f56931f == 0) {
-            org.telegram.ui.Cells.e7 e7Var = (org.telegram.ui.Cells.e7) d1Var.f56927a;
+        if (d1Var.f56956f == 0) {
+            org.telegram.ui.Cells.e7 e7Var = (org.telegram.ui.Cells.e7) d1Var.f56952a;
             if (i7 == 1 && this.d) {
-                e7Var.setAsNewBotForumTopic(this.f35384e);
-            } else if (this.f35385f != null) {
+                e7Var.setAsNewBotForumTopic(this.f35387e);
+            } else if (this.f35388f != null) {
                 TLRPC.TL_forumTopic E = E(i7);
                 mo0 mo0Var = this.h;
-                TLRPC.Dialog dialog = mo0Var.f36084u2;
+                TLRPC.Dialog dialog = mo0Var.f36022u2;
                 if (E != null && mo0Var.M1.h(E.f27004id) >= 0) {
                     z9 = true;
                 } else {
@@ -135,9 +135,9 @@ public final class ko0 extends oj0 {
                             str = upperCase.substring(0, 1);
                         }
                         g70Var.a(str);
-                        g70Var.f33885i = 1.8f;
+                        g70Var.f33829i = 1.8f;
                         xp xpVar = new xp(aVar, g70Var, 0, 0);
-                        xpVar.f40305x = true;
+                        xpVar.f40324x = true;
                         l9Var.setImageDrawable(xpVar);
                     }
                     if (M0 != null && M0.forum && !z9) {
@@ -156,7 +156,7 @@ public final class ko0 extends oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View e7Var;
-        Context context = this.f35383c;
+        Context context = this.f35386c;
         if (i7 != 0 && i7 != 2) {
             e7Var = new View(context);
             e7Var.setLayoutParams(new v4.o0(-1, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()));

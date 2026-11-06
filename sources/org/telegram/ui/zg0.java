@@ -36,7 +36,7 @@ public final class zg0 extends AnimatedPhoneNumberEditText {
             case 0:
                 super.onFocusChanged(z9, i7, rect);
                 ah0 ah0Var = this.W1;
-                org.telegram.ui.Components.lb0 lb0Var = ah0Var.f43632p1;
+                org.telegram.ui.Components.lb0 lb0Var = ah0Var.f43657p1;
                 if (!z9 && !ah0Var.G1.isFocused()) {
                     f10 = 0.0f;
                 } else {
@@ -47,7 +47,7 @@ public final class zg0 extends AnimatedPhoneNumberEditText {
             default:
                 super.onFocusChanged(z9, i7, rect);
                 ah0 ah0Var2 = this.W1;
-                org.telegram.ui.Components.lb0 lb0Var2 = ah0Var2.f43632p1;
+                org.telegram.ui.Components.lb0 lb0Var2 = ah0Var2.f43657p1;
                 if (!z9 && !ah0Var2.E1.isFocused()) {
                     f11 = 0.0f;
                 } else {

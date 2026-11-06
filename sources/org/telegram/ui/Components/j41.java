@@ -1,42 +1,23 @@
 package org.telegram.ui.Components;
-public final class j41 extends v4.k {
-    public final k41 F;
 
-    public j41(k41 k41Var) {
-        this.F = k41Var;
+import android.graphics.Canvas;
+import android.graphics.drawable.ColorDrawable;
+public final class j41 extends ColorDrawable {
+    public final int f34858a;
+    public final org.telegram.ui.ActionBar.f6 f34859b;
+
+    public j41(int i7, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
+        this.f34858a = i7;
+        this.f34859b = f6Var;
     }
 
     @Override
-    public final void M() {
-        k41 k41Var = this.F;
-        if (k41Var.b1()) {
-            k41Var.invalidate();
+    public final void draw(Canvas canvas) {
+        int w02 = org.telegram.ui.ActionBar.k6.w0(this.f34858a, this.f34859b);
+        if (getColor() != w02) {
+            setColor(w02);
         }
-        k41Var.F1();
-    }
-
-    @Override
-    public final void O() {
-        k41 k41Var = this.F;
-        if (k41Var.b1()) {
-            k41Var.invalidate();
-        }
-        k41Var.F1();
-    }
-
-    @Override
-    public final void P(v4.d1 d1Var) {
-        k41 k41Var = this.F;
-        k41Var.invalidate();
-        k41Var.F1();
-    }
-
-    @Override
-    public final void Q() {
-        k41 k41Var = this.F;
-        if (k41Var.b1()) {
-            k41Var.invalidate();
-        }
-        k41Var.F1();
+        super.draw(canvas);
     }
 }

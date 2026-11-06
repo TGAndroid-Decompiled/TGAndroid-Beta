@@ -9,38 +9,38 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.view.View;
 public final class mw0 extends View {
-    public final RectF f47862a;
-    public final TextPaint f47863b;
-    public final Paint f47864c;
+    public final RectF f47888a;
+    public final TextPaint f47889b;
+    public final Paint f47890c;
     public final ValueAnimator d;
-    public final float[] f47865e;
-    public final c5.a f47866f;
+    public final float[] f47891e;
+    public final c5.a f47892f;
     public boolean h;
-    public final ProfileActivity f47867n;
+    public final ProfileActivity f47893n;
 
     public mw0(ProfileActivity profileActivity, Context context) {
         super(context);
-        this.f47867n = profileActivity;
-        this.f47862a = new RectF();
-        this.f47865e = new float[]{0.0f, 1.0f};
-        c5.a adapter = profileActivity.f41756n0.getAdapter();
-        this.f47866f = adapter;
+        this.f47893n = profileActivity;
+        this.f47888a = new RectF();
+        this.f47891e = new float[]{0.0f, 1.0f};
+        c5.a adapter = profileActivity.f41781n0.getAdapter();
+        this.f47892f = adapter;
         setVisibility(8);
         TextPaint textPaint = new TextPaint(1);
-        this.f47863b = textPaint;
+        this.f47889b = textPaint;
         textPaint.setColor(-1);
         textPaint.setTypeface(Typeface.SANS_SERIF);
         textPaint.setTextAlign(Paint.Align.CENTER);
         textPaint.setTextSize(org.telegram.messenger.g0.N(15.0f));
         Paint paint = new Paint(1);
-        this.f47864c = paint;
+        this.f47890c = paint;
         paint.setColor(637534208);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         this.d = ofFloat;
-        ofFloat.setInterpolator(org.telegram.ui.Components.xq.f40313j);
+        ofFloat.setInterpolator(org.telegram.ui.Components.xq.f40332j);
         ofFloat.addUpdateListener(new a3(this, 27));
-        ofFloat.addListener(new z40(5, this, profileActivity.f41749m1));
-        profileActivity.f41756n0.b(new lw0(this));
+        ofFloat.addListener(new z40(5, this, profileActivity.f41774m1));
+        profileActivity.f41781n0.b(new lw0(this));
         adapter.f5303a.registerObserver(new c5.h(this, 3));
     }
 
@@ -48,7 +48,7 @@ public final class mw0 extends View {
         org.telegram.ui.ActionBar.k kVar;
         int i7;
         org.telegram.ui.ActionBar.k kVar2;
-        ProfileActivity profileActivity = this.f47867n;
+        ProfileActivity profileActivity = this.f47893n;
         if (z9) {
             kw0 kw0Var = profileActivity.M;
             kw0Var.J = kw0Var.L;
@@ -57,9 +57,9 @@ public final class mw0 extends View {
             kw0Var.O = 1;
         }
         profileActivity.M.invalidate();
-        float measureText = this.f47863b.measureText(((String) this.f47866f.d(profileActivity.f41756n0.getCurrentItem())).toString());
+        float measureText = this.f47889b.measureText(((String) this.f47892f.d(profileActivity.f41781n0.getCurrentItem())).toString());
         float measuredWidth = getMeasuredWidth() - org.telegram.messenger.g0.L(54.0f);
-        RectF rectF = this.f47862a;
+        RectF rectF = this.f47888a;
         rectF.right = measuredWidth;
         rectF.left = measuredWidth - (org.telegram.messenger.g0.N(16.0f) + measureText);
         kVar = ((org.telegram.ui.ActionBar.f2) profileActivity).actionBar;
@@ -86,8 +86,8 @@ public final class mw0 extends View {
 
     public final void b(float f10) {
         boolean z9;
-        ProfileActivity profileActivity = this.f47867n;
-        if (profileActivity.f41764o2 && profileActivity.f41756n0.getRealCount() > 20) {
+        ProfileActivity profileActivity = this.f47893n;
+        if (profileActivity.f41789o2 && profileActivity.f41781n0.getRealCount() > 20) {
             z9 = true;
         } else {
             z9 = false;
@@ -97,7 +97,7 @@ public final class mw0 extends View {
             ValueAnimator valueAnimator = this.d;
             valueAnimator.cancel();
             float animatedFraction = valueAnimator.getAnimatedFraction();
-            float[] fArr = this.f47865e;
+            float[] fArr = this.f47891e;
             float U1 = org.telegram.messenger.g0.U1(animatedFraction, fArr);
             float f11 = 0.0f;
             if (f10 <= 0.0f) {
@@ -117,10 +117,10 @@ public final class mw0 extends View {
     }
 
     public final void c() {
-        zu0 zu0Var;
-        ProfileActivity profileActivity = this.f47867n;
-        if (profileActivity.S0 != null && (zu0Var = profileActivity.f41756n0) != null && profileActivity.f41764o2) {
-            if (zu0Var.getRealPosition() == 0) {
+        av0 av0Var;
+        ProfileActivity profileActivity = this.f47893n;
+        if (profileActivity.S0 != null && (av0Var = profileActivity.f41781n0) != null && profileActivity.f41789o2) {
+            if (av0Var.getRealPosition() == 0) {
                 profileActivity.S0.t(33);
                 profileActivity.S0.S(36);
                 return;
@@ -133,10 +133,10 @@ public final class mw0 extends View {
     @Override
     public final void onDraw(Canvas canvas) {
         float N = org.telegram.messenger.g0.N(12.0f);
-        Paint paint = this.f47864c;
-        RectF rectF = this.f47862a;
+        Paint paint = this.f47890c;
+        RectF rectF = this.f47888a;
         canvas.drawRoundRect(rectF, N, N, paint);
-        canvas.drawText(((String) this.f47866f.d(this.f47867n.f41756n0.getCurrentItem())).toString(), rectF.centerX(), org.telegram.messenger.g0.N(18.5f) + rectF.top, this.f47863b);
+        canvas.drawText(((String) this.f47892f.d(this.f47893n.f41781n0.getCurrentItem())).toString(), rectF.centerX(), org.telegram.messenger.g0.N(18.5f) + rectF.top, this.f47889b);
     }
 
     @Override

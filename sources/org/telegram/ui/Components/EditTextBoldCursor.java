@@ -126,11 +126,11 @@ public class EditTextBoldCursor extends ct {
         String str;
         boolean z9;
         ArrayList arrayList = new ArrayList();
-        this.f32654a = arrayList;
-        this.f32655b = new Stack();
-        this.f32656c = new ArrayList();
-        this.f32657e = true;
-        this.f32659n = new Path();
+        this.f32658a = arrayList;
+        this.f32659b = new Stack();
+        this.f32660c = new ArrayList();
+        this.f32661e = true;
+        this.f32663n = new Path();
         this.G = true;
         this.H = null;
         this.J = new at(this, 0);
@@ -146,7 +146,7 @@ public class EditTextBoldCursor extends ct {
         }
         this.P = ct.W.booleanValue();
         if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
-            this.f32658f = new gf.c(this, arrayList, new bt(this));
+            this.f32662f = new gf.c(this, arrayList, new bt(this));
         }
         this.f31333e0 = new u5(this, 1);
         this.f31349n0 = new Rect();
@@ -630,7 +630,7 @@ public class EditTextBoldCursor extends ct {
             CharSequence charSequence6 = this.f31364v0;
             iw0Var.getClass();
             if (staticLayout != null && !charSequence6.equals(charSequence5)) {
-                ValueAnimator valueAnimator = iw0Var.f34814j;
+                ValueAnimator valueAnimator = iw0Var.f34777j;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
                 }
@@ -656,46 +656,46 @@ public class EditTextBoldCursor extends ct {
                     spannableStringBuilder.setSpan(new hy(false), indexOf, charSequence3.length() + indexOf, 0);
                     int L = org.telegram.messenger.g0.L(400.0f);
                     Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                    iw0Var.f34808b = new StaticLayout(spannableStringBuilder, textPaint, L, alignment, 1.0f, 0.0f, false);
+                    iw0Var.f34771b = new StaticLayout(spannableStringBuilder, textPaint, L, alignment, 1.0f, 0.0f, false);
                     StaticLayout staticLayout2 = new StaticLayout(spannableStringBuilder2, textPaint, org.telegram.messenger.g0.L(400.0f), alignment, 1.0f, 0.0f, false);
                     iw0Var.d = staticLayout2;
-                    iw0Var.f34810e = true;
-                    iw0Var.f34811f = z11;
+                    iw0Var.f34773e = true;
+                    iw0Var.f34774f = z11;
                     if (indexOf == 0) {
                         f10 = 0.0f;
                     } else {
                         f10 = -staticLayout2.getPrimaryHorizontal(indexOf);
                     }
                     iw0Var.h = f10;
-                    iw0Var.f34809c = null;
-                    iw0Var.f34812g = false;
+                    iw0Var.f34772c = null;
+                    iw0Var.f34775g = false;
                 } else {
                     int L2 = org.telegram.messenger.g0.L(400.0f);
                     Layout.Alignment alignment2 = Layout.Alignment.ALIGN_NORMAL;
-                    iw0Var.f34808b = new StaticLayout(charSequence5, textPaint, L2, alignment2, 1.0f, 0.0f, false);
-                    iw0Var.f34809c = new StaticLayout(charSequence6, textPaint, org.telegram.messenger.g0.L(400.0f), alignment2, 1.0f, 0.0f, false);
+                    iw0Var.f34771b = new StaticLayout(charSequence5, textPaint, L2, alignment2, 1.0f, 0.0f, false);
+                    iw0Var.f34772c = new StaticLayout(charSequence6, textPaint, org.telegram.messenger.g0.L(400.0f), alignment2, 1.0f, 0.0f, false);
                     iw0Var.d = null;
-                    iw0Var.f34810e = true;
-                    iw0Var.f34812g = true;
+                    iw0Var.f34773e = true;
+                    iw0Var.f34775g = true;
                     iw0Var.h = 0.0f;
                 }
-                iw0Var.f34813i = 0.0f;
+                iw0Var.f34776i = 0.0f;
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                iw0Var.f34814j = ofFloat;
+                iw0Var.f34777j = ofFloat;
                 ofFloat.addUpdateListener(new c60(iw0Var, 24));
-                iw0Var.f34814j.addListener(new e60(iw0Var, 27));
-                iw0Var.f34814j.setDuration(150L);
-                iw0Var.f34814j.setInterpolator(xq.f40310f);
-                iw0Var.f34814j.start();
+                iw0Var.f34777j.addListener(new e60(iw0Var, 27));
+                iw0Var.f34777j.setDuration(150L);
+                iw0Var.f34777j.setInterpolator(xq.f40329f);
+                iw0Var.f34777j.start();
             }
         } else {
             iw0 iw0Var2 = this.f31329c0;
             if (iw0Var2 != null) {
-                ValueAnimator valueAnimator2 = iw0Var2.f34814j;
+                ValueAnimator valueAnimator2 = iw0Var2.f34777j;
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                iw0Var2.f34810e = false;
+                iw0Var2.f34773e = false;
             }
         }
         this.f31364v0 = charSequence5;

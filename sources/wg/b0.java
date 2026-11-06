@@ -10,17 +10,17 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.an;
 public final class b0 extends xg.f {
-    public final c0 f57584r;
+    public final c0 f57609r;
 
     public b0(c0 c0Var, f6 f6Var) {
         super(f6Var);
-        this.f57584r = c0Var;
+        this.f57609r = c0Var;
     }
 
     @Override
     public final void E() {
         String M0;
-        c0 c0Var = this.f57584r;
+        c0 c0Var = this.f57609r;
         String str = c0Var.S1;
         if ((str == null || str.isEmpty()) && c0Var.P1.to_id == -1) {
             M0 = hd.M0(2131753334, null);
@@ -32,9 +32,9 @@ public final class b0 extends xg.f {
 
     @Override
     public final void F(TLObject tLObject) {
-        c0 c0Var = this.f57584r;
+        c0 c0Var = this.f57609r;
         TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode = c0Var.P1;
-        f2 f2Var = c0Var.f36330o1;
+        f2 f2Var = c0Var.f36224o1;
         c0Var.dismiss();
         if (tLObject instanceof TLRPC.Chat) {
             f2Var.presentFragment(an.ra(-((TLRPC.Chat) tLObject).f26952id));

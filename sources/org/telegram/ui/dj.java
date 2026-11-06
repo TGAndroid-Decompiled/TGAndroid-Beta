@@ -68,7 +68,7 @@ public final class dj extends v4.t {
     @Override
     public final int K() {
         if (this.S) {
-            return (int) ((this.f57025n - this.T.L9) - C());
+            return (int) ((this.f57050n - this.T.L9) - C());
         }
         return super.K();
     }
@@ -130,7 +130,7 @@ public final class dj extends v4.t {
     public final void v0(RecyclerView recyclerView, v4.a1 a1Var, int i7) {
         this.T.La = false;
         mi.m mVar = new mi.m(recyclerView.getContext(), 0);
-        mVar.f57096a = i7;
+        mVar.f57121a = i7;
         w0(mVar);
     }
 

@@ -14,24 +14,24 @@ import org.telegram.tgnet.TLRPC;
 public final class js0 extends oj0 {
     public int E;
     public final xs0 G;
-    public final Context f35074c;
+    public final Context f35035c;
     public final int d;
-    public boolean f35078r;
-    public String f35081x;
-    public ch.o0 f35082y;
-    public final ArrayList f35075e = new ArrayList();
-    public final ArrayList f35076f = new ArrayList();
+    public boolean f35039r;
+    public String f35042x;
+    public ch.o0 f35043y;
+    public final ArrayList f35036e = new ArrayList();
+    public final ArrayList f35037f = new ArrayList();
     public final ArrayList h = new ArrayList();
-    public final ArrayList f35077n = new ArrayList();
-    public boolean f35079s = false;
-    public int f35080w = 0;
+    public final ArrayList f35038n = new ArrayList();
+    public boolean f35040s = false;
+    public int f35041w = 0;
     public int D = -1;
     public final ir0 F = new ir0(this, 3);
 
     public js0(xs0 xs0Var, Context context) {
         this.G = xs0Var;
-        this.f35074c = context;
-        this.d = xs0Var.f40405x1.getCurrentAccount();
+        this.f35035c = context;
+        this.d = xs0Var.f40424x1.getCurrentAccount();
         C(true);
     }
 
@@ -43,8 +43,8 @@ public final class js0 extends oj0 {
     public final void E(ch.o0 o0Var, String str) {
         long j3;
         String str2;
-        if (TextUtils.equals(str, this.f35081x)) {
-            ch.o0 o0Var2 = this.f35082y;
+        if (TextUtils.equals(str, this.f35042x)) {
+            ch.o0 o0Var2 = this.f35043y;
             if (o0Var2 != null || o0Var != null) {
                 if (o0Var2 != null && o0Var2.equals(o0Var)) {
                     return;
@@ -53,24 +53,24 @@ public final class js0 extends oj0 {
                 return;
             }
         }
-        this.f35081x = str;
-        this.f35082y = o0Var;
+        this.f35042x = str;
+        this.f35043y = o0Var;
         int i7 = this.D;
         int i10 = this.d;
         if (i7 >= 0) {
             ConnectionsManager.getInstance(i10).cancelRequest(this.D, true);
             this.D = -1;
         }
-        this.f35077n.clear();
+        this.f35038n.clear();
         this.h.clear();
-        this.f35076f.clear();
+        this.f35037f.clear();
         int i11 = 0;
-        this.f35080w = 0;
-        this.f35079s = false;
-        this.f35078r = true;
-        ArrayList arrayList = this.f35075e;
+        this.f35041w = 0;
+        this.f35040s = false;
+        this.f35039r = true;
+        ArrayList arrayList = this.f35036e;
         arrayList.clear();
-        if (this.f35082y == null) {
+        if (this.f35043y == null) {
             org.telegram.messenger.vv G1 = org.telegram.messenger.qp.s1(i10).G1();
             ArrayList arrayList2 = G1.f26204j;
             int i12 = G1.f26197a;
@@ -120,16 +120,16 @@ public final class js0 extends oj0 {
             }
             sr0 sr0Var = sr0VarArr[i11];
             if (sr0Var.E == 11) {
-                sr0Var.f38149w.e(true, true);
+                sr0Var.f38109w.e(true, true);
             }
             i11++;
         }
-        if (this.f35082y == null) {
+        if (this.f35043y == null) {
             f();
         }
         ir0 ir0Var = this.F;
         org.telegram.messenger.g0.r(ir0Var);
-        if (this.f35082y != null) {
+        if (this.f35043y != null) {
             j3 = 60;
         } else {
             j3 = 600;
@@ -138,16 +138,16 @@ public final class js0 extends oj0 {
     }
 
     public final void F() {
-        if (TextUtils.isEmpty(this.f35081x) && this.f35082y == null) {
-            this.f35078r = false;
+        if (TextUtils.isEmpty(this.f35042x) && this.f35043y == null) {
+            this.f35039r = false;
             return;
         }
         TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
         int i7 = this.d;
         tL_messages_search.peer = org.telegram.messenger.qp.s1(i7).j1(org.telegram.messenger.p10.i(i7).e());
         tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
-        tL_messages_search.f27063q = this.f35081x;
-        ch.o0 o0Var = this.f35082y;
+        tL_messages_search.f27063q = this.f35042x;
+        ch.o0 o0Var = this.f35043y;
         if (o0Var != null) {
             tL_messages_search.flags |= 8;
             tL_messages_search.saved_reaction.add(o0Var.g());
@@ -157,13 +157,13 @@ public final class js0 extends oj0 {
             tL_messages_search.offset_id = ((org.telegram.messenger.ij) jg.g.i(1, arrayList)).f1();
         }
         tL_messages_search.limit = 10;
-        this.f35079s = false;
+        this.f35040s = false;
         int i10 = this.E + 1;
         this.E = i10;
         org.telegram.ui.q8 q8Var = new org.telegram.ui.q8(this, i10, tL_messages_search, 18);
-        if (this.f35082y != null) {
+        if (this.f35043y != null) {
             org.telegram.messenger.yr a02 = org.telegram.messenger.yr.a0(i7);
-            a02.f26688a.c(new org.telegram.messenger.or(a02, this.f35081x, 0L, this.f35082y.g(), 100, this.f35077n.size(), false, new di.b2(1, this, q8Var)));
+            a02.f26688a.c(new org.telegram.messenger.or(a02, this.f35042x, 0L, this.f35043y.g(), 100, this.f35038n.size(), false, new di.b2(1, this, q8Var)));
             return;
         }
         q8Var.run();
@@ -174,7 +174,7 @@ public final class js0 extends oj0 {
         CharSequence a02;
         CharSequence charSequence;
         sr0[] sr0VarArr = this.G.m0;
-        ArrayList arrayList2 = this.f35076f;
+        ArrayList arrayList2 = this.f35037f;
         arrayList2.clear();
         HashSet hashSet = new HashSet();
         int i7 = 0;
@@ -192,7 +192,7 @@ public final class js0 extends oj0 {
         }
         int i10 = 0;
         while (true) {
-            arrayList = this.f35077n;
+            arrayList = this.f35038n;
             if (i10 >= arrayList.size()) {
                 break;
             }
@@ -205,12 +205,12 @@ public final class js0 extends oj0 {
         }
         if (!z9 || !arrayList.isEmpty()) {
             for (int i11 = 0; i11 < sr0VarArr.length; i11++) {
-                if (sr0VarArr[i11].E == 11 && arrayList2.isEmpty() && this.f35075e.isEmpty()) {
-                    xh.l lVar = sr0VarArr[i11].f38149w.d;
-                    if (this.f35082y != null && TextUtils.isEmpty(this.f35081x)) {
+                if (sr0VarArr[i11].E == 11 && arrayList2.isEmpty() && this.f35036e.isEmpty()) {
+                    xh.l lVar = sr0VarArr[i11].f38109w.d;
+                    if (this.f35043y != null && TextUtils.isEmpty(this.f35042x)) {
                         String M0 = org.telegram.messenger.hd.M0(2131748163, null);
-                        ch.o0 o0Var = this.f35082y;
-                        Paint.FontMetricsInt fontMetricsInt = sr0VarArr[i11].f38149w.d.getPaint().getFontMetricsInt();
+                        ch.o0 o0Var = this.f35043y;
+                        Paint.FontMetricsInt fontMetricsInt = sr0VarArr[i11].f38109w.d.getPaint().getFontMetricsInt();
                         if (!TextUtils.isEmpty(o0Var.f6356f)) {
                             charSequence = o0Var.f6356f;
                         } else {
@@ -220,11 +220,11 @@ public final class js0 extends oj0 {
                         }
                         a02 = org.telegram.messenger.g0.K2(M0, charSequence, "%s");
                     } else {
-                        a02 = org.telegram.messenger.hd.a0(null, null, 2131748165, this.f35081x);
+                        a02 = org.telegram.messenger.hd.a0(null, null, 2131748165, this.f35042x);
                     }
                     lVar.setText(a02);
-                    sr0VarArr[i11].f38149w.f31918f.setVisibility(8);
-                    sr0VarArr[i11].f38149w.e(false, true);
+                    sr0VarArr[i11].f38109w.f31930f.setVisibility(8);
+                    sr0VarArr[i11].f38109w.e(false, true);
                 }
             }
         }
@@ -233,7 +233,7 @@ public final class js0 extends oj0 {
 
     @Override
     public final int b() {
-        return this.f35076f.size() + this.f35075e.size();
+        return this.f35037f.size() + this.f35036e.size();
     }
 
     @Override
@@ -242,12 +242,12 @@ public final class js0 extends oj0 {
         if (i7 < 0) {
             return i7;
         }
-        ArrayList arrayList = this.f35075e;
+        ArrayList arrayList = this.f35036e;
         if (i7 < arrayList.size()) {
             hash = Objects.hash(1, Long.valueOf(((org.telegram.messenger.uv) arrayList.get(i7)).f25886a));
         } else {
             int size = i7 - arrayList.size();
-            ArrayList arrayList2 = this.f35076f;
+            ArrayList arrayList2 = this.f35037f;
             if (size < arrayList2.size()) {
                 hash = Objects.hash(2, Long.valueOf(((org.telegram.messenger.ij) arrayList2.get(size)).Q1()), Integer.valueOf(((org.telegram.messenger.ij) arrayList2.get(size)).f1()));
             } else {
@@ -266,7 +266,7 @@ public final class js0 extends oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         boolean z9;
         if (i7 >= 0) {
-            View view = d1Var.f56927a;
+            View view = d1Var.f56952a;
             if (view instanceof org.telegram.ui.Cells.t2) {
                 org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) view;
                 if (i7 + 1 < b()) {
@@ -275,14 +275,14 @@ public final class js0 extends oj0 {
                     z9 = false;
                 }
                 t2Var.f30475s2 = z9;
-                ArrayList arrayList = this.f35075e;
+                ArrayList arrayList = this.f35036e;
                 if (i7 < arrayList.size()) {
                     org.telegram.messenger.uv uvVar = (org.telegram.messenger.uv) arrayList.get(i7);
                     t2Var.d0(uvVar.f25886a, uvVar.d, uvVar.c(), false, false);
                     return;
                 }
                 int size = i7 - arrayList.size();
-                ArrayList arrayList2 = this.f35076f;
+                ArrayList arrayList2 = this.f35037f;
                 if (size < arrayList2.size()) {
                     org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) arrayList2.get(size);
                     t2Var.d0(ijVar.Q1(), ijVar, ijVar.f23237k.date, false, false);
@@ -293,7 +293,7 @@ public final class js0 extends oj0 {
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        jg.a0 a0Var = new jg.a0(1, this.f35074c, true);
+        jg.a0 a0Var = new jg.a0(1, this.f35035c, true);
         xs0 xs0Var = this.G;
         a0Var.setDialogCellDelegate(xs0Var);
         a0Var.f30467r0 = true;

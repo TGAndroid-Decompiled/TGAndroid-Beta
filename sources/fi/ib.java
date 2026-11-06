@@ -50,7 +50,7 @@ public final class ib extends View {
         i6Var.u(-1);
         i6Var.s(org.telegram.messenger.g0.N(1.33f), org.telegram.messenger.g0.L(1.0f), 1073741824);
         i6Var.t(hd.M0(2131743946, null), true, true);
-        i6Var.f34516b = 17;
+        i6Var.f34477b = 17;
     }
 
     public final void a(boolean z9, boolean z10) {
@@ -70,7 +70,7 @@ public final class ib extends View {
         this.f12194f = z11;
         zg0 zg0Var = this.f12190a;
         if (z11) {
-            if (zg0Var.f40925a0 > 34) {
+            if (zg0Var.f40950a0 > 34) {
                 zg0Var.N(0, false, false);
             }
             zg0Var.P(33);

@@ -7,85 +7,85 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f41;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.w31;
 import sg.t0;
 public final class h implements v10 {
-    public final int f55201a;
-    public final m f55202b;
+    public final int f55226a;
+    public final m f55227b;
 
     public h(m mVar, int i7) {
-        this.f55201a = i7;
-        this.f55202b = mVar;
+        this.f55226a = i7;
+        this.f55227b = mVar;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        int i7 = this.f55201a;
+        int i7 = this.f55226a;
         int i10 = 0;
         boolean z9 = false;
-        m mVar = this.f55202b;
+        m mVar = this.f55227b;
         switch (i7) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
-                f41 f41Var = (f41) obj2;
+                k41 k41Var = (k41) obj2;
                 arrayList.clear();
-                ArrayList arrayList2 = mVar.f55214j;
+                ArrayList arrayList2 = mVar.f55239j;
                 int size = arrayList2.size();
                 while (i10 < size) {
                     Object obj3 = arrayList2.get(i10);
                     i10++;
                     TLRPC.MessagePeerVote messagePeerVote = (TLRPC.MessagePeerVote) obj3;
                     long o4 = m5.o(messagePeerVote.peer);
-                    TLObject e22 = qp.s1(mVar.f55207a).e2(o4);
+                    TLObject e22 = qp.s1(mVar.f55232a).e2(o4);
                     int i11 = messagePeerVote.date;
                     u1 u1Var = new u1(mVar, o4, 3);
-                    int i12 = j.f55204b;
-                    r31 K = r31.K(j.class);
+                    int i12 = j.f55229b;
+                    w31 K = w31.K(j.class);
                     K.G = e22;
                     K.B = o4;
-                    K.f37611z = i11;
+                    K.f39843z = i11;
                     K.D = u1Var;
                     arrayList.add(K);
                 }
                 if (!mVar.h) {
                     if (arrayList2.isEmpty()) {
-                        int i13 = k.f55205b;
-                        arrayList.add(r31.K(k.class));
-                        arrayList.add(r31.K(k.class));
-                        arrayList.add(r31.K(k.class));
-                        arrayList.add(r31.K(k.class));
-                        arrayList.add(r31.K(k.class));
+                        int i13 = k.f55230b;
+                        arrayList.add(w31.K(k.class));
+                        arrayList.add(w31.K(k.class));
+                        arrayList.add(w31.K(k.class));
+                        arrayList.add(w31.K(k.class));
+                        arrayList.add(w31.K(k.class));
                         return;
                     }
-                    int i14 = l.f55206b;
-                    arrayList.add(r31.K(l.class));
+                    int i14 = l.f55231b;
+                    arrayList.add(w31.K(l.class));
                     return;
                 }
                 return;
             default:
                 TLRPC.TL_messages_votesList tL_messages_votesList = (TLRPC.TL_messages_votesList) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i15 = mVar.f55207a;
-                mVar.f55213i = false;
+                int i15 = mVar.f55232a;
+                mVar.f55238i = false;
                 if (tL_messages_votesList != null) {
                     qp.s1(i15).Y3(tL_messages_votesList.users, false);
                     qp.s1(i15).S3(tL_messages_votesList.chats, false);
                     String str = tL_messages_votesList.next_offset;
-                    mVar.f55212g = str;
+                    mVar.f55237g = str;
                     if (str == null) {
                         z9 = true;
                     }
                     mVar.h = z9;
-                    mVar.f55214j.addAll(tL_messages_votesList.votes);
-                    t0 t0Var = mVar.f55210e;
+                    mVar.f55239j.addAll(tL_messages_votesList.votes);
+                    t0 t0Var = mVar.f55235e;
                     if (t0Var != null) {
                         t0Var.run();
                         return;
                     }
                     return;
                 }
-                mVar.f55212g = null;
+                mVar.f55237g = null;
                 mVar.h = true;
                 return;
         }

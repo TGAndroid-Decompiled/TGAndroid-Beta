@@ -260,12 +260,12 @@ public final class n0 {
     public final void q(TL_update.TL_updateStarsRevenueStatus tL_updateStarsRevenueStatus) {
         long o4 = org.telegram.messenger.m5.o(tL_updateStarsRevenueStatus.peer);
         if (o4 < 0) {
-            org.telegram.ui.zd zdVar = org.telegram.ui.zd.f52522t1;
-            if (zdVar != null && zdVar.f52539p0 == org.telegram.messenger.m5.o(tL_updateStarsRevenueStatus.peer)) {
-                org.telegram.ui.zd zdVar2 = org.telegram.ui.zd.f52522t1;
+            org.telegram.ui.zd zdVar = org.telegram.ui.zd.f52529t1;
+            if (zdVar != null && zdVar.f52546p0 == org.telegram.messenger.m5.o(tL_updateStarsRevenueStatus.peer)) {
+                org.telegram.ui.zd zdVar2 = org.telegram.ui.zd.f52529t1;
                 TLRPC.TL_starsRevenueStatus tL_starsRevenueStatus = tL_updateStarsRevenueStatus.status;
                 zdVar2.L(tL_starsRevenueStatus.current_balance instanceof TL_stars.TL_starsTonAmount, tL_starsRevenueStatus);
-                org.telegram.ui.zd.f52522t1.J();
+                org.telegram.ui.zd.f52529t1.J();
                 return;
             }
             return;

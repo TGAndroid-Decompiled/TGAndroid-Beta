@@ -25,18 +25,18 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.CheckBoxBase;
+import org.telegram.ui.Components.a41;
 import org.telegram.ui.Components.a80;
+import org.telegram.ui.Components.c41;
 import org.telegram.ui.Components.ck0;
+import org.telegram.ui.Components.d41;
 import org.telegram.ui.Components.eu0;
 import org.telegram.ui.Components.lx0;
 import org.telegram.ui.Components.ly0;
 import org.telegram.ui.Components.my0;
-import org.telegram.ui.Components.s31;
 import org.telegram.ui.Components.ty0;
 import org.telegram.ui.Components.uy0;
-import org.telegram.ui.Components.v31;
 import org.telegram.ui.Components.x31;
-import org.telegram.ui.Components.y31;
 import org.telegram.ui.Components.zj0;
 import org.telegram.ui.rg0;
 import org.telegram.ui.tg0;
@@ -249,7 +249,7 @@ public final class kv {
                 }
                 if (i7 != 0) {
                     ?? obj = new Object();
-                    obj.f38442a = i7;
+                    obj.f38433a = i7;
                     spannableStringBuilder.setSpan(new uy0(obj, 0), spanStart, spanEnd, 33);
                 }
             }
@@ -334,7 +334,7 @@ public final class kv {
 
     public static ty0 z(int i7) {
         ?? obj = new Object();
-        obj.f38442a = i7;
+        obj.f38433a = i7;
         return obj;
     }
 
@@ -356,7 +356,7 @@ public final class kv {
                     break;
                 }
                 org.telegram.ui.Cells.t9 t9Var = (org.telegram.ui.Cells.t9) arrayList.get(i7);
-                if ((t9Var instanceof jv) && (n5Var = ((jv) t9Var).E) != null && !n5Var.f36278a.isEmpty()) {
+                if ((t9Var instanceof jv) && (n5Var = ((jv) t9Var).E) != null && !n5Var.f36192a.isEmpty()) {
                     return true;
                 }
                 i7++;
@@ -887,17 +887,17 @@ public final class kv {
             if (icVar == null) {
                 this.G = new org.telegram.ui.Components.ic(this.Q, 1.5f, 2.0f);
             } else {
-                View view = icVar.f34586a;
+                View view = icVar.f34549a;
                 View view2 = this.Q;
                 if (view != view2) {
-                    icVar.f34586a = view2;
+                    icVar.f34549a = view2;
                 }
             }
             if (this.H == null) {
                 this.H = new Paint(1);
             }
             this.H.setColor(org.telegram.ui.ActionBar.k6.r1(0.1f, w02));
-            float f13 = this.I.f35777c;
+            float f13 = this.I.f35782c;
             int i14 = this.C;
             float f14 = (((i14 + i13) + this.T) / 2.0f) - this.S;
             float L = g0.L(4.0f) + min;
@@ -918,12 +918,12 @@ public final class kv {
             if (a80Var2 == null && z10) {
                 a80 a80Var3 = new a80();
                 this.J = a80Var3;
-                a80Var3.f31734x.setStrokeWidth(g0.L(1.25f));
+                a80Var3.f31746x.setStrokeWidth(g0.L(1.25f));
                 this.J.D = true;
             } else if (a80Var2 != null && z10 && (a80Var2.c() || this.J.d())) {
                 a80 a80Var4 = this.J;
-                a80Var4.f31715b = -1L;
-                a80Var4.f31716c = -1L;
+                a80Var4.f31727b = -1L;
+                a80Var4.f31728c = -1L;
             }
             a80 a80Var5 = this.J;
             if (a80Var5 != null) {
@@ -1446,10 +1446,10 @@ public final class kv {
                     int i14 = i7 | 256;
                     n(richText.text, spannableStringBuilder, i14, new gv(this, i14, false));
                 } else if (richText instanceof TL_iv.textUrl) {
-                    n(richText.text, spannableStringBuilder, i7, new x31(((TL_iv.textUrl) richText).url, z(1024)));
+                    n(richText.text, spannableStringBuilder, i7, new c41(((TL_iv.textUrl) richText).url, z(1024)));
                 } else if (richText instanceof TL_iv.textEmail) {
                     TL_iv.RichText richText2 = richText.text;
-                    n(richText2, spannableStringBuilder, i7, new x31("mailto:" + ((TL_iv.textEmail) richText).email, z(1024)));
+                    n(richText2, spannableStringBuilder, i7, new c41("mailto:" + ((TL_iv.textEmail) richText).email, z(1024)));
                 } else if (richText instanceof TL_iv.textConcat) {
                     for (int i15 = 0; i15 < richText.texts.size(); i15++) {
                         m(richText.texts.get(i15), spannableStringBuilder, i7);
@@ -1469,7 +1469,7 @@ public final class kv {
                     if (textphone.phone.startsWith("+")) {
                         d = rf.b.i("+", d);
                     }
-                    n(richText.text, spannableStringBuilder, i7, new x31(rf.b.i("tel:", d), z(1024)));
+                    n(richText.text, spannableStringBuilder, i7, new c41(rf.b.i("tel:", d), z(1024)));
                 } else if (richText instanceof TL_iv.textAnchor) {
                     TL_iv.textAnchor textanchor = (TL_iv.textAnchor) richText;
                     String str = textanchor.name;
@@ -1551,37 +1551,37 @@ public final class kv {
                             TLRPC.TL_messageEntityMention tL_messageEntityMention = new TLRPC.TL_messageEntityMention();
                             ?? obj = new Object();
                             obj.d = tL_messageEntityMention;
-                            n(richText.text, spannableStringBuilder, i7, new v31(x(richText), (ty0) obj));
+                            n(richText.text, spannableStringBuilder, i7, new a41(x(richText), (ty0) obj));
                         } else if (richText instanceof TL_iv.textHashtag) {
                             TLRPC.TL_messageEntityHashtag tL_messageEntityHashtag = new TLRPC.TL_messageEntityHashtag();
                             ?? obj2 = new Object();
                             obj2.d = tL_messageEntityHashtag;
-                            n(richText.text, spannableStringBuilder, i7, new v31(x(richText), (ty0) obj2));
+                            n(richText.text, spannableStringBuilder, i7, new a41(x(richText), (ty0) obj2));
                         } else if (richText instanceof TL_iv.textBotCommand) {
-                            n(richText.text, spannableStringBuilder, i7, new s31(x(richText), E() ? 1 : 0, null));
+                            n(richText.text, spannableStringBuilder, i7, new x31(x(richText), E() ? 1 : 0, null));
                         } else if (richText instanceof TL_iv.textCashtag) {
                             TLRPC.TL_messageEntityCashtag tL_messageEntityCashtag = new TLRPC.TL_messageEntityCashtag();
                             ?? obj3 = new Object();
                             obj3.d = tL_messageEntityCashtag;
-                            n(richText.text, spannableStringBuilder, i7, new v31(x(richText), (ty0) obj3));
+                            n(richText.text, spannableStringBuilder, i7, new a41(x(richText), (ty0) obj3));
                         } else if (richText instanceof TL_iv.textAutoUrl) {
-                            n(richText.text, spannableStringBuilder, i7, new x31(x(richText), z(1024)));
+                            n(richText.text, spannableStringBuilder, i7, new c41(x(richText), z(1024)));
                         } else if (richText instanceof TL_iv.textAutoEmail) {
-                            n(richText.text, spannableStringBuilder, i7, new x31(rf.b.i("mailto:", x(richText)), z(1024)));
+                            n(richText.text, spannableStringBuilder, i7, new c41(rf.b.i("mailto:", x(richText)), z(1024)));
                         } else if (richText instanceof TL_iv.textAutoPhone) {
                             String x10 = x(richText);
                             String d2 = pf.b.d(x10, false);
                             if (x10.startsWith("+")) {
                                 d2 = rf.b.i("+", d2);
                             }
-                            n(richText.text, spannableStringBuilder, i7, new x31(rf.b.i("tel:", d2), z(1024)));
+                            n(richText.text, spannableStringBuilder, i7, new c41(rf.b.i("tel:", d2), z(1024)));
                         } else if (richText instanceof TL_iv.textTonAddress) {
-                            n(richText.text, spannableStringBuilder, i7, new v31(rf.b.i("tonaddress:", x(richText)), (ty0) null));
+                            n(richText.text, spannableStringBuilder, i7, new a41(rf.b.i("tonaddress:", x(richText)), (ty0) null));
                         } else if (richText instanceof TL_iv.textBankCard) {
-                            n(richText.text, spannableStringBuilder, i7, new v31(rf.b.i("card:", x(richText)), (ty0) null));
+                            n(richText.text, spannableStringBuilder, i7, new a41(rf.b.i("card:", x(richText)), (ty0) null));
                         } else if (richText instanceof TL_iv.textMentionName) {
                             TL_iv.RichText richText4 = richText.text;
-                            n(richText4, spannableStringBuilder, i7, new y31("" + ((TL_iv.textMentionName) richText).user_id, E() ? 1 : 0, null));
+                            n(richText4, spannableStringBuilder, i7, new d41("" + ((TL_iv.textMentionName) richText).user_id, E() ? 1 : 0, null));
                         } else if (richText instanceof TL_iv.textDate) {
                             TL_iv.textDate textdate = (TL_iv.textDate) richText;
                             TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();

@@ -99,7 +99,7 @@ public class n7 {
                     if (icVar == null) {
                         this.H = new ic(view, 1.5f, 5.0f);
                     } else {
-                        icVar.f34586a = view;
+                        icVar.f34549a = view;
                     }
                     view.getParent().requestDisallowInterceptTouchEvent(true);
                     this.H.c(true);
@@ -123,7 +123,7 @@ public class n7 {
             if (Math.abs(this.O - motionEvent.getX()) > org.telegram.messenger.g0.f22516e || Math.abs(this.P - motionEvent.getY()) > org.telegram.messenger.g0.f22516e) {
                 ic icVar2 = this.H;
                 if (icVar2 != null) {
-                    icVar2.f34586a = view;
+                    icVar2.f34549a = view;
                     icVar2.c(false);
                 }
                 z0 z0Var3 = this.Q;
@@ -136,7 +136,7 @@ public class n7 {
         } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
             ic icVar3 = this.H;
             if (icVar3 != null) {
-                icVar3.f34586a = view;
+                icVar3.f34549a = view;
                 icVar3.c(false);
             }
             if (this.N && motionEvent.getAction() == 1 && !d(this.f9428x)) {

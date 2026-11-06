@@ -34,17 +34,17 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.f41;
-import org.telegram.ui.Components.h41;
 import org.telegram.ui.Components.i4;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r31;
 import org.telegram.ui.Components.rt0;
 import org.telegram.ui.Components.ty0;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
-public final class v extends h41 implements ls {
+public final class v extends m41 implements ls {
     public static org.telegram.ui.ActionBar.u1 f17557e;
 
     public static void d0(v vVar, TL_account.TL_businessChatLink tL_businessChatLink) {
@@ -156,20 +156,20 @@ public final class v extends h41 implements ls {
     }
 
     @Override
-    public final void Z(ArrayList arrayList, f41 f41Var) {
+    public final void Z(ArrayList arrayList, k41 k41Var) {
         String a02;
         String M0 = hd.M0(2131752710, null);
         String M02 = hd.M0(2131752703, null);
-        r31 r31Var = new r31(2);
-        r31Var.f37598l = M0;
-        r31Var.f37601o = M02;
-        r31Var.f37597k = 2131623940;
-        arrayList.add(r31Var);
-        f41Var.V();
+        w31 w31Var = new w31(2);
+        w31Var.f39830l = M0;
+        w31Var.f39833o = M02;
+        w31Var.f39829k = 2131623940;
+        arrayList.add(w31Var);
+        k41Var.V();
         y d = y.d(this.currentAccount);
         if (d.f17583b.size() < qp.s1(d.f17582a).H5) {
-            r31 c10 = r31.c(1, 2131231840, hd.M0(2131752709, null));
-            c10.f37603q = true;
+            w31 c10 = w31.c(1, 2131231840, hd.M0(2131752709, null));
+            c10.f39835q = true;
             arrayList.add(c10);
         }
         ArrayList arrayList2 = y.d(this.currentAccount).f17583b;
@@ -181,11 +181,11 @@ public final class v extends h41 implements ls {
             i10++;
             ?? obj2 = new Object();
             obj2.f17549a = (TL_account.TL_businessChatLink) obj;
-            r31 r31Var2 = new r31(29);
-            r31Var2.G = obj2;
-            arrayList.add(r31Var2);
+            w31 w31Var2 = new w31(29);
+            w31Var2.G = obj2;
+            arrayList.add(w31Var2);
         }
-        f41Var.U();
+        k41Var.U();
         TLRPC.User f10 = p10.i(this.currentAccount).f();
         String s5 = a8.p0.s(new StringBuilder(), qp.s1(this.currentAccount).U2, "/");
         ArrayList arrayList3 = new ArrayList(2);
@@ -215,11 +215,11 @@ public final class v extends h41 implements ls {
                 int indexOf = a02.indexOf(str);
                 if (indexOf > -1) {
                     i4 i4Var = new i4(rf.b.i("https://", str), (ty0) null);
-                    i4Var.f34488f = this;
+                    i4Var.f34432f = this;
                     spannableString.setSpan(i4Var, indexOf, str.length() + indexOf, 33);
                 }
             }
-            arrayList.add(r31.C(spannableString));
+            arrayList.add(w31.C(spannableString));
         }
     }
 
@@ -229,16 +229,16 @@ public final class v extends h41 implements ls {
     }
 
     @Override
-    public final void b0(r31 r31Var, View view) {
-        if (r31Var.d == 1) {
+    public final void b0(w31 w31Var, View view) {
+        if (w31Var.d == 1) {
             y d = y.d(this.currentAccount);
             TL_account.createBusinessChatLink createbusinesschatlink = new TL_account.createBusinessChatLink();
             TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
             createbusinesschatlink.link = tL_inputBusinessChatLink;
             tL_inputBusinessChatLink.message = "";
             ConnectionsManager.getInstance(d.f17582a).sendRequest(createbusinesschatlink, new x(d, 1));
-        } else if (r31Var.f54415a == 29) {
-            Object obj = r31Var.G;
+        } else if (w31Var.f54440a == 29) {
+            Object obj = w31Var.G;
             if (obj instanceof u) {
                 Bundle f10 = rf.b.f(6, "chatMode");
                 f10.putString("business_link", ((u) obj).f17549a.link);
@@ -248,9 +248,9 @@ public final class v extends h41 implements ls {
     }
 
     @Override
-    public final boolean c0(r31 r31Var, View view) {
-        if (r31Var.f54415a == 29) {
-            Object obj = r31Var.G;
+    public final boolean c0(w31 w31Var, View view) {
+        if (w31Var.f54440a == 29) {
+            Object obj = w31Var.G;
             if (obj instanceof u) {
                 final TL_account.TL_businessChatLink tL_businessChatLink = ((u) obj).f17549a;
                 k60 H = k60.H(this, view);
@@ -381,7 +381,7 @@ public final class v extends h41 implements ls {
                         }
                     }
                 }, true);
-                H.W(this.f34211a.U0(view, false));
+                H.W(this.f35844a.U0(view, false));
                 H.Z();
                 return true;
             }
@@ -394,16 +394,16 @@ public final class v extends h41 implements ls {
         setHasOwnBackground(true);
         super.createView(context);
         this.simpleActionBar.setTitle(hd.M0(2131752710, null));
-        this.f34212b.setBackground(null);
-        this.f34211a.r1();
-        this.f34211a.setSectionsDrawBackground(true);
-        this.f34211a.f35167f3.f33473r = false;
+        this.f35845b.setBackground(null);
+        this.f35844a.r1();
+        this.f35844a.setSectionsDrawBackground(true);
+        this.f35844a.f36781f3.f35132r = false;
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        f41 f41Var;
+        k41 k41Var;
         if (i7 != qs.J1 && i7 != qs.f25008k0) {
             if (i7 == qs.K1) {
                 Bundle f10 = rf.b.f(6, "chatMode");
@@ -417,15 +417,15 @@ public final class v extends h41 implements ls {
                 return;
             }
         }
-        w3 w3Var = this.f34211a;
-        if (w3Var != null && (f41Var = w3Var.f35167f3) != null) {
-            f41Var.O(true);
+        w3 w3Var = this.f35844a;
+        if (w3Var != null && (k41Var = w3Var.f36781f3) != null) {
+            k41Var.O(true);
         }
     }
 
     @Override
     public final pj0 getListViewForSimpleGlass() {
-        return this.f34211a;
+        return this.f35844a;
     }
 
     @Override

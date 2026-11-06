@@ -31,7 +31,7 @@ public final class x9 extends o5 {
         vaVar.f13002v1.L0(false);
         vaVar.f12944c1.clearAnimation();
         ViewPropertyAnimator duration = vaVar.f12944c1.animate().alpha(0.0f).setDuration(180L);
-        xq xqVar = xq.f40311g;
+        xq xqVar = xq.f40330g;
         duration.setInterpolator(xqVar).start();
         if (vaVar.f12956g0 != 2) {
             vaVar.Y0.clearAnimation();
@@ -47,12 +47,12 @@ public final class x9 extends o5 {
             vaVar.f12982p1.setVisibility(0);
             vaVar.f12982p1.setAlpha(0.0f);
             vaVar.f12982p1.clearAnimation();
-            vaVar.f12982p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(xq.f40311g).start();
+            vaVar.f12982p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(xq.f40330g).start();
             return;
         }
         vaVar.f12982p1.a(false, z10);
         vaVar.f12982p1.clearAnimation();
-        ViewPropertyAnimator interpolator = vaVar.f12982p1.animate().alpha(0.0f).withEndAction(new h9(this, 2)).setDuration(180L).setInterpolator(xq.f40311g);
+        ViewPropertyAnimator interpolator = vaVar.f12982p1.animate().alpha(0.0f).withEndAction(new h9(this, 2)).setDuration(180L).setInterpolator(xq.f40330g);
         if (z10) {
             j3 = 500;
         } else {
@@ -92,7 +92,7 @@ public final class x9 extends o5 {
             f10 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f10).setDuration(180L);
-        xq xqVar = xq.f40311g;
+        xq xqVar = xq.f40330g;
         duration.setInterpolator(xqVar).start();
         vaVar.Y0.clearAnimation();
         ViewPropertyAnimator animate2 = vaVar.Y0.animate();

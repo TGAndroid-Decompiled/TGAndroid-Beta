@@ -100,10 +100,10 @@ public final class w5 extends org.telegram.ui.ActionBar.v2 {
         if (X != null) {
             String M0 = hd.M0(2131744882, null);
             String M02 = hd.M0(2131744881, null);
-            yb ybVar = new yb(X.W(), X.f34289c);
-            ybVar.f40582a.setImageResource(2131232393);
-            ybVar.f40583b.setText(M0);
-            TextView textView = ybVar.f40584c;
+            yb ybVar = new yb(X.W(), X.f34239c);
+            ybVar.f40601a.setImageResource(2131232393);
+            ybVar.f40602b.setText(M0);
+            TextView textView = ybVar.f40603c;
             textView.setText(M02);
             textView.setSingleLine(false);
             textView.setMaxLines(5);

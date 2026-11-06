@@ -2,17 +2,17 @@ package zd;
 
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class o extends e1 {
-    public final int f59978e;
-    public final m f59979f;
+    public final int f60003e;
+    public final m f60004f;
 
     public o(m mVar, int i7) {
-        this.f59978e = i7;
-        this.f59979f = mVar;
+        this.f60003e = i7;
+        this.f60004f = mVar;
     }
 
     @Override
     public final boolean i() {
-        switch (this.f59978e) {
+        switch (this.f60003e) {
             case 0:
                 return true;
             default:
@@ -22,10 +22,10 @@ public final class o extends e1 {
 
     @Override
     public final void j(Throwable th2) {
-        switch (this.f59978e) {
+        switch (this.f60003e) {
             case 0:
                 n1 h = h();
-                m mVar = this.f59979f;
+                m mVar = this.f60004f;
                 Throwable q10 = mVar.q(h);
                 if (mVar.x()) {
                     ee.f fVar = (ee.f) mVar.d;
@@ -58,7 +58,7 @@ public final class o extends e1 {
                 }
                 return;
             default:
-                this.f59979f.resumeWith(gd.k.f13829a);
+                this.f60004f.resumeWith(gd.k.f13829a);
                 return;
         }
     }

@@ -7,29 +7,29 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 public class FabBackgroundDrawable extends Drawable {
-    public final Paint f39018a = new Paint(1);
-    public final Paint f39019b;
-    public Bitmap f39020c;
+    public final Paint f39015a = new Paint(1);
+    public final Paint f39016b;
+    public Bitmap f39017c;
 
     public FabBackgroundDrawable() {
         Paint paint = new Paint();
-        this.f39019b = paint;
+        this.f39016b = paint;
         paint.setColor(1275068416);
     }
 
     @Override
     public final void draw(Canvas canvas) {
         int i7;
-        if (this.f39020c == null) {
+        if (this.f39017c == null) {
             onBoundsChange(getBounds());
         }
         int min = Math.min(getBounds().width(), getBounds().height());
-        Bitmap bitmap = this.f39020c;
+        Bitmap bitmap = this.f39017c;
         if (bitmap != null) {
-            canvas.drawBitmap(bitmap, getBounds().centerX() - (this.f39020c.getWidth() / 2), getBounds().centerY() - (this.f39020c.getHeight() / 2), this.f39019b);
+            canvas.drawBitmap(bitmap, getBounds().centerX() - (this.f39017c.getWidth() / 2), getBounds().centerY() - (this.f39017c.getHeight() / 2), this.f39016b);
         }
         float f10 = min / 2;
-        canvas.drawCircle(f10, f10, i7 - org.telegram.messenger.g0.L(4.0f), this.f39018a);
+        canvas.drawCircle(f10, f10, i7 - org.telegram.messenger.g0.L(4.0f), this.f39015a);
     }
 
     @Override
@@ -49,16 +49,16 @@ public class FabBackgroundDrawable extends Drawable {
         int i7;
         int min = Math.min(rect.width(), rect.height());
         if (min <= 0) {
-            this.f39020c = null;
+            this.f39017c = null;
             return;
         }
-        this.f39020c = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
+        this.f39017c = Bitmap.createBitmap(min, min, Bitmap.Config.ALPHA_8);
         float f10 = min / 2;
-        new Canvas(this.f39020c).drawCircle(f10, f10, i7 - org.telegram.messenger.g0.L(4.0f), new Paint(1));
+        new Canvas(this.f39017c).drawCircle(f10, f10, i7 - org.telegram.messenger.g0.L(4.0f), new Paint(1));
     }
 
     public void setColor(int i7) {
-        this.f39018a.setColor(i7);
+        this.f39015a.setColor(i7);
         invalidateSelf();
     }
 

@@ -45,7 +45,7 @@ public final class q5 extends t4 {
     public void p(int i7, int i10, int i11) {
         switch (this.U) {
             case 2:
-                if (!((u71) this.V).f50261e2) {
+                if (!((u71) this.V).f50283e2) {
                     super.p(i7, i10, i11);
                     return;
                 }
@@ -60,7 +60,7 @@ public final class q5 extends t4 {
     public void q(int i7, int i10, int i11, int i12, int i13, int i14, boolean z9, boolean z10) {
         switch (this.U) {
             case 2:
-                if (!((u71) this.V).f50261e2) {
+                if (!((u71) this.V).f50283e2) {
                     super.q(i7, i10, i11, i12, i13, i14, z9, z10);
                     return;
                 }

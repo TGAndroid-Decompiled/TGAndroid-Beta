@@ -68,12 +68,12 @@ public final class e7 extends FrameLayout {
         this.f29071c.setText(hd.M0(i7, null));
         org.telegram.ui.Components.l9 l9Var = this.f29069a;
         l9Var.setAnimatedEmojiDrawable(null);
-        qg.a aVar = new qg.a(qg.a.f53994k[0]);
+        qg.a aVar = new qg.a(qg.a.f54019k[0]);
         g70 g70Var = new g70(1, null);
         g70Var.a("");
-        g70Var.f33885i = 1.8f;
+        g70Var.f33829i = 1.8f;
         xp xpVar = new xp(aVar, g70Var, 0, 0);
-        xpVar.f40305x = true;
+        xpVar.f40324x = true;
         l9Var.setImageDrawable(xpVar);
     }
 }

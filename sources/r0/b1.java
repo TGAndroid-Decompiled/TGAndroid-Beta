@@ -10,22 +10,22 @@ import j$.util.Objects;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 public abstract class b1 extends h1 {
-    public static boolean f54046i = false;
-    public static Method f54047j;
-    public static Class f54048k;
-    public static Field f54049l;
-    public static Field f54050m;
-    public final WindowInsets f54051c;
+    public static boolean f54071i = false;
+    public static Method f54072j;
+    public static Class f54073k;
+    public static Field f54074l;
+    public static Field f54075m;
+    public final WindowInsets f54076c;
     public i0.b[] d;
-    public i0.b f54052e;
-    public k1 f54053f;
-    public i0.b f54054g;
+    public i0.b f54077e;
+    public k1 f54078f;
+    public i0.b f54079g;
     public int h;
 
     public b1(k1 k1Var, WindowInsets windowInsets) {
         super(k1Var);
-        this.f54052e = null;
-        this.f54051c = windowInsets;
+        this.f54077e = null;
+        this.f54076c = windowInsets;
     }
 
     public static boolean B(int i7, int i10) {
@@ -46,27 +46,27 @@ public abstract class b1 extends h1 {
     }
 
     private i0.b w() {
-        k1 k1Var = this.f54053f;
+        k1 k1Var = this.f54078f;
         if (k1Var != null) {
-            return k1Var.f54084a.i();
+            return k1Var.f54109a.i();
         }
         return i0.b.f15116e;
     }
 
     private i0.b x(View view) {
         if (Build.VERSION.SDK_INT < 30) {
-            if (!f54046i) {
+            if (!f54071i) {
                 z();
             }
-            Method method = f54047j;
-            if (method != null && f54048k != null && f54049l != null) {
+            Method method = f54072j;
+            if (method != null && f54073k != null && f54074l != null) {
                 try {
                     Object invoke = method.invoke(view, null);
                     if (invoke == null) {
                         Log.w("WindowInsetsCompat", "Failed to get visible insets. getViewRootImpl() returned null from the provided view. This means that the view is either not attached or the method has been overridden", new NullPointerException());
                         return null;
                     }
-                    Rect rect = (Rect) f54049l.get(f54050m.get(invoke));
+                    Rect rect = (Rect) f54074l.get(f54075m.get(invoke));
                     if (rect != null) {
                         return i0.b.b(rect.left, rect.top, rect.right, rect.bottom);
                     }
@@ -81,21 +81,21 @@ public abstract class b1 extends h1 {
 
     private static void z() {
         try {
-            f54047j = View.class.getDeclaredMethod("getViewRootImpl", null);
+            f54072j = View.class.getDeclaredMethod("getViewRootImpl", null);
             Class<?> cls = Class.forName("android.view.View$AttachInfo");
-            f54048k = cls;
-            f54049l = cls.getDeclaredField("mVisibleInsets");
-            f54050m = Class.forName("android.view.ViewRootImpl").getDeclaredField("mAttachInfo");
-            f54049l.setAccessible(true);
-            f54050m.setAccessible(true);
+            f54073k = cls;
+            f54074l = cls.getDeclaredField("mVisibleInsets");
+            f54075m = Class.forName("android.view.ViewRootImpl").getDeclaredField("mAttachInfo");
+            f54074l.setAccessible(true);
+            f54075m.setAccessible(true);
         } catch (ReflectiveOperationException e10) {
             Log.e("WindowInsetsCompat", "Failed to get visible insets. (Reflection error). " + e10.getMessage(), e10);
         }
-        f54046i = true;
+        f54071i = true;
     }
 
     public void A(i0.b bVar) {
-        this.f54054g = bVar;
+        this.f54079g = bVar;
     }
 
     @Override
@@ -113,7 +113,7 @@ public abstract class b1 extends h1 {
             return false;
         }
         b1 b1Var = (b1) obj;
-        if (!Objects.equals(this.f54054g, b1Var.f54054g) || !B(this.h, b1Var.h)) {
+        if (!Objects.equals(this.f54079g, b1Var.f54079g) || !B(this.h, b1Var.h)) {
             return false;
         }
         return true;
@@ -131,17 +131,17 @@ public abstract class b1 extends h1 {
 
     @Override
     public final i0.b k() {
-        if (this.f54052e == null) {
-            WindowInsets windowInsets = this.f54051c;
-            this.f54052e = i0.b.b(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
+        if (this.f54077e == null) {
+            WindowInsets windowInsets = this.f54076c;
+            this.f54077e = i0.b.b(windowInsets.getSystemWindowInsetLeft(), windowInsets.getSystemWindowInsetTop(), windowInsets.getSystemWindowInsetRight(), windowInsets.getSystemWindowInsetBottom());
         }
-        return this.f54052e;
+        return this.f54077e;
     }
 
     @Override
     public k1 m(int i7, int i10, int i11, int i12) {
         a1 w0Var;
-        k1 h = k1.h(null, this.f54051c);
+        k1 h = k1.h(null, this.f54076c);
         int i13 = Build.VERSION.SDK_INT;
         if (i13 >= 34) {
             w0Var = new z0(h);
@@ -159,7 +159,7 @@ public abstract class b1 extends h1 {
 
     @Override
     public boolean o() {
-        return this.f54051c.isRound();
+        return this.f54076c.isRound();
     }
 
     @Override
@@ -179,7 +179,7 @@ public abstract class b1 extends h1 {
 
     @Override
     public void r(k1 k1Var) {
-        this.f54053f = k1Var;
+        this.f54078f = k1Var;
     }
 
     @Override
@@ -203,31 +203,31 @@ public abstract class b1 extends h1 {
                         if (i7 != 32) {
                             if (i7 != 64) {
                                 if (i7 == 128) {
-                                    k1 k1Var = this.f54053f;
+                                    k1 k1Var = this.f54078f;
                                     if (k1Var != null) {
-                                        e10 = k1Var.f54084a.e();
+                                        e10 = k1Var.f54109a.e();
                                     } else {
                                         e10 = e();
                                     }
                                     if (e10 != null) {
                                         int i15 = Build.VERSION.SDK_INT;
                                         if (i15 >= 28) {
-                                            i11 = d1.f.l(e10.f54067a);
+                                            i11 = d1.f.l(e10.f54092a);
                                         } else {
                                             i11 = 0;
                                         }
                                         if (i15 >= 28) {
-                                            i12 = d1.f.n(e10.f54067a);
+                                            i12 = d1.f.n(e10.f54092a);
                                         } else {
                                             i12 = 0;
                                         }
                                         if (i15 >= 28) {
-                                            i13 = d1.f.m(e10.f54067a);
+                                            i13 = d1.f.m(e10.f54092a);
                                         } else {
                                             i13 = 0;
                                         }
                                         if (i15 >= 28) {
-                                            i14 = d1.f.k(e10.f54067a);
+                                            i14 = d1.f.k(e10.f54092a);
                                         }
                                         return i0.b.b(i11, i12, i13, i14);
                                     }
@@ -255,8 +255,8 @@ public abstract class b1 extends h1 {
                     if (i16 > w10.d) {
                         return i0.b.b(0, 0, 0, i16);
                     }
-                    i0.b bVar3 = this.f54054g;
-                    if (bVar3 != null && !bVar3.equals(bVar) && (i10 = this.f54054g.d) > w10.d) {
+                    i0.b bVar3 = this.f54079g;
+                    if (bVar3 != null && !bVar3.equals(bVar) && (i10 = this.f54079g.d) > w10.d) {
                         return i0.b.b(0, 0, 0, i10);
                     }
                 }
@@ -266,9 +266,9 @@ public abstract class b1 extends h1 {
                 return i0.b.b(Math.max(w11.f15117a, i17.f15117a), 0, Math.max(w11.f15119c, i17.f15119c), Math.max(w11.d, i17.d));
             } else if ((this.h & 2) == 0) {
                 i0.b k11 = k();
-                k1 k1Var2 = this.f54053f;
+                k1 k1Var2 = this.f54078f;
                 if (k1Var2 != null) {
-                    bVar2 = k1Var2.f54084a.i();
+                    bVar2 = k1Var2.f54109a.i();
                 }
                 int i18 = k11.d;
                 if (bVar2 != null) {

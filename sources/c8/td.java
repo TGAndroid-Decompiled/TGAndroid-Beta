@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 public abstract class td {
     public static xf.a a(View view, xf.c cVar) {
-        xf.a aVar = cVar.f58581b;
+        xf.a aVar = cVar.f58606b;
         if (aVar != null) {
             return aVar;
         }
@@ -27,7 +27,7 @@ public abstract class td {
                 }
                 aVar2 = aVar3;
             }
-            cVar.f58581b = aVar2;
+            cVar.f58606b = aVar2;
             return aVar2;
         }
         throw new IllegalArgumentException("Cannot add OnPostDrawListener to root view");

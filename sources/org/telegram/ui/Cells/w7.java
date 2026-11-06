@@ -148,14 +148,14 @@ public abstract class w7 extends FrameLayout {
         int intrinsicWidth = mutate2.getIntrinsicWidth();
         int intrinsicHeight = mutate2.getIntrinsicHeight();
         xpVar.h = intrinsicWidth;
-        xpVar.f40301n = intrinsicHeight;
+        xpVar.f40320n = intrinsicHeight;
         textView4.setCompoundDrawablesWithIntrinsicBounds(xpVar, (Drawable) null, (Drawable) null, (Drawable) null);
         textView4.setCompoundDrawablePadding(org.telegram.messenger.g0.L(2.0f));
         xp xpVar2 = new xp(null, mutate2, 0, org.telegram.messenger.g0.L(1.0f));
         int intrinsicWidth2 = mutate2.getIntrinsicWidth();
         int intrinsicHeight2 = mutate2.getIntrinsicHeight();
         xpVar2.h = intrinsicWidth2;
-        xpVar2.f40301n = intrinsicHeight2;
+        xpVar2.f40320n = intrinsicHeight2;
         textView3.setCompoundDrawablesWithIntrinsicBounds(xpVar2, (Drawable) null, (Drawable) null, (Drawable) null);
         textView3.setCompoundDrawablePadding(org.telegram.messenger.g0.L(2.0f));
         setWillNotDraw(false);
@@ -195,15 +195,15 @@ public abstract class w7 extends FrameLayout {
     }
 
     public void setData(v41 v41Var) {
-        TLRPC.User user = v41Var.f50564a;
+        TLRPC.User user = v41Var.f50574a;
         org.telegram.ui.Components.w8 w8Var = this.f30735n;
         w8Var.r(user);
-        TLRPC.User user2 = v41Var.f50564a;
+        TLRPC.User user2 = v41Var.f50574a;
         u7 u7Var = this.f30730a;
         u7Var.e(user2, w8Var);
         u7Var.setRoundRadius(org.telegram.messenger.g0.L(46.0f) >> 1);
-        this.f30731b.k(v41Var.f50564a.first_name);
-        this.f30733e.setText(v41Var.f50565b);
+        this.f30731b.k(v41Var.f50574a.first_name);
+        this.f30733e.setText(v41Var.f50575b);
         this.f30732c.setVisibility(8);
         this.d.setVisibility(8);
         this.f30734f.setVisibility(8);

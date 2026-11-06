@@ -19,21 +19,21 @@ import org.telegram.ui.Components.db0;
 import x2.e0;
 import x2.z0;
 public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, db0, g9.k, h2.j, t3.g {
-    public final int f56853a;
+    public final int f56878a;
 
     public j(int i7) {
-        this.f56853a = i7;
+        this.f56878a = i7;
     }
 
     @Override
     public void accept(Object obj) {
-        ((z0) obj).f58418b.release();
+        ((z0) obj).f58443b.release();
     }
 
     @Override
     public Object apply(Object obj) {
         byte[] decode;
-        switch (this.f56853a) {
+        switch (this.f56878a) {
             case 4:
                 Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
                 try {
@@ -58,7 +58,7 @@ public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, d
             case 21:
                 return ((f3.o) obj).a().getClass().getSimpleName();
             case 22:
-                return i0.q(h9.o.y(((e0) obj).o().f58330b, new j(24)));
+                return i0.q(h9.o.y(((e0) obj).o().f58355b, new j(24)));
             case 24:
                 return Integer.valueOf(((m1) obj).f10375c);
             case 27:
@@ -86,7 +86,7 @@ public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, d
 
     @Override
     public void c(ua.b bVar) {
-        switch (this.f56853a) {
+        switch (this.f56878a) {
             case 10:
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
@@ -106,7 +106,7 @@ public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, d
 
     @Override
     public Object e(r7 r7Var) {
-        switch (this.f56853a) {
+        switch (this.f56878a) {
             case 5:
                 return (ScheduledExecutorService) ExecutorsRegistrar.f7877a.get();
             case 6:
@@ -115,7 +115,7 @@ public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, d
                 return (ScheduledExecutorService) ExecutorsRegistrar.f7878b.get();
             case 8:
                 u9.m mVar = ExecutorsRegistrar.f7877a;
-                return v9.j.f57163a;
+                return v9.j.f57188a;
             default:
                 return FirebaseInstallationsRegistrar.a(r7Var);
         }
@@ -123,7 +123,7 @@ public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, d
 
     @Override
     public void g(u1 u1Var, int i7) {
-        switch (this.f56853a) {
+        switch (this.f56878a) {
             case 14:
                 return;
             case 17:
@@ -137,7 +137,7 @@ public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, d
 
     @Override
     public String h(int i7) {
-        switch (this.f56853a) {
+        switch (this.f56878a) {
             case 15:
                 return String.valueOf(i7);
             default:
@@ -151,7 +151,7 @@ public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, d
     }
 
     public j(androidx.emoji2.text.f fVar) {
-        this.f56853a = 10;
+        this.f56878a = 10;
     }
 
     private final void d(u1 u1Var, int i7) {

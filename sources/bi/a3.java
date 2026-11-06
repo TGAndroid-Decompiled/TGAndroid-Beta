@@ -15,7 +15,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.b80;
-import org.telegram.ui.Components.l31;
+import org.telegram.ui.Components.q31;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.a21;
@@ -53,7 +53,7 @@ public final class a3 implements Runnable {
         if (str != null) {
             c20Var.a(str);
         } else if (f2Var.A(b2Var) && !f2Var.j(b2Var)) {
-            f2Var.f42439f.sendRequestTyped(sendtransfer, new d3.b(1), new t3(f2Var, c20Var, b2Var, k0Var, sendtransfer, 6));
+            f2Var.f42464f.sendRequestTyped(sendtransfer, new d3.b(1), new t3(f2Var, c20Var, b2Var, k0Var, sendtransfer, 6));
         } else {
             c20Var.a("Request expired or wallet changed");
         }
@@ -66,13 +66,13 @@ public final class a3 implements Runnable {
         org.telegram.ui.Wallet.g7 g7Var = (org.telegram.ui.Wallet.g7) this.f3442f;
         org.telegram.ui.Wallet.n0 n0Var = (org.telegram.ui.Wallet.n0) this.h;
         org.telegram.ui.Wallet.e2 e2Var = (org.telegram.ui.Wallet.e2) this.d;
-        if (!u2Var.f43173e && !u2Var.d) {
+        if (!u2Var.f43198e && !u2Var.d) {
             iArr[0] = 0;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(" ");
             spannableStringBuilder.setSpan(new b80(org.telegram.messenger.g0.L(80.0f), textView), 0, spannableStringBuilder.length(), 33);
             textView.setText(org.telegram.messenger.hd.V(null, null, 2131743121, spannableStringBuilder));
             g7Var.run();
-            WalletEngine2 walletEngine2 = n0Var.f42769b;
+            WalletEngine2 walletEngine2 = n0Var.f42794b;
             if (walletEngine2 == null) {
                 iArr[0] = 3;
                 textView.setText(org.telegram.messenger.hd.M0(2131742987, null));
@@ -90,7 +90,7 @@ public final class a3 implements Runnable {
         String str = (String) this.f3442f;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.d;
         String str2 = (String) this.h;
-        org.telegram.ui.ActionBar.f6 f6Var = x0Var.f51355e;
+        org.telegram.ui.ActionBar.f6 f6Var = x0Var.f51365e;
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
                 bi0.b(false, x0Var.M, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, null, false, x0Var);
@@ -120,7 +120,7 @@ public final class a3 implements Runnable {
             return;
         }
         int[] iArr = new int[11];
-        Utilities.f21333e.c(new l31(file, iArr, new r7((ls) x0Var, (Object) iArr, (Object) file, (Object) u1Var, str, (Object) str2, (Object) str3, 15), 4));
+        Utilities.f21333e.c(new q31(file, iArr, new r7((ls) x0Var, (Object) iArr, (Object) file, (Object) u1Var, str, (Object) str2, (Object) str3, 15), 4));
     }
 
     @Override

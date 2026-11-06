@@ -13,48 +13,48 @@ import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.r81;
 public final class f0 extends LinearLayout {
-    public final TextView f55535a;
-    public final pg.h f55536b;
-    public ImageView f55537c;
+    public final TextView f55560a;
+    public final pg.g f55561b;
+    public ImageView f55562c;
     public ImageView d;
-    public float f55538e;
-    public boolean f55539f;
+    public float f55563e;
+    public boolean f55564f;
     public ValueAnimator h;
-    public final ImageView f55540n;
-    public final g0 f55541r;
+    public final ImageView f55565n;
+    public final g0 f55566r;
 
     public f0(g0 g0Var, Context context) {
         super(context);
-        this.f55541r = g0Var;
+        this.f55566r = g0Var;
         setOrientation(0);
         int i7 = k6.f27940i6;
-        u uVar = g0Var.f55588z1;
+        u uVar = g0Var.f55613z1;
         setBackground(k6.h0(k6.w0(i7, uVar), 2, -1));
-        pg.h hVar = new pg.h(this, context);
-        this.f55536b = hVar;
-        addView(hVar, ha.t(-2, -2, 19, 16, 0, 16, 0));
+        pg.g gVar = new pg.g(this, context);
+        this.f55561b = gVar;
+        addView(gVar, ha.t(-2, -2, 19, 16, 0, 16, 0));
         ImageView imageView = new ImageView(context);
-        this.f55537c = imageView;
+        this.f55562c = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        ImageView imageView2 = this.f55537c;
+        ImageView imageView2 = this.f55562c;
         int i10 = k6.E8;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
         r6.t(imageView2, i10, uVar, mode);
-        hVar.addView(this.f55537c, ha.e(-2, -2, 17));
+        gVar.addView(this.f55562c, ha.e(-2, -2, 17));
         ImageView imageView3 = new ImageView(context);
         this.d = imageView3;
         imageView3.setScaleType(scaleType);
         r6.t(this.d, i10, uVar, mode);
         this.d.setVisibility(8);
-        hVar.addView(this.d, ha.e(-2, -2, 17));
+        gVar.addView(this.d, ha.e(-2, -2, 17));
         TextView textView = new TextView(context);
-        this.f55535a = textView;
+        this.f55560a = textView;
         r6.V(textView, i10, uVar);
         textView.setTextSize(1, 16.0f);
         addView(textView, ha.t(-2, -2, 19, 0, 0, 16, 0));
         ImageView imageView4 = new ImageView(context);
-        this.f55540n = imageView4;
+        this.f55565n = imageView4;
         imageView4.setImageResource(2131232398);
         imageView4.setScaleType(scaleType);
         r6.t(imageView4, k6.h7, uVar, PorterDuff.Mode.MULTIPLY);
@@ -71,7 +71,7 @@ public final class f0 extends LinearLayout {
                 a(i7, false, false);
                 return;
             }
-            this.f55539f = z9;
+            this.f55564f = z9;
             this.d.setImageResource(i7);
             this.d.setVisibility(0);
             this.d.setAlpha(1.0f);
@@ -84,7 +84,7 @@ public final class f0 extends LinearLayout {
             this.h.start();
             return;
         }
-        this.f55537c.setImageResource(i7);
+        this.f55562c.setImageResource(i7);
     }
 
     @Override
@@ -94,7 +94,7 @@ public final class f0 extends LinearLayout {
 
     @Override
     public final boolean performClick() {
-        g0 g0Var = this.f55541r;
+        g0 g0Var = this.f55566r;
         org.telegram.ui.ActionBar.g1 g1Var = g0Var.A1;
         if (g1Var != null && g1Var.isShowing()) {
             g0Var.A1.d(true);
@@ -114,10 +114,10 @@ public final class f0 extends LinearLayout {
         } else {
             i7 = 8;
         }
-        this.f55540n.setVisibility(i7);
+        this.f55565n.setVisibility(i7);
     }
 
     public void setText(CharSequence charSequence) {
-        this.f55535a.setText(charSequence);
+        this.f55560a.setText(charSequence);
     }
 }

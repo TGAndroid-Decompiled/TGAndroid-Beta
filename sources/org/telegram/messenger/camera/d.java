@@ -14,10 +14,10 @@ public final class d implements Runnable {
     public final void run() {
         switch (this.f21758a) {
             case 0:
-                this.f21759b.lambda$onConfigured$0();
+                Camera2Session.AnonymousClass2.b(this.f21759b);
                 return;
             default:
-                this.f21759b.lambda$onConfigureFailed$1();
+                Camera2Session.AnonymousClass2.a(this.f21759b);
                 return;
         }
     }

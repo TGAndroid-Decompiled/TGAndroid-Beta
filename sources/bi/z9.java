@@ -63,7 +63,7 @@ public final class z9 {
         wbVar.c(2131624226, new String[0]);
         ?? vbVar = new org.telegram.ui.Components.vb(t6, f2Var.getResourceProvider());
         this.f5175f = vbVar;
-        vbVar.f38913b = 3000L;
+        vbVar.f38910b = 3000L;
         int i7 = org.telegram.ui.ActionBar.k6.uj;
         org.telegram.ui.ActionBar.f6 resourceProvider = f2Var.getResourceProvider();
         a3.l lVar = new a3.l(24);
@@ -79,7 +79,7 @@ public final class z9 {
         org.telegram.ui.Components.ac acVar = new org.telegram.ui.Components.ac(t6, f2Var.getResourceProvider(), true, false);
         this.f5174e = acVar;
         acVar.e(org.telegram.messenger.hd.M0(2131745024, null));
-        acVar.f31748b = new Runnable(this) {
+        acVar.f31760b = new Runnable(this) {
             public final z9 f5088b;
 
             {
@@ -111,11 +111,11 @@ public final class z9 {
             }
         };
         acVar.addView((View) vbVar, c8.ha.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-        acVar.f31750e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
+        acVar.f31762e.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(8.0f), org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(8.0f));
         wbVar.setButton(acVar);
         org.telegram.ui.Components.cc b10 = org.telegram.ui.Components.hc.a0(f2Var).b(wbVar, -1);
         this.f5173c = b10;
-        b10.f32531r = false;
+        b10.f32535r = false;
         b10.k(true);
         b10.v = new Runnable(this) {
             public final z9 f5088b;

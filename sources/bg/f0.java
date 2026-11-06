@@ -56,8 +56,8 @@ import org.telegram.ui.ec1;
 import org.telegram.ui.ia;
 import org.telegram.ui.la;
 import org.telegram.ui.nu;
-import org.telegram.ui.vq0;
-import org.telegram.ui.vs0;
+import org.telegram.ui.wq0;
+import org.telegram.ui.ws0;
 import org.telegram.ui.ww;
 public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
     public final int f3278a;
@@ -144,7 +144,7 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
 
     @Override
     public void b(f5.f fVar, List list) {
-        org.telegram.messenger.g0.h3(new l0(fVar, (f2) this.f3280c, list, this.f3279b, (z0) this.d, (vs0) this.f3281e, 12));
+        org.telegram.messenger.g0.h3(new l0(fVar, (f2) this.f3280c, list, this.f3279b, (z0) this.d, (ws0) this.f3281e, 12));
     }
 
     @Override
@@ -153,7 +153,7 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
         ql0 ql0Var = (ql0) this.f3280c;
         f2 f2Var = (f2) this.d;
         f6 f6Var = (f6) this.f3281e;
-        ArrayList arrayList = ql0Var.f37448r;
+        ArrayList arrayList = ql0Var.f37338r;
         if (i7 >= 0 && i7 < arrayList.size()) {
             int i11 = this.f3279b;
             if (p10.i(i11).q()) {
@@ -161,14 +161,14 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
                     new ug.w0(f2Var, 24, true).show();
                     return true;
                 }
-                ol0 ol0Var = ((pl0) view).f37088a;
+                ol0 ol0Var = ((pl0) view).f36967a;
                 if (ol0Var != null) {
                     ol0Var.p();
                 }
                 nl0 nl0Var = (nl0) arrayList.get(i7);
                 k60 H = k60.H(f2Var, view);
-                H.f35198i = 3;
-                if (TextUtils.isEmpty(nl0Var.f36437c)) {
+                H.f35162i = 3;
+                if (TextUtils.isEmpty(nl0Var.f36331c)) {
                     i10 = 2131745882;
                 } else {
                     i10 = 2131745870;
@@ -189,7 +189,7 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
         if (VoIPService.getSharedInstance() != null) {
             org.telegram.messenger.g0.r(ec1Var.R0);
             ec1Var.Q0 = false;
-            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(ec1Var.f45245b, false, Integer.valueOf(this.f3279b));
+            VoIPService.getSharedInstance().toggleSpeakerphoneOrShowRouteSheet(ec1Var.f45275b, false, Integer.valueOf(this.f3279b));
             ec1Var.l(b3Var, voIPService);
         }
     }
@@ -204,15 +204,15 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
         i6 i6Var = (i6) this.f3280c;
         ArrayList arrayList = (ArrayList) this.d;
         ArrayList arrayList2 = (ArrayList) this.f3281e;
-        StaticLayout j3 = i6Var.j(this.f3279b - ((int) Math.ceil(Math.min(i6Var.d, i6Var.f34523j))), charSequence);
+        StaticLayout j3 = i6Var.j(this.f3279b - ((int) Math.ceil(Math.min(i6Var.d, i6Var.f34484j))), charSequence);
         org.telegram.ui.Components.f6 f6Var = new org.telegram.ui.Components.f6(i6Var, j3, i6Var.d, arrayList.size());
-        org.telegram.ui.Components.f6 f6Var2 = new org.telegram.ui.Components.f6(i6Var, j3, i6Var.f34523j, arrayList2.size());
+        org.telegram.ui.Components.f6 f6Var2 = new org.telegram.ui.Components.f6(i6Var, j3, i6Var.f34484j, arrayList2.size());
         arrayList2.add(f6Var);
         arrayList.add(f6Var2);
         float f10 = i6Var.d;
-        float f11 = f6Var.f33484f;
+        float f11 = f6Var.f33463f;
         i6Var.d = f10 + f11;
-        i6Var.f34523j += f11;
+        i6Var.f34484j += f11;
         i6Var.f(f6Var);
         i6Var.g(f6Var2);
     }
@@ -233,8 +233,8 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
                 final boolean z9 = tL_username.active;
                 final String str = tL_username.username;
                 final boolean z10 = !z9;
-                la laVar = caVar.f44708a;
-                long j3 = laVar.f47465y;
+                la laVar = caVar.f44729a;
+                long j3 = laVar.f47492y;
                 if (j3 == 0) {
                     TL_account.toggleUsername toggleusername2 = new TL_account.toggleUsername();
                     toggleusername2.username = str;
@@ -255,7 +255,7 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
                         org.telegram.messenger.g0.h3(new org.telegram.messenger.lw(ca.this, str, tLObject, i12, z10, tL_error, tL_username, z9));
                     }
                 });
-                laVar.f47464x.add(tL_username.username);
+                laVar.f47491x.add(tL_username.username);
                 ((ia) view).setLoading(true);
                 return;
             case 2:
@@ -298,7 +298,7 @@ public final class f0 implements i30, r1, g6, dj0, qr, f5.m, z2, q1, h2.j {
     }
 
     @Override
-    public vq0 getCloseIntoObject() {
+    public wq0 getCloseIntoObject() {
         return null;
     }
 

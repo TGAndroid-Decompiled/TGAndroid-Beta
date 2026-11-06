@@ -7,12 +7,12 @@ import org.telegram.messenger.hc;
 import org.telegram.messenger.m20;
 import org.telegram.tgnet.TLRPC;
 public final class f extends sh.c {
-    public final TLRPC.MessageMedia f55943b;
+    public final TLRPC.MessageMedia f55968b;
 
     public f(TLRPC.MessageMedia messageMedia) {
-        this.f55943b = messageMedia;
-        this.f55177a.J0(g0.L(7.0f));
-        ImageReceiver imageReceiver = this.f55177a;
+        this.f55968b = messageMedia;
+        this.f55202a.J0(g0.L(7.0f));
+        ImageReceiver imageReceiver = this.f55202a;
         TLRPC.GeoPoint geoPoint = messageMedia.geo;
         if (geoPoint == null) {
             imageReceiver.f();
@@ -25,7 +25,7 @@ public final class f extends sh.c {
 
     @Override
     public final void c(Canvas canvas, int i7, int i10) {
-        ImageReceiver imageReceiver = this.f55177a;
+        ImageReceiver imageReceiver = this.f55202a;
         imageReceiver.y0(0.0f, 0.0f, i7, i10);
         imageReceiver.h(canvas, null);
     }

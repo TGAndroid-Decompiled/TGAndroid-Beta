@@ -12,6 +12,6 @@ public final class cz extends az {
 
     @Override
     public final void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
-        this.E.f45134e.r0(tL_exportedChatlistInvite);
+        this.E.f45164e.r0(tL_exportedChatlistInvite);
     }
 }

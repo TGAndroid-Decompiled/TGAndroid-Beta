@@ -8,18 +8,18 @@ import android.widget.TextView;
 import java.util.HashSet;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class ga extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final EditTextBoldCursor f45901a;
-    public final TextView f45902b;
-    public final la f45903c;
+    public final EditTextBoldCursor f45928a;
+    public final TextView f45929b;
+    public final la f45930c;
 
     public ga(la laVar, Activity activity) {
         super(activity);
         int i7;
-        this.f45903c = laVar;
+        this.f45930c = laVar;
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(0);
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
-        this.f45901a = editTextBoldCursor;
+        this.f45928a = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 17.0f);
         org.telegram.ui.ActionBar.r6.E(editTextBoldCursor, org.telegram.ui.ActionBar.k6.H6, null);
         int i10 = org.telegram.ui.ActionBar.k6.G6;
@@ -42,8 +42,8 @@ public final class ga extends FrameLayout implements org.telegram.ui.ActionBar.a
         editTextBoldCursor.setCursorSize(org.telegram.messenger.g0.L(19.0f));
         editTextBoldCursor.setCursorWidth(1.5f);
         editTextBoldCursor.setOnEditorActionListener(new fa(this, 0));
-        String str = laVar.f47461r;
-        long j3 = laVar.f47465y;
+        String str = laVar.f47488r;
+        long j3 = laVar.f47492y;
         editTextBoldCursor.setText(str);
         editTextBoldCursor.addTextChangedListener(new m0(this, 1));
         int i11 = (j3 > 0L ? 1 : (j3 == 0L ? 0 : -1));
@@ -51,7 +51,7 @@ public final class ga extends FrameLayout implements org.telegram.ui.ActionBar.a
             editTextBoldCursor.setEnabled(false);
         }
         TextView textView = new TextView(getContext());
-        this.f45902b = textView;
+        this.f45929b = textView;
         textView.setMaxLines(1);
         textView.setLines(1);
         textView.setPadding(0, 0, 0, 0);
@@ -78,7 +78,7 @@ public final class ga extends FrameLayout implements org.telegram.ui.ActionBar.a
     @Override
     public final void updateColors() {
         try {
-            this.f45901a.setCursorColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false));
+            this.f45928a.setCursorColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

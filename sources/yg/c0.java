@@ -19,19 +19,19 @@ import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.w70;
 public final class c0 extends FrameLayout {
     public final TableRow D;
-    public final TextView f59316a;
-    public final TextView f59317b;
-    public final TextView f59318c;
+    public final TextView f59341a;
+    public final TextView f59342b;
+    public final TextView f59343c;
     public final TextView d;
-    public final TextView f59319e;
-    public final l9 f59320f;
+    public final TextView f59344e;
+    public final l9 f59345f;
     public final l9 h;
-    public final f6 f59321n;
-    public final Paint f59322r;
-    public final Path f59323s;
-    public final RectF f59324w;
-    public final FrameLayout f59325x;
-    public final FrameLayout f59326y;
+    public final f6 f59346n;
+    public final Paint f59347r;
+    public final Path f59348s;
+    public final RectF f59349w;
+    public final FrameLayout f59350x;
+    public final FrameLayout f59351y;
 
     public c0(Context context, f6 f6Var) {
         super(context);
@@ -50,35 +50,35 @@ public final class c0 extends FrameLayout {
         float f19;
         boolean z9;
         Paint paint = new Paint();
-        this.f59322r = paint;
-        this.f59323s = new Path();
-        this.f59324w = new RectF();
+        this.f59347r = paint;
+        this.f59348s = new Path();
+        this.f59349w = new RectF();
         paint.setStyle(Paint.Style.STROKE);
-        this.f59321n = f6Var;
+        this.f59346n = f6Var;
         TextView a10 = a(hd.M0(2131753523, null), false);
         TextView a11 = a(hd.M0(2131753179, null), false);
         TextView a12 = a(hd.M0(2131753501, null), false);
         TextView a13 = a(hd.M0(2131753322, null), false);
         TextView a14 = a(hd.M0(2131753540, null), false);
         TextView a15 = a(null, true);
-        this.f59316a = a15;
+        this.f59341a = a15;
         TextView a16 = a(null, true);
-        this.f59317b = a16;
+        this.f59342b = a16;
         TextView a17 = a(null, false);
-        this.f59318c = a17;
+        this.f59343c = a17;
         TextView a18 = a(null, true);
         this.d = a18;
         TextView a19 = a(null, false);
-        this.f59319e = a19;
+        this.f59344e = a19;
         l9 l9Var = new l9(context);
-        this.f59320f = l9Var;
+        this.f59345f = l9Var;
         l9Var.setRoundRadius(g0.L(12.0f));
         l9 l9Var2 = new l9(context);
         this.h = l9Var2;
         l9Var2.setRoundRadius(g0.L(12.0f));
         TableRow tableRow = new TableRow(context);
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f59325x = frameLayout;
+        this.f59350x = frameLayout;
         boolean z10 = hd.f22871a0;
         if (z10) {
             i7 = 5;
@@ -131,7 +131,7 @@ public final class c0 extends FrameLayout {
         frameLayout.setPadding(0, g0.L(6.0f), 0, g0.L(6.0f));
         TableRow tableRow2 = new TableRow(context);
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f59326y = frameLayout2;
+        this.f59351y = frameLayout2;
         boolean z12 = hd.f22871a0;
         if (z12) {
             i11 = 5;
@@ -226,7 +226,7 @@ public final class c0 extends FrameLayout {
         int i7;
         float f10;
         int i10;
-        f6 f6Var = this.f59321n;
+        f6 f6Var = this.f59346n;
         if (z9) {
             textView = new w70(getContext(), f6Var);
             r6.H(textView, k6.J6, f6Var);

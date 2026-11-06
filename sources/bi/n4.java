@@ -8,8 +8,8 @@ import org.telegram.messenger.ij;
 import org.telegram.messenger.ls;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.cj0;
-import org.telegram.ui.Components.g11;
 import org.telegram.ui.Components.l10;
+import org.telegram.ui.Components.l11;
 import org.telegram.ui.Components.v80;
 import org.telegram.ui.an;
 public final class n4 implements org.telegram.ui.ActionBar.r1, cj0 {
@@ -46,7 +46,7 @@ public final class n4 implements org.telegram.ui.ActionBar.r1, cj0 {
                 an.i1((an) this.f4403c, (TLRPC.TL_game) this.d, (ij) this.f4404e, (String) this.f4405f, this.f4402b);
                 return;
             default:
-                g11 g11Var = (g11) this.f4403c;
+                l11 l11Var = (l11) this.f4403c;
                 ArrayList arrayList = (ArrayList) this.d;
                 HashSet hashSet = (HashSet) this.f4404e;
                 l10 l10Var = (l10) this.f4405f;
@@ -58,12 +58,12 @@ public final class n4 implements org.telegram.ui.ActionBar.r1, cj0 {
                         Object obj = arrayList.get(i10);
                         i10++;
                         if (j3 == ((Integer) obj).intValue()) {
-                            g11Var.n(0L, false);
+                            l11Var.n(0L, false);
                         }
                     } else {
-                        g11Var.f33794k0.addAll(hashSet);
-                        g11Var.q();
-                        org.telegram.ui.Components.hc.a0(g11Var.f33797s).U(org.telegram.messenger.hd.K0(hashSet.size(), "TopicsDeleted"), false, new w2(g11Var, hashSet, arrayList, j3, 18), new v80(g11Var, arrayList, l10Var, 22)).j();
+                        l11Var.f35493k0.addAll(hashSet);
+                        l11Var.q();
+                        org.telegram.ui.Components.hc.a0(l11Var.f35496s).U(org.telegram.messenger.hd.K0(hashSet.size(), "TopicsDeleted"), false, new w2(l11Var, hashSet, arrayList, j3, 18), new v80(l11Var, arrayList, l10Var, 22)).j();
                         u1Var.dismiss();
                         return;
                     }
@@ -80,9 +80,9 @@ public final class n4 implements org.telegram.ui.ActionBar.r1, cj0 {
         this.f4402b = j3;
     }
 
-    public n4(g11 g11Var, ArrayList arrayList, long j3, HashSet hashSet, l10 l10Var) {
+    public n4(l11 l11Var, ArrayList arrayList, long j3, HashSet hashSet, l10 l10Var) {
         this.f4401a = 3;
-        this.f4403c = g11Var;
+        this.f4403c = l11Var;
         this.d = arrayList;
         this.f4402b = j3;
         this.f4404e = hashSet;

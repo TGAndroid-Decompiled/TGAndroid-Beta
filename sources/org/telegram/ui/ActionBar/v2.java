@@ -241,7 +241,7 @@ public class v2 extends Dialog implements b2 {
             f10 = 0.0f;
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f11, f10).setDuration(180L);
-        duration.setInterpolator(xq.f40310f);
+        duration.setInterpolator(xq.f40329f);
         duration.addUpdateListener(new h2(this, 4));
         duration.start();
     }
@@ -370,7 +370,7 @@ public class v2 extends Dialog implements b2 {
                 j3 = 180;
             }
             animatorSet.setDuration(j3);
-            this.f28654z0.setInterpolator(xq.f40311g);
+            this.f28654z0.setInterpolator(xq.f40330g);
             this.f28654z0.addListener(new hi.m2(this, i7, 5));
             qs.e().k(qs.f25004j1, 512);
             this.f28654z0.start();
@@ -382,7 +382,7 @@ public class v2 extends Dialog implements b2 {
                 ValueAnimator ofArgb = ValueAnimator.ofArgb(currentTextColor, currentTextColor2);
                 ofArgb.addUpdateListener(new h2(this, 3));
                 ofArgb.setDuration(130L);
-                xq xqVar = xq.f40310f;
+                xq xqVar = xq.f40329f;
                 ofArgb.setInterpolator(xqVar);
                 ofArgb.start();
                 ValueAnimator ofArgb2 = ValueAnimator.ofArgb(currentTextColor2, currentTextColor);
@@ -1014,7 +1014,7 @@ public class v2 extends Dialog implements b2 {
         u2Var.setAlpha(0);
         if (i7 == 3) {
             k2 k2Var = new k2(this);
-            WeakHashMap weakHashMap = r0.i0.f54073a;
+            WeakHashMap weakHashMap = r0.i0.f54098a;
             r0.a0.i(l2Var, k2Var);
         }
     }

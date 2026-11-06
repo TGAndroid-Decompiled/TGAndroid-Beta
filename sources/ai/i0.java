@@ -44,7 +44,7 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.q4;
 import org.telegram.ui.ActionBar.y1;
-import org.telegram.ui.Components.h41;
+import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.xq;
 public final class i0 extends FrameLayout {
     public final Paint D;
@@ -223,17 +223,17 @@ public final class i0 extends FrameLayout {
         return false;
     }
 
-    public static i0 k(h41 h41Var, View view, d20 d20Var, c20 c20Var, Runnable runnable) {
+    public static i0 k(m41 m41Var, View view, d20 d20Var, c20 c20Var, Runnable runnable) {
         FrameLayout frameLayout;
         int[] iArr;
         int[] iArr2;
-        q4 parentLayout = h41Var.getParentLayout();
+        q4 parentLayout = m41Var.getParentLayout();
         if (parentLayout != null) {
             frameLayout = parentLayout.getOverlayContainerView();
         } else {
             frameLayout = null;
         }
-        if (frameLayout == null || h41Var.getParentActivity() == null) {
+        if (frameLayout == null || m41Var.getParentActivity() == null) {
             return null;
         }
         frameLayout.getLocationInWindow(new int[2]);
@@ -241,10 +241,10 @@ public final class i0 extends FrameLayout {
         float width = (view.getWidth() / 2.0f) + (iArr2[0] - iArr[0]);
         float height = (view.getHeight() / 2.0f) + (iArr2[1] - iArr[1]);
         float min = Math.min(view.getWidth(), view.getHeight()) / 2.0f;
-        i0 i0Var = new i0(h41Var.getParentActivity(), new RectF(width - min, height - min, width + min, height + min), new RectF(), new wf.b(3, c20Var, runnable));
+        i0 i0Var = new i0(m41Var.getParentActivity(), new RectF(width - min, height - min, width + min, height + min), new RectF(), new wf.b(3, c20Var, runnable));
         i0Var.setPlainButton(true);
         i0Var.setAccept(d20Var);
-        i0Var.setOnGallery(new d0(h41Var, i0Var, d20Var, c20Var, 0));
+        i0Var.setOnGallery(new d0(m41Var, i0Var, d20Var, c20Var, 0));
         frameLayout.addView(i0Var, ha.c(-1.0f, -1));
         return i0Var;
     }
@@ -264,7 +264,7 @@ public final class i0 extends FrameLayout {
         try {
             q4.q f10 = f(bitmap, nVar, new aa.n(20), d20Var);
             if (f10 != null) {
-                str = (String) f10.f53686b;
+                str = (String) f10.f53711b;
             }
             return str;
         } finally {

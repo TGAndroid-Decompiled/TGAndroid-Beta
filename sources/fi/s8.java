@@ -24,7 +24,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.cc;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.t31;
 public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
     public static final int U1 = 0;
     public final ArrayList A1;
@@ -306,7 +306,7 @@ public final class s8 extends org.telegram.ui.ActionBar.v2 implements ls {
                     spannableStringBuilder.append((CharSequence) ", ");
                 }
                 SpannableString spannableString = new SpannableString("@" + ((String) arrayList.get(i10)));
-                spannableString.setSpan(new o31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
+                spannableString.setSpan(new t31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
                 spannableStringBuilder.append((CharSequence) spannableString);
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, getContext(), this.I0);

@@ -7,30 +7,30 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class zb1 extends FrameLayout {
-    public float f52515a;
-    public float f52516b;
-    public boolean f52517c;
+    public float f52522a;
+    public float f52523b;
+    public boolean f52524c;
     public long d;
-    public final ec1 f52518e;
+    public final ec1 f52525e;
 
     public zb1(ec1 ec1Var, Activity activity) {
         super(activity);
-        this.f52518e = ec1Var;
+        this.f52525e = ec1Var;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        ec1 ec1Var = this.f52518e;
-        org.telegram.ui.Components.voip.u2 u2Var = ec1Var.f45282w;
-        if (view == u2Var && (ec1Var.m0 || ec1Var.f45269l0)) {
+        ec1 ec1Var = this.f52525e;
+        org.telegram.ui.Components.voip.u2 u2Var = ec1Var.f45312w;
+        if (view == u2Var && (ec1Var.m0 || ec1Var.f45299l0)) {
             return false;
         }
-        if ((view != u2Var && view != ec1Var.f45249c0 && (view != ec1Var.Y || !ec1Var.f45243a0)) || (!ec1Var.f45258f1 && ec1Var.f45262h1 == null)) {
+        if ((view != u2Var && view != ec1Var.f45279c0 && (view != ec1Var.Y || !ec1Var.f45273a0)) || (!ec1Var.f45288f1 && ec1Var.f45292h1 == null)) {
             return super.drawChild(canvas, view, j3);
         }
         canvas.save();
-        float f10 = ec1Var.f45255e1;
-        canvas.scale(f10, f10, ec1Var.f45244a1, ec1Var.f45247b1);
+        float f10 = ec1Var.f45285e1;
+        canvas.scale(f10, f10, ec1Var.f45274a1, ec1Var.f45277b1);
         canvas.translate(ec1Var.X0, ec1Var.Y0);
         boolean drawChild = super.drawChild(canvas, view, j3);
         canvas.restore();
@@ -39,13 +39,13 @@ public final class zb1 extends FrameLayout {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        ec1 ec1Var = this.f52518e;
+        ec1 ec1Var = this.f52525e;
         qb1 qb1Var = ec1Var.S0;
         if (motionEvent.getActionMasked() == 1) {
             ec1Var.D.b(false, false);
-            ec1Var.f45282w.a();
+            ec1Var.f45312w.a();
             org.telegram.messenger.g0.r(qb1Var);
-            if (ec1Var.f45272o0 == 3) {
+            if (ec1Var.f45302o0 == 3) {
                 org.telegram.messenger.g0.i3(qb1Var, 10000L);
             }
         }
@@ -56,65 +56,65 @@ public final class zb1 extends FrameLayout {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.Components.voip.k2 k2Var;
         org.telegram.ui.Components.zo zoVar;
-        ec1 ec1Var = this.f52518e;
+        ec1 ec1Var = this.f52525e;
         qb1 qb1Var = ec1Var.S0;
         if (motionEvent.getActionMasked() == 1) {
             ec1Var.D.b(false, false);
-            ec1Var.f45282w.a();
+            ec1Var.f45312w.a();
             org.telegram.messenger.g0.r(qb1Var);
-            if (ec1Var.f45272o0 == 3) {
+            if (ec1Var.f45302o0 == 3) {
                 org.telegram.messenger.g0.i3(qb1Var, 10000L);
             }
         }
-        if (!ec1Var.f45260g1 && !ec1Var.Z0 && !ec1Var.f45258f1 && motionEvent.getActionMasked() != 0) {
+        if (!ec1Var.f45290g1 && !ec1Var.Z0 && !ec1Var.f45288f1 && motionEvent.getActionMasked() != 0) {
             ec1.a(ec1Var);
             return false;
         }
         if (motionEvent.getActionMasked() == 0) {
-            ec1Var.f45260g1 = false;
+            ec1Var.f45290g1 = false;
             ec1Var.Z0 = false;
-            ec1Var.f45258f1 = false;
+            ec1Var.f45288f1 = false;
         }
-        if (ec1Var.f45269l0) {
-            k2Var = ec1Var.f45249c0;
+        if (ec1Var.f45299l0) {
+            k2Var = ec1Var.f45279c0;
         } else {
-            k2Var = ec1Var.f45251d0;
+            k2Var = ec1Var.f45281d0;
         }
         if (motionEvent.getActionMasked() != 0 && motionEvent.getActionMasked() != 5) {
             if (motionEvent.getActionMasked() == 2 && ec1Var.Z0) {
                 int i7 = -1;
                 int i10 = -1;
                 for (int i11 = 0; i11 < motionEvent.getPointerCount(); i11++) {
-                    if (ec1Var.f45250c1 == motionEvent.getPointerId(i11)) {
+                    if (ec1Var.f45280c1 == motionEvent.getPointerId(i11)) {
                         i7 = i11;
                     }
-                    if (ec1Var.f45252d1 == motionEvent.getPointerId(i11)) {
+                    if (ec1Var.f45282d1 == motionEvent.getPointerId(i11)) {
                         i10 = i11;
                     }
                 }
                 if (i7 != -1 && i10 != -1) {
                     float hypot = ((float) Math.hypot(motionEvent.getX(i10) - motionEvent.getX(i7), motionEvent.getY(i10) - motionEvent.getY(i7))) / ec1Var.W0;
-                    ec1Var.f45255e1 = hypot;
-                    if (hypot > 1.005f && !ec1Var.f45258f1) {
+                    ec1Var.f45285e1 = hypot;
+                    if (hypot > 1.005f && !ec1Var.f45288f1) {
                         ec1Var.W0 = (float) Math.hypot(motionEvent.getX(i10) - motionEvent.getX(i7), motionEvent.getY(i10) - motionEvent.getY(i7));
                         float x10 = (motionEvent.getX(i10) + motionEvent.getX(i7)) / 2.0f;
-                        ec1Var.f45244a1 = x10;
+                        ec1Var.f45274a1 = x10;
                         ec1Var.U0 = x10;
                         float y10 = (motionEvent.getY(i10) + motionEvent.getY(i7)) / 2.0f;
-                        ec1Var.f45247b1 = y10;
+                        ec1Var.f45277b1 = y10;
                         ec1Var.V0 = y10;
-                        ec1Var.f45255e1 = 1.0f;
+                        ec1Var.f45285e1 = 1.0f;
                         ec1Var.X0 = 0.0f;
                         ec1Var.Y0 = 0.0f;
                         getParent().requestDisallowInterceptTouchEvent(true);
-                        ec1Var.f45258f1 = true;
+                        ec1Var.f45288f1 = true;
                         ec1Var.Z0 = true;
                     }
                     float x11 = motionEvent.getX(i7);
                     float y11 = motionEvent.getY(i7);
                     float x12 = ec1Var.U0 - ((motionEvent.getX(i10) + x11) / 2.0f);
                     float y12 = ec1Var.V0 - ((motionEvent.getY(i10) + y11) / 2.0f);
-                    float f10 = ec1Var.f45255e1;
+                    float f10 = ec1Var.f45285e1;
                     ec1Var.X0 = (-x12) / f10;
                     ec1Var.Y0 = (-y12) / f10;
                     invalidate();
@@ -122,7 +122,7 @@ public final class zb1 extends FrameLayout {
                     getParent().requestDisallowInterceptTouchEvent(false);
                     ec1.a(ec1Var);
                 }
-            } else if (motionEvent.getActionMasked() == 1 || ((motionEvent.getActionMasked() == 6 && motionEvent.getPointerCount() >= 2 && ((ec1Var.f45250c1 == motionEvent.getPointerId(0) && ec1Var.f45252d1 == motionEvent.getPointerId(1)) || (ec1Var.f45250c1 == motionEvent.getPointerId(1) && ec1Var.f45252d1 == motionEvent.getPointerId(0)))) || motionEvent.getActionMasked() == 3)) {
+            } else if (motionEvent.getActionMasked() == 1 || ((motionEvent.getActionMasked() == 6 && motionEvent.getPointerCount() >= 2 && ((ec1Var.f45280c1 == motionEvent.getPointerId(0) && ec1Var.f45282d1 == motionEvent.getPointerId(1)) || (ec1Var.f45280c1 == motionEvent.getPointerId(1) && ec1Var.f45282d1 == motionEvent.getPointerId(0)))) || motionEvent.getActionMasked() == 3)) {
                 getParent().requestDisallowInterceptTouchEvent(false);
                 ec1.a(ec1Var);
             }
@@ -131,7 +131,7 @@ public final class zb1 extends FrameLayout {
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(k2Var.getX(), k2Var.getY(), k2Var.getX() + k2Var.getMeasuredWidth(), k2Var.getY() + k2Var.getMeasuredHeight());
                 rectF.inset(((k2Var.getMeasuredHeight() * k2Var.T) - k2Var.getMeasuredHeight()) / 2.0f, ((k2Var.getMeasuredWidth() * k2Var.T) - k2Var.getMeasuredWidth()) / 2.0f);
-                if (!c40.f44521w5) {
+                if (!c40.f44542w5) {
                     rectF.top = Math.max(rectF.top, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
                     rectF.bottom = Math.min(rectF.bottom, k2Var.getMeasuredHeight() - org.telegram.messenger.g0.L(90.0f));
                 } else {
@@ -139,60 +139,60 @@ public final class zb1 extends FrameLayout {
                     rectF.right = Math.min(rectF.right, k2Var.getMeasuredWidth() - org.telegram.messenger.g0.L(90.0f));
                 }
                 boolean contains = rectF.contains(motionEvent.getX(), motionEvent.getY());
-                ec1Var.f45260g1 = contains;
+                ec1Var.f45290g1 = contains;
                 if (!contains) {
                     ec1.a(ec1Var);
                 }
             }
-            if (ec1Var.f45260g1 && !ec1Var.Z0 && motionEvent.getPointerCount() == 2) {
+            if (ec1Var.f45290g1 && !ec1Var.Z0 && motionEvent.getPointerCount() == 2) {
                 ec1Var.W0 = (float) Math.hypot(motionEvent.getX(1) - motionEvent.getX(0), motionEvent.getY(1) - motionEvent.getY(0));
                 float x13 = (motionEvent.getX(1) + motionEvent.getX(0)) / 2.0f;
-                ec1Var.f45244a1 = x13;
+                ec1Var.f45274a1 = x13;
                 ec1Var.U0 = x13;
                 float y13 = (motionEvent.getY(1) + motionEvent.getY(0)) / 2.0f;
-                ec1Var.f45247b1 = y13;
+                ec1Var.f45277b1 = y13;
                 ec1Var.V0 = y13;
-                ec1Var.f45255e1 = 1.0f;
-                ec1Var.f45250c1 = motionEvent.getPointerId(0);
-                ec1Var.f45252d1 = motionEvent.getPointerId(1);
+                ec1Var.f45285e1 = 1.0f;
+                ec1Var.f45280c1 = motionEvent.getPointerId(0);
+                ec1Var.f45282d1 = motionEvent.getPointerId(1);
                 ec1Var.Z0 = true;
             }
         }
-        ec1Var.f45277s.invalidate();
+        ec1Var.f45307s.invalidate();
         int action = motionEvent.getAction();
         if (action != 0) {
             if (action != 1) {
                 if (action == 3) {
-                    this.f52517c = false;
+                    this.f52524c = false;
                 }
-            } else if (this.f52517c) {
-                float x14 = motionEvent.getX() - this.f52515a;
-                float y14 = motionEvent.getY() - this.f52516b;
+            } else if (this.f52524c) {
+                float x14 = motionEvent.getX() - this.f52522a;
+                float y14 = motionEvent.getY() - this.f52523b;
                 long currentTimeMillis = System.currentTimeMillis();
                 float f11 = (y14 * y14) + (x14 * x14);
-                float f12 = ec1Var.f45278s0;
+                float f12 = ec1Var.f45308s0;
                 if (f11 < f12 * f12 && currentTimeMillis - this.d < 300 && currentTimeMillis - ec1Var.J0 > 300) {
                     ec1Var.J0 = System.currentTimeMillis();
                     if (ec1Var.B0) {
                         ec1Var.d(false);
-                    } else if (ec1Var.f45287y0) {
-                        ec1Var.r(!ec1Var.f45283w0);
-                        ec1Var.f45273p0 = ec1Var.f45272o0;
-                        if (!ec1Var.f45283w0 && (zoVar = ec1Var.M0) != null && zoVar.V) {
+                    } else if (ec1Var.f45317y0) {
+                        ec1Var.r(!ec1Var.f45313w0);
+                        ec1Var.f45303p0 = ec1Var.f45302o0;
+                        if (!ec1Var.f45313w0 && (zoVar = ec1Var.M0) != null && zoVar.V) {
                             zoVar.f(true);
                         }
                         ec1Var.y();
                     }
                 }
-                this.f52517c = false;
+                this.f52524c = false;
             }
         } else {
-            this.f52515a = motionEvent.getX();
-            this.f52516b = motionEvent.getY();
-            this.f52517c = true;
+            this.f52522a = motionEvent.getX();
+            this.f52523b = motionEvent.getY();
+            this.f52524c = true;
             this.d = System.currentTimeMillis();
         }
-        if (!ec1Var.f45260g1 && !this.f52517c) {
+        if (!ec1Var.f45290g1 && !this.f52524c) {
             return false;
         }
         return true;

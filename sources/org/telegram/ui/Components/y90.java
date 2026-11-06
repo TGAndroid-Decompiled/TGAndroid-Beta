@@ -29,11 +29,11 @@ public final class y90 extends mi.l {
 
     @Override
     public final void W() {
-        ia0 ia0Var = this.Y.f32503c0;
+        ia0 ia0Var = this.Y.f32507c0;
         org.telegram.messenger.g0.r(ia0Var.D);
         ia0Var.D.run();
         if (this.W == -1) {
-            this.W = org.telegram.messenger.qs.f(ia0Var.f34584x).q(null, this.W, false);
+            this.W = org.telegram.messenger.qs.f(ia0Var.f34547x).q(null, this.W, false);
         }
         Runnable runnable = this.X;
         if (runnable != null) {

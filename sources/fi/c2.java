@@ -24,7 +24,7 @@ public final class c2 extends op {
             case 2:
                 return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28248yf, ((tx) this.f11724i).G.Z1);
             case 3:
-                return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Q5, ((el0) this.f11724i).f33284e);
+                return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Q5, ((el0) this.f11724i).f33280e);
             default:
                 return org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28248yf, ((i01) this.f11724i).F.Z0);
         }
@@ -34,20 +34,20 @@ public final class c2 extends op {
         super(1.25f);
         this.h = 2;
         this.f11724i = txVar;
-        this.f36762f = org.telegram.messenger.g0.L(7.0f);
+        this.f36640f = org.telegram.messenger.g0.L(7.0f);
     }
 
     public c2(org.telegram.ui.ActionBar.f6 f6Var) {
         super(1.25f);
         this.h = 0;
         this.f11724i = f6Var;
-        this.f36762f = org.telegram.messenger.g0.L(7.0f);
+        this.f36640f = org.telegram.messenger.g0.L(7.0f);
     }
 
     public c2(i01 i01Var) {
         super(1.25f);
         this.h = 4;
         this.f11724i = i01Var;
-        this.f36762f = org.telegram.messenger.g0.L(7.0f);
+        this.f36640f = org.telegram.messenger.g0.L(7.0f);
     }
 }

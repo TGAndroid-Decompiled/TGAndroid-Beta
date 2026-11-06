@@ -71,12 +71,12 @@ public final class h extends s {
         switch (this.Q) {
             case 2:
                 oi oiVar = new oi(this, recyclerView.getContext());
-                oiVar.f57096a = i7;
+                oiVar.f57121a = i7;
                 w0(oiVar);
                 return;
             case 3:
                 nl nlVar = new nl(this, recyclerView.getContext());
-                nlVar.f57096a = i7;
+                nlVar.f57121a = i7;
                 w0(nlVar);
                 return;
             default:

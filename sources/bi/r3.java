@@ -159,7 +159,7 @@ public final class r3 implements Runnable {
                 vaVar2.f13012y = null;
                 Activity activity = vaVar2.f12938b;
                 if (activity instanceof LaunchActivity) {
-                    ((LaunchActivity) activity).f41269x0.post(new fi.u8(vaVar2, 5));
+                    ((LaunchActivity) activity).f41294x0.post(new fi.u8(vaVar2, 5));
                     return;
                 } else {
                     vaVar2.p(true);
@@ -200,7 +200,7 @@ public final class r3 implements Runnable {
                 }
             case 13:
                 li.p pVar = (li.p) obj;
-                org.telegram.ui.Components.v4.J(pVar.f38951b.W1.getParentActivity(), j3, new g6.d0(pVar, 11), pVar.f38950a);
+                org.telegram.ui.Components.v4.J(pVar.f38948b.W1.getParentActivity(), j3, new g6.d0(pVar, 11), pVar.f38947a);
                 return;
             case 14:
                 li.b2 b2Var = (li.b2) obj;
@@ -234,7 +234,7 @@ public final class r3 implements Runnable {
                 return;
             case 20:
                 org.telegram.ui.Components.cc Q2 = org.telegram.ui.Components.hc.a0((org.telegram.ui.y6) obj).Q(2131624051, 36, org.telegram.messenger.hd.a0(null, null, 2131752645, org.telegram.messenger.g0.i0(j3, false, false)));
-                Q2.f32531r = false;
+                Q2.f32535r = false;
                 Q2.j();
                 return;
             case 21:
@@ -244,16 +244,16 @@ public final class r3 implements Runnable {
                 return;
             case 22:
                 ik ikVar = (ik) obj;
-                di diVar = ikVar.f38951b;
+                di diVar = ikVar.f38948b;
                 if (!ikVar.K && ikVar.L0 && ikVar.isShown()) {
-                    qh qhVar = diVar.f32917l3;
+                    qh qhVar = diVar.f32930l3;
                     org.telegram.ui.ActionBar.f2 f2Var2 = diVar.W1;
                     if ((qhVar.Q() <= org.telegram.messenger.g0.L(20.0f) || ikVar.B0 || ikVar.K0) && SystemClock.uptimeMillis() < j3) {
                         ikVar.postDelayed(ikVar.O0, 32L);
                         return;
                     }
                     ikVar.O0 = null;
-                    org.telegram.ui.ActionBar.f6 f6Var2 = ikVar.f38950a;
+                    org.telegram.ui.ActionBar.f6 f6Var2 = ikVar.f38947a;
                     if (f2Var2 != null && f2Var2.getParentActivity() != null) {
                         context = f2Var2.getParentActivity();
                     } else {
@@ -269,7 +269,7 @@ public final class r3 implements Runnable {
                         org.telegram.ui.ActionBar.r6.V(x0Var, org.telegram.ui.ActionBar.k6.f27956j5, f6Var2);
                         org.telegram.ui.ActionBar.r6.E(x0Var, org.telegram.ui.ActionBar.k6.f28144t5, f6Var2);
                         x0Var.setHint(org.telegram.messenger.hd.M0(2131743170, null));
-                        x0Var.setText(ikVar.f34713s0);
+                        x0Var.setText(ikVar.f34676s0);
                         x0Var.setSelection(x0Var.length());
                         x0Var.setInputType(147457);
                         x0Var.setMaxLines(5);
@@ -284,7 +284,7 @@ public final class r3 implements Runnable {
                         c2Var.setBackground(h02);
                         org.telegram.ui.ActionBar.r6.k(c2Var, h02, null, N, f6Var2);
                         String M02 = org.telegram.messenger.hd.M0(2131743078, null);
-                        if (ikVar.f34714t0 && ikVar.getPublicKey() != null) {
+                        if (ikVar.f34677t0 && ikVar.getPublicKey() != null) {
                             z9 = false;
                         } else {
                             z9 = true;
@@ -355,7 +355,7 @@ public final class r3 implements Runnable {
                         }
                         u1Var.show();
                         View d = u1Var.d(-1);
-                        if ((d instanceof TextView) && !TextUtils.isEmpty(ikVar.f34713s0)) {
+                        if ((d instanceof TextView) && !TextUtils.isEmpty(ikVar.f34676s0)) {
                             x0Var.addTextChangedListener(new hk(x0Var, (TextView) d));
                             return;
                         }
@@ -400,7 +400,7 @@ public final class r3 implements Runnable {
                 o90Var.presentFragment(an.ra(j3));
                 return;
             case 28:
-                an anVar = ((th) obj).f50036f;
+                an anVar = ((th) obj).f50064f;
                 anVar.O7(true);
                 Bundle bundle = new Bundle();
                 bundle.putLong("user_id", j3);

@@ -106,7 +106,7 @@ public final class pd implements Runnable {
                 org.telegram.ui.ActionBar.k6.F(false);
                 return;
             case 12:
-                int i12 = org.telegram.ui.an.f43682id;
+                int i12 = org.telegram.ui.an.f43707id;
                 return;
             case 13:
                 ch.k0.b(true);
@@ -126,17 +126,17 @@ public final class pd implements Runnable {
                 }
                 return;
             case 16:
-                Pattern pattern = org.telegram.ui.Components.v4.f38823a;
+                Pattern pattern = org.telegram.ui.Components.v4.f38814a;
                 return;
             case 17:
-                g0.r(org.telegram.ui.Components.i5.f34495w);
+                g0.r(org.telegram.ui.Components.i5.f34440w);
                 try {
-                    if (org.telegram.ui.Components.i5.f34491r != null) {
-                        for (int i13 = 0; i13 < org.telegram.ui.Components.i5.f34491r.size(); i13++) {
-                            LongSparseArray longSparseArray = (LongSparseArray) org.telegram.ui.Components.i5.f34491r.valueAt(i13);
+                    if (org.telegram.ui.Components.i5.f34436r != null) {
+                        for (int i13 = 0; i13 < org.telegram.ui.Components.i5.f34436r.size(); i13++) {
+                            LongSparseArray longSparseArray = (LongSparseArray) org.telegram.ui.Components.i5.f34436r.valueAt(i13);
                             int i14 = 0;
                             while (i14 < longSparseArray.size()) {
-                                if (!((org.telegram.ui.Components.i5) longSparseArray.valueAt(i14)).f34497a) {
+                                if (!((org.telegram.ui.Components.i5) longSparseArray.valueAt(i14)).f34442a) {
                                     longSparseArray.removeAt(i14);
                                     i14--;
                                 }
@@ -184,7 +184,7 @@ public final class pd implements Runnable {
             case 24:
                 return;
             case 25:
-                int i15 = org.telegram.ui.Components.bn.f32176r1;
+                int i15 = org.telegram.ui.Components.bn.f32170r1;
                 return;
             case 26:
                 PhotoViewer.p1().z0(false, false);

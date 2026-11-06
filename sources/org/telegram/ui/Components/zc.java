@@ -2,30 +2,30 @@ package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
 public final class zc implements ValueAnimator.AnimatorUpdateListener {
-    public final int f40888a;
-    public final ChatActivityEnterView f40889b;
+    public final int f40913a;
+    public final ChatActivityEnterView f40914b;
 
     public zc(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f40888a = i7;
-        this.f40889b = chatActivityEnterView;
+        this.f40913a = i7;
+        this.f40914b = chatActivityEnterView;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f40888a;
-        ChatActivityEnterView chatActivityEnterView = this.f40889b;
+        int i7 = this.f40913a;
+        ChatActivityEnterView chatActivityEnterView = this.f40914b;
         switch (i7) {
             case 0:
                 ie ieVar = chatActivityEnterView.J1;
                 if (ieVar != null) {
-                    ieVar.setTranslationX(ieVar.f34599a);
+                    ieVar.setTranslationX(ieVar.f34562a);
                     return;
                 }
                 return;
             case 1:
                 ie ieVar2 = chatActivityEnterView.J1;
                 if (ieVar2 != null) {
-                    ieVar2.setTranslationX(ieVar2.f34599a);
+                    ieVar2.setTranslationX(ieVar2.f34562a);
                     return;
                 }
                 return;

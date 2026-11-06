@@ -8,21 +8,21 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.hc;
 public final class k8 implements c20 {
-    public final int f42687a;
-    public final o8 f42688b;
-    public final vf.b f42689c;
+    public final int f42712a;
+    public final o8 f42713b;
+    public final vf.b f42714c;
 
     public k8(o8 o8Var, vf.b bVar, int i7) {
-        this.f42687a = i7;
-        this.f42688b = o8Var;
-        this.f42689c = bVar;
+        this.f42712a = i7;
+        this.f42713b = o8Var;
+        this.f42714c = bVar;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f42687a;
-        vf.b bVar = this.f42689c;
-        o8 o8Var = this.f42688b;
+        int i7 = this.f42712a;
+        vf.b bVar = this.f42714c;
+        o8 o8Var = this.f42713b;
         String str = (String) obj;
         switch (i7) {
             case 0:
@@ -54,7 +54,7 @@ public final class k8 implements c20 {
                     return;
                 }
                 cc I = hc.a0(o8Var).I(2131623989, hd.M0(2131743192, null), hd.M0(2131743190, null));
-                I.f32523j = 5000;
+                I.f32527j = 5000;
                 I.j();
                 return;
             default:

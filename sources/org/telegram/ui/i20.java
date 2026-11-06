@@ -4,18 +4,18 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 public final class i20 implements TextWatcher {
-    public final c40 f46546a;
+    public final c40 f46555a;
 
     public i20(c40 c40Var) {
-        this.f46546a = c40Var;
+        this.f46555a = c40Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String str;
         int i7;
-        c40 c40Var = this.f46546a;
-        c40Var.f44601r5.a(TextUtils.isEmpty(editable), true);
+        c40 c40Var = this.f46555a;
+        c40Var.f44622r5.a(TextUtils.isEmpty(editable), true);
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         int i10 = c40Var.U1;
         if (codePointCount + 25 > i10) {

@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 public final class n70 extends lg0 {
-    public final q70 f36313q1;
+    public final q70 f36207q1;
 
     public n70(q70 q70Var, Context context, String str, String str2, String str3) {
         super(context, str, str2, str3, false);
-        this.f36313q1 = q70Var;
+        this.f36207q1 = q70Var;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.f36313q1.E = null;
+        this.f36207q1.E = null;
     }
 }

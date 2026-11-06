@@ -94,7 +94,7 @@ public abstract class d0 extends ys implements a6 {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (((GestureDetector) this.Z1.f38766b).onTouchEvent(motionEvent) && !isLongClickable()) {
+        if (((GestureDetector) this.Z1.f38757b).onTouchEvent(motionEvent) && !isLongClickable()) {
             return false;
         }
         return super.dispatchTouchEvent(motionEvent);

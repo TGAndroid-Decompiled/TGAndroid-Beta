@@ -4,10 +4,10 @@ import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
-import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.lz;
+import org.telegram.ui.Components.p41;
 public final class ad extends FrameLayout implements ls {
-    public final k41 f3468a;
+    public final p41 f3468a;
     public final org.telegram.ui.ActionBar.f6 f3469b;
     public final int f3470c;
     public final int d;
@@ -23,28 +23,28 @@ public final class ad extends FrameLayout implements ls {
         this.f3472f = j3;
         this.f3469b = f6Var;
         this.h = new zc(i10, i7, j3, z9);
-        k41 k41Var = new k41(context, i10, i11, true, new ai.e(this, 12), new a1.c(this, 19), null, f6Var);
-        this.f3468a = k41Var;
-        addView(k41Var, c8.ha.c(-1.0f, -1));
-        k41Var.setOnScrollListener(new ai.b(this, 6));
+        p41 p41Var = new p41(context, i10, i11, true, new ai.e(this, 12), new a1.c(this, 19), null, f6Var);
+        this.f3468a = p41Var;
+        addView(p41Var, c8.ha.c(-1.0f, -1));
+        p41Var.setOnScrollListener(new ai.b(this, 6));
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         int i11 = qs.f25104z3;
-        k41 k41Var = this.f3468a;
+        p41 p41Var = this.f3468a;
         if (i7 == i11) {
-            k41Var.f35167f3.O(true);
-            if (k41Var.canScrollVertically(1)) {
-                for (int i12 = 0; i12 < k41Var.getChildCount(); i12++) {
-                    if (!(k41Var.getChildAt(i12) instanceof lz)) {
+            p41Var.f36781f3.O(true);
+            if (p41Var.canScrollVertically(1)) {
+                for (int i12 = 0; i12 < p41Var.getChildCount(); i12++) {
+                    if (!(p41Var.getChildAt(i12) instanceof lz)) {
                     }
                 }
                 return;
             }
             this.h.run();
         } else if (i7 == qs.D3 && ((Long) objArr[0]).longValue() == this.f3472f) {
-            k41Var.f35167f3.O(true);
+            p41Var.f36781f3.O(true);
         }
     }
 
@@ -58,7 +58,7 @@ public final class ad extends FrameLayout implements ls {
         } else {
             qs.f(i10).c(this, qs.f25104z3);
         }
-        this.f3468a.f35167f3.O(false);
+        this.f3468a.f36781f3.O(false);
     }
 
     @Override

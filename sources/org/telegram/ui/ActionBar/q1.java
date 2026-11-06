@@ -28,13 +28,13 @@ public final class q1 extends LinearLayout implements a6 {
         super(context);
         this.d = u1Var;
         ?? obj = new Object();
-        obj.f39851f = 0L;
-        obj.f39852g = 200L;
-        obj.h = xq.f40310f;
-        obj.f39847a = this;
+        obj.f39859f = 0L;
+        obj.f39860g = 200L;
+        obj.h = xq.f40329f;
+        obj.f39855a = this;
         obj.d = 0.0f;
-        obj.f39849c = 0.0f;
-        obj.f39850e = false;
+        obj.f39857c = 0.0f;
+        obj.f39858e = false;
         this.f28395b = obj;
         this.f28396c = new Paint(1);
     }

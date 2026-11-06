@@ -42,7 +42,7 @@ public final class yd extends AnimatorListenerAdapter {
                 czVar.invalidate();
                 return;
             default:
-                ((org.telegram.ui.web.k1) this.d).c(this.f5106b, this.f5107c, false);
+                ((org.telegram.ui.web.l1) this.d).c(this.f5106b, this.f5107c, false);
                 return;
         }
     }

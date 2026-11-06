@@ -9,12 +9,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ph0 extends org.telegram.ui.ActionBar.j {
-    public final Context f48839a;
-    public final sh0 f48840b;
+    public final Context f48834a;
+    public final sh0 f48835b;
 
     public ph0(sh0 sh0Var, Context context) {
-        this.f48840b = sh0Var;
-        this.f48839a = context;
+        this.f48835b = sh0Var;
+        this.f48834a = context;
     }
 
     @Override
@@ -22,8 +22,8 @@ public final class ph0 extends org.telegram.ui.ActionBar.j {
         int i10;
         int i11;
         org.telegram.ui.ActionBar.y4 y4Var;
-        sh0 sh0Var = this.f48840b;
-        org.telegram.ui.ActionBar.f6 f6Var = sh0Var.f49750f;
+        sh0 sh0Var = this.f48835b;
+        org.telegram.ui.ActionBar.f6 f6Var = sh0Var.f49771f;
         SparseArray sparseArray = sh0Var.I;
         if (i7 == -1) {
             y4Var = ((org.telegram.ui.ActionBar.f2) sh0Var).simpleActionBar;
@@ -49,7 +49,7 @@ public final class ph0 extends org.telegram.ui.ActionBar.j {
             }
         } else if (i7 == 2) {
             int size = sparseArray.size();
-            Context context = this.f48839a;
+            Context context = this.f48834a;
             if (size == 1) {
                 Intent intent = new Intent(context, LaunchActivity.class);
                 intent.setAction("android.intent.action.SEND");
@@ -77,7 +77,7 @@ public final class ph0 extends org.telegram.ui.ActionBar.j {
             }
             sh0.b0(sh0Var);
             sh0Var.i0();
-            sh0Var.f49749e.f();
+            sh0Var.f49770e.f();
         }
     }
 }

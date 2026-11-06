@@ -4,16 +4,16 @@ import ed.h;
 import java.util.regex.Pattern;
 import kf.p;
 public final class c extends h {
-    public static final Pattern f59912e = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
+    public static final Pattern f59937e = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
 
     @Override
     public final p b() {
-        String a10 = a(f59912e);
+        String a10 = a(f59937e);
         if (a10 == null) {
             return null;
         }
         ?? pVar = new p();
-        pVar.f59913g = com.google.android.recaptcha.internal.a.k(a10, 2, 2);
+        pVar.f59938g = com.google.android.recaptcha.internal.a.k(a10, 2, 2);
         return pVar;
     }
 

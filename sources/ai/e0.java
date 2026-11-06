@@ -235,8 +235,8 @@ public final class e0 implements Runnable {
                 tg.h1 h1Var = o5Var.T0;
                 int i20 = h1Var.d + 1;
                 h1Var.a(i20);
-                org.telegram.messenger.g0.R3(h1Var.f55597a[i20], i19);
-                h1Var.f55600e = true;
+                org.telegram.messenger.g0.R3(h1Var.f55622a[i20], i19);
+                h1Var.f55625e = true;
                 return;
             case 12:
                 org.telegram.messenger.g0.h3(new bg.m0(this.f1164b, ((yr) this.f1165c).l0(new ArrayList((HashSet) this.d)), 8));
@@ -357,8 +357,8 @@ public final class e0 implements Runnable {
                 g4 g4Var = (g4) this.f1165c;
                 String str4 = (String) this.d;
                 int i29 = this.f1164b;
-                HashMap hashMap = new HashMap(g4Var.f45816u0[0].f47066c.f45168x);
-                ArrayList arrayList2 = new ArrayList(g4Var.f45816u0[0].f47066c.f45169y);
+                HashMap hashMap = new HashMap(g4Var.f45843u0[0].f47089c.f45198x);
+                ArrayList arrayList2 = new ArrayList(g4Var.f45843u0[0].f47089c.f45199y);
                 g4Var.W0 = null;
                 Utilities.f21335g.c(new ub(g4Var, arrayList2, hashMap, str4, i29, 8));
                 return;

@@ -23,13 +23,13 @@ public class ContactsWidgetConfigActivity extends ExternalActionActivity {
                 if (this.d.getFragmentStack().isEmpty()) {
                     this.d.c(-1, exVar);
                 }
-            } else if (this.f41200c.getFragmentStack().isEmpty()) {
-                this.f41200c.c(-1, exVar);
+            } else if (this.f41225c.getFragmentStack().isEmpty()) {
+                this.f41225c.c(-1, exVar);
             }
             if (!org.telegram.messenger.g0.Q1()) {
-                this.f41201e.setVisibility(8);
+                this.f41226e.setVisibility(8);
             }
-            this.f41200c.f0();
+            this.f41225c.f0();
             if (org.telegram.messenger.g0.Q1()) {
                 this.d.f0();
             }

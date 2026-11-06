@@ -42,7 +42,7 @@ public final class r1 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f == 2) {
+        if (d1Var.f56956f == 2) {
             return true;
         }
         return false;
@@ -185,8 +185,8 @@ public final class r1 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        int i10 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        int i10 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         if (i10 == 0) {
             view.setTag(34);
             view.setLayoutParams(new v4.o0(-1, (int) this.f12723s.f12845r.f12256o1));
@@ -225,7 +225,7 @@ public final class r1 extends oj0 {
             h2Var2.getPhotoImage().E0(7);
             if (h2Var2.f29233d0 == null) {
                 ic icVar = new ic(h2Var2, 1.0f, 3.0f);
-                icVar.f34589e = 120L;
+                icVar.f34552e = 120L;
                 h2Var2.f29233d0 = icVar;
             }
             h2Var2.setIsKeyboard(true);

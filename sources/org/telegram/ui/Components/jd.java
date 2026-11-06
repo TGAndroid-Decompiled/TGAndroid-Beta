@@ -2,16 +2,16 @@ package org.telegram.ui.Components;
 
 import android.view.KeyEvent;
 public final class jd implements hi.h0, org.telegram.ui.ActionBar.r1, ws, org.telegram.ui.ActionBar.e1 {
-    public final ChatActivityEnterView f34947a;
+    public final ChatActivityEnterView f34908a;
 
     public jd(ChatActivityEnterView chatActivityEnterView) {
-        this.f34947a = chatActivityEnterView;
+        this.f34908a = chatActivityEnterView;
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
         int i10 = ChatActivityEnterView.s5;
-        ChatActivityEnterView chatActivityEnterView = this.f34947a;
+        ChatActivityEnterView chatActivityEnterView = this.f34908a;
         chatActivityEnterView.J();
         xe xeVar = chatActivityEnterView.E0;
         if (xeVar != null) {
@@ -24,14 +24,14 @@ public final class jd implements hi.h0, org.telegram.ui.ActionBar.r1, ws, org.te
         ChatActivityEnterView chatActivityEnterView;
         te teVar;
         int i7 = ChatActivityEnterView.s5;
-        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (teVar = (chatActivityEnterView = this.f34947a).N0) != null && teVar.isShowing()) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (teVar = (chatActivityEnterView = this.f34908a).N0) != null && teVar.isShowing()) {
             chatActivityEnterView.N0.dismiss();
         }
     }
 
     @Override
     public void m() {
-        ChatActivityEnterView chatActivityEnterView = this.f34947a;
+        ChatActivityEnterView chatActivityEnterView = this.f34908a;
         chatActivityEnterView.E0.f();
         wf wfVar = chatActivityEnterView.Z2;
         if (wfVar != null) {

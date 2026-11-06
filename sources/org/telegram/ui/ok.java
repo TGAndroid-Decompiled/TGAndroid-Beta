@@ -34,7 +34,7 @@ public final class ok extends org.telegram.ui.ActionBar.k5 {
         switch (this.M0) {
             case 2:
                 super.onAttachedToWindow();
-                ((fm0) this.N0).f45664s.a();
+                ((fm0) this.N0).f45669s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class ok extends org.telegram.ui.ActionBar.k5 {
         switch (this.M0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((fm0) this.N0).f45664s.b();
+                ((fm0) this.N0).f45669s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -79,13 +79,13 @@ public final class ok extends org.telegram.ui.ActionBar.k5 {
                 ProfileActivity profileActivity = (ProfileActivity) this.N0;
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f41755n != null) {
+                    if (profileActivity.h != null || profileActivity.f41780n != null) {
                         StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f41755n != null) {
+                        if (profileActivity.f41780n != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
-                            sb2.append(profileActivity.f41755n);
+                            sb2.append(profileActivity.f41780n);
                         }
                         if (profileActivity.h != null) {
                             if (sb2.length() > 0) {
@@ -111,7 +111,7 @@ public final class ok extends org.telegram.ui.ActionBar.k5 {
             case 3:
                 ProfileActivity profileActivity = (ProfileActivity) this.N0;
                 profileActivity.D5 = i7;
-                super.setTextColor(i0.a.f(profileActivity.A5, i7, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G6, profileActivity.f41841z0)));
+                super.setTextColor(i0.a.f(profileActivity.A5, i7, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G6, profileActivity.f41866z0)));
                 return;
             default:
                 super.setTextColor(i7);
@@ -127,7 +127,7 @@ public final class ok extends org.telegram.ui.ActionBar.k5 {
                 super.setTranslationY(f10);
                 an anVar = (an) this.N0;
                 if (this == anVar.R2[0] && anVar.V2[1] != null) {
-                    if (anVar.f43697a5 && f10 < 0.0f) {
+                    if (anVar.f43722a5 && f10 < 0.0f) {
                         anVar.N2.setTranslationY(f10 / 2.0f);
                         return;
                     } else {

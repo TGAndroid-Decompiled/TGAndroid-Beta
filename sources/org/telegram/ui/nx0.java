@@ -13,16 +13,16 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final TextView f48130a;
-    public final TextView f48131b;
-    public final ImageView f48132c;
+    public final TextView f48159a;
+    public final TextView f48160b;
+    public final ImageView f48161c;
     public org.telegram.messenger.hz d;
-    public Drawable f48133e;
-    public final org.telegram.ui.Components.wo f48134f;
+    public Drawable f48162e;
+    public final org.telegram.ui.Components.wo f48163f;
     public boolean h;
-    public boolean f48135n;
-    public int f48136r;
-    public final ProxyListActivity f48137s;
+    public boolean f48164n;
+    public int f48165r;
+    public final ProxyListActivity f48166s;
 
     public nx0(ProxyListActivity proxyListActivity, Context context) {
         super(context);
@@ -34,9 +34,9 @@ public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.
         int i14;
         int i15;
         int i16;
-        this.f48137s = proxyListActivity;
+        this.f48166s = proxyListActivity;
         TextView textView = new TextView(context);
-        this.f48130a = textView;
+        this.f48159a = textView;
         org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.G6, null);
         org.telegram.messenger.camera.q.n(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
@@ -68,7 +68,7 @@ public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.
         }
         addView(textView, c8.ha.d(-2, -2.0f, i17, f10, 10.0f, i12, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f48131b = textView2;
+        this.f48160b = textView2;
         textView2.setTextSize(1, 13.0f);
         if (org.telegram.messenger.hd.f22871a0) {
             i13 = 5;
@@ -96,7 +96,7 @@ public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.
         }
         addView(textView2, c8.ha.d(-2, -2.0f, i18, i15, 35.0f, z10 ? 21 : 56, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f48132c = imageView;
+        this.f48161c = imageView;
         imageView.setImageResource(2131232185);
         org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.A6, null, PorterDuff.Mode.MULTIPLY);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -109,7 +109,7 @@ public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.
         addView(imageView, c8.ha.d(48, 48.0f, i16 | 48, 8.0f, 8.0f, 8.0f, 0.0f));
         imageView.setOnClickListener(new g40(this, 28));
         org.telegram.ui.Components.wo woVar = new org.telegram.ui.Components.wo(21, context, null);
-        this.f48134f = woVar;
+        this.f48163f = woVar;
         woVar.b(org.telegram.ui.ActionBar.k6.i7, org.telegram.ui.ActionBar.k6.f27904g7, org.telegram.ui.ActionBar.k6.f27978k7);
         woVar.setDrawBackgroundAsArc(14);
         woVar.setVisibility(8);
@@ -121,10 +121,10 @@ public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.
         int L;
         float f10;
         int i7;
-        if (this.f48135n == z9 && z10) {
+        if (this.f48164n == z9 && z10) {
             return;
         }
-        this.f48135n = z9;
+        this.f48164n = z9;
         if (org.telegram.messenger.hd.f22871a0) {
             L = -org.telegram.messenger.g0.L(32.0f);
         } else {
@@ -137,9 +137,9 @@ public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.
             if (!z9) {
                 f11 = 0.0f;
             }
-            this.f48130a.setTranslationX(f11);
-            this.f48131b.setTranslationX(f11);
-            ImageView imageView = this.f48132c;
+            this.f48159a.setTranslationX(f11);
+            this.f48160b.setTranslationX(f11);
+            ImageView imageView = this.f48161c;
             imageView.setTranslationX(f11);
             boolean z11 = org.telegram.messenger.hd.f22871a0;
             int L2 = org.telegram.messenger.g0.L(32.0f);
@@ -147,7 +147,7 @@ public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.
                 L2 = -L2;
             }
             float f13 = L2 + f11;
-            org.telegram.ui.Components.wo woVar = this.f48134f;
+            org.telegram.ui.Components.wo woVar = this.f48163f;
             woVar.setTranslationX(f13);
             if (z9) {
                 i7 = 8;
@@ -176,7 +176,7 @@ public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.
             f12 = 1.0f;
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f10, f12).setDuration(200L);
-        duration.setInterpolator(org.telegram.ui.Components.xq.f40310f);
+        duration.setInterpolator(org.telegram.ui.Components.xq.f40329f);
         duration.addUpdateListener(new sf(this, f11, 4));
         duration.addListener(new z40(6, this, z9));
         duration.start();
@@ -218,20 +218,20 @@ public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.
     }
 
     public void setChecked(boolean z9) {
-        TextView textView = this.f48131b;
+        TextView textView = this.f48160b;
         if (z9) {
-            if (this.f48133e == null) {
-                this.f48133e = getResources().getDrawable(2131232625).mutate();
+            if (this.f48162e == null) {
+                this.f48162e = getResources().getDrawable(2131232625).mutate();
             }
-            Drawable drawable = this.f48133e;
+            Drawable drawable = this.f48162e;
             if (drawable != null) {
-                drawable.setColorFilter(new PorterDuffColorFilter(this.f48136r, PorterDuff.Mode.MULTIPLY));
+                drawable.setColorFilter(new PorterDuffColorFilter(this.f48165r, PorterDuff.Mode.MULTIPLY));
             }
             if (org.telegram.messenger.hd.f22871a0) {
-                textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, this.f48133e, (Drawable) null);
+                textView.setCompoundDrawablesWithIntrinsicBounds((Drawable) null, (Drawable) null, this.f48162e, (Drawable) null);
                 return;
             } else {
-                textView.setCompoundDrawablesWithIntrinsicBounds(this.f48133e, (Drawable) null, (Drawable) null, (Drawable) null);
+                textView.setCompoundDrawablesWithIntrinsicBounds(this.f48162e, (Drawable) null, (Drawable) null, (Drawable) null);
                 return;
             }
         }
@@ -240,31 +240,31 @@ public final class nx0 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     public void setProxy(org.telegram.messenger.hz hzVar) {
         String str;
-        if (hzVar.f22996a.f56799a == 3) {
-            str = a8.p0.s(new StringBuilder(), hzVar.f22996a.f56800b, " (WEB)");
+        if (hzVar.f22996a.f56824a == 3) {
+            str = a8.p0.s(new StringBuilder(), hzVar.f22996a.f56825b, " (WEB)");
         } else {
-            str = hzVar.f22996a.f56800b + ":" + hzVar.f22996a.f56801c;
+            str = hzVar.f22996a.f56825b + ":" + hzVar.f22996a.f56826c;
         }
-        this.f48130a.setText(str);
+        this.f48159a.setText(str);
         this.d = hzVar;
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f48131b.setText(charSequence);
+        this.f48160b.setText(charSequence);
     }
 
     @Override
     public final void updateColors() {
         int x02;
-        TextView textView = this.f48131b;
+        TextView textView = this.f48160b;
         if (textView != null) {
             try {
-                if ((textView.getTag() instanceof Integer) && (x02 = org.telegram.ui.ActionBar.k6.x0(null, ((Integer) textView.getTag()).intValue(), false)) != this.f48136r) {
-                    this.f48136r = x02;
+                if ((textView.getTag() instanceof Integer) && (x02 = org.telegram.ui.ActionBar.k6.x0(null, ((Integer) textView.getTag()).intValue(), false)) != this.f48165r) {
+                    this.f48165r = x02;
                     textView.setTextColor(x02);
-                    Drawable drawable = this.f48133e;
+                    Drawable drawable = this.f48162e;
                     if (drawable != null) {
-                        drawable.setColorFilter(new PorterDuffColorFilter(this.f48136r, PorterDuff.Mode.MULTIPLY));
+                        drawable.setColorFilter(new PorterDuffColorFilter(this.f48165r, PorterDuff.Mode.MULTIPLY));
                     }
                 }
             } catch (Exception e10) {

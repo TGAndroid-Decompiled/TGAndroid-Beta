@@ -72,7 +72,7 @@ public final class l0 {
     public final void b() {
         wk0 wk0Var = this.E;
         if (wk0Var.b()) {
-            float f10 = wk0Var.f40022j;
+            float f10 = wk0Var.f40029j;
             this.f29473o = f10;
             this.f29473o = Utilities.i(f10, this.f29474p - (this.f29480w.width() - org.telegram.messenger.g0.L(14.0f)), 0.0f);
             this.f29461a.p2();
@@ -203,7 +203,7 @@ public final class l0 {
                 i7 = 2131745318;
             }
             ly0 ly0Var = new ly0(hd.M0(i7, null), 14.0f, org.telegram.messenger.g0.o());
-            ly0Var.f35787o = true;
+            ly0Var.f35792o = true;
             this.v = ly0Var;
         }
         if (d()) {

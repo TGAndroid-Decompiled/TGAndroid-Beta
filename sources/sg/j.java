@@ -8,20 +8,20 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import org.telegram.ui.ActionBar.k6;
 public final class j extends ScrollView {
-    public final LinearLayout f54967a;
-    public final q f54968b;
+    public final LinearLayout f54992a;
+    public final q f54993b;
 
     public j(q qVar, Context context, LinearLayout linearLayout) {
         super(context);
-        this.f54968b = qVar;
-        this.f54967a = linearLayout;
+        this.f54993b = qVar;
+        this.f54992a = linearLayout;
         setWillNotDraw(false);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float y10 = this.f54967a.getY() + org.telegram.messenger.g0.L(1.0f);
+        float y10 = this.f54992a.getY() + org.telegram.messenger.g0.L(1.0f);
         int L = org.telegram.messenger.g0.L(36.0f);
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set((getMeasuredWidth() - L) / 2.0f, y10, (getMeasuredWidth() + L) / 2.0f, org.telegram.messenger.g0.L(4.0f) + y10);
@@ -32,6 +32,6 @@ public final class j extends ScrollView {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        ((LinearLayout.LayoutParams) this.f54968b.f55065i1.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(24.0f)) * 0.8333333f) + org.telegram.messenger.g0.L(88.0f));
+        ((LinearLayout.LayoutParams) this.f54993b.f55090i1.getLayoutParams()).height = (int) (((View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(24.0f)) * 0.8333333f) + org.telegram.messenger.g0.L(88.0f));
     }
 }

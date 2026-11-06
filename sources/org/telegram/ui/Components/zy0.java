@@ -11,69 +11,69 @@ public final class zy0 {
     public Bitmap C;
     public final boolean D;
     public final az0 E;
-    public final ArrayList f41112a;
-    public long f41113b;
-    public float f41114c;
+    public final ArrayList f41137a;
+    public long f41138b;
+    public float f41139c;
     public boolean d;
-    public final Runnable f41115e;
-    public Runnable f41116f;
-    public float f41117g;
+    public final Runnable f41140e;
+    public Runnable f41141f;
+    public float f41142g;
     public float h;
-    public final float f41118i;
-    public final float f41119j;
-    public final float f41120k;
-    public final float f41121l;
-    public final float f41122m;
-    public boolean f41123n;
-    public final boolean f41124o;
-    public final float[] f41125p;
-    public final float[] f41126q;
-    public final Matrix f41127r;
-    public int f41128s;
-    public final int f41129t;
-    public final int f41130u;
+    public final float f41143i;
+    public final float f41144j;
+    public final float f41145k;
+    public final float f41146l;
+    public final float f41147m;
+    public boolean f41148n;
+    public final boolean f41149o;
+    public final float[] f41150p;
+    public final float[] f41151q;
+    public final Matrix f41152r;
+    public int f41153s;
+    public final int f41154t;
+    public final int f41155u;
     public int v;
-    public int f41131w;
-    public float f41132x;
-    public final float f41133y;
-    public int f41134z;
+    public int f41156w;
+    public float f41157x;
+    public final float f41158y;
+    public int f41159z;
 
     public zy0(az0 az0Var, Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
         this.E = az0Var;
-        this.f41112a = new ArrayList();
-        this.f41113b = -1L;
-        this.f41114c = 0.0f;
+        this.f41137a = new ArrayList();
+        this.f41138b = -1L;
+        this.f41139c = 0.0f;
         this.d = true;
-        this.f41117g = 0.0f;
+        this.f41142g = 0.0f;
         this.h = 0.0f;
-        this.f41118i = 0.0f;
-        this.f41119j = 0.0f;
-        this.f41120k = org.telegram.messenger.g0.f22536p;
-        this.f41121l = 1.5f;
-        this.f41122m = 1.15f;
-        this.f41123n = true;
-        this.f41124o = false;
-        this.f41125p = new float[9];
-        this.f41126q = new float[9];
+        this.f41143i = 0.0f;
+        this.f41144j = 0.0f;
+        this.f41145k = org.telegram.messenger.g0.f22536p;
+        this.f41146l = 1.5f;
+        this.f41147m = 1.15f;
+        this.f41148n = true;
+        this.f41149o = false;
+        this.f41150p = new float[9];
+        this.f41151q = new float[9];
         Matrix matrix2 = new Matrix();
-        this.f41127r = matrix2;
-        this.f41133y = (float) (Math.random() * 2.0d);
+        this.f41152r = matrix2;
+        this.f41158y = (float) (Math.random() * 2.0d);
         this.A = new int[1];
         this.B = new int[2];
         this.D = true;
         float[] fArr = {0.0f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f, 1.0f};
         matrix.mapPoints(fArr);
-        this.f41118i = fArr[0];
-        this.f41119j = fArr[1];
-        this.f41129t = (int) a8.r9.a(fArr[2], fArr[3], fArr[6], fArr[7]);
-        this.f41130u = (int) a8.r9.a(fArr[4], fArr[5], fArr[6], fArr[7]);
-        this.f41124o = true;
+        this.f41143i = fArr[0];
+        this.f41144j = fArr[1];
+        this.f41154t = (int) a8.r9.a(fArr[2], fArr[3], fArr[6], fArr[7]);
+        this.f41155u = (int) a8.r9.a(fArr[4], fArr[5], fArr[6], fArr[7]);
+        this.f41149o = true;
         matrix2.set(matrix);
         c();
-        this.f41115e = runnable;
-        this.f41116f = runnable2;
-        this.f41121l = 4.0f;
-        this.f41114c = -0.1f;
+        this.f41140e = runnable;
+        this.f41141f = runnable2;
+        this.f41146l = 4.0f;
+        this.f41139c = -0.1f;
         this.C = bitmap;
     }
 
@@ -112,33 +112,33 @@ public final class zy0 {
             org.telegram.messenger.a8.g(e10, true);
         }
         az0 az0Var = this.E;
-        int i7 = az0Var.f31952x;
+        int i7 = az0Var.f31964x;
         if (i7 != 0) {
             try {
                 GLES20.glDeleteProgram(i7);
             } catch (Exception e11) {
                 org.telegram.messenger.a8.g(e11, true);
             }
-            az0Var.f31952x = 0;
+            az0Var.f31964x = 0;
         }
         try {
             GLES20.glDeleteTextures(1, this.A, 0);
         } catch (Exception e12) {
             org.telegram.messenger.a8.g(e12, true);
         }
-        Runnable runnable = this.f41116f;
+        Runnable runnable = this.f41141f;
         if (runnable != null) {
             cz0.b(runnable);
-            this.f41116f = null;
+            this.f41141f = null;
         }
     }
 
     public final void c() {
-        Matrix matrix = this.f41127r;
-        float[] fArr = this.f41126q;
+        Matrix matrix = this.f41152r;
+        float[] fArr = this.f41151q;
         matrix.getValues(fArr);
         float f10 = fArr[0];
-        float[] fArr2 = this.f41125p;
+        float[] fArr2 = this.f41150p;
         fArr2[0] = f10;
         fArr2[1] = fArr[3];
         fArr2[2] = fArr[6];
@@ -148,7 +148,7 @@ public final class zy0 {
         fArr2[6] = fArr[2];
         fArr2[7] = fArr[5];
         fArr2[8] = fArr[8];
-        this.f41123n = false;
+        this.f41148n = false;
     }
 
     public zy0(org.telegram.ui.Components.az0 r32, java.util.ArrayList r33, java.lang.Runnable r34) {

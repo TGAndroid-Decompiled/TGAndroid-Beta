@@ -21,17 +21,17 @@ public final class n5 extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        return ((s5) this.d.f49899c0.get(d1Var.b())).f54416b;
+        return ((s5) this.d.f49927c0.get(d1Var.b())).f54441b;
     }
 
     @Override
     public final int b() {
-        return this.d.f49899c0.size();
+        return this.d.f49927c0.size();
     }
 
     @Override
     public final int d(int i7) {
-        return ((s5) this.d.f49899c0.get(i7)).f54415a;
+        return ((s5) this.d.f49927c0.get(i7)).f54440a;
     }
 
     @Override
@@ -41,10 +41,10 @@ public final class n5 extends rg.b {
         int i11;
         t5 t5Var = this.d;
         int i12 = t5Var.S;
-        TLRPC.Chat chat = t5Var.f49905i0;
-        ArrayList arrayList = t5Var.f49899c0;
-        int i13 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        TLRPC.Chat chat = t5Var.f49933i0;
+        ArrayList arrayList = t5Var.f49927c0;
+        int i13 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         if (i13 != 4 && i13 != 14 && i13 != 15) {
             if (i13 != 1 && i13 != 12 && i13 != 16) {
                 if (i13 == 0) {
@@ -88,31 +88,31 @@ public final class n5 extends rg.b {
                     } else {
                         a02 = org.telegram.messenger.hd.a0("BoostExpireOn", null, 2131753661, org.telegram.messenger.hd.r(boost.expires, false));
                     }
-                    bVar.d(a22, org.telegram.messenger.g5.p(a22), a02, !((s5) arrayList.get(i7)).f49633f);
+                    bVar.d(a22, org.telegram.messenger.g5.p(a22), a02, !((s5) arrayList.get(i7)).f49654f);
                     bVar.setStatus(boost);
                     bVar.setAvatarPadding(5);
                     return;
                 } else if (i13 == 6) {
                     org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
-                    z8Var.setText(((s5) arrayList.get(i7)).f49631c);
+                    z8Var.setText(((s5) arrayList.get(i7)).f49652c);
                     z8Var.setTextColor(org.telegram.ui.ActionBar.k6.r1(0.875f, -1));
                     return;
                 } else if (i13 == 9) {
                     org.telegram.ui.Cells.x4 x4Var = (org.telegram.ui.Cells.x4) view;
-                    if (t5Var.f49900d0 == 0) {
+                    if (t5Var.f49928d0 == 0) {
                         x4Var.b(2131230871, 5, org.telegram.messenger.hd.G(t5Var.Z, "BoostingShowMoreBoosts", new Object[0]), false);
                         return;
                     } else {
-                        x4Var.b(2131230871, 5, org.telegram.messenger.hd.G(t5Var.f49898b0, "BoostingShowMoreGifts", new Object[0]), false);
+                        x4Var.b(2131230871, 5, org.telegram.messenger.hd.G(t5Var.f49926b0, "BoostingShowMoreGifts", new Object[0]), false);
                         return;
                     }
                 } else if (i13 == 3) {
-                    ((org.telegram.ui.Components.q70) view).setLink(((s5) arrayList.get(i7)).f49631c);
+                    ((org.telegram.ui.Components.q70) view).setLink(((s5) arrayList.get(i7)).f49652c);
                     return;
                 } else if (i13 == 11) {
                     s5 s5Var = (s5) arrayList.get(i7);
-                    TL_stories.PrepaidGiveaway prepaidGiveaway = s5Var.f49632e;
-                    boolean z9 = s5Var.f49633f;
+                    TL_stories.PrepaidGiveaway prepaidGiveaway = s5Var.f49653e;
+                    boolean z9 = s5Var.f49654f;
                     bh.c cVar = (bh.c) view;
                     if (prepaidGiveaway instanceof TL_stories.TL_prepaidGiveaway) {
                         cVar.d(prepaidGiveaway, org.telegram.messenger.hd.G(prepaidGiveaway.quantity, "BoostingTelegramPremiumCountPlural", new Object[0]), org.telegram.messenger.hd.G(prepaidGiveaway.quantity, "BoostingSubscriptionsCountPlural", org.telegram.messenger.hd.G(((TL_stories.TL_prepaidGiveaway) prepaidGiveaway).months, "PrepaidGiveawayMonths", new Object[0])), !z9);
@@ -124,14 +124,14 @@ public final class n5 extends rg.b {
                     cVar.setAvatarPadding(5);
                     return;
                 } else if (i13 == 13) {
-                    if (t5Var.V.getTag() == null || ((Integer) t5Var.V.getTag()).intValue() != Objects.hash(Integer.valueOf(t5Var.f49910o0), Integer.valueOf(t5Var.f49909n0))) {
-                        t5Var.V.setTag(Integer.valueOf(Objects.hash(Integer.valueOf(t5Var.f49910o0), Integer.valueOf(t5Var.f49909n0))));
+                    if (t5Var.V.getTag() == null || ((Integer) t5Var.V.getTag()).intValue() != Objects.hash(Integer.valueOf(t5Var.f49938o0), Integer.valueOf(t5Var.f49937n0))) {
+                        t5Var.V.setTag(Integer.valueOf(Objects.hash(Integer.valueOf(t5Var.f49938o0), Integer.valueOf(t5Var.f49937n0))));
                         t5Var.V.f();
-                        t5Var.V.a(0, org.telegram.messenger.hd.G(t5Var.f49910o0, "BoostingBoostsCount", new Object[0]), null);
-                        if (org.telegram.messenger.qp.s1(i12).f24850p4 && (i10 = t5Var.f49909n0) > 0 && i10 != t5Var.f49910o0) {
+                        t5Var.V.a(0, org.telegram.messenger.hd.G(t5Var.f49938o0, "BoostingBoostsCount", new Object[0]), null);
+                        if (org.telegram.messenger.qp.s1(i12).f24850p4 && (i10 = t5Var.f49937n0) > 0 && i10 != t5Var.f49938o0) {
                             t5Var.V.a(1, org.telegram.messenger.hd.G(i10, "BoostingGiftsCount", new Object[0]), null);
                         }
-                        t5Var.V.setInitialTabId(t5Var.f49900d0);
+                        t5Var.V.setInitialTabId(t5Var.f49928d0);
                         t5Var.V.c();
                         return;
                     }
@@ -141,9 +141,9 @@ public final class n5 extends rg.b {
                 }
             }
             ng.c cVar2 = (ng.c) view;
-            cVar2.setTitle(((s5) arrayList.get(i7)).f49631c);
+            cVar2.setTitle(((s5) arrayList.get(i7)).f49652c);
             cVar2.c(false);
-            if (d1Var.f56931f == 12) {
+            if (d1Var.f56956f == 12) {
                 cVar2.setPadding(org.telegram.messenger.g0.L(3.0f), cVar2.getPaddingTop(), cVar2.getPaddingRight(), cVar2.getPaddingBottom());
             }
         }
@@ -174,9 +174,9 @@ public final class n5 extends rg.b {
             case 3:
                 org.telegram.ui.Components.q70 q70Var = new org.telegram.ui.Components.q70(t5Var.getParentActivity(), t5Var, null, false, false);
                 q70Var.d.setVisibility(8);
-                q70Var.f37293a.setGravity(17);
+                q70Var.f37172a.setGravity(17);
                 q70Var.h.setVisibility(8);
-                q70Var.f37301w.setVisibility(8);
+                q70Var.f37180w.setVisibility(8);
                 q70Var.setPadding(org.telegram.messenger.g0.L(11.0f), 0, org.telegram.messenger.g0.L(11.0f), org.telegram.messenger.g0.L(24.0f));
                 a4Var = q70Var;
                 break;
@@ -198,7 +198,7 @@ public final class n5 extends rg.b {
             case 8:
                 di.a4 a4Var2 = new di.a4(t5Var.getParentActivity(), 7);
                 TextView textView = new TextView(t5Var.getParentActivity());
-                if (org.telegram.messenger.t3.V(t5Var.f49905i0)) {
+                if (org.telegram.messenger.t3.V(t5Var.f49933i0)) {
                     i10 = 2131748233;
                 } else {
                     i10 = 2131748234;

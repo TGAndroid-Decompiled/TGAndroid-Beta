@@ -5,17 +5,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.tgnet.TLObject;
 public final class hg0 extends org.telegram.ui.Components.oj0 {
-    public final Context f46358c;
+    public final Context f46378c;
     public final jg0 d;
 
     public hg0(jg0 jg0Var, Context context) {
         this.d = jg0Var;
-        this.f46358c = context;
+        this.f46378c = context;
     }
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         if (view instanceof org.telegram.ui.Cells.a5) {
             ((org.telegram.ui.Cells.a5) view).a();
         }
@@ -23,8 +23,8 @@ public final class hg0 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f == 0) {
-            return ((org.telegram.ui.Cells.a5) d1Var.f56927a).getCurrentObject() instanceof TLObject;
+        if (d1Var.f56956f == 0) {
+            return ((org.telegram.ui.Cells.a5) d1Var.f56952a).getCurrentObject() instanceof TLObject;
         }
         return false;
     }
@@ -73,7 +73,7 @@ public final class hg0 extends org.telegram.ui.Components.oj0 {
         jg0 jg0Var = this.d;
         if (i7 != 0) {
             int i10 = 1;
-            Context context = this.f46358c;
+            Context context = this.f46378c;
             if (i7 != 1) {
                 if (i7 != 2) {
                     if (i7 != 4) {
@@ -95,10 +95,10 @@ public final class hg0 extends org.telegram.ui.Components.oj0 {
                         i10 = 2;
                     }
                     lg.f fVar = new lg.f(jg0Var.getResourceProvider());
-                    jg0Var.f46942c0 = fVar;
-                    view = new gg0(this, this.f46358c, i10, fVar, jg0Var.getResourceProvider());
+                    jg0Var.f46966c0 = fVar;
+                    view = new gg0(this, this.f46378c, i10, fVar, jg0Var.getResourceProvider());
                 } else {
-                    org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(this.f46358c, org.telegram.ui.ActionBar.k6.G6, 16, 11, false, jg0Var.getResourceProvider());
+                    org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(this.f46378c, org.telegram.ui.ActionBar.k6.G6, 16, 11, false, jg0Var.getResourceProvider());
                     n4Var.setHeight(43);
                     y6Var = n4Var;
                 }
@@ -108,7 +108,7 @@ public final class hg0 extends org.telegram.ui.Components.oj0 {
             }
             view = y6Var;
         } else {
-            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f46358c, 6, 2, false, jg0Var.getResourceProvider());
+            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f46378c, 6, 2, false, jg0Var.getResourceProvider());
             a5Var.setDividerColor(org.telegram.ui.ActionBar.k6.f27849d7);
             view = a5Var;
         }

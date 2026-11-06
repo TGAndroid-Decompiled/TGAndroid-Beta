@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.util.SparseArray;
 public final class o20 extends xs0 {
-    public final r20 f36575w2;
+    public final r20 f36469w2;
 
     public o20(r20 r20Var, Context context, ps0 ps0Var, r20 r20Var2, n20 n20Var, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, 0L, ps0Var, 0, null, null, null, 8, 0, r20Var2, n20Var, 0, f6Var, null);
-        this.f36575w2 = r20Var;
+        this.f36469w2 = r20Var;
     }
 
     @Override
@@ -22,12 +22,12 @@ public final class o20 extends xs0 {
 
     @Override
     public final String getStoriesHashtag() {
-        return this.f36575w2.f37573b;
+        return this.f36469w2.f37507b;
     }
 
     @Override
     public final String getStoriesHashtagUsername() {
-        return this.f36575w2.f37574c;
+        return this.f36469w2.f37508c;
     }
 
     @Override

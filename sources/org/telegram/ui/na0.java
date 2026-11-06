@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 public final class na0 implements TextureView.SurfaceTextureListener {
-    public final TextureView.SurfaceTextureListener f47977a;
-    public final pa0 f47978b;
+    public final TextureView.SurfaceTextureListener f48003a;
+    public final pa0 f48004b;
 
     public na0(pa0 pa0Var, TextureView.SurfaceTextureListener surfaceTextureListener) {
-        this.f47978b = pa0Var;
-        this.f47977a = surfaceTextureListener;
+        this.f48004b = pa0Var;
+        this.f48003a = surfaceTextureListener;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
-        TextureView.SurfaceTextureListener surfaceTextureListener = this.f47977a;
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.f48003a;
         if (surfaceTextureListener != null) {
             surfaceTextureListener.onSurfaceTextureAvailable(surfaceTexture, i7, i10);
         }
@@ -21,7 +21,7 @@ public final class na0 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        TextureView.SurfaceTextureListener surfaceTextureListener = this.f47977a;
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.f48003a;
         if (surfaceTextureListener != null && !surfaceTextureListener.onSurfaceTextureDestroyed(surfaceTexture)) {
             return false;
         }
@@ -30,7 +30,7 @@ public final class na0 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        TextureView.SurfaceTextureListener surfaceTextureListener = this.f47977a;
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.f48003a;
         if (surfaceTextureListener != null) {
             surfaceTextureListener.onSurfaceTextureSizeChanged(surfaceTexture, i7, i10);
         }
@@ -39,11 +39,11 @@ public final class na0 implements TextureView.SurfaceTextureListener {
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         oi.q qVar;
-        TextureView.SurfaceTextureListener surfaceTextureListener = this.f47977a;
+        TextureView.SurfaceTextureListener surfaceTextureListener = this.f48003a;
         if (surfaceTextureListener != null) {
             surfaceTextureListener.onSurfaceTextureUpdated(surfaceTexture);
         }
-        qVar = ((org.telegram.ui.ActionBar.f2) this.f47978b).glassEngine;
+        qVar = ((org.telegram.ui.ActionBar.f2) this.f48004b).glassEngine;
         qVar.g();
     }
 }

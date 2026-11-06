@@ -137,11 +137,11 @@ public final class j20 {
                         obj = this.A.f22919p.f14060e;
                     }
                     qd0 qd0Var = (qd0) obj;
-                    serializedData.writeFloat(qd0Var.f37376a);
-                    serializedData.writeFloat(qd0Var.f37377b);
-                    serializedData.writeFloat(qd0Var.f37378c);
+                    serializedData.writeFloat(qd0Var.f37266a);
+                    serializedData.writeFloat(qd0Var.f37267b);
+                    serializedData.writeFloat(qd0Var.f37268c);
                     serializedData.writeFloat(qd0Var.d);
-                    serializedData.writeFloat(qd0Var.f37379e);
+                    serializedData.writeFloat(qd0Var.f37269e);
                 }
             } else {
                 serializedData.writeByte(0);

@@ -7,36 +7,36 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class y91 implements org.telegram.ui.Components.bj0 {
-    public final ba1 f52157a;
+    public final ba1 f52178a;
 
     public y91(ba1 ba1Var) {
-        this.f52157a = ba1Var;
+        this.f52178a = ba1Var;
     }
 
     @Override
     public final void c(int i7, View view) {
-        ba1 ba1Var = this.f52157a;
+        ba1 ba1Var = this.f52178a;
         ArrayList arrayList = ba1Var.d;
-        if (((aa1) arrayList.get(i7)).f54415a == 1) {
+        if (((aa1) arrayList.get(i7)).f54440a == 1) {
             Bundle bundle = new Bundle();
-            bundle.putLong("chat_id", -ba1Var.f44223c);
+            bundle.putLong("chat_id", -ba1Var.f44239c);
             bundle.putBoolean("for_select", true);
             v91 v91Var = new v91(bundle);
-            v91Var.A0 = ba1Var.f44224e;
-            v91Var.f50662w = new w91(this);
+            v91Var.A0 = ba1Var.f44240e;
+            v91Var.f50672w = new w91(this);
             ba1Var.presentFragment(v91Var);
         }
-        if (((aa1) arrayList.get(i7)).f54415a == 2) {
-            TLRPC.TL_forumTopic tL_forumTopic = ((aa1) arrayList.get(i7)).f43587c;
+        if (((aa1) arrayList.get(i7)).f54440a == 2) {
+            TLRPC.TL_forumTopic tL_forumTopic = ((aa1) arrayList.get(i7)).f43612c;
             Bundle bundle2 = new Bundle();
-            bundle2.putLong("dialog_id", ba1Var.f44223c);
+            bundle2.putLong("dialog_id", ba1Var.f44239c);
             bundle2.putLong("topic_id", tL_forumTopic.f27004id);
             bundle2.putBoolean("exception", false);
             gx0 gx0Var = new gx0(bundle2, null);
-            gx0Var.f46118s = new x91(this, tL_forumTopic);
+            gx0Var.f46138s = new x91(this, tL_forumTopic);
             ba1Var.presentFragment(gx0Var);
         }
-        if (((aa1) arrayList.get(i7)).f54415a == 4) {
+        if (((aa1) arrayList.get(i7)).f54440a == 4) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ba1Var.getParentActivity());
             String M0 = org.telegram.messenger.hd.M0(2131747912, null);
             org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;

@@ -7,16 +7,16 @@ import android.util.Log;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 public final class i6 implements com.google.android.gms.common.api.internal.p {
-    public final int f58931a;
-    public Object f58932b;
+    public final int f58956a;
+    public Object f58957b;
 
     public i6(int i7) {
-        this.f58931a = i7;
+        this.f58956a = i7;
     }
 
     @Override
     public void accept(Object obj, Object obj2) {
-        y8.e eVar = (y8.e) this.f58932b;
+        y8.e eVar = (y8.e) this.f58957b;
         h8.b bVar = (h8.b) obj;
         bVar.getClass();
         h8.a aVar = new h8.a(1, (TaskCompletionSource) obj2);
@@ -41,13 +41,13 @@ public final class i6 implements com.google.android.gms.common.api.internal.p {
     }
 
     public String toString() {
-        switch (this.f58931a) {
+        switch (this.f58956a) {
             case 3:
-                ze.b bVar = ze.b.f60017e;
+                ze.b bVar = ze.b.f60042e;
                 StringBuffer stringBuffer = new StringBuffer();
                 stringBuffer.append("method-execution".substring(7));
                 stringBuffer.append("(");
-                stringBuffer.append(((ug.k0) this.f58932b).m());
+                stringBuffer.append(((ug.k0) this.f58957b).m());
                 stringBuffer.append(")");
                 return stringBuffer.toString();
             default:
@@ -56,7 +56,7 @@ public final class i6 implements com.google.android.gms.common.api.internal.p {
     }
 
     public i6(Object obj, int i7) {
-        this.f58931a = i7;
-        this.f58932b = obj;
+        this.f58956a = i7;
+        this.f58957b = obj;
     }
 }

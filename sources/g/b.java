@@ -49,7 +49,7 @@ public final class b {
         Paint paint = (Paint) this.d;
         canvas.save();
         ly0 ly0Var = (ly0) this.f13267f;
-        ly0Var.f35788p = f10 - g0.L(132.0f);
+        ly0Var.f35793p = f10 - g0.L(132.0f);
         Paint paint2 = (Paint) this.f13265c;
         paint2.setColor(i0.a.f(f11, this.f13264b, k6.x0(null, k6.f27931hh, false)));
         float d = ((w5) this.f13270j).d(this.f13263a);
@@ -143,39 +143,39 @@ public final class b {
             } else {
                 str = strArr[i7];
             }
-            o30 o30Var = p30Var.f48612k;
-            boolean z11 = p30Var.f48608f;
+            o30 o30Var = p30Var.f48607k;
+            boolean z11 = p30Var.f48603f;
             if (str != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            p30Var.f48608f = z10;
-            if (str != null && (p30Var.d == null || !TextUtils.equals(p30Var.f48613l, str))) {
+            p30Var.f48603f = z10;
+            if (str != null && (p30Var.d == null || !TextUtils.equals(p30Var.f48608l, str))) {
                 i5 i5Var = p30Var.d;
                 if (i5Var != null) {
                     i5Var.o(o30Var);
                 }
-                p30Var.f48606c = i6.g(str);
+                p30Var.f48601c = i6.g(str);
                 int l10 = p10.l();
                 ?? drawable = new Drawable();
-                drawable.f34506l = 1.0f;
-                drawable.f34508n = null;
-                drawable.f34509o = null;
-                drawable.f34502g = 21;
+                drawable.f34451l = 1.0f;
+                drawable.f34453n = null;
+                drawable.f34454o = null;
+                drawable.f34447g = 21;
                 drawable.h = l10;
                 drawable.x();
                 i5.w();
                 p30Var.d = drawable;
-                p30Var.f48613l = str;
+                p30Var.f48608l = str;
                 drawable.q(str);
                 p30Var.c();
-                if (p30Var.f48611j) {
+                if (p30Var.f48606j) {
                     p30Var.d.b(o30Var);
                 }
             }
-            if (p30Var.f48608f && !z11) {
-                p30Var.f48607e = false;
+            if (p30Var.f48603f && !z11) {
+                p30Var.f48602e = false;
             }
         }
         l00 l00Var = (l00) this.f13269i;

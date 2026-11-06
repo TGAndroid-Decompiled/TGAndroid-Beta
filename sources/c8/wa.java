@@ -41,12 +41,12 @@ public abstract class wa {
     public static void c(org.telegram.ui.web.y0 y0Var) {
         if (y0Var != null && y0Var.d != null) {
             b();
-            org.telegram.ui.web.y0 y0Var2 = (org.telegram.ui.web.y0) d.get(y0Var.f51390a);
+            org.telegram.ui.web.y0 y0Var2 = (org.telegram.ui.web.y0) d.get(y0Var.f51403a);
             if (y0Var2 != null) {
                 y0Var2.d = y0Var.d;
             } else {
                 f5929c.add(y0Var);
-                d.put(y0Var.f51390a, y0Var);
+                d.put(y0Var.f51403a, y0Var);
             }
             org.telegram.messenger.g0.r(new org.telegram.ui.Wallet.z(5));
             org.telegram.messenger.g0.i3(new org.telegram.ui.Wallet.z(5), 1000L);

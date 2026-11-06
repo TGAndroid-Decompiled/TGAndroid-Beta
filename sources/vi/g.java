@@ -2,14 +2,14 @@ package vi;
 
 import java.io.File;
 public final class g {
-    public final long f57420a;
-    public final File f57421b;
-    public long f57422c;
+    public final long f57445a;
+    public final File f57446b;
+    public long f57447c;
     public boolean d = true;
-    public boolean f57423e;
+    public boolean f57448e;
 
     public g(long j3, File file) {
-        this.f57420a = j3;
-        this.f57421b = file;
+        this.f57445a = j3;
+        this.f57446b = file;
     }
 }

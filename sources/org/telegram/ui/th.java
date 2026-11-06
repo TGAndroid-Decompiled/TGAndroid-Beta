@@ -5,23 +5,23 @@ import android.text.TextUtils;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class th extends df0 {
-    public final an f50036f;
+    public final an f50064f;
 
     public th(an anVar, Context context, int i7, org.telegram.messenger.ij ijVar) {
         super(context);
-        this.f50036f = anVar;
-        this.f45035a = null;
+        this.f50064f = anVar;
+        this.f45060a = null;
         if (!ijVar.i4()) {
             ijVar.Q4();
         }
         org.telegram.ui.Components.lz lzVar = new org.telegram.ui.Components.lz(context, null);
-        this.f45037c = lzVar;
+        this.f45062c = lzVar;
         lzVar.e(org.telegram.ui.ActionBar.k6.G8, org.telegram.ui.ActionBar.k6.f27940i6, -1);
         lzVar.setViewType(13);
         lzVar.setIsSingleCell(false);
         addView(lzVar, c8.ha.c(-1.0f, -2));
         org.telegram.ui.Components.w70 w70Var = new org.telegram.ui.Components.w70(context, null);
-        this.f45036b = w70Var;
+        this.f45061b = w70Var;
         w70Var.setTextSize(1, 14.0f);
         w70Var.setGravity(19);
         org.telegram.ui.ActionBar.r6.V(w70Var, org.telegram.ui.ActionBar.k6.E8, null);

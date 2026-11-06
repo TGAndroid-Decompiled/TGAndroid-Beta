@@ -5,11 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.ViewGroup;
 import java.util.HashSet;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
 public class a3 extends org.telegram.ui.Components.na implements org.telegram.ui.ActionBar.a6 {
-    public f41 P1;
+    public k41 P1;
     public final ViewGroup Q1;
     public final Paint R1;
     public float S1;
@@ -17,9 +17,9 @@ public class a3 extends org.telegram.ui.Components.na implements org.telegram.ui
     public a3(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, null, true, false, f6Var);
         this.R1 = new Paint();
-        this.f36333r1 = 0.1f;
+        this.f36227r1 = 0.1f;
         this.Q1 = viewGroup;
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int i7 = this.f28645t0;
         pj0Var.setPadding(i7, 0, i7, 0);
         updateColors();
@@ -34,9 +34,9 @@ public class a3 extends org.telegram.ui.Components.na implements org.telegram.ui
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(pj0Var, getContext(), this.f28612a, 0, true, new d(this, 5), this.I0);
-        this.P1 = f41Var;
-        return f41Var;
+        k41 k41Var = new k41(pj0Var, getContext(), this.f28612a, 0, true, new d(this, 5), this.I0);
+        this.P1 = k41Var;
+        return k41Var;
     }
 
     @Override

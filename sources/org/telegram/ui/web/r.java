@@ -18,15 +18,15 @@ import org.telegram.ui.Components.lq;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.qg0;
 public final class r implements v10 {
-    public final int f51275a;
-    public final x0 f51276b;
-    public final o7 f51277c;
+    public final int f51286a;
+    public final x0 f51287b;
+    public final o7 f51288c;
     public final String d;
 
     public r(x0 x0Var, o7 o7Var, String str, int i7) {
-        this.f51275a = i7;
-        this.f51276b = x0Var;
-        this.f51277c = o7Var;
+        this.f51286a = i7;
+        this.f51287b = x0Var;
+        this.f51288c = o7Var;
         this.d = str;
     }
 
@@ -34,17 +34,17 @@ public final class r implements v10 {
     public final void a(Object obj, Object obj2) {
         int i7;
         qg0 qg0Var;
-        int i10 = this.f51275a;
+        int i10 = this.f51286a;
         String str = this.d;
-        o7 o7Var = this.f51277c;
-        x0 x0Var = this.f51276b;
+        o7 o7Var = this.f51288c;
+        x0 x0Var = this.f51287b;
         switch (i10) {
             case 0:
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                x0 x0Var2 = this.f51276b;
-                f6 f6Var = x0Var2.f51355e;
+                x0 x0Var2 = this.f51287b;
+                f6 f6Var = x0Var2.f51365e;
                 TL_keyboard.TL_buttonTypeRequestPeer tL_buttonTypeRequestPeer = (TL_keyboard.TL_buttonTypeRequestPeer) cg.c.a((TL_keyboard.KeyboardButton) obj, TL_keyboard.TL_buttonTypeRequestPeer.class);
-                o7 o7Var2 = this.f51277c;
+                o7 o7Var2 = this.f51288c;
                 String str2 = this.d;
                 if (tL_buttonTypeRequestPeer != null) {
                     TLRPC.RequestPeerType requestPeerType = tL_buttonTypeRequestPeer.peer_type;
@@ -53,7 +53,7 @@ public final class r implements v10 {
                         int i11 = x0Var2.M;
                         TLRPC.User user = x0Var2.U;
                         s2 s2Var = new s2(x0Var2, o7Var2, str2, tL_buttonTypeRequestPeer, 14);
-                        f6 f6Var2 = x0Var2.f51355e;
+                        f6 f6Var2 = x0Var2.f51365e;
                         lq.e(context, i11, user, (TLRPC.TL_requestPeerTypeCreateBot) requestPeerType, false, s2Var, f6Var2, new hc(x0Var2, f6Var2));
                         return;
                     } else if ((requestPeerType instanceof TLRPC.TL_requestPeerTypeUser) && (i7 = tL_buttonTypeRequestPeer.max_quantity) > 1) {
@@ -62,16 +62,16 @@ public final class r implements v10 {
                         Boolean bool = tL_requestPeerTypeUser.bot;
                         Boolean bool2 = tL_requestPeerTypeUser.premium;
                         y yVar = new y(x0Var2, zArr, str2, tL_buttonTypeRequestPeer, o7Var2);
-                        qg0 qg0Var2 = qg0.f49194m2;
+                        qg0 qg0Var2 = qg0.f49221m2;
                         f2 Q = LaunchActivity.Q();
                         if (Q == null) {
                             qg0Var = null;
                         } else {
-                            qg0Var = qg0.f49194m2;
+                            qg0Var = qg0.f49221m2;
                             if (qg0Var == null) {
                                 qg0 qg0Var3 = new qg0(Q, i7, bool, bool2, yVar);
                                 qg0Var3.show();
-                                qg0.f49194m2 = qg0Var3;
+                                qg0.f49221m2 = qg0Var3;
                                 qg0Var = qg0Var3;
                             }
                         }
@@ -115,7 +115,7 @@ public final class r implements v10 {
             case 1:
                 TLRPC.Updates updates = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                f6 f6Var3 = x0Var.f51355e;
+                f6 f6Var3 = x0Var.f51365e;
                 if (updates != null) {
                     qp.s1(x0Var.M).O3(updates, false);
                     x0Var.x(o7Var, "requested_chat_sent", x0.A(str, "req_id"));
@@ -132,7 +132,7 @@ public final class r implements v10 {
             default:
                 TLRPC.Updates updates2 = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                f6 f6Var4 = x0Var.f51355e;
+                f6 f6Var4 = x0Var.f51365e;
                 if (updates2 != null) {
                     qp.s1(x0Var.M).O3(updates2, false);
                     x0Var.x(o7Var, "requested_chat_sent", x0.A(str, "req_id"));

@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.app.Activity;
 import android.view.MotionEvent;
 import android.view.View;
-public final class z31 extends org.telegram.ui.Components.p61 {
+public final class z31 extends org.telegram.ui.Components.u61 {
     public boolean V;
     public final c51 W;
 
@@ -18,13 +18,13 @@ public final class z31 extends org.telegram.ui.Components.p61 {
         int actionMasked = motionEvent.getActionMasked();
         if (actionMasked == 0) {
             c51 c51Var = this.W;
-            if (c51Var.f44657j0 != null) {
+            if (c51Var.f44678j0 != null) {
                 View currentView = getCurrentView();
-                zd zdVar = c51Var.f44657j0;
+                zd zdVar = c51Var.f44678j0;
                 if (currentView == zdVar) {
-                    boolean G = zdVar.G(motionEvent.getX() - c51Var.f44657j0.getX(), motionEvent.getY() - c51Var.f44657j0.getY());
+                    boolean G = zdVar.G(motionEvent.getX() - c51Var.f44678j0.getX(), motionEvent.getY() - c51Var.f44678j0.getY());
                     zdVar.Q0 = G;
-                    if (G && zdVar.f52524a1.f50691b.canScrollHorizontally(-1)) {
+                    if (G && zdVar.f52531a1.f50701b.canScrollHorizontally(-1)) {
                         z9 = true;
                         this.V = z9;
                     }
@@ -67,14 +67,14 @@ public final class z31 extends org.telegram.ui.Components.p61 {
     @Override
     public final void u() {
         c51 c51Var = this.W;
-        c51Var.p0(c51Var.f44655h0.getCurrentPosition(), true);
+        c51Var.p0(c51Var.f44676h0.getCurrentPosition(), true);
         c51Var.q0(false, 0.0f);
     }
 
     @Override
     public final void w(boolean z9) {
         c51 c51Var = this.W;
-        float positionAnimated = c51Var.f44655h0.getPositionAnimated();
+        float positionAnimated = c51Var.f44676h0.getPositionAnimated();
         c51Var.q0(!z9, positionAnimated);
         if (!z9) {
             c51Var.p0(Math.round(positionAnimated), true);

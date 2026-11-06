@@ -30,8 +30,8 @@ public final class x4 extends mo0 {
                 long j3 = hVar.j(0);
                 if (j3 == p10.i(this.f28612a).f24478n) {
                     org.telegram.ui.Components.cc G = k10.G(2131624190, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131748885, new Object[0])));
-                    G.f32531r = false;
-                    G.f32533t = true;
+                    G.f32535r = false;
+                    G.f32537t = true;
                     G.j();
                 } else if (j3 < 0) {
                     TLRPC.Chat M0 = qp.s1(this.f28612a).M0(Long.valueOf(-j3));
@@ -41,19 +41,19 @@ public final class x4 extends mo0 {
                         str = M0.title;
                     }
                     org.telegram.ui.Components.cc G2 = k10.G(2131624028, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131748889, str)));
-                    G2.f32531r = false;
-                    G2.f32533t = true;
+                    G2.f32535r = false;
+                    G2.f32537t = true;
                     G2.j();
                 } else {
                     org.telegram.ui.Components.cc G3 = k10.G(2131624028, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131748889, qp.s1(this.f28612a).a2(Long.valueOf(j3)).first_name)));
-                    G3.f32531r = false;
-                    G3.f32533t = true;
+                    G3.f32535r = false;
+                    G3.f32537t = true;
                     G3.j();
                 }
             } else {
                 org.telegram.ui.Components.cc Q = k10.Q(2131624028, 36, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(hVar.m(), "LinkSharedToManyChats", Integer.valueOf(hVar.m()))));
-                Q.f32531r = false;
-                Q.f32533t = true;
+                Q.f32535r = false;
+                Q.f32537t = true;
                 Q.j();
             }
             try {

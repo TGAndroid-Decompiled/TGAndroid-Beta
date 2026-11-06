@@ -38,15 +38,15 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.ActionBar.w5;
 import org.telegram.ui.Cells.i3;
-import org.telegram.ui.Components.f41;
-import org.telegram.ui.Components.h41;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.mn;
 import org.telegram.ui.Components.nn;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.pn;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.ks;
-public final class m extends h41 implements ls {
+public final class m extends m41 implements ls {
     public String D;
     public TLRPC.InputDocument E;
     public boolean F;
@@ -88,14 +88,14 @@ public final class m extends h41 implements ls {
             mVar2.L = u2Var;
             u2Var.T3 = new g6.d0(mVar2, 9);
         }
-        mVar2.L.f32882a2.i0();
+        mVar2.L.f32895a2.i0();
         mVar2.L.y1(1, false);
         u2 u2Var2 = mVar2.L;
         u2Var2.O3 = true;
         u2Var2.W0(new hi.u1(mVar2, 6));
         mVar2.L.e1();
         u2 u2Var3 = mVar2.L;
-        u2Var3.f32929p1 = null;
+        u2Var3.f32942p1 = null;
         if (mVar2.visibleDialog != null) {
             u2Var3.show();
         } else {
@@ -119,14 +119,14 @@ public final class m extends h41 implements ls {
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
-            iVar2.f37127n.getImageReceiver().f21192g1 = new nn(iVar2, gVar);
+            iVar2.f37006n.getImageReceiver().f21192g1 = new nn(iVar2, gVar);
             rz f10 = t5.f(document, k6.Zc, 1.0f, null);
             if (f10 != null) {
-                iVar2.f37127n.p(hc.b(document), pn.b(document), f10, document);
+                iVar2.f37006n.p(hc.b(document), pn.b(document), f10, document);
             } else {
-                iVar2.f37127n.l(hc.b(document), pn.b(document), hc.c(w7.w(document.thumbs, 90, false, null, false), document), null, 0, document);
+                iVar2.f37006n.l(hc.b(document), pn.b(document), hc.c(w7.w(document.thumbs, 90, false, null, false), document), null, 0, document);
             }
-            iVar2.f37127n.setOnClickListener(new mn(iVar2, document, 1));
+            iVar2.f37006n.setOnClickListener(new mn(iVar2, document, 1));
         }
     }
 
@@ -152,42 +152,42 @@ public final class m extends h41 implements ls {
     }
 
     @Override
-    public final void Z(ArrayList arrayList, f41 f41Var) {
-        arrayList.add(r31.k(this.h));
-        arrayList.add(r31.u(hd.M0(2131752724, null)));
-        arrayList.add(r31.k(this.f17429s));
-        arrayList.add(r31.k(this.f17430w));
+    public final void Z(ArrayList arrayList, k41 k41Var) {
+        arrayList.add(w31.k(this.h));
+        arrayList.add(w31.u(hd.M0(2131752724, null)));
+        arrayList.add(w31.k(this.f17429s));
+        arrayList.add(w31.k(this.f17430w));
         if (this.f17431x) {
-            arrayList.add(r31.f(hd.M0(2131752720, null), hd.M0(2131752719, null), 1));
+            arrayList.add(w31.f(hd.M0(2131752720, null), hd.M0(2131752719, null), 1));
         } else if (this.D != null) {
             String M0 = hd.M0(2131752720, null);
             String str = this.D;
-            r31 r31Var = new r31(3);
-            r31Var.d = 1;
-            r31Var.f37598l = M0;
-            r31Var.G = str;
-            arrayList.add(r31Var);
+            w31 w31Var = new w31(3);
+            w31Var.d = 1;
+            w31Var.f39830l = M0;
+            w31Var.G = str;
+            arrayList.add(w31Var);
         } else {
             String M02 = hd.M0(2131752720, null);
             TLRPC.Document document = this.f17432y;
-            r31 r31Var2 = new r31(3);
-            r31Var2.d = 1;
-            r31Var2.f37598l = M02;
-            r31Var2.G = document;
-            arrayList.add(r31Var2);
+            w31 w31Var2 = new w31(3);
+            w31Var2.d = 1;
+            w31Var2.f39830l = M02;
+            w31Var2.G = document;
+            arrayList.add(w31Var2);
         }
-        arrayList.add(r31.C(hd.M0(2131752723, null)));
+        arrayList.add(w31.C(hd.M0(2131752723, null)));
         boolean l02 = l0();
         this.K = !l02;
         if (!l02) {
-            arrayList.add(r31.C(null));
-            r31 e10 = r31.e(2, hd.M0(2131752721, null));
-            e10.f37604r = true;
+            arrayList.add(w31.C(null));
+            w31 e10 = w31.e(2, hd.M0(2131752721, null));
+            e10.f39836r = true;
             arrayList.add(e10);
         }
-        r31 r31Var3 = new r31(8);
-        r31Var3.f37598l = null;
-        arrayList.add(r31Var3);
+        w31 w31Var3 = new w31(8);
+        w31Var3.f39830l = null;
+        arrayList.add(w31Var3);
     }
 
     @Override
@@ -196,9 +196,9 @@ public final class m extends h41 implements ls {
     }
 
     @Override
-    public final void b0(r31 r31Var, View view) {
+    public final void b0(w31 w31Var, View view) {
         View[] viewPages;
-        int i7 = r31Var.d;
+        int i7 = w31Var.d;
         if (i7 == 1) {
             k2 k2Var = new k2(getParentActivity(), getResourceProvider(), true, true);
             k2Var.f12263v1 = new ab.g(19, this, view);
@@ -233,7 +233,7 @@ public final class m extends h41 implements ls {
     }
 
     @Override
-    public final boolean c0(r31 r31Var, View view) {
+    public final boolean c0(w31 w31Var, View view) {
         return false;
     }
 
@@ -285,17 +285,17 @@ public final class m extends h41 implements ls {
         i3Var2.setOnEditorActionListener(new s2(fVar2, 2));
         this.f17427n.d("", "");
         super.createView(context);
-        this.f34212b.setBackground(null);
-        this.f34211a.r1();
-        this.f34211a.setSectionsDrawBackground(true);
-        this.f34211a.f35167f3.f33473r = false;
+        this.f35845b.setBackground(null);
+        this.f35844a.r1();
+        this.f35844a.setSectionsDrawBackground(true);
+        this.f35844a.f36781f3.f35132r = false;
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 12));
         this.f17426f = this.simpleActionBar.n(hd.M0(2131745947, null));
         j0(false);
-        this.f34211a.addOnLayoutChangeListener(new l2(this, 1));
-        this.f34211a.j(new ai.b(this, 20));
-        w3 w3Var = this.f34211a;
-        w3Var.f35169h3 = true;
+        this.f35844a.addOnLayoutChangeListener(new l2(this, 1));
+        this.f35844a.j(new ai.b(this, 20));
+        w3 w3Var = this.f35844a;
+        w3Var.f36783h3 = true;
         w3Var.setClipChildren(false);
         View view = this.fragmentView;
         if (view instanceof ViewGroup) {
@@ -315,7 +315,7 @@ public final class m extends h41 implements ls {
 
     @Override
     public final pj0 getListViewForSimpleGlass() {
-        return this.f34211a;
+        return this.f35844a;
     }
 
     @Override
@@ -326,16 +326,16 @@ public final class m extends h41 implements ls {
     public final void j0(boolean z9) {
         if (this.f17426f != null) {
             this.f17426f.a(k0(), z9);
-            w3 w3Var = this.f34211a;
-            if (w3Var != null && w3Var.f35167f3 != null && this.K != (!l0())) {
-                w3 w3Var2 = this.f34211a;
+            w3 w3Var = this.f35844a;
+            if (w3Var != null && w3Var.f36781f3 != null && this.K != (!l0())) {
+                w3 w3Var2 = this.f35844a;
                 if (w3Var2 != null && w3Var2.getChildCount() > 0) {
                     View view = null;
                     int i7 = Integer.MAX_VALUE;
                     int i10 = -1;
-                    for (int i11 = 0; i11 < this.f34211a.getChildCount(); i11++) {
-                        int R = RecyclerView.R(this.f34211a.getChildAt(i11));
-                        View childAt = this.f34211a.getChildAt(i11);
+                    for (int i11 = 0; i11 < this.f35844a.getChildCount(); i11++) {
+                        int R = RecyclerView.R(this.f35844a.getChildAt(i11));
+                        View childAt = this.f35844a.getChildAt(i11);
                         if (R != -1 && childAt.getTop() < i7) {
                             i7 = childAt.getTop();
                             i10 = R;
@@ -343,20 +343,20 @@ public final class m extends h41 implements ls {
                         }
                     }
                     if (view != null) {
-                        this.f34213c = i10;
+                        this.f35846c = i10;
                         int top = view.getTop();
                         this.d = top;
-                        if (this.f34213c == 0 && top > org.telegram.messenger.g0.L(88.0f)) {
+                        if (this.f35846c == 0 && top > org.telegram.messenger.g0.L(88.0f)) {
                             this.d = org.telegram.messenger.g0.L(88.0f);
                         }
-                        this.f34211a.f35166e3.h1(i10, view.getTop() - this.f34211a.getPaddingTop());
+                        this.f35844a.f36780e3.h1(i10, view.getTop() - this.f35844a.getPaddingTop());
                     }
                 }
-                this.f34211a.f35167f3.O(true);
-                int i12 = this.f34213c;
+                this.f35844a.f36781f3.O(true);
+                int i12 = this.f35846c;
                 if (i12 >= 0) {
-                    w3 w3Var3 = this.f34211a;
-                    w3Var3.f35166e3.h1(i12, this.d - w3Var3.getPaddingTop());
+                    w3 w3Var3 = this.f35844a;
+                    w3Var3.f36780e3.h1(i12, this.d - w3Var3.getPaddingTop());
                 }
             }
         }
@@ -411,7 +411,7 @@ public final class m extends h41 implements ls {
     public final void m0() {
         TLRPC.Document document;
         b5 b5Var = this.f17426f;
-        if (b5Var.f27354y.f55371f) {
+        if (b5Var.f27354y.f55396f) {
             return;
         }
         b5Var.b(true);
@@ -470,7 +470,7 @@ public final class m extends h41 implements ls {
     public final void n0() {
         long j3;
         boolean z9;
-        f41 f41Var;
+        k41 k41Var;
         if (this.J) {
             return;
         }
@@ -531,9 +531,9 @@ public final class m extends h41 implements ls {
             org.telegram.messenger.g0.r(gVar);
             org.telegram.messenger.g0.i3(gVar, 5000L);
         }
-        w3 w3Var = this.f34211a;
-        if (w3Var != null && (f41Var = w3Var.f35167f3) != null) {
-            f41Var.O(true);
+        w3 w3Var = this.f35844a;
+        if (w3Var != null && (k41Var = w3Var.f36781f3) != null) {
+            k41Var.O(true);
         }
         this.J = true;
     }

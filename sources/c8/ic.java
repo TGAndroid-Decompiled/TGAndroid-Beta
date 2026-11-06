@@ -22,13 +22,13 @@ public abstract class ic {
             } else {
                 f17 = 1.0f;
             }
-            obj.f55996a = Math.max(f10, Math.min(f11, f17));
-            obj.f55997b = new float[0];
-            obj.f55998c = new int[0];
-            obj.f55999e = new int[0];
+            obj.f56021a = Math.max(f10, Math.min(f11, f17));
+            obj.f56022b = new float[0];
+            obj.f56023c = new int[0];
+            obj.f56024e = new int[0];
             return obj;
         }
-        obj.f56000f = Float.MAX_VALUE;
+        obj.f56025f = Float.MAX_VALUE;
         Integer[] numArr = new Integer[length];
         for (int i11 = 0; i11 < length; i11++) {
             numArr[i11] = Integer.valueOf(i11);

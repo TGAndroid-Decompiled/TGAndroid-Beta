@@ -72,7 +72,7 @@ public final class l3 extends Drawable {
                 Rect bounds = getBounds();
                 y0Var.getClass();
                 y0Var.d(bounds.left, 0.0f, bounds.top, bounds.right, 0.0f, bounds.bottom);
-                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, y0Var.f56752f);
+                canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), Math.min(getBounds().width(), getBounds().height()) / 2.0f, y0Var.f56777f);
                 return;
             case 6:
                 ImageReceiver imageReceiver = (ImageReceiver) this.f12315b;
@@ -80,7 +80,7 @@ public final class l3 extends Drawable {
                 imageReceiver.h(canvas, null);
                 return;
             case 7:
-                ((ly0) this.f12315b).c(getBounds().centerX() - (((ly0) this.f12315b).f35777c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false), canvas);
+                ((ly0) this.f12315b).c(getBounds().centerX() - (((ly0) this.f12315b).f35782c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false), canvas);
                 return;
             case 8:
                 canvas.save();

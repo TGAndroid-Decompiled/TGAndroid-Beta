@@ -131,7 +131,7 @@ public final class v0 implements v10 {
                     if (optBoolean) {
                         TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
                         tonconnectclosesession.session_id = j10;
-                        f2Var.f42439f.sendRequestTyped(tonconnectclosesession, new d3.b(1), new p1(f2Var, c20Var, j10, i16, 1));
+                        f2Var.f42464f.sendRequestTyped(tonconnectclosesession, new d3.b(1), new p1(f2Var, c20Var, j10, i16, 1));
                         return;
                     }
                     f2Var.e(i16, j10, c20Var);
@@ -201,7 +201,7 @@ public final class v0 implements v10 {
                         return;
                     } else if (s9Var.f25433e.bid_date > 0 && !s9Var.f()) {
                         zh.m mVar = new zh.m(context2, f6Var, null, s9Var);
-                        mVar.f60322f2 = runnable;
+                        mVar.f60347f2 = runnable;
                         mVar.show();
                         return;
                     } else {

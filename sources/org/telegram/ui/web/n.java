@@ -6,27 +6,27 @@ import org.telegram.messenger.a8;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 public final class n implements v10 {
-    public final int f51231a;
-    public final x0 f51232b;
-    public final o7 f51233c;
+    public final int f51245a;
+    public final x0 f51246b;
+    public final o7 f51247c;
 
     public n(x0 x0Var, o7 o7Var, int i7) {
-        this.f51231a = i7;
-        this.f51232b = x0Var;
-        this.f51233c = o7Var;
+        this.f51245a = i7;
+        this.f51246b = x0Var;
+        this.f51247c = o7Var;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         d0 d0Var;
         String str;
-        switch (this.f51231a) {
+        switch (this.f51245a) {
             case 0:
                 String str2 = (String) obj2;
                 JSONObject A = x0.A(str2, "status");
-                x0 x0Var = this.f51232b;
-                x0Var.x(this.f51233c, "emoji_status_access_requested", A);
-                if (((Boolean) obj).booleanValue() && "allowed".equalsIgnoreCase(str2) && (d0Var = x0Var.f51352c) != null) {
+                x0 x0Var = this.f51246b;
+                x0Var.x(this.f51247c, "emoji_status_access_requested", A);
+                if (((Boolean) obj).booleanValue() && "allowed".equalsIgnoreCase(str2) && (d0Var = x0Var.f51362c) != null) {
                     d0Var.a();
                     return;
                 }
@@ -34,31 +34,31 @@ public final class n implements v10 {
             case 1:
                 Boolean bool = (Boolean) obj;
                 Boolean bool2 = (Boolean) obj2;
-                x0 x0Var2 = this.f51232b;
-                if (x0Var2.f51352c != null && bool.booleanValue()) {
-                    x0Var2.f51352c.w(bool2.booleanValue());
+                x0 x0Var2 = this.f51246b;
+                if (x0Var2.f51362c != null && bool.booleanValue()) {
+                    x0Var2.f51362c.w(bool2.booleanValue());
                 }
-                x0Var2.f51363k0.j(new o(x0Var2, this.f51233c, 1));
+                x0Var2.f51373k0.j(new o(x0Var2, this.f51247c, 1));
                 return;
             case 2:
                 String str3 = (String) obj2;
-                x0 x0Var3 = this.f51232b;
+                x0 x0Var3 = this.f51246b;
                 x0Var3.getClass();
                 if (((Boolean) obj).booleanValue()) {
-                    hi.p pVar = x0Var3.f51362j0;
+                    hi.p pVar = x0Var3.f51372j0;
                     pVar.f14848e = true;
                     pVar.k();
                 }
-                x0Var3.v(this.f51233c);
+                x0Var3.v(this.f51247c);
                 return;
             case 3:
-                o7 o7Var = this.f51233c;
+                o7 o7Var = this.f51247c;
                 Boolean bool3 = (Boolean) obj;
                 String str4 = (String) obj2;
                 boolean booleanValue = bool3.booleanValue();
-                x0 x0Var4 = this.f51232b;
+                x0 x0Var4 = this.f51246b;
                 if (booleanValue) {
-                    x0Var4.f51362j0.f14848e = true;
+                    x0Var4.f51372j0.f14848e = true;
                 }
                 try {
                     JSONObject jSONObject = new JSONObject();
@@ -78,11 +78,11 @@ public final class n implements v10 {
             default:
                 String str5 = (String) obj;
                 TLRPC.Document document = (TLRPC.Document) obj2;
-                x0 x0Var5 = this.f51232b;
-                o7 o7Var2 = this.f51233c;
+                x0 x0Var5 = this.f51246b;
+                o7 o7Var2 = this.f51247c;
                 if (str5 == null) {
                     x0Var5.x(o7Var2, "emoji_status_set", null);
-                    d0 d0Var2 = x0Var5.f51352c;
+                    d0 d0Var2 = x0Var5.f51362c;
                     if (d0Var2 != null) {
                         d0Var2.d(document);
                         return;

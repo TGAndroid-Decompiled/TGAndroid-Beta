@@ -39,7 +39,7 @@ public final class m7 extends org.telegram.ui.Components.na implements ls {
         this.W1 = f1Var;
         N();
         Y0();
-        this.f36341z1 = org.telegram.messenger.g0.L(4.0f);
+        this.f36235z1 = org.telegram.messenger.g0.L(4.0f);
         this.A1 = org.telegram.messenger.g0.L(-15.0f);
         org.telegram.ui.Cells.k3 k3Var = new org.telegram.ui.Cells.k3(context, hd.M0(2131744633, null), true, false, -1, g5Var);
         this.Q1 = k3Var;
@@ -88,20 +88,20 @@ public final class m7 extends org.telegram.ui.Components.na implements ls {
         dVar.setOnClickListener(new f7(this, 1));
         dVar.setEnabled(f1(k3Var.getText().toString()));
         frameLayout.addView(dVar, c8.ha.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
-        this.f36333r1 = 0.2f;
+        this.f36227r1 = 0.2f;
         this.F1 = true;
         this.P0 = true;
         this.Q0 = true;
         i7 i7Var = new i7(this);
-        i7Var.f56954m = false;
+        i7Var.f56979m = false;
         i7Var.C = false;
         i7Var.o(xq.h);
         i7Var.n(350L);
-        this.f36328k1.setItemAnimator(i7Var);
-        pj0 pj0Var = this.f36328k1;
+        this.f36222k1.setItemAnimator(i7Var);
+        pj0 pj0Var = this.f36222k1;
         int i10 = this.f28645t0;
         pj0Var.setPadding(i10, 0, i10, 0);
-        this.f36328k1.setOnItemClickListener(new di.f0(this, context, y5Var, 2));
+        this.f36222k1.setOnItemClickListener(new di.f0(this, context, y5Var, 2));
         bi.o0 o0Var = this.P1;
         if (o0Var != null) {
             o0Var.O(false);
@@ -153,7 +153,7 @@ public final class m7 extends org.telegram.ui.Components.na implements ls {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        bi.o0 o0Var = new bi.o0(this.f36328k1, getContext(), this.f28612a, 0, true, new ai.e(this, 21), this.I0, 1);
+        bi.o0 o0Var = new bi.o0(this.f36222k1, getContext(), this.f28612a, 0, true, new ai.e(this, 21), this.I0, 1);
         this.P1 = o0Var;
         return o0Var;
     }
@@ -225,16 +225,16 @@ public final class m7 extends org.telegram.ui.Components.na implements ls {
         }
         if (this.W1 != null) {
             tg.h0 h0Var = new tg.h0();
-            h0Var.f55593c = this.Q1.d.getText().toString();
+            h0Var.f55618c = this.Q1.d.getText().toString();
             if (this.f12458e2) {
                 str = this.R1.d.getText().toString();
             } else {
                 str = null;
             }
-            h0Var.f55592b = str;
+            h0Var.f55617b = str;
             h0Var.d = this.Y1;
-            h0Var.f55594e = this.f12460g2;
-            h0Var.f55595f = this.f12459f2;
+            h0Var.f55619e = this.f12460g2;
+            h0Var.f55620f = this.f12459f2;
             this.W1.a(h0Var);
             this.W1 = null;
         }

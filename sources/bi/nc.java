@@ -88,7 +88,7 @@ public final class nc extends LinearLayout {
                 RectF rectF = (RectF) this.f4435b;
                 Paint paint = (Paint) this.f4436c;
                 vp vpVar = (vp) this.d;
-                paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27939i5, vpVar.f39636d0));
+                paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27939i5, vpVar.f39633d0));
                 int left = vpVar.E[0].getLeft() - org.telegram.messenger.g0.L(13.0f);
                 float L = org.telegram.messenger.g0.L(91.0f);
                 org.telegram.ui.ActionBar.f0 f0Var = vpVar.F;

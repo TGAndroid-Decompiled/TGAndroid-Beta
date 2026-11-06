@@ -19,7 +19,7 @@ import org.telegram.ui.af;
 import org.telegram.ui.an;
 import org.telegram.ui.e0;
 import org.telegram.ui.fe;
-import org.telegram.ui.ku0;
+import org.telegram.ui.lu0;
 import org.telegram.ui.ol;
 public final class g implements View.OnLongClickListener {
     public final int f18376a;
@@ -45,7 +45,7 @@ public final class g implements View.OnLongClickListener {
             case 0:
                 b bVar = ((h) frameLayout).f18385n;
                 if (bVar != null) {
-                    an anVar = ((fe) bVar).f45610b;
+                    an anVar = ((fe) bVar).f45615b;
                     if (i10 == 2) {
                         afVar = new af(anVar, 11);
                         z9 = true;
@@ -72,7 +72,7 @@ public final class g implements View.OnLongClickListener {
                         M0 = hd.M0(2131746372, null);
                     }
                     z0Var.j(M0, 2131232356, null);
-                    z0Var.setOnClickListener(new ku0(1, afVar));
+                    z0Var.setOnClickListener(new lu0(1, afVar));
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(z0Var);
                     g1 g1Var = new g1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
                     g1Var.f27481e = true;
@@ -95,9 +95,9 @@ public final class g implements View.OnLongClickListener {
                         measuredHeight += view2.getY() + view2.getPaddingTop();
                     }
                     g1Var.showAtLocation(olVar, 51, (int) width, (int) measuredHeight);
-                    anVar.f43757e9 = g1Var;
-                    anVar.u8(anVar.f43989x1, false);
-                    anVar.f43757e9.setOnDismissListener(new e0(anVar, 1));
+                    anVar.f43782e9 = g1Var;
+                    anVar.u8(anVar.f44014x1, false);
+                    anVar.f43782e9.setOnDismissListener(new e0(anVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
                     } catch (Exception unused) {

@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import android.webkit.JavascriptInterface;
 public final class xc1 {
-    public final yc1 f51822a;
+    public final yc1 f51839a;
 
     public xc1(yc1 yc1Var) {
-        this.f51822a = yc1Var;
+        this.f51839a = yc1Var;
     }
 
     @JavascriptInterface

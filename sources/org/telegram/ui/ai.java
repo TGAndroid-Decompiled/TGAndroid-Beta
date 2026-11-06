@@ -15,7 +15,7 @@ public final class ai extends org.telegram.ui.Components.pn {
         super.onLayout(z9, i7, i10, i11, i12);
         float y10 = getY();
         an anVar = this.M;
-        float y11 = anVar.f43763f1.getY() + y10;
+        float y11 = anVar.f43788f1.getY() + y10;
         this.J = anVar.l1.getBackgroundSizeY();
         this.I = y11;
     }

@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.MotionEvent;
 public final class gj extends org.telegram.ui.Components.e01 {
-    public final an f45988e;
+    public final an f46015e;
 
     public gj(an anVar, Context context, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
         super(i7, context, f6Var);
-        this.f45988e = anVar;
+        this.f46015e = anVar;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         org.telegram.ui.ActionBar.k kVar;
         if (getAlpha() != 0.0f) {
-            an anVar = this.f45988e;
+            an anVar = this.f46015e;
             kVar = ((org.telegram.ui.ActionBar.f2) anVar).actionBar;
             if (!kVar.v() && !anVar.W9()) {
                 return super.onTouchEvent(motionEvent);

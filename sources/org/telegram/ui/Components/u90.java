@@ -22,7 +22,7 @@ public final class u90 extends v4.t {
         switch (this.S) {
             case 0:
                 ca0 ca0Var = (ca0) this.T;
-                org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) ca0Var.f32507r.f23690f.get(i7);
+                org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) ca0Var.f32511r.f23690f.get(i7);
                 org.telegram.messenger.dj a10 = ca0.a(ca0Var, ijVar);
                 if (a10 == null) {
                     return false;
@@ -68,9 +68,9 @@ public final class u90 extends v4.t {
                 return false;
             default:
                 fi.e5 e5Var = (fi.e5) this.T;
-                ArrayList arrayList3 = e5Var.f55847s0;
+                ArrayList arrayList3 = e5Var.f55872s0;
                 int size3 = (arrayList3.size() - 1) - i7;
-                org.telegram.messenger.dj djVar = e5Var.f55848t0;
+                org.telegram.messenger.dj djVar = e5Var.f55873t0;
                 if (djVar != null && size3 >= 0 && size3 < arrayList3.size() && (d = djVar.d((org.telegram.messenger.ij) arrayList3.get(size3))) != null && d.f21442a != d.f21443b && (b12 = d.f21444c) == d.d && b12 != 0) {
                     int size4 = djVar.f22005e.size();
                     for (int i12 = 0; i12 < size4; i12++) {

@@ -21,8 +21,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.Components.a80;
-import org.telegram.ui.Components.o31;
 import org.telegram.ui.Components.qu;
+import org.telegram.ui.Components.t31;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.xz;
 public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
@@ -72,7 +72,7 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
         a80Var.f(org.telegram.ui.ActionBar.k6.r1(0.2f, -1), org.telegram.ui.ActionBar.k6.r1(0.05f, -1));
         Path path = new Path();
         this.f9322n = path;
-        a80Var.f31735y = path;
+        a80Var.f31747y = path;
         a80Var.k(4.0f);
         boolean[] zArr = {true};
         this.f9327y = obj;
@@ -219,8 +219,8 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
             return;
         }
         SpannableString spannableString = new SpannableString("x " + tL_messages_stickerSet.set.title);
-        spannableString.setSpan(new xz(org.telegram.ui.ActionBar.k6.Uc, this.h.f31714a), 0, spannableString.length(), 33);
-        spannableString.setSpan(new o31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
+        spannableString.setSpan(new xz(org.telegram.ui.ActionBar.k6.Uc, this.h.f31726a), 0, spannableString.length(), 33);
+        spannableString.setSpan(new t31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
         ArrayList<TLRPC.Document> arrayList = tL_messages_stickerSet.documents;
         int i7 = 0;
         while (true) {
@@ -413,8 +413,8 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
         CharSequence charSequence;
         String M0;
         SpannableString spannableString = new SpannableString("x " + stickerSetCovered.set.title);
-        spannableString.setSpan(new xz(org.telegram.ui.ActionBar.k6.Uc, this.h.f31714a), 0, spannableString.length(), 33);
-        spannableString.setSpan(new o31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
+        spannableString.setSpan(new xz(org.telegram.ui.ActionBar.k6.Uc, this.h.f31726a), 0, spannableString.length(), 33);
+        spannableString.setSpan(new t31(org.telegram.messenger.g0.o()), 0, spannableString.length(), 33);
         TLRPC.Document document = stickerSetCovered.cover;
         if (document == null && (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered)) {
             ArrayList<TLRPC.Document> arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
@@ -452,11 +452,11 @@ public final class k8 extends View implements org.telegram.ui.ActionBar.a6 {
         boolean z9 = this.f9325w;
         a80 a80Var = this.h;
         if (z9 && this.f9326x) {
-            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickersEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31714a), null, null));
+            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickersEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31726a), null, null));
         } else if (z9) {
-            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31714a), null, null));
+            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsEmoji", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31726a), null, null));
         } else {
-            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickers", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31714a), null, null));
+            setText(org.telegram.messenger.g0.S2(hd.G(i7, "StoryContainsStickers", new Object[0]), 0, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Uc, a80Var.f31726a), null, null));
         }
     }
 }

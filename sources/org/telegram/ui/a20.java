@@ -12,8 +12,8 @@ public final class a20 extends q4 {
     @Override
     public final void c() {
         c40 c40Var = this.U;
-        org.telegram.messenger.c cVar = c40Var.f44565k1;
-        b20 b20Var = c40Var.f44556i1;
+        org.telegram.messenger.c cVar = c40Var.f44586k1;
+        b20 b20Var = c40Var.f44577i1;
         long dialogId = b20Var.getDialogId();
         if (dialogId > 0) {
             TLRPC.User a22 = org.telegram.messenger.qp.s1(cVar.f21723a).a2(Long.valueOf(dialogId));

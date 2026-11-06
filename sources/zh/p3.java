@@ -2,12 +2,12 @@ package zh;
 
 import org.telegram.messenger.v10;
 public final class p3 implements v10 {
-    public final int f60387a;
-    public final b4 f60388b;
+    public final int f60412a;
+    public final b4 f60413b;
 
     public p3(b4 b4Var, int i7) {
-        this.f60387a = i7;
-        this.f60388b = b4Var;
+        this.f60412a = i7;
+        this.f60413b = b4Var;
     }
 
     @Override

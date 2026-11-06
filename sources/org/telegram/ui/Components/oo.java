@@ -10,10 +10,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.pc1;
 public final class oo implements bi {
-    public final vo f36757a;
+    public final vo f36635a;
 
     public oo(vo voVar) {
-        this.f36757a = voVar;
+        this.f36635a = voVar;
     }
 
     @Override
@@ -25,9 +25,9 @@ public final class oo implements bi {
     @Override
     public final void M0(Object obj) {
         lo loVar = new lo(obj, null, true, 3);
-        vo voVar = this.f36757a;
+        vo voVar = this.f36635a;
         loVar.W1 = voVar.V1;
-        loVar.h1(voVar.f39006r1.a());
+        loVar.h1(voVar.f39003r1.a());
         loVar.J1 = new no(this, 1);
         vo.I0(voVar, loVar);
     }
@@ -44,9 +44,9 @@ public final class oo implements bi {
 
     @Override
     public final void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
-        vo voVar = this.f36757a;
+        vo voVar = this.f36635a;
         try {
-            HashMap<Object, Object> selectedPhotos = voVar.O1.f32882a2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = voVar.O1.f32895a2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 org.telegram.messenger.gf gfVar = (org.telegram.messenger.gf) selectedPhotos.values().iterator().next();
                 String str = gfVar.h;
@@ -63,8 +63,8 @@ public final class oo implements bi {
                     loVar.W1 = voVar.V1;
                     loVar.G1 = false;
                     loVar.F1 = false;
-                    loVar.f50286o1 = 0.2f;
-                    loVar.h1(voVar.f39006r1.a());
+                    loVar.f50308o1 = 0.2f;
+                    loVar.h1(voVar.f39003r1.a());
                     loVar.J1 = new no(this, 0);
                     vo.I0(voVar, loVar);
                 }

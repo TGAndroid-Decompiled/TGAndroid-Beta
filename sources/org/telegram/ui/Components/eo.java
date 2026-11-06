@@ -1,25 +1,25 @@
 package org.telegram.ui.Components;
 public final class eo implements Runnable {
-    public final int f33295a;
-    public final vo f33296b;
+    public final int f33291a;
+    public final vo f33292b;
 
     public eo(vo voVar, int i7) {
-        this.f33295a = i7;
-        this.f33296b = voVar;
+        this.f33291a = i7;
+        this.f33292b = voVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f33295a) {
+        switch (this.f33291a) {
             case 0:
-                this.f33296b.n1.f();
+                this.f33292b.n1.f();
                 return;
             case 1:
-                this.f33296b.K0(true);
+                this.f33292b.K0(true);
                 return;
             case 2:
-                vo voVar = this.f33296b;
-                org.telegram.ui.an anVar = voVar.f39006r1;
+                vo voVar = this.f33292b;
+                org.telegram.ui.an anVar = voVar.f39003r1;
                 org.telegram.ui.ActionBar.f2 g02 = org.telegram.ui.c51.g0(anVar.getMessagesController().M0(Long.valueOf(-anVar.a())), true);
                 ?? obj = new Object();
                 obj.f27420a = true;
@@ -32,20 +32,20 @@ public final class eo implements Runnable {
                 anVar.showAsSheet(g02, obj);
                 return;
             case 3:
-                this.f33296b.O0();
+                this.f33292b.O0();
                 return;
             case 4:
-                this.f33296b.N1 = null;
+                this.f33292b.N1 = null;
                 return;
             case 5:
-                this.f33296b.O0();
+                this.f33292b.O0();
                 return;
             case 6:
-                this.f33296b.N1 = null;
+                this.f33292b.N1 = null;
                 return;
             default:
-                vo voVar2 = this.f33296b;
-                voVar2.K1.c(voVar2.f39011w1);
+                vo voVar2 = this.f33292b;
+                voVar2.K1.c(voVar2.f39008w1);
                 return;
         }
     }

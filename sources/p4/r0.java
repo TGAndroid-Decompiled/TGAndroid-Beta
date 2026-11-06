@@ -4,7 +4,7 @@ import android.view.WindowInsets;
 import c8.s9;
 import java.util.List;
 public final class r0 implements a1, h2.j, z0, q2.l, androidx.car.app.utils.b, g9.k {
-    public final int f53321a;
+    public final int f53347a;
 
     public static WindowInsets b() {
         return WindowInsets.CONSUMED;
@@ -12,7 +12,7 @@ public final class r0 implements a1, h2.j, z0, q2.l, androidx.car.app.utils.b, g
 
     @Override
     public void a(g1 g1Var, v vVar, List list) {
-        switch (this.f53321a) {
+        switch (this.f53347a) {
             case 2:
                 g1Var.x0(list);
                 return;
@@ -25,7 +25,7 @@ public final class r0 implements a1, h2.j, z0, q2.l, androidx.car.app.utils.b, g
     @Override
     public void accept(Object obj) {
         g1 g1Var = (g1) obj;
-        switch (this.f53321a) {
+        switch (this.f53347a) {
             case 1:
                 g1Var.L();
                 return;
@@ -55,7 +55,7 @@ public final class r0 implements a1, h2.j, z0, q2.l, androidx.car.app.utils.b, g
     public Object apply(Object obj) {
         r2.q qVar = (r2.q) obj;
         qVar.l();
-        return h9.i0.q(h9.o.y(qVar.Y.f58330b, new v0.j(24)));
+        return h9.i0.q(h9.o.y(qVar.Y.f58355b, new v0.j(24)));
     }
 
     @Override
@@ -65,9 +65,9 @@ public final class r0 implements a1, h2.j, z0, q2.l, androidx.car.app.utils.b, g
 
     @Override
     public Object i(d0 d0Var, v vVar, int i7) {
-        switch (this.f53321a) {
+        switch (this.f53347a) {
             case 0:
-                pb.b bVar = d0Var.f53086e;
+                pb.b bVar = d0Var.f53112e;
                 d0Var.s(vVar);
                 bVar.getClass();
                 return s9.b(new m1(-6));
@@ -84,7 +84,7 @@ public final class r0 implements a1, h2.j, z0, q2.l, androidx.car.app.utils.b, g
                 d0Var.getClass();
                 throw new ClassCastException();
             default:
-                pb.b bVar2 = d0Var.f53086e;
+                pb.b bVar2 = d0Var.f53112e;
                 d0Var.s(vVar);
                 bVar2.getClass();
                 return s9.b(new m1(-6));

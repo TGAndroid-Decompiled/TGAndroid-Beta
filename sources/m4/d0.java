@@ -67,7 +67,7 @@ import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Wallet.y5;
 import org.telegram.ui.bk0;
 import org.telegram.ui.ef0;
-import org.telegram.ui.er0;
+import org.telegram.ui.fr0;
 import org.telegram.ui.h5;
 import org.telegram.ui.hy0;
 import org.telegram.ui.kj0;
@@ -93,7 +93,7 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
         Uri uri;
         byte[] bArr;
         hy0 hy0Var = (hy0) this.f19609b;
-        if (hy0Var != null && (((uri = (Uri) hy0Var.f46520c) != null && uri.equals(o0Var.f10438n)) || ((bArr = (byte[]) hy0Var.f46519b) != null && Arrays.equals(bArr, o0Var.f10435k)))) {
+        if (hy0Var != null && (((uri = (Uri) hy0Var.f46529c) != null && uri.equals(o0Var.f10438n)) || ((bArr = (byte[]) hy0Var.f46528b) != null && Arrays.equals(bArr, o0Var.f10435k)))) {
             m9.y yVar = (m9.y) ((hy0) this.f19609b).d;
             yVar.getClass();
             return yVar;
@@ -111,13 +111,13 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
         ByteArrayOutputStream byteArrayOutputStream = (ByteArrayOutputStream) this.f19608a;
         byteArrayOutputStream.reset();
         try {
-            dataOutputStream.writeBytes(aVar.f53642a);
+            dataOutputStream.writeBytes(aVar.f53667a);
             dataOutputStream.writeByte(0);
-            dataOutputStream.writeBytes(aVar.f53643b);
+            dataOutputStream.writeBytes(aVar.f53668b);
             dataOutputStream.writeByte(0);
-            dataOutputStream.writeLong(aVar.f53644c);
+            dataOutputStream.writeLong(aVar.f53669c);
             dataOutputStream.writeLong(aVar.d);
-            dataOutputStream.write(aVar.f53645e);
+            dataOutputStream.write(aVar.f53670e);
             dataOutputStream.flush();
             return byteArrayOutputStream.toByteArray();
         } catch (IOException e10) {
@@ -247,7 +247,7 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
 
     @Override
     public boolean J0(long j3) {
-        return ((dy0) this.f19609b).f33055w;
+        return ((dy0) this.f19609b).f33068w;
     }
 
     @Override
@@ -273,7 +273,7 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
     }
 
     @Override
-    public er0 N1() {
+    public fr0 N1() {
         return null;
     }
 
@@ -295,7 +295,7 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
 
     @Override
     public boolean Q1(long j3) {
-        return ((dy0) this.f19609b).f33054s;
+        return ((dy0) this.f19609b).f33067s;
     }
 
     @Override
@@ -324,7 +324,7 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
         if (j1Var == null) {
             return;
         }
-        j1Var.f56980a &= -2;
+        j1Var.f57005a &= -2;
     }
 
     @Override
@@ -359,9 +359,9 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
         j1 j1Var = (j1) fVar.get(d1Var);
         if (j1Var != null) {
             fVar.remove(d1Var);
-            j1Var.f56980a = 0;
-            j1Var.f56981b = null;
-            j1Var.f56982c = null;
+            j1Var.f57005a = 0;
+            j1Var.f57006b = null;
+            j1Var.f57007c = null;
             j1.d.q(j1Var);
         }
     }
@@ -394,7 +394,7 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
     public m9.y W(byte[] bArr) {
         byte[] bArr2;
         hy0 hy0Var = (hy0) this.f19609b;
-        if (hy0Var != null && (bArr2 = (byte[]) hy0Var.f46519b) != null && Arrays.equals(bArr2, bArr)) {
+        if (hy0Var != null && (bArr2 = (byte[]) hy0Var.f46528b) != null && Arrays.equals(bArr2, bArr)) {
             m9.y yVar = (m9.y) ((hy0) this.f19609b).d;
             yVar.getClass();
             return yVar;
@@ -428,9 +428,9 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
     @Override
     public void Y(int i7, float f10, float f11, te.c cVar) {
         rh.h hVar = (rh.h) this.f19609b;
-        hVar.f54431c.a(f10);
+        hVar.f54456c.a(f10);
         hVar.d.a(f10);
-        hVar.f54430b.a(f10);
+        hVar.f54455b.a(f10);
         ((Runnable) this.f19608a).run();
     }
 
@@ -441,7 +441,7 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
 
     @Override
     public void a(String str, String str2) {
-        bk0 bk0Var = ((kj0) this.f19609b).f47178a;
+        bk0 bk0Var = ((kj0) this.f19609b).f47201a;
         if ("PHONE_VERIFICATION_NEEDED".equals(str)) {
             bk0Var.S1(true, str2, (ef0) this.f19608a, this, bk0Var.B1);
         } else {
@@ -513,13 +513,13 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
         Paint paint = (Paint) this.f19608a;
         PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f19609b;
         y0 y0Var = premiumPreviewFragment.m0;
-        if (premiumPreviewFragment.f41589h0) {
+        if (premiumPreviewFragment.f41614h0) {
             paint.setColor(premiumPreviewFragment.getThemedColor(k6.f27792a7));
             canvas.drawRect(f10, f11, f12, f13, paint);
             return;
         }
-        y0Var.d(0, (-premiumPreviewFragment.f41583d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f41580b0, 0, premiumPreviewFragment.f41583d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f41583d0.getMeasuredHeight());
-        canvas.drawRect(f10, f11, f12, f13, y0Var.f56752f);
+        y0Var.d(0, (-premiumPreviewFragment.f41608d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f41605b0, 0, premiumPreviewFragment.f41608d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f41608d0.getMeasuredHeight());
+        canvas.drawRect(f10, f11, f12, f13, y0Var.f56777f);
     }
 
     @Override
@@ -537,8 +537,8 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
                 return true;
             }
         }
-        mw mwVar = wwVar.f51639z0;
-        if (mwVar != null && mwVar.getVisibility() == 0 && wwVar.f51639z0.f33392n) {
+        mw mwVar = wwVar.f51656z0;
+        if (mwVar != null && mwVar.getVisibility() == 0 && wwVar.f51656z0.f33388n) {
             return false;
         }
         return wwVar.A4(view, i7, f10, ((vw) this.f19608a).d);
@@ -613,9 +613,9 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
 
     @Override
     public void l(boolean z9, float f10) {
-        h5.f46198j1 = f10;
+        h5.f46218j1 = f10;
         ((TextView) this.f19608a).setText("Saturation " + (f10 * 5.0f));
-        rt0 rt0Var = ((h5) this.f19609b).f46200i1;
+        rt0 rt0Var = ((h5) this.f19609b).f46220i1;
         rt0Var.M();
         rt0Var.L();
     }
@@ -652,22 +652,22 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
         a0.f fVar = (a0.f) this.f19608a;
         int d = fVar.d(d1Var);
         if (d >= 0 && (j1Var = (j1) fVar.i(d)) != null) {
-            int i10 = j1Var.f56980a;
+            int i10 = j1Var.f57005a;
             if ((i10 & i7) != 0) {
                 int i11 = i10 & (~i7);
-                j1Var.f56980a = i11;
+                j1Var.f57005a = i11;
                 if (i7 == 4) {
-                    r0Var = j1Var.f56981b;
+                    r0Var = j1Var.f57006b;
                 } else if (i7 == 8) {
-                    r0Var = j1Var.f56982c;
+                    r0Var = j1Var.f57007c;
                 } else {
                     throw new IllegalArgumentException("Must provide flag PRE or POST");
                 }
                 if ((i11 & 12) == 0) {
                     fVar.g(d);
-                    j1Var.f56980a = 0;
-                    j1Var.f56981b = null;
-                    j1Var.f56982c = null;
+                    j1Var.f57005a = 0;
+                    j1Var.f57006b = null;
+                    j1Var.f57007c = null;
                     j1.d.q(j1Var);
                 }
                 return r0Var;
@@ -680,7 +680,7 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
     public void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
         di diVar = (di) this.f19608a;
         try {
-            HashMap<Object, Object> selectedPhotos = diVar.f32882a2.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = diVar.f32895a2.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 gf gfVar = (gf) selectedPhotos.values().iterator().next();
                 String str = gfVar.h;
@@ -733,8 +733,8 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
             j1Var = j1.a();
             fVar.put(d1Var, j1Var);
         }
-        j1Var.f56982c = r0Var;
-        j1Var.f56980a |= 8;
+        j1Var.f57007c = r0Var;
+        j1Var.f57005a |= 8;
     }
 
     public void t(int i7, int i10, int i11) {
@@ -775,7 +775,7 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
         }
         Bundle bundle2 = (Bundle) task.getResult();
         if (bundle2 != null && bundle2.containsKey("google.messenger")) {
-            return cVar.d(bundle).onSuccessTask(m6.d.f19893b, pb.b.f53405b);
+            return cVar.d(bundle).onSuccessTask(m6.d.f19893b, pb.b.f53431b);
         }
         return task;
     }
@@ -791,13 +791,13 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
             return;
         }
         this.f19609b = bVar;
-        q2.p q10 = bVar.f53577b.q();
-        bVar.f53598z = q10;
-        android.support.v4.media.session.f fVar = bVar.f53592s;
+        q2.p q10 = bVar.f53602b.q();
+        bVar.f53623z = q10;
+        android.support.v4.media.session.f fVar = bVar.f53617s;
         String str = m0.f14112a;
         q10.getClass();
         fVar.getClass();
-        fVar.obtainMessage(1, new q2.a(x2.u.f58356g.getAndIncrement(), true, SystemClock.elapsedRealtime(), q10)).sendToTarget();
+        fVar.obtainMessage(1, new q2.a(x2.u.f58381g.getAndIncrement(), true, SystemClock.elapsedRealtime(), q10)).sendToTarget();
     }
 
     public void w(gw gwVar, int i7) {
@@ -847,7 +847,7 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
         if (trim.length() > 16) {
             trim = trim.substring(0, 16);
         }
-        if (!((dy0) this.f19609b).f33054s && TextUtils.isEmpty(trim)) {
+        if (!((dy0) this.f19609b).f33067s && TextUtils.isEmpty(trim)) {
             return null;
         }
         return trim;

@@ -1,25 +1,25 @@
 package zh;
 public final class l1 implements Runnable {
-    public final int f60308a;
-    public final a2 f60309b;
-    public final int f60310c;
+    public final int f60333a;
+    public final a2 f60334b;
+    public final int f60335c;
 
     public l1(a2 a2Var, int i7, int i10) {
-        this.f60308a = i10;
-        this.f60309b = a2Var;
-        this.f60310c = i7;
+        this.f60333a = i10;
+        this.f60334b = a2Var;
+        this.f60335c = i7;
     }
 
     @Override
     public final void run() {
-        switch (this.f60308a) {
+        switch (this.f60333a) {
             case 0:
-                this.f60309b.f60085f.scrollBy(0, this.f60310c);
+                this.f60334b.f60110f.scrollBy(0, this.f60335c);
                 return;
             default:
-                fi.w3 w3Var = this.f60309b.f60085f;
+                fi.w3 w3Var = this.f60334b.f60110f;
                 if (w3Var != null) {
-                    w3Var.setSpanCount(this.f60310c);
+                    w3Var.setSpanCount(this.f60335c);
                     return;
                 }
                 return;

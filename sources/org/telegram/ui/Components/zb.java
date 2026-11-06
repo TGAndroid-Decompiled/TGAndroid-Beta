@@ -6,19 +6,19 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 public final class zb extends za {
-    public final ch0 f40882a;
-    public final w70 f40883b;
-    public final w70 f40884c;
+    public final ch0 f40907a;
+    public final w70 f40908b;
+    public final w70 f40909c;
     public final LinearLayout d;
-    public final int f40885e;
+    public final int f40910e;
 
     public zb(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, f6Var);
         int i7 = org.telegram.ui.ActionBar.k6.vj;
-        this.f40885e = getThemedColor(i7);
+        this.f40910e = getThemedColor(i7);
         setBackground(getThemedColor(org.telegram.ui.ActionBar.k6.tj));
         ?? imageView = new ImageView(context);
-        this.f40882a = imageView;
+        this.f40907a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView((View) imageView, c8.ha.h(56.0f, 48.0f, 8388627));
         getThemedColor(i7);
@@ -29,14 +29,14 @@ public final class zb extends za {
         linearLayout.setOrientation(1);
         addView(linearLayout, c8.ha.i(-2.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
         w70 w70Var = new w70(context, null);
-        this.f40883b = w70Var;
+        this.f40908b = w70Var;
         w70Var.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
         org.telegram.ui.ActionBar.r6.V(w70Var, i7, f6Var);
         w70Var.setTextSize(1, 14.0f);
         w70Var.setTypeface(org.telegram.messenger.g0.o());
         linearLayout.addView(w70Var);
         w70 w70Var2 = new w70(context, null);
-        this.f40884c = w70Var2;
+        this.f40909c = w70Var2;
         w70Var2.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
         org.telegram.ui.ActionBar.r6.V(w70Var2, i7, f6Var);
         org.telegram.ui.ActionBar.r6.H(w70Var2, i10, f6Var);
@@ -46,21 +46,21 @@ public final class zb extends za {
     }
 
     public final void c(int i7, int i10, int i11, String... strArr) {
-        ch0 ch0Var = this.f40882a;
+        ch0 ch0Var = this.f40907a;
         ch0Var.f(i7, i10, i11, null);
         for (String str : strArr) {
-            ch0Var.h(this.f40885e, str);
+            ch0Var.h(this.f40910e, str);
         }
     }
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f40883b.getText()) + ".\n" + ((Object) this.f40884c.getText());
+        return ((Object) this.f40908b.getText()) + ".\n" + ((Object) this.f40909c.getText());
     }
 
     @Override
     public final void onShow() {
         super.onShow();
-        this.f40882a.d();
+        this.f40907a.d();
     }
 }

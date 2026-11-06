@@ -1,41 +1,69 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
 import android.graphics.RectF;
-import android.view.View;
-public final class bu0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f44468a;
-    public final ProfileActivity f44469b;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class bu0 implements Runnable {
+    public final int f44489a;
+    public final ProfileActivity f44490b;
+    public final TLRPC.TL_error f44491c;
+    public final TLObject d;
+    public final TLRPC.TL_channels_getParticipants f44492e;
 
-    public bu0(ProfileActivity profileActivity, int i7) {
-        this.f44468a = i7;
-        this.f44469b = profileActivity;
+    public bu0(ProfileActivity profileActivity, TLRPC.TL_error tL_error, TLObject tLObject, TLRPC.TL_channels_getParticipants tL_channels_getParticipants, int i7) {
+        this.f44489a = i7;
+        this.f44490b = profileActivity;
+        this.f44491c = tL_error;
+        this.d = tLObject;
+        this.f44492e = tL_channels_getParticipants;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f44468a;
-        ProfileActivity profileActivity = this.f44469b;
-        switch (i7) {
+    public final void run() {
+        switch (this.f44489a) {
             case 0:
-                profileActivity.f41826x0.setAlpha((int) (((Float) valueAnimator.getAnimatedValue()).floatValue() * 255.0f));
-                return;
-            case 1:
                 RectF rectF = ProfileActivity.S6;
-                profileActivity.getClass();
-                profileActivity.X4(valueAnimator.getAnimatedFraction());
-                return;
-            case 2:
-                RectF rectF2 = ProfileActivity.S6;
-                View view = profileActivity.fragmentView;
-                if (view != null) {
-                    view.invalidate();
-                }
-                profileActivity.L5(true);
+                ProfileActivity profileActivity = this.f44490b;
+                profileActivity.getNotificationCenter().d(new bu0(profileActivity, this.f44491c, this.d, this.f44492e, 1));
                 return;
             default:
-                RectF rectF3 = ProfileActivity.S6;
-                profileActivity.L5(true);
+                ProfileActivity profileActivity2 = this.f44490b;
+                if (this.f44491c == null) {
+                    RectF rectF2 = ProfileActivity.S6;
+                    TLRPC.TL_channels_channelParticipants tL_channels_channelParticipants = (TLRPC.TL_channels_channelParticipants) this.d;
+                    profileActivity2.getMessagesController().Y3(tL_channels_channelParticipants.users, false);
+                    profileActivity2.getMessagesController().S3(tL_channels_channelParticipants.chats, false);
+                    if (tL_channels_channelParticipants.users.size() < 200) {
+                        profileActivity2.C1 = true;
+                    }
+                    if (this.f44492e.offset == 0) {
+                        profileActivity2.B1.b();
+                        profileActivity2.f41824t2.participants = new TLRPC.TL_chatParticipants();
+                        profileActivity2.getMessagesStorage().m1(tL_channels_channelParticipants.users, tL_channels_channelParticipants.chats, true, true);
+                        org.telegram.messenger.yr messagesStorage = profileActivity2.getMessagesStorage();
+                        messagesStorage.f26688a.c(new org.telegram.messenger.lr(messagesStorage, profileActivity2.f41720e1, tL_channels_channelParticipants.participants, 2));
+                    }
+                    for (int i7 = 0; i7 < tL_channels_channelParticipants.participants.size(); i7++) {
+                        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
+                        TLRPC.ChannelParticipant channelParticipant = tL_channels_channelParticipants.participants.get(i7);
+                        tL_chatChannelParticipant.channelParticipant = channelParticipant;
+                        tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
+                        long C1 = org.telegram.messenger.ij.C1(channelParticipant.peer);
+                        tL_chatChannelParticipant.user_id = C1;
+                        tL_chatChannelParticipant.date = tL_chatChannelParticipant.channelParticipant.date;
+                        if (profileActivity2.B1.h(C1) < 0) {
+                            TLRPC.ChatFull chatFull = profileActivity2.f41824t2;
+                            if (chatFull.participants == null) {
+                                chatFull.participants = new TLRPC.TL_chatParticipants();
+                            }
+                            profileActivity2.f41824t2.participants.participants.add(tL_chatChannelParticipant);
+                            profileActivity2.B1.k(tL_chatChannelParticipant, tL_chatChannelParticipant.user_id);
+                        }
+                    }
+                }
+                profileActivity2.A1 = false;
+                profileActivity2.T4();
+                profileActivity2.D5(true, false);
                 return;
         }
     }

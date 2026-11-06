@@ -20,7 +20,7 @@ public final class r4 implements Runnable {
                 org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                 if (T != null) {
                     org.telegram.ui.Components.cc Q = org.telegram.ui.Components.hc.a0(T).Q(2131624011, 36, org.telegram.messenger.hd.M0(2131748551, null));
-                    Q.f32533t = true;
+                    Q.f32537t = true;
                     Q.j();
                     return;
                 }

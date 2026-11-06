@@ -5,33 +5,33 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.view.View;
 public final class yv extends AnimatorListenerAdapter {
-    public final int f52333a;
-    public final boolean f52334b;
-    public final ww f52335c;
+    public final int f52340a;
+    public final boolean f52341b;
+    public final ww f52342c;
 
     public yv(ww wwVar, boolean z9, int i7) {
-        this.f52333a = i7;
-        this.f52335c = wwVar;
-        this.f52334b = z9;
+        this.f52340a = i7;
+        this.f52342c = wwVar;
+        this.f52341b = z9;
     }
 
     @Override
     public void onAnimationCancel(Animator animator) {
-        switch (this.f52333a) {
+        switch (this.f52340a) {
             case 0:
-                ww wwVar = this.f52335c;
-                wwVar.f51589p3.e();
-                if (wwVar.f51625w1 == animator) {
-                    if (this.f52334b) {
-                        wwVar.f51534e0[0].f50833a.c1();
+                ww wwVar = this.f52342c;
+                wwVar.f51606p3.e();
+                if (wwVar.f51642w1 == animator) {
+                    if (this.f52341b) {
+                        wwVar.f51551e0[0].f50839a.c1();
                     } else {
-                        sw swVar = wwVar.f51534e0[0].f50833a;
-                        if (swVar.f37047g1) {
-                            swVar.f37047g1 = false;
+                        sw swVar = wwVar.f51551e0[0].f50839a;
+                        if (swVar.f36926g1) {
+                            swVar.f36926g1 = false;
                             swVar.K0(false);
                         }
                     }
-                    wwVar.f51625w1 = null;
+                    wwVar.f51642w1 = null;
                     return;
                 }
                 return;
@@ -46,30 +46,30 @@ public final class yv extends AnimatorListenerAdapter {
         float f10;
         int i7;
         org.telegram.ui.ActionBar.r0 r0Var;
-        switch (this.f52333a) {
+        switch (this.f52340a) {
             case 0:
-                ww wwVar = this.f52335c;
-                wwVar.f51589p3.e();
-                if (wwVar.f51625w1 == animator) {
+                ww wwVar = this.f52342c;
+                wwVar.f51606p3.e();
+                if (wwVar.f51642w1 == animator) {
                     wwVar.M4(false, true);
-                    boolean z9 = this.f52334b;
+                    boolean z9 = this.f52341b;
                     if (z9) {
-                        wwVar.f51534e0[0].f50833a.c1();
+                        wwVar.f51551e0[0].f50839a.c1();
                         pv pvVar = wwVar.E0;
                         if (pvVar != null) {
                             pvVar.setVisibility(8);
                         }
-                        wwVar.f51600r3 = true;
+                        wwVar.f51617r3 = true;
                         Activity parentActivity = wwVar.getParentActivity();
                         i7 = ((org.telegram.ui.ActionBar.f2) wwVar).classGuid;
                         org.telegram.messenger.g0.a3(parentActivity, i7);
-                        wwVar.f51560j0.setVisibility(8);
+                        wwVar.f51577j0.setVisibility(8);
                         sv svVar = wwVar.F3;
                         if (svVar != null) {
                             svVar.setVisibility(8);
                         }
                     } else {
-                        wwVar.f51606s3 = false;
+                        wwVar.f51623s3 = false;
                         fw fwVar = wwVar.C0;
                         if (fwVar != null) {
                             fwVar.setVisibility(8);
@@ -83,12 +83,12 @@ public final class yv extends AnimatorListenerAdapter {
                             fwVar2.C0.clear();
                             fwVar2.L();
                         }
-                        sw swVar = wwVar.f51534e0[0].f50833a;
-                        if (swVar.f37047g1) {
-                            swVar.f37047g1 = false;
+                        sw swVar = wwVar.f51551e0[0].f50839a;
+                        if (swVar.f36926g1) {
+                            swVar.f36926g1 = false;
                             swVar.K0(false);
                         }
-                        wwVar.f51600r3 = false;
+                        wwVar.f51617r3 = false;
                         sv svVar2 = wwVar.F3;
                         if (svVar2 != null) {
                             svVar2.setVisibility(0);
@@ -104,45 +104,45 @@ public final class yv extends AnimatorListenerAdapter {
                         f10 = 0.0f;
                     }
                     wwVar.P4(f10);
-                    wwVar.f51534e0[0].f50833a.setVerticalScrollBarEnabled(true);
+                    wwVar.f51551e0[0].f50839a.setVerticalScrollBarEnabled(true);
                     fw fwVar3 = wwVar.C0;
                     if (fwVar3 != null) {
                         fwVar3.setBackground(null);
                     }
-                    wwVar.f51625w1 = null;
+                    wwVar.f51642w1 = null;
                     return;
                 }
                 return;
             case 1:
-                ww wwVar2 = this.f52335c;
+                ww wwVar2 = this.f52342c;
                 wwVar2.O3 = null;
-                if (!this.f52334b && (r0Var = wwVar2.m0) != null) {
+                if (!this.f52341b && (r0Var = wwVar2.m0) != null) {
                     r0Var.setVisibility(8);
                     return;
                 }
                 return;
             default:
-                ww wwVar3 = this.f52335c;
+                ww wwVar3 = this.f52342c;
                 wwVar3.I = null;
-                boolean z10 = this.f52334b;
+                boolean z10 = this.f52341b;
                 wwVar3.K = z10;
                 if (!z10 && !wwVar3.L) {
                     wwVar3.E0.setVisibility(8);
                 }
                 if (!z10) {
                     wwVar3.O4(0.0f);
-                    wwVar3.f51638y3 = org.telegram.messenger.g0.L(81.0f);
+                    wwVar3.f51655y3 = org.telegram.messenger.g0.L(81.0f);
                 } else {
-                    wwVar3.f51638y3 = -org.telegram.messenger.g0.L(81.0f);
+                    wwVar3.f51655y3 = -org.telegram.messenger.g0.L(81.0f);
                     wwVar3.O4(-wwVar3.g4());
                 }
                 int i10 = 0;
                 while (true) {
-                    vw[] vwVarArr = wwVar3.f51534e0;
+                    vw[] vwVarArr = wwVar3.f51551e0;
                     if (i10 < vwVarArr.length) {
                         vw vwVar = vwVarArr[i10];
                         if (vwVar != null) {
-                            vwVar.f50833a.requestLayout();
+                            vwVar.f50839a.requestLayout();
                         }
                         i10++;
                     } else {

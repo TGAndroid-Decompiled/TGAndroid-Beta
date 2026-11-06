@@ -3,24 +3,24 @@ package ti;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.i51;
 import org.telegram.ui.Components.qm0;
 public final class e extends FrameLayout {
-    public final int f55956a;
-    public final i f55957b;
+    public final int f55981a;
+    public final i f55982b;
 
     public e(i iVar, Activity activity, int i7) {
         super(activity);
-        this.f55956a = i7;
-        this.f55957b = iVar;
+        this.f55981a = i7;
+        this.f55982b = iVar;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f55956a) {
+        switch (this.f55981a) {
             case 0:
                 super.dispatchDraw(canvas);
-                i iVar = this.f55957b;
+                i iVar = this.f55982b;
                 qm0 qm0Var = iVar.G;
                 if (qm0Var != null && qm0Var.a()) {
                     iVar.G.setBounds(getLeft(), getTop(), getRight(), getBottom());
@@ -41,17 +41,17 @@ public final class e extends FrameLayout {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f55956a) {
+        switch (this.f55981a) {
             case 0:
-                i iVar = this.f55957b;
-                e51 e51Var = iVar.F;
-                if (e51Var.f33151j) {
-                    e51Var.setBounds(getLeft(), getTop(), getRight(), getBottom());
-                    e51Var.draw(canvas);
+                i iVar = this.f55982b;
+                i51 i51Var = iVar.F;
+                if (i51Var.f34466j) {
+                    i51Var.setBounds(getLeft(), getTop(), getRight(), getBottom());
+                    i51Var.draw(canvas);
                 }
                 canvas.save();
                 canvas.translate(getLeft(), getTop());
-                iVar.f55966b.c0(canvas, getRight() - getLeft(), getBottom() - getTop());
+                iVar.f55991b.c0(canvas, getRight() - getLeft(), getBottom() - getTop());
                 canvas.restore();
                 return;
             default:

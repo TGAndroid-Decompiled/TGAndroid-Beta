@@ -6,17 +6,17 @@ import android.view.MotionEvent;
 import java.util.ArrayList;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class jv extends ChatActivityEnterView {
-    public final ww f47024t5;
+    public final ww f47043t5;
 
     public jv(ww wwVar, Activity activity, pw pwVar) {
         super(activity, pwVar, null, false, null);
-        this.f47024t5 = wwVar;
+        this.f47043t5 = wwVar;
     }
 
     @Override
     public final void A0(float f10) {
-        ww wwVar = this.f47024t5;
-        wwVar.f51636y1.setInputBubbleHeight(f10);
+        ww wwVar = this.f47043t5;
+        wwVar.f51653y1.setInputBubbleHeight(f10);
         wwVar.E3();
         wwVar.F3();
     }
@@ -25,7 +25,7 @@ public final class jv extends ChatActivityEnterView {
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
         int i7;
         if (motionEvent.getAction() == 0) {
-            ww wwVar = this.f47024t5;
+            ww wwVar = this.f47043t5;
             Activity parentActivity = wwVar.getParentActivity();
             i7 = ((org.telegram.ui.ActionBar.f2) wwVar).classGuid;
             org.telegram.messenger.g0.a3(parentActivity, i7);
@@ -36,7 +36,7 @@ public final class jv extends ChatActivityEnterView {
     @Override
     public final int getMessagesCount() {
         CharSequence fieldText;
-        ww wwVar = this.f47024t5;
+        ww wwVar = this.f47043t5;
         int i7 = wwVar.S0;
         jv jvVar = wwVar.B1;
         if (jvVar == null) {
@@ -49,7 +49,7 @@ public final class jv extends ChatActivityEnterView {
 
     @Override
     public final long getStarsPrice() {
-        ww wwVar = this.f47024t5;
+        ww wwVar = this.f47043t5;
         ArrayList arrayList = wwVar.I2;
         if (arrayList == null) {
             return 0L;

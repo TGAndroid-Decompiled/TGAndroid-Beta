@@ -12,28 +12,28 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class fz extends org.telegram.ui.ActionBar.v2 implements org.telegram.messenger.ls {
-    public static final int f33718t1 = 0;
-    public int f33719i1;
-    public final bi.q1 f33720j1;
-    public final org.telegram.ui.l4 f33721k1;
+    public static final int f33662t1 = 0;
+    public int f33663i1;
+    public final bi.q1 f33664j1;
+    public final org.telegram.ui.l4 f33665k1;
     public final TextView l1;
-    public AnimatorSet f33722m1;
+    public AnimatorSet f33666m1;
     public final View n1;
-    public int f33723o1;
-    public boolean f33724p1;
-    public org.telegram.ui.wr f33725q1;
-    public final ArrayList f33726r1;
-    public final ArrayList f33727s1;
+    public int f33667o1;
+    public boolean f33668p1;
+    public org.telegram.ui.wr f33669q1;
+    public final ArrayList f33670r1;
+    public final ArrayList f33671s1;
 
     public fz(org.telegram.ui.ww wwVar, ArrayList arrayList) {
         super(wwVar.getParentActivity(), false);
         N();
-        this.f33727s1 = arrayList;
-        this.f33726r1 = new ArrayList(wwVar.getMessagesController().P0);
+        this.f33671s1 = arrayList;
+        this.f33670r1 = new ArrayList(wwVar.getMessagesController().P0);
         int i7 = 0;
-        while (i7 < this.f33726r1.size()) {
-            if (((org.telegram.messenger.vo) this.f33726r1.get(i7)).e()) {
-                this.f33726r1.remove(i7);
+        while (i7 < this.f33670r1.size()) {
+            if (((org.telegram.messenger.vo) this.f33670r1.get(i7)).e()) {
+                this.f33670r1.remove(i7);
                 i7--;
             }
             i7++;
@@ -55,12 +55,12 @@ public final class fz extends org.telegram.ui.ActionBar.v2 implements org.telegr
         view.setTag(1);
         this.f28615b.addView(view, layoutParams);
         bi.q1 q1Var = new bi.q1(20, parentActivity, this);
-        this.f33720j1 = q1Var;
+        this.f33664j1 = q1Var;
         q1Var.setTag(14);
         getContext();
         q1Var.setLayoutManager(new v4.b0(1, false));
         org.telegram.ui.l4 l4Var = new org.telegram.ui.l4(3, this, parentActivity);
-        this.f33721k1 = l4Var;
+        this.f33665k1 = l4Var;
         q1Var.setAdapter(l4Var);
         q1Var.setVerticalScrollBarEnabled(false);
         q1Var.setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), 0);
@@ -89,13 +89,13 @@ public final class fz extends org.telegram.ui.ActionBar.v2 implements org.telegr
     public static void I0(fz fzVar) {
         View view = fzVar.n1;
         TextView textView = fzVar.l1;
-        bi.q1 q1Var = fzVar.f33720j1;
+        bi.q1 q1Var = fzVar.f33664j1;
         if (q1Var.getChildCount() <= 0) {
             int paddingTop = q1Var.getPaddingTop();
-            fzVar.f33723o1 = paddingTop;
+            fzVar.f33667o1 = paddingTop;
             q1Var.setTopGlowOffset(paddingTop);
-            textView.setTranslationY(fzVar.f33723o1);
-            view.setTranslationY(fzVar.f33723o1);
+            textView.setTranslationY(fzVar.f33667o1);
+            view.setTranslationY(fzVar.f33667o1);
             fzVar.f28615b.invalidate();
             return;
         }
@@ -109,11 +109,11 @@ public final class fz extends org.telegram.ui.ActionBar.v2 implements org.telegr
         } else {
             fzVar.K0(true);
         }
-        if (fzVar.f33723o1 != i7) {
-            fzVar.f33723o1 = i7;
+        if (fzVar.f33667o1 != i7) {
+            fzVar.f33667o1 = i7;
             q1Var.setTopGlowOffset(i7);
-            textView.setTranslationY(fzVar.f33723o1);
-            view.setTranslationY(fzVar.f33723o1);
+            textView.setTranslationY(fzVar.f33667o1);
+            view.setTranslationY(fzVar.f33667o1);
             fzVar.f28615b.invalidate();
         }
     }
@@ -163,12 +163,12 @@ public final class fz extends org.telegram.ui.ActionBar.v2 implements org.telegr
             if (z9) {
                 view.setVisibility(0);
             }
-            AnimatorSet animatorSet = this.f33722m1;
+            AnimatorSet animatorSet = this.f33666m1;
             if (animatorSet != null) {
                 animatorSet.cancel();
             }
             AnimatorSet animatorSet2 = new AnimatorSet();
-            this.f33722m1 = animatorSet2;
+            this.f33666m1 = animatorSet2;
             Property property = View.ALPHA;
             if (z9) {
                 f10 = 1.0f;
@@ -176,16 +176,16 @@ public final class fz extends org.telegram.ui.ActionBar.v2 implements org.telegr
                 f10 = 0.0f;
             }
             animatorSet2.playTogether(ObjectAnimator.ofFloat(view, property, f10));
-            this.f33722m1.setDuration(150L);
-            this.f33722m1.addListener(new t9(8, this, z9));
-            this.f33722m1.start();
+            this.f33666m1.setDuration(150L);
+            this.f33666m1.addListener(new t9(8, this, z9));
+            this.f33666m1.start();
         }
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i7 == org.telegram.messenger.qs.f25001i4) {
-            org.telegram.messenger.g0.d0(this.f33720j1, new di.e(13));
+            org.telegram.messenger.g0.d0(this.f33664j1, new di.e(13));
         }
     }
 
@@ -198,12 +198,12 @@ public final class fz extends org.telegram.ui.ActionBar.v2 implements org.telegr
     @Override
     public final void s0() {
         super.s0();
-        bi.q1 q1Var = this.f33720j1;
+        bi.q1 q1Var = this.f33664j1;
         if (q1Var != null) {
             try {
                 int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ci, this.I0);
-                if (w02 != this.f33719i1) {
-                    this.f33719i1 = w02;
+                if (w02 != this.f33663i1) {
+                    this.f33663i1 = w02;
                     for (int i7 = 0; i7 < q1Var.getChildCount(); i7++) {
                         View childAt = q1Var.getChildAt(i7);
                         if ((childAt instanceof org.telegram.ui.ActionBar.o2) && ((org.telegram.ui.ActionBar.o2) childAt).getTextView() != null) {

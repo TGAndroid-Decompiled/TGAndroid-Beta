@@ -80,10 +80,10 @@ public final class v0 extends FrameLayout {
             return;
         }
         textViewArr[1].setText(str);
-        ((t60) this.f30610e).f38276x1 = true;
+        ((t60) this.f30610e).f38239x1 = true;
         AnimatorSet animatorSet = new AnimatorSet();
         animatorSet.setDuration(180L);
-        animatorSet.setInterpolator(xq.f40311g);
+        animatorSet.setInterpolator(xq.f40330g);
         Property property = View.ALPHA;
         ObjectAnimator ofFloat = ObjectAnimator.ofFloat(textViewArr[0], property, 1.0f, 0.0f);
         TextView textView = textViewArr[0];
@@ -113,15 +113,15 @@ public final class v0 extends FrameLayout {
         switch (this.f30607a) {
             case 4:
                 org.telegram.ui.Wallet.c6 c6Var = (org.telegram.ui.Wallet.c6) this.f30610e;
-                org.telegram.ui.Wallet.z5 z5Var = c6Var.f42203b;
+                org.telegram.ui.Wallet.z5 z5Var = c6Var.f42228b;
                 if (z5Var != null) {
                     float[] fArr = (float[]) c6Var.h.f12597b;
-                    float[] fArr2 = z5Var.f43423k;
-                    float[] fArr3 = z5Var.f43424l;
-                    Paint paint = z5Var.f43408b;
+                    float[] fArr2 = z5Var.f43448k;
+                    float[] fArr3 = z5Var.f43449l;
+                    Paint paint = z5Var.f43433b;
                     Paint paint2 = z5Var.d;
-                    Path path = z5Var.f43428p;
-                    if (z5Var.f43429q != 0.0f && (Math.abs(Math.sin(Math.toRadians(z5Var.S))) >= 0.009999999776482582d || Math.abs(Math.sin(Math.toRadians(z5Var.T))) >= 0.009999999776482582d)) {
+                    Path path = z5Var.f43453p;
+                    if (z5Var.f43454q != 0.0f && (Math.abs(Math.sin(Math.toRadians(z5Var.S))) >= 0.009999999776482582d || Math.abs(Math.sin(Math.toRadians(z5Var.T))) >= 0.009999999776482582d)) {
                         int a10 = org.telegram.ui.Wallet.q7.a(-16216082, fArr);
                         int a11 = org.telegram.ui.Wallet.q7.a(-15291399, fArr);
                         paint.setShader(null);
@@ -138,8 +138,8 @@ public final class v0 extends FrameLayout {
                         paint2.setShader(null);
                         paint2.setAlpha(255);
                         float f11 = 0.6f;
-                        paint2.setStrokeWidth(z5Var.f43429q * 0.6f);
-                        int[] iArr = z5Var.f43427o;
+                        paint2.setStrokeWidth(z5Var.f43454q * 0.6f);
+                        int[] iArr = z5Var.f43452o;
                         int length = iArr.length;
                         int i11 = 0;
                         while (i11 < length) {
@@ -147,7 +147,7 @@ public final class v0 extends FrameLayout {
                             int i13 = i12 * 2;
                             int i14 = ((i12 + 1) % 76) * 2;
                             float f12 = f11;
-                            float[] fArr4 = z5Var.f43422j;
+                            float[] fArr4 = z5Var.f43447j;
                             float f13 = (fArr4[i13] + fArr4[i14]) * 0.5f;
                             int i15 = i13 + 1;
                             int i16 = i14 + 1;
@@ -157,7 +157,7 @@ public final class v0 extends FrameLayout {
                             float sqrt = 1.0f / ((float) Math.sqrt(rf.b.d(f14, f14, f13 * f13, 0.0144f)));
                             float f15 = f13 * sqrt;
                             float f16 = f14 * sqrt;
-                            if (z5Var.f43430r) {
+                            if (z5Var.f43455r) {
                                 f10 = -0.12f;
                             } else {
                                 f10 = 0.12f;
@@ -165,12 +165,12 @@ public final class v0 extends FrameLayout {
                             float f17 = f10 * sqrt;
                             float c10 = org.telegram.ui.Wallet.z5.c((z5Var.Y * f17) + (z5Var.X * f16) + (z5Var.W * f15));
                             float f18 = f15 * z5Var.Z;
-                            float f19 = z5Var.f43409b0 * f17;
+                            float f19 = z5Var.f43434b0 * f17;
                             int i18 = i11;
                             float[] fArr5 = fArr2;
                             float[] fArr6 = fArr3;
                             float B = com.google.android.recaptcha.internal.a.B(c10, 0.38f, 0.36f, 1.5f);
-                            float pow = ((float) Math.pow(org.telegram.ui.Wallet.z5.c(f19 + (f16 * z5Var.f43407a0) + f18), 24.0d)) * 0.1f * 1.5f;
+                            float pow = ((float) Math.pow(org.telegram.ui.Wallet.z5.c(f19 + (f16 * z5Var.f43432a0) + f18), 24.0d)) * 0.1f * 1.5f;
                             int d = org.telegram.ui.Wallet.z5.d(B, 0.089999996f, pow, a10, a11);
                             paint.setColor(d);
                             paint2.setColor(d);
@@ -180,11 +180,11 @@ public final class v0 extends FrameLayout {
                             path.lineTo(fArr6[i14], fArr6[i16]);
                             path.lineTo(fArr6[i13], fArr6[i15]);
                             path.close();
-                            paint2.setStrokeWidth(z5Var.f43429q * f12);
+                            paint2.setStrokeWidth(z5Var.f43454q * f12);
                             canvas.drawPath(path, paint);
                             canvas.drawPath(path, paint2);
                             paint2.setColor(org.telegram.ui.Wallet.z5.d(B * 0.75f, 0.067499995f, pow * 0.75f, a10, a11));
-                            paint2.setStrokeWidth(z5Var.f43429q * 0.7f);
+                            paint2.setStrokeWidth(z5Var.f43454q * 0.7f);
                             canvas.drawLine(fArr6[i13], fArr6[i15], fArr6[i14], fArr6[i16], paint2);
                             i11 = i18 + 1;
                             length = i17;
@@ -247,7 +247,7 @@ public final class v0 extends FrameLayout {
         switch (this.f30607a) {
             case 1:
                 fz fzVar = (fz) this.f30610e;
-                if (motionEvent.getAction() == 0 && fzVar.f33723o1 != 0 && motionEvent.getY() < fzVar.f33723o1) {
+                if (motionEvent.getAction() == 0 && fzVar.f33667o1 != 0 && motionEvent.getY() < fzVar.f33667o1) {
                     fzVar.dismiss();
                     return true;
                 }
@@ -278,16 +278,16 @@ public final class v0 extends FrameLayout {
             case 1:
                 int size = View.MeasureSpec.getSize(i10);
                 fz fzVar = (fz) this.f30610e;
-                bi.q1 q1Var = fzVar.f33720j1;
+                bi.q1 q1Var = fzVar.f33664j1;
                 boolean z9 = true;
-                fzVar.f33724p1 = true;
+                fzVar.f33668p1 = true;
                 int i12 = fzVar.f28645t0;
                 setPadding(i12, org.telegram.messenger.g0.f22531m, i12, 0);
-                fzVar.f33724p1 = false;
+                fzVar.f33668p1 = false;
                 int L = org.telegram.messenger.g0.L(48.0f);
                 int L2 = org.telegram.messenger.g0.L(48.0f);
                 int i13 = fzVar.f28644s0;
-                int b10 = (fzVar.f33721k1.b() * L2) + L + i13 + org.telegram.messenger.g0.f22531m;
+                int b10 = (fzVar.f33665k1.b() * L2) + L + i13 + org.telegram.messenger.g0.f22531m;
                 int i14 = size / 5;
                 if (b10 < i14 * 3.2d) {
                     i11 = 0;
@@ -301,9 +301,9 @@ public final class v0 extends FrameLayout {
                     i13 = i11;
                 }
                 if (q1Var.getPaddingTop() != i13) {
-                    fzVar.f33724p1 = true;
+                    fzVar.f33668p1 = true;
                     q1Var.setPadding(org.telegram.messenger.g0.L(10.0f), i13, org.telegram.messenger.g0.L(10.0f), 0);
-                    fzVar.f33724p1 = false;
+                    fzVar.f33668p1 = false;
                 }
                 if (b10 < size) {
                     z9 = false;
@@ -331,8 +331,8 @@ public final class v0 extends FrameLayout {
             case 4:
                 super.onSizeChanged(i7, i10, i11, i12);
                 org.telegram.ui.Wallet.c6 c6Var = (org.telegram.ui.Wallet.c6) this.f30610e;
-                c6Var.f42214i0 = -1;
-                c6Var.b(c6Var.f42206c0, c6Var.f42211f0);
+                c6Var.f42239i0 = -1;
+                c6Var.b(c6Var.f42231c0, c6Var.f42236f0);
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);
@@ -357,7 +357,7 @@ public final class v0 extends FrameLayout {
     public void requestLayout() {
         switch (this.f30607a) {
             case 1:
-                if (!((fz) this.f30610e).f33724p1) {
+                if (!((fz) this.f30610e).f33668p1) {
                     super.requestLayout();
                     return;
                 }

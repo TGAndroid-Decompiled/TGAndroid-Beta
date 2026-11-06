@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import java.io.Serializable;
 import org.telegram.messenger.a20;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.an;
 public final class r0 implements org.telegram.ui.ActionBar.r1, a20 {
     public final int f17515a;
@@ -29,32 +29,32 @@ public final class r0 implements org.telegram.ui.ActionBar.r1, a20 {
 
     @Override
     public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        r31 r31Var = (r31) obj;
+        w31 w31Var = (w31) obj;
         View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
         s0 s0Var = this.f17516b;
-        if (!s0Var.f17522c.h(r31Var)) {
-            int i7 = r31Var.d;
-            if (i7 != 2 && r31Var.f54415a != 17) {
+        if (!s0Var.f17522c.h(w31Var)) {
+            int i7 = w31Var.d;
+            if (i7 != 2 && w31Var.f54440a != 17) {
                 if (i7 == 1) {
                     s0Var.f17526r = !s0Var.f17526r;
-                    s0Var.f17521b.f35167f3.O(true);
+                    s0Var.f17521b.f36781f3.O(true);
                     s0Var.a0(true);
                     return;
                 } else if (i7 == 3) {
                     a0 a0Var = s0Var.f17522c;
                     s0Var.f17527s = true;
                     a0Var.h = true;
-                    s0Var.f17521b.f35167f3.O(true);
+                    s0Var.f17521b.f36781f3.O(true);
                     s0Var.a0(true);
                     return;
                 } else if (i7 == 4) {
                     a0 a0Var2 = s0Var.f17522c;
                     s0Var.f17527s = false;
                     a0Var2.h = false;
-                    s0Var.f17521b.f35167f3.O(true);
+                    s0Var.f17521b.f36781f3.O(true);
                     s0Var.a0(true);
                     return;
                 } else {

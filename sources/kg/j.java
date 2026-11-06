@@ -33,10 +33,10 @@ public final class j extends FrameLayout {
                 h6.m mVar = (h6.m) this.d;
                 Path path = (Path) this.f17404c;
                 di diVar = (di) this.f17405e;
-                fh.g gVar = diVar.f32954v2;
+                fh.g gVar = diVar.f32967v2;
                 if (gVar != null) {
                     gVar.setBounds(0, (int) diVar.P3, getMeasuredWidth(), getMeasuredHeight());
-                    diVar.f32954v2.draw(canvas);
+                    diVar.f32967v2.draw(canvas);
                 }
                 float L = org.telegram.messenger.g0.L(20.0f);
                 int L2 = org.telegram.messenger.g0.L(7.0f);
@@ -87,12 +87,12 @@ public final class j extends FrameLayout {
             case 1:
                 int i13 = this.f17403b;
                 di diVar = (di) this.f17405e;
-                int top = i13 - diVar.f32941s1.getTop();
+                int top = i13 - diVar.f32954s1.getTop();
                 super.onLayout(z9, i7, i10, i11, i12);
                 this.f17403b = getHeight();
-                if (diVar.f32941s1.getVisibility() == 0 && getHeight() - diVar.f32941s1.getTop() != top) {
-                    diVar.f32941s1.setTranslationY(diVar.f32941s1.getTranslationY() + ((getHeight() - diVar.f32941s1.getTop()) - top));
-                    diVar.f32941s1.animate().translationY(0.0f).setDuration(320L).setInterpolator(xq.h).start();
+                if (diVar.f32954s1.getVisibility() == 0 && getHeight() - diVar.f32954s1.getTop() != top) {
+                    diVar.f32954s1.setTranslationY(diVar.f32954s1.getTranslationY() + ((getHeight() - diVar.f32954s1.getTop()) - top));
+                    diVar.f32954s1.animate().translationY(0.0f).setDuration(320L).setInterpolator(xq.h).start();
                     return;
                 }
                 return;

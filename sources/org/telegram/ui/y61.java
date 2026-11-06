@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.widget.TextView;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class y61 implements org.telegram.ui.Components.up {
-    public final u71 f52134a;
+    public final u71 f52155a;
 
     public y61(u71 u71Var) {
-        this.f52134a = u71Var;
+        this.f52155a = u71Var;
     }
 
     @Override
     public final void a(boolean z9) {
         int i7;
         int i10;
-        u71 u71Var = this.f52134a;
-        org.telegram.ui.ActionBar.h6 h6Var = u71Var.f50303w;
+        u71 u71Var = this.f52155a;
+        org.telegram.ui.ActionBar.h6 h6Var = u71Var.f50325w;
         if (z9) {
             if (h6Var.f27530r == null) {
                 u71Var.finishFragment();
@@ -37,7 +37,7 @@ public final class y61 implements org.telegram.ui.Components.up {
 
     @Override
     public final void b() {
-        u71 u71Var = this.f52134a;
+        u71 u71Var = this.f52155a;
         if (u71Var.getParentActivity() != null) {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(u71Var.getParentActivity());
             String M0 = org.telegram.messenger.hd.M0(2131751485, null);
@@ -49,22 +49,22 @@ public final class y61 implements org.telegram.ui.Components.up {
             u71Var.showDialog(u1Var);
             TextView textView = (TextView) u1Var.d(-1);
             if (textView != null) {
-                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28089q7, u71Var.f50244a);
+                org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28089q7, u71Var.f50266a);
             }
         }
     }
 
     @Override
     public final void c(int i7, int i10, boolean z9) {
-        u71 u71Var = this.f52134a;
-        if (u71Var.f50248b == 2) {
+        u71 u71Var = this.f52155a;
+        if (u71Var.f50270b == 2) {
             u71Var.f1(i7, i10, true);
             return;
         }
         Runnable runnable = u71Var.Z;
-        org.telegram.ui.ActionBar.h6 h6Var = u71Var.f50303w;
+        org.telegram.ui.ActionBar.h6 h6Var = u71Var.f50325w;
         if (i10 == -1) {
-            int i11 = u71Var.f50283n;
+            int i11 = u71Var.f50305n;
             if (i11 == 1 || i11 == 2) {
                 long j3 = u71Var.J;
                 if (j3 != 0) {
@@ -122,7 +122,7 @@ public final class y61 implements org.telegram.ui.Components.up {
                     vpVar4.e(E0, 0);
                 }
             }
-            int i16 = u71Var.f50283n;
+            int i16 = u71Var.f50305n;
             if (i16 == 1 || i16 == 3) {
                 int i17 = u71Var.E;
                 if (i17 != 0) {
@@ -161,7 +161,7 @@ public final class y61 implements org.telegram.ui.Components.up {
                 }
             }
             org.telegram.ui.ActionBar.k6.t1(false, false);
-            u71Var.f50301v0.g1();
+            u71Var.f50323v0.g1();
             return;
         }
         int i22 = u71Var.Y;
@@ -172,8 +172,8 @@ public final class y61 implements org.telegram.ui.Components.up {
         u71Var.Y = i10;
         if (z9) {
             runnable.run();
-        } else if (!u71Var.f50245a0) {
-            u71Var.f50245a0 = true;
+        } else if (!u71Var.f50267a0) {
+            u71Var.f50267a0 = true;
             u71Var.fragmentView.postDelayed(runnable, 16L);
         }
     }
@@ -181,9 +181,9 @@ public final class y61 implements org.telegram.ui.Components.up {
     @Override
     public final int d(int i7) {
         org.telegram.ui.ActionBar.h6 h6Var;
-        u71 u71Var = this.f52134a;
-        if (u71Var.f50283n == 3) {
-            org.telegram.ui.ActionBar.j6 j6Var = u71Var.f50263f0;
+        u71 u71Var = this.f52155a;
+        if (u71Var.f50305n == 3) {
+            org.telegram.ui.ActionBar.j6 j6Var = u71Var.f50285f0;
             if (j6Var.S && i7 == 0 && (h6Var = (org.telegram.ui.ActionBar.h6) j6Var.f27626a0.get(org.telegram.ui.ActionBar.k6.f28024n)) != null) {
                 return h6Var.f27518e;
             }

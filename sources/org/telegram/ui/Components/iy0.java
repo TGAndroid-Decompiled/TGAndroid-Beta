@@ -4,18 +4,18 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class iy0 implements org.telegram.ui.ActionBar.r1 {
-    public final int f34825a;
-    public final ky0 f34826b;
+    public final int f34788a;
+    public final ky0 f34789b;
 
     public iy0(ky0 ky0Var, int i7) {
-        this.f34825a = i7;
-        this.f34826b = ky0Var;
+        this.f34788a = i7;
+        this.f34789b = ky0Var;
     }
 
     @Override
     public final void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        int i10 = this.f34825a;
-        ky0 ky0Var = this.f34826b;
+        int i10 = this.f34788a;
+        ky0 ky0Var = this.f34789b;
         switch (i10) {
             case 0:
                 ky0Var.a();

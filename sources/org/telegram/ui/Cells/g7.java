@@ -577,7 +577,7 @@ public class g7 extends FrameLayout implements org.telegram.messenger.x5, ls, or
         } else if (this.f29193s != null && this.H != null) {
             accessibilityNodeInfo.setText(((Object) this.f29193s.getText()) + ", " + ((Object) this.H.getText()));
         }
-        if (this.f29177b.f40043a.f31258q) {
+        if (this.f29177b.f40050a.f31258q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }

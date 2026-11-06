@@ -45,32 +45,32 @@ public final class l51 implements ff0 {
     public final RectF Q;
     public float[] R;
     public final float S;
-    public float f47397a;
-    public final Paint f47398b;
-    public final boolean f47399c;
+    public float f47424a;
+    public final Paint f47425b;
+    public final boolean f47426c;
     public final ValueAnimator d;
-    public final float f47400e;
-    public final float f47401f;
-    public final float f47402g;
+    public final float f47427e;
+    public final float f47428f;
+    public final float f47429g;
     public final int h;
-    public final int f47403i;
-    public final float f47404j;
-    public final org.telegram.messenger.ij f47405k;
-    public final float f47406l;
-    public final float f47407m;
-    public final boolean f47408n;
-    public final boolean f47409o;
-    public final StaticLayout f47410p;
-    public final StaticLayout f47411q;
-    public final org.telegram.ui.Cells.q1 f47412r;
-    public final org.telegram.ui.Components.pj0 f47413s;
-    public final org.telegram.ui.Components.ci f47414t;
-    public final Matrix f47415u;
+    public final int f47430i;
+    public final float f47431j;
+    public final org.telegram.messenger.ij f47432k;
+    public final float f47433l;
+    public final float f47434m;
+    public final boolean f47435n;
+    public final boolean f47436o;
+    public final StaticLayout f47437p;
+    public final StaticLayout f47438q;
+    public final org.telegram.ui.Cells.q1 f47439r;
+    public final org.telegram.ui.Components.pj0 f47440s;
+    public final org.telegram.ui.Components.ci f47441t;
+    public final Matrix f47442u;
     public final Paint v;
-    public final int f47416w;
-    public final float f47417x;
-    public final float f47418y;
-    public final float f47419z;
+    public final int f47443w;
+    public final float f47444x;
+    public final float f47445y;
+    public final float f47446z;
 
     public l51(org.telegram.ui.Cells.q1 q1Var, an anVar, org.telegram.ui.Components.pj0 pj0Var, org.telegram.ui.Components.ci ciVar, org.telegram.ui.ActionBar.f6 f6Var) {
         float f10;
@@ -86,7 +86,7 @@ public final class l51 implements ff0 {
         Object[] spans;
         boolean z11;
         Paint paint = new Paint(1);
-        this.f47398b = paint;
+        this.f47425b = paint;
         this.D = new h2.f((int[]) null);
         PointF pointF = new PointF();
         this.O = pointF;
@@ -94,23 +94,23 @@ public final class l51 implements ff0 {
         this.Q = new RectF();
         this.N = f6Var;
         if (q1Var.getMessageObject().f23296z2 != null && q1Var.getMessageObject().f23296z2.size() <= 1 && !q1Var.getMessageObject().f23296z2.isEmpty() && ((org.telegram.messenger.fj) q1Var.getMessageObject().f23296z2.get(0)).f22390e.getLineCount() <= 10) {
-            this.f47412r = q1Var;
-            this.f47413s = pj0Var;
-            this.f47414t = ciVar;
+            this.f47439r = q1Var;
+            this.f47440s = pj0Var;
+            this.f47441t = ciVar;
             this.A = anVar;
             qj qjVar = anVar.Z;
             this.G = qjVar;
             if (qjVar != null && qjVar.getEditField() != null && qjVar.getEditField().getLayout() != null) {
                 qjVar.getRecordCircle();
                 paint.setFilterBitmap(true);
-                this.f47405k = q1Var.getMessageObject();
+                this.f47432k = q1Var.getMessageObject();
                 if (!q1Var.getTransitionParams().f30854w0) {
                     q1Var.draw(new Canvas());
                 }
                 q1Var.setEnterTransitionInProgress(true);
                 Editable editText = qjVar.getEditText();
                 CharSequence charSequence = q1Var.getMessageObject().v;
-                this.f47408n = false;
+                this.f47435n = false;
                 qjVar.getEditField().getLayout().getHeight();
                 TextPaint textPaint = org.telegram.ui.ActionBar.k6.f28045o2;
                 org.telegram.messenger.g0.L(20.0f);
@@ -183,7 +183,7 @@ public final class l51 implements ff0 {
                 if (editText.length() == charSequence.length() && !z9) {
                     i7 = 0;
                 } else {
-                    this.f47408n = true;
+                    this.f47435n = true;
                     int[] iArr = new int[1];
                     CharSequence P3 = org.telegram.messenger.g0.P3(editText, iArr);
                     if (iArr[0] > 0) {
@@ -200,35 +200,35 @@ public final class l51 implements ff0 {
                 int lineCount = qjVar.getEditField().getLayout().getLineCount();
                 int width = (int) (qjVar.getEditField().getLayout().getWidth() / textSize);
                 if (Build.VERSION.SDK_INT >= 24) {
-                    this.f47410p = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
+                    this.f47437p = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(Layout.Alignment.ALIGN_NORMAL).build();
                 } else {
-                    this.f47410p = new StaticLayout(charSequence, textPaint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                    this.f47437p = new StaticLayout(charSequence, textPaint, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
                 }
-                this.H = org.telegram.ui.Components.r5.update(2, (View) null, this.H, this.f47410p);
+                this.H = org.telegram.ui.Components.r5.update(2, (View) null, this.H, this.f47437p);
                 jh.k.b(qjVar.getEditField(), anVar.l1, pointF);
                 float f13 = pointF.y;
-                this.f47418y = pointF.x;
-                this.f47419z = ((org.telegram.messenger.g0.L(10.0f) + f13) - qjVar.getEditField().getScrollY()) + i7;
+                this.f47445y = pointF.x;
+                this.f47446z = ((org.telegram.messenger.g0.L(10.0f) + f13) - qjVar.getEditField().getScrollY()) + i7;
                 float f14 = 0.0f;
-                this.f47406l = 0.0f;
+                this.f47433l = 0.0f;
                 float f15 = Float.MAX_VALUE;
-                for (int i13 = 0; i13 < this.f47410p.getLineCount(); i13++) {
-                    float lineLeft = this.f47410p.getLineLeft(i13);
+                for (int i13 = 0; i13 < this.f47437p.getLineCount(); i13++) {
+                    float lineLeft = this.f47437p.getLineLeft(i13);
                     if (lineLeft < f15) {
                         f15 = lineLeft;
                     }
                 }
                 if (f15 != Float.MAX_VALUE) {
-                    this.f47406l = f15;
+                    this.f47433l = f15;
                 }
-                this.f47410p.getHeight();
+                this.f47437p.getHeight();
                 float L = org.telegram.messenger.g0.L(f10) + f13;
-                this.f47404j = L;
+                this.f47431j = L;
                 float f16 = 12.0f;
                 if (this.G.z0()) {
-                    this.f47404j = L - org.telegram.messenger.g0.L(12.0f);
+                    this.f47431j = L - org.telegram.messenger.g0.L(12.0f);
                 }
-                this.f47417x = f13 + qjVar.getEditField().getMeasuredHeight();
+                this.f47444x = f13 + qjVar.getEditField().getMeasuredHeight();
                 org.telegram.messenger.fj fjVar = (org.telegram.messenger.fj) q1Var.getMessageObject().f23296z2.get(0);
                 this.E = fjVar;
                 StaticLayout staticLayout = fjVar.f22390e;
@@ -236,12 +236,12 @@ public final class l51 implements ff0 {
                 double h = i0.a.h(org.telegram.ui.ActionBar.k6.w0(i14, this.N));
                 int i15 = org.telegram.ui.ActionBar.k6.Ie;
                 if (Math.abs(h - i0.a.h(org.telegram.ui.ActionBar.k6.w0(i15, this.N))) > 0.20000000298023224d) {
-                    this.f47408n = true;
-                    this.f47409o = true;
+                    this.f47435n = true;
+                    this.f47436o = true;
                 }
                 this.L = org.telegram.ui.ActionBar.k6.w0(i15, this.N);
                 this.M = org.telegram.ui.ActionBar.k6.w0(i14, this.N);
-                if (staticLayout.getLineCount() == this.f47410p.getLineCount()) {
+                if (staticLayout.getLineCount() == this.f47437p.getLineCount()) {
                     lineCount = staticLayout.getLineCount();
                     int i16 = 0;
                     i10 = 0;
@@ -249,15 +249,15 @@ public final class l51 implements ff0 {
                     while (true) {
                         if (i16 < lineCount) {
                             f12 = f16;
-                            StaticLayout staticLayout2 = this.f47410p;
+                            StaticLayout staticLayout2 = this.f47437p;
                             f11 = f14;
                             if (staticLayout2.getLineRight(i16) == staticLayout2.getWidth() && staticLayout2.getLineLeft(i16) != f11) {
                                 i11++;
                             } else {
                                 i10++;
                             }
-                            if (staticLayout.getLineEnd(i16) != this.f47410p.getLineEnd(i16)) {
-                                this.f47408n = true;
+                            if (staticLayout.getLineEnd(i16) != this.f47437p.getLineEnd(i16)) {
+                                this.f47435n = true;
                             } else {
                                 i16++;
                                 f16 = f12;
@@ -271,27 +271,27 @@ public final class l51 implements ff0 {
                 } else {
                     f11 = 0.0f;
                     f12 = 12.0f;
-                    this.f47408n = true;
+                    this.f47435n = true;
                     i10 = 0;
                     i11 = 0;
                 }
-                if (!this.f47408n && i11 > 0 && i10 > 0) {
+                if (!this.f47435n && i11 > 0 && i10 > 0) {
                     SpannableString spannableString = new SpannableString(charSequence);
                     SpannableString spannableString2 = new SpannableString(charSequence);
                     float f17 = Float.MAX_VALUE;
                     int i17 = 0;
                     while (i17 < lineCount) {
-                        StaticLayout staticLayout3 = this.f47410p;
+                        StaticLayout staticLayout3 = this.f47437p;
                         if (staticLayout3.getLineRight(i17) == staticLayout3.getWidth() && staticLayout3.getLineLeft(i17) != f11) {
                             i12 = lineCount;
-                            spannableString.setSpan(new org.telegram.ui.Components.hy(false), this.f47410p.getLineStart(i17), this.f47410p.getLineEnd(i17), 0);
-                            float lineLeft2 = this.f47410p.getLineLeft(i17);
+                            spannableString.setSpan(new org.telegram.ui.Components.hy(false), this.f47437p.getLineStart(i17), this.f47437p.getLineEnd(i17), 0);
+                            float lineLeft2 = this.f47437p.getLineLeft(i17);
                             if (lineLeft2 < f17) {
                                 f17 = lineLeft2;
                             }
                         } else {
                             i12 = lineCount;
-                            spannableString2.setSpan(new org.telegram.ui.Components.hy(false), this.f47410p.getLineStart(i17), this.f47410p.getLineEnd(i17), 0);
+                            spannableString2.setSpan(new org.telegram.ui.Components.hy(false), this.f47437p.getLineStart(i17), this.f47437p.getLineEnd(i17), 0);
                         }
                         i17++;
                         lineCount = i12;
@@ -299,45 +299,45 @@ public final class l51 implements ff0 {
                     if (Build.VERSION.SDK_INT >= 24) {
                         StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(spannableString, 0, spannableString.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0);
                         Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
-                        this.f47410p = hyphenationFrequency.setAlignment(alignment).build();
-                        this.f47411q = StaticLayout.Builder.obtain(spannableString2, 0, spannableString2.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(alignment).build();
+                        this.f47437p = hyphenationFrequency.setAlignment(alignment).build();
+                        this.f47438q = StaticLayout.Builder.obtain(spannableString2, 0, spannableString2.length(), textPaint, width).setBreakStrategy(1).setHyphenationFrequency(0).setAlignment(alignment).build();
                     } else {
                         Layout.Alignment alignment2 = Layout.Alignment.ALIGN_NORMAL;
                         TextPaint textPaint2 = textPaint;
-                        this.f47410p = new StaticLayout(spannableString, textPaint2, width, alignment2, 1.0f, 0.0f, false);
-                        this.f47411q = new StaticLayout(spannableString2, textPaint2, width, alignment2, 1.0f, 0.0f, false);
+                        this.f47437p = new StaticLayout(spannableString, textPaint2, width, alignment2, 1.0f, 0.0f, false);
+                        this.f47438q = new StaticLayout(spannableString2, textPaint2, width, alignment2, 1.0f, 0.0f, false);
                     }
                 }
-                this.f47407m = this.f47410p.getWidth() - ((org.telegram.messenger.fj) q1Var.getMessageObject().f23296z2.get(0)).f22390e.getWidth();
+                this.f47434m = this.f47437p.getWidth() - ((org.telegram.messenger.fj) q1Var.getMessageObject().f23296z2.get(0)).f22390e.getWidth();
                 if (q1Var.getMessageObject().O1() != 0 && q1Var.P7 != null) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                this.f47399c = z10;
+                this.f47426c = z10;
                 if (z10) {
-                    org.telegram.ui.ActionBar.k5 k5Var = ((org.telegram.ui.Components.zn[]) anVar.f43707b0.f3761b)[0].f41032c;
+                    org.telegram.ui.ActionBar.k5 k5Var = ((org.telegram.ui.Components.zn[]) anVar.f43732b0.f3761b)[0].f41057c;
                     jh.k.b(k5Var, anVar.l1, this.O);
                     PointF pointF2 = this.O;
-                    this.f47400e = pointF2.x;
-                    this.f47402g = pointF2.y;
-                    this.f47401f = ((View) k5Var.getParent()).getWidth();
-                    org.telegram.ui.ActionBar.k5 k5Var2 = ((org.telegram.ui.Components.zn[]) anVar.f43707b0.f3761b)[0].d;
+                    this.f47427e = pointF2.x;
+                    this.f47429g = pointF2.y;
+                    this.f47428f = ((View) k5Var.getParent()).getWidth();
+                    org.telegram.ui.ActionBar.k5 k5Var2 = ((org.telegram.ui.Components.zn[]) anVar.f43732b0.f3761b)[0].d;
                     jh.k.b(k5Var2, anVar.l1, this.O);
                     float f18 = this.O.y;
                     this.h = k5Var.getTextColor();
-                    this.f47403i = k5Var2.getTextColor();
-                    this.f47404j -= org.telegram.messenger.g0.L(46.0f);
+                    this.f47430i = k5Var2.getTextColor();
+                    this.f47431j -= org.telegram.messenger.g0.L(46.0f);
                 }
                 this.S = pj0Var.getPaddingBottom() - (anVar.Wc - org.telegram.messenger.g0.L(44.0f));
-                this.f47415u = new Matrix();
+                this.f47442u = new Matrix();
                 Paint paint2 = new Paint(1);
                 this.v = paint2;
                 paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
                 LinearGradient linearGradient = new LinearGradient(0.0f, org.telegram.messenger.g0.L(f12), 0.0f, 0.0f, 0, -16777216, Shader.TileMode.CLAMP);
                 this.B = linearGradient;
                 paint2.setShader(linearGradient);
-                this.f47416w = q1Var.getMessageObject().f23239k1;
+                this.f47443w = q1Var.getMessageObject().f23239k1;
                 float f19 = f11;
                 qjVar.getEditField().setAlpha(f19);
                 qjVar.setTextTransitionIsRunning(true);
@@ -347,10 +347,10 @@ public final class l51 implements ff0 {
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
                 this.d = ofFloat;
-                ofFloat.addUpdateListener(new qs0(1, qjVar, this, ciVar));
+                ofFloat.addUpdateListener(new rs0(1, qjVar, this, ciVar));
                 ofFloat.setInterpolator(new LinearInterpolator());
                 ofFloat.setDuration(250L);
-                ((ArrayList) ciVar.f32577c).add(this);
+                ((ArrayList) ciVar.f32581c).add(this);
                 ciVar.a();
                 ((ViewGroup) ciVar.d).invalidate();
                 this.D.d();

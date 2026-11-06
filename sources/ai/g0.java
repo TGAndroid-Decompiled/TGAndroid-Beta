@@ -24,7 +24,7 @@ import org.telegram.ui.pn;
 import org.telegram.ui.pz0;
 import org.telegram.ui.rz0;
 import org.telegram.ui.t3;
-import org.telegram.ui.yr0;
+import org.telegram.ui.zr0;
 import tg.i2;
 public final class g0 extends AnimatorListenerAdapter {
     public final int f1198a;
@@ -113,8 +113,8 @@ public final class g0 extends AnimatorListenerAdapter {
                 } else {
                     f11 = 0.0f;
                 }
-                t3Var.f49884y = f11;
-                if (!t3Var.f49879n) {
+                t3Var.f49912y = f11;
+                if (!t3Var.f49907n) {
                     t3Var.A();
                 }
                 t3Var.u();
@@ -139,9 +139,9 @@ public final class g0 extends AnimatorListenerAdapter {
                         q1Var.invalidate();
                     }
                     anVar.Qb(null);
-                    anVar.f43701a9 = null;
+                    anVar.f43726a9 = null;
                     anVar.l1.invalidate();
-                    anVar.f44013z0.invalidate();
+                    anVar.f44038z0.invalidate();
                     return;
                 }
                 return;
@@ -165,12 +165,12 @@ public final class g0 extends AnimatorListenerAdapter {
                 } else {
                     f12 = 0.0f;
                 }
-                jk0Var.f35002r = f12;
+                jk0Var.f34963r = f12;
                 jk0Var.D.setScaleX(org.telegram.messenger.g0.T1(0.8f, 1.0f, f12));
-                jk0Var.D.setScaleY(org.telegram.messenger.g0.T1(0.8f, 1.0f, jk0Var.f35002r));
-                jk0Var.D.setAlpha(jk0Var.f35002r);
-                jk0Var.f35003s.invalidate();
-                jk0Var.f35004w.invalidate();
+                jk0Var.D.setScaleY(org.telegram.messenger.g0.T1(0.8f, 1.0f, jk0Var.f34963r));
+                jk0Var.D.setAlpha(jk0Var.f34963r);
+                jk0Var.f34964s.invalidate();
+                jk0Var.f34965w.invalidate();
                 Runnable runnable2 = (Runnable) this.f1200c;
                 if (runnable2 != null) {
                     org.telegram.messenger.g0.h3(runnable2);
@@ -184,19 +184,19 @@ public final class g0 extends AnimatorListenerAdapter {
                 yVar2.setScaleY(1.0f);
                 yVar2.setAlpha(1.0f);
                 if (this.f1199b) {
-                    yVar.f39605y.removeView(yVar2);
+                    yVar.f39602y.removeView(yVar2);
                     yVar.e();
                 }
                 yVar2.setVisibility(8);
                 return;
             case 10:
                 c40 c40Var = (c40) this.d;
-                c20 c20Var = c40Var.f44609t4;
+                c20 c20Var = c40Var.f44630t4;
                 org.telegram.ui.Components.voip.y yVar3 = (org.telegram.ui.Components.voip.y) this.f1200c;
                 if (yVar3 != null) {
-                    yVar3.f39581f = false;
+                    yVar3.f39578f = false;
                 }
-                qs.f(c40Var.f44565k1.f21723a).j(c40Var.U4);
+                qs.f(c40Var.f44586k1.f21723a).j(c40Var.U4);
                 c40Var.T4 = false;
                 boolean z9 = this.f1199b;
                 if (z9) {
@@ -205,7 +205,7 @@ public final class g0 extends AnimatorListenerAdapter {
                     f13 = 0.0f;
                 }
                 c40Var.U3 = f13;
-                c40Var.R3.f39255n = f13;
+                c40Var.R3.f39252n = f13;
                 if (!z9) {
                     c40Var.N4.setAlpha(0);
                     c40Var.d1();
@@ -217,13 +217,13 @@ public final class g0 extends AnimatorListenerAdapter {
                     c40Var.W3 = false;
                     c40Var.P1.X = true;
                     c40Var.S3.setVisibility(8);
-                    if (c40Var.f44562j2) {
-                        c40Var.f44562j2 = false;
+                    if (c40Var.f44583j2) {
+                        c40Var.f44583j2 = false;
                         c40Var.Q0(true);
                     }
                     org.telegram.ui.Components.voip.y yVar4 = c40Var.Q4;
                     if (yVar4 != null) {
-                        yVar4.f39572a.setRoundCorners(0.0f);
+                        yVar4.f39569a.setRoundCorners(0.0f);
                     }
                 } else {
                     c20Var.setAlpha(1.0f);
@@ -234,7 +234,7 @@ public final class g0 extends AnimatorListenerAdapter {
                 }
                 c40Var.U0();
                 c40Var.f28615b.invalidate();
-                c40Var.f44556i1.invalidate();
+                c40Var.f44577i1.invalidate();
                 c40Var.H1.invalidate();
                 return;
             case 11:
@@ -248,16 +248,16 @@ public final class g0 extends AnimatorListenerAdapter {
                 wt0Var.setX(0.0f);
                 return;
             case 12:
-                yr0 yr0Var = (yr0) this.d;
+                zr0 zr0Var = (zr0) this.d;
                 if (this.f1199b) {
                     f14 = 1.0f;
                 } else {
                     f14 = 0.0f;
                 }
-                yr0Var.D = f14;
-                yr0Var.f52301c.invalidate();
-                yr0Var.d.invalidate();
-                yr0Var.e();
+                zr0Var.D = f14;
+                zr0Var.f52654c.invalidate();
+                zr0Var.d.invalidate();
+                zr0Var.e();
                 Runnable runnable3 = (Runnable) this.f1200c;
                 if (runnable3 != null) {
                     runnable3.run();
@@ -271,21 +271,21 @@ public final class g0 extends AnimatorListenerAdapter {
                 } else {
                     f15 = 0.0f;
                 }
-                rz0Var.f49583s = f15;
-                rz0Var.f49573b.invalidate();
-                rz0Var.f49575c.invalidate();
+                rz0Var.f49604s = f15;
+                rz0Var.f49594b.invalidate();
+                rz0Var.f49596c.invalidate();
                 rz0Var.e();
                 TextView textView = rz0Var.D;
                 if (textView != null) {
-                    textView.setAlpha(rz0Var.f49583s);
+                    textView.setAlpha(rz0Var.f49604s);
                 }
                 if (rz0Var.S) {
                     rz0Var.N.invalidate();
                 }
                 if (!rz0Var.S && (pz0Var = rz0Var.N) != null && pz0Var.getSeekBarWaveform() != null) {
                     pm0 seekBarWaveform = rz0Var.N.getSeekBarWaveform();
-                    seekBarWaveform.L = rz0Var.f49583s;
-                    q1 q1Var2 = seekBarWaveform.f37110n;
+                    seekBarWaveform.L = rz0Var.f49604s;
+                    q1 q1Var2 = seekBarWaveform.f36989n;
                     if (q1Var2 != null) {
                         q1Var2.invalidate();
                     }
@@ -303,9 +303,9 @@ public final class g0 extends AnimatorListenerAdapter {
                 } else {
                     f16 = 0.0f;
                 }
-                f81Var.f45566y = f16;
-                f81Var.f45553b.invalidate();
-                f81Var.f45555c.invalidate();
+                f81Var.f45571y = f16;
+                f81Var.f45558b.invalidate();
+                f81Var.f45560c.invalidate();
                 f81Var.e();
                 Runnable runnable5 = (Runnable) this.f1200c;
                 if (runnable5 != null) {
@@ -315,7 +315,7 @@ public final class g0 extends AnimatorListenerAdapter {
                 return;
             default:
                 i2 i2Var = (i2) this.d;
-                bi.t tVar = i2Var.f55641c;
+                bi.t tVar = i2Var.f55666c;
                 if (this.f1199b) {
                     f17 = 1.0f;
                 } else {
@@ -325,7 +325,7 @@ public final class g0 extends AnimatorListenerAdapter {
                 tVar.setAlpha(f17);
                 tVar.setScaleX(org.telegram.messenger.g0.T1(0.9f, 1.0f, i2Var.D));
                 tVar.setScaleY(org.telegram.messenger.g0.T1(0.9f, 1.0f, i2Var.D));
-                i2Var.f55640b.invalidate();
+                i2Var.f55665b.invalidate();
                 Runnable runnable6 = (Runnable) this.f1200c;
                 if (runnable6 != null) {
                     org.telegram.messenger.g0.h3(runnable6);

@@ -3,14 +3,14 @@ package org.telegram.ui;
 import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLRPC;
 public final class ie implements Runnable {
-    public final int f46647a;
-    public final an f46648b;
-    public final org.telegram.messenger.ij f46649c;
+    public final int f46656a;
+    public final an f46657b;
+    public final org.telegram.messenger.ij f46658c;
 
     public ie(an anVar, org.telegram.messenger.ij ijVar, int i7) {
-        this.f46647a = i7;
-        this.f46648b = anVar;
-        this.f46649c = ijVar;
+        this.f46656a = i7;
+        this.f46657b = anVar;
+        this.f46658c = ijVar;
     }
 
     @Override
@@ -21,9 +21,9 @@ public final class ie implements Runnable {
         int i10;
         int i11;
         int i12;
-        int i13 = this.f46647a;
-        an anVar = this.f46648b;
-        org.telegram.messenger.ij ijVar = this.f46649c;
+        int i13 = this.f46656a;
+        an anVar = this.f46657b;
+        org.telegram.messenger.ij ijVar = this.f46658c;
         switch (i13) {
             case 0:
                 TLRPC.MessageMedia messageMedia = ijVar.f23237k.media;
@@ -53,28 +53,28 @@ public final class ie implements Runnable {
                 message.destroyTime = anVar.getConnectionsManager().getCurrentTime() + i7;
                 ijVar.f23237k.destroyTimeMillis = anVar.getConnectionsManager().getCurrentTimeMillis() + (i7 * 1000);
                 if (anVar.h != null) {
-                    anVar.getMessagesController().p3(anVar.f43818j6, i7, ijVar.f23237k.random_id);
+                    anVar.getMessagesController().p3(anVar.f43843j6, i7, ijVar.f23237k.random_id);
                     return;
                 } else {
-                    anVar.getMessagesController().q3(anVar.f43818j6, ijVar.f1(), null, i7, 0L, z9);
+                    anVar.getMessagesController().q3(anVar.f43843j6, ijVar.f1(), null, i7, 0L, z9);
                     return;
                 }
             case 2:
                 int f12 = ijVar.f1();
-                an anVar2 = this.f46648b;
+                an anVar2 = this.f46657b;
                 anVar2.xb(f12, 0, true, 0, true, 0, null, null, new xf(anVar2, 13));
-                if (anVar2.f43994x6.isEmpty()) {
+                if (anVar2.f44019x6.isEmpty()) {
                     anVar2.oc(false);
                     return;
                 }
                 return;
             case 3:
-                an anVar3 = this.f46648b;
+                an anVar3 = this.f46657b;
                 anVar3.getClass();
                 int O1 = ijVar.O1();
                 TLRPC.Message message2 = ijVar.f23237k;
                 int i15 = message2.f26973id;
-                if (org.telegram.messenger.ij.B0(message2) == anVar3.f43714b7) {
+                if (org.telegram.messenger.ij.B0(message2) == anVar3.f43739b7) {
                     i10 = 1;
                 } else {
                     i10 = 0;
@@ -82,12 +82,12 @@ public final class ie implements Runnable {
                 anVar3.xb(O1, i15, true, i10, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) ijVar.f23237k.action).answer.option, null);
                 return;
             case 4:
-                an anVar4 = this.f46648b;
+                an anVar4 = this.f46657b;
                 anVar4.getClass();
                 int O12 = ijVar.O1();
                 TLRPC.Message message3 = ijVar.f23237k;
                 int i16 = message3.f26973id;
-                if (org.telegram.messenger.ij.B0(message3) == anVar4.f43714b7) {
+                if (org.telegram.messenger.ij.B0(message3) == anVar4.f43739b7) {
                     i11 = 1;
                 } else {
                     i11 = 0;
@@ -95,12 +95,12 @@ public final class ie implements Runnable {
                 anVar4.xb(O12, i16, true, i11, false, 0, null, null, null);
                 return;
             case 5:
-                an anVar5 = this.f46648b;
+                an anVar5 = this.f46657b;
                 anVar5.getClass();
                 int O13 = ijVar.O1();
                 TLRPC.Message message4 = ijVar.f23237k;
                 int i17 = message4.f26973id;
-                if (org.telegram.messenger.ij.B0(message4) == anVar5.f43714b7) {
+                if (org.telegram.messenger.ij.B0(message4) == anVar5.f43739b7) {
                     i12 = 1;
                 } else {
                     i12 = 0;
@@ -116,7 +116,7 @@ public final class ie implements Runnable {
                     return;
                 }
             case 7:
-                anVar.getMessagesController().C3(anVar.f43747e, anVar.f43761f, ijVar.f1(), true, false, false);
+                anVar.getMessagesController().C3(anVar.f43772e, anVar.f43786f, ijVar.f1(), true, false, false);
                 anVar.O3 = null;
                 return;
             default:

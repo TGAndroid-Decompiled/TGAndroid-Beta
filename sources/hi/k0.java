@@ -97,7 +97,7 @@ public abstract class k0 extends LinearLayout implements rh.a, te.i {
         while (it.hasNext()) {
             te.e eVar = (te.e) it.next();
             float c10 = eVar.c();
-            Object obj = eVar.f55379a;
+            Object obj = eVar.f55404a;
             float T1 = org.telegram.messenger.g0.T1(0.7f, 1.0f, c10);
             ((j0) obj).setAlpha(c10);
             ((j0) obj).setScaleX(T1);
@@ -139,9 +139,9 @@ public abstract class k0 extends LinearLayout implements rh.a, te.i {
             Iterator it = this.f14758y.iterator();
             while (it.hasNext()) {
                 te.e eVar = (te.e) it.next();
-                int childCount = ((j0) eVar.f55379a).getChildCount();
+                int childCount = ((j0) eVar.f55404a).getChildCount();
                 for (int i10 = 0; i10 < childCount; i10++) {
-                    View childAt = ((j0) eVar.f55379a).getChildAt(i10);
+                    View childAt = ((j0) eVar.f55404a).getChildAt(i10);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) childAt.getLayoutParams();
                     if (layoutParams.height != L) {
                         layoutParams.height = L;

@@ -19,8 +19,8 @@ import org.telegram.ui.Components.aj0;
 import org.telegram.ui.Components.ft0;
 import org.telegram.ui.Components.jt0;
 import org.telegram.ui.Components.kt0;
-import org.telegram.ui.Components.r31;
 import org.telegram.ui.Components.ut0;
+import org.telegram.ui.Components.w31;
 public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, org.telegram.ui.ActionBar.r1, ut0, w10, ft0, b20, jh.i, aj0, jt0, kt0 {
     public final int f21815a;
 
@@ -33,7 +33,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
     }
 
     @Override
-    public Boolean a(r31 r31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(w31 w31Var, View view, Integer num, Float f10, Float f11) {
         return Boolean.FALSE;
     }
 
@@ -152,7 +152,7 @@ public final class ch implements k9, Vector.TLDeserializer, OnCompleteListener, 
 
     @Override
     public RecyclerView l(View view) {
-        return ((org.telegram.ui.td) view).f50008a;
+        return ((org.telegram.ui.td) view).f50036a;
     }
 
     @Override

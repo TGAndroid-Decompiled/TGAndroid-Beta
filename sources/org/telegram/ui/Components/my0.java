@@ -9,33 +9,33 @@ import android.text.style.ReplacementSpan;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 public final class my0 extends ReplacementSpan {
-    public static final int f36160f = 0;
-    public ImageReceiver f36161a;
-    public int f36162b;
-    public int f36163c;
+    public static final int f36098f = 0;
+    public ImageReceiver f36099a;
+    public int f36100b;
+    public int f36101c;
     public final boolean d;
-    public final int f36164e;
+    public final int f36102e;
 
     public my0(View view, Bitmap bitmap, int i7, int i10, int i11, int i12) {
-        this.f36162b = i7;
-        this.f36163c = i10;
+        this.f36100b = i7;
+        this.f36101c = i10;
         ImageReceiver imageReceiver = new ImageReceiver(view);
-        this.f36161a = imageReceiver;
+        this.f36099a = imageReceiver;
         imageReceiver.J0 = true;
         imageReceiver.v0(bitmap);
         imageReceiver.f21206o1 = new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN);
-        this.f36164e = i12;
+        this.f36102e = i12;
         this.d = true;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        int i14 = this.f36162b;
-        int i15 = this.f36163c;
-        ImageReceiver imageReceiver = this.f36161a;
+        int i14 = this.f36100b;
+        int i15 = this.f36101c;
+        ImageReceiver imageReceiver = this.f36099a;
         canvas.save();
         if (this.d) {
-            imageReceiver.y0((int) f10, i12 - (i15 - this.f36164e), i14, i15);
+            imageReceiver.y0((int) f10, i12 - (i15 - this.f36102e), i14, i15);
         } else {
             imageReceiver.y0((int) f10, jg.g.D(org.telegram.messenger.k5.z(4.0f, i13, i11), i15, 2, i11), i14, i15);
         }
@@ -45,10 +45,10 @@ public final class my0 extends ReplacementSpan {
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        int i11 = this.f36163c;
+        int i11 = this.f36101c;
         if (fontMetricsInt != null) {
             if (this.d) {
-                int i12 = this.f36164e;
+                int i12 = this.f36102e;
                 int i13 = -(i11 - i12);
                 fontMetricsInt.ascent = i13;
                 fontMetricsInt.top = i13;
@@ -63,6 +63,6 @@ public final class my0 extends ReplacementSpan {
                 fontMetricsInt.bottom = L2;
             }
         }
-        return this.f36162b;
+        return this.f36100b;
     }
 }

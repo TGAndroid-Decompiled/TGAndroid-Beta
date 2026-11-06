@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.bj0;
 import org.telegram.ui.Components.ha0;
 import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.w80;
 public final class f0 implements bj0 {
     public final int f8973a;
@@ -87,7 +87,7 @@ public final class f0 implements bj0 {
                     }
                     return;
                 }
-                r31 G = w6Var.f13039h2.G(i7 - 1);
+                w31 G = w6Var.f13039h2.G(i7 - 1);
                 if (G != null && G.d == 1) {
                     new fi.w6(w6Var.getContext(), true, w6Var, c20Var, f6Var).show();
                     return;
@@ -109,20 +109,20 @@ public final class f0 implements bj0 {
                 fi.y5 y5Var = (fi.y5) obj;
                 org.telegram.ui.Cells.k3 k3Var = m7Var.R1;
                 org.telegram.ui.Cells.k3 k3Var2 = m7Var.Q1;
-                r31 G2 = m7Var.P1.G(i7 - 1);
+                w31 G2 = m7Var.P1.G(i7 - 1);
                 if (G2 != null) {
                     if (G2.H(fi.k7.class) && (webPage = m7Var.Y1) != null && !fi.m7.g1(webPage)) {
                         tg.i2 i2Var = new tg.i2(context, m7Var.f28612a);
                         tg.h0 h0Var = new tg.h0();
-                        h0Var.f55593c = k3Var2.d.getText().toString();
+                        h0Var.f55618c = k3Var2.d.getText().toString();
                         if (m7Var.f12458e2) {
                             str = k3Var.d.getText().toString();
                         }
-                        h0Var.f55592b = str;
+                        h0Var.f55617b = str;
                         TLRPC.WebPage webPage2 = m7Var.Y1;
                         h0Var.d = webPage2;
-                        h0Var.f55594e = m7Var.f12460g2;
-                        h0Var.f55595f = m7Var.f12459f2;
+                        h0Var.f55619e = m7Var.f12460g2;
+                        h0Var.f55620f = m7Var.f12459f2;
                         ai.i iVar = new ai.i(m7Var, 26);
                         i2Var.G = h0Var;
                         if (webPage2 != null && (webPage2.photo != null || ij.L4(webPage2.document))) {
@@ -130,13 +130,13 @@ public final class f0 implements bj0 {
                         } else {
                             i10 = 8;
                         }
-                        ha0 ha0Var = i2Var.f55649y;
+                        ha0 ha0Var = i2Var.f55674y;
                         ha0Var.setVisibility(i10);
-                        i2Var.f55643f.b(i2Var.f55639a, h0Var, false);
-                        i2Var.f55648x.a(!h0Var.f55595f, false);
-                        ha0Var.a(!h0Var.f55594e, false);
+                        i2Var.f55668f.b(i2Var.f55664a, h0Var, false);
+                        i2Var.f55673x.a(!h0Var.f55620f, false);
+                        ha0Var.a(!h0Var.f55619e, false);
                         i2Var.H = iVar;
-                        i2Var.f55642e.setImageDrawable(new fi.l3(y5Var, 9));
+                        i2Var.f55667e.setImageDrawable(new fi.l3(y5Var, 9));
                         i2Var.show();
                         return;
                     } else if (G2.d == 2 && (view instanceof org.telegram.ui.Cells.r8)) {
@@ -162,12 +162,12 @@ public final class f0 implements bj0 {
                 Context context2 = (Context) obj;
                 org.telegram.ui.Cells.s sVar = (org.telegram.ui.Cells.s) view;
                 w80 w80Var = (w80) tVar.f30287e3.get(i7);
-                if (w80Var.f51018e && !p10.o()) {
+                if (w80Var.f51024e && !p10.o()) {
                     f2Var.showDialog(new ug.w0(f2Var, 10, true));
                     return;
                 } else if (!sa.a(w80Var)) {
                     v4.c0 c0Var = new v4.c0(context2);
-                    c0Var.f57096a = i7;
+                    c0Var.f57121a = i7;
                     tVar.f30288f3.w0(c0Var);
                     sa.b(w80Var);
                     int i12 = org.telegram.ui.Cells.s.h;

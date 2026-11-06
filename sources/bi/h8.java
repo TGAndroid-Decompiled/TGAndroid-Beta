@@ -58,14 +58,14 @@ public final class h8 implements q0.a {
             case 3:
                 org.telegram.ui.b5 b5Var = (org.telegram.ui.b5) this.f4004b;
                 org.telegram.ui.w4 w4Var = (org.telegram.ui.w4) this.f4005c;
-                org.telegram.ui.c5[] c5VarArr = w4Var.f50916i;
-                org.telegram.ui.y4 y4Var = w4Var.f50917j;
+                org.telegram.ui.c5[] c5VarArr = w4Var.f50922i;
+                org.telegram.ui.y4 y4Var = w4Var.f50923j;
                 if (!b5Var.E) {
                     if (obj instanceof TLRPC.UserFull) {
-                        b5Var.a(org.telegram.ui.w4.c((TLRPC.User) y4Var.f52051c, (TLRPC.UserFull) obj, c5VarArr));
+                        b5Var.a(org.telegram.ui.w4.c((TLRPC.User) y4Var.f52072c, (TLRPC.UserFull) obj, c5VarArr));
                         return;
                     } else if (obj instanceof TLRPC.ChatFull) {
-                        b5Var.a(org.telegram.ui.w4.a((TLRPC.Chat) y4Var.f52051c, (TLRPC.ChatFull) obj, c5VarArr));
+                        b5Var.a(org.telegram.ui.w4.a((TLRPC.Chat) y4Var.f52072c, (TLRPC.ChatFull) obj, c5VarArr));
                         return;
                     } else {
                         return;

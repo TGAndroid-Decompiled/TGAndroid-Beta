@@ -7,41 +7,41 @@ public final class gc {
     public static final gc H;
     public static final gc I;
     public static final gc[] J;
-    public static final gc f33934e;
-    public static final gc f33935f;
+    public static final gc f33882e;
+    public static final gc f33883f;
     public static final gc h;
-    public static final gc f33936n;
-    public static final gc f33937r;
-    public static final gc f33938s;
-    public static final gc f33939w;
-    public static final gc f33940x;
-    public static final gc f33941y;
-    public final String f33942a;
-    public final int f33943b;
-    public final boolean f33944c;
+    public static final gc f33884n;
+    public static final gc f33885r;
+    public static final gc f33886s;
+    public static final gc f33887w;
+    public static final gc f33888x;
+    public static final gc f33889y;
+    public final String f33890a;
+    public final int f33891b;
+    public final boolean f33892c;
     public final fc d;
 
     static {
         fc fcVar = fc.SAVED_TO_GALLERY;
         gc gcVar = new gc("PHOTO", 0, "PhotoSavedHint", 2131747263, fcVar);
-        f33934e = gcVar;
+        f33882e = gcVar;
         gc gcVar2 = new gc("PHOTOS", 1, "PhotosSavedHint", fcVar);
-        f33935f = gcVar2;
+        f33883f = gcVar2;
         gc gcVar3 = new gc("VIDEO", 2, "VideoSavedHint", 2131743586, fcVar);
         h = gcVar3;
         gc gcVar4 = new gc("VIDEOS", 3, "VideosSavedHint", fcVar);
-        f33936n = gcVar4;
+        f33884n = gcVar4;
         gc gcVar5 = new gc("LIVEPHOTO", 4, "LivePhotoSavedHint", 2131748833, fcVar);
-        f33937r = gcVar5;
+        f33885r = gcVar5;
         gc gcVar6 = new gc("LIVEPHOTOS", 5, "LivePhotosSavedHint", fcVar);
-        f33938s = gcVar6;
+        f33886s = gcVar6;
         gc gcVar7 = new gc("MEDIA", 6, "MediaSavedHint", fcVar);
-        f33939w = gcVar7;
+        f33887w = gcVar7;
         fc fcVar2 = fc.SAVED_TO_DOWNLOADS;
         gc gcVar8 = new gc("PHOTO_TO_DOWNLOADS", 7, "PhotoSavedToDownloadsHintLinked", 2131747262, fcVar2);
-        f33940x = gcVar8;
+        f33888x = gcVar8;
         gc gcVar9 = new gc("VIDEO_TO_DOWNLOADS", 8, "VideoSavedToDownloadsHintLinked", 2131743585, fcVar2);
-        f33941y = gcVar9;
+        f33889y = gcVar9;
         gc gcVar10 = new gc("GIF", 9, "GifSavedHint", 2131750469, fc.SAVED_TO_GIFS);
         D = gcVar10;
         gc gcVar11 = new gc("GIF_TO_DOWNLOADS", 10, "GifSavedToDownloadsHintLinked", 2131750468, fcVar2);
@@ -59,10 +59,10 @@ public final class gc {
     }
 
     public gc(String str, int i7, String str2, int i10, fc fcVar) {
-        this.f33942a = str2;
-        this.f33943b = i10;
+        this.f33890a = str2;
+        this.f33891b = i10;
         this.d = fcVar;
-        this.f33944c = false;
+        this.f33892c = false;
     }
 
     public static gc valueOf(String str) {
@@ -74,9 +74,9 @@ public final class gc {
     }
 
     public gc(String str, int i7, String str2, fc fcVar) {
-        this.f33942a = str2;
+        this.f33890a = str2;
         this.d = fcVar;
-        this.f33943b = 0;
-        this.f33944c = true;
+        this.f33891b = 0;
+        this.f33892c = true;
     }
 }

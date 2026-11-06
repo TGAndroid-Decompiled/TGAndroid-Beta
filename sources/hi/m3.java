@@ -16,33 +16,33 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.ez;
-public final class m3 extends q31 {
+public final class m3 extends v31 {
     public static final int f14795b = 0;
 
     static {
-        q31.h(new q31());
+        v31.h(new v31());
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
+    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
         int i7;
         int i10;
         int i11;
         int i12;
         float f10;
-        Object obj = r31Var.G;
+        Object obj = w31Var.G;
         int i13 = 0;
         if (obj instanceof TL_payments.connectedBotStarRef) {
             n3 n3Var = (n3) view;
             TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-            boolean z10 = r31Var.f37604r;
+            boolean z10 = w31Var.f39836r;
             f6 f6Var = n3Var.f14813b;
             View view2 = n3Var.f14815e;
             ImageView imageView = n3Var.f14816f;
@@ -57,13 +57,13 @@ public final class m3 extends q31 {
                 spannableStringBuilder.append((CharSequence) " d");
                 ez ezVar = new ez();
                 int i14 = k6.ik;
-                ezVar.f45438f = k6.w0(i14, null);
-                ezVar.f45440r = i14;
-                ezVar.f45441s = null;
-                ezVar.f45439n = true;
-                ezVar.f45442w = j.J0(connectedbotstarref.commission_permille);
-                if (ezVar.f45436c != null) {
-                    ezVar.f45436c = null;
+                ezVar.f45443f = k6.w0(i14, null);
+                ezVar.f45445r = i14;
+                ezVar.f45446s = null;
+                ezVar.f45444n = true;
+                ezVar.f45447w = j.J0(connectedbotstarref.commission_permille);
+                if (ezVar.f45441c != null) {
+                    ezVar.f45441c = null;
                     ezVar.a();
                 }
                 spannableStringBuilder.setSpan(ezVar, 1, 2, 33);
@@ -124,7 +124,7 @@ public final class m3 extends q31 {
         } else if (obj instanceof TL_payments.starRefProgram) {
             n3 n3Var2 = (n3) view;
             TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
-            boolean z11 = r31Var.f37604r;
+            boolean z11 = w31Var.f39836r;
             TLRPC.User a23 = qp.s1(n3Var2.f14812a).a2(Long.valueOf(starrefprogram.bot_id));
             w8 w8Var2 = new w8((f6) null);
             w8Var2.r(a23);
@@ -135,13 +135,13 @@ public final class m3 extends q31 {
                 spannableStringBuilder2.append((CharSequence) " d");
                 ez ezVar2 = new ez();
                 int i16 = k6.ik;
-                ezVar2.f45438f = k6.w0(i16, null);
-                ezVar2.f45440r = i16;
-                ezVar2.f45441s = null;
-                ezVar2.f45439n = true;
-                ezVar2.f45442w = j.J0(starrefprogram.commission_permille);
-                if (ezVar2.f45436c != null) {
-                    ezVar2.f45436c = null;
+                ezVar2.f45443f = k6.w0(i16, null);
+                ezVar2.f45445r = i16;
+                ezVar2.f45446s = null;
+                ezVar2.f45444n = true;
+                ezVar2.f45447w = j.J0(starrefprogram.commission_permille);
+                if (ezVar2.f45441c != null) {
+                    ezVar2.f45441c = null;
                     ezVar2.a();
                 }
                 spannableStringBuilder2.setSpan(ezVar2, 1, 2, 33);

@@ -39,14 +39,14 @@ import org.telegram.ui.Cells.t7;
 import org.telegram.ui.Cells.z8;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.q01;
 public final class o extends f2 implements ls {
     public final Paint D;
-    public k41 E;
+    public p41 E;
     public final ArrayList F;
     public final ArrayList G;
     public final LinkedHashMap H;
@@ -336,21 +336,21 @@ public final class o extends f2 implements ls {
                 if (z10) {
                     f0();
                     this.f6349w.animate().setListener(null).cancel();
-                    this.f6349w.animate().alpha(0.0f).setDuration(350L).setInterpolator(xq.f40310f).setListener(new t5(this, 3)).start();
+                    this.f6349w.animate().alpha(0.0f).setDuration(350L).setInterpolator(xq.f40329f).setListener(new t5(this, 3)).start();
                     this.h.setFocusableInTouchMode(false);
-                    this.E.f35167f3.O(true);
+                    this.E.f36781f3.O(true);
                     return;
                 }
                 this.f6349w.setVisibility(4);
                 this.h.setFocusableInTouchMode(false);
-                this.E.f35167f3.O(false);
+                this.E.f36781f3.O(false);
                 return;
             }
             this.f6349w.setVisibility(0);
-            this.E.f35167f3.O(z10);
+            this.E.f36781f3.O(z10);
             if (z10) {
                 this.f6349w.animate().setListener(null).cancel();
-                this.f6349w.animate().alpha(1.0f).setDuration(350L).setInterpolator(xq.f40310f).start();
+                this.f6349w.animate().alpha(1.0f).setDuration(350L).setInterpolator(xq.f40329f).start();
                 this.E.post(new h(this, 1));
                 LinkedHashMap linkedHashMap = this.H;
                 if (linkedHashMap.isEmpty()) {
@@ -372,7 +372,7 @@ public final class o extends f2 implements ls {
                     }
                     this.h.append(spannableStringBuilder);
                     this.h.I();
-                    q01 q01Var = this.f6342b.f49022p0;
+                    q01 q01Var = this.f6342b.f49049p0;
                     if (q01Var != null) {
                         q01Var.f();
                     }
@@ -444,7 +444,7 @@ public final class o extends f2 implements ls {
         if (this.f6349w != null && this.f6348s != null) {
             te.a aVar = this.Q;
             if (aVar != null) {
-                f10 = aVar.f55370e;
+                f10 = aVar.f55395e;
             } else {
                 f10 = 0.0f;
             }
@@ -473,14 +473,14 @@ public final class o extends f2 implements ls {
         }
         te.a aVar = this.Q;
         if (aVar != null) {
-            f10 = aVar.f55370e;
+            f10 = aVar.f55395e;
         } else {
             f10 = 0.0f;
         }
         int W1 = org.telegram.messenger.g0.W1(f10, org.telegram.messenger.g0.L(72.0f), org.telegram.messenger.g0.L(12.0f) + Math.max(0, this.f6343c.getMeasuredHeight() - this.mSystemInsets.d));
-        k41 k41Var = this.E;
+        p41 p41Var = this.E;
         i0.b bVar = this.mSystemInsets;
-        oi.a.e(k41Var, bVar.f15118b, bVar.d, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), W1);
+        oi.a.e(p41Var, bVar.f15118b, bVar.d, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), W1);
     }
 
     @Override

@@ -13,12 +13,12 @@ import org.telegram.ui.ActionBar.k5;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 public final class e0 extends FrameLayout {
-    public final ImageView f56434a;
-    public final k5 f56435b;
-    public final m5 f56436c;
+    public final ImageView f56459a;
+    public final k5 f56460b;
+    public final m5 f56461c;
     public final k5 d;
-    public d0 f56437e;
-    public c0 f56438f;
+    public d0 f56462e;
+    public c0 f56463f;
 
     public e0(i0 i0Var, Context context, f6 f6Var) {
         super(context);
@@ -29,7 +29,7 @@ public final class e0 extends FrameLayout {
         int i11 = i0Var.f28645t0;
         setPadding(i11, 0, i11, 0);
         ImageView imageView = new ImageView(context);
-        this.f56434a = imageView;
+        this.f56459a = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         r6.t(imageView, k6.zk, f6Var, PorterDuff.Mode.SRC_IN);
         if (hd.f22871a0) {
@@ -39,7 +39,7 @@ public final class e0 extends FrameLayout {
         }
         addView(imageView, ha.d(24, 24.0f, i7 | 16, 24.0f, 0.0f, 24.0f, 0.0f));
         k5 k5Var = new k5(context);
-        this.f56435b = k5Var;
+        this.f56460b = k5Var;
         k5Var.setWidthWrapContent(true);
         r6.Y(k5Var, k6.f27956j5, f6Var);
         k5Var.setTextSize(14);
@@ -63,7 +63,7 @@ public final class e0 extends FrameLayout {
         k5Var2.setTypeface(org.telegram.messenger.g0.o());
         k5Var2.setTextSize(14);
         m5 m5Var = new m5(this, context, f6Var);
-        this.f56436c = m5Var;
+        this.f56461c = m5Var;
         m5Var.setWillNotDraw(false);
         m5Var.addView(k5Var2, ha.e(-2, -2, 17));
         addView(m5Var, ha.c(-1.0f, -1));
@@ -72,7 +72,7 @@ public final class e0 extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         float f10;
-        if (this.f56438f != null) {
+        if (this.f56463f != null) {
             f10 = 49.0f;
         } else {
             f10 = 36.0f;

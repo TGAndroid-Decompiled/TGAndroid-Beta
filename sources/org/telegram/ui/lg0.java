@@ -5,24 +5,24 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public final class lg0 implements View.OnClickListener {
-    public final int f47515a;
-    public final qg0 f47516b;
+    public final int f47542a;
+    public final qg0 f47543b;
 
     public lg0(qg0 qg0Var, int i7) {
-        this.f47515a = i7;
-        this.f47516b = qg0Var;
+        this.f47542a = i7;
+        this.f47543b = qg0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f47515a) {
+        switch (this.f47542a) {
             case 0:
-                qg0 qg0Var = this.f47516b;
-                pg0 pg0Var = qg0Var.f49202i2;
+                qg0 qg0Var = this.f47543b;
+                pg0 pg0Var = qg0Var.f49229i2;
                 HashSet hashSet = qg0Var.V1;
                 if (hashSet.size() != 0 && pg0Var != null) {
                     ArrayList arrayList = new ArrayList();
-                    for (TLRPC.User user : qg0Var.f49195a2.values()) {
+                    for (TLRPC.User user : qg0Var.f49222a2.values()) {
                         if (hashSet.contains(Long.valueOf(user.f27101id))) {
                             arrayList.add(Long.valueOf(user.f27101id));
                         }
@@ -33,7 +33,7 @@ public final class lg0 implements View.OnClickListener {
                 }
                 return;
             default:
-                qg0 qg0Var2 = this.f47516b;
+                qg0 qg0Var2 = this.f47543b;
                 qg0Var2.V1.clear();
                 qg0Var2.Q1.d.b(true);
                 qg0Var2.g1(true, false);

@@ -17,14 +17,14 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.atomic.AtomicReference;
 import org.xmlpull.v1.XmlSerializer;
 public final class fx implements Runnable {
-    public final int f45714a;
-    public Object f45715b;
-    public final Object f45716c;
+    public final int f45741a;
+    public Object f45742b;
+    public final Object f45743c;
 
     public fx(int i7, Object obj, Object obj2) {
-        this.f45714a = i7;
-        this.f45716c = obj;
-        this.f45715b = obj2;
+        this.f45741a = i7;
+        this.f45743c = obj;
+        this.f45742b = obj2;
     }
 
     public void a() {
@@ -38,27 +38,27 @@ public final class fx implements Runnable {
         Exception exc;
         FileOutputStream L;
         boolean z11;
-        switch (this.f45714a) {
+        switch (this.f45741a) {
             case 0:
-                ((org.telegram.ui.Components.cc) this.f45715b).j();
-                ((ix) this.f45716c).E = null;
+                ((org.telegram.ui.Components.cc) this.f45742b).j();
+                ((ix) this.f45743c).E = null;
                 return;
             case 1:
-                ReferenceQueue referenceQueue = (ReferenceQueue) this.f45715b;
-                while (!((Set) this.f45716c).isEmpty()) {
+                ReferenceQueue referenceQueue = (ReferenceQueue) this.f45742b;
+                while (!((Set) this.f45743c).isEmpty()) {
                     try {
                         pb.l lVar = (pb.l) referenceQueue.remove();
-                        if (lVar.f53425a.remove(lVar)) {
+                        if (lVar.f53451a.remove(lVar)) {
                             lVar.clear();
-                            lVar.f53426b.getClass();
+                            lVar.f53452b.getClass();
                         }
                     } catch (InterruptedException unused) {
                     }
                 }
                 return;
             case 2:
-                Callable callable = (Callable) this.f45715b;
-                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f45716c;
+                Callable callable = (Callable) this.f45742b;
+                TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.f45743c;
                 try {
                     taskCompletionSource.setResult(callable.call());
                     return;
@@ -70,9 +70,9 @@ public final class fx implements Runnable {
                     return;
                 }
             case 3:
-                pb.i iVar = (pb.i) this.f45715b;
-                TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) this.f45716c;
-                int decrementAndGet = iVar.f53418b.decrementAndGet();
+                pb.i iVar = (pb.i) this.f45742b;
+                TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) this.f45743c;
+                int decrementAndGet = iVar.f53444b.decrementAndGet();
                 if (decrementAndGet >= 0) {
                     z9 = true;
                 } else {
@@ -81,14 +81,14 @@ public final class fx implements Runnable {
                 q6.m.j(z9);
                 if (decrementAndGet == 0) {
                     iVar.c();
-                    iVar.f53419c.set(false);
+                    iVar.f53445c.set(false);
                 }
-                w7.n.f57488a.clear();
-                w7.r.f57492a.clear();
+                w7.n.f57513a.clear();
+                w7.r.f57517a.clear();
                 taskCompletionSource2.setResult(null);
                 return;
             case 4:
-                ab.q qVar = (ab.q) this.f45715b;
+                ab.q qVar = (ab.q) this.f45742b;
                 if (((Thread) ((AtomicReference) qVar.d).getAndSet(Thread.currentThread())) == null) {
                     z10 = true;
                 } else {
@@ -96,7 +96,7 @@ public final class fx implements Runnable {
                 }
                 q6.m.j(z10);
                 try {
-                    ((Runnable) this.f45716c).run();
+                    ((Runnable) this.f45743c).run();
                     ((AtomicReference) qVar.d).set(null);
                     qVar.F();
                     return;
@@ -110,20 +110,20 @@ public final class fx implements Runnable {
                     throw th2;
                 }
             case 5:
-                v4.u uVar = (v4.u) this.f45715b;
-                v4.d1 d1Var = uVar.f57047e;
-                v4.y yVar = (v4.y) this.f45716c;
+                v4.u uVar = (v4.u) this.f45742b;
+                v4.d1 d1Var = uVar.f57072e;
+                v4.y yVar = (v4.y) this.f45743c;
                 RecyclerView recyclerView = yVar.H;
-                if (recyclerView != null && recyclerView.G && !uVar.f57052w && d1Var.b() != -1) {
+                if (recyclerView != null && recyclerView.G && !uVar.f57077w && d1Var.b() != -1) {
                     v4.l0 itemAnimator = yVar.H.getItemAnimator();
                     if (itemAnimator == null || !itemAnimator.k()) {
                         ArrayList arrayList = yVar.F;
                         int size = arrayList.size();
                         for (int i7 = 0; i7 < size; i7++) {
-                            if (((v4.u) arrayList.get(i7)).f57053x) {
+                            if (((v4.u) arrayList.get(i7)).f57078x) {
                             }
                         }
-                        yVar.f57079y.q(d1Var);
+                        yVar.f57104y.q(d1Var);
                         return;
                     }
                     yVar.H.post(this);
@@ -135,18 +135,18 @@ public final class fx implements Runnable {
                     a();
                     return;
                 } catch (Error e12) {
-                    synchronized (((v9.i) this.f45716c).f57160b) {
-                        ((v9.i) this.f45716c).f57161c = 1;
+                    synchronized (((v9.i) this.f45743c).f57185b) {
+                        ((v9.i) this.f45743c).f57186c = 1;
                         throw e12;
                     }
                 }
             case 7:
-                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl = (ShortcutInfoCompatSaverImpl) this.f45716c;
-                ArrayList arrayList2 = (ArrayList) this.f45715b;
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl = (ShortcutInfoCompatSaverImpl) this.f45743c;
+                ArrayList arrayList2 = (ArrayList) this.f45742b;
                 shortcutInfoCompatSaverImpl.e(arrayList2);
                 File file = shortcutInfoCompatSaverImpl.f2882f;
                 hy0 hy0Var = new hy0(file);
-                File file2 = (File) hy0Var.f46520c;
+                File file2 = (File) hy0Var.f46529c;
                 FileOutputStream fileOutputStream = null;
                 try {
                     L = hy0Var.L();
@@ -208,9 +208,9 @@ public final class fx implements Runnable {
                     throw new RuntimeException("Failed to write to file " + file, exc);
                 }
             case 8:
-                c0.m mVar = (c0.m) this.f45716c;
+                c0.m mVar = (c0.m) this.f45743c;
                 try {
-                    ((c0.m) this.f45715b).get();
+                    ((c0.m) this.f45742b).get();
                     mVar.k(null);
                     return;
                 } catch (Exception e17) {
@@ -218,10 +218,10 @@ public final class fx implements Runnable {
                     return;
                 }
             case 9:
-                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl2 = (ShortcutInfoCompatSaverImpl) this.f45716c;
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl2 = (ShortcutInfoCompatSaverImpl) this.f45743c;
                 a0.f fVar = shortcutInfoCompatSaverImpl2.f2879b;
                 try {
-                    ShortcutInfoCompatSaverImpl.f((File) this.f45715b);
+                    ShortcutInfoCompatSaverImpl.f((File) this.f45742b);
                     ShortcutInfoCompatSaverImpl.f(shortcutInfoCompatSaverImpl2.f2883g);
                     fVar.putAll(x4.d.c(shortcutInfoCompatSaverImpl2.f2882f, shortcutInfoCompatSaverImpl2.f2878a));
                     shortcutInfoCompatSaverImpl2.e(new ArrayList(fVar.values()));
@@ -231,7 +231,7 @@ public final class fx implements Runnable {
                     return;
                 }
             case 10:
-                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl3 = (ShortcutInfoCompatSaverImpl) this.f45716c;
+                ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl3 = (ShortcutInfoCompatSaverImpl) this.f45743c;
                 shortcutInfoCompatSaverImpl3.f2879b.clear();
                 a0.f fVar2 = shortcutInfoCompatSaverImpl3.f2880c;
                 Iterator it = ((a0.e) fVar2.values()).iterator();
@@ -239,36 +239,36 @@ public final class fx implements Runnable {
                     ((m9.y) it.next()).cancel(false);
                 }
                 fVar2.clear();
-                shortcutInfoCompatSaverImpl3.h((c0.m) this.f45715b);
+                shortcutInfoCompatSaverImpl3.h((c0.m) this.f45742b);
                 return;
             case 11:
-                if (!(((c0.m) this.f45715b).f5237a instanceof c0.a)) {
+                if (!(((c0.m) this.f45742b).f5237a instanceof c0.a)) {
                     try {
-                        ((Runnable) this.f45716c).run();
-                        ((c0.m) this.f45715b).k(null);
+                        ((Runnable) this.f45743c).run();
+                        ((c0.m) this.f45742b).k(null);
                         return;
                     } catch (Exception e19) {
-                        ((c0.m) this.f45715b).l(e19);
+                        ((c0.m) this.f45742b).l(e19);
                         return;
                     }
                 }
                 return;
             default:
-                ((zd.m) this.f45716c).D((zd.v0) this.f45715b);
+                ((zd.m) this.f45743c).D((zd.v0) this.f45742b);
                 return;
         }
     }
 
     public String toString() {
         String str;
-        switch (this.f45714a) {
+        switch (this.f45741a) {
             case 6:
-                Runnable runnable = (Runnable) this.f45715b;
+                Runnable runnable = (Runnable) this.f45742b;
                 if (runnable != null) {
                     return "SequentialExecutorWorker{running=" + runnable + "}";
                 }
                 StringBuilder sb2 = new StringBuilder("SequentialExecutorWorker{state=");
-                int i7 = ((v9.i) this.f45716c).f57161c;
+                int i7 = ((v9.i) this.f45743c).f57186c;
                 if (i7 != 1) {
                     if (i7 != 2) {
                         if (i7 != 3) {
@@ -295,19 +295,19 @@ public final class fx implements Runnable {
     }
 
     public fx(Object obj, Object obj2, boolean z9, int i7) {
-        this.f45714a = i7;
-        this.f45715b = obj;
-        this.f45716c = obj2;
+        this.f45741a = i7;
+        this.f45742b = obj;
+        this.f45743c = obj2;
     }
 
     public fx(v9.i iVar) {
-        this.f45714a = 6;
-        this.f45716c = iVar;
+        this.f45741a = 6;
+        this.f45743c = iVar;
     }
 
     public fx(v4.y yVar, v4.u uVar, int i7) {
-        this.f45714a = 5;
-        this.f45716c = yVar;
-        this.f45715b = uVar;
+        this.f45741a = 5;
+        this.f45743c = yVar;
+        this.f45742b = uVar;
     }
 }

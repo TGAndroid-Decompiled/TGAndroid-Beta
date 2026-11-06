@@ -48,9 +48,9 @@ public final class lw implements Runnable {
                 org.telegram.ui.ca caVar = (org.telegram.ui.ca) obj3;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
                 TLRPC.TL_username tL_username = (TLRPC.TL_username) tLObject;
-                org.telegram.ui.la laVar = caVar.f44708a;
-                ArrayList arrayList = laVar.f47464x;
-                ArrayList arrayList2 = laVar.f47463w;
+                org.telegram.ui.la laVar = caVar.f44729a;
+                ArrayList arrayList = laVar.f47491x;
+                ArrayList arrayList2 = laVar.f47490w;
                 arrayList.remove((String) serializable);
                 boolean z10 = ((TLObject) obj2) instanceof TLRPC.TL_boolTrue;
                 int i11 = this.f23928b;
@@ -77,7 +77,7 @@ public final class lw implements Runnable {
                 i7 = ((org.telegram.ui.ActionBar.f2) laVar).currentAccount;
                 TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(laVar.l0()));
                 laVar.getMessagesController().t5(a22, tL_username.username, tL_username.active);
-                if (laVar.f47465y != 0 && arrayList2 != null) {
+                if (laVar.f47492y != 0 && arrayList2 != null) {
                     int size = arrayList2.size();
                     int i12 = 0;
                     while (i12 < size) {

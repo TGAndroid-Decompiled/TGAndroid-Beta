@@ -39,7 +39,7 @@ public final class nt implements v0.g {
     @Override
     public final void onResult(Object obj) {
         final td0 td0Var = this.f24217a;
-        bi.b1 b1Var = ((v0.o) obj).f56859a;
+        bi.b1 b1Var = ((v0.o) obj).f56884a;
         TL_account.finishPasskeyLogin finishpasskeylogin = new TL_account.finishPasskeyLogin();
         finishpasskeylogin.credential = new TL_account.inputPasskeyCredentialPublicKey();
         try {

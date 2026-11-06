@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import kotlin.jvm.internal.j;
 public final class c {
-    public static final c f58547a = new Object();
+    public static final c f58572a = new Object();
 
     public static ArrayList a(Context context) {
         ActivityManager activityManager;

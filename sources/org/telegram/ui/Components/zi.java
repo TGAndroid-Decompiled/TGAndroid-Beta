@@ -7,13 +7,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class zi extends kj0 {
-    public final int f40961r = org.telegram.messenger.p10.f24459s0;
-    public final Context f40962s;
-    public final fj f40963w;
+    public final int f40986r = org.telegram.messenger.p10.f24459s0;
+    public final Context f40987s;
+    public final fj f40988w;
 
     public zi(fj fjVar, Context context) {
-        this.f40963w = fjVar;
-        this.f40962s = context;
+        this.f40988w = fjVar;
+        this.f40987s = context;
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class zi extends kj0 {
             return 1;
         }
         int i10 = i7 - 1;
-        int i11 = this.f40961r;
+        int i11 = this.f40986r;
         HashMap hashMap = org.telegram.messenger.g5.r(i11).f22577b0;
         ArrayList arrayList = org.telegram.messenger.g5.r(i11).f22579c0;
         if (i10 < arrayList.size()) {
@@ -48,7 +48,7 @@ public final class zi extends kj0 {
             return null;
         }
         int i11 = i7 - 1;
-        int i12 = this.f40961r;
+        int i12 = this.f40986r;
         HashMap hashMap = org.telegram.messenger.g5.r(i12).f22577b0;
         ArrayList arrayList = org.telegram.messenger.g5.r(i12).f22579c0;
         if (i11 < arrayList.size()) {
@@ -73,7 +73,7 @@ public final class zi extends kj0 {
 
     @Override
     public final int R() {
-        return org.telegram.messenger.g5.r(this.f40961r).f22579c0.size() + 2;
+        return org.telegram.messenger.g5.r(this.f40986r).f22579c0.size() + 2;
     }
 
     @Override
@@ -84,7 +84,7 @@ public final class zi extends kj0 {
     @Override
     public final boolean V(int i7, int i10, v4.d1 d1Var) {
         if (i7 != 0 && i7 != R() - 1) {
-            int i11 = this.f40961r;
+            int i11 = this.f40986r;
             if (i10 < ((ArrayList) org.telegram.messenger.g5.r(i11).f22577b0.get(org.telegram.messenger.g5.r(i11).f22579c0.get(i7 - 1))).size()) {
                 return true;
             }
@@ -96,8 +96,8 @@ public final class zi extends kj0 {
     @Override
     public final void W(int i7, int i10, v4.d1 d1Var) {
         TLRPC.User user;
-        if (d1Var.f56931f == 0) {
-            ej ejVar = (ej) d1Var.f56927a;
+        if (d1Var.f56956f == 0) {
+            ej ejVar = (ej) d1Var.f56952a;
             Object O = O(i7, i10);
             boolean z9 = true;
             if (i7 == R() - 2 && i10 == M(i7) - 1) {
@@ -117,7 +117,7 @@ public final class zi extends kj0 {
             if (user != null) {
                 ejVar.a(user, null, new yi(0, user), z9);
             }
-            boolean containsKey = this.f40963w.f33602x.containsKey(vi.a(O));
+            boolean containsKey = this.f40988w.f33546x.containsKey(vi.a(O));
             wo woVar = ejVar.d;
             if (woVar.getVisibility() != 0) {
                 woVar.setVisibility(0);
@@ -129,13 +129,13 @@ public final class zi extends kj0 {
     @Override
     public final void f() {
         X(false);
-        this.f40963w.R();
+        this.f40988w.R();
     }
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View ejVar;
-        Context context = this.f40962s;
+        Context context = this.f40987s;
         if (i7 != 0) {
             if (i7 != 1) {
                 ejVar = new View(context);
@@ -146,7 +146,7 @@ public final class zi extends kj0 {
                 ejVar.setTag(-33024);
             }
         } else {
-            ejVar = new ej(context, this.f40963w.f38950a);
+            ejVar = new ej(context, this.f40988w.f38947a);
         }
         return new v4.d1(ejVar);
     }

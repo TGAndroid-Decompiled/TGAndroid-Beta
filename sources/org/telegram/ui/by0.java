@@ -12,40 +12,40 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class by0 implements Runnable {
-    public final int f44482a;
-    public final Object f44483b;
-    public final Object f44484c;
+    public final int f44503a;
+    public final Object f44504b;
+    public final Object f44505c;
 
     public by0(int i7, Object obj, Object obj2) {
-        this.f44482a = i7;
-        this.f44483b = obj;
-        this.f44484c = obj2;
+        this.f44503a = i7;
+        this.f44504b = obj;
+        this.f44505c = obj2;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.Components.xi0 xi0Var;
-        int i7 = this.f44482a;
+        int i7 = this.f44503a;
         int i10 = 0;
-        Object obj = this.f44484c;
-        Object obj2 = this.f44483b;
+        Object obj = this.f44505c;
+        Object obj2 = this.f44504b;
         switch (i7) {
             case 0:
                 ny0 ny0Var = (ny0) ((View[]) obj2)[0];
-                ny0Var.f48141b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
-                ny0Var.f48142c = null;
+                ny0Var.f48170b = (TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) obj;
+                ny0Var.f48171c = null;
                 ny0Var.d = null;
-                ny0Var.f48144f.f35167f3.O(false);
+                ny0Var.f48173f.f36781f3.O(false);
                 return;
             case 1:
                 ((ny0) ((View[]) obj2)[0]).b((TLRPC.TL_reportResultAddComment) obj);
                 return;
             case 2:
                 ny0 ny0Var2 = (ny0) ((View[]) obj2)[0];
-                ny0Var2.f48141b = null;
-                ny0Var2.f48142c = (TLRPC.TL_reportResultChooseOption) obj;
+                ny0Var2.f48170b = null;
+                ny0Var2.f48171c = (TLRPC.TL_reportResultChooseOption) obj;
                 ny0Var2.d = null;
-                ny0Var2.f48144f.f35167f3.O(false);
+                ny0Var2.f48173f.f36781f3.O(false);
                 return;
             case 3:
                 ((org.telegram.messenger.video.a) obj2).run();
@@ -57,7 +57,7 @@ public final class by0 implements Runnable {
                 return;
             case 5:
                 ((SecretMediaViewer) obj2).K = false;
-                ((vq0) obj).f50790a.O0(false, true);
+                ((wq0) obj).f51478a.O0(false, true);
                 return;
             case 6:
                 ((SecretMediaViewer) ((j2.n) obj2).f16454c).i((File) obj);
@@ -104,9 +104,9 @@ public final class by0 implements Runnable {
                     org.telegram.ui.ActionBar.k6.f28195w = String.format("(%.06f, %.06f)", Double.valueOf(org.telegram.ui.ActionBar.k6.f28214x), Double.valueOf(org.telegram.ui.ActionBar.k6.f28233y));
                 }
                 org.telegram.ui.ActionBar.k6.w1();
-                org.telegram.ui.Components.pj0 pj0Var = themeActivity2.f41985b;
+                org.telegram.ui.Components.pj0 pj0Var = themeActivity2.f42010b;
                 if (pj0Var != null && (xi0Var = (org.telegram.ui.Components.xi0) pj0Var.K(themeActivity2.Y)) != null) {
-                    View view2 = xi0Var.f56927a;
+                    View view2 = xi0Var.f56952a;
                     if (view2 instanceof org.telegram.ui.Cells.w9) {
                         ((org.telegram.ui.Cells.w9) view2).c(org.telegram.messenger.hd.M0(2131753781, "AutoNightUpdateLocation"), org.telegram.ui.ActionBar.k6.f28195w, false, false);
                         return;
@@ -117,7 +117,7 @@ public final class by0 implements Runnable {
             case 14:
                 u71 u71Var = (u71) obj2;
                 SharedPreferences sharedPreferences = (SharedPreferences) obj;
-                if (u71Var.f50283n == 3) {
+                if (u71Var.f50305n == 3) {
                     sharedPreferences.edit().putBoolean("bganimationhint", true).commit();
                     u71Var.B0.c(u71Var.L0[0]);
                     return;
@@ -145,25 +145,25 @@ public final class by0 implements Runnable {
                 d91 d91Var = (d91) obj2;
                 d91Var.getClass();
                 Bundle bundle = new Bundle();
-                v91 v91Var = d91Var.f45007b;
-                bundle.putLong("dialog_id", -v91Var.f50619a);
+                v91 v91Var = d91Var.f45032b;
+                bundle.putLong("dialog_id", -v91Var.f50629a);
                 bundle.putLong("topic_id", ((TLRPC.TL_forumTopic) obj).f27004id);
                 v91Var.presentFragment(new gx0(bundle, null));
                 return;
             case 20:
                 r91 r91Var = (r91) obj2;
                 String str2 = (String) obj;
-                ArrayList arrayList = r91Var.f49399e0;
-                v91 v91Var2 = r91Var.f49415v0;
+                ArrayList arrayList = r91Var.f49419e0;
+                v91 v91Var2 = r91Var.f49435v0;
                 String lowerCase = str2.trim().toLowerCase();
                 ArrayList arrayList2 = new ArrayList();
                 int i11 = 0;
                 while (true) {
-                    ArrayList arrayList3 = v91Var2.f50622b;
+                    ArrayList arrayList3 = v91Var2.f50632b;
                     if (i11 < arrayList3.size()) {
-                        if (((n91) arrayList3.get(i11)).f47974c != null && ((n91) arrayList3.get(i11)).f47974c.title.toLowerCase().contains(lowerCase)) {
-                            arrayList2.add(((n91) arrayList3.get(i11)).f47974c);
-                            ((n91) arrayList3.get(i11)).f47974c.searchQuery = lowerCase;
+                        if (((n91) arrayList3.get(i11)).f48000c != null && ((n91) arrayList3.get(i11)).f48000c.title.toLowerCase().contains(lowerCase)) {
+                            arrayList2.add(((n91) arrayList3.get(i11)).f48000c);
+                            ((n91) arrayList3.get(i11)).f48000c.searchQuery = lowerCase;
                         }
                         i11++;
                     } else {
@@ -171,8 +171,8 @@ public final class by0 implements Runnable {
                         arrayList.addAll(arrayList2);
                         r91Var.N();
                         if (!arrayList.isEmpty()) {
-                            r91Var.f49407n0 = false;
-                            r91Var.f49410q0.b(0);
+                            r91Var.f49427n0 = false;
+                            r91Var.f49430q0.b(0);
                         }
                         r91Var.L(str2);
                         return;
@@ -180,9 +180,9 @@ public final class by0 implements Runnable {
                 }
                 break;
             case 21:
-                y91 y91Var = ((x91) obj2).f51789b;
-                y91Var.f52157a.f44224e.remove(Integer.valueOf(((TLRPC.TL_forumTopic) obj).f27004id));
-                y91Var.f52157a.a0();
+                y91 y91Var = ((x91) obj2).f51806b;
+                y91Var.f52178a.f44240e.remove(Integer.valueOf(((TLRPC.TL_forumTopic) obj).f27004id));
+                y91Var.f52178a.a0();
                 return;
             case 22:
                 TwoStepVerificationActivity.d0((TwoStepVerificationActivity) obj2, (byte[]) obj);
@@ -198,7 +198,7 @@ public final class by0 implements Runnable {
                 return;
             case 26:
                 Runnable runnable2 = (Runnable) obj;
-                br[] brVarArr = ((ya1) obj2).f52180x.f52294f;
+                br[] brVarArr = ((ya1) obj2).f52201x.f52311f;
                 int length = brVarArr.length;
                 while (i10 < length) {
                     brVarArr[i10].C(0.0f);
@@ -209,15 +209,15 @@ public final class by0 implements Runnable {
             case 27:
                 db1 db1Var = (db1) obj2;
                 TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList4 = db1Var.f45019f;
-                ArrayList arrayList5 = db1Var.f45018e;
+                ArrayList arrayList4 = db1Var.f45044f;
+                ArrayList arrayList5 = db1Var.f45043e;
                 if (tLObject instanceof TLRPC.messages_Chats) {
                     arrayList5.clear();
                     arrayList5.addAll(((TLRPC.messages_Chats) tLObject).chats);
                 }
-                org.telegram.messenger.qp.s1(db1Var.f45015a).S3(arrayList5, false);
+                org.telegram.messenger.qp.s1(db1Var.f45040a).S3(arrayList5, false);
                 db1Var.d = false;
-                db1Var.f45017c = true;
+                db1Var.f45042c = true;
                 int size = arrayList4.size();
                 while (i10 < size) {
                     Object obj3 = arrayList4.get(i10);
@@ -236,15 +236,15 @@ public final class by0 implements Runnable {
                 org.telegram.ui.Components.voip.e2.S = false;
                 org.telegram.ui.Components.voip.e2.b();
                 ViewPropertyAnimator duration = ec1Var2.K.animate().setDuration(150L);
-                org.telegram.ui.Components.xq xqVar = org.telegram.ui.Components.xq.f40310f;
+                org.telegram.ui.Components.xq xqVar = org.telegram.ui.Components.xq.f40329f;
                 duration.setInterpolator(xqVar).start();
                 ec1Var2.H.animate().alpha(1.0f).setDuration(150L).setInterpolator(xqVar).start();
                 ec1Var2.I.animate().alpha(1.0f).setDuration(150L).setInterpolator(xqVar).start();
                 ec1Var2.N.animate().alpha(1.0f).setDuration(150L).setInterpolator(xqVar).start();
                 ec1Var2.X.animate().alpha(1.0f).setDuration(150L).setInterpolator(xqVar).start();
-                ec1Var2.f45263i0.animate().alpha(1.0f).setDuration(150L).setInterpolator(xqVar).start();
-                ec1Var2.f45259g0.animate().alpha(1.0f).setDuration(350L).setInterpolator(xqVar).start();
-                ec1Var2.f45261h0.animate().alpha(1.0f).setDuration(350L).setInterpolator(xqVar).start();
+                ec1Var2.f45293i0.animate().alpha(1.0f).setDuration(150L).setInterpolator(xqVar).start();
+                ec1Var2.f45289g0.animate().alpha(1.0f).setDuration(350L).setInterpolator(xqVar).start();
+                ec1Var2.f45291h0.animate().alpha(1.0f).setDuration(350L).setInterpolator(xqVar).start();
                 ec1Var2.L0.animate().alpha(1.0f).setDuration(350L).setInterpolator(xqVar).start();
                 valueAnimator.addListener(new ub1(ec1Var2, 2));
                 valueAnimator.setDuration(350L);

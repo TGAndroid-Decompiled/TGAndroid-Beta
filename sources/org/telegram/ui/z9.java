@@ -17,26 +17,26 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stats;
 import org.telegram.tgnet.tl.TL_update;
 public final class z9 implements RequestDelegate {
-    public final int f52502a;
-    public final Object f52503b;
-    public final Object f52504c;
+    public final int f52509a;
+    public final Object f52510b;
+    public final Object f52511c;
     public final Object d;
 
     public z9(Object obj, Object obj2, Object obj3, int i7) {
-        this.f52502a = i7;
-        this.f52503b = obj;
-        this.f52504c = obj2;
+        this.f52509a = i7;
+        this.f52510b = obj;
+        this.f52511c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f52502a;
+        int i7 = this.f52509a;
         mg.b bVar = null;
         int i10 = 0;
         Object obj = this.d;
-        Object obj2 = this.f52504c;
-        Object obj3 = this.f52503b;
+        Object obj2 = this.f52511c;
+        Object obj3 = this.f52510b;
         switch (i7) {
             case 0:
                 org.telegram.messenger.g0.h3(new bi.u0((Object) ((la) obj3), (Object) ((String) obj2), tL_error, tLObject, (Object) ((TL_account.checkUsername) obj), 20));
@@ -112,9 +112,9 @@ public final class z9 implements RequestDelegate {
                 an anVar = (an) obj3;
                 long[] jArr = (long[]) obj;
                 org.telegram.messenger.g0.r((m6) obj2);
-                anVar.f43941t5.f23237k.voiceTranscriptionRated = true;
+                anVar.f43966t5.f23237k.voiceTranscriptionRated = true;
                 org.telegram.messenger.yr messagesStorage = anVar.getMessagesStorage();
-                messagesStorage.f26688a.c(new org.telegram.messenger.ik(messagesStorage, anVar.f43941t5.f1(), org.telegram.messenger.ij.B0(anVar.f43941t5.f23237k), anVar.f43941t5.f23237k, 6));
+                messagesStorage.f26688a.c(new org.telegram.messenger.ik(messagesStorage, anVar.f43966t5.f1(), org.telegram.messenger.ij.B0(anVar.f43966t5.f23237k), anVar.f43966t5.f23237k, 6));
                 xf xfVar = new xf(anVar, 15);
                 long j3 = 0;
                 if (jArr[0] > 0) {
@@ -165,10 +165,10 @@ public final class z9 implements RequestDelegate {
                             }
                         }
                     }
-                    org.telegram.messenger.qp.s1(c40Var.f44565k1.f21723a).O3(updates, false);
+                    org.telegram.messenger.qp.s1(c40Var.f44586k1.f21723a).O3(updates, false);
                     return;
                 }
-                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.g51(29, c40Var, tL_error));
+                org.telegram.messenger.g0.h3(new org.telegram.ui.Components.k51(29, c40Var, tL_error));
                 return;
             case 12:
                 org.telegram.messenger.g0.h3(new org.telegram.ui.Components.jv0((Object) ((c40) obj3), (Object) ((org.telegram.ui.ActionBar.u1) obj2), tLObject, (TLObject) ((TL_phone.exportGroupCallInvite) obj), tL_error, 5));
@@ -179,7 +179,7 @@ public final class z9 implements RequestDelegate {
             case 14:
                 l50 l50Var = (l50) obj3;
                 String str = (String) obj;
-                m50 m50Var = l50Var.f47396r;
+                m50 m50Var = l50Var.f47423r;
                 if (Objects.equals(l50Var.h, (String) obj2) && (tLObject instanceof TLRPC.TL_messages_foundStickerSets)) {
                     ArrayList arrayList = new ArrayList();
                     ArrayList<TLRPC.StickerSetCovered> arrayList2 = ((TLRPC.TL_messages_foundStickerSets) tLObject).sets;
@@ -266,7 +266,7 @@ public final class z9 implements RequestDelegate {
                 b51 b51Var = (b51) obj;
                 if (tLObject instanceof TL_stats.TL_statsGraph) {
                     try {
-                        bVar = c51.h0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), gg0Var.f47388r.f48231i, false);
+                        bVar = c51.h0(new JSONObject(((TL_stats.TL_statsGraph) tLObject).json.data), gg0Var.f47415r.f48260i, false);
                     } catch (JSONException e11) {
                         e11.printStackTrace();
                     }
@@ -299,9 +299,9 @@ public final class z9 implements RequestDelegate {
     }
 
     public z9(Object obj, TLObject tLObject, String str, int i7) {
-        this.f52502a = i7;
-        this.f52503b = obj;
+        this.f52509a = i7;
+        this.f52510b = obj;
         this.d = tLObject;
-        this.f52504c = str;
+        this.f52511c = str;
     }
 }

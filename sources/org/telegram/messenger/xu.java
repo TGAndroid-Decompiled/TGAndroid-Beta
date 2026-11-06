@@ -14,7 +14,7 @@ public final class xu implements rg0 {
 
     @Override
     public final Layout a() {
-        dx0 dx0Var = this.f26511a.f33351b;
+        dx0 dx0Var = this.f26511a.f33347b;
         if (dx0Var == null) {
             return null;
         }

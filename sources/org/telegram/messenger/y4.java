@@ -18,7 +18,7 @@ import org.telegram.SQLite.SQLitePreparedStatement;
 import org.telegram.tgnet.NativeByteBuffer;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.n51;
+import org.telegram.ui.Components.s51;
 import org.telegram.ui.Components.zg0;
 import org.telegram.ui.LaunchActivity;
 public final class y4 implements Runnable {
@@ -373,7 +373,7 @@ public final class y4 implements Runnable {
                     str = ubVar2.d;
                 } else if (bitmapDrawable instanceof org.telegram.ui.Components.v5) {
                     org.telegram.ui.Components.v5 v5Var2 = (org.telegram.ui.Components.v5) bitmapDrawable;
-                    if (v5Var2.f38848n0) {
+                    if (v5Var2.f38840n0) {
                         String str5 = ubVar2.d;
                         ThreadLocal threadLocal = gc.I;
                         BitmapDrawable y10 = gcVar3.y(str5);
@@ -439,22 +439,22 @@ public final class y4 implements Runnable {
                 try {
                     int i18 = mediaController.f21272k0 + 1;
                     mediaController.f21272k0 = i18;
-                    n51 n51Var = mediaController.f21270j0;
-                    if (n51Var != null) {
-                        n51Var.m0();
+                    s51 s51Var = mediaController.f21270j0;
+                    if (s51Var != null) {
+                        s51Var.m0();
                     }
-                    n51 n51Var2 = new n51(false, false);
-                    mediaController.f21270j0 = n51Var2;
-                    n51Var2.J = new f5.u(mediaController, i18, 10);
-                    n51Var2.j0(Uri.fromFile(file), "other");
+                    s51 s51Var2 = new s51(false, false);
+                    mediaController.f21270j0 = s51Var2;
+                    s51Var2.J = new f5.u(mediaController, i18, 10);
+                    s51Var2.j0(Uri.fromFile(file), "other");
                     mediaController.f21270j0.x0(3);
                     mediaController.f21270j0.h0();
                     return;
                 } catch (Exception e14) {
                     a8.g(e14, true);
-                    n51 n51Var3 = mediaController.f21270j0;
-                    if (n51Var3 != null) {
-                        n51Var3.m0();
+                    s51 s51Var3 = mediaController.f21270j0;
+                    if (s51Var3 != null) {
+                        s51Var3.m0();
                         mediaController.f21270j0 = null;
                         return;
                     }
@@ -471,12 +471,12 @@ public final class y4 implements Runnable {
                 jg.q1 q1Var = (jg.q1) this.f26570b;
                 ij ijVar = (ij) this.f26571c;
                 MediaController mediaController2 = (MediaController) q1Var.f16895c;
-                n51 n51Var4 = mediaController2.f21268i0;
-                if ((n51Var4 != null || mediaController2.E0 != null) && !mediaController2.f21264g0) {
+                s51 s51Var4 = mediaController2.f21268i0;
+                if ((s51Var4 != null || mediaController2.E0 != null) && !mediaController2.f21264g0) {
                     try {
-                        n51 n51Var5 = mediaController2.E0;
-                        if (n51Var5 != null) {
-                            U = n51Var5.U();
+                        s51 s51Var5 = mediaController2.E0;
+                        if (s51Var5 != null) {
+                            U = s51Var5.U();
                             S = ((MediaController) q1Var.f16895c).E0.S();
                             if (S >= 0 && U > 0) {
                                 float f11 = (float) U;
@@ -488,7 +488,7 @@ public final class y4 implements Runnable {
                             }
                             return;
                         }
-                        U = n51Var4.U();
+                        U = s51Var4.U();
                         S = ((MediaController) q1Var.f16895c).f21268i0.S();
                         if (U >= 0) {
                             f10 = ((float) S) / ((float) U);

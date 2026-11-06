@@ -8,25 +8,25 @@ import java.util.List;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-public final class ql implements pq0 {
-    public final TL_iv.RichMessage f49227a;
-    public final ArrayList f49228b;
-    public final org.telegram.messenger.ij f49229c;
+public final class ql implements qq0 {
+    public final TL_iv.RichMessage f49254a;
+    public final ArrayList f49255b;
+    public final org.telegram.messenger.ij f49256c;
 
     public ql(TL_iv.RichMessage richMessage, ArrayList arrayList, org.telegram.messenger.ij ijVar) {
-        this.f49227a = richMessage;
-        this.f49228b = arrayList;
-        this.f49229c = ijVar;
+        this.f49254a = richMessage;
+        this.f49255b = arrayList;
+        this.f49256c = ijVar;
     }
 
     @Override
     public final boolean a(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f49228b;
+            ArrayList arrayList = this.f49255b;
             if (i7 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i7);
                 if (pageBlock instanceof TL_iv.pageBlockVideo) {
-                    TLRPC.Document b10 = d4.b(this.f49227a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
+                    TLRPC.Document b10 = d4.b(this.f49254a, ((TL_iv.pageBlockVideo) pageBlock).video_id);
                     if (b10 != null) {
                         return org.telegram.messenger.ij.L4(b10);
                     }
@@ -44,11 +44,11 @@ public final class ql implements pq0 {
         TLRPC.Document b10;
         TLRPC.PhotoSize w10;
         if (i7 >= 0) {
-            ArrayList arrayList = this.f49228b;
+            ArrayList arrayList = this.f49255b;
             if (i7 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i7);
                 boolean z9 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f49227a;
+                TL_iv.RichMessage richMessage = this.f49254a;
                 if (z9) {
                     TLRPC.Photo f10 = d4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                     if (f10 != null && (w10 = org.telegram.messenger.w7.w(f10.sizes, org.telegram.messenger.g0.Z0(false), false, null, false)) != null) {
@@ -74,11 +74,11 @@ public final class ql implements pq0 {
     @Override
     public final TLObject d(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f49228b;
+            ArrayList arrayList = this.f49255b;
             if (i7 < arrayList.size()) {
                 TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i7);
                 boolean z9 = pageBlock instanceof TL_iv.pageBlockPhoto;
-                TL_iv.RichMessage richMessage = this.f49227a;
+                TL_iv.RichMessage richMessage = this.f49254a;
                 if (z9) {
                     return d4.f(richMessage, ((TL_iv.pageBlockPhoto) pageBlock).photo_id);
                 }
@@ -133,27 +133,27 @@ public final class ql implements pq0 {
 
     @Override
     public final Object g() {
-        org.telegram.messenger.ij ijVar = this.f49229c;
+        org.telegram.messenger.ij ijVar = this.f49256c;
         if (ijVar != null) {
             return ijVar;
         }
-        return this.f49227a;
+        return this.f49254a;
     }
 
     @Override
     public final TL_iv.PageBlock get(int i7) {
-        return (TL_iv.PageBlock) this.f49228b.get(i7);
+        return (TL_iv.PageBlock) this.f49255b.get(i7);
     }
 
     @Override
     public final List getAll() {
-        return this.f49228b;
+        return this.f49255b;
     }
 
     @Override
     public final void h(TL_iv.PageBlock pageBlock) {
         org.telegram.messenger.kv kvVar;
-        org.telegram.messenger.ij ijVar = this.f49229c;
+        org.telegram.messenger.ij ijVar = this.f49256c;
         if (ijVar != null && (kvVar = ijVar.f23284w2) != null) {
             ArrayList arrayList = kvVar.f23761g;
             if (pageBlock != null) {
@@ -199,6 +199,6 @@ public final class ql implements pq0 {
 
     @Override
     public final int j() {
-        return this.f49228b.size();
+        return this.f49255b.size();
     }
 }

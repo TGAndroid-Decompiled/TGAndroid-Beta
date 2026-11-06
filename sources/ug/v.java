@@ -12,19 +12,19 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.l00;
 public final class v implements Runnable {
-    public final int f56717a;
-    public final i0 f56718b;
+    public final int f56742a;
+    public final i0 f56743b;
 
     public v(i0 i0Var, int i7) {
-        this.f56717a = i7;
-        this.f56718b = i0Var;
+        this.f56742a = i7;
+        this.f56743b = i0Var;
     }
 
     @Override
     public final void run() {
         String G;
-        int i7 = this.f56717a;
-        i0 i0Var = this.f56718b;
+        int i7 = this.f56742a;
+        i0 i0Var = this.f56743b;
         switch (i7) {
             case 0:
                 if (LaunchActivity.Q() != null) {
@@ -35,11 +35,11 @@ public final class v implements Runnable {
                 }
                 return;
             case 1:
-                i0Var.f56501p2.g(i0Var.T1, false);
+                i0Var.f56526p2.g(i0Var.T1, false);
                 i0Var.t1();
                 return;
             case 2:
-                HashSet hashSet = i0Var.f56502q2;
+                HashSet hashSet = i0Var.f56527q2;
                 hc X = hc.X();
                 if (X != null) {
                     if (hashSet.size() == 1) {
@@ -58,14 +58,14 @@ public final class v implements Runnable {
                 return;
             default:
                 if (t3.N(i0Var.n1())) {
-                    if (i0Var.f56508w2.getParent() != null) {
-                        ((ViewGroup) i0Var.f56508w2.getParent()).removeView(i0Var.f56508w2);
+                    if (i0Var.f56533w2.getParent() != null) {
+                        ((ViewGroup) i0Var.f56533w2.getParent()).removeView(i0Var.f56533w2);
                     }
                     l00 l00Var = i0Var.D2;
                     if (l00Var != null && l00Var.getParent() != null) {
                         ((ViewGroup) i0Var.D2.getParent()).removeView(i0Var.D2);
                     }
-                    i0Var.f36328k1.setPadding(0, 0, 0, 0);
+                    i0Var.f36222k1.setPadding(0, 0, 0, 0);
                     return;
                 }
                 return;

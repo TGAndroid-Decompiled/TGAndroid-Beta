@@ -3,12 +3,12 @@ package v0;
 import java.util.Collection;
 import java.util.List;
 public final class n {
-    public final List f56857a;
-    public final boolean f56858b;
+    public final List f56882a;
+    public final boolean f56883b;
 
     public n(List list, boolean z9) {
-        this.f56857a = list;
-        this.f56858b = z9;
+        this.f56882a = list;
+        this.f56883b = z9;
         if (!list.isEmpty()) {
             if (list.size() > 1) {
                 List<h> list2 = list;
@@ -20,10 +20,10 @@ public final class n {
                         }
                     }
                 }
-                if (i7 > 0 && i7 != this.f56857a.size()) {
+                if (i7 > 0 && i7 != this.f56882a.size()) {
                     throw new IllegalArgumentException("Digital Credential Option cannot be used with other credential option.");
                 }
-                for (h hVar2 : this.f56857a) {
+                for (h hVar2 : this.f56882a) {
                 }
                 return;
             }

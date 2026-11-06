@@ -12,43 +12,43 @@ public abstract class is implements org.telegram.messenger.ls {
     public boolean I;
     public int J;
     public final int K;
-    public boolean f34765a;
-    public Bitmap f34766b;
-    public Canvas f34767c;
+    public boolean f34728a;
+    public Bitmap f34729b;
+    public Canvas f34730c;
     public Bitmap d;
-    public Canvas f34768e;
-    public boolean f34769f;
-    public int f34770n;
-    public boolean f34771r;
-    public int f34773w;
-    public int f34774x;
-    public int f34775y;
+    public Canvas f34731e;
+    public boolean f34732f;
+    public int f34733n;
+    public boolean f34734r;
+    public int f34736w;
+    public int f34737x;
+    public int f34738y;
     public int h = 1;
-    public final Paint f34772s = new Paint(1);
+    public final Paint f34735s = new Paint(1);
     public final hs F = new hs(this, 0);
     public final hs H = new hs(this, 1);
 
     public is() {
         if (L == null) {
             ?? obj = new Object();
-            obj.f35676b = new org.telegram.messenger.q5[2];
+            obj.f35681b = new org.telegram.messenger.q5[2];
             L = obj;
         }
         lm lmVar = L;
-        int i7 = lmVar.f35675a + 1;
-        lmVar.f35675a = i7;
+        int i7 = lmVar.f35680a + 1;
+        lmVar.f35680a = i7;
         if (i7 > 1) {
-            lmVar.f35675a = 0;
+            lmVar.f35680a = 0;
         }
-        org.telegram.messenger.q5[] q5VarArr = (org.telegram.messenger.q5[]) lmVar.f35676b;
-        int i10 = lmVar.f35675a;
+        org.telegram.messenger.q5[] q5VarArr = (org.telegram.messenger.q5[]) lmVar.f35681b;
+        int i10 = lmVar.f35680a;
         org.telegram.messenger.q5 q5Var = q5VarArr[i10];
         if (q5Var == null) {
-            q5Var = new org.telegram.messenger.q5("draw_background_queue_" + lmVar.f35675a, true);
+            q5Var = new org.telegram.messenger.q5("draw_background_queue_" + lmVar.f35680a, true);
             q5VarArr[i10] = q5Var;
         }
         this.D = q5Var;
-        this.K = L.f35675a;
+        this.K = L.f35680a;
     }
 
     public void a(Canvas canvas, long j3, int i7, int i10, float f10) {
@@ -56,16 +56,16 @@ public abstract class is implements org.telegram.messenger.ls {
             boolean z9 = org.telegram.messenger.r2.f25191a;
             return;
         }
-        this.f34774x = i10;
-        this.f34775y = i7;
+        this.f34737x = i10;
+        this.f34738y = i7;
         if (this.G) {
             this.G = false;
             Bitmap bitmap = this.d;
-            Canvas canvas2 = this.f34768e;
-            this.d = this.f34766b;
-            this.f34768e = this.f34767c;
-            this.f34766b = bitmap;
-            this.f34767c = canvas2;
+            Canvas canvas2 = this.f34731e;
+            this.d = this.f34729b;
+            this.f34731e = this.f34730c;
+            this.f34729b = bitmap;
+            this.f34730c = canvas2;
         }
         Bitmap bitmap2 = this.d;
         if (bitmap2 == null || this.I) {
@@ -76,28 +76,28 @@ public abstract class is implements org.telegram.messenger.ls {
                 org.telegram.messenger.g0.A2(arrayList);
                 this.d = null;
             }
-            int i11 = this.f34774x + 0;
+            int i11 = this.f34737x + 0;
             Bitmap bitmap3 = this.d;
-            if (bitmap3 != null && bitmap3.getHeight() == i11 && this.d.getWidth() == this.f34775y) {
+            if (bitmap3 != null && bitmap3.getHeight() == i11 && this.d.getWidth() == this.f34738y) {
                 this.d.eraseColor(0);
             } else {
-                this.d = Bitmap.createBitmap(this.f34775y, i11, Bitmap.Config.ARGB_8888);
-                this.f34768e = new Canvas(this.d);
+                this.d = Bitmap.createBitmap(this.f34738y, i11, Bitmap.Config.ARGB_8888);
+                this.f34731e = new Canvas(this.d);
             }
-            this.f34768e.save();
-            this.f34768e.translate(0.0f, 0);
-            d(this.f34768e, f10);
-            this.f34768e.restore();
+            this.f34731e.save();
+            this.f34731e.translate(0.0f, 0);
+            d(this.f34731e, f10);
+            this.f34731e.restore();
         }
-        if (!this.f34769f && !this.f34771r) {
-            this.f34769f = true;
+        if (!this.f34732f && !this.f34734r) {
+            this.f34732f = true;
             i(j3);
-            this.J = this.f34773w;
+            this.J = this.f34736w;
             this.D.postRunnable(this.F);
         }
         Bitmap bitmap4 = this.d;
         if (bitmap4 != null) {
-            Paint paint = this.f34772s;
+            Paint paint = this.f34735s;
             paint.setAlpha((int) (f10 * 255.0f));
             canvas.save();
             canvas.translate(0.0f, -0);
@@ -121,48 +121,48 @@ public abstract class is implements org.telegram.messenger.ls {
             Integer num = (Integer) objArr[0];
             if (this.h < num.intValue()) {
                 if (num.intValue() != 512 || org.telegram.messenger.iz.o() < 2) {
-                    int intValue = num.intValue() | this.f34770n;
-                    this.f34770n = intValue;
-                    if (intValue != 0 && !this.f34771r) {
-                        this.f34771r = true;
+                    int intValue = num.intValue() | this.f34733n;
+                    this.f34733n = intValue;
+                    if (intValue != 0 && !this.f34734r) {
+                        this.f34734r = true;
                     }
                 }
             }
         } else if (i7 == org.telegram.messenger.qs.f25009k1) {
             Integer num2 = (Integer) objArr[0];
-            if (this.h < num2.intValue() && (i11 = this.f34770n) != 0) {
+            if (this.h < num2.intValue() && (i11 = this.f34733n) != 0) {
                 int i12 = (~num2.intValue()) & i11;
-                this.f34770n = i12;
-                if (i12 == 0 && this.f34771r) {
-                    this.f34771r = false;
+                this.f34733n = i12;
+                if (i12 == 0 && this.f34734r) {
+                    this.f34734r = false;
                 }
             }
         }
     }
 
     public final void e() {
-        if (this.f34765a) {
+        if (this.f34728a) {
             return;
         }
-        this.f34765a = true;
+        this.f34728a = true;
         this.E = false;
         int i7 = org.telegram.messenger.qs.e().f25120p & (~this.h);
-        this.f34770n = i7;
-        if (i7 == 0 && this.f34771r) {
-            this.f34771r = false;
+        this.f34733n = i7;
+        if (i7 == 0 && this.f34734r) {
+            this.f34734r = false;
         }
         org.telegram.messenger.qs.e().c(this, org.telegram.messenger.qs.f25004j1);
         org.telegram.messenger.qs.e().c(this, org.telegram.messenger.qs.f25009k1);
     }
 
     public final void f() {
-        if (!this.f34765a) {
+        if (!this.f34728a) {
             return;
         }
-        if (!this.f34769f) {
+        if (!this.f34732f) {
             j();
         }
-        this.f34765a = false;
+        this.f34728a = false;
         org.telegram.messenger.qs.e().n(this, org.telegram.messenger.qs.f25004j1);
         org.telegram.messenger.qs.e().n(this, org.telegram.messenger.qs.f25009k1);
     }
@@ -177,20 +177,20 @@ public abstract class is implements org.telegram.messenger.ls {
         if (bitmap != null) {
             arrayList.add(bitmap);
         }
-        Bitmap bitmap2 = this.f34766b;
+        Bitmap bitmap2 = this.f34729b;
         if (bitmap2 != null) {
             arrayList.add(bitmap2);
         }
         this.d = null;
-        this.f34766b = null;
-        this.f34767c = null;
-        this.f34768e = null;
+        this.f34729b = null;
+        this.f34730c = null;
+        this.f34731e = null;
         org.telegram.messenger.g0.A2(arrayList);
     }
 
     public final void k() {
         this.I = true;
-        this.f34773w++;
+        this.f34736w++;
         if (this.d != null) {
             ArrayList arrayList = new ArrayList();
             arrayList.add(this.d);
@@ -201,8 +201,8 @@ public abstract class is implements org.telegram.messenger.ls {
 
     public final void l(int i7) {
         this.h = 7;
-        if (this.f34765a) {
-            this.f34770n = org.telegram.messenger.qs.e().f25120p & (~this.h);
+        if (this.f34728a) {
+            this.f34733n = org.telegram.messenger.qs.e().f25120p & (~this.h);
         }
     }
 

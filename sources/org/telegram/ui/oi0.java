@@ -5,19 +5,19 @@ import android.view.MotionEvent;
 import android.widget.TextView;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class oi0 implements TextView.OnEditorActionListener {
-    public final int f48391a;
-    public final bk0 f48392b;
+    public final int f48420a;
+    public final bk0 f48421b;
 
     public oi0(bk0 bk0Var, int i7) {
-        this.f48391a = i7;
-        this.f48392b = bk0Var;
+        this.f48420a = i7;
+        this.f48421b = bk0Var;
     }
 
     @Override
     public final boolean onEditorAction(TextView textView, int i7, KeyEvent keyEvent) {
-        switch (this.f48391a) {
+        switch (this.f48420a) {
             case 0:
-                bk0 bk0Var = this.f48392b;
+                bk0 bk0Var = this.f48421b;
                 if (i7 == 5) {
                     bk0Var.Y[2].requestFocus();
                     return true;
@@ -29,7 +29,7 @@ public final class oi0 implements TextView.OnEditorActionListener {
                     return false;
                 }
             case 1:
-                bk0 bk0Var2 = this.f48392b;
+                bk0 bk0Var2 = this.f48421b;
                 bk0Var2.getClass();
                 if (i7 == 5) {
                     int intValue = ((Integer) textView.getTag()).intValue() + 1;
@@ -48,26 +48,26 @@ public final class oi0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 2:
-                bk0 bk0Var3 = this.f48392b;
+                bk0 bk0Var3 = this.f48421b;
                 bk0Var3.getClass();
                 if (i7 == 5) {
                     int intValue2 = ((Integer) textView.getTag()).intValue() + 1;
-                    EditTextBoldCursor[] editTextBoldCursorArr2 = bk0Var3.f44345a0;
+                    EditTextBoldCursor[] editTextBoldCursorArr2 = bk0Var3.f44361a0;
                     if (intValue2 >= editTextBoldCursorArr2.length) {
                         return true;
                     }
                     if (editTextBoldCursorArr2[intValue2].isFocusable()) {
-                        bk0Var3.f44345a0[intValue2].requestFocus();
+                        bk0Var3.f44361a0[intValue2].requestFocus();
                         return true;
                     }
-                    bk0Var3.f44345a0[intValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
+                    bk0Var3.f44361a0[intValue2].dispatchTouchEvent(MotionEvent.obtain(0L, 0L, 1, 0.0f, 0.0f, 0));
                     textView.clearFocus();
                     org.telegram.messenger.g0.v1(textView);
                     return true;
                 }
                 return false;
             case 3:
-                bk0 bk0Var4 = this.f48392b;
+                bk0 bk0Var4 = this.f48421b;
                 bk0Var4.getClass();
                 if (i7 != 6 && i7 != 5) {
                     return false;
@@ -75,7 +75,7 @@ public final class oi0 implements TextView.OnEditorActionListener {
                 bk0Var4.L.callOnClick();
                 return true;
             case 4:
-                bk0 bk0Var5 = this.f48392b;
+                bk0 bk0Var5 = this.f48421b;
                 bk0Var5.getClass();
                 if (i7 == 5) {
                     int intValue3 = ((Integer) textView.getTag()).intValue() + 1;
@@ -94,7 +94,7 @@ public final class oi0 implements TextView.OnEditorActionListener {
                 }
                 return false;
             case 5:
-                bk0 bk0Var6 = this.f48392b;
+                bk0 bk0Var6 = this.f48421b;
                 bk0Var6.getClass();
                 if (i7 != 5 && i7 != 6) {
                     return false;
@@ -102,7 +102,7 @@ public final class oi0 implements TextView.OnEditorActionListener {
                 bk0Var6.L.callOnClick();
                 return true;
             default:
-                bk0 bk0Var7 = this.f48392b;
+                bk0 bk0Var7 = this.f48421b;
                 bk0Var7.getClass();
                 if (i7 != 6 && i7 != 5) {
                     return false;

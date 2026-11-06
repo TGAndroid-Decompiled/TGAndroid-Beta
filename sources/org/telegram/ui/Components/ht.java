@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ht implements hx {
-    public final kt f34412a;
+    public final kt f34362a;
 
     public ht(kt ktVar) {
-        this.f34412a = ktVar;
+        this.f34362a = ktVar;
     }
 
     @Override
@@ -46,16 +46,16 @@ public final class ht implements hx {
     @Override
     public final void i(int i7) {
         boolean z9;
-        kt ktVar = this.f34412a;
+        kt ktVar = this.f34362a;
         if (ktVar.b()) {
             if (i7 != 0) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            ktVar.f35423y = z9;
+            ktVar.f35426y = z9;
             ktVar.y();
-            rt0 rt0Var = ktVar.f35417f;
+            rt0 rt0Var = ktVar.f35420f;
             if (rt0Var != null) {
                 rt0Var.R();
             }
@@ -69,7 +69,7 @@ public final class ht implements hx {
 
     @Override
     public final boolean k() {
-        et etVar = this.f34412a.f35413a;
+        et etVar = this.f34362a.f35416a;
         if (etVar.length() == 0) {
             return false;
         }
@@ -79,7 +79,7 @@ public final class ht implements hx {
 
     @Override
     public final void l(String str) {
-        et etVar = this.f34412a.f35413a;
+        et etVar = this.f34362a.f35416a;
         int selectionEnd = etVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -96,7 +96,7 @@ public final class ht implements hx {
 
     @Override
     public final void n() {
-        kt ktVar = this.f34412a;
+        kt ktVar = this.f34362a;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, ktVar.getContext(), ktVar.M);
         String M0 = org.telegram.messenger.hd.M0(2131752068, null);
         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
@@ -119,7 +119,7 @@ public final class ht implements hx {
 
     @Override
     public final void q() {
-        org.telegram.ui.ActionBar.f2 f2Var = this.f34412a.h;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f34362a.h;
         if (f2Var == null) {
             new ug.w0((org.telegram.ui.ActionBar.f2) new bi.w4(this, 5), 11, false).show();
         } else {
@@ -130,8 +130,8 @@ public final class ht implements hx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
         r5 r5Var;
-        kt ktVar = this.f34412a;
-        et etVar = ktVar.f35413a;
+        kt ktVar = this.f34362a;
+        et etVar = ktVar.f35416a;
         int selectionEnd = etVar.getSelectionEnd();
         if (selectionEnd < 0) {
             selectionEnd = 0;
@@ -143,7 +143,7 @@ public final class ht implements hx {
             } else {
                 r5Var = new r5(j3, etVar.getPaint().getFontMetricsInt());
             }
-            r5Var.cacheType = ktVar.d.f34074c;
+            r5Var.cacheType = ktVar.d.f34022c;
             spannableString.setSpan(r5Var, 0, spannableString.length(), 33);
             etVar.setText(etVar.getText().insert(selectionEnd, spannableString));
             int length = selectionEnd + spannableString.length();
@@ -157,7 +157,7 @@ public final class ht implements hx {
 
     @Override
     public final boolean z() {
-        return this.f34412a.f35423y;
+        return this.f34362a.f35426y;
     }
 
     @Override
@@ -165,7 +165,7 @@ public final class ht implements hx {
     }
 
     @Override
-    public final void o(n31 n31Var) {
+    public final void o(s31 s31Var) {
     }
 
     @Override

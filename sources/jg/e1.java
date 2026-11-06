@@ -29,7 +29,7 @@ public final class e1 {
                 break;
             default:
                 gy gyVar = (gy) this.h;
-                if (gyVar.f34128t1 != null && gyVar.getVisibility() == 0 && gyVar.K0) {
+                if (gyVar.f34076t1 != null && gyVar.getVisibility() == 0 && gyVar.K0) {
                     N = true;
                     break;
                 } else {

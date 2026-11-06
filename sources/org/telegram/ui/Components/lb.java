@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 public final class lb extends ii0 {
-    public final int f35584m1 = 0;
+    public final int f35589m1 = 0;
     public final Object n1;
 
     public lb(org.telegram.ui.ks ksVar, Context context, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
@@ -15,15 +15,15 @@ public final class lb extends ii0 {
     @Override
     public boolean dispatchTouchEvent(MotionEvent motionEvent) {
         cc ccVar;
-        switch (this.f35584m1) {
+        switch (this.f35589m1) {
             case 0:
                 nb nbVar = (nb) this.n1;
                 if (motionEvent.getAction() == 0) {
-                    cc ccVar2 = nbVar.f36355n;
+                    cc ccVar2 = nbVar.f36249n;
                     if (ccVar2 != null) {
                         ccVar2.i(false);
                     }
-                } else if (motionEvent.getAction() == 1 && (ccVar = nbVar.f36355n) != null) {
+                } else if (motionEvent.getAction() == 1 && (ccVar = nbVar.f36249n) != null) {
                     ccVar.i(true);
                 }
                 return super.dispatchTouchEvent(motionEvent);
@@ -34,19 +34,19 @@ public final class lb extends ii0 {
 
     @Override
     public void j() {
-        switch (this.f35584m1) {
+        switch (this.f35589m1) {
             case 1:
                 super.j();
                 org.telegram.ui.ks ksVar = (org.telegram.ui.ks) this.n1;
                 if (getReactionsWindow() != null) {
-                    WindowManager.LayoutParams layoutParams = ksVar.f47268x;
+                    WindowManager.LayoutParams layoutParams = ksVar.f47293x;
                     layoutParams.flags &= -131073;
                     layoutParams.softInputMode = 16;
                 } else {
-                    ksVar.f47268x.flags |= 131072;
+                    ksVar.f47293x.flags |= 131072;
                 }
                 try {
-                    ((WindowManager) ksVar.f47267w.getSystemService("window")).updateViewLayout(ksVar.f47269y, ksVar.f47268x);
+                    ((WindowManager) ksVar.f47292w.getSystemService("window")).updateViewLayout(ksVar.f47294y, ksVar.f47293x);
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
@@ -60,9 +60,9 @@ public final class lb extends ii0 {
 
     @Override
     public void m() {
-        switch (this.f35584m1) {
+        switch (this.f35589m1) {
             case 0:
-                cc ccVar = cc.f32515w;
+                cc ccVar = cc.f32519w;
                 if (ccVar != null) {
                     ccVar.i(false);
                 }

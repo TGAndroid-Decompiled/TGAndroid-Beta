@@ -24,7 +24,7 @@ public final class p5 implements v10 {
         v10 v10Var = (v10) this.f4513c;
         TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
         String str = (String) obj2;
-        if (!((org.telegram.ui.Wallet.b0) this.f4512b).f42089a) {
+        if (!((org.telegram.ui.Wallet.b0) this.f4512b).f42114a) {
             v10Var.a(wallettransaction, str);
         }
     }

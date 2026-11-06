@@ -103,7 +103,7 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
                 h2.a.m("MediaSessionStub", "Library operation failed", e);
                 String str = p4.o.d;
                 p4.k1 k1Var = new p4.k1("no error message provided", -1, Bundle.EMPTY);
-                oVar = new p4.o(k1Var.f53223a, SystemClock.elapsedRealtime(), k1Var);
+                oVar = new p4.o(k1Var.f53249a, SystemClock.elapsedRealtime(), k1Var);
                 oVar2 = oVar;
                 p4.u uVar = vVar.d;
                 uVar.getClass();
@@ -112,7 +112,7 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
                 h2.a.m("MediaSessionStub", "Library operation cancelled", e11);
                 String str2 = p4.o.d;
                 p4.k1 k1Var2 = new p4.k1("no error message provided", 1, Bundle.EMPTY);
-                oVar = new p4.o(k1Var2.f53223a, SystemClock.elapsedRealtime(), k1Var2);
+                oVar = new p4.o(k1Var2.f53249a, SystemClock.elapsedRealtime(), k1Var2);
                 oVar2 = oVar;
                 p4.u uVar2 = vVar.d;
                 uVar2.getClass();
@@ -122,7 +122,7 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
                 h2.a.m("MediaSessionStub", "Library operation failed", e);
                 String str3 = p4.o.d;
                 p4.k1 k1Var3 = new p4.k1("no error message provided", -1, Bundle.EMPTY);
-                oVar = new p4.o(k1Var3.f53223a, SystemClock.elapsedRealtime(), k1Var3);
+                oVar = new p4.o(k1Var3.f53249a, SystemClock.elapsedRealtime(), k1Var3);
                 oVar2 = oVar;
                 p4.u uVar22 = vVar.d;
                 uVar22.getClass();
@@ -143,11 +143,11 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
             ii0Var.getClass();
             return false;
         }
-        hi0 hi0Var = ii0Var.f34659g0;
+        hi0 hi0Var = ii0Var.f34622g0;
         if (hi0Var == null || !(view instanceof gi0)) {
             return false;
         }
-        hi0Var.i(ii0Var, ((gi0) view).f33970e, true, false);
+        hi0Var.i(ii0Var, ((gi0) view).f33918e, true, false);
         return true;
     }
 
@@ -182,11 +182,11 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
                         hashSet.remove(Long.valueOf(j3));
                     } else {
                         hashSet.add(Long.valueOf(j3));
-                        qg0Var.f49195a2.put(Long.valueOf(j3), user);
+                        qg0Var.f49222a2.put(Long.valueOf(j3), user);
                     }
                     if (hashSet.size() == i11 + 1) {
                         hashSet.remove(Long.valueOf(j3));
-                        String G = hd.G(qg0Var.f49201h2, "BotMultiContactsSelectorLimit", new Object[0]);
+                        String G = hd.G(qg0Var.f49228h2, "BotMultiContactsSelectorLimit", new Object[0]);
                         l2 l2Var = qg0Var.f28618c;
                         new hc(l2Var, qg0Var.I0).Q(2131623981, 36, G).k(true);
                         try {
@@ -198,12 +198,12 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
                     }
                     ng0Var.b(true, hashSet, new kg0(qg0Var, 2), null);
                     qg0Var.g1(true, false);
-                    if (TextUtils.isEmpty(qg0Var.f49196b2)) {
+                    if (TextUtils.isEmpty(qg0Var.f49223b2)) {
                         return;
                     }
-                    qg0Var.f49196b2 = null;
+                    qg0Var.f49223b2 = null;
                     ng0Var.setText("");
-                    org.telegram.messenger.g0.r(qg0Var.f49205l2);
+                    org.telegram.messenger.g0.r(qg0Var.f49232l2);
                     qg0Var.f1(true, true);
                     return;
                 }
@@ -215,15 +215,15 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
     public void f0(ImageReceiver imageReceiver, boolean z9, boolean z10, boolean z11) {
         int i7;
         s7 s7Var = (s7) this.f17992c;
-        if (this.f17991b == s7Var.f37963b) {
-            b8 b8Var = s7Var.f37965e;
+        if (this.f17991b == s7Var.f37923b) {
+            b8 b8Var = s7Var.f37925e;
             Bitmap n10 = imageReceiver.n();
             if ((n10 != null && imageReceiver.J()) || imageReceiver.I()) {
                 i7 = org.telegram.messenger.g0.L(64.0f);
             } else {
                 i7 = 0;
             }
-            t7 t7Var = b8Var.f32073z1;
+            t7 t7Var = b8Var.f32067z1;
             ValueAnimator valueAnimator = b8Var.J2;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
@@ -265,7 +265,7 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
         Object obj = this.f17992c;
         switch (i10) {
             case 10:
-                ArrayList arrayList = ((LaunchActivity) obj).f41232d0;
+                ArrayList arrayList = ((LaunchActivity) obj).f41257d0;
                 if (!arrayList.isEmpty()) {
                     qp.s1(i11).y3("spambot", (f2) jg.g.i(1, arrayList), 1, null);
                     return;
@@ -277,28 +277,28 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
             default:
                 ProfileActivity profileActivity = (ProfileActivity) obj;
                 RectF rectF = ProfileActivity.S6;
-                TLRPC.UserFull b22 = profileActivity.getMessagesController().b2(profileActivity.f41688d1);
+                TLRPC.UserFull b22 = profileActivity.getMessagesController().b2(profileActivity.f41713d1);
                 if (b22 != null) {
                     b22.flags2 &= -4194305;
                     b22.note = null;
                     profileActivity.getMessagesStorage().j2(b22, true);
                 }
                 TLRPC.TL_updateContactNote tL_updateContactNote = new TLRPC.TL_updateContactNote();
-                tL_updateContactNote.f27093id = profileActivity.getMessagesController().o1(profileActivity.f41688d1);
+                tL_updateContactNote.f27093id = profileActivity.getMessagesController().o1(profileActivity.f41713d1);
                 tL_updateContactNote.note = new TLRPC.TL_textWithEntities();
                 profileActivity.getConnectionsManager().sendRequest(tL_updateContactNote, null);
                 profileActivity.J5();
                 profileActivity.d.s(i11);
                 return;
             case 13:
-                ce0 ce0Var = ((be0) obj).f44286g0;
+                ce0 ce0Var = ((be0) obj).f44302g0;
                 if (p10.f24459s0 != i11) {
                     ((LaunchActivity) ce0Var.getParentActivity()).O0(i11);
                 }
                 ce0Var.finishFragment();
                 return;
             case 15:
-                bk0 bk0Var = ((kj0) obj).f47178a;
+                bk0 bk0Var = ((kj0) obj).f47201a;
                 bk0Var.D1(bk0Var.Y[i11]);
                 return;
             case 16:
@@ -358,12 +358,12 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
 
     @Override
     public void k(boolean z9) {
-        an anVar = ((si) this.f17992c).f49758b;
+        an anVar = ((si) this.f17992c).f49779b;
         int i7 = this.f17991b;
-        if (i7 == 15 && t3.T(anVar.f43747e)) {
-            TLRPC.Chat chat = anVar.f43747e;
+        if (i7 == 15 && t3.T(anVar.f43772e)) {
+            TLRPC.Chat chat = anVar.f43772e;
             if (!chat.megagroup || t3.t0(chat)) {
-                anVar.getMessagesController().X(2, anVar.f43818j6, z9);
+                anVar.getMessagesController().X(2, anVar.f43843j6, z9);
                 return;
             }
         }
@@ -373,10 +373,10 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
             notificationCenter.n(anVar, i10);
             anVar.getNotificationCenter().k(i10, new Object[0]);
             anVar.finishFragment();
-            anVar.getNotificationCenter().k(qs.K2, Long.valueOf(anVar.f43818j6), anVar.f43761f, anVar.f43747e, Boolean.valueOf(z9));
+            anVar.getNotificationCenter().k(qs.K2, Long.valueOf(anVar.f43843j6), anVar.f43786f, anVar.f43772e, Boolean.valueOf(z9));
             return;
         }
-        anVar.Qa(anVar.f43915r4, z9);
+        anVar.Qa(anVar.f43940r4, z9);
     }
 
     @Override
@@ -386,7 +386,7 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
 
     @Override
     public int run() {
-        v4.b0 b0Var = ((w90) this.f17992c).f51026c;
+        v4.b0 b0Var = ((w90) this.f17992c).f51032c;
         int L = org.telegram.messenger.g0.L(60.0f);
         int i7 = this.f17991b;
         b0Var.h1(i7, L);
@@ -430,7 +430,7 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
                 hashSet.remove(Long.valueOf(j3));
             } else {
                 hashSet.add(Long.valueOf(j3));
-                f1Var.f57615f2.put(Long.valueOf(j3), user);
+                f1Var.f57640f2.put(Long.valueOf(j3), user);
             }
             if (hashSet.size() == f1Var.h1() + 1) {
                 hashSet.remove(Long.valueOf(j3));
@@ -441,11 +441,11 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
             if (z9 != z10) {
                 aVar.setVisibility(0);
                 aVar.animate().alpha(z10 ? 1.0f : 0.0f).translationY(z10 ? 0.0f : org.telegram.messenger.g0.L(12.0f)).setInterpolator(xq.h).setDuration(320L).withEndAction(!z10 ? new wg.x0(f1Var, 7) : null).start();
-                xg.i iVar = f1Var.f57617h2;
+                xg.i iVar = f1Var.f57642h2;
                 boolean z11 = !z10;
                 if (iVar.D != z11) {
                     iVar.D = z11;
-                    org.telegram.messenger.g0.d0(iVar.f58626f, new xg.g(z11));
+                    org.telegram.messenger.g0.d0(iVar.f58651f, new xg.g(z11));
                 }
             }
             f1Var.e1();

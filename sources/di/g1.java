@@ -405,7 +405,7 @@ public final class g1 implements ls, AudioManager.OnAudioFocusChangeListener {
         ti.o oVar;
         float l10 = Utilities.l(f10);
         i1 i1Var = i1.f9120w;
-        if (i1Var != null && i1Var.f9122b == this && (oVar = i1Var.f9121a) != null && oVar.d() && i1Var.f9121a.f56008c != 0) {
+        if (i1Var != null && i1Var.f9122b == this && (oVar = i1Var.f9121a) != null && oVar.d() && i1Var.f9121a.f56033c != 0) {
             i1 i1Var2 = i1.f9120w;
             l10 = (i1Var2 == null || !i1Var2.f9128s) ? 1.0f : 0.0f;
         }

@@ -9,26 +9,26 @@ import org.telegram.messenger.p10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
-public final class w0 extends q31 {
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.w31;
+public final class w0 extends v31 {
     public static final int f18947b = 0;
 
     static {
-        q31.h(new q31());
+        v31.h(new v31());
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
+    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
         ij ijVar;
         s sVar;
         x0 x0Var = (x0) view;
-        a aVar = (a) r31Var.G;
+        a aVar = (a) w31Var.G;
         x0Var.f18986a = aVar;
-        x0Var.S = (o3) r31Var.H;
+        x0Var.S = (o3) w31Var.H;
         x0Var.M = hd.f22871a0;
         x0Var.c(aVar);
         x0Var.F.b();

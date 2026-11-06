@@ -11,7 +11,7 @@ public final class do0 extends org.telegram.ui.Cells.d7 {
 
     @Override
     public final String a() {
-        if (this.N.f33668f.S1) {
+        if (this.N.f33612f.S1) {
             return org.telegram.messenger.hd.M0(2131746185, null);
         }
         return org.telegram.messenger.hd.M0(2131750487, null);

@@ -6,7 +6,7 @@ import java.util.concurrent.Callable;
 import org.webrtc.VideoFrame;
 public class TextureBufferImpl implements VideoFrame.TextureBuffer {
     private final int height;
-    private final int f52915id;
+    private final int f52941id;
     private final RefCountDelegate refCountDelegate;
     private final RefCountMonitor refCountMonitor;
     private final Handler toI420Handler;
@@ -74,7 +74,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
 
     @Override
     public int getTextureId() {
-        return this.f52915id;
+        return this.f52941id;
     }
 
     public Handler getToI420Handler() {
@@ -149,7 +149,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         this.width = i11;
         this.height = i12;
         this.type = type;
-        this.f52915id = i13;
+        this.f52941id = i13;
         this.transformMatrix = matrix;
         this.toI420Handler = handler;
         this.yuvConverter = yuvConverter;
@@ -161,7 +161,7 @@ public class TextureBufferImpl implements VideoFrame.TextureBuffer {
         Matrix matrix2 = new Matrix(this.transformMatrix);
         matrix2.preConcat(matrix);
         retain();
-        return new TextureBufferImpl(i7, i10, i11, i12, this.type, this.f52915id, matrix2, this.toI420Handler, this.yuvConverter, new RefCountMonitor() {
+        return new TextureBufferImpl(i7, i10, i11, i12, this.type, this.f52941id, matrix2, this.toI420Handler, this.yuvConverter, new RefCountMonitor() {
             {
                 TextureBufferImpl.this = this;
             }

@@ -1,23 +1,23 @@
 package org.telegram.utils.twidget;
 public final class h {
-    public long f52772a;
+    public long f52798a;
 
     public final void a() {
-        long j3 = this.f52772a;
+        long j3 = this.f52798a;
         if (j3 != 0) {
             WidgetSandboxNative.arbiterCancel(j3);
         }
     }
 
     public final int b(double d, double d2, double d10, boolean z9, boolean z10, boolean z11, boolean z12, int i7) {
-        if (this.f52772a == 0) {
-            this.f52772a = WidgetSandboxNative.arbiterCreate();
+        if (this.f52798a == 0) {
+            this.f52798a = WidgetSandboxNative.arbiterCreate();
         }
-        return WidgetSandboxNative.arbiterDown(this.f52772a, d, d2, d10, z9, z10, z11, z12, i7);
+        return WidgetSandboxNative.arbiterDown(this.f52798a, d, d2, d10, z9, z10, z11, z12, i7);
     }
 
     public final double c() {
-        long j3 = this.f52772a;
+        long j3 = this.f52798a;
         if (j3 == 0) {
             return -1.0d;
         }
@@ -25,7 +25,7 @@ public final class h {
     }
 
     public final int d(double d, double d2, double d10) {
-        long j3 = this.f52772a;
+        long j3 = this.f52798a;
         if (j3 == 0) {
             return -1;
         }
@@ -33,16 +33,16 @@ public final class h {
     }
 
     public final void e() {
-        long j3 = this.f52772a;
+        long j3 = this.f52798a;
         if (j3 == 0) {
             return;
         }
         WidgetSandboxNative.arbiterDestroy(j3);
-        this.f52772a = 0L;
+        this.f52798a = 0L;
     }
 
     public final int f(double d) {
-        long j3 = this.f52772a;
+        long j3 = this.f52798a;
         if (j3 == 0) {
             return -1;
         }
@@ -50,7 +50,7 @@ public final class h {
     }
 
     public final int g(double d, double d2, double d10) {
-        long j3 = this.f52772a;
+        long j3 = this.f52798a;
         if (j3 == 0) {
             return -1;
         }

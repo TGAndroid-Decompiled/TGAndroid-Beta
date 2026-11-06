@@ -13,8 +13,8 @@ public abstract class m0 {
         if (f974c == null) {
             s8.a aVar = new s8.a(context);
             f974c = aVar;
-            synchronized (aVar.f54855a) {
-                aVar.f54860g = true;
+            synchronized (aVar.f54880a) {
+                aVar.f54885g = true;
             }
         }
     }

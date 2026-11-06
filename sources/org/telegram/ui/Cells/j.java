@@ -27,10 +27,10 @@ import java.util.HashSet;
 import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.ij;
+import org.telegram.ui.Components.a41;
 import org.telegram.ui.Components.a80;
 import org.telegram.ui.Components.mu0;
 import org.telegram.ui.Components.r70;
-import org.telegram.ui.Components.v31;
 import org.telegram.ui.Components.x70;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ew0;
@@ -149,7 +149,7 @@ public abstract class j extends FrameLayout implements org.telegram.ui.ActionBar
             if (hd.f22871a0) {
                 alignment = mu0.a();
             } else {
-                Layout.Alignment[] alignmentArr = mu0.f36146a;
+                Layout.Alignment[] alignmentArr = mu0.f36084a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -342,13 +342,13 @@ public abstract class j extends FrameLayout implements org.telegram.ui.ActionBar
             gVar2 = new g(this, layout, clickableSpan, f10);
         }
         this.F = gVar2;
-        if (clickableSpan instanceof v31) {
-            String url = ((v31) clickableSpan).getURL();
+        if (clickableSpan instanceof a41) {
+            String url = ((a41) clickableSpan).getURL();
             if (!url.startsWith("@") && !url.startsWith("#") && !url.startsWith("$") && !url.startsWith("/")) {
                 return;
             }
             g gVar3 = this.F;
-            ProfileActivity profileActivity = ((ew0) this).f45417e0.f47027e;
+            ProfileActivity profileActivity = ((ew0) this).f45422e0.f47050e;
             RectF rectF = ProfileActivity.S6;
             profileActivity.P4(url, gVar3);
         } else if (clickableSpan instanceof URLSpan) {

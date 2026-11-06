@@ -1,35 +1,31 @@
 package org.telegram.ui;
 
-import j$.util.function.Consumer$CC;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.function.Consumer;
-public final class lu0 implements Consumer {
-    public final ProfileActivity f47565a;
+import android.graphics.RectF;
+import android.view.View;
+public final class lu0 implements View.OnClickListener {
+    public final int f47591a;
+    public final Runnable f47592b;
 
-    public lu0(ProfileActivity profileActivity) {
-        this.f47565a = profileActivity;
+    public lu0(int i7, Runnable runnable) {
+        this.f47591a = i7;
+        this.f47592b = runnable;
     }
 
     @Override
-    public final void accept(Object obj) {
-        ProfileActivity profileActivity = this.f47565a;
-        HashSet hashSet = profileActivity.f41721h5;
-        ArrayList arrayList = new ArrayList((HashSet) obj);
-        int i7 = 0;
-        while (i7 < arrayList.size()) {
-            if (profileActivity.getMessagesController().f24862q7.f(profileActivity.f41695e1, ((Integer) arrayList.get(i7)).intValue()) == null) {
-                arrayList.remove(i7);
-                i7--;
-            }
-            i7++;
+    public final void onClick(View view) {
+        int i7 = this.f47591a;
+        Runnable runnable = this.f47592b;
+        switch (i7) {
+            case 0:
+                RectF rectF = ProfileActivity.S6;
+                runnable.run();
+                return;
+            default:
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
         }
-        hashSet.clear();
-        hashSet.addAll(arrayList);
-        profileActivity.F5(true);
-    }
-
-    public Consumer andThen(Consumer consumer) {
-        return Consumer$CC.$default$andThen(this, consumer);
     }
 }

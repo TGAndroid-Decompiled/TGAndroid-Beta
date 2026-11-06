@@ -3,28 +3,28 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-public final class ab extends mq0 {
-    public final mb f43588a;
+public final class ab extends nq0 {
+    public final mb f43613a;
 
     public ab(mb mbVar) {
-        this.f43588a = mbVar;
+        this.f43613a = mbVar;
     }
 
     @Override
-    public final vq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
+    public final wq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
         org.telegram.ui.Cells.t0 t0Var;
         org.telegram.messenger.ij messageObject;
         org.telegram.ui.Cells.q1 q1Var;
         org.telegram.messenger.ij messageObject2;
-        mb mbVar = this.f43588a;
-        int childCount = mbVar.f47746w.getChildCount();
+        mb mbVar = this.f43613a;
+        int childCount = mbVar.f47773w.getChildCount();
         int i10 = 0;
         while (true) {
             ImageReceiver imageReceiver = null;
             if (i10 >= childCount) {
                 return null;
             }
-            View childAt = mbVar.f47746w.getChildAt(i10);
+            View childAt = mbVar.f47773w.getChildAt(i10);
             if (childAt instanceof org.telegram.ui.Cells.q1) {
                 if (ijVar != null && (messageObject2 = (q1Var = (org.telegram.ui.Cells.q1) childAt).getMessageObject()) != null && messageObject2.f1() == ijVar.f1()) {
                     imageReceiver = q1Var.getPhotoImage();
@@ -52,15 +52,15 @@ public final class ab extends mq0 {
             if (imageReceiver != null) {
                 int[] iArr = new int[2];
                 childAt.getLocationInWindow(iArr);
-                vq0 vq0Var = new vq0();
-                vq0Var.f50791b = iArr[0];
-                vq0Var.f50792c = iArr[1];
-                vq0Var.d = mbVar.f47746w;
-                vq0Var.f50790a = imageReceiver;
-                vq0Var.f50793e = imageReceiver.p();
-                vq0Var.h = imageReceiver.E();
-                vq0Var.f50799l = true;
-                return vq0Var;
+                wq0 wq0Var = new wq0();
+                wq0Var.f51479b = iArr[0];
+                wq0Var.f51480c = iArr[1];
+                wq0Var.d = mbVar.f47773w;
+                wq0Var.f51478a = imageReceiver;
+                wq0Var.f51481e = imageReceiver.p();
+                wq0Var.h = imageReceiver.E();
+                wq0Var.f51487l = true;
+                return wq0Var;
             }
             i10++;
         }

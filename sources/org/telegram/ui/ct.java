@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import android.text.TextUtils;
 public final class ct extends rg.a {
-    public final int f44866c;
+    public final int f44891c;
     public final int d;
-    public final int f44867e;
-    public final CharSequence f44868f;
-    public final CharSequence f44869g;
+    public final int f44892e;
+    public final CharSequence f44893f;
+    public final CharSequence f44894g;
     public final int h;
 
     public ct(int i7, String str) {
         super(i7, false);
-        this.f44868f = str;
+        this.f44893f = str;
     }
 
     public static ct b(CharSequence charSequence, String str) {
@@ -23,18 +23,18 @@ public final class ct extends rg.a {
             return false;
         }
         ct ctVar = (ct) obj;
-        CharSequence charSequence = ctVar.f44868f;
-        int i7 = ctVar.f54415a;
-        int i10 = this.f54415a;
+        CharSequence charSequence = ctVar.f44893f;
+        int i7 = ctVar.f54440a;
+        int i10 = this.f54440a;
         if (i7 != i10) {
             return false;
         }
-        CharSequence charSequence2 = this.f44868f;
+        CharSequence charSequence2 = this.f44893f;
         if (i10 != 1 && i10 != 4 && i10 != 3 && i10 != 5) {
             if (i10 != 2) {
                 return true;
             }
-            if (ctVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || ctVar.d != this.d || ctVar.f44867e != this.f44867e || ctVar.f44866c != this.f44866c) {
+            if (ctVar.h != this.h || !TextUtils.equals(charSequence2, charSequence) || ctVar.d != this.d || ctVar.f44892e != this.f44892e || ctVar.f44891c != this.f44891c) {
                 return false;
             }
             return true;
@@ -45,10 +45,10 @@ public final class ct extends rg.a {
     public ct(int i7, int i10, int i11, int i12, CharSequence charSequence, CharSequence charSequence2) {
         super(2, false);
         this.h = i7;
-        this.f44866c = i10;
+        this.f44891c = i10;
         this.d = i11;
-        this.f44867e = i12;
-        this.f44868f = charSequence;
-        this.f44869g = charSequence2;
+        this.f44892e = i12;
+        this.f44893f = charSequence;
+        this.f44894g = charSequence2;
     }
 }

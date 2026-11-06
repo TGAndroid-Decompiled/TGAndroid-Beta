@@ -2,17 +2,17 @@ package vf;
 
 import org.telegram.messenger.k7;
 public class b {
-    public Runnable f57206a;
-    public Runnable f57207b;
-    public Runnable f57208c;
+    public Runnable f57231a;
+    public Runnable f57232b;
+    public Runnable f57233c;
 
     public b(Runnable runnable, Runnable runnable2) {
-        this.f57206a = runnable;
-        this.f57208c = runnable2;
+        this.f57231a = runnable;
+        this.f57233c = runnable2;
     }
 
     public final void a(boolean z9) {
-        Runnable runnable = this.f57207b;
+        Runnable runnable = this.f57232b;
         if (runnable != null) {
             runnable.run();
         }
@@ -24,21 +24,21 @@ public class b {
     }
 
     public void c(boolean z9) {
-        Runnable runnable = this.f57208c;
+        Runnable runnable = this.f57233c;
         if (runnable != null) {
             runnable.run();
         }
     }
 
     public void d() {
-        Runnable runnable = this.f57206a;
+        Runnable runnable = this.f57231a;
         if (runnable != null) {
             runnable.run();
-            this.f57206a = null;
+            this.f57231a = null;
         }
     }
 
     public final void e(k7 k7Var) {
-        this.f57207b = k7Var;
+        this.f57232b = k7Var;
     }
 }

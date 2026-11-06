@@ -4,32 +4,32 @@ import android.os.Bundle;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class bc0 implements Runnable {
-    public final int f44231a = 0;
-    public final ec0 f44232b;
-    public final TLRPC.TL_error f44233c;
+    public final int f44247a = 0;
+    public final ec0 f44248b;
+    public final TLRPC.TL_error f44249c;
     public final Bundle d;
-    public final TLObject f44234e;
+    public final TLObject f44250e;
 
     public bc0(ec0 ec0Var, TLObject tLObject, Bundle bundle, TLRPC.TL_error tL_error) {
-        this.f44232b = ec0Var;
-        this.f44234e = tLObject;
+        this.f44248b = ec0Var;
+        this.f44250e = tLObject;
         this.d = bundle;
-        this.f44233c = tL_error;
+        this.f44249c = tL_error;
     }
 
     @Override
     public final void run() {
         String str;
-        int i7 = this.f44231a;
-        TLObject tLObject = this.f44234e;
+        int i7 = this.f44247a;
+        TLObject tLObject = this.f44250e;
         Bundle bundle = this.d;
-        TLRPC.TL_error tL_error = this.f44233c;
-        ec0 ec0Var = this.f44232b;
+        TLRPC.TL_error tL_error = this.f44249c;
+        ec0 ec0Var = this.f44248b;
         switch (i7) {
             case 0:
-                ce0 ce0Var = ec0Var.f45231a0;
+                ce0 ce0Var = ec0Var.f45261a0;
                 ec0Var.M = false;
-                ec0Var.f45239w.invalidate();
+                ec0Var.f45269w.invalidate();
                 if (tLObject != null) {
                     ec0Var.S = bundle;
                     TLRPC.TL_auth_sentCode tL_auth_sentCode = (TLRPC.TL_auth_sentCode) tLObject;
@@ -67,7 +67,7 @@ public final class bc0 implements Runnable {
                     return;
                 }
             default:
-                ce0 ce0Var2 = ec0Var.f45231a0;
+                ce0 ce0Var2 = ec0Var.f45261a0;
                 ec0Var.R = false;
                 if (tL_error == null) {
                     ce0Var2.y1(bundle, (TLRPC.TL_auth_sentCode) tLObject, true);
@@ -101,9 +101,9 @@ public final class bc0 implements Runnable {
     }
 
     public bc0(ec0 ec0Var, TLRPC.TL_error tL_error, Bundle bundle, TLObject tLObject) {
-        this.f44232b = ec0Var;
-        this.f44233c = tL_error;
+        this.f44248b = ec0Var;
+        this.f44249c = tL_error;
         this.d = bundle;
-        this.f44234e = tLObject;
+        this.f44250e = tLObject;
     }
 }

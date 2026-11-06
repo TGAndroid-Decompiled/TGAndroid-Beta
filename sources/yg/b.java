@@ -14,14 +14,14 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.xp;
 public final class b extends FrameLayout {
-    public final k5 f59305a;
-    public final ImageView f59306b;
+    public final k5 f59330a;
+    public final ImageView f59331b;
 
     public b(Context context, f6 f6Var) {
         super(context);
         int i7;
         k5 k5Var = new k5(context);
-        this.f59305a = k5Var;
+        this.f59330a = k5Var;
         k5Var.setTextSize(16);
         if (hd.f22871a0) {
             i7 = 5;
@@ -34,7 +34,7 @@ public final class b extends FrameLayout {
         k5Var.setTag(Integer.valueOf(i10));
         addView(k5Var);
         ImageView imageView = new ImageView(context);
-        this.f59306b = imageView;
+        this.f59331b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
         k5Var.k(hd.M0(2131753603, null));
@@ -53,11 +53,11 @@ public final class b extends FrameLayout {
         int L;
         int measuredWidth;
         int i13 = i11 - i7;
-        k5 k5Var = this.f59305a;
+        k5 k5Var = this.f59330a;
         int textHeight = ((i12 - i10) - k5Var.getTextHeight()) / 2;
         boolean z10 = hd.f22871a0;
         float f10 = 23.0f;
-        ImageView imageView = this.f59306b;
+        ImageView imageView = this.f59331b;
         if (z10) {
             int measuredWidth2 = getMeasuredWidth() - k5Var.getMeasuredWidth();
             if (imageView.getVisibility() == 0) {
@@ -82,8 +82,8 @@ public final class b extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
-        this.f59305a.measure(org.telegram.messenger.camera.q.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(20.0f), 1073741824));
-        this.f59306b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(50.0f), 1073741824));
+        this.f59330a.measure(org.telegram.messenger.camera.q.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(20.0f), 1073741824));
+        this.f59331b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(g0.L(50.0f), 1073741824));
         setMeasuredDimension(size, g0.L(50.0f));
     }
 }

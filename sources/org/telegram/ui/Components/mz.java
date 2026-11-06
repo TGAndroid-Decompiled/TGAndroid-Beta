@@ -39,7 +39,7 @@ public abstract class mz extends km0 {
     public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
         super.e(view, accessibilityNodeInfo);
         if (this.d) {
-            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f54481a);
+            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f54506a);
             accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
         }
     }
@@ -49,7 +49,7 @@ public abstract class mz extends km0 {
         if (super.g(view, i7, bundle)) {
             return true;
         }
-        if (i7 == ((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f54481a).getId()) {
+        if (i7 == ((AccessibilityNodeInfo.AccessibilityAction) s0.c.h.f54506a).getId()) {
             l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
             return true;
         }

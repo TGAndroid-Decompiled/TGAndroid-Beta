@@ -7,16 +7,16 @@ import c8.wb;
 import q4.x;
 public final class b extends r6.a {
     public static final Parcelable.Creator<b> CREATOR = new x(28);
-    public final PendingIntent f56241a;
+    public final PendingIntent f56266a;
 
     public b(PendingIntent pendingIntent) {
-        this.f56241a = pendingIntent;
+        this.f56266a = pendingIntent;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = wb.r(parcel, 20293);
-        wb.k(parcel, 1, this.f56241a, i7);
+        wb.k(parcel, 1, this.f56266a, i7);
         wb.s(parcel, r10);
     }
 }

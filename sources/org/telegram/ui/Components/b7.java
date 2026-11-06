@@ -7,36 +7,36 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class b7 implements RequestDelegate {
-    public final int f32010a = 0;
-    public final boolean f32011b;
-    public final boolean f32012c;
+    public final int f32013a = 0;
+    public final boolean f32014b;
+    public final boolean f32015c;
     public final long d;
-    public final KeyEvent.Callback f32013e;
-    public final Object f32014f;
-    public final Object f32015g;
+    public final KeyEvent.Callback f32016e;
+    public final Object f32017f;
+    public final Object f32018g;
     public final Object h;
 
     public b7(b8 b8Var, boolean z9, org.telegram.messenger.ij ijVar, boolean z10, Runnable runnable, long j3, TLRPC.Document document) {
-        this.f32013e = b8Var;
-        this.f32011b = z9;
-        this.f32014f = ijVar;
-        this.f32012c = z10;
-        this.f32015g = runnable;
+        this.f32016e = b8Var;
+        this.f32014b = z9;
+        this.f32017f = ijVar;
+        this.f32015c = z10;
+        this.f32018g = runnable;
         this.d = j3;
         this.h = document;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f32010a) {
+        switch (this.f32013a) {
             case 0:
-                final b8 b8Var = (b8) this.f32013e;
-                org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) this.f32014f;
-                final Runnable runnable = (Runnable) this.f32015g;
+                final b8 b8Var = (b8) this.f32016e;
+                org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) this.f32017f;
+                final Runnable runnable = (Runnable) this.f32018g;
                 TLRPC.Document document = (TLRPC.Document) this.h;
-                final boolean z9 = this.f32012c;
+                final boolean z9 = this.f32015c;
                 if (tL_error != null && org.telegram.messenger.r8.r(tL_error.text)) {
-                    if (!this.f32011b && ijVar.f1() >= 0) {
+                    if (!this.f32014b && ijVar.f1() >= 0) {
                         if (org.telegram.messenger.ij.B0(ijVar.f23237k) >= 0) {
                             final int f12 = ijVar.f1();
                             TLRPC.TL_messages_getMessages tL_messages_getMessages = new TLRPC.TL_messages_getMessages();
@@ -252,12 +252,12 @@ public final class b7 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new j2(b8Var, this.d, z9, document, runnable));
                 return;
             default:
-                final ze0 ze0Var = (ze0) this.f32013e;
-                final org.telegram.messenger.qp qpVar = (org.telegram.messenger.qp) this.f32014f;
-                final TLRPC.TL_channels_searchPosts tL_channels_searchPosts = (TLRPC.TL_channels_searchPosts) this.f32015g;
+                final ze0 ze0Var = (ze0) this.f32016e;
+                final org.telegram.messenger.qp qpVar = (org.telegram.messenger.qp) this.f32017f;
+                final TLRPC.TL_channels_searchPosts tL_channels_searchPosts = (TLRPC.TL_channels_searchPosts) this.f32018g;
                 final ConnectionsManager connectionsManager = (ConnectionsManager) this.h;
-                final boolean z10 = this.f32011b;
-                final boolean z11 = this.f32012c;
+                final boolean z10 = this.f32014b;
+                final boolean z11 = this.f32015c;
                 final long j3 = this.d;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
@@ -270,11 +270,11 @@ public final class b7 implements RequestDelegate {
     }
 
     public b7(ze0 ze0Var, org.telegram.messenger.qp qpVar, boolean z9, TLRPC.TL_channels_searchPosts tL_channels_searchPosts, boolean z10, long j3, ConnectionsManager connectionsManager) {
-        this.f32013e = ze0Var;
-        this.f32014f = qpVar;
-        this.f32011b = z9;
-        this.f32015g = tL_channels_searchPosts;
-        this.f32012c = z10;
+        this.f32016e = ze0Var;
+        this.f32017f = qpVar;
+        this.f32014b = z9;
+        this.f32018g = tL_channels_searchPosts;
+        this.f32015c = z10;
         this.d = j3;
         this.h = connectionsManager;
     }

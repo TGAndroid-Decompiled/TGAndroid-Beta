@@ -18,8 +18,8 @@ public final class ih extends kt {
         super.f();
         gy emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f34137w0 = false;
-            emojiView.f34143x2 = false;
+            emojiView.f34085w0 = false;
+            emojiView.f34091x2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(org.telegram.messenger.g0.f22532n);
         }
@@ -37,7 +37,7 @@ public final class ih extends kt {
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         di diVar = this.V;
         ih ihVar = diVar.J2;
-        if (!diVar.f32928o3) {
+        if (!diVar.f32941o3) {
             if (motionEvent.getX() > ihVar.getEditText().getLeft() && motionEvent.getX() < ihVar.getEditText().getRight() && motionEvent.getY() > ihVar.getEditText().getTop() && motionEvent.getY() < ihVar.getEditText().getBottom()) {
                 diVar.h1(ihVar.getEditText(), true);
             } else {

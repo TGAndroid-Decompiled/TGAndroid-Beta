@@ -118,7 +118,7 @@ public final class g implements View.OnClickListener {
                 if (stickerSet != null && d2Var.h.indexOfKey(stickerSet.set.f26979id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f26979id) < 0) {
                     if (u3Var.f30567r) {
                         longSparseArray.put(stickerSet.set.f26979id, stickerSet);
-                        d2Var.f16697e.f31661a.h(u3Var.getStickerSet());
+                        d2Var.f16697e.f33450a.h(u3Var.getStickerSet());
                         return;
                     }
                     d2Var.F(stickerSet, u3Var);
@@ -190,7 +190,7 @@ public final class g implements View.OnClickListener {
                             f2Var.d();
                         }
                         pageblockdetails.open = !pageblockdetails.open;
-                        t3Var.f35167f3.O(true);
+                        t3Var.f36781f3.O(true);
                         f2 f2Var2 = t3Var.Q3;
                         if (f2Var2 != null) {
                             f2Var2.h();
@@ -236,8 +236,8 @@ public final class g implements View.OnClickListener {
                 return;
             case 16:
                 b5 b5Var = (b5) obj;
-                if (!b5Var.f27354y.f55371f) {
-                    if (b5Var.f27353x.f55371f) {
+                if (!b5Var.f27354y.f55396f) {
+                    if (b5Var.f27353x.f55396f) {
                         y4 y4Var = b5Var.f27344a;
                         int i13 = b5Var.f27345b;
                         org.telegram.ui.ActionBar.j jVar = y4Var.V;
@@ -263,8 +263,8 @@ public final class g implements View.OnClickListener {
                 return;
             case 18:
                 t0 t0Var = (t0) obj;
-                if (!t0Var.f39477a) {
-                    if (t0Var.f39487y == 0 && t0Var.D) {
+                if (!t0Var.f39474a) {
+                    if (t0Var.f39484y == 0 && t0Var.D) {
                         ((Activity) t0Var.getContext()).startActivityForResult(((MediaProjectionManager) t0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -275,8 +275,8 @@ public final class g implements View.OnClickListener {
                 return;
             case 19:
                 yb1 yb1Var = (yb1) obj;
-                if (!yb1Var.f39613a) {
-                    if (yb1Var.f39622x == 0) {
+                if (!yb1Var.f39610a) {
+                    if (yb1Var.f39619x == 0) {
                         ((Activity) yb1Var.getContext()).startActivityForResult(((MediaProjectionManager) yb1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -313,12 +313,12 @@ public final class g implements View.OnClickListener {
                 return;
             case 26:
                 PremiumPreviewFragment.u0();
-                PremiumPreviewFragment.p0(((f1) obj).f56456l2, null, "profile", null);
+                PremiumPreviewFragment.p0(((f1) obj).f56481l2, null, "profile", null);
                 return;
             case 27:
                 final wg.g0 g0Var = (wg.g0) obj;
                 yg.a aVar3 = g0Var.I2;
-                if (!aVar3.f59298a.Q) {
+                if (!aVar3.f59323a.Q) {
                     aVar3.b(true);
                     String str = g0Var.J2;
                     c20 c20Var = new c20() {
@@ -370,7 +370,7 @@ public final class g implements View.OnClickListener {
                 ((wg.j0) obj).dismiss();
                 return;
             default:
-                ((wg.b0) ((xg.f) obj)).f57584r.dismiss();
+                ((wg.b0) ((xg.f) obj)).f57609r.dismiss();
                 return;
         }
     }

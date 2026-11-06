@@ -1,14 +1,14 @@
 package org.telegram.ui;
 public final class rp implements Runnable {
-    public final int f49524a;
-    public final Object f49525b;
-    public final Object f49526c;
+    public final int f49544a;
+    public final Object f49545b;
+    public final Object f49546c;
     public final Object d;
 
     public rp(Object obj, Object obj2, Object obj3, int i7) {
-        this.f49524a = i7;
-        this.f49525b = obj;
-        this.f49526c = obj2;
+        this.f49544a = i7;
+        this.f49545b = obj;
+        this.f49546c = obj2;
         this.d = obj3;
     }
 

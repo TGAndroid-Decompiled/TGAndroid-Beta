@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class jr extends org.telegram.ui.ActionBar.j {
-    public final nr f47007a;
+    public final nr f47029a;
 
     public jr(nr nrVar) {
-        this.f47007a = nrVar;
+        this.f47029a = nrVar;
     }
 
     @Override
@@ -13,14 +13,14 @@ public final class jr extends org.telegram.ui.ActionBar.j {
         boolean z9;
         int i10;
         int i11;
-        nr nrVar = this.f47007a;
+        nr nrVar = this.f47029a;
         if (i7 == -1) {
             nrVar.finishFragment();
-        } else if (i7 == 1 && nrVar.f48093b.getText().length() != 0) {
+        } else if (i7 == 1 && nrVar.f48118b.getText().length() != 0) {
             TLRPC.User a22 = nrVar.getMessagesController().a2(Long.valueOf(nrVar.H));
             TLRPC.UserFull b22 = nrVar.getMessagesController().b2(nrVar.H);
-            a22.first_name = nrVar.f48093b.getText().toString();
-            a22.last_name = nrVar.f48094c.getText().toString();
+            a22.first_name = nrVar.f48118b.getText().toString();
+            a22.last_name = nrVar.f48119c.getText().toString();
             a22.contact = true;
             TLRPC.TL_textWithEntities textWithEntities = nrVar.d.getTextWithEntities();
             nrVar.getMessagesController().X3(a22, false, false);

@@ -1,17 +1,17 @@
 package org.telegram.ui;
 public final class z60 implements Runnable {
-    public final int f52486a;
-    public final q10 f52487b;
+    public final int f52493a;
+    public final q10 f52494b;
 
     public z60(q10 q10Var, int i7) {
-        this.f52486a = i7;
-        this.f52487b = q10Var;
+        this.f52493a = i7;
+        this.f52494b = q10Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f52486a;
-        q10 q10Var = this.f52487b;
+        int i7 = this.f52493a;
+        q10 q10Var = this.f52494b;
         switch (i7) {
             case 0:
                 String str = LaunchActivity.B1;

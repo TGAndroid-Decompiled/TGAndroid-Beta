@@ -26,26 +26,26 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
     public org.telegram.ui.Components.sz O;
     public vx P;
     public final bh Q;
-    public e61 f46122a;
-    public fy f46123b;
-    public final org.telegram.messenger.vo f46124c;
+    public e61 f46142a;
+    public fy f46143b;
+    public final org.telegram.messenger.vo f46144c;
     public final TL_chatlists.TL_exportedChatlistInvite d;
-    public final ArrayList f46125e;
-    public final ArrayList f46126f;
+    public final ArrayList f46145e;
+    public final ArrayList f46146f;
     public final ArrayList h;
-    public org.telegram.ui.ActionBar.b5 f46127n;
-    public int f46128r;
-    public long f46129s;
-    public long f46130w;
-    public org.telegram.messenger.c20 f46131x;
-    public org.telegram.messenger.c20 f46132y;
+    public org.telegram.ui.ActionBar.b5 f46147n;
+    public int f46148r;
+    public long f46149s;
+    public long f46150w;
+    public org.telegram.messenger.c20 f46151x;
+    public org.telegram.messenger.c20 f46152y;
 
     public gy(org.telegram.messenger.vo voVar, TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite) {
         super(null);
-        this.f46125e = new ArrayList();
-        this.f46126f = new ArrayList();
+        this.f46145e = new ArrayList();
+        this.f46146f = new ArrayList();
         this.h = new ArrayList();
-        this.f46128r = -5;
+        this.f46148r = -5;
         this.D = false;
         this.G = 0;
         this.H = -1;
@@ -56,7 +56,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
         this.M = -1;
         this.N = -1;
         this.Q = new bh(this, 28);
-        this.f46124c = voVar;
+        this.f46144c = voVar;
         this.d = tL_exportedChatlistInvite;
     }
 
@@ -78,7 +78,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
         String M0;
         String str;
         gy gyVar2;
-        ArrayList arrayList = gyVar.f46125e;
+        ArrayList arrayList = gyVar.f46145e;
         if (gyVar.getParentActivity() != null && (view instanceof org.telegram.ui.Cells.h4)) {
             Long l10 = (Long) gyVar.h.get(i7 - gyVar.L);
             long longValue = l10.longValue();
@@ -88,7 +88,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
                 gyVar.c0();
                 ((org.telegram.ui.Cells.h4) view).c(false, true);
                 gyVar2 = gyVar;
-            } else if (gyVar.f46126f.contains(l10)) {
+            } else if (gyVar.f46146f.contains(l10)) {
                 if (arrayList.size() + 1 > gyVar.f0()) {
                     gyVar.showDialog(new ug.i0(4, gyVar.currentAccount, gyVar.getParentActivity(), gyVar, null));
                     return;
@@ -99,8 +99,8 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
                 gyVar2.c0();
                 ((org.telegram.ui.Cells.h4) view).c(true, true);
             } else {
-                int i10 = -gyVar.f46128r;
-                gyVar.f46128r = i10;
+                int i10 = -gyVar.f46148r;
+                gyVar.f46148r = i10;
                 org.telegram.messenger.g0.G3(i10, view, null);
                 org.telegram.messenger.p2.APP_ERROR.a();
                 ArrayList arrayList2 = new ArrayList();
@@ -128,9 +128,9 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
                     arrayList2.add(M02);
                     str = M0;
                 }
-                if (gyVar.f46129s != longValue || System.currentTimeMillis() - gyVar.f46130w > 1500) {
-                    gyVar.f46129s = longValue;
-                    gyVar.f46130w = System.currentTimeMillis();
+                if (gyVar.f46149s != longValue || System.currentTimeMillis() - gyVar.f46150w > 1500) {
+                    gyVar.f46149s = longValue;
+                    gyVar.f46150w = System.currentTimeMillis();
                     org.telegram.ui.Components.hc.a0(gyVar).g(str, arrayList2).j();
                     return;
                 }
@@ -143,7 +143,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
     }
 
     public final boolean b0(boolean z9) {
-        if (this.f46125e.isEmpty() || !this.F) {
+        if (this.f46145e.isEmpty() || !this.F) {
             return true;
         }
         if (z9) {
@@ -153,39 +153,39 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
             u1Var.R = M0;
             u1Var.T = org.telegram.messenger.hd.M0(2131743835, null);
             alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131754216, null), new org.telegram.ui.ActionBar.r1(this) {
-                public final gy f49836b;
+                public final gy f49864b;
 
                 {
-                    this.f49836b = this;
+                    this.f49864b = this;
                 }
 
                 @Override
                 public final void g(org.telegram.ui.ActionBar.u1 u1Var2, int i7) {
                     switch (r2) {
                         case 0:
-                            this.f49836b.h0();
+                            this.f49864b.h0();
                             return;
                         default:
-                            this.f49836b.finishFragment();
+                            this.f49864b.finishFragment();
                             return;
                     }
                 }
             });
             alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131747579, null), new org.telegram.ui.ActionBar.r1(this) {
-                public final gy f49836b;
+                public final gy f49864b;
 
                 {
-                    this.f49836b = this;
+                    this.f49864b = this;
                 }
 
                 @Override
                 public final void g(org.telegram.ui.ActionBar.u1 u1Var2, int i7) {
                     switch (r2) {
                         case 0:
-                            this.f49836b.h0();
+                            this.f49864b.h0();
                             return;
                         default:
-                            this.f49836b.finishFragment();
+                            this.f49864b.finishFragment();
                             return;
                     }
                 }
@@ -197,8 +197,8 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
 
     public final void c0() {
         boolean z9;
-        org.telegram.ui.ActionBar.b5 b5Var = this.f46127n;
-        if (this.F && !this.f46125e.isEmpty()) {
+        org.telegram.ui.ActionBar.b5 b5Var = this.f46147n;
+        if (this.F && !this.f46145e.isEmpty()) {
             z9 = true;
         } else {
             z9 = false;
@@ -219,34 +219,34 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
         this.simpleActionBar.setBackButtonImage(2131231240);
         i0(false);
         this.simpleActionBar.setActionBarMenuOnItemClick(new ux(this, 0));
-        this.f46127n = this.simpleActionBar.n(org.telegram.messenger.hd.M0(2131745947, null));
+        this.f46147n = this.simpleActionBar.n(org.telegram.messenger.hd.M0(2131745947, null));
         c0();
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        e61 e61Var = new e61(9, context, null);
-        this.f46122a = e61Var;
+        e61 e61Var = new e61(10, context, null);
+        this.f46142a = e61Var;
         e61Var.setLayoutManager(new v4.b0(1, false));
-        this.f46122a.setVerticalScrollBarEnabled(false);
-        this.f46122a.r1();
-        this.f46122a.setSectionsDrawBackground(true);
-        frameLayout.addView(this.f46122a, c8.ha.c(-1.0f, -1));
-        e61 e61Var2 = this.f46122a;
+        this.f46142a.setVerticalScrollBarEnabled(false);
+        this.f46142a.r1();
+        this.f46142a.setSectionsDrawBackground(true);
+        frameLayout.addView(this.f46142a, c8.ha.c(-1.0f, -1));
+        e61 e61Var2 = this.f46142a;
         fy fyVar = new fy(this);
-        this.f46123b = fyVar;
+        this.f46143b = fyVar;
         e61Var2.setAdapter(fyVar);
-        this.f46122a.setOnItemClickListener(new h(this, 9));
+        this.f46142a.setOnItemClickListener(new h(this, 9));
         org.telegram.messenger.qp messagesController = getMessagesController();
-        org.telegram.messenger.vo voVar = this.f46124c;
+        org.telegram.messenger.vo voVar = this.f46144c;
         messagesController.k5(voVar);
         ArrayList arrayList2 = this.h;
         arrayList2.clear();
-        ArrayList arrayList3 = this.f46126f;
+        ArrayList arrayList3 = this.f46146f;
         TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = this.d;
         if (tL_exportedChatlistInvite != null) {
             for (int i7 = 0; i7 < tL_exportedChatlistInvite.peers.size(); i7++) {
                 long o4 = org.telegram.messenger.m5.o(tL_exportedChatlistInvite.peers.get(i7));
                 arrayList2.add(Long.valueOf(o4));
-                this.f46125e.add(Long.valueOf(o4));
+                this.f46145e.add(Long.valueOf(o4));
                 arrayList3.add(Long.valueOf(o4));
             }
         }
@@ -309,7 +309,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
             this.G = size + 1;
             this.N = size;
         }
-        fy fyVar2 = this.f46123b;
+        fy fyVar2 = this.f46143b;
         if (fyVar2 != null) {
             fyVar2.f();
         }
@@ -320,7 +320,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
         boolean z9;
         TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = this.d;
         if (tL_exportedChatlistInvite != null && tL_exportedChatlistInvite.url != null && this.F) {
-            ArrayList arrayList = this.f46125e;
+            ArrayList arrayList = this.f46145e;
             boolean z10 = true;
             if (arrayList.size() != tL_exportedChatlistInvite.peers.size()) {
                 z9 = true;
@@ -344,9 +344,9 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
 
     public final void e0(org.telegram.ui.Components.sz szVar, boolean z9) {
         int i7;
-        ArrayList arrayList = this.f46125e;
+        ArrayList arrayList = this.f46145e;
         arrayList.clear();
-        ArrayList arrayList2 = this.f46126f;
+        ArrayList arrayList2 = this.f46146f;
         if (!z9) {
             arrayList.addAll(arrayList2.subList(0, Math.min(f0(), arrayList2.size())));
         }
@@ -361,8 +361,8 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
         c0();
         k0(true);
         l0();
-        for (int i10 = 0; i10 < this.f46122a.getChildCount(); i10++) {
-            View childAt = this.f46122a.getChildAt(i10);
+        for (int i10 = 0; i10 < this.f46142a.getChildCount(); i10++) {
+            View childAt = this.f46142a.getChildAt(i10);
             if (childAt instanceof org.telegram.ui.Cells.h4) {
                 Object tag = childAt.getTag();
                 if (tag instanceof Long) {
@@ -390,7 +390,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
 
     @Override
     public final org.telegram.ui.Components.pj0 getListViewForSimpleGlass() {
-        return this.f46122a;
+        return this.f46142a;
     }
 
     public final void h0() {
@@ -402,7 +402,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
             tL_exportedChatlistInvite.peers.clear();
             int i7 = 0;
             while (true) {
-                arrayList = this.f46125e;
+                arrayList = this.f46145e;
                 if (i7 >= arrayList.size()) {
                     break;
                 }
@@ -412,7 +412,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
             TL_chatlists.TL_chatlists_editExportedInvite tL_chatlists_editExportedInvite = new TL_chatlists.TL_chatlists_editExportedInvite();
             TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
             tL_chatlists_editExportedInvite.chatlist = tL_inputChatlistDialogFilter;
-            tL_inputChatlistDialogFilter.filter_id = this.f46124c.f26056a;
+            tL_inputChatlistDialogFilter.filter_id = this.f46144c.f26056a;
             tL_chatlists_editExportedInvite.slug = g0();
             tL_chatlists_editExportedInvite.revoked = tL_exportedChatlistInvite.revoked;
             tL_chatlists_editExportedInvite.flags |= 4;
@@ -420,7 +420,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
                 tL_chatlists_editExportedInvite.peers.add(getMessagesController().j1(((Long) arrayList.get(i10)).longValue()));
             }
             getConnectionsManager().sendRequest(tL_chatlists_editExportedInvite, new tx(this, 0));
-            org.telegram.messenger.c20 c20Var = this.f46132y;
+            org.telegram.messenger.c20 c20Var = this.f46152y;
             if (c20Var != null) {
                 c20Var.a(tL_exportedChatlistInvite);
             }
@@ -460,7 +460,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
         if (!z9) {
             org.telegram.messenger.g0.r(this.Q);
         }
-        org.telegram.ui.ActionBar.b5 b5Var = this.f46127n;
+        org.telegram.ui.ActionBar.b5 b5Var = this.f46147n;
         if (b5Var != null) {
             b5Var.b(z9);
         }
@@ -471,7 +471,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
         int i7;
         org.telegram.ui.Components.sz szVar = this.O;
         if (szVar != null) {
-            ArrayList arrayList = this.f46125e;
+            ArrayList arrayList = this.f46145e;
             boolean z10 = false;
             if (arrayList.size() <= 0) {
                 G = org.telegram.messenger.hd.N0("FilterInviteHeaderChatsEmpty");
@@ -479,7 +479,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
                 G = org.telegram.messenger.hd.G(arrayList.size(), "FilterInviteHeaderChats", new Object[0]);
             }
             szVar.b(G, z9);
-            ArrayList arrayList2 = this.f46126f;
+            ArrayList arrayList2 = this.f46146f;
             if (arrayList2.size() > 1) {
                 if (arrayList.size() >= Math.min(f0(), arrayList2.size())) {
                     z10 = true;
@@ -495,7 +495,7 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
                 this.O.a("", null);
             }
             if (z9) {
-                org.telegram.messenger.g0.i2(((Object) this.O.f38204a.getText()) + ", " + ((Object) this.O.f38205b.getText()));
+                org.telegram.messenger.g0.i2(((Object) this.O.f38164a.getText()) + ", " + ((Object) this.O.f38165b.getText()));
             }
         }
     }
@@ -508,23 +508,23 @@ public final class gy extends org.telegram.ui.ActionBar.f2 {
         int i7 = 0;
         if (this.d == null) {
             String M0 = org.telegram.messenger.hd.M0(2131750751, null);
-            xh.l lVar = vxVar.f50845a;
+            xh.l lVar = vxVar.f50851a;
             lVar.setText(M0);
-            lVar.f58724s = 0;
+            lVar.f58749s = 0;
             return;
         }
         Paint.FontMetricsInt fontMetricsInt = vxVar.getSubtitleTextView().getPaint().getFontMetricsInt();
-        org.telegram.messenger.vo voVar = this.f46124c;
+        org.telegram.messenger.vo voVar = this.f46144c;
         Spannable C5 = org.telegram.messenger.ij.C5(org.telegram.messenger.i6.m(voVar.f26057b, fontMetricsInt, false, null, 0), voVar.f26058c, fontMetricsInt, false);
         vx vxVar2 = this.P;
-        SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.F("FilterInviteHeader", this.f46125e.size(), C5));
+        SpannableStringBuilder W2 = org.telegram.messenger.g0.W2(org.telegram.messenger.hd.F("FilterInviteHeader", this.f46145e.size(), C5));
         boolean z9 = voVar.f26067n;
-        xh.l lVar2 = vxVar2.f50845a;
+        xh.l lVar2 = vxVar2.f50851a;
         lVar2.setText(W2);
         if (z9) {
             i7 = 26;
         }
-        lVar2.f58724s = i7;
+        lVar2.f58749s = i7;
     }
 
     @Override

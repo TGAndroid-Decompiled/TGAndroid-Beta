@@ -219,7 +219,7 @@ public final class d1 implements View.OnClickListener {
                 String str = (String) this.f3640e;
                 String str2 = (String) this.f3641f;
                 String str3 = (String) this.h;
-                fi.d dVar = ld0Var.f47492b;
+                fi.d dVar = ld0Var.f47519b;
                 if (!dVar.Q) {
                     dVar.setLoading(true);
                     TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
@@ -242,7 +242,7 @@ public final class d1 implements View.OnClickListener {
                         tL_dataJSON.data = u10.toString();
                         tL_payments_getPaymentForm.flags |= 1;
                     }
-                    ld0Var.f47499w.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new org.telegram.ui.z9(ld0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
+                    ld0Var.f47526w.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new org.telegram.ui.z9(ld0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
                     return;
                 }
                 return;

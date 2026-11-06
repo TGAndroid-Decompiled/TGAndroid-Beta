@@ -108,7 +108,7 @@ public final class c3 implements Runnable {
                             T2.presentFragment(ra2);
                         } else {
                             org.telegram.ui.Components.cc I = org.telegram.ui.Components.hc.a0(T2).I(2131624028, org.telegram.messenger.hd.M0(2131749896, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131749897, k7Var2.z1(), org.telegram.messenger.m5.t(j12))));
-                            I.f32533t = true;
+                            I.f32537t = true;
                             I.j();
                         }
                     }

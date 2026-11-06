@@ -7,22 +7,22 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.w70;
 import org.telegram.ui.t60;
 public final class k implements c20 {
-    public final int f42661a;
-    public final Object f42662b;
+    public final int f42686a;
+    public final Object f42687b;
 
     public k(Object obj, int i7) {
-        this.f42661a = i7;
-        this.f42662b = obj;
+        this.f42686a = i7;
+        this.f42687b = obj;
     }
 
     @Override
     public final void a(Object obj) {
         int i7;
         CharSequence V;
-        int i10 = this.f42661a;
+        int i10 = this.f42686a;
         String str = null;
         boolean z9 = false;
-        Object obj2 = this.f42662b;
+        Object obj2 = this.f42687b;
         switch (i10) {
             case 0:
                 bi.b9 b9Var = (bi.b9) obj2;
@@ -60,12 +60,12 @@ public final class k implements c20 {
                 } else {
                     i7 = 24;
                 }
-                if (f8Var.f42464a != i7) {
-                    f8Var.f42464a = i7;
+                if (f8Var.f42489a != i7) {
+                    f8Var.f42489a = i7;
                     f8Var.b0(f8Var.getParentActivity());
                     f8Var.d0();
                     w70 w70Var = f8Var.h;
-                    byte[] bArr = f8Var.f42471s;
+                    byte[] bArr = f8Var.f42496s;
                     Integer valueOf = Integer.valueOf(i7);
                     Object[] objArr = new Object[1];
                     if (bArr != null) {

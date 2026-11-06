@@ -3,10 +3,10 @@ package org.telegram.ui.Components;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 public final class m10 implements Runnable {
-    public final n10 f35821a;
+    public final n10 f35817a;
 
     public m10(n10 n10Var) {
-        this.f35821a = n10Var;
+        this.f35817a = n10Var;
     }
 
     @Override
@@ -15,13 +15,13 @@ public final class m10 implements Runnable {
         if (sharedInstance != null && sharedInstance.isMicMute()) {
             TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) sharedInstance.groupCall.d.f(sharedInstance.getSelfId());
             if (groupCallParticipant == null || groupCallParticipant.can_self_unmute || !groupCallParticipant.muted || org.telegram.messenger.t3.w(14, sharedInstance.getChat())) {
-                n10 n10Var = this.f35821a;
-                org.telegram.messenger.g0.i3(n10Var.f36210f, 90L);
+                n10 n10Var = this.f35817a;
+                org.telegram.messenger.g0.i3(n10Var.f36135f, 90L);
                 try {
                     n10Var.performHapticFeedback(3, 2);
                 } catch (Exception unused) {
                 }
-                n10Var.f36208c = true;
+                n10Var.f36133c = true;
             }
         }
     }

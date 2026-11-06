@@ -243,9 +243,9 @@ public class o7 extends FrameLayout {
             if ((imageReceiver == null || imageReceiver.Q0) && this.h && this.O != null) {
                 float L = org.telegram.messenger.g0.L(5.33f);
                 ly0 ly0Var = this.O;
-                ly0Var.f35788p = (int) (rectF.width() - (2.0f * L));
-                ly0Var.f35792t = org.telegram.messenger.g0.L(14.0f);
-                ly0Var.f35775a.setShadowLayer(org.telegram.messenger.g0.L(1.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.k6.r1(0.4f * f10, -16777216));
+                ly0Var.f35793p = (int) (rectF.width() - (2.0f * L));
+                ly0Var.f35797t = org.telegram.messenger.g0.L(14.0f);
+                ly0Var.f35780a.setShadowLayer(org.telegram.messenger.g0.L(1.0f), 0.0f, org.telegram.messenger.g0.L(0.66f), org.telegram.ui.ActionBar.k6.r1(0.4f * f10, -16777216));
                 float f12 = rectF.left + L;
                 float f13 = rectF.top;
                 if (this.f29678r <= 2) {
@@ -558,7 +558,7 @@ public class o7 extends FrameLayout {
         this.f29671k0 = f11;
         this.f29672l0 = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
         ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(c8.j9.a(this.f29672l0 * 0.3f, 250.0f, 550.0f));
-        duration.setInterpolator(xq.f40313j);
+        duration.setInterpolator(xq.f40332j);
         duration.addUpdateListener(new r(this, 5));
         duration.addListener(new m.a(this, 28));
         duration.start();
@@ -583,7 +583,7 @@ public class o7 extends FrameLayout {
         }
         xh.e eVar = this.m0;
         if (eVar != null) {
-            if (eVar.f58665i) {
+            if (eVar.f58690i) {
                 this.m0 = xh.e.e(this);
             } else {
                 eVar.a(this);

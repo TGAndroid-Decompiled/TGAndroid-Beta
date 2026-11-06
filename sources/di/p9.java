@@ -534,7 +534,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
         this.f9535c = z13;
         e9 e9Var = this.f9578w;
         q4 q4Var = new q4(this, 4);
-        WeakHashMap weakHashMap = r0.i0.f54073a;
+        WeakHashMap weakHashMap = r0.i0.f54098a;
         r0.a0.i(e9Var, q4Var);
         if (this.f9532b) {
             org.telegram.messenger.g0.E2(this.f9569s);
@@ -681,7 +681,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
             ti.o oVar = i1Var.f9121a;
             if (oVar != null && oVar.d()) {
                 ti.o oVar2 = i1Var.f9121a;
-                if (oVar2.f56008c == 0) {
+                if (oVar2.f56033c == 0) {
                     i1Var.f9121a = null;
                     i1Var.f9122b = null;
                     oVar2.f();
@@ -1066,7 +1066,7 @@ public final class p9 implements ls, org.telegram.ui.ActionBar.b2 {
                 this.f9575u1.setInterpolator(xq.h);
             } else {
                 this.f9575u1.setDuration(350L);
-                this.f9575u1.setInterpolator(xq.f40310f);
+                this.f9575u1.setInterpolator(xq.f40329f);
             }
             this.f9575u1.start();
         }

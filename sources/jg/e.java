@@ -299,8 +299,8 @@ public abstract class e extends kj0 {
         int i11;
         ArrayList arrayList2;
         float f10;
-        int i12 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        int i12 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         int i13 = 7;
         boolean z9 = this.E;
         int i14 = this.f16705r;

@@ -21,7 +21,7 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.jt0;
 import org.telegram.ui.Components.kt0;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
     public final int f13452a;
 
@@ -30,7 +30,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
     }
 
     @Override
-    public Boolean a(r31 r31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(w31 w31Var, View view, Integer num, Float f10, Float f11) {
         return Boolean.FALSE;
     }
 
@@ -46,7 +46,7 @@ public final class c implements k, l5.e, u9.d, gh.d, b20, jt0, kt0 {
                 p0Var.getClass();
                 n nVar = n.f13731b;
                 Log.d("FirebaseSessions", "Session Event Type: SESSION_START");
-                byte[] bytes = u10.getBytes(xd.a.f58564a);
+                byte[] bytes = u10.getBytes(xd.a.f58589a);
                 j.d(bytes, "getBytes(...)");
                 return bytes;
             default:

@@ -9,33 +9,33 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.an;
 import org.telegram.ui.l60;
 import org.telegram.ui.pl0;
 import org.telegram.ui.r80;
 public final class v1 implements v10 {
-    public final int f43203a;
-    public final Object f43204b;
-    public final Object f43205c;
+    public final int f43228a;
+    public final Object f43229b;
+    public final Object f43230c;
 
     public v1(int i7, Object obj, Object obj2) {
-        this.f43203a = i7;
-        this.f43204b = obj;
-        this.f43205c = obj2;
+        this.f43228a = i7;
+        this.f43229b = obj;
+        this.f43230c = obj2;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         boolean z9;
-        int i7 = this.f43203a;
+        int i7 = this.f43228a;
         Object obj3 = null;
         int i10 = 0;
-        Object obj4 = this.f43205c;
-        Object obj5 = this.f43204b;
+        Object obj4 = this.f43230c;
+        Object obj5 = this.f43229b;
         switch (i7) {
             case 0:
                 ((k0) obj5).close();
@@ -66,7 +66,7 @@ public final class v1 implements v10 {
                 String str = (String) obj4;
                 TL_account.webPagePreview webpagepreview = (TL_account.webPagePreview) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                int i11 = oVar.f55218a;
+                int i11 = oVar.f55243a;
                 if (webpagepreview != null) {
                     qp.s1(i11).Y3(webpagepreview.users, false);
                     qp.s1(i11).S3(webpagepreview.chats, false);
@@ -75,8 +75,8 @@ public final class v1 implements v10 {
                         obj3 = messageMedia.webpage;
                     }
                 }
-                oVar.f55219b.put(str, obj3);
-                ArrayList arrayList = (ArrayList) oVar.f55220c.remove(str);
+                oVar.f55244b.put(str, obj3);
+                ArrayList arrayList = (ArrayList) oVar.f55245c.remove(str);
                 if (arrayList != null) {
                     int size = arrayList.size();
                     while (i10 < size) {
@@ -92,10 +92,10 @@ public final class v1 implements v10 {
                 TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) obj4;
                 Boolean bool = (Boolean) obj;
                 String str2 = (String) obj2;
-                a0Var.f57568i2.f59298a.setLoading(false);
+                a0Var.f57593i2.f59323a.setLoading(false);
                 if (a0Var.getContext() != null) {
                     org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
-                    r80 r80Var = LaunchActivity.G1.f41265v0;
+                    r80 r80Var = LaunchActivity.G1.f41290v0;
                     if (T != null) {
                         if (bool.booleanValue()) {
                             a0Var.dismiss();
@@ -121,7 +121,7 @@ public final class v1 implements v10 {
             default:
                 zh.e2 e2Var = (zh.e2) obj5;
                 ArrayList arrayList2 = (ArrayList) obj;
-                f41 f41Var = (f41) obj2;
+                k41 k41Var = (k41) obj2;
                 ArrayList arrayList3 = ((bi.v9) obj4).f4915l;
                 int size2 = arrayList3.size();
                 int i12 = 0;
@@ -130,16 +130,16 @@ public final class v1 implements v10 {
                     i12++;
                     TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj7;
                     if (savedStarGift.pinned_to_top) {
-                        int i13 = pl0.f48853b;
-                        r31 K = r31.K(pl0.class);
+                        int i13 = pl0.f48848b;
+                        w31 K = w31.K(pl0.class);
                         K.G = savedStarGift;
-                        if (e2Var.f60181i1 == savedStarGift.gift.f27181id) {
+                        if (e2Var.f60206i1 == savedStarGift.gift.f27181id) {
                             z9 = true;
                         } else {
                             z9 = false;
                         }
                         K.L(z9);
-                        K.f37607u = 1;
+                        K.f39839u = 1;
                         arrayList2.add(K);
                     }
                 }

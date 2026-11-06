@@ -14,10 +14,10 @@ public final class ui extends org.telegram.ui.Components.kn {
     public final boolean a() {
         boolean z9;
         an anVar = this.A0;
-        if (!anVar.f43811ib && !anVar.isInPreviewMode()) {
+        if (!anVar.f43836ib && !anVar.isInPreviewMode()) {
             z9 = ((org.telegram.ui.ActionBar.f2) anVar).inBubbleMode;
-            if (!z9 && anVar.f43813j0 != null && !anVar.G3) {
-                if (!anVar.da() || anVar.f43965v4) {
+            if (!z9 && anVar.f43838j0 != null && !anVar.G3) {
+                if (!anVar.da() || anVar.f43990v4) {
                     return true;
                 }
                 return false;
@@ -30,14 +30,14 @@ public final class ui extends org.telegram.ui.Components.kn {
     @Override
     public final boolean d() {
         an anVar = this.A0;
-        TLRPC.User user = anVar.f43761f;
+        TLRPC.User user = anVar.f43786f;
         if (user != null && user.linked_community_id != 0) {
-            anVar.showDialog(new ii.d0(anVar, anVar.f43761f.linked_community_id, null, null));
+            anVar.showDialog(new ii.d0(anVar, anVar.f43786f.linked_community_id, null, null));
             return true;
         }
-        TLRPC.Chat chat = anVar.f43747e;
+        TLRPC.Chat chat = anVar.f43772e;
         if (chat != null && chat.linked_community_id != 0) {
-            anVar.showDialog(new ii.d0(anVar, anVar.f43747e.linked_community_id, null, null));
+            anVar.showDialog(new ii.d0(anVar, anVar.f43772e.linked_community_id, null, null));
             return true;
         }
         return false;
@@ -57,7 +57,7 @@ public final class ui extends org.telegram.ui.Components.kn {
 
     @Override
     public final boolean o() {
-        if (this.A0.f43766f4 == 3) {
+        if (this.A0.f43791f4 == 3) {
             return true;
         }
         return false;

@@ -7,19 +7,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.ActionBar.f6 f31747a;
-    public Runnable f31748b;
-    public Runnable f31749c;
+    public final org.telegram.ui.ActionBar.f6 f31759a;
+    public Runnable f31760b;
+    public Runnable f31761c;
     public cc d;
-    public final TextView f31750e;
-    public boolean f31751f;
+    public final TextView f31762e;
+    public boolean f31763f;
     public final Drawable h;
-    public final Drawable f31752n;
+    public final Drawable f31764n;
 
     public ac(Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z9, boolean z10) {
         super(context);
         int x02;
-        this.f31747a = f6Var;
+        this.f31759a = f6Var;
         int i7 = org.telegram.ui.ActionBar.k6.uj;
         if (f6Var != null) {
             x02 = f6Var.h(i7);
@@ -28,7 +28,7 @@ public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
         }
         if (z9) {
             TextView textView = new TextView(context);
-            this.f31750e = textView;
+            this.f31762e = textView;
             textView.setBackground(org.telegram.ui.ActionBar.k6.h0((x02 & 16777215) | 419430400, 7, -1));
             this.h = textView.getBackground();
             com.google.android.recaptcha.internal.a.q(textView, 1, 14.0f);
@@ -45,7 +45,7 @@ public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
             org.telegram.ui.ActionBar.r6.t(imageView, i7, f6Var, PorterDuff.Mode.MULTIPLY);
             if (!z9) {
                 imageView.setBackground(org.telegram.ui.ActionBar.k6.h0((x02 & 16777215) | 419430400, 1, -1));
-                this.f31752n = imageView.getBackground();
+                this.f31764n = imageView.getBackground();
             }
             c8.ra.a(imageView, 0.0f, 12.0f, 0.0f, 12.0f);
             addView(imageView, c8.ha.h(56.0f, 48.0f, 16));
@@ -61,14 +61,14 @@ public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
     @Override
     public final void d() {
         this.d = null;
-        Runnable runnable = this.f31749c;
-        if (runnable != null && !this.f31751f) {
+        Runnable runnable = this.f31761c;
+        if (runnable != null && !this.f31763f) {
             runnable.run();
         }
     }
 
     public final void e(CharSequence charSequence) {
-        TextView textView = this.f31750e;
+        TextView textView = this.f31762e;
         if (textView != null) {
             textView.setText(charSequence);
         }
@@ -76,8 +76,8 @@ public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
 
     public final void f() {
         if (this.d != null) {
-            this.f31751f = true;
-            Runnable runnable = this.f31748b;
+            this.f31763f = true;
+            Runnable runnable = this.f31760b;
             if (runnable != null) {
                 runnable.run();
             }
@@ -94,18 +94,18 @@ public final class ac extends ya implements org.telegram.ui.ActionBar.a6 {
         Drawable drawable;
         try {
             int i7 = org.telegram.ui.ActionBar.k6.uj;
-            org.telegram.ui.ActionBar.f6 f6Var = this.f31747a;
+            org.telegram.ui.ActionBar.f6 f6Var = this.f31759a;
             if (f6Var != null) {
                 x02 = f6Var.h(i7);
             } else {
                 x02 = org.telegram.ui.ActionBar.k6.x0(null, i7, false);
             }
             int i10 = (x02 & 16777215) | 419430400;
-            TextView textView = this.f31750e;
+            TextView textView = this.f31762e;
             if (textView != null && (drawable = this.h) != null && textView.getBackground() == drawable) {
                 org.telegram.ui.ActionBar.k6.H1(drawable, i10, true);
             }
-            Drawable drawable2 = this.f31752n;
+            Drawable drawable2 = this.f31764n;
             if (drawable2 != null) {
                 org.telegram.ui.ActionBar.k6.H1(drawable2, i10, true);
             }

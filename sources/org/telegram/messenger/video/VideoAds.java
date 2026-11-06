@@ -116,7 +116,7 @@ public class VideoAds {
             paint.setStrokeJoin(Paint.Join.ROUND);
             paint.setColor(-1);
             i6Var.setCallback(view);
-            i6Var.f34516b = 17;
+            i6Var.f34477b = 17;
             i6Var.w(g0.L(12.0f));
             i6Var.x(g0.o1("fonts/num.otf"));
             i6Var.M = g0.f22537q.x;
@@ -386,7 +386,7 @@ public class VideoAds {
         d dVar = new d(this, 0);
         Objects.requireNonNull(k60Var);
         a aVar = new a(k60Var, 1);
-        int i10 = oy0.f48572s1;
+        int i10 = oy0.f48567s1;
         if (context == null) {
             return;
         }
@@ -449,7 +449,7 @@ public class VideoAds {
     public void lambda$show$3(cc ccVar, TLRPC.TL_sponsoredMessage tL_sponsoredMessage) {
         cc ccVar2 = this.bulletin;
         if (ccVar2 != null && ccVar2 == ccVar) {
-            ccVar2.f32523j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
+            ccVar2.f32527j = (tL_sponsoredMessage.max_display_duration - tL_sponsoredMessage.min_display_duration) * 1000;
             ccVar2.i(true);
         }
     }
@@ -479,7 +479,7 @@ public class VideoAds {
                 }
             } else if (j10 <= 0) {
                 cc ccVar4 = this.bulletin;
-                ccVar4.f32523j = (int) j11;
+                ccVar4.f32527j = (int) j11;
                 ccVar4.i(true);
             } else {
                 g0.i3(runnable, j10);
@@ -587,7 +587,7 @@ public class VideoAds {
             this.bulletin = null;
         }
         Context W = this.bulletinFactory.W();
-        f6 f6Var = this.bulletinFactory.f34289c;
+        f6 f6Var = this.bulletinFactory.f34239c;
         AdLayout adLayout = new AdLayout(W, f6Var) {
             {
                 VideoAds.this = this;
@@ -609,7 +609,7 @@ public class VideoAds {
         k5 k5Var = adLayout.titleTextView;
         Context W2 = this.bulletinFactory.W();
         int i7 = k6.Ci;
-        k5Var.i(new AdOptionsDrawable(W2, k6.w0(i7, this.bulletinFactory.f34289c)));
+        k5Var.i(new AdOptionsDrawable(W2, k6.w0(i7, this.bulletinFactory.f34239c)));
         adLayout.subtitleTextView.setText(tL_sponsoredMessage.message);
         TLRPC.MessageMedia messageMedia = tL_sponsoredMessage.media;
         if (messageMedia != null) {
@@ -633,12 +633,12 @@ public class VideoAds {
             }
         }
         final CloseDrawable closeDrawable = new CloseDrawable(adLayout.buttonView, tL_sponsoredMessage.min_display_duration, tL_sponsoredMessage.max_display_duration, this.currentBulletinPassedTime);
-        closeDrawable.setColor(k6.w0(i7, this.bulletinFactory.f34289c));
+        closeDrawable.setColor(k6.w0(i7, this.bulletinFactory.f34239c));
         adLayout.buttonView.setImageDrawable(closeDrawable);
         adLayout.buttonView.setOnClickListener(new r(23, this, closeDrawable));
         final cc b10 = this.bulletinFactory.b(adLayout, tL_sponsoredMessage.max_display_duration * 1000);
         this.bulletin = b10;
-        b10.f32534u = false;
+        b10.f32538u = false;
         b10.i(false);
         final z0 z0Var = new z0(this, b10, tL_sponsoredMessage, 13);
         final long[] jArr = new long[1];
@@ -652,12 +652,12 @@ public class VideoAds {
         };
         g0.i3(z0Var, tL_sponsoredMessage.min_display_duration * 1000);
         cc ccVar2 = this.bulletin;
-        ccVar2.f32531r = false;
+        ccVar2.f32535r = false;
         ccVar2.v = new z0(this, b10, new boolean[1], 14);
         adLayout.titleTextView.setRightDrawableOnClick(new f(this, b10, tL_sponsoredMessage, W, f6Var, adLayout, c20Var, 0));
         cc ccVar3 = this.bulletin;
         r rVar = new r(24, this, tL_sponsoredMessage);
-        gb gbVar = ccVar3.f32519e;
+        gb gbVar = ccVar3.f32523e;
         if (gbVar != null) {
             gbVar.setOnClickListener(rVar);
         }

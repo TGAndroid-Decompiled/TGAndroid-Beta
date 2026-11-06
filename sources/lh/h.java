@@ -59,8 +59,8 @@ public final class h extends FrameLayout implements te.b {
                 m mVar = mVarArr[i10];
                 if (mVar != null) {
                     kh.b bVar = (kh.b) mVar.f14264b;
-                    float f11 = ((te.a) mVar.f14265c).f55370e;
-                    float f12 = ((te.a) mVar.d).f55370e;
+                    float f11 = ((te.a) mVar.f14265c).f55395e;
+                    float f12 = ((te.a) mVar.d).f55395e;
                     if (f11 > 0.0f) {
                         i7 = 0;
                     } else {
@@ -136,7 +136,7 @@ public final class h extends FrameLayout implements te.b {
             if (i7 == 0) {
                 interpolator = xq.h;
             } else {
-                interpolator = se.a.f54888a;
+                interpolator = se.a.f54913a;
             }
             if (i7 == 0) {
                 j3 = 300;
@@ -148,7 +148,7 @@ public final class h extends FrameLayout implements te.b {
             if (i7 == 0) {
                 interpolator2 = xq.h;
             } else {
-                interpolator2 = se.a.f54888a;
+                interpolator2 = se.a.f54913a;
             }
             Interpolator interpolator3 = interpolator2;
             if (i7 == 0) {

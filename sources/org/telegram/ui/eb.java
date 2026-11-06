@@ -20,15 +20,15 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class eb implements org.telegram.ui.Cells.l1 {
-    public final jb f45224a;
+    public final jb f45254a;
 
     public eb(jb jbVar) {
-        this.f45224a = jbVar;
+        this.f45254a = jbVar;
     }
 
     @Override
     public final void B0(org.telegram.ui.Cells.q1 q1Var, float f10, float f11) {
-        mb mbVar = this.f45224a.f46896n;
+        mb mbVar = this.f45254a.f46920n;
         int i7 = mb.Q0;
         mbVar.U0(q1Var, 0.0f, 0.0f);
     }
@@ -45,7 +45,7 @@ public final class eb implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void D1(org.telegram.messenger.ij ijVar, String str, String str2, String str3, String str4, int i7, int i10) {
-        mb mbVar = this.f45224a.f46896n;
+        mb mbVar = this.f45254a.f46920n;
         org.telegram.ui.Components.vt.N0(mbVar, ijVar, mbVar.B0, str2, str3, str4, str, i7, i10, -1, false);
     }
 
@@ -55,7 +55,7 @@ public final class eb implements org.telegram.ui.Cells.l1 {
             if (!ijVar.J3()) {
                 return false;
             }
-            return MediaController.B().o0(this.f45224a.f46896n.f47736o0, ijVar, 0L, true, null, 0L);
+            return MediaController.B().o0(this.f45254a.f46920n.f47763o0, ijVar, 0L, true, null, 0L);
         }
         boolean S = MediaController.B().S(ijVar);
         MediaController.B().r0(null, false);
@@ -75,17 +75,17 @@ public final class eb implements org.telegram.ui.Cells.l1 {
     @Override
     public final void N0(org.telegram.ui.Cells.q1 q1Var, CharacterStyle characterStyle, boolean z9) {
         TLRPC.WebPage webPage;
-        mb mbVar = this.f45224a.f46896n;
+        mb mbVar = this.f45254a.f46920n;
         if (characterStyle != null) {
             org.telegram.messenger.ij messageObject = q1Var.getMessageObject();
-            if (characterStyle instanceof org.telegram.ui.Components.u31) {
-                org.telegram.ui.Components.u31 u31Var = (org.telegram.ui.Components.u31) characterStyle;
-                org.telegram.messenger.g0.g(u31Var.f38515a.subSequence(u31Var.f38516b, u31Var.f38517c).toString());
+            if (characterStyle instanceof org.telegram.ui.Components.z31) {
+                org.telegram.ui.Components.z31 z31Var = (org.telegram.ui.Components.z31) characterStyle;
+                org.telegram.messenger.g0.g(z31Var.f40857a.subSequence(z31Var.f40858b, z31Var.f40859c).toString());
                 if (org.telegram.messenger.g0.I3()) {
                     Toast.makeText(mbVar.getParentActivity(), org.telegram.messenger.hd.M0(2131744195, null), 0).show();
                 }
-            } else if (characterStyle instanceof org.telegram.ui.Components.y31) {
-                Long A = Utilities.A(((org.telegram.ui.Components.y31) characterStyle).getURL());
+            } else if (characterStyle instanceof org.telegram.ui.Components.d41) {
+                Long A = Utilities.A(((org.telegram.ui.Components.d41) characterStyle).getURL());
                 long longValue = A.longValue();
                 if (longValue > 0) {
                     TLRPC.User a22 = org.telegram.messenger.qp.s1(mb.v0(mbVar)).a2(A);
@@ -99,13 +99,13 @@ public final class eb implements org.telegram.ui.Cells.l1 {
                 if (M0 != null) {
                     org.telegram.messenger.qp.s1(mb.y0(mbVar)).z3(null, M0, mbVar, 0);
                 }
-            } else if (characterStyle instanceof org.telegram.ui.Components.v31) {
-                String url = ((org.telegram.ui.Components.v31) characterStyle).getURL();
+            } else if (characterStyle instanceof org.telegram.ui.Components.a41) {
+                String url = ((org.telegram.ui.Components.a41) characterStyle).getURL();
                 if (url.startsWith("@")) {
                     org.telegram.messenger.qp.s1(mb.z0(mbVar)).y3(url.substring(1), mbVar, 0, null);
                 } else if (url.startsWith("#")) {
                     ww wwVar = new ww(null);
-                    wwVar.f51579n2 = url;
+                    wwVar.f51596n2 = url;
                     mbVar.presentFragment(wwVar);
                 }
             } else {
@@ -119,8 +119,8 @@ public final class eb implements org.telegram.ui.Cells.l1 {
                     h.L = charSequenceArr;
                     h.K = jVar;
                     mbVar.showDialog(h);
-                } else if (characterStyle instanceof org.telegram.ui.Components.x31) {
-                    String url3 = ((org.telegram.ui.Components.x31) characterStyle).getURL();
+                } else if (characterStyle instanceof org.telegram.ui.Components.c41) {
+                    String url3 = ((org.telegram.ui.Components.c41) characterStyle).getURL();
                     if (!vf.c.g(Uri.parse(url3), false, null)) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(mbVar.getParentActivity());
                         String M02 = org.telegram.messenger.hd.M0(2131747778, null);
@@ -154,7 +154,7 @@ public final class eb implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final er0 N1() {
+    public final fr0 N1() {
         return null;
     }
 
@@ -182,10 +182,10 @@ public final class eb implements org.telegram.ui.Cells.l1 {
     public final void R1(org.telegram.ui.Cells.q1 q1Var, int i7, float f10, float f11, boolean z9) {
         org.telegram.messenger.ij ijVar = q1Var.getMessageObject().C;
         long B0 = org.telegram.messenger.ij.B0(ijVar.f23237k);
-        mb mbVar = this.f45224a.f46896n;
-        if (B0 == (-mbVar.f47726f.f26952id)) {
-            for (int i10 = 0; i10 < mbVar.f47736o0.size(); i10++) {
-                org.telegram.messenger.ij ijVar2 = (org.telegram.messenger.ij) mbVar.f47736o0.get(i10);
+        mb mbVar = this.f45254a.f46920n;
+        if (B0 == (-mbVar.f47753f.f26952id)) {
+            for (int i10 = 0; i10 < mbVar.f47763o0.size(); i10++) {
+                org.telegram.messenger.ij ijVar2 = (org.telegram.messenger.ij) mbVar.f47763o0.get(i10);
                 if (ijVar2 != null && ijVar2.U != 1 && ijVar2.M1() == ijVar.M1()) {
                     mbVar.d1(ijVar2);
                     return;
@@ -193,7 +193,7 @@ public final class eb implements org.telegram.ui.Cells.l1 {
             }
         }
         Bundle bundle = new Bundle();
-        bundle.putLong("chat_id", mbVar.f47726f.f26952id);
+        bundle.putLong("chat_id", mbVar.f47753f.f26952id);
         bundle.putInt("message_id", ijVar.M1());
         mbVar.presentFragment(new an(bundle));
     }
@@ -215,8 +215,8 @@ public final class eb implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void U(org.telegram.ui.Cells.q1 q1Var, TLRPC.Chat chat, int i7, float f10, float f11, boolean z9) {
-        mb mbVar = this.f45224a.f46896n;
-        if (chat != null && chat != mbVar.f47726f) {
+        mb mbVar = this.f45254a.f46920n;
+        if (chat != null && chat != mbVar.f47753f) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", chat.f26952id);
             if (i7 != 0) {
@@ -246,11 +246,11 @@ public final class eb implements org.telegram.ui.Cells.l1 {
     public final void a(TLRPC.User user) {
         Bundle bundle = new Bundle();
         bundle.putLong("user_id", user.f27101id);
-        jb jbVar = this.f45224a;
-        mb.u0(jbVar.f46896n, bundle, user.f27101id);
+        jb jbVar = this.f45254a;
+        mb.u0(jbVar.f46920n, bundle, user.f27101id);
         ProfileActivity profileActivity = new ProfileActivity(bundle, null);
         profileActivity.g5(0);
-        jbVar.f46896n.presentFragment(profileActivity);
+        jbVar.f46920n.presentFragment(profileActivity);
     }
 
     @Override
@@ -261,7 +261,7 @@ public final class eb implements org.telegram.ui.Cells.l1 {
     @Override
     public final boolean b0(org.telegram.ui.Cells.q1 q1Var, TLRPC.User user) {
         w4 b10;
-        mb mbVar = this.f45224a.f46896n;
+        mb mbVar = this.f45254a.f46920n;
         if (user != null && user.f27101id != org.telegram.messenger.p10.i(mb.s0(mbVar)).e()) {
             c5[] c5VarArr = {c5.d, c5.h};
             TLRPC.UserFull b22 = mbVar.getMessagesController().b2(user.f27101id);
@@ -281,15 +281,15 @@ public final class eb implements org.telegram.ui.Cells.l1 {
     @Override
     public final void b1(org.telegram.ui.Cells.q1 q1Var, TL_keyboard.KeyboardButtonProto keyboardButtonProto) {
         org.telegram.messenger.ij messageObject = q1Var.getMessageObject();
-        jb jbVar = this.f45224a;
-        if (jbVar.f46896n.f47737p0.contains(Long.valueOf(messageObject.T))) {
-            jbVar.f46896n.f47737p0.remove(Long.valueOf(messageObject.T));
+        jb jbVar = this.f45254a;
+        if (jbVar.f46920n.f47764p0.contains(Long.valueOf(messageObject.T))) {
+            jbVar.f46920n.f47764p0.remove(Long.valueOf(messageObject.T));
         } else {
-            jbVar.f46896n.f47737p0.add(Long.valueOf(messageObject.T));
+            jbVar.f46920n.f47764p0.add(Long.valueOf(messageObject.T));
         }
-        jbVar.f46896n.b1(true);
-        jbVar.f46896n.W0();
-        jbVar.f46896n.E.f();
+        jbVar.f46920n.b1(true);
+        jbVar.f46920n.W0();
+        jbVar.f46920n.E.f();
     }
 
     @Override
@@ -315,7 +315,7 @@ public final class eb implements org.telegram.ui.Cells.l1 {
     @Override
     public final void g1(org.telegram.ui.Cells.q1 q1Var, int i7) {
         TLRPC.WebPage webPage;
-        mb mbVar = this.f45224a.f46896n;
+        mb mbVar = this.f45254a.f46920n;
         org.telegram.messenger.ij messageObject = q1Var.getMessageObject();
         TLRPC.TL_channelAdminLogEvent tL_channelAdminLogEvent = messageObject.J1;
         if (tL_channelAdminLogEvent != null && (tL_channelAdminLogEvent.action instanceof TLRPC.TL_channelAdminLogEventActionEditMessage)) {
@@ -323,7 +323,7 @@ public final class eb implements org.telegram.ui.Cells.l1 {
             bundle.putLong("chat_id", -org.telegram.messenger.ij.B0(messageObject.f23237k));
             bundle.putInt("message_id", messageObject.M1());
             an anVar = new an(bundle);
-            if (org.telegram.messenger.t3.c0(mbVar.f47726f)) {
+            if (org.telegram.messenger.t3.c0(mbVar.f47753f)) {
                 qg.d.a(anVar, org.telegram.messenger.xr.a(org.telegram.messenger.ij.B0(messageObject.f23237k), org.telegram.messenger.ij.c2(mb.B0(mbVar), messageObject.f23237k, true, false)));
             }
             mbVar.presentFragment(anVar);
@@ -380,7 +380,7 @@ public final class eb implements org.telegram.ui.Cells.l1 {
         org.telegram.messenger.t0.u();
         boolean z9 = org.telegram.messenger.r2.f25191a;
         org.telegram.messenger.t0.r();
-        vf.c.t(this.f45224a.f46896n.getParentActivity(), org.telegram.messenger.r2.f25196g);
+        vf.c.t(this.f45254a.f46920n.getParentActivity(), org.telegram.messenger.r2.f25196g);
     }
 
     @Override
@@ -405,7 +405,7 @@ public final class eb implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void p0(org.telegram.ui.Cells.q1 q1Var, float f10, float f11) {
-        mb mbVar = this.f45224a.f46896n;
+        mb mbVar = this.f45254a.f46920n;
         int i7 = mb.Q0;
         mbVar.U0(q1Var, 0.0f, 0.0f);
     }
@@ -418,14 +418,14 @@ public final class eb implements org.telegram.ui.Cells.l1 {
     @Override
     public final void r(org.telegram.ui.Cells.q1 q1Var) {
         boolean z9;
-        jb jbVar = this.f45224a;
-        mb mbVar = jbVar.f46896n;
+        jb jbVar = this.f45254a;
+        mb mbVar = jbVar.f46920n;
         if (mbVar.getParentActivity() == null) {
             return;
         }
-        Context context = jbVar.f46893c;
+        Context context = jbVar.f46917c;
         org.telegram.messenger.ij messageObject = q1Var.getMessageObject();
-        if (org.telegram.messenger.t3.T(mbVar.f47726f) && !mbVar.f47726f.megagroup) {
+        if (org.telegram.messenger.t3.T(mbVar.f47753f) && !mbVar.f47753f.megagroup) {
             z9 = true;
         } else {
             z9 = false;
@@ -435,7 +435,7 @@ public final class eb implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void s0(org.telegram.ui.Cells.q1 q1Var, TLRPC.User user, float f10, float f11) {
-        if (user != null && user.f27101id != org.telegram.messenger.p10.i(mb.r0(this.f45224a.f46896n)).e()) {
+        if (user != null && user.f27101id != org.telegram.messenger.p10.i(mb.r0(this.f45254a.f46920n)).e()) {
             a(user);
         }
     }

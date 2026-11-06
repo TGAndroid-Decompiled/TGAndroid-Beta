@@ -409,11 +409,11 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
             default:
                 StringBuilder sb3 = new StringBuilder();
                 b8 b8Var = (b8) this.f13889b;
-                sb3.append(hd.G(b8Var.f32062t2 / 60, "Minutes", new Object[0]));
+                sb3.append(hd.G(b8Var.f32056t2 / 60, "Minutes", new Object[0]));
                 sb3.append(' ');
-                sb3.append(hd.G(b8Var.f32062t2 % 60, "Seconds", new Object[0]));
+                sb3.append(hd.G(b8Var.f32056t2 % 60, "Seconds", new Object[0]));
                 String sb4 = sb3.toString();
-                return hd.a0("AccDescrPlayerDuration", null, 2131754806, sb4, hd.G(b8Var.f32064u2 / 60, "Minutes", new Object[0]) + ' ' + hd.G(b8Var.f32064u2 % 60, "Seconds", new Object[0]));
+                return hd.a0("AccDescrPlayerDuration", null, 2131754806, sb4, hd.G(b8Var.f32058u2 / 60, "Minutes", new Object[0]) + ' ' + hd.G(b8Var.f32058u2 % 60, "Seconds", new Object[0]));
         }
     }
 
@@ -560,10 +560,10 @@ public final class g implements i6.a, xz, y1, com.google.android.gms.common.api.
                 int i10 = (int) (f10 * 100.0f);
                 k6.f28081q = f10;
                 if (i7 != i10) {
-                    ThemeActivity themeActivity = b61Var.f44186f.f45503e;
-                    xi0 xi0Var = (xi0) themeActivity.f41985b.K(themeActivity.f41993f0);
+                    ThemeActivity themeActivity = b61Var.f44202f.f45508e;
+                    xi0 xi0Var = (xi0) themeActivity.f42010b.K(themeActivity.f42018f0);
                     if (xi0Var != null) {
-                        ((z8) xi0Var.f56927a).setText(hd.a0("AutoNightBrightnessInfo", null, 2131753794, Integer.valueOf((int) (k6.f28081q * 100.0f))));
+                        ((z8) xi0Var.f56952a).setText(hd.a0("AutoNightBrightnessInfo", null, 2131753794, Integer.valueOf((int) (k6.f28081q * 100.0f))));
                     }
                     k6.F(true);
                     return;

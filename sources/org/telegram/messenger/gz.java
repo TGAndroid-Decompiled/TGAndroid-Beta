@@ -1309,7 +1309,7 @@ public final class gz extends c1 implements ls {
                     c cVar6 = cVar5;
                     int i33 = i10;
                     if (qtVar5 != null) {
-                        ((t0.h) qtVar5.f37504b).i();
+                        ((t0.h) qtVar5.f37394b).i();
                     }
                     if (i33 != 0) {
                         g0.h3(new x0(i33, cVar6, 12));
@@ -1363,7 +1363,7 @@ public final class gz extends c1 implements ls {
             }
         }
         if (fVar != null) {
-            j13 = fVar.f55199c;
+            j13 = fVar.f55224c;
         } else {
             j13 = 0;
         }
@@ -3334,11 +3334,11 @@ public final class gz extends c1 implements ls {
                         }
                         bi.da daVar = z9Var2.f5175f;
                         if (daVar != null) {
-                            daVar.f38913b = 3000L;
+                            daVar.f38910b = 3000L;
                             g0.r(y9Var);
                             g0.i3(y9Var, 3000L);
                         }
-                        org.telegram.ui.Components.j6 j6Var = wbVar.f39940b;
+                        org.telegram.ui.Components.j6 j6Var = wbVar.f39947b;
                         int i17 = z9Var2.f5176g;
                         if (i17 == 1) {
                             G = hd.M0(2131747702, null);
@@ -3348,8 +3348,8 @@ public final class gz extends c1 implements ls {
                             G = hd.G(i17, "PaidMessageSentTitle", new Object[0]);
                         }
                         j6Var.setText(G);
-                        wbVar.f39941c.setText(g0.X2(hd.H(',', "PaidMessageSentSubtitle", Math.max(i13, (int) z9Var2.h))));
-                        wbVar.f39939a.d();
+                        wbVar.f39948c.setText(g0.X2(hd.H(',', "PaidMessageSentSubtitle", Math.max(i13, (int) z9Var2.h))));
+                        wbVar.f39946a.d();
                     }
                 }
             } else {

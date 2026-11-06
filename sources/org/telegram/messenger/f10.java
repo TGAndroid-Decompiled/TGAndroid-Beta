@@ -24,9 +24,9 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.e21;
+import org.telegram.ui.Components.j21;
 import org.telegram.ui.qy0;
-import org.telegram.ui.vn0;
+import org.telegram.ui.wn0;
 public final class f10 extends c1 {
     public static final List M = Arrays.asList("en", "ar", "zh", "fr", "de", "it", "ja", "ko", "pt", "ru", "es", "uk");
     public static final List N = Arrays.asList("af", "sq", "am", "ar", "hy", "az", "eu", "be", "bn", "bs", "bg", "ca", "ceb", "zh-cn", "zh", "zh-tw", "co", "hr", "cs", "da", "nl", "en", "eo", "et", "fi", "fr", "fy", "gl", "ka", "de", "el", "gu", "ht", "ha", "haw", "he", "hi", "hmn", "hu", "is", "ig", "id", "ga", "it", "ja", "jv", "kn", "kk", "km", "rw", "ko", "ku", "ky", "lo", "la", "lv", "lt", "lb", "mk", "mg", "ms", "ml", "mt", "mi", "mr", "mn", "my", "ne", "no", "ny", "or", "ps", "fa", "pl", "pt", "pt-br", "pa", "ro", "ru", "sm", "gd", "sr", "st", "sn", "sd", "si", "sk", "sl", "so", "es", "su", "sw", "sv", "tl", "tg", "ta", "tt", "te", "th", "tr", "tk", "uk", "ur", "ug", "uz", "vi", "cy", "xh", "yi", "yo", "zu");
@@ -116,8 +116,8 @@ public final class f10 extends c1 {
             if ("no".equals(str)) {
                 obj.f26554a = "nb";
             }
-            obj.f26555b = e21.K0(e21.O0(obj.f26554a, null, null));
-            obj.f26556c = e21.K0(e21.V0(obj.f26554a, true));
+            obj.f26555b = j21.K0(j21.O0(obj.f26554a, null, null));
+            obj.f26556c = j21.K0(j21.V0(obj.f26554a, true));
             if (obj.f26555b != null) {
                 StringBuilder sb2 = new StringBuilder();
                 sb2.append(obj.f26555b);
@@ -168,7 +168,7 @@ public final class f10 extends c1 {
                             if (locale != null && locale.contains("_")) {
                                 locale = locale.split("_")[0];
                             }
-                            if (e21.O0(locale, null, null) != null) {
+                            if (j21.O0(locale, null, null) != null) {
                                 linkedHashSet.add(locale);
                             }
                         }
@@ -189,8 +189,8 @@ public final class f10 extends c1 {
                     if ("no".equals(str2)) {
                         obj.f26554a = "nb";
                     }
-                    obj.f26555b = e21.K0(e21.O0(obj.f26554a, null, null));
-                    obj.f26556c = e21.K0(e21.V0(obj.f26554a, true));
+                    obj.f26555b = j21.K0(j21.O0(obj.f26554a, null, null));
+                    obj.f26556c = j21.K0(j21.V0(obj.f26554a, true));
                     if (obj.f26555b != null) {
                         obj.d = (obj.f26555b + " " + obj.f26556c).toLowerCase();
                         arrayList.add(obj);
@@ -475,7 +475,7 @@ public final class f10 extends c1 {
             longSparseArray.put(j10, bool);
         }
         qs.f(f10Var.currentAccount).k(qs.P1, Long.valueOf(j10), bool);
-        e21.S0(str2);
+        j21.S0(str2);
     }
 
     public final void J(long j3, boolean z9, boolean z10) {
@@ -532,18 +532,18 @@ public final class f10 extends c1 {
         return z10;
     }
 
-    public final void L(ij ijVar, vn0 vn0Var) {
+    public final void L(ij ijVar, wn0 wn0Var) {
         if (ijVar != null && ijVar.f23237k != null) {
             f3.s sVar = new f3.s(ijVar);
-            String M0 = e21.M0();
+            String M0 = j21.M0();
             TLRPC.Message message = ijVar.f23237k;
             if (message.translatedText != null && TextUtils.equals(message.translatedToLanguage, M0)) {
-                vn0Var.run();
+                wn0Var.run();
                 return;
             }
             HashSet hashSet = this.L;
             if (hashSet.contains(sVar)) {
-                vn0Var.run();
+                wn0Var.run();
                 return;
             }
             hashSet.add(sVar);
@@ -559,7 +559,7 @@ public final class f10 extends c1 {
             }
             tL_messages_translateText.text.add(tL_textWithEntities);
             tL_messages_translateText.to_lang = D(M0);
-            getConnectionsManager().sendRequest(tL_messages_translateText, new mm(this, ijVar, M0, sVar, vn0Var, System.currentTimeMillis(), tL_textWithEntities));
+            getConnectionsManager().sendRequest(tL_messages_translateText, new mm(this, ijVar, M0, sVar, wn0Var, System.currentTimeMillis(), tL_textWithEntities));
         }
     }
 
@@ -1383,7 +1383,7 @@ public final class f10 extends c1 {
 
     public final String m(long j3) {
         String str = (String) this.d.get(Long.valueOf(j3));
-        if (str == null && ((str = e21.M0()) == null || str.equals((String) this.f22319e.get(Long.valueOf(j3))))) {
+        if (str == null && ((str = j21.M0()) == null || str.equals((String) this.f22319e.get(Long.valueOf(j3))))) {
             str = j();
         }
         if ("nb".equals(str)) {

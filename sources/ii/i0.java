@@ -11,21 +11,21 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Cells.p2;
 import org.telegram.ui.Cells.t2;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
-public final class i0 extends q31 {
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.w31;
+public final class i0 extends v31 {
     static {
-        q31.h(new q31());
+        v31.h(new v31());
     }
 
-    public static r31 i(uo uoVar, p2 p2Var) {
+    public static w31 i(uo uoVar, p2 p2Var) {
         long j3;
         TLRPC.User user = uoVar.f25872c;
         if (user != null) {
-            r31 K = r31.K(i0.class);
+            w31 K = w31.K(i0.class);
             long j10 = user.f27101id;
             K.B = j10;
             K.d = (int) (j10 ^ (j10 >>> 32));
@@ -34,7 +34,7 @@ public final class i0 extends q31 {
             return K;
         }
         TLRPC.Chat chat = uoVar.f25871b;
-        r31 K2 = r31.K(i0.class);
+        w31 K2 = w31.K(i0.class);
         if (chat != null) {
             j3 = -chat.f26952id;
         } else {
@@ -48,10 +48,10 @@ public final class i0 extends q31 {
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
+    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
         t2 t2Var = (t2) view;
-        t2Var.setDialogCellDelegate((p2) r31Var.H);
-        Object obj = r31Var.G;
+        t2Var.setDialogCellDelegate((p2) w31Var.H);
+        Object obj = w31Var.G;
         boolean z10 = true;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
@@ -87,8 +87,8 @@ public final class i0 extends q31 {
     }
 
     @Override
-    public final boolean c(r31 r31Var, r31 r31Var2) {
-        if (r31Var.d == r31Var2.d) {
+    public final boolean c(w31 w31Var, w31 w31Var2) {
+        if (w31Var.d == w31Var2.d) {
             return true;
         }
         return false;
@@ -102,8 +102,8 @@ public final class i0 extends q31 {
     }
 
     @Override
-    public final boolean e(r31 r31Var, r31 r31Var2) {
-        if (r31Var.d == r31Var2.d) {
+    public final boolean e(w31 w31Var, w31 w31Var2) {
+        if (w31Var.d == w31Var2.d) {
             return true;
         }
         return false;

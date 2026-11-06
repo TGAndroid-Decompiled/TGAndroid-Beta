@@ -24,7 +24,7 @@ public final class bb0 extends km0 {
     @Override
     public final CharSequence d() {
         hb0 hb0Var = this.d;
-        org.telegram.messenger.d20 d20Var = hb0Var.f34281u0;
+        org.telegram.messenger.d20 d20Var = hb0Var.f34231u0;
         if (d20Var != null) {
             return (CharSequence) d20Var.a(Integer.valueOf(hb0Var.H));
         }

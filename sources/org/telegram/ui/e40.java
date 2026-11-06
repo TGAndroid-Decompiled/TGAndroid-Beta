@@ -179,7 +179,7 @@ public abstract class e40 {
         getgroupcall.limit = 10;
         int sendRequest = ConnectionsManager.getInstance(i7).sendRequest(getgroupcall, new bg.k0(u1Var, bVar, i7, activity, tL_inputGroupCallSlug, 10));
         if (bVar != null) {
-            bVar.f57207b = new org.telegram.messenger.g9(i7, sendRequest, 6);
+            bVar.f57232b = new org.telegram.messenger.g9(i7, sendRequest, 6);
             bVar.d();
         }
     }

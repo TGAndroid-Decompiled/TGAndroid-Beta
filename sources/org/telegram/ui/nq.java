@@ -9,21 +9,21 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 public final class nq extends org.telegram.ui.Components.oj0 {
     public final oq D;
-    public final Context f48077c;
+    public final Context f48108c;
     public final jg.z1 h;
-    public lq f48080n;
-    public boolean f48082s;
-    public int f48083w;
-    public int f48084x;
-    public int f48085y;
+    public lq f48111n;
+    public boolean f48113s;
+    public int f48114w;
+    public int f48115x;
+    public int f48116y;
     public ArrayList d = new ArrayList();
-    public a0.h f48078e = new a0.h();
-    public ArrayList f48079f = new ArrayList();
-    public int f48081r = 0;
+    public a0.h f48109e = new a0.h();
+    public ArrayList f48110f = new ArrayList();
+    public int f48112r = 0;
 
     public nq(oq oqVar, Context context) {
         this.D = oqVar;
-        this.f48077c = context;
+        this.f48108c = context;
         jg.z1 z1Var = new jg.z1(true);
         this.h = z1Var;
         z1Var.f16989a = new mq(this);
@@ -31,7 +31,7 @@ public final class nq extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         if (view instanceof org.telegram.ui.Cells.a5) {
             ((org.telegram.ui.Cells.a5) view).a();
         }
@@ -39,7 +39,7 @@ public final class nq extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f != 1) {
+        if (d1Var.f56956f != 1) {
             return true;
         }
         return false;
@@ -79,13 +79,13 @@ public final class nq extends org.telegram.ui.Components.oj0 {
     public final void F(String str) {
         boolean z9;
         long j3;
-        if (this.f48080n != null) {
-            Utilities.f21335g.a(this.f48080n);
-            this.f48080n = null;
+        if (this.f48111n != null) {
+            Utilities.f21335g.a(this.f48111n);
+            this.f48111n = null;
         }
         this.d.clear();
-        this.f48078e.b();
-        this.f48079f.clear();
+        this.f48109e.b();
+        this.f48110f.clear();
         this.h.f(null, null);
         jg.z1 z1Var = this.h;
         oq oqVar = this.D;
@@ -94,7 +94,7 @@ public final class nq extends org.telegram.ui.Components.oj0 {
         } else {
             z9 = false;
         }
-        if (org.telegram.messenger.t3.T(oqVar.f48470n)) {
+        if (org.telegram.messenger.t3.T(oqVar.f48498n)) {
             j3 = this.D.M;
         } else {
             j3 = 0;
@@ -102,23 +102,23 @@ public final class nq extends org.telegram.ui.Components.oj0 {
         z1Var.g(null, z9, false, true, false, j3, false, this.D.N, 0);
         f();
         if (!TextUtils.isEmpty(str)) {
-            this.f48082s = true;
-            this.D.f48444b.e(true, true);
+            this.f48113s = true;
+            this.D.f48472b.e(true, true);
             org.telegram.messenger.p5 p5Var = Utilities.f21335g;
             lq lqVar = new lq(this, str, 0);
-            this.f48080n = lqVar;
+            this.f48111n = lqVar;
             p5Var.d(lqVar, 300L);
         }
     }
 
     @Override
     public final int b() {
-        return this.f48081r;
+        return this.f48112r;
     }
 
     @Override
     public final int d(int i7) {
-        if (i7 != this.f48085y && i7 != this.f48083w && i7 != this.f48084x) {
+        if (i7 != this.f48116y && i7 != this.f48114w && i7 != this.f48115x) {
             return 0;
         }
         return 1;
@@ -127,42 +127,42 @@ public final class nq extends org.telegram.ui.Components.oj0 {
     @Override
     public final void f() {
         bi.q1 q1Var;
-        this.f48081r = 0;
+        this.f48112r = 0;
         jg.z1 z1Var = this.h;
         int size = z1Var.f16994g.size();
         if (size != 0) {
-            this.f48083w = 0;
-            this.f48081r = size + 1 + this.f48081r;
+            this.f48114w = 0;
+            this.f48112r = size + 1 + this.f48112r;
         } else {
-            this.f48083w = -1;
+            this.f48114w = -1;
         }
         int size2 = this.d.size();
         if (size2 != 0) {
-            int i7 = this.f48081r;
-            this.f48084x = i7;
-            this.f48081r = size2 + 1 + i7;
+            int i7 = this.f48112r;
+            this.f48115x = i7;
+            this.f48112r = size2 + 1 + i7;
         } else {
-            this.f48084x = -1;
+            this.f48115x = -1;
         }
         int size3 = z1Var.f16992e.size();
         if (size3 != 0) {
-            int i10 = this.f48081r;
-            this.f48085y = i10;
-            this.f48081r = size3 + 1 + i10;
+            int i10 = this.f48112r;
+            this.f48116y = i10;
+            this.f48112r = size3 + 1 + i10;
         } else {
-            this.f48085y = -1;
+            this.f48116y = -1;
         }
         oq oqVar = this.D;
-        if (oqVar.n1 && (q1Var = oqVar.f48447c) != null) {
+        if (oqVar.n1 && (q1Var = oqVar.f48475c) != null) {
             v4.g0 adapter = q1Var.getAdapter();
-            nq nqVar = oqVar.f48452e;
+            nq nqVar = oqVar.f48480e;
             if (adapter != nqVar) {
-                bi.q1 q1Var2 = oqVar.f48447c;
+                bi.q1 q1Var2 = oqVar.f48475c;
                 q1Var2.W1 = true;
                 q1Var2.X1 = 0;
                 q1Var2.setAdapter(nqVar);
-                oqVar.f48447c.setFastScrollVisible(false);
-                oqVar.f48447c.setVerticalScrollBarEnabled(true);
+                oqVar.f48475c.setFastScrollVisible(false);
+                oqVar.f48475c.setVerticalScrollBarEnabled(true);
             }
         }
         super.f();
@@ -181,15 +181,15 @@ public final class nq extends org.telegram.ui.Components.oj0 {
         oq oqVar = this.D;
         if (i7 != 0) {
             f6Var = ((org.telegram.ui.ActionBar.f2) oqVar).resourceProvider;
-            view = new org.telegram.ui.Cells.x3(26, this.f48077c, f6Var);
+            view = new org.telegram.ui.Cells.x3(26, this.f48108c, f6Var);
             view.setBackground(null);
         } else {
-            if (oqVar.f48451d1 == 0) {
+            if (oqVar.f48479d1 == 0) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f48077c, 2, 2, z9, null);
+            org.telegram.ui.Cells.a5 a5Var = new org.telegram.ui.Cells.a5(this.f48108c, 2, 2, z9, null);
             a5Var.G = true;
             a5Var.setDelegate(new mq(this));
             view = a5Var;

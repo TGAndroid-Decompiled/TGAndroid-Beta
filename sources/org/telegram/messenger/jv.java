@@ -248,24 +248,24 @@ public final class jv implements org.telegram.ui.Cells.t9, dx0 {
                 a80Var.D = true;
                 r70 r70Var2 = new r70(0);
                 this.G = r70Var2;
-                r70Var2.f31873c = true;
+                r70Var2.f31885c = true;
                 a80 a80Var2 = this.H;
-                a80Var2.f31735y = r70Var2;
+                a80Var2.f31747y = r70Var2;
                 a80Var2.k(5.0f);
-                this.H.f31715b = -1L;
+                this.H.f31727b = -1L;
                 this.G.reset();
                 this.G.d(staticLayout2, 0, 0.0f);
-                this.G.f37629n = false;
+                this.G.f37572n = false;
                 staticLayout2.getSelectionPath(0, staticLayout2.getText().length(), this.G);
                 r70 r70Var3 = this.G;
-                r70Var3.f37629n = true;
+                r70Var3.f37572n = true;
                 r70Var3.a();
                 this.H.l();
             }
             if (z9 && (this.H.d() || this.H.c())) {
                 a80 a80Var3 = this.H;
-                a80Var3.f31715b = -1L;
-                a80Var3.f31716c = -1L;
+                a80Var3.f31727b = -1L;
+                a80Var3.f31728c = -1L;
             } else if (!z9 && !this.H.d() && !this.H.c()) {
                 this.H.a();
             }
@@ -711,7 +711,7 @@ public final class jv implements org.telegram.ui.Cells.t9, dx0 {
                 float height = staticLayout.getHeight();
                 float sqrt = (float) Math.sqrt((height * height) + (width * width));
                 View view5 = this.S;
-                this.L.f58684q = new hv(this, view5, kvVar);
+                this.L.f58709q = new hv(this, view5, kvVar);
                 int size2 = arrayList.size();
                 int i15 = 0;
                 while (i15 < size2) {
@@ -971,7 +971,7 @@ public final class jv implements org.telegram.ui.Cells.t9, dx0 {
                         if (r70Var == null) {
                             i10 = 0;
                             r70Var = new r70(0);
-                            r70Var.f37629n = false;
+                            r70Var.f37572n = false;
                         } else {
                             i10 = 0;
                         }
@@ -986,13 +986,13 @@ public final class jv implements org.telegram.ui.Cells.t9, dx0 {
                         } else {
                             i11 = i10;
                         }
-                        r70Var.f37630o = i11;
+                        r70Var.f37573o = i11;
                         this.f23586b.getSelectionPath(spanStart5, spanEnd2, r70Var);
                     }
                 }
             }
             if (r70Var != null) {
-                r70Var.f37629n = true;
+                r70Var.f37572n = true;
                 this.F = r70Var;
             }
         }

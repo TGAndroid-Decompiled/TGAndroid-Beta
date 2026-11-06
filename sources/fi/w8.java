@@ -95,7 +95,7 @@ public final class w8 implements View.OnClickListener {
                         valueAnimator2.setDuration(j3);
                         ValueAnimator valueAnimator3 = vaVar2.E2;
                         if (z11) {
-                            xqVar = xq.f40312i;
+                            xqVar = xq.f40331i;
                         } else {
                             xqVar = xq.h;
                         }

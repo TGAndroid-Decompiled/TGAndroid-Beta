@@ -10,11 +10,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 public final class at extends FrameLayout {
-    public final ImageView f44067a;
-    public final TextView f44068b;
-    public final ImageView f44069c;
+    public final ImageView f44081a;
+    public final TextView f44082b;
+    public final ImageView f44083c;
     public final TextView d;
-    public boolean f44070e;
+    public boolean f44084e;
 
     public at(kt ktVar, Context context) {
         super(context);
@@ -22,7 +22,7 @@ public final class at extends FrameLayout {
         int i10;
         org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27848d6, this, null);
         ImageView imageView = new ImageView(context);
-        this.f44067a = imageView;
+        this.f44081a = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         if (org.telegram.messenger.hd.f22871a0) {
             i7 = 5;
@@ -46,7 +46,7 @@ public final class at extends FrameLayout {
         }
         linearLayout2.setWeightSum(2.0f);
         TextView textView = new TextView(context);
-        this.f44068b = textView;
+        this.f44082b = textView;
         textView.setTextSize(1, 16.0f);
         int i11 = org.telegram.ui.ActionBar.k6.G6;
         org.telegram.ui.ActionBar.r6.V(textView, i11, null);
@@ -54,7 +54,7 @@ public final class at extends FrameLayout {
         textView.setSingleLine();
         textView.setLines(1);
         ImageView imageView2 = new ImageView(context);
-        this.f44069c = imageView2;
+        this.f44083c = imageView2;
         imageView2.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView2.setImageResource(2131230871);
         org.telegram.ui.ActionBar.r6.t(imageView2, i11, null, PorterDuff.Mode.MULTIPLY);
@@ -86,7 +86,7 @@ public final class at extends FrameLayout {
         float L;
         int i7;
         super.onDraw(canvas);
-        if (this.f44070e) {
+        if (this.f44084e) {
             if (org.telegram.messenger.hd.f22871a0) {
                 L = 0.0f;
             } else {

@@ -54,7 +54,7 @@ public final class g {
         ArrayList b10 = new i0(4, context, new qt(ComponentDiscoveryService.class, 20)).b();
         Trace.endSection();
         Trace.beginSection("Runtime");
-        j jVar = j.f57163a;
+        j jVar = j.f57188a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         arrayList.addAll(b10);
@@ -224,7 +224,7 @@ public final class g {
         a();
         za.a aVar = (za.a) this.f20877g.get();
         synchronized (aVar) {
-            z9 = aVar.f59899a;
+            z9 = aVar.f59924a;
         }
         return z9;
     }

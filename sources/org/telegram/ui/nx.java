@@ -5,12 +5,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class nx extends org.telegram.ui.ActionBar.f2 {
-    public long f48125a;
-    public TLRPC.Chat f48126b;
-    public boolean f48127c;
+    public long f48154a;
+    public TLRPC.Chat f48155b;
+    public boolean f48156c;
     public boolean d;
-    public boolean f48128e;
-    public kx f48129f;
+    public boolean f48157e;
+    public kx f48158f;
     public di.b0 h;
 
     @Override
@@ -21,17 +21,17 @@ public final class nx extends org.telegram.ui.ActionBar.f2 {
         this.simpleActionBar.setTitle(org.telegram.messenger.hd.M0(2131743982, null));
         FrameLayout frameLayout = new FrameLayout(context);
         kx kxVar = new kx(this, new a5(this, 13), new wr(this, 9), null, 0);
-        this.f48129f = kxVar;
+        this.f48158f = kxVar;
         kxVar.r1();
-        this.f48129f.setSectionsDrawBackground(true);
-        frameLayout.addView(this.f48129f, c8.ha.e(-1, -1, 119));
+        this.f48158f.setSectionsDrawBackground(true);
+        frameLayout.addView(this.f48158f, c8.ha.e(-1, -1, 119));
         this.fragmentView = frameLayout;
         return frameLayout;
     }
 
     @Override
     public final org.telegram.ui.Components.pj0 getListViewForSimpleGlass() {
-        return this.f48129f;
+        return this.f48158f;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class nx extends org.telegram.ui.ActionBar.f2 {
 
     @Override
     public final boolean onFragmentCreate() {
-        this.f48126b = getMessagesController().M0(Long.valueOf(-this.f48125a));
+        this.f48155b = getMessagesController().M0(Long.valueOf(-this.f48154a));
         return super.onFragmentCreate();
     }
 

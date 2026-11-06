@@ -7,29 +7,29 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.hd;
 import org.telegram.ui.Components.b80;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
-public final class m8 extends q31 {
-    public static final int f42752b = 0;
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.w31;
+public final class m8 extends v31 {
+    public static final int f42777b = 0;
 
     static {
-        q31.h(new q31());
+        v31.h(new v31());
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
+    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
         float f10;
         float f11;
         n8 n8Var = (n8) view;
-        String charSequence = r31Var.f37598l.toString();
-        long j3 = r31Var.B;
-        int i7 = r31Var.f37611z;
-        boolean z10 = r31Var.f37603q;
-        TextView textView = n8Var.f42819c;
-        TextView textView2 = n8Var.f42818b;
+        String charSequence = w31Var.f39830l.toString();
+        long j3 = w31Var.B;
+        int i7 = w31Var.f39843z;
+        boolean z10 = w31Var.f39835q;
+        TextView textView = n8Var.f42844c;
+        TextView textView2 = n8Var.f42843b;
         textView2.setText(f8.c0(charSequence));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         if (j3 < 0) {

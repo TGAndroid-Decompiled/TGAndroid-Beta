@@ -19,50 +19,50 @@ public final class p80 extends Drawable {
     public LinearGradient C;
     public Matrix D;
     public boolean E;
-    public final TextPaint f36921a;
-    public final Paint f36922b;
-    public final Paint f36923c;
+    public final TextPaint f36800a;
+    public final Paint f36801b;
+    public final Paint f36802c;
     public final Paint d;
-    public final Paint f36924e;
-    public final RectF f36925f;
-    public PorterDuffColorFilter f36926g;
+    public final Paint f36803e;
+    public final RectF f36804f;
+    public PorterDuffColorFilter f36805g;
     public float h;
-    public final DecelerateInterpolator f36927i;
-    public boolean f36928j;
-    public float f36929k;
-    public int f36930l;
-    public String f36931m;
-    public int f36932n;
-    public float f36933o;
-    public int f36934p;
-    public int f36935q;
-    public float f36936r;
-    public float f36937s;
-    public long f36938t;
-    public boolean f36939u;
+    public final DecelerateInterpolator f36806i;
+    public boolean f36807j;
+    public float f36808k;
+    public int f36809l;
+    public String f36810m;
+    public int f36811n;
+    public float f36812o;
+    public int f36813p;
+    public int f36814q;
+    public float f36815r;
+    public float f36816s;
+    public long f36817t;
+    public boolean f36818u;
     public float v;
-    public float f36940w;
-    public float f36941x;
-    public float f36942y;
-    public float f36943z;
+    public float f36819w;
+    public float f36820x;
+    public float f36821y;
+    public float f36822z;
 
     public p80() {
         TextPaint textPaint = new TextPaint(1);
-        this.f36921a = textPaint;
+        this.f36800a = textPaint;
         Paint paint = new Paint(1);
-        this.f36922b = paint;
-        this.f36923c = new Paint(1);
+        this.f36801b = paint;
+        this.f36802c = new Paint(1);
         Paint paint2 = new Paint(1);
         this.d = paint2;
         Paint paint3 = new Paint(1);
-        this.f36924e = paint3;
-        this.f36925f = new RectF();
+        this.f36803e = paint3;
+        this.f36804f = new RectF();
         this.h = 1.0f;
-        this.f36927i = new DecelerateInterpolator();
-        this.f36929k = 400.0f;
-        this.f36930l = -1;
-        this.f36933o = 1.0f;
-        this.f36936r = 1.0f;
+        this.f36806i = new DecelerateInterpolator();
+        this.f36808k = 400.0f;
+        this.f36809l = -1;
+        this.f36812o = 1.0f;
+        this.f36815r = 1.0f;
         paint.setColor(-1);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(3.0f));
@@ -93,66 +93,66 @@ public final class p80 extends Drawable {
     }
 
     public final float b() {
-        if (this.f36939u) {
-            return this.f36936r;
+        if (this.f36818u) {
+            return this.f36815r;
         }
         return 1.0f;
     }
 
     public final void c(int i7) {
         int i10 = (-16777216) | i7;
-        this.f36922b.setColor(i10);
+        this.f36801b.setColor(i10);
         this.d.setColor(i10);
-        this.f36924e.setColor(i10);
-        this.f36921a.setColor(i10);
-        this.f36926g = new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY);
+        this.f36803e.setColor(i10);
+        this.f36800a.setColor(i10);
+        this.f36805g = new PorterDuffColorFilter(i7, PorterDuff.Mode.MULTIPLY);
     }
 
     public final void d(int i7, boolean z9) {
         int i10;
         int i11;
-        if (this.f36934p == i7 && (i11 = this.f36935q) != i7) {
-            this.f36934p = i11;
-            this.f36936r = 1.0f;
+        if (this.f36813p == i7 && (i11 = this.f36814q) != i7) {
+            this.f36813p = i11;
+            this.f36815r = 1.0f;
         }
         if (z9) {
-            int i12 = this.f36934p;
-            if (i12 != i7 && (i10 = this.f36935q) != i7) {
+            int i12 = this.f36813p;
+            if (i12 != i7 && (i10 = this.f36814q) != i7) {
                 if ((i12 == 0 && i7 == 1) || (i12 == 1 && i7 == 0)) {
-                    this.f36929k = 300.0f;
+                    this.f36808k = 300.0f;
                 } else if (i12 == 2 && (i7 == 3 || i7 == 14)) {
-                    this.f36929k = 400.0f;
+                    this.f36808k = 400.0f;
                 } else if (i12 != 4 && i7 == 6) {
-                    this.f36929k = 360.0f;
+                    this.f36808k = 360.0f;
                 } else if ((i12 == 4 && i7 == 14) || (i12 == 14 && i7 == 4)) {
-                    this.f36929k = 160.0f;
+                    this.f36808k = 160.0f;
                 } else {
-                    this.f36929k = 220.0f;
+                    this.f36808k = 220.0f;
                 }
-                if (this.f36939u) {
-                    this.f36934p = i10;
+                if (this.f36818u) {
+                    this.f36813p = i10;
                 }
-                this.f36939u = true;
-                this.f36935q = i7;
-                this.f36937s = this.f36936r;
-                this.f36936r = 0.0f;
+                this.f36818u = true;
+                this.f36814q = i7;
+                this.f36816s = this.f36815r;
+                this.f36815r = 0.0f;
             } else {
                 return;
             }
-        } else if (this.f36934p == i7) {
+        } else if (this.f36813p == i7) {
             return;
         } else {
-            this.f36939u = false;
-            this.f36935q = i7;
-            this.f36934p = i7;
-            this.f36937s = this.f36936r;
-            this.f36936r = 1.0f;
+            this.f36818u = false;
+            this.f36814q = i7;
+            this.f36813p = i7;
+            this.f36816s = this.f36815r;
+            this.f36815r = 1.0f;
         }
         if (i7 == 3 || i7 == 14) {
             this.v = 112.0f;
-            this.f36941x = 0.0f;
-            this.f36942y = 0.0f;
-            this.f36943z = 0.0f;
+            this.f36820x = 0.0f;
+            this.f36821y = 0.0f;
+            this.f36822z = 0.0f;
         }
         invalidateSelf();
     }
@@ -163,20 +163,20 @@ public final class p80 extends Drawable {
     }
 
     public final void e(boolean z9, float f10) {
-        if (this.f36940w == f10) {
+        if (this.f36819w == f10) {
             return;
         }
         if (!z9) {
-            this.f36941x = f10;
-            this.f36942y = f10;
+            this.f36820x = f10;
+            this.f36821y = f10;
         } else {
-            if (this.f36941x > f10) {
-                this.f36941x = f10;
+            if (this.f36820x > f10) {
+                this.f36820x = f10;
             }
-            this.f36942y = this.f36941x;
+            this.f36821y = this.f36820x;
         }
-        this.f36940w = f10;
-        this.f36943z = 0.0f;
+        this.f36819w = f10;
+        this.f36822z = 0.0f;
         invalidateSelf();
     }
 
@@ -210,7 +210,7 @@ public final class p80 extends Drawable {
         super.invalidateSelf();
         ax axVar = this.A;
         if (axVar != null) {
-            ((View) axVar.f31929b).invalidate();
+            ((View) axVar.f31941b).invalidate();
         }
     }
 
@@ -220,16 +220,16 @@ public final class p80 extends Drawable {
         float L = (i11 - i7) / org.telegram.messenger.g0.L(48.0f);
         this.h = L;
         if (L < 0.7f) {
-            this.f36922b.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+            this.f36801b.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         }
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f36922b.setColorFilter(colorFilter);
+        this.f36801b.setColorFilter(colorFilter);
         this.d.setColorFilter(colorFilter);
-        this.f36924e.setColorFilter(colorFilter);
-        this.f36921a.setColorFilter(colorFilter);
+        this.f36803e.setColorFilter(colorFilter);
+        this.f36800a.setColorFilter(colorFilter);
     }
 
     @Override

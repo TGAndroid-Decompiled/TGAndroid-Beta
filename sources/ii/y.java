@@ -13,7 +13,7 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 public final class y extends b0 {
     public final int h;
     public final d0 f15614n;
@@ -26,12 +26,12 @@ public final class y extends b0 {
             case 1:
                 this.f15614n = d0Var;
                 super(d0Var, context);
-                k41 k41Var = new k41(context, d0Var.f28612a, 0, false, new t(d0Var, 5), new u(d0Var, 5), null, d0Var.I0);
-                this.d = k41Var;
-                k41Var.r1();
-                k41 k41Var2 = this.d;
-                k41Var2.f35167f3.f33473r = false;
-                k41Var2.setClipToPadding(false);
+                p41 p41Var = new p41(context, d0Var.f28612a, 0, false, new t(d0Var, 5), new u(d0Var, 5), null, d0Var.I0);
+                this.d = p41Var;
+                p41Var.r1();
+                p41 p41Var2 = this.d;
+                p41Var2.f36781f3.f35132r = false;
+                p41Var2.setClipToPadding(false);
                 this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f22532n);
                 this.d.j(new ai.b(this, 19));
                 this.f15489c.addView(this.d, 0, ha.c(-1.0f, -1));
@@ -120,12 +120,12 @@ public final class y extends b0 {
             default:
                 this.f15614n = d0Var;
                 org.telegram.messenger.g0.E2(this.f15488b);
-                k41 k41Var3 = new k41(context, d0Var.f28612a, 0, false, new t(d0Var, 3), new u(d0Var, 2), null, d0Var.I0);
-                this.d = k41Var3;
-                k41Var3.r1();
-                k41 k41Var4 = this.d;
-                k41Var4.f35167f3.f33473r = false;
-                k41Var4.setClipToPadding(false);
+                p41 p41Var3 = new p41(context, d0Var.f28612a, 0, false, new t(d0Var, 3), new u(d0Var, 2), null, d0Var.I0);
+                this.d = p41Var3;
+                p41Var3.r1();
+                p41 p41Var4 = this.d;
+                p41Var4.f36781f3.f35132r = false;
+                p41Var4.setClipToPadding(false);
                 this.d.setPadding(0, 0, 0, org.telegram.messenger.g0.L(60.0f) + org.telegram.messenger.g0.f22532n);
                 this.f15489c.addView(d0Var.f15513x1, ha.g());
                 this.f15489c.addView(this.d, 0, ha.c(-1.0f, -1));
@@ -171,7 +171,7 @@ public final class y extends b0 {
     public float b() {
         switch (this.h) {
             case 0:
-                return j7.a(this.f15614n.f15501j1.f55370e) * super.b();
+                return j7.a(this.f15614n.f15501j1.f55395e) * super.b();
             default:
                 return super.b();
         }

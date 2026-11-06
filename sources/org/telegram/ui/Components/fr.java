@@ -5,12 +5,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.messenger.tr {
-    public final int f33676a;
-    public final lr f33677b;
+    public final int f33620a;
+    public final lr f33621b;
 
     public fr(lr lrVar, int i7) {
-        this.f33676a = i7;
-        this.f33677b = lrVar;
+        this.f33620a = i7;
+        this.f33621b = lrVar;
     }
 
     @Override
@@ -22,22 +22,22 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
     public void f(float f10, float f11, int i7, View view) {
         boolean z9;
         boolean[] zArr;
-        lr lrVar = this.f33677b;
-        r31 G = lrVar.P1.G(i7 - 1);
+        lr lrVar = this.f33621b;
+        w31 G = lrVar.P1.G(i7 - 1);
         if (G != null) {
-            kr krVar = lrVar.f35704c2;
-            kr krVar2 = lrVar.f35703b2;
-            kr krVar3 = lrVar.f35702a2;
+            kr krVar = lrVar.f35709c2;
+            kr krVar2 = lrVar.f35708b2;
+            kr krVar3 = lrVar.f35707a2;
             kr krVar4 = lrVar.d2;
-            TLRPC.TL_chatBannedRights tL_chatBannedRights = lrVar.f35715o2;
+            TLRPC.TL_chatBannedRights tL_chatBannedRights = lrVar.f35720o2;
             int i10 = G.d;
             if (i10 == 103) {
-                boolean z10 = !lrVar.f35708h2;
-                lrVar.f35708h2 = z10;
+                boolean z10 = !lrVar.f35713h2;
+                lrVar.f35713h2 = z10;
                 ((org.telegram.ui.Cells.q8) view).setChecked(z10);
                 return;
             }
-            int i11 = G.f54415a;
+            int i11 = G.f54440a;
             if (i11 == 37) {
                 int i12 = i10 >>> 24;
                 int i13 = 16777215 & i10;
@@ -54,7 +54,7 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                 }
             } else if (i11 != 36 && i11 != 35) {
                 if (i11 == 39) {
-                    if (G.f37606t) {
+                    if (G.f39838t) {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(lrVar.getContext());
                         String M0 = org.telegram.messenger.hd.M0(2131743720, null);
                         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
@@ -82,15 +82,15 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                     }
                     lrVar.P1.O(true);
                 } else if (i11 == 40) {
-                    lrVar.f35717q2 = !lrVar.f35717q2;
+                    lrVar.f35722q2 = !lrVar.f35722q2;
                     lrVar.X0();
                     lrVar.P1.O(true);
                     lrVar.I0();
                 } else if (i10 == 100) {
-                    lrVar.f35720t2 = false;
-                    boolean z11 = !lrVar.f35721u2;
-                    lrVar.f35721u2 = z11;
-                    lrVar.f35722v2 = z11;
+                    lrVar.f35725t2 = false;
+                    boolean z11 = !lrVar.f35726u2;
+                    lrVar.f35726u2 = z11;
+                    lrVar.f35727v2 = z11;
                     lrVar.X0();
                     lrVar.P1.O(true);
                     lrVar.I0();
@@ -99,12 +99,12 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                     boolean z12 = lrVar.Y1;
                     lrVar.Y1 = !z12;
                     if (!z12) {
-                        zArr = lrVar.f35706f2;
+                        zArr = lrVar.f35711f2;
                     } else {
-                        zArr = lrVar.f35705e2;
+                        zArr = lrVar.f35710e2;
                     }
-                    if (krVar4.f35400g != 0) {
-                        krVar4.f35398e = zArr;
+                    if (krVar4.f35403g != 0) {
+                        krVar4.f35401e = zArr;
                         krVar4.h();
                         krVar4.i();
                     }
@@ -122,7 +122,7 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
             } else if (i10 == 2) {
                 krVar4.f();
             } else if (i11 == 35) {
-                if (G.f37606t) {
+                if (G.f39838t) {
                     AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(lrVar.getContext());
                     String M02 = org.telegram.messenger.hd.M0(2131743720, null);
                     org.telegram.ui.ActionBar.u1 u1Var2 = alertDialog$Builder2.f27292a;
@@ -165,7 +165,7 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                             tL_chatBannedRights.send_stickers = z13;
                             lrVar.h1();
                         } else if (i10 == 14) {
-                            if (!tL_chatBannedRights.send_plain && !lrVar.f35714n2.send_plain) {
+                            if (!tL_chatBannedRights.send_plain && !lrVar.f35719n2.send_plain) {
                                 tL_chatBannedRights.embed_links = !tL_chatBannedRights.embed_links;
                                 lrVar.h1();
                             } else {
@@ -174,13 +174,13 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                                     if (i14 >= lrVar.P1.D.size()) {
                                         break;
                                     }
-                                    r31 G2 = lrVar.P1.G(i14);
-                                    if (G2.f54415a == 39 && G2.d == 0) {
-                                        v4.d1 K = lrVar.f36328k1.K(i14 + 1);
+                                    w31 G2 = lrVar.P1.G(i14);
+                                    if (G2.f54440a == 39 && G2.d == 0) {
+                                        v4.d1 K = lrVar.f36222k1.K(i14 + 1);
                                         if (K != null) {
-                                            View view2 = K.f56927a;
-                                            float f12 = -lrVar.f35724x2;
-                                            lrVar.f35724x2 = f12;
+                                            View view2 = K.f56952a;
+                                            float f12 = -lrVar.f35729x2;
+                                            lrVar.f35729x2 = f12;
                                             org.telegram.messenger.g0.G3(f12, view2, null);
                                         }
                                     } else {
@@ -197,10 +197,10 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                         } else {
                             z9 = true;
                             if (i10 == 101) {
-                                lrVar.f35721u2 = !lrVar.f35721u2;
+                                lrVar.f35726u2 = !lrVar.f35726u2;
                                 lrVar.g1();
                             } else if (i10 == 102) {
-                                lrVar.f35722v2 = !lrVar.f35722v2;
+                                lrVar.f35727v2 = !lrVar.f35727v2;
                                 lrVar.c1();
                             }
                         }
@@ -219,9 +219,9 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
 
     @Override
     public void run(long j3) {
-        switch (this.f33676a) {
+        switch (this.f33620a) {
             case 5:
-                lr lrVar = this.f33677b;
+                lr lrVar = this.f33621b;
                 lrVar.getClass();
                 org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
                 if (Q != null) {
@@ -230,7 +230,7 @@ public final class fr implements org.telegram.messenger.f20, cj0, org.telegram.m
                 lrVar.dismiss();
                 return;
             default:
-                lr lrVar2 = this.f33677b;
+                lr lrVar2 = this.f33621b;
                 lrVar2.getClass();
                 org.telegram.ui.ActionBar.f2 Q2 = LaunchActivity.Q();
                 if (Q2 != null) {

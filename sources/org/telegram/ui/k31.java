@@ -3,36 +3,36 @@ package org.telegram.ui;
 import android.content.Context;
 import android.text.TextUtils;
 import android.view.View;
-public final class k31 extends org.telegram.ui.Components.q31 {
+public final class k31 extends org.telegram.ui.Components.v31 {
     static {
-        org.telegram.ui.Components.q31.h(new org.telegram.ui.Components.q31());
+        org.telegram.ui.Components.v31.h(new org.telegram.ui.Components.v31());
     }
 
-    public static org.telegram.ui.Components.r31 i(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
-        org.telegram.ui.Components.r31 K = org.telegram.ui.Components.r31.K(k31.class);
-        K.f37598l = str;
-        K.f37599m = charSequence;
-        K.f37600n = str2;
+    public static org.telegram.ui.Components.w31 i(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
+        org.telegram.ui.Components.w31 K = org.telegram.ui.Components.w31.K(k31.class);
+        K.f39830l = str;
+        K.f39831m = charSequence;
+        K.f39832n = str2;
         K.D = onClickListener;
-        K.f37601o = charSequence2;
+        K.f39833o = charSequence2;
         K.E = onClickListener2;
         return K;
     }
 
     @Override
-    public final void b(View view, org.telegram.ui.Components.r31 r31Var, boolean z9, org.telegram.ui.Components.f41 f41Var, org.telegram.ui.Components.k41 k41Var) {
+    public final void b(View view, org.telegram.ui.Components.w31 w31Var, boolean z9, org.telegram.ui.Components.k41 k41Var, org.telegram.ui.Components.p41 p41Var) {
         l31 l31Var = (l31) view;
-        CharSequence charSequence = r31Var.f37598l;
-        CharSequence charSequence2 = r31Var.f37599m;
-        CharSequence charSequence3 = r31Var.f37600n;
-        View.OnClickListener onClickListener = r31Var.D;
-        CharSequence charSequence4 = r31Var.f37601o;
-        View.OnClickListener onClickListener2 = r31Var.E;
-        fi.d dVar = l31Var.f47377e;
-        org.telegram.ui.Components.w70 w70Var = l31Var.f47375b;
+        CharSequence charSequence = w31Var.f39830l;
+        CharSequence charSequence2 = w31Var.f39831m;
+        CharSequence charSequence3 = w31Var.f39832n;
+        View.OnClickListener onClickListener = w31Var.D;
+        CharSequence charSequence4 = w31Var.f39833o;
+        View.OnClickListener onClickListener2 = w31Var.E;
+        fi.d dVar = l31Var.f47404e;
+        org.telegram.ui.Components.w70 w70Var = l31Var.f47402b;
         int i7 = 0;
         w70Var.setText(org.telegram.messenger.i6.m(charSequence, w70Var.getPaint().getFontMetricsInt(), false, null, 0));
-        org.telegram.ui.Components.w70 w70Var2 = l31Var.f47376c;
+        org.telegram.ui.Components.w70 w70Var2 = l31Var.f47403c;
         w70Var2.setText(org.telegram.messenger.i6.m(charSequence2, w70Var2.getPaint().getFontMetricsInt(), false, null, 0));
         fi.d dVar2 = l31Var.d;
         if (TextUtils.isEmpty(charSequence3)) {

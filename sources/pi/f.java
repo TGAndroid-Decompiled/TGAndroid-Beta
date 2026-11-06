@@ -20,26 +20,26 @@ public final class f extends oi.e {
     public int J;
     public int K;
     public final RectF L;
-    public final ri.a f53551f;
+    public final ri.a f53576f;
     public final a h;
-    public final nb f53552n;
-    public final nb f53553r;
-    public nb f53554s;
-    public boolean f53555w = true;
-    public boolean f53556x = true;
-    public int f53557y = 1;
+    public final nb f53577n;
+    public final nb f53578r;
+    public nb f53579s;
+    public boolean f53580w = true;
+    public boolean f53581x = true;
+    public int f53582y = 1;
 
     public f(ri.a aVar) {
         a aVar2;
         nb bVar;
-        g gVar = g.f53558b;
+        g gVar = g.f53583b;
         this.D = gVar;
         this.E = gVar;
         this.F = gVar;
         this.I = 255;
         this.K = 255;
         this.L = new RectF();
-        this.f53551f = aVar;
+        this.f53576f = aVar;
         if (aVar instanceof a) {
             aVar2 = (a) aVar;
         } else {
@@ -52,19 +52,19 @@ public final class f extends oi.e {
             } else {
                 bVar = new b(this, false);
             }
-            this.f53552n = bVar;
-            this.f53553r = bVar;
+            this.f53577n = bVar;
+            this.f53578r = bVar;
         } else {
             int i7 = Build.VERSION.SDK_INT;
             if (i7 >= 33) {
-                this.f53552n = new e(this);
-                this.f53553r = new c(this);
+                this.f53577n = new e(this);
+                this.f53578r = new c(this);
             } else if (i7 >= 31) {
-                this.f53552n = new d(this);
-                this.f53553r = new c(this);
+                this.f53577n = new d(this);
+                this.f53578r = new c(this);
             } else {
-                this.f53552n = new b(this, true);
-                this.f53553r = new b(this, false);
+                this.f53577n = new b(this, true);
+                this.f53578r = new b(this, false);
             }
         }
         g(this.f21072b);
@@ -75,7 +75,7 @@ public final class f extends oi.e {
         if (gVar == null) {
             i11 = -1;
         } else {
-            i11 = gVar.f53559a;
+            i11 = gVar.f53584a;
         }
         boolean z9 = false;
         float f12 = 0;
@@ -87,7 +87,7 @@ public final class f extends oi.e {
         }
         float f15 = 1.0f;
         float f16 = 1.0f / i10;
-        int i12 = fVar.f53557y;
+        int i12 = fVar.f53582y;
         if (i12 == 1 || i12 == 2) {
             z9 = true;
         }
@@ -104,7 +104,7 @@ public final class f extends oi.e {
         float max2 = (Math.max(max * f16, 0.001f) * f15) + f17;
         int[] iArr = new int[8];
         c0.a(c0.f3259i, i7, iArr);
-        int i13 = fVar.f53557y;
+        int i13 = fVar.f53582y;
         if (i13 != 1 && i13 != 4) {
             return new LinearGradient(max2, 0.0f, f17, 0.0f, iArr, (float[]) null, Shader.TileMode.CLAMP);
         }
@@ -121,13 +121,13 @@ public final class f extends oi.e {
     public final void a() {
         Rect bounds = getBounds();
         if (bounds.isEmpty()) {
-            this.f53554s.b();
+            this.f53579s.b();
             return;
         }
         RectF rectF = this.L;
         rectF.set(bounds);
         rectF.offset(this.d, this.f21074e);
-        this.f53554s.a(bounds, rectF);
+        this.f53579s.a(bounds, rectF);
     }
 
     @Override
@@ -137,12 +137,12 @@ public final class f extends oi.e {
 
     @Override
     public final boolean e() {
-        return this.f53554s.d();
+        return this.f53579s.d();
     }
 
     @Override
     public final void f(int i7) {
-        this.f53554s.e(i7 / 255.0f);
+        this.f53579s.e(i7 / 255.0f);
         invalidateSelf();
     }
 
@@ -150,23 +150,23 @@ public final class f extends oi.e {
     public final void g(r rVar) {
         nb nbVar;
         boolean z9 = rVar.f21119a;
-        nb nbVar2 = this.f53553r;
+        nb nbVar2 = this.f53578r;
         if (z9) {
-            nbVar = this.f53552n;
+            nbVar = this.f53577n;
         } else {
             nbVar = nbVar2;
         }
-        nb nbVar3 = this.f53554s;
+        nb nbVar3 = this.f53579s;
         if (nbVar3 != nbVar) {
             if (nbVar3 != null) {
                 nbVar3.b();
             }
-            this.f53554s = nbVar;
+            this.f53579s = nbVar;
             nbVar.e(this.f21073c / 255.0f);
-            if (this.f53554s == nbVar2) {
-                this.f53556x = true;
+            if (this.f53579s == nbVar2) {
+                this.f53581x = true;
             } else {
-                this.f53555w = true;
+                this.f53580w = true;
             }
             invalidateSelf();
         }
@@ -179,7 +179,7 @@ public final class f extends oi.e {
 
     @Override
     public final boolean j() {
-        nb nbVar = this.f53554s;
+        nb nbVar = this.f53579s;
         nbVar.getClass();
         return !(nbVar instanceof b);
     }
@@ -187,19 +187,19 @@ public final class f extends oi.e {
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f53555w = true;
-        this.f53556x = true;
+        this.f53580w = true;
+        this.f53581x = true;
     }
 
     @Override
     public final void updateColors() {
         ri.c cVar = this.G;
         if (cVar != null) {
-            this.H = k6.r1(this.I / 255.0f, cVar.f54447b);
-            this.J = k6.r1(this.K / 255.0f, this.G.f54447b);
+            this.H = k6.r1(this.I / 255.0f, cVar.f54472b);
+            this.J = k6.r1(this.K / 255.0f, this.G.f54472b);
         }
-        this.f53555w = true;
-        this.f53556x = true;
+        this.f53580w = true;
+        this.f53581x = true;
     }
 
     @Override

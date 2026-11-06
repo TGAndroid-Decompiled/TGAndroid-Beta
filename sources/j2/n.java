@@ -61,11 +61,11 @@ import org.telegram.ui.Components.ej0;
 import org.telegram.ui.Components.ew0;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.l51;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.n51;
 import org.telegram.ui.Components.ob0;
+import org.telegram.ui.Components.p51;
 import org.telegram.ui.Components.qt;
+import org.telegram.ui.Components.s51;
 import org.telegram.ui.Components.ud0;
 import org.telegram.ui.Components.xn;
 import org.telegram.ui.SecretMediaViewer;
@@ -86,7 +86,7 @@ import org.telegram.ui.vt;
 import org.telegram.ui.wt;
 import org.telegram.ui.zw;
 import org.xml.sax.Attributes;
-public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.android.gms.common.api.internal.p, lm0, qr, xn, za, i7, ej0, l51, h2.d, q5.b, s2.t {
+public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.android.gms.common.api.internal.p, lm0, qr, xn, za, i7, ej0, p51, h2.d, q5.b, s2.t {
     public final int f16452a;
     public Object f16453b;
     public Object f16454c;
@@ -266,10 +266,10 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
         an anVar = (an) this.f16454c;
         i7 = ((f2) anVar).currentAccount;
         SharedPreferences sharedPreferences = qp.s1(i7).f24749d7;
-        boolean z9 = sharedPreferences.getBoolean("sound_enabled_" + dt.v(anVar.f43818j6, anVar.b(), false), true);
+        boolean z9 = sharedPreferences.getBoolean("sound_enabled_" + dt.v(anVar.f43843j6, anVar.b(), false), true);
         boolean z10 = !z9 ? 1 : 0;
         SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.putBoolean("sound_enabled_" + dt.v(anVar.f43818j6, anVar.b(), false), z10).apply();
+        edit.putBoolean("sound_enabled_" + dt.v(anVar.f43843j6, anVar.b(), false), z10).apply();
         if (hc.a(anVar)) {
             hc.S(z9 ? 1 : 0, anVar, anVar.getResourceProvider()).j();
         }
@@ -294,7 +294,7 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
         an anVar = (an) this.f16454c;
         ((k60) this.f16453b).u();
         if (i7 == 0) {
-            if (anVar.getMessagesController().r2(anVar.f43818j6, anVar.b(), null)) {
+            if (anVar.getMessagesController().r2(anVar.f43843j6, anVar.b(), null)) {
                 anVar.Ec(true);
             }
             if (hc.a(anVar)) {
@@ -303,7 +303,7 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
             }
             return;
         }
-        anVar.getNotificationsController().H(anVar.f43818j6, i7, anVar.b());
+        anVar.getNotificationsController().H(anVar.f43843j6, i7, anVar.b());
         if (hc.a(anVar)) {
             hc.z(anVar, 5, i7, anVar.getResourceProvider()).j();
         }
@@ -536,13 +536,13 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
 
     public boolean h0(q4.t tVar, String str) {
         Context context = (Context) this.f16453b;
-        int i7 = tVar.f53690b;
+        int i7 = tVar.f53715b;
         if (i7 < 0) {
-            if (context.getPackageManager().checkPermission(str, tVar.f53689a) == 0) {
+            if (context.getPackageManager().checkPermission(str, tVar.f53714a) == 0) {
                 return true;
             }
             return false;
-        } else if (context.checkPermission(str, i7, tVar.f53691c) == 0) {
+        } else if (context.checkPermission(str, i7, tVar.f53716c) == 0) {
             return true;
         } else {
             return false;
@@ -560,9 +560,9 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
         vi.h hVar = (vi.h) gVar.f10054e;
         hVar.getClass();
         vi.h.q();
-        vi.g gVar2 = hVar.f57446z;
+        vi.g gVar2 = hVar.f57471z;
         if (hVar.G == 5 && gVar2 != null) {
-            file = gVar2.f57421b;
+            file = gVar2.f57446b;
         } else {
             file = null;
         }
@@ -627,9 +627,9 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
 
     @Override
     public void k(boolean z9) {
-        e8 e8Var = ((c8) this.f16454c).f44695b;
-        e8Var.f45207y.finishFragment();
-        h8 h8Var = e8Var.f45207y;
+        e8 e8Var = ((c8) this.f16454c).f44716b;
+        e8Var.f45237y.finishFragment();
+        h8 h8Var = e8Var.f45237y;
         ((an) this.f16453b).h8(h8Var.P, h8Var.Q + 86400, z9);
     }
 
@@ -646,7 +646,7 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
     public void l(boolean z9, float f10) {
         ((TextView) this.f16453b).setText("Alpha " + h5.l1);
         h5.l1 = f10;
-        ((h5) this.f16454c).f46200i1.L();
+        ((h5) this.f16454c).f46220i1.L();
     }
 
     @Override
@@ -684,35 +684,35 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
             if (c2Var != null) {
                 ew0 ew0Var = ew0VarArr[0];
                 boolean z10 = cVar.f6433m;
-                ew0Var.f33345c = z10;
+                ew0Var.f33341c = z10;
                 c2Var.c(z10, true);
             }
             c2 c2Var2 = c2VarArr[1];
             if (c2Var2 != null) {
                 ew0 ew0Var2 = ew0VarArr[1];
                 boolean z11 = cVar.f6434n;
-                ew0Var2.f33345c = z11;
+                ew0Var2.f33341c = z11;
                 c2Var2.c(z11, true);
             }
             c2 c2Var3 = c2VarArr[2];
             if (c2Var3 != null) {
                 ew0 ew0Var3 = ew0VarArr[2];
                 boolean z12 = cVar.f6435o;
-                ew0Var3.f33345c = z12;
+                ew0Var3.f33341c = z12;
                 c2Var3.c(z12, true);
             }
             c2 c2Var4 = c2VarArr[3];
             if (c2Var4 != null) {
                 ew0 ew0Var4 = ew0VarArr[3];
                 boolean z13 = cVar.f6436p;
-                ew0Var4.f33345c = z13;
+                ew0Var4.f33341c = z13;
                 c2Var4.c(z13, true);
             }
             c2 c2Var5 = c2VarArr[4];
             if (c2Var5 != null) {
                 ew0 ew0Var5 = ew0VarArr[4];
                 boolean z14 = cVar.f6437q;
-                ew0Var5.f33345c = z14;
+                ew0Var5.f33341c = z14;
                 c2Var5.c(z14, true);
             }
             wtVar.S1.a(vtVar.d(), true);
@@ -721,7 +721,7 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
     }
 
     @Override
-    public void onError(n51 n51Var, Exception exc) {
+    public void onError(s51 s51Var, Exception exc) {
         SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16454c;
         int i7 = secretMediaViewer.Z;
         if (i7 > 0) {
@@ -739,25 +739,25 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
     @Override
     public void onStateChanged(boolean z9, int i7) {
         SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16454c;
-        dz0 dz0Var = secretMediaViewer.f41887g1;
-        if (secretMediaViewer.D != null && secretMediaViewer.f41884f0 != null) {
+        dz0 dz0Var = secretMediaViewer.f41912g1;
+        if (secretMediaViewer.D != null && secretMediaViewer.f41909f0 != null) {
             org.telegram.messenger.g0.r(dz0Var);
             org.telegram.messenger.g0.h3(dz0Var);
             if (i7 != 4 && i7 != 1) {
                 try {
-                    secretMediaViewer.f41872b.getWindow().addFlags(128);
+                    secretMediaViewer.f41897b.getWindow().addFlags(128);
                 } catch (Exception e10) {
                     a8.g(e10, true);
                 }
             } else {
                 try {
-                    secretMediaViewer.f41872b.getWindow().clearFlags(128);
+                    secretMediaViewer.f41897b.getWindow().clearFlags(128);
                 } catch (Exception e11) {
                     a8.g(e11, true);
                 }
             }
-            if (i7 == 3 && secretMediaViewer.f41919x.getVisibility() != 0) {
-                secretMediaViewer.f41919x.setVisibility(0);
+            if (i7 == 3 && secretMediaViewer.f41944x.getVisibility() != 0) {
+                secretMediaViewer.f41944x.setVisibility(0);
             }
             if (secretMediaViewer.D.d0() && i7 != 4) {
                 if (!secretMediaViewer.E) {
@@ -768,7 +768,7 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
                 if (i7 == 4) {
                     secretMediaViewer.H = true;
                     if (secretMediaViewer.I) {
-                        secretMediaViewer.e(true, !secretMediaViewer.f41901o1);
+                        secretMediaViewer.e(true, !secretMediaViewer.f41926o1);
                         return;
                     }
                     secretMediaViewer.D.q0(0L, false);
@@ -786,7 +786,7 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
     @Override
     public void onVideoSizeChanged(int i7, int i10, int i11, float f10) {
         float f11;
-        j4 j4Var = ((SecretMediaViewer) this.f16454c).f41919x;
+        j4 j4Var = ((SecretMediaViewer) this.f16454c).f41944x;
         if (j4Var != null) {
             if (i10 == 0) {
                 f11 = 1.0f;
@@ -802,7 +802,7 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
         ((k60) this.f16453b).u();
         an anVar = (an) this.f16454c;
         anVar.Ec(true);
-        hc.A(anVar, anVar.getMessagesController().r2(anVar.f43818j6, anVar.b(), null), anVar.f43998xa).j();
+        hc.A(anVar, anVar.getMessagesController().r2(anVar.f43843j6, anVar.b(), null), anVar.f44023xa).j();
     }
 
     @Override
@@ -819,12 +819,12 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
     public void t(boolean z9, float f10) {
         ob0 ob0Var = (ob0) this.f16453b;
         ud0 ud0Var = (ud0) this.f16454c;
-        n51 n51Var = ud0Var.d;
-        if (n51Var != null) {
-            long U = n51Var.U();
+        s51 s51Var = ud0Var.d;
+        if (s51Var != null) {
+            long U = s51Var.U();
             float max = 2.8f / ((float) Math.max(60L, U));
             long j3 = (((f10 / (1.0f - max)) * max) + f10) * ((float) U);
-            ud0Var.f38614e = j3;
+            ud0Var.f38605e = j3;
             ud0Var.d.q0(j3, !z9);
             if (!z9) {
                 org.telegram.messenger.g0.r(ob0Var);
@@ -874,13 +874,13 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
     public void y() {
         ((k60) this.f16453b).u();
         an anVar = (an) this.f16454c;
-        if (anVar.f43818j6 != 0 && anVar.f43766f4 != 3) {
+        if (anVar.f43843j6 != 0 && anVar.f43791f4 != 3) {
             Bundle bundle = new Bundle();
-            bundle.putLong("dialog_id", anVar.f43818j6);
+            bundle.putLong("dialog_id", anVar.f43843j6);
             if (anVar.b() != 0) {
                 bundle.putLong("topic_id", anVar.b());
             }
-            anVar.presentFragment(new gx0(bundle, anVar.f43998xa));
+            anVar.presentFragment(new gx0(bundle, anVar.f44023xa));
         }
     }
 
@@ -896,11 +896,11 @@ public final class n implements g, j6.n, ja.a, c4.m, f1, f3.i, com.google.androi
     @Override
     public void onRenderedFirstFrame() {
         SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f16454c;
-        if (secretMediaViewer.f41870a0) {
+        if (secretMediaViewer.f41895a0) {
             return;
         }
-        secretMediaViewer.f41870a0 = true;
-        secretMediaViewer.f41880e.invalidate();
+        secretMediaViewer.f41895a0 = true;
+        secretMediaViewer.f41905e.invalidate();
     }
 
     public n(Object obj, Object obj2, boolean z9, int i7) {

@@ -8,26 +8,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 public final class om0 {
-    public final int f36749a;
-    public long f36750b;
-    public final Object f36751c;
+    public final int f36627a;
+    public long f36628b;
+    public final Object f36629c;
     public final Object d;
-    public Object f36752e;
-    public Object f36753f;
-    public Object f36754g;
+    public Object f36630e;
+    public Object f36631f;
+    public Object f36632g;
 
     public om0(h6.m mVar) {
         int i7;
-        this.f36751c = mVar;
+        this.f36629c = mVar;
         synchronized (mVar) {
             i7 = ((l2.h) mVar.d).f17825c.f2923b;
         }
-        this.f36749a = i7;
+        this.f36627a = i7;
         this.d = new h2.x(32);
         a4.c cVar = new a4.c(0L, i7);
-        this.f36752e = cVar;
-        this.f36753f = cVar;
-        this.f36754g = cVar;
+        this.f36630e = cVar;
+        this.f36631f = cVar;
+        this.f36632g = cVar;
     }
 
     public static a4.c d(a4.c cVar, long j3, ByteBuffer byteBuffer, int i7) {
@@ -176,7 +176,7 @@ public final class om0 {
         if (((b3.a) cVar.f160c) == null) {
             return;
         }
-        h6.m mVar = (h6.m) this.f36751c;
+        h6.m mVar = (h6.m) this.f36629c;
         synchronized (mVar) {
             ((l2.h) mVar.d).f17825c.b(cVar);
             a4.c cVar2 = cVar;
@@ -198,32 +198,32 @@ public final class om0 {
         a4.c cVar;
         if (j3 != -1) {
             while (true) {
-                cVar = (a4.c) this.f36752e;
+                cVar = (a4.c) this.f36630e;
                 if (j3 < cVar.f159b) {
                     break;
                 }
-                h6.m mVar = (h6.m) this.f36751c;
+                h6.m mVar = (h6.m) this.f36629c;
                 b3.a aVar = (b3.a) cVar.f160c;
                 synchronized (mVar) {
                     ((l2.h) mVar.d).f17825c.c(aVar);
                     mVar.D(aVar);
                 }
-                a4.c cVar2 = (a4.c) this.f36752e;
+                a4.c cVar2 = (a4.c) this.f36630e;
                 cVar2.f160c = null;
                 cVar2.d = null;
-                this.f36752e = (a4.c) cVar2.d;
+                this.f36630e = (a4.c) cVar2.d;
             }
-            if (((a4.c) this.f36753f).f158a < cVar.f158a) {
-                this.f36753f = cVar;
+            if (((a4.c) this.f36631f).f158a < cVar.f158a) {
+                this.f36631f = cVar;
             }
         }
     }
 
     public int c(int i7) {
         b3.a a10;
-        a4.c cVar = (a4.c) this.f36754g;
+        a4.c cVar = (a4.c) this.f36632g;
         if (((b3.a) cVar.f160c) == null) {
-            h6.m mVar = (h6.m) this.f36751c;
+            h6.m mVar = (h6.m) this.f36629c;
             synchronized (mVar) {
                 a10 = ((l2.h) mVar.d).f17825c.a();
                 ((HashMap) mVar.f14264b).put(a10, (m2.j) mVar.f14265c);
@@ -232,20 +232,20 @@ public final class om0 {
                     gVar.a();
                 }
             }
-            a4.c cVar2 = new a4.c(((a4.c) this.f36754g).f159b, this.f36749a);
+            a4.c cVar2 = new a4.c(((a4.c) this.f36632g).f159b, this.f36627a);
             cVar.f160c = a10;
             cVar.d = cVar2;
         }
-        return Math.min(i7, (int) (((a4.c) this.f36754g).f159b - this.f36750b));
+        return Math.min(i7, (int) (((a4.c) this.f36632g).f159b - this.f36628b));
     }
 
     public om0(ob0 ob0Var) {
         this.d = new ArrayList(50);
-        this.f36752e = new ArrayList(50);
+        this.f36630e = new ArrayList(50);
         Paint paint = new Paint(1);
-        this.f36753f = paint;
-        this.f36749a = 250;
-        this.f36751c = ob0Var;
+        this.f36631f = paint;
+        this.f36627a = 250;
+        this.f36629c = ob0Var;
         paint.setStrokeWidth(org.telegram.messenger.g0.L(1.33f));
     }
 }

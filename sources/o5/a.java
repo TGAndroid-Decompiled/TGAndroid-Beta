@@ -10,9 +10,9 @@ public final class a implements na.d {
     public final void a(Object obj, Object obj2) {
         r5.a aVar = (r5.a) obj;
         na.e eVar = (na.e) obj2;
-        eVar.a(f20797b, aVar.f54286a);
-        eVar.a(f20798c, aVar.f54287b);
-        eVar.a(d, aVar.f54288c);
+        eVar.a(f20797b, aVar.f54311a);
+        eVar.a(f20798c, aVar.f54312b);
+        eVar.a(d, aVar.f54313c);
         eVar.a(f20799e, aVar.d);
     }
 }

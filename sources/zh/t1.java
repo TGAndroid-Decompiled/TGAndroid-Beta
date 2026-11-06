@@ -7,43 +7,43 @@ import org.telegram.messenger.c20;
 import org.telegram.messenger.hd;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.o61;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.up0;
 import org.telegram.ui.ProfileActivity;
 public final class t1 implements c20 {
-    public final int f60413a;
-    public final a2 f60414b;
-    public final TL_stars.SavedStarGift f60415c;
+    public final int f60438a;
+    public final a2 f60439b;
+    public final TL_stars.SavedStarGift f60440c;
 
     public t1(a2 a2Var, TL_stars.SavedStarGift savedStarGift, int i7) {
-        this.f60413a = i7;
-        this.f60414b = a2Var;
-        this.f60415c = savedStarGift;
+        this.f60438a = i7;
+        this.f60439b = a2Var;
+        this.f60440c = savedStarGift;
     }
 
     @Override
     public final void a(Object obj) {
-        int i7 = this.f60413a;
-        TL_stars.SavedStarGift savedStarGift = this.f60415c;
-        a2 a2Var = this.f60414b;
+        int i7 = this.f60438a;
+        TL_stars.SavedStarGift savedStarGift = this.f60440c;
+        a2 a2Var = this.f60439b;
         switch (i7) {
             case 0:
-                a2Var.f60081a.f60190e.b((String) obj, new t1(a2Var, savedStarGift, 1));
+                a2Var.f60106a.f60215e.b((String) obj, new t1(a2Var, savedStarGift, 1));
                 return;
             default:
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj;
-                up0 up0Var = a2Var.f60081a;
-                t9 t9Var = up0Var.f60190e;
+                up0 up0Var = a2Var.f60106a;
+                t9 t9Var = up0Var.f60215e;
                 int i10 = tL_starGiftCollection.collection_id;
                 t9Var.getClass();
                 ArrayList arrayList = new ArrayList();
                 arrayList.add(savedStarGift);
                 t9Var.a(i10, arrayList);
                 up0Var.f(true);
-                o61 o61Var = up0Var.f60192n;
+                t61 t61Var = up0Var.f60217n;
                 int i11 = tL_starGiftCollection.collection_id;
-                o61Var.d(i11, up0Var.f60190e.f(i11) + 1);
-                org.telegram.ui.ActionBar.f2 f2Var = up0Var.f60187a;
+                t61Var.d(i11, up0Var.f60215e.f(i11) + 1);
+                org.telegram.ui.ActionBar.f2 f2Var = up0Var.f60212a;
                 if (f2Var instanceof ProfileActivity) {
                     ((ProfileActivity) f2Var).U4(true);
                 }

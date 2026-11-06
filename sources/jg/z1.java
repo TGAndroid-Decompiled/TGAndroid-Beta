@@ -121,7 +121,7 @@ public class z1 {
                         obj = ((g0) obj).f16724a;
                     }
                     if (obj instanceof bo0) {
-                        obj = ((bo0) obj).f32242b;
+                        obj = ((bo0) obj).f32236b;
                     }
                     boolean z9 = obj instanceof TLRPC.User;
                     ArrayList arrayList3 = this.d;

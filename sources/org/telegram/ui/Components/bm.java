@@ -30,12 +30,12 @@ public final class bm extends vh {
     public int R;
     public boolean S;
     public boolean T;
-    public org.telegram.ui.ActionBar.f6 f32170n;
-    public bi.q1 f32171r;
-    public v4.b0 f32172s;
-    public am f32173w;
-    public UndoView f32174x;
-    public TextView f32175y;
+    public org.telegram.ui.ActionBar.f6 f32164n;
+    public bi.q1 f32165r;
+    public v4.b0 f32166s;
+    public am f32167w;
+    public UndoView f32168x;
+    public TextView f32169y;
 
     @Override
     public final void B(int r5, int r6) {
@@ -44,7 +44,7 @@ public final class bm extends vh {
 
     @Override
     public final void D(int i7) {
-        di diVar = this.f38951b;
+        di diVar = this.f38948b;
         if (i7 > 1) {
             diVar.U2.S(0);
         } else {
@@ -54,18 +54,18 @@ public final class bm extends vh {
 
     @Override
     public final void H(vh vhVar) {
-        am amVar = this.f32173w;
+        am amVar = this.f32167w;
         this.Q = true;
         if (vhVar instanceof ChatAttachAlertPhotoLayout) {
             this.P = (ChatAttachAlertPhotoLayout) vhVar;
-            amVar.f31837c.clear();
+            amVar.f31849c.clear();
             ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.P;
             amVar.h = chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
             amVar.d = chatAttachAlertPhotoLayout.getSelectedPhotos();
             amVar.c();
             amVar.requestLayout();
-            this.f32172s.h1(0, 0);
-            this.f32171r.post(new f(26, this, vhVar));
+            this.f32166s.h1(0, 0);
+            this.f32165r.post(new f(26, this, vhVar));
             postDelayed(new xf(this, 26), 250L);
             amVar.i(this.P, false);
         } else {
@@ -75,14 +75,14 @@ public final class bm extends vh {
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
         }
-        ViewPropertyAnimator interpolator = this.f32175y.animate().alpha(1.0f).setDuration(150L).setInterpolator(xq.f40310f);
+        ViewPropertyAnimator interpolator = this.f32169y.animate().alpha(1.0f).setDuration(150L).setInterpolator(xq.f40329f);
         this.O = interpolator;
         interpolator.start();
     }
 
     @Override
     public final void J() {
-        this.f32171r.y0(0);
+        this.f32165r.y0(0);
     }
 
     @Override
@@ -91,7 +91,7 @@ public final class bm extends vh {
     }
 
     public final void O() {
-        ArrayList arrayList = this.f32173w.f31836b;
+        ArrayList arrayList = this.f32167w.f31848b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -116,8 +116,8 @@ public final class bm extends vh {
                     ylVar.v.recycle();
                 }
                 ylVar.v = createBitmap;
-                ylVar.f40649w = 0.0f;
-                ylVar.O.f41027z.invalidate();
+                ylVar.f40668w = 0.0f;
+                ylVar.O.f41052z.invalidate();
             }
         }
     }
@@ -134,7 +134,7 @@ public final class bm extends vh {
     public final void dispatchDraw(Canvas canvas) {
         Drawable m10;
         int i7;
-        org.telegram.ui.ym ymVar = this.f38951b.f32929p1;
+        org.telegram.ui.ym ymVar = this.f38948b.f32942p1;
         boolean z9 = false;
         if (ymVar != null && (m10 = ymVar.m()) != null) {
             int currentItemTop = getCurrentItemTop();
@@ -166,7 +166,7 @@ public final class bm extends vh {
 
     @Override
     public int getCurrentItemTop() {
-        bi.q1 q1Var = this.f32171r;
+        bi.q1 q1Var = this.f32165r;
         if (q1Var.getChildCount() <= 0) {
             q1Var.setTopGlowOffset(q1Var.getPaddingTop());
             return Integer.MAX_VALUE;
@@ -189,7 +189,7 @@ public final class bm extends vh {
 
     @Override
     public int getListTopPadding() {
-        return this.f32171r.getPaddingTop();
+        return this.f32165r.getPaddingTop();
     }
 
     public float getPreviewScale() {
@@ -204,12 +204,12 @@ public final class bm extends vh {
     public int getSelectedItemsCount() {
         vl vlVar;
         ArrayList arrayList;
-        ArrayList arrayList2 = this.f32173w.f31836b;
+        ArrayList arrayList2 = this.f32167w.f31848b;
         int size = arrayList2.size();
         int i7 = 0;
         for (int i10 = 0; i10 < size; i10++) {
             zl zlVar = (zl) arrayList2.get(i10);
-            if (zlVar != null && (vlVar = zlVar.f41013k) != null && (arrayList = (ArrayList) vlVar.f38982f) != null) {
+            if (zlVar != null && (vlVar = zlVar.f41038k) != null && (arrayList = (ArrayList) vlVar.f38979f) != null) {
                 i7 = arrayList.size() + i7;
             }
         }
@@ -223,14 +223,14 @@ public final class bm extends vh {
 
     @Override
     public final boolean k() {
-        this.f38951b.O1(false);
+        this.f38948b.O1(false);
         return true;
     }
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         boolean z10;
-        am amVar = this.f32173w;
+        am amVar = this.f32167w;
         super.onLayout(z9, i7, i10, i11, i12);
         Point point = org.telegram.messenger.g0.f22537q;
         if (point.y > point.x) {
@@ -240,11 +240,11 @@ public final class bm extends vh {
         }
         if (this.T != z10) {
             this.T = z10;
-            int size = amVar.f31836b.size();
+            int size = amVar.f31848b.size();
             for (int i13 = 0; i13 < size; i13++) {
-                zl zlVar = (zl) amVar.f31836b.get(i13);
-                if (((ArrayList) zlVar.f41013k.f38982f).size() == 1) {
-                    zl.a(zlVar, zlVar.f41013k, true);
+                zl zlVar = (zl) amVar.f31848b.get(i13);
+                if (((ArrayList) zlVar.f41038k.f38979f).size() == 1) {
+                    zl.a(zlVar, zlVar.f41038k, true);
                 }
             }
         }
@@ -262,11 +262,11 @@ public final class bm extends vh {
     public final void t() {
         org.telegram.messenger.gf gfVar;
         this.J = null;
-        UndoView undoView = this.f32174x;
+        UndoView undoView = this.f32168x;
         if (undoView != null) {
             undoView.d(0, false);
         }
-        ArrayList arrayList = this.f32173w.f31836b;
+        ArrayList arrayList = this.f32167w.f31848b;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -279,7 +279,7 @@ public final class bm extends vh {
                 Object obj2 = arrayList2.get(i10);
                 i10++;
                 yl ylVar = (yl) obj2;
-                if (ylVar.f40633e && (gfVar = ylVar.f40631b) != null) {
+                if (ylVar.f40652e && (gfVar = ylVar.f40650b) != null) {
                     gfVar.R = false;
                 }
             }
@@ -295,21 +295,21 @@ public final class bm extends vh {
         if (viewPropertyAnimator != null) {
             viewPropertyAnimator.cancel();
         }
-        ViewPropertyAnimator interpolator = this.f32175y.animate().alpha(0.0f).setDuration(150L).setInterpolator(xq.f40313j);
+        ViewPropertyAnimator interpolator = this.f32169y.animate().alpha(0.0f).setDuration(150L).setInterpolator(xq.f40332j);
         this.O = interpolator;
         interpolator.start();
-        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (diVar = this.f38951b).f32882a2) != null) {
+        if (getSelectedItemsCount() > 1 && (chatAttachAlertPhotoLayout = (diVar = this.f38948b).f32895a2) != null) {
             chatAttachAlertPhotoLayout.f31193c1.setIcon(2131232420);
-            diVar.f32882a2.f31193c1.setText(org.telegram.messenger.hd.M0(2131753957, null));
-            diVar.f32882a2.f31193c1.setRightIcon(2131232059);
+            diVar.f32895a2.f31193c1.setText(org.telegram.messenger.hd.M0(2131753957, null));
+            diVar.f32895a2.f31193c1.setRightIcon(2131232059);
         }
-        this.f32173w.i(this.P, true);
+        this.f32167w.i(this.P, true);
     }
 
     @Override
     public final void w(int i7) {
         try {
-            this.f38951b.f32882a2.w(i7);
+            this.f38948b.f32895a2.w(i7);
         } catch (Exception unused) {
         }
     }

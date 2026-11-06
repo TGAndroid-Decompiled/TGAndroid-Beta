@@ -2,29 +2,28 @@ package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
 public final class d11 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32744a;
-    public final f11 f32745b;
+    public final int f32748a;
+    public final g11 f32749b;
 
-    public d11(f11 f11Var, int i7) {
-        this.f32744a = i7;
-        this.f32745b = f11Var;
+    public d11(g11 g11Var, int i7) {
+        this.f32748a = i7;
+        this.f32749b = g11Var;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32744a) {
+        switch (this.f32748a) {
             case 0:
-                f11 f11Var = this.f32745b;
-                f11Var.getClass();
-                f11Var.U = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f11Var.h();
-                f11Var.g();
+                di.b3 b3Var = this.f32749b.f33726f;
+                b3Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                b3Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                b3Var.invalidate();
                 return;
             default:
-                float max = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                f11 f11Var2 = this.f32745b;
-                f11Var2.L = max;
-                f11Var2.h.invalidate();
+                g11 g11Var = this.f32749b;
+                g11Var.getClass();
+                g11Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                g11Var.h();
                 return;
         }
     }

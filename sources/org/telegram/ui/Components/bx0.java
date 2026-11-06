@@ -6,34 +6,34 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class bx0 {
-    public final boolean f32309a;
+    public final boolean f32303a;
     public h6.m d;
-    public h6.m f32313f;
+    public h6.m f32307f;
     public h6.m h;
-    public int[] f32316j;
-    public int[] f32318l;
-    public zw0[] f32320n;
-    public int[] f32322p;
-    public boolean f32324r;
-    public int[] f32326t;
-    public final lx0 f32329x;
-    public int f32310b = Integer.MIN_VALUE;
-    public int f32311c = Integer.MIN_VALUE;
-    public boolean f32312e = false;
-    public boolean f32314g = false;
-    public boolean f32315i = false;
-    public boolean f32317k = false;
-    public boolean f32319m = false;
-    public boolean f32321o = false;
-    public boolean f32323q = false;
-    public boolean f32325s = false;
-    public boolean f32327u = true;
+    public int[] f32310j;
+    public int[] f32312l;
+    public zw0[] f32314n;
+    public int[] f32316p;
+    public boolean f32318r;
+    public int[] f32320t;
+    public final lx0 f32323x;
+    public int f32304b = Integer.MIN_VALUE;
+    public int f32305c = Integer.MIN_VALUE;
+    public boolean f32306e = false;
+    public boolean f32308g = false;
+    public boolean f32309i = false;
+    public boolean f32311k = false;
+    public boolean f32313m = false;
+    public boolean f32315o = false;
+    public boolean f32317q = false;
+    public boolean f32319s = false;
+    public boolean f32321u = true;
     public final hx0 v = new hx0(0);
-    public final hx0 f32328w = new hx0(-100000);
+    public final hx0 f32322w = new hx0(-100000);
 
     public bx0(lx0 lx0Var, boolean z9) {
-        this.f32329x = lx0Var;
-        this.f32309a = z9;
+        this.f32323x = lx0Var;
+        this.f32303a = z9;
     }
 
     public static void j(ArrayList arrayList, fx0 fx0Var, hx0 hx0Var, boolean z9) {
@@ -44,7 +44,7 @@ public final class bx0 {
                 while (i7 < size) {
                     Object obj = arrayList.get(i7);
                     i7++;
-                    if (((zw0) obj).f41098a.equals(fx0Var)) {
+                    if (((zw0) obj).f41123a.equals(fx0Var)) {
                         return;
                     }
                 }
@@ -54,11 +54,11 @@ public final class bx0 {
     }
 
     public static boolean m(int[] iArr, zw0 zw0Var) {
-        if (zw0Var.f41100c) {
-            fx0 fx0Var = zw0Var.f41098a;
-            int i7 = fx0Var.f33709a;
-            int i10 = fx0Var.f33710b;
-            int i11 = iArr[i7] + zw0Var.f41099b.f34449a;
+        if (zw0Var.f41125c) {
+            fx0 fx0Var = zw0Var.f41123a;
+            int i7 = fx0Var.f33653a;
+            int i10 = fx0Var.f33654b;
+            int i11 = iArr[i7] + zw0Var.f41124b.f34399a;
             if (i11 > iArr[i10]) {
                 iArr[i10] = i11;
                 return true;
@@ -70,17 +70,17 @@ public final class bx0 {
 
     public final void a(h6.m mVar, boolean z9) {
         for (hx0 hx0Var : (hx0[]) ((Object[]) mVar.d)) {
-            hx0Var.f34449a = Integer.MIN_VALUE;
+            hx0Var.f34399a = Integer.MIN_VALUE;
         }
         cx0[] cx0VarArr = (cx0[]) ((Object[]) f().d);
         for (int i7 = 0; i7 < cx0VarArr.length; i7++) {
             int d = cx0VarArr[i7].d(z9);
             hx0 hx0Var2 = (hx0) ((Object[]) mVar.d)[((int[]) mVar.f14264b)[i7]];
-            int i10 = hx0Var2.f34449a;
+            int i10 = hx0Var2.f34399a;
             if (!z9) {
                 d = -d;
             }
-            hx0Var2.f34449a = Math.max(i10, d);
+            hx0Var2.f34399a = Math.max(i10, d);
         }
     }
 
@@ -89,26 +89,26 @@ public final class bx0 {
         ix0 ix0Var;
         int i7;
         if (z9) {
-            iArr = this.f32316j;
+            iArr = this.f32310j;
         } else {
-            iArr = this.f32318l;
+            iArr = this.f32312l;
         }
-        lx0 lx0Var = this.f32329x;
+        lx0 lx0Var = this.f32323x;
         int childCount = lx0Var.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
             ex0 d = lx0Var.d(i10);
-            gx0 gx0Var = d.f33350a;
-            boolean z10 = this.f32309a;
+            gx0 gx0Var = d.f33346a;
+            boolean z10 = this.f32303a;
             if (z10) {
-                ix0Var = gx0Var.f34065b;
+                ix0Var = gx0Var.f34013b;
             } else {
-                ix0Var = gx0Var.f34064a;
+                ix0Var = gx0Var.f34012a;
             }
-            fx0 fx0Var = ix0Var.f34818b;
+            fx0 fx0Var = ix0Var.f34781b;
             if (z9) {
-                i7 = fx0Var.f33709a;
+                i7 = fx0Var.f33653a;
             } else {
-                i7 = fx0Var.f33710b;
+                i7 = fx0Var.f33654b;
             }
             iArr[i7] = Math.max(iArr[i7], lx0Var.f(d, z10, z9));
         }
@@ -121,30 +121,30 @@ public final class bx0 {
         int length = ix0VarArr.length;
         for (int i7 = 0; i7 < length; i7++) {
             if (z9) {
-                fx0Var = ix0VarArr[i7].f34818b;
+                fx0Var = ix0VarArr[i7].f34781b;
             } else {
-                fx0 fx0Var2 = ix0VarArr[i7].f34818b;
-                fx0Var = new fx0(fx0Var2.f33710b, fx0Var2.f33709a);
+                fx0 fx0Var2 = ix0VarArr[i7].f34781b;
+                fx0Var = new fx0(fx0Var2.f33654b, fx0Var2.f33653a);
             }
             ?? obj = new Object();
-            obj.f34449a = Integer.MIN_VALUE;
+            obj.f34399a = Integer.MIN_VALUE;
             ax0Var.add(Pair.create(fx0Var, obj));
         }
         return ax0Var.f();
     }
 
     public final zw0[] d() {
-        if (this.f32320n == null) {
+        if (this.f32314n == null) {
             ArrayList arrayList = new ArrayList();
             ArrayList arrayList2 = new ArrayList();
-            if (this.f32313f == null) {
-                this.f32313f = c(true);
+            if (this.f32307f == null) {
+                this.f32307f = c(true);
             }
-            if (!this.f32314g) {
-                a(this.f32313f, true);
-                this.f32314g = true;
+            if (!this.f32308g) {
+                a(this.f32307f, true);
+                this.f32308g = true;
             }
-            h6.m mVar = this.f32313f;
+            h6.m mVar = this.f32307f;
             int i7 = 0;
             while (true) {
                 fx0[] fx0VarArr = (fx0[]) ((Object[]) mVar.f14265c);
@@ -157,9 +157,9 @@ public final class bx0 {
             if (this.h == null) {
                 this.h = c(false);
             }
-            if (!this.f32315i) {
+            if (!this.f32309i) {
                 a(this.h, false);
-                this.f32315i = true;
+                this.f32309i = true;
             }
             h6.m mVar2 = this.h;
             int i10 = 0;
@@ -171,7 +171,7 @@ public final class bx0 {
                 j(arrayList2, fx0VarArr2[i10], ((hx0[]) ((Object[]) mVar2.d))[i10], false);
                 i10++;
             }
-            if (this.f32327u) {
+            if (this.f32321u) {
                 int i11 = 0;
                 while (i11 < e()) {
                     int i12 = i11 + 1;
@@ -181,36 +181,36 @@ public final class bx0 {
             }
             int e10 = e();
             j(arrayList, new fx0(0, e10), this.v, false);
-            j(arrayList2, new fx0(e10, 0), this.f32328w, false);
+            j(arrayList2, new fx0(e10, 0), this.f32322w, false);
             zw0[] q10 = q(arrayList);
             zw0[] q11 = q(arrayList2);
             Object[] objArr = (Object[]) Array.newInstance(zw0[].class.getComponentType(), q10.length + q11.length);
             System.arraycopy(q10, 0, objArr, 0, q10.length);
             System.arraycopy(q11, 0, objArr, q10.length, q11.length);
-            this.f32320n = (zw0[]) objArr;
+            this.f32314n = (zw0[]) objArr;
         }
-        if (!this.f32321o) {
-            if (this.f32313f == null) {
-                this.f32313f = c(true);
+        if (!this.f32315o) {
+            if (this.f32307f == null) {
+                this.f32307f = c(true);
             }
-            if (!this.f32314g) {
-                a(this.f32313f, true);
-                this.f32314g = true;
+            if (!this.f32308g) {
+                a(this.f32307f, true);
+                this.f32308g = true;
             }
             if (this.h == null) {
                 this.h = c(false);
             }
-            if (!this.f32315i) {
+            if (!this.f32309i) {
                 a(this.h, false);
-                this.f32315i = true;
+                this.f32309i = true;
             }
-            this.f32321o = true;
+            this.f32315o = true;
         }
-        return this.f32320n;
+        return this.f32314n;
     }
 
     public final int e() {
-        int max = Math.max(this.f32310b, h());
+        int max = Math.max(this.f32304b, h());
         if (max <= 1024) {
             return max;
         }
@@ -226,19 +226,19 @@ public final class bx0 {
         ix0 ix0Var2;
         cx0 cx0Var;
         h6.m mVar = this.d;
-        boolean z9 = this.f32309a;
-        lx0 lx0Var = this.f32329x;
+        boolean z9 = this.f32303a;
+        lx0 lx0Var = this.f32323x;
         if (mVar == null) {
             ax0 ax0Var = new ax0(ix0.class, cx0.class);
             int childCount = lx0Var.getChildCount();
             for (int i12 = 0; i12 < childCount; i12++) {
-                gx0 gx0Var = lx0Var.d(i12).f33350a;
+                gx0 gx0Var = lx0Var.d(i12).f33346a;
                 if (z9) {
-                    ix0Var2 = gx0Var.f34065b;
+                    ix0Var2 = gx0Var.f34013b;
                 } else {
-                    ix0Var2 = gx0Var.f34064a;
+                    ix0Var2 = gx0Var.f34012a;
                 }
-                switch (ix0.a(ix0Var2, z9).f40433a) {
+                switch (ix0.a(ix0Var2, z9).f40452a) {
                     case 3:
                         cx0Var = new cx0();
                         break;
@@ -250,45 +250,45 @@ public final class bx0 {
             }
             this.d = ax0Var.f();
         }
-        if (!this.f32312e) {
+        if (!this.f32306e) {
             for (cx0 cx0Var2 : (cx0[]) ((Object[]) this.d.d)) {
                 cx0Var2.c();
             }
             int childCount2 = lx0Var.getChildCount();
             for (int i13 = 0; i13 < childCount2; i13++) {
                 ex0 d = lx0Var.d(i13);
-                gx0 gx0Var2 = d.f33350a;
+                gx0 gx0Var2 = d.f33346a;
                 if (z9) {
-                    ix0Var = gx0Var2.f34065b;
+                    ix0Var = gx0Var2.f34013b;
                 } else {
-                    ix0Var = gx0Var2.f34064a;
+                    ix0Var = gx0Var2.f34012a;
                 }
                 if (z9) {
-                    i7 = d.f33358k;
+                    i7 = d.f33354k;
                 } else {
-                    i7 = d.f33359l;
+                    i7 = d.f33355l;
                 }
                 int e10 = lx0Var.e(d, z9, false) + lx0Var.e(d, z9, true) + i7;
                 float f10 = ix0Var.d;
                 if (f10 == 0.0f) {
                     i10 = 0;
                 } else {
-                    i10 = this.f32326t[i13];
+                    i10 = this.f32320t[i13];
                 }
                 int i14 = e10 + i10;
                 h6.m mVar2 = this.d;
                 cx0 cx0Var3 = (cx0) ((Object[]) mVar2.d)[((int[]) mVar2.f14264b)[i13]];
-                int i15 = cx0Var3.f32692c;
-                if (ix0Var.f34819c == lx0.R && f10 == 0.0f) {
+                int i15 = cx0Var3.f32696c;
+                if (ix0Var.f34782c == lx0.R && f10 == 0.0f) {
                     i11 = 0;
                 } else {
                     i11 = 2;
                 }
-                cx0Var3.f32692c = i11 & i15;
+                cx0Var3.f32696c = i11 & i15;
                 int a10 = ix0.a(ix0Var, z9).a(d, i14);
                 cx0Var3.b(a10, i14 - a10);
             }
-            this.f32312e = true;
+            this.f32306e = true;
         }
         return this.d;
     }
@@ -297,25 +297,25 @@ public final class bx0 {
         ix0 ix0Var;
         boolean z9;
         ix0 ix0Var2;
-        if (this.f32322p == null) {
-            this.f32322p = new int[e() + 1];
+        if (this.f32316p == null) {
+            this.f32316p = new int[e() + 1];
         }
-        if (!this.f32323q) {
-            int[] iArr = this.f32322p;
-            boolean z10 = this.f32325s;
+        if (!this.f32317q) {
+            int[] iArr = this.f32316p;
+            boolean z10 = this.f32319s;
             float f10 = 0.0f;
-            boolean z11 = this.f32309a;
-            lx0 lx0Var = this.f32329x;
+            boolean z11 = this.f32303a;
+            lx0 lx0Var = this.f32323x;
             if (!z10) {
                 int childCount = lx0Var.getChildCount();
                 int i7 = 0;
                 while (true) {
                     if (i7 < childCount) {
-                        gx0 gx0Var = lx0Var.d(i7).f33350a;
+                        gx0 gx0Var = lx0Var.d(i7).f33346a;
                         if (z11) {
-                            ix0Var2 = gx0Var.f34065b;
+                            ix0Var2 = gx0Var.f34013b;
                         } else {
-                            ix0Var2 = gx0Var.f34064a;
+                            ix0Var2 = gx0Var.f34012a;
                         }
                         if (ix0Var2.d != 0.0f) {
                             z9 = true;
@@ -327,26 +327,26 @@ public final class bx0 {
                         break;
                     }
                 }
-                this.f32324r = z9;
-                this.f32325s = true;
+                this.f32318r = z9;
+                this.f32319s = true;
             }
-            if (!this.f32324r) {
+            if (!this.f32318r) {
                 p(d(), iArr, true);
             } else {
-                if (this.f32326t == null) {
-                    this.f32326t = new int[lx0Var.getChildCount()];
+                if (this.f32320t == null) {
+                    this.f32320t = new int[lx0Var.getChildCount()];
                 }
-                Arrays.fill(this.f32326t, 0);
+                Arrays.fill(this.f32320t, 0);
                 p(d(), iArr, true);
-                int childCount2 = (lx0Var.getChildCount() * this.v.f34449a) + 1;
+                int childCount2 = (lx0Var.getChildCount() * this.v.f34399a) + 1;
                 if (childCount2 >= 2) {
                     int childCount3 = lx0Var.getChildCount();
                     for (int i10 = 0; i10 < childCount3; i10++) {
-                        gx0 gx0Var2 = lx0Var.d(i10).f33350a;
+                        gx0 gx0Var2 = lx0Var.d(i10).f33346a;
                         if (z11) {
-                            ix0Var = gx0Var2.f34065b;
+                            ix0Var = gx0Var2.f34013b;
                         } else {
-                            ix0Var = gx0Var2.f34064a;
+                            ix0Var = gx0Var2.f34012a;
                         }
                         f10 += ix0Var.d;
                     }
@@ -373,97 +373,97 @@ public final class bx0 {
                     }
                 }
             }
-            if (!this.f32327u) {
+            if (!this.f32321u) {
                 int i14 = iArr[0];
                 int length = iArr.length;
                 for (int i15 = 0; i15 < length; i15++) {
                     iArr[i15] = iArr[i15] - i14;
                 }
             }
-            this.f32323q = true;
+            this.f32317q = true;
         }
-        return this.f32322p;
+        return this.f32316p;
     }
 
     public final int h() {
         ix0 ix0Var;
         int i7 = Integer.MIN_VALUE;
-        if (this.f32311c == Integer.MIN_VALUE) {
-            lx0 lx0Var = this.f32329x;
+        if (this.f32305c == Integer.MIN_VALUE) {
+            lx0 lx0Var = this.f32323x;
             int childCount = lx0Var.getChildCount();
             int i10 = -1;
             for (int i11 = 0; i11 < childCount; i11++) {
-                gx0 gx0Var = lx0Var.d(i11).f33350a;
-                if (this.f32309a) {
-                    ix0Var = gx0Var.f34065b;
+                gx0 gx0Var = lx0Var.d(i11).f33346a;
+                if (this.f32303a) {
+                    ix0Var = gx0Var.f34013b;
                 } else {
-                    ix0Var = gx0Var.f34064a;
+                    ix0Var = gx0Var.f34012a;
                 }
-                fx0 fx0Var = ix0Var.f34818b;
-                i10 = Math.max(Math.max(Math.max(i10, fx0Var.f33709a), fx0Var.f33710b), fx0Var.a());
+                fx0 fx0Var = ix0Var.f34781b;
+                i10 = Math.max(Math.max(Math.max(i10, fx0Var.f33653a), fx0Var.f33654b), fx0Var.a());
             }
             if (i10 != -1) {
                 i7 = i10;
             }
-            this.f32311c = Math.max(0, i7);
+            this.f32305c = Math.max(0, i7);
         }
-        return this.f32311c;
+        return this.f32305c;
     }
 
     public final int i(int i7) {
         int mode = View.MeasureSpec.getMode(i7);
         int size = View.MeasureSpec.getSize(i7);
-        hx0 hx0Var = this.f32328w;
+        hx0 hx0Var = this.f32322w;
         hx0 hx0Var2 = this.v;
         if (mode != Integer.MIN_VALUE) {
             if (mode != 0) {
                 if (mode != 1073741824) {
                     return 0;
                 }
-                hx0Var2.f34449a = size;
-                hx0Var.f34449a = -size;
-                this.f32323q = false;
+                hx0Var2.f34399a = size;
+                hx0Var.f34399a = -size;
+                this.f32317q = false;
                 return g()[e()];
             }
-            hx0Var2.f34449a = 0;
-            hx0Var.f34449a = -100000;
-            this.f32323q = false;
+            hx0Var2.f34399a = 0;
+            hx0Var.f34399a = -100000;
+            this.f32317q = false;
             return g()[e()];
         }
-        hx0Var2.f34449a = 0;
-        hx0Var.f34449a = -size;
-        this.f32323q = false;
+        hx0Var2.f34399a = 0;
+        hx0Var.f34399a = -size;
+        this.f32317q = false;
         return g()[e()];
     }
 
     public final void k() {
-        this.f32311c = Integer.MIN_VALUE;
+        this.f32305c = Integer.MIN_VALUE;
         this.d = null;
-        this.f32313f = null;
+        this.f32307f = null;
         this.h = null;
-        this.f32316j = null;
-        this.f32318l = null;
-        this.f32320n = null;
-        this.f32322p = null;
-        this.f32326t = null;
-        this.f32325s = false;
+        this.f32310j = null;
+        this.f32312l = null;
+        this.f32314n = null;
+        this.f32316p = null;
+        this.f32320t = null;
+        this.f32319s = false;
         l();
     }
 
     public final void l() {
-        this.f32312e = false;
-        this.f32314g = false;
-        this.f32315i = false;
-        this.f32317k = false;
-        this.f32319m = false;
-        this.f32321o = false;
-        this.f32323q = false;
+        this.f32306e = false;
+        this.f32308g = false;
+        this.f32309i = false;
+        this.f32311k = false;
+        this.f32313m = false;
+        this.f32315o = false;
+        this.f32317q = false;
     }
 
     public final void n(int i7) {
         String str;
         if (i7 != Integer.MIN_VALUE && i7 < h()) {
-            if (this.f32309a) {
+            if (this.f32303a) {
                 str = "column";
             } else {
                 str = "row";
@@ -471,25 +471,25 @@ public final class bx0 {
             lx0.g(str.concat("Count must be greater than or equal to the maximum of all grid indices (and spans) defined in the LayoutParams of each child"));
             throw null;
         }
-        this.f32310b = i7;
+        this.f32304b = i7;
     }
 
     public final void o(float f10, int i7) {
         ix0 ix0Var;
-        Arrays.fill(this.f32326t, 0);
-        lx0 lx0Var = this.f32329x;
+        Arrays.fill(this.f32320t, 0);
+        lx0 lx0Var = this.f32323x;
         int childCount = lx0Var.getChildCount();
         for (int i10 = 0; i10 < childCount; i10++) {
-            gx0 gx0Var = lx0Var.d(i10).f33350a;
-            if (this.f32309a) {
-                ix0Var = gx0Var.f34065b;
+            gx0 gx0Var = lx0Var.d(i10).f33346a;
+            if (this.f32303a) {
+                ix0Var = gx0Var.f34013b;
             } else {
-                ix0Var = gx0Var.f34064a;
+                ix0Var = gx0Var.f34012a;
             }
             float f11 = ix0Var.d;
             if (f11 != 0.0f) {
                 int round = Math.round((i7 * f11) / f10);
-                this.f32326t[i10] = round;
+                this.f32320t[i10] = round;
                 i7 -= round;
                 f10 -= f11;
             }
@@ -526,9 +526,9 @@ public final class bx0 {
                 }
                 if (zArr[i13]) {
                     zw0 zw0Var2 = zw0VarArr[i13];
-                    fx0 fx0Var = zw0Var2.f41098a;
-                    if (fx0Var.f33709a >= fx0Var.f33710b) {
-                        zw0Var2.f41100c = false;
+                    fx0 fx0Var = zw0Var2.f41123a;
+                    if (fx0Var.f33653a >= fx0Var.f33654b) {
+                        zw0Var2.f41125c = false;
                         break;
                     }
                 }

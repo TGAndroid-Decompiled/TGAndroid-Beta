@@ -76,8 +76,8 @@ public class RadialProgress2 {
         this.f31477i = p80Var;
         p80 p80Var2 = new p80();
         this.f31478j = p80Var2;
-        p80Var2.f36928j = true;
-        p80Var2.f36922b.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        p80Var2.f36807j = true;
+        p80Var2.f36801b.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
         p80Var2.d(4, false);
         int L = org.telegram.messenger.g0.L(22.0f);
         this.f31491x = L;
@@ -90,13 +90,13 @@ public class RadialProgress2 {
     }
 
     public final int a() {
-        return this.f31477i.f36935q;
+        return this.f31477i.f36814q;
     }
 
     public final float b() {
         p80 p80Var = this.f31477i;
-        int i7 = p80Var.f36935q;
-        int i10 = p80Var.f36934p;
+        int i7 = p80Var.f36814q;
+        int i10 = p80Var.f36813p;
         if ((i7 == 3 || i7 == 6 || i7 == 10 || i7 == 8 || i7 == 0) && i10 == 4) {
             return p80Var.b();
         }
@@ -147,12 +147,12 @@ public class RadialProgress2 {
         int argb;
         int i13;
         p80 p80Var = this.f31477i;
-        int i14 = p80Var.f36935q;
-        Paint paint2 = p80Var.f36923c;
+        int i14 = p80Var.f36814q;
+        Paint paint2 = p80Var.f36802c;
         if (i14 != 4 || p80Var.b() < 1.0f) {
             RectF rectF = this.f31471a;
             if (!rectF.isEmpty()) {
-                int i15 = p80Var.f36935q;
+                int i15 = p80Var.f36814q;
                 float b11 = b();
                 boolean z9 = this.f31493z;
                 p80 p80Var2 = this.f31478j;
@@ -306,7 +306,7 @@ public class RadialProgress2 {
                 p80Var.setBounds(ceil - i25, ceil2 - i25, ceil + i25, ceil2 + i25);
                 p80Var.E = imageReceiver.I();
                 if (!this.f31473c && this.f31485q < 0) {
-                    p80Var.f36933o = this.E;
+                    p80Var.f36812o = this.E;
                     p80Var.draw(canvas);
                 } else {
                     Canvas canvas6 = this.D;
@@ -333,7 +333,7 @@ public class RadialProgress2 {
                     }
                     int i27 = i11 / 2;
                     if (this.f31473c) {
-                        if (p80Var2.f36935q != 4) {
+                        if (p80Var2.f36814q != 4) {
                             b10 = 1.0f;
                         } else {
                             b10 = 1.0f - p80Var2.b();
@@ -435,7 +435,7 @@ public class RadialProgress2 {
         boolean z11;
         if (i7 == 2 || i7 == 3 || i7 == 4) {
             p80 p80Var = this.f31478j;
-            if (z9 && i7 == p80Var.f36935q) {
+            if (z9 && i7 == p80Var.f36814q) {
                 return;
             }
             p80Var.d(i7, z10);
@@ -499,8 +499,8 @@ public class RadialProgress2 {
 
     public void setAsMini() {
         p80 p80Var = this.f31477i;
-        p80Var.f36928j = true;
-        p80Var.f36922b.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
+        p80Var.f36807j = true;
+        p80Var.f36801b.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
     }
 
     public void setBackgroundGradientDrawable(LinearGradient linearGradient) {
@@ -530,7 +530,7 @@ public class RadialProgress2 {
 
     public void setIcon(int i7, boolean z9, boolean z10) {
         p80 p80Var = this.f31477i;
-        if (!z9 || i7 != p80Var.f36935q) {
+        if (!z9 || i7 != p80Var.f36814q) {
             p80Var.d(i7, z10);
             View view = this.f31472b;
             if (view != null) {

@@ -12,24 +12,24 @@ import zh.l3;
 import zh.m3;
 import zh.o3;
 public final class f extends s0 {
-    public final int f59399a;
-    public final Object f59400b;
+    public final int f59424a;
+    public final Object f59425b;
 
     public f(Object obj, int i7) {
-        this.f59399a = i7;
-        this.f59400b = obj;
+        this.f59424a = i7;
+        this.f59425b = obj;
     }
 
     @Override
     public final void b(RecyclerView recyclerView, int i7, int i10) {
         float f10;
-        switch (this.f59399a) {
+        switch (this.f59424a) {
             case 0:
                 b0 b0Var = (b0) recyclerView.getLayoutManager();
-                m mVar = (m) this.f59400b;
+                m mVar = (m) this.f59425b;
                 e eVar = mVar.C;
-                if (mVar.f59440x && !mVar.f59439w && b0Var != null) {
-                    if (mVar.f59424f.b() - b0Var.N0() < 10) {
+                if (mVar.f59465x && !mVar.f59464w && b0Var != null) {
+                    if (mVar.f59449f.b() - b0Var.N0() < 10) {
                         g0.r(eVar);
                         g0.h3(eVar);
                         return;
@@ -38,11 +38,11 @@ public final class f extends s0 {
                 }
                 return;
             case 1:
-                m3 m3Var = (m3) this.f59400b;
+                m3 m3Var = (m3) this.f59425b;
                 int i11 = 0;
                 while (true) {
-                    if (i11 < m3Var.f60344n.getChildCount()) {
-                        if (m3Var.f60344n.getChildAt(i11) instanceof lz) {
+                    if (i11 < m3Var.f60369n.getChildCount()) {
+                        if (m3Var.f60369n.getChildAt(i11) instanceof lz) {
                             m3Var.d.g(false);
                         } else {
                             i11++;
@@ -50,7 +50,7 @@ public final class f extends s0 {
                     }
                 }
                 ViewPropertyAnimator animate = m3Var.h.animate();
-                if (m3Var.K && m3Var.f60344n.canScrollVertically(-1)) {
+                if (m3Var.K && m3Var.f60369n.canScrollVertically(-1)) {
                     f10 = 1.0f;
                 } else {
                     f10 = 0.0f;
@@ -58,10 +58,10 @@ public final class f extends s0 {
                 q.l(animate.alpha(f10), xq.h, 320L);
                 return;
             case 2:
-                ((l3) this.f59400b).d1();
+                ((l3) this.f59425b).d1();
                 return;
             default:
-                o3 o3Var = (o3) this.f59400b;
+                o3 o3Var = (o3) this.f59425b;
                 if (o3Var.e1()) {
                     o3Var.Q1.a();
                     return;

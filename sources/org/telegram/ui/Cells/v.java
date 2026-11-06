@@ -114,7 +114,7 @@ public final class v extends FrameLayout implements Checkable {
                 ni.c cVar = (ni.c) uVar;
                 org.telegram.ui.o oVar = ((org.telegram.ui.n) cVar.f20614b).d;
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) cVar.f20615c;
-                a0.h hVar = oVar.f48152a;
+                a0.h hVar = oVar.f48181a;
                 int i10 = 1;
                 if (z9) {
                     a(false, false, false);

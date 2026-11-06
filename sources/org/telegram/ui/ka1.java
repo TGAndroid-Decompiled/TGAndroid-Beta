@@ -4,17 +4,17 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 public final class ka1 extends org.telegram.ui.Components.oj0 {
-    public final Context f47130c;
+    public final Context f47153c;
     public final TwoStepVerificationActivity d;
 
     public ka1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
         this.d = twoStepVerificationActivity;
-        this.f47130c = context;
+        this.f47153c = context;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f == 0) {
+        if (d1Var.f56956f == 0) {
             return true;
         }
         return false;
@@ -42,8 +42,8 @@ public final class ka1 extends org.telegram.ui.Components.oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         int i10;
         int i11;
-        int i12 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        int i12 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         TwoStepVerificationActivity twoStepVerificationActivity = this.d;
         if (i12 != 0) {
             if (i12 == 1) {
@@ -84,7 +84,7 @@ public final class ka1 extends org.telegram.ui.Components.oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View w9Var;
-        Context context = this.f47130c;
+        Context context = this.f47153c;
         if (i7 != 0) {
             w9Var = new org.telegram.ui.Cells.z8(context);
         } else {

@@ -45,13 +45,13 @@ public final class tj implements Runnable {
                 }
                 a0.h hVar3 = hVar2;
                 if (hVar3 != null) {
-                    if (SecretMediaViewer.g() && SecretMediaViewer.f().f41909s) {
+                    if (SecretMediaViewer.g() && SecretMediaViewer.f().f41934s) {
                         z9 = true;
                     } else {
                         z9 = false;
                     }
                     if (z9) {
-                        ijVar = SecretMediaViewer.f().f41884f0;
+                        ijVar = SecretMediaViewer.f().f41909f0;
                     } else {
                         ijVar = null;
                     }

@@ -92,9 +92,9 @@ import org.telegram.ui.Components.lc0;
 import org.telegram.ui.Components.n00;
 import org.telegram.ui.Components.o00;
 import org.telegram.ui.Components.ou0;
-import org.telegram.ui.Components.p31;
 import org.telegram.ui.Components.qa0;
 import org.telegram.ui.Components.r70;
+import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.xa0;
 import org.telegram.ui.Components.xp;
 import org.telegram.ui.Components.zg0;
@@ -1438,9 +1438,9 @@ public abstract class k6 {
             return;
         }
         if (z10) {
-            drawable2 = ((xp) drawable).f40297b;
+            drawable2 = ((xp) drawable).f40316b;
         } else {
-            drawable2 = ((xp) drawable).f40296a;
+            drawable2 = ((xp) drawable).f40315a;
         }
         if (drawable2 instanceof ColorDrawable) {
             ((ColorDrawable) drawable2).setColor(i10);
@@ -1721,13 +1721,13 @@ public abstract class k6 {
     public static o00 G0() {
         if (qm == null) {
             ?? obj = new Object();
-            obj.f36545a = new n00[4];
-            obj.f36553k = 1.0f;
-            obj.f36554l = new ArrayList();
-            obj.f36555m = new Paint(1);
-            obj.f36556n = new Path();
+            obj.f36439a = new n00[4];
+            obj.f36447k = 1.0f;
+            obj.f36448l = new ArrayList();
+            obj.f36449m = new Paint(1);
+            obj.f36450n = new Path();
             for (int i10 = 0; i10 < 4; i10++) {
-                obj.f36545a[i10] = new n00(i10);
+                obj.f36439a[i10] = new n00(i10);
             }
             qm = obj;
         }
@@ -2020,13 +2020,13 @@ public abstract class k6 {
             f28124s3 = new t4(1, true, false, null);
             f28142t3 = new t4(1, true, true, null);
             ?? obj = new Object();
-            obj.f35619a = new Path();
-            obj.f35620b = -1.0f;
-            obj.f35624g = new ArrayList();
-            obj.f35621c = 0.293f;
+            obj.f35624a = new Path();
+            obj.f35625b = -1.0f;
+            obj.f35629g = new ArrayList();
+            obj.f35626c = 0.293f;
             obj.d = -26.0f;
-            obj.f35622e = -28.0f;
-            obj.f35623f = 1.0f;
+            obj.f35627e = -28.0f;
+            obj.f35628f = 1.0f;
             f28218x3 = obj;
             obj.a("M 34.141 16.042 C 37.384 17.921 40.886 20.001 44.211 21.965 C 46.139 23.104 49.285 24.729 49.586 25.917 C 50.289 28.687 48.484 30 46.274 30 L 6 30.021 C 3.79 30.021 2.075 30.023 2 26.021 L 2.009 3.417 C 2.009 0.417 5.326 -0.58 7.068 0.417 C 10.545 2.406 25.024 10.761 34.141 16.042 Z", 166.0f);
             f28218x3.a("M 37.843 17.769 C 41.143 19.508 44.131 21.164 47.429 23.117 C 48.542 23.775 49.623 24.561 49.761 25.993 C 50.074 28.708 48.557 30 46.347 30 L 6 30.012 C 3.79 30.012 2 28.222 2 26.012 L 2.009 4.609 C 2.009 1.626 5.276 0.664 7.074 1.541 C 10.608 3.309 28.488 12.842 37.843 17.769 Z", 200.0f);
@@ -2423,7 +2423,7 @@ public abstract class k6 {
         shapeDrawable.getPaint().setColor(-1);
         xp xpVar = new xp(shapeDrawable, drawable);
         xpVar.h = i10;
-        xpVar.f40301n = i10;
+        xpVar.f40320n = i10;
         return xpVar;
     }
 
@@ -2440,7 +2440,7 @@ public abstract class k6 {
         if (c8Var == null) {
             return;
         }
-        if (c8Var.f32454i != null && ijVar != null) {
+        if (c8Var.f32458i != null && ijVar != null) {
             if (f27866e5 == null) {
                 f27866e5 = new HashMap();
             }
@@ -2450,7 +2450,7 @@ public abstract class k6 {
             f27847d5 = null;
             return;
         }
-        c8Var.f32454i = null;
+        c8Var.f32458i = null;
     }
 
     public static org.telegram.ui.Cells.y O(int i10, int i11, int i12) {
@@ -3648,7 +3648,7 @@ public abstract class k6 {
         } else {
             z10 = false;
         }
-        if (z10 && Y != (bitmap = ((qa0) drawable).f37345k)) {
+        if (z10 && Y != (bitmap = ((qa0) drawable).f37235k)) {
             Y = bitmap;
             Bitmap bitmap2 = Y;
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
@@ -3749,7 +3749,7 @@ public abstract class k6 {
         }
         if (!z11 && ((((z10 = drawable instanceof qa0)) || (drawable instanceof BitmapDrawable)) && iz.o() != 0 && rc.e(32))) {
             if (z10) {
-                bitmap = ((qa0) drawable).f37345k;
+                bitmap = ((qa0) drawable).f37235k;
             } else {
                 if (drawable instanceof BitmapDrawable) {
                     WeakReference weakReference = xm;
@@ -3878,7 +3878,7 @@ public abstract class k6 {
             ColorMatrix colorMatrix2 = new ColorMatrix();
             if (drawable instanceof qa0) {
                 float f14 = -0.06f;
-                if (((qa0) drawable).f37351q >= 0.0f) {
+                if (((qa0) drawable).f37241q >= 0.0f) {
                     colorMatrix2.setSaturation(1.6f);
                     if (I.q()) {
                         f13 = 0.97f;
@@ -4865,7 +4865,7 @@ public abstract class k6 {
                 ou0VarArr[1] = new ap(true);
             }
         } else {
-            ou0VarArr[0] = new p31(true);
+            ou0VarArr[0] = new u31(true);
         }
         ou0 ou0Var2 = ou0VarArr[i10];
         ou0Var2.d();
@@ -4881,7 +4881,7 @@ public abstract class k6 {
         }
         Drawable drawable = f27861e0;
         if (drawable instanceof qa0) {
-            S = ((qa0) drawable).f37343i;
+            S = ((qa0) drawable).f37233i;
         } else {
             S = 0;
         }

@@ -117,10 +117,10 @@ public class AnimatedPhoneNumberEditText extends v20 {
                 r1.h hVar = new r1.h(f12);
                 hVar.b(500.0f);
                 hVar.a(1.0f);
-                hVar.f54158i = f12;
-                gVar.f54150m = hVar;
-                gVar.f54141b = 100.0f * f10;
-                gVar.f54142c = true;
+                hVar.f54183i = f12;
+                gVar.f54175m = hVar;
+                gVar.f54166b = 100.0f * f10;
+                gVar.f54167c = true;
                 arrayList2.add(gVar);
                 arrayList.add(Float.valueOf(f10));
                 postDelayed(new xf(gVar, 7), i10 * 5);

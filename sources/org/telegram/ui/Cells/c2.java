@@ -60,7 +60,7 @@ public final class c2 extends FrameLayout {
     public final boolean b() {
         wo woVar = this.f28976r;
         if (woVar != null) {
-            return woVar.f40043a.f31258q;
+            return woVar.f40050a.f31258q;
         }
         return this.f28975n.h;
     }

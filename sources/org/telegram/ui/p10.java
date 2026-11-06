@@ -2,16 +2,16 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.ConnectionsManager;
 public final class p10 implements Runnable {
-    public final c40 f48591a;
+    public final c40 f48586a;
 
     public p10(c40 c40Var) {
-        this.f48591a = c40Var;
+        this.f48586a = c40Var;
     }
 
     @Override
     public final void run() {
         int i7;
-        c40 c40Var = this.f48591a;
+        c40 c40Var = this.f48586a;
         org.telegram.ui.ActionBar.k5 k5Var = c40Var.L1;
         j30 j30Var = c40Var.M1;
         if (j30Var != null && !c40Var.I) {
@@ -19,10 +19,10 @@ public final class p10 implements Runnable {
             if (r3Var != null) {
                 i7 = r3Var.f25201b.schedule_date;
             } else {
-                i7 = c40Var.f44531b4;
+                i7 = c40Var.f44552b4;
             }
             if (i7 != 0) {
-                int currentTime = i7 - ConnectionsManager.getInstance(c40Var.f44565k1.f21723a).getCurrentTime();
+                int currentTime = i7 - ConnectionsManager.getInstance(c40Var.f44586k1.f21723a).getCurrentTime();
                 if (currentTime >= 86400) {
                     j30Var.l(org.telegram.messenger.hd.G(Math.round(currentTime / 86400.0f), "Days", new Object[0]), false);
                 } else {
@@ -33,7 +33,7 @@ public final class p10 implements Runnable {
                     }
                 }
                 c40Var.N1.l(org.telegram.messenger.hd.W(3, i7, true), false);
-                org.telegram.messenger.g0.i3(c40Var.f44581n4, 1000L);
+                org.telegram.messenger.g0.i3(c40Var.f44602n4, 1000L);
             }
         }
     }

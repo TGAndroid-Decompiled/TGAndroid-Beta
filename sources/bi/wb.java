@@ -4,9 +4,9 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.ij;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.mq0;
-import org.telegram.ui.vq0;
-public final class wb extends mq0 {
+import org.telegram.ui.nq0;
+import org.telegram.ui.wq0;
+public final class wb extends nq0 {
     public final org.telegram.ui.Components.l9 f4988a;
     public final LinearLayout f4989b;
     public final long f4990c;
@@ -18,25 +18,25 @@ public final class wb extends mq0 {
     }
 
     @Override
-    public final vq0 E(ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
+    public final wq0 E(ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
         org.telegram.ui.Components.l9 l9Var = this.f4988a;
         ImageReceiver imageReceiver = l9Var.getImageReceiver();
         int[] iArr = new int[2];
         l9Var.getLocationInWindow(iArr);
-        vq0 vq0Var = new vq0();
-        vq0Var.f50791b = iArr[0];
-        vq0Var.f50792c = iArr[1];
-        vq0Var.d = this.f4989b;
-        vq0Var.f50800m = null;
-        vq0Var.f50790a = imageReceiver;
+        wq0 wq0Var = new wq0();
+        wq0Var.f51479b = iArr[0];
+        wq0Var.f51480c = iArr[1];
+        wq0Var.d = this.f4989b;
+        wq0Var.f51488m = null;
+        wq0Var.f51478a = imageReceiver;
         if (z9) {
-            vq0Var.f50793e = imageReceiver.p();
+            wq0Var.f51481e = imageReceiver.p();
         }
-        vq0Var.h = imageReceiver.E();
-        vq0Var.f50794f = this.f4990c;
-        vq0Var.f50797j = 0;
-        vq0Var.f50796i = 0;
-        return vq0Var;
+        wq0Var.h = imageReceiver.E();
+        wq0Var.f51482f = this.f4990c;
+        wq0Var.f51485j = 0;
+        wq0Var.f51484i = 0;
+        return wq0Var;
     }
 
     @Override

@@ -10,6 +10,7 @@ import org.telegram.messenger.t10;
 import org.telegram.messenger.xr;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.c41;
 import org.telegram.ui.Components.fx;
 import org.telegram.ui.Components.gx;
 import org.telegram.ui.Components.gy;
@@ -17,11 +18,10 @@ import org.telegram.ui.Components.hv;
 import org.telegram.ui.Components.jk0;
 import org.telegram.ui.Components.k60;
 import org.telegram.ui.Components.sw;
-import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.yw;
 import org.telegram.ui.an;
-import org.telegram.ui.fq0;
 import org.telegram.ui.ge;
+import org.telegram.ui.gq0;
 import org.telegram.ui.he;
 import org.telegram.ui.qw;
 import org.telegram.ui.ww;
@@ -89,14 +89,14 @@ public final class z2 implements c20 {
                     userFull = null;
                 }
                 k60 I = k60.I(anVar, q1Var);
-                jk0 jk0Var = new jk0(anVar.getParentActivity(), anVar.f43998xa);
-                I.f35211p = new ge(jk0Var, 1);
+                jk0 jk0Var = new jk0(anVar.getParentActivity(), anVar.f44023xa);
+                I.f35175p = new ge(jk0Var, 1);
                 org.telegram.ui.y yVar = new org.telegram.ui.y(anVar, user, str2, 2);
                 k60 J = I.J();
-                J.c(2131231240, org.telegram.messenger.hd.M0(2131753756, null), new fq0(I, 27), false);
+                J.c(2131231240, org.telegram.messenger.hd.M0(2131753756, null), new gq0(I, 27), false);
                 J.k();
                 J.c(2131232044, org.telegram.messenger.hd.M0(2131751718, null), new org.telegram.ui.o1(anVar, I, str2), false);
-                J.c(2131231780, org.telegram.messenger.hd.M0(2131754375, null), new fq0(yVar, 28), false);
+                J.c(2131231780, org.telegram.messenger.hd.M0(2131754375, null), new gq0(yVar, 28), false);
                 if (tL_contact == null && (user == null || !anVar.getContactsController().f22584f0.containsKey(Long.valueOf(user.f27101id)))) {
                     I.c(2131232099, org.telegram.messenger.hd.M0(2131754377, null), new hi.h2(I, J, 4), false);
                     I.k();
@@ -199,8 +199,8 @@ public final class z2 implements c20 {
                     I.n(user, org.telegram.messenger.hd.M0(2131743547, null), new org.telegram.ui.o1(anVar, jk0Var, user, 17));
                 }
                 jk0Var.e(I);
-                if (characterStyle instanceof x31) {
-                    String url = ((x31) characterStyle).getURL();
+                if (characterStyle instanceof c41) {
+                    String url = ((c41) characterStyle).getURL();
                     if (url != null) {
                         str = url;
                     }
@@ -231,12 +231,12 @@ public final class z2 implements c20 {
                 String str3 = (String) obj4;
                 ej ejVar = (ej) obj3;
                 Long l10 = (Long) obj;
-                int i11 = anVar2.f43766f4;
+                int i11 = anVar2.f43791f4;
                 Object obj7 = this.f5144e;
                 if (i11 == 1) {
-                    org.telegram.ui.Components.v4.J(anVar2.getParentActivity(), anVar2.f43818j6, new a1.d(anVar2, tL_document, str3, obj7, 7), anVar2.f43998xa);
+                    org.telegram.ui.Components.v4.J(anVar2.getParentActivity(), anVar2.f43843j6, new a1.d(anVar2, tL_document, str3, obj7, 7), anVar2.f44023xa);
                 } else {
-                    anVar2.getSendMessagesHelper().v0(tL_document, str3, anVar2.f43818j6, anVar2.D5, anVar2.f43840l4, null, anVar2.B5, ejVar, true, 0, 0, false, obj7, anVar2.W8(), l10.longValue(), anVar2.h9(), anVar2.f43980w5);
+                    anVar2.getSendMessagesHelper().v0(tL_document, str3, anVar2.f43843j6, anVar2.D5, anVar2.f43865l4, null, anVar2.B5, ejVar, true, 0, 0, false, obj7, anVar2.W8(), l10.longValue(), anVar2.h9(), anVar2.f44005w5);
                     tL_document = tL_document;
                 }
                 anVar2.B9(false);
@@ -248,11 +248,11 @@ public final class z2 implements c20 {
                 ArrayList arrayList3 = (ArrayList) obj2;
                 ArrayList arrayList4 = (ArrayList) obj3;
                 Runnable runnable = (Runnable) obj;
-                gx gxVar = ((fx) obj6).f33708a;
-                String str4 = gxVar.f34061w;
-                ArrayList arrayList5 = gxVar.f34059r;
+                gx gxVar = ((fx) obj6).f33652a;
+                String str4 = gxVar.f34009w;
+                ArrayList arrayList5 = gxVar.f34007r;
                 ArrayList arrayList6 = gxVar.h;
-                ArrayList arrayList7 = gxVar.f34060s;
+                ArrayList arrayList7 = gxVar.f34008s;
                 gy gyVar = gxVar.F;
                 if (((String) obj5).equals(str4)) {
                     hv hvVar = gyVar.V;
@@ -265,7 +265,7 @@ public final class z2 implements c20 {
                         swVar.setAdapter(gxVar2);
                     }
                     arrayList6.clear();
-                    arrayList6.addAll(gxVar.f34058n);
+                    arrayList6.addAll(gxVar.f34006n);
                     arrayList5.clear();
                     arrayList5.addAll(arrayList2);
                     arrayList7.clear();
@@ -276,8 +276,8 @@ public final class z2 implements c20 {
                         Object obj8 = arrayList3.get(i12);
                         i12++;
                         yw ywVar = (yw) obj8;
-                        if (longSparseIntArray.indexOfKey(ywVar.f40751c.f26979id) < 0) {
-                            longSparseIntArray.append(ywVar.f40751c.f26979id, 1);
+                        if (longSparseIntArray.indexOfKey(ywVar.f40770c.f26979id) < 0) {
+                            longSparseIntArray.append(ywVar.f40770c.f26979id, 1);
                             arrayList7.add(ywVar);
                         }
                     }
@@ -286,8 +286,8 @@ public final class z2 implements c20 {
                         Object obj9 = arrayList4.get(i10);
                         i10++;
                         yw ywVar2 = (yw) obj9;
-                        if (longSparseIntArray.indexOfKey(ywVar2.f40751c.f26979id) < 0) {
-                            longSparseIntArray.append(ywVar2.f40751c.f26979id, 1);
+                        if (longSparseIntArray.indexOfKey(ywVar2.f40770c.f26979id) < 0) {
+                            longSparseIntArray.append(ywVar2.f40770c.f26979id, 1);
                             arrayList7.add(ywVar2);
                         }
                     }

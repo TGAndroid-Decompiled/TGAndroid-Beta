@@ -5,22 +5,22 @@ import android.app.Activity;
 import android.text.TextUtils;
 import android.widget.TextView;
 public final class vs extends org.telegram.ui.Cells.b5 {
-    public final int f50809e;
-    public final org.telegram.ui.Cells.z8 f50810f;
+    public final int f50819e;
+    public final org.telegram.ui.Cells.z8 f50820f;
     public final org.telegram.ui.Cells.r8[] h;
-    public final AnimatorSet[] f50811n;
-    public final DataAutoDownloadActivity f50812r;
+    public final AnimatorSet[] f50821n;
+    public final DataAutoDownloadActivity f50822r;
 
     public vs(DataAutoDownloadActivity dataAutoDownloadActivity, Activity activity, int i7, org.telegram.ui.Cells.z8 z8Var, org.telegram.ui.Cells.r8[] r8VarArr, AnimatorSet[] animatorSetArr) {
         super(activity);
         int i10;
         int i11;
         int i12;
-        this.f50812r = dataAutoDownloadActivity;
-        this.f50809e = i7;
-        this.f50810f = z8Var;
+        this.f50822r = dataAutoDownloadActivity;
+        this.f50819e = i7;
+        this.f50820f = z8Var;
         this.h = r8VarArr;
-        this.f50811n = animatorSetArr;
+        this.f50821n = animatorSetArr;
         setWillNotDraw(false);
         TextView textView = new TextView(activity);
         this.f28929a = textView;

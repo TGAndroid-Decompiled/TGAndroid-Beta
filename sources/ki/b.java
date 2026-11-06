@@ -17,7 +17,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
@@ -26,17 +26,17 @@ import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.wp;
 public final class b extends na {
     public final nc P1;
-    public f41 Q1;
+    public k41 Q1;
 
     public b(Context context, TLRPC.Chat chat, Runnable runnable) {
         super(context, (f6) null, false);
         int i7;
         int i10;
         this.B1 = g0.L(30.0f);
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int i11 = this.f28645t0;
         pj0Var.setPadding(i11, 0, i11, g0.L(130.0f) + g0.f22532n);
-        this.f36328k1.setClipToPadding(false);
+        this.f36222k1.setClipToPadding(false);
         d dVar = new d(context, this.I0, true);
         dVar.setText(hd.M0(2131752589, null));
         dVar.e();
@@ -79,10 +79,10 @@ public final class b extends na {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(this.f36328k1, getContext(), this.f28612a, 0, true, new u1(this, 15), this.I0);
-        this.Q1 = f41Var;
-        f41Var.f33473r = false;
-        return f41Var;
+        k41 k41Var = new k41(this.f36222k1, getContext(), this.f28612a, 0, true, new u1(this, 15), this.I0);
+        this.Q1 = k41Var;
+        k41Var.f35132r = false;
+        return k41Var;
     }
 
     @Override

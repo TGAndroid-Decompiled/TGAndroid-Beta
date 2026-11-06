@@ -16,18 +16,18 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 public final class rq implements View.OnClickListener {
-    public final int f37815a;
-    public final long f37816b;
-    public final Object f37817c;
+    public final int f37758a;
+    public final long f37759b;
+    public final Object f37760c;
     public final Object d;
-    public final Object f37818e;
+    public final Object f37761e;
 
     public rq(Object obj, Object obj2, Object obj3, long j3, int i7) {
-        this.f37815a = i7;
-        this.f37817c = obj;
+        this.f37758a = i7;
+        this.f37760c = obj;
         this.d = obj2;
-        this.f37818e = obj3;
-        this.f37816b = j3;
+        this.f37761e = obj3;
+        this.f37759b = j3;
     }
 
     @Override
@@ -39,10 +39,10 @@ public final class rq implements View.OnClickListener {
         String str;
         TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway;
         long j3;
-        int i11 = this.f37815a;
-        Object obj = this.f37818e;
+        int i11 = this.f37758a;
+        Object obj = this.f37761e;
         Object obj2 = this.d;
-        Object obj3 = this.f37817c;
+        Object obj3 = this.f37760c;
         switch (i11) {
             case 0:
                 tq tqVar = (tq) obj3;
@@ -51,7 +51,7 @@ public final class rq implements View.OnClickListener {
                 org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
                 u1Var.R = M0;
                 u1Var.T = org.telegram.messenger.hd.M0(2131748798, null);
-                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131746025, null), new bi.i(tqVar, (fi.d) obj, this.f37816b, 5));
+                alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131746025, null), new bi.i(tqVar, (fi.d) obj, this.f37759b, 5));
                 alertDialog$Builder.h(org.telegram.messenger.hd.M0(2131752589, null), null);
                 alertDialog$Builder.d(-1);
                 alertDialog$Builder.p();
@@ -59,7 +59,7 @@ public final class rq implements View.OnClickListener {
             case 1:
                 org.telegram.ui.ww wwVar = (org.telegram.ui.ww) obj3;
                 wwVar.finishPreviewFragment();
-                org.telegram.messenger.g0.i3(new bi.w2(wwVar, (org.telegram.messenger.vo) obj2, (TLRPC.Dialog) obj, this.f37816b, 19), 100L);
+                org.telegram.messenger.g0.i3(new bi.w2(wwVar, (org.telegram.messenger.vo) obj2, (TLRPC.Dialog) obj, this.f37759b, 19), 100L);
                 return;
             default:
                 wg.a0 a0Var = (wg.a0) obj3;
@@ -70,8 +70,8 @@ public final class rq implements View.OnClickListener {
                 TLRPC.Chat chat = a0Var.T1;
                 ArrayList arrayList3 = a0Var.V1;
                 ArrayList arrayList4 = a0Var.X1;
-                yg.a aVar = a0Var.f57568i2;
-                if (!aVar.f59298a.Q) {
+                yg.a aVar = a0Var.f57593i2;
+                if (!aVar.f59323a.Q) {
                     if (a0Var.i1()) {
                         if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
                             tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
@@ -83,7 +83,7 @@ public final class rq implements View.OnClickListener {
                         } else {
                             j3 = 0;
                         }
-                        sn snVar = new sn(this.f37816b, j3, prepaidGiveaway, tL_prepaidStarsGiveaway, a0Var);
+                        sn snVar = new sn(this.f37759b, j3, prepaidGiveaway, tL_prepaidStarsGiveaway, a0Var);
                         org.telegram.ui.ActionBar.f2 Q = LaunchActivity.Q();
                         if (Q != null) {
                             AlertDialog$Builder alertDialog$Builder2 = new AlertDialog$Builder(0, Q.getContext(), Q.getResourceProvider());
@@ -99,29 +99,29 @@ public final class rq implements View.OnClickListener {
                         return;
                     }
                     int i12 = a0Var.Z1;
-                    int i13 = yg.d.f59327w;
+                    int i13 = yg.d.f59352w;
                     if (i12 == 3) {
                         Activity W = org.telegram.messenger.g0.W(a0Var.getContext());
                         if (W == null) {
                             W = LaunchActivity.G1;
                         }
                         if (W != null && !W.isFinishing()) {
-                            TL_stars.TL_starsGiveawayOption g12 = a0Var.g1(a0Var.f57567h2);
+                            TL_stars.TL_starsGiveawayOption g12 = a0Var.g1(a0Var.f57592h2);
                             int e12 = a0Var.e1();
                             if (g12 != null) {
-                                aVar.f59298a.setLoading(true);
-                                int i14 = a0Var.f57562b2;
-                                int i15 = yg.u.f59367w;
+                                aVar.f59323a.setLoading(true);
+                                int i14 = a0Var.f57587b2;
+                                int i15 = yg.u.f59392w;
                                 if (i14 == 1) {
                                     z10 = true;
                                 } else {
                                     z10 = false;
                                 }
                                 bi.ea y10 = bi.ea.y(a0Var.f28612a, false);
-                                int l10 = wg.s.l(a0Var.f57564e2);
-                                boolean z11 = a0Var.f57575p2;
-                                boolean z12 = a0Var.f57574o2;
-                                String str2 = a0Var.f57573n2;
+                                int l10 = wg.s.l(a0Var.f57589e2);
+                                boolean z11 = a0Var.f57600p2;
+                                boolean z12 = a0Var.f57599o2;
+                                String str2 = a0Var.f57598n2;
                                 org.telegram.ui.Wallet.v1 v1Var = new org.telegram.ui.Wallet.v1(5, a0Var, g12);
                                 int i16 = y10.f3807a;
                                 if (org.telegram.messenger.qp.s1(i16).f24802j7) {
@@ -199,7 +199,7 @@ public final class rq implements View.OnClickListener {
                             return;
                         }
                         return;
-                    } else if (a0Var.f57561a2 == 1) {
+                    } else if (a0Var.f57586a2 == 1) {
                         ArrayList b10 = wg.s.b(arrayList3.size(), arrayList4);
                         int i20 = 0;
                         while (i20 < b10.size()) {
@@ -289,18 +289,18 @@ public final class rq implements View.OnClickListener {
                                         return;
                                     }
                                 }
-                                int i30 = a0Var.f57562b2;
-                                int i31 = yg.u.f59367w;
+                                int i30 = a0Var.f57587b2;
+                                int i31 = yg.u.f59392w;
                                 if (i30 == 1) {
                                     z9 = true;
                                 } else {
                                     z9 = false;
                                 }
-                                int l11 = wg.s.l(a0Var.f57564e2);
+                                int l11 = wg.s.l(a0Var.f57589e2);
                                 aVar.b(true);
-                                boolean z13 = a0Var.f57575p2;
-                                boolean z14 = a0Var.f57574o2;
-                                String str3 = a0Var.f57573n2;
+                                boolean z13 = a0Var.f57600p2;
+                                boolean z14 = a0Var.f57599o2;
+                                String str3 = a0Var.f57598n2;
                                 wg.v vVar2 = new wg.v(a0Var, 3);
                                 wg.v vVar3 = new wg.v(a0Var, 4);
                                 if (!wg.s.h()) {
@@ -408,10 +408,10 @@ public final class rq implements View.OnClickListener {
     }
 
     public rq(wg.a0 a0Var, TL_stories.PrepaidGiveaway prepaidGiveaway, long j3, org.telegram.ui.ActionBar.f2 f2Var) {
-        this.f37815a = 2;
-        this.f37817c = a0Var;
+        this.f37758a = 2;
+        this.f37760c = a0Var;
         this.d = prepaidGiveaway;
-        this.f37816b = j3;
-        this.f37818e = f2Var;
+        this.f37759b = j3;
+        this.f37761e = f2Var;
     }
 }

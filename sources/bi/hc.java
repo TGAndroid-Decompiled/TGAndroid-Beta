@@ -6,10 +6,10 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.v10;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.o00;
-public final class hc extends f41 {
+public final class hc extends k41 {
     public final int P;
     public final Object Q;
 
@@ -28,7 +28,7 @@ public final class hc extends f41 {
                 super.t(d1Var, i7);
                 di.g2 g2Var = (di.g2) this.Q;
                 if (g2Var.D) {
-                    View view = d1Var.f56927a;
+                    View view = d1Var.f56952a;
                     if ((view instanceof di.n0) && (s0Var = (n0Var = (di.n0) view).K) != null && s0Var.f9736a == g2Var.f9826y) {
                         n0Var.a();
                         g2Var.D = false;
@@ -114,7 +114,7 @@ public final class hc extends f41 {
                 super.y(d1Var);
                 di.g2 g2Var = (di.g2) this.Q;
                 if (g2Var.D) {
-                    View view = d1Var.f56927a;
+                    View view = d1Var.f56952a;
                     if ((view instanceof di.n0) && (s0Var = (n0Var = (di.n0) view).K) != null && s0Var.f9736a == g2Var.f9826y) {
                         n0Var.a();
                         g2Var.D = false;

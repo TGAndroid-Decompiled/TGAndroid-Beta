@@ -22,7 +22,7 @@ public final class k implements Handler.Callback {
         Surface surface;
         l lVar = this.f8031b;
         wf.b bVar = lVar.f8033b1;
-        if (this == lVar.M1 && lVar.f56168d0 != null) {
+        if (this == lVar.M1 && lVar.f56193d0 != null) {
             if (j3 == Long.MAX_VALUE) {
                 lVar.M0 = true;
                 return;

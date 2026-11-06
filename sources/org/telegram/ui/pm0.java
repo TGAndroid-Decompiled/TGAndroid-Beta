@@ -9,12 +9,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class pm0 extends org.telegram.ui.ActionBar.f2 {
-    public Bitmap f48857a;
-    public BitmapDrawable f48858b;
-    public om0 f48859c;
+    public Bitmap f48852a;
+    public BitmapDrawable f48853b;
+    public om0 f48854c;
     public nm0 d;
-    public boolean f48860e;
-    public boolean f48861f;
+    public boolean f48855e;
+    public boolean f48856f;
 
     @Override
     public final View createView(Context context) {
@@ -43,7 +43,7 @@ public final class pm0 extends org.telegram.ui.ActionBar.f2 {
     @Override
     public final boolean onFragmentCreate() {
         int max;
-        if (this.f48857a == null) {
+        if (this.f48852a == null) {
             String string = getArguments().getString("photoPath");
             Uri uri = (Uri) getArguments().getParcelable("photoUri");
             if (string == null && uri == null) {
@@ -60,12 +60,12 @@ public final class pm0 extends org.telegram.ui.ActionBar.f2 {
             }
             float f10 = max;
             Bitmap K = org.telegram.messenger.gc.K(string, uri, f10, f10, true);
-            this.f48857a = K;
+            this.f48852a = K;
             if (K == null) {
                 return false;
             }
         }
-        this.f48858b = new BitmapDrawable(this.f48857a);
+        this.f48853b = new BitmapDrawable(this.f48852a);
         super.onFragmentCreate();
         return true;
     }
@@ -73,11 +73,11 @@ public final class pm0 extends org.telegram.ui.ActionBar.f2 {
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        Bitmap bitmap = this.f48857a;
-        if (bitmap != null && !this.f48860e) {
+        Bitmap bitmap = this.f48852a;
+        if (bitmap != null && !this.f48855e) {
             bitmap.recycle();
-            this.f48857a = null;
+            this.f48852a = null;
         }
-        this.f48858b = null;
+        this.f48853b = null;
     }
 }

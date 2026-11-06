@@ -41,7 +41,7 @@ public final class qq implements Runnable {
                     yrVar.o(e10, true);
                 }
                 int i10 = yrVar.currentAccount;
-                ConcurrentHashMap concurrentHashMap = org.telegram.utils.twidget.p.f52850a;
+                ConcurrentHashMap concurrentHashMap = org.telegram.utils.twidget.p.f52876a;
                 g0.h3(new hi.j2(i10, 13));
                 return;
             case 1:

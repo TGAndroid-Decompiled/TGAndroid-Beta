@@ -37,23 +37,23 @@ public final class a0 extends na implements ls {
     public final ArrayList X1;
     public xg.c Y1;
     public int Z1;
-    public int f57561a2;
-    public int f57562b2;
-    public boolean f57563c2;
+    public int f57586a2;
+    public int f57587b2;
+    public boolean f57588c2;
     public int d2;
-    public long f57564e2;
-    public int f57565f2;
-    public int f57566g2;
-    public long f57567h2;
-    public final yg.a f57568i2;
-    public sg.i0 f57569j2;
-    public int f57570k2;
-    public i f57571l2;
-    public final TL_stories.PrepaidGiveaway f57572m2;
-    public String f57573n2;
-    public boolean f57574o2;
-    public boolean f57575p2;
-    public final t f57576q2;
+    public long f57589e2;
+    public int f57590f2;
+    public int f57591g2;
+    public long f57592h2;
+    public final yg.a f57593i2;
+    public sg.i0 f57594j2;
+    public int f57595k2;
+    public i f57596l2;
+    public final TL_stories.PrepaidGiveaway f57597m2;
+    public String f57598n2;
+    public boolean f57599o2;
+    public boolean f57600p2;
+    public final t f57601q2;
 
     public a0(f2 f2Var, long j3, TL_stories.PrepaidGiveaway prepaidGiveaway) {
         super(f2Var, false);
@@ -77,11 +77,11 @@ public final class a0 extends na implements ls {
         this.V1 = new ArrayList();
         this.W1 = new ArrayList();
         this.X1 = new ArrayList();
-        int i7 = yg.d.f59327w;
+        int i7 = yg.d.f59352w;
         this.Z1 = 2;
-        this.f57561a2 = 0;
-        int i10 = yg.u.f59367w;
-        this.f57562b2 = 0;
+        this.f57586a2 = 0;
+        int i10 = yg.u.f59392w;
+        this.f57587b2 = 0;
         this.d2 = 12;
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(new Date().getTime() + 259200000);
@@ -92,14 +92,14 @@ public final class a0 extends na implements ls {
             i11++;
         }
         calendar.set(12, i11);
-        this.f57564e2 = calendar.getTimeInMillis();
-        this.f57565f2 = 2;
-        this.f57566g2 = 2;
-        this.f57573n2 = "";
-        this.f57575p2 = true;
-        this.f57576q2 = new t(this, 0);
-        this.f57572m2 = prepaidGiveaway;
-        this.f36333r1 = 0.15f;
+        this.f57589e2 = calendar.getTimeInMillis();
+        this.f57590f2 = 2;
+        this.f57591g2 = 2;
+        this.f57598n2 = "";
+        this.f57600p2 = true;
+        this.f57601q2 = new t(this, 0);
+        this.f57597m2 = prepaidGiveaway;
+        this.f36227r1 = 0.15f;
         this.f28646u0 = false;
         this.f28647v0 = false;
         this.T0 = false;
@@ -108,37 +108,37 @@ public final class a0 extends na implements ls {
         ((ViewGroup.MarginLayoutParams) this.l1.getLayoutParams()).leftMargin = 0;
         ((ViewGroup.MarginLayoutParams) this.l1.getLayoutParams()).rightMargin = 0;
         if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
-            int i12 = yg.d.f59327w;
+            int i12 = yg.d.f59352w;
             this.Z1 = 3;
         }
         v4.k kVar = new v4.k();
         kVar.n(350L);
         kVar.o(xq.h);
         kVar.C = false;
-        kVar.f56954m = false;
-        this.f36328k1.setItemAnimator(kVar);
-        pj0 pj0Var = this.f36328k1;
+        kVar.f56979m = false;
+        this.f36222k1.setItemAnimator(kVar);
+        pj0 pj0Var = this.f36222k1;
         int i13 = this.f28645t0;
         pj0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(68.0f));
-        this.f36328k1.setOnScrollListener(new Object());
-        this.f36328k1.setOnItemClickListener(new p4(23, this, f2Var));
+        this.f36222k1.setOnScrollListener(new Object());
+        this.f36222k1.setOnItemClickListener(new p4(23, this, f2Var));
         TLRPC.Chat M0 = qp.s1(this.f28612a).M0(Long.valueOf(-j3));
         this.T1 = M0;
         xg.c cVar = this.Y1;
         ArrayList arrayList = this.P1;
-        pj0 pj0Var2 = this.f36328k1;
+        pj0 pj0Var2 = this.f36222k1;
         u uVar = new u(this);
         u uVar2 = new u(this);
         u uVar3 = new u(this);
-        cVar.f58594e = arrayList;
-        cVar.f58599w = M0;
-        cVar.f58595f = pj0Var2;
+        cVar.f58619e = arrayList;
+        cVar.f58624w = M0;
+        cVar.f58620f = pj0Var2;
         cVar.h = uVar;
-        cVar.f58596n = uVar2;
-        cVar.f58598s = uVar3;
+        cVar.f58621n = uVar2;
+        cVar.f58623s = uVar3;
         k1(false, false);
         yg.a aVar = new yg.a(getContext(), this.I0);
-        this.f57568i2 = aVar;
+        this.f57593i2 = aVar;
         aVar.setOnClickListener(new rq(this, prepaidGiveaway, j3, f2Var));
         j1(false);
         this.f28615b.addView(aVar, ha.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -155,8 +155,8 @@ public final class a0 extends na implements ls {
 
     @Override
     public final CharSequence O0() {
-        int i7 = this.f57561a2;
-        int i10 = yg.d.f59327w;
+        int i7 = this.f57586a2;
+        int i10 = yg.d.f59352w;
         if (i7 == 1) {
             return hd.M0(2131749679, null);
         }
@@ -165,7 +165,7 @@ public final class a0 extends na implements ls {
 
     @Override
     public final void R0(Canvas canvas, int i7) {
-        this.f57570k2 = i7;
+        this.f57595k2 = i7;
     }
 
     public final ArrayList d1(long j3) {
@@ -187,14 +187,14 @@ public final class a0 extends na implements ls {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         pj0 pj0Var;
-        if (i7 == qs.f25090x3 && (pj0Var = this.f36328k1) != null && pj0Var.G) {
+        if (i7 == qs.f25090x3 && (pj0Var = this.f36222k1) != null && pj0Var.G) {
             k1(true, true);
         }
     }
 
     @Override
     public final void dismiss() {
-        i iVar = this.f57571l2;
+        i iVar = this.f57596l2;
         if (iVar != null) {
             iVar.run();
         }
@@ -203,31 +203,31 @@ public final class a0 extends na implements ls {
 
     public final int e1() {
         int i7 = this.Z1;
-        int i10 = yg.d.f59327w;
+        int i10 = yg.d.f59352w;
         if (i7 == 2) {
-            return ((Integer) this.Q1.get(this.f57565f2)).intValue();
+            return ((Integer) this.Q1.get(this.f57590f2)).intValue();
         }
         List h12 = h1();
-        int i11 = this.f57566g2;
+        int i11 = this.f57591g2;
         if (i11 < 0 || i11 >= h12.size()) {
-            this.f57566g2 = 0;
+            this.f57591g2 = 0;
         }
-        if (this.f57566g2 >= h12.size()) {
+        if (this.f57591g2 >= h12.size()) {
             return 0;
         }
-        return ((Integer) h12.get(this.f57566g2)).intValue();
+        return ((Integer) h12.get(this.f57591g2)).intValue();
     }
 
     public final int f1() {
         int e12;
         int g10;
         int i7 = this.Z1;
-        int i10 = yg.d.f59327w;
+        int i10 = yg.d.f59352w;
         if (i7 == 2) {
-            e12 = ((Integer) this.Q1.get(this.f57565f2)).intValue();
+            e12 = ((Integer) this.Q1.get(this.f57590f2)).intValue();
             g10 = s.g();
         } else {
-            TL_stars.TL_starsGiveawayOption g12 = g1(this.f57567h2);
+            TL_stars.TL_starsGiveawayOption g12 = g1(this.f57592h2);
             if (g12 != null) {
                 return g12.yearly_boosts;
             }
@@ -253,12 +253,12 @@ public final class a0 extends na implements ls {
 
     public final List h1() {
         int i7 = this.Z1;
-        int i10 = yg.d.f59327w;
+        int i10 = yg.d.f59352w;
         if (i7 == 2) {
             return this.Q1;
         }
         ArrayList arrayList = new ArrayList();
-        TL_stars.TL_starsGiveawayOption g12 = g1(this.f57567h2);
+        TL_stars.TL_starsGiveawayOption g12 = g1(this.f57592h2);
         if (g12 != null) {
             for (int i11 = 0; i11 < g12.winners.size(); i11++) {
                 TL_stars.TL_starsGiveawayWinnersOption tL_starsGiveawayWinnersOption = g12.winners.get(i11);
@@ -271,7 +271,7 @@ public final class a0 extends na implements ls {
     }
 
     public final boolean i1() {
-        if (this.f57572m2 != null) {
+        if (this.f57597m2 != null) {
             return true;
         }
         return false;
@@ -280,9 +280,9 @@ public final class a0 extends na implements ls {
     public final void j1(boolean z9) {
         boolean z10;
         boolean i12 = i1();
-        yg.a aVar = this.f57568i2;
+        yg.a aVar = this.f57593i2;
         if (i12) {
-            TL_stories.PrepaidGiveaway prepaidGiveaway = this.f57572m2;
+            TL_stories.PrepaidGiveaway prepaidGiveaway = this.f57597m2;
             if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
                 aVar.a(prepaidGiveaway.quantity, z9);
                 return;
@@ -290,8 +290,8 @@ public final class a0 extends na implements ls {
             aVar.a(s.g() * prepaidGiveaway.quantity, z9);
             return;
         }
-        int i7 = this.f57561a2;
-        int i10 = yg.d.f59327w;
+        int i7 = this.f57586a2;
+        int i10 = yg.d.f59352w;
         if (i7 == 0) {
             aVar.a(f1(), z9);
             return;
@@ -303,14 +303,14 @@ public final class a0 extends na implements ls {
         } else {
             z10 = false;
         }
-        aVar.f59301e = true;
-        fi.d dVar = aVar.f59298a;
+        aVar.f59326e = true;
+        fi.d dVar = aVar.f59323a;
         dVar.k();
         dVar.setShowZero(true);
         dVar.setEnabled(z10);
         dVar.c(g10, z9);
         dVar.i(hd.M0(2131749679, null), z9, true);
-        r6.i(k6.f27921h5, aVar.f59299b, aVar.f59300c);
+        r6.i(k6.f27921h5, aVar.f59324b, aVar.f59325c);
     }
 
     public final void k1(boolean r28, boolean r29) {

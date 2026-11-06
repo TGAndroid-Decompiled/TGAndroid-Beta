@@ -6,49 +6,49 @@ import android.os.Build;
 import android.view.View;
 import java.util.Iterator;
 public final class if0 {
-    public static final float[] f34608m = new ColorMatrix().getArray();
-    public static final float[] f34609n;
-    public static final nb.a f34610o;
-    public final oi.d f34611a;
-    public final oi.c f34612b;
-    public final dh.c f34613c;
+    public static final float[] f34571m = new ColorMatrix().getArray();
+    public static final float[] f34572n;
+    public static final nb.a f34573o;
+    public final oi.d f34574a;
+    public final oi.c f34575b;
+    public final dh.c f34576c;
     public final dh.c d;
-    public final dh.c f34614e;
-    public final ri.d f34615f;
-    public final xe.b f34616g;
+    public final dh.c f34577e;
+    public final ri.d f34578f;
+    public final xe.b f34579g;
     public final xe.b h;
-    public int f34617i;
-    public boolean f34618j;
-    public float f34619k;
-    public float f34620l;
+    public int f34580i;
+    public boolean f34581j;
+    public float f34582k;
+    public float f34583l;
 
     static {
         ColorMatrix colorMatrix = new ColorMatrix();
         org.telegram.messenger.g0.i(colorMatrix, 0.65f);
         org.telegram.messenger.g0.n2(colorMatrix, 0.5f);
-        f34609n = colorMatrix.getArray();
-        f34610o = new nb.a(18);
+        f34572n = colorMatrix.getArray();
+        f34573o = new nb.a(18);
     }
 
     public if0(oi.q qVar, oi.a aVar) {
         oi.c cVar;
         xe.b bVar = new xe.b();
-        this.f34616g = bVar;
+        this.f34579g = bVar;
         xe.b bVar2 = new xe.b();
         this.h = bVar2;
         if (Build.VERSION.SDK_INT >= 31) {
             aVar.f21025l = true;
             oi.d dVar = aVar.f21021g;
-            this.f34611a = dVar;
+            this.f34574a = dVar;
             if (dVar != null) {
                 cVar = dVar.d(4);
             } else {
                 cVar = null;
             }
-            this.f34612b = cVar;
+            this.f34575b = cVar;
         } else {
-            this.f34611a = null;
-            this.f34612b = null;
+            this.f34574a = null;
+            this.f34575b = null;
         }
         hf0 hf0Var = new hf0(this, null);
         hf0 hf0Var2 = new hf0(this, new gf0(aVar.f21018c));
@@ -56,7 +56,7 @@ public final class if0 {
         cVar2.f8709j = qVar;
         cVar2.f8707g = bVar;
         cVar2.f8706f = bVar2;
-        this.f34613c = cVar2;
+        this.f34576c = cVar2;
         dh.c cVar3 = new dh.c(hf0Var2, hf0Var2, hf0Var2);
         cVar3.f8709j = qVar;
         cVar3.f8707g = bVar;
@@ -64,12 +64,12 @@ public final class if0 {
         this.d = cVar3;
         cVar3.f8710k = true;
         ri.d dVar2 = new ri.d(hf0Var2, new gf0(aVar.f21020f));
-        this.f34615f = dVar2;
+        this.f34578f = dVar2;
         dh.c cVar4 = new dh.c(dVar2, dVar2, dVar2);
         cVar4.f8709j = qVar;
         cVar4.f8707g = bVar;
         cVar4.f8706f = bVar2;
-        this.f34614e = cVar4;
+        this.f34577e = cVar4;
         cVar4.f8710k = true;
     }
 
@@ -78,7 +78,7 @@ public final class if0 {
         while (it.hasNext()) {
             ((fh.g) it.next()).updateColors();
         }
-        Iterator it2 = this.f34616g.iterator();
+        Iterator it2 = this.f34579g.iterator();
         while (it2.hasNext()) {
             ((View) it2.next()).invalidate();
         }
@@ -87,15 +87,15 @@ public final class if0 {
     public final void b(float f10) {
         oi.d dVar;
         ColorMatrixColorFilter colorMatrixColorFilter;
-        if (this.f34619k != f10) {
-            this.f34619k = f10;
-            if (Build.VERSION.SDK_INT >= 31 && (dVar = this.f34611a) != null) {
+        if (this.f34582k != f10) {
+            this.f34582k = f10;
+            if (Build.VERSION.SDK_INT >= 31 && (dVar = this.f34574a) != null) {
                 if (f10 > 0.0f) {
-                    float[] fArr = f34608m;
+                    float[] fArr = f34571m;
                     int length = fArr.length;
                     float[] fArr2 = new float[length];
                     for (int i7 = 0; i7 < length; i7++) {
-                        fArr2[i7] = org.telegram.messenger.g0.T1(fArr[i7], f34609n[i7], f10);
+                        fArr2[i7] = org.telegram.messenger.g0.T1(fArr[i7], f34572n[i7], f10);
                     }
                     colorMatrixColorFilter = new ColorMatrixColorFilter(fArr2);
                 } else {

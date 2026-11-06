@@ -14,7 +14,7 @@ import org.telegram.ui.Cells.d2;
 import org.telegram.ui.Cells.x3;
 import org.telegram.ui.Cells.y6;
 import org.telegram.ui.Cells.z8;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Wallet.x9;
 import org.telegram.ui.Wallet.y5;
@@ -68,7 +68,7 @@ public final class c0 implements d20 {
                 }
                 return Boolean.valueOf(z9);
             case 8:
-                return Boolean.valueOf(f41.K(((Integer) obj).intValue()));
+                return Boolean.valueOf(k41.K(((Integer) obj).intValue()));
             case 9:
                 TL_wallet.exportSecretPhrase exportsecretphrase = new TL_wallet.exportSecretPhrase();
                 exportsecretphrase.password = (TLRPC.InputCheckPasswordSRP) obj;

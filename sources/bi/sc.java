@@ -43,7 +43,7 @@ public final class sc extends LinearLayout implements ls {
         addView(textView, c8.ha.r(-2, -2, 5));
         rc rcVar = new rc(this, context, context.getResources().getDrawable(2131232752).mutate());
         this.f4722c = rcVar;
-        rcVar.f34893n = true;
+        rcVar.f34873n = true;
         rcVar.getDrawable().r(false, true);
         rcVar.setTypeface(org.telegram.messenger.g0.o());
         org.telegram.ui.ActionBar.r6.Z(rcVar, i10, f6Var);

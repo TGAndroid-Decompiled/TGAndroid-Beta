@@ -54,7 +54,7 @@ public final class d4 implements c20 {
                 vz vzVar = (vz) this.f14620c;
                 int i7 = this.f14619b;
                 vzVar.getClass();
-                vzVar.f39785s2 = ((Boolean) obj).booleanValue();
+                vzVar.f39782s2 = ((Boolean) obj).booleanValue();
                 vzVar.dismiss();
                 ((c20) this.d).a(Integer.valueOf(i7));
                 return;
@@ -65,8 +65,8 @@ public final class d4 implements c20 {
                 zh.f2 f2Var2 = (zh.f2) this.f14620c;
                 int i10 = this.f14619b;
                 ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.ActionBar.f2 f2Var3 = f2Var2.f60187a;
-                t9 t9Var = f2Var2.f60190e;
+                org.telegram.ui.ActionBar.f2 f2Var3 = f2Var2.f60212a;
+                t9 t9Var = f2Var2.f60215e;
                 t9Var.a(i10, arrayList);
                 ((zh.a2) this.d).f(true);
                 f2Var2.f(true);
@@ -75,13 +75,13 @@ public final class d4 implements c20 {
                 if (c10 != null) {
                     if (arrayList.size() > 1) {
                         cc R = hc.a0(f2Var3).R(((TL_stars.SavedStarGift) arrayList.get(0)).gift.getDocument(), org.telegram.messenger.g0.X2(hd.K("Gift2AddedToCollectionMany", arrayList.size(), ',', c10.title)));
-                        R.f32531r = false;
+                        R.f32535r = false;
                         R.j();
                         return;
                     } else if (arrayList.size() == 1) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) arrayList.get(0);
                         cc R2 = hc.a0(f2Var3).R(savedStarGift.gift.getDocument(), org.telegram.messenger.g0.X2(hd.a0(null, null, 2131750392, k7.A1(savedStarGift.gift), c10.title)));
-                        R2.f32531r = false;
+                        R2.f32535r = false;
                         R2.j();
                         return;
                     } else {

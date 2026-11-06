@@ -12,17 +12,17 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class de extends FrameLayout {
-    public final Paint f32819a;
-    public final RectF f32820b;
-    public final org.telegram.ui.ActionBar.f6 f32821c;
+    public final Paint f32832a;
+    public final RectF f32833b;
+    public final org.telegram.ui.ActionBar.f6 f32834c;
     public final ChatActivityEnterView d;
 
     public de(ChatActivityEnterView chatActivityEnterView, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
         super(activity);
         this.d = chatActivityEnterView;
-        this.f32821c = f6Var;
-        this.f32819a = new Paint(1);
-        this.f32820b = new RectF();
+        this.f32834c = f6Var;
+        this.f32832a = new Paint(1);
+        this.f32833b = new RectF();
     }
 
     @Override
@@ -36,7 +36,7 @@ public final class de extends FrameLayout {
             }
             float N = org.telegram.messenger.g0.N(19.0f);
             int f02 = chatActivityEnterView.f0(org.telegram.ui.ActionBar.k6.Me);
-            Paint paint = this.f32819a;
+            Paint paint = this.f32832a;
             paint.setColor(f02);
             float N2 = org.telegram.messenger.g0.N(3.0f);
             float N3 = org.telegram.messenger.g0.N(38.0f);
@@ -44,7 +44,7 @@ public final class de extends FrameLayout {
             float measuredHeight = (getMeasuredHeight() - N3) - N2;
             float measuredWidth2 = getMeasuredWidth() - N2;
             float measuredHeight2 = getMeasuredHeight() - N2;
-            RectF rectF = this.f32820b;
+            RectF rectF = this.f32833b;
             rectF.set(measuredWidth, measuredHeight, measuredWidth2, measuredHeight2);
             canvas.save();
             canvas.scale(f10, f10, rectF.centerX(), rectF.centerY());
@@ -98,10 +98,10 @@ public final class de extends FrameLayout {
                                 }
                                 chatActivityEnterView.Z2.c1();
                                 v4.X(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new org.telegram.messenger.c20(this) {
-                                    public final de f32118b;
+                                    public final de f32112b;
 
                                     {
-                                        this.f32118b = this;
+                                        this.f32112b = this;
                                     }
 
                                     @Override
@@ -109,16 +109,16 @@ public final class de extends FrameLayout {
                                         Long l10 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             case 1:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             case 2:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             default:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                         }
                                     }
@@ -140,8 +140,8 @@ public final class de extends FrameLayout {
                                 long a10 = anVar.a();
                                 k2 k2Var = new k2(11);
                                 org.telegram.messenger.pd pdVar = new org.telegram.messenger.pd(22);
-                                Pattern pattern = v4.f38823a;
-                                org.telegram.ui.ActionBar.f6 f6Var = this.f32821c;
+                                Pattern pattern = v4.f38814a;
+                                org.telegram.ui.ActionBar.f6 f6Var = this.f32834c;
                                 v4.H(activity, a10, -1L, 0, false, k2Var, pdVar, new s4(f6Var), f6Var);
                             }
                             if (v4.a0(chatActivityEnterView.Q, chatActivityEnterView.Q2)) {
@@ -163,10 +163,10 @@ public final class de extends FrameLayout {
                                     }
                                 }
                                 v4.X(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new org.telegram.messenger.c20(this) {
-                                    public final de f32118b;
+                                    public final de f32112b;
 
                                     {
-                                        this.f32118b = this;
+                                        this.f32112b = this;
                                     }
 
                                     @Override
@@ -174,16 +174,16 @@ public final class de extends FrameLayout {
                                         Long l10 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             case 1:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             case 2:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             default:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                         }
                                     }
@@ -200,22 +200,22 @@ public final class de extends FrameLayout {
                         chatActivityEnterView.F2 = false;
                         chatActivityEnterView.f31048g0 = false;
                         Runnable runnable = new Runnable(this) {
-                            public final de f32540b;
+                            public final de f32544b;
 
                             {
-                                this.f32540b = this;
+                                this.f32544b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ChatActivityEnterView chatActivityEnterView2 = this.f32540b.d;
+                                        ChatActivityEnterView chatActivityEnterView2 = this.f32544b.d;
                                         chatActivityEnterView2.f31042f0 = null;
                                         chatActivityEnterView2.N1(1, true);
                                         return;
                                     default:
-                                        ChatActivityEnterView chatActivityEnterView3 = this.f32540b.d;
+                                        ChatActivityEnterView chatActivityEnterView3 = this.f32544b.d;
                                         chatActivityEnterView3.f31042f0 = null;
                                         chatActivityEnterView3.N1(1, true);
                                         return;
@@ -231,12 +231,12 @@ public final class de extends FrameLayout {
                 if (anVar == null) {
                     chat = null;
                 } else {
-                    chat = anVar.f43747e;
+                    chat = anVar.f43772e;
                 }
                 if (anVar == null) {
                     userFull = chatActivityEnterView.K;
                 } else {
-                    userFull = anVar.f43905q8;
+                    userFull = anVar.f43930q8;
                 }
                 if ((chat != null && !org.telegram.messenger.t3.v(chat) && (!org.telegram.messenger.t3.s(chat) || !chatActivityEnterView.f31037e2)) || (userFull != null && userFull.voice_messages_forbidden)) {
                     chatActivityEnterView.Z2.X1();
@@ -272,14 +272,14 @@ public final class de extends FrameLayout {
                                 if (agVar != null && org.telegram.messenger.qp.e1().getInt("voicepausehint", 0) <= 3) {
                                     agVar.a();
                                     fi.m3 m3Var = new fi.m3(agVar.getContext(), 2);
-                                    agVar.f31789a = m3Var;
+                                    agVar.f31801a = m3Var;
                                     m3Var.o(1.0f, 0.0f);
-                                    agVar.f31789a.r(true);
-                                    agVar.f31789a.u(org.telegram.messenger.hd.M0(2131743513, null));
-                                    agVar.f31792b0.setHintGlass(agVar.f31789a);
+                                    agVar.f31801a.r(true);
+                                    agVar.f31801a.u(org.telegram.messenger.hd.M0(2131743513, null));
+                                    agVar.f31804b0.setHintGlass(agVar.f31801a);
                                     org.telegram.messenger.qp.e1().edit().putInt("voicepausehint", org.telegram.messenger.qp.e1().getInt("voicepausehint", 0) + 1).apply();
-                                    agVar.addView(agVar.f31789a, c8.ha.d(-1, -1.0f, 119, 0.0f, 0.0f, 54.0f, 58.0f));
-                                    fi.m3 m3Var2 = agVar.f31789a;
+                                    agVar.addView(agVar.f31801a, c8.ha.d(-1, -1.0f, 119, 0.0f, 0.0f, 54.0f, 58.0f));
+                                    fi.m3 m3Var2 = agVar.f31801a;
                                     m3Var2.f12436q0 = new yf(agVar, m3Var2, 3);
                                     m3Var2.w();
                                 }
@@ -425,10 +425,10 @@ public final class de extends FrameLayout {
                                 }
                                 chatActivityEnterView.Z2.c1();
                                 v4.X(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new org.telegram.messenger.c20(this) {
-                                    public final de f32118b;
+                                    public final de f32112b;
 
                                     {
-                                        this.f32118b = this;
+                                        this.f32112b = this;
                                     }
 
                                     @Override
@@ -436,16 +436,16 @@ public final class de extends FrameLayout {
                                         Long l10 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             case 1:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             case 2:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             default:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                         }
                                     }
@@ -478,10 +478,10 @@ public final class de extends FrameLayout {
                                     slideTextView6.setEnabled(false);
                                 }
                                 v4.X(chatActivityEnterView.Q, 1, chatActivityEnterView.Q2, new org.telegram.messenger.c20(this) {
-                                    public final de f32118b;
+                                    public final de f32112b;
 
                                     {
-                                        this.f32118b = this;
+                                        this.f32112b = this;
                                     }
 
                                     @Override
@@ -489,16 +489,16 @@ public final class de extends FrameLayout {
                                         Long l10 = (Long) obj;
                                         switch (r2) {
                                             case 0:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             case 1:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             case 2:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                             default:
-                                                this.f32118b.d.T0(true, 0, 0, l10.longValue(), false);
+                                                this.f32112b.d.T0(true, 0, 0, l10.longValue(), false);
                                                 return;
                                         }
                                     }
@@ -510,7 +510,7 @@ public final class de extends FrameLayout {
                                     long a11 = anVar.a();
                                     k2 k2Var2 = new k2(12);
                                     org.telegram.messenger.pd pdVar2 = new org.telegram.messenger.pd(23);
-                                    org.telegram.ui.ActionBar.f6 f6Var2 = this.f32821c;
+                                    org.telegram.ui.ActionBar.f6 f6Var2 = this.f32834c;
                                     v4.H(activity2, a11, -1L, 0, false, k2Var2, pdVar2, new s4(f6Var2), f6Var2);
                                 }
                                 chatActivityEnterView.Z2.R0(0);
@@ -524,22 +524,22 @@ public final class de extends FrameLayout {
                         chatActivityEnterView.F2 = false;
                         chatActivityEnterView.f31048g0 = false;
                         Runnable runnable2 = new Runnable(this) {
-                            public final de f32540b;
+                            public final de f32544b;
 
                             {
-                                this.f32540b = this;
+                                this.f32544b = this;
                             }
 
                             @Override
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ChatActivityEnterView chatActivityEnterView22 = this.f32540b.d;
+                                        ChatActivityEnterView chatActivityEnterView22 = this.f32544b.d;
                                         chatActivityEnterView22.f31042f0 = null;
                                         chatActivityEnterView22.N1(1, true);
                                         return;
                                     default:
-                                        ChatActivityEnterView chatActivityEnterView32 = this.f32540b.d;
+                                        ChatActivityEnterView chatActivityEnterView32 = this.f32544b.d;
                                         chatActivityEnterView32.f31042f0 = null;
                                         chatActivityEnterView32.N1(1, true);
                                         return;

@@ -39,18 +39,18 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.f71;
-import org.telegram.ui.Components.k51;
-import org.telegram.ui.Components.m11;
-import org.telegram.ui.Components.m51;
-import org.telegram.ui.Components.n51;
-import org.telegram.ui.Components.t31;
+import org.telegram.ui.Components.a41;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.c41;
+import org.telegram.ui.Components.k71;
+import org.telegram.ui.Components.o51;
+import org.telegram.ui.Components.q51;
+import org.telegram.ui.Components.r11;
+import org.telegram.ui.Components.s51;
 import org.telegram.ui.Components.tg0;
 import org.telegram.ui.Components.ty0;
 import org.telegram.ui.Components.uy0;
-import org.telegram.ui.Components.v31;
-import org.telegram.ui.Components.w31;
-import org.telegram.ui.Components.x31;
+import org.telegram.ui.Components.y31;
 import org.telegram.ui.LaunchActivity;
 public class ij {
     public static Pattern f23183k3;
@@ -189,17 +189,17 @@ public class ij {
     public float f23210e0;
     public TLRPC.TL_peerColorCollectible f23211e1;
     public boolean f23212e2;
-    public m51 f23213e3;
+    public q51 f23213e3;
     public final boolean f23214f;
     public float f23215f0;
     public boolean f23216f1;
     public TLRPC.Peer f23217f2;
-    public m51 f23218f3;
+    public q51 f23218f3;
     public final boolean f23219g;
     public int f23220g0;
     public boolean f23221g1;
     public final Drawable[] f23222g2;
-    public m51 f23223g3;
+    public q51 f23223g3;
     public Boolean h;
     public int f23224h0;
     public TLRPC.TL_forumTopic f23225h1;
@@ -595,9 +595,9 @@ public class ij {
                 str2 = str4;
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.replace(charSequence, new String[]{str}, new CharSequence[]{charSequence2}));
-            w31 w31Var = new w31(rf.b.i("", str2));
-            w31Var.f38822c = tLObject2;
-            spannableStringBuilder.setSpan(w31Var, indexOf, charSequence2.length() + indexOf, 33);
+            b41 b41Var = new b41(rf.b.i("", str2));
+            b41Var.f31678c = tLObject2;
+            spannableStringBuilder.setSpan(b41Var, indexOf, charSequence2.length() + indexOf, 33);
             return spannableStringBuilder;
         }
         return charSequence;
@@ -1213,7 +1213,7 @@ public class ij {
                 break;
             }
             tg0 tg0Var = objArr[i14];
-            tg0Var.f38342a.f38634b = false;
+            tg0Var.f38333a.f38625b = false;
             int spanStart = spanned.getSpanStart(tg0Var);
             int spanEnd = spanned.getSpanEnd(objArr[i14]);
             treeSet.add(Integer.valueOf(spanStart));
@@ -1223,7 +1223,7 @@ public class ij {
             } else {
                 i12 = 0;
             }
-            if (objArr[i14].f38342a.f38636e) {
+            if (objArr[i14].f38333a.f38627e) {
                 i15 = 16;
             }
             hashMap.put(valueOf, Integer.valueOf(i12 | i15));
@@ -2286,15 +2286,15 @@ public class ij {
                 f0(richText.text, i7, spannableStringBuilder, i10);
                 if (spannableStringBuilder.length() > length) {
                     ?? obj = new Object();
-                    obj.f38442a = i10;
-                    spannableStringBuilder.setSpan(new t31(richText.url, obj), length, spannableStringBuilder.length(), 33);
+                    obj.f38433a = i10;
+                    spannableStringBuilder.setSpan(new y31(richText.url, obj), length, spannableStringBuilder.length(), 33);
                 }
             } else if (richText instanceof TL_iv.textEmail) {
                 f0(richText.text, i7, spannableStringBuilder, i10);
                 if (spannableStringBuilder.length() > length) {
                     ?? obj2 = new Object();
-                    obj2.f38442a = i10;
-                    spannableStringBuilder.setSpan(new x31("mailto:" + richText.email, obj2), length, spannableStringBuilder.length(), 33);
+                    obj2.f38433a = i10;
+                    spannableStringBuilder.setSpan(new c41("mailto:" + richText.email, obj2), length, spannableStringBuilder.length(), 33);
                 }
             } else if (richText instanceof TL_iv.textMath) {
                 spannableStringBuilder.append((CharSequence) U5(2131231555, "fx")).append(" ").append((CharSequence) hd.M0(2131754864, null));
@@ -2307,8 +2307,8 @@ public class ij {
                         d = rf.b.i("+", d);
                     }
                     ?? obj3 = new Object();
-                    obj3.f38442a = i10;
-                    spannableStringBuilder.setSpan(new v31(rf.b.i("tel:", d), (ty0) obj3), length, spannableStringBuilder.length(), 33);
+                    obj3.f38433a = i10;
+                    spannableStringBuilder.setSpan(new a41(rf.b.i("tel:", d), (ty0) obj3), length, spannableStringBuilder.length(), 33);
                 }
             } else if (richText instanceof TL_iv.textConcat) {
                 ArrayList<TL_iv.RichText> arrayList = ((TL_iv.textConcat) richText).texts;
@@ -2327,7 +2327,7 @@ public class ij {
             }
             if (spannableStringBuilder.length() > length && i10 != 0) {
                 ?? obj4 = new Object();
-                obj4.f38442a = i10;
+                obj4.f38433a = i10;
                 spannableStringBuilder.setSpan(new uy0(obj4, 0), length, spannableStringBuilder.length(), 33);
             }
         }
@@ -2589,8 +2589,8 @@ public class ij {
             charSequenceArr[0] = new SpannableStringBuilder("u");
             org.telegram.ui.Components.wp wpVar = new org.telegram.ui.Components.wp(2131231970, 0);
             wpVar.G = 0.9f;
-            wpVar.f40055r = 0.0f;
-            wpVar.f40056s = g0.L(1.0f);
+            wpVar.f40062r = 0.0f;
+            wpVar.f40063s = g0.L(1.0f);
             ((SpannableStringBuilder) f23188p3[0]).setSpan(wpVar, 0, 1, 33);
         }
         return f23188p3[0];
@@ -3532,20 +3532,20 @@ public class ij {
                     } else {
                         messageMedia2 = null;
                     }
-                    int i10 = n51.f36286j0;
+                    int i10 = s51.f37896j0;
                     if (!(messageMedia2 instanceof TLRPC.TL_messageMediaDocument)) {
                         X = new ArrayList();
                     } else {
-                        X = n51.X(i7, messageMedia2.document, messageMedia2.alt_documents, 0, z9);
+                        X = s51.X(i7, messageMedia2.document, messageMedia2.alt_documents, 0, z9);
                     }
                     this.f23205c3 = X;
                     if (X.size() > 1) {
                         z10 = true;
                     }
                     this.f23200b3 = Boolean.valueOf(z10);
-                    this.f23213e3 = n51.a0(this.f23205c3);
-                    this.f23218f3 = n51.b0(this.f23205c3);
-                    this.f23223g3 = n51.N(this.f23205c3);
+                    this.f23213e3 = s51.a0(this.f23205c3);
+                    this.f23218f3 = s51.b0(this.f23205c3);
+                    this.f23223g3 = s51.N(this.f23205c3);
                 }
                 this.f23200b3 = Boolean.FALSE;
                 return false;
@@ -3613,13 +3613,13 @@ public class ij {
     }
 
     public final TLRPC.Document F0() {
-        m51 m51Var;
+        q51 q51Var;
         TLRPC.Document document = this.f23247n;
         if (document != null) {
             return document;
         }
-        if (E2(true) && (m51Var = this.f23213e3) != null) {
-            return m51Var.f35929g;
+        if (E2(true) && (q51Var = this.f23213e3) != null) {
+            return q51Var.f37155g;
         }
         return G0(this.f23237k);
     }
@@ -3764,7 +3764,7 @@ public class ij {
                 StringBuilder sb2 = new StringBuilder("");
                 i7 = i10;
                 sb2.append(user.f27101id);
-                spannableStringBuilder.setSpan(new w31(sb2.toString()), length, p10.length() + length, 33);
+                spannableStringBuilder.setSpan(new b41(sb2.toString()), length, p10.length() + length, 33);
             } else {
                 i7 = i10;
             }
@@ -5362,17 +5362,17 @@ public class ij {
     }
 
     public final long T1() {
-        m51 m51Var = this.f23213e3;
-        if (m51Var != null) {
-            return m51Var.f35929g.size;
+        q51 q51Var = this.f23213e3;
+        if (q51Var != null) {
+            return q51Var.f37155g.size;
         }
-        m51 m51Var2 = this.f23218f3;
-        if (m51Var2 != null) {
-            return m51Var2.f35929g.size;
+        q51 q51Var2 = this.f23218f3;
+        if (q51Var2 != null) {
+            return q51Var2.f37155g.size;
         }
-        m51 m51Var3 = this.f23223g3;
-        if (m51Var3 != null) {
-            return m51Var3.f35929g.size;
+        q51 q51Var3 = this.f23223g3;
+        if (q51Var3 != null) {
+            return q51Var3.f37155g.size;
         }
         return q1(o1(this.f23237k));
     }
@@ -5432,10 +5432,10 @@ public class ij {
     public final boolean U4() {
         TLRPC.Message message = this.f23237k;
         if (message != null) {
-            if (S4(message) || (i4() && m11.k(this))) {
+            if (S4(message) || (i4() && r11.k(this))) {
                 TLRPC.Message message2 = this.f23237k;
                 if (message2.voiceTranscriptionOpen && message2.voiceTranscription != null) {
-                    if (message2.voiceTranscriptionFinal || m11.j(this)) {
+                    if (message2.voiceTranscriptionFinal || r11.j(this)) {
                         return true;
                     }
                     return false;
@@ -5803,7 +5803,7 @@ public class ij {
             return true;
         }
         TLRPC.Message message2 = this.f23237k;
-        if (message2 != null && (messageMedia = message2.media) != null && (webPage = messageMedia.webpage) != null && !TextUtils.isEmpty(f71.e(webPage.url))) {
+        if (message2 != null && (messageMedia = message2.media) != null && (webPage = messageMedia.webpage) != null && !TextUtils.isEmpty(k71.e(webPage.url))) {
             z9 = true;
         }
         this.R2 = Boolean.valueOf(z9);
@@ -5998,18 +5998,18 @@ public class ij {
         while (i7 < size) {
             Object obj = arrayList.get(i7);
             i7++;
-            ArrayList arrayList2 = ((k51) obj).d;
+            ArrayList arrayList2 = ((o51) obj).d;
             int size2 = arrayList2.size();
             int i10 = 0;
             while (i10 < size2) {
                 Object obj2 = arrayList2.get(i10);
                 i10++;
-                ((m51) obj2).e(z9);
+                ((q51) obj2).e(z9);
             }
         }
-        this.f23213e3 = n51.a0(this.f23205c3);
-        this.f23218f3 = n51.b0(this.f23205c3);
-        this.f23223g3 = n51.N(this.f23205c3);
+        this.f23213e3 = s51.a0(this.f23205c3);
+        this.f23218f3 = s51.b0(this.f23205c3);
+        this.f23223g3 = s51.N(this.f23205c3);
     }
 
     public final Spannable g0(TLRPC.TodoItem todoItem) {
@@ -6018,7 +6018,7 @@ public class ij {
             h02 = new SpannableStringBuilder(h02);
         }
         Spannable spannable = (Spannable) h02;
-        spannable.setSpan(new v31("task?" + todoItem.f27099id, 0), 0, h02.length(), 33);
+        spannable.setSpan(new a41("task?" + todoItem.f27099id, 0), 0, h02.length(), 33);
         return spannable;
     }
 
@@ -6488,9 +6488,9 @@ public class ij {
     }
 
     public final boolean k5() {
-        m51 m51Var;
-        if (E2(true) && (m51Var = this.f23213e3) != null) {
-            return m51Var.b();
+        q51 q51Var;
+        if (E2(true) && (q51Var = this.f23213e3) != null) {
+            return q51Var.b();
         }
         return this.f23286x0;
     }
@@ -6819,7 +6819,7 @@ public class ij {
                     b(spannableStringBuilder, this.f23237k.reply_to.quote_entities, Q3(), false, false, false, 0);
                     SpannableString spannableString = new SpannableString("q ");
                     org.telegram.ui.Components.wp wpVar = new org.telegram.ui.Components.wp(2131231966, 0);
-                    wpVar.f40059y = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28088q6, false);
+                    wpVar.f40066y = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28088q6, false);
                     spannableString.setSpan(wpVar, 0, 1, 33);
                     M2 = new SpannableStringBuilder(spannableString).append((CharSequence) spannableStringBuilder).append('\n').append(M2);
                 }
@@ -8051,7 +8051,7 @@ public class ij {
     }
 
     public final boolean x5() {
-        if (!T4() && F0() != null && yf.c.f59289i.contains(F0().mime_type) && F0().size < qp.s1(this.I1).f24816l4 * 2) {
+        if (!T4() && F0() != null && yf.c.f59314i.contains(F0().mime_type) && F0().size < qp.s1(this.I1).f24816l4 * 2) {
             for (int i7 = 0; i7 < F0().attributes.size(); i7++) {
                 TLRPC.DocumentAttribute documentAttribute = F0().attributes.get(i7);
                 if ((documentAttribute instanceof TLRPC.TL_documentAttributeAudio) && documentAttribute.duration < 5.0d) {

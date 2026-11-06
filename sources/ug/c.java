@@ -16,27 +16,27 @@ import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.v3;
 import org.telegram.ui.Components.Premium.LimitPreviewView;
 import org.telegram.ui.Components.oj0;
-import org.telegram.ui.rq0;
+import org.telegram.ui.sq0;
 public final class c extends oj0 {
-    public final f6 f56413c;
+    public final f6 f56438c;
     public final int d;
-    public final int f56414e;
-    public final ArrayList f56415f;
+    public final int f56439e;
+    public final ArrayList f56440f;
     public final y0 h;
-    public int f56416n;
-    public b f56417r;
-    public final boolean f56418s;
+    public int f56441n;
+    public b f56442r;
+    public final boolean f56443s;
 
     public c(int i7, f6 f6Var) {
         ArrayList arrayList = new ArrayList();
-        this.f56415f = arrayList;
-        this.f56418s = true;
-        this.f56413c = f6Var;
+        this.f56440f = arrayList;
+        this.f56443s = true;
+        this.f56438c = f6Var;
         y0 y0Var = new y0(k6.zk, k6.Ak, k6.Bk, k6.Ck, f6Var);
         this.h = y0Var;
-        y0Var.f56760o = 0.0f;
-        y0Var.f56761p = 0.0f;
-        y0Var.f56762q = 1.0f;
+        y0Var.f56785o = 0.0f;
+        y0Var.f56786p = 0.0f;
+        y0Var.f56787q = 1.0f;
         qp s12 = qp.s1(i7);
         arrayList.add(new d(s12.D4, s12.E4, hd.M0(2131749378, null), hd.a0(null, null, 2131749379, Integer.valueOf(s12.E4))));
         arrayList.add(new d(s12.P4, s12.Q4, hd.M0(2131747247, null), hd.a0(null, null, 2131747248, Integer.valueOf(s12.Q4))));
@@ -50,7 +50,7 @@ public final class c extends oj0 {
         arrayList.add(new d(3, 4, hd.M0(2131751810, null), hd.a0(null, null, 2131751811, 4)));
         arrayList.add(new d(s12.f24914w4, s12.f24924x4, hd.M0(2131745316, null), hd.a0(null, null, 2131745317, Integer.valueOf(s12.f24924x4))));
         this.d = 1;
-        this.f56414e = 1;
+        this.f56439e = 1;
         this.d = arrayList.size() + 1;
     }
 
@@ -77,14 +77,14 @@ public final class c extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        if (d1Var.f56931f == 0) {
-            e eVar = (e) d1Var.f56927a;
-            int i10 = i7 - this.f56414e;
-            ArrayList arrayList = this.f56415f;
+        if (d1Var.f56956f == 0) {
+            e eVar = (e) d1Var.f56952a;
+            int i10 = i7 - this.f56439e;
+            ArrayList arrayList = this.f56440f;
             eVar.a((d) arrayList.get(i10));
-            LimitPreviewView limitPreviewView = eVar.f56433c;
-            limitPreviewView.F = ((d) arrayList.get(i10)).f56425e;
-            limitPreviewView.f31448c = this.f56416n;
+            LimitPreviewView limitPreviewView = eVar.f56458c;
+            limitPreviewView.F = ((d) arrayList.get(i10)).f56450e;
+            limitPreviewView.f31448c = this.f56441n;
         }
     }
 
@@ -92,20 +92,20 @@ public final class c extends oj0 {
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         v3 v3Var;
         Context context = viewGroup.getContext();
-        f6 f6Var = this.f56413c;
+        f6 f6Var = this.f56438c;
         if (i7 != 1) {
             if (i7 != 2) {
                 ?? eVar = new e(context, f6Var);
-                b bVar = this.f56417r;
-                LimitPreviewView limitPreviewView = eVar.f56433c;
+                b bVar = this.f56442r;
+                LimitPreviewView limitPreviewView = eVar.f56458c;
                 limitPreviewView.setParentViewForGradien(bVar);
                 limitPreviewView.setStaticGradinet(this.h);
                 v3Var = eVar;
             } else {
                 v3Var = new v3(context, 16);
             }
-        } else if (this.f56418s) {
-            ?? rq0Var = new rq0(context, 18);
+        } else if (this.f56443s) {
+            ?? sq0Var = new sq0(context, 18);
             LinearLayout f10 = k5.f(context, 0);
             ImageView imageView = new ImageView(context);
             imageView.setImageDrawable(ia.e.c(context.getDrawable(2131232471), (y0) ia.e.d().f15424b));
@@ -117,8 +117,8 @@ public final class c extends oj0 {
             r6.V(textView, k6.G6, f6Var);
             textView.setTypeface(org.telegram.messenger.g0.o());
             f10.addView(textView, ha.e(-2, -2, 16));
-            rq0Var.addView(f10, ha.e(-2, -2, 17));
-            v3Var = rq0Var;
+            sq0Var.addView(f10, ha.e(-2, -2, 17));
+            v3Var = sq0Var;
         } else {
             v3Var = new v3(context, 64);
         }

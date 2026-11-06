@@ -351,43 +351,43 @@ public final class px implements RequestDelegate {
                                         }
                                         return;
                                     }
-                                    if (anVar2.f43710b3 == null && anVar2.f43693a1 != null && anVar2.getParentActivity() != null) {
+                                    if (anVar2.f43735b3 == null && anVar2.f43718a1 != null && anVar2.getParentActivity() != null) {
                                         FrameLayout frameLayout = new FrameLayout(anVar2.getParentActivity());
-                                        anVar2.f43710b3 = frameLayout;
-                                        anVar2.f43693a1.addView(frameLayout, c8.ha.o(-1, 48));
-                                        anVar2.f43693a1.h(11, anVar2.f43710b3);
-                                        anVar2.f43693a1.g(anVar2.f43710b3);
+                                        anVar2.f43735b3 = frameLayout;
+                                        anVar2.f43718a1.addView(frameLayout, c8.ha.o(-1, 48));
+                                        anVar2.f43718a1.h(11, anVar2.f43735b3);
+                                        anVar2.f43718a1.g(anVar2.f43735b3);
                                         TextView textView = new TextView(anVar2.getParentActivity());
-                                        anVar2.f43737d3 = textView;
+                                        anVar2.f43762d3 = textView;
                                         textView.setTextSize(1, 14.0f);
-                                        org.telegram.ui.ActionBar.r6.V(anVar2.f43737d3, org.telegram.ui.ActionBar.k6.Te, anVar2.getResourceProvider());
-                                        anVar2.f43737d3.setTypeface(g0.o());
-                                        anVar2.f43737d3.setSingleLine(true);
-                                        TextView textView2 = anVar2.f43737d3;
+                                        org.telegram.ui.ActionBar.r6.V(anVar2.f43762d3, org.telegram.ui.ActionBar.k6.Te, anVar2.getResourceProvider());
+                                        anVar2.f43762d3.setTypeface(g0.o());
+                                        anVar2.f43762d3.setSingleLine(true);
+                                        TextView textView2 = anVar2.f43762d3;
                                         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
                                         textView2.setEllipsize(truncateAt);
-                                        anVar2.f43737d3.setMaxLines(1);
-                                        anVar2.f43710b3.addView(anVar2.f43737d3, c8.ha.d(-2, -2.0f, 51, 8.0f, 5.0f, 8.0f, 0.0f));
+                                        anVar2.f43762d3.setMaxLines(1);
+                                        anVar2.f43735b3.addView(anVar2.f43762d3, c8.ha.d(-2, -2.0f, 51, 8.0f, 5.0f, 8.0f, 0.0f));
                                         TextView textView3 = new TextView(anVar2.getParentActivity());
-                                        anVar2.f43751e3 = textView3;
+                                        anVar2.f43776e3 = textView3;
                                         textView3.setTextSize(1, 14.0f);
-                                        org.telegram.ui.ActionBar.r6.V(anVar2.f43751e3, org.telegram.ui.ActionBar.k6.Ue, anVar2.getResourceProvider());
-                                        anVar2.f43751e3.setSingleLine(true);
-                                        anVar2.f43751e3.setEllipsize(truncateAt);
-                                        anVar2.f43751e3.setMaxLines(1);
-                                        anVar2.f43710b3.addView(anVar2.f43751e3, c8.ha.d(-2, -2.0f, 51, 8.0f, 23.0f, 8.0f, 0.0f));
+                                        org.telegram.ui.ActionBar.r6.V(anVar2.f43776e3, org.telegram.ui.ActionBar.k6.Ue, anVar2.getResourceProvider());
+                                        anVar2.f43776e3.setSingleLine(true);
+                                        anVar2.f43776e3.setEllipsize(truncateAt);
+                                        anVar2.f43776e3.setMaxLines(1);
+                                        anVar2.f43735b3.addView(anVar2.f43776e3, c8.ha.d(-2, -2.0f, 51, 8.0f, 23.0f, 8.0f, 0.0f));
                                     }
-                                    FrameLayout frameLayout2 = anVar2.f43710b3;
-                                    if (frameLayout2 != null && (lgVar = anVar2.f43693a1) != null) {
+                                    FrameLayout frameLayout2 = anVar2.f43735b3;
+                                    if (frameLayout2 != null && (lgVar = anVar2.f43718a1) != null) {
                                         lgVar.i(frameLayout2, true, true);
-                                        anVar2.f43737d3.setText(str4);
-                                        anVar2.f43751e3.setText(i6.m(str6.replace('\n', ' '), anVar2.f43751e3.getPaint().getFontMetricsInt(), false, null, 0));
-                                        org.telegram.ui.xj xjVar = anVar2.f43724c3;
+                                        anVar2.f43762d3.setText(str4);
+                                        anVar2.f43776e3.setText(i6.m(str6.replace('\n', ' '), anVar2.f43776e3.getPaint().getFontMetricsInt(), false, null, 0));
+                                        org.telegram.ui.xj xjVar = anVar2.f43749c3;
                                         if (xjVar != null) {
                                             g0.r(xjVar);
                                         }
                                         org.telegram.ui.xj xjVar2 = new org.telegram.ui.xj(anVar2, 1);
-                                        anVar2.f43724c3 = xjVar2;
+                                        anVar2.f43749c3 = xjVar2;
                                         g0.i3(xjVar2, 3000L);
                                     }
                                 } else if (tL_messages_botCallbackAnswer.url != null && anVar2.getParentActivity() != null) {
@@ -439,7 +439,7 @@ public final class px implements RequestDelegate {
                                                 }
                                             };
                                             twoStepVerificationActivity3.Z = 0;
-                                            twoStepVerificationActivity3.f42027b0 = la1Var;
+                                            twoStepVerificationActivity3.f42052b0 = la1Var;
                                             anVar3.presentFragment(twoStepVerificationActivity3);
                                         }
                                     });

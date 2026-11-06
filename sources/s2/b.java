@@ -14,25 +14,25 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 public final class b implements b3.j {
-    public final Uri f54487a;
-    public final String f54488b;
-    public final b3.o f54489c = new b3.o("DefaultHlsPlaylistTracker:MediaPlaylist");
+    public final Uri f54512a;
+    public final String f54513b;
+    public final b3.o f54514c = new b3.o("DefaultHlsPlaylistTracker:MediaPlaylist");
     public final j2.h d;
-    public m f54490e;
-    public long f54491f;
+    public m f54515e;
+    public long f54516f;
     public long h;
-    public long f54492n;
-    public long f54493r;
-    public boolean f54494s;
-    public IOException f54495w;
-    public boolean f54496x;
-    public final d f54497y;
+    public long f54517n;
+    public long f54518r;
+    public boolean f54519s;
+    public IOException f54520w;
+    public boolean f54521x;
+    public final d f54522y;
 
     public b(d dVar, Uri uri, String str) {
-        this.f54497y = dVar;
-        this.f54487a = uri;
-        this.f54488b = str;
-        this.d = ((j2.g) dVar.f54501a.f36166a).createDataSource();
+        this.f54522y = dVar;
+        this.f54512a = uri;
+        this.f54513b = str;
+        this.d = ((j2.g) dVar.f54526a.f36104a).createDataSource();
     }
 
     @Override
@@ -48,33 +48,33 @@ public final class b implements b3.j {
             c0 c0Var = rVar.d;
             uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
         }
-        this.f54497y.f54505f.t(uVar, rVar.f2967c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
+        this.f54522y.f54530f.t(uVar, rVar.f2967c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L, i7);
     }
 
     public final Uri a() {
         String str;
-        m mVar = this.f54490e;
-        Uri uri = this.f54487a;
+        m mVar = this.f54515e;
+        Uri uri = this.f54512a;
         if (mVar != null) {
             l lVar = mVar.v;
-            if (lVar.f54567a != -9223372036854775807L || lVar.f54570e) {
+            if (lVar.f54592a != -9223372036854775807L || lVar.f54595e) {
                 Uri.Builder buildUpon = uri.buildUpon();
-                m mVar2 = this.f54490e;
-                if (mVar2.v.f54570e) {
-                    buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(mVar2.f54576k + mVar2.f54583r.size()));
-                    m mVar3 = this.f54490e;
-                    if (mVar3.f54579n != -9223372036854775807L) {
-                        i0 i0Var = mVar3.f54584s;
+                m mVar2 = this.f54515e;
+                if (mVar2.v.f54595e) {
+                    buildUpon.appendQueryParameter("_HLS_msn", String.valueOf(mVar2.f54601k + mVar2.f54608r.size()));
+                    m mVar3 = this.f54515e;
+                    if (mVar3.f54604n != -9223372036854775807L) {
+                        i0 i0Var = mVar3.f54609s;
                         int size = i0Var.size();
-                        if (!i0Var.isEmpty() && ((h) h9.o.n(i0Var)).f54552y) {
+                        if (!i0Var.isEmpty() && ((h) h9.o.n(i0Var)).f54577y) {
                             size--;
                         }
                         buildUpon.appendQueryParameter("_HLS_part", String.valueOf(size));
                     }
                 }
-                l lVar2 = this.f54490e.v;
-                if (lVar2.f54567a != -9223372036854775807L) {
-                    if (lVar2.f54568b) {
+                l lVar2 = this.f54515e.v;
+                if (lVar2.f54592a != -9223372036854775807L) {
+                    if (lVar2.f54593b) {
                         str = "v2";
                     } else {
                         str = "YES";
@@ -88,24 +88,24 @@ public final class b implements b3.j {
     }
 
     public final void b(Uri uri) {
-        d dVar = this.f54497y;
-        b3.q I = dVar.f54502b.I(dVar.f54508s, this.f54490e);
+        d dVar = this.f54522y;
+        b3.q I = dVar.f54527b.I(dVar.f54533s, this.f54515e);
         Map map = Collections.EMPTY_MAP;
         ia.k(uri, "The uri must be set.");
         b3.r rVar = new b3.r(this.d, new j2.m(uri, 1, null, map, 0L, -1L, null, 1), 4, I);
-        this.f54489c.f(rVar, this, dVar.f54503c.X0(rVar.f2967c));
+        this.f54514c.f(rVar, this, dVar.f54528c.X0(rVar.f2967c));
     }
 
     public final void c(Uri uri) {
-        this.f54493r = 0L;
-        if (!this.f54494s) {
-            b3.o oVar = this.f54489c;
+        this.f54518r = 0L;
+        if (!this.f54519s) {
+            b3.o oVar = this.f54514c;
             if (!oVar.d() && !oVar.c()) {
                 long elapsedRealtime = SystemClock.elapsedRealtime();
-                long j3 = this.f54492n;
+                long j3 = this.f54517n;
                 if (elapsedRealtime < j3) {
-                    this.f54494s = true;
-                    this.f54497y.f54506n.postDelayed(new org.telegram.ui.web.w(22, this, uri), j3 - elapsedRealtime);
+                    this.f54519s = true;
+                    this.f54522y.f54531n.postDelayed(new org.telegram.ui.web.w(22, this, uri), j3 - elapsedRealtime);
                     return;
                 }
                 b(uri);
@@ -136,8 +136,8 @@ public final class b implements b3.j {
         }
         boolean z10 = iOException instanceof r;
         b3.i iVar2 = b3.o.f2960e;
-        Uri uri2 = this.f54487a;
-        d dVar = this.f54497y;
+        Uri uri2 = this.f54512a;
+        d dVar = this.f54522y;
         if (z9 || z10) {
             if (iOException instanceof y) {
                 i10 = ((y) iOException).f16486c;
@@ -145,21 +145,21 @@ public final class b implements b3.j {
                 i10 = Integer.MAX_VALUE;
             }
             if (z10 || i10 == 400 || i10 == 503) {
-                this.f54492n = SystemClock.elapsedRealtime();
+                this.f54517n = SystemClock.elapsedRealtime();
                 c(uri2);
-                wa waVar = dVar.f54505f;
+                wa waVar = dVar.f54530f;
                 String str = m0.f14112a;
                 waVar.r(uVar, i11, iOException, true);
                 return iVar2;
             }
         }
         f5.u uVar2 = new f5.u(iOException, i7, 2);
-        Iterator it = dVar.f54504e.iterator();
+        Iterator it = dVar.f54529e.iterator();
         boolean z11 = false;
         while (it.hasNext()) {
             z11 |= !((u) it.next()).d(uri2, uVar2, false);
         }
-        pb.b bVar = dVar.f54503c;
+        pb.b bVar = dVar.f54528c;
         if (z11) {
             bVar.getClass();
             long a12 = pb.b.a1(uVar2);
@@ -171,7 +171,7 @@ public final class b implements b3.j {
             iVar2 = iVar;
         }
         boolean a10 = iVar2.a();
-        dVar.f54505f.r(uVar, i11, iOException, !a10);
+        dVar.f54530f.r(uVar, i11, iOException, !a10);
         if (!a10) {
             bVar.getClass();
         }
@@ -187,13 +187,13 @@ public final class b implements b3.j {
         x2.u uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
         if (qVar instanceof m) {
             d((m) qVar, uVar);
-            this.f54497y.f54505f.p(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+            this.f54522y.f54530f.p(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
         } else {
             t0 b10 = t0.b("Loaded playlist has unexpected type.", null);
-            this.f54495w = b10;
-            this.f54497y.f54505f.r(uVar, 4, b10, true);
+            this.f54520w = b10;
+            this.f54522y.f54530f.r(uVar, 4, b10, true);
         }
-        this.f54497y.f54503c.getClass();
+        this.f54522y.f54528c.getClass();
     }
 
     @Override
@@ -203,8 +203,8 @@ public final class b implements b3.j {
         j2.m mVar = rVar.f2966b;
         c0 c0Var = rVar.d;
         x2.u uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
-        d dVar = this.f54497y;
-        dVar.f54503c.getClass();
-        dVar.f54505f.o(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        d dVar = this.f54522y;
+        dVar.f54528c.getClass();
+        dVar.f54530f.o(uVar, 4, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
     }
 }

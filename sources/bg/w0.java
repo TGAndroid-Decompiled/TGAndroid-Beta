@@ -50,7 +50,7 @@ public final class w0 implements r0.m0, mw {
         xe xeVar;
         ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f3394c;
         if (chatActivityEnterView.f31148x3) {
-            if ((chatActivityEnterView.f31159z3 || (xeVar = chatActivityEnterView.E0) == null || xeVar.length() <= 0) && (xxVar = chatActivityEnterView.U0.f34145y0) != null && xxVar.b() > 0 && !chatActivityEnterView.f31074k3) {
+            if ((chatActivityEnterView.f31159z3 || (xeVar = chatActivityEnterView.E0) == null || xeVar.length() <= 0) && (xxVar = chatActivityEnterView.U0.f34093y0) != null && xxVar.b() > 0 && !chatActivityEnterView.f31074k3) {
                 return true;
             }
             return false;

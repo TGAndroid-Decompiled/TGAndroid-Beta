@@ -30,7 +30,7 @@ public final class i1 implements ti.m {
     public static boolean a(g1 g1Var) {
         ti.o oVar;
         i1 i1Var = f9120w;
-        if (g1Var == null || i1Var == null || i1Var.f9122b != g1Var || (oVar = i1Var.f9121a) == null || !oVar.d() || i1Var.f9121a.f56008c == 0) {
+        if (g1Var == null || i1Var == null || i1Var.f9122b != g1Var || (oVar = i1Var.f9121a) == null || !oVar.d() || i1Var.f9121a.f56033c == 0) {
             return false;
         }
         return true;

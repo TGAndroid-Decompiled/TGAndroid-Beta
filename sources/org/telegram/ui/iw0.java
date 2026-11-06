@@ -101,7 +101,7 @@ public final class iw0 extends org.telegram.ui.Cells.x6 {
                             default:
                                 iw0 iw0Var2 = this.f30729b;
                                 int i16 = iw0Var2.f30888e;
-                                ProfileActivity profileActivity = iw0Var2.h.f47027e;
+                                ProfileActivity profileActivity = iw0Var2.h.f47050e;
                                 if (i16 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.g(3));
                                     return;
@@ -131,7 +131,7 @@ public final class iw0 extends org.telegram.ui.Cells.x6 {
                             default:
                                 iw0 iw0Var2 = this.f30729b;
                                 int i16 = iw0Var2.f30888e;
-                                ProfileActivity profileActivity = iw0Var2.h.f47027e;
+                                ProfileActivity profileActivity = iw0Var2.h.f47050e;
                                 if (i16 == 0) {
                                     profileActivity.presentFragment(new org.telegram.ui.g(3));
                                     return;

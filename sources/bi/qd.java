@@ -1,7 +1,7 @@
 package bi;
 
 import android.content.Context;
-import org.telegram.ui.ts0;
+import org.telegram.ui.us0;
 public final class qd extends vg.m {
     public final int f4597i0;
 
@@ -84,7 +84,7 @@ public final class qd extends vg.m {
         }
     }
 
-    public qd(ts0 ts0Var, Context context, int i7, int i10, Context context2) {
+    public qd(us0 us0Var, Context context, int i7, int i10, Context context2) {
         super(context, i7, i10);
         this.f4597i0 = 2;
     }

@@ -4,17 +4,17 @@ import android.app.Activity;
 import android.os.Bundle;
 import org.telegram.tgnet.TLRPC;
 public final class a70 extends org.telegram.ui.an {
-    public boolean f31704rd;
-    public final boolean f31705sd;
-    public final long f31706td;
-    public final b70 f31707ud;
+    public boolean f31713rd;
+    public final boolean f31714sd;
+    public final long f31715td;
+    public final b70 f31716ud;
 
     public a70(b70 b70Var, Bundle bundle, boolean z9, long j3) {
         super(bundle);
-        this.f31707ud = b70Var;
-        this.f31705sd = z9;
-        this.f31706td = j3;
-        this.f31704rd = false;
+        this.f31716ud = b70Var;
+        this.f31714sd = z9;
+        this.f31715td = j3;
+        this.f31713rd = false;
     }
 
     public static void Dd(a70 a70Var, long j3, TLRPC.Chat chat) {
@@ -31,25 +31,25 @@ public final class a70 extends org.telegram.ui.an {
         } else {
             z9 = false;
         }
-        dy0.c(parentActivity, i7, j10, f10, null, z9, chat.creator, a70Var.f31707ud.I0);
+        dy0.c(parentActivity, i7, j10, f10, null, z9, chat.creator, a70Var.f31716ud.I0);
     }
 
     @Override
     public final void onBecomeFullyVisible() {
         super.onBecomeFullyVisible();
-        if (!this.f31704rd && this.f31705sd) {
-            this.f31704rd = true;
+        if (!this.f31713rd && this.f31714sd) {
+            this.f31713rd = true;
             org.telegram.messenger.qp messagesController = getMessagesController();
-            long j3 = this.f31706td;
+            long j3 = this.f31715td;
             TLRPC.Chat M0 = messagesController.M0(Long.valueOf(j3));
             if (org.telegram.messenger.t3.h(M0)) {
                 cc K = hc.a0(this).K(2131623989, org.telegram.messenger.hd.M0(2131749070, null), org.telegram.messenger.hd.M0(2131749069, null), new bi.d3(this, j3, M0, 23));
-                K.f32531r = false;
+                K.f32535r = false;
                 K.k(true);
                 return;
             }
             cc Q = hc.a0(this).Q(2131623989, 36, org.telegram.messenger.hd.M0(2131749070, null));
-            Q.f32531r = false;
+            Q.f32535r = false;
             Q.k(true);
         }
     }

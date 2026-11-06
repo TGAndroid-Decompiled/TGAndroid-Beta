@@ -20,22 +20,22 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Cells.q1;
 import org.telegram.ui.Components.w8;
 public final class d implements ValueAnimator.AnimatorUpdateListener {
-    public final h f57739a;
-    public final q1 f57740b;
-    public final ImageReceiver f57741c;
+    public final h f57764a;
+    public final q1 f57765b;
+    public final ImageReceiver f57766c;
     public final long d;
-    public b f57742e;
-    public b f57743f;
-    public Paint f57744g;
+    public b f57767e;
+    public b f57768f;
+    public Paint f57769g;
     public final StaticLayout h;
-    public float f57745i;
-    public float f57746j;
-    public ValueAnimator f57747k;
-    public float f57748l;
-    public boolean f57749m;
-    public ValueAnimator f57750n;
-    public float f57751o;
-    public boolean f57752p;
+    public float f57770i;
+    public float f57771j;
+    public ValueAnimator f57772k;
+    public float f57773l;
+    public boolean f57774m;
+    public ValueAnimator f57775n;
+    public float f57776o;
+    public boolean f57777p;
 
     public d(h hVar, long j3) {
         ImageReceiver imageReceiver;
@@ -45,27 +45,27 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
         CharSequence ellipsize;
         w8 w8Var = new w8((f6) null);
         int i7 = p10.f24459s0;
-        this.f57748l = 1.0f;
-        this.f57749m = true;
-        this.f57751o = 0.0f;
-        this.f57752p = false;
-        ImageReceiver imageReceiver2 = new ImageReceiver(hVar.f57781a);
-        this.f57741c = imageReceiver2;
-        this.f57739a = hVar;
+        this.f57773l = 1.0f;
+        this.f57774m = true;
+        this.f57776o = 0.0f;
+        this.f57777p = false;
+        ImageReceiver imageReceiver2 = new ImageReceiver(hVar.f57806a);
+        this.f57766c = imageReceiver2;
+        this.f57764a = hVar;
         q1 q1Var = hVar.D;
-        this.f57740b = q1Var;
+        this.f57765b = q1Var;
         this.d = j3;
-        w8Var.f39905p = 1.0f;
+        w8Var.f39912p = 1.0f;
         if (m5.E(j3)) {
             TLRPC.User a22 = qp.s1(i7).a2(Long.valueOf(j3));
             w8Var.r(a22);
             if (t10.B(a22)) {
                 str2 = hd.M0(2131745902, null);
                 w8Var.g(1);
-                w8Var.f39905p = 0.75f;
+                w8Var.f39912p = 0.75f;
                 imageReceiver = imageReceiver2;
                 imageReceiver.r0(null, null, null, null, w8Var, 0L, null, a22, 0);
-                imageReceiver.J0(g0.L(g.f57774a / 2.0f));
+                imageReceiver.J0(g0.L(g.f57799a / 2.0f));
                 imageReceiver.y0(0.0f, 0.0f, g0.L(f10), g0.L(f10));
                 Paint Z1 = q1Var.Z1("paintChatActionText");
                 if (str2 == null && Z1 != null) {
@@ -86,7 +86,7 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
             imageReceiver.i0(M0, w8Var, null);
         }
         str2 = str;
-        imageReceiver.J0(g0.L(g.f57774a / 2.0f));
+        imageReceiver.J0(g0.L(g.f57799a / 2.0f));
         imageReceiver.y0(0.0f, 0.0f, g0.L(f10), g0.L(f10));
         Paint Z12 = q1Var.Z1("paintChatActionText");
         if (str2 == null) {
@@ -121,22 +121,22 @@ public final class d implements ValueAnimator.AnimatorUpdateListener {
     public final void a(Canvas canvas, float f10, float f11, float f12, float f13) {
         canvas.save();
         canvas.translate(f10 - f12, f11 - f12);
-        int i7 = g.f57774a;
+        int i7 = g.f57799a;
         float f14 = 21;
         canvas.scale(f12 / g0.L(f14), f12 / g0.L(f14));
-        ImageReceiver imageReceiver = this.f57741c;
-        imageReceiver.setAlpha(((this.f57748l * 0.25f) + 0.75f) * f13);
+        ImageReceiver imageReceiver = this.f57766c;
+        imageReceiver.setAlpha(((this.f57773l * 0.25f) + 0.75f) * f13);
         imageReceiver.h(canvas, null);
         canvas.restore();
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        if (valueAnimator == this.f57750n) {
-            this.f57751o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-        } else if (valueAnimator == this.f57747k) {
-            this.f57748l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        if (valueAnimator == this.f57775n) {
+            this.f57776o = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        } else if (valueAnimator == this.f57772k) {
+            this.f57773l = ((Float) valueAnimator.getAnimatedValue()).floatValue();
         }
-        this.f57739a.invalidateSelf();
+        this.f57764a.invalidateSelf();
     }
 }

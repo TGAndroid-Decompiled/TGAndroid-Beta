@@ -11,7 +11,7 @@ public final class g extends j {
 
     public final Task f(GetCredentialRequest getCredentialRequest) {
         s b10 = t.b();
-        b10.d = new n6.c[]{t7.b.f55334a};
+        b10.d = new n6.c[]{t7.b.f55359a};
         b10.f6682c = new d0(getCredentialRequest, 8);
         b10.f6680a = 32701;
         Task e10 = e(0, b10.a());

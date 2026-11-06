@@ -5,14 +5,14 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 public final class kh implements TextWatcher {
-    public boolean f35313a;
-    public boolean f35314b;
-    public final org.telegram.ui.ActionBar.f2 f35315c;
+    public boolean f35316a;
+    public boolean f35317b;
+    public final org.telegram.ui.ActionBar.f2 f35318c;
     public final di d;
 
     public kh(di diVar, org.telegram.ui.ActionBar.f2 f2Var) {
         this.d = diVar;
-        this.f35315c = f2Var;
+        this.f35318c = f2Var;
     }
 
     @Override
@@ -22,24 +22,24 @@ public final class kh implements TextWatcher {
         int i7;
         boolean z11;
         di diVar = this.d;
-        j6 j6Var = diVar.f32933q1;
+        j6 j6Var = diVar.f32946q1;
         ih ihVar = diVar.J2;
         int i10 = diVar.D3;
-        j6 j6Var2 = diVar.f32937r1;
-        if (this.f35314b != TextUtils.isEmpty(editable)) {
-            vh vhVar = diVar.f32942s2;
+        j6 j6Var2 = diVar.f32950r1;
+        if (this.f35317b != TextUtils.isEmpty(editable)) {
+            vh vhVar = diVar.f32955s2;
             if (vhVar != null) {
                 vhVar.D(vhVar.getSelectedItemsCount());
             }
-            this.f35314b = !this.f35314b;
+            this.f35317b = !this.f35317b;
         }
         boolean z12 = false;
-        if (this.f35313a) {
+        if (this.f35316a) {
             for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                 editable.removeSpan(imageSpan);
             }
             org.telegram.messenger.i6.l(editable, ihVar.getEditText().getPaint().getFontMetricsInt(), false);
-            this.f35313a = false;
+            this.f35316a = false;
         }
         int codePointCount = Character.codePointCount(editable, 0, editable.length());
         diVar.C1 = codePointCount;
@@ -89,9 +89,9 @@ public final class kh implements TextWatcher {
             diVar.O2 = z10;
             diVar.C2.invalidate();
         }
-        if (!diVar.f32890c4 && !org.telegram.messenger.qp.s1(i10).D3() && !org.telegram.messenger.p10.i(i10).q() && diVar.C1 > org.telegram.messenger.qp.s1(i10).T4 && diVar.C1 < org.telegram.messenger.qp.s1(i10).U4) {
-            diVar.f32890c4 = true;
-            diVar.D1(this.f35315c);
+        if (!diVar.f32903c4 && !org.telegram.messenger.qp.s1(i10).D3() && !org.telegram.messenger.p10.i(i10).q() && diVar.C1 > org.telegram.messenger.qp.s1(i10).T4 && diVar.C1 < org.telegram.messenger.qp.s1(i10).U4) {
+            diVar.f32903c4 = true;
+            diVar.D1(this.f35318c);
         }
         if (diVar.T1) {
             if (ihVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(ihVar.getText().toString().trim())) {
@@ -105,15 +105,15 @@ public final class kh implements TextWatcher {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         if (i11 - i10 >= 1) {
-            this.f35313a = true;
+            this.f35316a = true;
         }
         di diVar = this.d;
-        if (diVar.f32968y4 == null) {
+        if (diVar.f32981y4 == null) {
             di.K0(diVar);
         }
-        if (diVar.f32968y4.getAdapter() != null) {
-            diVar.f32968y4.setReversed(true);
-            diVar.f32968y4.getAdapter().U(charSequence, diVar.J2.getEditText().getSelectionStart(), null, false, false);
+        if (diVar.f32981y4.getAdapter() != null) {
+            diVar.f32981y4.setReversed(true);
+            diVar.f32981y4.getAdapter().U(charSequence, diVar.J2.getEditText().getSelectionStart(), null, false, false);
             diVar.J1();
         }
     }

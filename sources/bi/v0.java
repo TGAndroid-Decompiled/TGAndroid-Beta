@@ -20,7 +20,7 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PasskeysActivity;
 import org.telegram.ui.PrivacySettingsActivity;
-import org.telegram.ui.fq0;
+import org.telegram.ui.gq0;
 public final class v0 implements v10 {
     public final int f4856a;
     public final int f4857b;
@@ -164,7 +164,7 @@ public final class v0 implements v10 {
                 if (!z10) {
                     qp.s1(i13).B0(chat2.f26952id, true);
                 }
-                org.telegram.messenger.g0.h3(new fq0(a1Var, 5));
+                org.telegram.messenger.g0.h3(new gq0(a1Var, 5));
                 org.telegram.messenger.g0.i3(new bg.m0(i13, chat2, 17), 1000L);
                 yr a02 = yr.a0(i13);
                 long j10 = chat2.f26952id;
@@ -176,7 +176,7 @@ public final class v0 implements v10 {
                 TLRPC.TL_messages_composeMessageWithAI tL_messages_composeMessageWithAI = (TLRPC.TL_messages_composeMessageWithAI) obj3;
                 TLRPC.TL_composedMessageWithAI tL_composedMessageWithAI = (TLRPC.TL_composedMessageWithAI) obj;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
-                FrameLayout frameLayout = g0Var.f33755y2;
+                FrameLayout frameLayout = g0Var.f33699y2;
                 g0Var.I2 = -1;
                 g0Var.J2 = false;
                 if (tL_error5 != null && ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error5.text) || "AICOMPOSE_FLOOD_PREMIUM".equalsIgnoreCase(tL_error5.text))) {
@@ -213,10 +213,10 @@ public final class v0 implements v10 {
                         TLRPC.TL_textWithEntities tL_textWithEntities = tL_composedMessageWithAI.diff_text;
                         if (tL_textWithEntities != null) {
                             g0Var.Y1 = ij.h0(tL_textWithEntities, false);
-                            g0Var.f33732a2 = ij.h0(tL_composedMessageWithAI.result_text, false);
+                            g0Var.f33676a2 = ij.h0(tL_composedMessageWithAI.result_text, false);
                         } else {
                             CharSequence h02 = ij.h0(tL_composedMessageWithAI.result_text, false);
-                            g0Var.f33732a2 = h02;
+                            g0Var.f33676a2 = h02;
                             g0Var.Y1 = h02;
                         }
                     }
@@ -229,7 +229,7 @@ public final class v0 implements v10 {
                 TLRPC.TL_messages_composeRichMessageWithAI tL_messages_composeRichMessageWithAI = (TLRPC.TL_messages_composeRichMessageWithAI) obj3;
                 TLRPC.TL_composedRichMessageWithAI tL_composedRichMessageWithAI = (TLRPC.TL_composedRichMessageWithAI) obj;
                 TLRPC.TL_error tL_error6 = (TLRPC.TL_error) obj2;
-                FrameLayout frameLayout2 = g0Var2.f33755y2;
+                FrameLayout frameLayout2 = g0Var2.f33699y2;
                 g0Var2.I2 = -1;
                 g0Var2.J2 = false;
                 if (tL_error6 != null && ("SUMMARY_FLOOD_PREMIUM".equalsIgnoreCase(tL_error6.text) || "AICOMPOSE_FLOOD_PREMIUM".equalsIgnoreCase(tL_error6.text))) {
@@ -323,7 +323,7 @@ public final class v0 implements v10 {
                             } else if (T instanceof PrivacySettingsActivity) {
                                 v2Var.dismiss();
                                 PrivacySettingsActivity privacySettingsActivity = (PrivacySettingsActivity) T;
-                                ArrayList arrayList3 = privacySettingsActivity.f41655e;
+                                ArrayList arrayList3 = privacySettingsActivity.f41680e;
                                 if (arrayList3 == null) {
                                     arrayList3 = new ArrayList();
                                 }

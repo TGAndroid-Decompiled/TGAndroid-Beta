@@ -1,55 +1,29 @@
 package org.telegram.ui.Components;
-
-import org.telegram.ui.PhotoViewer;
 public final class r51 implements Runnable {
-    public final int f37620a;
-    public final u51 f37621b;
+    public final int f37556a;
+    public final Object f37557b;
 
-    public r51(u51 u51Var, int i7) {
-        this.f37620a = i7;
-        this.f37621b = u51Var;
+    public r51(Object obj, int i7) {
+        this.f37556a = i7;
+        this.f37557b = obj;
     }
 
     @Override
     public final void run() {
-        switch (this.f37620a) {
+        switch (this.f37556a) {
             case 0:
-                u51 u51Var = this.f37621b;
-                u51Var.h = 0.0f;
-                v5 v5Var = u51Var.f38531b;
-                if (v5Var != null) {
-                    v5Var.u();
-                    u51Var.f38531b = null;
-                    return;
-                }
+                s51 s51Var = (s51) ((li.b6) this.f37557b).f18482f;
+                s51Var.f37900a0.removeCallbacksAndMessages(null);
+                s51Var.K.F(false, null);
                 return;
             case 1:
-                u51 u51Var2 = this.f37621b;
-                u51Var2.f38529a = true;
-                u51Var2.f38536e = null;
-                if (u51Var2.f38531b != null) {
-                    u51Var2.f38543s = true;
-                    PhotoViewer photoViewer = u51Var2.M.f47537a;
-                    if (photoViewer.f41490t3) {
-                        photoViewer.Y2(true);
-                        return;
-                    }
-                    return;
-                }
+                ((u51) this.f37557b).f38509g = false;
+                return;
+            case 2:
+                ((k71) ((w30) ((org.telegram.ui.ActionBar.h1) this.f37557b).f27502b).f39822b).f35231w.b();
                 return;
             default:
-                u51 u51Var3 = this.f37621b;
-                u51Var3.f38529a = true;
-                u51Var3.f38536e = null;
-                if (u51Var3.f38531b != null) {
-                    u51Var3.f38543s = true;
-                    PhotoViewer photoViewer2 = u51Var3.M.f47537a;
-                    if (photoViewer2.f41490t3) {
-                        photoViewer2.Y2(true);
-                        return;
-                    }
-                    return;
-                }
+                ((g71) this.f37557b).d(false, true);
                 return;
         }
     }

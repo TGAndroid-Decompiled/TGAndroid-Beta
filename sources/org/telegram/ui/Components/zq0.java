@@ -7,21 +7,21 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import androidx.recyclerview.widget.RecyclerView;
 public final class zq0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f41062a;
-    public final int f41063b;
-    public final KeyEvent.Callback f41064c;
+    public final int f41087a;
+    public final int f41088b;
+    public final KeyEvent.Callback f41089c;
 
     public zq0(KeyEvent.Callback callback, int i7, int i10) {
-        this.f41062a = i10;
-        this.f41064c = callback;
-        this.f41063b = i7;
+        this.f41087a = i10;
+        this.f41089c = callback;
+        this.f41088b = i7;
     }
 
     @Override
     public final boolean onPreDraw() {
-        int i7 = this.f41062a;
-        int i10 = this.f41063b;
-        KeyEvent.Callback callback = this.f41064c;
+        int i7 = this.f41087a;
+        int i10 = this.f41088b;
+        KeyEvent.Callback callback = this.f41089c;
         switch (i7) {
             case 0:
                 xs0 xs0Var = (xs0) callback;
@@ -29,8 +29,8 @@ public final class zq0 implements ViewTreeObserver.OnPreDrawListener {
                 xs0Var.e0(i10);
                 return true;
             default:
-                w41 w41Var = (w41) callback;
-                bi.q1 q1Var = w41Var.f39833k1;
+                a51 a51Var = (a51) callback;
+                bi.q1 q1Var = a51Var.f31685k1;
                 q1Var.getViewTreeObserver().removeOnPreDrawListener(this);
                 int childCount = q1Var.getChildCount();
                 AnimatorSet animatorSet = new AnimatorSet();
@@ -39,7 +39,7 @@ public final class zq0 implements ViewTreeObserver.OnPreDrawListener {
                     q1Var.getClass();
                     int R = RecyclerView.R(childAt);
                     if (R >= i10) {
-                        if (R == 1 && q1Var.getAdapter() == w41Var.l1 && (childAt instanceof org.telegram.ui.Cells.x3)) {
+                        if (R == 1 && q1Var.getAdapter() == a51Var.l1 && (childAt instanceof org.telegram.ui.Cells.x3)) {
                             childAt = ((org.telegram.ui.Cells.x3) childAt).getTextView();
                         }
                         childAt.setAlpha(0.0f);

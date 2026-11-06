@@ -361,7 +361,7 @@ public class a1 extends TextView implements u0.k {
 
     @Override
     public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((fc) getEmojiTextViewHelper().f19259b.f38766b).a(inputFilterArr));
+        super.setFilters(((fc) getEmojiTextViewHelper().f19259b.f38757b).a(inputFilterArr));
     }
 
     @Override
@@ -459,7 +459,7 @@ public class a1 extends TextView implements u0.k {
 
     public void setTextMetricsParamsCompat(p0.c cVar) {
         TextDirectionHeuristic textDirectionHeuristic;
-        TextDirectionHeuristic textDirectionHeuristic2 = cVar.f52961b;
+        TextDirectionHeuristic textDirectionHeuristic2 = cVar.f52987b;
         TextDirectionHeuristic textDirectionHeuristic3 = TextDirectionHeuristics.FIRSTSTRONG_RTL;
         int i7 = 1;
         if (textDirectionHeuristic2 != textDirectionHeuristic3 && textDirectionHeuristic2 != (textDirectionHeuristic = TextDirectionHeuristics.FIRSTSTRONG_LTR)) {
@@ -478,8 +478,8 @@ public class a1 extends TextView implements u0.k {
             }
         }
         setTextDirection(i7);
-        getPaint().set(cVar.f52960a);
-        setBreakStrategy(cVar.f52962c);
+        getPaint().set(cVar.f52986a);
+        setBreakStrategy(cVar.f52988c);
         setHyphenationFrequency(cVar.d);
     }
 

@@ -135,12 +135,12 @@ public final class pb implements Runnable {
                     v1Var.a(null, str);
                     return;
                 }
-                String str2 = b2Var.f42100e;
+                String str2 = b2Var.f42125e;
                 if (f2Var.A(b2Var) && !f2Var.j(b2Var)) {
-                    f2Var.f42440g = b2Var;
-                    if ("sendTransaction".equals(str2) && b2Var.f42101f != null) {
-                        if (qp.s1(f2Var.f42435a).f24759e7.contains(org.telegram.ui.Wallet.f2.l(j3, i10) + ".transfer")) {
-                            b2Var.f42107m = true;
+                    f2Var.f42465g = b2Var;
+                    if ("sendTransaction".equals(str2) && b2Var.f42126f != null) {
+                        if (qp.s1(f2Var.f42460a).f24759e7.contains(org.telegram.ui.Wallet.f2.l(j3, i10) + ".transfer")) {
+                            b2Var.f42132m = true;
                             f2Var.B(b2Var, k0Var, new c20() {
                                 @Override
                                 public final void a(Object obj6) {
@@ -150,7 +150,7 @@ public final class pb implements Runnable {
                                             f2 f2Var2 = f2Var;
                                             f2Var2.getClass();
                                             b2 b2Var2 = b2Var;
-                                            b2Var2.f42107m = false;
+                                            b2Var2.f42132m = false;
                                             f2Var2.u(b2Var2);
                                             v1Var.a(null, str3);
                                             return;
@@ -164,7 +164,7 @@ public final class pb implements Runnable {
                             return;
                         }
                     }
-                    if (b2Var.f42106l < 0 && !"disconnect".equals(str2)) {
+                    if (b2Var.f42131l < 0 && !"disconnect".equals(str2)) {
                         v1Var.a(b2Var, null);
                         return;
                     }
@@ -178,7 +178,7 @@ public final class pb implements Runnable {
                                     f2 f2Var2 = f2Var;
                                     f2Var2.getClass();
                                     b2 b2Var2 = b2Var;
-                                    b2Var2.f42107m = false;
+                                    b2Var2.f42132m = false;
                                     f2Var2.u(b2Var2);
                                     v1Var.a(null, str3);
                                     return;

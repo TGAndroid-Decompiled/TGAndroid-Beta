@@ -8,25 +8,25 @@ import org.telegram.ui.Components.ki0;
 import org.telegram.ui.Components.w5;
 import org.telegram.ui.Components.xq;
 public abstract class i extends FrameLayout {
-    public final Paint f55605a;
-    public final Paint f55606b;
-    public final Paint f55607c;
+    public final Paint f55630a;
+    public final Paint f55631b;
+    public final Paint f55632c;
     public int d;
-    public final w5 f55608e;
-    public boolean f55609f;
+    public final w5 f55633e;
+    public boolean f55634f;
     public final j h;
 
     public i(j jVar, Context context) {
         super(context);
         this.h = jVar;
         Paint paint = new Paint(1);
-        this.f55605a = paint;
+        this.f55630a = paint;
         Paint paint2 = new Paint(1);
-        this.f55606b = paint2;
+        this.f55631b = paint2;
         Paint paint3 = new Paint(1);
-        this.f55607c = paint3;
-        this.f55608e = new w5(this, 0L, 250L, xq.h);
-        this.f55609f = true;
+        this.f55632c = paint3;
+        this.f55633e = new w5(this, 0L, 250L, xq.h);
+        this.f55634f = true;
         setWillNotDraw(false);
         paint.setColor(-1);
         Paint.Style style = Paint.Style.STROKE;
@@ -48,16 +48,16 @@ public abstract class i extends FrameLayout {
         j jVar = this.h;
         ki0 selectionBounds = jVar.getSelectionBounds();
         FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) getLayoutParams();
-        layoutParams.leftMargin = (int) selectionBounds.f35319a;
-        layoutParams.topMargin = (int) selectionBounds.f35320b;
-        layoutParams.width = (int) selectionBounds.f35321c;
+        layoutParams.leftMargin = (int) selectionBounds.f35322a;
+        layoutParams.topMargin = (int) selectionBounds.f35323b;
+        layoutParams.width = (int) selectionBounds.f35324c;
         layoutParams.height = (int) selectionBounds.d;
         setLayoutParams(layoutParams);
         setRotation(jVar.getRotation());
     }
 
     public float getShowAlpha() {
-        return this.f55608e.d(this.f55609f);
+        return this.f55633e.d(this.f55634f);
     }
 
     @Override

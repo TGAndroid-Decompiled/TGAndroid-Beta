@@ -16,7 +16,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Components.RadialProgress2;
 import org.telegram.ui.Components.jm0;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.t31;
 public final class du extends fu implements x5, ls {
     public final ij W;
     public final TLRPC.Document X;
@@ -96,7 +96,7 @@ public final class du extends fu implements x5, ls {
 
     @Override
     public final boolean Q() {
-        return this.Z.f35015e;
+        return this.Z.f34976e;
     }
 
     @Override
@@ -104,7 +104,7 @@ public final class du extends fu implements x5, ls {
         View view = this.V;
         if (view != null) {
             this.Y.n(view);
-            this.Z.f35028s = this.V;
+            this.Z.f34989s = this.V;
         }
         l0(false);
         kv kvVar = this.f22443a;
@@ -488,7 +488,7 @@ public final class du extends fu implements x5, ls {
                 spannableStringBuilder = new SpannableStringBuilder(str);
             }
             if (!TextUtils.isEmpty(str)) {
-                spannableStringBuilder.setSpan(new o31(g0.o()), 0, str.length(), 18);
+                spannableStringBuilder.setSpan(new t31(g0.o()), 0, str.length(), 18);
             }
             this.f22078a0.setTextSize(g0.L(16.0f));
             int L2 = g0.L(50.0f) + this.f22087j0;
@@ -566,7 +566,7 @@ public final class du extends fu implements x5, ls {
         TLRPC.Document document = this.X;
         if (document != null && (ijVar = this.W) != null) {
             jm0 jm0Var = this.Z;
-            if (!jm0Var.f35015e) {
+            if (!jm0Var.f34976e) {
                 jm0Var.h(ijVar.f23197b0);
             }
             if (MediaController.B().I(ijVar)) {

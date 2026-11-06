@@ -9,20 +9,20 @@ import android.view.animation.Interpolator;
 import fi.l9;
 import org.telegram.ui.Components.voip.k1;
 public final class c {
-    public final int f55372a;
-    public final b f55373b;
-    public final Interpolator f55374c;
+    public final int f55397a;
+    public final b f55398b;
+    public final Interpolator f55399c;
     public final long d;
-    public long f55375e;
-    public float f55376f;
-    public float f55377g;
+    public long f55400e;
+    public float f55401f;
+    public float f55402g;
     public boolean h;
-    public ValueAnimator f55378i;
+    public ValueAnimator f55403i;
 
     public c(int i7, b bVar, Interpolator interpolator, long j3) {
-        this.f55372a = i7;
-        this.f55373b = bVar;
-        this.f55374c = interpolator;
+        this.f55397a = i7;
+        this.f55398b = bVar;
+        this.f55399c = interpolator;
         this.d = j3;
     }
 
@@ -32,10 +32,10 @@ public final class c {
             if (this.h) {
                 b();
             }
-            float f11 = this.f55376f;
+            float f11 = this.f55401f;
             int i7 = (f11 > f10 ? 1 : (f11 == f10 ? 0 : -1));
-            int i10 = this.f55372a;
-            b bVar = this.f55373b;
+            int i10 = this.f55397a;
+            b bVar = this.f55398b;
             if (i7 == 0) {
                 bVar.F(f11, i10);
                 return;
@@ -57,20 +57,20 @@ public final class c {
                 bVar.F(f10, i10);
                 return;
             }
-            this.f55377g = f10;
-            DecelerateInterpolator decelerateInterpolator = se.a.f54888a;
+            this.f55402g = f10;
+            DecelerateInterpolator decelerateInterpolator = se.a.f54913a;
             ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-            this.f55378i = ofFloat;
+            this.f55403i = ofFloat;
             ofFloat.setDuration(j3);
-            this.f55378i.setInterpolator(this.f55374c);
-            this.f55378i.addUpdateListener(new l9(this, f11, f12, 6));
-            this.f55378i.addListener(new k1(this, f11, f12, 1));
-            long j10 = this.f55375e;
+            this.f55403i.setInterpolator(this.f55399c);
+            this.f55403i.addUpdateListener(new l9(this, f11, f12, 6));
+            this.f55403i.addListener(new k1(this, f11, f12, 1));
+            long j10 = this.f55400e;
             if (j10 != 0) {
-                this.f55378i.setStartDelay(j10);
+                this.f55403i.setStartDelay(j10);
             }
             try {
-                this.f55378i.start();
+                this.f55403i.start();
                 return;
             } catch (Throwable th2) {
                 Log.e("tgx", "Cannot start animation", th2);
@@ -89,10 +89,10 @@ public final class c {
             if (this.h) {
                 this.h = false;
             }
-            ValueAnimator valueAnimator = this.f55378i;
+            ValueAnimator valueAnimator = this.f55403i;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f55378i = null;
+                this.f55403i = null;
                 return true;
             }
             return true;
@@ -105,23 +105,23 @@ public final class c {
         if (!d(f10, 1.0f) && !b10) {
             return;
         }
-        this.f55373b.F(f10, this.f55372a);
+        this.f55398b.F(f10, this.f55397a);
     }
 
     public final boolean d(float f10, float f11) {
-        if (this.f55376f != f10) {
-            this.f55376f = f10;
-            this.f55373b.Y(this.f55372a, f10, f11, this);
+        if (this.f55401f != f10) {
+            this.f55401f = f10;
+            this.f55398b.Y(this.f55397a, f10, f11, this);
             return true;
         }
         return false;
     }
 
     public c(int i7, b bVar, Interpolator interpolator, long j3, float f10) {
-        this.f55372a = i7;
-        this.f55373b = bVar;
-        this.f55374c = interpolator;
+        this.f55397a = i7;
+        this.f55398b = bVar;
+        this.f55399c = interpolator;
         this.d = j3;
-        this.f55376f = f10;
+        this.f55401f = f10;
     }
 }

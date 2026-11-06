@@ -40,7 +40,7 @@ public final class fa extends oj0 {
         float f10;
         org.telegram.ui.ActionBar.j6 j6Var;
         TLRPC.TL_theme tL_theme;
-        ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) d1Var.f56927a;
+        ThemesHorizontalListCell$InnerThemeView themesHorizontalListCell$InnerThemeView = (ThemesHorizontalListCell$InnerThemeView) d1Var.f56952a;
         ga gaVar = this.d;
         ArrayList arrayList = gaVar.f29218l3;
         if (i7 < arrayList.size()) {

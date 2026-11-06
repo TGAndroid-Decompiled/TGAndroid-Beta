@@ -4,7 +4,7 @@ import bi.nb;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.vr;
 import org.telegram.ui.Components.xr;
 public final class j0 implements RequestDelegate {
@@ -37,9 +37,9 @@ public final class j0 implements RequestDelegate {
         }
     }
 
-    public j0(f41 f41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z9, int i10) {
+    public j0(k41 k41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z9, int i10) {
         this.f26116a = i10;
-        this.d = f41Var;
+        this.d = k41Var;
         this.f26117b = i7;
         this.f26119e = tL_messages_searchGlobal;
         this.f26118c = z9;

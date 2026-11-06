@@ -8,12 +8,12 @@ import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.hu0;
 import org.telegram.ui.Components.jz;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w70;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.LaunchActivity;
@@ -25,27 +25,27 @@ public final class oc extends org.telegram.ui.Components.na implements ls {
     public final FrameLayout Q1;
     public final TLRPC.User R1;
     public final wg.x0 S1;
-    public f41 T1;
+    public k41 T1;
     public boolean U1;
 
     public oc(Context context, org.telegram.ui.ActionBar.f6 f6Var, TLRPC.User user, wg.x0 x0Var) {
         super(context, null, false, false, f6Var);
         this.R1 = user;
         this.S1 = x0Var;
-        this.f36333r1 = 0.2f;
+        this.f36227r1 = 0.2f;
         qs.f(this.f28612a).c(this, qs.f25083w3);
         qs.f(this.f28612a).c(this, qs.f25097y3);
         N();
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int i7 = this.f28645t0;
         pj0Var.setPadding(i7, 0, i7, 0);
-        this.f36328k1.setOnItemClickListener(new ai.k(this, 2));
+        this.f36222k1.setOnItemClickListener(new ai.k(this, 2));
         v4.k kVar = new v4.k();
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        this.f36328k1.setItemAnimator(kVar);
+        this.f36222k1.setItemAnimator(kVar);
         w0(org.telegram.ui.ActionBar.k6.f27939i5);
         nc ncVar = new nc(0, context, f6Var);
         this.P1 = ncVar;
@@ -120,13 +120,13 @@ public final class oc extends org.telegram.ui.Components.na implements ls {
         frameLayout.addView(w70Var2, c8.ha.e(-2, -1, 17));
         org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27921h5, frameLayout, f6Var);
         this.f28615b.addView(new jz(getContext()), c8.ha.c(-1.0f, -1));
-        f41 f41Var = this.T1;
-        if (f41Var != null) {
-            f41Var.O(false);
+        k41 k41Var = this.T1;
+        if (k41Var != null) {
+            k41Var.O(false);
         }
     }
 
-    public static void d1(oc ocVar, r31 r31Var, long j3, Boolean bool, String str) {
+    public static void d1(oc ocVar, w31 w31Var, long j3, Boolean bool, String str) {
         wg.x0 x0Var;
         if (ocVar.getContext() != null) {
             if ((bool.booleanValue() || str != null) && (x0Var = ocVar.S1) != null) {
@@ -134,11 +134,11 @@ public final class oc extends org.telegram.ui.Components.na implements ls {
             }
             super.dismiss();
             org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
-            r80 r80Var = LaunchActivity.G1.f41265v0;
+            r80 r80Var = LaunchActivity.G1.f41290v0;
             if (T != null) {
                 if (bool.booleanValue()) {
-                    org.telegram.ui.Components.cc L = org.telegram.ui.Components.hc.a0(T).L(2131624225, org.telegram.messenger.hd.M0(2131745101, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G((int) r31Var.B, "StarsGiftSentPopupInfo", t10.k(ocVar.R1))), org.telegram.messenger.hd.M0(2131743553, null), new k4(j3, 1));
-                    L.f32523j = 5000;
+                    org.telegram.ui.Components.cc L = org.telegram.ui.Components.hc.a0(T).L(2131624225, org.telegram.messenger.hd.M0(2131745101, null), org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G((int) w31Var.B, "StarsGiftSentPopupInfo", t10.k(ocVar.R1))), org.telegram.messenger.hd.M0(2131743553, null), new k4(j3, 1));
+                    L.f32527j = 5000;
                     L.k(true);
                     if (r80Var != null) {
                         r80Var.c(true);
@@ -160,9 +160,9 @@ public final class oc extends org.telegram.ui.Components.na implements ls {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(this.f36328k1, getContext(), this.f28612a, 0, true, new ai.e(this, 9), this.I0);
-        this.T1 = f41Var;
-        return f41Var;
+        k41 k41Var = new k41(this.f36222k1, getContext(), this.f28612a, 0, true, new ai.e(this, 9), this.I0);
+        this.T1 = k41Var;
+        return k41Var;
     }
 
     @Override
@@ -176,9 +176,9 @@ public final class oc extends org.telegram.ui.Components.na implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        f41 f41Var;
-        if ((i7 == qs.f25083w3 || i7 == qs.f25097y3) && (f41Var = this.T1) != null) {
-            f41Var.O(true);
+        k41 k41Var;
+        if ((i7 == qs.f25083w3 || i7 == qs.f25097y3) && (k41Var = this.T1) != null) {
+            k41Var.O(true);
         }
     }
 

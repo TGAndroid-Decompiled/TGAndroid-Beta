@@ -5,15 +5,15 @@ import android.text.TextUtils;
 import android.widget.TextView;
 import org.telegram.tgnet.TLRPC;
 public final class b70 extends org.telegram.ui.ActionBar.v2 {
-    public static final int f32016q1 = 0;
-    public int f32017i1;
-    public final String f32018j1;
-    public final org.telegram.ui.ActionBar.f2 f32019k1;
+    public static final int f32019q1 = 0;
+    public int f32020i1;
+    public final String f32021j1;
+    public final org.telegram.ui.ActionBar.f2 f32022k1;
     public final TLRPC.ChatInvite l1;
-    public final TLRPC.Chat f32020m1;
+    public final TLRPC.Chat f32023m1;
     public final TextView n1;
-    public final RadialProgressView f32021o1;
-    public hc f32022p1;
+    public final RadialProgressView f32024o1;
+    public hc f32025p1;
 
     public b70(android.content.Context r33, org.telegram.tgnet.TLObject r34, java.lang.String r35, org.telegram.ui.ActionBar.f2 r36, org.telegram.ui.ActionBar.f6 r37) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.b70.<init>(android.content.Context, org.telegram.tgnet.TLObject, java.lang.String, org.telegram.ui.ActionBar.f2, org.telegram.ui.ActionBar.f6):void");
@@ -40,14 +40,14 @@ public final class b70 extends org.telegram.ui.ActionBar.v2 {
             hcVar = hc.a0(f2Var);
         }
         zb zbVar = new zb(context, f2Var.getResourceProvider());
-        zbVar.f40882a.f(2131624291, 28, 28, null);
-        zbVar.f40883b.setText(org.telegram.messenger.hd.M0(2131746162, null));
+        zbVar.f40907a.f(2131624291, 28, 28, null);
+        zbVar.f40908b.setText(org.telegram.messenger.hd.M0(2131746162, null));
         if (z9) {
             M0 = org.telegram.messenger.hd.M0(2131746172, null);
         } else {
             M0 = org.telegram.messenger.hd.M0(2131746168, null);
         }
-        zbVar.f40884c.setText(M0);
+        zbVar.f40909c.setText(M0);
         hcVar.b(zbVar, 2750).j();
     }
 
@@ -56,9 +56,9 @@ public final class b70 extends org.telegram.ui.ActionBar.v2 {
         int w02;
         super.s0();
         try {
-            if (this.G0 == this.f32017i1 && (w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27848d6, this.I0)) != this.G0) {
+            if (this.G0 == this.f32020i1 && (w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27848d6, this.I0)) != this.G0) {
                 O(w02);
-                this.f32017i1 = this.G0;
+                this.f32020i1 = this.G0;
             }
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

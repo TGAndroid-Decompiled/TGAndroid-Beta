@@ -2,8 +2,8 @@ package tf;
 
 import java.util.logging.Logger;
 public final class g extends rf.a {
-    public static final Logger f55419s = Logger.getLogger(g.class.getName());
-    public byte f55420r;
+    public static final Logger f55444s = Logger.getLogger(g.class.getName());
+    public byte f55445r;
 
     public static boolean b(m mVar) {
         boolean z9;
@@ -25,11 +25,11 @@ public final class g extends rf.a {
     public static f5.a c(e eVar) {
         b b10 = eVar.b();
         eVar.c(3, b.ISO_8859_1);
-        return new f5.a(eVar.d(200, b10), eVar.c((int) eVar.f55410a.e(), b10), false);
+        return new f5.a(eVar.d(200, b10), eVar.c((int) eVar.f55435a.e(), b10), false);
     }
 
     public static String e(e eVar) {
-        return eVar.c((int) eVar.f55410a.e(), eVar.b());
+        return eVar.c((int) eVar.f55435a.e(), eVar.b());
     }
 
     public final void d(tf.e r12) {

@@ -31,7 +31,7 @@ public final class g {
         f1Var.getClass();
         int i12 = r0Var.f10533a;
         int i13 = r0Var.f10534b;
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         if (r0Var2 == null) {
             i7 = view.getLeft();
         } else {
@@ -58,7 +58,7 @@ public final class g {
                     }
                 }
             }
-            d1Var.f56933i = (d1Var.h - i17) + (i17 * 1000);
+            d1Var.f56958i = (d1Var.h - i17) + (i17 * 1000);
             f1Var.s(d1Var, r0Var);
             z9 = true;
         }
@@ -70,13 +70,13 @@ public final class g {
     public void b(d1 d1Var) {
         RecyclerView recyclerView = this.f17046a;
         n0 n0Var = recyclerView.f2873y;
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         v0 v0Var = recyclerView.f2842b;
-        hy0 hy0Var = n0Var.f57014a;
-        uy uyVar = (uy) hy0Var.f46519b;
-        int indexOfChild = ((RecyclerView) uyVar.f38766b).indexOfChild(view);
+        hy0 hy0Var = n0Var.f57039a;
+        uy uyVar = (uy) hy0Var.f46528b;
+        int indexOfChild = ((RecyclerView) uyVar.f38757b).indexOfChild(view);
         if (indexOfChild >= 0) {
-            if (((ua) hy0Var.f46520c).G(indexOfChild)) {
+            if (((ua) hy0Var.f46529c).G(indexOfChild)) {
                 hy0Var.M(view);
             }
             uyVar.Q(indexOfChild);

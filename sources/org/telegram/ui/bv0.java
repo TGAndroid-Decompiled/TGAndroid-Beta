@@ -1,43 +1,61 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class bv0 extends ProfileStoriesView {
-    public final Context f44472t0;
-    public final ProfileActivity f44473u0;
+import android.graphics.RectF;
+public final class bv0 extends org.telegram.ui.Components.y4 {
+    public final ProfileActivity U0;
 
-    public bv0(ProfileActivity profileActivity, Context context, int i7, long j3, boolean z9, k0 k0Var, yu0 yu0Var, org.telegram.ui.ActionBar.f6 f6Var, Context context2) {
-        super(context, i7, j3, z9, k0Var, yu0Var, f6Var);
-        this.f44473u0 = profileActivity;
-        this.f44472t0 = context2;
+    public bv0(ProfileActivity profileActivity, Context context) {
+        super(context);
+        this.U0 = profileActivity;
     }
 
     @Override
-    public final void e(aa.n nVar) {
-        TL_stories.PeerStories peerStories;
-        TL_stories.PeerStories peerStories2;
-        ProfileActivity profileActivity = this.f44473u0;
-        long a10 = profileActivity.a();
-        di.y6 P1 = profileActivity.getMessagesController().P1();
-        boolean K = P1.K(a10);
-        Context context = this.f44472t0;
-        if (!K && !P1.M(a10) && !P1.Q(a10)) {
-            TLRPC.UserFull userFull = profileActivity.f41805u2;
-            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f41688d1 != profileActivity.getUserConfig().f24478n) {
-                profileActivity.getOrCreateStoryViewer().K(context, profileActivity.f41805u2.stories, nVar);
-                return;
-            }
-            TLRPC.ChatFull chatFull = profileActivity.f41799t2;
-            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
-                profileActivity.getOrCreateStoryViewer().K(context, profileActivity.f41799t2.stories, nVar);
-                return;
-            } else {
-                profileActivity.a4();
-                return;
-            }
+    public final void setAlpha(float f10) {
+        super.setAlpha(f10);
+        RectF rectF = ProfileActivity.S6;
+        this.U0.Q3();
+    }
+
+    @Override
+    public final void setTextColor(int i7) {
+        int r12;
+        ProfileActivity profileActivity = this.U0;
+        profileActivity.E5 = i7;
+        int f10 = i0.a.f(profileActivity.A5, i7, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28240y6, profileActivity.f41866z0));
+        super.setTextColor(f10);
+        uw0 uw0Var = profileActivity.f41865y6;
+        if (uw0Var != null && uw0Var.f50514c != (r12 = org.telegram.ui.ActionBar.k6.r1(1.4f, org.telegram.ui.ActionBar.k6.b(-0.02f, 0.15f, f10)))) {
+            uw0Var.f50514c = r12;
+            uw0Var.invalidateSelf();
         }
-        profileActivity.getOrCreateStoryViewer().J(context, a10, nVar);
+    }
+
+    @Override
+    public final void setTranslationX(float f10) {
+        super.setTranslationX(f10);
+        RectF rectF = ProfileActivity.S6;
+        ProfileActivity profileActivity = this.U0;
+        profileActivity.p4();
+        profileActivity.getClass();
+        org.telegram.ui.Components.lu0 lu0Var = profileActivity.S;
+        if (lu0Var != null) {
+            lu0Var.setTranslationX(f10 - profileActivity.p4());
+        }
+    }
+
+    @Override
+    public final void setTranslationY(float f10) {
+        super.setTranslationY(f10);
+        RectF rectF = ProfileActivity.S6;
+        ProfileActivity profileActivity = this.U0;
+        if (profileActivity.S != null) {
+            org.telegram.messenger.g0.L(3.0f);
+            profileActivity.S.getVisibilityFactor();
+        }
+        org.telegram.ui.Components.lu0 lu0Var = profileActivity.S;
+        if (lu0Var != null) {
+            lu0Var.setTranslationY(f10 - org.telegram.messenger.g0.L(5.0f));
+        }
     }
 }

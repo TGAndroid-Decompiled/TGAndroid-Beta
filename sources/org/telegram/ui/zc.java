@@ -18,9 +18,9 @@ public final class zc extends RadialProgressView {
         switch (this.N) {
             case 3:
                 super.invalidate();
-                oq0 oq0Var = ((PhotoViewer) this.O).f41356e0;
-                if (oq0Var != null) {
-                    oq0Var.invalidate();
+                pq0 pq0Var = ((PhotoViewer) this.O).f41381e0;
+                if (pq0Var != null) {
+                    pq0Var.invalidate();
                     return;
                 }
                 return;
@@ -39,7 +39,7 @@ public final class zc extends RadialProgressView {
                 return;
             case 1:
                 super.setAlpha(f10);
-                ((d50) this.O).f44925e.invalidate();
+                ((d50) this.O).f44950e.invalidate();
                 return;
             case 2:
                 super.setAlpha(f10);
@@ -47,9 +47,9 @@ public final class zc extends RadialProgressView {
                 return;
             default:
                 super.setAlpha(f10);
-                oq0 oq0Var = ((PhotoViewer) this.O).f41356e0;
-                if (oq0Var != null) {
-                    oq0Var.invalidate();
+                pq0 pq0Var = ((PhotoViewer) this.O).f41381e0;
+                if (pq0Var != null) {
+                    pq0Var.invalidate();
                     return;
                 }
                 return;

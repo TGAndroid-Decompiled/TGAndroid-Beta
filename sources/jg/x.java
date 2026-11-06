@@ -57,8 +57,8 @@ public final class x implements Comparator {
             case 6:
                 return Long.compare(((l4.c) obj).f18144b, ((l4.c) obj2).f18144b);
             case 7:
-                top = ((v4.d1) obj2).f56927a.getTop();
-                top2 = ((v4.d1) obj).f56927a.getTop();
+                top = ((v4.d1) obj2).f56952a.getTop();
+                top2 = ((v4.d1) obj).f56952a.getTop();
                 break;
             case 8:
                 top = Integer.bitCount(((Integer) obj2).intValue());
@@ -81,9 +81,9 @@ public final class x implements Comparator {
             case 10:
                 p2.b bVar = (p2.b) obj;
                 p2.b bVar2 = (p2.b) obj2;
-                int compare2 = Integer.compare(bVar.f52979c, bVar2.f52979c);
+                int compare2 = Integer.compare(bVar.f53005c, bVar2.f53005c);
                 if (compare2 == 0) {
-                    return bVar.f52978b.compareTo(bVar2.f52978b);
+                    return bVar.f53004b.compareTo(bVar2.f53004b);
                 }
                 return compare2;
             case 11:

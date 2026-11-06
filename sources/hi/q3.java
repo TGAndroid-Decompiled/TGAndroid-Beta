@@ -217,8 +217,8 @@ public final class q3 extends o00 implements ls {
             wp wpVar = new wp(2131231970, 0);
             wpVar.H = 0.937f;
             wpVar.I = 0.937f;
-            wpVar.f40055r = -org.telegram.messenger.g0.L(1.33f);
-            wpVar.f40056s = org.telegram.messenger.g0.L(1.0f);
+            wpVar.f40062r = -org.telegram.messenger.g0.L(1.33f);
+            wpVar.f40063s = org.telegram.messenger.g0.L(1.0f);
             wpVar.G = 0.8f;
             scaleType = scaleType2;
             spannableStringBuilder.setSpan(wpVar, 0, 1, 33);
@@ -443,8 +443,8 @@ public final class q3 extends o00 implements ls {
         return v2Var3;
     }
 
-    public final void I0(java.util.ArrayList r17, org.telegram.ui.Components.f41 r18) {
-        throw new UnsupportedOperationException("Method not decompiled: hi.q3.I0(java.util.ArrayList, org.telegram.ui.Components.f41):void");
+    public final void I0(java.util.ArrayList r17, org.telegram.ui.Components.k41 r18) {
+        throw new UnsupportedOperationException("Method not decompiled: hi.q3.I0(java.util.ArrayList, org.telegram.ui.Components.k41):void");
     }
 
     @Override
@@ -459,22 +459,22 @@ public final class q3 extends o00 implements ls {
         vg.m mVar = new vg.m(context, 1, 3);
         this.T = mVar;
         mVar.setImportantForAccessibility(4);
-        vg.f fVar = this.T.f57295b;
-        fVar.f57279z = k6.Tk;
+        vg.f fVar = this.T.f57320b;
+        fVar.f57304z = k6.Tk;
         fVar.A = k6.Uk;
         fVar.b();
-        this.T.setStarParticlesView(this.f48166e);
+        this.T.setStarParticlesView(this.f48195e);
         this.S.addView(this.T, ha.d(190, 190.0f, 17, 0.0f, 32.0f, 0.0f, 12.0f));
         j0(hd.M0(2131752472, null), org.telegram.messenger.g0.X2(hd.M0(2131752473, null)), this.S, null);
-        this.f48165c.setOnItemClickListener(new di.p4(2, this, context));
-        this.f48165c.setOnItemLongClickListener(new ab.g(16, this, context));
+        this.f48194c.setOnItemClickListener(new di.p4(2, this, context));
+        this.f48194c.setOnItemLongClickListener(new ab.g(16, this, context));
         v4.k kVar = new v4.k();
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        this.f48165c.setItemAnimator(kVar);
-        this.f48165c.setOnScrollListener(new ai.b(this, 15));
+        this.f48194c.setItemAnimator(kVar);
+        this.f48194c.setOnScrollListener(new ai.b(this, 15));
         return this.fragmentView;
     }
 
@@ -498,7 +498,7 @@ public final class q3 extends o00 implements ls {
 
     @Override
     public final v4.g0 k0() {
-        hc hcVar = new hc(this, this.f48165c, getParentActivity(), this.currentAccount, this.classGuid, new u1(this, 1), getResourceProvider(), 4);
+        hc hcVar = new hc(this, this.f48194c, getParentActivity(), this.currentAccount, this.classGuid, new u1(this, 1), getResourceProvider(), 4);
         this.V = hcVar;
         return hcVar;
     }

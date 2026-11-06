@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class z7 implements Runnable {
-    public final int f40858a = 0;
-    public final a8 f40859b;
-    public final ArrayList f40860c;
+    public final int f40883a = 0;
+    public final a8 f40884b;
+    public final ArrayList f40885c;
     public final String d;
 
     public z7(a8 a8Var, String str, ArrayList arrayList) {
-        this.f40859b = a8Var;
+        this.f40884b = a8Var;
         this.d = str;
-        this.f40860c = arrayList;
+        this.f40885c = arrayList;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class z7 implements Runnable {
         TLRPC.Document document;
         boolean z9;
         String str;
-        int i10 = this.f40858a;
+        int i10 = this.f40883a;
         String str2 = null;
         String str3 = this.d;
-        ArrayList arrayList = this.f40860c;
-        a8 a8Var = this.f40859b;
+        ArrayList arrayList = this.f40885c;
+        a8 a8Var = this.f40884b;
         switch (i10) {
             case 0:
                 a8Var.getClass();
@@ -98,14 +98,14 @@ public final class z7 implements Runnable {
                 org.telegram.messenger.g0.h3(new z7(a8Var, arrayList2, str3));
                 return;
             default:
-                b8 b8Var = a8Var.f31713n;
+                b8 b8Var = a8Var.f31725n;
                 if (b8Var.n1) {
-                    b8Var.f32048m1 = true;
+                    b8Var.f32042m1 = true;
                     a8Var.d = arrayList;
-                    a8Var.f31711e = str3;
+                    a8Var.f31723e = str3;
                     a8Var.f();
-                    b8Var.f32053p1.n0(0);
-                    org.telegram.messenger.k5.r(null, null, 2131748239, new Object[]{str3}, b8Var.f32061t1);
+                    b8Var.f32047p1.n0(0);
+                    org.telegram.messenger.k5.r(null, null, 2131748239, new Object[]{str3}, b8Var.f32055t1);
                     return;
                 }
                 return;
@@ -113,8 +113,8 @@ public final class z7 implements Runnable {
     }
 
     public z7(a8 a8Var, ArrayList arrayList, String str) {
-        this.f40859b = a8Var;
-        this.f40860c = arrayList;
+        this.f40884b = a8Var;
+        this.f40885c = arrayList;
         this.d = str;
     }
 }

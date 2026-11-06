@@ -94,9 +94,9 @@ public final class c9 extends org.telegram.ui.ActionBar.v2 {
                 super.dismiss();
                 org.telegram.ui.Components.t8 t8Var = (org.telegram.ui.Components.t8) this.f21749j1;
                 t8Var.J.z1(t8Var.Y);
-                t8Var.f38290f = true;
+                t8Var.f38281f = true;
                 t8Var.fragmentView.invalidate();
-                t8Var.f38289e.animate().setListener(new org.telegram.ui.Components.z5(this, 4)).alpha(0.0f).setDuration(200L).start();
+                t8Var.f38280e.animate().setListener(new org.telegram.ui.Components.z5(this, 4)).alpha(0.0f).setDuration(200L).start();
                 return;
         }
     }

@@ -5,14 +5,14 @@ import java.util.ArrayList;
 import org.json.JSONObject;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class e implements Runnable {
-    public final int f42376a;
-    public final f f42377b;
-    public final TL_wallet.currencyRates f42378c;
+    public final int f42401a;
+    public final f f42402b;
+    public final TL_wallet.currencyRates f42403c;
 
     public e(f fVar, TL_wallet.currencyRates currencyrates, int i7) {
-        this.f42376a = i7;
-        this.f42377b = fVar;
-        this.f42378c = currencyrates;
+        this.f42401a = i7;
+        this.f42402b = fVar;
+        this.f42403c = currencyrates;
     }
 
     @Override
@@ -20,10 +20,10 @@ public final class e implements Runnable {
         int i7;
         boolean z9;
         String str;
-        switch (this.f42376a) {
+        switch (this.f42401a) {
             case 0:
-                f fVar = this.f42377b;
-                TL_wallet.currencyRates currencyrates = this.f42378c;
+                f fVar = this.f42402b;
+                TL_wallet.currencyRates currencyrates = this.f42403c;
                 boolean z10 = true;
                 if (currencyrates == null || currencyrates.rates == null) {
                     i7 = 1;
@@ -93,10 +93,10 @@ public final class e implements Runnable {
                 org.telegram.messenger.g0.h3(new e(fVar, currencyrates, i7));
                 return;
             default:
-                f fVar2 = this.f42377b;
-                fVar2.d = this.f42378c;
-                fVar2.f42415c = false;
-                fVar2.f42414b.L();
+                f fVar2 = this.f42402b;
+                fVar2.d = this.f42403c;
+                fVar2.f42440c = false;
+                fVar2.f42439b.L();
                 return;
         }
     }

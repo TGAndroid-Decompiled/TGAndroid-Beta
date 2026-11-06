@@ -6,10 +6,10 @@ public final class a implements ke.a {
     @Override
     public final void a(qe.h hVar, Object obj) {
         boolean booleanValue = ((Boolean) obj).booleanValue();
-        if (hVar.f53979a) {
+        if (hVar.f54004a) {
             hVar.j(String.valueOf(booleanValue));
         } else {
-            ((mc.a) ((ca.i) hVar.f53980b).f6016c).c(String.valueOf(booleanValue));
+            ((mc.a) ((ca.i) hVar.f54005b).f6016c).c(String.valueOf(booleanValue));
         }
     }
 

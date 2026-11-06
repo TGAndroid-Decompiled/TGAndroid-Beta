@@ -8,8 +8,8 @@ import android.view.ActionMode;
 import android.view.Menu;
 import org.telegram.messenger.hd;
 import org.telegram.ui.Components.kt;
-import org.telegram.ui.Components.o31;
 import org.telegram.ui.Components.rt0;
+import org.telegram.ui.Components.t31;
 import org.telegram.ui.Components.uy0;
 public final class f3 extends kt {
     public final org.telegram.ui.ActionBar.f6 V;
@@ -49,14 +49,14 @@ public final class f3 extends kt {
         menu.removeItem(16908341);
         menu.add(2131296496, 2131296508, 6, hd.M0(2131745263, null));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(hd.M0(2131753671, null));
-        spannableStringBuilder.setSpan(new o31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
         menu.add(2131296496, 2131296491, 7, spannableStringBuilder);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(hd.M0(2131749086, null));
-        spannableStringBuilder2.setSpan(new o31(org.telegram.messenger.g0.o1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        spannableStringBuilder2.setSpan(new t31(org.telegram.messenger.g0.o1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
         menu.add(2131296496, 2131296497, 8, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(hd.M0(2131744438, null));
         ?? obj = new Object();
-        obj.f38442a = 8 | obj.f38442a;
+        obj.f38433a = 8 | obj.f38433a;
         spannableStringBuilder3.setSpan(new uy0(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(2131296496, 2131296509, 9, spannableStringBuilder3);
         menu.add(2131296496, 2131296503, 10, hd.M0(2131746336, null));

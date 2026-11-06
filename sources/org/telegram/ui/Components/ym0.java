@@ -5,16 +5,16 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class ym0 extends FrameLayout {
-    public final ne f40653a;
+    public final ne f40672a;
 
     public ym0(ne neVar, Context context) {
         super(context);
-        this.f40653a = neVar;
+        this.f40672a = neVar;
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ne neVar = this.f40653a;
+        ne neVar = this.f40672a;
         View contentView = neVar.getContentView();
         contentView.getLocationInWindow(r3);
         int[] iArr = {iArr[0] + neVar.E, iArr[1] + neVar.F};

@@ -6,19 +6,19 @@ import android.animation.ObjectAnimator;
 import android.view.View;
 import android.widget.ImageView;
 public final class il extends AnimatorListenerAdapter {
-    public final int f34732a;
-    public final ChatAttachAlertPhotoLayout f34733b;
+    public final int f34695a;
+    public final ChatAttachAlertPhotoLayout f34696b;
 
     public il(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7) {
-        this.f34732a = i7;
-        this.f34733b = chatAttachAlertPhotoLayout;
+        this.f34695a = i7;
+        this.f34696b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i7;
-        int i10 = this.f34732a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f34733b;
+        int i10 = this.f34695a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f34696b;
         switch (i10) {
             case 0:
                 ImageView imageView = chatAttachAlertPhotoLayout.f31220r0;
@@ -43,7 +43,7 @@ public final class il extends AnimatorListenerAdapter {
                     chatAttachAlertPhotoLayout.P.invalidate();
                 }
                 if (chatAttachAlertPhotoLayout.f31190b0) {
-                    chatAttachAlertPhotoLayout.f38951b.T3.F0();
+                    chatAttachAlertPhotoLayout.f38948b.T3.F0();
                 }
                 ql qlVar3 = chatAttachAlertPhotoLayout.P;
                 if (qlVar3 != null) {
@@ -56,7 +56,7 @@ public final class il extends AnimatorListenerAdapter {
                 }
                 return;
             default:
-                l71 l71Var = chatAttachAlertPhotoLayout.f31210l0;
+                q71 q71Var = chatAttachAlertPhotoLayout.f31210l0;
                 chatAttachAlertPhotoLayout.f31199f1.e();
                 chatAttachAlertPhotoLayout.f31205i1 = false;
                 chatAttachAlertPhotoLayout.setAlertKeepScreenOn(false);
@@ -76,9 +76,9 @@ public final class il extends AnimatorListenerAdapter {
                 if (e5Var != null) {
                     e5Var.setVisibility(8);
                 }
-                if (l71Var != null) {
-                    l71Var.setVisibility(8);
-                    l71Var.setTag(null);
+                if (q71Var != null) {
+                    q71Var.setVisibility(8);
+                    q71Var.setTag(null);
                 }
                 jl jlVar3 = chatAttachAlertPhotoLayout.f31219r;
                 if (jlVar3 != null) {

@@ -6,24 +6,24 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class lr0 extends oj0 {
-    public final Context f35726c;
+    public final Context f35731c;
     public final ArrayList d = new ArrayList();
-    public boolean f35727e;
-    public boolean f35728f;
+    public boolean f35732e;
+    public boolean f35733f;
     public boolean h;
-    public final xs0 f35729n;
+    public final xs0 f35734n;
 
     public lr0(xs0 xs0Var, Context context) {
-        this.f35729n = xs0Var;
-        this.f35726c = context;
+        this.f35734n = xs0Var;
+        this.f35731c = context;
     }
 
     public static void E(lr0 lr0Var, long j3) {
-        xs0 xs0Var = lr0Var.f35729n;
-        if (!lr0Var.f35727e) {
+        xs0 xs0Var = lr0Var.f35734n;
+        if (!lr0Var.f35732e) {
             TLRPC.TL_messages_getCommonChats tL_messages_getCommonChats = new TLRPC.TL_messages_getCommonChats();
             long j10 = xs0Var.l1;
-            org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40405x1;
+            org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40424x1;
             if (org.telegram.messenger.m5.C(j10)) {
                 j10 = f2Var.getMessagesController().a1(Integer.valueOf((int) (j10 & 4294967295L))).user_id;
             }
@@ -34,7 +34,7 @@ public final class lr0 extends oj0 {
             }
             tL_messages_getCommonChats.limit = 100;
             tL_messages_getCommonChats.max_id = j3;
-            lr0Var.f35727e = true;
+            lr0Var.f35732e = true;
             lr0Var.f();
             f2Var.getConnectionsManager().bindRequestToGuid(f2Var.getConnectionsManager().sendRequest(tL_messages_getCommonChats, new x1(lr0Var, 11)), f2Var.getClassGuid());
         }
@@ -51,7 +51,7 @@ public final class lr0 extends oj0 {
     @Override
     public final int b() {
         ArrayList arrayList = this.d;
-        if (arrayList.isEmpty() && !this.f35727e) {
+        if (arrayList.isEmpty() && !this.f35732e) {
             return 1;
         }
         int size = arrayList.size();
@@ -64,7 +64,7 @@ public final class lr0 extends oj0 {
     @Override
     public final int d(int i7) {
         ArrayList arrayList = this.d;
-        if (arrayList.isEmpty() && !this.f35727e) {
+        if (arrayList.isEmpty() && !this.f35732e) {
             return 15;
         }
         if (i7 < arrayList.size()) {
@@ -75,8 +75,8 @@ public final class lr0 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        if (d1Var.f56931f == 14) {
-            View view = d1Var.f56927a;
+        if (d1Var.f56956f == 14) {
+            View view = d1Var.f56952a;
             if (view instanceof org.telegram.ui.Cells.g6) {
                 org.telegram.ui.Cells.g6 g6Var = (org.telegram.ui.Cells.g6) view;
                 ArrayList arrayList = this.d;
@@ -93,14 +93,14 @@ public final class lr0 extends oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         org.telegram.ui.Cells.g6 g6Var;
-        xs0 xs0Var = this.f35729n;
+        xs0 xs0Var = this.f35734n;
         org.telegram.ui.ActionBar.f6 f6Var = xs0Var.H1;
-        Context context = this.f35726c;
+        Context context = this.f35731c;
         if (i7 != 14) {
             if (i7 != 15) {
                 lz lzVar = new lz(context, f6Var);
                 lzVar.setIsSingleCell(true);
-                lzVar.f35802x = false;
+                lzVar.f35807x = false;
                 lzVar.setViewType(1);
                 g6Var = lzVar;
             } else {

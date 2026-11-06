@@ -14,20 +14,20 @@ public final class bq extends v4.k {
 
     @Override
     public final void O() {
-        this.G.f48447c.invalidate();
+        this.G.f48475c.invalidate();
     }
 
     @Override
     public final void P(v4.d1 d1Var) {
-        this.G.f48447c.invalidate();
+        this.G.f48475c.invalidate();
     }
 
     @Override
     public final void m() {
-        boolean isEmpty = this.f56984p.isEmpty();
-        boolean isEmpty2 = this.f56986r.isEmpty();
-        boolean isEmpty3 = this.f56987s.isEmpty();
-        boolean isEmpty4 = this.f56985q.isEmpty();
+        boolean isEmpty = this.f57009p.isEmpty();
+        boolean isEmpty2 = this.f57011r.isEmpty();
+        boolean isEmpty3 = this.f57012s.isEmpty();
+        boolean isEmpty4 = this.f57010q.isEmpty();
         if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
             this.F.d();
         }

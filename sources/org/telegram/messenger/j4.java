@@ -37,7 +37,7 @@ public final class j4 implements Runnable {
                 org.telegram.ui.ww wwVar = (org.telegram.ui.ww) obj2;
                 Activity activity = (Activity) obj;
                 if (wwVar.getParentActivity() != null) {
-                    wwVar.f51610t2 = false;
+                    wwVar.f51627t2 = false;
                     boolean z9 = this.f23471b;
                     boolean z10 = this.f23472c;
                     boolean z11 = this.d;

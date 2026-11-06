@@ -3,18 +3,18 @@ package org.telegram.ui.Components;
 import android.content.DialogInterface;
 import android.view.View;
 public final class p0 implements DialogInterface.OnDismissListener {
-    public final int f36827a;
-    public final Object f36828b;
+    public final int f36705a;
+    public final Object f36706b;
 
     public p0(Object obj, int i7) {
-        this.f36827a = i7;
-        this.f36828b = obj;
+        this.f36705a = i7;
+        this.f36706b = obj;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        int i7 = this.f36827a;
-        Object obj = this.f36828b;
+        int i7 = this.f36705a;
+        Object obj = this.f36706b;
         switch (i7) {
             case 0:
                 ((org.telegram.ui.xf) obj).run();
@@ -29,7 +29,7 @@ public final class p0 implements DialogInterface.OnDismissListener {
                 ((ChatActivityEnterView) obj).L0 = null;
                 return;
             case 4:
-                ((di) obj).f32960w4 = false;
+                ((di) obj).f32973w4 = false;
                 return;
             case 5:
                 ik ikVar = (ik) obj;

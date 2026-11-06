@@ -9,21 +9,21 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.HashSet;
 public final class qs extends org.telegram.ui.ActionBar.f2 {
-    public org.telegram.ui.Components.pj0 f49283a;
-    public org.telegram.ui.Components.iy f49284b;
-    public os f49285c;
+    public org.telegram.ui.Components.pj0 f49301a;
+    public org.telegram.ui.Components.iy f49302b;
+    public os f49303c;
     public org.telegram.ui.Components.oj d;
-    public boolean f49286e;
-    public boolean f49287f;
+    public boolean f49304e;
+    public boolean f49305f;
     public final boolean h;
-    public boolean f49288n;
-    public ps f49289r;
-    public final ArrayList f49290s;
+    public boolean f49306n;
+    public ps f49307r;
+    public final ArrayList f49308s;
 
     public qs(ArrayList arrayList, boolean z9) {
         super(null);
         if (arrayList != null && !arrayList.isEmpty()) {
-            this.f49290s = new ArrayList(arrayList);
+            this.f49308s = new ArrayList(arrayList);
         }
         this.h = z9;
     }
@@ -43,7 +43,7 @@ public final class qs extends org.telegram.ui.ActionBar.f2 {
         }
         w9Var.setPadding(L, 0, org.telegram.messenger.g0.L(f11), 0);
         e5 e5Var = new e5();
-        e5Var.f45171b = new ls(0, w9Var);
+        e5Var.f45201b = new ls(0, w9Var);
         w9Var.addOnAttachStateChangeListener(e5Var);
         return w9Var;
     }
@@ -55,7 +55,7 @@ public final class qs extends org.telegram.ui.ActionBar.f2 {
             spannableStringBuilder.append((CharSequence) F0).append((CharSequence) " ");
             spannableStringBuilder.setSpan(new org.telegram.ui.Components.hy(1), F0.length(), F0.length() + 1, 0);
         }
-        spannableStringBuilder.append((CharSequence) msVar.f47842a);
+        spannableStringBuilder.append((CharSequence) msVar.f47870a);
         return spannableStringBuilder;
     }
 
@@ -92,36 +92,36 @@ public final class qs extends org.telegram.ui.ActionBar.f2 {
         this.actionBar.I(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28240y6, false), true);
         this.actionBar.I(org.telegram.ui.ActionBar.k6.x0(null, i7, false), false);
         this.actionBar.setSearchCursorColor(org.telegram.ui.ActionBar.k6.x0(null, i7, false));
-        this.f49287f = false;
-        this.f49286e = false;
-        os osVar = new os(this, context, this.f49290s, this.f49288n);
-        this.f49285c = osVar;
-        this.d = new org.telegram.ui.Components.oj(this, context, osVar.f48544s);
+        this.f49305f = false;
+        this.f49304e = false;
+        os osVar = new os(this, context, this.f49308s, this.f49306n);
+        this.f49303c = osVar;
+        this.d = new org.telegram.ui.Components.oj(this, context, osVar.f48538s);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
         org.telegram.ui.Components.iy iyVar = new org.telegram.ui.Components.iy(context, null);
-        this.f49284b = iyVar;
+        this.f49302b = iyVar;
         iyVar.c();
-        this.f49284b.setShowAtCenter(true);
-        this.f49284b.setText(org.telegram.messenger.hd.M0(2131748166, null));
+        this.f49302b.setShowAtCenter(true);
+        this.f49302b.setText(org.telegram.messenger.hd.M0(2131748166, null));
         org.telegram.ui.Components.pj0 pj0Var = new org.telegram.ui.Components.pj0(context, null);
-        this.f49283a = pj0Var;
+        this.f49301a = pj0Var;
         pj0Var.setSectionsType(3);
-        this.f49283a.setEmptyView(this.f49284b);
-        this.f49283a.setVerticalScrollBarEnabled(false);
-        this.f49283a.setFastScrollEnabled(0);
-        this.f49283a.setFastScrollVisible(true);
-        this.f49283a.setLayoutManager(new v4.b0(1, false));
-        this.f49283a.setAdapter(this.f49285c);
-        org.telegram.ui.Components.pj0 pj0Var2 = this.f49283a;
+        this.f49301a.setEmptyView(this.f49302b);
+        this.f49301a.setVerticalScrollBarEnabled(false);
+        this.f49301a.setFastScrollEnabled(0);
+        this.f49301a.setFastScrollVisible(true);
+        this.f49301a.setLayoutManager(new v4.b0(1, false));
+        this.f49301a.setAdapter(this.f49303c);
+        org.telegram.ui.Components.pj0 pj0Var2 = this.f49301a;
         if (!org.telegram.messenger.hd.f22871a0) {
             i10 = 2;
         }
         pj0Var2.setVerticalScrollbarPosition(i10);
-        frameLayout.addView(this.f49283a, c8.ha.c(-1.0f, -1));
-        frameLayout.addView(this.f49284b, c8.ha.c(-1.0f, -1));
-        this.f49283a.setOnItemClickListener(new h(this, 7));
-        this.f49283a.setOnScrollListener(new g3(this, 9));
+        frameLayout.addView(this.f49301a, c8.ha.c(-1.0f, -1));
+        frameLayout.addView(this.f49302b, c8.ha.c(-1.0f, -1));
+        this.f49301a.setOnItemClickListener(new h(this, 7));
+        this.f49301a.setOnScrollListener(new g3(this, 9));
         return this.fragmentView;
     }
 
@@ -130,10 +130,10 @@ public final class qs extends org.telegram.ui.ActionBar.f2 {
         ArrayList arrayList = new ArrayList();
         arrayList.add(new org.telegram.ui.ActionBar.t6(this.actionBar, 134217728, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.C8));
         arrayList.add(new org.telegram.ui.ActionBar.t6(this.actionBar, 67108864, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.D8));
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f49283a, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.f27996l7));
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f49283a, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.f28014m7));
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f49283a, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.f28031n7));
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f49284b, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.f27831c7));
+        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f49301a, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.f27996l7));
+        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f49301a, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.f28014m7));
+        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f49301a, 33554432, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.f28031n7));
+        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f49302b, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.f27831c7));
         return arrayList;
     }
 
@@ -148,7 +148,7 @@ public final class qs extends org.telegram.ui.ActionBar.f2 {
     @Override
     public final void onResume() {
         super.onResume();
-        os osVar = this.f49285c;
+        os osVar = this.f49303c;
         if (osVar != null) {
             osVar.X(false);
         }
@@ -166,11 +166,11 @@ public final class qs extends org.telegram.ui.ActionBar.f2 {
                 kVar2.I(org.telegram.ui.ActionBar.k6.x0(null, i7, false), false);
                 this.actionBar.setSearchCursorColor(org.telegram.ui.ActionBar.k6.x0(null, i7, false));
             }
-            org.telegram.ui.Components.pj0 pj0Var = this.f49283a;
+            org.telegram.ui.Components.pj0 pj0Var = this.f49301a;
             if (pj0Var != null) {
                 pj0Var.x1();
-                if (this.f49283a.getFastScroll() != null) {
-                    this.f49283a.getFastScroll().invalidate();
+                if (this.f49301a.getFastScroll() != null) {
+                    this.f49301a.getFastScroll().invalidate();
                 }
             }
         } catch (Exception e10) {

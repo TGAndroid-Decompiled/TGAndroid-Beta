@@ -19,11 +19,11 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.b51;
-import org.telegram.ui.Components.k71;
-import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.f51;
+import org.telegram.ui.Components.p71;
+import org.telegram.ui.Components.q71;
 import org.telegram.ui.Components.ry;
-public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegram.ui.ActionBar.r1, k71, b51, y7, c7 {
+public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegram.ui.ActionBar.r1, p71, f51, y7, c7 {
     public final int f11796a;
     public final va f11797b;
 
@@ -42,7 +42,7 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
         vaVar.f12935a0 = I0.f15119c;
         vaVar.f12939b0 = I0.d;
         vaVar.f12975n.requestLayout();
-        return r0.k1.f54083b;
+        return r0.k1.f54108b;
     }
 
     @Override
@@ -299,10 +299,10 @@ public final class d9 implements CameraView.CameraViewDelegate, r0.m, org.telegr
             str = B;
         }
         vaVar.d0(str);
-        l71 l71Var = vaVar.V0;
-        if (l71Var != null) {
+        q71 q71Var = vaVar.V0;
+        if (q71Var != null) {
             vaVar.T1 = 0.0f;
-            l71Var.b(false, 0.0f);
+            q71Var.b(false, 0.0f);
         }
         vaVar.l0(true);
     }

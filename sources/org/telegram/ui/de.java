@@ -7,19 +7,19 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class de implements RequestDelegate {
-    public final int f45030a;
-    public final an f45031b;
+    public final int f45055a;
+    public final an f45056b;
 
     public de(an anVar, int i7) {
-        this.f45030a = i7;
-        this.f45031b = anVar;
+        this.f45055a = i7;
+        this.f45056b = anVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f45030a) {
+        switch (this.f45055a) {
             case 0:
-                final an anVar = this.f45031b;
+                final an anVar = this.f45056b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -58,7 +58,7 @@ public final class de implements RequestDelegate {
                                 TLObject tLObject3 = tLObject;
                                 anVar3.E5 = 0;
                                 if (tLObject3 == null && anVar3.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar3.getParentActivity(), anVar3.f43998xa);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar3.getParentActivity(), anVar3.f44023xa);
                                     alertDialog$Builder.f27292a.R = org.telegram.messenger.hd.M0(2131689472, null);
                                     alertDialog$Builder.f27292a.T = org.telegram.messenger.hd.M0(2131751272, null);
                                     alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
@@ -77,7 +77,7 @@ public final class de implements RequestDelegate {
                 });
                 return;
             case 1:
-                final an anVar2 = this.f45031b;
+                final an anVar2 = this.f45056b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -116,7 +116,7 @@ public final class de implements RequestDelegate {
                                 TLObject tLObject3 = tLObject;
                                 anVar3.E5 = 0;
                                 if (tLObject3 == null && anVar3.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar3.getParentActivity(), anVar3.f43998xa);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar3.getParentActivity(), anVar3.f44023xa);
                                     alertDialog$Builder.f27292a.R = org.telegram.messenger.hd.M0(2131689472, null);
                                     alertDialog$Builder.f27292a.T = org.telegram.messenger.hd.M0(2131751272, null);
                                     alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
@@ -135,7 +135,7 @@ public final class de implements RequestDelegate {
                 });
                 return;
             case 2:
-                final an anVar3 = this.f45031b;
+                final an anVar3 = this.f45056b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -174,7 +174,7 @@ public final class de implements RequestDelegate {
                                 TLObject tLObject3 = tLObject;
                                 anVar32.E5 = 0;
                                 if (tLObject3 == null && anVar32.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar32.getParentActivity(), anVar32.f43998xa);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar32.getParentActivity(), anVar32.f44023xa);
                                     alertDialog$Builder.f27292a.R = org.telegram.messenger.hd.M0(2131689472, null);
                                     alertDialog$Builder.f27292a.T = org.telegram.messenger.hd.M0(2131751272, null);
                                     alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
@@ -193,7 +193,7 @@ public final class de implements RequestDelegate {
                 });
                 return;
             case 3:
-                final an anVar4 = this.f45031b;
+                final an anVar4 = this.f45056b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
@@ -232,7 +232,7 @@ public final class de implements RequestDelegate {
                                 TLObject tLObject3 = tLObject;
                                 anVar32.E5 = 0;
                                 if (tLObject3 == null && anVar32.getParentActivity() != null) {
-                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar32.getParentActivity(), anVar32.f43998xa);
+                                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, anVar32.getParentActivity(), anVar32.f44023xa);
                                     alertDialog$Builder.f27292a.R = org.telegram.messenger.hd.M0(2131689472, null);
                                     alertDialog$Builder.f27292a.T = org.telegram.messenger.hd.M0(2131751272, null);
                                     alertDialog$Builder.k(org.telegram.messenger.hd.M0(2131747830, null), null);
@@ -251,7 +251,7 @@ public final class de implements RequestDelegate {
                 });
                 return;
             case 4:
-                an anVar5 = this.f45031b;
+                an anVar5 = this.f45056b;
                 if (tL_error != null) {
                     anVar5.getClass();
                     return;
@@ -260,7 +260,7 @@ public final class de implements RequestDelegate {
                     return;
                 }
             default:
-                an.j1(this.f45031b, tLObject);
+                an.j1(this.f45056b, tLObject);
                 return;
         }
     }

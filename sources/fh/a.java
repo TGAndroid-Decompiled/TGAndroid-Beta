@@ -51,9 +51,9 @@ public final class a extends ViewOutlineProvider {
                 return;
             case 2:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                di diVar = chatAttachAlertPhotoLayout.f38951b;
+                di diVar = chatAttachAlertPhotoLayout.f38948b;
                 float f12 = diVar.A2[1];
-                fi.i iVar = diVar.f32968y4;
+                fi.i iVar = diVar.f32981y4;
                 if (iVar != null) {
                     f10 = iVar.d() + g0.L(16.0f);
                 } else {
@@ -88,7 +88,7 @@ public final class a extends ViewOutlineProvider {
                 if (q5Var.getTag() != null) {
                     int intValue = ((Integer) q5Var.getTag()).intValue();
                     tl tlVar = (tl) obj;
-                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = tlVar.f38378w;
+                    ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = tlVar.f38369w;
                     if (tlVar.d && chatAttachAlertPhotoLayout2.T0 == chatAttachAlertPhotoLayout2.U0 && !chatAttachAlertPhotoLayout2.O0) {
                         intValue++;
                     }
@@ -144,11 +144,11 @@ public final class a extends ViewOutlineProvider {
                 }
             case 8:
                 k2 k2Var = (k2) obj;
-                if (k2Var.f39279b < 1.0f) {
+                if (k2Var.f39276b < 1.0f) {
                     outline.setRect((int) k2Var.O, (int) k2Var.N, (int) (view.getMeasuredWidth() - k2Var.O), (int) (view.getMeasuredHeight() - k2Var.N));
                     return;
                 } else {
-                    outline.setRoundRect((int) k2Var.O, (int) k2Var.N, (int) (view.getMeasuredWidth() - k2Var.O), (int) (view.getMeasuredHeight() - k2Var.N), k2Var.f39279b);
+                    outline.setRoundRect((int) k2Var.O, (int) k2Var.N, (int) (view.getMeasuredWidth() - k2Var.O), (int) (view.getMeasuredHeight() - k2Var.N), k2Var.f39276b);
                     return;
                 }
             default:

@@ -93,54 +93,54 @@ public class i0 extends na implements ls {
     public boolean X1;
     public org.telegram.ui.Cells.q1 Y1;
     public final int Z1;
-    public final ArrayList f56487a2;
-    public boolean f56488b2;
-    public int f56489c2;
+    public final ArrayList f56512a2;
+    public boolean f56513b2;
+    public int f56514c2;
     public int d2;
-    public int f56490e2;
-    public int f56491f2;
-    public int f56492g2;
-    public int f56493h2;
-    public int f56494i2;
-    public int f56495j2;
-    public int f56496k2;
-    public int f56497l2;
-    public ArrayList f56498m2;
-    public boolean f56499n2;
-    public int f56500o2;
-    public g0 f56501p2;
-    public final HashSet f56502q2;
-    public final ArrayList f56503r2;
-    public final ArrayList f56504s2;
-    public ArrayList f56505t2;
-    public ArrayList f56506u2;
-    public ArrayList f56507v2;
-    public y f56508w2;
-    public final TextView f56509x2;
-    public fi.d f56510y2;
-    public Runnable f56511z2;
+    public int f56515e2;
+    public int f56516f2;
+    public int f56517g2;
+    public int f56518h2;
+    public int f56519i2;
+    public int f56520j2;
+    public int f56521k2;
+    public int f56522l2;
+    public ArrayList f56523m2;
+    public boolean f56524n2;
+    public int f56525o2;
+    public g0 f56526p2;
+    public final HashSet f56527q2;
+    public final ArrayList f56528r2;
+    public final ArrayList f56529s2;
+    public ArrayList f56530t2;
+    public ArrayList f56531u2;
+    public ArrayList f56532v2;
+    public y f56533w2;
+    public final TextView f56534x2;
+    public fi.d f56535y2;
+    public Runnable f56536z2;
 
     public i0(int i7, int i10, Context context, f2 f2Var, f6 f6Var) {
         super(context, f2Var, false, p1(i7), f6Var);
         this.R1 = -1;
         this.X1 = false;
-        this.f56487a2 = new ArrayList();
+        this.f56512a2 = new ArrayList();
         this.d2 = -1;
-        this.f56490e2 = -1;
-        this.f56491f2 = -1;
-        this.f56492g2 = -1;
-        this.f56493h2 = -1;
-        this.f56494i2 = -1;
-        this.f56495j2 = -1;
-        this.f56496k2 = -1;
-        this.f56497l2 = -1;
-        this.f56500o2 = -1;
-        this.f56502q2 = new HashSet();
-        this.f56503r2 = new ArrayList();
-        this.f56504s2 = new ArrayList();
-        this.f56505t2 = new ArrayList();
-        this.f56506u2 = new ArrayList();
-        this.f56507v2 = new ArrayList();
+        this.f56515e2 = -1;
+        this.f56516f2 = -1;
+        this.f56517g2 = -1;
+        this.f56518h2 = -1;
+        this.f56519i2 = -1;
+        this.f56520j2 = -1;
+        this.f56521k2 = -1;
+        this.f56522l2 = -1;
+        this.f56525o2 = -1;
+        this.f56527q2 = new HashSet();
+        this.f56528r2 = new ArrayList();
+        this.f56529s2 = new ArrayList();
+        this.f56530t2 = new ArrayList();
+        this.f56531u2 = new ArrayList();
+        this.f56532v2 = new ArrayList();
         this.A2 = false;
         this.J2 = 0;
         this.M2 = -4;
@@ -167,20 +167,20 @@ public class i0 extends na implements ls {
             this.f28618c.addView(jzVar, ha.c(-1.0f, -1));
         }
         if (i7 == 18 || i7 == 20 || i7 == 24 || i7 == 25 || i7 == 26 || i7 == 29 || i7 == 22 || i7 == 23 || i7 == 21 || i7 == 27 || i7 == 28 || i7 == 30 || i7 == 35 || i7 == 31) {
-            ((ViewGroup) this.f56508w2.getParent()).removeView(this.f56508w2);
+            ((ViewGroup) this.f56533w2.getParent()).removeView(this.f56533w2);
             l00 l00Var = this.D2;
             if (l00Var != null) {
                 ((ViewGroup) l00Var.getParent()).removeView(this.D2);
             }
-            this.f36328k1.setPadding(0, 0, 0, 0);
+            this.f36222k1.setPadding(0, 0, 0, 0);
             TextView textView = new TextView(context);
-            this.f56509x2 = textView;
+            this.f56534x2 = textView;
             textView.setGravity(17);
             textView.setEllipsize(TextUtils.TruncateAt.END);
             textView.setSingleLine(true);
             textView.setTextSize(1, 14.0f);
             textView.setTypeface(org.telegram.messenger.g0.o());
-            textView.setText(this.f56508w2.getTextView().getText());
+            textView.setText(this.f56533w2.getTextView().getText());
             r6.V(textView, k6.Gi, f6Var);
             textView.setOnClickListener(new t(this, 0));
             int L = org.telegram.messenger.g0.L(8.0f);
@@ -195,7 +195,7 @@ public class i0 extends na implements ls {
             r6.k(textView, k02, N, h, f6Var);
         }
         if (i7 == 32) {
-            ((ViewGroup) this.f56508w2.getParent()).removeView(this.f56508w2);
+            ((ViewGroup) this.f56533w2.getParent()).removeView(this.f56533w2);
             fi.d dVar = new fi.d(context, f6Var, true);
             this.K2 = dVar;
             dVar.k();
@@ -417,13 +417,13 @@ public class i0 extends na implements ls {
             z9 = true;
         }
         this.Q1 = z9;
-        this.f56505t2 = new ArrayList(arrayList);
-        this.f56506u2 = arrayList2;
-        this.f56507v2 = arrayList3;
-        HashSet hashSet = this.f56502q2;
+        this.f56530t2 = new ArrayList(arrayList);
+        this.f56531u2 = arrayList2;
+        this.f56532v2 = arrayList3;
+        HashSet hashSet = this.f56527q2;
         hashSet.clear();
         if (this.Q1) {
-            ArrayList arrayList4 = this.f56505t2;
+            ArrayList arrayList4 = this.f56530t2;
             int size = arrayList4.size();
             int i7 = 0;
             while (i7 < size) {
@@ -439,17 +439,17 @@ public class i0 extends na implements ls {
         E1();
         int i10 = this.Z1;
         if ((i10 == 11 || i10 == 34) && !qp.s1(this.f28612a).D3()) {
-            if (((arrayList3 != null && !arrayList3.isEmpty()) || (arrayList2 != null && arrayList2.size() >= this.f56505t2.size())) && arrayList3 != null && arrayList2 != null) {
+            if (((arrayList3 != null && !arrayList3.isEmpty()) || (arrayList2 != null && arrayList2.size() >= this.f56530t2.size())) && arrayList3 != null && arrayList2 != null) {
                 if ((arrayList3.size() == 1 && arrayList2.size() == 1) || arrayList2.size() >= arrayList3.size()) {
-                    y yVar = this.f56508w2;
+                    y yVar = this.f56533w2;
                     if (yVar != null && yVar.getParent() != null) {
-                        ((ViewGroup) this.f56508w2.getParent()).removeView(this.f56508w2);
+                        ((ViewGroup) this.f56533w2.getParent()).removeView(this.f56533w2);
                     }
                     l00 l00Var = this.D2;
                     if (l00Var != null && l00Var.getParent() != null) {
                         ((ViewGroup) this.D2.getParent()).removeView(this.D2);
                     }
-                    pj0 pj0Var = this.f36328k1;
+                    pj0 pj0Var = this.f36222k1;
                     if (pj0Var != null) {
                         pj0Var.setPadding(0, 0, 0, 0);
                     }
@@ -469,7 +469,7 @@ public class i0 extends na implements ls {
         String str;
         int i15;
         String str2;
-        this.f56498m2 = new ArrayList();
+        this.f56523m2 = new ArrayList();
         TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.T1;
         if (tL_premium_boostsStatus != null) {
             i7 = tL_premium_boostsStatus.level + 1;
@@ -508,11 +508,11 @@ public class i0 extends na implements ls {
                 arrayList2.add(d0.a(2131231819, 2131753660));
             }
             d0 b10 = d0.b(2131231816, i7, "BoostFeatureStoriesPerDay");
-            b10.f56430f = true;
+            b10.f56455f = true;
             arrayList2.add(b10);
             if (!r12) {
                 d0 b11 = d0.b(2131231811, i7, "BoostFeatureCustomReaction");
-                b11.f56430f = true;
+                b11.f56455f = true;
                 arrayList2.add(b11);
             }
             gp gpVar3 = s13.f24859q4;
@@ -585,15 +585,15 @@ public class i0 extends na implements ls {
                 for (int i16 = 0; i16 < arrayList.size(); i16++) {
                     d0 d0Var = (d0) arrayList.get(i16);
                     d0 d0Var2 = (d0) arrayList2.get(i16);
-                    int i17 = d0Var.f56429e;
-                    if (d0Var2 != null && ((d0Var.f56430f && i17 > 2) || (d0Var.f56426a == d0Var2.f56426a && d0Var.f56427b == d0Var2.f56427b && TextUtils.equals(d0Var.f56428c, d0Var2.f56428c) && TextUtils.equals(d0Var.d, d0Var2.d) && i17 == d0Var2.f56429e))) {
+                    int i17 = d0Var.f56454e;
+                    if (d0Var2 != null && ((d0Var.f56455f && i17 > 2) || (d0Var.f56451a == d0Var2.f56451a && d0Var.f56452b == d0Var2.f56452b && TextUtils.equals(d0Var.f56453c, d0Var2.f56453c) && TextUtils.equals(d0Var.d, d0Var2.d) && i17 == d0Var2.f56454e))) {
                     }
                 }
                 i7++;
             }
-            ArrayList arrayList3 = this.f56498m2;
+            ArrayList arrayList3 = this.f56523m2;
             arrayList3.add(new c0(i7, arrayList3.isEmpty()));
-            this.f56498m2.addAll(arrayList2);
+            this.f56523m2.addAll(arrayList2);
             arrayList = arrayList2;
             i7++;
         }
@@ -602,13 +602,13 @@ public class i0 extends na implements ls {
     public final void E1() {
         int i7;
         String str = null;
-        if (this.f56488b2) {
-            this.f56508w2.c(hd.M0(2131749129, null), false, false);
+        if (this.f56513b2) {
+            this.f56533w2.c(hd.M0(2131749129, null), false, false);
             return;
         }
         int i10 = this.Z1;
         if (i10 != 19 && i10 != 32 && !s1()) {
-            HashSet hashSet = this.f56502q2;
+            HashSet hashSet = this.f56527q2;
             if (i10 != 11 && i10 != 34) {
                 if (hashSet.size() > 0) {
                     if (i10 == 2) {
@@ -616,15 +616,15 @@ public class i0 extends na implements ls {
                     } else if (i10 == 5) {
                         str = hd.G(hashSet.size(), "LeaveCommunities", new Object[0]);
                     }
-                    this.f56508w2.c(str, true, true);
+                    this.f56533w2.c(str, true, true);
                     return;
                 }
-                y yVar = this.f56508w2;
-                yVar.f56642r = false;
+                y yVar = this.f56533w2;
+                yVar.f56667r = false;
                 yVar.d(true);
                 return;
             }
-            y yVar2 = this.f56508w2;
+            y yVar2 = this.f56533w2;
             if (yVar2.I == null) {
                 cq cqVar = new cq(yVar2.getContext(), null);
                 yVar2.I = cqVar;
@@ -632,42 +632,42 @@ public class i0 extends na implements ls {
                 cq cqVar2 = yVar2.I;
                 int i11 = k6.Ci;
                 int i12 = k6.Gi;
-                bq bqVar = cqVar2.f32641a;
+                bq bqVar = cqVar2.f32645a;
                 bqVar.v = i11;
-                bqVar.f32275w = i12;
-                bqVar.f32257b = 0.8f;
+                bqVar.f32269w = i12;
+                bqVar.f32251b = 0.8f;
                 yVar2.setClipChildren(false);
                 yVar2.addView(yVar2.I, ha.e(-1, 24, 16));
             }
             if (!this.Q1) {
-                this.f56508w2.c(hd.M0(2131752041, null), true, true);
+                this.f56533w2.c(hd.M0(2131752041, null), true, true);
             } else if (hashSet.size() > 0) {
-                this.f56508w2.c(hd.M0(2131745620, null), true, true);
+                this.f56533w2.c(hd.M0(2131745620, null), true, true);
             } else {
-                this.f56508w2.c(hd.M0(2131754557, null), true, true);
+                this.f56533w2.c(hd.M0(2131754557, null), true, true);
             }
-            this.f56508w2.I.f32641a.c(hashSet.size(), true);
-            this.f56508w2.invalidate();
+            this.f56533w2.I.f32645a.c(hashSet.size(), true);
+            this.f56533w2.invalidate();
             return;
         }
         e3 e3Var = this.U1;
         boolean z9 = e3Var.f22140a;
         if ((z9 || e3Var.f22141b) && !e3Var.f22149l && !e3Var.d) {
             if (e3Var.f22150m) {
-                this.f56508w2.c(hd.M0(2131747830, null), true, true);
+                this.f56533w2.c(hd.M0(2131747830, null), true, true);
                 return;
             }
-            y yVar3 = this.f56508w2;
-            yVar3.f56642r = false;
+            y yVar3 = this.f56533w2;
+            yVar3.f56667r = false;
             yVar3.d(true);
             return;
         }
         fi.d dVar = this.K2;
         if (z9) {
             if (wg.s.i()) {
-                this.f56508w2.c(hd.M0(2131753591, null), true, true);
+                this.f56533w2.c(hd.M0(2131753591, null), true, true);
             } else {
-                y yVar4 = this.f56508w2;
+                y yVar4 = this.f56533w2;
                 if (r1()) {
                     i7 = 2131753625;
                 } else {
@@ -675,83 +675,83 @@ public class i0 extends na implements ls {
                 }
                 yVar4.c(hd.M0(i7, null), true, true);
             }
-            this.f56510y2.i(hd.M0(2131753664, null), true, true);
+            this.f56535y2.i(hd.M0(2131753664, null), true, true);
             if (dVar != null) {
                 dVar.i(hd.M0(2131753625, null), true, true);
             }
         } else if (e3Var.f22150m) {
-            this.f56510y2.i(hd.M0(2131747830, null), true, true);
+            this.f56535y2.i(hd.M0(2131747830, null), true, true);
             if (dVar != null) {
                 dVar.i(hd.M0(2131747830, null), true, true);
             }
-            this.f56508w2.c(hd.M0(2131747830, null), true, true);
+            this.f56533w2.c(hd.M0(2131747830, null), true, true);
         } else if (wg.s.i()) {
             if (dVar != null) {
                 dVar.i(hd.M0(2131753625, null), true, true);
             }
-            this.f56510y2.i(hd.M0(2131753664, null), true, true);
-            this.f56508w2.c(hd.M0(2131753591, null), true, true);
+            this.f56535y2.i(hd.M0(2131753664, null), true, true);
+            this.f56533w2.c(hd.M0(2131753591, null), true, true);
         } else {
             if (dVar != null) {
                 dVar.i(hd.M0(2131747830, null), true, true);
             }
-            this.f56510y2.i(hd.M0(2131747830, null), true, true);
-            this.f56508w2.c(hd.M0(2131747830, null), true, true);
+            this.f56535y2.i(hd.M0(2131747830, null), true, true);
+            this.f56533w2.c(hd.M0(2131747830, null), true, true);
         }
     }
 
     public final void F1() {
         String M0;
-        if (this.f56488b2) {
-            this.f56508w2.c(hd.M0(2131749129, null), false, false);
+        if (this.f56513b2) {
+            this.f56533w2.c(hd.M0(2131749129, null), false, false);
             return;
         }
         int i7 = this.Z1;
         if (i7 != 19 && i7 != 32 && !s1()) {
             if (i7 != 18 && i7 != 20 && i7 != 24 && i7 != 25 && i7 != 26 && i7 != 29 && i7 != 22 && i7 != 23 && i7 != 21 && i7 != 27 && i7 != 28 && i7 != 30 && i7 != 35) {
                 if (!p10.i(this.f28612a).q() && !qp.s1(this.f28612a).D3() && !this.F2) {
-                    this.f56508w2.f56640f.setText(hd.M0(2131749198, null));
+                    this.f56533w2.f56665f.setText(hd.M0(2131749198, null));
                     androidx.emoji2.text.p pVar = this.E2;
                     if (pVar != null) {
                         int i10 = pVar.f2324b;
                         int i11 = i10 + 1;
                         int i12 = pVar.f2325c;
                         if (i11 == i12) {
-                            this.f56508w2.setIcon(2131623936);
+                            this.f56533w2.setIcon(2131623936);
                             return;
                         }
                         if (i10 != 0 && i12 != 0) {
                             float f10 = i12 / i10;
                             if (f10 >= 1.6f && f10 <= 2.5f) {
-                                this.f56508w2.setIcon(2131624001);
+                                this.f56533w2.setIcon(2131624001);
                                 return;
                             }
                         }
-                        y yVar = this.f56508w2;
-                        yVar.D.f39330p = null;
+                        y yVar = this.f56533w2;
+                        yVar.D.f39327p = null;
                         yVar.F.setVisibility(8);
                         return;
                     }
-                    y yVar2 = this.f56508w2;
-                    yVar2.D.f39330p = null;
+                    y yVar2 = this.f56533w2;
+                    yVar2.D.f39327p = null;
                     yVar2.F.setVisibility(8);
                     return;
                 }
-                this.f56508w2.f56640f.setText(hd.M0(2131747830, null));
-                y yVar3 = this.f56508w2;
-                yVar3.D.f39330p = null;
+                this.f56533w2.f56665f.setText(hd.M0(2131747830, null));
+                y yVar3 = this.f56533w2;
+                yVar3.D.f39327p = null;
                 yVar3.F.setVisibility(8);
                 return;
             }
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("d ");
             spannableStringBuilder.setSpan(new wp(2131232104, 0), 0, 1, 0);
             spannableStringBuilder.append((CharSequence) hd.M0(2131751762, null));
-            this.f56508w2.f56640f.setText(spannableStringBuilder);
+            this.f56533w2.f56665f.setText(spannableStringBuilder);
             return;
         }
         int i13 = 2131753663;
         if (wg.s.i()) {
-            o0 o0Var = this.f56508w2.f56640f;
+            o0 o0Var = this.f56533w2.f56665f;
             e3 e3Var = this.U1;
             if (e3Var != null && e3Var.d) {
                 M0 = hd.M0(2131753591, null);
@@ -764,12 +764,12 @@ public class i0 extends na implements ls {
             o0Var.setText(M0);
             e3 e3Var2 = this.U1;
             if (e3Var2 != null && e3Var2.f22150m) {
-                this.f56508w2.f56640f.setText(hd.M0(2131747830, null));
+                this.f56533w2.f56665f.setText(hd.M0(2131747830, null));
                 return;
             }
             return;
         }
-        o0 o0Var2 = this.f56508w2.f56640f;
+        o0 o0Var2 = this.f56533w2.f56665f;
         if (r1()) {
             i13 = 2131753625;
         }
@@ -781,85 +781,85 @@ public class i0 extends na implements ls {
         ArrayList arrayList2;
         ArrayList arrayList3;
         ArrayList arrayList4;
-        this.f56490e2 = -1;
-        this.f56492g2 = -1;
-        this.f56493h2 = -1;
-        this.f56494i2 = -1;
+        this.f56515e2 = -1;
+        this.f56517g2 = -1;
+        this.f56518h2 = -1;
+        this.f56519i2 = -1;
         this.R1 = -1;
-        this.f56495j2 = -1;
-        this.f56497l2 = -1;
-        this.f56489c2 = 1;
+        this.f56520j2 = -1;
+        this.f56522l2 = -1;
+        this.f56514c2 = 1;
         this.d2 = 0;
         int i7 = this.Z1;
         if (i7 != 19 && i7 != 18 && i7 != 20 && i7 != 24 && i7 != 27 && i7 != 28 && i7 != 22 && i7 != 23 && i7 != 25 && i7 != 26 && i7 != 29 && i7 != 21 && i7 != 30 && i7 != 35) {
             if (i7 != 31 && i7 != 32) {
                 if (!p1(i7)) {
                     if (i7 != 11 && i7 != 34) {
-                        int i10 = this.f56489c2;
-                        this.f56490e2 = i10;
-                        this.f56489c2 = i10 + 2;
-                        this.f56491f2 = i10 + 1;
+                        int i10 = this.f56514c2;
+                        this.f56515e2 = i10;
+                        this.f56514c2 = i10 + 2;
+                        this.f56516f2 = i10 + 1;
                     } else {
-                        this.f36333r1 = 0.24f;
+                        this.f36227r1 = 0.24f;
                     }
                     if (this.A2) {
-                        int i11 = this.f56489c2;
-                        this.f56489c2 = i11 + 1;
-                        this.f56494i2 = i11;
+                        int i11 = this.f56514c2;
+                        this.f56514c2 = i11 + 1;
+                        this.f56519i2 = i11;
                     } else if (i7 != 11 || this.Q1) {
-                        if (i7 != 11 || qp.s1(this.f28612a).D3() || ((((arrayList = this.f56507v2) == null || arrayList.isEmpty()) && ((arrayList2 = this.f56506u2) == null || arrayList2.size() < this.f56505t2.size())) || (arrayList3 = this.f56507v2) == null || arrayList3.size() != 1 || (arrayList4 = this.f56506u2) == null || arrayList4.size() != 1 || !this.Q1)) {
-                            int i12 = this.f56489c2;
-                            this.f56492g2 = i12;
+                        if (i7 != 11 || qp.s1(this.f28612a).D3() || ((((arrayList = this.f56532v2) == null || arrayList.isEmpty()) && ((arrayList2 = this.f56531u2) == null || arrayList2.size() < this.f56530t2.size())) || (arrayList3 = this.f56532v2) == null || arrayList3.size() != 1 || (arrayList4 = this.f56531u2) == null || arrayList4.size() != 1 || !this.Q1)) {
+                            int i12 = this.f56514c2;
+                            this.f56517g2 = i12;
                             if (i7 != 11 && i7 != 34) {
                                 if (i7 == 5) {
-                                    this.f56489c2 = this.f56503r2.size() + i12;
+                                    this.f56514c2 = this.f56528r2.size() + i12;
                                 } else {
-                                    this.f56489c2 = this.f56487a2.size() + i12;
+                                    this.f56514c2 = this.f56512a2.size() + i12;
                                 }
                             } else {
-                                this.f56489c2 = this.f56505t2.size() + i12;
+                                this.f56514c2 = this.f56530t2.size() + i12;
                             }
-                            this.f56493h2 = this.f56489c2;
+                            this.f56518h2 = this.f56514c2;
                         }
-                        if (this.f56493h2 - this.f56492g2 > 1) {
-                            int i13 = this.f56489c2;
-                            this.f56489c2 = i13 + 1;
-                            this.f56495j2 = i13;
+                        if (this.f56518h2 - this.f56517g2 > 1) {
+                            int i13 = this.f56514c2;
+                            this.f56514c2 = i13 + 1;
+                            this.f56520j2 = i13;
                         }
                     }
                 }
             } else {
-                this.f36333r1 = 0.24f;
+                this.f36227r1 = 0.24f;
                 D1();
-                int i14 = this.f56489c2;
-                this.f56492g2 = i14;
+                int i14 = this.f56514c2;
+                this.f56517g2 = i14;
                 int i15 = i14 + 1;
-                this.f56489c2 = i15;
-                this.f56497l2 = i14;
-                int size = (this.f56498m2.size() - 1) + i15;
-                this.f56489c2 = size;
-                this.f56493h2 = size;
+                this.f56514c2 = i15;
+                this.f56522l2 = i14;
+                int size = (this.f56523m2.size() - 1) + i15;
+                this.f56514c2 = size;
+                this.f56518h2 = size;
             }
         } else {
             if (i7 != 19 || t3.N(n1())) {
-                this.f36333r1 = 0.24f;
-                int i16 = this.f56489c2;
-                this.f56489c2 = i16 + 1;
+                this.f36227r1 = 0.24f;
+                int i16 = this.f56514c2;
+                this.f56514c2 = i16 + 1;
                 this.R1 = i16;
                 if (qp.s1(this.f28612a).f24850p4) {
-                    int i17 = this.f56489c2;
-                    this.f56489c2 = i17 + 1;
-                    this.f56496k2 = i17;
+                    int i17 = this.f56514c2;
+                    this.f56514c2 = i17 + 1;
+                    this.f56521k2 = i17;
                 }
             }
             D1();
-            int i18 = this.f56489c2;
+            int i18 = this.f56514c2;
             int i19 = i18 + 1;
-            this.f56489c2 = i19;
-            this.f56497l2 = i18;
-            this.f56489c2 = (this.f56498m2.size() - 1) + i19;
+            this.f56514c2 = i19;
+            this.f56522l2 = i18;
+            this.f56514c2 = (this.f56523m2.size() - 1) + i19;
         }
-        this.f36328k1.getAdapter().f();
+        this.f36222k1.getAdapter().f();
     }
 
     @Override
@@ -913,31 +913,31 @@ public class i0 extends na implements ls {
         int i7;
         Context context = rt0Var.getContext();
         fi.d dVar = new fi.d(context, this.I0, true);
-        this.f56510y2 = dVar;
+        this.f56535y2 = dVar;
         dVar.setFlickeringLoading(true);
-        this.f56510y2.i(hd.M0(2131753664, null), false, true);
-        this.f56510y2.setOnClickListener(new t(this, 2));
+        this.f56535y2.i(hd.M0(2131753664, null), false, true);
+        this.f56535y2.setOnClickListener(new t(this, 2));
         y yVar = new y(this, context, this.I0);
-        this.f56508w2 = yVar;
+        this.f56533w2 = yVar;
         ka.b(yVar, 0.02f, 1.2f);
-        if (!this.f36331p1 && (i7 = this.Z1) != 18 && i7 != 20 && i7 != 24 && i7 != 25 && i7 != 26 && i7 != 29 && i7 != 22 && i7 != 23 && i7 != 21 && i7 != 27 && i7 != 28 && i7 != 30 && i7 != 35) {
+        if (!this.f36225p1 && (i7 = this.Z1) != 18 && i7 != 20 && i7 != 24 && i7 != 25 && i7 != 26 && i7 != 29 && i7 != 22 && i7 != 23 && i7 != 21 && i7 != 27 && i7 != 28 && i7 != 30 && i7 != 35) {
             l00 l00Var = new l00(13, context, this);
             this.D2 = l00Var;
             r6.i(k6.f27921h5, l00Var, this.I0);
             rt0Var.addView(this.D2, ha.d(-1, 72.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
-        y yVar2 = this.f56508w2;
+        y yVar2 = this.f56533w2;
         float f10 = (this.f28645t0 / org.telegram.messenger.g0.f22536p) + 16.0f;
         rt0Var.addView(yVar2, ha.d(-1, 48.0f, 80, f10, 0.0f, f10, 12.0f));
         int L = org.telegram.messenger.g0.L(72.0f);
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         pj0Var.setPadding(0, 0, 0, L);
         pj0Var.setClipToPadding(false);
         pj0Var.setClipChildren(false);
         pj0Var.setOnItemClickListener(new ai.k(this, 21));
         pj0Var.setOnItemLongClickListener(new w(this, 2));
-        this.f56508w2.f56644w.setOnClickListener(new fk0(28, this, context));
-        this.f56508w2.h.setOnClickListener(new t(this, 3));
+        this.f56533w2.f56669w.setOnClickListener(new fk0(28, this, context));
+        this.f56533w2.h.setOnClickListener(new t(this, 3));
         this.B2 = new si0(pj0Var, true);
     }
 
@@ -950,7 +950,7 @@ public class i0 extends na implements ls {
         if (i7 == qs.V2) {
             TLRPC.Chat chat = (TLRPC.Chat) objArr[0];
             boolean booleanValue = ((Boolean) objArr[1]).booleanValue();
-            f2 f2Var3 = this.f36330o1;
+            f2 f2Var3 = this.f36224o1;
             f2 lastFragment = f2Var3.getParentLayout().getLastFragment();
             f2 f2Var4 = null;
             if (lastFragment instanceof ch.o) {
@@ -1063,7 +1063,7 @@ public class i0 extends na implements ls {
                 e3Var.a(tL_premium_myBoosts);
                 if (v1()) {
                     cc Q = new hc(this.f28618c, this.I0).Q(2131624050, 30, hd.G(intValue, "BoostingReassignedFromPlural", hd.G(intValue2, "BoostingFromOtherChannel", new Object[0])));
-                    Q.f32523j = 4000;
+                    Q.f32527j = 4000;
                     Q.k(true);
                 }
             }
@@ -1079,17 +1079,17 @@ public class i0 extends na implements ls {
         z70Var.setLoading(true);
         qp.s1(this.f28612a).G0();
         wg.s.a(-this.S1, Arrays.asList(Integer.valueOf(this.U1.f22145g)), new c20(this) {
-            public final i0 f56744b;
+            public final i0 f56769b;
 
             {
-                this.f56744b = this;
+                this.f56769b = this;
             }
 
             @Override
             public final void a(Object obj) {
                 switch (r3) {
                     case 0:
-                        i0 i0Var = this.f56744b;
+                        i0 i0Var = this.f56769b;
                         qp.s1(i0Var.f28612a).G0().a(i0Var.S1, new v3(i0Var, z70Var, (TL_stories.TL_premium_myBoosts) obj, 11));
                         return;
                     default:
@@ -1099,7 +1099,7 @@ public class i0 extends na implements ls {
                         if (startsWith) {
                             int intValue = Utilities.z(tL_error.text).intValue();
                             if (intValue <= 5) {
-                                org.telegram.messenger.g0.i3(new ti.p(8, this.f56744b, z70Var2), intValue * 1000);
+                                org.telegram.messenger.g0.i3(new ti.p(8, this.f56769b, z70Var2), intValue * 1000);
                                 return;
                             }
                             wg.h.g(intValue);
@@ -1109,17 +1109,17 @@ public class i0 extends na implements ls {
                 }
             }
         }, new c20(this) {
-            public final i0 f56744b;
+            public final i0 f56769b;
 
             {
-                this.f56744b = this;
+                this.f56769b = this;
             }
 
             @Override
             public final void a(Object obj) {
                 switch (r3) {
                     case 0:
-                        i0 i0Var = this.f56744b;
+                        i0 i0Var = this.f56769b;
                         qp.s1(i0Var.f28612a).G0().a(i0Var.S1, new v3(i0Var, z70Var, (TL_stories.TL_premium_myBoosts) obj, 11));
                         return;
                     default:
@@ -1129,7 +1129,7 @@ public class i0 extends na implements ls {
                         if (startsWith) {
                             int intValue = Utilities.z(tL_error.text).intValue();
                             if (intValue <= 5) {
-                                org.telegram.messenger.g0.i3(new ti.p(8, this.f56744b, z70Var2), intValue * 1000);
+                                org.telegram.messenger.g0.i3(new ti.p(8, this.f56769b, z70Var2), intValue * 1000);
                                 return;
                             }
                             wg.h.g(intValue);
@@ -1142,15 +1142,15 @@ public class i0 extends na implements ls {
     }
 
     public final void i1() {
-        if (this.f56510y2.isAttachedToWindow()) {
-            h1(this.f56510y2, false);
+        if (this.f56535y2.isAttachedToWindow()) {
+            h1(this.f56535y2, false);
             return;
         }
         fi.d dVar = this.K2;
         if (dVar != null && dVar.isAttachedToWindow()) {
             h1(dVar, false);
         } else {
-            h1(this.f56508w2, false);
+            h1(this.f56533w2, false);
         }
     }
 
@@ -1385,7 +1385,7 @@ public class i0 extends na implements ls {
 
     public final void t1() {
         int i7;
-        g0 g0Var = this.f56501p2;
+        g0 g0Var = this.f56526p2;
         TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.T1;
         int i10 = tL_premium_boostsStatus.boosts;
         int i11 = tL_premium_boostsStatus.next_level_boosts - tL_premium_boostsStatus.current_level_boosts;
@@ -1445,43 +1445,43 @@ public class i0 extends na implements ls {
         transitionSet.setOrdering(0);
         TransitionManager.beginDelayedTransition(this.V1, transitionSet);
         h0 h0Var = this.V1;
-        wg.b bVar = h0Var.f56482c;
-        int indexOfChild = h0Var.indexOfChild(h0Var.f56481b);
-        i0 i0Var = h0Var.f56483e;
+        wg.b bVar = h0Var.f56507c;
+        int indexOfChild = h0Var.indexOfChild(h0Var.f56506b);
+        i0 i0Var = h0Var.f56508e;
         if (i0Var.W1) {
             int indexOfChild2 = h0Var.indexOfChild(h0Var.d);
             h0Var.removeView(h0Var.d);
-            h0Var.d.removeView(h0Var.f56480a);
+            h0Var.d.removeView(h0Var.f56505a);
             h0Var.d.removeView(bVar);
             LinearLayout linearLayout = new LinearLayout(h0Var.getContext());
             h0Var.d = linearLayout;
             linearLayout.setOrientation(0);
             h0Var.d.setWeightSum(1.0f);
-            h0Var.d.addView(h0Var.f56480a, ha.p(-2, -2, 1.0f, 0));
+            h0Var.d.addView(h0Var.f56505a, ha.p(-2, -2, 1.0f, 0));
             h0Var.d.addView(bVar, ha.t(-2, -2, 48, 0, 2, 0, 0));
             h0Var.addView(h0Var.d, indexOfChild2, ha.t(-2, -2, 1, 25, 22, 12, 9));
         } else {
-            int indexOfChild3 = h0Var.indexOfChild(h0Var.f56480a);
-            h0Var.removeView(h0Var.f56480a);
+            int indexOfChild3 = h0Var.indexOfChild(h0Var.f56505a);
+            h0Var.removeView(h0Var.f56505a);
             TextView textView = new TextView(h0Var.getContext());
-            h0Var.f56480a = textView;
+            h0Var.f56505a = textView;
             textView.setTypeface(org.telegram.messenger.g0.o());
-            h0Var.f56480a.setTextSize(1, 20.0f);
-            r6.V(h0Var.f56480a, k6.G6, i0Var.I0);
-            h0Var.f56480a.setGravity(17);
-            h0Var.addView(h0Var.f56480a, indexOfChild3, ha.t(-2, -2, 1, 0, 22, 0, 0));
+            h0Var.f56505a.setTextSize(1, 20.0f);
+            r6.V(h0Var.f56505a, k6.G6, i0Var.I0);
+            h0Var.f56505a.setGravity(17);
+            h0Var.addView(h0Var.f56505a, indexOfChild3, ha.t(-2, -2, 1, 0, 22, 0, 0));
         }
-        h0Var.removeView(h0Var.f56481b);
+        h0Var.removeView(h0Var.f56506b);
         TextView textView2 = new TextView(h0Var.getContext());
-        h0Var.f56481b = textView2;
+        h0Var.f56506b = textView2;
         textView2.setTextSize(1, 14.0f);
-        TextView textView3 = h0Var.f56481b;
-        textView3.setLineSpacing(textView3.getLineSpacingExtra(), h0Var.f56481b.getLineSpacingMultiplier() * 1.1f);
-        h0Var.f56481b.setGravity(1);
-        r6.V(h0Var.f56481b, k6.G6, i0Var.I0);
-        h0Var.addView(h0Var.f56481b, indexOfChild, ha.t(-2, -2, 1, 24, -2, 24, 17));
-        this.V1.f56480a.setText(m1());
-        TextView textView4 = this.V1.f56481b;
+        TextView textView3 = h0Var.f56506b;
+        textView3.setLineSpacing(textView3.getLineSpacingExtra(), h0Var.f56506b.getLineSpacingMultiplier() * 1.1f);
+        h0Var.f56506b.setGravity(1);
+        r6.V(h0Var.f56506b, k6.G6, i0Var.I0);
+        h0Var.addView(h0Var.f56506b, indexOfChild, ha.t(-2, -2, 1, 24, -2, 24, 17));
+        this.V1.f56505a.setText(m1());
+        TextView textView4 = this.V1.f56506b;
         qp s12 = qp.s1(this.f28612a);
         boolean r12 = r1();
         int i22 = this.Z1;
@@ -1585,10 +1585,10 @@ public class i0 extends na implements ls {
             jzVar.performHapticFeedback(3);
         } catch (Exception unused) {
         }
-        this.V1.f56482c.a(this.U1.f22146i, true);
-        this.f36328k1.y0(0);
+        this.V1.f56507c.a(this.U1.f22146i, true);
+        this.f36222k1.y0(0);
         if (i22 == 32) {
-            this.V1.f56482c.setVisibility(8);
+            this.V1.f56507c.setVisibility(8);
         }
         return true;
     }
@@ -1600,12 +1600,12 @@ public class i0 extends na implements ls {
         u1Var.R = G;
         if (arrayList.size() == 1) {
             TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(0);
-            if (this.f56499n2) {
+            if (this.f56524n2) {
                 u1Var.T = org.telegram.messenger.g0.X2(hd.a0("RevokeLinkAlertChannel", null, 2131746022, qp.s1(this.f28612a).U2 + "/" + t3.K(chat, false), chat.title));
             } else {
                 u1Var.T = org.telegram.messenger.g0.X2(hd.a0("RevokeLinkAlert", null, 2131746023, qp.s1(this.f28612a).U2 + "/" + t3.K(chat, false), chat.title));
             }
-        } else if (this.f56499n2) {
+        } else if (this.f56524n2) {
             u1Var.T = org.telegram.messenger.g0.X2(hd.a0("RevokeLinksAlertChannel", null, 2131746019, new Object[0]));
         } else {
             u1Var.T = org.telegram.messenger.g0.X2(hd.a0("RevokeLinksAlert", null, 2131746020, new Object[0]));
@@ -1646,7 +1646,7 @@ public class i0 extends na implements ls {
         String str2 = str;
         ArrayList arrayList2 = new ArrayList();
         ArrayList arrayList3 = new ArrayList();
-        HashSet hashSet = this.f56502q2;
+        HashSet hashSet = this.f56527q2;
         Iterator it = hashSet.iterator();
         while (it.hasNext()) {
             TLRPC.User user = (TLRPC.User) it.next();

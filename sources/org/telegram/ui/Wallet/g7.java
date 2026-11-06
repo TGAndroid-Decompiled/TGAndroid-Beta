@@ -13,18 +13,18 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.k60;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class g7 implements Runnable {
-    public final int f42512a;
-    public final Object f42513b;
-    public final Object f42514c;
+    public final int f42537a;
+    public final Object f42538b;
+    public final Object f42539c;
     public final Object d;
-    public final Object f42515e;
+    public final Object f42540e;
 
     public g7(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f42512a = i7;
-        this.f42513b = obj;
+        this.f42537a = i7;
+        this.f42538b = obj;
         this.d = obj2;
-        this.f42515e = obj3;
-        this.f42514c = obj4;
+        this.f42540e = obj3;
+        this.f42539c = obj4;
     }
 
     @Override
@@ -35,13 +35,13 @@ public final class g7 implements Runnable {
         int i10;
         boolean z9;
         int i11;
-        int i12 = this.f42512a;
+        int i12 = this.f42537a;
         byte[] bArr = null;
         boolean z10 = true;
-        Object obj = this.f42514c;
-        Object obj2 = this.f42515e;
+        Object obj = this.f42539c;
+        Object obj2 = this.f42540e;
         Object obj3 = this.d;
-        Object obj4 = this.f42513b;
+        Object obj4 = this.f42538b;
         switch (i12) {
             case 0:
                 ((WalletEngine2) obj4).lambda$prepareRotateKey$34((z10) obj3, (WalletEngine2.PreparedRotation) obj2, (String) obj);
@@ -61,11 +61,11 @@ public final class g7 implements Runnable {
                 if (wallettransaction.pending || wallettransaction.failed || TextUtils.isEmpty(wallettransaction.f27215id)) {
                     wallettransaction.pending = false;
                     wallettransaction.failed = true;
-                    c20 c20Var = (c20) n0Var.f42782q.remove(wallettransaction);
+                    c20 c20Var = (c20) n0Var.f42807q.remove(wallettransaction);
                     if (c20Var != null) {
                         c20Var.a(Boolean.FALSE);
                     }
-                    if (nftitem != null && (f0Var = n0Var.f42780o) != null) {
+                    if (nftitem != null && (f0Var = n0Var.f42805o) != null) {
                         f0.a(f0Var, wallettransaction);
                     }
                     m0Var.k();
@@ -93,7 +93,7 @@ public final class g7 implements Runnable {
                 ai.e eVar = (ai.e) obj2;
                 e2 e2Var = (e2) obj;
                 if (!zArr[0]) {
-                    WalletEngine2 walletEngine2 = n0Var2.f42769b;
+                    WalletEngine2 walletEngine2 = n0Var2.f42794b;
                     if (walletEngine2 == null) {
                         eVar.a(null, "NULL_ENGINE");
                         return;
@@ -123,7 +123,7 @@ public final class g7 implements Runnable {
                 a2 a2Var = (a2) obj3;
                 k kVar = (k) obj2;
                 TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj;
-                n0 n0Var3 = f2Var.f42436b;
+                n0 n0Var3 = f2Var.f42461b;
                 String t6 = n0Var3.t();
                 byte[] y10 = n0Var3.y();
                 if (y10 != null) {
@@ -144,7 +144,7 @@ public final class g7 implements Runnable {
                 b2 b2Var = (b2) obj2;
                 t tVar3 = (t) obj;
                 try {
-                    jSONObject = WalletEngine2.signData(k0Var, b2Var.f42097a, b2Var.h, b2Var.f42102g, new JSONObject(b2Var.f42105k), f2.n(b2Var.f42097a.manifest.url), f2Var2.f42439f.getCurrentTime());
+                    jSONObject = WalletEngine2.signData(k0Var, b2Var.f42122a, b2Var.h, b2Var.f42127g, new JSONObject(b2Var.f42130k), f2.n(b2Var.f42122a.manifest.url), f2Var2.f42464f.getCurrentTime());
                     i7 = null;
                 } catch (Exception e10) {
                     i7 = f2.i("sign data", e10);
@@ -206,26 +206,26 @@ public final class g7 implements Runnable {
     }
 
     public g7(Object obj, Object obj2, String str, Object obj3, int i7) {
-        this.f42512a = i7;
-        this.f42513b = obj;
+        this.f42537a = i7;
+        this.f42538b = obj;
         this.d = obj2;
-        this.f42514c = str;
-        this.f42515e = obj3;
+        this.f42539c = str;
+        this.f42540e = obj3;
     }
 
     public g7(WalletEngine2 walletEngine2, String str, byte[] bArr, v10 v10Var) {
-        this.f42512a = 13;
-        this.f42513b = walletEngine2;
-        this.f42514c = str;
+        this.f42537a = 13;
+        this.f42538b = walletEngine2;
+        this.f42539c = str;
         this.d = bArr;
-        this.f42515e = v10Var;
+        this.f42540e = v10Var;
     }
 
     public g7(WalletEngine2 walletEngine2, byte[] bArr, String str, z10 z10Var) {
-        this.f42512a = 15;
-        this.f42513b = walletEngine2;
-        this.f42515e = bArr;
-        this.f42514c = str;
+        this.f42537a = 15;
+        this.f42538b = walletEngine2;
+        this.f42540e = bArr;
+        this.f42539c = str;
         this.d = z10Var;
     }
 }

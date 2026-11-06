@@ -8,12 +8,12 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.TextView;
 public final class k4 extends bk0 {
-    public final ai.v0 f35163k1;
+    public final ai.v0 f35126k1;
 
     public k4(Context context, int i7, di.b bVar, ai.v0 v0Var) {
         super(1, context, bVar, true);
         int i10;
-        this.f35163k1 = v0Var;
+        this.f35126k1 = v0Var;
         this.f28647v0 = false;
         this.f28646u0 = false;
         ScrollView scrollView = new ScrollView(context);
@@ -47,7 +47,7 @@ public final class k4 extends bk0 {
         org.telegram.messenger.k5.m(i11, 1, null, 2131746218);
         frameLayout.addView(i11, c8.ha.d(-2, -2.0f, 49, 30.0f, 235.0f, 30.0f, 44.0f));
         EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(context);
-        this.f32166j1 = editTextBoldCursor;
+        this.f32160j1 = editTextBoldCursor;
         editTextBoldCursor.setTextSize(1, 18.0f);
         org.telegram.ui.ActionBar.r6.E(editTextBoldCursor, org.telegram.ui.ActionBar.k6.H6, bVar);
         int i12 = org.telegram.ui.ActionBar.k6.G6;
@@ -74,11 +74,11 @@ public final class k4 extends bk0 {
         frameLayout.addView(editTextBoldCursor, c8.ha.d(-1, 36.0f, 51, 17.0f, 305.0f, 17.0f, 0.0f));
         ?? frameLayout2 = new FrameLayout(context);
         View view = new View(context);
-        frameLayout2.f31829a = view;
+        frameLayout2.f31841a = view;
         view.setBackground(org.telegram.ui.ActionBar.z5.f(org.telegram.ui.ActionBar.k6.Ci, 8.0f));
         frameLayout2.addView(view, c8.ha.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
         TextView textView2 = new TextView(context);
-        frameLayout2.f31830b = textView2;
+        frameLayout2.f31842b = textView2;
         textView2.setLines(1);
         textView2.setSingleLine(true);
         textView2.setGravity(1);
@@ -88,7 +88,7 @@ public final class k4 extends bk0 {
         textView2.setTextSize(1, 14.0f);
         textView2.setTypeface(org.telegram.messenger.g0.o());
         frameLayout2.addView(textView2, c8.ha.e(-2, -2, 17));
-        this.f32165i1 = frameLayout2;
+        this.f32159i1 = frameLayout2;
         frameLayout2.setBackground(null);
         frameLayout2.setText(org.telegram.messenger.hd.M0(2131746209, null));
         c8.ka.a(frameLayout2);

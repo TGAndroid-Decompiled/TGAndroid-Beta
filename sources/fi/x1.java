@@ -33,8 +33,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.Components.AnimatedFileNative;
-import org.telegram.ui.Components.a31;
 import org.telegram.ui.Components.b90;
+import org.telegram.ui.Components.f31;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.LaunchActivity;
 public final class x1 implements Runnable {
@@ -251,7 +251,7 @@ public final class x1 implements Runnable {
                 ((e7) this.f13073b).O0 = (File) this.d;
                 o9 o9Var = ((va) this.f13074c).f12947d1;
                 if (o9Var != null) {
-                    o9Var.f11667b.f35167f3.O(false);
+                    o9Var.f11667b.f36781f3.O(false);
                     return;
                 }
                 return;
@@ -499,12 +499,12 @@ public final class x1 implements Runnable {
                 String str5 = ((TLRPC.TL_messages_searchStickerSets) this.f13073b).f27066q;
                 jg.d2 d2Var = b2Var.f16669a;
                 String str6 = d2Var.R;
-                a31 a31Var = d2Var.f16697e;
+                f31 f31Var = d2Var.f16697e;
                 if (str5.equals(str6)) {
                     b2Var.a();
-                    a31Var.f31662b.h.getProgressDrawable().f36761e = false;
+                    f31Var.f33451b.h.getProgressDrawable().f36639e = false;
                     d2Var.N = 0;
-                    a31Var.b(true);
+                    f31Var.b(true);
                     d2Var.E.addAll(tL_messages_foundStickerSets.sets);
                     d2Var.f();
                     return;

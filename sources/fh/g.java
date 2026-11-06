@@ -99,7 +99,7 @@ public final class g extends oi.e implements a6 {
 
     public static ri.a v(ri.a aVar) {
         while (aVar instanceof ri.g) {
-            aVar = ((ri.g) aVar).f54461a;
+            aVar = ((ri.g) aVar).f54486a;
         }
         return aVar;
     }
@@ -155,7 +155,7 @@ public final class g extends oi.e implements a6 {
             ri.a aVar2 = this.f11537r;
             if (o4 == this.f11535f0 && !canvas.isHardwareAccelerated()) {
                 ri.a v = v(v(this.f11537r));
-                if (Build.VERSION.SDK_INT >= 29 && (v instanceof ri.f) && (aVar = ((ri.f) v).f54452a) != null) {
+                if (Build.VERSION.SDK_INT >= 29 && (v instanceof ri.f) && (aVar = ((ri.f) v).f54477a) != null) {
                     v = v(aVar);
                 }
                 aVar2 = v;

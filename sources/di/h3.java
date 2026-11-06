@@ -175,11 +175,11 @@ public final class h3 extends AnimatorListenerAdapter {
                     int L0 = sVar.L0();
                     pj0Var.setTranslationY(0.0f);
                     if (pj0Var == gyVar.D0) {
-                        pj0Var.setPadding(0, org.telegram.messenger.g0.L(36.0f), 0, org.telegram.messenger.g0.L(44.0f) + gyVar.f34118q2);
-                    } else if (pj0Var == gyVar.f34091h0) {
-                        pj0Var.setPadding(0, gyVar.f34072b1, 0, org.telegram.messenger.g0.L(44.0f) + gyVar.f34118q2);
+                        pj0Var.setPadding(0, org.telegram.messenger.g0.L(36.0f), 0, org.telegram.messenger.g0.L(44.0f) + gyVar.f34066q2);
+                    } else if (pj0Var == gyVar.f34039h0) {
+                        pj0Var.setPadding(0, gyVar.f34020b1, 0, org.telegram.messenger.g0.L(44.0f) + gyVar.f34066q2);
                     } else if (pj0Var == gyVar.P) {
-                        pj0Var.setPadding(org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(44.0f) + gyVar.f34118q2);
+                        pj0Var.setPadding(org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(36.0f), org.telegram.messenger.g0.L(5.0f), org.telegram.messenger.g0.L(44.0f) + gyVar.f34066q2);
                     }
                     if (L0 != -1) {
                         sVar.h1(L0, 0);
@@ -196,8 +196,8 @@ public final class h3 extends AnimatorListenerAdapter {
                     zArr2[0] = true;
                     ((r30) this.f9073c).run();
                 }
-                o40Var.f36599f.setRotationY(0.0f);
-                o40Var.f36617q0.setRotationY(0.0f);
+                o40Var.f36483f.setRotationY(0.0f);
+                o40Var.f36501q0.setRotationY(0.0f);
                 o40Var.N0 = false;
                 o40Var.invalidate();
                 return;
@@ -208,15 +208,15 @@ public final class h3 extends AnimatorListenerAdapter {
                 org.telegram.messenger.g0.E2(i60Var);
                 ViewTreeObserver viewTreeObserver = ((ViewGroup) this.f9073c).getViewTreeObserver();
                 k60 k60Var = (k60) this.d;
-                View view2 = k60Var.f35193f;
-                viewTreeObserver.removeOnPreDrawListener(k60Var.f35221y);
+                View view2 = k60Var.f35157f;
+                viewTreeObserver.removeOnPreDrawListener(k60Var.f35185y);
                 if (k60Var.P) {
                     view2.setVisibility(0);
                     if (view2 instanceof zh.z0) {
                         zh.z0 z0Var = (zh.z0) view2;
                         FrameLayout frameLayout = z0Var.d;
                         frameLayout.invalidate();
-                        frameLayout.invalidateDrawable(z0Var.f60486e);
+                        frameLayout.invalidateDrawable(z0Var.f60511e);
                         return;
                     }
                     return;
@@ -239,16 +239,16 @@ public final class h3 extends AnimatorListenerAdapter {
             case 10:
                 LaunchActivity launchActivity = (LaunchActivity) this.d;
                 launchActivity.E0 = null;
-                launchActivity.f41269x0.invalidate();
+                launchActivity.f41294x0.invalidate();
                 launchActivity.m0.invalidate();
                 launchActivity.m0.setImageDrawable(null);
                 wz0 wz0Var = launchActivity.m0;
-                wz0Var.f40113c = null;
-                wz0Var.f40111a.setShader(null);
-                wz0Var.f40116n = null;
-                wz0Var.f40117r = null;
+                wz0Var.f40120c = null;
+                wz0Var.f40118a.setShader(null);
+                wz0Var.f40123n = null;
+                wz0Var.f40124r = null;
                 launchActivity.m0.setVisibility(8);
-                launchActivity.f41250n0.setVisibility(8);
+                launchActivity.f41275n0.setVisibility(8);
                 ch0 ch0Var2 = (ch0) this.f9072b;
                 if (ch0Var2 != null) {
                     ch0Var2.setImageDrawable((zg0) this.f9073c);
@@ -257,11 +257,11 @@ public final class h3 extends AnimatorListenerAdapter {
                 if (ch0Var2 != null) {
                     ch0Var2.setVisibility(0);
                 }
-                ww.f51508x4 = false;
+                ww.f51525x4 = false;
                 return;
             default:
                 q11 q11Var = (q11) this.d;
-                q11Var.f49031s1 = null;
+                q11Var.f49058s1 = null;
                 q11Var.invalidate();
                 boolean[] zArr3 = (boolean[]) this.f9072b;
                 if (!zArr3[0]) {

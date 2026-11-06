@@ -14,15 +14,15 @@ import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.ys;
 import org.telegram.ui.Wallet.na;
 public final class l extends LinearLayout {
-    public final ys f59340a;
-    public final TextView f59341b;
-    public k f59342c;
+    public final ys f59365a;
+    public final TextView f59366b;
+    public k f59367c;
 
     public l(Context context, f6 f6Var) {
         super(context);
         setOrientation(0);
         ys ysVar = new ys(context, f6Var);
-        this.f59340a = ysVar;
+        this.f59365a = ysVar;
         ysVar.setLines(1);
         ysVar.setSingleLine(true);
         InputFilter[] inputFilterArr = {new j(this)};
@@ -42,7 +42,7 @@ public final class l extends LinearLayout {
         ysVar.addTextChangedListener(new na(this, 4));
         ysVar.setImeOptions(6);
         TextView textView = new TextView(context);
-        this.f59341b = textView;
+        this.f59366b = textView;
         textView.setTextSize(1, 16.0f);
         r6.V(textView, k6.f27956j5, f6Var);
         if (hd.f22871a0) {
@@ -62,10 +62,10 @@ public final class l extends LinearLayout {
     }
 
     public void setAfterTextChangedListener(k kVar) {
-        this.f59342c = kVar;
+        this.f59367c = kVar;
     }
 
     public void setCount(int i7) {
-        this.f59341b.setText(String.valueOf(i7));
+        this.f59366b.setText(String.valueOf(i7));
     }
 }

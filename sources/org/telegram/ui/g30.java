@@ -8,14 +8,14 @@ import android.os.Build;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class g30 implements org.telegram.ui.Components.hi0 {
-    public final Path f45769a = new Path();
-    public final Paint f45770b;
-    public final c40 f45771c;
+    public final Path f45796a = new Path();
+    public final Paint f45797b;
+    public final c40 f45798c;
 
     public g30(c40 c40Var) {
-        this.f45771c = c40Var;
+        this.f45798c = c40Var;
         Paint paint = new Paint(1);
-        this.f45770b = paint;
+        this.f45797b = paint;
         paint.setColor(-14603467);
     }
 
@@ -27,18 +27,18 @@ public final class g30 implements org.telegram.ui.Components.hi0 {
     @Override
     public final void L(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z9) {
         int i10 = (f10 > 0.0f ? 1 : (f10 == 0.0f ? 0 : -1));
-        Paint paint = this.f45770b;
+        Paint paint = this.f45797b;
         if (i10 > 0) {
             canvas.drawRoundRect(rectF, f10, f10, paint);
         } else {
             canvas.drawRect(rectF, paint);
         }
         if (Build.VERSION.SDK_INT >= 29 && canvas.isHardwareAccelerated()) {
-            c40 c40Var = this.f45771c;
+            c40 c40Var = this.f45798c;
             if (c40Var.H4 != null) {
                 canvas.save();
                 if (i10 > 0) {
-                    Path path = this.f45769a;
+                    Path path = this.f45796a;
                     path.rewind();
                     path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
                     path.close();
@@ -76,9 +76,9 @@ public final class g30 implements org.telegram.ui.Components.hi0 {
             tL_messageEntityCustomEmoji.length = str.length();
             tL_textWithEntities.entities.add(tL_messageEntityCustomEmoji);
         }
-        c40 c40Var = this.f45771c;
+        c40 c40Var = this.f45798c;
         c40Var.F1(tL_textWithEntities);
-        h20 h20Var = c40Var.f44627y1;
+        h20 h20Var = c40Var.f44648y1;
         if (h20Var.m()) {
             h20Var.j();
         } else {

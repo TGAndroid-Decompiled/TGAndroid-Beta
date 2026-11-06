@@ -126,7 +126,7 @@ public final class q6 extends FrameLayout implements org.telegram.ui.ActionBar.a
             int i11 = this.d;
             rd h = sd.f(i11).h(this.f30144n);
             org.telegram.ui.Components.w5 w5Var = this.E;
-            float f12 = w5Var.f39849c;
+            float f12 = w5Var.f39857c;
             int currentTime = ConnectionsManager.getInstance(i11).getCurrentTime();
             org.telegram.ui.Components.w5 w5Var2 = this.F;
             if (h != null && (i7 = h.f25267c) >= currentTime && h.d != Integer.MAX_VALUE) {
@@ -162,7 +162,7 @@ public final class q6 extends FrameLayout implements org.telegram.ui.ActionBar.a
             if (h != null) {
                 i6Var.t(hd.C(Math.abs(h.f25267c - currentTime)), true, true);
             }
-            int length = i6Var.f34522i.length();
+            int length = i6Var.f34483i.length();
             if (length > 4) {
                 f10 = 0.75f;
             } else if (length > 3) {

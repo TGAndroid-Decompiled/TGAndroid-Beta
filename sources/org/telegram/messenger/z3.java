@@ -7,7 +7,7 @@ import java.util.HashSet;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
-import org.telegram.ui.Components.e21;
+import org.telegram.ui.Components.j21;
 public final class z3 implements Runnable {
     public final int f26783a = 0;
     public final long f26784b;
@@ -197,7 +197,7 @@ public final class z3 implements Runnable {
                 String str4 = b10Var.f21575e;
                 while (i7 < b10Var.f21573b.size()) {
                     String str5 = str4;
-                    e21.J0(((TLRPC.TL_textWithEntities) b10Var.f21574c.get(i7)).text, null, str5, new r00(f10Var, (z10) b10Var.d.get(i7), z12, ((Integer) b10Var.f21573b.get(i7)).intValue(), str4, j12, 0));
+                    j21.J0(((TLRPC.TL_textWithEntities) b10Var.f21574c.get(i7)).text, null, str5, new r00(f10Var, (z10) b10Var.d.get(i7), z12, ((Integer) b10Var.f21573b.get(i7)).intValue(), str4, j12, 0));
                     i7++;
                     str4 = str5;
                 }

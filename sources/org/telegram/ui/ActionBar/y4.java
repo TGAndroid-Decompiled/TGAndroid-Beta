@@ -482,7 +482,7 @@ public class y4 extends FrameLayout implements te.b, ls, a6, s4 {
     }
 
     public float getActionModeFactor() {
-        return this.T.f55370e;
+        return this.T.f55395e;
     }
 
     public org.telegram.ui.Components.j6 getActionModeTitle() {
@@ -575,7 +575,7 @@ public class y4 extends FrameLayout implements te.b, ls, a6, s4 {
     }
 
     public float getSearchFactor() {
-        return this.S.f55370e;
+        return this.S.f55395e;
     }
 
     public EditTextBoldCursor getSearchField() {
@@ -991,7 +991,7 @@ public class y4 extends FrameLayout implements te.b, ls, a6, s4 {
         this.f28799r.addView(this.f28802w, ha.d(42, 42.0f, 21, 0.0f, 0.0f, 2.0f, 0.0f));
         C();
         h();
-        Y(2, this.U.f55370e, 0.0f, null);
+        Y(2, this.U.f55395e, 0.0f, null);
     }
 
     public final float q(boolean z9) {

@@ -69,7 +69,7 @@ public final class a1 implements Runnable {
                         r60Var.a(qp.s1(cVar.f21723a).j1(ij.C1(joinaspeers.peers.get(0))), false, false, false);
                         return;
                     }
-                    t60.f38262z1 = joinaspeers.peers;
+                    t60.f38225z1 = joinaspeers.peers;
                     long j3 = this.f14499c;
                     t60.B1 = j3;
                     t60.A1 = SystemClock.elapsedRealtime();
@@ -97,7 +97,7 @@ public final class a1 implements Runnable {
                     k0Var = k0Var2;
                 }
                 try {
-                    b2Var = new org.telegram.ui.Wallet.b2(tonconnectpending, tonconnectrequest, org.telegram.ui.Wallet.f2.g(k0Var2, tonconnectpending.session, str, bArr, tonconnectrequest.body, f2Var2.f42439f.getCurrentTime()), str, bArr);
+                    b2Var = new org.telegram.ui.Wallet.b2(tonconnectpending, tonconnectrequest, org.telegram.ui.Wallet.f2.g(k0Var2, tonconnectpending.session, str, bArr, tonconnectrequest.body, f2Var2.f42464f.getCurrentTime()), str, bArr);
                     i7 = null;
                 } catch (Exception e12) {
                     e = e12;

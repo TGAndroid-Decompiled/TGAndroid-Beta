@@ -70,7 +70,7 @@ public abstract class x extends FrameLayout implements ls {
         pj0Var.setLayoutManager(sVar);
         ri0 ri0Var = new ri0(pj0Var, sVar);
         this.f1675f = ri0Var;
-        ri0Var.f37754i = new m(q0Var, 0);
+        ri0Var.f37697i = new m(q0Var, 0);
         pj0Var.setAdapter(pVar);
         pj0Var.setSelectorDrawableColor(0);
         pj0Var.setOnItemClickListener(new k(p0Var, 0));
@@ -98,7 +98,7 @@ public abstract class x extends FrameLayout implements ls {
     }
 
     public static boolean d(Drawable drawable) {
-        if ((drawable instanceof i5) && ij.D4(((i5) drawable).f34500e)) {
+        if ((drawable instanceof i5) && ij.D4(((i5) drawable).f34445e)) {
             return true;
         }
         return false;

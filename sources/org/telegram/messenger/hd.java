@@ -24,7 +24,7 @@ import java.util.Locale;
 import org.telegram.messenger.time.FastDateFormat;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.t31;
 public final class hd {
     public static boolean f22871a0 = false;
     public static int f22872b0 = 1;
@@ -99,7 +99,7 @@ public final class hd {
         this.Q = false;
         this.S = new HashMap();
         this.T = new HashMap();
-        si.b bVar = si.b.f55223c;
+        si.b bVar = si.b.f55248c;
         this.W = bVar;
         this.Y = bVar;
         b(new String[]{"bem", "brx", "da", "de", "el", "en", "eo", "es", "et", "fi", "fo", "gl", "he", "iw", "it", "nb", "nl", "nn", "no", "sv", "af", "bg", "bn", "ca", "eu", "fur", "fy", "gu", "ha", "is", "ku", "lb", "ml", "mr", "nah", "ne", "om", "or", "pa", "pap", "ps", "so", "sq", "sw", "ta", "te", "tk", "ur", "zu", "mn", "gsw", "chr", "rm", "pt", "an", "ast"}, new fd(11));
@@ -1348,11 +1348,11 @@ public final class hd {
 
     public static Spannable g(String str) {
         if (str instanceof Spannable) {
-            ((Spannable) str).setSpan(new o31(g0.o()), 0, str.length(), 33);
+            ((Spannable) str).setSpan(new t31(g0.o()), 0, str.length(), 33);
             return (Spannable) str;
         }
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
-        spannableStringBuilder.setSpan(new o31(g0.o()), 0, str.length(), 33);
+        spannableStringBuilder.setSpan(new t31(g0.o()), 0, str.length(), 33);
         return spannableStringBuilder;
     }
 

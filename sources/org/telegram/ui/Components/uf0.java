@@ -12,24 +12,24 @@ import android.graphics.RenderNode;
 import android.graphics.Shader;
 import android.view.View;
 public final class uf0 implements vf0 {
-    public final float f38626f;
-    public final Paint f38628i;
-    public final RectF f38629j;
-    public final wf0 f38630k;
-    public final Paint f38622a = new Paint(1);
-    public final RenderNode f38623b = new RenderNode("render");
-    public final RenderNode f38624c = new RenderNode("effectNotch");
+    public final float f38617f;
+    public final Paint f38619i;
+    public final RectF f38620j;
+    public final wf0 f38621k;
+    public final Paint f38613a = new Paint(1);
+    public final RenderNode f38614b = new RenderNode("render");
+    public final RenderNode f38615c = new RenderNode("effectNotch");
     public final RenderNode d = new RenderNode("effect");
-    public final RenderNode f38625e = new RenderNode("blur");
-    public final RectF f38627g = new RectF();
+    public final RenderNode f38616e = new RenderNode("blur");
+    public final RectF f38618g = new RectF();
     public final RectF h = new RectF();
 
     public uf0(wf0 wf0Var, float f10) {
-        this.f38630k = wf0Var;
+        this.f38621k = wf0Var;
         Paint paint = new Paint();
-        this.f38628i = paint;
-        this.f38629j = new RectF();
-        this.f38626f = f10;
+        this.f38619i = paint;
+        this.f38620j = new RectF();
+        this.f38617f = f10;
         paint.setColor(-16777216);
         paint.setBlendMode(BlendMode.SRC_IN);
     }
@@ -39,8 +39,8 @@ public final class uf0 implements vf0 {
         RenderNode renderNode = this.d;
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         renderNode.setRenderEffect(RenderEffect.createBlurEffect(f10, f10, tileMode));
-        this.f38624c.setRenderEffect(RenderEffect.createBlurEffect(f10, f10, tileMode));
-        this.f38622a.setColorFilter(new ColorMatrixColorFilter(new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 51.0f, -6375.0f}));
+        this.f38615c.setRenderEffect(RenderEffect.createBlurEffect(f10, f10, tileMode));
+        this.f38613a.setColorFilter(new ColorMatrixColorFilter(new float[]{1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f, 0.0f, 51.0f, -6375.0f}));
     }
 
     @Override
@@ -53,16 +53,16 @@ public final class uf0 implements vf0 {
         float f13;
         float f14;
         Paint paint2;
-        wf0 wf0Var = this.f38630k;
-        Paint paint3 = wf0Var.f39951a;
-        Path path = wf0Var.f39952b;
+        wf0 wf0Var = this.f38621k;
+        Paint paint3 = wf0Var.f39958a;
+        Path path = wf0Var.f39959b;
         if (!canvas.isHardwareAccelerated()) {
             return;
         }
-        RectF rectF = this.f38627g;
+        RectF rectF = this.f38618g;
         rectF.set(0.0f, 0.0f, wf0Var.getWidth(), wf0Var.getHeight());
         int childCount = wf0Var.getChildCount();
-        RectF rectF2 = this.f38629j;
+        RectF rectF2 = this.f38620j;
         if (childCount > 0) {
             View childAt = wf0Var.getChildAt(0);
             float scaleX = childAt.getScaleX() * childAt.getWidth();
@@ -70,7 +70,7 @@ public final class uf0 implements vf0 {
             float x10 = childAt.getX();
             float y10 = childAt.getY();
             rectF2.set(x10, y10, scaleX + x10, scaleY + y10);
-            org.telegram.messenger.bs bsVar = wf0Var.f39956n;
+            org.telegram.messenger.bs bsVar = wf0Var.f39963n;
             if (bsVar != null) {
                 rectF2.union(bsVar.f21692e);
             }
@@ -85,41 +85,41 @@ public final class uf0 implements vf0 {
         int ceil2 = (int) Math.ceil(rectF2.height());
         float f15 = rectF2.left;
         float f16 = rectF2.top;
-        this.f38623b.setPosition(0, 0, ceil, ceil2);
-        this.f38625e.setPosition(0, 0, ceil, ceil2);
+        this.f38614b.setPosition(0, 0, ceil, ceil2);
+        this.f38616e.setPosition(0, 0, ceil, ceil2);
         this.d.setPosition(0, 0, ceil, ceil2);
-        this.f38624c.setPosition(0, 0, ceil, ceil2);
+        this.f38615c.setPosition(0, 0, ceil, ceil2);
         float f17 = ceil;
         float f18 = ceil2;
         rectF2.set(0.0f, 0.0f, f17, f18);
-        RecordingCanvas beginRecording = this.f38623b.beginRecording();
+        RecordingCanvas beginRecording = this.f38614b.beginRecording();
         float f19 = -f15;
         float f20 = -f16;
         beginRecording.translate(f19, f20);
-        int z12 = (int) ((1.0f - org.telegram.messenger.g0.z1(wf0Var.f39954e, 0.5f, 1.0f)) * 255.0f);
+        int z12 = (int) ((1.0f - org.telegram.messenger.g0.z1(wf0Var.f39961e, 0.5f, 1.0f)) * 255.0f);
         int b10 = c8.j9.b(z12, 0, 255);
-        wf0.a((wf0) axVar.f31929b, beginRecording);
-        this.f38623b.endRecording();
-        float f21 = this.f38626f;
-        float z9 = com.google.android.recaptcha.internal.a.z(f21, 1.0f, 2.0f, com.google.android.recaptcha.internal.a.x(wf0Var.f39955f, 0.5f, f21, (f21 / 4.0f) + 1.0f));
-        RecordingCanvas beginRecording2 = this.f38625e.beginRecording();
+        wf0.a((wf0) axVar.f31941b, beginRecording);
+        this.f38614b.endRecording();
+        float f21 = this.f38617f;
+        float z9 = com.google.android.recaptcha.internal.a.z(f21, 1.0f, 2.0f, com.google.android.recaptcha.internal.a.x(wf0Var.f39962f, 0.5f, f21, (f21 / 4.0f) + 1.0f));
+        RecordingCanvas beginRecording2 = this.f38616e.beginRecording();
         float f22 = 1.0f / z9;
         beginRecording2.scale(f22, f22, 0.0f, 0.0f);
-        beginRecording2.drawRenderNode(this.f38623b);
-        this.f38625e.endRecording();
+        beginRecording2.drawRenderNode(this.f38614b);
+        this.f38616e.endRecording();
         float f23 = f21 + 2.0f;
         RecordingCanvas beginRecording3 = this.d.beginRecording();
         float f24 = 1.0f / f23;
         beginRecording3.scale(f24, f24, 0.0f, 0.0f);
-        Paint paint4 = this.f38628i;
+        Paint paint4 = this.f38619i;
         if (b10 < 255) {
             beginRecording3.saveLayer(rectF2, null);
-            beginRecording3.drawRenderNode(this.f38623b);
+            beginRecording3.drawRenderNode(this.f38614b);
             beginRecording3.drawRect(rectF2, paint4);
             beginRecording3.restore();
         }
         float L = org.telegram.messenger.g0.L(7.0f) * f23;
-        float f25 = wf0Var.f39954e;
+        float f25 = wf0Var.f39961e;
         if (f25 < 0.5f) {
             paint = paint4;
             T1 = org.telegram.messenger.g0.T1(0.0f, L, f25 / 0.5f);
@@ -148,35 +148,35 @@ public final class uf0 implements vf0 {
             if (b10 != 255) {
                 beginRecording3.saveLayerAlpha(rectF2, b10);
             }
-            beginRecording3.drawRenderNode(this.f38623b);
+            beginRecording3.drawRenderNode(this.f38614b);
             if (b10 != 255) {
                 beginRecording3.restore();
             }
         }
         this.d.endRecording();
-        RecordingCanvas beginRecording4 = this.f38624c.beginRecording();
+        RecordingCanvas beginRecording4 = this.f38615c.beginRecording();
         beginRecording4.scale(f24, f24, 0.0f, 0.0f);
-        if (wf0Var.f39956n != null) {
+        if (wf0Var.f39963n != null) {
             beginRecording4.translate(f19, f20);
             beginRecording4.translate(0.0f, org.telegram.messenger.g0.L(32.0f));
-            org.telegram.messenger.bs bsVar2 = wf0Var.f39956n;
+            org.telegram.messenger.bs bsVar2 = wf0Var.f39963n;
             if (bsVar2.f21691c) {
-                float min = Math.min(bsVar2.f21692e.width(), wf0Var.f39956n.f21692e.height()) / 2.0f;
-                RectF rectF3 = wf0Var.f39956n.f21692e;
+                float min = Math.min(bsVar2.f21692e.width(), wf0Var.f39963n.f21692e.height()) / 2.0f;
+                RectF rectF3 = wf0Var.f39963n.f21692e;
                 float width = rectF3.bottom - (rectF3.width() / 2.0f);
-                beginRecording4.drawCircle(wf0Var.f39956n.f21692e.centerX(), width, min, paint3);
+                beginRecording4.drawCircle(wf0Var.f39963n.f21692e.centerX(), width, min, paint3);
                 path.rewind();
                 float f26 = f10 / 2.0f;
-                path.moveTo(wf0Var.f39956n.f21692e.centerX() - f26, width);
-                path.lineTo(wf0Var.f39956n.f21692e.centerX(), min + width + f10);
-                path.lineTo(wf0Var.f39956n.f21692e.centerX() + f26, width);
+                path.moveTo(wf0Var.f39963n.f21692e.centerX() - f26, width);
+                path.lineTo(wf0Var.f39963n.f21692e.centerX(), min + width + f10);
+                path.lineTo(wf0Var.f39963n.f21692e.centerX() + f26, width);
                 path.close();
                 beginRecording4.drawPath(path, paint3);
             } else if (bsVar2.f21690b) {
                 beginRecording4.drawPath(bsVar2.d, paint3);
             } else {
-                float max = Math.max(bsVar2.f21692e.width(), wf0Var.f39956n.f21692e.height()) / 2.0f;
-                RectF rectF4 = wf0Var.f39956n.f21692e;
+                float max = Math.max(bsVar2.f21692e.width(), wf0Var.f39963n.f21692e.height()) / 2.0f;
+                RectF rectF4 = wf0Var.f39963n.f21692e;
                 RectF rectF5 = this.h;
                 rectF5.set(rectF4);
                 beginRecording4.drawRoundRect(rectF5, max, max, paint3);
@@ -205,29 +205,29 @@ public final class uf0 implements vf0 {
             path.close();
             beginRecording4.drawPath(path, paint3);
         }
-        this.f38624c.endRecording();
+        this.f38615c.endRecording();
         canvas.save();
         canvas.translate(f11, f16 - org.telegram.messenger.g0.L(32.0f));
-        org.telegram.messenger.bs bsVar3 = wf0Var.f39956n;
+        org.telegram.messenger.bs bsVar3 = wf0Var.f39963n;
         if (bsVar3 != null) {
             canvas.clipRect(0.0f, bsVar3.f21692e.top, f13, f12);
         }
-        Paint paint5 = this.f38622a;
+        Paint paint5 = this.f38613a;
         canvas.saveLayer(rectF2, paint5);
         canvas.scale(f23, f23);
-        canvas.drawRenderNode(this.f38624c);
+        canvas.drawRenderNode(this.f38615c);
         canvas.drawRenderNode(this.d);
         canvas.restore();
         int b11 = c8.j9.b((z12 * 3) / 4, 0, 255);
         if (b11 < 255) {
             canvas.saveLayer(rectF2, null);
-            if (wf0Var.f39955f != 0.0f) {
+            if (wf0Var.f39962f != 0.0f) {
                 canvas.saveLayer(rectF2, paint5);
                 canvas.scale(f14, f14);
-                canvas.drawRenderNode(this.f38625e);
+                canvas.drawRenderNode(this.f38616e);
                 canvas.restore();
             } else {
-                canvas.drawRenderNode(this.f38623b);
+                canvas.drawRenderNode(this.f38614b);
             }
             canvas.drawRect(rectF2, paint2);
             canvas.restore();
@@ -236,13 +236,13 @@ public final class uf0 implements vf0 {
             if (b11 != 255) {
                 canvas.saveLayerAlpha(rectF2, b11);
             }
-            if (wf0Var.f39955f != 0.0f) {
+            if (wf0Var.f39962f != 0.0f) {
                 canvas.saveLayer(rectF2, paint5);
                 canvas.scale(f14, f14);
-                canvas.drawRenderNode(this.f38625e);
+                canvas.drawRenderNode(this.f38616e);
                 canvas.restore();
             } else {
-                canvas.drawRenderNode(this.f38623b);
+                canvas.drawRenderNode(this.f38614b);
             }
             if (b11 != 255) {
                 canvas.restore();
@@ -255,12 +255,12 @@ public final class uf0 implements vf0 {
     public final void c(float f10) {
         Shader.TileMode tileMode;
         if (f10 == 0.0f) {
-            this.f38625e.setRenderEffect(null);
+            this.f38616e.setRenderEffect(null);
             return;
         }
-        RenderNode renderNode = this.f38625e;
-        float f11 = this.f38630k.d;
-        float f12 = this.f38626f;
+        RenderNode renderNode = this.f38616e;
+        float f11 = this.f38621k.d;
+        float f12 = this.f38617f;
         tileMode = Shader.TileMode.DECAL;
         renderNode.setRenderEffect(RenderEffect.createBlurEffect((f10 * f11) / f12, (f10 * f11) / f12, tileMode));
     }

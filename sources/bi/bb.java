@@ -31,8 +31,8 @@ public final class bb implements View.OnFocusChangeListener {
                 return;
             default:
                 PasscodeActivity passcodeActivity = (PasscodeActivity) this.f3526b;
-                passcodeActivity.f41305w.setEditText((br) this.f3527c);
-                passcodeActivity.f41305w.setDispatchBackWhenEmpty(true);
+                passcodeActivity.f41330w.setEditText((br) this.f3527c);
+                passcodeActivity.f41330w.setDispatchBackWhenEmpty(true);
                 return;
         }
     }

@@ -3,18 +3,18 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
-public final class cw extends mq0 {
-    public final boolean[] f44880a;
-    public final ww f44881b;
+public final class cw extends nq0 {
+    public final boolean[] f44905a;
+    public final ww f44906b;
 
     public cw(ww wwVar, boolean[] zArr) {
-        this.f44881b = wwVar;
-        this.f44880a = zArr;
+        this.f44906b = wwVar;
+        this.f44905a = zArr;
     }
 
     @Override
     public final CharSequence C(int i7) {
-        ww wwVar = this.f44881b;
+        ww wwVar = this.f44906b;
         if (i7 >= 0 && i7 < wwVar.D2.size() && ((org.telegram.messenger.gf) wwVar.D2.get(i7)).f26824b) {
             return null;
         }
@@ -24,7 +24,7 @@ public final class cw extends mq0 {
     @Override
     public final void D() {
         int i7;
-        ww wwVar = this.f44881b;
+        ww wwVar = this.f44906b;
         org.telegram.ui.Components.po0 po0Var = wwVar.G2;
         if (po0Var != null) {
             i7 = ((org.telegram.ui.ActionBar.f2) wwVar).currentAccount;
@@ -33,9 +33,9 @@ public final class cw extends mq0 {
     }
 
     @Override
-    public final vq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
+    public final wq0 E(org.telegram.messenger.ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
         org.telegram.ui.Components.l9 l9Var;
-        ww wwVar = this.f44881b;
+        ww wwVar = this.f44906b;
         org.telegram.ui.Components.po0 po0Var = wwVar.G2;
         if (po0Var != null) {
             l9Var = po0Var.f(i7);
@@ -47,21 +47,21 @@ public final class cw extends mq0 {
         }
         int[] iArr = new int[2];
         l9Var.getLocationInWindow(iArr);
-        vq0 vq0Var = new vq0();
-        vq0Var.f50791b = iArr[0];
-        vq0Var.f50792c = iArr[1];
-        vq0Var.d = wwVar.G2;
+        wq0 wq0Var = new wq0();
+        wq0Var.f51479b = iArr[0];
+        wq0Var.f51480c = iArr[1];
+        wq0Var.d = wwVar.G2;
         ImageReceiver imageReceiver = l9Var.getImageReceiver();
-        vq0Var.f50790a = imageReceiver;
-        vq0Var.f50793e = imageReceiver.p();
-        vq0Var.f50798k = l9Var.getScaleX();
-        vq0Var.h = new int[]{org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f)};
-        return vq0Var;
+        wq0Var.f51478a = imageReceiver;
+        wq0Var.f51481e = imageReceiver.p();
+        wq0Var.f51486k = l9Var.getScaleX();
+        wq0Var.h = new int[]{org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(6.0f)};
+        return wq0Var;
     }
 
     @Override
     public final int H() {
-        ArrayList arrayList = this.f44881b.D2;
+        ArrayList arrayList = this.f44906b.D2;
         if (arrayList != null) {
             return arrayList.size();
         }
@@ -70,12 +70,12 @@ public final class cw extends mq0 {
 
     @Override
     public final boolean I() {
-        return this.f44881b.x3();
+        return this.f44906b.x3();
     }
 
     @Override
     public final long a() {
-        ww wwVar = this.f44881b;
+        ww wwVar = this.f44906b;
         if (wwVar.I2.isEmpty()) {
             return 0L;
         }
@@ -90,7 +90,7 @@ public final class cw extends mq0 {
     @Override
     public final CharSequence c0(int i7) {
         int i10;
-        ww wwVar = this.f44881b;
+        ww wwVar = this.f44906b;
         ArrayList arrayList = wwVar.D2;
         if (arrayList == null || arrayList.isEmpty()) {
             return null;
@@ -129,7 +129,7 @@ public final class cw extends mq0 {
 
     @Override
     public final void e(CharSequence charSequence) {
-        ww wwVar = this.f44881b;
+        ww wwVar = this.f44906b;
         jv jvVar = wwVar.B1;
         if (jvVar != null) {
             jvVar.setFieldText(charSequence);
@@ -154,7 +154,7 @@ public final class cw extends mq0 {
     @Override
     public final org.telegram.messenger.jc j(int i7) {
         org.telegram.ui.Components.l9 l9Var;
-        org.telegram.ui.Components.po0 po0Var = this.f44881b.G2;
+        org.telegram.ui.Components.po0 po0Var = this.f44906b.G2;
         if (po0Var != null) {
             l9Var = po0Var.f(i7);
         } else {
@@ -170,7 +170,7 @@ public final class cw extends mq0 {
     public final void o(int i7, org.telegram.messenger.j20 j20Var, boolean z9, int i10, int i11, boolean z10) {
         int i12;
         ArrayList arrayList;
-        ww wwVar = this.f44881b;
+        ww wwVar = this.f44906b;
         ArrayList arrayList2 = wwVar.I2;
         if (wwVar.B1 != null && (arrayList = wwVar.D2) != null && !arrayList.isEmpty()) {
             jv jvVar = wwVar.B1;
@@ -209,7 +209,7 @@ public final class cw extends mq0 {
         if (p12.P1() && (a12 = p12.a1()) != null) {
             charSequence = a12.getText();
         }
-        ww wwVar = this.f44881b;
+        ww wwVar = this.f44906b;
         if (charSequence != null && (jvVar = wwVar.B1) != null) {
             jvVar.setFieldText(charSequence);
         }
@@ -227,7 +227,7 @@ public final class cw extends mq0 {
 
     @Override
     public final boolean x(int i7) {
-        return this.f44880a[i7];
+        return this.f44905a[i7];
     }
 
     @Override

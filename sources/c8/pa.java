@@ -6,8 +6,8 @@ public final class pa {
     public final Integer f5806b;
 
     public pa(wf.b bVar) {
-        this.f5805a = (oa) bVar.f57538b;
-        this.f5806b = (Integer) bVar.f57539c;
+        this.f5805a = (oa) bVar.f57563b;
+        this.f5806b = (Integer) bVar.f57564c;
     }
 
     public final boolean equals(Object obj) {

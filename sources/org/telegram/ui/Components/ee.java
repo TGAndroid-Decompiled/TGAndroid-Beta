@@ -24,7 +24,7 @@ public final class ee extends jg {
             Rect rect = this.F;
             rect.set(0, 0, measuredWidth, measuredHeight);
             rect.inset(org.telegram.messenger.g0.L(7.5f), org.telegram.messenger.g0.L(7.5f));
-            if (getCurrentState() == hg.f34324b) {
+            if (getCurrentState() == hg.f34274b) {
                 drawable = chatActivityEnterView.O3;
             } else {
                 drawable = chatActivityEnterView.N3;

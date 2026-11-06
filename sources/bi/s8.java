@@ -109,7 +109,7 @@ public final class s8 implements Runnable {
                 SharedPreferences.Editor putBoolean = edit2.putBoolean("show_gift_for_" + j10, true);
                 putBoolean.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j10, true).apply();
                 LaunchActivity launchActivity = LaunchActivity.G1;
-                if (launchActivity != null && (r80Var = launchActivity.f41265v0) != null) {
+                if (launchActivity != null && (r80Var = launchActivity.f41290v0) != null) {
                     r80Var.c(true);
                     return;
                 }
@@ -170,7 +170,7 @@ public final class s8 implements Runnable {
                 SharedPreferences.Editor putBoolean2 = edit4.putBoolean("show_gift_for_" + j12, true);
                 putBoolean2.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j12, true).apply();
                 LaunchActivity launchActivity2 = LaunchActivity.G1;
-                if (launchActivity2 != null && (r80Var2 = launchActivity2.f41265v0) != null) {
+                if (launchActivity2 != null && (r80Var2 = launchActivity2.f41290v0) != null) {
                     r80Var2.c(true);
                     return;
                 }

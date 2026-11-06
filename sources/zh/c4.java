@@ -22,17 +22,17 @@ import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.g5;
 import org.telegram.ui.Components.r5;
 public final class c4 extends View {
-    public final m7 f60133a;
-    public final f6 f60134b;
-    public float f60135c;
+    public final m7 f60158a;
+    public final f6 f60159b;
+    public float f60160c;
     public float d;
-    public Drawable f60136e;
+    public Drawable f60161e;
 
     public c4(int i7, Context context, f6 f6Var) {
         super(context);
-        this.f60134b = f6Var;
+        this.f60159b = f6Var;
         m7 m7Var = new m7(i7, this, f6Var);
-        this.f60133a = m7Var;
+        this.f60158a = m7Var;
         m7Var.f4352y.setCallback(this);
         qs.i(this);
     }
@@ -40,7 +40,7 @@ public final class c4 extends View {
     public final void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, TLRPC.TL_textWithEntities tL_textWithEntities, String str, boolean z9) {
         float L;
         float f10;
-        m7 m7Var = this.f60133a;
+        m7 m7Var = this.f60158a;
         g5 g5Var = m7Var.f4334e;
         c1 c1Var = m7Var.f4338j;
         ImageReceiver imageReceiver = m7Var.d;
@@ -100,9 +100,9 @@ public final class c4 extends View {
         te.c cVar = m7Var.T;
         if (z9) {
             if (cVar.h) {
-                f10 = cVar.f55377g;
+                f10 = cVar.f55402g;
             } else {
-                f10 = cVar.f55376f;
+                f10 = cVar.f55401f;
             }
             int round = Math.round(f10);
             int i7 = m7Var.O;
@@ -117,26 +117,26 @@ public final class c4 extends View {
     }
 
     public m7 getLayout() {
-        return this.f60133a;
+        return this.f60158a;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f60133a.a();
+        this.f60158a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        m7 m7Var = this.f60133a;
+        m7 m7Var = this.f60158a;
         m7Var.S = false;
         m7Var.d.R();
         m7Var.f4334e.b();
         j0 j0Var = m7Var.f4352y;
         j0Var.d.R();
-        r5.release((View) null, j0Var.f60276q);
-        j0Var.f60276q = null;
+        r5.release((View) null, j0Var.f60301q);
+        j0Var.f60301q = null;
     }
 
     @Override
@@ -147,25 +147,25 @@ public final class c4 extends View {
         } else {
             i7 = 0;
         }
-        f6 f6Var = this.f60134b;
+        f6 f6Var = this.f60159b;
         if (f6Var != null) {
             f6Var.b(0.0f, getY(), getMeasuredWidth(), i7);
         } else {
             k6.r(0.0f, getY(), getMeasuredWidth(), i7);
         }
-        m7 m7Var = this.f60133a;
-        this.f60135c = (getWidth() - ((int) m7Var.T.f55376f)) / 2.0f;
-        float L = m7Var.T.f55376f + org.telegram.messenger.g0.L(8.0f);
+        m7 m7Var = this.f60158a;
+        this.f60160c = (getWidth() - ((int) m7Var.T.f55401f)) / 2.0f;
+        float L = m7Var.T.f55401f + org.telegram.messenger.g0.L(8.0f);
         float width = (getWidth() - L) / 2.0f;
         float L2 = this.d - org.telegram.messenger.g0.L(4.0f);
         RectF rectF = org.telegram.messenger.g0.P;
         rectF.set(width, L2, L + width, m7Var.P + L2 + org.telegram.messenger.g0.L(8.0f));
         Rect rect = org.telegram.messenger.g0.Q;
         rectF.round(rect);
-        this.f60136e.setBounds(rect);
-        this.f60136e.draw(canvas);
+        this.f60161e.setBounds(rect);
+        this.f60161e.draw(canvas);
         canvas.save();
-        canvas.translate(this.f60135c, this.d);
+        canvas.translate(this.f60160c, this.d);
         m7Var.b(canvas);
         m7Var.c(canvas);
         canvas.restore();
@@ -174,8 +174,8 @@ public final class c4 extends View {
     @Override
     public final void onMeasure(int i7, int i10) {
         int size = View.MeasureSpec.getSize(i7);
-        m7 m7Var = this.f60133a;
-        this.f60135c = (size - ((int) m7Var.T.f55376f)) / 2.0f;
+        m7 m7Var = this.f60158a;
+        this.f60160c = (size - ((int) m7Var.T.f55401f)) / 2.0f;
         float paddingTop = getPaddingTop();
         this.d = paddingTop;
         setMeasuredDimension(size, getPaddingBottom() + ((int) paddingTop) + m7Var.P);
@@ -183,17 +183,17 @@ public final class c4 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f60133a.e(this.f60135c, this.d, motionEvent);
+        return this.f60158a.e(this.f60160c, this.d, motionEvent);
     }
 
     public void setLayoutBackground(Drawable drawable) {
-        this.f60136e = drawable;
+        this.f60161e = drawable;
         invalidate();
     }
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f60133a.f4352y) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f60158a.f4352y) {
             return false;
         }
         return true;

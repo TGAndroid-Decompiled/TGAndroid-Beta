@@ -4,29 +4,29 @@ import android.animation.ValueAnimator;
 import android.graphics.drawable.Drawable;
 import org.telegram.ui.Components.Crop.CropAreaView;
 public final class bn0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f44438a;
-    public final PhotoViewer f44439b;
+    public final int f44454a;
+    public final PhotoViewer f44455b;
 
     public bn0(PhotoViewer photoViewer, int i7) {
-        this.f44438a = i7;
-        this.f44439b = photoViewer;
+        this.f44454a = i7;
+        this.f44455b = photoViewer;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i7 = this.f44438a;
-        PhotoViewer photoViewer = this.f44439b;
+        int i7 = this.f44454a;
+        PhotoViewer photoViewer = this.f44455b;
         switch (i7) {
             case 0:
                 Drawable[] drawableArr = PhotoViewer.Y8;
                 photoViewer.getClass();
-                photoViewer.f41387h3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                photoViewer.f41412h3.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 1:
-                CropAreaView cropAreaView = photoViewer.C1.f33564b.f21004a;
-                float T1 = org.telegram.messenger.g0.T1(photoViewer.Z5, photoViewer.f41352d6, photoViewer.f41414k6);
-                float T12 = org.telegram.messenger.g0.T1(photoViewer.W5, photoViewer.f41334b6, photoViewer.f41414k6);
-                float T13 = org.telegram.messenger.g0.T1(photoViewer.X5, photoViewer.f41344c6, photoViewer.f41414k6);
+                CropAreaView cropAreaView = photoViewer.C1.f33508b.f21004a;
+                float T1 = org.telegram.messenger.g0.T1(photoViewer.Z5, photoViewer.f41377d6, photoViewer.f41439k6);
+                float T12 = org.telegram.messenger.g0.T1(photoViewer.W5, photoViewer.f41359b6, photoViewer.f41439k6);
+                float T13 = org.telegram.messenger.g0.T1(photoViewer.X5, photoViewer.f41369c6, photoViewer.f41439k6);
                 cropAreaView.f31311n0 = 0.0f;
                 cropAreaView.f31312o0 = T1;
                 cropAreaView.f31313p0 = T12;
@@ -42,7 +42,7 @@ public final class bn0 implements ValueAnimator.AnimatorUpdateListener {
             case 4:
                 Drawable[] drawableArr2 = PhotoViewer.Y8;
                 photoViewer.getClass();
-                photoViewer.f41422l6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.f41447l6 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 5:
                 Drawable[] drawableArr3 = PhotoViewer.Y8;
@@ -55,9 +55,9 @@ public final class bn0 implements ValueAnimator.AnimatorUpdateListener {
                 photoViewer.L1.setOffsetTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 8:
-                tp0 tp0Var = photoViewer.L1;
-                if (tp0Var != null) {
-                    tp0Var.M0.invalidate();
+                up0 up0Var = photoViewer.L1;
+                if (up0Var != null) {
+                    up0Var.M0.invalidate();
                     return;
                 }
                 return;
@@ -65,27 +65,27 @@ public final class bn0 implements ValueAnimator.AnimatorUpdateListener {
                 Drawable[] drawableArr4 = PhotoViewer.Y8;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 photoViewer.Y5 = floatValue;
-                tp0 tp0Var2 = photoViewer.L1;
-                if (tp0Var2 != null && Math.abs(floatValue - tp0Var2.G1) > 0.1f) {
-                    tp0Var2.G1 = floatValue;
-                    tp0Var2.v0(tp0Var2.f55571r0, tp0Var2.f55573s0, tp0Var2.f55575t0, tp0Var2.f55581w0, tp0Var2.f55583x0);
+                up0 up0Var2 = photoViewer.L1;
+                if (up0Var2 != null && Math.abs(floatValue - up0Var2.G1) > 0.1f) {
+                    up0Var2.G1 = floatValue;
+                    up0Var2.v0(up0Var2.f55596r0, up0Var2.f55598s0, up0Var2.f55600t0, up0Var2.f55606w0, up0Var2.f55608x0);
                 }
-                photoViewer.f41356e0.invalidate();
+                photoViewer.f41381e0.invalidate();
                 return;
             case 10:
                 Drawable[] drawableArr5 = PhotoViewer.Y8;
-                photoViewer.f41422l6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.f41447l6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 photoViewer.D1();
                 return;
             case 11:
                 Drawable[] drawableArr6 = PhotoViewer.Y8;
                 photoViewer.getClass();
-                photoViewer.f41422l6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.f41447l6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 12:
                 Drawable[] drawableArr7 = PhotoViewer.Y8;
                 photoViewer.getClass();
-                photoViewer.f41422l6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.f41447l6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 13:
                 photoViewer.W0[0].e(1, ((Float) valueAnimator.getAnimatedValue()).floatValue(), false);
@@ -93,7 +93,7 @@ public final class bn0 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 Drawable[] drawableArr8 = PhotoViewer.Y8;
                 photoViewer.getClass();
-                photoViewer.f41422l6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                photoViewer.f41447l6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
         }
     }

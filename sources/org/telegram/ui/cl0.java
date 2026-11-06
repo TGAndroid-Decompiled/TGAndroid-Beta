@@ -3,9 +3,9 @@ package org.telegram.ui;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 public final class cl0 implements TextWatcher {
-    public int f44826a = -1;
-    public boolean f44827b;
-    public int f44828c;
+    public int f44847a = -1;
+    public boolean f44848b;
+    public int f44849c;
     public final hl0 d;
 
     public cl0(hl0 hl0Var) {
@@ -21,21 +21,21 @@ public final class cl0 implements TextWatcher {
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         boolean z9 = false;
         if (i10 == 0 && i11 == 1) {
-            if (TextUtils.indexOf((CharSequence) this.d.f46401f[1].getText(), '/') != -1) {
+            if (TextUtils.indexOf((CharSequence) this.d.f46421f[1].getText(), '/') != -1) {
                 z9 = true;
             }
-            this.f44827b = z9;
-            this.f44826a = 1;
+            this.f44848b = z9;
+            this.f44847a = 1;
         } else if (i10 == 1 && i11 == 0) {
             if (charSequence.charAt(i7) == '/' && i7 > 0) {
-                this.f44827b = false;
-                this.f44826a = 3;
-                this.f44828c = i7 - 1;
+                this.f44848b = false;
+                this.f44847a = 3;
+                this.f44849c = i7 - 1;
                 return;
             }
-            this.f44826a = 2;
+            this.f44847a = 2;
         } else {
-            this.f44826a = -1;
+            this.f44847a = -1;
         }
     }
 

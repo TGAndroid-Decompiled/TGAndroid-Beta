@@ -54,12 +54,12 @@ public final class x extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        w wVar = (w) d1Var.f56927a;
+        w wVar = (w) d1Var.f56952a;
         String str = (String) this.f15023c.get(i7);
         if (((Boolean) this.f15024e.get(i7)).booleanValue()) {
             wp wpVar = new wp(2131231942, 0);
             wpVar.a(k6.A6);
-            wpVar.f40054n = 1;
+            wpVar.f40061n = 1;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str);
             spannableStringBuilder.append((CharSequence) " *");
             spannableStringBuilder.setSpan(wpVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);

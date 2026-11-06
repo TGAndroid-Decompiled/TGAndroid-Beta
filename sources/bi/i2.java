@@ -32,7 +32,7 @@ public final class i2 implements c20 {
         final zh.i0 i0Var = this.f4029b;
         if (i0Var != null && i0Var.C1) {
             i0Var.C1 = false;
-            i0Var.f60253y1.f(false);
+            i0Var.f60278y1.f(false);
         }
         if (tL_payments_paymentFormStarGift == null) {
             return;

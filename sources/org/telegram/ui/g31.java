@@ -2,21 +2,21 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.View;
-public final class g31 extends org.telegram.ui.Components.q31 {
-    public static final int f45772b = 0;
+public final class g31 extends org.telegram.ui.Components.v31 {
+    public static final int f45799b = 0;
 
     static {
-        org.telegram.ui.Components.q31.h(new org.telegram.ui.Components.q31());
+        org.telegram.ui.Components.v31.h(new org.telegram.ui.Components.v31());
     }
 
     @Override
-    public final void b(View view, org.telegram.ui.Components.r31 r31Var, boolean z9, org.telegram.ui.Components.f41 f41Var, org.telegram.ui.Components.k41 k41Var) {
-        ((h31) view).set(r31Var.f37611z);
+    public final void b(View view, org.telegram.ui.Components.w31 w31Var, boolean z9, org.telegram.ui.Components.k41 k41Var, org.telegram.ui.Components.p41 p41Var) {
+        ((h31) view).set(w31Var.f39843z);
     }
 
     @Override
-    public final boolean c(org.telegram.ui.Components.r31 r31Var, org.telegram.ui.Components.r31 r31Var2) {
-        if (r31Var.f37611z == r31Var2.f37611z) {
+    public final boolean c(org.telegram.ui.Components.w31 w31Var, org.telegram.ui.Components.w31 w31Var2) {
+        if (w31Var.f39843z == w31Var2.f39843z) {
             return true;
         }
         return false;
@@ -28,8 +28,8 @@ public final class g31 extends org.telegram.ui.Components.q31 {
     }
 
     @Override
-    public final boolean e(org.telegram.ui.Components.r31 r31Var, org.telegram.ui.Components.r31 r31Var2) {
-        if (r31Var.d == r31Var2.d) {
+    public final boolean e(org.telegram.ui.Components.w31 w31Var, org.telegram.ui.Components.w31 w31Var2) {
+        if (w31Var.d == w31Var2.d) {
             return true;
         }
         return false;

@@ -53,12 +53,12 @@ public final class i2 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 4:
                 n40 n40Var = (n40) this.f27562c;
-                if (this.f27561b == n40Var.f36264s0) {
+                if (this.f27561b == n40Var.f36181s0) {
                     float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                     if (floatValue3 >= 0.5f) {
                         floatValue3 -= 1.0f;
                     }
-                    n40Var.f36270x.setRotationY(floatValue3 * 180.0f);
+                    n40Var.f36187x.setRotationY(floatValue3 * 180.0f);
                     return;
                 }
                 return;
@@ -66,17 +66,17 @@ public final class i2 implements ValueAnimator.AnimatorUpdateListener {
                 vp vpVar = (vp) this.f27562c;
                 vpVar.getClass();
                 si0 si0Var = (si0) vpVar.d;
-                si0Var.f38108b.put(this.f27561b, (Float) valueAnimator.getAnimatedValue());
+                si0Var.f38068b.put(this.f27561b, (Float) valueAnimator.getAnimatedValue());
                 si0Var.d = true;
-                si0Var.f38107a.invalidate();
+                si0Var.f38067a.invalidate();
                 return;
             default:
                 xh.f fVar = (xh.f) this.f27562c;
                 fVar.getClass();
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fVar.f58681n = floatValue4;
+                fVar.f58706n = floatValue4;
                 fVar.setAlpha((int) ((1.0f - floatValue4) * this.f27561b));
-                fVar.f58683p = true;
+                fVar.f58708p = true;
                 fVar.invalidateSelf();
                 return;
         }

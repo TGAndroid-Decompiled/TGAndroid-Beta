@@ -15,7 +15,7 @@ public final class h20 extends org.telegram.ui.Components.kt {
         if (view == getEditText()) {
             canvas.save();
             c40 c40Var = this.V;
-            c40Var.f44627y1.getEditText().setTranslationY(view.getMeasuredHeight() - c40Var.s5.f55376f);
+            c40Var.f44648y1.getEditText().setTranslationY(view.getMeasuredHeight() - c40Var.s5.f55401f);
             boolean drawChild = super.drawChild(canvas, view, j3);
             canvas.restore();
             return drawChild;
@@ -28,8 +28,8 @@ public final class h20 extends org.telegram.ui.Components.kt {
         super.f();
         org.telegram.ui.Components.gy emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f34137w0 = false;
-            emojiView.f34143x2 = false;
+            emojiView.f34085w0 = false;
+            emojiView.f34091x2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(this.V.f28615b.getPaddingBottom());
         }
@@ -39,7 +39,7 @@ public final class h20 extends org.telegram.ui.Components.kt {
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
         te.c cVar = this.V.s5;
-        if (cVar.f55376f == 0.0f) {
+        if (cVar.f55401f == 0.0f) {
             cVar.c(getMeasuredHeight());
         } else {
             cVar.a(getMeasuredHeight());
@@ -49,8 +49,8 @@ public final class h20 extends org.telegram.ui.Components.kt {
     @Override
     public final void p() {
         int i7;
-        rh.h hVar = this.V.f44608t3;
-        if (this.f35416e) {
+        rh.h hVar = this.V.f44629t3;
+        if (this.f35419e) {
             i7 = Math.max(0, getEmojiPadding());
         } else if (this.N) {
             i7 = Math.max(0, getKeyboardHeight());

@@ -30,7 +30,7 @@ public final class ft extends gy {
         kt ktVar = this.Y2;
         if (ktVar.b()) {
             int i14 = i12 - i10;
-            if (!this.W2 && ktVar.f35423y) {
+            if (!this.W2 && ktVar.f35426y) {
                 this.X2 = true;
             }
             if (this.X2 && (i13 = this.V2) > 0 && i14 > 0 && i14 != i13) {
@@ -38,7 +38,7 @@ public final class ft extends gy {
                 org.telegram.messenger.camera.q.l(animate().translationY(0.0f), org.telegram.ui.ActionBar.i1.f27540w, 250L);
                 this.X2 = false;
             }
-            this.W2 = ktVar.f35423y;
+            this.W2 = ktVar.f35426y;
             this.V2 = i14;
         }
     }

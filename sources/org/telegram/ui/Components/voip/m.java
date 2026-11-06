@@ -16,29 +16,29 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.k6;
 import org.webrtc.RendererCommon;
 public final class m extends FrameLayout {
-    public final k2 f39308a;
-    public final h f39309b;
-    public final TextView f39310c;
+    public final k2 f39305a;
+    public final h f39306b;
+    public final TextView f39307c;
     public final TextView d;
-    public final ImageView f39311e;
-    public final k f39312f;
+    public final ImageView f39308e;
+    public final k f39309f;
     public TLRPC.User h;
-    public boolean f39313n;
-    public long f39314r;
+    public boolean f39310n;
+    public long f39311r;
 
     public m(Context context) {
         super(context);
-        this.f39313n = false;
-        this.f39314r = SystemClock.elapsedRealtime();
+        this.f39310n = false;
+        this.f39311r = SystemClock.elapsedRealtime();
         setBackgroundColor(-14999773);
         k2 k2Var = new k2(context, false, true, false, false);
-        this.f39308a = k2Var;
+        this.f39305a = k2Var;
         RendererCommon.ScalingType scalingType = RendererCommon.ScalingType.SCALE_ASPECT_FIT;
         j2 j2Var = k2Var.d;
         j2Var.setScalingType(scalingType);
         j2Var.setEnableHardwareScaler(true);
         j2Var.setRotateTextureWithScreen(true);
-        k2Var.f39278a0 = 1;
+        k2Var.f39275a0 = 1;
         j2Var.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), null);
         View view = k2Var.h;
         if (view != null) {
@@ -46,10 +46,10 @@ public final class m extends FrameLayout {
         }
         addView(k2Var, ha.c(-1.0f, -1));
         h hVar = new h(context);
-        this.f39309b = hVar;
+        this.f39306b = hVar;
         addView(hVar, ha.c(-1.0f, -1));
         TextView textView = new TextView(context);
-        this.f39310c = textView;
+        this.f39307c = textView;
         textView.setTextColor(-1);
         textView.setTextSize(1, 13.0f);
         textView.setSingleLine();
@@ -67,11 +67,11 @@ public final class m extends FrameLayout {
         textView2.setVisibility(8);
         addView(textView2, ha.d(-1, -2.0f, 49, 32.0f, 8.0f, 32.0f, 0.0f));
         k kVar = new k(context);
-        this.f39312f = kVar;
+        this.f39309f = kVar;
         addView(kVar, ha.c(-1.0f, -1));
         kVar.a();
         ImageView imageView = new ImageView(context);
-        this.f39311e = imageView;
+        this.f39308e = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         imageView.setColorFilter(-1);
         imageView.setBackground(k6.L(org.telegram.messenger.g0.L(28.0f), 1711276032));
@@ -95,8 +95,8 @@ public final class m extends FrameLayout {
             return;
         }
         TLRPC.User user = sharedInstance.getUser();
-        TextView textView = this.f39310c;
-        h hVar = this.f39309b;
+        TextView textView = this.f39307c;
+        h hVar = this.f39306b;
         if (user != null && user != this.h) {
             this.h = user;
             sharedInstance.getAccount();
@@ -105,8 +105,8 @@ public final class m extends FrameLayout {
         }
         boolean a10 = a(sharedInstance);
         boolean z10 = true;
-        k2 k2Var = this.f39308a;
-        if (a10 && !k2Var.d.isFirstFrameRendered() && SystemClock.elapsedRealtime() - this.f39314r < 1200) {
+        k2 k2Var = this.f39305a;
+        if (a10 && !k2Var.d.isFirstFrameRendered() && SystemClock.elapsedRealtime() - this.f39311r < 1200) {
             z9 = true;
         } else {
             z9 = false;
@@ -114,8 +114,8 @@ public final class m extends FrameLayout {
         if (!a10 || (!k2Var.d.isFirstFrameRendered() && !z9)) {
             z10 = false;
         }
-        if (this.f39313n != z10) {
-            this.f39313n = z10;
+        if (this.f39310n != z10) {
+            this.f39310n = z10;
             if (z10) {
                 i10 = 8;
             } else {
@@ -134,8 +134,8 @@ public final class m extends FrameLayout {
         } else {
             i7 = 2131232431;
         }
-        this.f39311e.setImageResource(i7);
-        this.f39312f.c();
+        this.f39308e.setImageResource(i7);
+        this.f39309f.c();
         int callState = sharedInstance.getCallState();
         TextView textView2 = this.d;
         if (callState == 5) {

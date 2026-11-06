@@ -6,21 +6,21 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.Timer;
 public final class w50 extends org.telegram.ui.Components.oj0 {
-    public final Context f50953c;
+    public final Context f50959c;
     public ArrayList d = new ArrayList();
-    public ArrayList f50954e = new ArrayList();
-    public Timer f50955f;
+    public ArrayList f50960e = new ArrayList();
+    public Timer f50961f;
     public boolean h;
-    public final z50 f50956n;
+    public final z50 f50962n;
 
     public w50(z50 z50Var, Context context) {
-        this.f50956n = z50Var;
-        this.f50953c = context;
+        this.f50962n = z50Var;
+        this.f50959c = context;
     }
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         if (view instanceof org.telegram.ui.Cells.q4) {
             ((org.telegram.ui.Cells.q4) view).f30120a.getImageReceiver().c();
         }
@@ -28,7 +28,7 @@ public final class w50 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f != 2) {
+        if (d1Var.f56956f != 2) {
             return true;
         }
         return false;
@@ -36,7 +36,7 @@ public final class w50 extends org.telegram.ui.Components.oj0 {
 
     public final void E(String str) {
         try {
-            Timer timer = this.f50955f;
+            Timer timer = this.f50961f;
             if (timer != null) {
                 timer.cancel();
             }
@@ -45,12 +45,12 @@ public final class w50 extends org.telegram.ui.Components.oj0 {
         }
         if (str == null) {
             this.d.clear();
-            this.f50954e.clear();
+            this.f50960e.clear();
             f();
             return;
         }
         Timer timer2 = new Timer();
-        this.f50955f = timer2;
+        this.f50961f = timer2;
         timer2.schedule(new jg.q1(3, this, str), 200L, 300L);
     }
 
@@ -59,7 +59,7 @@ public final class w50 extends org.telegram.ui.Components.oj0 {
         if (this.h) {
             return this.d.size();
         }
-        return this.f50956n.f52478w.size() + 2;
+        return this.f50962n.f52485w.size() + 2;
     }
 
     @Override
@@ -80,11 +80,11 @@ public final class w50 extends org.telegram.ui.Components.oj0 {
     public final void f() {
         int i7;
         super.f();
-        z50 z50Var = this.f50956n;
-        w50 w50Var = z50Var.f52477s;
-        if (w50Var != null && !z50Var.f52480y) {
+        z50 z50Var = this.f50962n;
+        w50 w50Var = z50Var.f52484s;
+        if (w50Var != null && !z50Var.f52487y) {
             int b10 = w50Var.b();
-            org.telegram.ui.Components.av0 av0Var = z50Var.f52476r;
+            org.telegram.ui.Components.av0 av0Var = z50Var.f52483r;
             if (b10 == 2) {
                 i7 = 0;
             } else {
@@ -98,15 +98,15 @@ public final class w50 extends org.telegram.ui.Components.oj0 {
     public final void t(v4.d1 d1Var, int i7) {
         org.telegram.messenger.d5 d5Var;
         CharSequence charSequence;
-        if (d1Var.f56931f == 0) {
-            org.telegram.ui.Cells.q4 q4Var = (org.telegram.ui.Cells.q4) d1Var.f56927a;
+        if (d1Var.f56956f == 0) {
+            org.telegram.ui.Cells.q4 q4Var = (org.telegram.ui.Cells.q4) d1Var.f56952a;
             boolean z9 = this.h;
-            z50 z50Var = this.f50956n;
+            z50 z50Var = this.f50962n;
             if (z9) {
                 d5Var = (org.telegram.messenger.d5) this.d.get(i7);
-                charSequence = (CharSequence) this.f50954e.get(i7);
+                charSequence = (CharSequence) this.f50960e.get(i7);
             } else {
-                d5Var = (org.telegram.messenger.d5) z50Var.f52478w.get(i7 - 2);
+                d5Var = (org.telegram.messenger.d5) z50Var.f52485w.get(i7 - 2);
                 charSequence = null;
             }
             q4Var.a(d5Var, charSequence);
@@ -121,7 +121,7 @@ public final class w50 extends org.telegram.ui.Components.oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         org.telegram.ui.Cells.m8 m8Var;
-        Context context = this.f50953c;
+        Context context = this.f50959c;
         if (i7 == 1) {
             org.telegram.ui.Cells.m8 m8Var2 = new org.telegram.ui.Cells.m8(context);
             int i10 = org.telegram.ui.ActionBar.k6.G6;

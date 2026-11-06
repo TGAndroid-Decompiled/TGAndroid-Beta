@@ -146,7 +146,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
         this.f4193p3 = true;
         this.f28612a = i7;
         this.P1 = j3;
-        this.f36333r1 = Math.max(0.05f, org.telegram.messenger.g0.L(82.0f) / (org.telegram.messenger.g0.f22537q.y + org.telegram.messenger.g0.f22531m));
+        this.f36227r1 = Math.max(0.05f, org.telegram.messenger.g0.L(82.0f) / (org.telegram.messenger.g0.f22537q.y + org.telegram.messenger.g0.f22531m));
         this.f28650x = true;
         this.f28615b = new e5(0, context, this);
         m5 m5Var = new m5(this, context);
@@ -166,8 +166,8 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
         this.f28615b.addView(view2, e10);
         this.f28615b.addView(f5Var, c8.ha.e(-1, -1, 119));
         P(i10);
-        org.telegram.messenger.g0.E2(this.f36328k1);
-        m5Var.addView(this.f36328k1, c8.ha.e(-1, -1, 119));
+        org.telegram.messenger.g0.E2(this.f36222k1);
+        m5Var.addView(this.f36222k1, c8.ha.e(-1, -1, 119));
         h5 h5Var = new h5(this, context, 0);
         this.Y1 = h5Var;
         h5Var.setOrientation(1);
@@ -322,7 +322,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
         int i20 = this.f28645t0;
         e7Var.setPadding(i20, 0, i20, 0);
         m5Var.addView(e7Var, c8.ha.e(-1, -2, 55));
-        jg.b0 b0Var = this.f36327j1;
+        jg.b0 b0Var = this.f36221j1;
         this.G1 = true;
         b0Var.k1(true);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -354,7 +354,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
         frameLayout2.addView(w70Var3, c8.ha.d(-1, -2.0f, 17, 16.0f, 8.0f, 16.0f, 14.0f));
         m5Var.addView(frameLayout2, c8.ha.e(-1, -2, 87));
         frameLayout2.setVisibility(8);
-        this.f36328k1.setOnScrollListener(new ai.b(this, 4));
+        this.f36222k1.setOnScrollListener(new ai.b(this, 4));
         linearLayout2.setOnClickListener(new y1(this, 18));
         jz jzVar = new jz(context);
         this.S1 = jzVar;
@@ -629,7 +629,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
         org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
         if (T != null) {
             org.telegram.ui.Components.cc Q = org.telegram.ui.Components.hc.a0(T).Q(2131624011, 36, org.telegram.messenger.hd.M0(2131748551, null));
-            Q.f32533t = true;
+            Q.f32537t = true;
             Q.j();
         }
     }
@@ -1124,7 +1124,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
         String C1 = C1();
         x4 x4Var2 = new x4(this, getContext(), C1, C1, this.I0);
         this.R2 = x4Var2;
-        x4Var2.f36066k2 = new cb.c(this, 11);
+        x4Var2.f36004k2 = new cb.c(this, 11);
         x4Var2.show();
     }
 
@@ -1436,8 +1436,8 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
         }
         ab.j jVar = new ab.j(this, twoStepVerificationActivity, z9, 1);
         twoStepVerificationActivity.Z = i7;
-        twoStepVerificationActivity.f42027b0 = jVar;
-        twoStepVerificationActivity.f42025a0 = z1();
+        twoStepVerificationActivity.f42052b0 = jVar;
+        twoStepVerificationActivity.f42050a0 = z1();
         twoStepVerificationActivity.x0(new aa.s(this, runnable, bVar, twoStepVerificationActivity, 12));
     }
 
@@ -1656,7 +1656,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
                     tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGiftPrepaidUpgrade;
                 } else {
                     TLRPC.TL_inputInvoiceStarGiftUpgrade tL_inputInvoiceStarGiftUpgrade = new TLRPC.TL_inputInvoiceStarGiftUpgrade();
-                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = woVar.f40043a.f31258q;
+                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = woVar.f40050a.f31258q;
                     tL_inputInvoiceStarGiftUpgrade.stargift = B1;
                     tL_payments_getPaymentForm.invoice = tL_inputInvoiceStarGiftUpgrade;
                 }
@@ -1683,7 +1683,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
             int i7 = this.f28612a;
             wg.f1[] f1VarArr = {new wg.f1(context, i7, org.telegram.messenger.v1.a(i7).b(), 3, this.I0)};
             wg.f1 f1Var = f1VarArr[0];
-            f1Var.f57627r2 = org.telegram.messenger.hd.M0(2131749913, null);
+            f1Var.f57652r2 = org.telegram.messenger.hd.M0(2131749913, null);
             org.telegram.ui.Components.ja jaVar = f1Var.l1;
             if (jaVar != null) {
                 jaVar.setTitle(f1Var.O0());
@@ -1693,10 +1693,10 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
                 mg0Var.setText(f1Var.O0());
             }
             wg.f1 f1Var2 = f1VarArr[0];
-            f1Var2.f57634y2 = true;
+            f1Var2.f57659y2 = true;
             f1Var2.o1(false, true);
             wg.f1 f1Var3 = f1VarArr[0];
-            f1Var3.f57629t2 = new ai.f1(1, this, f1VarArr);
+            f1Var3.f57654t2 = new ai.f1(1, this, f1VarArr);
             f1Var3.show();
         }
     }
@@ -1801,7 +1801,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
         }
         if (this.W2) {
             s2(0, false, null);
-            this.f36327j1.n0(1);
+            this.f36221j1.n0(1);
             this.W2 = false;
         }
         v2();
@@ -2377,7 +2377,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
             }
             wp wpVar = this.V2;
             if (wpVar != null) {
-                Drawable drawable = wpVar.f40051c;
+                Drawable drawable = wpVar.f40058c;
                 if (drawable instanceof f7) {
                     ((f7) drawable).d.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ci, this.I0));
                     fi.d dVar = this.f4168c2;
@@ -2488,7 +2488,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
                             TLRPC.TL_error tL_error2 = tL_error;
                             c20Var3.a(tL_error2);
                             org.telegram.ui.Components.cc Y = k7Var2.k().Y(tL_error2);
-                            Y.f32533t = true;
+                            Y.f32537t = true;
                             Y.j();
                         }
                     });
@@ -2575,7 +2575,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
                 wo woVar = this.f4190o2;
                 if (i7 > 0) {
                     TL_stars.upgradeStarGift upgradestargift = new TL_stars.upgradeStarGift();
-                    upgradestargift.keep_original_details = woVar.f40043a.f31258q;
+                    upgradestargift.keep_original_details = woVar.f40050a.f31258q;
                     upgradestargift.stargift = B1;
                     ConnectionsManager.getInstance(this.f28612a).sendRequest(upgradestargift, new j(4, this, B1));
                     return;
@@ -2595,7 +2595,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
                     tL_payments_sendStarsForm.invoice = tL_inputInvoiceStarGiftPrepaidUpgrade;
                 } else {
                     TLRPC.TL_inputInvoiceStarGiftUpgrade tL_inputInvoiceStarGiftUpgrade = new TLRPC.TL_inputInvoiceStarGiftUpgrade();
-                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = woVar.f40043a.f31258q;
+                    tL_inputInvoiceStarGiftUpgrade.keep_original_details = woVar.f40050a.f31258q;
                     tL_inputInvoiceStarGiftUpgrade.stargift = B1;
                     tL_payments_sendStarsForm.invoice = tL_inputInvoiceStarGiftUpgrade;
                 }
@@ -2633,7 +2633,7 @@ public class k7 extends org.telegram.ui.Components.na implements ls {
             if (x12 >= 0) {
                 if (!p10.i(this.f28612a).q()) {
                     org.telegram.ui.Components.cc P = k().P(2131624216, org.telegram.messenger.g0.x2(org.telegram.messenger.hd.M0(2131750422, null), new z1(this, 2)));
-                    P.f32533t = true;
+                    P.f32537t = true;
                     P.j();
                     return;
                 }

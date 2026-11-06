@@ -29,25 +29,25 @@ public final class a8 implements r1.d {
                 o5Var.U0.getTypefaceCell().setAlpha(1.0f - o5Var.f12518c1);
                 return;
             case 2:
-                pg.j jVar = (pg.j) this.f8823b;
+                pg.i iVar = (pg.i) this.f8823b;
                 float f13 = f10 / 1000.0f;
-                pg.h hVar = jVar.f53506a;
-                hVar.setPivotX(org.telegram.messenger.g0.L(28.0f));
-                hVar.setPivotY(org.telegram.messenger.g0.L(28.0f));
-                hVar.setScaleX(f13);
-                hVar.setScaleY(f13);
-                hVar.setAlpha(c8.j9.a(f13, 0.0f, 1.0f));
-                jVar.invalidate();
+                pg.g gVar2 = iVar.f53531a;
+                gVar2.setPivotX(org.telegram.messenger.g0.L(28.0f));
+                gVar2.setPivotY(org.telegram.messenger.g0.L(28.0f));
+                gVar2.setScaleX(f13);
+                gVar2.setScaleY(f13);
+                gVar2.setAlpha(c8.j9.a(f13, 0.0f, 1.0f));
+                iVar.invalidate();
                 return;
             default:
                 tg.g0 g0Var = (tg.g0) this.f8823b;
                 float f14 = f10 / 1000.0f;
-                g0Var.f55563m1 = f14;
-                tg.j1 j1Var2 = g0Var.f55553e1;
+                g0Var.f55588m1 = f14;
+                tg.j1 j1Var2 = g0Var.f55578e1;
                 j1Var2.setAlpha(f14);
                 j1Var2.invalidate();
                 g0Var.M0.invalidate();
-                g0Var.f55552d1.getTypefaceCell().setAlpha(1.0f - g0Var.f55563m1);
+                g0Var.f55577d1.getTypefaceCell().setAlpha(1.0f - g0Var.f55588m1);
                 return;
         }
     }

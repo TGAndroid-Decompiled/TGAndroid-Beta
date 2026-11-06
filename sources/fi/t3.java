@@ -18,11 +18,11 @@ import org.telegram.messenger.hd;
 import org.telegram.messenger.l10;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.c51;
+import org.telegram.ui.Components.g51;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.r31;
 import org.telegram.ui.Components.ry;
 import org.telegram.ui.Components.sd0;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.wk;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
@@ -58,7 +58,7 @@ public final class t3 implements c20 {
                 if (view instanceof a4) {
                     w3Var.getClass();
                     int R = RecyclerView.R(view);
-                    r31 G = w3Var.f35167f3.G(R);
+                    w31 G = w3Var.f36781f3.G(R);
                     if (G != null) {
                         a4 a4Var = (a4) view;
                         a4Var.setPosition(b4Var.b(R));
@@ -86,14 +86,14 @@ public final class t3 implements c20 {
                 e7Var.B0 = i12;
                 y5Var.T.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, i10, iArr, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
                 y5Var.invalidate();
-                c51 c51Var = y5Var.f13179n;
-                if (c51Var != null) {
+                g51 g51Var = y5Var.f13179n;
+                if (g51Var != null) {
                     int i13 = y5Var.U;
                     int i14 = y5Var.V;
-                    ry ryVar = c51Var.f32421b;
+                    ry ryVar = g51Var.f33798b;
                     if (ryVar == null) {
-                        c51Var.f32425n = i13;
-                        c51Var.f32426r = i14;
+                        g51Var.f33802n = i13;
+                        g51Var.f33803r = i14;
                     } else {
                         ryVar.h(i13, i14);
                     }
@@ -102,7 +102,7 @@ public final class t3 implements c20 {
                 if (sd0Var != null) {
                     int i15 = y5Var.U;
                     int i16 = y5Var.V;
-                    ry ryVar2 = sd0Var.f38041l0;
+                    ry ryVar2 = sd0Var.f38001l0;
                     if (ryVar2 != null) {
                         ryVar2.h(i15, i16);
                         return;
@@ -218,11 +218,11 @@ public final class t3 implements c20 {
                 TLRPC.TL_messageMediaGeoLive tL_messageMediaGeoLive = new TLRPC.TL_messageMediaGeoLive();
                 TLRPC.TL_geoPoint tL_geoPoint = new TLRPC.TL_geoPoint();
                 tL_messageMediaGeoLive.geo = tL_geoPoint;
-                tL_geoPoint.lat = org.telegram.messenger.g0.b0(wkVar.f39987h0.getLatitude());
-                tL_messageMediaGeoLive.geo._long = org.telegram.messenger.g0.b0(wkVar.f39987h0.getLongitude());
+                tL_geoPoint.lat = org.telegram.messenger.g0.b0(wkVar.f39994h0.getLatitude());
+                tL_messageMediaGeoLive.geo._long = org.telegram.messenger.g0.b0(wkVar.f39994h0.getLongitude());
                 tL_messageMediaGeoLive.period = i10;
-                wkVar.f39993n0.d(tL_messageMediaGeoLive, wkVar.f39994o0, true, 0, ((Long) obj).longValue());
-                wkVar.f38951b.a(true);
+                wkVar.f40000n0.d(tL_messageMediaGeoLive, wkVar.f40001o0, true, 0, ((Long) obj).longValue());
+                wkVar.f38948b.a(true);
                 return;
             case 5:
                 j40.l1((j40) obj2, i10, (org.telegram.messenger.e3) obj);
@@ -238,13 +238,13 @@ public final class t3 implements c20 {
             default:
                 org.telegram.ui.Wallet.x9 x9Var = (org.telegram.ui.Wallet.x9) obj2;
                 String str3 = (String) obj;
-                if (!x9Var.f43319r && i10 == x9Var.J) {
+                if (!x9Var.f43344r && i10 == x9Var.J) {
                     x9Var.E = 0;
                     x9Var.L = false;
                     if (WalletEngine2.isValidRecipientAddress(str3)) {
                         str = WalletEngine2.toUserFriendlyAddress(str3);
                     }
-                    x9Var.f43323y = str;
+                    x9Var.f43348y = str;
                     d dVar2 = x9Var.Z;
                     if (dVar2 != null) {
                         if (str != null) {
@@ -252,7 +252,7 @@ public final class t3 implements c20 {
                         }
                         dVar2.setEnabled(z10);
                     }
-                    x9Var.f34211a.f35167f3.O(true);
+                    x9Var.f35844a.f36781f3.O(true);
                     return;
                 }
                 return;

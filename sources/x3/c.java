@@ -2,19 +2,19 @@ package x3;
 
 import j$.util.Objects;
 public final class c implements Comparable {
-    public final long f58427a;
-    public final long f58428b;
-    public final long f58429c;
+    public final long f58452a;
+    public final long f58453b;
+    public final long f58454c;
 
     public c(long j3, long j10, long j11) {
-        this.f58427a = j3;
-        this.f58428b = j10;
-        this.f58429c = j11;
+        this.f58452a = j3;
+        this.f58453b = j10;
+        this.f58454c = j11;
     }
 
     @Override
     public final int compareTo(Object obj) {
-        return Long.compare(this.f58427a, ((c) obj).f58427a);
+        return Long.compare(this.f58452a, ((c) obj).f58452a);
     }
 
     public final boolean equals(Object obj) {
@@ -25,13 +25,13 @@ public final class c implements Comparable {
             return false;
         }
         c cVar = (c) obj;
-        if (this.f58427a == cVar.f58427a && this.f58428b == cVar.f58428b && this.f58429c == cVar.f58429c) {
+        if (this.f58452a == cVar.f58452a && this.f58453b == cVar.f58453b && this.f58454c == cVar.f58454c) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return Objects.hash(Long.valueOf(this.f58427a), Long.valueOf(this.f58428b), Long.valueOf(this.f58429c));
+        return Objects.hash(Long.valueOf(this.f58452a), Long.valueOf(this.f58453b), Long.valueOf(this.f58454c));
     }
 }

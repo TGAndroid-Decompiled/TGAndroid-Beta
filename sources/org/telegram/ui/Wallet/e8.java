@@ -3,18 +3,18 @@ package org.telegram.ui.Wallet;
 import org.telegram.messenger.hd;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class e8 implements Runnable {
-    public final int f42406a;
-    public final f8 f42407b;
+    public final int f42431a;
+    public final f8 f42432b;
 
     public e8(f8 f8Var, int i7) {
-        this.f42406a = i7;
-        this.f42407b = f8Var;
+        this.f42431a = i7;
+        this.f42432b = f8Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f42406a;
-        f8 f8Var = this.f42407b;
+        int i7 = this.f42431a;
+        f8 f8Var = this.f42432b;
         switch (i7) {
             case 0:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, f8Var.getParentActivity(), f8Var.getResourceProvider());

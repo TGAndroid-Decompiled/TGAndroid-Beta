@@ -25,23 +25,23 @@ import java.util.Set;
 import org.telegram.messenger.la;
 import org.telegram.ui.ActionBar.m3;
 import org.telegram.ui.Components.us;
-import org.telegram.ui.io0;
+import org.telegram.ui.jo0;
 public final class c1 extends Binder implements m {
-    public final WeakReference f53065a;
-    public final ui.e f53066b;
-    public final Set f53067c;
+    public final WeakReference f53091a;
+    public final ui.e f53092b;
+    public final Set f53093c;
     public s1 d;
-    public y1 f53068e;
-    public int f53069f;
-    public b1 f53070i;
+    public y1 f53094e;
+    public int f53095f;
+    public b1 f53096i;
 
     public c1(d0 d0Var) {
         attachInterface(this, "androidx.media3.session.IMediaSession");
-        this.f53065a = new WeakReference(d0Var);
-        this.f53066b = new ui.e(d0Var);
-        this.f53067c = DesugarCollections.synchronizedSet(new HashSet());
+        this.f53091a = new WeakReference(d0Var);
+        this.f53092b = new ui.e(d0Var);
+        this.f53093c = DesugarCollections.synchronizedSet(new HashSet());
         this.d = s1.f14390r;
-        this.f53068e = y1.h;
+        this.f53094e = y1.h;
     }
 
     public static m9.y K0(d0 d0Var, v vVar, int i7, a1 a1Var, h2.j jVar) {
@@ -50,7 +50,7 @@ public final class c1 extends Binder implements m {
         }
         m9.y yVar = (m9.y) a1Var.i(d0Var, vVar, i7);
         ?? obj = new Object();
-        yVar.b(new io0(d0Var, (Object) obj, jVar, yVar, 24), m9.r.f19991a);
+        yVar.b(new jo0(d0Var, (Object) obj, jVar, yVar, 24), m9.r.f19991a);
         return obj;
     }
 
@@ -59,7 +59,7 @@ public final class c1 extends Binder implements m {
             u uVar = vVar.d;
             uVar.getClass();
             uVar.f(i7, m1Var);
-            d0Var.f53085c.a(true, true);
+            d0Var.f53111c.a(true, true);
         } catch (RemoteException e10) {
             h2.a.m("MediaSessionStub", "Failed to send result to controller " + vVar, e10);
         }
@@ -70,15 +70,15 @@ public final class c1 extends Binder implements m {
     }
 
     public final void H0(l lVar, Bundle bundle) {
-        WeakReference weakReference = this.f53065a;
+        WeakReference weakReference = this.f53091a;
         d0 d0Var = (d0) weakReference.get();
         if (lVar != null && bundle != null && d0Var != null) {
             try {
-                Context context = d0Var.f53087f;
+                Context context = d0Var.f53113f;
                 i a10 = i.a(bundle);
                 int callingUid = Binder.getCallingUid();
                 int callingPid = Binder.getCallingPid();
-                String str = a10.f53182c;
+                String str = a10.f53208c;
                 String[] packagesForUid = context.getPackageManager().getPackagesForUid(callingUid);
                 if (packagesForUid != null && packagesForUid.length != 0) {
                     for (String str2 : packagesForUid) {
@@ -96,13 +96,13 @@ public final class c1 extends Binder implements m {
                 try {
                     q4.r rVar = new q4.r(str, callingPid, callingUid);
                     boolean b10 = q4.u.a(context).b(rVar);
-                    int i7 = a10.f53180a;
-                    int i10 = a10.f53181b;
-                    v vVar = new v(rVar, i7, i10, b10, new x0(lVar, i10), a10.f53183e);
+                    int i7 = a10.f53206a;
+                    int i10 = a10.f53207b;
+                    v vVar = new v(rVar, i7, i10, b10, new x0(lVar, i10), a10.f53209e);
                     d0 d0Var2 = (d0) weakReference.get();
                     if (d0Var2 != null && !d0Var2.j()) {
-                        this.f53067c.add(vVar);
-                        h2.m0.W(d0Var2.f53092l, new io0(this, vVar, d0Var2, lVar, 23));
+                        this.f53093c.add(vVar);
+                        h2.m0.W(d0Var2.f53118l, new jo0(this, vVar, d0Var2, lVar, 23));
                         return;
                     }
                     ab.a(lVar);
@@ -128,14 +128,14 @@ public final class c1 extends Binder implements m {
     public final void J0(l lVar, int i7, i1 i1Var, int i10, a1 a1Var) {
         long clearCallingIdentity = Binder.clearCallingIdentity();
         try {
-            d0 d0Var = (d0) this.f53065a.get();
+            d0 d0Var = (d0) this.f53091a.get();
             if (d0Var != null && !d0Var.j()) {
-                v x10 = this.f53066b.x(lVar.asBinder());
+                v x10 = this.f53092b.x(lVar.asBinder());
                 if (x10 == null) {
                     Binder.restoreCallingIdentity(clearCallingIdentity);
                     return;
                 }
-                h2.m0.W(d0Var.f53092l, new la(this, x10, i1Var, d0Var, i7, i10, a1Var));
+                h2.m0.W(d0Var.f53118l, new la(this, x10, i1Var, d0Var, i7, i10, a1Var));
                 Binder.restoreCallingIdentity(clearCallingIdentity);
             }
         } finally {
@@ -152,7 +152,7 @@ public final class c1 extends Binder implements m {
 
     public final int M0(v vVar, g1 g1Var, int i7) {
         if (g1Var.p0(17)) {
-            ui.e eVar = this.f53066b;
+            ui.e eVar = this.f53092b;
             if (!eVar.G(vVar, 17) && eVar.G(vVar, 16)) {
                 return g1Var.o0() + i7;
             }
@@ -165,11 +165,11 @@ public final class c1 extends Binder implements m {
         Bundle o4 = h2.m0.o(bundle2);
         if (lVar != null && bundle != null && o4 != null) {
             try {
-                int i10 = bundle.getInt(i1.f53188f, 0);
+                int i10 = bundle.getInt(i1.f53214f, 0);
                 if (i10 != 0) {
                     i1Var = new i1(i10);
                 } else {
-                    String string = bundle.getString(i1.f53189g);
+                    String string = bundle.getString(i1.f53215g);
                     string.getClass();
                     Bundle o10 = h2.m0.o(bundle.getBundle(i1.h));
                     if (o10 == null) {
@@ -177,17 +177,17 @@ public final class c1 extends Binder implements m {
                     }
                     i1Var = new i1(string, o10);
                 }
-                if (d.j(i1Var.f53191b)) {
+                if (d.j(i1Var.f53217b)) {
                     long clearCallingIdentity = Binder.clearCallingIdentity();
                     try {
-                        d0 d0Var = (d0) this.f53065a.get();
+                        d0 d0Var = (d0) this.f53091a.get();
                         if (d0Var != null && !d0Var.j()) {
-                            v x10 = this.f53066b.x(lVar.asBinder());
+                            v x10 = this.f53092b.x(lVar.asBinder());
                             if (x10 == null) {
                                 Binder.restoreCallingIdentity(clearCallingIdentity);
                                 return;
                             }
-                            h2.m0.W(d0Var.f53092l, new bg.l0(this, x10, i1Var, d0Var, i7, lVar, 14));
+                            h2.m0.W(d0Var.f53118l, new bg.l0(this, x10, i1Var, d0Var, i7, lVar, 14));
                             Binder.restoreCallingIdentity(clearCallingIdentity);
                             return;
                         }
@@ -208,7 +208,7 @@ public final class c1 extends Binder implements m {
     }
 
     public final void P0(l lVar, int i7, int i10, m3 m3Var) {
-        v x10 = this.f53066b.x(lVar.asBinder());
+        v x10 = this.f53092b.x(lVar.asBinder());
         if (x10 != null) {
             Q0(x10, i7, i10, m3Var);
         }
@@ -217,9 +217,9 @@ public final class c1 extends Binder implements m {
     public final void Q0(v vVar, int i7, int i10, a1 a1Var) {
         long clearCallingIdentity = Binder.clearCallingIdentity();
         try {
-            d0 d0Var = (d0) this.f53065a.get();
+            d0 d0Var = (d0) this.f53091a.get();
             if (d0Var != null && !d0Var.j()) {
-                h2.m0.W(d0Var.f53092l, new li.g0(this, vVar, i10, d0Var, i7, a1Var));
+                h2.m0.W(d0Var.f53118l, new li.g0(this, vVar, i10, d0Var, i7, a1Var));
                 Binder.restoreCallingIdentity(clearCallingIdentity);
             }
         } finally {
@@ -242,9 +242,9 @@ public final class c1 extends Binder implements m {
 
     public final void V0(l lVar, int i7, Bundle bundle, boolean z9) {
         v x10;
-        if (lVar != null && bundle != null && (x10 = this.f53066b.x(lVar.asBinder())) != null) {
+        if (lVar != null && bundle != null && (x10 = this.f53092b.x(lVar.asBinder())) != null) {
             try {
-                Q0(x10, i7, 31, new t0(new org.telegram.ui.web.a0(8, new ab.y(9, e2.l0.a(x10.f53335c, bundle), z9), new r0(13)), 1));
+                Q0(x10, i7, 31, new t0(new org.telegram.ui.web.a0(8, new ab.y(9, e2.l0.a(x10.f53361c, bundle), z9), new r0(13)), 1));
             } catch (RuntimeException e10) {
                 h2.a.m("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e10);
             }
@@ -253,9 +253,9 @@ public final class c1 extends Binder implements m {
 
     public final void W0(l lVar, int i7, Bundle bundle, long j3) {
         v x10;
-        if (lVar != null && bundle != null && (x10 = this.f53066b.x(lVar.asBinder())) != null) {
+        if (lVar != null && bundle != null && (x10 = this.f53092b.x(lVar.asBinder())) != null) {
             try {
-                Q0(x10, i7, 31, new t0(new org.telegram.ui.web.a0(8, new di.c1(e2.l0.a(x10.f53335c, bundle), j3, 12), new r0(13)), 1));
+                Q0(x10, i7, 31, new t0(new org.telegram.ui.web.a0(8, new di.c1(e2.l0.a(x10.f53361c, bundle), j3, 12), new r0(13)), 1));
             } catch (RuntimeException e10) {
                 h2.a.m("MediaSessionStub", "Ignoring malformed Bundle for MediaItem", e10);
             }
@@ -264,14 +264,14 @@ public final class c1 extends Binder implements m {
 
     public final void X0(l lVar, int i7, IBinder iBinder, boolean z9) {
         v x10;
-        if (lVar != null && iBinder != null && (x10 = this.f53066b.x(lVar.asBinder())) != null) {
+        if (lVar != null && iBinder != null && (x10 = this.f53092b.x(lVar.asBinder())) != null) {
             try {
                 h9.i0 a10 = e2.g.a(iBinder);
                 h9.f0 p10 = h9.i0.p();
                 for (int i10 = 0; i10 < a10.size(); i10++) {
                     Bundle bundle = (Bundle) a10.get(i10);
                     bundle.getClass();
-                    p10.c(e2.l0.a(x10.f53335c, bundle));
+                    p10.c(e2.l0.a(x10.f53361c, bundle));
                 }
                 Q0(x10, i7, 20, new t0(new org.telegram.ui.web.a0(8, new ab.y(11, p10.f(), z9), new r0(13)), 1));
             } catch (RuntimeException e10) {
@@ -283,14 +283,14 @@ public final class c1 extends Binder implements m {
     public final void Y0(l lVar, int i7, IBinder iBinder, int i10, long j3) {
         v x10;
         if (lVar != null && iBinder != null) {
-            if ((i10 == -1 || i10 >= 0) && (x10 = this.f53066b.x(lVar.asBinder())) != null) {
+            if ((i10 == -1 || i10 >= 0) && (x10 = this.f53092b.x(lVar.asBinder())) != null) {
                 try {
                     h9.i0 a10 = e2.g.a(iBinder);
                     h9.f0 p10 = h9.i0.p();
                     for (int i11 = 0; i11 < a10.size(); i11++) {
                         Bundle bundle = (Bundle) a10.get(i11);
                         bundle.getClass();
-                        p10.c(e2.l0.a(x10.f53335c, bundle));
+                        p10.c(e2.l0.a(x10.f53361c, bundle));
                     }
                     Q0(x10, i7, 20, new t0(new org.telegram.ui.web.a0(8, new c4.n(p10.f(), i10, j3, 7), new r0(13)), 1));
                 } catch (RuntimeException e10) {
@@ -316,8 +316,8 @@ public final class c1 extends Binder implements m {
             String str = (String) this.d.get(m1Var);
             if (str == null) {
                 StringBuilder sb2 = new StringBuilder();
-                int i10 = this.f53069f;
-                this.f53069f = i10 + 1;
+                int i10 = this.f53095f;
+                this.f53095f = i10 + 1;
                 String str2 = h2.m0.f14112a;
                 sb2.append(Integer.toString(i10, 36));
                 sb2.append("-");
@@ -333,7 +333,7 @@ public final class c1 extends Binder implements m {
             s1Var = new s1(waVar.f700b, (Object[]) waVar.f701c);
         }
         this.d = s1Var;
-        this.f53068e = waVar2.d(false);
+        this.f53094e = waVar2.d(false);
         h9.f0 p10 = h9.i0.p();
         for (int i11 = 0; i11 < i0Var.size(); i11++) {
             r1 r1Var = (r1) i0Var.get(i11);
@@ -370,7 +370,7 @@ public final class c1 extends Binder implements m {
                         e2.u uVar = uVarArr[i11];
                         String str3 = uVar.f10609m;
                         if (str3 != null) {
-                            str = (String) this.f53068e.get(str3);
+                            str = (String) this.f53094e.get(str3);
                         } else {
                             str = null;
                         }
@@ -472,13 +472,13 @@ public final class c1 extends Binder implements m {
                         m1 a15 = m1.a(bundle);
                         long clearCallingIdentity = Binder.clearCallingIdentity();
                         try {
-                            ui.e eVar = this.f53066b;
+                            ui.e eVar = this.f53092b;
                             IBinder asBinder = H02.asBinder();
-                            synchronized (eVar.f56814b) {
+                            synchronized (eVar.f56839b) {
                                 v x24 = eVar.x(asBinder);
                                 hVar = x24 != null ? (h) ((a0.f) eVar.d).get(x24) : null;
                             }
-                            com.google.android.gms.common.api.internal.s sVar = hVar != null ? hVar.f53165b : null;
+                            com.google.android.gms.common.api.internal.s sVar = hVar != null ? hVar.f53191b : null;
                             if (sVar != null) {
                                 sVar.i(readInt2, a15);
                             }
@@ -576,7 +576,7 @@ public final class c1 extends Binder implements m {
             case 3024:
                 l H012 = p.H0(parcel.readStrongBinder());
                 int readInt20 = parcel.readInt();
-                if (H012 != null && (x10 = this.f53066b.x(H012.asBinder())) != null) {
+                if (H012 != null && (x10 = this.f53092b.x(H012.asBinder())) != null) {
                     O0(x10, readInt20);
                     return true;
                 }
@@ -584,7 +584,7 @@ public final class c1 extends Binder implements m {
             case 3025:
                 l H013 = p.H0(parcel.readStrongBinder());
                 int readInt21 = parcel.readInt();
-                if (H013 != null && (x11 = this.f53066b.x(H013.asBinder())) != null) {
+                if (H013 != null && (x11 = this.f53092b.x(H013.asBinder())) != null) {
                     Q0(x11, readInt21, 1, S0(new org.telegram.utils.twidget.a(20)));
                     return true;
                 }
@@ -624,9 +624,9 @@ public final class c1 extends Binder implements m {
                 l H017 = p.H0(parcel.readStrongBinder());
                 int readInt25 = parcel.readInt();
                 Bundle bundle3 = (Bundle) ya.a(parcel, Bundle.CREATOR);
-                if (H017 != null && bundle3 != null && (x12 = this.f53066b.x(H017.asBinder())) != null) {
+                if (H017 != null && bundle3 != null && (x12 = this.f53092b.x(H017.asBinder())) != null) {
                     try {
-                        final e2.l0 a16 = e2.l0.a(x12.f53335c, bundle3);
+                        final e2.l0 a16 = e2.l0.a(x12.f53361c, bundle3);
                         Q0(x12, readInt25, 20, new t0(new org.telegram.ui.web.a0(9, new a1() {
                             @Override
                             public final Object i(d0 d0Var, v vVar, int i11) {
@@ -652,9 +652,9 @@ public final class c1 extends Binder implements m {
                 int readInt26 = parcel.readInt();
                 int readInt27 = parcel.readInt();
                 Bundle bundle4 = (Bundle) ya.a(parcel, Bundle.CREATOR);
-                if (H018 != null && bundle4 != null && readInt27 >= 0 && (x13 = this.f53066b.x(H018.asBinder())) != null) {
+                if (H018 != null && bundle4 != null && readInt27 >= 0 && (x13 = this.f53092b.x(H018.asBinder())) != null) {
                     try {
-                        final e2.l0 a17 = e2.l0.a(x13.f53335c, bundle4);
+                        final e2.l0 a17 = e2.l0.a(x13.f53361c, bundle4);
                         Q0(x13, readInt26, 20, new t0(new org.telegram.ui.web.a0(9, new a1() {
                             @Override
                             public final Object i(d0 d0Var, v vVar, int i11) {
@@ -679,14 +679,14 @@ public final class c1 extends Binder implements m {
                 l H019 = p.H0(parcel.readStrongBinder());
                 int readInt28 = parcel.readInt();
                 IBinder readStrongBinder = parcel.readStrongBinder();
-                if (H019 != null && readStrongBinder != null && (x14 = this.f53066b.x(H019.asBinder())) != null) {
+                if (H019 != null && readStrongBinder != null && (x14 = this.f53092b.x(H019.asBinder())) != null) {
                     try {
                         h9.i0 a18 = e2.g.a(readStrongBinder);
                         h9.f0 p10 = h9.i0.p();
                         for (int i11 = 0; i11 < a18.size(); i11++) {
                             Bundle bundle5 = (Bundle) a18.get(i11);
                             bundle5.getClass();
-                            p10.c(e2.l0.a(x14.f53335c, bundle5));
+                            p10.c(e2.l0.a(x14.f53361c, bundle5));
                         }
                         Q0(x14, readInt28, 20, new t0(new org.telegram.ui.web.a0(9, new l2.z(3, p10.f()), new r0(2)), 1));
                         break;
@@ -701,14 +701,14 @@ public final class c1 extends Binder implements m {
                 int readInt29 = parcel.readInt();
                 int readInt30 = parcel.readInt();
                 IBinder readStrongBinder2 = parcel.readStrongBinder();
-                if (H020 != null && readStrongBinder2 != null && readInt30 >= 0 && (x15 = this.f53066b.x(H020.asBinder())) != null) {
+                if (H020 != null && readStrongBinder2 != null && readInt30 >= 0 && (x15 = this.f53092b.x(H020.asBinder())) != null) {
                     try {
                         h9.i0 a19 = e2.g.a(readStrongBinder2);
                         h9.f0 p11 = h9.i0.p();
                         for (int i12 = 0; i12 < a19.size(); i12++) {
                             Bundle bundle6 = (Bundle) a19.get(i12);
                             bundle6.getClass();
-                            p11.c(e2.l0.a(x15.f53335c, bundle6));
+                            p11.c(e2.l0.a(x15.f53361c, bundle6));
                         }
                         Q0(x15, readInt29, 20, new t0(new org.telegram.ui.web.a0(9, new l2.z(2, p11.f()), new o0(this, readInt30, 3)), 1));
                         break;
@@ -722,9 +722,9 @@ public final class c1 extends Binder implements m {
                 l H021 = p.H0(parcel.readStrongBinder());
                 int readInt31 = parcel.readInt();
                 Bundle bundle7 = (Bundle) ya.a(parcel, Bundle.CREATOR);
-                if (H021 != null && bundle7 != null && (x16 = this.f53066b.x(H021.asBinder())) != null) {
+                if (H021 != null && bundle7 != null && (x16 = this.f53092b.x(H021.asBinder())) != null) {
                     try {
-                        Q0(x16, readInt31, 19, S0(new l2.r(e2.o0.b(x16.f53335c, bundle7))));
+                        Q0(x16, readInt31, 19, S0(new l2.r(e2.o0.b(x16.f53361c, bundle7))));
                         break;
                     } catch (RuntimeException e16) {
                         h2.a.m("MediaSessionStub", "Ignoring malformed Bundle for MediaMetadata", e16);
@@ -735,7 +735,7 @@ public final class c1 extends Binder implements m {
             case 3034:
                 l H022 = p.H0(parcel.readStrongBinder());
                 int readInt32 = parcel.readInt();
-                if (H022 != null && (x17 = this.f53066b.x(H022.asBinder())) != null) {
+                if (H022 != null && (x17 = this.f53092b.x(H022.asBinder())) != null) {
                     Q0(x17, readInt32, 3, S0(new r0(5)));
                     return true;
                 }
@@ -746,9 +746,9 @@ public final class c1 extends Binder implements m {
                 if (H023 != null) {
                     long clearCallingIdentity2 = Binder.clearCallingIdentity();
                     try {
-                        d0 d0Var = (d0) this.f53065a.get();
+                        d0 d0Var = (d0) this.f53091a.get();
                         if (d0Var != null && !d0Var.j()) {
-                            h2.m0.W(d0Var.f53092l, new org.telegram.ui.web.w(17, this, H023));
+                            h2.m0.W(d0Var.f53118l, new org.telegram.ui.web.w(17, this, H023));
                             return true;
                         }
                         return true;
@@ -795,7 +795,7 @@ public final class c1 extends Binder implements m {
             case 3040:
                 l H028 = p.H0(parcel.readStrongBinder());
                 int readInt39 = parcel.readInt();
-                if (H028 != null && (x18 = this.f53066b.x(H028.asBinder())) != null) {
+                if (H028 != null && (x18 = this.f53092b.x(H028.asBinder())) != null) {
                     Q0(x18, readInt39, 11, S0(new org.telegram.utils.twidget.a(24)));
                     return true;
                 }
@@ -803,7 +803,7 @@ public final class c1 extends Binder implements m {
             case 3041:
                 l H029 = p.H0(parcel.readStrongBinder());
                 int readInt40 = parcel.readInt();
-                if (H029 != null && (x19 = this.f53066b.x(H029.asBinder())) != null) {
+                if (H029 != null && (x19 = this.f53092b.x(H029.asBinder())) != null) {
                     Q0(x19, readInt40, 12, S0(new org.telegram.utils.twidget.a(28)));
                     return true;
                 }
@@ -838,11 +838,11 @@ public final class c1 extends Binder implements m {
                 if (H033 != null) {
                     long clearCallingIdentity3 = Binder.clearCallingIdentity();
                     try {
-                        d0 d0Var2 = (d0) this.f53065a.get();
+                        d0 d0Var2 = (d0) this.f53091a.get();
                         if (d0Var2 != null && !d0Var2.j()) {
-                            v x25 = this.f53066b.x(H033.asBinder());
+                            v x25 = this.f53092b.x(H033.asBinder());
                             if (x25 != null) {
-                                h2.m0.W(d0Var2.f53092l, new org.telegram.ui.web.w(18, this, x25));
+                                h2.m0.W(d0Var2.f53118l, new org.telegram.ui.web.w(18, this, x25));
                             }
                             return true;
                         }
@@ -854,7 +854,7 @@ public final class c1 extends Binder implements m {
             case 3046:
                 l H034 = p.H0(parcel.readStrongBinder());
                 int readInt44 = parcel.readInt();
-                if (H034 != null && (x20 = this.f53066b.x(H034.asBinder())) != null) {
+                if (H034 != null && (x20 = this.f53092b.x(H034.asBinder())) != null) {
                     Q0(x20, readInt44, 7, S0(new org.telegram.utils.twidget.a(25)));
                     return true;
                 }
@@ -862,7 +862,7 @@ public final class c1 extends Binder implements m {
             case 3047:
                 l H035 = p.H0(parcel.readStrongBinder());
                 int readInt45 = parcel.readInt();
-                if (H035 != null && (x21 = this.f53066b.x(H035.asBinder())) != null) {
+                if (H035 != null && (x21 = this.f53092b.x(H035.asBinder())) != null) {
                     Q0(x21, readInt45, 9, S0(new org.telegram.utils.twidget.a(29)));
                     return true;
                 }
@@ -963,9 +963,9 @@ public final class c1 extends Binder implements m {
                 int readInt58 = parcel.readInt();
                 int readInt59 = parcel.readInt();
                 Bundle bundle11 = (Bundle) ya.a(parcel, Bundle.CREATOR);
-                if (H043 != null && bundle11 != null && readInt59 >= 0 && (x22 = this.f53066b.x(H043.asBinder())) != null) {
+                if (H043 != null && bundle11 != null && readInt59 >= 0 && (x22 = this.f53092b.x(H043.asBinder())) != null) {
                     try {
-                        final e2.l0 a20 = e2.l0.a(x22.f53335c, bundle11);
+                        final e2.l0 a20 = e2.l0.a(x22.f53361c, bundle11);
                         Q0(x22, readInt58, 20, new t0(new org.telegram.ui.web.a0(9, new a1() {
                             @Override
                             public final Object i(d0 d0Var3, v vVar, int i112) {
@@ -992,14 +992,14 @@ public final class c1 extends Binder implements m {
                 int readInt61 = parcel.readInt();
                 int readInt62 = parcel.readInt();
                 IBinder readStrongBinder3 = parcel.readStrongBinder();
-                if (H044 != null && readStrongBinder3 != null && readInt61 >= 0 && readInt62 >= readInt61 && (x23 = this.f53066b.x(H044.asBinder())) != null) {
+                if (H044 != null && readStrongBinder3 != null && readInt61 >= 0 && readInt62 >= readInt61 && (x23 = this.f53092b.x(H044.asBinder())) != null) {
                     try {
                         h9.i0 a21 = e2.g.a(readStrongBinder3);
                         h9.f0 p12 = h9.i0.p();
                         for (int i13 = 0; i13 < a21.size(); i13++) {
                             Bundle bundle12 = (Bundle) a21.get(i13);
                             bundle12.getClass();
-                            p12.c(e2.l0.a(x23.f53335c, bundle12));
+                            p12.c(e2.l0.a(x23.f53361c, bundle12));
                         }
                         Q0(x23, readInt60, 20, new t0(new org.telegram.ui.web.a0(9, new m3(p12.f(), 8), new n0(this, readInt61, readInt62)), 1));
                         break;

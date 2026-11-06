@@ -4,18 +4,18 @@ import android.util.LongSparseArray;
 import android.widget.TextView;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class mc1 extends org.telegram.ui.ActionBar.j {
-    public final WallpapersListActivity f47758a;
+    public final WallpapersListActivity f47785a;
 
     public mc1(WallpapersListActivity wallpapersListActivity) {
-        this.f47758a = wallpapersListActivity;
+        this.f47785a = wallpapersListActivity;
     }
 
     @Override
     public final void b(int i7) {
         org.telegram.ui.ActionBar.y4 y4Var;
         org.telegram.ui.ActionBar.y4 y4Var2;
-        WallpapersListActivity wallpapersListActivity = this.f47758a;
-        LongSparseArray longSparseArray = wallpapersListActivity.f43465e0;
+        WallpapersListActivity wallpapersListActivity = this.f47785a;
+        LongSparseArray longSparseArray = wallpapersListActivity.f43490e0;
         if (i7 == -1) {
             y4Var = ((org.telegram.ui.ActionBar.f2) wallpapersListActivity).simpleActionBar;
             if (y4Var.s()) {

@@ -4,9 +4,9 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.ij;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.l9;
-import org.telegram.ui.mq0;
-import org.telegram.ui.vq0;
-public final class n extends mq0 {
+import org.telegram.ui.nq0;
+import org.telegram.ui.wq0;
+public final class n extends nq0 {
     public final p f15578a;
 
     public n(p pVar) {
@@ -14,7 +14,7 @@ public final class n extends mq0 {
     }
 
     @Override
-    public final vq0 E(ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
+    public final wq0 E(ij ijVar, TLRPC.FileLocation fileLocation, int i7, boolean z9, boolean z10) {
         TLRPC.FileLocation fileLocation2;
         TLRPC.ChatPhoto chatPhoto;
         if (fileLocation != null) {
@@ -26,20 +26,20 @@ public final class n extends mq0 {
             if (fileLocation2 != null && fileLocation2.local_id == fileLocation.local_id && fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.dc_id == fileLocation.dc_id) {
                 int[] iArr = new int[2];
                 pVar.f15589x.getLocationInWindow(iArr);
-                vq0 vq0Var = new vq0();
-                vq0Var.f50791b = iArr[0];
-                vq0Var.f50792c = iArr[1];
+                wq0 wq0Var = new wq0();
+                wq0Var.f51479b = iArr[0];
+                wq0Var.f51480c = iArr[1];
                 l9 l9Var = pVar.f15589x;
-                vq0Var.d = l9Var;
+                wq0Var.d = l9Var;
                 ImageReceiver imageReceiver = l9Var.getImageReceiver();
-                vq0Var.f50790a = imageReceiver;
-                vq0Var.f50794f = -pVar.f15582c;
-                vq0Var.f50793e = imageReceiver.p();
-                vq0Var.f50795g = -1L;
-                vq0Var.h = pVar.f15589x.getImageReceiver().E();
-                vq0Var.f50798k = 1.0f;
-                vq0Var.f50803p = true;
-                return vq0Var;
+                wq0Var.f51478a = imageReceiver;
+                wq0Var.f51482f = -pVar.f15582c;
+                wq0Var.f51481e = imageReceiver.p();
+                wq0Var.f51483g = -1L;
+                wq0Var.h = pVar.f15589x.getImageReceiver().E();
+                wq0Var.f51486k = 1.0f;
+                wq0Var.f51491p = true;
+                return wq0Var;
             }
         }
         return null;

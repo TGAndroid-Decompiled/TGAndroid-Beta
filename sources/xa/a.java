@@ -2,30 +2,30 @@ package xa;
 
 import p1.g;
 public final class a {
-    public final String f58548a;
-    public final String f58549b;
-    public final String f58550c;
+    public final String f58573a;
+    public final String f58574b;
+    public final String f58575c;
     public final b d;
-    public final int f58551e;
+    public final int f58576e;
 
     public a(String str, String str2, String str3, b bVar, int i7) {
-        this.f58548a = str;
-        this.f58549b = str2;
-        this.f58550c = str3;
+        this.f58573a = str;
+        this.f58574b = str2;
+        this.f58575c = str3;
         this.d = bVar;
-        this.f58551e = i7;
+        this.f58576e = i7;
     }
 
     public final boolean equals(Object obj) {
         if (obj != this) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                int i7 = aVar.f58551e;
+                int i7 = aVar.f58576e;
                 b bVar = aVar.d;
-                String str = aVar.f58550c;
-                String str2 = aVar.f58549b;
-                String str3 = aVar.f58548a;
-                String str4 = this.f58548a;
+                String str = aVar.f58575c;
+                String str2 = aVar.f58574b;
+                String str3 = aVar.f58573a;
+                String str4 = this.f58573a;
                 if (str4 == null) {
                     if (str3 != null) {
                         return false;
@@ -33,7 +33,7 @@ public final class a {
                 } else if (!str4.equals(str3)) {
                     return false;
                 }
-                String str5 = this.f58549b;
+                String str5 = this.f58574b;
                 if (str5 == null) {
                     if (str2 != null) {
                         return false;
@@ -41,7 +41,7 @@ public final class a {
                 } else if (!str5.equals(str2)) {
                     return false;
                 }
-                String str6 = this.f58550c;
+                String str6 = this.f58575c;
                 if (str6 == null) {
                     if (str != null) {
                         return false;
@@ -57,7 +57,7 @@ public final class a {
                 } else if (!bVar2.equals(bVar)) {
                     return false;
                 }
-                int i10 = this.f58551e;
+                int i10 = this.f58576e;
                 if (i10 == 0) {
                     if (i7 == 0) {
                         return true;
@@ -80,21 +80,21 @@ public final class a {
         int hashCode3;
         int hashCode4;
         int i7 = 0;
-        String str = this.f58548a;
+        String str = this.f58573a;
         if (str == null) {
             hashCode = 0;
         } else {
             hashCode = str.hashCode();
         }
         int i10 = (hashCode ^ 1000003) * 1000003;
-        String str2 = this.f58549b;
+        String str2 = this.f58574b;
         if (str2 == null) {
             hashCode2 = 0;
         } else {
             hashCode2 = str2.hashCode();
         }
         int i11 = (i10 ^ hashCode2) * 1000003;
-        String str3 = this.f58550c;
+        String str3 = this.f58575c;
         if (str3 == null) {
             hashCode3 = 0;
         } else {
@@ -108,7 +108,7 @@ public final class a {
             hashCode4 = bVar.hashCode();
         }
         int i13 = (i12 ^ hashCode4) * 1000003;
-        int i14 = this.f58551e;
+        int i14 = this.f58576e;
         if (i14 != 0) {
             i7 = g.c(i14);
         }
@@ -118,15 +118,15 @@ public final class a {
     public final String toString() {
         String str;
         StringBuilder sb2 = new StringBuilder("InstallationResponse{uri=");
-        sb2.append(this.f58548a);
+        sb2.append(this.f58573a);
         sb2.append(", fid=");
-        sb2.append(this.f58549b);
+        sb2.append(this.f58574b);
         sb2.append(", refreshToken=");
-        sb2.append(this.f58550c);
+        sb2.append(this.f58575c);
         sb2.append(", authToken=");
         sb2.append(this.d);
         sb2.append(", responseCode=");
-        int i7 = this.f58551e;
+        int i7 = this.f58576e;
         if (i7 != 1) {
             if (i7 != 2) {
                 str = "null";

@@ -268,30 +268,30 @@ public final class g0 implements Runnable {
                 ArrayList arrayList6 = (ArrayList) obj2;
                 an anVar2 = (an) obj;
                 boolean z10 = ChatAttachAlertPhotoLayout.f31183q1;
-                di diVar = chatAttachAlertPhotoLayout.f38951b;
-                if (diVar.f32957w1 && !diVar.f32961x1) {
+                di diVar = chatAttachAlertPhotoLayout.f38948b;
+                if (diVar.f32970w1 && !diVar.f32974x1) {
                     PhotoViewer.p1().H2(null, f2Var, null);
                     PhotoViewer p12 = PhotoViewer.p1();
                     p12.h = 0;
-                    p12.f41433n = false;
+                    p12.f41458n = false;
                     i12 = 3;
                 } else {
                     i12 = i15;
                 }
-                if (diVar.f32965y1) {
+                if (diVar.f32978y1) {
                     i12 = 13;
                 }
                 int i22 = i12;
                 PhotoViewer p13 = PhotoViewer.p1();
                 ml mlVar = chatAttachAlertPhotoLayout.f31203h1;
-                if (diVar.f32965y1) {
+                if (diVar.f32978y1) {
                     anVar = null;
                 } else {
                     anVar = anVar2;
                 }
                 p13.e2(arrayList6, this.f18578c, i22, false, mlVar, anVar);
                 PhotoViewer.p1().u2(diVar.H1);
-                if (diVar.f32957w1 && !diVar.f32961x1) {
+                if (diVar.f32970w1 && !diVar.f32974x1) {
                     PhotoViewer.p1().O = false;
                 } else if (diVar.K2 != 0) {
                     PhotoViewer.p1().O = true;
@@ -303,14 +303,14 @@ public final class g0 implements Runnable {
                     }
                     p14.P = z9;
                 }
-                if (diVar.f32961x1) {
+                if (diVar.f32974x1) {
                     PhotoViewer.p1().S0(null, null, false, diVar.A1);
                 }
                 if (ChatAttachAlertPhotoLayout.V()) {
                     PhotoViewer p15 = PhotoViewer.p1();
                     Editable text = diVar.a1().getText();
-                    p15.f41448o7 = true;
-                    p15.f41457p7 = text;
+                    p15.f41473o7 = true;
+                    p15.f41482p7 = text;
                     p15.x2(null, text, false, false);
                     p15.q3(null);
                     return;
@@ -320,12 +320,12 @@ public final class g0 implements Runnable {
                 final p4.v vVar = (p4.v) obj3;
                 final p4.d0 d0Var = (p4.d0) obj2;
                 final p4.a1 a1Var = (p4.a1) obj;
-                ui.e eVar = ((p4.c1) obj4).f53066b;
+                ui.e eVar = ((p4.c1) obj4).f53092b;
                 if (!eVar.G(vVar, i15)) {
                     p4.c1.R0(d0Var, vVar, i14, new p4.m1(-4));
                     return;
                 }
-                pb.b bVar = d0Var.f53086e;
+                pb.b bVar = d0Var.f53112e;
                 d0Var.s(vVar);
                 bVar.getClass();
                 if (i15 == 27) {

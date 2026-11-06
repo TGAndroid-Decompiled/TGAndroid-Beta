@@ -6,34 +6,34 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.widget.FrameLayout;
 public final class j20 extends FrameLayout {
-    public final RectF f46792a;
-    public final RectF f46793b;
-    public final RectF f46794c;
+    public final RectF f46816a;
+    public final RectF f46817b;
+    public final RectF f46818c;
     public final Paint d;
-    public final c40 f46795e;
+    public final c40 f46819e;
 
     public j20(c40 c40Var, LaunchActivity launchActivity) {
         super(launchActivity);
-        this.f46795e = c40Var;
-        this.f46792a = new RectF();
-        this.f46793b = new RectF();
-        this.f46794c = new RectF();
+        this.f46819e = c40Var;
+        this.f46816a = new RectF();
+        this.f46817b = new RectF();
+        this.f46818c = new RectF();
         this.d = new Paint(1);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        c40 c40Var = this.f46795e;
-        k20 k20Var = c40Var.f44619w1;
+        c40 c40Var = this.f46819e;
+        k20 k20Var = c40Var.f44640w1;
         float y10 = k20Var.getY() + k20Var.getMeasuredHeight();
         te.c cVar = c40Var.s5;
-        RectF rectF = this.f46792a;
-        rectF.set(0.0f, y10 - cVar.f55376f, getMeasuredWidth(), getMeasuredHeight());
-        RectF rectF2 = this.f46793b;
+        RectF rectF = this.f46816a;
+        rectF.set(0.0f, y10 - cVar.f55401f, getMeasuredWidth(), getMeasuredHeight());
+        RectF rectF2 = this.f46817b;
         rectF2.set(0.0f, k20Var.getY() + k20Var.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
         float y11 = k20Var.getY() + k20Var.getMeasuredHeight();
-        RectF rectF3 = this.f46794c;
-        rectF3.set(0.0f, (k20Var.getY() + k20Var.getMeasuredHeight()) - cVar.f55376f, getMeasuredWidth(), y11);
+        RectF rectF3 = this.f46818c;
+        rectF3.set(0.0f, (k20Var.getY() + k20Var.getMeasuredHeight()) - cVar.f55401f, getMeasuredWidth(), y11);
         int i7 = Build.VERSION.SDK_INT;
         Paint paint = this.d;
         if (i7 >= 29 && c40Var.H4 != null && canvas.isHardwareAccelerated()) {

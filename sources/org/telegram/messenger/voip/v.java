@@ -18,10 +18,10 @@ public final class v implements Runnable {
     public final void run() {
         switch (this.f26166a) {
             case 0:
-                VoIPService.o0(this.f26167b, this.f26168c, this.d);
+                this.f26167b.lambda$startConferenceGroupCall$42(this.f26168c, this.d);
                 return;
             default:
-                VoIPService.p1(this.f26167b, this.f26168c, this.d);
+                this.f26167b.lambda$startConferenceGroupCall$50(this.f26168c, this.d);
                 return;
         }
     }

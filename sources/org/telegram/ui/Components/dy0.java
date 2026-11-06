@@ -15,35 +15,35 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class dy0 extends LinearLayout {
     public float D;
-    public final int f33047a;
-    public final long f33048b;
-    public final org.telegram.ui.ActionBar.f6 f33049c;
+    public final int f33060a;
+    public final long f33061b;
+    public final org.telegram.ui.ActionBar.f6 f33062c;
     public final fs0 d;
-    public final w8 f33050e;
-    public final l9 f33051f;
+    public final w8 f33063e;
+    public final l9 f33064f;
     public final org.telegram.ui.Cells.a6 h;
-    public final j6 f33052n;
-    public org.telegram.messenger.ij f33053r;
-    public boolean f33054s;
-    public boolean f33055w;
-    public org.telegram.messenger.c20 f33056x;
-    public boolean f33057y;
+    public final j6 f33065n;
+    public org.telegram.messenger.ij f33066r;
+    public boolean f33067s;
+    public boolean f33068w;
+    public org.telegram.messenger.c20 f33069x;
+    public boolean f33070y;
 
     public dy0(int i7, long j3, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         this.D = -6.0f;
-        this.f33047a = i7;
-        this.f33048b = j3;
-        this.f33049c = f6Var;
+        this.f33060a = i7;
+        this.f33061b = j3;
+        this.f33062c = f6Var;
         setOrientation(1);
         org.telegram.ui.v8 v8Var = new org.telegram.ui.v8(2, context, this);
         v8Var.U(fi.y5.e(null, i7, j3, org.telegram.ui.ActionBar.k6.I.q()));
         fs0 fs0Var = new fs0(context, i7);
         this.d = fs0Var;
         v8Var.addView(fs0Var, c8.ha.d(-1, -2.0f, 87, 0.0f, 12.0f, 0.0f, 12.0f));
-        this.f33050e = new w8((org.telegram.ui.ActionBar.f6) null);
+        this.f33063e = new w8((org.telegram.ui.ActionBar.f6) null);
         l9 l9Var = new l9(context);
-        this.f33051f = l9Var;
+        this.f33064f = l9Var;
         l9Var.setRoundRadius(org.telegram.messenger.g0.L(21.0f));
         v8Var.addView(l9Var, c8.ha.d(42, 42.0f, 83, 8.0f, 0.0f, 0.0f, 12.0f));
         addView(v8Var, c8.ha.r(-1, -2, 7));
@@ -60,8 +60,8 @@ public final class dy0 extends LinearLayout {
         c8.ka.a(e10);
         e10.setOnClickListener(new la0(textView, 16));
         j6 j6Var = new j6(context, false, true, false);
-        this.f33052n = j6Var;
-        j6Var.f34893n = false;
+        this.f33065n = j6Var;
+        j6Var.f34873n = false;
         j6Var.setTypeface(org.telegram.messenger.g0.o());
         org.telegram.ui.ActionBar.r6.Z(j6Var, org.telegram.ui.ActionBar.k6.f28089q7, f6Var);
         j6Var.setTextSize(org.telegram.messenger.g0.L(14.0f));
@@ -373,24 +373,24 @@ public final class dy0 extends LinearLayout {
         boolean z12;
         int i7;
         TLRPC.TL_message tL_message = new TLRPC.TL_message();
-        int i10 = this.f33047a;
+        int i10 = this.f33060a;
         tL_message.from_id = org.telegram.messenger.qp.s1(i10).z1(user.f27101id);
         org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(i10);
-        long j3 = this.f33048b;
+        long j3 = this.f33061b;
         tL_message.peer_id = s12.z1(j3);
         tL_message.message = "";
         tL_message.date = ConnectionsManager.getInstance(i10).getCurrentTime();
         tL_message.out = false;
-        this.f33054s = z9;
-        this.f33055w = z10;
+        this.f33067s = z9;
+        this.f33068w = z10;
         org.telegram.messenger.ij ijVar = new org.telegram.messenger.ij(i10, tL_message, true, false);
-        this.f33053r = ijVar;
+        this.f33066r = ijVar;
         ijVar.f23236j2 = true;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("_\n_  ");
         Point point = org.telegram.messenger.g0.f22537q;
         spannableStringBuilder.setSpan(new cy0((int) Math.min(point.x * 0.5f, org.telegram.messenger.g0.L(200.0f))), 0, 1, 33);
         spannableStringBuilder.setSpan(new cy0((int) Math.min(point.x * 0.44f, org.telegram.messenger.g0.L(160.0f))), 2, 3, 33);
-        this.f33053r.v = spannableStringBuilder;
+        this.f33066r.v = spannableStringBuilder;
         TLRPC.Chat M0 = org.telegram.messenger.qp.s1(i10).M0(Long.valueOf(-j3));
         if (M0 != null) {
             z11 = true;
@@ -405,19 +405,19 @@ public final class dy0 extends LinearLayout {
             z12 = false;
         }
         fs0Var.f29887j6 = z12;
-        this.f33053r.n0(null);
-        fs0Var.v3(this.f33053r, null, false, false, false, false);
-        w8 w8Var = this.f33050e;
+        this.f33066r.n0(null);
+        fs0Var.v3(this.f33066r, null, false, false, false, false);
+        w8 w8Var = this.f33063e;
         w8Var.r(user);
-        this.f33051f.e(user, w8Var);
-        this.f33056x = c20Var;
-        this.f33057y = true;
+        this.f33064f.e(user, w8Var);
+        this.f33069x = c20Var;
+        this.f33070y = true;
         if (TextUtils.isEmpty(str) && !z9) {
             i7 = 2131748630;
         } else {
             i7 = 2131748629;
         }
         this.h.n(str, org.telegram.messenger.hd.M0(i7, null), false);
-        this.f33057y = false;
+        this.f33070y = false;
     }
 }

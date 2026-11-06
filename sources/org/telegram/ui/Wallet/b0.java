@@ -2,29 +2,29 @@ package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.v10;
 public final class b0 implements Runnable {
-    public volatile boolean f42089a;
-    public Runnable f42090b;
-    public final String f42091c;
+    public volatile boolean f42114a;
+    public Runnable f42115b;
+    public final String f42116c;
     public final long d;
-    public final String f42092e;
-    public final byte[] f42093f;
+    public final String f42117e;
+    public final byte[] f42118f;
     public final v10 h;
-    public final n0 f42094n;
+    public final n0 f42119n;
 
     public b0(n0 n0Var, String str, long j3, String str2, byte[] bArr, v10 v10Var) {
-        this.f42094n = n0Var;
-        this.f42091c = str;
+        this.f42119n = n0Var;
+        this.f42116c = str;
         this.d = j3;
-        this.f42092e = str2;
-        this.f42093f = bArr;
+        this.f42117e = str2;
+        this.f42118f = bArr;
         this.h = v10Var;
     }
 
     @Override
     public final synchronized void run() {
-        if (this.f42089a) {
+        if (this.f42114a) {
             return;
         }
-        this.f42090b = this.f42094n.f42769b.emulateSend(this.f42091c, this.d, this.f42092e, this.f42093f, new bi.p5(27, this, this.h));
+        this.f42115b = this.f42119n.f42794b.emulateSend(this.f42116c, this.d, this.f42117e, this.f42118f, new bi.p5(27, this, this.h));
     }
 }

@@ -60,9 +60,9 @@ public final class g0 implements v10 {
                 zh.m mVar = (zh.m) obj3;
                 Boolean bool2 = (Boolean) obj;
                 String str2 = (String) obj2;
-                FrameLayout frameLayout = mVar.f60320c2;
+                FrameLayout frameLayout = mVar.f60345c2;
                 mVar.S1.setLoading(false);
-                mVar.f60334r2 = false;
+                mVar.f60359r2 = false;
                 if (bool2 != null) {
                     if (j3 > 0) {
                         z9 = true;
@@ -70,21 +70,21 @@ public final class g0 implements v10 {
                         z9 = false;
                     }
                     yb ybVar = new yb(mVar.getContext(), mVar.I0);
-                    ybVar.f40582a.setImageResource(2131231117);
+                    ybVar.f40601a.setImageResource(2131231117);
                     if (z9) {
                         i7 = 2131750306;
                     } else {
                         i7 = 2131750305;
                     }
                     String M0 = hd.M0(i7, null);
-                    TextView textView = ybVar.f40583b;
+                    TextView textView = ybVar.f40602b;
                     textView.setText(M0);
                     textView.setSingleLine(true);
                     textView.setTextSize(1, 15.0f);
                     textView.setMaxLines(1);
                     textView.setTypeface(org.telegram.messenger.g0.o());
                     String a02 = hd.a0(null, null, 2131750341, Integer.valueOf(mVar.d2.d.gifts_per_round));
-                    TextView textView2 = ybVar.f40584c;
+                    TextView textView2 = ybVar.f40603c;
                     textView2.setText(a02);
                     textView2.setSingleLine(false);
                     textView2.setMaxLines(5);

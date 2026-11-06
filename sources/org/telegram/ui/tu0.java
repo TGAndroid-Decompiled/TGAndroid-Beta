@@ -1,30 +1,54 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class tu0 implements RequestDelegate {
-    public final int f50132a;
-    public final vu0 f50133b;
+import android.view.View;
+public final class tu0 extends v4.b0 {
+    public final ProfileActivity I;
 
-    public tu0(vu0 vu0Var, int i7) {
-        this.f50132a = i7;
-        this.f50133b = vu0Var;
+    public tu0(ProfileActivity profileActivity) {
+        this.I = profileActivity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f50132a) {
-            case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                vu0 vu0Var = this.f50133b;
-                vu0Var.f50827c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new tu0(vu0Var, 1));
-                return;
-            default:
-                this.f50133b.f50827c.getMessagesController().R2(true);
-                return;
+    public final int o0(int i7, v4.v0 v0Var, v4.a1 a1Var) {
+        ProfileActivity profileActivity = this.I;
+        View m10 = profileActivity.f41704c.m(0);
+        if (m10 != null && !profileActivity.F0) {
+            int top = m10.getTop() - profileActivity.j4();
+            boolean z9 = profileActivity.f41782n2;
+            boolean z10 = true;
+            if (!z9 && top > i7) {
+                if (!profileActivity.f41781n0.X0.isEmpty() && profileActivity.f41719e0.getImageReceiver().L() && !org.telegram.messenger.g0.C1() && ((!profileActivity.f41775m2 && !org.telegram.messenger.g0.Q1()) || profileActivity.I0)) {
+                    if (profileActivity.I2 != null) {
+                        z10 = false;
+                    }
+                    profileActivity.f41782n2 = z10;
+                }
+            } else if (z9) {
+                if (i7 >= top) {
+                    profileActivity.f41782n2 = false;
+                } else if (profileActivity.f41688a.getScrollState() == 1 && !profileActivity.f41789o2) {
+                    i7 /= 2;
+                }
+            }
+            i7 = top;
         }
+        if (profileActivity.N1 && !profileActivity.f41688a.P0) {
+            return 0;
+        }
+        return super.o0(i7, v0Var, a1Var);
+    }
+
+    @Override
+    public final boolean y0() {
+        if (this.I.f41800q0 != null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void z0(v4.a1 a1Var, int[] iArr) {
+        super.z0(a1Var, iArr);
+        iArr[0] = Math.max(iArr[0], ProfileActivity.J0(this.I));
     }
 }

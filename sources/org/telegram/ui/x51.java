@@ -5,15 +5,15 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 public final class x51 implements LocationListener {
-    public final ThemeActivity f51757a;
+    public final ThemeActivity f51774a;
 
     public x51(ThemeActivity themeActivity) {
-        this.f51757a = themeActivity;
+        this.f51774a = themeActivity;
     }
 
     @Override
     public final void onLocationChanged(Location location) {
-        ThemeActivity themeActivity = this.f51757a;
+        ThemeActivity themeActivity = this.f51774a;
         if (location == null) {
             return;
         }

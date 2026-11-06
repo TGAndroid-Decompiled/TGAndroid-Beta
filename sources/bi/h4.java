@@ -43,7 +43,7 @@ public final class h4 implements Runnable {
                 long j3 = this.f3992b;
                 long j10 = this.f3993c;
                 String str2 = h2.m0.f14112a;
-                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) this.d).f57539c)).f17771a.f17881s;
+                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) this.d).f57564c)).f17771a.f17881s;
                 m2.a U = eVar.U();
                 eVar.V(U, 1016, new m2.c(U, str, j10, j3, 13));
                 return;
@@ -74,7 +74,7 @@ public final class h4 implements Runnable {
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(xr.a(j13, j14));
                     wwVar.C2.y(wwVar, arrayList, null, false, wwVar.J2, wwVar.K2, wwVar.L2, v91Var);
-                    if (wwVar.f51557i2) {
+                    if (wwVar.f51574i2) {
                         wwVar.C2 = null;
                         return;
                     }
@@ -94,7 +94,7 @@ public final class h4 implements Runnable {
                 t6.append(" TL_forumTopic ");
                 t6.append(f10);
                 org.telegram.messenger.a8.b(t6.toString());
-                if (launchActivity.f41251o0 != null) {
+                if (launchActivity.f41276o0 != null) {
                     qg.d.a(anVar, xr.a(-j15, j16));
                     ((ActionBarLayout) launchActivity.M()).S(anVar);
                     return;
@@ -105,9 +105,9 @@ public final class h4 implements Runnable {
                 wi.p0 p0Var = (wi.p0) this.f3994e;
                 long j17 = this.f3992b;
                 long j18 = this.f3993c;
-                synchronized (t0Var.f58079g) {
-                    if (!p0Var.d && !p0Var.f58012e) {
-                        ((gy0) t0Var.f58077e).a(p0Var.f58009a, p0Var.f58010b, j17, j18);
+                synchronized (t0Var.f58104g) {
+                    if (!p0Var.d && !p0Var.f58037e) {
+                        ((gy0) t0Var.f58102e).a(p0Var.f58034a, p0Var.f58035b, j17, j18);
                         return;
                     }
                     return;

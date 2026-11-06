@@ -11,32 +11,32 @@ import org.telegram.tgnet.TLRPC;
 public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegram.messenger.ls {
     public org.telegram.ui.Cells.i6 D;
     public final ArrayList E;
-    public TLRPC.Chat f52619a;
-    public TLRPC.ChatFull f52620b;
-    public final long f52621c;
+    public TLRPC.Chat f52624a;
+    public TLRPC.ChatFull f52625b;
+    public final long f52626c;
     public ArrayList d;
-    public FrameLayout f52622e;
-    public org.telegram.ui.Components.pj0 f52623f;
+    public FrameLayout f52627e;
+    public org.telegram.ui.Components.pj0 f52628f;
     public yo h;
-    public final ArrayList f52624n;
-    public LinearLayout f52625r;
-    public int f52626s;
-    public int f52627w;
-    public org.telegram.ui.Cells.i6 f52628x;
-    public org.telegram.ui.Cells.i6 f52629y;
+    public final ArrayList f52629n;
+    public LinearLayout f52630r;
+    public int f52631s;
+    public int f52632w;
+    public org.telegram.ui.Cells.i6 f52633x;
+    public org.telegram.ui.Cells.i6 f52634y;
 
     public zo(Bundle bundle) {
         super(bundle);
         this.d = new ArrayList();
-        this.f52624n = new ArrayList();
-        this.f52626s = -1;
+        this.f52629n = new ArrayList();
+        this.f52631s = -1;
         this.E = new ArrayList();
-        this.f52621c = bundle.getLong("chat_id", 0L);
+        this.f52626c = bundle.getLong("chat_id", 0L);
     }
 
     public final void a0(int i7, boolean z9) {
-        if (this.f52626s != i7) {
-            this.f52626s = i7;
+        if (this.f52631s != i7) {
+            this.f52631s = i7;
             int i10 = 0;
             while (true) {
                 ArrayList arrayList = this.E;
@@ -51,7 +51,7 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
                 i6Var.a(z10, z9);
                 i10++;
             }
-            ArrayList arrayList2 = this.f52624n;
+            ArrayList arrayList2 = this.f52629n;
             if (i7 == 1) {
                 if (z9) {
                     this.d.clear();
@@ -99,43 +99,43 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
         this.simpleActionBar.setBackButtonImage(2131231240);
         this.simpleActionBar.setActionBarMenuOnItemClick(new w9(this, 7));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f52624n.addAll(getMediaDataController().f25817n);
+        this.f52629n.addAll(getMediaDataController().f25817n);
         org.telegram.ui.Cells.n4 n4Var = new org.telegram.ui.Cells.n4(context);
         n4Var.setText(org.telegram.messenger.hd.M0(2131753759, null));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f52625r = linearLayout;
+        this.f52630r = linearLayout;
         linearLayout.setOrientation(1);
-        this.f52625r.setClickable(true);
+        this.f52630r.setClickable(true);
         org.telegram.ui.Cells.i6 i6Var = new org.telegram.ui.Cells.i6(context, null);
-        this.f52628x = i6Var;
+        this.f52633x = i6Var;
         i6Var.c(org.telegram.messenger.hd.M0(2131754291, null), false, true);
         org.telegram.ui.Cells.i6 i6Var2 = new org.telegram.ui.Cells.i6(context, null);
-        this.f52629y = i6Var2;
+        this.f52634y = i6Var2;
         i6Var2.c(org.telegram.messenger.hd.M0(2131745293, null), false, true);
         org.telegram.ui.Cells.i6 i6Var3 = new org.telegram.ui.Cells.i6(context, null);
         this.D = i6Var3;
         i6Var3.c(org.telegram.messenger.hd.M0(2131748174, null), false, false);
-        this.f52625r.addView(n4Var, c8.ha.o(-1, -2));
-        this.f52625r.addView(this.f52628x, c8.ha.o(-1, -2));
-        this.f52625r.addView(this.f52629y, c8.ha.o(-1, -2));
-        this.f52625r.addView(this.D, c8.ha.o(-1, -2));
+        this.f52630r.addView(n4Var, c8.ha.o(-1, -2));
+        this.f52630r.addView(this.f52633x, c8.ha.o(-1, -2));
+        this.f52630r.addView(this.f52634y, c8.ha.o(-1, -2));
+        this.f52630r.addView(this.D, c8.ha.o(-1, -2));
         ArrayList arrayList = this.E;
         arrayList.clear();
-        arrayList.add(this.f52628x);
-        arrayList.add(this.f52629y);
+        arrayList.add(this.f52633x);
+        arrayList.add(this.f52634y);
         arrayList.add(this.D);
-        this.f52628x.setOnClickListener(new View.OnClickListener(this) {
-            public final zo f51463b;
+        this.f52633x.setOnClickListener(new View.OnClickListener(this) {
+            public final zo f51467b;
 
             {
-                this.f51463b = this;
+                this.f51467b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        final zo zoVar = this.f51463b;
+                        final zo zoVar = this.f51467b;
                         org.telegram.messenger.g0.h3(new Runnable() {
                             @Override
                             public final void run() {
@@ -154,7 +154,7 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
                         });
                         return;
                     case 1:
-                        final zo zoVar2 = this.f51463b;
+                        final zo zoVar2 = this.f51467b;
                         org.telegram.messenger.g0.h3(new Runnable() {
                             @Override
                             public final void run() {
@@ -173,7 +173,7 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
                         });
                         return;
                     default:
-                        final zo zoVar3 = this.f51463b;
+                        final zo zoVar3 = this.f51467b;
                         org.telegram.messenger.g0.h3(new Runnable() {
                             @Override
                             public final void run() {
@@ -194,18 +194,18 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
                 }
             }
         });
-        this.f52629y.setOnClickListener(new View.OnClickListener(this) {
-            public final zo f51463b;
+        this.f52634y.setOnClickListener(new View.OnClickListener(this) {
+            public final zo f51467b;
 
             {
-                this.f51463b = this;
+                this.f51467b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        final zo zoVar = this.f51463b;
+                        final zo zoVar = this.f51467b;
                         org.telegram.messenger.g0.h3(new Runnable() {
                             @Override
                             public final void run() {
@@ -224,7 +224,7 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
                         });
                         return;
                     case 1:
-                        final zo zoVar2 = this.f51463b;
+                        final zo zoVar2 = this.f51467b;
                         org.telegram.messenger.g0.h3(new Runnable() {
                             @Override
                             public final void run() {
@@ -243,7 +243,7 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
                         });
                         return;
                     default:
-                        final zo zoVar3 = this.f51463b;
+                        final zo zoVar3 = this.f51467b;
                         org.telegram.messenger.g0.h3(new Runnable() {
                             @Override
                             public final void run() {
@@ -265,17 +265,17 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
             }
         });
         this.D.setOnClickListener(new View.OnClickListener(this) {
-            public final zo f51463b;
+            public final zo f51467b;
 
             {
-                this.f51463b = this;
+                this.f51467b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        final zo zoVar = this.f51463b;
+                        final zo zoVar = this.f51467b;
                         org.telegram.messenger.g0.h3(new Runnable() {
                             @Override
                             public final void run() {
@@ -294,7 +294,7 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
                         });
                         return;
                     case 1:
-                        final zo zoVar2 = this.f51463b;
+                        final zo zoVar2 = this.f51467b;
                         org.telegram.messenger.g0.h3(new Runnable() {
                             @Override
                             public final void run() {
@@ -313,7 +313,7 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
                         });
                         return;
                     default:
-                        final zo zoVar3 = this.f51463b;
+                        final zo zoVar3 = this.f51467b;
                         org.telegram.messenger.g0.h3(new Runnable() {
                             @Override
                             public final void run() {
@@ -334,40 +334,40 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
                 }
             }
         });
-        org.telegram.ui.Cells.i6 i6Var4 = this.f52628x;
+        org.telegram.ui.Cells.i6 i6Var4 = this.f52633x;
         int i7 = org.telegram.ui.ActionBar.k6.f27848d6;
         int x02 = org.telegram.ui.ActionBar.k6.x0(null, i7, false);
         int i10 = org.telegram.ui.ActionBar.k6.f27940i6;
         org.telegram.ui.ActionBar.r6.R(i6Var4, org.telegram.ui.ActionBar.k6.i0(x02, org.telegram.ui.ActionBar.k6.x0(null, i10, false)), org.telegram.ui.ActionBar.r6.N(i7), org.telegram.ui.ActionBar.r6.N(i10), null);
-        org.telegram.ui.ActionBar.r6.R(this.f52629y, org.telegram.ui.ActionBar.k6.i0(org.telegram.ui.ActionBar.k6.x0(null, i7, false), org.telegram.ui.ActionBar.k6.x0(null, i10, false)), org.telegram.ui.ActionBar.r6.N(i7), org.telegram.ui.ActionBar.r6.N(i10), null);
+        org.telegram.ui.ActionBar.r6.R(this.f52634y, org.telegram.ui.ActionBar.k6.i0(org.telegram.ui.ActionBar.k6.x0(null, i7, false), org.telegram.ui.ActionBar.k6.x0(null, i10, false)), org.telegram.ui.ActionBar.r6.N(i7), org.telegram.ui.ActionBar.r6.N(i10), null);
         org.telegram.ui.ActionBar.r6.R(this.D, org.telegram.ui.ActionBar.k6.i0(org.telegram.ui.ActionBar.k6.x0(null, i7, false), org.telegram.ui.ActionBar.k6.x0(null, i10, false)), org.telegram.ui.ActionBar.r6.N(i7), org.telegram.ui.ActionBar.r6.N(i10), null);
-        a0(this.f52627w, false);
+        a0(this.f52632w, false);
         org.telegram.ui.Components.pj0 pj0Var = new org.telegram.ui.Components.pj0(context, null);
-        this.f52623f = pj0Var;
+        this.f52628f = pj0Var;
         pj0Var.setLayoutManager(new v4.b0());
-        org.telegram.ui.Components.pj0 pj0Var2 = this.f52623f;
+        org.telegram.ui.Components.pj0 pj0Var2 = this.f52628f;
         yo yoVar = new yo(this, context);
         this.h = yoVar;
         pj0Var2.setAdapter(yoVar);
-        this.f52623f.setOnItemClickListener(new h(this, 5));
-        frameLayout.addView(this.f52623f, c8.ha.g());
-        this.f52623f.r1();
-        this.f52623f.setSectionsDrawBackground(true);
-        this.f52622e = frameLayout;
+        this.f52628f.setOnItemClickListener(new h(this, 5));
+        frameLayout.addView(this.f52628f, c8.ha.g());
+        this.f52628f.r1();
+        this.f52628f.setSectionsDrawBackground(true);
+        this.f52627e = frameLayout;
         this.fragmentView = frameLayout;
         this.h.f();
-        return this.f52622e;
+        return this.f52627e;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i10 == this.currentAccount) {
             if (i7 == org.telegram.messenger.qs.V4) {
-                ArrayList arrayList = this.f52624n;
+                ArrayList arrayList = this.f52629n;
                 arrayList.clear();
                 arrayList.addAll(getMediaDataController().f25817n);
                 this.h.f();
-            } else if (i7 == org.telegram.messenger.qs.f25095y1 && ((Long) objArr[0]).longValue() == (-this.f52621c)) {
+            } else if (i7 == org.telegram.messenger.qs.f25095y1 && ((Long) objArr[0]).longValue() == (-this.f52626c)) {
                 org.telegram.ui.ActionBar.q4 q4Var = this.parentLayout;
                 if (q4Var != null && q4Var.getLastFragment() == this) {
                     finishFragment();
@@ -380,7 +380,7 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
 
     @Override
     public final org.telegram.ui.Components.pj0 getListViewForSimpleGlass() {
-        return this.f52623f;
+        return this.f52628f;
     }
 
     @Override
@@ -396,17 +396,17 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
     @Override
     public final boolean onFragmentCreate() {
         org.telegram.messenger.qp messagesController = getMessagesController();
-        long j3 = this.f52621c;
+        long j3 = this.f52626c;
         TLRPC.Chat M0 = messagesController.M0(Long.valueOf(j3));
-        this.f52619a = M0;
+        this.f52624a = M0;
         if (M0 == null) {
             TLRPC.Chat P = org.telegram.messenger.yr.a0(this.currentAccount).P(j3);
-            this.f52619a = P;
+            this.f52624a = P;
             if (P != null) {
-                getMessagesController().Q3(this.f52619a, true);
-                if (this.f52620b == null) {
-                    TLRPC.ChatFull F0 = org.telegram.messenger.yr.a0(this.currentAccount).F0(this.f52621c, org.telegram.messenger.t3.T(this.f52619a), new CountDownLatch(1), false, false, 0);
-                    this.f52620b = F0;
+                getMessagesController().Q3(this.f52624a, true);
+                if (this.f52625b == null) {
+                    TLRPC.ChatFull F0 = org.telegram.messenger.yr.a0(this.currentAccount).F0(this.f52626c, org.telegram.messenger.t3.T(this.f52624a), new CountDownLatch(1), false, false, 0);
+                    this.f52625b = F0;
                     if (F0 == null) {
                         return false;
                     }
@@ -424,11 +424,11 @@ public final class zo extends org.telegram.ui.ActionBar.f2 implements org.telegr
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
         org.telegram.messenger.qp messagesController = getMessagesController();
-        int i7 = this.f52626s;
+        int i7 = this.f52631s;
         ArrayList arrayList = this.d;
         messagesController.getClass();
         TLRPC.TL_messages_setChatAvailableReactions tL_messages_setChatAvailableReactions = new TLRPC.TL_messages_setChatAvailableReactions();
-        long j3 = this.f52621c;
+        long j3 = this.f52626c;
         tL_messages_setChatAvailableReactions.peer = messagesController.j1(-j3);
         if (i7 == 2) {
             tL_messages_setChatAvailableReactions.available_reactions = new TLRPC.TL_chatReactionsNone();

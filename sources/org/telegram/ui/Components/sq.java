@@ -5,19 +5,19 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.text.SpannableStringBuilder;
 import android.view.View;
-public final class sq extends q31 {
-    public static final int f38135b = 0;
+public final class sq extends v31 {
+    public static final int f38095b = 0;
 
     static {
-        q31.h(new q31());
+        v31.h(new v31());
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
+    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
         org.telegram.ui.Cells.x8 x8Var = (org.telegram.ui.Cells.x8) view;
-        x8Var.c(r31Var.f37598l, r31Var.f37600n, !r31Var.f37596j);
+        x8Var.c(w31Var.f39830l, w31Var.f39832n, !w31Var.f39828j);
         xh.l lVar = x8Var.f30899a;
-        if (r31Var.f37598l instanceof SpannableStringBuilder) {
+        if (w31Var.f39830l instanceof SpannableStringBuilder) {
             lVar.setTextSize(1, 13.0f);
             lVar.setTranslationY(org.telegram.messenger.g0.L(2.0f));
             lVar.setTypeface(org.telegram.messenger.g0.o1("fonts/rmono.ttf"));

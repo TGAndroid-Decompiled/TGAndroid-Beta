@@ -21,7 +21,7 @@ public final class sk implements ToLongFunction {
             case 3:
                 return ((ij) obj).Z0();
             case 4:
-                ij ijVar = ((z41) obj).f52467b;
+                ij ijVar = ((z41) obj).f52474b;
                 if (ijVar == null) {
                     return 0L;
                 }

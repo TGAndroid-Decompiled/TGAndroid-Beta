@@ -25,14 +25,14 @@ public final class t31 extends org.telegram.ui.Components.na {
     public final LinearLayout R1;
     public boolean S1;
     public boolean T1;
-    public org.telegram.ui.Components.f41 U1;
+    public org.telegram.ui.Components.k41 U1;
 
     public t31(final Context context, final int i7, final org.telegram.ui.ActionBar.f6 f6Var, final org.telegram.messenger.voip.k kVar) {
         super(1, context, f6Var, true);
         int i10;
         int i11;
         this.f28612a = i7;
-        this.f36333r1 = 0.2f;
+        this.f36227r1 = 0.2f;
         this.P0 = true;
         this.Q0 = true;
         bi.c cVar = new bi.c(context, i7, cg.b.f6163b, f6Var);
@@ -208,7 +208,7 @@ public final class t31 extends org.telegram.ui.Components.na {
                 fi.d dVar2 = new fi.d(context, f6Var, true);
                 SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder("🎲");
                 org.telegram.ui.Components.wp wpVar2 = new org.telegram.ui.Components.wp(2131231972, 0);
-                wpVar2.f40056s = org.telegram.messenger.g0.L(1.0f);
+                wpVar2.f40063s = org.telegram.messenger.g0.L(1.0f);
                 spannableStringBuilder3.setSpan(wpVar2, 0, spannableStringBuilder3.length(), 33);
                 spannableStringBuilder3.append((CharSequence) "  ").append((CharSequence) org.telegram.messenger.hd.M0(2131745244, null));
                 dVar2.i(spannableStringBuilder3, false, true);
@@ -255,7 +255,7 @@ public final class t31 extends org.telegram.ui.Components.na {
                 ViewGroup viewGroup = this.f28615b;
                 int i17 = this.f28645t0;
                 viewGroup.addView(frameLayout, c8.ha.f(-2.0f, -1, 87, i17, 0, i17, 0));
-                org.telegram.ui.Components.pj0 pj0Var = this.f36328k1;
+                org.telegram.ui.Components.pj0 pj0Var = this.f36222k1;
                 int i18 = this.f28645t0;
                 pj0Var.setPadding(i18, 0, i18, org.telegram.messenger.g0.L(68.0f));
                 this.U1.O(false);
@@ -266,9 +266,9 @@ public final class t31 extends org.telegram.ui.Components.na {
 
     @Override
     public final org.telegram.ui.Components.oj0 L0(org.telegram.ui.Components.pj0 pj0Var) {
-        org.telegram.ui.Components.f41 f41Var = new org.telegram.ui.Components.f41(pj0Var, getContext(), this.f28612a, 0, false, new a5(this, 28), this.I0);
-        this.U1 = f41Var;
-        return f41Var;
+        org.telegram.ui.Components.k41 k41Var = new org.telegram.ui.Components.k41(pj0Var, getContext(), this.f28612a, 0, false, new a5(this, 28), this.I0);
+        this.U1 = k41Var;
+        return k41Var;
     }
 
     @Override

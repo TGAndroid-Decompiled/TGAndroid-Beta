@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.concurrent.CountDownLatch;
 public final class tz0 implements Runnable {
-    public final int f50162a;
-    public final q11 f50163b;
+    public final int f50184a;
+    public final q11 f50185b;
 
     public tz0(q11 q11Var, int i7) {
-        this.f50162a = i7;
-        this.f50163b = q11Var;
+        this.f50184a = i7;
+        this.f50185b = q11Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f50162a) {
+        switch (this.f50184a) {
             case 0:
-                q11 q11Var = this.f50163b;
+                q11 q11Var = this.f50185b;
                 q11Var.getClass();
                 HashSet hashSet = ch.e0.f6231a;
                 com.google.android.gms.internal.cast.b0 b0Var = org.telegram.messenger.gc.D().f22622p;
@@ -29,7 +29,7 @@ public final class tz0 implements Runnable {
                 org.telegram.messenger.g0.i3(new tz0(q11Var, 2), 0L);
                 return;
             case 1:
-                q11 q11Var2 = this.f50163b;
+                q11 q11Var2 = this.f50185b;
                 ArrayList arrayList = q11Var2.B1;
                 if (arrayList != null) {
                     arrayList.clear();
@@ -42,16 +42,16 @@ public final class tz0 implements Runnable {
                 if (arrayList3 != null) {
                     arrayList3.clear();
                 }
-                q11Var2.f49024q0.E(true);
+                q11Var2.f49051q0.E(true);
                 return;
             case 2:
-                this.f50163b.V1.start();
+                this.f50185b.V1.start();
                 return;
             case 3:
-                this.f50163b.B(true, true, true);
+                this.f50185b.B(true, true, true);
                 return;
             default:
-                q11 q11Var3 = this.f50163b;
+                q11 q11Var3 = this.f50185b;
                 org.telegram.messenger.qs e10 = org.telegram.messenger.qs.e();
                 tz0 tz0Var = q11Var3.S1;
                 e10.f25110e.remove(tz0Var);

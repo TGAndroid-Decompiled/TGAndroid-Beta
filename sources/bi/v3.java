@@ -152,8 +152,8 @@ public final class v3 implements c20 {
                     org.telegram.ui.Components.v4.I(anVar.getParentActivity(), anVar.a(), new a3.h(bnVar, tL_messageMediaToDo, l11, 28));
                     return;
                 }
-                bnVar.f32195j0.b(tL_messageMediaToDo, null, null, null, true, 0, l11.longValue());
-                bnVar.f38951b.a(true);
+                bnVar.f32189j0.b(tL_messageMediaToDo, null, null, null, true, 0, l11.longValue());
+                bnVar.f38948b.a(true);
                 return;
             case 8:
                 fx fxVar = (fx) obj4;
@@ -168,7 +168,7 @@ public final class v3 implements c20 {
                     if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
                         arrayList = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                     } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
-                        TLRPC.TL_messages_stickerSet l02 = ui.b0(fxVar.f33708a.F.f34076c1).l0(ui.Z(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
+                        TLRPC.TL_messages_stickerSet l02 = ui.b0(fxVar.f33652a.F.f34024c1).l0(ui.Z(stickerSetCovered.set), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
                         if (l02 != null) {
                             arrayList = l02.documents;
                         } else {
@@ -254,8 +254,8 @@ public final class v3 implements c20 {
                 List list = (List) obj;
                 vVar.getClass();
                 ((boolean[]) obj3)[0] = false;
-                if (vVar.f60432e2 != null) {
-                    new zh.d(vVar.getContext(), f6Var, vVar.f60432e2, list).show();
+                if (vVar.f60457e2 != null) {
+                    new zh.d(vVar.getContext(), f6Var, vVar.f60457e2, list).show();
                     vVar.dismiss();
                     return;
                 }

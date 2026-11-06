@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import android.animation.ValueAnimator;
 public final class gu implements ValueAnimator.AnimatorUpdateListener {
-    public final int f46092a;
-    public final ww f46093b;
-    public final float f46094c;
+    public final int f46112a;
+    public final ww f46113b;
+    public final float f46114c;
 
     public gu(ww wwVar, float f10, int i7) {
-        this.f46092a = i7;
-        this.f46093b = wwVar;
-        this.f46094c = f10;
+        this.f46112a = i7;
+        this.f46113b = wwVar;
+        this.f46114c = f10;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f46092a) {
+        switch (this.f46112a) {
             case 0:
-                ww.a0(this.f46093b, this.f46094c, valueAnimator);
+                ww.a0(this.f46113b, this.f46114c, valueAnimator);
                 return;
             default:
-                ww.G0(this.f46093b, this.f46094c, valueAnimator);
+                ww.G0(this.f46113b, this.f46114c, valueAnimator);
                 return;
         }
     }

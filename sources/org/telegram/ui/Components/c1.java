@@ -6,25 +6,25 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ProfileActivity;
 public final class c1 implements View.OnClickListener {
-    public final int f32355a;
-    public final TLRPC.User f32356b;
-    public final org.telegram.ui.ActionBar.f2 f32357c;
+    public final int f32349a;
+    public final TLRPC.User f32350b;
+    public final org.telegram.ui.ActionBar.f2 f32351c;
     public final AlertDialog$Builder d;
 
     public c1(TLRPC.User user, org.telegram.ui.ActionBar.f2 f2Var, AlertDialog$Builder alertDialog$Builder, int i7) {
-        this.f32355a = i7;
-        this.f32356b = user;
-        this.f32357c = f2Var;
+        this.f32349a = i7;
+        this.f32350b = user;
+        this.f32351c = f2Var;
         this.d = alertDialog$Builder;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f32355a) {
+        switch (this.f32349a) {
             case 0:
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", this.f32356b.f27101id);
-                org.telegram.ui.ActionBar.f2 f2Var = this.f32357c;
+                bundle.putLong("user_id", this.f32350b.f27101id);
+                org.telegram.ui.ActionBar.f2 f2Var = this.f32351c;
                 if (f2Var.getMessagesController().E(bundle, f2Var, null, null)) {
                     f2Var.presentFragment(new ProfileActivity(bundle, null));
                 }
@@ -32,8 +32,8 @@ public final class c1 implements View.OnClickListener {
                 return;
             default:
                 Bundle bundle2 = new Bundle();
-                bundle2.putLong("user_id", this.f32356b.f27101id);
-                org.telegram.ui.ActionBar.f2 f2Var2 = this.f32357c;
+                bundle2.putLong("user_id", this.f32350b.f27101id);
+                org.telegram.ui.ActionBar.f2 f2Var2 = this.f32351c;
                 if (f2Var2.getMessagesController().E(bundle2, f2Var2, null, null)) {
                     f2Var2.presentFragment(new ProfileActivity(bundle2, null));
                 }

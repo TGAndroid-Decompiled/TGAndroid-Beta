@@ -23,7 +23,7 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
@@ -31,7 +31,7 @@ import org.telegram.ui.Components.xq;
 public final class v extends na {
     public final int P1;
     public final c20 Q1;
-    public f41 R1;
+    public k41 R1;
     public final FrameLayout S1;
     public final FrameLayout T1;
     public final au U1;
@@ -59,7 +59,7 @@ public final class v extends na {
         r6.V(textView, i11, f6Var);
         textView.setGravity(19);
         frameLayout.addView(textView, ha.d(-1, 56.0f, 51, 22.0f, 6.0f, 56.0f, 0.0f));
-        this.f36341z1 = org.telegram.messenger.g0.L(-8.0f);
+        this.f36235z1 = org.telegram.messenger.g0.L(-8.0f);
         ImageView e10 = org.telegram.messenger.camera.q.e(context, 2131231269);
         e10.setScaleType(ImageView.ScaleType.CENTER);
         r6.t(e10, i11, f6Var, PorterDuff.Mode.SRC_IN);
@@ -187,24 +187,24 @@ public final class v extends na {
         ((ViewGroup.MarginLayoutParams) h.getLayoutParams()).leftMargin += this.f28645t0;
         ((ViewGroup.MarginLayoutParams) h.getLayoutParams()).rightMargin += this.f28645t0;
         v4.k kVar = new v4.k();
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        this.f36328k1.setItemAnimator(kVar);
-        pj0 pj0Var = this.f36328k1;
+        this.f36222k1.setItemAnimator(kVar);
+        pj0 pj0Var = this.f36222k1;
         int i13 = this.f28645t0;
         pj0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(72.0f));
-        this.f36328k1.setClipToPadding(false);
+        this.f36222k1.setClipToPadding(false);
         this.R1.O(false);
         d1();
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(pj0Var, getContext(), this.P1, 0, true, new hi.u1(this, 17), this.I0);
-        this.R1 = f41Var;
-        return f41Var;
+        k41 k41Var = new k41(pj0Var, getContext(), this.P1, 0, true, new hi.u1(this, 17), this.I0);
+        this.R1 = k41Var;
+        return k41Var;
     }
 
     @Override

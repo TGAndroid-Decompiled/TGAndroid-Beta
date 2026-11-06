@@ -8,12 +8,12 @@ import org.telegram.messenger.Intro;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class hz implements Runnable {
-    public final int f46521a;
-    public final Object f46522b;
+    public final int f46530a;
+    public final Object f46531b;
 
     public hz(Object obj, int i7) {
-        this.f46521a = i7;
-        this.f46522b = obj;
+        this.f46530a = i7;
+        this.f46531b = obj;
     }
 
     @Override
@@ -22,36 +22,36 @@ public final class hz implements Runnable {
         t50 t50Var;
         EGLDisplay eGLDisplay;
         EGLSurface eGLSurface;
-        int i10 = this.f46521a;
-        Object obj = this.f46522b;
+        int i10 = this.f46530a;
+        Object obj = this.f46531b;
         switch (i10) {
             case 0:
                 yz yzVar = (yz) obj;
-                org.telegram.messenger.g0.r(yzVar.f52391n0);
-                yzVar.f52373a.a(false, true);
+                org.telegram.messenger.g0.r(yzVar.f52398n0);
+                yzVar.f52380a.a(false, true);
                 return;
             case 1:
-                yz yzVar2 = ((nz) obj).f48149a;
-                yzVar2.h(yzVar2.E, yzVar2.F, yzVar2.H, yzVar2.G, yzVar2.D, yzVar2.J, yzVar2.f52399x, false);
+                yz yzVar2 = ((nz) obj).f48178a;
+                yzVar2.h(yzVar2.E, yzVar2.F, yzVar2.H, yzVar2.G, yzVar2.D, yzVar2.J, yzVar2.f52406x, false);
                 return;
             case 2:
-                ((FiltersSetupActivity) ((zs) obj).f52641f3).getMessagesController().i3();
+                ((FiltersSetupActivity) ((zs) obj).f52669f3).getMessagesController().i3();
                 return;
             case 3:
                 a00 a00Var = (a00) obj;
-                a00Var.f43485s.a();
-                a00Var.f43483n.invalidate();
+                a00Var.f43510s.a();
+                a00Var.f43508n.invalidate();
                 a00Var.H.g0(true);
                 return;
             case 4:
-                FiltersSetupActivity filtersSetupActivity = (FiltersSetupActivity) ((org.telegram.ui.Components.dz) obj).f33059f;
+                FiltersSetupActivity filtersSetupActivity = (FiltersSetupActivity) ((org.telegram.ui.Components.dz) obj).f33072f;
                 if (!org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24459s0).q()) {
                     ArrayList T0 = filtersSetupActivity.getMessagesController().T0();
                     int i11 = 0;
                     while (true) {
                         if (i11 < T0.size()) {
                             if (((org.telegram.messenger.vo) T0.get(i11)).e() && i11 != 0) {
-                                FiltersSetupActivity filtersSetupActivity2 = filtersSetupActivity.f41209b.f45141e;
+                                FiltersSetupActivity filtersSetupActivity2 = filtersSetupActivity.f41234b.f45171e;
                                 ArrayList arrayList = filtersSetupActivity2.getMessagesController().P0;
                                 if (i11 < 0 || i11 >= arrayList.size()) {
                                     i7 = 1;
@@ -61,10 +61,10 @@ public final class hz implements Runnable {
                                         ((org.telegram.messenger.vo) arrayList.get(i12)).f26060f = i12;
                                     }
                                     i7 = 1;
-                                    filtersSetupActivity2.f41211e = true;
+                                    filtersSetupActivity2.f41236e = true;
                                     filtersSetupActivity2.g0(true);
                                 }
-                                filtersSetupActivity.f41208a.v0(0);
+                                filtersSetupActivity.f41233a.v0(0);
                                 try {
                                     filtersSetupActivity.fragmentView.performHapticFeedback(3, i7);
                                 } catch (Exception unused) {
@@ -82,34 +82,34 @@ public final class hz implements Runnable {
                 filtersSetupActivity.f0(null);
                 return;
             case 5:
-                c40 c40Var = ((o10) obj).f48180b;
-                c40Var.f44527a4 = null;
-                c40Var.P1(c40Var.f44621w3, true);
+                c40 c40Var = ((o10) obj).f48209b;
+                c40Var.f44548a4 = null;
+                c40Var.P1(c40Var.f44642w3, true);
                 return;
             case 6:
                 ((i30) obj).requestLayout();
                 return;
             case 7:
                 l30 l30Var = (l30) obj;
-                c40 c40Var2 = l30Var.f47373f;
-                b20 b20Var = c40Var2.f44556i1;
+                c40 c40Var2 = l30Var.f47400f;
+                b20 b20Var = c40Var2.f44577i1;
                 org.telegram.messenger.hc hcVar = l30Var.d;
                 if (hcVar != null) {
                     b20Var.K0 = hcVar;
-                    b20Var.f38082q1 = null;
-                    b20Var.f38083r1 = null;
+                    b20Var.f38042q1 = null;
+                    b20Var.f38043r1 = null;
                     l30Var.d = null;
                 }
-                TLRPC.Chat M0 = org.telegram.messenger.qp.s1(c40Var2.f44565k1.f21723a).M0(Long.valueOf(-l30Var.f47372e));
+                TLRPC.Chat M0 = org.telegram.messenger.qp.s1(c40Var2.f44586k1.f21723a).M0(Long.valueOf(-l30Var.f47399e));
                 org.telegram.messenger.hc a10 = org.telegram.messenger.hc.a(0, M0);
                 org.telegram.messenger.hc a11 = org.telegram.messenger.hc.a(1, M0);
-                if (org.telegram.messenger.hc.e(l30Var.f47370b) == null) {
-                    a11 = org.telegram.messenger.hc.e(l30Var.f47371c);
+                if (org.telegram.messenger.hc.e(l30Var.f47397b) == null) {
+                    a11 = org.telegram.messenger.hc.e(l30Var.f47398c);
                 }
                 b20Var.setCreateThumbFromParent(false);
                 b20Var.H(null, a10, a11, true);
-                l30Var.f47371c = null;
-                l30Var.f47370b = null;
+                l30Var.f47398c = null;
+                l30Var.f47397b = null;
                 org.telegram.messenger.g0.b4(c40Var2.H1);
                 l30Var.a(1.0f);
                 return;
@@ -130,12 +130,12 @@ public final class hz implements Runnable {
                 d50Var.H = null;
                 d50Var.J = 0.0d;
                 d50Var.e0(false, true);
-                d50Var.d.j(null, null, d50Var.f44928r, null);
-                d50Var.f44926f.setAnimation(d50Var.R);
+                d50Var.d.j(null, null, d50Var.f44953r, null);
+                d50Var.f44951f.setAnimation(d50Var.R);
                 d50Var.R.M(0);
                 return;
             case 10:
-                org.telegram.messenger.k5.o(null, 2131749377, org.telegram.ui.Components.hc.a0(((g50) obj).f45839c), 2131623999, 36);
+                org.telegram.messenger.k5.o(null, 2131749377, org.telegram.ui.Components.hc.a0(((g50) obj).f45866c), 2131623999, 36);
                 return;
             case 11:
                 u50 u50Var = (u50) obj;
@@ -146,7 +146,7 @@ public final class hz implements Runnable {
                 t50Var2.a(2131231535, 17, x02, true);
                 u50Var.I.c();
                 t50 t50Var3 = u50Var.I;
-                t50Var3.b(t50Var3.f49919w, 23, true);
+                t50Var3.b(t50Var3.f49947w, 23, true);
                 u50Var.I.d();
                 Intro.a(org.telegram.ui.ActionBar.k6.x0(null, i13, false));
                 return;
@@ -154,14 +154,14 @@ public final class hz implements Runnable {
                 s50 s50Var = (s50) obj;
                 s50Var.getClass();
                 long currentTimeMillis = System.currentTimeMillis();
-                u50 u50Var2 = (u50) s50Var.f49636b;
+                u50 u50Var2 = (u50) s50Var.f49657b;
                 Intro.setPage(u50Var2.H);
                 Intro.setDate(((float) (currentTimeMillis - u50Var2.J)) / 1000.0f);
                 Intro.onDrawFrame(0);
                 t50 t50Var4 = u50Var2.I;
-                if (t50Var4 != null && t50Var4.isAlive() && (eGLDisplay = (t50Var = u50Var2.I).f49913c) != null && (eGLSurface = t50Var.f49915f) != null) {
+                if (t50Var4 != null && t50Var4.isAlive() && (eGLDisplay = (t50Var = u50Var2.I).f49941c) != null && (eGLSurface = t50Var.f49943f) != null) {
                     try {
-                        t50Var.f49912b.eglSwapBuffers(eGLDisplay, eGLSurface);
+                        t50Var.f49940b.eglSwapBuffers(eGLDisplay, eGLSurface);
                         return;
                     } catch (Exception unused2) {
                         return;
@@ -183,17 +183,17 @@ public final class hz implements Runnable {
                 return;
             case 15:
                 y50 y50Var = (y50) obj;
-                y50Var.f52076f.f52473e.smoothScrollTo(0, y50Var.getHeight());
+                y50Var.f52097f.f52480e.smoothScrollTo(0, y50Var.getHeight());
                 return;
             case 16:
                 ((vf.b) obj).b();
                 return;
             case 17:
-                ((k80) obj).f47117a.A0.setVisibility(8);
+                ((k80) obj).f47140a.A0.setVisibility(8);
                 return;
             case 18:
                 v80 v80Var = (v80) obj;
-                LaunchActivity launchActivity = v80Var.f50602c;
+                LaunchActivity launchActivity = v80Var.f50612c;
                 launchActivity.N0 = false;
                 boolean z9 = launchActivity.M0;
                 launchActivity.E();
@@ -212,7 +212,7 @@ public final class hz implements Runnable {
                 return;
             case 20:
                 try {
-                    org.telegram.ui.Components.pj0 currentListView = ((pa0) ((oa0) obj).f48317i0).L0.getCurrentListView();
+                    org.telegram.ui.Components.pj0 currentListView = ((pa0) ((oa0) obj).f48346i0).L0.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().f();
                         return;
@@ -222,7 +222,7 @@ public final class hz implements Runnable {
                     return;
                 }
             case 21:
-                EditTextBoldCursor[] editTextBoldCursorArr = ((ub0) obj).f50356b;
+                EditTextBoldCursor[] editTextBoldCursorArr = ((ub0) obj).f50378b;
                 if (editTextBoldCursorArr != null) {
                     editTextBoldCursorArr[0].requestFocus();
                     EditTextBoldCursor editTextBoldCursor = editTextBoldCursorArr[0];
@@ -233,8 +233,8 @@ public final class hz implements Runnable {
                 return;
             case 22:
                 xb0 xb0Var = (xb0) obj;
-                org.telegram.ui.Components.ch0 ch0Var = xb0Var.f51804e;
-                EditTextBoldCursor editTextBoldCursor2 = xb0Var.f51801a;
+                org.telegram.ui.Components.ch0 ch0Var = xb0Var.f51821e;
+                EditTextBoldCursor editTextBoldCursor2 = xb0Var.f51818a;
                 if (editTextBoldCursor2 != null) {
                     editTextBoldCursor2.requestFocus();
                     editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
@@ -254,7 +254,7 @@ public final class hz implements Runnable {
                 double currentTimeMillis2 = System.currentTimeMillis();
                 ec0 ec0Var = (ec0) ((fi.h2) obj).f12127b;
                 double d = ec0Var.Q;
-                ed0 ed0Var = ec0Var.f45239w;
+                ed0 ed0Var = ec0Var.f45269w;
                 ec0Var.Q = currentTimeMillis2;
                 int i15 = (int) (ec0Var.P - (currentTimeMillis2 - d));
                 ec0Var.P = i15;
@@ -296,15 +296,15 @@ public final class hz implements Runnable {
                 return;
             case 26:
                 double currentTimeMillis3 = System.currentTimeMillis();
-                gd0 gd0Var = ((fd0) obj).f45608b;
-                double d2 = currentTimeMillis3 - gd0Var.f45933d0;
-                gd0Var.f45933d0 = currentTimeMillis3;
-                int i23 = (int) (gd0Var.f45930b0 - d2);
-                gd0Var.f45930b0 = i23;
+                gd0 gd0Var = ((fd0) obj).f45613b;
+                double d2 = currentTimeMillis3 - gd0Var.f45960d0;
+                gd0Var.f45960d0 = currentTimeMillis3;
+                int i23 = (int) (gd0Var.f45957b0 - d2);
+                gd0Var.f45957b0 = i23;
                 if (i23 <= 1000) {
                     gd0.o(gd0Var);
-                    gd0Var.f45955w.setVisibility(8);
-                    ed0 ed0Var2 = gd0Var.f45957y;
+                    gd0Var.f45982w.setVisibility(8);
+                    ed0 ed0Var2 = gd0Var.f45984y;
                     if (ed0Var2 != null) {
                         ed0Var2.setVisibility(0);
                     }
@@ -314,19 +314,19 @@ public final class hz implements Runnable {
                 return;
             case 27:
                 double currentTimeMillis4 = System.currentTimeMillis();
-                gd0 gd0Var2 = ((fd0) obj).f45608b;
-                double d10 = gd0Var2.f45932c0;
-                ed0 ed0Var3 = gd0Var2.f45955w;
-                gd0Var2.f45932c0 = currentTimeMillis4;
-                int i24 = (int) (gd0Var2.f45928a0 - (currentTimeMillis4 - d10));
-                gd0Var2.f45928a0 = i24;
+                gd0 gd0Var2 = ((fd0) obj).f45613b;
+                double d10 = gd0Var2.f45959c0;
+                ed0 ed0Var3 = gd0Var2.f45982w;
+                gd0Var2.f45959c0 = currentTimeMillis4;
+                int i24 = (int) (gd0Var2.f45955a0 - (currentTimeMillis4 - d10));
+                gd0Var2.f45955a0 = i24;
                 if (i24 >= 1000) {
                     int i25 = i24 / 1000;
                     int i26 = i25 / 60;
                     int i27 = i25 - (i26 * 60);
-                    int i28 = gd0Var2.f45940i0;
+                    int i28 = gd0Var2.f45967i0;
                     if (i28 != 4 && i28 != 3 && i28 != 11) {
-                        if (gd0Var2.f45939h0 == 2 && (i28 == 2 || i28 == 17 || i28 == 16)) {
+                        if (gd0Var2.f45966h0 == 2 && (i28 == 2 || i28 == 17 || i28 == 16)) {
                             ed0Var3.setText(org.telegram.messenger.hd.a0("ResendSmsAvailableIn", null, 2131746120, Integer.valueOf(i26), Integer.valueOf(i27)));
                             return;
                         } else if (i28 == 2 || i28 == 17 || i28 == 16) {
@@ -340,7 +340,7 @@ public final class hz implements Runnable {
                     return;
                 }
                 gd0Var2.u();
-                int i29 = gd0Var2.f45940i0;
+                int i29 = gd0Var2.f45967i0;
                 if (i29 == 3 || i29 == 4 || i29 == 2 || i29 == 17 || i29 == 16 || i29 == 11) {
                     if (i29 == 4) {
                         ed0Var3.setText(org.telegram.messenger.hd.M0(2131746178, "RequestCallButton"));

@@ -98,7 +98,7 @@ public final class d3 implements c20 {
                 }
                 if (l10.longValue() <= 0) {
                     cc r10 = new hc(i4Var.L0, i4Var.f9163k0).r(e10, hd.M0(2131746388, null), hd.M0(2131743553, null), new ab(e3Var, 19));
-                    r10.f32523j = 5000;
+                    r10.f32527j = 5000;
                     r10.j();
                 }
                 if (i4Var.O1.getReactionsWindow() != null) {

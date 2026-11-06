@@ -111,8 +111,8 @@ public final class u implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 t8Var.n0(false, floatValue4);
                 if (this.f6401b) {
-                    m8 m8Var = t8Var.f38284a;
-                    m8Var.f37975x = floatValue4;
+                    m8 m8Var = t8Var.f38275a;
+                    m8Var.f37935x = floatValue4;
                     m8Var.invalidate();
                     return;
                 }
@@ -140,15 +140,15 @@ public final class u implements ValueAnimator.AnimatorUpdateListener {
             case 9:
                 n2 n2Var = (n2) this.f6402c;
                 TextView[] textViewArr = n2Var.h;
-                n2Var.f39370s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                n2Var.f39367s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 n2Var.invalidate();
                 if (this.f6401b) {
-                    textViewArr[0].setAlpha(1.0f - n2Var.f39370s);
-                    textViewArr[0].setScaleX(1.0f - n2Var.f39370s);
-                    textViewArr[0].setScaleY(1.0f - n2Var.f39370s);
-                    textViewArr[1].setAlpha(n2Var.f39370s);
-                    textViewArr[1].setScaleX(n2Var.f39370s);
-                    textViewArr[1].setScaleY(n2Var.f39370s);
+                    textViewArr[0].setAlpha(1.0f - n2Var.f39367s);
+                    textViewArr[0].setScaleX(1.0f - n2Var.f39367s);
+                    textViewArr[0].setScaleY(1.0f - n2Var.f39367s);
+                    textViewArr[1].setAlpha(n2Var.f39367s);
+                    textViewArr[1].setScaleX(n2Var.f39367s);
+                    textViewArr[1].setScaleY(n2Var.f39367s);
                     return;
                 }
                 return;
@@ -166,26 +166,26 @@ public final class u implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 11:
                 rz0 rz0Var = (rz0) this.f6402c;
-                rz0Var.f49583s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                rz0Var.f49573b.invalidate();
-                rz0Var.f49575c.invalidate();
+                rz0Var.f49604s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                rz0Var.f49594b.invalidate();
+                rz0Var.f49596c.invalidate();
                 if (rz0Var.S) {
                     rz0Var.N.invalidate();
                 }
                 rz0Var.e();
                 TextView textView = rz0Var.D;
                 if (textView != null) {
-                    textView.setAlpha(rz0Var.f49583s);
+                    textView.setAlpha(rz0Var.f49604s);
                 }
                 if (!rz0Var.S && (pz0Var = rz0Var.N) != null && pz0Var.getSeekBarWaveform() != null) {
                     pm0 seekBarWaveform = rz0Var.N.getSeekBarWaveform();
                     if (this.f6401b) {
-                        xqVar = xq.f40311g;
+                        xqVar = xq.f40330g;
                     } else {
-                        xqVar = xq.f40312i;
+                        xqVar = xq.f40331i;
                     }
-                    seekBarWaveform.L = xqVar.getInterpolation(Utilities.i(rz0Var.f49583s * 1.25f, 1.0f, 0.0f));
-                    q1 q1Var2 = seekBarWaveform.f37110n;
+                    seekBarWaveform.L = xqVar.getInterpolation(Utilities.i(rz0Var.f49604s * 1.25f, 1.0f, 0.0f));
+                    q1 q1Var2 = seekBarWaveform.f36989n;
                     if (q1Var2 != null) {
                         q1Var2.invalidate();
                         return;
@@ -196,11 +196,11 @@ public final class u implements ValueAnimator.AnimatorUpdateListener {
             default:
                 tg.f0 f0Var = (tg.f0) this.f6402c;
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                f0Var.f55538e = floatValue6;
+                f0Var.f55563e = floatValue6;
                 if (!this.f6401b) {
-                    f0Var.f55537c.setAlpha(1.0f - floatValue6);
+                    f0Var.f55562c.setAlpha(1.0f - floatValue6);
                 }
-                f0Var.f55536b.invalidate();
+                f0Var.f55561b.invalidate();
                 return;
         }
     }

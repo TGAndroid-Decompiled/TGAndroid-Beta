@@ -938,7 +938,7 @@ public final class d0 implements Runnable {
                 boolean z41 = this.f792b;
                 ij ijVar4 = (ij) this.f794e;
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                an anVar2 = lmVar.f47534a;
+                an anVar2 = lmVar.f47561a;
                 k5.q(null, null, 2131744395, new Object[]{anVar2.getMessagesController().B1(m5.o(message2.from_id), false)}, spannableStringBuilder);
                 spannableStringBuilder.append((CharSequence) "\n\n");
                 cg.a m10 = cg.a.m(message2.suggested_post.price);
@@ -983,7 +983,7 @@ public final class d0 implements Runnable {
                     wa a10 = xa.a(anVar2.getParentActivity());
                     f6Var = ((f2) anVar2).resourceProvider;
                     cc G = new hc(a10, f6Var).G(2131624067, 10, hd.M0(2131744389, null));
-                    G.f32523j = 60000;
+                    G.f32527j = 60000;
                     G.k(true);
                     ccVarArr[0] = G;
                     return;

@@ -7,8 +7,8 @@ import android.widget.TextView;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
+import org.telegram.ui.Components.a41;
 import org.telegram.ui.Components.ty0;
-import org.telegram.ui.Components.v31;
 import org.telegram.ui.Components.w70;
 public abstract class x6 extends LinearLayout {
     public TextView f30885a;
@@ -40,7 +40,7 @@ public abstract class x6 extends LinearLayout {
                 spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
                 spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
                 try {
-                    spannableStringBuilder.setSpan(new v31(hd.M0(2131752154, null), (ty0) null), indexOf, lastIndexOf - 2, 33);
+                    spannableStringBuilder.setSpan(new a41(hd.M0(2131752154, null), (ty0) null), indexOf, lastIndexOf - 2, 33);
                 } catch (Exception e10) {
                     org.telegram.messenger.a8.g(e10, true);
                 }

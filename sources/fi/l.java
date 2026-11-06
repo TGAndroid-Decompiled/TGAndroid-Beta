@@ -50,11 +50,11 @@ public final class l extends Drawable {
         kVar.n(0.3f, 250L, xqVar);
         kVar.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
         kVar.w(org.telegram.messenger.g0.N(12.0f));
-        kVar.f34516b = 17;
+        kVar.f34477b = 17;
         kVar2.n(0.3f, 250L, xqVar);
         kVar2.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
         kVar2.w(org.telegram.messenger.g0.N(12.0f));
-        kVar2.f34516b = 17;
+        kVar2.f34477b = 17;
         e(-1, -15033089, -1);
     }
 
@@ -119,7 +119,7 @@ public final class l extends Drawable {
                 porterDuffXfermode = null;
             }
             this.f12286a.setXfermode(porterDuffXfermode);
-            TextPaint textPaint = this.f12288c.f34514a;
+            TextPaint textPaint = this.f12288c.f34475a;
             if (z9) {
                 porterDuffXfermode2 = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
             }

@@ -1,53 +1,150 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.nio.ByteBuffer;
-public final class i51 extends l2.j {
-    public final n51 d;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+public final class i51 extends Drawable {
+    public static final int[] f34458r = {10, 7, 26, 16, 10, 25};
+    public final Paint f34459a;
+    public final TextPaint f34460b;
+    public final Path f34461c;
+    public boolean d;
+    public final boolean f34462e;
+    public Path f34463f;
+    public int f34464g;
+    public float h;
+    public float f34465i;
+    public boolean f34466j;
+    public boolean f34467k;
+    public boolean f34468l;
+    public long f34469m;
+    public h51 f34470n;
+    public long f34471o;
+    public String f34472p;
+    public float f34473q;
 
-    public i51(Context context, n51 n51Var) {
-        super(context);
-        this.d = n51Var;
+    public i51(boolean z9) {
+        Paint paint = new Paint(1);
+        this.f34459a = paint;
+        TextPaint textPaint = new TextPaint(1);
+        this.f34460b = textPaint;
+        Path path = new Path();
+        this.f34461c = path;
+        this.f34473q = 1.0f;
+        this.f34462e = z9;
+        paint.setColor(-1);
+        textPaint.setColor(-1);
+        textPaint.setTextSize(org.telegram.messenger.g0.L(12.0f));
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        path.reset();
+        for (int i7 = 0; i7 < 3; i7++) {
+            int[] iArr = f34458r;
+            if (i7 == 0) {
+                int i10 = i7 * 2;
+                this.f34461c.moveTo(org.telegram.messenger.g0.L(iArr[i10]), org.telegram.messenger.g0.L(iArr[i10 + 1]));
+            } else {
+                int i11 = i7 * 2;
+                this.f34461c.lineTo(org.telegram.messenger.g0.L(iArr[i11]), org.telegram.messenger.g0.L(iArr[i11 + 1]));
+            }
+        }
+        this.f34461c.close();
+    }
+
+    public final void a() {
+        h51 h51Var = this.f34470n;
+        if (h51Var != null) {
+            h51Var.invalidate();
+        } else {
+            invalidateSelf();
+        }
+    }
+
+    public final boolean b() {
+        return this.f34466j;
+    }
+
+    public final void c(org.telegram.ui.ro0 ro0Var) {
+        this.f34470n = ro0Var;
+    }
+
+    public final void d(boolean z9) {
+        boolean z10 = this.d;
+        if (z10 == z9 && this.h >= 1.0f && this.f34467k) {
+            return;
+        }
+        if (z10 != z9) {
+            this.f34471o = 0L;
+            this.f34472p = null;
+        }
+        this.d = z9;
+        this.f34466j = true;
+        this.h = 0.0f;
+        invalidateSelf();
     }
 
     @Override
-    public final n2.q0 a(Context context) {
-        di.h4 h4Var = new di.h4(context, 1);
-        ?? obj = new Object();
-        obj.f18482f = this.d;
-        ?? obj2 = new Object();
-        obj2.f1589e = new float[0];
-        obj2.f1586a = 3;
-        obj2.d = new float[513];
-        obj2.f1587b = new float[1024];
-        obj2.f1588c = new float[1024];
-        int[] iArr = new int[1024];
-        obj2.f1590f = iArr;
-        iArr[0] = 0;
-        int i7 = 512;
-        int i10 = 1;
-        while (i10 < 1024) {
-            for (int i11 = 0; i11 < i10; i11++) {
-                int[] iArr2 = (int[]) obj2.f1590f;
-                iArr2[i11 + i10] = iArr2[i11] + i7;
-            }
-            i10 <<= 1;
-            i7 >>= 1;
+    public final void draw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i51.draw(android.graphics.Canvas):void");
+    }
+
+    public final void e(boolean z9) {
+        if (this.f34467k != z9) {
+            this.f34467k = z9;
+            this.f34472p = null;
+            this.f34471o = 0L;
+            this.h = 0.0f;
         }
-        obj2.f1591g = new float[1024];
-        obj2.h = new float[1024];
-        for (int i12 = 0; i12 < 1024; i12++) {
-            double d = (-3.1415927f) / i12;
-            ((float[]) obj2.f1591g)[i12] = (float) Math.sin(d);
-            ((float[]) obj2.h)[i12] = (float) Math.cos(d);
+    }
+
+    public final void f(boolean z9) {
+        this.f34468l = z9;
+        a();
+    }
+
+    public final void g(long j3) {
+        this.f34471o = j3;
+        if (j3 >= 1000) {
+            this.f34472p = org.telegram.messenger.hd.G((int) (j3 / 1000), "Seconds", new Object[0]);
+        } else {
+            this.f34472p = null;
         }
-        obj.f18480c = obj2;
-        obj.d = new float[1024];
-        obj.f18478a = 0;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(8192);
-        obj.f18481e = allocateDirect;
-        allocateDirect.position(0);
-        h4Var.d = new h6.m(new f2.n[]{new n2.x0(obj)});
-        return h4Var.a();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return org.telegram.messenger.g0.L(32.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return org.telegram.messenger.g0.L(32.0f);
+    }
+
+    @Override
+    public final int getMinimumHeight() {
+        return org.telegram.messenger.g0.L(32.0f);
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        return org.telegram.messenger.g0.L(32.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i7) {
+        this.f34459a.setAlpha(i7);
+        this.f34460b.setAlpha(i7);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f34459a.setColorFilter(colorFilter);
     }
 }

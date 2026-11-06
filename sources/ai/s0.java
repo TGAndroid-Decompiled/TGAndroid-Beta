@@ -141,21 +141,21 @@ public class s0 extends f2 {
             return;
         }
         zh.h1 h1Var = new zh.h1(s0Var.getParentActivity(), s0Var.currentAccount, s0Var.getUserConfig().e(), null, null);
-        if (!h1Var.f60228l2) {
-            h1Var.f60228l2 = true;
-            gc gcVar = h1Var.f60230n2;
+        if (!h1Var.f60253l2) {
+            h1Var.f60253l2 = true;
+            gc gcVar = h1Var.f60255n2;
             if (gcVar != null && (gcVar.getParent() instanceof ViewGroup)) {
-                ViewGroup viewGroup = (ViewGroup) h1Var.f60230n2.getParent();
-                int indexOfChild = viewGroup.indexOfChild(h1Var.f60230n2);
-                viewGroup.removeView(h1Var.f60230n2);
+                ViewGroup viewGroup = (ViewGroup) h1Var.f60255n2.getParent();
+                int indexOfChild = viewGroup.indexOfChild(h1Var.f60255n2);
+                viewGroup.removeView(h1Var.f60255n2);
                 gc gcVar2 = new gc(h1Var.getContext(), 250, 2, 0);
-                h1Var.f60230n2 = gcVar2;
+                h1Var.f60255n2 = gcVar2;
                 viewGroup.addView(gcVar2, indexOfChild, ha.c(-1.0f, -1));
             }
-            w70 w70Var = h1Var.f60231o2;
+            w70 w70Var = h1Var.f60256o2;
             if (w70Var != null) {
                 String M0 = hd.M0(2131750287, null);
-                jb jbVar = h1Var.f60220c2;
+                jb jbVar = h1Var.f60245c2;
                 jbVar.setText(M0);
                 jbVar.setBreakStrategy(2);
                 w70Var.setVisibility(8);
@@ -644,8 +644,8 @@ public class s0 extends f2 {
         l0();
         org.telegram.ui.f fVar = this.f1617c;
         if (fVar != null) {
-            ci0 ci0Var = (ci0) fVar.f45446b;
-            if (ci0Var.f44821b.remove(fVar)) {
+            ci0 ci0Var = (ci0) fVar.f45451b;
+            if (ci0Var.f44842b.remove(fVar)) {
                 ci0Var.a();
             }
             this.f1617c = null;

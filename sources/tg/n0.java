@@ -8,20 +8,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ki0;
 public final class n0 extends j {
-    public final m0 f55737q0;
-    public boolean f55738r0;
-    public int f55739s0;
-    public int f55740t0;
-    public TLRPC.MessageMedia f55741u0;
-    public TL_stories.MediaArea f55742v0;
+    public final m0 f55762q0;
+    public boolean f55763r0;
+    public int f55764s0;
+    public int f55765t0;
+    public TLRPC.MessageMedia f55766u0;
+    public TL_stories.MediaArea f55767v0;
 
     public n0(Context context, PointF pointF, int i7, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f10, int i10) {
         super(context, pointF);
         m0 m0Var = new m0(context, f10);
-        this.f55737q0 = m0Var;
+        this.f55762q0 = m0Var;
         m0Var.setMaxWidth(i10);
         r(i7, messageMedia, mediaArea);
-        m0Var.e(0, this.f55739s0);
+        m0Var.e(0, this.f55764s0);
         addView(m0Var, ha.e(-2, -2, 51));
         setClipChildren(false);
         setClipToPadding(false);
@@ -72,7 +72,7 @@ public final class n0 extends j {
     }
 
     public int getColor() {
-        return this.f55739s0;
+        return this.f55764s0;
     }
 
     @Override
@@ -97,30 +97,30 @@ public final class n0 extends j {
 
     @Override
     public float getStickyPaddingBottom() {
-        return this.f55737q0.J;
+        return this.f55762q0.J;
     }
 
     @Override
     public float getStickyPaddingLeft() {
-        return this.f55737q0.I;
+        return this.f55762q0.I;
     }
 
     @Override
     public float getStickyPaddingRight() {
-        return this.f55737q0.I;
+        return this.f55762q0.I;
     }
 
     @Override
     public float getStickyPaddingTop() {
-        return this.f55737q0.J;
+        return this.f55762q0.J;
     }
 
     public int getType() {
-        return this.f55740t0;
+        return this.f55765t0;
     }
 
     public int getTypesCount() {
-        return this.f55737q0.getTypesCount() - (!this.f55738r0 ? 1 : 0);
+        return this.f55762q0.getTypesCount() - (!this.f55763r0 ? 1 : 0);
     }
 
     @Override
@@ -139,8 +139,8 @@ public final class n0 extends j {
         String str;
         String str2;
         String str3;
-        this.f55741u0 = messageMedia;
-        this.f55742v0 = mediaArea;
+        this.f55766u0 = messageMedia;
+        this.f55767v0 = mediaArea;
         String str4 = null;
         if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
             TLRPC.GeoPoint geoPoint = messageMedia.geo;
@@ -170,23 +170,23 @@ public final class n0 extends j {
         } else {
             str = "";
         }
-        m0 m0Var = this.f55737q0;
+        m0 m0Var = this.f55762q0;
         m0Var.d(i7, str4);
         m0Var.setText(str);
         m();
     }
 
     public void setColor(int i7) {
-        this.f55738r0 = true;
-        this.f55739s0 = i7;
+        this.f55763r0 = true;
+        this.f55764s0 = i7;
     }
 
     public void setMaxWidth(int i7) {
-        this.f55737q0.setMaxWidth(i7);
+        this.f55762q0.setMaxWidth(i7);
     }
 
     public void setType(int i7) {
-        this.f55740t0 = i7;
-        this.f55737q0.e(i7, this.f55739s0);
+        this.f55765t0 = i7;
+        this.f55762q0.e(i7, this.f55764s0);
     }
 }

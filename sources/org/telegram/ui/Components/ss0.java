@@ -45,7 +45,7 @@ public final class ss0 extends di.y9 {
     @Override
     public final boolean d(ArrayList arrayList, TL_stories.TL_stories_storyViews tL_stories_storyViews) {
         TL_stories.StoryItem storyItem;
-        di.q6 q6Var = this.h.f38730s;
+        di.q6 q6Var = this.h.f38721s;
         ArrayList<TL_stories.StoryViews> arrayList2 = tL_stories_storyViews.views;
         q6Var.getClass();
         if (arrayList != null && arrayList2 != null) {

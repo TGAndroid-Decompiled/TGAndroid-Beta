@@ -14,7 +14,7 @@ public final class z80 extends jy {
     @Override
     public final int A() {
         g90 g90Var = this.Y;
-        if (g90Var.f33915f.I() == null && g90Var.f33915f.U == null) {
+        if (g90Var.f33863f.I() == null && g90Var.f33863f.U == null) {
             return B();
         }
         return B() - 1;
@@ -26,21 +26,21 @@ public final class z80 extends jy {
         float f10;
         mt0 mt0Var = this.X;
         int i10 = 0;
-        mt0Var.f36134c = false;
+        mt0Var.f36072c = false;
         g90 g90Var = this.Y;
         if (i7 == 0) {
-            mt0Var.f36132a = this.f57024m;
-            mt0Var.f36133b = g90Var.f33914e.h;
-            mt0Var.f36134c = true;
+            mt0Var.f36070a = this.f57049m;
+            mt0Var.f36071b = g90Var.f33862e.h;
+            mt0Var.f36072c = true;
             return mt0Var;
         }
         int i11 = i7 - 1;
-        if (g90Var.f33915f.I() == null && g90Var.f33915f.U == null) {
+        if (g90Var.f33863f.I() == null && g90Var.f33863f.U == null) {
             i7 = i11;
         }
-        mt0Var.f36132a = 0.0f;
-        mt0Var.f36133b = 0.0f;
-        Object J = g90Var.f33915f.J(i7);
+        mt0Var.f36070a = 0.0f;
+        mt0Var.f36071b = 0.0f;
+        Object J = g90Var.f33863f.J(i7);
         if (J instanceof TLRPC.BotInlineResult) {
             TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) J;
             TLRPC.Document document = botInlineResult.document;
@@ -52,18 +52,18 @@ public final class z80 extends jy {
                 } else {
                     f10 = 100.0f;
                 }
-                mt0Var.f36132a = f10;
+                mt0Var.f36070a = f10;
                 if (w11 != null) {
                     f11 = w11.h;
                 }
-                mt0Var.f36133b = f11;
+                mt0Var.f36071b = f11;
                 while (i10 < botInlineResult.document.attributes.size()) {
                     TLRPC.DocumentAttribute documentAttribute = botInlineResult.document.attributes.get(i10);
                     if (!(documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
                         i10++;
                     } else {
-                        mt0Var.f36132a = documentAttribute.f26959w;
-                        mt0Var.f36133b = documentAttribute.h;
+                        mt0Var.f36070a = documentAttribute.f26959w;
+                        mt0Var.f36071b = documentAttribute.h;
                         break;
                     }
                 }
@@ -73,8 +73,8 @@ public final class z80 extends jy {
                     if (!(documentAttribute2 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute2 instanceof TLRPC.TL_documentAttributeVideo)) {
                         i10++;
                     } else {
-                        mt0Var.f36132a = documentAttribute2.f26959w;
-                        mt0Var.f36133b = documentAttribute2.h;
+                        mt0Var.f36070a = documentAttribute2.f26959w;
+                        mt0Var.f36071b = documentAttribute2.h;
                         break;
                     }
                 }
@@ -84,16 +84,16 @@ public final class z80 extends jy {
                     if (!(documentAttribute3 instanceof TLRPC.TL_documentAttributeImageSize) && !(documentAttribute3 instanceof TLRPC.TL_documentAttributeVideo)) {
                         i10++;
                     } else {
-                        mt0Var.f36132a = documentAttribute3.f26959w;
-                        mt0Var.f36133b = documentAttribute3.h;
+                        mt0Var.f36070a = documentAttribute3.f26959w;
+                        mt0Var.f36071b = documentAttribute3.h;
                         break;
                     }
                 }
             } else {
                 TLRPC.Photo photo = botInlineResult.photo;
                 if (photo != null && (w10 = org.telegram.messenger.w7.w(photo.sizes, org.telegram.messenger.g0.Z0(false), false, null, false)) != null) {
-                    mt0Var.f36132a = w10.f26977w;
-                    mt0Var.f36133b = w10.h;
+                    mt0Var.f36070a = w10.f26977w;
+                    mt0Var.f36071b = w10.h;
                 }
             }
         }

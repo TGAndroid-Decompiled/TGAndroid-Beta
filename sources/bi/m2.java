@@ -129,14 +129,14 @@ public final class m2 implements Runnable {
                 String str2 = (String) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 TLObject tLObject2 = (TLObject) obj;
-                mVar.f59439w = false;
-                mVar.f59442z = true;
+                mVar.f59464w = false;
+                mVar.f59467z = true;
                 if (z10) {
                     org.telegram.messenger.g0.r(runnable);
                 }
-                yh.m.k(mVar.f59434q, false, false);
-                if (TextUtils.equals(str2, mVar.f59437t) && tL_error2 == null) {
-                    mVar.f59442z = true;
+                yh.m.k(mVar.f59459q, false, false);
+                if (TextUtils.equals(str2, mVar.f59462t) && tL_error2 == null) {
+                    mVar.f59467z = true;
                     mVar.g((TLRPC.TL_messages_chatInviteImporters) tLObject2, str2, z9, false);
                     return;
                 }

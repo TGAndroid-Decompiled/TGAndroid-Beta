@@ -7,27 +7,27 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.EditText;
 public final class br extends ViewGroup {
-    public static final int f32280x = 0;
-    public final zq f32281a;
-    public EditText f32282b;
-    public final View[] f32283c;
+    public static final int f32274x = 0;
+    public final zq f32275a;
+    public EditText f32276b;
+    public final View[] f32277c;
     public View d;
-    public boolean f32284e;
-    public boolean f32285f;
+    public boolean f32278e;
+    public boolean f32279f;
     public final yq h;
-    public boolean f32286n;
-    public final yq f32287r;
-    public int f32288s;
-    public int f32289w;
+    public boolean f32280n;
+    public final yq f32281r;
+    public int f32282s;
+    public int f32283w;
 
     public br(Context context) {
         super(context);
         String str;
         int i7;
-        this.f32283c = new View[12];
+        this.f32277c = new View[12];
         int i10 = 0;
         this.h = new yq(this, 0);
-        this.f32287r = new yq(this, 1);
+        this.f32281r = new yq(this, 1);
         for (int i11 = 0; i11 < 11; i11++) {
             if (i11 != 9) {
                 switch (i11) {
@@ -69,22 +69,22 @@ public final class br extends ViewGroup {
                     i7 = 0;
                 }
                 String valueOf = String.valueOf(i7);
-                this.f32283c[i11] = new ar(context, valueOf, str);
-                this.f32283c[i11].setOnClickListener(new lk(5, this, valueOf));
-                addView(this.f32283c[i11]);
+                this.f32277c[i11] = new ar(context, valueOf, str);
+                this.f32277c[i11].setOnClickListener(new lk(5, this, valueOf));
+                addView(this.f32277c[i11]);
             }
         }
         zq zqVar = new zq(this, context, new uy(context, new hi.z3(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f32281a = zqVar;
+        this.f32275a = zqVar;
         zqVar.setImageResource(2131232093);
         org.telegram.ui.ActionBar.r6.t(zqVar, org.telegram.ui.ActionBar.k6.G6, null, PorterDuff.Mode.SRC_ATOP);
         int L = org.telegram.messenger.g0.L(11.0f);
         zqVar.setPadding(L, L, L, L);
         zqVar.setOnClickListener(new bi.l1(11));
-        this.f32283c[11] = zqVar;
+        this.f32277c[11] = zqVar;
         addView(zqVar);
         while (true) {
-            View[] viewArr = this.f32283c;
+            View[] viewArr = this.f32277c;
             if (i10 < viewArr.length) {
                 View view = viewArr[i10];
                 if (view != null) {
@@ -168,7 +168,7 @@ public final class br extends ViewGroup {
         int y11 = org.telegram.messenger.camera.q.y(42.0f, getHeight(), 4);
         int i13 = 0;
         while (true) {
-            View[] viewArr = this.f32283c;
+            View[] viewArr = this.f32277c;
             if (i13 < viewArr.length) {
                 int L = org.telegram.messenger.g0.L(6.0f) + y10;
                 int L2 = org.telegram.messenger.g0.L(10.0f) + (L * (i13 % 3));
@@ -191,7 +191,7 @@ public final class br extends ViewGroup {
         setMeasuredDimension(View.MeasureSpec.getSize(i7), View.MeasureSpec.getSize(i10));
         int y10 = org.telegram.messenger.camera.q.y(32.0f, getWidth(), 3);
         int y11 = org.telegram.messenger.camera.q.y(42.0f, getHeight(), 4);
-        for (View view : this.f32283c) {
+        for (View view : this.f32277c) {
             if (view != null) {
                 view.measure(View.MeasureSpec.makeMeasureSpec(y10, 1073741824), View.MeasureSpec.makeMeasureSpec(y11, 1073741824));
             }
@@ -199,12 +199,12 @@ public final class br extends ViewGroup {
     }
 
     public void setDispatchBackWhenEmpty(boolean z9) {
-        this.f32284e = z9;
+        this.f32278e = z9;
     }
 
     public void setEditText(EditText editText) {
-        this.f32282b = editText;
-        this.f32284e = false;
+        this.f32276b = editText;
+        this.f32278e = false;
     }
 
     public void setViewToFindFocus(View view) {

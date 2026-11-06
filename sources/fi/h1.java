@@ -2,8 +2,8 @@ package fi;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.h61;
-public final class h1 extends h61 {
+import org.telegram.ui.Components.l61;
+public final class h1 extends l61 {
     public final boolean f12123a;
     public final Context f12124b;
     public final k2 f12125c;

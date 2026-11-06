@@ -5,22 +5,22 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class x60 implements qw {
-    public final int f51764a = 0;
-    public final LaunchActivity f51765b;
-    public final TLRPC.User f51766c;
+    public final int f51781a = 0;
+    public final LaunchActivity f51782b;
+    public final TLRPC.User f51783c;
     public final String d;
-    public final int f51767e;
+    public final int f51784e;
 
     public x60(LaunchActivity launchActivity, String str, int i7, TLRPC.User user) {
-        this.f51765b = launchActivity;
+        this.f51782b = launchActivity;
         this.d = str;
-        this.f51767e = i7;
-        this.f51766c = user;
+        this.f51784e = i7;
+        this.f51783c = user;
     }
 
     @Override
     public final boolean G() {
-        switch (this.f51764a) {
+        switch (this.f51781a) {
             case 0:
                 return false;
             default:
@@ -30,7 +30,7 @@ public final class x60 implements qw {
 
     @Override
     public final boolean N(ww wwVar) {
-        switch (this.f51764a) {
+        switch (this.f51781a) {
             case 0:
                 return false;
             default:
@@ -40,11 +40,11 @@ public final class x60 implements qw {
 
     @Override
     public final boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, v91 v91Var) {
-        int i11 = this.f51764a;
-        int i12 = this.f51767e;
+        int i11 = this.f51781a;
+        int i12 = this.f51784e;
         String str = this.d;
-        TLRPC.User user = this.f51766c;
-        LaunchActivity launchActivity = this.f51765b;
+        TLRPC.User user = this.f51783c;
+        LaunchActivity launchActivity = this.f51782b;
         switch (i11) {
             case 0:
                 String str2 = LaunchActivity.B1;
@@ -92,9 +92,9 @@ public final class x60 implements qw {
     }
 
     public x60(LaunchActivity launchActivity, TLRPC.User user, String str, int i7) {
-        this.f51765b = launchActivity;
-        this.f51766c = user;
+        this.f51782b = launchActivity;
+        this.f51783c = user;
         this.d = str;
-        this.f51767e = i7;
+        this.f51784e = i7;
     }
 }

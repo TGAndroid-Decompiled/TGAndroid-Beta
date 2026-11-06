@@ -91,9 +91,9 @@ public final class vb implements Runnable {
             canvas = new Canvas(createBitmap);
         }
         zg0Var.b();
-        Bitmap createBitmap2 = Bitmap.createBitmap(zg0Var.f40926b, zg0Var.f40928c, Bitmap.Config.ARGB_8888);
+        Bitmap createBitmap2 = Bitmap.createBitmap(zg0Var.f40951b, zg0Var.f40953c, Bitmap.Config.ARGB_8888);
         if (z9) {
-            i11 = zg0Var.f40931e[0] - 1;
+            i11 = zg0Var.f40956e[0] - 1;
         } else {
             i11 = 0;
         }

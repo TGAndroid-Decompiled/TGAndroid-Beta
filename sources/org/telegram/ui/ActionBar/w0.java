@@ -113,7 +113,7 @@ public abstract class w0 extends FrameLayout implements a6 {
         s0Var.n(0.3f, 165L, xqVar);
         s0Var.w(org.telegram.messenger.g0.N(14.0f));
         Paint.Style style = Paint.Style.FILL_AND_STROKE;
-        TextPaint textPaint = s0Var.f34514a;
+        TextPaint textPaint = s0Var.f34475a;
         textPaint.setStyle(style);
         textPaint.setStrokeWidth(org.telegram.messenger.g0.N(0.3f));
         if (hd.f22871a0) {
@@ -121,14 +121,14 @@ public abstract class w0 extends FrameLayout implements a6 {
         } else {
             i7 = 3;
         }
-        s0Var.f34516b = i7;
+        s0Var.f34477b = i7;
         s0 s0Var2 = new s0(this, 1);
         this.d = s0Var2;
         s0Var2.setCallback(this);
         s0Var2.x(org.telegram.messenger.g0.o());
         s0Var2.n(0.3f, 165L, xqVar);
         s0Var2.w(org.telegram.messenger.g0.N(14.0f));
-        TextPaint textPaint2 = s0Var2.f34514a;
+        TextPaint textPaint2 = s0Var2.f34475a;
         textPaint2.setStyle(style);
         textPaint2.setStrokeWidth(org.telegram.messenger.g0.N(0.3f));
         if (hd.f22871a0) {
@@ -136,7 +136,7 @@ public abstract class w0 extends FrameLayout implements a6 {
         } else {
             i10 = 5;
         }
-        s0Var2.f34516b = i10;
+        s0Var2.f34477b = i10;
         paint.setColor(0);
         paint.setShadowLayer(org.telegram.messenger.g0.N(1.33f), 0.0f, org.telegram.messenger.g0.N(0.33f), 1056964608);
         ColorMatrix colorMatrix = new ColorMatrix();
@@ -237,7 +237,7 @@ public abstract class w0 extends FrameLayout implements a6 {
         }
         if (str2 != null) {
             s0 s0Var = this.f28681c;
-            if (!TextUtils.equals(s0Var.f34522i, str2)) {
+            if (!TextUtils.equals(s0Var.f34483i, str2)) {
                 s0Var.a();
                 s0Var.t(str2, true, true);
             }
@@ -247,7 +247,7 @@ public abstract class w0 extends FrameLayout implements a6 {
         }
         if (str != null) {
             s0 s0Var2 = this.d;
-            if (!TextUtils.equals(s0Var2.f34522i, str)) {
+            if (!TextUtils.equals(s0Var2.f34483i, str)) {
                 s0Var2.a();
                 s0Var2.t(str, true, true);
             }
@@ -360,7 +360,7 @@ public abstract class w0 extends FrameLayout implements a6 {
             } else {
                 Pair pair = null;
                 if (s02 instanceof qa0) {
-                    bitmap = ((qa0) s02).f37345k;
+                    bitmap = ((qa0) s02).f37235k;
                 } else if (s02 instanceof BitmapDrawable) {
                     bitmap = ((BitmapDrawable) s02).getBitmap();
                 } else {

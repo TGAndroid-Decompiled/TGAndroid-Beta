@@ -3,10 +3,10 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class xt implements qw, vr {
-    public final au f51960a;
+    public final au f51983a;
 
     public xt(au auVar) {
-        this.f51960a = auVar;
+        this.f51983a = auVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class xt implements qw, vr {
 
     @Override
     public void b(TLRPC.User user) {
-        this.f51960a.q0(user);
+        this.f51983a.q0(user);
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class xt implements qw, vr {
         if (!arrayList.isEmpty()) {
             long j3 = ((org.telegram.messenger.xr) arrayList.get(0)).f26505a;
             if (org.telegram.messenger.m5.E(j3)) {
-                au auVar = this.f51960a;
+                au auVar = this.f51983a;
                 auVar.q0(auVar.getMessagesController().a2(Long.valueOf(j3)));
                 return true;
             }

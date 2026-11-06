@@ -5,23 +5,23 @@ import android.graphics.Canvas;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 public final class n2 extends View {
-    public final o2 f47914a;
+    public final o2 f47940a;
 
     public n2(o2 o2Var, Context context) {
         super(context);
-        this.f47914a = o2Var;
+        this.f47940a = o2Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float L;
-        o2 o2Var = this.f47914a;
-        if (o2Var.f48184e == null) {
+        o2 o2Var = this.f47940a;
+        if (o2Var.f48213e == null) {
             return;
         }
-        int b10 = o2Var.f48183c.b();
+        int b10 = o2Var.f48212c.b();
         int L2 = org.telegram.messenger.g0.L(4.0f) + org.telegram.messenger.k5.D(6.0f, b10 - 1, org.telegram.messenger.g0.L(7.0f) * b10);
-        float f10 = o2Var.f48190x + o2Var.f48189w;
+        float f10 = o2Var.f48219x + o2Var.f48218w;
         if (L2 < getMeasuredWidth()) {
             L = (getMeasuredWidth() - L2) / 2.0f;
         } else {
@@ -31,7 +31,7 @@ public final class n2 extends View {
         }
         canvas.save();
         canvas.clipRect(0, 0, getMeasuredWidth(), getMeasuredHeight());
-        for (int i7 = 0; i7 < o2Var.f48184e.items.size(); i7++) {
+        for (int i7 = 0; i7 < o2Var.f48213e.items.size(); i7++) {
             float max = Math.max(0.0f, 1.0f - Math.abs(i7 - f10));
             float L4 = (org.telegram.messenger.g0.L(1.0f) * max) + org.telegram.messenger.g0.L(2.0f);
             g4.C1.setAlpha((int) ((max * 95.0f) + 160.0f));

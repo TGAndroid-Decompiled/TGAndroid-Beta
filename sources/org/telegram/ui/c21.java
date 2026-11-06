@@ -9,7 +9,7 @@ public final class c21 extends org.telegram.ui.Components.na implements org.tele
     public final HashMap S1;
     public final int T1;
     public int U1;
-    public org.telegram.ui.Components.f41 V1;
+    public org.telegram.ui.Components.k41 V1;
 
     public c21(org.telegram.ui.ActionBar.f2 r17, long r18, int r20, bi.f4 r21) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.c21.<init>(org.telegram.ui.ActionBar.f2, long, int, bi.f4):void");
@@ -17,10 +17,10 @@ public final class c21 extends org.telegram.ui.Components.na implements org.tele
 
     @Override
     public final org.telegram.ui.Components.oj0 L0(org.telegram.ui.Components.pj0 pj0Var) {
-        org.telegram.ui.Components.f41 f41Var = new org.telegram.ui.Components.f41(pj0Var, getContext(), this.f28612a, 0, false, new a5(this, 26), this.I0);
-        this.V1 = f41Var;
-        f41Var.f33473r = false;
-        return f41Var;
+        org.telegram.ui.Components.k41 k41Var = new org.telegram.ui.Components.k41(pj0Var, getContext(), this.f28612a, 0, false, new a5(this, 26), this.I0);
+        this.V1 = k41Var;
+        k41Var.f35132r = false;
+        return k41Var;
     }
 
     @Override
@@ -57,9 +57,9 @@ public final class c21 extends org.telegram.ui.Components.na implements org.tele
     }
 
     public final boolean e1(int i7, View view) {
-        org.telegram.ui.Components.r31 G;
-        org.telegram.ui.Components.f41 f41Var = this.V1;
-        if (f41Var == null || i7 == 0 || (G = f41Var.G(i7 - 1)) == null) {
+        org.telegram.ui.Components.w31 G;
+        org.telegram.ui.Components.k41 k41Var = this.V1;
+        if (k41Var == null || i7 == 0 || (G = k41Var.G(i7 - 1)) == null) {
             return false;
         }
         Object obj = G.G;
@@ -70,11 +70,11 @@ public final class c21 extends org.telegram.ui.Components.na implements org.tele
             HashMap hashMap = this.S1;
             if (hashMap.containsKey(valueOf)) {
                 hashMap.remove(Integer.valueOf(f12));
-                G.f37592e = false;
+                G.f39824e = false;
                 ((org.telegram.ui.Cells.o7) view).i(false, true);
             } else {
                 hashMap.put(Integer.valueOf(f12), ijVar.f23241l);
-                G.f37592e = true;
+                G.f39824e = true;
                 ((org.telegram.ui.Cells.o7) view).i(true, true);
             }
             fi.d dVar = this.Q1;

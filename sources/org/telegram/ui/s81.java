@@ -7,29 +7,29 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.Utilities;
 public final class s81 extends FrameLayout {
-    public final int f49662a;
-    public float f49663b;
-    public boolean f49664c;
+    public final int f49683a;
+    public float f49684b;
+    public boolean f49685c;
     public Object d;
 
     public s81(Context context, int i7) {
         super(context);
-        this.f49662a = i7;
+        this.f49683a = i7;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        switch (this.f49662a) {
+        switch (this.f49683a) {
             case 0:
-                float f10 = ((1.0f - this.f49663b) * 0.2f) + 0.8f;
+                float f10 = ((1.0f - this.f49684b) * 0.2f) + 0.8f;
                 canvas.save();
                 canvas.scale(f10, f10, getMeasuredHeight() / 2.0f, getMeasuredWidth() / 2.0f);
                 super.dispatchDraw(canvas);
                 canvas.restore();
                 if (isPressed()) {
-                    float f11 = this.f49663b;
+                    float f11 = this.f49684b;
                     if (f11 != 1.0f) {
-                        this.f49663b = Utilities.i(f11 + 0.16f, 1.0f, 0.0f);
+                        this.f49684b = Utilities.i(f11 + 0.16f, 1.0f, 0.0f);
                         invalidate();
                         return;
                     }
@@ -39,23 +39,23 @@ public final class s81 extends FrameLayout {
             default:
                 super.dispatchDraw(canvas);
                 int i7 = 1;
-                if (this.f49664c) {
-                    float f12 = this.f49663b + 0.013333334f;
-                    this.f49663b = f12;
+                if (this.f49685c) {
+                    float f12 = this.f49684b + 0.013333334f;
+                    this.f49684b = f12;
                     if (f12 > 1.0f) {
-                        this.f49664c = false;
-                        this.f49663b = 1.0f;
+                        this.f49685c = false;
+                        this.f49684b = 1.0f;
                     }
                 } else {
-                    float f13 = this.f49663b - 0.013333334f;
-                    this.f49663b = f13;
+                    float f13 = this.f49684b - 0.013333334f;
+                    this.f49684b = f13;
                     if (f13 < 0.0f) {
-                        this.f49664c = true;
-                        this.f49663b = 0.0f;
+                        this.f49685c = true;
+                        this.f49684b = 0.0f;
                     }
                 }
                 TextView textView = (TextView) this.d;
-                float interpolation = org.telegram.ui.Components.xq.f40310f.getInterpolation(this.f49663b) * org.telegram.messenger.g0.L(8.0f);
+                float interpolation = org.telegram.ui.Components.xq.f40329f.getInterpolation(this.f49684b) * org.telegram.messenger.g0.L(8.0f);
                 if (org.telegram.messenger.hd.f22871a0) {
                     i7 = -1;
                 }
@@ -68,18 +68,18 @@ public final class s81 extends FrameLayout {
     @Override
     public void setPressed(boolean z9) {
         ValueAnimator valueAnimator;
-        switch (this.f49662a) {
+        switch (this.f49683a) {
             case 0:
                 super.setPressed(z9);
-                if (this.f49664c != z9) {
-                    this.f49664c = z9;
+                if (this.f49685c != z9) {
+                    this.f49685c = z9;
                     invalidate();
                     if (z9 && (valueAnimator = (ValueAnimator) this.d) != null) {
                         valueAnimator.removeAllListeners();
                         ((ValueAnimator) this.d).cancel();
                     }
                     if (!z9) {
-                        float f10 = this.f49663b;
+                        float f10 = this.f49684b;
                         if (f10 != 0.0f) {
                             ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
                             this.d = ofFloat;

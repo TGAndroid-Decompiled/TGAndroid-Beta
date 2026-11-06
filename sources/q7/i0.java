@@ -4,18 +4,18 @@ import java.io.Serializable;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 public final class i0 extends a implements Serializable {
-    public final MessageDigest f53866e;
-    public final int f53867f;
+    public final MessageDigest f53891e;
+    public final int f53892f;
     public final boolean h;
-    public final String f53868n;
+    public final String f53893n;
 
     public i0() {
         boolean z9;
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            this.f53866e = messageDigest;
-            this.f53867f = messageDigest.getDigestLength();
-            this.f53868n = "Hashing.sha256()";
+            this.f53891e = messageDigest;
+            this.f53892f = messageDigest.getDigestLength();
+            this.f53893n = "Hashing.sha256()";
             try {
                 messageDigest.clone();
                 z9 = true;
@@ -29,6 +29,6 @@ public final class i0 extends a implements Serializable {
     }
 
     public final String toString() {
-        return this.f53868n;
+        return this.f53893n;
     }
 }

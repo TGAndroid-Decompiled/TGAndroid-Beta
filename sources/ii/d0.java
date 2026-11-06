@@ -38,10 +38,10 @@ import org.telegram.ui.Cells.p2;
 import org.telegram.ui.Cells.t2;
 import org.telegram.ui.Components.cc;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.r00;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.an;
 import org.telegram.ui.yz;
@@ -74,7 +74,7 @@ public final class d0 extends v2 implements ls, te.b, p2 {
     public final r00 f15510u1;
     public final r00 f15511v1;
     public final yz f15512w1;
-    public final k41 f15513x1;
+    public final p41 f15513x1;
     public final ec f15514y1;
     public final ec f15515z1;
 
@@ -84,7 +84,7 @@ public final class d0 extends v2 implements ls, te.b, p2 {
 
     @Override
     public final boolean G() {
-        if (!this.f15500i1.f55371f && !this.f15501j1.f55371f) {
+        if (!this.f15500i1.f55396f && !this.f15501j1.f55396f) {
             View currentView = this.f15502k1.getCurrentView();
             if (currentView instanceof b0) {
                 return ((b0) currentView).f15490e;
@@ -94,8 +94,8 @@ public final class d0 extends v2 implements ls, te.b, p2 {
         return false;
     }
 
-    public final boolean I0(r31 r31Var) {
-        Object obj = r31Var.G;
+    public final boolean I0(w31 w31Var) {
+        Object obj = w31Var.G;
         if (obj instanceof ji.f) {
             ji.f fVar = (ji.f) obj;
             long j3 = fVar.f17080a;
@@ -121,8 +121,8 @@ public final class d0 extends v2 implements ls, te.b, p2 {
         String str2;
         int i7 = 0;
         if (!z9) {
-            arrayList.add(r31.E(99, (int) (org.telegram.messenger.g0.f22537q.y * 0.35f)));
-            arrayList.add(r31.E(0, org.telegram.messenger.g0.L(56.0f)));
+            arrayList.add(w31.E(99, (int) (org.telegram.messenger.g0.f22537q.y * 0.35f)));
+            arrayList.add(w31.E(0, org.telegram.messenger.g0.L(56.0f)));
         }
         if (this.H1 != null) {
             if (z9 && (str2 = this.J1) != null) {
@@ -139,10 +139,10 @@ public final class d0 extends v2 implements ls, te.b, p2 {
                 if (z9 && !TextUtils.isEmpty(str)) {
                     String str3 = chat.title;
                     if (str3 != null && str3.toLowerCase().contains(str)) {
-                        arrayList.add(r31.w(chat));
+                        arrayList.add(w31.w(chat));
                     }
                 } else {
-                    arrayList.add(r31.w(chat));
+                    arrayList.add(w31.w(chat));
                 }
             }
         }
@@ -167,8 +167,8 @@ public final class d0 extends v2 implements ls, te.b, p2 {
         qp.s1(this.f28612a).Q2(j10, j3, false, z9, new m9(1, this, V));
     }
 
-    public final void L0(r31 r31Var) {
-        Object obj = r31Var.G;
+    public final void L0(w31 w31Var) {
+        Object obj = w31Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (this.E1) {
@@ -220,13 +220,13 @@ public final class d0 extends v2 implements ls, te.b, p2 {
             }
             r00Var.setVisibility(i15);
             zVar.d.setAlpha(a10);
-            k41 k41Var = zVar.d;
+            p41 p41Var = zVar.d;
             if (i20 > 0) {
                 i16 = 0;
             } else {
                 i16 = 8;
             }
-            k41Var.setVisibility(i16);
+            p41Var.setVisibility(i16);
             this.f15504o1.setAlpha(a10);
             this.f15504o1.setScaleX(org.telegram.messenger.g0.T1(0.95f, 1.0f, a10));
             this.f15504o1.setScaleY(org.telegram.messenger.g0.T1(0.95f, 1.0f, a10));
@@ -276,13 +276,13 @@ public final class d0 extends v2 implements ls, te.b, p2 {
             }
             r00Var2.setVisibility(i11);
             yVar.d.setAlpha(a11);
-            k41 k41Var2 = yVar.d;
+            p41 p41Var2 = yVar.d;
             if (i22 > 0) {
                 i12 = 0;
             } else {
                 i12 = 8;
             }
-            k41Var2.setVisibility(i12);
+            p41Var2.setVisibility(i12);
             if (!this.E1) {
                 this.f15505p1.setAlpha(a11);
                 this.f15505p1.setScaleX(org.telegram.messenger.g0.T1(0.95f, 1.0f, a11));
@@ -295,12 +295,12 @@ public final class d0 extends v2 implements ls, te.b, p2 {
                 }
                 dVar2.setVisibility(i13);
             }
-            k41 k41Var3 = this.f15513x1;
-            k41Var3.setAlpha(f10);
+            p41 p41Var3 = this.f15513x1;
+            p41Var3.setAlpha(f10);
             if (i23 > 0) {
                 i19 = 0;
             }
-            k41Var3.setVisibility(i19);
+            p41Var3.setVisibility(i19);
             this.f28615b.invalidate();
             this.f15515z1.invalidate();
         }
@@ -313,7 +313,7 @@ public final class d0 extends v2 implements ls, te.b, p2 {
         z zVar = this.f15507r1;
         if (i7 == i11) {
             if (((TLRPC.ChatFull) objArr[0]).f26953id == j3) {
-                zVar.d.f35167f3.O(true);
+                zVar.d.f36781f3.O(true);
             }
         } else if (i7 == qs.f25046r) {
             Integer num = (Integer) objArr[0];
@@ -338,13 +338,13 @@ public final class d0 extends v2 implements ls, te.b, p2 {
         if (this.f15502k1.getCurrentPosition() > 0) {
             if (this.f15502k1.getCurrentPosition() == 2) {
                 te.a aVar = this.f15501j1;
-                if (aVar.f55371f) {
-                    this.f15509t1.d.f35166e3.h1(1, this.L1.f15118b);
+                if (aVar.f55396f) {
+                    this.f15509t1.d.f36780e3.h1(1, this.L1.f15118b);
                     aVar.a(false, true);
                     this.f28640q0 = true;
                     r00 r00Var = this.f15511v1;
-                    org.telegram.messenger.g0.v1(r00Var.f37557r);
-                    r00Var.f37557r.clearFocus();
+                    org.telegram.messenger.g0.v1(r00Var.f37447r);
+                    r00Var.f37447r.clearFocus();
                     return;
                 }
             }
@@ -424,38 +424,38 @@ public final class d0 extends v2 implements ls, te.b, p2 {
         r00 r00Var = new r00(context, this.I0);
         this.f15510u1 = r00Var;
         r00Var.setCloseButtonVisible(true);
-        r00Var.f37561y = true;
+        r00Var.f37451y = true;
         r00Var.updateColors();
         String M0 = hd.M0(2131745837, null);
-        ah.i iVar = r00Var.f37557r;
+        ah.i iVar = r00Var.f37447r;
         iVar.setHint(M0);
         iVar.addTextChangedListener(new w(this, 0));
         r00Var.setVisibility(8);
         r00 r00Var2 = new r00(context, this.I0);
         this.f15511v1 = r00Var2;
         r00Var2.setCloseButtonVisible(true);
-        r00Var2.f37561y = true;
+        r00Var2.f37451y = true;
         r00Var2.updateColors();
         String M02 = hd.M0(2131745837, null);
-        ah.i iVar2 = r00Var2.f37557r;
+        ah.i iVar2 = r00Var2.f37447r;
         iVar2.setHint(M02);
         iVar2.addTextChangedListener(new w(this, 1));
         r00Var2.setVisibility(8);
-        k41 k41Var = new k41(context, this.f28612a, 0, false, new t(this, 0), new u(this, 0), null, this.I0);
-        this.f15513x1 = k41Var;
-        k41Var.j(new ai.b(this, 17));
-        k41Var.setClipToPadding(false);
-        k41Var.setVisibility(8);
-        k41Var.r1();
-        k41Var.f35167f3.f33473r = false;
-        k41Var.setPadding(0, org.telegram.messenger.g0.L(52.0f) + org.telegram.messenger.g0.f22531m, 0, org.telegram.messenger.g0.f22532n);
+        p41 p41Var = new p41(context, this.f28612a, 0, false, new t(this, 0), new u(this, 0), null, this.I0);
+        this.f15513x1 = p41Var;
+        p41Var.j(new ai.b(this, 17));
+        p41Var.setClipToPadding(false);
+        p41Var.setVisibility(8);
+        p41Var.r1();
+        p41Var.f36781f3.f35132r = false;
+        p41Var.setPadding(0, org.telegram.messenger.g0.L(52.0f) + org.telegram.messenger.g0.f22531m, 0, org.telegram.messenger.g0.f22532n);
         yz yzVar = new yz(f2Var);
         this.f15512w1 = yzVar;
         yzVar.setVisibility(8);
         yzVar.setBackground(null);
         yzVar.setChatPreviewDelegate(new qb.a(11));
         yzVar.setUiCallback(new gf.g(this, 6));
-        yzVar.f52375b.setClipToPadding(false);
+        yzVar.f52382b.setClipToPadding(false);
         this.C1 = new View(getContext());
         Context context2 = getContext();
         f6 f6Var = this.I0;
@@ -486,7 +486,7 @@ public final class d0 extends v2 implements ls, te.b, p2 {
         cc.a((FrameLayout) this.f28615b, new r7(5));
         ViewGroup viewGroup = this.f28615b;
         u uVar = new u(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f54073a;
+        WeakHashMap weakHashMap = r0.i0.f54098a;
         r0.a0.i(viewGroup, uVar);
     }
 

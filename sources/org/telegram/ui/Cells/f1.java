@@ -63,7 +63,7 @@ public abstract class f1 {
     }
 
     public static float c(RecyclerView recyclerView) {
-        int i7 = ht0.f34413l0;
+        int i7 = ht0.f34363l0;
         v4.n0 layoutManager = recyclerView.getLayoutManager();
         if (layoutManager == null || !recyclerView.canScrollVertically(-1)) {
             return 0.0f;

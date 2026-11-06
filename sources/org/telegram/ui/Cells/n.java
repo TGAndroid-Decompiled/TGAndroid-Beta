@@ -11,8 +11,8 @@ import org.telegram.messenger.hd;
 import org.telegram.messenger.p10;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.a41;
 import org.telegram.ui.Components.ty0;
-import org.telegram.ui.Components.v31;
 import org.telegram.ui.Components.wo;
 public final class n extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
     public final org.telegram.ui.Components.l9 f29581a;
@@ -180,7 +180,7 @@ public final class n extends FrameLayout implements org.telegram.ui.ActionBar.a6
         StringBuilder m10 = com.google.android.recaptcha.internal.a.m(s5);
         m10.append(org.telegram.messenger.t3.K(chat, false));
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(m10.toString());
-        spannableStringBuilder.setSpan(new v31("", (ty0) null), s5.length(), spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new a41("", (ty0) null), s5.length(), spannableStringBuilder.length(), 33);
         this.f29583c.l(spannableStringBuilder, false);
         this.f29581a.e(chat, w8Var);
         this.h = z9;

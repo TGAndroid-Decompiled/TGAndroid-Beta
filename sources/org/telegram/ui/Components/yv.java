@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class yv implements c5.g {
-    public final boolean f40718a;
-    public final gy f40719b;
+    public final boolean f40737a;
+    public final gy f40738b;
 
     public yv(gy gyVar, boolean z9) {
-        this.f40719b = gyVar;
-        this.f40718a = z9;
+        this.f40738b = gyVar;
+        this.f40737a = z9;
     }
 
     @Override
     public final void a(int i7) {
         boolean z9;
         int i10;
-        gy gyVar = this.f40719b;
+        gy gyVar = this.f40738b;
         vv vvVar = gyVar.h;
         boolean z10 = false;
         if (vvVar != null) {
@@ -35,18 +35,18 @@ public final class yv implements c5.g {
             z9 = false;
         }
         gyVar.L(z9, true);
-        if (i7 == 2 && (this.f40718a || gyVar.f34133v0)) {
+        if (i7 == 2 && (this.f40737a || gyVar.f34081v0)) {
             z10 = true;
         }
         gyVar.Q(z10, true);
-        if (gyVar.f34128t1.z()) {
+        if (gyVar.f34076t1.z()) {
             if (i7 == 0) {
                 hv hvVar = gyVar.V;
                 if (hvVar != null) {
                     hvVar.d.requestFocus();
                 }
             } else if (i7 == 1) {
-                mv mvVar = gyVar.f34110o0;
+                mv mvVar = gyVar.f34058o0;
                 if (mvVar != null) {
                     mvVar.d.requestFocus();
                 }
@@ -67,18 +67,18 @@ public final class yv implements c5.g {
         int i11;
         int i12;
         int i13;
-        gy gyVar = this.f40719b;
+        gy gyVar = this.f40738b;
         tx txVar3 = gyVar.G0;
-        tx txVar4 = gyVar.f34110o0;
+        tx txVar4 = gyVar.f34058o0;
         tx txVar5 = gyVar.V;
         uv uvVar = gyVar.C0;
         pv pvVar = gyVar.D0;
-        nw nwVar = gyVar.f34113p0;
-        kv kvVar = gyVar.f34091h0;
+        nw nwVar = gyVar.f34061p0;
+        kv kvVar = gyVar.f34039h0;
         sw swVar = gyVar.P;
         int i14 = 2;
         boolean z9 = true;
-        if (gyVar.f34141x0 == null || gyVar.f34088g0 == null) {
+        if (gyVar.f34089x0 == null || gyVar.f34036g0 == null) {
             f11 = 0.0f;
         } else {
             int i15 = 8;
@@ -135,7 +135,7 @@ public final class yv implements c5.g {
         gyVar.getMeasuredWidth();
         gyVar.getPaddingLeft();
         gyVar.getPaddingRight();
-        hx hxVar = gyVar.f34128t1;
+        hx hxVar = gyVar.f34076t1;
         if (hxVar != null) {
             if (i7 == 1) {
                 if (i10 == 0) {

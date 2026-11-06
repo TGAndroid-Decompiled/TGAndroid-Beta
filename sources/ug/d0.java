@@ -1,18 +1,18 @@
 package ug;
 public class d0 {
-    public final int f56426a;
-    public final int f56427b;
-    public final String f56428c;
+    public final int f56451a;
+    public final int f56452b;
+    public final String f56453c;
     public final String d;
-    public final int f56429e;
-    public boolean f56430f;
+    public final int f56454e;
+    public boolean f56455f;
 
     public d0(int i7, int i10, int i11, String str, String str2) {
-        this.f56426a = i7;
-        this.f56427b = i10;
-        this.f56428c = str;
+        this.f56451a = i7;
+        this.f56452b = i10;
+        this.f56453c = str;
         this.d = str2;
-        this.f56429e = i11;
+        this.f56454e = i11;
     }
 
     public static d0 a(int i7, int i10) {

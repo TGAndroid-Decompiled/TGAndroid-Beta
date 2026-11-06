@@ -56,7 +56,7 @@ public abstract class t0 extends Application {
                     Log.w("FirebaseCrashlytics", "A null value was passed to recordException. Ignoring.", null);
                     return;
                 }
-                aa.u uVar = bVar.f57504a;
+                aa.u uVar = bVar.f57529a;
                 Map map = Collections.EMPTY_MAP;
                 uVar.f868n.f3135a.a(new a1.e(uVar, th2));
                 return;

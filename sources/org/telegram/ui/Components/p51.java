@@ -1,6 +1,22 @@
 package org.telegram.ui.Components;
-public interface p51 {
-    void a(float f10);
 
-    void d(float f10);
+import android.graphics.SurfaceTexture;
+public interface p51 {
+    void onError(s51 s51Var, Exception exc);
+
+    void onRenderedFirstFrame();
+
+    void onRenderedFirstFrame(m2.a aVar);
+
+    void onSeekFinished(m2.a aVar);
+
+    void onSeekStarted(m2.a aVar);
+
+    void onStateChanged(boolean z9, int i7);
+
+    boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture);
+
+    void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture);
+
+    void onVideoSizeChanged(int i7, int i10, int i11, float f10);
 }

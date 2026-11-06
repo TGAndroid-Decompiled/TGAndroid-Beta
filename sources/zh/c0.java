@@ -32,14 +32,14 @@ import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.w70;
 import org.telegram.ui.Components.w8;
-import org.telegram.ui.hs0;
+import org.telegram.ui.is0;
 public final class c0 extends na implements v9 {
     public static final int Y1 = 0;
     public final long P1;
@@ -49,7 +49,7 @@ public final class c0 extends na implements v9 {
     public final TextView T1;
     public final z U1;
     public s9 V1;
-    public f41 W1;
+    public k41 W1;
     public int X1;
 
     public c0(Context context, f6 f6Var, long j3, TL_stars.StarGift starGift, ArrayList arrayList, Runnable runnable, boolean z9) {
@@ -63,7 +63,7 @@ public final class c0 extends na implements v9 {
         long j10 = starGift.f27181id;
         this.P1 = j10;
         this.B1 = org.telegram.messenger.g0.L(6.0f);
-        this.f36333r1 = 0.2f;
+        this.f36227r1 = 0.2f;
         v0(i0.a.f(0.1f, k6.w0(k6.f27939i5, this.I0), k6.w0(k6.f27921h5, this.I0)));
         N();
         LinearLayout linearLayout = new LinearLayout(context);
@@ -83,7 +83,7 @@ public final class c0 extends na implements v9 {
         d.leftMargin = i7 + i10;
         d.rightMargin += i10;
         this.f28615b.addView(dVar, d);
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int i11 = this.f28645t0;
         pj0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L(64.0f));
         this.W1.O(false);
@@ -148,13 +148,13 @@ public final class c0 extends na implements v9 {
         linearLayout2.setGravity(17);
         linearLayout2.setClickable(true);
         z0 z0Var = new z0(this.f28612a, context2, f6Var2);
-        z0Var.f60484c0 = true;
+        z0Var.f60509c0 = true;
         f6 f6Var3 = f6Var2;
         z0Var.h(starGift, true, false, false, false, false);
         z0Var.setImageSize(org.telegram.messenger.g0.L(84.0f));
         z0Var.setImageLayer(7);
         z0Var.J.setVisibility(8);
-        z0Var.f60486e.g(r12);
+        z0Var.f60511e.g(r12);
         z0Var.setRibbonTextOneOf(this.V1.d.availability_total);
         linearLayout2.addView(z0Var, ha.l(0.0f, 116, 116));
         ImageView imageView = new ImageView(context);
@@ -165,12 +165,12 @@ public final class c0 extends na implements v9 {
         z zVar = new z(this, context, this.f28612a, f6Var3);
         this.U1 = zVar;
         zVar.d.removeView(zVar.D);
-        zVar.f60484c0 = true;
+        zVar.f60509c0 = true;
         zVar.h(starGift, true, false, false, false, false);
         zVar.setImageSize(org.telegram.messenger.g0.L(100.0f));
         zVar.setImageLayer(7);
         zVar.J.setVisibility(8);
-        zVar.f60486e.g(r12);
+        zVar.f60511e.g(r12);
         zVar.setRibbonTextOneOf(this.V1.d.availability_total);
         zVar.setRibbonText(hd.M0(2131750318, r12));
         linearLayout2.addView(zVar, ha.l(0.0f, 116, 116));
@@ -260,31 +260,31 @@ public final class c0 extends na implements v9 {
                 textView8.setTextSize(1, 14.0f);
                 r6.V(textView8, i17, f6Var3);
                 linearLayout.addView(textView8, ha.t(-1, -2, 17, 20, 0, 20, 16));
-                hs0 hs0Var = new hs0(context, f6Var3);
-                hs0Var.f46476a.l(hd.M0(2131749814, null), false);
-                hs0Var.f46477b.setText(hd.M0(2131749813, null));
-                hs0Var.d.setVisibility(8);
-                ImageView imageView2 = hs0Var.f46478c;
+                is0 is0Var = new is0(context, f6Var3);
+                is0Var.f46735a.l(hd.M0(2131749814, null), false);
+                is0Var.f46736b.setText(hd.M0(2131749813, null));
+                is0Var.d.setVisibility(8);
+                ImageView imageView2 = is0Var.f46737c;
                 imageView2.setImageResource(2131232121);
                 PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
                 r6.t(imageView2, i17, f6Var3, mode);
-                linearLayout.addView(hs0Var, ha.k(6.0f, 0.0f, 6.0f, -2.0f, -1, -2));
-                hs0 hs0Var2 = new hs0(context, f6Var3);
-                hs0Var2.f46476a.l(hd.M0(2131749812, null), false);
-                hs0Var2.f46477b.setText(hd.M0(2131749811, null));
-                hs0Var2.d.setVisibility(8);
-                ImageView imageView3 = hs0Var2.f46478c;
+                linearLayout.addView(is0Var, ha.k(6.0f, 0.0f, 6.0f, -2.0f, -1, -2));
+                is0 is0Var2 = new is0(context, f6Var3);
+                is0Var2.f46735a.l(hd.M0(2131749812, null), false);
+                is0Var2.f46736b.setText(hd.M0(2131749811, null));
+                is0Var2.d.setVisibility(8);
+                ImageView imageView3 = is0Var2.f46737c;
                 imageView3.setImageResource(2131231800);
                 r6.t(imageView3, i17, f6Var3, mode);
-                linearLayout.addView(hs0Var2, ha.k(6.0f, 0.0f, 6.0f, -2.0f, -1, -2));
-                hs0 hs0Var3 = new hs0(context, f6Var3);
-                hs0Var3.f46476a.l(hd.M0(2131749810, null), false);
-                hs0Var3.f46477b.setText(hd.M0(2131749809, null));
-                hs0Var3.d.setVisibility(8);
-                ImageView imageView4 = hs0Var3.f46478c;
+                linearLayout.addView(is0Var2, ha.k(6.0f, 0.0f, 6.0f, -2.0f, -1, -2));
+                is0 is0Var3 = new is0(context, f6Var3);
+                is0Var3.f46735a.l(hd.M0(2131749810, null), false);
+                is0Var3.f46736b.setText(hd.M0(2131749809, null));
+                is0Var3.d.setVisibility(8);
+                ImageView imageView4 = is0Var3.f46737c;
                 imageView4.setImageResource(2131231911);
                 r6.t(imageView4, i17, f6Var3, mode);
-                linearLayout.addView(hs0Var3, ha.k(6.0f, 0.0f, 6.0f, 14.0f, -1, -2));
+                linearLayout.addView(is0Var3, ha.k(6.0f, 0.0f, 6.0f, 14.0f, -1, -2));
             }
             dVar.i(k7.g2(hd.M0(2131743889, null)), false, true);
             dVar.setOnClickListener(new a(this, 1));
@@ -316,10 +316,10 @@ public final class c0 extends na implements v9 {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(this.f36328k1, getContext(), this.f28612a, 0, true, new hi.u1(this, 29), this.I0);
-        this.W1 = f41Var;
-        f41Var.f33473r = false;
-        return f41Var;
+        k41 k41Var = new k41(this.f36222k1, getContext(), this.f28612a, 0, true, new hi.u1(this, 29), this.I0);
+        this.W1 = k41Var;
+        k41Var.f35132r = false;
+        return k41Var;
     }
 
     @Override

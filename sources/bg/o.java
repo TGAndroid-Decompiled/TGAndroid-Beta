@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.ui;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.c41;
 import org.telegram.ui.Components.r5;
 import org.telegram.ui.Components.ug0;
-import org.telegram.ui.Components.x31;
 public abstract class o {
     public static SpannableStringBuilder a(String str) {
         Spanned fromHtml;
@@ -101,7 +101,7 @@ public abstract class o {
                     if (charSequence.equals(url)) {
                         spannableStringBuilder.setSpan(new URLSpan(url), spanStart2, spanEnd2, 33);
                     } else {
-                        spannableStringBuilder.setSpan(new x31(url, null), spanStart2, spanEnd2, 33);
+                        spannableStringBuilder.setSpan(new c41(url, null), spanStart2, spanEnd2, 33);
                     }
                 }
             }

@@ -28,9 +28,9 @@ import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Components.ac;
 import org.telegram.ui.Components.bc;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.v4;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w70;
 import org.telegram.ui.Components.z8;
 public final class l0 implements ji.e {
@@ -80,8 +80,8 @@ public final class l0 implements ji.e {
         }
     }
 
-    public final void b(k41 k41Var) {
-        if (!this.f15568m && !this.f15569n && k41Var.f35166e3.N0() + 10 > k41Var.f35167f3.D.size()) {
+    public final void b(p41 p41Var) {
+        if (!this.f15568m && !this.f15569n && p41Var.f36780e3.N0() + 10 > p41Var.f36781f3.D.size()) {
             d();
         }
     }
@@ -106,16 +106,16 @@ public final class l0 implements ji.e {
                             z9 = false;
                         }
                         int i10 = ji.g.f17083b;
-                        r31 K = r31.K(ji.g.class);
+                        w31 K = w31.K(ji.g.class);
                         K.G = new ji.f(o4, a22, z10);
                         K.H = this;
-                        K.f37596j = !z9;
+                        K.f39828j = !z9;
                         arrayList.add(K);
                     }
                 }
             }
             if (!this.f15569n) {
-                arrayList.add(r31.p(29));
+                arrayList.add(w31.p(29));
             }
         }
     }
@@ -219,7 +219,7 @@ public final class l0 implements ji.e {
         f6 f6Var = this.f15559b;
         bc bcVar = new bc(context, f6Var, false);
         TLObject e22 = qp.s1(i11).e2(j3);
-        z8 z8Var = bcVar.f32099a;
+        z8 z8Var = bcVar.f32093a;
         if (e22 != null) {
             z8Var.setCount(1);
             z8Var.b(0, p10.f24459s0, e22);
@@ -231,7 +231,7 @@ public final class l0 implements ji.e {
         z8Var.setScaleX(1.333f);
         z8Var.setScaleY(1.333f);
         z8Var.a(false);
-        w70 w70Var = bcVar.f32100b;
+        w70 w70Var = bcVar.f32094b;
         w70Var.setSingleLine(false);
         w70Var.setMaxLines(2);
         w70Var.setTextSize(1, 14.0f);
@@ -249,8 +249,8 @@ public final class l0 implements ji.e {
         }
         ac acVar = new ac(context, f6Var, true, true);
         acVar.e(hd.M0(2131743886, null));
-        acVar.f31748b = new r3(this, j3, 11);
-        acVar.f31749c = this.f15564i;
+        acVar.f31760b = new r3(this, j3, 11);
+        acVar.f31761c = this.f15564i;
         bcVar.setButton(acVar);
         this.f15560c.b(bcVar, 5000).j();
     }

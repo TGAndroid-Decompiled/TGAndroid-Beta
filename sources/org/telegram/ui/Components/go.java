@@ -2,19 +2,19 @@ package org.telegram.ui.Components;
 
 import org.telegram.tgnet.tl.TL_stories;
 public final class go implements org.telegram.messenger.c20 {
-    public final int f34001a;
-    public final vo f34002b;
+    public final int f33949a;
+    public final vo f33950b;
 
     public go(vo voVar, int i7) {
-        this.f34001a = i7;
-        this.f34002b = voVar;
+        this.f33949a = i7;
+        this.f33950b = voVar;
     }
 
     @Override
     public final void a(Object obj) {
-        switch (this.f34001a) {
+        switch (this.f33949a) {
             case 0:
-                vo voVar = this.f34002b;
+                vo voVar = this.f33950b;
                 voVar.V1 = (TL_stories.TL_premium_boostsStatus) obj;
                 voVar.U1 = true;
                 voVar.Z0(true);
@@ -22,13 +22,13 @@ public final class go implements org.telegram.messenger.c20 {
                 return;
             default:
                 org.telegram.messenger.e3 e3Var = (org.telegram.messenger.e3) obj;
-                vo voVar2 = this.f34002b;
+                vo voVar2 = this.f33950b;
                 if (voVar2.getContext() != null) {
-                    org.telegram.ui.an anVar = voVar2.f39006r1;
+                    org.telegram.ui.an anVar = voVar2.f39003r1;
                     ug.i0 i0Var = new ug.i0(22, voVar2.f28612a, voVar2.getContext(), anVar, voVar2.I0);
                     i0Var.A1(e3Var);
                     i0Var.z1(voVar2.V1, true);
-                    i0Var.B1(voVar2.f39006r1.a());
+                    i0Var.B1(voVar2.f39003r1.a());
                     i0Var.I2 = new eo(voVar2, 2);
                     i0Var.show();
                     return;

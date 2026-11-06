@@ -45,7 +45,7 @@ public final class g extends vf.b {
         int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f28265ze, jVar.I);
         RectF rectF = ProfileActivity.S6;
         this.d.g(org.telegram.ui.ActionBar.k6.r1(0.8f, w02), org.telegram.ui.ActionBar.k6.r1(1.3f, w02), org.telegram.ui.ActionBar.k6.r1(1.0f, w02), org.telegram.ui.ActionBar.k6.r1(4.0f, w02));
-        this.d.f31734x.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
+        this.d.f31746x.setStrokeWidth(org.telegram.messenger.g0.N(1.25f));
         n0Var.c(this.d, null);
     }
 }

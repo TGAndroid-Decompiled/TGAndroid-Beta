@@ -62,14 +62,14 @@ import org.telegram.ui.bh;
 import org.telegram.ui.bi0;
 import org.telegram.ui.e4;
 import org.telegram.ui.f3;
-import org.telegram.ui.fo0;
+import org.telegram.ui.go0;
 import org.telegram.ui.i9;
 import org.telegram.ui.m40;
 import org.telegram.ui.nr;
 import org.telegram.ui.o50;
 import org.telegram.ui.tf0;
-import org.telegram.ui.vs0;
 import org.telegram.ui.web.x0;
+import org.telegram.ui.ws0;
 import org.telegram.ui.zh0;
 import p4.c1;
 import p4.g1;
@@ -260,8 +260,8 @@ public final class l0 implements Runnable {
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
                 TLObject tLObject4 = (TLObject) obj5;
                 a1 a1Var = (a1) obj2;
-                o50Var.f48244r = false;
-                if (!((e4) obj).f45162e.isEmpty()) {
+                o50Var.f48273r = false;
+                if (!((e4) obj).f45192e.isEmpty()) {
                     if (tL_error == null) {
                         TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject4;
                         if (!tL_contacts_resolvedPeer.chats.isEmpty()) {
@@ -269,7 +269,7 @@ public final class l0 implements Runnable {
                             qp.s1(i10).S3(tL_contacts_resolvedPeer.chats, false);
                             yr.a0(i10).m1(tL_contacts_resolvedPeer.users, tL_contacts_resolvedPeer.chats, false, true);
                             TLRPC.Chat chat = tL_contacts_resolvedPeer.chats.get(0);
-                            o50Var.f48243n = chat;
+                            o50Var.f48272n = chat;
                             if (chat.left && !chat.kicked) {
                                 a1Var.a(0, false);
                                 return;
@@ -343,10 +343,10 @@ public final class l0 implements Runnable {
                 TLObject tLObject6 = (TLObject) obj5;
                 ArrayList arrayList4 = (ArrayList) obj3;
                 TLRPC.PollAnswerVoters pollAnswerVoters = (TLRPC.PollAnswerVoters) obj2;
-                me0 me0Var = qe0Var.f37385j1;
-                ArrayList arrayList5 = qe0Var.f37393t1;
-                ke0 ke0Var = qe0Var.f37384i1;
-                ArrayList arrayList6 = qe0Var.f37396w1;
+                me0 me0Var = qe0Var.f37275j1;
+                ArrayList arrayList5 = qe0Var.f37283t1;
+                ke0 ke0Var = qe0Var.f37274i1;
+                ArrayList arrayList6 = qe0Var.f37286w1;
                 arrayList6.remove(((Integer[]) obj)[i10]);
                 if (tLObject6 != null) {
                     TLRPC.TL_messages_votesList tL_messages_votesList = (TLRPC.TL_messages_votesList) tLObject6;
@@ -365,10 +365,10 @@ public final class l0 implements Runnable {
                                 if (i16 < size4) {
                                     pe0 pe0Var2 = (pe0) arrayList5.get(i16);
                                     if (Arrays.equals(pe0Var.d, pe0Var2.d)) {
-                                        pe0Var2.f36992c = pe0Var.f36992c;
-                                        z13 = (pe0Var2.f36990a == pe0Var.f36990a && pe0Var2.f36991b.size() == pe0Var.f36991b.size()) ? true : true;
-                                        pe0Var2.f36990a = pe0Var.f36990a;
-                                        pe0Var2.f36991b = pe0Var.f36991b;
+                                        pe0Var2.f36871c = pe0Var.f36871c;
+                                        z13 = (pe0Var2.f36869a == pe0Var.f36869a && pe0Var2.f36870b.size() == pe0Var.f36870b.size()) ? true : true;
+                                        pe0Var2.f36869a = pe0Var.f36869a;
+                                        pe0Var2.f36870b = pe0Var.f36870b;
                                     } else {
                                         i16++;
                                     }
@@ -439,7 +439,7 @@ public final class l0 implements Runnable {
                 f2 f2Var3 = (f2) obj4;
                 List<Purchase> list = (List) obj;
                 z0 z0Var = (z0) obj3;
-                vs0 vs0Var = (vs0) obj2;
+                ws0 ws0Var = (ws0) obj2;
                 if (((f5.f) obj5).f11151a == 0) {
                     tf0 tf0Var = new tf0(1, f2Var3);
                     int i18 = this.f3348c;
@@ -468,7 +468,7 @@ public final class l0 implements Runnable {
                         tL_inputStorePaymentPremiumSubscription2.upgrade = true;
                     }
                     tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumSubscription2;
-                    ConnectionsManager.getInstance(i18).sendRequest(tL_payments_canPurchaseStore, new ox(i18, 5, f2Var3, vs0Var, z0Var, tL_payments_canPurchaseStore, tL_inputStorePaymentPremiumSubscription2));
+                    ConnectionsManager.getInstance(i18).sendRequest(tL_payments_canPurchaseStore, new ox(i18, 5, f2Var3, ws0Var, z0Var, tL_payments_canPurchaseStore, tL_inputStorePaymentPremiumSubscription2));
                     return;
                 }
                 return;
@@ -500,7 +500,7 @@ public final class l0 implements Runnable {
                     u1Var2.R = M0;
                     u1Var2.T = hd.M0(2131752899, null);
                     alertDialog$Builder.k(hd.M0(2131752909, null), new org.telegram.ui.web.a0(0, x0Var, strArr2));
-                    alertDialog$Builder.h(hd.M0(2131752904, null), new fo0(17));
+                    alertDialog$Builder.h(hd.M0(2131752904, null), new go0(17));
                     x0Var.Y(3, u1Var2, new org.telegram.ui.web.t(strArr2, i19, u0Var, o7Var, 1));
                     return;
                 }
@@ -508,31 +508,31 @@ public final class l0 implements Runnable {
                 c1 c1Var = (c1) obj5;
                 p4.v vVar = (p4.v) obj4;
                 i1 i1Var = (i1) obj;
-                String str = i1Var.f53191b;
+                String str = i1Var.f53217b;
                 p4.d0 d0Var = (p4.d0) obj3;
                 int i20 = this.f3348c;
                 p4.l lVar = (p4.l) obj2;
-                ui.e eVar = c1Var.f53066b;
+                ui.e eVar = c1Var.f53092b;
                 if (eVar.D(vVar)) {
                     try {
                         p4.d d = p4.d.d(i1Var);
-                        Object obj7 = d.f53082g;
-                        int i21 = d.f53078b;
+                        Object obj7 = d.f53108g;
+                        int i21 = d.f53104b;
                         if (!d.b()) {
                             h2.a.l("MediaSessionStub", "Can't execute predefined custom command: " + str);
                             c1.R0(d0Var, vVar, i20, new m1(-6));
                             return;
                         }
-                        i1 i1Var2 = d.f53077a;
+                        i1 i1Var2 = d.f53103a;
                         if (i1Var2 != null) {
-                            if (i1Var2.f53190a == 40010) {
+                            if (i1Var2.f53216a == 40010) {
                                 z10 = true;
                             }
                             ia.p(z10);
                             c1Var.J0(lVar, i20, null, 40010, new p4.t0(new p4.w0(d), 1));
                             return;
                         }
-                        g1 g1Var = d0Var.f53100t;
+                        g1 g1Var = d0Var.f53126t;
                         if (i21 == 1) {
                             if (obj7 == null) {
                                 if (!g1Var.u()) {

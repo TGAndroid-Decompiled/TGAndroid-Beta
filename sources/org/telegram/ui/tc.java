@@ -4,31 +4,31 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class tc implements RequestDelegate {
-    public final int f50004a;
-    public final bd f50005b;
+    public final int f50032a;
+    public final bd f50033b;
 
     public tc(bd bdVar, int i7) {
-        this.f50004a = i7;
-        this.f50005b = bdVar;
+        this.f50032a = i7;
+        this.f50033b = bdVar;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f50004a) {
+        switch (this.f50032a) {
             case 0:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.ActionBar.p(26, this.f50005b, tLObject));
+                org.telegram.messenger.g0.h3(new org.telegram.ui.ActionBar.p(26, this.f50033b, tLObject));
                 return;
             case 1:
-                org.telegram.messenger.g0.h3(new org.telegram.ui.ActionBar.p(24, this.f50005b, tL_error));
+                org.telegram.messenger.g0.h3(new org.telegram.ui.ActionBar.p(24, this.f50033b, tL_error));
                 return;
             case 2:
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    org.telegram.messenger.g0.h3(new sc(this.f50005b, 3));
+                    org.telegram.messenger.g0.h3(new sc(this.f50033b, 3));
                     return;
                 }
                 return;
             default:
-                org.telegram.messenger.g0.h3(new o1(this.f50005b, tL_error, tLObject, 11));
+                org.telegram.messenger.g0.h3(new o1(this.f50033b, tL_error, tLObject, 11));
                 return;
         }
     }

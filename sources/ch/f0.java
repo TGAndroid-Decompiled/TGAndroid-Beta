@@ -39,7 +39,7 @@ public final class f0 {
         i5 i5Var = this.f6242b;
         Rect rect = this.f6243c;
         if (i5Var != null) {
-            z2 z2Var = i5Var.f34505k;
+            z2 z2Var = i5Var.f34450k;
             if (z2Var != null) {
                 z2Var.J0((int) (rect.width() * 0.1f));
             }

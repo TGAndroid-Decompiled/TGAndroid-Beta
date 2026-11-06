@@ -127,7 +127,7 @@ public final class tu extends fu {
         }
         int L = g0.L(14.0f);
         if (this.f25663j0 != null) {
-            i11 = g0.L(12.0f) + ((int) Math.ceil(ly0Var.f35777c));
+            i11 = g0.L(12.0f) + ((int) Math.ceil(ly0Var.f35782c));
         } else {
             i11 = 0;
         }
@@ -403,7 +403,7 @@ public final class tu extends fu {
         int r12 = org.telegram.ui.ActionBar.k6.r1(0.5f, org.telegram.ui.ActionBar.k6.w0(i7, kvVar.D));
         ly0 ly0Var = this.f25663j0;
         if (ly0Var != null) {
-            ly0Var.f35788p = m0() - g0.L(54.0f);
+            ly0Var.f35793p = m0() - g0.L(54.0f);
             canvas2 = canvas;
             this.f25663j0.c(g0.L(14.0f), g0.L(17.0f), 1.0f, r12, canvas2);
         } else {

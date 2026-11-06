@@ -39,7 +39,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.Cells.l9;
 import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.t31;
 import org.telegram.ui.Components.voip.n;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.xq;
@@ -98,7 +98,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.d = imageReceiver;
         imageReceiver.J0(g0.L(11.0f));
-        nVar.f39319c.setStrokeWidth(g0.L(1.0f));
+        nVar.f39316c.setStrokeWidth(g0.L(1.0f));
         this.f20596n = new ImageReceiver(this);
         setWillNotDraw(false);
     }
@@ -126,11 +126,11 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
 
     @Override
     public final void Y(int i7, float f10, float f11, te.c cVar) {
-        this.f20595f.setAlpha(Math.round(this.f20592b.f55370e * 100.0f));
-        int round = Math.round(this.f20591a.f55370e * 220.0f);
+        this.f20595f.setAlpha(Math.round(this.f20592b.f55395e * 100.0f));
+        int round = Math.round(this.f20591a.f55395e * 220.0f);
         n nVar = this.h;
-        nVar.f39317a.setAlpha(round);
-        nVar.f39319c.setAlpha(round);
+        nVar.f39314a.setAlpha(round);
+        nVar.f39316c.setAlpha(round);
         invalidate();
     }
 
@@ -192,7 +192,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
             if (paint.getAlpha() > 0) {
                 canvas.drawPath((Path) this.f20600x.d, paint);
             }
-            if (this.f20591a.f55370e > 0.0f) {
+            if (this.f20591a.f55395e > 0.0f) {
                 RectF rectF = this.K;
                 rectF.set((RectF) this.f20600x.f10290c);
                 rectF.inset(g0.L(1.0f), g0.L(1.0f));
@@ -359,7 +359,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
             }
         }
         setMeasuredDimension(size, this.f20600x.f10289b);
-        this.h.f39321f = Math.round(((RectF) this.f20600x.f10290c).width() + g0.L(48.0f));
+        this.h.f39318f = Math.round(((RectF) this.f20600x.f10290c).width() + g0.L(48.0f));
     }
 
     @Override
@@ -397,7 +397,7 @@ public final class c extends ViewGroup implements ue.a, ls, te.b {
         }
         this.f20597r = null;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(m10);
-        spannableStringBuilder.setSpan(new o31(g0.o()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new t31(g0.o()), 0, spannableStringBuilder.length(), 33);
         spannableStringBuilder.setSpan(this.J, 0, spannableStringBuilder.length(), 33);
         o0 o0Var = groupCallMessage.visibleReaction;
         l lVar = this.f20599w;

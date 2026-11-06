@@ -6,36 +6,36 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class t60 implements org.telegram.messenger.c20 {
-    public final int f49927a;
-    public final Object f49928b;
-    public final Object f49929c;
+    public final int f49955a;
+    public final Object f49956b;
+    public final Object f49957c;
     public final Object d;
-    public final Object f49930e;
-    public final Object f49931f;
-    public final Object f49932g;
+    public final Object f49958e;
+    public final Object f49959f;
+    public final Object f49960g;
 
     public t60(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i7) {
-        this.f49927a = i7;
-        this.f49928b = obj;
-        this.f49929c = obj2;
-        this.f49930e = obj3;
-        this.f49932g = obj4;
-        this.f49931f = obj5;
+        this.f49955a = i7;
+        this.f49956b = obj;
+        this.f49957c = obj2;
+        this.f49958e = obj3;
+        this.f49960g = obj4;
+        this.f49959f = obj5;
         this.d = obj6;
     }
 
     @Override
     public final void a(Object obj) {
         sv svVar;
-        int i7 = this.f49927a;
+        int i7 = this.f49955a;
         boolean z9 = true;
         boolean z10 = false;
         Object obj2 = this.d;
-        Object obj3 = this.f49931f;
-        Object obj4 = this.f49932g;
-        Object obj5 = this.f49930e;
-        Object obj6 = this.f49929c;
-        Object obj7 = this.f49928b;
+        Object obj3 = this.f49959f;
+        Object obj4 = this.f49960g;
+        Object obj5 = this.f49958e;
+        Object obj6 = this.f49957c;
+        Object obj7 = this.f49956b;
         switch (i7) {
             case 0:
                 LaunchActivity launchActivity = (LaunchActivity) obj7;
@@ -108,7 +108,7 @@ public final class t60 implements org.telegram.messenger.c20 {
                 bg.l0 l0Var = (bg.l0) obj2;
                 TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = (TL_wallet.inputTonConnectOauthSession) obj;
                 ((org.telegram.ui.ActionBar.v2[]) obj7)[0] = null;
-                bi0.f44340a = null;
+                bi0.f44356a = null;
                 if (((boolean[]) obj6)[0]) {
                     Arrays.fill(inputtonconnectoauthsession.challenge_answer, (byte) 0);
                     return;
@@ -118,7 +118,7 @@ public final class t60 implements org.telegram.messenger.c20 {
                     l0Var.run();
                     return;
                 }
-                bi0.f44340a = v2Var;
+                bi0.f44356a = v2Var;
                 v2Var.show();
                 return;
             case 3:
@@ -136,7 +136,7 @@ public final class t60 implements org.telegram.messenger.c20 {
                 }
                 org.telegram.ui.Components.hc.c0(str3, z2Var.E, f6Var);
                 gVar.run();
-                if (b2Var.f42108n || b2Var.f42109o) {
+                if (b2Var.f42133n || b2Var.f42134o) {
                     z9 = false;
                 }
                 dVar.setEnabled(z9);
@@ -160,12 +160,12 @@ public final class t60 implements org.telegram.messenger.c20 {
     }
 
     public t60(LaunchActivity launchActivity, vf.b bVar, Runnable runnable, org.telegram.messenger.f3 f3Var, Long l10, org.telegram.ui.Cells.q1 q1Var) {
-        this.f49927a = 1;
-        this.f49928b = launchActivity;
-        this.f49929c = bVar;
+        this.f49955a = 1;
+        this.f49956b = launchActivity;
+        this.f49957c = bVar;
         this.d = runnable;
-        this.f49932g = f3Var;
-        this.f49930e = l10;
-        this.f49931f = q1Var;
+        this.f49960g = f3Var;
+        this.f49958e = l10;
+        this.f49959f = q1Var;
     }
 }

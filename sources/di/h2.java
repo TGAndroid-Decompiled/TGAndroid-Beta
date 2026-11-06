@@ -36,12 +36,12 @@ public final class h2 extends da {
                 an anVar = (an) this.f9070b;
                 anVar.G9 = !z9;
                 if (z9) {
-                    if (anVar.f43920r9 != null) {
+                    if (anVar.f43945r9 != null) {
                         an.d2(anVar, 0.0f);
-                        anVar.f43920r9 = null;
+                        anVar.f43945r9 = null;
                     }
                     anVar.s9 = false;
-                    anVar.f44010y9 = false;
+                    anVar.f44035y9 = false;
                     tk tkVar = anVar.A9;
                     if (tkVar != null) {
                         org.telegram.messenger.g0.r(tkVar.H);
@@ -52,15 +52,15 @@ public final class h2 extends da {
                 return;
             default:
                 ca0 ca0Var = (ca0) this.f9070b;
-                w90 w90Var = ca0Var.f32504e;
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ca0Var.f32508s;
-                ia0 ia0Var = ca0Var.f32503c0;
-                if (ia0Var.f34582s) {
-                    if (!z9 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f38935b > 0.0f) {
+                w90 w90Var = ca0Var.f32508e;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = ca0Var.f32512s;
+                ia0 ia0Var = ca0Var.f32507c0;
+                if (ia0Var.f34545s) {
+                    if (!z9 && actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().f38932b > 0.0f) {
                         actionBarPopupWindow$ActionBarPopupWindowLayout.getSwipeBack().b(true);
                         return;
                     } else if (z9) {
-                        if (w90Var.v - w90Var.f30675u > qp.s1(ia0Var.f34584x).o4) {
+                        if (w90Var.v - w90Var.f30675u > qp.s1(ia0Var.f34547x).o4) {
                             ca0Var.g();
                             return;
                         }

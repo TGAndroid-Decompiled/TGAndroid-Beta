@@ -21,7 +21,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.m3;
 import org.telegram.ui.Components.ki0;
 import org.telegram.ui.Components.mt0;
-import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.u41;
 import org.telegram.ui.Components.w5;
 import org.telegram.ui.Components.xq;
 public final class n1 extends j {
@@ -32,22 +32,22 @@ public final class n1 extends j {
     public final Rect E0;
     public final Paint F0;
     public ye G0;
-    public final TLObject f55743q0;
-    public final String f55744r0;
-    public final int f55745s0;
-    public boolean f55746t0;
-    public final w5 f55747u0;
-    public final mt0 f55748v0;
-    public final int f55749w0;
-    public boolean f55750x0;
-    public final w5 f55751y0;
-    public final p41 f55752z0;
+    public final TLObject f55768q0;
+    public final String f55769r0;
+    public final int f55770s0;
+    public boolean f55771t0;
+    public final w5 f55772u0;
+    public final mt0 f55773v0;
+    public final int f55774w0;
+    public boolean f55775x0;
+    public final w5 f55776y0;
+    public final u41 f55777z0;
 
     public n1(Context context, PointF pointF, mt0 mt0Var, String str, int i7) {
         super(context, pointF);
-        this.f55745s0 = -1;
-        this.f55746t0 = false;
-        this.f55750x0 = false;
+        this.f55770s0 = -1;
+        this.f55771t0 = false;
+        this.f55775x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -56,15 +56,15 @@ public final class n1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f55744r0 = str;
-        this.f55748v0 = mt0Var;
-        p41 p41Var = new p41(this, context);
-        this.f55752z0 = p41Var;
-        addView(p41Var, ha.c(-1.0f, -1));
+        this.f55769r0 = str;
+        this.f55773v0 = mt0Var;
+        u41 u41Var = new u41(this, context);
+        this.f55777z0 = u41Var;
+        addView(u41Var, ha.c(-1.0f, -1));
         xq xqVar = xq.h;
-        this.f55747u0 = new w5(p41Var, 0L, 500L, xqVar);
-        this.f55751y0 = new w5(p41Var, 0L, 350L, xqVar);
-        this.f55749w0 = i7;
+        this.f55772u0 = new w5(u41Var, 0L, 500L, xqVar);
+        this.f55776y0 = new w5(u41Var, 0L, 350L, xqVar);
+        this.f55774w0 = i7;
         Bitmap q10 = e7.q(new ab.t(str, 2), 1920, 1920, 0, false);
         this.A0 = q10;
         if (q10 != null) {
@@ -85,11 +85,11 @@ public final class n1 extends j {
     }
 
     public int getAnchor() {
-        return this.f55745s0;
+        return this.f55770s0;
     }
 
     public mt0 getBaseSize() {
-        return this.f55748v0;
+        return this.f55773v0;
     }
 
     public int getContentHeight() {
@@ -109,7 +109,7 @@ public final class n1 extends j {
     }
 
     public int getOrientation() {
-        return this.f55749w0;
+        return this.f55774w0;
     }
 
     public Bitmap getSegmentedOutBitmap() {
@@ -136,9 +136,9 @@ public final class n1 extends j {
 
     @Override
     public final void k() {
-        mt0 mt0Var = this.f55748v0;
-        float f10 = mt0Var.f36132a / 2.0f;
-        float f11 = mt0Var.f36133b / 2.0f;
+        mt0 mt0Var = this.f55773v0;
+        float f10 = mt0Var.f36070a / 2.0f;
+        float f11 = mt0Var.f36071b / 2.0f;
         ye yeVar = this.G0;
         if (yeVar != null) {
             f10 *= yeVar.f26621e;
@@ -161,9 +161,9 @@ public final class n1 extends j {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        mt0 mt0Var = this.f55748v0;
-        float f10 = mt0Var.f36132a;
-        float f11 = mt0Var.f36133b;
+        mt0 mt0Var = this.f55773v0;
+        float f10 = mt0Var.f36070a;
+        float f11 = mt0Var.f36071b;
         ye yeVar = this.G0;
         if (yeVar != null) {
             f10 *= yeVar.f26621e;
@@ -173,7 +173,7 @@ public final class n1 extends j {
     }
 
     public final String q(int i7) {
-        TLObject tLObject = this.f55743q0;
+        TLObject tLObject = this.f55768q0;
         if (tLObject instanceof TLRPC.Photo) {
             TLRPC.PhotoSize w10 = w7.w(((TLRPC.Photo) tLObject).sizes, 1000, false, null, false);
             try {
@@ -182,18 +182,18 @@ public final class n1 extends j {
             } catch (Exception unused) {
             }
         }
-        return this.f55744r0;
+        return this.f55769r0;
     }
 
     public final void r(boolean z9) {
-        boolean z10 = !this.f55746t0;
-        this.f55746t0 = z10;
+        boolean z10 = !this.f55771t0;
+        this.f55771t0 = z10;
         if (!z9) {
-            this.f55747u0.f(z10, true);
+            this.f55772u0.f(z10, true);
         }
-        p41 p41Var = this.f55752z0;
-        if (p41Var != null) {
-            p41Var.invalidate();
+        u41 u41Var = this.f55777z0;
+        if (u41Var != null) {
+            u41Var.invalidate();
         }
     }
 
@@ -203,27 +203,27 @@ public final class n1 extends j {
             aVar.f15407a = true;
             zzd a10 = je.a(new zb.d(aVar));
             this.B0 = true;
-            a10.g(ub.a.a(bitmap, this.f55749w0)).addOnSuccessListener(new m3(this, 23)).addOnFailureListener(new org.telegram.ui.web.a0(10, this, bitmap));
+            a10.g(ub.a.a(bitmap, this.f55774w0)).addOnSuccessListener(new m3(this, 23)).addOnFailureListener(new org.telegram.ui.web.a0(10, this, bitmap));
         }
     }
 
     public final void t(boolean z9) {
-        boolean z10 = !this.f55750x0;
-        this.f55750x0 = z10;
+        boolean z10 = !this.f55775x0;
+        this.f55775x0 = z10;
         if (!z9) {
-            this.f55751y0.f(z10, true);
+            this.f55776y0.f(z10, true);
         }
-        p41 p41Var = this.f55752z0;
-        if (p41Var != null) {
-            p41Var.invalidate();
+        u41 u41Var = this.f55777z0;
+        if (u41Var != null) {
+            u41Var.invalidate();
         }
     }
 
     public n1(Context context, PointF pointF, mt0 mt0Var, TLObject tLObject) {
         super(context, pointF);
-        this.f55745s0 = -1;
-        this.f55746t0 = false;
-        this.f55750x0 = false;
+        this.f55770s0 = -1;
+        this.f55771t0 = false;
+        this.f55775x0 = false;
         new Rect();
         new RectF();
         new Paint(3);
@@ -232,14 +232,14 @@ public final class n1 extends j {
         this.F0 = new Paint(3);
         setRotation(0.0f);
         setScale(1.0f);
-        this.f55743q0 = tLObject;
-        this.f55748v0 = mt0Var;
-        p41 p41Var = new p41(this, context);
-        this.f55752z0 = p41Var;
-        addView(p41Var, ha.c(-1.0f, -1));
+        this.f55768q0 = tLObject;
+        this.f55773v0 = mt0Var;
+        u41 u41Var = new u41(this, context);
+        this.f55777z0 = u41Var;
+        addView(u41Var, ha.c(-1.0f, -1));
         xq xqVar = xq.h;
-        this.f55747u0 = new w5(p41Var, 0L, 500L, xqVar);
-        this.f55751y0 = new w5(p41Var, 0L, 350L, xqVar);
+        this.f55772u0 = new w5(u41Var, 0L, 500L, xqVar);
+        this.f55776y0 = new w5(u41Var, 0L, 350L, xqVar);
         k();
     }
 }

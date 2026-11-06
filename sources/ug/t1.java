@@ -42,71 +42,71 @@ public final class t1 extends FrameLayout implements l0, ls {
     public final TLRPC.Document R;
     public int S;
     public long T;
-    public final rz f56700a;
-    public final Paint f56701b;
-    public final Paint f56702c;
+    public final rz f56725a;
+    public final Paint f56726b;
+    public final Paint f56727c;
     public final boolean d;
-    public File f56703e;
-    public float f56704f;
+    public File f56728e;
+    public float f56729f;
     public final String h;
-    public final ImageReceiver f56705n;
-    public sg.t0 f56706r;
-    public final int f56707s;
-    public final int f56708w;
-    public boolean f56709x;
-    public boolean f56710y;
+    public final ImageReceiver f56730n;
+    public sg.t0 f56731r;
+    public final int f56732s;
+    public final int f56733w;
+    public boolean f56734x;
+    public boolean f56735y;
 
     public t1(android.content.Context r18, org.telegram.messenger.rz r19, int r20, int r21, org.telegram.ui.ActionBar.f6 r22) {
         throw new UnsupportedOperationException("Method not decompiled: ug.t1.<init>(android.content.Context, org.telegram.messenger.rz, int, int, org.telegram.ui.ActionBar.f6):void");
     }
 
     public final void a() {
-        File file = this.f56703e;
+        File file = this.f56728e;
         if ((file != null && file.exists()) || iz.B0) {
-            File file2 = this.f56703e;
+            File file2 = this.f56728e;
             if (file2 != null && file2.exists()) {
                 if ((qs.e().f25120p & 512) != 0) {
-                    sg.t0 t0Var = this.f56706r;
+                    sg.t0 t0Var = this.f56731r;
                     if (t0Var != null) {
                         org.telegram.messenger.g0.r(t0Var);
                     }
                     sg.t0 t0Var2 = new sg.t0(this, 21);
-                    this.f56706r = t0Var2;
+                    this.f56731r = t0Var2;
                     org.telegram.messenger.g0.i3(t0Var2, 300L);
                     return;
                 }
                 try {
                     MediaMetadataRetriever mediaMetadataRetriever = new MediaMetadataRetriever();
-                    mediaMetadataRetriever.setDataSource(org.telegram.messenger.t0.f25555b, Uri.fromFile(this.f56703e));
+                    mediaMetadataRetriever.setDataSource(org.telegram.messenger.t0.f25555b, Uri.fromFile(this.f56728e));
                     int parseInt = Integer.parseInt(mediaMetadataRetriever.extractMetadata(18));
                     int parseInt2 = Integer.parseInt(mediaMetadataRetriever.extractMetadata(19));
                     mediaMetadataRetriever.release();
-                    this.f56704f = parseInt / parseInt2;
+                    this.f56729f = parseInt / parseInt2;
                 } catch (Exception unused) {
-                    this.f56704f = 0.671f;
+                    this.f56729f = 0.671f;
                 }
             } else {
-                this.f56704f = 0.671f;
+                this.f56729f = 0.671f;
             }
             if (this.E) {
                 b();
             }
         }
-        this.f56706r = null;
+        this.f56731r = null;
     }
 
     public final void b() {
         Uri uri;
-        int i7 = this.f56707s;
-        if ((this.f56703e != null || iz.B0) && this.H == null) {
-            this.I.a(this.f56704f, 0);
+        int i7 = this.f56732s;
+        if ((this.f56728e != null || iz.B0) && this.H == null) {
+            this.I.a(this.f56729f, 0);
             fi.c0 c0Var = new fi.c0(this, 1);
             this.H = c0Var;
             TextureView textureView = this.J;
             c0Var.with(textureView);
-            File file = this.f56703e;
+            File file = this.f56728e;
             if (file != null && file.exists()) {
-                uri = Uri.fromFile(this.f56703e);
+                uri = Uri.fromFile(this.f56728e);
             } else {
                 try {
                     StringBuilder sb2 = new StringBuilder("?account=");
@@ -142,7 +142,7 @@ public final class t1 extends FrameLayout implements l0, ls {
             }
             this.H.preparePlayer(uri, false, 1.0f);
             if (!this.F) {
-                this.f56705n.Q0();
+                this.f56730n.Q0();
                 textureView.setAlpha(0.0f);
             }
             this.H.seekTo(this.T + 60);
@@ -152,14 +152,14 @@ public final class t1 extends FrameLayout implements l0, ls {
 
     public final void c() {
         boolean z9;
-        if (this.f56709x && this.f56710y) {
+        if (this.f56734x && this.f56735y) {
             z9 = true;
         } else {
             z9 = false;
         }
         if (this.D != z9) {
             this.D = z9;
-            ImageReceiver imageReceiver = this.f56705n;
+            ImageReceiver imageReceiver = this.f56730n;
             if (z9) {
                 imageReceiver.P();
             } else {
@@ -174,7 +174,7 @@ public final class t1 extends FrameLayout implements l0, ls {
             String str = (String) objArr[0];
             String str2 = this.h;
             if (str2 != null && str2.equals(str)) {
-                this.f56703e = (File) objArr[1];
+                this.f56728e = (File) objArr[1];
                 a();
             }
         }
@@ -188,20 +188,20 @@ public final class t1 extends FrameLayout implements l0, ls {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f56710y = true;
+        this.f56735y = true;
         c();
         if (!this.F) {
             a();
         }
-        qs.f(this.f56707s).c(this, qs.Y1);
+        qs.f(this.f56732s).c(this, qs.Y1);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f56710y = false;
+        this.f56735y = false;
         c();
-        qs.f(this.f56707s).n(this, qs.Y1);
+        qs.f(this.f56732s).n(this, qs.Y1);
         org.telegram.ui.Cells.r0 r0Var = this.P;
         if (r0Var != null) {
             HashMap hashMap = (HashMap) r0Var.f30169f;
@@ -234,21 +234,21 @@ public final class t1 extends FrameLayout implements l0, ls {
             this.S = measuredWidth;
             k0 k0Var = this.Q;
             if (k0Var != null) {
-                RectF rectF = (RectF) k0Var.f56560c;
-                ((Rect) k0Var.f56561e).set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                RectF rectF = (RectF) k0Var.f56585c;
+                ((Rect) k0Var.f56586e).set(0, 0, getMeasuredWidth(), getMeasuredHeight());
                 rectF.set(org.telegram.messenger.g0.P);
                 rectF.inset(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f));
             }
             p1 p1Var = this.N;
             if (p1Var != null) {
-                RectF rectF2 = p1Var.f56649c;
-                RectF rectF3 = p1Var.f56647a;
-                int i13 = this.f56708w;
+                RectF rectF2 = p1Var.f56674c;
+                RectF rectF3 = p1Var.f56672a;
+                int i13 = this.f56733w;
                 if (i13 != 6 && i13 != 9 && i13 != 3 && i13 != 7 && i13 != 24 && i13 != 43 && i13 != 11 && i13 != 4) {
                     RectF rectF4 = org.telegram.messenger.g0.P;
                     float width = (int) (rectF4.width() * 0.4f);
                     rectF3.set(rectF4.centerX() - width, rectF4.centerY() - width, rectF4.centerX() + width, rectF4.centerY() + width);
-                    p1Var.f56648b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                    p1Var.f56673b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 } else {
                     rectF3.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                     rectF3.inset(org.telegram.messenger.g0.L(30.0f), org.telegram.messenger.g0.L(30.0f));
@@ -259,12 +259,12 @@ public final class t1 extends FrameLayout implements l0, ls {
             }
             n1 n1Var = this.O;
             if (n1Var != null) {
-                RectF rectF5 = n1Var.f56602a;
+                RectF rectF5 = n1Var.f56627a;
                 rectF5.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                n1Var.f56603b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+                n1Var.f56628b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 rectF5.inset(org.telegram.messenger.g0.L(100.0f), org.telegram.messenger.g0.L(100.0f));
                 rectF5.offset(0.0f, getMeasuredHeight() * 0.1f);
-                ArrayList arrayList = n1Var.f56605e;
+                ArrayList arrayList = n1Var.f56630e;
                 long currentTimeMillis = System.currentTimeMillis();
                 for (int i14 = 0; i14 < arrayList.size(); i14++) {
                     ((m1) arrayList.get(i14)).a(currentTimeMillis, true);
@@ -353,13 +353,13 @@ public final class t1 extends FrameLayout implements l0, ls {
             }
             this.G = Math.abs(measuredWidth2);
         }
-        if (z9 != this.f56709x) {
-            this.f56709x = z9;
+        if (z9 != this.f56734x) {
+            this.f56734x = z9;
             c();
         }
         if (z11 != this.E) {
             this.E = z11;
-            ImageReceiver imageReceiver = this.f56705n;
+            ImageReceiver imageReceiver = this.f56730n;
             imageReceiver.f21217t0 = z11;
             if (z11) {
                 imageReceiver.P0(false);

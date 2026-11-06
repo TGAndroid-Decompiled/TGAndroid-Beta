@@ -28,7 +28,7 @@ import org.telegram.messenger.qs;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.j60;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.t31;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.xq;
 public final class n0 extends FrameLayout implements j60 {
@@ -226,7 +226,7 @@ public final class n0 extends FrameLayout implements j60 {
                 spannableStringBuilder.append((CharSequence) ("#" + s0Var.h));
                 z9 = z13;
                 wp wpVar = new wp(0, new j0(getContext(), s0Var.h));
-                wpVar.f40056s = org.telegram.messenger.g0.L(1.0f);
+                wpVar.f40063s = org.telegram.messenger.g0.L(1.0f);
                 spannableStringBuilder.setSpan(wpVar, 0, spannableStringBuilder.length(), 33);
                 spannableStringBuilder.append((CharSequence) "\u2009");
             } else {
@@ -239,7 +239,7 @@ public final class n0 extends FrameLayout implements j60 {
             } else {
                 i7 = 33;
             }
-            spannableStringBuilder.setSpan(new o31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), i7);
+            spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), i7);
             spannableStringBuilder.append((CharSequence) " ");
         }
         int b13 = t.b(i14, (int) s0Var.f9741g, 1);
@@ -400,7 +400,7 @@ public final class n0 extends FrameLayout implements j60 {
                 textView2.setText(dd.X0(false, jg.g.m(s0Var.f9741g, ',', new StringBuilder("⭐️ ")), 0.75f, this.G, org.telegram.messenger.g0.L(0.66f), 1.0f));
                 wp wpVar2 = this.G[0];
                 if (wpVar2 != null) {
-                    wpVar2.f40049a = this.f9377b;
+                    wpVar2.f40056a = this.f9377b;
                 }
             }
         } else if (s0Var.f9737b) {
@@ -438,8 +438,8 @@ public final class n0 extends FrameLayout implements j60 {
     public void setDrawStar(boolean z9) {
         this.f9377b = z9;
         wp wpVar = this.G[0];
-        if (wpVar != null && wpVar.f40049a != z9) {
-            wpVar.f40049a = z9;
+        if (wpVar != null && wpVar.f40056a != z9) {
+            wpVar.f40056a = z9;
             this.E.invalidate();
         }
     }

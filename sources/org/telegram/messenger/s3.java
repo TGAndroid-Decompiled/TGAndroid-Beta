@@ -16,7 +16,7 @@ public final class s3 {
         float f10 = i7 / i10;
         if (this.f25407c != f10) {
             this.f25407c = f10;
-            if (!c40.f44521w5 && r3Var.f25204f.size() % 2 == 1) {
+            if (!c40.f44542w5 && r3Var.f25204f.size() % 2 == 1) {
                 r3Var.B();
             }
         }

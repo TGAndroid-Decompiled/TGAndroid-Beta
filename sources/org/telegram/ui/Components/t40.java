@@ -6,15 +6,15 @@ import android.view.TextureView;
 import android.view.View;
 import android.widget.FrameLayout;
 public abstract class t40 extends FrameLayout {
-    public p40 f38247a;
-    public s40 f38248b;
-    public r40 f38249c;
+    public p40 f38213a;
+    public s40 f38214b;
+    public r40 f38215c;
     public boolean d;
 
     public static boolean d(int i7) {
         xi.a aVar = xi.e.d;
         aVar.a();
-        if (aVar.f58730c) {
+        if (aVar.f58755c) {
             aVar.a();
             return aVar.d;
         } else if (!((org.telegram.messenger.h0) org.telegram.messenger.qp.s1(i7).f24927x7.f24430g0.f13889b).f22767c) {
@@ -55,7 +55,7 @@ public abstract class t40 extends FrameLayout {
     public abstract void j();
 
     public final void setAnimationCallback(p40 p40Var) {
-        this.f38247a = p40Var;
+        this.f38213a = p40Var;
     }
 
     public abstract void setInternalPadding(int i7);
@@ -63,10 +63,10 @@ public abstract class t40 extends FrameLayout {
     public abstract void setIsMessageTransition(boolean z9);
 
     public final void setRecordingUiFrameCallback(r40 r40Var) {
-        this.f38249c = r40Var;
+        this.f38215c = r40Var;
         if (r40Var != null) {
             boolean z9 = this.d;
-            org.telegram.ui.qj qjVar = ((org.telegram.ui.wi) r40Var).f51440a.Z;
+            org.telegram.ui.qj qjVar = ((org.telegram.ui.wi) r40Var).f51447a.Z;
             if (qjVar != null) {
                 qjVar.setRoundVideoUiFrameClockActive(z9);
             }
@@ -74,6 +74,6 @@ public abstract class t40 extends FrameLayout {
     }
 
     public final void setTrimCallback(s40 s40Var) {
-        this.f38248b = s40Var;
+        this.f38214b = s40Var;
     }
 }

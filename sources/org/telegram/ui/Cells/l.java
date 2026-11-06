@@ -32,7 +32,7 @@ public final class l extends FrameLayout {
         i6Var.x(org.telegram.messenger.g0.o());
         i6Var.w(org.telegram.messenger.g0.L(14.0f));
         i6Var.u(-1);
-        i6Var.f34516b = 3;
+        i6Var.f34477b = 3;
         paint.setShader(new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(72.0f), 0.0f, new int[]{-13460514, -10042885}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 

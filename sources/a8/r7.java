@@ -54,9 +54,9 @@ import java.util.concurrent.ScheduledThreadPoolExecutor;
 import org.telegram.messenger.hd;
 import org.telegram.ui.Components.hi0;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.u61;
 import org.telegram.ui.Components.uy;
 import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.z61;
 import org.telegram.ui.SaveToGallerySettingsActivity;
 import org.telegram.ui.WallpapersListActivity;
 import org.telegram.ui.bz0;
@@ -139,7 +139,7 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
                 }
             }
             mm0 mm0Var = new mm0(2, false, false, null);
-            mm0Var.f47818y = false;
+            mm0Var.f47845y = false;
             mm0Var.V = new uy(this, 6);
             f2Var.presentFragment(mm0Var);
             return;
@@ -199,7 +199,7 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
                             if (!task.isSuccessful()) {
                                 return Tasks.forException(r7.q(task));
                             }
-                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f57166a));
+                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f57191a));
                     }
                 }
             }).continueWithTask(newSingleThreadExecutor, new Continuation(this) {
@@ -238,7 +238,7 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
                             if (!task.isSuccessful()) {
                                 return Tasks.forException(r7.q(task));
                             }
-                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f57166a));
+                            return ((va.c) ((va.d) r7Var.d)).e().continueWithTask(executorService, new t(r7Var, ((va.a) task.getResult()).f57191a));
                     }
                 }
             });
@@ -263,7 +263,7 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
                     i7 = i10.f19917a;
                     i10.f19917a = i7 + 1;
                 }
-                forException = i10.k(new m6.m(i7, 1, bundle, 1)).continueWith(dVar, qb.a.f53942b);
+                forException = i10.k(new m6.m(i7, 1, bundle, 1)).continueWith(dVar, qb.a.f53967b);
             }
         } catch (InterruptedException | ExecutionException e10) {
             forException = Tasks.forException(e10);
@@ -1046,7 +1046,7 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
 
     @Override
     public void Y(int i7, float f10, float f11, te.c cVar) {
-        ((TextView) this.f615c).setAlpha(org.telegram.messenger.g0.T1(0.5f, 1.0f, ((te.a) this.f616e).f55370e));
+        ((TextView) this.f615c).setAlpha(org.telegram.messenger.g0.T1(0.5f, 1.0f, ((te.a) this.f616e).f55395e));
         ((lh.c) this.f617f).b(this);
     }
 
@@ -1132,8 +1132,8 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
         byte[] bArr2 = (byte[]) this.f614b;
         SecureRandom secureRandom = new SecureRandom();
         BigInteger bigInteger = new BigInteger(2048, secureRandom);
-        BigInteger bigInteger2 = uc1.f50374b;
-        BigInteger bigInteger3 = uc1.f50373a;
+        BigInteger bigInteger2 = uc1.f50396b;
+        BigInteger bigInteger3 = uc1.f50395a;
         BigInteger modPow = bigInteger2.modPow(bigInteger, bigInteger3);
         BigInteger bigInteger4 = BigInteger.ONE;
         if (modPow.compareTo(bigInteger4) > 0 && modPow.compareTo(bigInteger3.subtract(bigInteger4)) < 0) {
@@ -1513,13 +1513,13 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
         HashSet hashSet3 = new HashSet();
         HashSet hashSet4 = new HashSet();
         HashSet hashSet5 = new HashSet();
-        Set<u9.i> set = aVar.f56340c;
-        Set set2 = aVar.f56343g;
+        Set<u9.i> set = aVar.f56365c;
+        Set set2 = aVar.f56368g;
         for (u9.i iVar : set) {
-            int i7 = iVar.f56359c;
-            int i10 = iVar.f56358b;
+            int i7 = iVar.f56384c;
+            int i10 = iVar.f56383b;
             boolean z9 = i7 == 0;
-            u9.q qVar = iVar.f56357a;
+            u9.q qVar = iVar.f56382a;
             if (z9) {
                 if (i10 == 2) {
                     hashSet4.add(qVar);
@@ -1575,11 +1575,11 @@ public final class r7 implements hi0, ib.b, c4.d, te.b, org.telegram.messenger.z
     public void F(float f10, int i7) {
     }
 
-    public r7(Activity activity, WallpapersListActivity wallpapersListActivity, u61 u61Var) {
+    public r7(Activity activity, WallpapersListActivity wallpapersListActivity, z61 z61Var) {
         this.f613a = 16;
         this.f615c = activity;
         this.d = wallpapersListActivity;
-        this.f616e = u61Var;
+        this.f616e = z61Var;
     }
 
     public r7(SharedPreferences sharedPreferences, ScheduledThreadPoolExecutor scheduledThreadPoolExecutor) {

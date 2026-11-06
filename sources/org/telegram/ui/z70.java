@@ -5,18 +5,18 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class z70 implements RequestDelegate {
-    public final int f52492a;
-    public final LaunchActivity f52493b;
+    public final int f52499a;
+    public final LaunchActivity f52500b;
 
     public z70(LaunchActivity launchActivity, int i7) {
-        this.f52492a = i7;
-        this.f52493b = launchActivity;
+        this.f52499a = i7;
+        this.f52500b = launchActivity;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i7 = this.f52492a;
-        LaunchActivity launchActivity = this.f52493b;
+        int i7 = this.f52499a;
+        LaunchActivity launchActivity = this.f52500b;
         switch (i7) {
             case 0:
                 String str = LaunchActivity.B1;

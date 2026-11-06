@@ -66,8 +66,8 @@ public final class y3 implements r1.c {
                 return;
             case 3:
                 di diVar = (di) ((y4) this.f15053b).d;
-                diVar.f32946t2.setTranslationY(0.0f);
-                diVar.f32946t2.m(diVar.f32898f4);
+                diVar.f32959t2.setTranslationY(0.0f);
+                diVar.f32959t2.m(diVar.f32911f4);
                 diVar.X0.g();
                 diVar.f28615b.invalidate();
                 ((qg) this.f15054c).run();

@@ -337,14 +337,14 @@ public final class z0 implements Runnable {
                     tL_inputDocument.f26964id = document.f26958id;
                     tL_inputDocument.access_hash = document.access_hash;
                     tL_inputDocument.file_reference = document.file_reference;
-                    kp kpVar = b8Var2.f32049m2;
+                    kp kpVar = b8Var2.f32043m2;
                     if (kpVar != null) {
                         kpVar.f23734c.add(0, kpVar.d(document));
                         kpVar.e();
                     }
-                    b8Var2.f32050n2.clear();
-                    b8Var2.f32050n2.addAll(b8Var2.f32049m2.f23734c);
-                    b8Var2.f32055q1.f();
+                    b8Var2.f32044n2.clear();
+                    b8Var2.f32044n2.addAll(b8Var2.f32043m2.f23734c);
+                    b8Var2.f32049q1.f();
                     ConnectionsManager.getInstance(b8Var2.f28612a).sendRequest(tL_account_saveMusic, null);
                     return;
                 }
@@ -353,7 +353,7 @@ public final class z0 implements Runnable {
                 oe oeVar = (oe) this.f18099b;
                 oeVar.getClass();
                 ((it0) this.f18100c).getViewTreeObserver().removeOnDrawListener(oeVar);
-                ((an0) this.d).f31848a.setHideAvatar(true);
+                ((an0) this.d).f31860a.setHideAvatar(true);
                 return;
             case 28:
                 vf vfVar = (vf) this.f18099b;

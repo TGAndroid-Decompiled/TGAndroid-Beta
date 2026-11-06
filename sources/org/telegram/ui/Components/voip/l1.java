@@ -5,38 +5,38 @@ import android.view.ViewTreeObserver;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.va;
 public final class l1 implements ViewTreeObserver.OnPreDrawListener {
-    public final float f39297a;
-    public final float f39298b;
-    public final n1 f39299c;
+    public final float f39294a;
+    public final float f39295b;
+    public final n1 f39296c;
 
     public l1(n1 n1Var, float f10, float f11) {
-        this.f39299c = n1Var;
-        this.f39297a = f10;
-        this.f39298b = f11;
+        this.f39296c = n1Var;
+        this.f39294a = f10;
+        this.f39295b = f11;
     }
 
     @Override
     public final boolean onPreDraw() {
-        n1 n1Var = this.f39299c;
+        n1 n1Var = this.f39296c;
         if (!n1Var.P) {
-            ValueAnimator valueAnimator = n1Var.f39348d0;
+            ValueAnimator valueAnimator = n1Var.f39345d0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
             ValueAnimator ofFloat = ValueAnimator.ofFloat(n1Var.J, 0.0f);
-            n1Var.f39348d0 = ofFloat;
-            ofFloat.addUpdateListener(n1Var.f39350e0);
-            n1Var.f39348d0.setDuration(300L);
-            n1Var.f39348d0.start();
-            float measuredWidth = this.f39297a - ((n1Var.getMeasuredWidth() - (n1Var.getMeasuredWidth() * 0.23f)) / 2.0f);
-            float measuredHeight = this.f39298b - ((n1Var.getMeasuredHeight() - (n1Var.getMeasuredHeight() * 0.23f)) / 2.0f);
+            n1Var.f39345d0 = ofFloat;
+            ofFloat.addUpdateListener(n1Var.f39347e0);
+            n1Var.f39345d0.setDuration(300L);
+            n1Var.f39345d0.start();
+            float measuredWidth = this.f39294a - ((n1Var.getMeasuredWidth() - (n1Var.getMeasuredWidth() * 0.23f)) / 2.0f);
+            float measuredHeight = this.f39295b - ((n1Var.getMeasuredHeight() - (n1Var.getMeasuredHeight() * 0.23f)) / 2.0f);
             n1Var.getViewTreeObserver().removeOnPreDrawListener(this);
             n1Var.setTranslationX(measuredWidth);
             n1Var.setTranslationY(measuredHeight);
             n1Var.setScaleX(0.23f);
             n1Var.setScaleY(0.23f);
             n1Var.animate().setListener(null).cancel();
-            n1Var.animate().setListener(new va(this, 15)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(xq.f40310f).start();
+            n1Var.animate().setListener(new va(this, 15)).scaleX(1.0f).scaleY(1.0f).translationX(0.0f).translationY(0.0f).alpha(1.0f).setDuration(300L).setStartDelay(0L).setInterpolator(xq.f40329f).start();
             return false;
         }
         n1Var.M = false;

@@ -11,7 +11,7 @@ public final class m91 extends rg.b {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56931f;
+        int i7 = d1Var.f56956f;
         if (i7 != 0 && i7 != 3) {
             return false;
         }
@@ -21,7 +21,7 @@ public final class m91 extends rg.b {
     public final ArrayList F() {
         v91 v91Var = this.d;
         v91Var.getClass();
-        return v91Var.f50622b;
+        return v91Var.f50632b;
     }
 
     @Override
@@ -34,12 +34,12 @@ public final class m91 extends rg.b {
         if (i7 == b() - 1) {
             return 2;
         }
-        return ((n91) this.d.f50622b.get(i7)).f54415a;
+        return ((n91) this.d.f50632b.get(i7)).f54440a;
     }
 
     @Override
     public final void f() {
-        this.d.f50625c = b();
+        this.d.f50635c = b();
         super.f();
     }
 
@@ -64,14 +64,14 @@ public final class m91 extends rg.b {
             org.telegram.ui.Components.lz lzVar = new org.telegram.ui.Components.lz(viewGroup.getContext(), null);
             lzVar.setViewType(24);
             lzVar.setIsSingleCell(true);
-            lzVar.f35802x = true;
+            lzVar.f35807x = true;
             return new v4.d1(lzVar);
         }
         s91 s91Var = new s91(v91Var, viewGroup.getContext(), false);
         if (i7 == 3) {
             i10 = ((org.telegram.ui.ActionBar.f2) v91Var).currentAccount;
-            boolean v = org.telegram.messenger.t10.v(org.telegram.messenger.qp.s1(i10).a2(Long.valueOf(-v91Var.f50619a)));
-            s91Var.setForumIcon(qg.d.d(qg.a.f53994k[0], ""));
+            boolean v = org.telegram.messenger.t10.v(org.telegram.messenger.qp.s1(i10).a2(Long.valueOf(-v91Var.f50629a)));
+            s91Var.setForumIcon(qg.d.d(qg.a.f54019k[0], ""));
             if (!v) {
                 i11 = 2131753066;
             } else {
@@ -87,7 +87,7 @@ public final class m91 extends rg.b {
         }
         z9 = ((org.telegram.ui.ActionBar.f2) v91Var).inPreviewMode;
         s91Var.f30434k0 = z9;
-        s91Var.setArchivedPullAnimation(v91Var.f50664x);
+        s91Var.setArchivedPullAnimation(v91Var.f50674x);
         return new v4.d1(s91Var);
     }
 }

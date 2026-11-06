@@ -4,14 +4,14 @@ import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class ju extends View {
-    public org.telegram.messenger.ic[] f35083a;
-    public di.z2 f35084b;
-    public r5 f35085c;
+    public org.telegram.messenger.ic[] f35044a;
+    public di.z2 f35045b;
+    public r5 f35046c;
     public ValueAnimator d;
-    public float f35086e;
+    public float f35047e;
 
     public TLRPC.Document getDocument() {
-        r5 r5Var = this.f35085c;
+        r5 r5Var = this.f35046c;
         if (r5Var != null) {
             TLRPC.Document document = r5Var.document;
             if (document == null) {
@@ -39,7 +39,7 @@ public final class ju extends View {
                 this.d.cancel();
             }
             if (!z9) {
-                float f10 = this.f35086e;
+                float f10 = this.f35047e;
                 if (f10 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
                     this.d = ofFloat;

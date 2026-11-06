@@ -135,7 +135,7 @@ public final class z2 extends LinearLayout {
                 size2 = (org.telegram.messenger.g0.f22537q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - org.telegram.messenger.g0.f22531m;
             }
             if (getParent() instanceof org.telegram.ui.Components.x9) {
-                size2 -= ((org.telegram.ui.Components.x9) getParent()).f40212e3;
+                size2 -= ((org.telegram.ui.Components.x9) getParent()).f40231e3;
             }
             ArrayList arrayList = qp.s1(this.f30958w).f24874s;
             if (!arrayList.isEmpty()) {

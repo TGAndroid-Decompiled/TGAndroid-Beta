@@ -8,31 +8,31 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class cm0 extends Drawable {
-    public static final int f44829j = 0;
-    public float f44830a = org.telegram.messenger.g0.N(10.6665f);
-    public final boolean f44831b;
-    public Paint f44832c;
+    public static final int f44850j = 0;
+    public float f44851a = org.telegram.messenger.g0.N(10.6665f);
+    public final boolean f44852b;
+    public Paint f44853c;
     public final Paint d;
-    public final Paint f44833e;
-    public final Paint f44834f;
-    public final Path f44835g;
+    public final Paint f44854e;
+    public final Paint f44855f;
+    public final Path f44856g;
     public final Path h;
-    public final org.telegram.ui.Components.g5 f44836i;
+    public final org.telegram.ui.Components.g5 f44857i;
 
     public cm0(int i7, int i10, int i11) {
         Paint paint = new Paint(1);
         this.d = paint;
         Paint paint2 = new Paint(1);
-        this.f44833e = paint2;
+        this.f44854e = paint2;
         Paint paint3 = new Paint(1);
-        this.f44834f = paint3;
-        this.f44835g = new Path();
+        this.f44855f = paint3;
+        this.f44856g = new Path();
         this.h = new Path();
-        this.f44831b = i11 != i7;
+        this.f44852b = i11 != i7;
         paint.setColor(i7);
         paint2.setColor(i10);
         paint3.setColor(i11);
-        this.f44836i = null;
+        this.f44857i = null;
         d();
     }
 
@@ -83,38 +83,38 @@ public final class cm0 extends Drawable {
     public final void d() {
         Path path = this.h;
         path.rewind();
-        float f10 = this.f44830a;
+        float f10 = this.f44851a;
         path.addCircle(f10, f10, f10, Path.Direction.CW);
-        Path path2 = this.f44835g;
+        Path path2 = this.f44856g;
         path2.rewind();
-        path2.moveTo(this.f44830a * 2.0f, 0.0f);
-        float f11 = this.f44830a;
+        path2.moveTo(this.f44851a * 2.0f, 0.0f);
+        float f11 = this.f44851a;
         path2.lineTo(f11 * 2.0f, f11 * 2.0f);
-        path2.lineTo(0.0f, this.f44830a * 2.0f);
+        path2.lineTo(0.0f, this.f44851a * 2.0f);
         path2.close();
     }
 
     @Override
     public final void draw(Canvas canvas) {
         canvas.save();
-        canvas.translate(getBounds().centerX() - this.f44830a, getBounds().centerY() - this.f44830a);
-        Paint paint = this.f44832c;
+        canvas.translate(getBounds().centerX() - this.f44851a, getBounds().centerY() - this.f44851a);
+        Paint paint = this.f44853c;
         if (paint != null) {
-            float f10 = this.f44830a;
+            float f10 = this.f44851a;
             canvas.drawCircle(f10, f10, f10, paint);
         }
         canvas.clipPath(this.h);
         canvas.drawPaint(this.d);
-        canvas.drawPath(this.f44835g, this.f44833e);
-        if (this.f44831b) {
+        canvas.drawPath(this.f44856g, this.f44854e);
+        if (this.f44852b) {
             RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(this.f44830a - org.telegram.messenger.g0.L(3.66f), this.f44830a - org.telegram.messenger.g0.L(3.66f), this.f44830a + org.telegram.messenger.g0.L(3.66f), this.f44830a + org.telegram.messenger.g0.L(3.66f));
-            float f11 = this.f44830a;
+            rectF.set(this.f44851a - org.telegram.messenger.g0.L(3.66f), this.f44851a - org.telegram.messenger.g0.L(3.66f), this.f44851a + org.telegram.messenger.g0.L(3.66f), this.f44851a + org.telegram.messenger.g0.L(3.66f));
+            float f11 = this.f44851a;
             canvas.rotate(45.0f, f11, f11);
-            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.33f), org.telegram.messenger.g0.L(2.33f), this.f44834f);
+            canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(2.33f), org.telegram.messenger.g0.L(2.33f), this.f44855f);
         }
         canvas.restore();
-        org.telegram.ui.Components.g5 g5Var = this.f44836i;
+        org.telegram.ui.Components.g5 g5Var = this.f44857i;
         if (g5Var != null) {
             int L = org.telegram.messenger.g0.L(14.0f) / 2;
             g5Var.setBounds(getBounds().centerX() - L, getBounds().centerY() - L, getBounds().centerX() + L, getBounds().centerY() + L);
@@ -123,7 +123,7 @@ public final class cm0 extends Drawable {
     }
 
     public final void e(View view) {
-        org.telegram.ui.Components.g5 g5Var = this.f44836i;
+        org.telegram.ui.Components.g5 g5Var = this.f44857i;
         if (view == null) {
             if (g5Var != null) {
                 g5Var.b();
@@ -139,23 +139,23 @@ public final class cm0 extends Drawable {
     }
 
     public final void f(float f10, int i7) {
-        if (this.f44832c == null) {
+        if (this.f44853c == null) {
             Paint paint = new Paint(1);
-            this.f44832c = paint;
+            this.f44853c = paint;
             paint.setStyle(Paint.Style.STROKE);
         }
-        this.f44832c.setStrokeWidth(f10);
-        this.f44832c.setColor(i7);
+        this.f44853c.setStrokeWidth(f10);
+        this.f44853c.setColor(i7);
     }
 
     @Override
     public final int getIntrinsicHeight() {
-        return (int) (this.f44830a * 2.0f);
+        return (int) (this.f44851a * 2.0f);
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return (int) (this.f44830a * 2.0f);
+        return (int) (this.f44851a * 2.0f);
     }
 
     @Override
@@ -167,18 +167,18 @@ public final class cm0 extends Drawable {
         Paint paint = new Paint(1);
         this.d = paint;
         Paint paint2 = new Paint(1);
-        this.f44833e = paint2;
+        this.f44854e = paint2;
         Paint paint3 = new Paint(1);
-        this.f44834f = paint3;
-        this.f44835g = new Path();
+        this.f44855f = paint3;
+        this.f44856g = new Path();
         this.h = new Path();
-        this.f44831b = i11 != i7;
+        this.f44852b = i11 != i7;
         paint.setColor(i7);
         paint2.setColor(i10);
         paint3.setColor(i11);
         d();
         org.telegram.ui.Components.g5 g5Var = new org.telegram.ui.Components.g5(org.telegram.messenger.g0.L(14.0f), null);
-        this.f44836i = g5Var;
+        this.f44857i = g5Var;
         g5Var.j(j3, false);
     }
 

@@ -12,16 +12,16 @@ import org.telegram.ui.hl0;
 import org.telegram.ui.hy0;
 import tc.g;
 public final class a extends AsyncTask {
-    public final String f54881a;
-    public final uc.a f54882b;
-    public final f f54883c;
+    public final String f54906a;
+    public final uc.a f54907b;
+    public final f f54908c;
     public final n d;
 
     public a(n nVar, String str, uc.a aVar, f fVar) {
         this.d = nVar;
-        this.f54881a = str;
-        this.f54882b = aVar;
-        this.f54883c = fVar;
+        this.f54906a = str;
+        this.f54907b = aVar;
+        this.f54908c = fVar;
     }
 
     @Override
@@ -29,11 +29,11 @@ public final class a extends AsyncTask {
         Void[] voidArr = (Void[]) objArr;
         n nVar = this.d;
         try {
-            hy0 c10 = vc.b.c(od.a(this.f54882b), new l(this.f54881a, 2));
-            Object obj = nVar.f36166a;
+            hy0 c10 = vc.b.c(od.a(this.f54907b), new l(this.f54906a, 2));
+            Object obj = nVar.f36104a;
             return new b(c10, null);
         } catch (g e10) {
-            Object obj2 = nVar.f36166a;
+            Object obj2 = nVar.f36104a;
             return new b(null, e10);
         }
     }
@@ -41,19 +41,19 @@ public final class a extends AsyncTask {
     @Override
     public final void onPostExecute(Object obj) {
         b bVar = (b) obj;
-        Object obj2 = this.d.f36166a;
-        hy0 hy0Var = bVar.f54884a;
-        f fVar = this.f54883c;
+        Object obj2 = this.d.f36104a;
+        hy0 hy0Var = bVar.f54909a;
+        f fVar = this.f54908c;
         if (hy0Var != null) {
-            hl0 hl0Var = (hl0) fVar.f45446b;
+            hl0 hl0Var = (hl0) fVar.f45451b;
             if (hl0Var.Q0) {
                 return;
             }
-            hl0Var.f46423w0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) hy0Var.f46520c, (String) hy0Var.f46519b);
+            hl0Var.f46443w0 = String.format(Locale.US, "{\"type\":\"%1$s\", \"id\":\"%2$s\"}", (String) hy0Var.f46529c, (String) hy0Var.f46528b);
             g0.h3(new ef0(fVar, 11));
             return;
         }
-        Exception exc = bVar.f54885b;
+        Exception exc = bVar.f54910b;
         if (exc != null) {
             fVar.Y1(exc);
         } else {

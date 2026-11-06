@@ -7,9 +7,9 @@ import org.telegram.messenger.a20;
 import org.telegram.messenger.hd;
 import org.telegram.ui.Cells.m8;
 import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Components.r31;
 import org.telegram.ui.Components.t4;
 import org.telegram.ui.Components.v4;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.an;
 public final class a implements a20, org.telegram.ui.ActionBar.r1 {
     public final int f17284a;
@@ -34,47 +34,47 @@ public final class a implements a20, org.telegram.ui.ActionBar.r1 {
 
     @Override
     public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        r31 r31Var = (r31) obj;
+        w31 w31Var = (w31) obj;
         final View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
         final c cVar = this.f17285b;
-        if (!cVar.f17317c.h(r31Var)) {
-            int i7 = r31Var.d;
-            if (i7 != 2 && r31Var.f54415a != 17) {
+        if (!cVar.f17317c.h(w31Var)) {
+            int i7 = w31Var.d;
+            if (i7 != 2 && w31Var.f54440a != 17) {
                 if (i7 == 1) {
                     cVar.f17321r = !cVar.f17321r;
-                    cVar.f17316b.f35167f3.O(true);
+                    cVar.f17316b.f36781f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 6) {
                     a0 a0Var = cVar.f17317c;
                     cVar.f17322s = true;
                     a0Var.h = true;
-                    cVar.f17316b.f35167f3.O(true);
+                    cVar.f17316b.f36781f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 7) {
                     a0 a0Var2 = cVar.f17317c;
                     cVar.f17322s = false;
                     a0Var2.h = false;
-                    cVar.f17316b.f35167f3.O(true);
+                    cVar.f17316b.f36781f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 3) {
                     cVar.f17324x = 0;
-                    cVar.f17316b.f35167f3.O(true);
+                    cVar.f17316b.f36781f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 4) {
                     cVar.f17324x = 1;
-                    cVar.f17316b.f35167f3.O(true);
+                    cVar.f17316b.f36781f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 5) {
                     cVar.f17324x = 2;
-                    cVar.f17316b.f35167f3.O(true);
+                    cVar.f17316b.f36781f3.O(true);
                     cVar.a0(true);
                     return;
                 } else if (i7 == 8) {

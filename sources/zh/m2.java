@@ -5,13 +5,13 @@ import bi.l5;
 import java.io.Serializable;
 import org.telegram.messenger.a20;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 public final class m2 implements l5, a20 {
-    public final m3 f60338a;
+    public final m3 f60363a;
 
     @Override
     public void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z9) {
-        m3.Z(this.f60338a, tL_starGiftUnique, j3, z9);
+        m3.Z(this.f60363a, tL_starGiftUnique, j3, z9);
     }
 
     @Override
@@ -20,6 +20,6 @@ public final class m2 implements l5, a20 {
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        m3.d0(this.f60338a, (r31) obj);
+        m3.d0(this.f60363a, (w31) obj);
     }
 }

@@ -14,7 +14,7 @@ public final class g extends JSONObject {
                 }
                 JSONObject jSONObject = new JSONObject();
                 jSONObject.put("gateway", "stripe");
-                jSONObject.put("stripe:publishableKey", hl0Var.f46407j0);
+                jSONObject.put("stripe:publishableKey", hl0Var.f46427j0);
                 jSONObject.put("stripe:version", "3.5.0");
                 put("parameters", jSONObject);
                 return;

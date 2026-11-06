@@ -10,11 +10,11 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.ij;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.l51;
-import org.telegram.ui.Components.n51;
+import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.s51;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.j4;
-public final class w implements l51 {
+public final class w implements p51 {
     public static w f14154f;
     public boolean f14155a;
     public int f14156b;
@@ -81,7 +81,7 @@ public final class w implements l51 {
     }
 
     @Override
-    public void onError(n51 n51Var, Exception exc) {
+    public void onError(s51 s51Var, Exception exc) {
         a8.g(exc, true);
     }
 

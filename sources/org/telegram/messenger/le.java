@@ -3,10 +3,10 @@ package org.telegram.messenger;
 import android.graphics.SurfaceTexture;
 import java.util.ArrayList;
 import org.telegram.ui.Components.PipRoundVideoView;
-import org.telegram.ui.Components.l51;
-import org.telegram.ui.Components.n51;
+import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.s51;
 import org.telegram.ui.PhotoViewer;
-public final class le implements l51 {
+public final class le implements p51 {
     public final int f23872a;
     public final int f23873b;
     public final ij f23874c;
@@ -20,7 +20,7 @@ public final class le implements l51 {
     }
 
     @Override
-    public final void onError(n51 n51Var, Exception exc) {
+    public final void onError(s51 s51Var, Exception exc) {
         switch (this.f23872a) {
             case 0:
                 return;
@@ -56,9 +56,9 @@ public final class le implements l51 {
                 if (i11 == mediaController.m0) {
                     ij ijVar = this.f23874c;
                     if (i7 != 4 && ((i7 != 1 && i7 != 2) || !z9 || ijVar.f23197b0 < 0.999f)) {
-                        n51 n51Var = mediaController.f21268i0;
-                        if (n51Var != null && mediaController.f21290t0 != 0.0f && (i7 == 3 || i7 == 1)) {
-                            mediaController.f21268i0.q0((int) (((float) n51Var.U()) * mediaController.f21290t0), false);
+                        s51 s51Var = mediaController.f21268i0;
+                        if (s51Var != null && mediaController.f21290t0 != 0.0f && (i7 == 3 || i7 == 1)) {
+                            mediaController.f21268i0.q0((int) (((float) s51Var.U()) * mediaController.f21290t0), false);
                             mediaController.f21290t0 = 0.0f;
                         }
                     } else {
@@ -217,7 +217,7 @@ public final class le implements l51 {
     private final void j(SurfaceTexture surfaceTexture) {
     }
 
-    private final void a(n51 n51Var, Exception exc) {
+    private final void a(s51 s51Var, Exception exc) {
     }
 
     private final void k(int i7, int i10, float f10, int i11) {

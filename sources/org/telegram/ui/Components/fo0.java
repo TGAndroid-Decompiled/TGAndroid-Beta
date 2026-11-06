@@ -6,20 +6,20 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class fo0 extends oj0 {
-    public final Context f33666c;
+    public final Context f33610c;
     public final ArrayList d = new ArrayList();
-    public final a0.h f33667e = new a0.h();
-    public final mo0 f33668f;
+    public final a0.h f33611e = new a0.h();
+    public final mo0 f33612f;
 
     public fo0(mo0 mo0Var, Context context) {
-        this.f33668f = mo0Var;
-        this.f33666c = context;
+        this.f33612f = mo0Var;
+        this.f33610c = context;
         E();
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f != 1) {
+        if (d1Var.f56956f != 1) {
             return true;
         }
         return false;
@@ -29,9 +29,9 @@ public final class fo0 extends oj0 {
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
         ArrayList arrayList = this.d;
         arrayList.clear();
-        a0.h hVar = this.f33667e;
+        a0.h hVar = this.f33611e;
         hVar.b();
-        mo0 mo0Var = this.f33668f;
+        mo0 mo0Var = this.f33612f;
         long j3 = org.telegram.messenger.p10.i(mo0Var.f28612a).f24478n;
         if (mo0Var.R1) {
             TLRPC.Dialog dialog = new TLRPC.Dialog();
@@ -75,7 +75,7 @@ public final class fo0 extends oj0 {
         arrayList.addAll(arrayList2);
         org.telegram.ui.an anVar = mo0Var.X1;
         if (anVar != null) {
-            int i10 = anVar.f43691a;
+            int i10 = anVar.f43716a;
             if (i10 != 1) {
                 if (i10 == 2) {
                     while (!arrayList.isEmpty() && arrayList.size() < 80) {
@@ -117,11 +117,11 @@ public final class fo0 extends oj0 {
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View do0Var;
         float f10;
-        mo0 mo0Var = this.f33668f;
-        Context context = this.f33666c;
+        mo0 mo0Var = this.f33612f;
+        Context context = this.f33610c;
         if (i7 != 0) {
             do0Var = new View(context);
-            if (mo0Var.Z1 && mo0Var.f36059g2[1] != null) {
+            if (mo0Var.Z1 && mo0Var.f35997g2[1] != null) {
                 f10 = 109.0f;
             } else {
                 f10 = 56.0f;

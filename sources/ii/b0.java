@@ -5,15 +5,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import c8.ha;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.xq;
 import v4.d1;
 public abstract class b0 extends FrameLayout {
     public org.telegram.ui.ActionBar.k f15487a;
     public final lh.f f15488b;
     public final FrameLayout f15489c;
-    public k41 d;
+    public p41 d;
     public boolean f15490e;
     public final d0 f15491f;
 
@@ -41,7 +41,7 @@ public abstract class b0 extends FrameLayout {
         a0Var.n(350L);
         a0Var.o(xq.h);
         a0Var.C = false;
-        a0Var.f56954m = false;
+        a0Var.f56979m = false;
         this.d.setItemAnimator(a0Var);
     }
 
@@ -51,7 +51,7 @@ public abstract class b0 extends FrameLayout {
             View childAt = this.d.getChildAt(i7);
             d1 T = this.d.T(childAt);
             if (T != null) {
-                r31 G = this.d.f35167f3.G(T.b());
+                w31 G = this.d.f36781f3.G(T.b());
                 if (G != null && G.d != 99) {
                     f10 = Math.min(childAt.getY() + this.f15489c.getPaddingTop(), f10);
                 }

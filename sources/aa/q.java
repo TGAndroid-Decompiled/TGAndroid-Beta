@@ -244,15 +244,15 @@ public final class q {
                                 if (str21 != null) {
                                     String str22 = b0Var2.c().f784a;
                                     i0 i0Var = aVar2.h;
-                                    if (((f5.a) i0Var.f54952c) == null) {
-                                        i0Var.f54952c = new f5.a(i0Var);
+                                    if (((f5.a) i0Var.f54977c) == null) {
+                                        i0Var.f54977c = new f5.a(i0Var);
                                     }
-                                    f5.a aVar3 = (f5.a) i0Var.f54952c;
+                                    f5.a aVar3 = (f5.a) i0Var.f54977c;
                                     String str23 = aVar3.f11112a;
                                     if (aVar3 == null) {
-                                        i0Var.f54952c = new f5.a(i0Var);
+                                        i0Var.f54977c = new f5.a(i0Var);
                                     }
-                                    obj2.f8424g = new o0(str21, str18, str19, str22, str23, ((f5.a) i0Var.f54952c).f11113b);
+                                    obj2.f8424g = new o0(str21, str18, str19, str22, str23, ((f5.a) i0Var.f54977c).f11113b);
                                     ?? obj3 = new Object();
                                     obj3.f8430a = 3;
                                     obj3.f8433e = (byte) (obj3.f8433e | 1);
@@ -493,7 +493,7 @@ public final class q {
             taskCompletionSource.trySetResult(Boolean.FALSE);
             return;
         }
-        x9.b bVar = x9.b.f58546a;
+        x9.b bVar = x9.b.f58571a;
         bVar.c("Crash reports are available to be sent.");
         x xVar = this.f835b;
         if (xVar.a()) {

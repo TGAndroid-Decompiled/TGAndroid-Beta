@@ -20,31 +20,31 @@ public final class zp0 extends sr0 {
         sr0[] sr0VarArr = xs0Var.m0;
         if (sr0VarArr[0] == this) {
             float f11 = translationX - f10;
-            oi.q qVar = xs0Var.f40358g2;
+            oi.q qVar = xs0Var.f40377g2;
             if (qVar != null) {
-                float f12 = xs0Var.f40361h2 + f11;
-                xs0Var.f40361h2 = f12;
+                float f12 = xs0Var.f40380h2 + f11;
+                xs0Var.f40380h2 = f12;
                 int i10 = (int) f12;
                 if (i10 != 0) {
-                    xs0Var.f40361h2 = f12 - i10;
+                    xs0Var.f40380h2 = f12 - i10;
                     qVar.h(i10, 0);
                 }
             }
         }
-        if (xs0Var.f40363i1 && (sr0Var = sr0VarArr[0]) == this) {
+        if (xs0Var.f40382i1 && (sr0Var = sr0VarArr[0]) == this) {
             float abs = Math.abs(sr0Var.getTranslationX()) / sr0VarArr[0].getMeasuredWidth();
             xs0Var.j1(abs, sr0VarArr[1].E);
             if (xs0Var.I()) {
-                int i11 = xs0Var.f40409z0;
+                int i11 = xs0Var.f40428z0;
                 if (i11 == 2) {
-                    xs0Var.f40384q0 = 1.0f - abs;
+                    xs0Var.f40403q0 = 1.0f - abs;
                 } else if (i11 == 1) {
-                    xs0Var.f40384q0 = abs;
+                    xs0Var.f40403q0 = abs;
                 }
                 xs0Var.K1(abs);
                 float k02 = xs0Var.k0(abs);
-                xs0Var.f40388r0 = k02;
-                ImageView imageView = xs0Var.f40394t0;
+                xs0Var.f40407r0 = k02;
+                ImageView imageView = xs0Var.f40413t0;
                 if (k02 != 0.0f && xs0Var.I() && !xs0Var.A0()) {
                     i7 = 0;
                 } else {
@@ -52,7 +52,7 @@ public final class zp0 extends sr0 {
                 }
                 imageView.setVisibility(i7);
             } else {
-                xs0Var.f40384q0 = 0.0f;
+                xs0Var.f40403q0 = 0.0f;
             }
             xs0Var.G1(false);
         }

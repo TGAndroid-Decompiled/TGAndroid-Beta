@@ -8,18 +8,18 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.ImageView;
 import org.telegram.messenger.Utilities;
 public final class px extends ImageView {
-    public int f37193a;
-    public i5 f37194b;
-    public boolean f37195c;
+    public int f37072a;
+    public i5 f37073b;
+    public boolean f37074c;
     public r5 d;
-    public tw f37196e;
-    public final org.telegram.messenger.ic[] f37197f;
+    public tw f37075e;
+    public final org.telegram.messenger.ic[] f37076f;
     public float h;
-    public ValueAnimator f37198n;
+    public ValueAnimator f37077n;
 
     public px(Context context) {
         super(context);
-        this.f37197f = new org.telegram.messenger.ic[2];
+        this.f37076f = new org.telegram.messenger.ic[2];
         setScaleType(ImageView.ScaleType.CENTER);
         int i7 = org.telegram.ui.ActionBar.k6.f27940i6;
         org.telegram.ui.Cells.y a02 = org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.x0(null, i7, false), org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f));
@@ -30,7 +30,7 @@ public final class px extends ImageView {
 
     public final void a(org.telegram.messenger.e6 e6Var, boolean z9) {
         setImageDrawable(e6Var);
-        this.f37195c = z9;
+        this.f37074c = z9;
     }
 
     public r5 getSpan() {
@@ -72,20 +72,20 @@ public final class px extends ImageView {
         if (isPressed() != z9) {
             super.setPressed(z9);
             invalidate();
-            if (z9 && (valueAnimator = this.f37198n) != null) {
+            if (z9 && (valueAnimator = this.f37077n) != null) {
                 valueAnimator.removeAllListeners();
-                this.f37198n.cancel();
+                this.f37077n.cancel();
             }
             if (!z9) {
                 float f10 = this.h;
                 if (f10 != 0.0f) {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, 0.0f);
-                    this.f37198n = ofFloat;
+                    this.f37077n = ofFloat;
                     ofFloat.addUpdateListener(new e6(this, 21));
-                    this.f37198n.addListener(new z5(this, 25));
-                    org.telegram.messenger.camera.q.i(5.0f, this.f37198n);
-                    this.f37198n.setDuration(350L);
-                    this.f37198n.start();
+                    this.f37077n.addListener(new z5(this, 25));
+                    org.telegram.messenger.camera.q.i(5.0f, this.f37077n);
+                    this.f37077n.setDuration(350L);
+                    this.f37077n.start();
                 }
             }
         }

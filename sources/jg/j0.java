@@ -72,22 +72,22 @@ public final class j0 extends AnimatorListenerAdapter {
                     ((org.telegram.ui.Cells.q1) view2).getTransitionParams().f30797i = false;
                 }
                 ((ViewPropertyAnimator) this.d).setListener(null);
-                if (lVar.f56992y.remove(d1Var2)) {
+                if (lVar.f57017y.remove(d1Var2)) {
                     lVar.u(d1Var2);
                     lVar.G();
                     return;
                 }
                 return;
             case 2:
-                ((v4.d1) this.f16808b).f56927a.setAlpha(1.0f);
+                ((v4.d1) this.f16808b).f56952a.setAlpha(1.0f);
                 ((AnimatorSet) this.f16809c).removeAllListeners();
                 es esVar = (es) this.f16810e;
                 cs csVar = (cs) this.d;
-                esVar.d(csVar.f32649a);
-                esVar.f33329y.remove(csVar.f32649a);
+                esVar.d(csVar.f32653a);
+                esVar.f33325y.remove(csVar.f32653a);
                 esVar.A();
-                esVar.d(csVar.f32650b);
-                esVar.f33329y.remove(csVar.f32650b);
+                esVar.d(csVar.f32654b);
+                esVar.f33325y.remove(csVar.f32654b);
                 esVar.A();
                 return;
             case 3:
@@ -101,7 +101,7 @@ public final class j0 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 h2 h2Var = (h2) this.f16810e;
-                TextView[] textViewArr = h2Var.f39191a;
+                TextView[] textViewArr = h2Var.f39188a;
                 View view4 = (View) this.f16809c;
                 view4.setVisibility(8);
                 view4.setAlpha(1.0f);
@@ -118,16 +118,16 @@ public final class j0 extends AnimatorListenerAdapter {
                 if (runnable != null) {
                     runnable.run();
                 }
-                h2Var.f39195f = false;
-                CharSequence charSequence = h2Var.f39194e;
+                h2Var.f39192f = false;
+                CharSequence charSequence = h2Var.f39191e;
                 if (charSequence != null) {
                     if (charSequence.equals("timer")) {
                         h2Var.e(true);
                     } else {
-                        textViewArr[1].setText(h2Var.f39194e);
+                        textViewArr[1].setText(h2Var.f39191e);
                         h2Var.a(textViewArr[0], textViewArr[1], new m5(this, 8));
                     }
-                    h2Var.f39194e = null;
+                    h2Var.f39191e = null;
                     return;
                 }
                 return;
@@ -146,20 +146,20 @@ public final class j0 extends AnimatorListenerAdapter {
                     runnable2.run();
                     return;
                 }
-                profileActivity.f41694e0.setProgressToExpand(0.0f);
-                profileActivity.f41663a.setLayerType(0, null);
+                profileActivity.f41719e0.setProgressToExpand(0.0f);
+                profileActivity.f41688a.setLayerType(0, null);
                 runnable2.run();
                 if (profileActivity.I1 == 2) {
                     profileActivity.I1 = 1;
-                    profileActivity.f41694e0.setForegroundAlpha(1.0f);
+                    profileActivity.f41719e0.setForegroundAlpha(1.0f);
                     profileActivity.X.setVisibility(8);
-                    profileActivity.f41756n0.setAlpha(1.0f);
-                    profileActivity.f41756n0.L();
-                    profileActivity.f41756n0.setVisibility(0);
+                    profileActivity.f41781n0.setAlpha(1.0f);
+                    profileActivity.f41781n0.L();
+                    profileActivity.f41781n0.setVisibility(0);
                 }
                 profileActivity.W4 = null;
                 profileActivity.Y.invalidate();
-                profileActivity.f41714g5 = null;
+                profileActivity.f41739g5 = null;
                 profileActivity.fragmentView.invalidate();
                 return;
         }
@@ -176,9 +176,9 @@ public final class j0 extends AnimatorListenerAdapter {
             case 2:
                 es esVar = (es) this.f16810e;
                 cs csVar = (cs) this.d;
-                v4.d1 d1Var = csVar.f32649a;
+                v4.d1 d1Var = csVar.f32653a;
                 esVar.getClass();
-                v4.d1 d1Var2 = csVar.f32650b;
+                v4.d1 d1Var2 = csVar.f32654b;
                 esVar.getClass();
                 return;
             default:

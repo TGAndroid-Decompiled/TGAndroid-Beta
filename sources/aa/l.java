@@ -109,9 +109,9 @@ public final class l implements Function {
             case 13:
                 return Long.valueOf(m5.o(((TLRPC.GroupCallParticipant) obj).peer));
             case 14:
-                return ((ms) obj).f47842a;
+                return ((ms) obj).f47870a;
             default:
-                return ((ms) obj).f47842a;
+                return ((ms) obj).f47870a;
         }
     }
 

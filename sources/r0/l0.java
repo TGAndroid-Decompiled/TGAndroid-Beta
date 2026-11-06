@@ -4,35 +4,35 @@ import android.view.View;
 import java.lang.ref.WeakReference;
 import org.telegram.ui.Components.v50;
 public final class l0 {
-    public final WeakReference f54085a;
+    public final WeakReference f54110a;
 
     public l0(View view) {
-        this.f54085a = new WeakReference(view);
+        this.f54110a = new WeakReference(view);
     }
 
     public final void a(float f10) {
-        View view = (View) this.f54085a.get();
+        View view = (View) this.f54110a.get();
         if (view != null) {
             view.animate().alpha(f10);
         }
     }
 
     public final void b() {
-        View view = (View) this.f54085a.get();
+        View view = (View) this.f54110a.get();
         if (view != null) {
             view.animate().cancel();
         }
     }
 
     public final void c(long j3) {
-        View view = (View) this.f54085a.get();
+        View view = (View) this.f54110a.get();
         if (view != null) {
             view.animate().setDuration(j3);
         }
     }
 
     public final void d(m0 m0Var) {
-        View view = (View) this.f54085a.get();
+        View view = (View) this.f54110a.get();
         if (view != null) {
             if (m0Var != null) {
                 view.animate().setListener(new v50(m0Var, view, 18));
@@ -43,7 +43,7 @@ public final class l0 {
     }
 
     public final void e(float f10) {
-        View view = (View) this.f54085a.get();
+        View view = (View) this.f54110a.get();
         if (view != null) {
             view.animate().translationY(f10);
         }

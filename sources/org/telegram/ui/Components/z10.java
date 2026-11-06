@@ -6,26 +6,26 @@ import android.graphics.drawable.Drawable;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.ImageView;
 public final class z10 extends ImageView {
-    public final int f40803a;
-    public final int f40804b;
-    public final Object f40805c;
+    public final int f40822a;
+    public final int f40823b;
+    public final Object f40824c;
 
     public z10(Object obj, Context context, int i7, int i10) {
         super(context);
-        this.f40803a = i10;
-        this.f40805c = obj;
-        this.f40804b = i7;
+        this.f40822a = i10;
+        this.f40824c = obj;
+        this.f40823b = i7;
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f40803a) {
+        switch (this.f40822a) {
             case 1:
                 super.onDraw(canvas);
-                org.telegram.ui.a00 a00Var = (org.telegram.ui.a00) this.f40805c;
-                a80 a80Var = a00Var.f43485s;
-                if (a00Var.f43484r) {
-                    int i7 = this.f40804b / 2;
+                org.telegram.ui.a00 a00Var = (org.telegram.ui.a00) this.f40824c;
+                a80 a80Var = a00Var.f43510s;
+                if (a00Var.f43509r) {
+                    int i7 = this.f40823b / 2;
                     a80Var.setBounds(i7, i7, getWidth() - i7, getHeight() - i7);
                     a80Var.draw(canvas);
                     return;
@@ -39,11 +39,11 @@ public final class z10 extends ImageView {
 
     @Override
     public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        switch (this.f40803a) {
+        switch (this.f40822a) {
             case 0:
                 super.onInitializeAccessibilityEvent(accessibilityEvent);
                 if (accessibilityEvent.getEventType() == 32768) {
-                    ((org.telegram.ui.c30) ((a20) this.f40805c).d).f31981i1.x(this.f40804b, true);
+                    ((org.telegram.ui.c30) ((a20) this.f40824c).d).f31984i1.x(this.f40823b, true);
                     return;
                 }
                 return;
@@ -55,9 +55,9 @@ public final class z10 extends ImageView {
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f40803a) {
+        switch (this.f40822a) {
             case 1:
-                if (drawable != ((org.telegram.ui.a00) this.f40805c).f43485s && !super.verifyDrawable(drawable)) {
+                if (drawable != ((org.telegram.ui.a00) this.f40824c).f43510s && !super.verifyDrawable(drawable)) {
                     return false;
                 }
                 return true;

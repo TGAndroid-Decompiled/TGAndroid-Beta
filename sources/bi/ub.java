@@ -33,9 +33,9 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.SecretMediaViewer;
 import org.telegram.ui.an;
 import org.telegram.ui.c40;
-import org.telegram.ui.io0;
 import org.telegram.ui.je0;
 import org.telegram.ui.jn0;
+import org.telegram.ui.jo0;
 import org.telegram.ui.ld0;
 import org.telegram.ui.p90;
 import org.telegram.ui.q10;
@@ -64,8 +64,8 @@ public final class ub implements Runnable {
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) this.d;
         ij ijVar = (ij) this.f4841e;
         org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) this.f4842f;
-        int[] iArr = zt0Var.f40931e;
-        RLottieNative[] rLottieNativeArr = zt0Var.f41085f1;
+        int[] iArr = zt0Var.f40956e;
+        RLottieNative[] rLottieNativeArr = zt0Var.f41110f1;
         if (zt0Var.W0) {
             org.telegram.messenger.g0.h3(new xt0(zt0Var, 2));
             return;
@@ -100,7 +100,7 @@ public final class ub implements Runnable {
                         z9 = true;
                     } else {
                         rLottieNativeArr[i11] = RLottieNative.b(y22, iArr, null, null);
-                        zt0Var.f41086g1[i11] = iArr[0];
+                        zt0Var.f41111g1[i11] = iArr[0];
                     }
                 }
             }
@@ -122,7 +122,7 @@ public final class ub implements Runnable {
         org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.f4842f;
         String str = LaunchActivity.B1;
         if (!launchActivity.isFinishing()) {
-            if (tLObject != null && launchActivity.f41251o0 != null) {
+            if (tLObject != null && launchActivity.f41276o0 != null) {
                 TLRPC.TL_messages_historyImportParsed tL_messages_historyImportParsed = (TLRPC.TL_messages_historyImportParsed) tLObject;
                 Bundle k10 = a8.p0.k("onlySelect", true);
                 k10.putString("importTitle", tL_messages_historyImportParsed.title);
@@ -163,7 +163,7 @@ public final class ub implements Runnable {
                         }
                     }
                 }
-                if (SecretMediaViewer.g() && SecretMediaViewer.f().f41909s) {
+                if (SecretMediaViewer.g() && SecretMediaViewer.f().f41934s) {
                     SecretMediaViewer.f().e(false, false);
                 } else if (PhotoViewer.A1() && PhotoViewer.p1().P1()) {
                     PhotoViewer.p1().z0(false, true);
@@ -171,17 +171,17 @@ public final class ub implements Runnable {
                     org.telegram.ui.g4.v().m(false, true);
                 }
                 fi.va.w();
-                c40 c40Var = c40.f44519u5;
+                c40 c40Var = c40.f44540u5;
                 if (c40Var != null) {
                     c40Var.dismiss();
                 }
                 if (org.telegram.messenger.g0.Q1()) {
-                    launchActivity.f41251o0.X(true, true);
-                    launchActivity.f41255q0.X(true, true);
+                    launchActivity.f41276o0.X(true, true);
+                    launchActivity.f41280q0.X(true, true);
                 }
                 ww wwVar = new ww(k10);
                 wwVar.C2 = launchActivity;
-                if (!org.telegram.messenger.g0.Q1() ? !(launchActivity.f41251o0.getFragmentStack().size() <= 1 || !(launchActivity.f41251o0.getFragmentStack().get(launchActivity.f41251o0.getFragmentStack().size() - 1) instanceof je0)) : !(launchActivity.f41253p0.getFragmentStack().isEmpty() || !(launchActivity.f41253p0.getFragmentStack().get(launchActivity.f41253p0.getFragmentStack().size() - 1) instanceof je0))) {
+                if (!org.telegram.messenger.g0.Q1() ? !(launchActivity.f41276o0.getFragmentStack().size() <= 1 || !(launchActivity.f41276o0.getFragmentStack().get(launchActivity.f41276o0.getFragmentStack().size() - 1) instanceof je0)) : !(launchActivity.f41278p0.getFragmentStack().isEmpty() || !(launchActivity.f41278p0.getFragmentStack().get(launchActivity.f41278p0.getFragmentStack().size() - 1) instanceof je0))) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -208,7 +208,7 @@ public final class ub implements Runnable {
         q10 q10Var = (q10) this.d;
         TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f4841e;
         TLRPC.Updates updates = (TLRPC.Updates) this.f4842f;
-        ArrayList arrayList = launchActivity.f41232d0;
+        ArrayList arrayList = launchActivity.f41257d0;
         if (!launchActivity.isFinishing()) {
             try {
                 q10Var.run();
@@ -216,7 +216,7 @@ public final class ub implements Runnable {
                 org.telegram.messenger.a8.g(e10, true);
             }
             if (tL_error == null) {
-                if (launchActivity.f41251o0 != null && updates != null && !updates.chats.isEmpty()) {
+                if (launchActivity.f41276o0 != null && updates != null && !updates.chats.isEmpty()) {
                     TLRPC.Chat chat = updates.chats.get(0);
                     chat.left = false;
                     chat.kicked = false;
@@ -258,7 +258,7 @@ public final class ub implements Runnable {
         TLObject tLObject = (TLObject) this.f4841e;
         String str = (String) this.f4842f;
         q10 q10Var = (q10) this.d;
-        org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) jg.g.i(1, ((LaunchActivity) this.f4840c).f41232d0);
+        org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) jg.g.i(1, ((LaunchActivity) this.f4840c).f41257d0);
         try {
             if (tLObject instanceof TL_chatlists.chatlist_ChatlistInvite) {
                 TL_chatlists.chatlist_ChatlistInvite chatlist_chatlistinvite = (TL_chatlists.chatlist_ChatlistInvite) tLObject;
@@ -289,9 +289,9 @@ public final class ub implements Runnable {
                     naVar.X1 = "";
                     naVar.Z1 = new ArrayList();
                     ArrayList arrayList3 = new ArrayList();
-                    naVar.f39768a2 = arrayList3;
-                    naVar.f39784r2 = -1;
-                    naVar.f39787u2 = -5;
+                    naVar.f39765a2 = arrayList3;
+                    naVar.f39781r2 = -1;
+                    naVar.f39784u2 = -5;
                     naVar.P1 = str;
                     naVar.R1 = chatlist_chatlistinvite;
                     arrayList3.clear();
@@ -305,7 +305,7 @@ public final class ub implements Runnable {
                     } else if (chatlist_chatlistinvite instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) {
                         TL_chatlists.TL_chatlists_chatlistInviteAlready tL_chatlists_chatlistInviteAlready2 = (TL_chatlists.TL_chatlists_chatlistInviteAlready) chatlist_chatlistinvite;
                         naVar.Y1 = tL_chatlists_chatlistInviteAlready2.missing_peers;
-                        naVar.f39769b2 = tL_chatlists_chatlistInviteAlready2.already_peers;
+                        naVar.f39766b2 = tL_chatlists_chatlistInviteAlready2.already_peers;
                         naVar.Q1 = tL_chatlists_chatlistInviteAlready2.filter_id;
                         ArrayList arrayList4 = f2Var.getMessagesController().P0;
                         if (arrayList4 != null) {
@@ -373,20 +373,20 @@ public final class ub implements Runnable {
         p4.i1 i1Var = (p4.i1) this.d;
         q4.r rVar = (q4.r) this.f4841e;
         p4.l0 l0Var = (p4.l0) this.f4842f;
-        ui.e eVar = m0Var.f53246g;
+        ui.e eVar = m0Var.f53272g;
         if (!m0Var.h.j()) {
-            boolean isActive = ((q4.l) m0Var.f53252n.f53686b).f53668a.isActive();
+            boolean isActive = ((q4.l) m0Var.f53278n.f53711b).f53693a.isActive();
             int i7 = this.f4839b;
             if (!isActive) {
                 StringBuilder sb2 = new StringBuilder("Ignore incoming session command before initialization. command=");
                 if (i1Var == null) {
                     obj = Integer.valueOf(i7);
                 } else {
-                    obj = i1Var.f53191b;
+                    obj = i1Var.f53217b;
                 }
                 sb2.append(obj);
                 sb2.append(", pid=");
-                sb2.append(rVar.f53688a.f53690b);
+                sb2.append(rVar.f53713a.f53715b);
                 h2.a.l("MediaSessionLegacyStub", sb2.toString());
                 return;
             }
@@ -428,46 +428,46 @@ public final class ub implements Runnable {
             if (list.isEmpty()) {
                 tg.z1 z1Var = new tg.z1(c2Var);
                 z1Var.h.set(0.0f, 0.0f, c2Var.I.getWidth(), c2Var.I.getHeight());
-                z1Var.f55905i.set(z1Var.h);
-                matrix.mapRect(z1Var.f55905i);
-                z1Var.f55901c = i11;
+                z1Var.f55930i.set(z1Var.h);
+                matrix.mapRect(z1Var.f55930i);
+                z1Var.f55926c = i11;
                 Bitmap d = c2Var.d(0, 0, c2Var.I, false);
                 z1Var.d = d;
                 if (d == null) {
                     org.telegram.messenger.a8.g(new RuntimeException("createSmoothEdgesSegmentedImage failed on empty image"), true);
                     return;
                 }
-                z1Var.f55903f = z1Var.c();
+                z1Var.f55928f = z1Var.c();
                 tg.c2.c(z1Var, c2Var.T, c2Var.U);
-                c2Var.O = z1Var.f55906j;
-                c2Var.P = z1Var.f55907k;
+                c2Var.O = z1Var.f55931j;
+                c2Var.P = z1Var.f55932k;
                 arrayList.add(z1Var);
-                org.telegram.messenger.g0.h3(new io0(c2Var, arrayList, jn0Var, z1Var, 27));
+                org.telegram.messenger.g0.h3(new jo0(c2Var, arrayList, jn0Var, z1Var, 27));
                 c2Var.E = z1Var;
                 c2Var.D = true;
-                c2Var.f55498y = false;
+                c2Var.f55523y = false;
                 return;
             }
             for (int i12 = 0; i12 < list.size(); i12++) {
                 tg.b2 b2Var = (tg.b2) list.get(i12);
                 tg.z1 z1Var2 = new tg.z1(c2Var);
-                z1Var2.h.set(b2Var.f55464b, b2Var.f55465c, i7 + b2Var.d, i10 + b2Var.f55466e);
-                z1Var2.f55905i.set(z1Var2.h);
-                matrix.mapRect(z1Var2.f55905i);
-                z1Var2.f55901c = i11;
-                Bitmap d2 = c2Var.d(b2Var.f55464b, b2Var.f55465c, b2Var.f55463a, false);
+                z1Var2.h.set(b2Var.f55489b, b2Var.f55490c, i7 + b2Var.d, i10 + b2Var.f55491e);
+                z1Var2.f55930i.set(z1Var2.h);
+                matrix.mapRect(z1Var2.f55930i);
+                z1Var2.f55926c = i11;
+                Bitmap d2 = c2Var.d(b2Var.f55489b, b2Var.f55490c, b2Var.f55488a, false);
                 z1Var2.d = d2;
                 if (d2 != null) {
-                    z1Var2.f55903f = z1Var2.c();
+                    z1Var2.f55928f = z1Var2.c();
                     tg.c2.c(z1Var2, c2Var.T, c2Var.U);
-                    c2Var.O = z1Var2.f55906j;
-                    c2Var.P = z1Var2.f55907k;
+                    c2Var.O = z1Var2.f55931j;
+                    c2Var.P = z1Var2.f55932k;
                     arrayList.add(z1Var2);
                 }
             }
             c2Var.E = null;
             c2Var.D = true;
-            c2Var.f55498y = false;
+            c2Var.f55523y = false;
             org.telegram.messenger.g0.h3(new org.telegram.ui.web.w(27, c2Var, arrayList));
         }
     }

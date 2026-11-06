@@ -39,11 +39,11 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.zr;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.m3;
-import org.telegram.ui.Components.l51;
-import org.telegram.ui.Components.n51;
+import org.telegram.ui.Components.p51;
+import org.telegram.ui.Components.s51;
 import org.telegram.ui.j9;
 import org.telegram.ui.r9;
-public final class u implements r9, l51, h2.d, u2.u, g0 {
+public final class u implements r9, p51, h2.d, u2.u, g0 {
     public final int f11189a;
     public int f11190b;
     public Object f11191c;
@@ -266,7 +266,7 @@ public final class u implements r9, l51, h2.d, u2.u, g0 {
                     if (i10 >= 0) {
                         String scheme = create.getScheme();
                         String userInfo = create.getUserInfo();
-                        SecureRandom secureRandom = rc.k.f54343a;
+                        SecureRandom secureRandom = rc.k.f54368a;
                         String host = create.getHost();
                         if (host == null) {
                             String rawAuthority = create.getRawAuthority();
@@ -317,8 +317,8 @@ public final class u implements r9, l51, h2.d, u2.u, g0 {
                                             }
                                             rc.s sVar = new rc.s(socketFactory, new rc.a(str2, i7), i10, null, null);
                                             sVar.d = 1;
-                                            sVar.f54360e = 250;
-                                            sVar.f54361f = true;
+                                            sVar.f54385e = 250;
+                                            sVar.f54386f = true;
                                             if (port >= 0) {
                                                 str2 = str2 + ":" + port;
                                             }
@@ -665,7 +665,7 @@ public final class u implements r9, l51, h2.d, u2.u, g0 {
     }
 
     @Override
-    public void onError(n51 n51Var, Exception exc) {
+    public void onError(s51 s51Var, Exception exc) {
     }
 
     @Override

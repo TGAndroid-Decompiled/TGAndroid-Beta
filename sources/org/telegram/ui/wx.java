@@ -12,37 +12,37 @@ import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class wx implements View.OnClickListener {
-    public final int f51654a;
-    public final ey f51655b;
+    public final int f51671a;
+    public final ey f51672b;
 
     public wx(ey eyVar, int i7) {
-        this.f51654a = i7;
-        this.f51655b = eyVar;
+        this.f51671a = i7;
+        this.f51672b = eyVar;
     }
 
     @Override
     public final void onClick(View view) {
         float f10;
-        int i7 = this.f51654a;
-        ey eyVar = this.f51655b;
+        int i7 = this.f51671a;
+        ey eyVar = this.f51672b;
         switch (i7) {
             case 0:
-                String str = eyVar.f52357s;
+                String str = eyVar.f52364s;
                 if (str != null) {
                     org.telegram.messenger.g0.g(str);
-                    org.telegram.messenger.camera.q.r(null, 2131748920, org.telegram.ui.Components.hc.a0(eyVar.f52356r));
+                    org.telegram.messenger.camera.q.r(null, 2131748920, org.telegram.ui.Components.hc.a0(eyVar.f52363r));
                     return;
                 }
                 return;
             case 1:
-                ey eyVar2 = this.f51655b;
-                FrameLayout frameLayout = eyVar2.f52350a;
+                ey eyVar2 = this.f51672b;
+                FrameLayout frameLayout = eyVar2.f52357a;
                 if (frameLayout.getBackground() instanceof RippleDrawable) {
                     frameLayout.getBackground().setState(new int[]{16842919, 16842910});
                     eyVar2.postDelayed(new bh(eyVar2, 29), 180L);
                 }
                 float[] fArr = eyVar2.D;
-                if (eyVar2.f52360y == null && eyVar2.f52357s != null) {
+                if (eyVar2.f52367y == null && eyVar2.f52364s != null) {
                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(eyVar2.getContext(), null);
                     org.telegram.ui.ActionBar.z0 z0Var = new org.telegram.ui.ActionBar.z0(eyVar2.getContext(), true, false);
                     z0Var.j(org.telegram.messenger.hd.M0(2131751265, null), 2131232116, null);
@@ -59,7 +59,7 @@ public final class wx implements View.OnClickListener {
                     z0Var3.h(0.12f, i10);
                     z0Var3.setOnClickListener(new wx(eyVar2, 6));
                     actionBarPopupWindow$ActionBarPopupWindowLayout.a(z0Var3, c8.ha.o(-1, 48));
-                    FrameLayout overlayContainerView = eyVar2.f52356r.getParentLayout().getOverlayContainerView();
+                    FrameLayout overlayContainerView = eyVar2.f52363r.getParentLayout().getOverlayContainerView();
                     if (overlayContainerView != null) {
                         yx.a(frameLayout, overlayContainerView, fArr);
                         float f11 = fArr[1];
@@ -71,14 +71,14 @@ public final class wx implements View.OnClickListener {
                         p5Var.animate().alpha(1.0f).setDuration(150L);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(overlayContainerView.getMeasuredWidth(), 0), View.MeasureSpec.makeMeasureSpec(overlayContainerView.getMeasuredHeight(), 0));
                         org.telegram.ui.ActionBar.g1 g1Var = new org.telegram.ui.ActionBar.g1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                        eyVar2.f52360y = g1Var;
+                        eyVar2.f52367y = g1Var;
                         g1Var.setOnDismissListener(new org.telegram.ui.Components.m70(eyVar2, p5Var, overlayContainerView, e7Var, 1));
-                        eyVar2.f52360y.setOutsideTouchable(true);
-                        eyVar2.f52360y.setFocusable(true);
-                        eyVar2.f52360y.setBackgroundDrawable(new ColorDrawable(0));
-                        eyVar2.f52360y.setAnimationStyle(2131755192);
-                        eyVar2.f52360y.setInputMethodMode(2);
-                        eyVar2.f52360y.setSoftInputMode(0);
+                        eyVar2.f52367y.setOutsideTouchable(true);
+                        eyVar2.f52367y.setFocusable(true);
+                        eyVar2.f52367y.setBackgroundDrawable(new ColorDrawable(0));
+                        eyVar2.f52367y.setAnimationStyle(2131755192);
+                        eyVar2.f52367y.setInputMethodMode(2);
+                        eyVar2.f52367y.setSoftInputMode(0);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new wr(eyVar2, 11));
                         if (org.telegram.messenger.g0.Q1()) {
                             f11 += overlayContainerView.getPaddingTop();
@@ -86,27 +86,27 @@ public final class wx implements View.OnClickListener {
                         } else {
                             f10 = 0.0f;
                         }
-                        eyVar2.f52360y.showAtLocation(overlayContainerView, 0, (int) (overlayContainerView.getX() + ((overlayContainerView.getMeasuredWidth() - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) - org.telegram.messenger.g0.L(16.0f)) + f10), (int) (overlayContainerView.getY() + f11 + frameLayout.getMeasuredHeight()));
+                        eyVar2.f52367y.showAtLocation(overlayContainerView, 0, (int) (overlayContainerView.getX() + ((overlayContainerView.getMeasuredWidth() - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) - org.telegram.messenger.g0.L(16.0f)) + f10), (int) (overlayContainerView.getY() + f11 + frameLayout.getMeasuredHeight()));
                         return;
                     }
                     return;
                 }
                 return;
             case 2:
-                String str2 = eyVar.f52357s;
+                String str2 = eyVar.f52364s;
                 if (str2 != null) {
                     org.telegram.messenger.g0.g(str2);
-                    org.telegram.messenger.camera.q.r(null, 2131748920, org.telegram.ui.Components.hc.a0(eyVar.f52356r));
+                    org.telegram.messenger.camera.q.r(null, 2131748920, org.telegram.ui.Components.hc.a0(eyVar.f52363r));
                     return;
                 }
                 return;
             case 3:
-                if (eyVar.f52357s != null) {
+                if (eyVar.f52364s != null) {
                     try {
                         Intent intent = new Intent("android.intent.action.SEND");
                         intent.setType("text/plain");
-                        intent.putExtra("android.intent.extra.TEXT", eyVar.f52357s);
-                        eyVar.f52356r.startActivityForResult(Intent.createChooser(intent, org.telegram.messenger.hd.M0(2131749109, null)), 500);
+                        intent.putExtra("android.intent.extra.TEXT", eyVar.f52364s);
+                        eyVar.f52363r.startActivityForResult(Intent.createChooser(intent, org.telegram.messenger.hd.M0(2131749109, null)), 500);
                         return;
                     } catch (Exception e10) {
                         org.telegram.messenger.a8.g(e10, true);
@@ -115,11 +115,11 @@ public final class wx implements View.OnClickListener {
                 }
                 return;
             case 4:
-                org.telegram.ui.ActionBar.g1 g1Var2 = eyVar.f52360y;
+                org.telegram.ui.ActionBar.g1 g1Var2 = eyVar.f52367y;
                 if (g1Var2 != null) {
                     g1Var2.d(true);
                 }
-                gy gyVar = eyVar.E.f45717c;
+                gy gyVar = eyVar.E.f45744c;
                 TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite = gyVar.d;
                 if (tL_exportedChatlistInvite != null && tL_exportedChatlistInvite.url != null) {
                     EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(eyVar.getContext());
@@ -142,7 +142,7 @@ public final class wx implements View.OnClickListener {
                     editTextBoldCursor.setGravity(51);
                     editTextBoldCursor.setSingleLine(true);
                     editTextBoldCursor.setImeOptions(6);
-                    editTextBoldCursor.setHint(gyVar.f46124c.f26057b);
+                    editTextBoldCursor.setHint(gyVar.f46144c.f26057b);
                     org.telegram.ui.ActionBar.r6.E(editTextBoldCursor, org.telegram.ui.ActionBar.k6.f28144t5, null);
                     org.telegram.ui.ActionBar.r6.m(editTextBoldCursor, 30, i12, null);
                     editTextBoldCursor.setCursorSize(org.telegram.messenger.g0.L(20.0f));
@@ -165,27 +165,27 @@ public final class wx implements View.OnClickListener {
                 }
                 return;
             case 5:
-                org.telegram.ui.ActionBar.g1 g1Var3 = eyVar.f52360y;
+                org.telegram.ui.ActionBar.g1 g1Var3 = eyVar.f52367y;
                 if (g1Var3 != null) {
                     g1Var3.d(true);
                 }
-                if (eyVar.f52357s != null) {
-                    org.telegram.ui.Components.lg0 lg0Var = new org.telegram.ui.Components.lg0(eyVar.getContext(), org.telegram.messenger.hd.M0(2131749169, null), eyVar.f52357s, org.telegram.messenger.hd.M0(2131746505, null), false);
+                if (eyVar.f52364s != null) {
+                    org.telegram.ui.Components.lg0 lg0Var = new org.telegram.ui.Components.lg0(eyVar.getContext(), org.telegram.messenger.hd.M0(2131749169, null), eyVar.f52364s, org.telegram.messenger.hd.M0(2131746505, null), false);
                     lg0Var.I0();
                     lg0Var.show();
                     return;
                 }
                 return;
             default:
-                org.telegram.ui.ActionBar.g1 g1Var4 = eyVar.f52360y;
+                org.telegram.ui.ActionBar.g1 g1Var4 = eyVar.f52367y;
                 if (g1Var4 != null) {
                     g1Var4.d(true);
                 }
                 TL_chatlists.TL_chatlists_deleteExportedInvite tL_chatlists_deleteExportedInvite = new TL_chatlists.TL_chatlists_deleteExportedInvite();
                 TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
                 tL_chatlists_deleteExportedInvite.chatlist = tL_inputChatlistDialogFilter;
-                gy gyVar2 = eyVar.E.f45717c;
-                tL_inputChatlistDialogFilter.filter_id = gyVar2.f46124c.f26056a;
+                gy gyVar2 = eyVar.E.f45744c;
+                tL_inputChatlistDialogFilter.filter_id = gyVar2.f46144c.f26056a;
                 tL_chatlists_deleteExportedInvite.slug = gyVar2.g0();
                 org.telegram.ui.ActionBar.u1 u1Var2 = new org.telegram.ui.ActionBar.u1(3, eyVar.getContext(), null);
                 u1Var2.r(180L);

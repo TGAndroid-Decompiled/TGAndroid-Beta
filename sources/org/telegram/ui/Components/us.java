@@ -9,25 +9,25 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public final class us implements xs, h2.j, cj0 {
-    public final int f38725a;
-    public final int f38726b;
-    public final Object f38727c;
+    public final int f38716a;
+    public final int f38717b;
+    public final Object f38718c;
     public final Object d;
 
     public us(ys ysVar, int i7, int i10, Runnable runnable) {
-        this.f38727c = ysVar;
-        this.f38725a = i7;
-        this.f38726b = i10;
+        this.f38718c = ysVar;
+        this.f38716a = i7;
+        this.f38717b = i10;
         this.d = runnable;
     }
 
     @Override
     public void a(String str) {
-        ys ysVar = (ys) this.f38727c;
+        ys ysVar = (ys) this.f38718c;
         Runnable runnable = (Runnable) this.d;
         Editable text = ysVar.getText();
-        int i7 = this.f38725a;
-        int i10 = this.f38726b;
+        int i7 = this.f38716a;
+        int i10 = this.f38717b;
         CharacterStyle[] characterStyleArr = (CharacterStyle[]) text.getSpans(i7, i10, CharacterStyle.class);
         if (characterStyleArr != null && characterStyleArr.length > 0) {
             for (CharacterStyle characterStyle : characterStyleArr) {
@@ -59,17 +59,17 @@ public final class us implements xs, h2.j, cj0 {
 
     @Override
     public void accept(Object obj) {
-        p4.c1 c1Var = (p4.c1) this.f38727c;
+        p4.c1 c1Var = (p4.c1) this.f38718c;
         Surface surface = (Surface) this.d;
         p4.g1 g1Var = (p4.g1) obj;
-        ((p4.d0) c1Var.f53065a.get()).getClass();
+        ((p4.d0) c1Var.f53091a.get()).getClass();
         if (surface == null) {
             g1Var.S(null);
-            c1Var.f53070i = null;
+            c1Var.f53096i = null;
             return;
         }
-        p4.b1 b1Var = new p4.b1(surface, this.f38725a, this.f38726b);
-        c1Var.f53070i = b1Var;
+        p4.b1 b1Var = new p4.b1(surface, this.f38716a, this.f38717b);
+        c1Var.f53096i = b1Var;
         g1Var.S(b1Var);
     }
 
@@ -80,18 +80,18 @@ public final class us implements xs, h2.j, cj0 {
         boolean z10;
         float f12;
         wg.x0 x0Var;
-        wg.f1 f1Var = (wg.f1) this.f38727c;
+        wg.f1 f1Var = (wg.f1) this.f38718c;
         org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.d;
         ah.a aVar = f1Var.V1;
         org.telegram.ui.ng0 ng0Var = f1Var.R1;
         ArrayList arrayList = f1Var.Y1;
         HashSet hashSet = f1Var.Z1;
         boolean z11 = view instanceof org.telegram.ui.Cells.m8;
-        int i10 = this.f38725a;
+        int i10 = this.f38716a;
         xg.h hVar = null;
         if (z11) {
             if (i10 == 4) {
-                org.telegram.ui.s00 s00Var = f1Var.f57628s2;
+                org.telegram.ui.s00 s00Var = f1Var.f57653s2;
                 if (s00Var != null) {
                     s00Var.run();
                     f1Var.dismiss();
@@ -110,9 +110,9 @@ public final class us implements xs, h2.j, cj0 {
                 if (i11 >= 0 && i11 < arrayList.size()) {
                     hVar = (xg.h) arrayList.get(i11);
                 }
-                org.telegram.messenger.c20 c20Var = f1Var.f57629t2;
+                org.telegram.messenger.c20 c20Var = f1Var.f57654t2;
                 if (c20Var != null && hVar != null) {
-                    int i12 = hVar.f58615i;
+                    int i12 = hVar.f58640i;
                     if (i12 == 4) {
                         c20Var.a(-98L);
                     } else if (i12 == 5) {
@@ -128,7 +128,7 @@ public final class us implements xs, h2.j, cj0 {
                     j3 = -chat.f26952id;
                 }
                 if (i10 == 3) {
-                    org.telegram.messenger.c20 c20Var2 = f1Var.f57629t2;
+                    org.telegram.messenger.c20 c20Var2 = f1Var.f57654t2;
                     if (c20Var2 != null) {
                         c20Var2.a(Long.valueOf(j3));
                     }
@@ -146,14 +146,14 @@ public final class us implements xs, h2.j, cj0 {
                     if (i10 == 4) {
                         if (hashSet.isEmpty()) {
                             hashSet.add(Long.valueOf(j3));
-                            org.telegram.messenger.v10 v10Var = f1Var.f57631v2;
+                            org.telegram.messenger.v10 v10Var = f1Var.f57656v2;
                             if (v10Var != null) {
                                 wo woVar = f1Var.U1;
-                                if (woVar == null || !woVar.f40043a.f31258q) {
+                                if (woVar == null || !woVar.f40050a.f31258q) {
                                     z12 = false;
                                 }
                                 v10Var.a(Boolean.valueOf(z12), hashSet);
-                                f1Var.f57631v2 = null;
+                                f1Var.f57656v2 = null;
                             }
                             f1Var.dismiss();
                             return;
@@ -169,7 +169,7 @@ public final class us implements xs, h2.j, cj0 {
                         hashSet.remove(Long.valueOf(j3));
                     } else {
                         hashSet.add(Long.valueOf(j3));
-                        f1Var.f57615f2.put(Long.valueOf(j3), user);
+                        f1Var.f57640f2.put(Long.valueOf(j3), user);
                     }
                     if (hashSet.size() == f1Var.h1() + 1) {
                         hashSet.remove(Long.valueOf(j3));
@@ -201,11 +201,11 @@ public final class us implements xs, h2.j, cj0 {
                             x0Var = null;
                         }
                         duration.withEndAction(x0Var).start();
-                        xg.i iVar = f1Var.f57617h2;
+                        xg.i iVar = f1Var.f57642h2;
                         boolean z13 = !z10;
                         if (iVar.D != z13) {
                             iVar.D = z13;
-                            org.telegram.messenger.g0.d0(iVar.f58626f, new xg.g(z13));
+                            org.telegram.messenger.g0.d0(iVar.f58651f, new xg.g(z13));
                         }
                     }
                     f1Var.e1();
@@ -215,8 +215,8 @@ public final class us implements xs, h2.j, cj0 {
                 } else if (org.telegram.messenger.t10.b(org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24459s0).b2(j3))) {
                     org.telegram.messenger.camera.q.s(org.telegram.messenger.hd.a0(null, null, 2131743743, org.telegram.messenger.m5.t(j3)), new hc(f1Var.f28618c, f6Var), 2131624011, 36);
                 } else {
-                    zh.h1 h1Var = new zh.h1(f1Var.getContext(), this.f38726b, j3, wg.s.c(wg.s.b(1, f1Var.f57619j2)), new wg.y0(f1Var, 1));
-                    org.telegram.messenger.t1 t1Var = f1Var.f57623n2;
+                    zh.h1 h1Var = new zh.h1(f1Var.getContext(), this.f38717b, j3, wg.s.c(wg.s.b(1, f1Var.f57644j2)), new wg.y0(f1Var, 1));
+                    org.telegram.messenger.t1 t1Var = f1Var.f57648n2;
                     if (t1Var == null || !t1Var.a(j3)) {
                         z12 = false;
                     }
@@ -233,17 +233,17 @@ public final class us implements xs, h2.j, cj0 {
     }
 
     public us(p4.c1 c1Var, Surface surface, int i7, int i10) {
-        this.f38727c = c1Var;
+        this.f38718c = c1Var;
         this.d = surface;
-        this.f38725a = i7;
-        this.f38726b = i10;
+        this.f38716a = i7;
+        this.f38717b = i10;
     }
 
     public us(wg.f1 f1Var, int i7, org.telegram.ui.ActionBar.f6 f6Var, int i10) {
-        this.f38727c = f1Var;
-        this.f38725a = i7;
+        this.f38718c = f1Var;
+        this.f38716a = i7;
         this.d = f6Var;
-        this.f38726b = i10;
+        this.f38717b = i10;
     }
 
     @Override

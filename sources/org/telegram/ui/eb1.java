@@ -5,28 +5,28 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-public final class eb1 extends org.telegram.ui.Components.q31 {
-    public static final int f45228b = 0;
+public final class eb1 extends org.telegram.ui.Components.v31 {
+    public static final int f45258b = 0;
 
     static {
-        org.telegram.ui.Components.q31.h(new org.telegram.ui.Components.q31());
+        org.telegram.ui.Components.v31.h(new org.telegram.ui.Components.v31());
     }
 
     @Override
-    public final void b(View view, org.telegram.ui.Components.r31 r31Var, boolean z9, org.telegram.ui.Components.f41 f41Var, org.telegram.ui.Components.k41 k41Var) {
+    public final void b(View view, org.telegram.ui.Components.w31 w31Var, boolean z9, org.telegram.ui.Components.k41 k41Var, org.telegram.ui.Components.p41 p41Var) {
         float f10;
         fb1 fb1Var = (fb1) view;
-        int i7 = r31Var.f37597k;
-        CharSequence charSequence = r31Var.f37598l;
-        CharSequence charSequence2 = r31Var.f37599m;
-        boolean z10 = r31Var.f37603q;
-        boolean z11 = r31Var.f37604r;
-        int i10 = r31Var.f37611z;
-        TextView textView = fb1Var.f45586e;
-        ImageView imageView = fb1Var.f45587f;
+        int i7 = w31Var.f39829k;
+        CharSequence charSequence = w31Var.f39830l;
+        CharSequence charSequence2 = w31Var.f39831m;
+        boolean z10 = w31Var.f39835q;
+        boolean z11 = w31Var.f39836r;
+        int i10 = w31Var.f39843z;
+        TextView textView = fb1Var.f45591e;
+        ImageView imageView = fb1Var.f45592f;
         fb1Var.h = z10;
-        fb1Var.f45588n = z11;
-        fb1Var.f45584b.setImageResource(i7);
+        fb1Var.f45593n = z11;
+        fb1Var.f45589b.setImageResource(i7);
         int i11 = 8;
         if (i10 != 0) {
             imageView.setVisibility(0);
@@ -46,7 +46,7 @@ public final class eb1 extends org.telegram.ui.Components.q31 {
             f10 = 10.0f;
         }
         int L = org.telegram.messenger.g0.L(f10);
-        fb1Var.f45585c.setPadding(0, L, 0, L);
+        fb1Var.f45590c.setPadding(0, L, 0, L);
         fb1Var.updateColors();
     }
 

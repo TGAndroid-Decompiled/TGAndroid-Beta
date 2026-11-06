@@ -14,35 +14,35 @@ import org.telegram.messenger.t3;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l9;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w8;
 import v4.o0;
-public final class g extends q31 {
+public final class g extends v31 {
     public static final int f17083b = 0;
 
     static {
-        q31.h(new q31());
+        v31.h(new v31());
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
+    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
         int i7;
         String o02;
         h hVar = (h) view;
-        f fVar = (f) r31Var.G;
+        f fVar = (f) w31Var.G;
         TLRPC.User user = fVar.f17081b;
         long j3 = fVar.f17080a;
         boolean z10 = fVar.f17082c;
-        boolean z11 = !r31Var.f37596j;
+        boolean z11 = !w31Var.f39828j;
         l9 l9Var = hVar.f17086c;
         TextView textView = hVar.f17089n;
         TextView textView2 = hVar.d;
-        hVar.E = (e) r31Var.H;
+        hVar.E = (e) w31Var.H;
         hVar.F = j3;
         hVar.G = user.f27101id;
         int i10 = hVar.f17085b;
@@ -98,9 +98,9 @@ public final class g extends q31 {
     }
 
     @Override
-    public final boolean e(r31 r31Var, r31 r31Var2) {
-        f fVar = (f) r31Var.G;
-        f fVar2 = (f) r31Var2.G;
+    public final boolean e(w31 w31Var, w31 w31Var2) {
+        f fVar = (f) w31Var.G;
+        f fVar2 = (f) w31Var2.G;
         if (fVar.f17080a == fVar2.f17080a && m5.d(fVar.f17081b) == m5.d(fVar2.f17081b)) {
             return true;
         }

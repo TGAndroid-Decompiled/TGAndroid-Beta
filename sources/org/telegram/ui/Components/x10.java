@@ -1,16 +1,16 @@
 package org.telegram.ui.Components;
 public final class x10 implements c5.g {
-    public final org.telegram.ui.c30 f40126a;
+    public final org.telegram.ui.c30 f40134a;
 
     public x10(org.telegram.ui.c30 c30Var) {
-        this.f40126a = c30Var;
+        this.f40134a = c30Var;
     }
 
     @Override
     public final void b(float f10, int i7, int i10) {
-        org.telegram.ui.c30 c30Var = this.f40126a;
+        org.telegram.ui.c30 c30Var = this.f40134a;
         c30Var.n1 = i7;
-        c30Var.f31984m1 = f10;
+        c30Var.f31987m1 = f10;
         b20.I0(c30Var);
     }
 

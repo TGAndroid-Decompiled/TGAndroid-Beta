@@ -10,9 +10,9 @@ import org.telegram.messenger.iz;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.c41;
 import org.telegram.ui.Components.eu0;
 import org.telegram.ui.Components.uy0;
-import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.zz;
 public abstract class c6 {
     public static final int[] f18504a = {1, 2, 16, 8, 4, 256, 16384, 32768, 65536};
@@ -41,7 +41,7 @@ public abstract class c6 {
                 a(spannableStringBuilder, textdiff.old_text, i7, pageBlock, z9);
                 if (spannableStringBuilder.length() > length) {
                     ?? obj = new Object();
-                    obj.f38442a = 8192;
+                    obj.f38433a = 8192;
                     spannableStringBuilder.setSpan(new uy0(obj, 0), length, spannableStringBuilder.length(), 33);
                     return;
                 }
@@ -51,7 +51,7 @@ public abstract class c6 {
             if (j10) {
                 if (spannableStringBuilder.length() > length) {
                     ?? obj2 = new Object();
-                    obj2.f38442a = 4096;
+                    obj2.f38433a = 4096;
                     spannableStringBuilder.setSpan(new uy0(obj2, 0), length, spannableStringBuilder.length(), 33);
                 }
             } else if (spannableStringBuilder.length() > length) {
@@ -93,7 +93,7 @@ public abstract class c6 {
                 tL_messageEntityFormattedDate.date = textdate.date;
                 tL_messageEntityFormattedDate.applyFlags();
                 ?? obj3 = new Object();
-                obj3.f38442a |= 128;
+                obj3.f38433a |= 128;
                 spannableStringBuilder.setSpan(new zz(charSequence2, obj3, tL_messageEntityFormattedDate), length4, spannableStringBuilder.length(), 33);
             }
         } else if (richText instanceof TL_iv.textMath) {
@@ -173,7 +173,7 @@ public abstract class c6 {
         uy0[] uy0VarArr = (uy0[]) spanned.getSpans(i7, i10, uy0.class);
         int i11 = 0;
         for (uy0 uy0Var : uy0VarArr) {
-            int i12 = uy0Var.f38768b.f38442a;
+            int i12 = uy0Var.f38759b.f38433a;
             if ((i12 & 512) != 0) {
                 i12 |= 256;
             }
@@ -218,8 +218,8 @@ public abstract class c6 {
         int max2 = Math.max(0, Math.min(i10, length));
         if (max < max2 && com.google.android.recaptcha.internal.a.u(editable)) {
             while (max < max2) {
-                int nextSpanTransition = editable.nextSpanTransition(max, max2, x31.class);
-                if (((x31[]) editable.getSpans(max, nextSpanTransition, x31.class)).length != 0) {
+                int nextSpanTransition = editable.nextSpanTransition(max, max2, c41.class);
+                if (((c41[]) editable.getSpans(max, nextSpanTransition, c41.class)).length != 0) {
                     max = nextSpanTransition;
                 }
             }
@@ -294,10 +294,10 @@ public abstract class c6 {
         }
     }
 
-    public static x31 k(String str) {
+    public static c41 k(String str) {
         ?? obj = new Object();
-        obj.f38442a = 1024;
-        return new x31(str, obj);
+        obj.f38433a = 1024;
+        return new c41(str, obj);
     }
 
     public static String l(TL_iv.RichText richText) {
@@ -355,20 +355,20 @@ public abstract class c6 {
     }
 
     public static void n(Editable editable, int i7, int i10) {
-        x31[] x31VarArr;
+        c41[] c41VarArr;
         int length = editable.length();
         int max = Math.max(0, Math.min(i7, length));
         int max2 = Math.max(0, Math.min(i10, length));
         if (max < max2) {
-            for (x31 x31Var : (x31[]) editable.getSpans(max, max2, x31.class)) {
-                int spanStart = editable.getSpanStart(x31Var);
-                int spanEnd = editable.getSpanEnd(x31Var);
-                editable.removeSpan(x31Var);
+            for (c41 c41Var : (c41[]) editable.getSpans(max, max2, c41.class)) {
+                int spanStart = editable.getSpanStart(c41Var);
+                int spanEnd = editable.getSpanEnd(c41Var);
+                editable.removeSpan(c41Var);
                 if (spanStart < max) {
-                    editable.setSpan(k(x31Var.getURL()), spanStart, max, 33);
+                    editable.setSpan(k(c41Var.getURL()), spanStart, max, 33);
                 }
                 if (spanEnd > max2) {
-                    editable.setSpan(k(x31Var.getURL()), max2, spanEnd, 33);
+                    editable.setSpan(k(c41Var.getURL()), max2, spanEnd, 33);
                 }
             }
         }
@@ -384,7 +384,7 @@ public abstract class c6 {
             for (uy0 uy0Var : (uy0[]) spannable.getSpans(max, max2, uy0.class)) {
                 int spanStart = spannable.getSpanStart(uy0Var);
                 int spanEnd = spannable.getSpanEnd(uy0Var);
-                int i13 = uy0Var.f38768b.f38442a;
+                int i13 = uy0Var.f38759b.f38433a;
                 spannable.removeSpan(uy0Var);
                 c(spannable, spanStart, max, i13, pageBlock);
                 c(spannable, max2, spanEnd, i13, pageBlock);
@@ -412,13 +412,13 @@ public abstract class c6 {
     public static uy0 p(int i7, TL_iv.PageBlock pageBlock) {
         boolean z9;
         ?? obj = new Object();
-        obj.f38442a = i7;
+        obj.f38433a = i7;
         if (!(pageBlock instanceof TL_iv.pageBlockTitle) && !(pageBlock instanceof TL_iv.pageBlockSubheader) && !(pageBlock instanceof TL_iv.pageBlockHeader) && !(pageBlock instanceof TL_iv.pageBlockHeading1) && !(pageBlock instanceof TL_iv.pageBlockHeading2) && !(pageBlock instanceof TL_iv.pageBlockHeading3) && !(pageBlock instanceof TL_iv.pageBlockHeading4) && !(pageBlock instanceof TL_iv.pageBlockHeading5) && !(pageBlock instanceof TL_iv.pageBlockHeading6)) {
             z9 = false;
         } else {
             z9 = true;
         }
-        obj.f38445e = z9;
+        obj.f38436e = z9;
         return new uy0(obj, 0);
     }
 
@@ -528,7 +528,7 @@ public abstract class c6 {
         }
         zz zzVar = (zz) b6Var.f18481e;
         if (zzVar != null) {
-            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = zzVar.f41137b;
+            TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = zzVar.f41162b;
             TL_iv.textDate textdate = new TL_iv.textDate();
             textdate.text = richText10;
             textdate.flags = tL_messageEntityFormattedDate.flags;

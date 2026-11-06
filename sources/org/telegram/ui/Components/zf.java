@@ -4,17 +4,17 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import java.util.ArrayList;
 public final class zf extends k1.b {
-    public final ag f40909o;
+    public final ag f40934o;
 
     public zf(ag agVar, ag agVar2) {
         super(agVar2);
-        this.f40909o = agVar;
+        this.f40934o = agVar;
     }
 
     @Override
     public final int g(float f10, float f11) {
-        ag agVar = this.f40909o;
-        ChatActivityEnterView chatActivityEnterView = agVar.f31792b0;
+        ag agVar = this.f40934o;
+        ChatActivityEnterView chatActivityEnterView = agVar.f31804b0;
         if (chatActivityEnterView.f31122s4 && chatActivityEnterView.N1 != null && chatActivityEnterView.S3.contains(f10, f11)) {
             return 2;
         }
@@ -26,7 +26,7 @@ public final class zf extends k1.b {
 
     @Override
     public final void h(ArrayList arrayList) {
-        ChatActivityEnterView chatActivityEnterView = this.f40909o.f31792b0;
+        ChatActivityEnterView chatActivityEnterView = this.f40934o.f31804b0;
         if (chatActivityEnterView.f31122s4) {
             arrayList.add(2);
         }
@@ -44,8 +44,8 @@ public final class zf extends k1.b {
     public final void l(int i7, s0.d dVar) {
         int i10;
         int i11;
-        ag agVar = this.f40909o;
-        ChatActivityEnterView chatActivityEnterView = agVar.f31792b0;
+        ag agVar = this.f40934o;
+        ChatActivityEnterView chatActivityEnterView = agVar.f31804b0;
         if (i7 == 2) {
             Rect rect = chatActivityEnterView.U3;
             RectF rectF = chatActivityEnterView.S3;

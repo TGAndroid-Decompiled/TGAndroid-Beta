@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class zj0 extends FrameLayout implements org.telegram.messenger.x5 {
-    public final TextView f52592a;
-    public final TextView f52593b;
-    public final org.telegram.ui.Components.l9 f52594c;
+    public final TextView f52599a;
+    public final TextView f52600b;
+    public final org.telegram.ui.Components.l9 f52601c;
     public final org.telegram.ui.Components.dh0 d;
-    public int f52595e;
-    public org.telegram.messenger.ew f52596f;
+    public int f52602e;
+    public org.telegram.messenger.ew f52603f;
     public final int h;
-    public final bk0 f52597n;
+    public final bk0 f52604n;
 
     public zj0(bk0 bk0Var, Activity activity) {
         super(activity);
@@ -26,12 +26,12 @@ public final class zj0 extends FrameLayout implements org.telegram.messenger.x5 
         int i14;
         int i15;
         int i16;
-        this.f52597n = bk0Var;
+        this.f52604n = bk0Var;
         i7 = ((org.telegram.ui.ActionBar.f2) bk0Var).currentAccount;
         this.h = org.telegram.messenger.z5.q(i7).k();
         this.d = new org.telegram.ui.Components.dh0(this);
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(activity);
-        this.f52594c = l9Var;
+        this.f52601c = l9Var;
         if (org.telegram.messenger.hd.f22871a0) {
             i10 = 5;
         } else {
@@ -39,7 +39,7 @@ public final class zj0 extends FrameLayout implements org.telegram.messenger.x5 
         }
         addView(l9Var, c8.ha.d(48, 48.0f, i10 | 48, 21.0f, 8.0f, 21.0f, 0.0f));
         TextView textView = new TextView(activity);
-        this.f52592a = textView;
+        this.f52599a = textView;
         org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.G6, null);
         org.telegram.messenger.camera.q.n(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
@@ -70,7 +70,7 @@ public final class zj0 extends FrameLayout implements org.telegram.messenger.x5 
         }
         addView(textView, c8.ha.d(-2, -2.0f, i17, f10, 10.0f, i14, 0.0f));
         TextView textView2 = new TextView(activity);
-        this.f52593b = textView2;
+        this.f52600b = textView2;
         org.telegram.ui.ActionBar.r6.V(textView2, org.telegram.ui.ActionBar.k6.f28258z6, null);
         textView2.setTextSize(1, 13.0f);
         if (org.telegram.messenger.hd.f22871a0) {
@@ -110,31 +110,31 @@ public final class zj0 extends FrameLayout implements org.telegram.messenger.x5 
         int i10;
         int i11;
         int i12;
-        String r10 = org.telegram.messenger.w7.r(null, this.f52596f);
+        String r10 = org.telegram.messenger.w7.r(null, this.f52603f);
         org.telegram.messenger.w7.G(org.telegram.messenger.p10.f24459s0);
-        boolean exists = org.telegram.messenger.w7.I(this.f52596f).exists();
+        boolean exists = org.telegram.messenger.w7.I(this.f52603f).exists();
         boolean isEmpty = TextUtils.isEmpty(r10);
         org.telegram.ui.Components.dh0 dh0Var = this.d;
         if (isEmpty) {
             dh0Var.d(null, false, false);
             return;
         }
-        org.telegram.messenger.ew ewVar = this.f52596f;
+        org.telegram.messenger.ew ewVar = this.f52603f;
         String str = ewVar.f22260c;
         float f10 = 0.0f;
-        bk0 bk0Var = this.f52597n;
+        bk0 bk0Var = this.f52604n;
         if (str != null) {
             if (ewVar.d != null) {
                 i12 = ((org.telegram.ui.ActionBar.f2) bk0Var).currentAccount;
                 org.telegram.messenger.z5.q(i12).v(this);
                 dh0Var.d(null, false, z9);
-                this.f52595e = -1;
+                this.f52602e = -1;
                 return;
             }
             i11 = ((org.telegram.ui.ActionBar.f2) bk0Var).currentAccount;
-            org.telegram.messenger.z5.q(i11).a(this.f52596f.f22260c, null, this);
-            this.f52595e = 1;
-            Float w10 = org.telegram.messenger.gc.D().w(this.f52596f.f22260c);
+            org.telegram.messenger.z5.q(i11).a(this.f52603f.f22260c, null, this);
+            this.f52602e = 1;
+            Float w10 = org.telegram.messenger.gc.D().w(this.f52603f.f22260c);
             dh0Var.d(getResources().getDrawable(2131231005), true, z9);
             if (w10 != null) {
                 f10 = w10.floatValue();
@@ -144,13 +144,13 @@ public final class zj0 extends FrameLayout implements org.telegram.messenger.x5 
         } else if (exists) {
             i10 = ((org.telegram.ui.ActionBar.f2) bk0Var).currentAccount;
             org.telegram.messenger.z5.q(i10).v(this);
-            this.f52595e = -1;
+            this.f52602e = -1;
             dh0Var.d(null, false, z9);
             invalidate();
         } else {
             i7 = ((org.telegram.ui.ActionBar.f2) bk0Var).currentAccount;
             org.telegram.messenger.z5.q(i7).a(r10, null, this);
-            this.f52595e = 1;
+            this.f52602e = 1;
             Float w11 = org.telegram.messenger.gc.D().w(r10);
             dh0Var.d(getResources().getDrawable(2131231005), true, z9);
             if (w11 != null) {
@@ -164,7 +164,7 @@ public final class zj0 extends FrameLayout implements org.telegram.messenger.x5 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
         boolean drawChild = super.drawChild(canvas, view, j3);
-        if (view == this.f52594c) {
+        if (view == this.f52601c) {
             this.d.a(canvas);
         }
         return drawChild;
@@ -178,7 +178,7 @@ public final class zj0 extends FrameLayout implements org.telegram.messenger.x5 
     @Override
     public final void i(long j3, long j10) {
         this.d.e(true, Math.min(1.0f, ((float) j3) / ((float) j10)));
-        if (this.f52595e != 1) {
+        if (this.f52602e != 1) {
             a(false);
         }
     }
@@ -186,7 +186,7 @@ public final class zj0 extends FrameLayout implements org.telegram.messenger.x5 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f52592a.invalidate();
+        this.f52599a.invalidate();
     }
 
     @Override
@@ -217,7 +217,7 @@ public final class zj0 extends FrameLayout implements org.telegram.messenger.x5 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
-        org.telegram.ui.Components.l9 l9Var = this.f52594c;
+        org.telegram.ui.Components.l9 l9Var = this.f52601c;
         int measuredWidth = ((l9Var.getMeasuredWidth() - org.telegram.messenger.g0.L(24.0f)) / 2) + l9Var.getLeft();
         int measuredHeight = ((l9Var.getMeasuredHeight() - org.telegram.messenger.g0.L(24.0f)) / 2) + l9Var.getTop();
         this.d.f(measuredWidth, measuredHeight, org.telegram.messenger.g0.L(24.0f) + measuredWidth, org.telegram.messenger.g0.L(24.0f) + measuredHeight);
@@ -229,6 +229,6 @@ public final class zj0 extends FrameLayout implements org.telegram.messenger.x5 
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f52593b.setText(charSequence);
+        this.f52600b.setText(charSequence);
     }
 }

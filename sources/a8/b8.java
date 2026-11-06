@@ -130,13 +130,13 @@ public class b8 {
     }
 
     public static boolean i(x2.g0 g0Var, Object obj, boolean z9, int i7, int i10, int i11) {
-        Object obj2 = g0Var.f58210a;
-        int i12 = g0Var.f58211b;
+        Object obj2 = g0Var.f58235a;
+        int i12 = g0Var.f58236b;
         if (!obj2.equals(obj)) {
             return false;
         }
-        if (!z9 || i12 != i7 || g0Var.f58212c != i10) {
-            if (z9 || i12 != -1 || g0Var.f58213e != i11) {
+        if (!z9 || i12 != i7 || g0Var.f58237c != i10) {
+            if (z9 || i12 != -1 || g0Var.f58238e != i11) {
                 return false;
             }
             return true;
@@ -160,7 +160,7 @@ public class b8 {
 
     public void a(wa waVar, x2.g0 g0Var, e2.l1 l1Var) {
         if (g0Var != null) {
-            if (l1Var.b(g0Var.f58210a) != -1) {
+            if (l1Var.b(g0Var.f58235a) != -1) {
                 waVar.v(g0Var, l1Var);
                 return;
             }

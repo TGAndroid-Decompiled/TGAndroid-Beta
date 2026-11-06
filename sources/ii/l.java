@@ -72,7 +72,7 @@ public final class l implements Runnable {
                     pVar.getMessagesController().B(pVar.f15582c, null, inputFile3, inputFile4, videoSize2, this.f15555f, this.f15554e, photoSize2.location, photoSize.location, null);
                     pVar.f0(false, true);
                 }
-                pVar.f15583e.f35167f3.O(true);
+                pVar.f15583e.f36781f3.O(true);
                 return;
             case 1:
                 bd bdVar = (bd) i30Var;
@@ -80,54 +80,54 @@ public final class l implements Runnable {
                     TLRPC.FileLocation fileLocation2 = photoSize2.location;
                     bdVar.D = fileLocation2;
                     bdVar.E = photoSize.location;
-                    bdVar.f44244f.j(hc.e(fileLocation2), "50_50", bdVar.f44264w, null);
+                    bdVar.f44260f.j(hc.e(fileLocation2), "50_50", bdVar.f44280w, null);
                     bdVar.k0(true, false);
                     return;
                 }
                 bdVar.m0 = inputFile2;
-                bdVar.f44253n0 = inputFile;
-                bdVar.f44254o0 = videoSize;
-                bdVar.f44255p0 = str;
-                bdVar.f44256q0 = d;
-                if (bdVar.f44258r0) {
-                    u1 u1Var = bdVar.f44263v0;
+                bdVar.f44269n0 = inputFile;
+                bdVar.f44270o0 = videoSize;
+                bdVar.f44271p0 = str;
+                bdVar.f44272q0 = d;
+                if (bdVar.f44274r0) {
+                    u1 u1Var = bdVar.f44279v0;
                     if (u1Var != null) {
                         try {
                             u1Var.dismiss();
-                            bdVar.f44263v0 = null;
+                            bdVar.f44279v0 = null;
                         } catch (Exception e10) {
                             a8.g(e10, true);
                         }
                     }
                     bdVar.m0(false);
-                    bdVar.f44260s0 = false;
-                    bdVar.f44235a.performClick();
+                    bdVar.f44276s0 = false;
+                    bdVar.f44251a.performClick();
                 }
                 bdVar.k0(false, true);
-                bdVar.f44252n.setImageDrawable(null);
+                bdVar.f44268n.setImageDrawable(null);
                 return;
             case 2:
                 pn pnVar = (pn) i30Var;
                 TLRPC.FileLocation fileLocation3 = photoSize2.location;
-                pnVar.f48889u0 = fileLocation3;
+                pnVar.f48884u0 = fileLocation3;
                 TLRPC.InputFile inputFile5 = this.f15552b;
                 TLRPC.InputFile inputFile6 = this.f15553c;
                 TLRPC.VideoSize videoSize3 = this.d;
                 if (inputFile5 == null && inputFile6 == null && videoSize3 == null) {
-                    c4 c4Var = pnVar.f48869e;
+                    c4 c4Var = pnVar.f48864e;
                     hc e11 = hc.e(fileLocation3);
-                    w8 w8Var = pnVar.f48884r;
+                    w8 w8Var = pnVar.f48879r;
                     Object obj = pnVar.C0;
                     if (obj == null) {
-                        obj = pnVar.f48892w0;
+                        obj = pnVar.f48887w0;
                     }
                     c4Var.j(e11, "50_50", w8Var, obj);
-                    pnVar.f48865b0.o(2131232047, hd.M0(2131752213, "ChatSetNewPhoto"), true);
+                    pnVar.f48860b0.o(2131232047, hd.M0(2131752213, "ChatSetNewPhoto"), true);
                     if (pnVar.R0 == null) {
                         pnVar.R0 = new zg0(2131623965, org.telegram.messenger.g0.L(50.0f), org.telegram.messenger.g0.L(50.0f), false, null);
                     }
-                    pnVar.f48865b0.f29566e.setTranslationX(-org.telegram.messenger.g0.L(8.0f));
-                    pnVar.f48865b0.f29566e.setAnimation(pnVar.R0);
+                    pnVar.f48860b0.f29566e.setTranslationX(-org.telegram.messenger.g0.L(8.0f));
+                    pnVar.f48860b0.f29566e.setAnimation(pnVar.R0);
                     pnVar.s0(true, false);
                     return;
                 }
@@ -169,38 +169,38 @@ public final class l implements Runnable {
                     tL_photos_uploadProfilePhoto.flags |= 32;
                     pnVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new jn(pnVar, 1));
                 } else {
-                    pnVar.getMessagesController().B(pnVar.f48890v0, null, inputFile5, inputFile6, videoSize3, d2, this.f15554e, photoSize2.location, photoSize.location, null);
+                    pnVar.getMessagesController().B(pnVar.f48885v0, null, inputFile5, inputFile6, videoSize3, d2, this.f15554e, photoSize2.location, photoSize.location, null);
                 }
                 if (pnVar.M0) {
                     try {
-                        u1 u1Var2 = pnVar.f48864b;
+                        u1 u1Var2 = pnVar.f48859b;
                         if (u1Var2 != null && u1Var2.isShowing()) {
-                            pnVar.f48864b.dismiss();
-                            pnVar.f48864b = null;
+                            pnVar.f48859b.dismiss();
+                            pnVar.f48859b = null;
                         }
                     } catch (Exception e12) {
                         a8.g(e12, true);
                     }
                     pnVar.N0 = false;
-                    pnVar.f48862a.performClick();
+                    pnVar.f48857a.performClick();
                 }
                 pnVar.s0(false, true);
                 return;
             case 3:
                 l30 l30Var = (l30) i30Var;
-                long j10 = l30Var.f47372e;
-                c40 c40Var = l30Var.f47373f;
-                org.telegram.messenger.c cVar = c40Var.f44565k1;
+                long j10 = l30Var.f47399e;
+                c40 c40Var = l30Var.f47400f;
+                org.telegram.messenger.c cVar = c40Var.f44586k1;
                 TLRPC.InputFile inputFile7 = this.f15552b;
                 TLRPC.InputFile inputFile8 = this.f15553c;
                 TLRPC.VideoSize videoSize4 = this.d;
                 if (inputFile7 == null && inputFile8 == null && videoSize4 == null) {
-                    l30Var.f47371c = photoSize2.location;
+                    l30Var.f47398c = photoSize2.location;
                     TLRPC.FileLocation fileLocation4 = photoSize.location;
-                    l30Var.f47370b = fileLocation4;
+                    l30Var.f47397b = fileLocation4;
                     hc e13 = hc.e(fileLocation4);
                     l30Var.d = e13;
-                    c40Var.f44556i1.A(e13, hc.e(l30Var.f47371c));
+                    c40Var.f44577i1.A(e13, hc.e(l30Var.f47398c));
                     org.telegram.messenger.g0.b4(c40Var.H1);
                     return;
                 }
@@ -234,7 +234,7 @@ public final class l implements Runnable {
                     TLRPC.FileLocation fileLocation5 = photoSize2.location;
                     d50Var.D = fileLocation5;
                     d50Var.E = photoSize.location;
-                    d50Var.d.j(hc.e(fileLocation5), "50_50", d50Var.f44928r, null);
+                    d50Var.d.j(hc.e(fileLocation5), "50_50", d50Var.f44953r, null);
                     d50Var.e0(true, false);
                     return;
                 }
@@ -244,10 +244,10 @@ public final class l implements Runnable {
                 d50Var.I = str;
                 d50Var.J = d;
                 if (d50Var.L) {
-                    d50Var.getMessagesController().U(d50Var.f44924c.getText().toString(), d50Var.K, null, d50Var.P, d50Var.S, d50Var.U, d50Var.T, d50Var.W, d50Var);
+                    d50Var.getMessagesController().U(d50Var.f44949c.getText().toString(), d50Var.K, null, d50Var.P, d50Var.S, d50Var.U, d50Var.T, d50Var.W, d50Var);
                 }
                 d50Var.e0(false, true);
-                d50Var.f44926f.setImageDrawable(null);
+                d50Var.f44951f.setImageDrawable(null);
                 return;
             case 5:
                 ProfileActivity.j0((ProfileActivity) i30Var, this.f15552b, this.f15553c, this.d, this.f15555f, this.f15554e, this.h, this.f15556n);

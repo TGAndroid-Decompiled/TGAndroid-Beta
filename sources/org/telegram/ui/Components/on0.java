@@ -3,39 +3,39 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 public final class on0 extends pj0 {
-    public final int f36755e3;
-    public final mo0 f36756f3;
+    public final int f36633e3;
+    public final mo0 f36634f3;
 
     public on0(mo0 mo0Var, Context context, org.telegram.ui.ActionBar.f6 f6Var, int i7) {
         super(context, f6Var);
-        this.f36755e3 = i7;
-        this.f36756f3 = mo0Var;
+        this.f36633e3 = i7;
+        this.f36634f3 = mo0Var;
     }
 
     @Override
     public final boolean E0(float f10) {
         float f11;
         float f12;
-        switch (this.f36755e3) {
+        switch (this.f36633e3) {
             case 0:
-                mo0 mo0Var = this.f36756f3;
-                if (mo0Var.Z1 && mo0Var.f36059g2[1] != null) {
+                mo0 mo0Var = this.f36634f3;
+                if (mo0Var.Z1 && mo0Var.f35997g2[1] != null) {
                     f11 = 111.0f;
                 } else {
                     f11 = 58.0f;
                 }
-                if (f10 >= org.telegram.messenger.g0.L(f11) + mo0Var.f36092y2.f15118b) {
+                if (f10 >= org.telegram.messenger.g0.L(f11) + mo0Var.f36030y2.f15118b) {
                     return true;
                 }
                 return false;
             default:
-                mo0 mo0Var2 = this.f36756f3;
-                if (mo0Var2.Z1 && mo0Var2.f36059g2[1] != null) {
+                mo0 mo0Var2 = this.f36634f3;
+                if (mo0Var2.Z1 && mo0Var2.f35997g2[1] != null) {
                     f12 = 111.0f;
                 } else {
                     f12 = 58.0f;
                 }
-                if (f10 >= org.telegram.messenger.g0.L(f12) + mo0Var2.f36092y2.f15118b) {
+                if (f10 >= org.telegram.messenger.g0.L(f12) + mo0Var2.f36030y2.f15118b) {
                     return true;
                 }
                 return false;
@@ -46,14 +46,14 @@ public final class on0 extends pj0 {
     public final void draw(Canvas canvas) {
         float f10;
         float f11;
-        switch (this.f36755e3) {
+        switch (this.f36633e3) {
             case 0:
-                mo0 mo0Var = this.f36756f3;
-                pj0 pj0Var = mo0Var.f36087w1;
+                mo0 mo0Var = this.f36634f3;
+                pj0 pj0Var = mo0Var.f36025w1;
                 if (pj0Var.getVisibility() != 8) {
                     canvas.save();
-                    int i7 = mo0Var.f36060h2;
-                    if (mo0Var.Z1 && mo0Var.f36059g2[1] != null) {
+                    int i7 = mo0Var.f35998h2;
+                    if (mo0Var.Z1 && mo0Var.f35997g2[1] != null) {
                         f10 = 111.0f;
                     } else {
                         f10 = 58.0f;
@@ -67,12 +67,12 @@ public final class on0 extends pj0 {
                 }
                 return;
             default:
-                mo0 mo0Var2 = this.f36756f3;
-                pj0 pj0Var2 = mo0Var2.f36087w1;
+                mo0 mo0Var2 = this.f36634f3;
+                pj0 pj0Var2 = mo0Var2.f36025w1;
                 if (pj0Var2.getVisibility() != 8) {
                     canvas.save();
-                    int i10 = mo0Var2.f36060h2;
-                    if (mo0Var2.Z1 && mo0Var2.f36059g2[1] != null) {
+                    int i10 = mo0Var2.f35998h2;
+                    if (mo0Var2.Z1 && mo0Var2.f35997g2[1] != null) {
                         f11 = 111.0f;
                     } else {
                         f11 = 58.0f;

@@ -12,7 +12,7 @@ import org.telegram.messenger.qs;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.br;
-import org.telegram.ui.Components.n51;
+import org.telegram.ui.Components.s51;
 import org.telegram.ui.Components.vp;
 import org.telegram.ui.ExternalActionActivity;
 import org.telegram.ui.LaunchActivity;
@@ -73,17 +73,17 @@ public final class l1 implements View.OnClickListener {
                 }
                 return;
             case 10:
-                int i16 = vp.f39629f0;
+                int i16 = vp.f39626f0;
                 return;
             case 11:
-                int i17 = br.f32280x;
+                int i17 = br.f32274x;
                 return;
             case 12:
                 float[] fArr = FragmentContextView.W0;
                 MediaController B = MediaController.B();
-                n51 n51Var = B.E0;
-                if (n51Var != null) {
-                    n51Var.s0(false);
+                s51 s51Var = B.E0;
+                if (s51Var != null) {
+                    s51Var.s0(false);
                 }
                 B.n0();
                 B.m();
@@ -116,7 +116,7 @@ public final class l1 implements View.OnClickListener {
                 wg.f1.l1(0, null);
                 return;
             case 16:
-                ArrayList arrayList = ExternalActionActivity.f41197y;
+                ArrayList arrayList = ExternalActionActivity.f41222y;
                 return;
             case 17:
                 return;
@@ -141,10 +141,10 @@ public final class l1 implements View.OnClickListener {
                 PhotoViewer.p1().c0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 23:
-                int i19 = zh.m.f60317s2;
+                int i19 = zh.m.f60342s2;
                 return;
             case 24:
-                org.telegram.ui.Components.jc[] jcVarArr = zh.v.f60427h2;
+                org.telegram.ui.Components.jc[] jcVarArr = zh.v.f60452h2;
                 return;
             default:
                 int i20 = zh.c0.Y1;

@@ -9,24 +9,24 @@ import org.telegram.ui.Components.w70;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.d10;
 import org.telegram.ui.h60;
-import org.telegram.ui.tp0;
+import org.telegram.ui.up0;
 public final class h2 implements Runnable {
-    public final int f42531a;
-    public final int f42532b;
-    public final Object f42533c;
+    public final int f42556a;
+    public final int f42557b;
+    public final Object f42558c;
 
     public h2(int i7, g2 g2Var) {
-        this.f42531a = 0;
-        this.f42532b = i7;
-        this.f42533c = g2Var;
+        this.f42556a = 0;
+        this.f42557b = i7;
+        this.f42558c = g2Var;
     }
 
     @Override
     public final void run() {
         CharSequence text;
-        int i7 = this.f42531a;
-        int i10 = this.f42532b;
-        Object obj = this.f42533c;
+        int i7 = this.f42556a;
+        int i10 = this.f42557b;
+        Object obj = this.f42558c;
         switch (i7) {
             case 0:
                 qs.f(i10).n((g2) obj, 251);
@@ -37,14 +37,14 @@ public final class h2 implements Runnable {
                 return;
             case 2:
                 w6 w6Var = (w6) obj;
-                if (w6Var.f43279r && !w6Var.f43283y && i10 == w6Var.f43276k0) {
-                    w6Var.postDelayed(w6Var.f43277l0, 500L);
+                if (w6Var.f43304r && !w6Var.f43308y && i10 == w6Var.f43301k0) {
+                    w6Var.postDelayed(w6Var.f43302l0, 500L);
                     return;
                 }
                 return;
             case 3:
                 f8 f8Var = (f8) obj;
-                ArrayList arrayList = f8Var.f42472w;
+                ArrayList arrayList = f8Var.f42497w;
                 try {
                     ClipboardManager clipboardManager = (ClipboardManager) f8Var.getParentActivity().getSystemService("clipboard");
                     if (clipboardManager != null && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() != 0 && (text = clipboardManager.getPrimaryClip().getItemAt(0).getText()) != null) {
@@ -62,9 +62,9 @@ public final class h2 implements Runnable {
                 }
             case 4:
                 x9 x9Var = (x9) obj;
-                if (!x9Var.f43319r && i10 == x9Var.J) {
+                if (!x9Var.f43344r && i10 == x9Var.J) {
                     x9Var.L = false;
-                    x9Var.f34211a.f35167f3.O(true);
+                    x9Var.f35844a.f36781f3.O(true);
                     return;
                 }
                 return;
@@ -96,16 +96,16 @@ public final class h2 implements Runnable {
                 }
                 ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
                 jVar.P = duration;
-                duration.setInterpolator(xq.f40310f);
+                duration.setInterpolator(xq.f40329f);
                 jVar.P.addUpdateListener(new tg.f(jVar, 5));
                 jVar.P.addListener(new tg.g(jVar, 2));
                 jVar.P.start();
                 return;
             case 8:
-                tp0 tp0Var = (tp0) obj;
-                sg.j1 j1Var = tp0Var.f55576t1;
-                tp0Var.s0(j1Var, null);
-                sg.l0.e(i10).j(j1Var.f54994c);
+                up0 up0Var = (up0) obj;
+                sg.j1 j1Var = up0Var.f55601t1;
+                up0Var.s0(j1Var, null);
+                sg.l0.e(i10).j(j1Var.f55019c);
                 return;
             case 9:
                 qs.f(i10).k(215, Boolean.FALSE);
@@ -124,7 +124,7 @@ public final class h2 implements Runnable {
                 }
                 return;
             default:
-                w70 w70Var = ((wg.p0) obj).f57680e;
+                w70 w70Var = ((wg.p0) obj).f57705e;
                 try {
                     if (w70Var.getLayout().getLineForOffset(i10) == 0) {
                         w70Var.getEditableText().insert(i10, "\n");
@@ -139,8 +139,8 @@ public final class h2 implements Runnable {
     }
 
     public h2(Object obj, int i7, int i10) {
-        this.f42531a = i10;
-        this.f42533c = obj;
-        this.f42532b = i7;
+        this.f42556a = i10;
+        this.f42558c = obj;
+        this.f42557b = i7;
     }
 }

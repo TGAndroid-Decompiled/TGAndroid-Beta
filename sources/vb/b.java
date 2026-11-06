@@ -1,8 +1,8 @@
 package vb;
 public final class b {
-    public final ua.b f57193a;
+    public final ua.b f57218a;
 
     public b(ua.b bVar) {
-        this.f57193a = bVar;
+        this.f57218a = bVar;
     }
 }

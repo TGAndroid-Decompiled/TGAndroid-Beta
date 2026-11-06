@@ -10,40 +10,40 @@ import android.view.MotionEvent;
 public final class gh extends kt {
     public boolean V;
     public int W;
-    public int f33958a0;
-    public ValueAnimator f33959b0;
-    public final di f33960c0;
+    public int f33906a0;
+    public ValueAnimator f33907b0;
+    public final di f33908c0;
 
     public gh(di diVar, Context context, qh qhVar, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, qhVar, null, 1, true, f6Var);
-        this.f33960c0 = diVar;
+        this.f33908c0 = diVar;
     }
 
     @Override
     public final void c(float f10) {
-        di diVar = this.f33960c0;
-        diVar.f32884a4 = f10;
-        dh dhVar = diVar.f32962x2;
+        di diVar = this.f33908c0;
+        diVar.f32897a4 = f10;
+        dh dhVar = diVar.f32975x2;
         dhVar.setTranslationY(f10);
         dhVar.invalidate();
         diVar.U0();
-        diVar.M1(diVar.f32942s2, 0);
+        diVar.M1(diVar.f32955s2, 0);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         if (this.V) {
-            ys editText = this.f33960c0.f32966y2.getEditText();
-            editText.setOffsetY(editText.getOffsetY() - ((this.f33958a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
+            ys editText = this.f33908c0.f32979y2.getEditText();
+            editText.setOffsetY(editText.getOffsetY() - ((this.f33906a0 - editText.getScrollY()) + (this.W - editText.getMeasuredHeight())));
             ValueAnimator ofFloat = ValueAnimator.ofFloat(editText.getOffsetY(), 0.0f);
             ofFloat.addUpdateListener(new bi.de(15, this, editText));
-            ValueAnimator valueAnimator = this.f33959b0;
+            ValueAnimator valueAnimator = this.f33907b0;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
             }
-            this.f33959b0 = ofFloat;
+            this.f33907b0 = ofFloat;
             ofFloat.setDuration(200L);
-            ofFloat.setInterpolator(xq.f40310f);
+            ofFloat.setInterpolator(xq.f40329f);
             ofFloat.start();
             this.V = false;
         }
@@ -60,8 +60,8 @@ public final class gh extends kt {
         super.f();
         gy emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f34137w0 = false;
-            emojiView.f34143x2 = false;
+            emojiView.f34085w0 = false;
+            emojiView.f34091x2 = false;
             emojiView.setShouldDrawBackground(false);
             emojiView.setBottomInset(org.telegram.messenger.g0.f22532n);
         }
@@ -69,7 +69,7 @@ public final class gh extends kt {
 
     @Override
     public final void i(ActionMode actionMode, Menu menu) {
-        org.telegram.ui.ActionBar.f2 f2Var = this.f33960c0.W1;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f33908c0.W1;
         if (f2Var instanceof org.telegram.ui.an) {
             org.telegram.ui.an.A8(menu, ((org.telegram.ui.an) f2Var).h, true, true, true, true);
         }
@@ -77,9 +77,9 @@ public final class gh extends kt {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        di diVar = this.f33960c0;
-        gh ghVar = diVar.f32966y2;
-        if (!diVar.f32928o3) {
+        di diVar = this.f33908c0;
+        gh ghVar = diVar.f32979y2;
+        if (!diVar.f32941o3) {
             if (motionEvent.getX() > ghVar.getEditText().getLeft() && motionEvent.getX() < ghVar.getEditText().getRight() && motionEvent.getY() > ghVar.getEditText().getTop() && motionEvent.getY() < ghVar.getEditText().getBottom()) {
                 diVar.h1(ghVar.getEditText(), true);
             } else {
@@ -92,18 +92,18 @@ public final class gh extends kt {
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
-        this.f33960c0.J1();
+        this.f33908c0.J1();
     }
 
     @Override
     public final void q(int i7, int i10) {
-        di diVar = this.f33960c0;
-        dh dhVar = diVar.f32962x2;
+        di diVar = this.f33908c0;
+        dh dhVar = diVar.f32975x2;
         boolean z9 = false;
         if (!TextUtils.isEmpty(getEditText().getText())) {
             this.V = true;
             this.W = getEditText().getMeasuredHeight();
-            this.f33958a0 = getEditText().getScrollY();
+            this.f33906a0 = getEditText().getScrollY();
             invalidate();
         } else {
             getEditText().animate().cancel();

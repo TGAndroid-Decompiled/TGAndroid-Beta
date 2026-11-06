@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class un0 implements jg.f0 {
-    public final mo0 f38696a;
+    public final mo0 f38687a;
 
     public un0(mo0 mo0Var) {
-        this.f38696a = mo0Var;
+        this.f38687a = mo0Var;
     }
 
     @Override
@@ -21,10 +21,10 @@ public final class un0 implements jg.f0 {
             }
             i7++;
         }
-        mo0 mo0Var = this.f38696a;
-        mo0Var.f36088w2 = arrayList;
-        for (int i10 = 0; i10 < mo0Var.f36088w2.size(); i10++) {
-            jg.g0 g0Var = (jg.g0) mo0Var.f36088w2.get(i10);
+        mo0 mo0Var = this.f38687a;
+        mo0Var.f36026w2 = arrayList;
+        for (int i10 = 0; i10 < mo0Var.f36026w2.size(); i10++) {
+            jg.g0 g0Var = (jg.g0) mo0Var.f36026w2.get(i10);
             TLObject tLObject2 = g0Var.f16724a;
             if (tLObject2 instanceof TLRPC.User) {
                 org.telegram.messenger.qp.s1(mo0Var.f28612a).X3((TLRPC.User) g0Var.f16724a, true, false);

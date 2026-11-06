@@ -11,14 +11,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class c30 extends org.telegram.ui.Components.b20 {
-    public final h30 f44512o1;
+    public final h30 f44533o1;
 
     public c30(h30 h30Var, Context context, TLRPC.Chat chat, boolean z9) {
         super(context, false);
         int i7;
         int i10;
         int i11;
-        this.f44512o1 = h30Var;
+        this.f44533o1 = h30Var;
         int i12 = org.telegram.ui.ActionBar.k6.Tg;
         int x02 = org.telegram.ui.ActionBar.k6.x0(null, i12, false);
         org.telegram.ui.ActionBar.r6.y(this.f28615b, this.f28642r0, i12, null, PorterDuff.Mode.MULTIPLY);
@@ -65,7 +65,7 @@ public final class c30 extends org.telegram.ui.Components.b20 {
         this.f28615b.addView(textView2, c8.ha.d(-2, -2.0f, (org.telegram.messenger.hd.f22871a0 ? 5 : 3) | 48, 24.0f, 62.0f, 24.0f, 0.0f));
         this.l1 = new TextView[3];
         c5.k kVar = new c5.k(context);
-        this.f31981i1 = kVar;
+        this.f31984i1 = kVar;
         kVar.setClipChildren(false);
         kVar.setOffscreenPageLimit(4);
         kVar.setClipToPadding(false);
@@ -82,7 +82,7 @@ public final class c30 extends org.telegram.ui.Components.b20 {
         view2.setBackground(new GradientDrawable(orientation, new int[]{0, x02}));
         this.f28615b.addView(view2, c8.ha.d(120, -1.0f, 53, 0.0f, 100.0f, 0.0f, 130.0f));
         org.telegram.ui.Components.y10 y10Var = new org.telegram.ui.Components.y10(this, getContext());
-        this.f31982j1 = y10Var;
+        this.f31985j1 = y10Var;
         y10Var.setMinWidth(org.telegram.messenger.g0.L(64.0f));
         y10Var.setTag(-1);
         y10Var.setTextSize(1, 14.0f);
@@ -98,7 +98,7 @@ public final class c30 extends org.telegram.ui.Components.b20 {
         y10Var.setOnClickListener(new org.telegram.ui.Components.h0(this, 22));
         this.f28615b.addView(y10Var, c8.ha.d(-1, 48.0f, 80, 0.0f, 0.0f, 0.0f, 64.0f));
         LinearLayout linearLayout = new LinearLayout(context);
-        this.f31983k1 = linearLayout;
+        this.f31986k1 = linearLayout;
         this.f28615b.addView(linearLayout, c8.ha.e(-2, 64, 80));
         int i15 = 0;
         while (true) {
@@ -113,7 +113,7 @@ public final class c30 extends org.telegram.ui.Components.b20 {
             this.l1[i15].setPadding(org.telegram.messenger.g0.L(10.0f), 0, org.telegram.messenger.g0.L(10.0f), 0);
             this.l1[i15].setGravity(16);
             this.l1[i15].setSingleLine(true);
-            this.f31983k1.addView(this.l1[i15], c8.ha.o(-2, -1));
+            this.f31986k1.addView(this.l1[i15], c8.ha.o(-2, -1));
             if (i15 == 0) {
                 this.l1[i15].setText(org.telegram.messenger.hd.M0(2131743253, null));
             } else if (i15 == 1) {
@@ -125,7 +125,7 @@ public final class c30 extends org.telegram.ui.Components.b20 {
             i15++;
         }
         if (z9) {
-            this.f31981i1.setCurrentItem(1);
+            this.f31984i1.setCurrentItem(1);
         }
     }
 
@@ -135,8 +135,8 @@ public final class c30 extends org.telegram.ui.Components.b20 {
         int i11 = org.telegram.ui.ActionBar.k6.f27858dh;
         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
         u1Var.I = i11;
-        c40 c40Var = this.f44512o1.f46186b;
-        c40Var.f44579n2 = false;
+        c40 c40Var = this.f44533o1.f46206b;
+        c40Var.f44600n2 = false;
         u1Var.R = org.telegram.messenger.hd.M0(2131743327, null);
         if (i7 == 0) {
             if (c40Var.R2.f25201b.rtmp_stream) {

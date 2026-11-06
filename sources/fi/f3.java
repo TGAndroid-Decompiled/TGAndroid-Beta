@@ -454,8 +454,8 @@ public abstract class f3 extends FrameLayout implements ls {
             d h7 = org.telegram.messenger.k5.h(24, context, f6Var, z11);
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("v");
             wp wpVar = new wp(2131231941, 0);
-            wpVar.f40055r = -org.telegram.messenger.g0.L(1.33f);
-            wpVar.f40056s = org.telegram.messenger.g0.L(0.66f);
+            wpVar.f40062r = -org.telegram.messenger.g0.L(1.33f);
+            wpVar.f40063s = org.telegram.messenger.g0.L(0.66f);
             spannableStringBuilder.setSpan(wpVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) " ").append((CharSequence) hd.M0(2131744780, null));
             h7.i(spannableStringBuilder, false, true);
@@ -716,7 +716,7 @@ public abstract class f3 extends FrameLayout implements ls {
         ei.h hVar = this.f11963e;
         if (z9) {
             mi.m mVar = new mi.m(getContext(), 2);
-            mVar.f57096a = 1;
+            mVar.f57121a = 1;
             mVar.f20108p = org.telegram.messenger.g0.L(16.0f) + (-org.telegram.ui.ActionBar.k.getCurrentActionBarHeight());
             hVar.w0(mVar);
             return;

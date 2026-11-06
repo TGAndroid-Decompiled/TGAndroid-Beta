@@ -142,7 +142,7 @@ public final class nd extends View implements te.b {
                 Paint paint = (Paint) this.f4438b;
                 paint.setShader(linearGradient);
                 ly0 ly0Var = (ly0) this.f4441f;
-                float L = ly0Var.f35777c + org.telegram.messenger.g0.L(30.0f);
+                float L = ly0Var.f35782c + org.telegram.messenger.g0.L(30.0f);
                 Paint paint2 = (Paint) this.f4440e;
                 paint2.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27849d7, (org.telegram.ui.ActionBar.f6) this.h));
                 canvas.drawRect(org.telegram.messenger.g0.L(24.0f), (getHeight() / 2.0f) - 1.0f, ((getWidth() - L) / 2.0f) - org.telegram.messenger.g0.L(8.0f), getHeight() / 2.0f, paint2);
@@ -150,7 +150,7 @@ public final class nd extends View implements te.b {
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set((getWidth() - L) / 2.0f, 0.0f, (getWidth() + L) / 2.0f, getHeight());
                 canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, paint);
-                ((ly0) this.f4441f).c((getWidth() - ly0Var.f35777c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
+                ((ly0) this.f4441f).c((getWidth() - ly0Var.f35782c) / 2.0f, getHeight() / 2.0f, 1.0f, -1, canvas);
                 return;
             case 1:
                 ArrayList arrayList = (ArrayList) this.d;
@@ -245,8 +245,8 @@ public final class nd extends View implements te.b {
             case 2:
                 float width = getWidth() / 2.0f;
                 float height = getHeight() / 2.0f;
-                float f11 = ((te.a) this.f4440e).f55370e;
-                float f12 = ((te.c) this.f4441f).f55376f;
+                float f11 = ((te.a) this.f4440e).f55395e;
+                float f12 = ((te.c) this.f4441f).f55401f;
                 Drawable drawable = (Drawable) this.d;
                 if (drawable != null && f12 < 0.5f) {
                     float C = com.google.android.recaptcha.internal.a.C(f12, 2.0f, 1.0f, 1.0f - f11);

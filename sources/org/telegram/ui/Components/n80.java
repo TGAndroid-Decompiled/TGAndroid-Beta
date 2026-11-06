@@ -20,14 +20,14 @@ import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 public abstract class n80 {
-    public static final Pattern f36316a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
-    public static final Pattern f36317b = Pattern.compile("\\[\\^([^\\]]+)\\]");
-    public static final Pattern f36318c = Pattern.compile("^(\\d+)[.)]\\s");
+    public static final Pattern f36210a = Pattern.compile("^\\[\\^([^\\]]+)\\]:[ \\t]*(.*)$");
+    public static final Pattern f36211b = Pattern.compile("\\[\\^([^\\]]+)\\]");
+    public static final Pattern f36212c = Pattern.compile("^(\\d+)[.)]\\s");
 
     public static TL_iv.RichText a(kf.p pVar, TL_iv.PageBlock pageBlock) {
         k80 k80Var = new k80(pageBlock);
         pVar.a(k80Var);
-        return k(l(k80.x(k80Var.f35235c)));
+        return k(l(k80.x(k80Var.f35238c)));
     }
 
     public static List b(TL_iv.RichText richText) {
@@ -190,7 +190,7 @@ public abstract class n80 {
         } else if (richText instanceof m80) {
             m80 m80Var = (m80) richText;
             TL_iv.textStrike k10 = k(m80Var.text);
-            int i10 = m80Var.f35957a;
+            int i10 = m80Var.f35895a;
             if ((i10 & 4) != 0) {
                 TL_iv.textFixed textfixed = new TL_iv.textFixed();
                 textfixed.text = k10;
@@ -254,7 +254,7 @@ public abstract class n80 {
         StringBuilder sb2 = new StringBuilder();
         int i7 = 0;
         while (i7 < split2.length) {
-            Matcher matcher = f36316a.matcher(split2[i7]);
+            Matcher matcher = f36210a.matcher(split2[i7]);
             if (matcher.matches()) {
                 String group = matcher.group(1);
                 StringBuilder sb3 = new StringBuilder(matcher.group(2));
@@ -295,7 +295,7 @@ public abstract class n80 {
                 i7++;
             }
         }
-        Matcher matcher2 = f36317b.matcher(sb2.toString());
+        Matcher matcher2 = f36211b.matcher(sb2.toString());
         StringBuffer stringBuffer = new StringBuffer();
         while (matcher2.find()) {
             String group2 = matcher2.group(1);
@@ -351,7 +351,7 @@ public abstract class n80 {
                     if (!substring2.startsWith("```")) {
                         str5 = "~~~";
                         if (!substring2.startsWith("~~~")) {
-                            Matcher matcher3 = f36318c.matcher(str4);
+                            Matcher matcher3 = f36212c.matcher(str4);
                             if (matcher3.find()) {
                                 arrayDeque.add(matcher3.group(1));
                             }
@@ -424,7 +424,7 @@ public abstract class n80 {
                 }
                 arrayList.add(pageblockdetails);
             }
-            TL_iv.RichText richText2 = j80Var.f34924b;
+            TL_iv.RichText richText2 = j80Var.f34885b;
             if (richText2 == null) {
                 return null;
             }

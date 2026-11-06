@@ -54,7 +54,7 @@ public final class b2 implements c20 {
                 dataSettingsActivity.V = z9;
                 dataSettingsActivity.X = l10.longValue();
                 dataSettingsActivity.W = false;
-                if (dataSettingsActivity.f41186a != null && (i7 = dataSettingsActivity.f41193s) >= 0) {
+                if (dataSettingsActivity.f41211a != null && (i7 = dataSettingsActivity.f41218s) >= 0) {
                     dataSettingsActivity.s0(i7);
                     return;
                 }
@@ -62,7 +62,7 @@ public final class b2 implements c20 {
             case 2:
                 Runnable runnable = (Runnable) obj;
                 ((org.telegram.ui.ActionBar.u1) this.d).r(150L);
-                ww wwVar = ((xv) this.f3503c).f51971b;
+                ww wwVar = ((xv) this.f3503c).f51992b;
                 Boolean bool = wwVar.G.bot_participant;
                 if (bool != null && bool.booleanValue()) {
                     wwVar.getMessagesController().m(this.f3502b, wwVar.getMessagesController().a2(Long.valueOf(wwVar.H)), 0, null, wwVar, false, runnable, new ve(6, runnable), null);

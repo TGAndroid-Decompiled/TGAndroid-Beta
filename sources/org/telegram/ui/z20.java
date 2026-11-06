@@ -18,7 +18,7 @@ public final class z20 extends org.telegram.ui.ActionBar.k {
             canvas.save();
             canvas.translate(getSubtitleTextView().getLeft(), getSubtitleTextView().getY() - org.telegram.messenger.g0.L(1.0f));
             org.telegram.ui.Components.ap apVar = this.F1;
-            apVar.f31864f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
+            apVar.f31876f = (int) (getAdditionalSubtitleTextView().getAlpha() * 255.0f);
             apVar.draw(canvas);
             canvas.restore();
             invalidate();

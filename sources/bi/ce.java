@@ -279,8 +279,8 @@ public final class ce extends org.telegram.ui.ActionBar.v2 implements ls {
                     default:
                         ce ceVar = this.f4017b;
                         wo woVar = ceVar.A1;
-                        woVar.a(!woVar.f40043a.f31258q, true);
-                        if (woVar.f40043a.f31258q) {
+                        woVar.a(!woVar.f40050a.f31258q, true);
+                        if (woVar.f40050a.f31258q) {
                             j14 = ceVar.f3626w1;
                         } else {
                             j14 = 2666000;
@@ -463,8 +463,8 @@ public final class ce extends org.telegram.ui.ActionBar.v2 implements ls {
                     default:
                         ce ceVar = this.f4017b;
                         wo woVar2 = ceVar.A1;
-                        woVar2.a(!woVar2.f40043a.f31258q, true);
-                        if (woVar2.f40043a.f31258q) {
+                        woVar2.a(!woVar2.f40050a.f31258q, true);
+                        if (woVar2.f40050a.f31258q) {
                             j14 = ceVar.f3626w1;
                         } else {
                             j14 = 2666000;
@@ -556,9 +556,9 @@ public final class ce extends org.telegram.ui.ActionBar.v2 implements ls {
                     }
                     i24 = i25;
                 }
-                F.f35217t = false;
+                F.f35181t = false;
                 F.Y = true;
-                F.f35216s = 0;
+                F.f35180s = 0;
                 F.V(5);
                 F.Z();
             }
@@ -579,11 +579,11 @@ public final class ce extends org.telegram.ui.ActionBar.v2 implements ls {
         this.N = this.f3617m1;
         qd qdVar = new qd(context2, 1, 2, 0);
         this.B1 = qdVar;
-        vg.f fVar = qdVar.f57295b;
-        fVar.f57279z = org.telegram.ui.ActionBar.k6.Tk;
+        vg.f fVar = qdVar.f57320b;
+        fVar.f57304z = org.telegram.ui.ActionBar.k6.Tk;
         fVar.A = org.telegram.ui.ActionBar.k6.Uk;
         fVar.b();
-        qdVar.f57295b.f57265k = 1.0f;
+        qdVar.f57320b.f57290k = 1.0f;
         qdVar.setVisibility(4);
         qdVar.setPaused(true);
         this.f28618c.addView(qdVar, c8.ha.c(150.0f, 150));
@@ -723,9 +723,9 @@ public final class ce extends org.telegram.ui.ActionBar.v2 implements ls {
         rectF.inset(-org.telegram.messenger.g0.L(3.5f), -org.telegram.messenger.g0.L(3.5f));
         rectF.offset(iArr[0], iArr[1]);
         ed edVar = new ed(this, 2);
-        qdVar.f57294a0 = edVar;
+        qdVar.f57319a0 = edVar;
         if (qdVar.W) {
-            qdVar.f57294a0 = null;
+            qdVar.f57319a0 = null;
             edVar.run();
         }
         if (m0Var != null) {
@@ -774,9 +774,9 @@ public final class ce extends org.telegram.ui.ActionBar.v2 implements ls {
                 float T1 = org.telegram.messenger.g0.T1(Math.max(rectF6.width() / org.telegram.messenger.g0.L(150.0f), rectF6.height() / org.telegram.messenger.g0.L(150.0f)), 1.0f, (float) Math.sin(floatValue * 3.141592653589793d));
                 qdVar2.setScaleX(T1);
                 qdVar2.setScaleY(T1);
-                vg.f fVar = qdVar2.f57295b;
+                vg.f fVar = qdVar2.f57320b;
                 fVar.d = 360.0f * floatValue;
-                fVar.f57265k = Math.max(0.0f, 1.0f - (4.0f * floatValue));
+                fVar.f57290k = Math.max(0.0f, 1.0f - (4.0f * floatValue));
                 boolean[] zArr2 = zArr;
                 if (!zArr2[0] && floatValue > 0.95f) {
                     zArr2[0] = true;
@@ -859,7 +859,7 @@ public final class ce extends org.telegram.ui.ActionBar.v2 implements ls {
 
     public final void M0() {
         org.telegram.ui.Components.w8 w8Var = new org.telegram.ui.Components.w8((org.telegram.ui.ActionBar.f6) null);
-        w8Var.f39905p = 0.42f;
+        w8Var.f39912p = 0.42f;
         long j3 = this.f3625v1;
         int i7 = (j3 > 2666000L ? 1 : (j3 == 2666000L ? 0 : -1));
         org.telegram.ui.Components.l9 l9Var = this.f3622s1;

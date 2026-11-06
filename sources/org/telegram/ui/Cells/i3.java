@@ -7,7 +7,7 @@ import android.text.SpannableStringBuilder;
 import android.view.ActionMode;
 import android.view.Menu;
 import org.telegram.messenger.hd;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.t31;
 import org.telegram.ui.Components.uy0;
 import org.telegram.ui.Components.ys;
 public final class i3 extends ys {
@@ -49,14 +49,14 @@ public final class i3 extends ys {
         }
         menu.removeItem(16908341);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(hd.M0(2131753671, null));
-        spannableStringBuilder.setSpan(new o31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o()), 0, spannableStringBuilder.length(), 33);
         menu.add(2131296496, 2131296491, 6, spannableStringBuilder);
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(hd.M0(2131749086, null));
-        spannableStringBuilder2.setSpan(new o31(org.telegram.messenger.g0.o1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
+        spannableStringBuilder2.setSpan(new t31(org.telegram.messenger.g0.o1("fonts/rmediumitalic.ttf")), 0, spannableStringBuilder2.length(), 33);
         menu.add(2131296496, 2131296497, 7, spannableStringBuilder2);
         SpannableStringBuilder spannableStringBuilder3 = new SpannableStringBuilder(hd.M0(2131744438, null));
         ?? obj = new Object();
-        obj.f38442a |= 8;
+        obj.f38433a |= 8;
         spannableStringBuilder3.setSpan(new uy0(obj, 0), 0, spannableStringBuilder3.length(), 33);
         menu.add(2131296496, 2131296509, 8, spannableStringBuilder3);
         menu.add(2131296496, 2131296503, 9, hd.M0(2131746336, null));

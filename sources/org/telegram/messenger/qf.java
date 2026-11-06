@@ -51,7 +51,7 @@ public final class qf implements RequestDelegate {
                         TLRPC.Message message = messages_messages.messages.get(i7);
                         int i10 = this.f24681b;
                         if (i10 == 0 || message.f26973id <= i10) {
-                            arrayList.add(new ij(ur0Var.f38724w.f40405x1.getCurrentAccount(), message, false, true));
+                            arrayList.add(new ij(ur0Var.f38715w.f40424x1.getCurrentAccount(), message, false, true));
                         }
                     }
                 }

@@ -19,7 +19,7 @@ import di.b3;
 import org.telegram.messenger.a8;
 import org.telegram.messenger.g0;
 import org.telegram.messenger.t0;
-import org.telegram.ui.Components.e51;
+import org.telegram.ui.Components.i51;
 import org.telegram.ui.Components.lt0;
 import org.telegram.ui.Components.qm0;
 import org.telegram.ui.Components.qt;
@@ -38,43 +38,43 @@ public final class i {
     public float J;
     public boolean K;
     public boolean L;
-    public final o f55965a;
-    public final m f55966b;
-    public final Activity f55967c;
+    public final o f55990a;
+    public final m f55991b;
+    public final Activity f55992c;
     public WindowManager d;
-    public boolean f55969f;
-    public boolean f55970g;
+    public boolean f55994f;
+    public boolean f55995g;
     public org.telegram.ui.e h;
-    public e f55971i;
-    public q f55972j;
-    public View f55973k;
-    public ImageView f55974l;
-    public e f55975m;
-    public ImageView f55976n;
-    public b3 f55977o;
-    public ScaleGestureDetector f55978p;
-    public qt f55979q;
-    public boolean f55980r;
-    public boolean f55981s;
-    public View f55982t;
-    public boolean f55983u;
+    public e f55996i;
+    public q f55997j;
+    public View f55998k;
+    public ImageView f55999l;
+    public e f56000m;
+    public ImageView f56001n;
+    public b3 f56002o;
+    public ScaleGestureDetector f56003p;
+    public qt f56004q;
+    public boolean f56005r;
+    public boolean f56006s;
+    public View f56007t;
+    public boolean f56008u;
     public ValueAnimator v;
-    public boolean f55984w;
-    public int f55985x;
-    public int f55986y;
-    public final WindowManager.LayoutParams f55968e = new WindowManager.LayoutParams();
-    public float f55987z = 1.0f;
+    public boolean f56009w;
+    public int f56010x;
+    public int f56011y;
+    public final WindowManager.LayoutParams f55993e = new WindowManager.LayoutParams();
+    public float f56012z = 1.0f;
     public float A = 1.4f;
-    public final e51 F = new e51(false);
+    public final i51 F = new i51(false);
     public final float[] M = new float[2];
     public final b N = new b(this, 1);
     public final f O = new f(this, 0);
     public final f P = new f(this, 1);
 
     public i(o oVar, Activity activity) {
-        this.f55965a = oVar;
-        this.f55966b = oVar.f56006a;
-        this.f55967c = activity;
+        this.f55990a = oVar;
+        this.f55991b = oVar.f56031a;
+        this.f55992c = activity;
     }
 
     public static float e(float f10, float f11) {
@@ -140,27 +140,27 @@ public final class i {
         boolean z9;
         Context context;
         int i7;
-        if (this.f55970g) {
+        if (this.f55995g) {
             return;
         }
-        if (this.f55966b.r() && jc.a(this.f55967c)) {
+        if (this.f55991b.r() && jc.a(this.f55992c)) {
             z9 = true;
         } else {
             z9 = false;
         }
-        this.f55969f = z9;
+        this.f55994f = z9;
         if (z9) {
             context = t0.f25555b;
         } else {
-            context = this.f55967c;
+            context = this.f55992c;
         }
         WindowManager windowManager = (WindowManager) context.getSystemService("window");
         this.d = windowManager;
-        WindowManager.LayoutParams layoutParams = this.f55968e;
+        WindowManager.LayoutParams layoutParams = this.f55993e;
         layoutParams.token = null;
         layoutParams.gravity = 51;
         layoutParams.format = -3;
-        if (this.f55969f) {
+        if (this.f55994f) {
             if (Build.VERSION.SDK_INT >= 26) {
                 i7 = 2038;
             } else {
@@ -172,29 +172,29 @@ public final class i {
         }
         layoutParams.flags = 520;
         layoutParams.dimAmount = 0.0f;
-        layoutParams.width = this.f55985x;
-        layoutParams.height = this.f55986y;
+        layoutParams.width = this.f56010x;
+        layoutParams.height = this.f56011y;
         layoutParams.x = (int) this.B;
         layoutParams.y = (int) this.C;
         try {
             g0.y3(windowManager, this.h, layoutParams);
-            this.d.addView(this.h, this.f55968e);
-            this.f55970g = true;
-            l2.i.g("floating window added, overlay=" + this.f55969f);
+            this.d.addView(this.h, this.f55993e);
+            this.f55995g = true;
+            l2.i.g("floating window added, overlay=" + this.f55994f);
         } catch (Exception e10) {
             a8.g(e10, true);
         }
     }
 
     public final boolean b() {
-        if (!this.K && !this.H && !this.f55980r && !this.f55978p.isInProgress() && this.L) {
+        if (!this.K && !this.H && !this.f56005r && !this.f56003p.isInProgress() && this.L) {
             return true;
         }
         return false;
     }
 
     public final boolean c() {
-        m mVar = this.f55966b;
+        m mVar = this.f55991b;
         if (!mVar.e0()) {
             return false;
         }
@@ -211,34 +211,34 @@ public final class i {
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        if (this.f55984w) {
+        if (this.f56009w) {
             g0.r(this.P);
-            this.f55984w = false;
+            this.f56009w = false;
         }
         g0.r(this.O);
         g0.r(this.N);
         this.L = false;
-        this.f55980r = false;
-        this.f55982t = null;
-        this.f55966b.F();
+        this.f56005r = false;
+        this.f56007t = null;
+        this.f55991b.F();
     }
 
     public final void f(sg.t0 t0Var) {
         l();
-        q qVar = this.f55972j;
-        this.f55972j = null;
+        q qVar = this.f55997j;
+        this.f55997j = null;
         if (qVar != null) {
             g0.E2(qVar);
         }
-        View view = this.f55973k;
+        View view = this.f55998k;
         if (view != null) {
             g0.E2(view);
-            this.f55973k = null;
+            this.f55998k = null;
         }
         t0Var.run();
         if (qVar != null) {
-            SurfaceTexture surfaceTexture = qVar.f56015a;
-            qVar.f56015a = null;
+            SurfaceTexture surfaceTexture = qVar.f56040a;
+            qVar.f56040a = null;
             if (surfaceTexture != null) {
                 surfaceTexture.release();
             }
@@ -252,17 +252,17 @@ public final class i {
             this.h.getLocationOnScreen(iArr);
             int i7 = iArr[0];
             int i10 = iArr[1];
-            rectF.set(i7, i10, i7 + this.f55985x, i10 + this.f55986y);
+            rectF.set(i7, i10, i7 + this.f56010x, i10 + this.f56011y);
             return;
         }
         float f10 = this.B;
         float f11 = this.C + g0.f22531m;
-        rectF.set(f10, f11, this.f55985x + f10, this.f55986y + f11);
+        rectF.set(f10, f11, this.f56010x + f10, this.f56011y + f11);
     }
 
     public final int h() {
         float f10;
-        m mVar = this.f55966b;
+        m mVar = this.f55991b;
         int I = mVar.I();
         int U = mVar.U();
         if (I > 0 && U > 0) {
@@ -274,7 +274,7 @@ public final class i {
     }
 
     public final void k() {
-        if (this.f55966b.h()) {
+        if (this.f55991b.h()) {
             this.H = false;
         }
         p();
@@ -282,10 +282,10 @@ public final class i {
     }
 
     public final void l() {
-        if (!this.f55970g) {
+        if (!this.f55995g) {
             return;
         }
-        this.f55970g = false;
+        this.f55995g = false;
         try {
             this.d.removeViewImmediate(this.h);
         } catch (Exception e10) {
@@ -295,7 +295,7 @@ public final class i {
 
     public final void o(boolean z9) {
         float f10;
-        if (this.f55975m == null) {
+        if (this.f56000m == null) {
             return;
         }
         float f11 = 1.0f;
@@ -309,44 +309,44 @@ public final class i {
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f10, f11).setDuration(200L);
         this.v = duration;
-        duration.setInterpolator(xq.f40310f);
+        duration.setInterpolator(xq.f40329f);
         this.v.addUpdateListener(new d(this, 0));
         this.v.addListener(new r81(this, 17));
         this.v.start();
     }
 
     public final void p() {
-        if (this.f55976n == null) {
+        if (this.f56001n == null) {
             return;
         }
         f fVar = this.O;
         g0.r(fVar);
-        if (this.f55966b.h()) {
-            this.f55976n.setImageResource(2131232544);
+        if (this.f55991b.h()) {
+            this.f56001n.setImageResource(2131232544);
             g0.i3(fVar, 500L);
         } else if (this.H) {
-            this.f55976n.setImageResource(2131232546);
+            this.f56001n.setImageResource(2131232546);
         } else {
-            this.f55976n.setImageResource(2131232545);
+            this.f56001n.setImageResource(2131232545);
         }
     }
 
     public final void q() {
-        if (this.f55977o != null && !this.H) {
-            m mVar = this.f55966b;
+        if (this.f56002o != null && !this.H) {
+            m mVar = this.f55991b;
             long duration = mVar.getDuration();
             if (duration > 0) {
                 this.I = ((float) mVar.l()) / ((float) duration);
             }
             this.J = Math.max(this.J, mVar.V());
-            this.f55977o.invalidate();
+            this.f56002o.invalidate();
         }
     }
 
     public final void r() {
-        if (this.f55970g) {
+        if (this.f55995g) {
             try {
-                this.d.updateViewLayout(this.h, this.f55968e);
+                this.d.updateViewLayout(this.h, this.f55993e);
             } catch (IllegalArgumentException unused) {
                 r1.g gVar = this.D;
                 if (gVar != null) {

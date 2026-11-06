@@ -19,26 +19,26 @@ import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.SerializedData;
 public final class yc1 extends org.telegram.ui.ActionBar.f2 {
-    public WebView f52192a;
-    public org.telegram.ui.ActionBar.r0 f52193b;
-    public org.telegram.ui.Components.zp f52194c;
+    public WebView f52213a;
+    public org.telegram.ui.ActionBar.r0 f52214b;
+    public org.telegram.ui.Components.zp f52215c;
     public final String d;
-    public final String f52195e;
-    public final String f52196f;
+    public final String f52216e;
+    public final String f52217f;
     public final String h;
-    public final org.telegram.messenger.ij f52197n;
-    public final String f52198r;
-    public m4 f52199s;
+    public final org.telegram.messenger.ij f52218n;
+    public final String f52219r;
+    public m4 f52220s;
 
     public yc1(String str, String str2, String str3, String str4, org.telegram.messenger.ij ijVar) {
         super(null);
         String i7;
-        this.f52199s = new m4(this, 17);
+        this.f52220s = new m4(this, 17);
         this.d = str;
-        this.f52195e = str2;
-        this.f52196f = str3;
-        this.f52197n = ijVar;
-        this.f52198r = str4;
+        this.f52216e = str2;
+        this.f52217f = str3;
+        this.f52218n = ijVar;
+        this.f52219r = str4;
         StringBuilder sb2 = new StringBuilder("https://");
         sb2.append(org.telegram.messenger.qp.s1(this.currentAccount).U2);
         sb2.append("/");
@@ -131,33 +131,33 @@ public final class yc1 extends org.telegram.ui.ActionBar.f2 {
         this.actionBar.setAllowOverlayTitle(true);
         this.actionBar.setActionBarMenuOnItemClick(new wc1(this));
         org.telegram.ui.ActionBar.y q10 = this.actionBar.q();
-        this.f52193b = q10.g(1, 2131232726, org.telegram.messenger.g0.L(54.0f));
+        this.f52214b = q10.g(1, 2131232726, org.telegram.messenger.g0.L(54.0f));
         q10.a(0, 2131231244).e(2, 2131232265, org.telegram.messenger.hd.M0(2131747795, null));
-        this.actionBar.setTitle(this.f52196f);
+        this.actionBar.setTitle(this.f52217f);
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        kVar.setSubtitle("@" + this.f52195e);
+        kVar.setSubtitle("@" + this.f52216e);
         org.telegram.ui.Components.zp zpVar = new org.telegram.ui.Components.zp(context, 1);
-        this.f52194c = zpVar;
-        this.f52193b.addView(zpVar, c8.ha.c(-1.0f, -1));
-        this.f52194c.setAlpha(0.0f);
-        this.f52194c.setScaleX(0.1f);
-        this.f52194c.setScaleY(0.1f);
-        this.f52194c.setVisibility(4);
+        this.f52215c = zpVar;
+        this.f52214b.addView(zpVar, c8.ha.c(-1.0f, -1));
+        this.f52215c.setAlpha(0.0f);
+        this.f52215c.setScaleX(0.1f);
+        this.f52215c.setScaleY(0.1f);
+        this.f52215c.setVisibility(4);
         org.telegram.messenger.g0.u(context, true);
         WebView webView = new WebView(context);
-        this.f52192a = webView;
+        this.f52213a = webView;
         webView.getSettings().setJavaScriptEnabled(true);
-        this.f52192a.getSettings().setDomStorageEnabled(true);
+        this.f52213a.getSettings().setDomStorageEnabled(true);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        this.f52192a.setLayerType(2, null);
-        this.f52192a.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
-        this.f52192a.getSettings().setMediaPlaybackRequiresUserGesture(false);
-        this.f52192a.getSettings().setMixedContentMode(0);
-        CookieManager.getInstance().setAcceptThirdPartyCookies(this.f52192a, true);
-        this.f52192a.addJavascriptInterface(new xc1(this), "TelegramWebviewProxy");
-        this.f52192a.setWebViewClient(new n1(this, 3));
-        frameLayout.addView(this.f52192a, c8.ha.c(-1.0f, -1));
+        this.f52213a.setLayerType(2, null);
+        this.f52213a.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.TEXT_AUTOSIZING);
+        this.f52213a.getSettings().setMediaPlaybackRequiresUserGesture(false);
+        this.f52213a.getSettings().setMixedContentMode(0);
+        CookieManager.getInstance().setAcceptThirdPartyCookies(this.f52213a, true);
+        this.f52213a.addJavascriptInterface(new xc1(this), "TelegramWebviewProxy");
+        this.f52213a.setWebViewClient(new n1(this, 3));
+        frameLayout.addView(this.f52213a, c8.ha.c(-1.0f, -1));
         return this.fragmentView;
     }
 
@@ -179,18 +179,18 @@ public final class yc1 extends org.telegram.ui.ActionBar.f2 {
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
         org.telegram.messenger.g0.u(getParentActivity(), false);
-        org.telegram.messenger.g0.r(this.f52199s);
-        this.f52192a.setLayerType(0, null);
-        this.f52199s = null;
+        org.telegram.messenger.g0.r(this.f52220s);
+        this.f52213a.setLayerType(0, null);
+        this.f52220s = null;
         try {
-            ViewParent parent = this.f52192a.getParent();
+            ViewParent parent = this.f52213a.getParent();
             if (parent != null) {
-                ((FrameLayout) parent).removeView(this.f52192a);
+                ((FrameLayout) parent).removeView(this.f52213a);
             }
-            this.f52192a.stopLoading();
-            this.f52192a.loadUrl("about:blank");
-            this.f52192a.destroy();
-            this.f52192a = null;
+            this.f52213a.stopLoading();
+            this.f52213a.loadUrl("about:blank");
+            this.f52213a.destroy();
+            this.f52213a = null;
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);
         }
@@ -199,8 +199,8 @@ public final class yc1 extends org.telegram.ui.ActionBar.f2 {
     @Override
     public final void onResume() {
         super.onResume();
-        org.telegram.messenger.g0.r(this.f52199s);
-        this.f52199s.run();
+        org.telegram.messenger.g0.r(this.f52220s);
+        this.f52220s.run();
     }
 
     @Override
@@ -218,7 +218,7 @@ public final class yc1 extends org.telegram.ui.ActionBar.f2 {
     @Override
     public final void onTransitionAnimationEnd(boolean z9, boolean z10) {
         WebView webView;
-        if (z9 && !z10 && (webView = this.f52192a) != null) {
+        if (z9 && !z10 && (webView = this.f52213a) != null) {
             webView.loadUrl(this.d);
         }
     }

@@ -36,11 +36,11 @@ public final class z1 extends u1 {
         m1Var.setOnItemClickListener(new ai.k(this, 9));
         m1Var.setOnScrollListener(new ai.b(this, 11));
         v4.k kVar = new v4.k();
-        kVar.f56999c = 220L;
-        kVar.f57000e = 220L;
-        kVar.f57001f = 160L;
-        kVar.f57002g = 160L;
-        kVar.f57003i = xq.f40311g;
+        kVar.f57024c = 220L;
+        kVar.f57025e = 220L;
+        kVar.f57026f = 160L;
+        kVar.f57027g = 160L;
+        kVar.f57028i = xq.f40330g;
         m1Var.setItemAnimator(kVar);
         addView(m1Var, c8.ha.c(-1.0f, -1));
         int i7 = k2.f12251y1;
@@ -89,7 +89,7 @@ public final class z1 extends u1 {
                 d2Var.H1(k2Var.f12253j1);
                 e2Var.h.F1();
                 if (e2Var.h.getSelectedCategory() != null) {
-                    y1Var.H = e2Var.h.getSelectedCategory().f38735a;
+                    y1Var.H = e2Var.h.getSelectedCategory().f38726a;
                     di.s7 s7Var = y1Var.M;
                     org.telegram.messenger.g0.r(s7Var);
                     org.telegram.messenger.g0.h3(s7Var);

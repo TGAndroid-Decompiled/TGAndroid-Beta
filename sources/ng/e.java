@@ -114,7 +114,7 @@ public class e extends FrameLayout {
         int L = g0.L(4.0f);
         this.I = k6.k0(L, L, L, L, k6.w0(k6.f27921h5, f6Var), k6.w0(k6.f27940i6, f6Var), -16777216);
         xp xpVar = new xp(this.H, this.I, g0.L(3.0f), g0.L(3.0f));
-        xpVar.f40305x = true;
+        xpVar.f40324x = true;
         setBackground(xpVar);
     }
 
@@ -180,15 +180,15 @@ public class e extends FrameLayout {
             boolean z15 = fVar.f20576n;
             mg.a aVar = fVar.f20565a;
             if (!z15) {
-                ((LinearLayout) eVar.f56816e).setVisibility(8);
+                ((LinearLayout) eVar.f56841e).setVisibility(8);
                 z11 = z12;
                 i14 = i20;
                 i15 = i17;
             } else {
-                LinearLayout linearLayout = (LinearLayout) eVar.f56816e;
+                LinearLayout linearLayout = (LinearLayout) eVar.f56841e;
                 TextView textView2 = (TextView) eVar.d;
-                TextView textView3 = (TextView) eVar.f56815c;
-                q5 q5Var = (q5) eVar.f56814b;
+                TextView textView3 = (TextView) eVar.f56840c;
+                q5 q5Var = (q5) eVar.f56839b;
                 if (linearLayout.getMeasuredHeight() == 0) {
                     linearLayout.requestLayout();
                 }
@@ -342,7 +342,7 @@ public class e extends FrameLayout {
         this.f20556c = new ui.e[i7];
         for (int i10 = 0; i10 < i7; i10++) {
             this.f20556c[i10] = new ui.e(this);
-            linearLayout.addView((LinearLayout) this.f20556c[i10].f56816e);
+            linearLayout.addView((LinearLayout) this.f20556c[i10].f56841e);
         }
     }
 

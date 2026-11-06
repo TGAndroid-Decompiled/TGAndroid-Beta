@@ -112,9 +112,9 @@ public final class w1 extends org.telegram.ui.Components.na {
             this.f4943j2 = gVar;
             this.X0.a(gVar);
             ri.f fVar = new ri.f(d);
-            fVar.f54456f = d;
+            fVar.f54481f = d;
             fVar.d = gVar;
-            fVar.f54455e = -2;
+            fVar.f54480e = -2;
             dh.c cVar = new dh.c(fVar, fVar, fVar);
             this.f4944k2 = cVar;
             cVar.f8710k = true;
@@ -133,21 +133,21 @@ public final class w1 extends org.telegram.ui.Components.na {
         jy jyVar = new jy(3, false);
         this.Z1 = jyVar;
         jyVar.O = new ai.l(this, 1);
-        this.f36328k1.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(74.0f));
-        this.f36328k1.setClipToPadding(false);
-        this.f36328k1.setLayoutManager(jyVar);
-        this.f36328k1.setSelectorType(9);
-        this.f36328k1.setSelectorDrawableColor(0);
-        this.f36328k1.j(new ai.b(this, 3));
-        this.X0.b(this.f36328k1);
+        this.f36222k1.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(74.0f));
+        this.f36222k1.setClipToPadding(false);
+        this.f36222k1.setLayoutManager(jyVar);
+        this.f36222k1.setSelectorType(9);
+        this.f36222k1.setSelectorDrawableColor(0);
+        this.f36222k1.j(new ai.b(this, 3));
+        this.X0.b(this.f36222k1);
         ?? kVar = new v4.k();
         this.f4935a2 = kVar;
         kVar.C = false;
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.n(280L);
         kVar.o(xq.h);
         kVar.D = 30L;
-        this.f36328k1.setItemAnimator(kVar);
+        this.f36222k1.setItemAnimator(kVar);
         FrameLayout frameLayout = new FrameLayout(context);
         this.d2 = frameLayout;
         frameLayout.setClipChildren(false);
@@ -275,7 +275,7 @@ public final class w1 extends org.telegram.ui.Components.na {
                 this.f4945l2 = new r1((TL_stars.starGiftAttributeBackdrop) cg.d.d(arrayList, TL_stars.starGiftAttributeBackdrop.class), (TL_stars.starGiftAttributePattern) cg.d.d(arrayList, TL_stars.starGiftAttributePattern.class), (TL_stars.starGiftAttributeModel) cg.d.d(arrayList, TL_stars.starGiftAttributeModel.class));
                 this.f4937c2.O(false);
                 h1(false);
-                pj0 pj0Var = this.f36328k1;
+                pj0 pj0Var = this.f36222k1;
                 ViewGroup viewGroup = this.f28615b;
                 Objects.requireNonNull(pj0Var);
                 this.f4948o2 = new dh.k(pj0Var, viewGroup, new n40(pj0Var, 0));
@@ -310,9 +310,9 @@ public final class w1 extends org.telegram.ui.Components.na {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        p1 p1Var = new p1(this, this.f36328k1, getContext(), this.P1, new ai.e(this, 5), this.I0);
+        p1 p1Var = new p1(this, this.f36222k1, getContext(), this.P1, new ai.e(this, 5), this.I0);
         this.f4937c2 = p1Var;
-        p1Var.f33473r = false;
+        p1Var.f35132r = false;
         return p1Var;
     }
 
@@ -400,7 +400,7 @@ public final class w1 extends org.telegram.ui.Components.na {
     public final void i1() {
         u1 u1Var;
         r1 r1Var;
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int childCount = pj0Var.getChildCount();
         for (int i7 = 0; i7 < childCount; i7++) {
             View childAt = pj0Var.getChildAt(i7);
@@ -423,7 +423,7 @@ public final class w1 extends org.telegram.ui.Components.na {
         }
         if (this.f4949p2 != i7) {
             this.f4949p2 = i7;
-            this.f36328k1.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(74.0f) + i7);
+            this.f36222k1.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(74.0f) + i7);
             v1 v1Var = this.f4936b2;
             ((ViewGroup.MarginLayoutParams) v1Var.getLayoutParams()).bottomMargin = org.telegram.messenger.g0.L(5.0f) + this.f4949p2;
             v1Var.requestLayout();
@@ -449,7 +449,7 @@ public final class w1 extends org.telegram.ui.Components.na {
                 org.telegram.ui.ActionBar.f6 f6Var = v1Var.f4863r;
                 int r12 = org.telegram.ui.ActionBar.k6.r1(0.09411765f, org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
                 org.telegram.ui.ActionBar.k6.r1(0.1254902f, org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
-                v1Var.f54034e.setColor(r12);
+                v1Var.f54059e.setColor(r12);
                 v1Var.invalidate();
             }
         } catch (Exception e10) {

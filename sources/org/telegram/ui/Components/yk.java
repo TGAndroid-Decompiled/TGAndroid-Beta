@@ -1,29 +1,29 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-public final class yk implements t4, dj0, k71 {
-    public final int f40625a;
-    public final ChatAttachAlertPhotoLayout f40626b;
+public final class yk implements t4, dj0, p71 {
+    public final int f40644a;
+    public final ChatAttachAlertPhotoLayout f40645b;
 
     public yk(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7) {
-        this.f40625a = i7;
-        this.f40626b = chatAttachAlertPhotoLayout;
+        this.f40644a = i7;
+        this.f40645b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public void L(int i7, int i10, boolean z9) {
-        int i11 = this.f40625a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f40626b;
+        int i11 = this.f40644a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f40645b;
         switch (i11) {
             case 0:
                 boolean z10 = ChatAttachAlertPhotoLayout.f31183q1;
-                di diVar = chatAttachAlertPhotoLayout.f38951b;
+                di diVar = chatAttachAlertPhotoLayout.f38948b;
                 diVar.M0();
                 diVar.T3.o1(7, false, z9, i7, 0, 0L, diVar.f1(), false, 0L);
                 return;
             default:
                 boolean z11 = ChatAttachAlertPhotoLayout.f31183q1;
-                di diVar2 = chatAttachAlertPhotoLayout.f38951b;
+                di diVar2 = chatAttachAlertPhotoLayout.f38948b;
                 diVar2.M0();
                 diVar2.T3.o1(4, true, z9, i7, 0, 0L, diVar2.f1(), false, 0L);
                 return;
@@ -32,7 +32,7 @@ public final class yk implements t4, dj0, k71 {
 
     @Override
     public void b(float f10) {
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f40626b;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f40645b;
         ql qlVar = chatAttachAlertPhotoLayout.P;
         if (qlVar != null) {
             chatAttachAlertPhotoLayout.B0 = f10;
@@ -44,8 +44,8 @@ public final class yk implements t4, dj0, k71 {
     @Override
     public boolean c(int i7, View view) {
         boolean z9 = ChatAttachAlertPhotoLayout.f31183q1;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f40626b;
-        di diVar = chatAttachAlertPhotoLayout.f38951b;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f40645b;
+        di diVar = chatAttachAlertPhotoLayout.f38948b;
         if (!diVar.N2) {
             if (i7 == 0 && chatAttachAlertPhotoLayout.T0 == chatAttachAlertPhotoLayout.U0) {
                 bi biVar = diVar.T3;

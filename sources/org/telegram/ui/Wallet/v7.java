@@ -4,11 +4,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 public final class v7 extends View {
-    public final c8 f43213a;
+    public final c8 f43238a;
 
     public v7(c8 c8Var, Context context) {
         super(context);
-        this.f43213a = c8Var;
+        this.f43238a = c8Var;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class v7 extends View {
         Canvas canvas2;
         float f11;
         float f12;
-        c8 c8Var = this.f43213a;
+        c8 c8Var = this.f43238a;
         if (c8Var.Y0 > 0.0f) {
             if (c8Var.X0) {
                 float f13 = c8Var.U0;

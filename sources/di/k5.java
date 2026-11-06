@@ -413,7 +413,7 @@ public abstract class k5 extends FrameLayout implements org.telegram.ui.ActionBa
                 ofFloat.addUpdateListener(new ah.h(a5Var, 20));
                 a5Var.f8813x.addListener(new bi.t5(a5Var, 13));
                 a5Var.f8813x.setDuration(250L);
-                a5Var.f8813x.setInterpolator(xq.f40310f);
+                a5Var.f8813x.setInterpolator(xq.f40329f);
                 a5Var.f8813x.start();
             }
         }

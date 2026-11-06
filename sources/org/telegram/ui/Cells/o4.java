@@ -70,9 +70,9 @@ public final class o4 extends FrameLayout implements org.telegram.ui.ActionBar.a
         addView(cqVar, c8.ha.d(-1, 28.0f, 48, 0.0f, 4.0f, 0.0f, 0.0f));
         int i7 = org.telegram.ui.ActionBar.k6.W8;
         int i10 = org.telegram.ui.ActionBar.k6.U8;
-        bq bqVar = cqVar.f32641a;
+        bq bqVar = cqVar.f32645a;
         bqVar.v = i7;
-        bqVar.f32275w = i10;
+        bqVar.f32269w = i10;
         cqVar.setGravity(5);
         if (z9) {
             wo woVar = new wo(21, context, f6Var);
@@ -143,13 +143,13 @@ public final class o4 extends FrameLayout implements org.telegram.ui.ActionBar.a
             if (dialog != null && (i10 = dialog.unread_count) != 0) {
                 if (this.d != i10) {
                     this.d = i10;
-                    cqVar.f32641a.c(i10, this.f29648r);
+                    cqVar.f32645a.c(i10, this.f29648r);
                     return;
                 }
                 return;
             }
             this.d = 0;
-            cqVar.f32641a.c(0, this.f29648r);
+            cqVar.f32645a.c(0, this.f29648r);
         }
     }
 
@@ -203,7 +203,7 @@ public final class o4 extends FrameLayout implements org.telegram.ui.ActionBar.a
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i7), 1073741824), View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.L(86.0f), 1073741824));
-        this.f29649s.f32641a.E = org.telegram.messenger.g0.L(13.0f);
+        this.f29649s.f32645a.E = org.telegram.messenger.g0.L(13.0f);
     }
 
     @Override

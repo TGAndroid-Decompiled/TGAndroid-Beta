@@ -1,7 +1,7 @@
 package org.telegram.ui.ActionBar;
 
 import android.animation.ValueAnimator;
-import org.telegram.ui.qu0;
+import org.telegram.ui.ru0;
 public final class a implements ValueAnimator.AnimatorUpdateListener {
     public final int f27294a;
     public final k f27295b;
@@ -16,16 +16,16 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
         y yVar;
         switch (this.f27294a) {
             case 0:
-                qu0 qu0Var = this.f27295b.f27659e1;
-                if (qu0Var != null) {
-                    qu0Var.run();
+                ru0 ru0Var = this.f27295b.f27659e1;
+                if (ru0Var != null) {
+                    ru0Var.run();
                     return;
                 }
                 return;
             case 1:
-                qu0 qu0Var2 = this.f27295b.f27659e1;
-                if (qu0Var2 != null) {
-                    qu0Var2.run();
+                ru0 ru0Var2 = this.f27295b.f27659e1;
+                if (ru0Var2 != null) {
+                    ru0Var2.run();
                     return;
                 }
                 return;
@@ -42,9 +42,9 @@ public final class a implements ValueAnimator.AnimatorUpdateListener {
                 if (kVar.P0 && (yVar = kVar.E) != null) {
                     yVar.setTranslationX(-org.telegram.messenger.g0.T1(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(5.0f), kVar.f27677o0));
                 }
-                qu0 qu0Var3 = kVar.f27659e1;
-                if (qu0Var3 != null) {
-                    qu0Var3.run();
+                ru0 ru0Var3 = kVar.f27659e1;
+                if (ru0Var3 != null) {
+                    ru0Var3.run();
                     return;
                 }
                 return;

@@ -5,30 +5,30 @@ import android.graphics.ColorFilter;
 import android.graphics.Paint;
 import android.graphics.RectF;
 public final class ie0 extends ou0 {
-    public boolean f34601a = false;
-    public final Paint f34602b = new Paint(1);
-    public final int f34603c = org.telegram.messenger.p10.f24459s0;
+    public boolean f34564a = false;
+    public final Paint f34565b = new Paint(1);
+    public final int f34566c = org.telegram.messenger.p10.f24459s0;
     public long d = 0;
-    public boolean f34604e = false;
-    public final RectF f34605f = new RectF();
-    public float f34606g;
+    public boolean f34567e = false;
+    public final RectF f34568f = new RectF();
+    public float f34569g;
     public final boolean h;
-    public final org.telegram.ui.ActionBar.f6 f34607i;
+    public final org.telegram.ui.ActionBar.f6 f34570i;
 
     public ie0(org.telegram.ui.ActionBar.f6 f6Var, boolean z9) {
         this.h = z9;
-        this.f34607i = f6Var;
+        this.f34570i = f6Var;
     }
 
     @Override
     public final void c(boolean z9) {
-        this.f34601a = z9;
+        this.f34564a = z9;
     }
 
     @Override
     public final void d() {
         this.d = System.currentTimeMillis();
-        this.f34604e = true;
+        this.f34567e = true;
         invalidateSelf();
     }
 
@@ -39,7 +39,7 @@ public final class ie0 extends ou0 {
         int i10;
         int L = org.telegram.messenger.g0.L(10.0f);
         int L2 = ((org.telegram.messenger.g0.L(18.0f) - L) / 2) + getBounds().top;
-        if (!this.f34601a) {
+        if (!this.f34564a) {
             L2 += org.telegram.messenger.g0.L(1.0f);
         }
         int i11 = L2;
@@ -49,12 +49,12 @@ public final class ie0 extends ou0 {
         } else {
             i7 = org.telegram.ui.ActionBar.k6.f28072pa;
         }
-        int w02 = org.telegram.ui.ActionBar.k6.w0(i7, this.f34607i);
-        Paint paint = this.f34602b;
+        int w02 = org.telegram.ui.ActionBar.k6.w0(i7, this.f34570i);
+        Paint paint = this.f34565b;
         paint.setColor(w02);
-        RectF rectF = this.f34605f;
+        RectF rectF = this.f34568f;
         rectF.set(0.0f, i11, L, i11 + L);
-        float f11 = this.f34606g;
+        float f11 = this.f34569g;
         float f12 = 0.5f;
         if (f11 < 0.5f) {
             f10 = org.telegram.messenger.camera.q.x(f11, 0.5f, 1.0f, 35.0f);
@@ -66,7 +66,7 @@ public final class ie0 extends ou0 {
         while (i13 < 3) {
             int L3 = org.telegram.messenger.g0.L(9.2f);
             float f13 = f12;
-            float f14 = this.f34606g;
+            float f14 = this.f34569g;
             float L4 = (L3 + (org.telegram.messenger.g0.L(5.0f) * i13)) - (org.telegram.messenger.g0.L(5.0f) * f14);
             if (i13 == 2) {
                 paint.setAlpha(Math.min(255, (int) ((f14 * 255.0f) / f13)));
@@ -97,26 +97,26 @@ public final class ie0 extends ou0 {
 
     @Override
     public final void e() {
-        this.f34606g = 0.0f;
-        this.f34604e = false;
+        this.f34569g = 0.0f;
+        this.f34567e = false;
     }
 
     public final void f() {
-        if (this.f34604e) {
-            if (!org.telegram.messenger.qs.f(this.f34603c).g()) {
+        if (this.f34567e) {
+            if (!org.telegram.messenger.qs.f(this.f34566c).g()) {
                 long currentTimeMillis = System.currentTimeMillis();
                 long j3 = currentTimeMillis - this.d;
                 this.d = currentTimeMillis;
                 if (j3 > 50) {
                     j3 = 50;
                 }
-                if (this.f34606g >= 1.0f) {
-                    this.f34606g = 0.0f;
+                if (this.f34569g >= 1.0f) {
+                    this.f34569g = 0.0f;
                 }
-                float f10 = (((float) j3) / 300.0f) + this.f34606g;
-                this.f34606g = f10;
+                float f10 = (((float) j3) / 300.0f) + this.f34569g;
+                this.f34569g = f10;
                 if (f10 > 1.0f) {
-                    this.f34606g = 1.0f;
+                    this.f34569g = 1.0f;
                 }
                 a();
                 return;

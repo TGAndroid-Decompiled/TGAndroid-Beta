@@ -3,14 +3,14 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class lq implements Runnable {
-    public final int f47546a;
-    public final nq f47547b;
-    public final String f47548c;
+    public final int f47575a;
+    public final nq f47576b;
+    public final String f47577c;
 
     public lq(nq nqVar, String str, int i7) {
-        this.f47546a = i7;
-        this.f47547b = nqVar;
-        this.f47548c = str;
+        this.f47575a = i7;
+        this.f47576b = nqVar;
+        this.f47577c = str;
     }
 
     @Override
@@ -20,20 +20,20 @@ public final class lq implements Runnable {
         m6 m6Var;
         boolean z9;
         long j3;
-        switch (this.f47546a) {
+        switch (this.f47575a) {
             case 0:
-                nq nqVar = this.f47547b;
+                nq nqVar = this.f47576b;
                 nqVar.getClass();
-                org.telegram.messenger.g0.h3(new lq(nqVar, this.f47548c, 1));
+                org.telegram.messenger.g0.h3(new lq(nqVar, this.f47577c, 1));
                 return;
             default:
-                nq nqVar2 = this.f47547b;
-                nqVar2.f48080n = null;
+                nq nqVar2 = this.f47576b;
+                nqVar2.f48111n = null;
                 oq oqVar = nqVar2.D;
-                TLRPC.Chat chat = oqVar.f48470n;
-                int i7 = oqVar.f48451d1;
-                if (!org.telegram.messenger.t3.T(chat) && oqVar.f48478r != null) {
-                    arrayList = new ArrayList(oqVar.f48478r.participants.participants);
+                TLRPC.Chat chat = oqVar.f48498n;
+                int i7 = oqVar.f48479d1;
+                if (!org.telegram.messenger.t3.T(chat) && oqVar.f48506r != null) {
+                    arrayList = new ArrayList(oqVar.f48506r.participants.participants);
                 } else {
                     arrayList = null;
                 }
@@ -42,9 +42,9 @@ public final class lq implements Runnable {
                 } else {
                     arrayList2 = null;
                 }
-                String str = this.f47548c;
+                String str = this.f47577c;
                 if (arrayList == null && arrayList2 == null) {
-                    nqVar2.f48082s = false;
+                    nqVar2.f48113s = false;
                     m6Var = null;
                 } else {
                     m6Var = new m6(nqVar2, str, arrayList, arrayList2, 13);
@@ -55,7 +55,7 @@ public final class lq implements Runnable {
                 } else {
                     z9 = false;
                 }
-                if (org.telegram.messenger.t3.T(oqVar.f48470n)) {
+                if (org.telegram.messenger.t3.T(oqVar.f48498n)) {
                     j3 = oqVar.M;
                 } else {
                     j3 = 0;

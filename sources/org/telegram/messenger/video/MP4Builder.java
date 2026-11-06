@@ -124,7 +124,7 @@ public class MP4Builder {
         ?? aVar = new com.googlecode.mp4parser.a("mvhd");
         aVar.f15310r = 1.0d;
         aVar.f15311s = 1.0f;
-        pc.d dVar = pc.d.f53446j;
+        pc.d dVar = pc.d.f53472j;
         aVar.f15312w = dVar;
         Date date = new Date();
         com.google.android.recaptcha.internal.a.t(ze.a.c(i5.m.Q, aVar, aVar, date));
@@ -296,7 +296,7 @@ public class MP4Builder {
         String str;
         ?? bVar = new com.googlecode.mp4parser.b("trak");
         ?? aVar = new com.googlecode.mp4parser.a("tkhd");
-        pc.d dVar = pc.d.f53446j;
+        pc.d dVar = pc.d.f53472j;
         aVar.f15345x = dVar;
         ui.e c10 = ze.a.c(y.Z, aVar, aVar, new Boolean(true));
         com.googlecode.mp4parser.g.a().getClass();

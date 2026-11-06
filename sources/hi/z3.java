@@ -23,11 +23,11 @@ public final class z3 extends GestureDetector.SimpleOnGestureListener {
         switch (this.f15071a) {
             case 1:
                 br brVar = (br) this.f15073c;
-                yq yqVar = brVar.f32287r;
-                if (brVar.f32286n) {
+                yq yqVar = brVar.f32281r;
+                if (brVar.f32280n) {
                     brVar.removeCallbacks(yqVar);
                 }
-                brVar.f32286n = true;
+                brVar.f32280n = true;
                 brVar.postDelayed(yqVar, 200L);
                 brVar.h.run();
                 return true;
@@ -95,8 +95,8 @@ public final class z3 extends GestureDetector.SimpleOnGestureListener {
                 return super.onFling(motionEvent, motionEvent2, f10, f11);
             case 2:
                 ve0 ve0Var = (ve0) viewGroup;
-                if (!ve0Var.f38938f && !ve0Var.h && f10 >= 600.0f) {
-                    ve0Var.f38937e = false;
+                if (!ve0Var.f38935f && !ve0Var.h && f10 >= 600.0f) {
+                    ve0Var.f38934e = false;
                     ve0Var.h = false;
                     ve0Var.a(0.0f, f10 / 6000.0f);
                 }

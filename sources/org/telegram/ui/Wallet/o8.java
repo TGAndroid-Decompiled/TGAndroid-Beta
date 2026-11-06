@@ -17,14 +17,14 @@ import org.telegram.messenger.qs;
 import org.telegram.messenger.ui;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.d01;
-import org.telegram.ui.Components.h41;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w70;
 import org.telegram.ui.d10;
 import org.telegram.ui.lk0;
-public final class o8 extends h41 implements ls {
-    public final ArrayList f42905e = new ArrayList();
-    public boolean f42906f;
+public final class o8 extends m41 implements ls {
+    public final ArrayList f42930e = new ArrayList();
+    public boolean f42931f;
 
     public static void d0(o8 o8Var, c20 c20Var, r0 r0Var, k0 k0Var) {
         if (k0Var == null) {
@@ -69,6 +69,10 @@ public final class o8 extends h41 implements ls {
             c20Var.a(null);
             k0(o8Var.getParentActivity(), k0Var.f(), o8Var.resourceProvider, null);
         }
+    }
+
+    public static void h0(o8 o8Var, c20 c20Var) {
+        n0.x(o8Var.currentAccount).z(new v1(2, o8Var, c20Var), true, false);
     }
 
     public static LinearLayout i0(Context context, org.telegram.ui.ActionBar.f6 f6Var, int i7, String str) {
@@ -200,12 +204,12 @@ public final class o8 extends h41 implements ls {
         d01 d01Var = new d01(activity, f6Var);
         d01Var.setPadding(org.telegram.messenger.g0.L(0.0f), org.telegram.messenger.g0.L(24.0f), org.telegram.messenger.g0.L(0.0f), org.telegram.messenger.g0.L(4.0f));
         d01Var.setEmojiSize(100);
-        org.telegram.ui.Components.l9 l9Var = d01Var.f32736b;
+        org.telegram.ui.Components.l9 l9Var = d01Var.f32740b;
         l9Var.getImageReceiver().d = org.telegram.messenger.g0.t0();
         ui.b0(org.telegram.messenger.g0.t0()).c2(l9Var, "RestrictedEmoji", "📝", "100_100");
         e11.addView(d01Var, c8.ha.r(-1, -2, 7));
         String M0 = hd.M0(2131743035, null);
-        w70 w70Var = d01Var.f32737c;
+        w70 w70Var = d01Var.f32741c;
         CharSequence m10 = org.telegram.messenger.i6.m(M0, w70Var.getPaint().getFontMetricsInt(), false, null, 0);
         String M02 = hd.M0(2131743036, null);
         w70 w70Var2 = d01Var.d;
@@ -229,8 +233,8 @@ public final class o8 extends h41 implements ls {
     }
 
     @Override
-    public final void Z(java.util.ArrayList r10, org.telegram.ui.Components.f41 r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.o8.Z(java.util.ArrayList, org.telegram.ui.Components.f41):void");
+    public final void Z(java.util.ArrayList r10, org.telegram.ui.Components.k41 r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.o8.Z(java.util.ArrayList, org.telegram.ui.Components.k41):void");
     }
 
     @Override
@@ -239,13 +243,13 @@ public final class o8 extends h41 implements ls {
     }
 
     @Override
-    public final void b0(r31 r31Var, View view) {
-        int i7 = r31Var.d;
+    public final void b0(w31 w31Var, View view) {
+        int i7 = w31Var.d;
         if (i7 == 1) {
             n0 x10 = n0.x(this.currentAccount);
             if (x10.f()) {
                 f8 f8Var = new f8();
-                f8Var.f42471s = x10.y();
+                f8Var.f42496s = x10.y();
                 presentFragment(f8Var);
                 return;
             }
@@ -257,10 +261,10 @@ public final class o8 extends h41 implements ls {
             j jVar = new j(this, u1Var, x11);
             n0.H("emulate disable backup: when ready");
             n nVar = new n(3, x11, jVar);
-            if (x11.G() && x11.f42772f != null) {
+            if (x11.G() && x11.f42797f != null) {
                 nVar.run();
             } else {
-                x11.f42787w.add(new WeakReference(nVar));
+                x11.f42812w.add(new WeakReference(nVar));
             }
         } else if (i7 == 2) {
             n0 x12 = n0.x(this.currentAccount);
@@ -277,31 +281,31 @@ public final class o8 extends h41 implements ls {
             if (textView != null) {
                 org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28089q7, f02.f28569i1);
             }
-        } else if (r31Var.H(m8.class)) {
-            String charSequence = r31Var.f37598l.toString();
+        } else if (w31Var.H(m8.class)) {
+            String charSequence = w31Var.f39830l.toString();
             l0(getParentActivity(), getResourceProvider(), new q(this, n0.x(this.currentAccount), charSequence, new r0(this.currentAccount, getParentActivity(), charSequence)));
         }
     }
 
     @Override
-    public final boolean c0(r31 r31Var, View view) {
+    public final boolean c0(w31 w31Var, View view) {
         return false;
     }
 
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f34211a);
-        this.f34211a.r1();
-        this.f34211a.setClipToPadding(false);
+        this.actionBar.setAdaptiveBackground(this.f35844a);
+        this.f35844a.r1();
+        this.f35844a.setClipToPadding(false);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         fi.w3 w3Var;
-        if (i7 == qs.f24954a4 && (w3Var = this.f34211a) != null) {
-            w3Var.f35167f3.O(true);
+        if (i7 == qs.f24954a4 && (w3Var = this.f35844a) != null) {
+            w3Var.f36781f3.O(true);
         }
     }
 
@@ -319,8 +323,8 @@ public final class o8 extends h41 implements ls {
     @Override
     public final void onFragmentDestroy() {
         getNotificationCenter().n(this, qs.f24954a4);
-        this.f42906f = true;
-        ArrayList arrayList = this.f42905e;
+        this.f42931f = true;
+        ArrayList arrayList = this.f42930e;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
@@ -334,7 +338,7 @@ public final class o8 extends h41 implements ls {
 
     @Override
     public final void onInsets(int i7, int i10, int i11, int i12) {
-        this.f34211a.setPadding(0, 0, 0, i12);
-        this.f34211a.setClipToPadding(false);
+        this.f35844a.setPadding(0, 0, 0, i12);
+        this.f35844a.setClipToPadding(false);
     }
 }

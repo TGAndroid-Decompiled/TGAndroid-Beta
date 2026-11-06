@@ -16,34 +16,34 @@ public final class iq implements Runnable {
     public final org.telegram.ui.ActionBar.f6 H;
     public final org.telegram.ui.Cells.z8 I;
     public final Context J;
-    public final boolean[] f34747a;
-    public final int[] f34748b;
-    public final org.telegram.ui.Cells.k3 f34749c;
+    public final boolean[] f34710a;
+    public final int[] f34711b;
+    public final org.telegram.ui.Cells.k3 f34712c;
     public final TreeSet d;
-    public final String[] f34750e;
-    public final hq f34751f;
+    public final String[] f34713e;
+    public final hq f34714f;
     public final org.telegram.ui.Cells.k3 h;
-    public final int[] f34752n;
-    public final ai.a1 f34753r;
-    public final fi.d f34754s;
-    public final boolean f34755w;
-    public final int f34756x;
-    public final TLRPC.User f34757y;
+    public final int[] f34715n;
+    public final ai.a1 f34716r;
+    public final fi.d f34717s;
+    public final boolean f34718w;
+    public final int f34719x;
+    public final TLRPC.User f34720y;
 
     public iq(boolean[] zArr, int[] iArr, org.telegram.ui.Cells.k3 k3Var, TreeSet treeSet, String[] strArr, hq hqVar, org.telegram.ui.Cells.k3 k3Var2, int[] iArr2, ai.a1 a1Var, fi.d dVar, boolean z9, int i7, TLRPC.User user, boolean[] zArr2, org.telegram.messenger.c20 c20Var, org.telegram.ui.ActionBar.v2 v2Var, r2 r2Var, org.telegram.ui.ActionBar.f6 f6Var, org.telegram.ui.Cells.z8 z8Var, Context context) {
-        this.f34747a = zArr;
-        this.f34748b = iArr;
-        this.f34749c = k3Var;
+        this.f34710a = zArr;
+        this.f34711b = iArr;
+        this.f34712c = k3Var;
         this.d = treeSet;
-        this.f34750e = strArr;
-        this.f34751f = hqVar;
+        this.f34713e = strArr;
+        this.f34714f = hqVar;
         this.h = k3Var2;
-        this.f34752n = iArr2;
-        this.f34753r = a1Var;
-        this.f34754s = dVar;
-        this.f34755w = z9;
-        this.f34756x = i7;
-        this.f34757y = user;
+        this.f34715n = iArr2;
+        this.f34716r = a1Var;
+        this.f34717s = dVar;
+        this.f34718w = z9;
+        this.f34719x = i7;
+        this.f34720y = user;
         this.D = zArr2;
         this.E = c20Var;
         this.F = v2Var;
@@ -57,11 +57,11 @@ public final class iq implements Runnable {
     public final void run() {
         final org.telegram.ui.Cells.k3 k3Var = this.h;
         org.telegram.ui.Cells.i3 i3Var = k3Var.d;
-        final boolean[] zArr = this.f34747a;
+        final boolean[] zArr = this.f34710a;
         if (!zArr[0]) {
-            final int[] iArr = this.f34748b;
+            final int[] iArr = this.f34711b;
             if (iArr[0] < 0) {
-                final org.telegram.ui.Cells.k3 k3Var2 = this.f34749c;
+                final org.telegram.ui.Cells.k3 k3Var2 = this.f34712c;
                 String charSequence = k3Var2.getText().toString();
                 StringBuilder m10 = com.google.android.recaptcha.internal.a.m(charSequence);
                 String str = "bot";
@@ -69,33 +69,33 @@ public final class iq implements Runnable {
                 final TreeSet treeSet = this.d;
                 m10.append((a10 || lq.c(charSequence, treeSet) != null) ? "" : "");
                 String sb2 = m10.toString();
-                final String[] strArr = this.f34750e;
+                final String[] strArr = this.f34713e;
                 if (!TextUtils.equals(strArr[0], sb2)) {
-                    this.f34751f.run();
+                    this.f34714f.run();
                     return;
                 }
                 String trim = i3Var.getText().toString().trim();
                 boolean isEmpty = TextUtils.isEmpty(trim);
-                final int[] iArr2 = this.f34752n;
+                final int[] iArr2 = this.f34715n;
                 if (isEmpty) {
                     int i7 = -iArr2[0];
                     iArr2[0] = i7;
                     org.telegram.messenger.g0.G3(i7, k3Var, null);
                     return;
                 }
-                this.f34753r.run();
-                final fi.d dVar = this.f34754s;
+                this.f34716r.run();
+                final fi.d dVar = this.f34717s;
                 dVar.setLoading(true);
                 dVar.setEnabled(false);
                 i3Var.setEnabled(false);
                 k3Var2.d.setEnabled(false);
                 final TL_bots.createBot createbot = new TL_bots.createBot();
-                createbot.via_deeplink = this.f34755w;
+                createbot.via_deeplink = this.f34718w;
                 createbot.username = strArr[0];
                 createbot.name = trim;
-                final int i10 = this.f34756x;
+                final int i10 = this.f34719x;
                 org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(i10);
-                final TLRPC.User user = this.f34757y;
+                final TLRPC.User user = this.f34720y;
                 createbot.manager_id = s12.q1(user);
                 ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
                 d3.b bVar = new d3.b(1);
@@ -164,7 +164,7 @@ public final class iq implements Runnable {
                                         O2.setSpan(new org.telegram.ui.Cells.h(f6Var2, fqVar, 6), t6, t6 + 10, 33);
                                     }
                                     cc I = hcVar.I(2131624011, M0, O2);
-                                    I.f32523j = 8000;
+                                    I.f32527j = 8000;
                                     I.j();
                                 } else {
                                     String str4 = tL_error.text;

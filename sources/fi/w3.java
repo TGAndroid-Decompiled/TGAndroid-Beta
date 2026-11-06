@@ -2,19 +2,19 @@ package fi;
 
 import android.content.Context;
 import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.g41;
-import org.telegram.ui.Components.h41;
 import org.telegram.ui.Components.hi;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.l41;
+import org.telegram.ui.Components.m41;
 import org.telegram.ui.Components.ni;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.up0;
-public final class w3 extends k41 {
+public final class w3 extends p41 {
     public final int f13027m3 = 4;
     public final Object f13028n3;
 
-    public w3(h41 h41Var, h41 h41Var2, org.telegram.ui.Components.d dVar, g41 g41Var, g41 g41Var2) {
-        super(h41Var2, dVar, g41Var, g41Var2);
-        this.f13028n3 = h41Var;
+    public w3(m41 m41Var, m41 m41Var2, org.telegram.ui.Components.d dVar, l41 l41Var, l41 l41Var2) {
+        super(m41Var2, dVar, l41Var, l41Var2);
+        this.f13028n3 = m41Var;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class w3 extends k41 {
         int i7;
         switch (this.f13027m3) {
             case 1:
-                di diVar = ((ni) this.f13028n3).f38951b;
+                di diVar = ((ni) this.f13028n3).f38948b;
                 int L = org.telegram.messenger.g0.L(30.0f) + diVar.V3[0];
                 if (!diVar.X1) {
                     i7 = org.telegram.messenger.g0.f22531m;
@@ -43,7 +43,7 @@ public final class w3 extends k41 {
         switch (this.f13027m3) {
             case 1:
                 ni niVar = (ni) this.f13028n3;
-                niVar.f38951b.M1(niVar, 0);
+                niVar.f38948b.M1(niVar, 0);
                 return;
             default:
                 return;
@@ -92,11 +92,11 @@ public final class w3 extends k41 {
             case 1:
                 super.onLayout(z9, i7, i10, i11, i12);
                 ni niVar = (ni) this.f13028n3;
-                niVar.f38951b.M1(niVar, 0);
+                niVar.f38948b.M1(niVar, 0);
                 return;
             case 2:
                 super.onLayout(z9, i7, i10, i11, i12);
-                ((h41) this.f13028n3).f34213c = -1;
+                ((m41) this.f13028n3).f35846c = -1;
                 return;
             case 3:
             default:

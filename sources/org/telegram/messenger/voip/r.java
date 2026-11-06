@@ -12,94 +12,94 @@ public final class r implements Runnable {
     public final void run() {
         switch (this.f26153a) {
             case 0:
-                VoIPService.J0(this.f26154b);
+                this.f26154b.lambda$updateConnectionState$83();
                 return;
             case 1:
-                VoIPService.X0(this.f26154b);
+                this.f26154b.lambda$playConnectedSound$88();
                 return;
             case 2:
-                VoIPService.v0(this.f26154b);
+                this.f26154b.lambda$playStartRecordSound$120();
                 return;
             case 3:
-                VoIPService.J(this.f26154b);
+                this.f26154b.lambda$playAllowTalkSound$121();
                 return;
             case 4:
-                VoIPService.T(this.f26154b);
+                this.f26154b.lambda$getConnectionAndStartCall$106();
                 return;
             case 5:
-                VoIPService.B0(this.f26154b);
+                this.f26154b.lambda$callFailed$115();
                 return;
             case 6:
-                VoIPService.z(this.f26154b);
+                this.f26154b.lambda$callFailed$116();
                 return;
             case 7:
-                VoIPService.H0(this.f26154b);
+                this.f26154b.lambda$callEnded$123();
                 return;
             case 8:
-                VoIPService.v1(this.f26154b);
+                this.f26154b.lambda$callEnded$124();
                 return;
             case 9:
-                VoIPService.B(this.f26154b);
+                this.f26154b.lambda$callEnded$125();
                 return;
             case 10:
-                VoIPService.e(this.f26154b);
+                this.f26154b.lambda$callEnded$126();
                 return;
             case 11:
-                VoIPService.w1(this.f26154b);
+                this.f26154b.lambda$onCallUpdated$16();
                 return;
             case 12:
-                VoIPService.I(this.f26154b);
+                this.f26154b.lambda$onCallUpdated$17();
                 return;
             case 13:
-                VoIPService.j1(this.f26154b);
+                this.f26154b.lambda$onCallUpdated$18();
                 return;
             case 14:
-                VoIPService.E(this.f26154b);
+                this.f26154b.lambda$setMicMute$0();
                 return;
             case 15:
-                VoIPService.Q0(this.f26154b);
+                this.f26154b.lambda$endConnectionServiceCall$127();
                 return;
             case 16:
-                VoIPService.b0(this.f26154b);
+                this.f26154b.lambda$switchToSpeaker$92();
                 return;
             case 17:
-                VoIPService.z0(this.f26154b);
+                this.f26154b.lambda$convertToConferenceCall$30();
                 return;
             case 18:
-                VoIPService.t(this.f26154b);
+                this.f26154b.lambda$initiateActualEncryptedCall$84();
                 return;
             case 19:
-                VoIPService.u(this.f26154b);
+                this.f26154b.lambda$loadResources$109();
                 return;
             case 20:
-                VoIPService.c1(this.f26154b);
+                this.f26154b.lambda$setupCaptureDevice$14();
                 return;
             case 21:
-                VoIPService.e1(this.f26154b);
+                this.f26154b.lambda$startOutgoingCall$8();
                 return;
             case 22:
-                VoIPService.O0(this.f26154b);
+                this.f26154b.lambda$onStartCommand$2();
                 return;
             case 23:
-                VoIPService.n1(this.f26154b);
+                this.f26154b.lambda$onStartCommand$3();
                 return;
             case 24:
-                VoIPService.w(this.f26154b);
+                this.f26154b.lambda$declineIncomingCall$104();
                 return;
             case 25:
-                VoIPService.r(this.f26154b);
+                this.f26154b.callFailed();
                 return;
             case 26:
-                VoIPService.P0(this.f26154b);
+                this.f26154b.lambda$startGroupCheckShortpoll$65();
                 return;
             case 27:
-                VoIPService.i1(this.f26154b);
+                this.f26154b.lambda$onDestroy$99();
                 return;
             case 28:
-                VoIPService.c(this.f26154b);
+                this.f26154b.lambda$onConnectionStateChanged$117();
                 return;
             default:
-                VoIPService.b1(this.f26154b);
+                this.f26154b.lambda$startConnectingSound$89();
                 return;
         }
     }

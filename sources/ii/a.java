@@ -5,9 +5,9 @@ import org.telegram.messenger.hd;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.w31;
 public final class a implements v10 {
     public final int f15484a;
     public final f f15485b;
@@ -26,15 +26,15 @@ public final class a implements v10 {
         switch (i10) {
             case 0:
                 ArrayList arrayList = (ArrayList) obj;
-                f41 f41Var = (f41) obj2;
-                arrayList.add(r31.l(0, fVar.h));
-                r31 c10 = r31.c(1, 2131232176, hd.M0(2131751939, null));
-                c10.f37603q = true;
+                k41 k41Var = (k41) obj2;
+                arrayList.add(w31.l(0, fVar.h));
+                w31 c10 = w31.c(1, 2131232176, hd.M0(2131751939, null));
+                c10.f39835q = true;
                 arrayList.add(c10);
-                arrayList.add(r31.E(2, org.telegram.messenger.g0.L(14.0f)));
+                arrayList.add(w31.E(2, org.telegram.messenger.g0.L(14.0f)));
                 ArrayList arrayList2 = fVar.f15527n;
                 if (arrayList2 != null && !arrayList2.isEmpty()) {
-                    arrayList.add(r31.t(3, hd.M0(2131751969, null)));
+                    arrayList.add(w31.t(3, hd.M0(2131751969, null)));
                     ArrayList arrayList3 = fVar.f15527n;
                     int size = arrayList3.size();
                     int i11 = 0;
@@ -43,7 +43,7 @@ public final class a implements v10 {
                         i11++;
                         TLRPC.Chat chat = (TLRPC.Chat) obj3;
                         TLRPC.ChatFull N0 = fVar.getMessagesController().N0(chat.f26952id);
-                        r31 w10 = r31.w(chat);
+                        w31 w10 = w31.w(chat);
                         long j3 = chat.f26952id;
                         w10.d = (int) (j3 ^ (j3 >>> 32));
                         if (N0 != null) {
@@ -57,7 +57,7 @@ public final class a implements v10 {
                         } else {
                             M0 = hd.M0(2131748778, null);
                         }
-                        w10.f37599m = M0;
+                        w10.f39831m = M0;
                         arrayList.add(w10);
                     }
                     return;

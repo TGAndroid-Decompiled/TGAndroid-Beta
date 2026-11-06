@@ -28,7 +28,7 @@ public final class a0 extends na {
     public g f31616c2;
     public g d2;
     public int f31617e2;
-    public f41 f31618f2;
+    public k41 f31618f2;
     public int f31619g2;
 
     public a0(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
@@ -45,24 +45,24 @@ public final class a0 extends na {
         this.l1.addView(imageView, c8.ha.d(54, 54.0f, 85, 0.0f, 0.0f, 8.0f, 0.0f));
         c8.ka.b(imageView, 0.1f, 1.5f);
         imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final a0 f38207b;
+            public final a0 f38167b;
 
             {
-                this.f38207b = this;
+                this.f38167b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f38207b.dismiss();
+                        this.f38167b.dismiss();
                         return;
                     case 1:
-                        this.f38207b.d1();
+                        this.f38167b.d1();
                         return;
                     default:
-                        wo woVar = this.f38207b.V1;
-                        woVar.a(!woVar.f40043a.f31258q, true);
+                        wo woVar = this.f38167b.V1;
+                        woVar.a(!woVar.f40050a.f31258q, true);
                         return;
                 }
             }
@@ -84,24 +84,24 @@ public final class a0 extends na {
         f1();
         frameLayout2.addView(l9Var, c8.ha.e(64, 64, 17));
         frameLayout2.setOnClickListener(new View.OnClickListener(this) {
-            public final a0 f38207b;
+            public final a0 f38167b;
 
             {
-                this.f38207b = this;
+                this.f38167b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f38207b.dismiss();
+                        this.f38167b.dismiss();
                         return;
                     case 1:
-                        this.f38207b.d1();
+                        this.f38167b.d1();
                         return;
                     default:
-                        wo woVar = this.f38207b.V1;
-                        woVar.a(!woVar.f40043a.f31258q, true);
+                        wo woVar = this.f38167b.V1;
+                        woVar.a(!woVar.f40050a.f31258q, true);
                         return;
                 }
             }
@@ -134,24 +134,24 @@ public final class a0 extends na {
         jg.g.v(textView, 1, 14.0f, null, 2131754982);
         linearLayout.addView(textView, c8.ha.t(-2, -2, 16, 9, 0, 0, 0));
         linearLayout.setOnClickListener(new View.OnClickListener(this) {
-            public final a0 f38207b;
+            public final a0 f38167b;
 
             {
-                this.f38207b = this;
+                this.f38167b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f38207b.dismiss();
+                        this.f38167b.dismiss();
                         return;
                     case 1:
-                        this.f38207b.d1();
+                        this.f38167b.d1();
                         return;
                     default:
-                        wo woVar2 = this.f38207b.V1;
-                        woVar2.a(!woVar2.f40043a.f31258q, true);
+                        wo woVar2 = this.f38167b.V1;
+                        woVar2.a(!woVar2.f40050a.f31258q, true);
                         return;
                 }
             }
@@ -162,23 +162,23 @@ public final class a0 extends na {
         int i12 = org.telegram.ui.ActionBar.k6.f27792a7;
         this.f28613a0 = i12;
         v0(org.telegram.ui.ActionBar.k6.w0(i12, this.I0));
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int i13 = this.f28645t0;
         pj0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(66.0f));
-        this.f36328k1.setClipToPadding(false);
-        this.f36328k1.r1();
-        this.f36328k1.setOnItemClickListener(new di.p4(8, this, f6Var));
+        this.f36222k1.setClipToPadding(false);
+        this.f36222k1.r1();
+        this.f36222k1.setOnItemClickListener(new di.p4(8, this, f6Var));
         this.C1 = false;
         this.B1 = org.telegram.messenger.g0.L(12.0f);
-        this.f36333r1 = 0.35f;
+        this.f36227r1 = 0.35f;
         this.P0 = true;
         this.F1 = true;
         x xVar = new x(this);
-        xVar.f56954m = false;
+        xVar.f56979m = false;
         xVar.C = false;
         xVar.o(xq.h);
         xVar.n(350L);
-        this.f36328k1.setItemAnimator(xVar);
+        this.f36222k1.setItemAnimator(xVar);
         FrameLayout frameLayout4 = new FrameLayout(context);
         this.W1 = frameLayout4;
         frameLayout4.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
@@ -208,10 +208,10 @@ public final class a0 extends na {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(pj0Var, getContext(), this.f28612a, 0, true, new d(this, 2), this.I0);
-        this.f31618f2 = f41Var;
-        f41Var.f33473r = false;
-        return f41Var;
+        k41 k41Var = new k41(pj0Var, getContext(), this.f28612a, 0, true, new d(this, 2), this.I0);
+        this.f31618f2 = k41Var;
+        k41Var.f35132r = false;
+        return k41Var;
     }
 
     @Override

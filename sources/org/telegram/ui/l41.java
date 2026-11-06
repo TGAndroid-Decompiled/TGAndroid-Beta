@@ -17,50 +17,50 @@ import java.util.Arrays;
 import java.util.HashSet;
 import org.telegram.ui.Components.RadialProgressView;
 public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final Window f47382a;
-    public final lg.g f47383b;
-    public final lg.g f47384c;
+    public final Window f47409a;
+    public final lg.g f47410b;
+    public final lg.g f47411c;
     public final ng.c d;
-    public final RadialProgressView f47385e;
-    public final TextView f47386f;
-    public final rq0 h;
-    public final ArrayList f47387n;
-    public o41 f47388r;
-    public final int f47389s;
+    public final RadialProgressView f47412e;
+    public final TextView f47413f;
+    public final sq0 h;
+    public final ArrayList f47414n;
+    public o41 f47415r;
+    public final int f47416s;
 
     public l41(Context context, int i7, lg.f fVar, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f47387n = new ArrayList();
+        this.f47414n = new ArrayList();
         setWillNotDraw(false);
         if (context instanceof Activity) {
-            this.f47382a = ((Activity) context).getWindow();
+            this.f47409a = ((Activity) context).getWindow();
         } else {
-            this.f47382a = null;
+            this.f47409a = null;
         }
-        this.f47389s = i7;
+        this.f47416s = i7;
         LinearLayout f10 = org.telegram.messenger.k5.f(context, 1);
-        this.h = new rq0(context, 8);
+        this.h = new sq0(context, 8);
         ng.c cVar = new ng.c(getContext(), f6Var);
         this.d = cVar;
         cVar.d.setOnTouchListener(new Object());
         cVar.d.setOnClickListener(new View.OnClickListener(this) {
-            public final l41 f46197b;
+            public final l41 f46217b;
 
             {
-                this.f46197b = this;
+                this.f46217b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f46197b.h(true);
+                        this.f46217b.h(true);
                         return;
                     case 1:
-                        this.f46197b.c();
+                        this.f46217b.c();
                         return;
                     default:
-                        this.f46197b.f47384c.c(false);
+                        this.f46217b.f47411c.c(false);
                         return;
                 }
             }
@@ -70,19 +70,19 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                 if (i7 != 3) {
                     if (i7 != 4) {
                         if (i7 != 5) {
-                            this.f47383b = new lg.g(getContext(), null);
+                            this.f47410b = new lg.g(getContext(), null);
                             lg.g gVar = new lg.g(getContext(), null);
-                            this.f47384c = gVar;
+                            this.f47411c = gVar;
                             gVar.f18319t0.D = true;
                         } else {
-                            this.f47383b = new lg.g(getContext(), null);
+                            this.f47410b = new lg.g(getContext(), null);
                             lg.g gVar2 = new lg.g(getContext(), null);
-                            this.f47384c = gVar2;
+                            this.f47411c = gVar2;
                             gVar2.f18319t0.D = true;
                         }
                     } else {
                         lg.q qVar = new lg.q(getContext());
-                        this.f47383b = qVar;
+                        this.f47410b = qVar;
                         qVar.f18319t0.E = true;
                         ?? qVar2 = new lg.q(getContext());
                         qVar2.M1 = -1;
@@ -103,99 +103,99 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                         textPaint.setColor(-1);
                         textPaint.setTypeface(Typeface.create("sans-serif-medium", 0));
                         qVar2.f18303h1 = true;
-                        this.f47384c = qVar2;
+                        this.f47411c = qVar2;
                     }
                 } else {
                     lg.g gVar3 = new lg.g(getContext(), null);
                     gVar3.f18323w0 = true;
                     gVar3.f18325x0 = true;
-                    this.f47383b = gVar3;
+                    this.f47410b = gVar3;
                     lg.g gVar4 = new lg.g(getContext(), null);
-                    this.f47384c = gVar4;
+                    this.f47411c = gVar4;
                     gVar4.f18319t0.D = true;
                 }
             } else {
-                this.f47383b = new lg.p(getContext(), f6Var);
+                this.f47410b = new lg.p(getContext(), f6Var);
                 lg.p pVar = new lg.p(getContext(), f6Var);
-                this.f47384c = pVar;
+                this.f47411c = pVar;
                 pVar.f18319t0.D = true;
             }
         } else {
-            this.f47383b = new lg.g(getContext(), f6Var);
+            this.f47410b = new lg.g(getContext(), f6Var);
             lg.g gVar5 = new lg.g(getContext(), f6Var);
-            this.f47384c = gVar5;
+            this.f47411c = gVar5;
             gVar5.f18319t0.D = true;
         }
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f47383b.f18283a = fVar;
-        this.f47384c.f18283a = fVar;
+        this.f47410b.f18283a = fVar;
+        this.f47411c.f18283a = fVar;
         RadialProgressView radialProgressView = new RadialProgressView(context, null);
-        this.f47385e = radialProgressView;
-        frameLayout.addView(this.f47383b);
-        frameLayout.addView(this.f47383b.f18319t0, -2, -2);
-        frameLayout.addView(this.f47384c);
-        frameLayout.addView(this.f47384c.f18319t0, -2, -2);
+        this.f47412e = radialProgressView;
+        frameLayout.addView(this.f47410b);
+        frameLayout.addView(this.f47410b.f18319t0, -2, -2);
+        frameLayout.addView(this.f47411c);
+        frameLayout.addView(this.f47411c.f18319t0, -2, -2);
         frameLayout.addView(radialProgressView, c8.ha.d(44, 44.0f, 17, 0.0f, 0.0f, 0.0f, 60.0f));
         TextView textView = new TextView(context);
-        this.f47386f = textView;
+        this.f47413f = textView;
         textView.setTextSize(1, 15.0f);
         frameLayout.addView(textView, c8.ha.d(-2, -2.0f, 17, 0.0f, 0.0f, 0.0f, 30.0f));
         radialProgressView.setVisibility(8);
         org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.s5, f6Var);
-        this.f47383b.setDateSelectionListener(new li0(this, 17));
-        this.f47383b.f18319t0.d(false, false);
-        this.f47383b.f18319t0.setOnTouchListener(new Object());
-        this.f47383b.f18319t0.setOnClickListener(new View.OnClickListener(this) {
-            public final l41 f46197b;
+        this.f47410b.setDateSelectionListener(new li0(this, 17));
+        this.f47410b.f18319t0.d(false, false);
+        this.f47410b.f18319t0.setOnTouchListener(new Object());
+        this.f47410b.f18319t0.setOnClickListener(new View.OnClickListener(this) {
+            public final l41 f46217b;
 
             {
-                this.f46197b = this;
+                this.f46217b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f46197b.h(true);
+                        this.f46217b.h(true);
                         return;
                     case 1:
-                        this.f46197b.c();
+                        this.f46217b.c();
                         return;
                     default:
-                        this.f46197b.f47384c.c(false);
+                        this.f46217b.f47411c.c(false);
                         return;
                 }
             }
         });
-        this.f47384c.f18319t0.setOnClickListener(new View.OnClickListener(this) {
-            public final l41 f46197b;
+        this.f47411c.f18319t0.setOnClickListener(new View.OnClickListener(this) {
+            public final l41 f46217b;
 
             {
-                this.f46197b = this;
+                this.f46217b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f46197b.h(true);
+                        this.f46217b.h(true);
                         return;
                     case 1:
-                        this.f46197b.c();
+                        this.f46217b.c();
                         return;
                     default:
-                        this.f46197b.f47384c.c(false);
+                        this.f46217b.f47411c.c(false);
                         return;
                 }
             }
         });
-        this.f47383b.setVisibility(0);
-        this.f47384c.setVisibility(4);
-        this.f47383b.setHeader(this.d);
+        this.f47410b.setVisibility(0);
+        this.f47411c.setVisibility(4);
+        this.f47410b.setHeader(this.d);
         f10.addView(this.d, c8.ha.c(52.0f, -1));
         f10.addView(frameLayout, c8.ha.c(-2.0f, -1));
         f10.addView(this.h, c8.ha.d(-1, -2.0f, 7, 10.0f, 0.0f, 10.0f, 0.0f));
-        if (this.f47389s == 4) {
+        if (this.f47416s == 4) {
             frameLayout.setClipChildren(false);
             frameLayout.setClipToPadding(false);
             f10.setClipChildren(false);
@@ -206,13 +206,13 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
 
     public final ValueAnimator a(long j3, boolean z9) {
         float f10;
-        Window window = this.f47382a;
+        Window window = this.f47409a;
         if (window != null) {
             window.setFlags(16, 16);
         }
-        lg.g gVar = this.f47383b;
+        lg.g gVar = this.f47410b;
         gVar.J = false;
-        lg.g gVar2 = this.f47384c;
+        lg.g gVar2 = this.f47411c;
         gVar2.J = false;
         gVar.f18327y0 = 2;
         gVar2.f18327y0 = 1;
@@ -220,22 +220,22 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
         lg.j jVar = gVar.f18300g0;
         obj.f20583b = jVar.f18344l;
         obj.f20582a = jVar.f18343k;
-        int binarySearch = Arrays.binarySearch(this.f47388r.d.f20020a, j3);
+        int binarySearch = Arrays.binarySearch(this.f47415r.d.f20020a, j3);
         if (binarySearch < 0) {
-            binarySearch = this.f47388r.d.f20020a.length - 1;
+            binarySearch = this.f47415r.d.f20020a.length - 1;
         }
-        obj.f20584c = this.f47388r.d.f20021b[binarySearch];
+        obj.f20584c = this.f47415r.d.f20021b[binarySearch];
         gVar2.setVisibility(0);
         gVar2.f18328z0 = obj;
         gVar.f18328z0 = obj;
         long j10 = 0;
         long j11 = 2147483647L;
-        for (int i7 = 0; i7 < this.f47388r.d.d.size(); i7++) {
-            if (((mg.a) this.f47388r.d.d.get(i7)).f20013a[binarySearch] > j10) {
-                j10 = ((mg.a) this.f47388r.d.d.get(i7)).f20013a[binarySearch];
+        for (int i7 = 0; i7 < this.f47415r.d.d.size(); i7++) {
+            if (((mg.a) this.f47415r.d.d.get(i7)).f20013a[binarySearch] > j10) {
+                j10 = ((mg.a) this.f47415r.d.d.get(i7)).f20013a[binarySearch];
             }
-            if (((mg.a) this.f47388r.d.d.get(i7)).f20013a[binarySearch] < j11) {
-                j11 = ((mg.a) this.f47388r.d.d.get(i7)).f20013a[binarySearch];
+            if (((mg.a) this.f47415r.d.d.get(i7)).f20013a[binarySearch] < j11) {
+                j11 = ((mg.a) this.f47415r.d.d.get(i7)).f20013a[binarySearch];
             }
         }
         float f11 = ((float) j11) + ((float) (j10 - j11));
@@ -257,7 +257,7 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator) {
                 l41 l41Var = l41.this;
-                lg.g gVar3 = l41Var.f47383b;
+                lg.g gVar3 = l41Var.f47410b;
                 float f15 = gVar3.F0;
                 lg.j jVar2 = gVar3.f18300g0;
                 float f16 = jVar2.f18344l;
@@ -269,7 +269,7 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                 jVar3.f20585e = height;
                 jVar3.d = (gVar3.G0 * jVar3.f20584c) - f18;
                 jVar3.f20586f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lg.g gVar4 = l41Var.f47384c;
+                lg.g gVar4 = l41Var.f47411c;
                 gVar4.invalidate();
                 gVar4.q(jVar3);
                 gVar3.invalidate();
@@ -288,45 +288,45 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
         mg.b bVar;
         ArrayList arrayList;
         int i7;
-        lg.g gVar = this.f47383b;
+        lg.g gVar = this.f47410b;
         gVar.G();
         gVar.invalidate();
-        lg.g gVar2 = this.f47384c;
+        lg.g gVar2 = this.f47411c;
         gVar2.G();
         gVar2.invalidate();
         ng.c cVar = this.d;
         cVar.a();
         cVar.invalidate();
-        o41 o41Var = this.f47388r;
+        o41 o41Var = this.f47415r;
         if (o41Var != null && (bVar = o41Var.d) != null && (arrayList = bVar.d) != null && arrayList.size() > 1) {
-            for (int i10 = 0; i10 < this.f47388r.d.d.size(); i10++) {
-                if (((mg.a) this.f47388r.d.d.get(i10)).f20018g >= 0 && org.telegram.ui.ActionBar.k6.f1(((mg.a) this.f47388r.d.d.get(i10)).f20018g)) {
-                    i7 = org.telegram.ui.ActionBar.k6.x0(null, ((mg.a) this.f47388r.d.d.get(i10)).f20018g, false);
+            for (int i10 = 0; i10 < this.f47415r.d.d.size(); i10++) {
+                if (((mg.a) this.f47415r.d.d.get(i10)).f20018g >= 0 && org.telegram.ui.ActionBar.k6.f1(((mg.a) this.f47415r.d.d.get(i10)).f20018g)) {
+                    i7 = org.telegram.ui.ActionBar.k6.x0(null, ((mg.a) this.f47415r.d.d.get(i10)).f20018g, false);
                 } else if (i0.a.h(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27848d6, false)) < 0.5d) {
-                    i7 = ((mg.a) this.f47388r.d.d.get(i10)).f20019i;
+                    i7 = ((mg.a) this.f47415r.d.d.get(i10)).f20019i;
                 } else {
-                    i7 = ((mg.a) this.f47388r.d.d.get(i10)).h;
+                    i7 = ((mg.a) this.f47415r.d.d.get(i10)).h;
                 }
-                ArrayList arrayList2 = this.f47387n;
+                ArrayList arrayList2 = this.f47414n;
                 if (i10 < arrayList2.size()) {
-                    org.telegram.ui.Components.kz kzVar = ((k41) arrayList2.get(i10)).f47081a;
+                    org.telegram.ui.Components.kz kzVar = ((k41) arrayList2.get(i10)).f47104a;
                     kzVar.getClass();
-                    kzVar.f35447r = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27848d6, false);
-                    kzVar.f35449w = -1;
-                    kzVar.f35448s = i7;
+                    kzVar.f35450r = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27848d6, false);
+                    kzVar.f35452w = -1;
+                    kzVar.f35451s = i7;
                     kzVar.invalidate();
                 }
             }
         }
-        this.f47385e.setProgressColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27922h6, false));
-        this.f47386f.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.s5, false));
+        this.f47412e.setProgressColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27922h6, false));
+        this.f47413f.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.s5, false));
     }
 
     public final void e(o41 o41Var, boolean z9) {
         boolean z10;
         boolean z11;
         if (o41Var != null) {
-            String str = o41Var.f48232j;
+            String str = o41Var.f48261j;
             ng.c cVar = this.d;
             cVar.setTitle(str);
             if (getContext().getResources().getConfiguration().orientation == 2) {
@@ -334,25 +334,25 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
             } else {
                 z10 = false;
             }
-            lg.g gVar = this.f47383b;
+            lg.g gVar = this.f47410b;
             gVar.setLandscape(z10);
             ArrayList arrayList = gVar.d;
             lg.j jVar = gVar.f18300g0;
-            lg.g gVar2 = this.f47384c;
+            lg.g gVar2 = this.f47411c;
             gVar2.setLandscape(z10);
-            this.f47388r = o41Var;
-            boolean z12 = o41Var.f48234l;
-            ArrayList arrayList2 = this.f47387n;
-            rq0 rq0Var = this.h;
-            RadialProgressView radialProgressView = this.f47385e;
-            TextView textView = this.f47386f;
-            if (!z12 && !o41Var.f48225a) {
+            this.f47415r = o41Var;
+            boolean z12 = o41Var.f48263l;
+            ArrayList arrayList2 = this.f47414n;
+            sq0 sq0Var = this.h;
+            RadialProgressView radialProgressView = this.f47412e;
+            TextView textView = this.f47413f;
+            if (!z12 && !o41Var.f48254a) {
                 textView.setVisibility(8);
                 ng.e eVar = gVar.f18319t0;
-                boolean z13 = o41Var.f48236n;
+                boolean z13 = o41Var.f48265n;
                 eVar.f20554a = z13;
                 cVar.c(!z13);
-                if (o41Var.d == null && o41Var.f48229f != null) {
+                if (o41Var.d == null && o41Var.f48258f != null) {
                     radialProgressView.setAlpha(1.0f);
                     radialProgressView.setVisibility(0);
                     b(o41Var);
@@ -367,10 +367,10 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                     jVar.f18344l = 1.0f;
                     jVar.f18335a.A(true, false, false);
                 }
-                cVar.setUseWeekInterval(o41Var.f48237o);
-                gVar.f18319t0.setUseWeek(o41Var.f48237o);
+                cVar.setUseWeekInterval(o41Var.f48266o);
+                gVar.f18319t0.setUseWeek(o41Var.f48266o);
                 ng.e eVar2 = gVar.f18319t0;
-                if (this.f47388r.f48230g == null && this.f47389s != 4) {
+                if (this.f47415r.f48259g == null && this.f47416s != 4) {
                     z11 = false;
                 } else {
                     z11 = true;
@@ -381,15 +381,15 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                 ng.e eVar3 = gVar2.f18319t0;
                 eVar3.setEnabled(eVar3.F);
                 int size = arrayList.size();
-                rq0Var.removeAllViews();
+                sq0Var.removeAllViews();
                 arrayList2.clear();
                 if (size > 1) {
                     for (int i7 = 0; i7 < size; i7++) {
                         ng.f fVar = (ng.f) arrayList.get(i7);
                         k41 k41Var = new k41(this, i7);
-                        k41Var.f47082b = fVar;
+                        k41Var.f47105b = fVar;
                         String str2 = fVar.f20565a.d;
-                        org.telegram.ui.Components.kz kzVar = k41Var.f47081a;
+                        org.telegram.ui.Components.kz kzVar = k41Var.f47104a;
                         kzVar.setText(str2);
                         kzVar.a(fVar.f20576n, false);
                         kzVar.setOnTouchListener(new Object());
@@ -397,7 +397,7 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                         kzVar.setOnLongClickListener(new di.f2(7, k41Var, fVar));
                     }
                 }
-                long j3 = this.f47388r.f48227c;
+                long j3 = this.f47415r.f48256c;
                 if (j3 > 0) {
                     gVar.f18318s0 = Arrays.binarySearch(gVar.f18302h0.f20020a, j3);
                     gVar.f18320u0 = true;
@@ -428,7 +428,7 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                 return;
             }
             radialProgressView.setVisibility(8);
-            String str3 = o41Var.f48226b;
+            String str3 = o41Var.f48255b;
             if (str3 != null) {
                 textView.setText(str3);
                 if (textView.getVisibility() == 8) {
@@ -437,7 +437,7 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                 }
                 textView.setVisibility(0);
             }
-            rq0Var.removeAllViews();
+            sq0Var.removeAllViews();
             arrayList2.clear();
             gVar.D(null);
         }
@@ -449,29 +449,29 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
         ArrayList arrayList;
         boolean z10;
         float f10;
-        lg.g gVar = this.f47383b;
+        lg.g gVar = this.f47410b;
         long selectedDate = gVar.getSelectedDate();
-        mg.b bVar = this.f47388r.f48228e;
-        lg.g gVar2 = this.f47384c;
+        mg.b bVar = this.f47415r.f48257e;
+        lg.g gVar2 = this.f47411c;
         if (!z9 || gVar2.getVisibility() != 0) {
             gVar2.J(bVar, selectedDate);
         }
         gVar2.D(bVar);
         ArrayList arrayList2 = gVar2.d;
-        if (this.f47388r.d.d.size() > 1) {
+        if (this.f47415r.d.d.size() > 1) {
             int i7 = 0;
             int i10 = 0;
             while (true) {
-                int size = this.f47388r.d.d.size();
-                arrayList = this.f47387n;
+                int size = this.f47415r.d.d.size();
+                arrayList = this.f47414n;
                 if (i7 >= size) {
                     break;
                 }
                 int i11 = 0;
                 while (true) {
                     if (i11 < bVar.d.size()) {
-                        if (((mg.a) bVar.d.get(i11)).f20015c.equals(((mg.a) this.f47388r.d.d.get(i7)).f20015c)) {
-                            boolean z11 = ((k41) arrayList.get(i7)).f47081a.f35442b;
+                        if (((mg.a) bVar.d.get(i11)).f20015c.equals(((mg.a) this.f47415r.d.d.get(i7)).f20015c)) {
+                            boolean z11 = ((k41) arrayList.get(i7)).f47104a.f35445b;
                             ((ng.f) arrayList2.get(i11)).f20576n = z11;
                             ng.f fVar = (ng.f) arrayList2.get(i11);
                             if (z11) {
@@ -480,8 +480,8 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                                 f10 = 0.0f;
                             }
                             fVar.f20577o = f10;
-                            ((k41) arrayList.get(i7)).f47081a.f35443c = true;
-                            ((k41) arrayList.get(i7)).f47081a.animate().alpha(1.0f).start();
+                            ((k41) arrayList.get(i7)).f47104a.f35446c = true;
+                            ((k41) arrayList.get(i7)).f47104a.animate().alpha(1.0f).start();
                             if (z11) {
                                 i10++;
                             }
@@ -495,20 +495,20 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                     }
                 }
                 if (!z10) {
-                    ((k41) arrayList.get(i7)).f47081a.f35443c = false;
-                    ((k41) arrayList.get(i7)).f47081a.animate().alpha(0.0f).start();
+                    ((k41) arrayList.get(i7)).f47104a.f35446c = false;
+                    ((k41) arrayList.get(i7)).f47104a.animate().alpha(0.0f).start();
                 }
                 i7++;
             }
             if (i10 == 0) {
-                for (int i12 = 0; i12 < this.f47388r.d.d.size(); i12++) {
-                    ((k41) arrayList.get(i12)).f47081a.f35443c = true;
-                    ((k41) arrayList.get(i12)).f47081a.animate().alpha(1.0f).start();
+                for (int i12 = 0; i12 < this.f47415r.d.d.size(); i12++) {
+                    ((k41) arrayList.get(i12)).f47104a.f35446c = true;
+                    ((k41) arrayList.get(i12)).f47104a.animate().alpha(1.0f).start();
                 }
                 return;
             }
         }
-        this.f47388r.f48227c = selectedDate;
+        this.f47415r.f48256c = selectedDate;
         gVar.f18319t0.setAlpha(0.0f);
         gVar.f18321v0 = 0.0f;
         gVar.f18320u0 = false;
@@ -538,12 +538,12 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
 
     public final void h(boolean z9) {
         mg.b bVar;
-        o41 o41Var = this.f47388r;
+        o41 o41Var = this.f47415r;
         if (o41Var != null && (bVar = o41Var.d) != null && bVar.f20020a != null) {
             ng.c cVar = this.d;
             TextView textView = cVar.d;
             TextView textView2 = cVar.f20541a;
-            lg.g gVar = this.f47383b;
+            lg.g gVar = this.f47410b;
             cVar.b(gVar.getStartDate(), gVar.getEndDate());
             if (z9) {
                 textView2.setAlpha(0.0f);
@@ -566,22 +566,22 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                 textView.setAlpha(0.0f);
             }
             gVar.f18319t0.f20558f.setAlpha(1.0f);
-            lg.g gVar2 = this.f47384c;
+            lg.g gVar2 = this.f47411c;
             gVar2.setHeader(null);
             long selectedDate = gVar.getSelectedDate();
-            this.f47388r.f48227c = 0L;
+            this.f47415r.f48256c = 0L;
             int i7 = 0;
             gVar.setVisibility(0);
             gVar2.d();
             gVar2.setHeader(null);
             gVar.setHeader(cVar);
-            ArrayList arrayList = this.f47387n;
+            ArrayList arrayList = this.f47414n;
             if (!z9) {
                 gVar2.setVisibility(4);
                 gVar.J = true;
                 gVar2.J = false;
                 gVar.invalidate();
-                Window window = this.f47382a;
+                Window window = this.f47409a;
                 if (window != null) {
                     window.clearFlags(16);
                 }
@@ -590,8 +590,8 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                     Object obj = arrayList.get(i7);
                     i7++;
                     k41 k41Var = (k41) obj;
-                    k41Var.f47081a.setAlpha(1.0f);
-                    k41Var.f47081a.f35443c = true;
+                    k41Var.f47104a.setAlpha(1.0f);
+                    k41Var.f47104a.f35446c = true;
                 }
                 return;
             }
@@ -602,8 +602,8 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
                 Object obj2 = arrayList.get(i7);
                 i7++;
                 k41 k41Var2 = (k41) obj2;
-                k41Var2.f47081a.animate().alpha(1.0f).start();
-                k41Var2.f47081a.f35443c = true;
+                k41Var2.f47104a.animate().alpha(1.0f).start();
+                k41Var2.f47104a.f35446c = true;
             }
             a10.start();
         }
@@ -612,7 +612,7 @@ public abstract class l41 extends FrameLayout implements org.telegram.ui.ActionB
     @Override
     public final void updateColors() {
         try {
-            if (this.f47383b != null && this.f47384c != null && this.d != null && this.f47385e != null && this.f47386f != null) {
+            if (this.f47410b != null && this.f47411c != null && this.d != null && this.f47412e != null && this.f47413f != null) {
                 d();
             }
         } catch (Exception e10) {

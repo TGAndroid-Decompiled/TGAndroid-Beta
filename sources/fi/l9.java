@@ -40,7 +40,7 @@ public final class l9 implements ValueAnimator.AnimatorUpdateListener {
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 avVar.L = floatValue2;
                 avVar.K = org.telegram.messenger.g0.T1(f11, f10, floatValue2);
-                avVar.f38974b.invalidate();
+                avVar.f38971b.invalidate();
                 return;
             case 2:
                 yb1 yb1Var = (yb1) obj;
@@ -54,28 +54,28 @@ public final class l9 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 3:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                CropAreaView cropAreaView = photoViewer.C1.f33564b.f21004a;
+                CropAreaView cropAreaView = photoViewer.C1.f33508b.f21004a;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue() * f11;
                 float f13 = photoViewer.Z5;
                 cropAreaView.f31311n0 = floatValue3;
-                cropAreaView.f31312o0 = ((photoViewer.f41352d6 - f13) * photoViewer.f41414k6) + f13;
+                cropAreaView.f31312o0 = ((photoViewer.f41377d6 - f13) * photoViewer.f41439k6) + f13;
                 cropAreaView.f31313p0 = 0.0f;
                 cropAreaView.f31314q0 = 0.0f;
                 cropAreaView.invalidate();
-                photoViewer.C1.f33565c.b(org.telegram.messenger.g0.T1(f10, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                photoViewer.C1.f33509c.b(org.telegram.messenger.g0.T1(f10, 0.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
                 return;
             case 4:
                 org.telegram.ui.Wallet.d4 d4Var = (org.telegram.ui.Wallet.d4) obj;
                 float floatValue4 = 1.0f - ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 d4Var.A = (f11 * floatValue4) + d4Var.g();
-                d4Var.B = (f10 * floatValue4) + (d4Var.f42331k.E * 0.14f);
+                d4Var.B = (f10 * floatValue4) + (d4Var.f42356k.E * 0.14f);
                 if (floatValue4 > 0.0f) {
                     z9 = true;
                 } else {
                     z9 = false;
                 }
                 d4Var.D = z9;
-                d4Var.f42313a.invalidate();
+                d4Var.f42338a.invalidate();
                 return;
             case 5:
                 org.telegram.ui.Wallet.c6 c6Var = (org.telegram.ui.Wallet.c6) obj;
@@ -87,7 +87,7 @@ public final class l9 implements ValueAnimator.AnimatorUpdateListener {
             case 6:
                 te.c cVar = (te.c) obj;
                 if (cVar.h) {
-                    DecelerateInterpolator decelerateInterpolator = se.a.f54888a;
+                    DecelerateInterpolator decelerateInterpolator = se.a.f54913a;
                     float animatedFraction = valueAnimator.getAnimatedFraction();
                     cVar.d((f10 * animatedFraction) + f11, animatedFraction);
                     return;
@@ -97,9 +97,9 @@ public final class l9 implements ValueAnimator.AnimatorUpdateListener {
                 vg.e eVar = (vg.e) obj;
                 eVar.getClass();
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                vg.f fVar = eVar.f57246a;
+                vg.f fVar = eVar.f57271a;
                 fVar.d = f11 * floatValue6;
-                fVar.f57263i = f10 * floatValue6;
+                fVar.f57288i = f10 * floatValue6;
                 return;
         }
     }

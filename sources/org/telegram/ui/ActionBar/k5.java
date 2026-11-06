@@ -1420,7 +1420,7 @@ public class k5 extends View implements Drawable.Callback {
                 getParent().requestDisallowInterceptTouchEvent(true);
                 Drawable drawable = this.f27779x;
                 if (drawable instanceof j5) {
-                    ((uw0) ((j5) drawable)).f50506f.c(true);
+                    ((uw0) ((j5) drawable)).f50516f.c(true);
                 }
             } else if (motionEvent.getAction() == 2 && this.E0) {
                 if (Math.abs(motionEvent.getX() - this.F0) >= org.telegram.messenger.g0.f22516e || Math.abs(motionEvent.getY() - this.G0) >= org.telegram.messenger.g0.f22516e) {
@@ -1428,7 +1428,7 @@ public class k5 extends View implements Drawable.Callback {
                     getParent().requestDisallowInterceptTouchEvent(false);
                     Drawable drawable2 = this.f27779x;
                     if (drawable2 instanceof j5) {
-                        ((uw0) ((j5) drawable2)).f50506f.c(false);
+                        ((uw0) ((j5) drawable2)).f50516f.c(false);
                     }
                 }
             } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
@@ -1436,7 +1436,7 @@ public class k5 extends View implements Drawable.Callback {
                     this.D0.onClick(this);
                     Drawable drawable3 = this.f27779x;
                     if (drawable3 instanceof j5) {
-                        ((uw0) ((j5) drawable3)).f50506f.c(false);
+                        ((uw0) ((j5) drawable3)).f50516f.c(false);
                     }
                 }
                 this.E0 = false;

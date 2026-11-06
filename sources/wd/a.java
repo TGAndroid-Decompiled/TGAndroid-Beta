@@ -3,15 +3,15 @@ package wd;
 import java.util.Iterator;
 import java.util.concurrent.atomic.AtomicReference;
 public final class a implements b {
-    public final AtomicReference f57525a;
+    public final AtomicReference f57550a;
 
     public a(e eVar) {
-        this.f57525a = new AtomicReference(eVar);
+        this.f57550a = new AtomicReference(eVar);
     }
 
     @Override
     public final Iterator iterator() {
-        b bVar = (b) this.f57525a.getAndSet(null);
+        b bVar = (b) this.f57550a.getAndSet(null);
         if (bVar != null) {
             return bVar.iterator();
         }

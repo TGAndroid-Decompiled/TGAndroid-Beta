@@ -1,15 +1,15 @@
 package org.telegram.ui;
 public final class uv extends h11 {
-    public final ww f50497e;
+    public final ww f50507e;
 
     public uv(ww wwVar, tv tvVar) {
         super(tvVar);
-        this.f50497e = wwVar;
+        this.f50507e = wwVar;
     }
 
     @Override
     public final void dismiss() {
         super.dismiss();
-        this.f50497e.M0 = null;
+        this.f50507e.M0 = null;
     }
 }

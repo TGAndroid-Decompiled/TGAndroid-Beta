@@ -2913,7 +2913,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
         } else if ("GROUPCALL_INVALID".equals(tL_error.text)) {
             f2 T = LaunchActivity.T();
             if (T != null) {
-                hc.a0(T).Q(2131624079, 36, hd.M0(2131751822, null)).j().f32531r = false;
+                hc.a0(T).Q(2131624079, 36, hd.M0(2131751822, null)).j().f32535r = false;
             }
             hangUp(0);
         } else {
@@ -3123,7 +3123,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     N0.flags &= -67108865;
                 }
                 N0.groupcall_default_join_as = null;
-                t60.f38262z1 = null;
+                t60.f38225z1 = null;
             }
             hangUp(2);
         } else if ("GROUPCALL_SSRC_DUPLICATE_MUCH".equals(tL_error.text)) {
@@ -3494,7 +3494,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                     N0.flags &= -67108865;
                 }
                 N0.groupcall_default_join_as = null;
-                t60.f38262z1 = null;
+                t60.f38225z1 = null;
             }
             hangUp(2);
         } else if ("GROUPCALL_SSRC_DUPLICATE_MUCH".equals(tL_error.text)) {
@@ -4512,7 +4512,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
             requestVideoCall(true);
             setVideoState(true, 2);
             ec1 ec1Var = ec1.l1;
-            if (ec1Var != null && (yb1Var = ec1Var.f45271n0) != null) {
+            if (ec1Var != null && (yb1Var = ec1Var.f45301n0) != null) {
                 yb1Var.a(true, true);
                 return;
             }
@@ -5391,7 +5391,7 @@ public class VoIPService extends Service implements SensorEventListener, AudioMa
                 callConnection.destroy();
             }
         }
-        y1.f39608a = SystemClock.elapsedRealtime();
+        y1.f39605a = SystemClock.elapsedRealtime();
         setSinks(null, null);
         Runnable runnable3 = this.onDestroyRunnable;
         if (runnable3 != null) {

@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class ex0 extends org.telegram.ui.Components.oj0 {
-    public final Context f45429c;
+    public final Context f45434c;
     public final gx0 d;
 
     public ex0(gx0 gx0Var, Context context) {
         this.d = gx0Var;
-        this.f45429c = context;
+        this.f45434c = context;
     }
 
     @Override
@@ -20,12 +20,12 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
         int b10 = d1Var.b();
         gx0 gx0Var = this.d;
         if (b10 == gx0Var.F) {
-            return gx0Var.f46117r;
+            return gx0Var.f46137r;
         }
         if (d1Var.b() == gx0Var.X) {
             return true;
         }
-        switch (d1Var.f56931f) {
+        switch (d1Var.f56956f) {
             case 0:
             case 2:
             case 5:
@@ -34,7 +34,7 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
             case 1:
             case 3:
             case 4:
-                return gx0Var.f46117r;
+                return gx0Var.f46137r;
             default:
                 return true;
         }
@@ -48,7 +48,7 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
     @Override
     public final int d(int i7) {
         gx0 gx0Var = this.d;
-        if (i7 == gx0Var.f46120x || i7 == gx0Var.L || i7 == gx0Var.U || i7 == gx0Var.Q) {
+        if (i7 == gx0Var.f46140x || i7 == gx0Var.L || i7 == gx0Var.U || i7 == gx0Var.Q) {
             return 0;
         }
         if (i7 != gx0Var.G && i7 != gx0Var.H && i7 != gx0Var.J && i7 != gx0Var.I && i7 != gx0Var.R && i7 != gx0Var.S && i7 != gx0Var.X) {
@@ -57,7 +57,7 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
                     return 3;
                 }
                 if (i7 != gx0Var.M && i7 != gx0Var.N) {
-                    if (i7 == gx0Var.f46121y) {
+                    if (i7 == gx0Var.f46141y) {
                         return 5;
                     }
                     if (i7 != gx0Var.D && i7 != gx0Var.Y) {
@@ -88,17 +88,17 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
         boolean z9;
         int i16;
         gx0 gx0Var = this.d;
-        org.telegram.ui.ActionBar.f6 f6Var = gx0Var.f46114e;
+        org.telegram.ui.ActionBar.f6 f6Var = gx0Var.f46134e;
         long j3 = gx0Var.h;
-        long j10 = gx0Var.f46115f;
-        int i17 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        long j10 = gx0Var.f46135f;
+        int i17 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         boolean z10 = true;
         boolean z11 = false;
         switch (i17) {
             case 0:
                 org.telegram.ui.Cells.n4 n4Var = (org.telegram.ui.Cells.n4) view;
-                if (i7 == gx0Var.f46120x) {
+                if (i7 == gx0Var.f46140x) {
                     n4Var.setText(org.telegram.messenger.hd.M0(2131750473, null));
                     return;
                 } else if (i7 == gx0Var.L) {
@@ -371,7 +371,7 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
                 i16 = ((org.telegram.ui.ActionBar.f2) gx0Var).currentAccount;
                 SharedPreferences sharedPreferences4 = org.telegram.messenger.qp.s1(i16).f24749d7;
                 if (i7 == gx0Var.E) {
-                    r8Var.f(org.telegram.messenger.hd.M0(2131747923, null), gx0Var.f46117r, true);
+                    r8Var.f(org.telegram.messenger.hd.M0(2131747923, null), gx0Var.f46137r, true);
                     return;
                 } else if (i7 == gx0Var.F) {
                     String v11 = org.telegram.messenger.dt.v(j10, j3, false);
@@ -379,7 +379,7 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
                     return;
                 } else if (i7 == gx0Var.P) {
                     String i20 = rf.b.i("stories_", org.telegram.messenger.dt.v(j10, j3, false));
-                    if (gx0Var.f46110a0 || (sharedPreferences4.contains("EnableAllStories") && sharedPreferences4.getBoolean("EnableAllStories", true))) {
+                    if (gx0Var.f46130a0 || (sharedPreferences4.contains("EnableAllStories") && sharedPreferences4.getBoolean("EnableAllStories", true))) {
                         z11 = true;
                     }
                     r8Var.f(org.telegram.messenger.hd.M0(2131744745, null), sharedPreferences4.getBoolean(i20, z11), true);
@@ -395,8 +395,8 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View n4Var;
-        org.telegram.ui.ActionBar.f6 f6Var = this.d.f46114e;
-        Context context = this.f45429c;
+        org.telegram.ui.ActionBar.f6 f6Var = this.d.f46134e;
+        Context context = this.f45434c;
         switch (i7) {
             case 0:
                 n4Var = new org.telegram.ui.Cells.n4(context, f6Var);
@@ -434,8 +434,8 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final void y(v4.d1 d1Var) {
-        int i7 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        int i7 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         gx0 gx0Var = this.d;
         if (i7 != 0) {
             if (i7 != 1) {
@@ -447,23 +447,23 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
                             }
                             org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
                             if (d1Var.b() == gx0Var.F) {
-                                r8Var.e(null, gx0Var.f46117r);
+                                r8Var.e(null, gx0Var.f46137r);
                                 return;
                             } else if (d1Var.b() == gx0Var.P) {
-                                r8Var.e(null, gx0Var.f46117r);
+                                r8Var.e(null, gx0Var.f46137r);
                                 return;
                             } else {
                                 r8Var.e(null, true);
                                 return;
                             }
                         }
-                        ((org.telegram.ui.Cells.i6) view).b(null, gx0Var.f46117r);
+                        ((org.telegram.ui.Cells.i6) view).b(null, gx0Var.f46137r);
                         return;
                     }
-                    ((org.telegram.ui.Cells.t8) view).a(null, gx0Var.f46117r);
+                    ((org.telegram.ui.Cells.t8) view).a(null, gx0Var.f46137r);
                     return;
                 }
-                ((org.telegram.ui.Cells.z8) view).c(null, gx0Var.f46117r);
+                ((org.telegram.ui.Cells.z8) view).c(null, gx0Var.f46137r);
                 return;
             }
             org.telegram.ui.Cells.w9 w9Var = (org.telegram.ui.Cells.w9) view;
@@ -471,10 +471,10 @@ public final class ex0 extends org.telegram.ui.Components.oj0 {
                 w9Var.a(null, true);
                 return;
             } else {
-                w9Var.a(null, gx0Var.f46117r);
+                w9Var.a(null, gx0Var.f46137r);
                 return;
             }
         }
-        ((org.telegram.ui.Cells.n4) view).a(null, gx0Var.f46117r);
+        ((org.telegram.ui.Cells.n4) view).a(null, gx0Var.f46137r);
     }
 }

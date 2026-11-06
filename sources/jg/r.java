@@ -24,8 +24,8 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.Components.ca0;
-import org.telegram.ui.Components.n51;
 import org.telegram.ui.Components.qn;
+import org.telegram.ui.Components.s51;
 import org.telegram.ui.Components.xn;
 import org.telegram.ui.an;
 import org.webrtc.SurfaceTextureHelper;
@@ -46,7 +46,7 @@ public final class r implements Runnable {
 
     @Override
     public final void run() {
-        n51 n51Var;
+        s51 s51Var;
         switch (this.f16896a) {
             case 0:
                 int i7 = this.f16897b;
@@ -158,9 +158,9 @@ public final class r implements Runnable {
                 return;
             case 3:
                 MediaController mediaController = (MediaController) ((f5.u) this.d).f11191c;
-                if (this.f16897b == mediaController.f21272k0 && this.f16898c == 4 && (n51Var = mediaController.f21270j0) != null) {
+                if (this.f16897b == mediaController.f21272k0 && this.f16898c == 4 && (s51Var = mediaController.f21270j0) != null) {
                     try {
-                        n51Var.m0();
+                        s51Var.m0();
                         mediaController.f21270j0 = null;
                         return;
                     } catch (Exception e11) {
@@ -217,7 +217,7 @@ public final class r implements Runnable {
             case 13:
                 ca0 ca0Var = (ca0) ((bi.q1) this.d).f4554f3;
                 View d = ca0Var.d();
-                bi.q1 q1Var = ca0Var.f32505f;
+                bi.q1 q1Var = ca0Var.f32509f;
                 if (d != null) {
                     int top = d.getTop() + this.f16897b;
                     int top2 = d.getTop() + this.f16898c;

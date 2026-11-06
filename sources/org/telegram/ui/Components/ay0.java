@@ -8,12 +8,12 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class ay0 implements org.telegram.ui.Cells.l1 {
-    public final boolean f31941a;
-    public final boolean f31942b;
+    public final boolean f31953a;
+    public final boolean f31954b;
 
     public ay0(boolean z9, boolean z10) {
-        this.f31941a = z9;
-        this.f31942b = z10;
+        this.f31953a = z9;
+        this.f31954b = z10;
     }
 
     @Override
@@ -33,7 +33,7 @@ public final class ay0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean J0(long j3) {
-        if (this.f31941a && this.f31942b) {
+        if (this.f31953a && this.f31954b) {
             return true;
         }
         return false;
@@ -45,7 +45,7 @@ public final class ay0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final org.telegram.ui.er0 N1() {
+    public final org.telegram.ui.fr0 N1() {
         return null;
     }
 
@@ -61,7 +61,7 @@ public final class ay0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean Q1(long j3) {
-        return this.f31941a;
+        return this.f31953a;
     }
 
     @Override
@@ -187,8 +187,8 @@ public final class ay0 implements org.telegram.ui.Cells.l1 {
     @Override
     public final String y(long j3) {
         int i7;
-        if (this.f31941a) {
-            if (this.f31942b) {
+        if (this.f31953a) {
+            if (this.f31954b) {
                 i7 = 2131744278;
             } else {
                 i7 = 2131744286;

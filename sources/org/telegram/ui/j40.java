@@ -13,7 +13,7 @@ import org.telegram.tgnet.tl.TL_stories;
 public final class j40 extends rc {
     public float A0;
     public boolean B0;
-    public kc f46812z0;
+    public kc f46836z0;
 
     public j40(long j3) {
         super(j3);
@@ -24,8 +24,8 @@ public final class j40 extends rc {
         if (e3Var != null && j40Var.getParentActivity() != null) {
             i40 i40Var = new i40(j40Var, j40Var, j40Var.getParentActivity(), i7, j40Var.currentAccount, j40Var.resourceProvider);
             i40Var.A1(e3Var);
-            i40Var.z1(j40Var.f49431c, true);
-            i40Var.B1(j40Var.f49427a);
+            i40Var.z1(j40Var.f49451c, true);
+            i40Var.B1(j40Var.f49447a);
             i40Var.show();
             return;
         }
@@ -49,7 +49,7 @@ public final class j40 extends rc {
         }
         FrameLayout frameLayout = this.O;
         if (frameLayout != null && (frameLayout.getBackground() instanceof org.telegram.ui.Components.xp)) {
-            Drawable drawable = ((org.telegram.ui.Components.xp) this.O.getBackground()).f40296a;
+            Drawable drawable = ((org.telegram.ui.Components.xp) this.O.getBackground()).f40315a;
             if (drawable instanceof ColorDrawable) {
                 ((ColorDrawable) drawable).setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27848d6, this.resourceProvider));
                 this.O.invalidate();
@@ -142,14 +142,14 @@ public final class j40 extends rc {
 
     @Override
     public final boolean Y0() {
-        return org.telegram.messenger.t3.c0(getMessagesController().M0(Long.valueOf(-this.f49427a)));
+        return org.telegram.messenger.t3.c0(getMessagesController().M0(Long.valueOf(-this.f49447a)));
     }
 
     @Override
     public final void a1(int i7) {
-        if (this.f49431c != null && !this.B0) {
+        if (this.f49451c != null && !this.B0) {
             this.B0 = true;
-            org.telegram.messenger.qp.s1(this.currentAccount).G0().b(this.f49427a, this.f49431c, new fi.t3(this, i7, 5));
+            org.telegram.messenger.qp.s1(this.currentAccount).G0().b(this.f49447a, this.f49451c, new fi.t3(this, i7, 5));
         }
     }
 
@@ -167,7 +167,7 @@ public final class j40 extends rc {
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         super.didReceivedNotification(i7, i10, objArr);
-        if (i7 == org.telegram.messenger.qs.T && ((TLRPC.ChatFull) objArr[0]).f26953id == (-this.f49427a)) {
+        if (i7 == org.telegram.messenger.qs.T && ((TLRPC.ChatFull) objArr[0]).f26953id == (-this.f49447a)) {
             i1();
         }
     }
@@ -176,10 +176,10 @@ public final class j40 extends rc {
     public final void e1(boolean z9) {
         int i7;
         super.e1(z9);
-        kc kcVar = this.f46812z0;
+        kc kcVar = this.f46836z0;
         if (kcVar != null) {
             TextView textView = kcVar.d;
-            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f49431c;
+            TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = this.f49451c;
             if (tL_premium_boostsStatus != null) {
                 i7 = tL_premium_boostsStatus.boosts;
             } else {
@@ -194,14 +194,14 @@ public final class j40 extends rc {
         super.g1(z9);
         this.actionBar.setBackgroundColor(0);
         org.telegram.ui.Components.xp xpVar = new org.telegram.ui.Components.xp(new ColorDrawable(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27848d6, this.resourceProvider)), org.telegram.ui.ActionBar.k6.Y0(getParentActivity(), 2131231230, org.telegram.ui.ActionBar.k6.f27812b7), 0, 0);
-        xpVar.f40305x = true;
+        xpVar.f40324x = true;
         this.O.setBackground(xpVar);
         this.M.setBackgroundColor(getThemedColor(org.telegram.ui.ActionBar.k6.f27792a7));
-        kc kcVar = this.f46812z0;
+        kc kcVar = this.f46836z0;
         if (kcVar != null && !z9) {
-            kcVar.f47139a.b(this.currentAccount, this.f49451s, false);
-            this.f46812z0.f47140b.b(this.f49451s, false);
-            this.f46812z0.updateColors();
+            kcVar.f47162a.b(this.currentAccount, this.f49471s, false);
+            this.f46836z0.f47163b.b(this.f49471s, false);
+            this.f46836z0.updateColors();
         }
     }
 
@@ -212,46 +212,46 @@ public final class j40 extends rc {
         this.Z = 0;
         boolean z9 = true;
         int i7 = 1 + 1;
-        this.f49428a0 = 1;
-        this.f49430b0 = i7;
+        this.f49448a0 = 1;
+        this.f49450b0 = i7;
         int i10 = i7 + 2;
         this.R = i10;
-        this.f49432c0 = i7 + 1;
-        if (this.f49458x == 0 && this.f49451s < 0) {
-            int i11 = this.f49435e0;
-            this.f49435e0 = -1;
+        this.f49452c0 = i7 + 1;
+        if (this.f49478x == 0 && this.f49471s < 0) {
+            int i11 = this.f49455e0;
+            this.f49455e0 = -1;
             if (i11 >= 0 && (ecVar2 = this.N) != null) {
                 ecVar2.s(i11);
-                this.N.g(this.f49432c0);
+                this.N.g(this.f49452c0);
             }
         } else {
-            if (this.f49435e0 < 0) {
+            if (this.f49455e0 < 0) {
                 z9 = false;
             }
             this.R = i7 + 3;
-            this.f49435e0 = i10;
+            this.f49455e0 = i10;
             if (!z9 && (ecVar = this.N) != null) {
                 ecVar.i(i10);
-                this.N.g(this.f49432c0);
+                this.N.g(this.f49452c0);
                 this.M.v0(0);
             }
         }
         int i12 = this.R;
-        this.f49433d0 = i12;
-        this.f49439h0 = i12 + 1;
-        this.f49440i0 = i12 + 2;
-        this.f49437f0 = i12 + 3;
+        this.f49453d0 = i12;
+        this.f49459h0 = i12 + 1;
+        this.f49460i0 = i12 + 2;
+        this.f49457f0 = i12 + 3;
         this.R = i12 + 5;
-        this.f49438g0 = i12 + 4;
-        TLRPC.ChatFull N0 = getMessagesController().N0(-this.f49427a);
+        this.f49458g0 = i12 + 4;
+        TLRPC.ChatFull N0 = getMessagesController().N0(-this.f49447a);
         if (N0 != null && N0.can_set_stickers) {
             int i13 = this.R;
-            this.f49441j0 = i13;
+            this.f49461j0 = i13;
             this.R = i13 + 2;
-            this.f49442k0 = i13 + 1;
+            this.f49462k0 = i13 + 1;
         } else {
-            this.f49441j0 = -1;
-            this.f49442k0 = -1;
+            this.f49461j0 = -1;
+            this.f49462k0 = -1;
         }
         int i14 = this.R;
         this.S = i14;
@@ -264,7 +264,7 @@ public final class j40 extends rc {
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         super.onConfigurationChanged(configuration);
-        kc kcVar = this.f46812z0;
+        kc kcVar = this.f46836z0;
         if (kcVar != null) {
             kcVar.a();
         }

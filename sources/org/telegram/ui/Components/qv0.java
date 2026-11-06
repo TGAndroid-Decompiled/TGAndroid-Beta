@@ -12,16 +12,16 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class qv0 extends FrameLayout {
-    public int f37523a;
-    public final RectF f37524b;
-    public boolean f37525c;
+    public int f37413a;
+    public final RectF f37414b;
+    public boolean f37415c;
     public Boolean d;
-    public final yv0 f37526e;
+    public final yv0 f37416e;
 
     public qv0(yv0 yv0Var, Context context) {
         super(context);
-        this.f37526e = yv0Var;
-        this.f37524b = new RectF();
+        this.f37416e = yv0Var;
+        this.f37414b = new RectF();
     }
 
     @Override
@@ -32,14 +32,14 @@ public final class qv0 extends FrameLayout {
         boolean z9;
         boolean z10;
         int min;
-        yv0 yv0Var = this.f37526e;
+        yv0 yv0Var = this.f37416e;
         int L = org.telegram.messenger.g0.L(6.0f) + (yv0Var.V1 - yv0Var.f28644s0);
         int L2 = (yv0Var.V1 - yv0Var.f28644s0) - org.telegram.messenger.g0.L(13.0f);
         int i10 = org.telegram.messenger.g0.f22531m;
         int i11 = L2 + i10;
         int i12 = L + i10;
         boolean z11 = false;
-        if (this.f37525c) {
+        if (this.f37415c) {
             int i13 = yv0Var.f28644s0;
             if (i11 + i13 < i10 * 2) {
                 i11 -= Math.min(i10, ((i10 * 2) - i11) - i13);
@@ -62,7 +62,7 @@ public final class qv0 extends FrameLayout {
         yv0Var.f28642r0.setBounds(0, i11, getMeasuredWidth(), getMeasuredHeight());
         yv0Var.f28642r0.draw(canvas);
         int i17 = (f10 > 1.0f ? 1 : (f10 == 1.0f ? 0 : -1));
-        RectF rectF = this.f37524b;
+        RectF rectF = this.f37414b;
         if (i17 != 0) {
             org.telegram.ui.ActionBar.k6.f28139t0.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, yv0Var.I0));
             rectF.set(yv0Var.f28645t0, yv0Var.f28644s0 + i11, getMeasuredWidth() - yv0Var.f28645t0, org.telegram.messenger.g0.L(24.0f) + yv0Var.f28644s0 + i11);
@@ -104,7 +104,7 @@ public final class qv0 extends FrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            yv0 yv0Var = this.f37526e;
+            yv0 yv0Var = this.f37416e;
             if (yv0Var.V1 != 0 && motionEvent.getY() < yv0Var.V1) {
                 yv0Var.dismiss();
                 return true;
@@ -115,12 +115,12 @@ public final class qv0 extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        int i13 = this.f37523a;
+        int i13 = this.f37413a;
         int i14 = i11 - i7;
-        yv0 yv0Var = this.f37526e;
+        yv0 yv0Var = this.f37416e;
         if (i13 != i14) {
-            this.f37523a = i14;
-            uv0 uv0Var = yv0Var.f40732k1;
+            this.f37413a = i14;
+            uv0 uv0Var = yv0Var.f40751k1;
             if (uv0Var != null && yv0Var.N1 != null) {
                 uv0Var.f();
             }
@@ -139,7 +139,7 @@ public final class qv0 extends FrameLayout {
         int i14;
         float f10;
         int size = View.MeasureSpec.getSize(i10);
-        yv0 yv0Var = this.f37526e;
+        yv0 yv0Var = this.f37416e;
         ArrayList arrayList = yv0Var.O1;
         boolean z9 = true;
         yv0Var.X1 = true;
@@ -147,33 +147,33 @@ public final class qv0 extends FrameLayout {
         setPadding(i15, org.telegram.messenger.g0.f22531m, i15, 0);
         yv0Var.X1 = false;
         if (yv0Var.Q0()) {
-            int measuredWidth = yv0Var.f40730j1.getMeasuredWidth();
+            int measuredWidth = yv0Var.f40749j1.getMeasuredWidth();
             if (measuredWidth == 0) {
                 measuredWidth = org.telegram.messenger.g0.f22537q.x;
             }
-            uv0 uv0Var = yv0Var.f40732k1;
+            uv0 uv0Var = yv0Var.f40751k1;
             if (org.telegram.messenger.g0.Q1()) {
                 f10 = 60.0f;
             } else {
                 f10 = 45.0f;
             }
             uv0Var.d = Math.max(1, measuredWidth / org.telegram.messenger.g0.L(f10));
-            int size2 = (View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(36.0f)) / yv0Var.f40732k1.d;
+            int size2 = (View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(36.0f)) / yv0Var.f40751k1.d;
             yv0Var.F1 = size2;
             yv0Var.G1 = size2;
         } else {
-            yv0Var.f40732k1.d = 5;
-            yv0Var.F1 = (View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(36.0f)) / yv0Var.f40732k1.d;
+            yv0Var.f40751k1.d = 5;
+            yv0Var.F1 = (View.MeasureSpec.getSize(i7) - org.telegram.messenger.g0.L(36.0f)) / yv0Var.f40751k1.d;
             yv0Var.G1 = org.telegram.messenger.g0.L(82.0f);
         }
-        float f11 = yv0Var.f40732k1.d;
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) yv0Var.f40730j1.getLayoutParams();
+        float f11 = yv0Var.f40751k1.d;
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) yv0Var.f40749j1.getLayoutParams();
         int i16 = 3;
         if (arrayList != null) {
             i13 = (Math.max(3, (int) Math.ceil(arrayList.size() / f11)) * yv0Var.G1) + org.telegram.messenger.g0.L(48.0f) + marginLayoutParams.bottomMargin + yv0Var.f28644s0 + org.telegram.messenger.g0.f22531m;
         } else {
             if (yv0Var.N1 != null) {
-                i12 = (yv0Var.f40732k1.f38743n * yv0Var.G1) + (yv0Var.N1.size() * org.telegram.messenger.g0.L(60.0f)) + org.telegram.messenger.g0.L(8.0f) + marginLayoutParams.bottomMargin + yv0Var.f28644s0;
+                i12 = (yv0Var.f40751k1.f38734n * yv0Var.G1) + (yv0Var.N1.size() * org.telegram.messenger.g0.L(60.0f)) + org.telegram.messenger.g0.L(8.0f) + marginLayoutParams.bottomMargin + yv0Var.f28644s0;
                 max = org.telegram.messenger.g0.L(24.0f);
             } else {
                 int L = org.telegram.messenger.g0.L(48.0f) + marginLayoutParams.bottomMargin;
@@ -208,22 +208,22 @@ public final class qv0 extends FrameLayout {
         if (yv0Var.N1 != null) {
             i14 += org.telegram.messenger.g0.L(8.0f);
         }
-        if (yv0Var.f40730j1.getPaddingTop() != i14) {
+        if (yv0Var.f40749j1.getPaddingTop() != i14) {
             yv0Var.X1 = true;
-            yv0Var.f40730j1.setPadding(org.telegram.messenger.g0.L(10.0f), i14, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(8.0f));
+            yv0Var.f40749j1.setPadding(org.telegram.messenger.g0.L(10.0f), i14, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(8.0f));
             yv0Var.B1.setPadding(0, i14, 0, 0);
             yv0Var.X1 = false;
         }
         if (i13 < size) {
             z9 = false;
         }
-        this.f37525c = z9;
+        this.f37415c = z9;
         super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.min(i13, size), 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f37526e.I && super.onTouchEvent(motionEvent)) {
+        if (!this.f37416e.I && super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -231,7 +231,7 @@ public final class qv0 extends FrameLayout {
 
     @Override
     public final void requestLayout() {
-        if (this.f37526e.X1) {
+        if (this.f37416e.X1) {
             return;
         }
         super.requestLayout();

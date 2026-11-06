@@ -33,7 +33,7 @@ public final class rc extends org.telegram.ui.Components.j6 {
                 return;
             default:
                 wy wyVar = (wy) this.f4649x;
-                int a10 = wyVar.f51660x.a(wyVar.f51659w, false);
+                int a10 = wyVar.f51677x.a(wyVar.f51676w, false);
                 setTextColor(a10);
                 Paint paint = (Paint) this.f4648w;
                 if (org.telegram.ui.ActionBar.k6.I.q()) {

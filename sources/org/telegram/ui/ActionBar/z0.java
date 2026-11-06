@@ -376,9 +376,9 @@ public class z0 extends FrameLayout implements a6 {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setEnabled(isEnabled());
         wo woVar = this.f28813e;
-        if (woVar != null && woVar.f40043a.f31258q) {
+        if (woVar != null && woVar.f40050a.f31258q) {
             accessibilityNodeInfo.setCheckable(true);
-            accessibilityNodeInfo.setChecked(this.f28813e.f40043a.f31258q);
+            accessibilityNodeInfo.setChecked(this.f28813e.f40050a.f31258q);
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
         }
     }

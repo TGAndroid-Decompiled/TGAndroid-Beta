@@ -6,10 +6,10 @@ import org.telegram.messenger.camera.CameraController;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
 public final class rf implements Runnable {
-    public final ChatActivityEnterView f37723a;
+    public final ChatActivityEnterView f37666a;
 
     public rf(ChatActivityEnterView chatActivityEnterView) {
-        this.f37723a = chatActivityEnterView;
+        this.f37666a = chatActivityEnterView;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class rf implements Runnable {
         boolean z9;
         boolean z10;
         int i7;
-        ChatActivityEnterView chatActivityEnterView = this.f37723a;
+        ChatActivityEnterView chatActivityEnterView = this.f37666a;
         je jeVar = chatActivityEnterView.H3;
         Activity activity = chatActivityEnterView.O2;
         wf wfVar = chatActivityEnterView.Z2;
@@ -62,12 +62,12 @@ public final class rf implements Runnable {
                         }
                         fg fgVar = chatActivityEnterView.Y0;
                         if (fgVar != null) {
-                            fgVar.f33578a = false;
+                            fgVar.f33522a = false;
                             fgVar.d = 0L;
-                            fgVar.f33581e = 0L;
+                            fgVar.f33525e = 0L;
                             fgVar.h = 0L;
-                            fgVar.f33583n = 0L;
-                            fgVar.f33579b = false;
+                            fgVar.f33527n = 0L;
+                            fgVar.f33523b = false;
                             return;
                         }
                         return;

@@ -1,16 +1,16 @@
 package org.telegram.ui.Components;
 public final class z9 {
-    public int f40864a;
-    public int f40865b;
-    public int f40866c;
+    public int f40889a;
+    public int f40890b;
+    public int f40891c;
     public int d;
-    public int f40867e;
-    public int f40868f;
-    public int f40869g;
+    public int f40892e;
+    public int f40893f;
+    public int f40894g;
     public int h;
-    public int f40870i;
-    public int f40871j;
-    public int f40872k;
-    public int f40873l;
-    public int f40874m;
+    public int f40895i;
+    public int f40896j;
+    public int f40897k;
+    public int f40898l;
+    public int f40899m;
 }

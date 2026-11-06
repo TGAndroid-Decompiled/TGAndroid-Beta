@@ -3,22 +3,22 @@ package ji;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
-public final class i extends q31 {
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.w31;
+public final class i extends v31 {
     public static final int f17095b = 0;
 
     static {
-        q31.h(new q31());
+        v31.h(new v31());
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
-        long j3 = r31Var.B;
-        ((j) view).a((int) j3, (int) (j3 >>> 32), r31Var.f37597k, r31Var.f37598l, r31Var.f37600n, r31Var.f37603q);
+    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+        long j3 = w31Var.B;
+        ((j) view).a((int) j3, (int) (j3 >>> 32), w31Var.f39829k, w31Var.f39830l, w31Var.f39832n, w31Var.f39835q);
     }
 
     @Override

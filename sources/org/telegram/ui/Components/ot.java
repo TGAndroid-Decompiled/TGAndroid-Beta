@@ -5,13 +5,13 @@ import android.content.Context;
 import android.view.OrientationEventListener;
 import org.telegram.ui.PhotoViewer;
 public final class ot extends OrientationEventListener {
-    public final int f36777a;
-    public final Object f36778b;
+    public final int f36655a;
+    public final Object f36656b;
 
     public ot(int i7, Context context, Object obj) {
         super(context);
-        this.f36777a = i7;
-        this.f36778b = obj;
+        this.f36655a = i7;
+        this.f36656b = obj;
     }
 
     @Override
@@ -20,11 +20,11 @@ public final class ot extends OrientationEventListener {
         fe0 fe0Var;
         Activity activity2;
         int i10;
-        switch (this.f36777a) {
+        switch (this.f36655a) {
             case 0:
-                vt vtVar = (vt) this.f36778b;
-                f71 f71Var = vtVar.f39668j1;
-                if (vtVar.f39679w1 != null && f71Var.getVisibility() == 0 && (activity = vtVar.f39672p1) != null && f71Var.T && vtVar.D1) {
+                vt vtVar = (vt) this.f36656b;
+                k71 k71Var = vtVar.f39665j1;
+                if (vtVar.f39676w1 != null && k71Var.getVisibility() == 0 && (activity = vtVar.f39669p1) != null && k71Var.T && vtVar.D1) {
                     if (i7 >= 240 && i7 <= 300) {
                         vtVar.E1 = true;
                         return;
@@ -42,8 +42,8 @@ public final class ot extends OrientationEventListener {
                 }
                 return;
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f36778b;
-                if (photoViewer.V3 != null && (fe0Var = photoViewer.f41536y2) != null && fe0Var.getVisibility() == 0 && (activity2 = photoViewer.D) != null && (i10 = photoViewer.X3) != 0) {
+                PhotoViewer photoViewer = (PhotoViewer) this.f36656b;
+                if (photoViewer.V3 != null && (fe0Var = photoViewer.f41561y2) != null && fe0Var.getVisibility() == 0 && (activity2 = photoViewer.D) != null && (i10 = photoViewer.X3) != 0) {
                     if (i10 == 1) {
                         if (i7 >= 240 && i7 <= 300) {
                             photoViewer.Y3 = true;

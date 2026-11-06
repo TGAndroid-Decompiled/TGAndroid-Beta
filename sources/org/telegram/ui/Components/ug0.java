@@ -26,23 +26,23 @@ public final class ug0 implements LeadingMarginSpan {
     public int I;
     public e0.g J;
     public SpannableString K;
-    public final boolean f38633a;
-    public boolean f38634b = true;
-    public int f38635c;
+    public final boolean f38624a;
+    public boolean f38625b = true;
+    public int f38626c;
     public int d;
-    public boolean f38636e;
-    public boolean f38637f;
+    public boolean f38627e;
+    public boolean f38628f;
     public boolean h;
-    public boolean f38638n;
-    public boolean f38639r;
-    public final tg0 f38640s;
-    public li.w5 f38641w;
-    public final Drawable f38642x;
-    public final Paint f38643y;
+    public boolean f38629n;
+    public boolean f38630r;
+    public final tg0 f38631s;
+    public li.w5 f38632w;
+    public final Drawable f38633x;
+    public final Paint f38634y;
 
     public ug0(boolean z9, boolean z10, tg0 tg0Var) {
         Paint paint = new Paint(1);
-        this.f38643y = paint;
+        this.f38634y = paint;
         this.D = new float[8];
         this.E = new Path();
         Paint paint2 = new Paint(1);
@@ -50,10 +50,10 @@ public final class ug0 implements LeadingMarginSpan {
         this.G = new float[8];
         this.H = new Path();
         this.I = -1;
-        this.f38633a = z9;
-        this.f38640s = tg0Var;
-        this.f38636e = z10;
-        this.f38642x = jg.g.h(org.telegram.messenger.t0.f25555b, 2131231966);
+        this.f38624a = z9;
+        this.f38631s = tg0Var;
+        this.f38627e = z10;
+        this.f38633x = jg.g.h(org.telegram.messenger.t0.f25555b, 2131231966);
         paint2.setColor(this.I);
         paint.setColor(i0.a.o(this.I, 30));
     }
@@ -81,7 +81,7 @@ public final class ug0 implements LeadingMarginSpan {
             } else {
                 i10 = 0;
             }
-            if (tg0Var.f38342a.f38636e) {
+            if (tg0Var.f38333a.f38627e) {
                 i13 = 16;
             }
             hashMap.put(valueOf, Integer.valueOf(i13 | i10));
@@ -94,7 +94,7 @@ public final class ug0 implements LeadingMarginSpan {
             }
             hashMap.put(valueOf2, Integer.valueOf(i11 | 2));
             spannableStringBuilder.removeSpan(tg0Var);
-            spannableStringBuilder.removeSpan(tg0Var.f38342a);
+            spannableStringBuilder.removeSpan(tg0Var.f38333a);
             i12++;
         }
         Iterator it = treeSet.iterator();
@@ -146,8 +146,8 @@ public final class ug0 implements LeadingMarginSpan {
         int j10 = Utilities.j(i10, spannable.length(), 0);
         ?? metricAffectingSpan = new MetricAffectingSpan();
         ug0 ug0Var = new ug0(false, z9, metricAffectingSpan);
-        metricAffectingSpan.f38342a = ug0Var;
-        ug0Var.f38635c = j3;
+        metricAffectingSpan.f38333a = ug0Var;
+        ug0Var.f38626c = j3;
         ug0Var.d = j10;
         spannable.setSpan(metricAffectingSpan, j3, j10, 33);
         spannable.setSpan(ug0Var, j3, j10, 33);
@@ -170,8 +170,8 @@ public final class ug0 implements LeadingMarginSpan {
         }
         ?? metricAffectingSpan = new MetricAffectingSpan();
         ug0 ug0Var = new ug0(true, z9, metricAffectingSpan);
-        metricAffectingSpan.f38342a = ug0Var;
-        ug0Var.f38635c = j3;
+        metricAffectingSpan.f38333a = ug0Var;
+        ug0Var.f38626c = j3;
         ug0Var.d = j10;
         editable.setSpan(ug0Var, Utilities.j(j3, editable.length(), 0), Utilities.j(j10, editable.length(), 0), 33);
         editable.setSpan(metricAffectingSpan, Utilities.j(j3, editable.length(), 0), Utilities.j(j10, editable.length(), 0), 33);
@@ -199,7 +199,7 @@ public final class ug0 implements LeadingMarginSpan {
                     arrayList.clear();
                 }
                 for (ug0 ug0Var : (ug0[]) spanned.getSpans(0, spanned.length(), ug0.class)) {
-                    boolean z9 = ug0Var.f38638n;
+                    boolean z9 = ug0Var.f38629n;
                     qg0 qg0Var = new qg0(null, layout, spanned, ug0Var);
                     if (arrayList == null) {
                         arrayList = new ArrayList();
@@ -217,7 +217,7 @@ public final class ug0 implements LeadingMarginSpan {
     @Override
     public final int getLeadingMargin(boolean z9) {
         float f10;
-        if (this.f38634b) {
+        if (this.f38625b) {
             f10 = 8.0f;
         } else {
             f10 = 10.0f;

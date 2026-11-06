@@ -46,7 +46,7 @@ public final class m1 extends oj0 implements ls {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56931f;
+        int i7 = d1Var.f56956f;
         if (i7 != 0 && i7 != 2) {
             return false;
         }
@@ -136,8 +136,8 @@ public final class m1 extends oj0 implements ls {
         boolean z9;
         int i10;
         int i11;
-        int i12 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        int i12 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         if (i12 == 0) {
             t2 t2Var = (t2) view;
             t2Var.f30475s2 = true;

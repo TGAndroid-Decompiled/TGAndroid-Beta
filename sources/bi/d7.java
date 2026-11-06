@@ -24,7 +24,7 @@ public final class d7 extends AnimatorListenerAdapter {
         TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) e7Var.f3771d0.f3416f;
         if (stargiftattributepattern != null) {
             org.telegram.ui.Components.i5 l10 = org.telegram.ui.Components.i5.l(p10.f24459s0, 7, stargiftattributepattern.document);
-            l10.f34507m = true;
+            l10.f34452m = true;
             l10.u();
         }
         org.telegram.messenger.g0.r(fVar);

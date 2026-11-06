@@ -462,7 +462,7 @@ public final class b3 extends FrameLayout {
             accessibilityNodeInfo.setClassName("android.widget.CheckBox");
             accessibilityNodeInfo.setCheckable(true);
             a3 a3Var = this.J;
-            if (a3Var != null && a3Var.f40043a.f31258q) {
+            if (a3Var != null && a3Var.f40050a.f31258q) {
                 z9 = true;
             } else {
                 z9 = false;

@@ -3,12 +3,12 @@ package org.telegram.ui.Components;
 import android.text.TextUtils;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class qg implements Runnable {
-    public final int f37403a;
-    public final di f37404b;
+    public final int f37293a;
+    public final di f37294b;
 
     public qg(di diVar, int i7) {
-        this.f37403a = i7;
-        this.f37404b = diVar;
+        this.f37293a = i7;
+        this.f37294b = diVar;
     }
 
     @Override
@@ -19,13 +19,13 @@ public final class qg implements Runnable {
         boolean u12;
         vh vhVar;
         bm bmVar;
-        switch (this.f37403a) {
+        switch (this.f37293a) {
             case 0:
-                di diVar = this.f37404b;
+                di diVar = this.f37294b;
                 if (diVar.T1) {
                     ktVar = diVar.J2;
                 } else {
-                    ktVar = diVar.f32966y2;
+                    ktVar = diVar.f32979y2;
                 }
                 if (ktVar.getEditText().getLineCount() > 2 && !TextUtils.isEmpty(ktVar.getText().toString().trim())) {
                     z9 = true;
@@ -35,13 +35,13 @@ public final class qg implements Runnable {
                 diVar.B1(z9);
                 return;
             case 1:
-                di diVar2 = this.f37404b;
+                di diVar2 = this.f37294b;
                 diVar2.f28654z0 = null;
                 diVar2.A0 = 0;
                 diVar2.K();
                 return;
             case 2:
-                di diVar3 = this.f37404b;
+                di diVar3 = this.f37294b;
                 ue ueVar = diVar3.Y1;
                 if (ueVar != null) {
                     j3 = ueVar.j();
@@ -52,8 +52,8 @@ public final class qg implements Runnable {
                 lh lhVar = diVar3.C2;
                 diVar3.H2 = j10;
                 lhVar.setEffect(j10);
-                vh vhVar2 = diVar3.f32942s2;
-                if (vhVar2 != diVar3.f32882a2 && vhVar2 != diVar3.f32902h2) {
+                vh vhVar2 = diVar3.f32955s2;
+                if (vhVar2 != diVar3.f32895a2 && vhVar2 != diVar3.f32915h2) {
                     if (!vhVar2.L(false, 0, 0, j10, diVar3.f1())) {
                         diVar3.dismiss();
                     }
@@ -69,7 +69,7 @@ public final class qg implements Runnable {
                 }
                 return;
             case 3:
-                di diVar4 = this.f37404b;
+                di diVar4 = this.f37294b;
                 diVar4.a(true);
                 org.telegram.ui.ActionBar.f2 f2Var = diVar4.W1;
                 if (f2Var != null) {
@@ -78,20 +78,20 @@ public final class qg implements Runnable {
                 }
                 return;
             case 4:
-                this.f37404b.t1();
+                this.f37294b.t1();
                 return;
             default:
-                di diVar5 = this.f37404b;
-                diVar5.f32924n3 = null;
-                vh vhVar3 = diVar5.f32942s2;
-                if (vhVar3 != diVar5.f32882a2 && (vhVar = diVar5.f32946t2) != (bmVar = diVar5.f32902h2) && vhVar3 != vhVar && vhVar3 != bmVar) {
+                di diVar5 = this.f37294b;
+                diVar5.f32937n3 = null;
+                vh vhVar3 = diVar5.f32955s2;
+                if (vhVar3 != diVar5.f32895a2 && (vhVar = diVar5.f32959t2) != (bmVar = diVar5.f32915h2) && vhVar3 != vhVar && vhVar3 != bmVar) {
                     diVar5.f28615b.removeView(vhVar3);
                 }
-                diVar5.f32942s2.setVisibility(8);
-                diVar5.f32942s2.t();
-                diVar5.f32946t2.I();
-                diVar5.f32942s2 = diVar5.f32946t2;
-                diVar5.f32946t2 = null;
+                diVar5.f32955s2.setVisibility(8);
+                diVar5.f32955s2.t();
+                diVar5.f32959t2.I();
+                diVar5.f32955s2 = diVar5.f32959t2;
+                diVar5.f32959t2 = null;
                 int[] iArr = diVar5.V3;
                 iArr[0] = iArr[1];
                 diVar5.v1(diVar5.T1, false);

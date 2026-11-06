@@ -28,29 +28,29 @@ public final class am extends ViewGroup {
     public final xl N;
     public int O;
     public final bm P;
-    public final org.telegram.ui.Cells.t0 f31835a;
-    public final ArrayList f31836b;
-    public final HashMap f31837c;
+    public final org.telegram.ui.Cells.t0 f31847a;
+    public final ArrayList f31848b;
+    public final HashMap f31849c;
     public HashMap d;
-    public ArrayList f31838e;
-    public HashMap f31839f;
+    public ArrayList f31850e;
+    public HashMap f31851f;
     public ArrayList h;
-    public final int f31840n;
-    public final int f31841r;
-    public int f31842s;
-    public float f31843w;
-    public float f31844x;
-    public boolean[] f31845y;
+    public final int f31852n;
+    public final int f31853r;
+    public int f31854s;
+    public float f31855w;
+    public float f31856x;
+    public boolean[] f31857y;
 
     public am(bm bmVar, Context context) {
         super(context);
         this.P = bmVar;
-        this.f31836b = new ArrayList();
-        this.f31837c = new HashMap();
-        this.f31840n = org.telegram.messenger.g0.L(16.0f);
-        this.f31841r = org.telegram.messenger.g0.L(64.0f);
-        this.f31842s = 0;
-        this.f31845y = null;
+        this.f31848b = new ArrayList();
+        this.f31849c = new HashMap();
+        this.f31852n = org.telegram.messenger.g0.L(16.0f);
+        this.f31853r = org.telegram.messenger.g0.L(64.0f);
+        this.f31854s = 0;
+        this.f31857y = null;
         this.D = 0L;
         this.E = null;
         this.F = null;
@@ -62,8 +62,8 @@ public final class am extends ViewGroup {
         this.O = 0;
         new HashMap();
         setWillNotDraw(false);
-        org.telegram.ui.Cells.t0 t0Var = new org.telegram.ui.Cells.t0(context, bmVar.f32170n, true);
-        this.f31835a = t0Var;
+        org.telegram.ui.Cells.t0 t0Var = new org.telegram.ui.Cells.t0(context, bmVar.f32164n, true);
+        this.f31847a = t0Var;
         t0Var.setCustomText(org.telegram.messenger.hd.M0(2131753960, null));
         addView(t0Var);
     }
@@ -71,31 +71,31 @@ public final class am extends ViewGroup {
     public final void a() {
         String str;
         this.d = this.P.P.getSelectedPhotos();
-        this.f31838e = new ArrayList(this.d.entrySet());
-        this.f31839f = new HashMap();
+        this.f31850e = new ArrayList(this.d.entrySet());
+        this.f31851f = new HashMap();
         this.h = new ArrayList();
-        ArrayList arrayList = this.f31836b;
+        ArrayList arrayList = this.f31848b;
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
-            ArrayList arrayList2 = (ArrayList) ((zl) arrayList.get(i7)).f41013k.f38982f;
+            ArrayList arrayList2 = (ArrayList) ((zl) arrayList.get(i7)).f41038k.f38979f;
             if (arrayList2.size() != 0) {
                 int size2 = arrayList2.size();
                 for (int i10 = 0; i10 < size2; i10++) {
                     org.telegram.messenger.gf gfVar = (org.telegram.messenger.gf) arrayList2.get(i10);
-                    HashMap hashMap = this.f31837c;
+                    HashMap hashMap = this.f31849c;
                     if (hashMap.containsKey(gfVar)) {
                         Object obj = hashMap.get(gfVar);
-                        this.f31839f.put(obj, gfVar);
+                        this.f31851f.put(obj, gfVar);
                         this.h.add(obj);
                     } else {
                         int i11 = 0;
                         while (true) {
-                            if (i11 < this.f31838e.size()) {
-                                Map.Entry entry = (Map.Entry) this.f31838e.get(i11);
+                            if (i11 < this.f31850e.size()) {
+                                Map.Entry entry = (Map.Entry) this.f31850e.get(i11);
                                 Object value = entry.getValue();
                                 if (value == gfVar) {
                                     Object key = entry.getKey();
-                                    this.f31839f.put(key, value);
+                                    this.f31851f.put(key, value);
                                     this.h.add(key);
                                     break;
                                 }
@@ -103,12 +103,12 @@ public final class am extends ViewGroup {
                             } else {
                                 int i12 = 0;
                                 while (true) {
-                                    if (i12 < this.f31838e.size()) {
-                                        Map.Entry entry2 = (Map.Entry) this.f31838e.get(i12);
+                                    if (i12 < this.f31850e.size()) {
+                                        Map.Entry entry2 = (Map.Entry) this.f31850e.get(i12);
                                         Object value2 = entry2.getValue();
                                         if ((value2 instanceof org.telegram.messenger.gf) && (str = ((org.telegram.messenger.gf) value2).I) != null && gfVar != null && str.equals(gfVar.I)) {
                                             Object key2 = entry2.getKey();
-                                            this.f31839f.put(key2, value2);
+                                            this.f31851f.put(key2, value2);
                                             this.h.add(key2);
                                             break;
                                         }
@@ -135,13 +135,13 @@ public final class am extends ViewGroup {
             RectF f10 = ylVar.f(ylVar.e());
             RectF f11 = bmVar.J.f(1.0f);
             pointF.x = org.telegram.messenger.g0.T1((f10.width() / 2.0f) + f11.left, bmVar.D - ((bmVar.G - 0.5f) * bmVar.H), this.G);
-            pointF.y = org.telegram.messenger.g0.T1((f10.height() / 2.0f) + bmVar.J.f40630a.f41005a + f11.top, (bmVar.E - ((bmVar.F - 0.5f) * bmVar.I)) + bmVar.M, this.G);
+            pointF.y = org.telegram.messenger.g0.T1((f10.height() / 2.0f) + bmVar.J.f40649a.f41030a + f11.top, (bmVar.E - ((bmVar.F - 0.5f) * bmVar.I)) + bmVar.M, this.G);
             return pointF;
         } else {
             RectF f12 = ylVar.f(ylVar.e());
             RectF f13 = bmVar.J.f(1.0f);
             pointF.x = org.telegram.messenger.g0.T1((f12.width() / 2.0f) + f13.left, this.H, this.G / this.J);
-            pointF.y = org.telegram.messenger.g0.T1((f12.height() / 2.0f) + bmVar.J.f40630a.f41005a + f13.top, this.I, this.G / this.J);
+            pointF.y = org.telegram.messenger.g0.T1((f12.height() / 2.0f) + bmVar.J.f40649a.f41030a + f13.top, this.I, this.G / this.J);
             return pointF;
         }
     }
@@ -150,17 +150,17 @@ public final class am extends ViewGroup {
         ArrayList arrayList;
         int i7 = 0;
         while (true) {
-            arrayList = this.f31836b;
+            arrayList = this.f31848b;
             if (i7 >= arrayList.size()) {
                 break;
             }
             ArrayList arrayList2 = ((zl) arrayList.get(i7)).h;
             for (int i10 = 0; i10 < arrayList2.size(); i10++) {
                 yl ylVar = (yl) arrayList2.get(i10);
-                xh.e eVar = ylVar.f40646s;
+                xh.e eVar = ylVar.f40665s;
                 if (eVar != null) {
-                    eVar.b(ylVar.O.f41027z);
-                    ylVar.f40646s = null;
+                    eVar.b(ylVar.O.f41052z);
+                    ylVar.f40665s = null;
                 }
             }
             i7++;
@@ -186,18 +186,18 @@ public final class am extends ViewGroup {
         bm bmVar;
         bi.q1 q1Var;
         boolean z9;
-        ArrayList arrayList = this.f31836b;
+        ArrayList arrayList = this.f31848b;
         boolean[] zArr = new boolean[arrayList.size()];
-        float f10 = this.f31840n;
-        int computeVerticalScrollOffset = this.P.f32171r.computeVerticalScrollOffset();
-        this.f31843w = Math.max(0, computeVerticalScrollOffset - bmVar.getListTopPadding());
-        this.f31844x = (q1Var.getMeasuredHeight() - bmVar.getListTopPadding()) + computeVerticalScrollOffset;
+        float f10 = this.f31852n;
+        int computeVerticalScrollOffset = this.P.f32165r.computeVerticalScrollOffset();
+        this.f31855w = Math.max(0, computeVerticalScrollOffset - bmVar.getListTopPadding());
+        this.f31856x = (q1Var.getMeasuredHeight() - bmVar.getListTopPadding()) + computeVerticalScrollOffset;
         int size = arrayList.size();
         int i7 = 0;
         while (i7 < size) {
             float b10 = ((zl) arrayList.get(i7)).b() + f10;
-            float f11 = this.f31843w;
-            if ((f10 >= f11 && f10 <= this.f31844x) || ((b10 >= f11 && b10 <= this.f31844x) || (f10 <= f11 && b10 >= this.f31844x))) {
+            float f11 = this.f31855w;
+            if ((f10 >= f11 && f10 <= this.f31856x) || ((b10 >= f11 && b10 <= this.f31856x) || (f10 <= f11 && b10 >= this.f31856x))) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -215,13 +215,13 @@ public final class am extends ViewGroup {
     }
 
     public final int e() {
-        int i7 = this.f31840n + this.f31841r;
-        ArrayList arrayList = this.f31836b;
+        int i7 = this.f31852n + this.f31853r;
+        ArrayList arrayList = this.f31848b;
         int size = arrayList.size();
         for (int i10 = 0; i10 < size; i10++) {
             i7 = (int) (((zl) arrayList.get(i10)).b() + i7);
         }
-        org.telegram.ui.Cells.t0 t0Var = this.f31835a;
+        org.telegram.ui.Cells.t0 t0Var = this.f31847a;
         if (t0Var.getMeasuredHeight() <= 0) {
             t0Var.measure(View.MeasureSpec.makeMeasureSpec(org.telegram.messenger.g0.f22537q.x, 1073741824), View.MeasureSpec.makeMeasureSpec(9999, Integer.MIN_VALUE));
         }
@@ -230,12 +230,12 @@ public final class am extends ViewGroup {
 
     public final void f(zl zlVar, org.telegram.messenger.gf gfVar, int i7) {
         zl zlVar2;
-        ArrayList arrayList = (ArrayList) zlVar.f41013k.f38982f;
+        ArrayList arrayList = (ArrayList) zlVar.f41038k.f38979f;
         arrayList.add(Math.min(arrayList.size(), i7), gfVar);
-        if (((ArrayList) zlVar.f41013k.f38982f).size() == 11) {
-            org.telegram.messenger.gf gfVar2 = (org.telegram.messenger.gf) ((ArrayList) zlVar.f41013k.f38982f).get(10);
-            ((ArrayList) zlVar.f41013k.f38982f).remove(10);
-            ArrayList arrayList2 = this.f31836b;
+        if (((ArrayList) zlVar.f41038k.f38979f).size() == 11) {
+            org.telegram.messenger.gf gfVar2 = (org.telegram.messenger.gf) ((ArrayList) zlVar.f41038k.f38979f).get(10);
+            ((ArrayList) zlVar.f41038k.f38979f).remove(10);
+            ArrayList arrayList2 = this.f31848b;
             int indexOf = arrayList2.indexOf(zlVar);
             if (indexOf >= 0) {
                 int i10 = indexOf + 1;
@@ -255,21 +255,21 @@ public final class am extends ViewGroup {
                 }
             }
         }
-        zl.a(zlVar, zlVar.f41013k, true);
+        zl.a(zlVar, zlVar.f41038k, true);
     }
 
     public final void g() {
-        float f10 = this.f31840n;
-        ArrayList arrayList = this.f31836b;
+        float f10 = this.f31852n;
+        ArrayList arrayList = this.f31848b;
         int size = arrayList.size();
         int i7 = 0;
         for (int i10 = 0; i10 < size; i10++) {
             zl zlVar = (zl) arrayList.get(i10);
             float b10 = zlVar.b();
-            zlVar.f41005a = f10;
-            zlVar.f41006b = i7;
+            zlVar.f41030a = f10;
+            zlVar.f41031b = i7;
             f10 += b10;
-            i7 += ((ArrayList) zlVar.f41013k.f38982f).size();
+            i7 += ((ArrayList) zlVar.f41038k.f38979f).size();
         }
     }
 
@@ -301,10 +301,10 @@ public final class am extends ViewGroup {
         boolean z13;
         int size = chatAttachAlertPhotoLayout.getSelectedPhotosOrder().size();
         a();
-        HashMap hashMap = this.f31839f;
+        HashMap hashMap = this.f31851f;
         ArrayList arrayList = this.h;
         tl tlVar = chatAttachAlertPhotoLayout.G;
-        di diVar = chatAttachAlertPhotoLayout.f38951b;
+        di diVar = chatAttachAlertPhotoLayout.f38948b;
         jl jlVar = chatAttachAlertPhotoLayout.E;
         HashMap hashMap2 = ChatAttachAlertPhotoLayout.f31185s1;
         hashMap2.clear();
@@ -322,7 +322,7 @@ public final class am extends ViewGroup {
                 View childAt = jlVar.getChildAt(i7);
                 if (childAt instanceof org.telegram.ui.Cells.q5) {
                     int R = RecyclerView.R(childAt);
-                    boolean z15 = tlVar.f38374f;
+                    boolean z15 = tlVar.f38365f;
                     boolean z16 = tlVar.d;
                     if (z15 && R > chatAttachAlertPhotoLayout.M0) {
                         R--;
@@ -331,7 +331,7 @@ public final class am extends ViewGroup {
                         R--;
                     }
                     org.telegram.ui.Cells.q5 q5Var = (org.telegram.ui.Cells.q5) childAt;
-                    if (diVar.K2 != 0 || diVar.f32965y1) {
+                    if (diVar.K2 != 0 || diVar.f32978y1) {
                         q5Var.getCheckBox().setVisibility(8);
                     }
                     org.telegram.messenger.gf e02 = chatAttachAlertPhotoLayout.e0(R);
@@ -371,36 +371,36 @@ public final class am extends ViewGroup {
             }
         }
         if (size != this.h.size()) {
-            this.P.f38951b.K1(1);
+            this.P.f38948b.K1(1);
         }
     }
 
     @Override
     public final void invalidate() {
         int e10 = jg.g.e(45.0f, org.telegram.messenger.g0.f22537q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), e());
-        if (this.f31842s != e10) {
-            this.f31842s = e10;
+        if (this.f31854s != e10) {
+            this.f31854s = e10;
             requestLayout();
         }
         super.invalidate();
     }
 
     public final void j() {
-        ArrayList arrayList = this.f31836b;
+        ArrayList arrayList = this.f31848b;
         int size = arrayList.size();
         for (int i7 = 0; i7 < size; i7++) {
             zl zlVar = (zl) arrayList.get(i7);
-            if (((ArrayList) zlVar.f41013k.f38982f).size() < 10 && i7 < arrayList.size() - 1) {
-                int size2 = 10 - ((ArrayList) zlVar.f41013k.f38982f).size();
+            if (((ArrayList) zlVar.f41038k.f38979f).size() < 10 && i7 < arrayList.size() - 1) {
+                int size2 = 10 - ((ArrayList) zlVar.f41038k.f38979f).size();
                 zl zlVar2 = (zl) arrayList.get(i7 + 1);
                 ArrayList arrayList2 = new ArrayList();
-                int min = Math.min(size2, ((ArrayList) zlVar2.f41013k.f38982f).size());
+                int min = Math.min(size2, ((ArrayList) zlVar2.f41038k.f38979f).size());
                 for (int i10 = 0; i10 < min; i10++) {
-                    arrayList2.add((org.telegram.messenger.gf) ((ArrayList) zlVar2.f41013k.f38982f).remove(0));
+                    arrayList2.add((org.telegram.messenger.gf) ((ArrayList) zlVar2.f41038k.f38979f).remove(0));
                 }
-                ((ArrayList) zlVar.f41013k.f38982f).addAll(arrayList2);
-                zl.a(zlVar, zlVar.f41013k, true);
-                zl.a(zlVar2, zlVar2.f41013k, true);
+                ((ArrayList) zlVar.f41038k.f38979f).addAll(arrayList2);
+                zl.a(zlVar, zlVar.f41038k, true);
+                zl.a(zlVar2, zlVar2.f41038k, true);
             }
         }
     }
@@ -417,14 +417,14 @@ public final class am extends ViewGroup {
         float f11;
         yl ylVar;
         float f12;
-        float f13 = this.f31840n;
+        float f13 = this.f31852n;
         bm bmVar = this.P;
-        int computeVerticalScrollOffset = bmVar.f32171r.computeVerticalScrollOffset();
-        this.f31843w = Math.max(0, computeVerticalScrollOffset - bmVar.getListTopPadding());
-        this.f31844x = (q1Var.getMeasuredHeight() - bmVar.getListTopPadding()) + computeVerticalScrollOffset;
+        int computeVerticalScrollOffset = bmVar.f32165r.computeVerticalScrollOffset();
+        this.f31855w = Math.max(0, computeVerticalScrollOffset - bmVar.getListTopPadding());
+        this.f31856x = (q1Var.getMeasuredHeight() - bmVar.getListTopPadding()) + computeVerticalScrollOffset;
         canvas.save();
         canvas.translate(0.0f, f13);
-        ArrayList arrayList2 = this.f31836b;
+        ArrayList arrayList2 = this.f31848b;
         int size = arrayList2.size();
         float f14 = f13;
         int i12 = 0;
@@ -432,12 +432,12 @@ public final class am extends ViewGroup {
         while (i12 < size) {
             zl zlVar = (zl) arrayList2.get(i12);
             float b10 = zlVar.b();
-            zlVar.f41005a = f14;
-            zlVar.f41006b = i13;
-            float f15 = this.f31843w;
-            if (f14 < f15 || f14 > this.f31844x) {
+            zlVar.f41030a = f14;
+            zlVar.f41031b = i13;
+            float f15 = this.f31855w;
+            if (f14 < f15 || f14 > this.f31856x) {
                 float f16 = f14 + b10;
-                if ((f16 < f15 || f16 > this.f31844x) && (f14 > f15 || f16 < this.f31844x)) {
+                if ((f16 < f15 || f16 > this.f31856x) && (f14 > f15 || f16 < this.f31856x)) {
                     f10 = b10;
                     arrayList = arrayList2;
                     i7 = size;
@@ -445,18 +445,18 @@ public final class am extends ViewGroup {
                     i11 = i13;
                     canvas.translate(0.0f, f10);
                     f14 += f10;
-                    i13 = ((ArrayList) zlVar.f41013k.f38982f).size() + i11;
+                    i13 = ((ArrayList) zlVar.f41038k.f38979f).size() + i11;
                     i12 = i10 + 1;
                     size = i7;
                     arrayList2 = arrayList;
                 }
             }
             ArrayList arrayList3 = zlVar.h;
-            int i14 = zlVar.f41014l;
-            org.telegram.ui.ActionBar.t4 t4Var = zlVar.f41025x;
-            am amVar = zlVar.f41027z;
+            int i14 = zlVar.f41039l;
+            org.telegram.ui.ActionBar.t4 t4Var = zlVar.f41050x;
+            am amVar = zlVar.f41052z;
             arrayList = arrayList2;
-            float interpolation = zlVar.f41012j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - zlVar.f41007c)) / 200.0f));
+            float interpolation = zlVar.f41037j.getInterpolation(Math.min(1.0f, ((float) (SystemClock.elapsedRealtime() - zlVar.f41032c)) / 200.0f));
             if (interpolation < 1.0f) {
                 z9 = true;
             } else {
@@ -464,89 +464,89 @@ public final class am extends ViewGroup {
             }
             Point point = org.telegram.messenger.g0.f22537q;
             float max = Math.max(point.x, point.y) * 0.5f;
-            float T1 = org.telegram.messenger.g0.T1(zlVar.f41009f, zlVar.d, interpolation);
+            float T1 = org.telegram.messenger.g0.T1(zlVar.f41034f, zlVar.d, interpolation);
             int width = amVar.getWidth();
             bm bmVar2 = amVar.P;
             float previewScale = width * T1 * bmVar2.getPreviewScale();
             boolean z10 = z9;
-            float previewScale2 = bmVar2.getPreviewScale() * org.telegram.messenger.g0.T1(zlVar.f41010g, zlVar.f41008e, interpolation) * max;
+            float previewScale2 = bmVar2.getPreviewScale() * org.telegram.messenger.g0.T1(zlVar.f41035g, zlVar.f41033e, interpolation) * max;
             if (t4Var != null) {
                 f11 = 2.0f;
-                zlVar.f41018p = 0.0f;
+                zlVar.f41043p = 0.0f;
                 float width2 = amVar.getWidth();
                 float f17 = i14;
-                zlVar.f41016n = (width2 - Math.max(f17, previewScale)) / 2.0f;
-                zlVar.f41017o = (Math.max(f17, previewScale) + amVar.getWidth()) / 2.0f;
-                zlVar.f41019q = Math.max(i14 * 2, previewScale2);
-                zlVar.f41025x.q(0, (int) previewScale, (int) previewScale2, 0, 0, 0, false, false);
-                t4Var.setBounds((int) zlVar.f41016n, (int) zlVar.f41018p, (int) zlVar.f41017o, (int) zlVar.f41019q);
+                zlVar.f41041n = (width2 - Math.max(f17, previewScale)) / 2.0f;
+                zlVar.f41042o = (Math.max(f17, previewScale) + amVar.getWidth()) / 2.0f;
+                zlVar.f41044q = Math.max(i14 * 2, previewScale2);
+                zlVar.f41050x.q(0, (int) previewScale, (int) previewScale2, 0, 0, 0, false, false);
+                t4Var.setBounds((int) zlVar.f41041n, (int) zlVar.f41043p, (int) zlVar.f41042o, (int) zlVar.f41044q);
                 if (zlVar.d <= 0.0f) {
                     f12 = 1.0f - interpolation;
-                } else if (zlVar.f41009f <= 0.0f) {
+                } else if (zlVar.f41034f <= 0.0f) {
                     f12 = interpolation;
                 } else {
                     f12 = 1.0f;
                 }
                 t4Var.setAlpha((int) (f12 * 255.0f));
-                t4Var.e(canvas, zlVar.f41026y, null);
-                zlVar.f41018p += f17;
-                zlVar.f41016n += f17;
-                zlVar.f41019q -= f17;
-                zlVar.f41017o -= f17;
+                t4Var.e(canvas, zlVar.f41051y, null);
+                zlVar.f41043p += f17;
+                zlVar.f41041n += f17;
+                zlVar.f41044q -= f17;
+                zlVar.f41042o -= f17;
             } else {
                 f11 = 2.0f;
             }
-            zlVar.f41020r = zlVar.f41017o - zlVar.f41016n;
-            zlVar.f41021s = zlVar.f41019q - zlVar.f41018p;
+            zlVar.f41045r = zlVar.f41042o - zlVar.f41041n;
+            zlVar.f41046s = zlVar.f41044q - zlVar.f41043p;
             int size2 = arrayList3.size();
             for (int i15 = 0; i15 < size2; i15++) {
                 yl ylVar2 = (yl) arrayList3.get(i15);
-                if (ylVar2 != null && (((ylVar = bmVar2.J) == null || ylVar.f40631b != ylVar2.f40631b) && ylVar2.c(canvas, false))) {
+                if (ylVar2 != null && (((ylVar = bmVar2.J) == null || ylVar.f40650b != ylVar2.f40650b) && ylVar2.c(canvas, false))) {
                     z10 = true;
                 }
             }
-            Paint paint = zlVar.f41024w;
-            RectF rectF = zlVar.f41022t;
-            long j3 = zlVar.f41011i;
+            Paint paint = zlVar.f41049w;
+            RectF rectF = zlVar.f41047t;
+            long j3 = zlVar.f41036i;
             if (j3 <= 0) {
                 i7 = size;
                 i10 = i12;
                 i11 = i13;
                 f10 = b10;
             } else {
-                if (zlVar.f41023u == null || zlVar.v != j3) {
+                if (zlVar.f41048u == null || zlVar.v != j3) {
                     zlVar.v = j3;
-                    zlVar.f41023u = new ly0(bi.dd.a1(false, org.telegram.messenger.hd.H(',', "UnlockPaidContent", (int) j3), 0.7f, null), 14.0f, org.telegram.messenger.g0.o());
+                    zlVar.f41048u = new ly0(bi.dd.a1(false, org.telegram.messenger.hd.H(',', "UnlockPaidContent", (int) j3), 0.7f, null), 14.0f, org.telegram.messenger.g0.o());
                 }
-                float L = org.telegram.messenger.g0.L(28.0f) + zlVar.f41023u.f35777c;
+                float L = org.telegram.messenger.g0.L(28.0f) + zlVar.f41048u.f35782c;
                 float L2 = org.telegram.messenger.g0.L(32.0f);
-                float f18 = zlVar.f41016n;
-                float f19 = zlVar.f41020r;
+                float f18 = zlVar.f41041n;
+                float f19 = zlVar.f41045r;
                 float f20 = f11;
                 float A = com.google.android.recaptcha.internal.a.A(f19, L, f20, f18);
                 i7 = size;
-                float f21 = zlVar.f41018p;
+                float f21 = zlVar.f41043p;
                 i10 = i12;
-                float f22 = zlVar.f41021s;
+                float f22 = zlVar.f41046s;
                 i11 = i13;
                 rectF.set(A, com.google.android.recaptcha.internal.a.A(f22, L2, f20, f21), org.telegram.messenger.k5.a(f19, L, f20, f18), org.telegram.messenger.k5.a(f22, L2, f20, f21));
                 paint.setColor(1610612736);
                 float f23 = L2 / f20;
                 canvas.drawRoundRect(rectF, f23, f23, paint);
                 f10 = b10;
-                zlVar.f41023u.c(org.telegram.messenger.g0.L(14.0f) + (((zlVar.f41020r / f20) + zlVar.f41016n) - (L / f20)), zlVar.f41018p + (zlVar.f41021s / f20), 1.0f, -1, canvas);
+                zlVar.f41048u.c(org.telegram.messenger.g0.L(14.0f) + (((zlVar.f41045r / f20) + zlVar.f41041n) - (L / f20)), zlVar.f41043p + (zlVar.f41046s / f20), 1.0f, -1, canvas);
             }
             if (z10) {
                 invalidate();
             }
             canvas.translate(0.0f, f10);
             f14 += f10;
-            i13 = ((ArrayList) zlVar.f41013k.f38982f).size() + i11;
+            i13 = ((ArrayList) zlVar.f41038k.f38979f).size() + i11;
             i12 = i10 + 1;
             size = i7;
             arrayList2 = arrayList;
         }
-        org.telegram.ui.Cells.t0 t0Var = this.f31835a;
+        org.telegram.ui.Cells.t0 t0Var = this.f31847a;
         t0Var.i0(f14, t0Var.getMeasuredHeight());
         if (t0Var.Q()) {
             t0Var.E(canvas, true);
@@ -568,17 +568,17 @@ public final class am extends ViewGroup {
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        org.telegram.ui.Cells.t0 t0Var = this.f31835a;
+        org.telegram.ui.Cells.t0 t0Var = this.f31847a;
         t0Var.layout(0, 0, t0Var.getMeasuredWidth(), t0Var.getMeasuredHeight());
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        this.f31835a.measure(i7, View.MeasureSpec.makeMeasureSpec(9999, Integer.MIN_VALUE));
-        if (this.f31842s <= 0) {
-            this.f31842s = jg.g.e(45.0f, org.telegram.messenger.g0.f22537q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), e());
+        this.f31847a.measure(i7, View.MeasureSpec.makeMeasureSpec(9999, Integer.MIN_VALUE));
+        if (this.f31854s <= 0) {
+            this.f31854s = jg.g.e(45.0f, org.telegram.messenger.g0.f22537q.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), e());
         }
-        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i10), this.f31842s), 1073741824));
+        super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(Math.max(View.MeasureSpec.getSize(i10), this.f31854s), 1073741824));
     }
 
     @Override

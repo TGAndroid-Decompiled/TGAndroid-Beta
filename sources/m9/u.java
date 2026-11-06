@@ -471,14 +471,14 @@ public final class u implements Runnable {
             case 27:
                 ArrayList arrayList2 = (ArrayList) this.f19994b;
                 for (int i15 = 0; i15 < arrayList2.size(); i15++) {
-                    if (arrayList2.get(i15) != null && ((uo) arrayList2.get(i15)).f38697a != null) {
-                        ((uo) arrayList2.get(i15)).f38697a.m(0);
+                    if (arrayList2.get(i15) != null && ((uo) arrayList2.get(i15)).f38688a != null) {
+                        ((uo) arrayList2.get(i15)).f38688a.m(0);
                     }
                 }
                 org.telegram.messenger.g0.h3(new hi(2, this, arrayList2));
                 return;
             case 28:
-                an anVar = ((ll) this.f19995c).f47531b;
+                an anVar = ((ll) this.f19995c).f47558b;
                 if (this == anVar.Z5) {
                     anVar.yb((CharSequence) this.f19994b, false);
                     anVar.Z5 = null;
@@ -505,7 +505,7 @@ public final class u implements Runnable {
                 tL_chatBannedRights.embed_links = z19;
                 tL_chatBannedRights.send_polls = z19;
                 tL_chatBannedRights.send_reactions = z19;
-                org.telegram.messenger.g0.b4(oqVar.f48447c);
+                org.telegram.messenger.g0.b4(oqVar.f48475c);
                 iq B0 = oqVar.B0();
                 oqVar.G0();
                 oqVar.F0(B0);
@@ -518,9 +518,9 @@ public final class u implements Runnable {
             case 0:
                 android.support.v4.media.session.a0 a0Var = new android.support.v4.media.session.a0(u.class.getSimpleName(), 28);
                 wf.b bVar = new wf.b(19, false);
-                ((wf.b) a0Var.d).f57539c = bVar;
+                ((wf.b) a0Var.d).f57564c = bVar;
                 a0Var.d = bVar;
-                bVar.f57538b = (t) this.f19995c;
+                bVar.f57563b = (t) this.f19995c;
                 return a0Var.toString();
             default:
                 return super.toString();

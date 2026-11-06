@@ -9,31 +9,31 @@ import h6.h;
 import h6.j;
 import q6.m;
 public final class a extends g {
-    public final h f57531a;
-    public final g6.g f57532b;
-    public final g6.c f57533c;
+    public final h f57556a;
+    public final g6.g f57557b;
+    public final g6.c f57558c;
     public g7.c d;
-    public int f57534e;
-    public int f57535f;
-    public int f57536g;
+    public int f57559e;
+    public int f57560f;
+    public int f57561g;
     public int h;
 
     public a(g6.c cVar, g6.g gVar, h hVar) {
-        this.f57533c = cVar;
-        this.f57532b = gVar;
-        this.f57531a = hVar;
+        this.f57558c = cVar;
+        this.f57557b = gVar;
+        this.f57556a = hVar;
     }
 
     @Override
     public final void a() {
-        Log.d("CAST_CLIENT", "onAdBreakStatusUpdated " + this.f57533c.a());
+        Log.d("CAST_CLIENT", "onAdBreakStatusUpdated " + this.f57558c.a());
     }
 
     @Override
     public final void b(MediaError mediaError) {
         int i7;
         StringBuilder sb2 = new StringBuilder("onMediaError ");
-        sb2.append(this.f57533c.a());
+        sb2.append(this.f57558c.a());
         sb2.append(" ");
         Integer num = mediaError.f6491c;
         sb2.append(num);
@@ -45,40 +45,40 @@ public final class a extends g {
         } else {
             i7 = -1;
         }
-        this.f57534e = i7;
+        this.f57559e = i7;
     }
 
     @Override
     public final void c() {
-        Log.d("CAST_CLIENT", "onMetadataUpdated " + this.f57533c.a());
+        Log.d("CAST_CLIENT", "onMetadataUpdated " + this.f57558c.a());
     }
 
     @Override
     public final void d() {
-        Log.d("CAST_CLIENT", "onPreloadStatusUpdated " + this.f57533c.a());
+        Log.d("CAST_CLIENT", "onPreloadStatusUpdated " + this.f57558c.a());
     }
 
     @Override
     public final void e() {
-        Log.d("CAST_CLIENT", "onQueueStatusUpdated " + this.f57533c.a());
+        Log.d("CAST_CLIENT", "onQueueStatusUpdated " + this.f57558c.a());
     }
 
     @Override
     public final void f() {
-        Log.d("CAST_CLIENT", "onSendingRemoteMediaRequest " + this.f57533c.a());
+        Log.d("CAST_CLIENT", "onSendingRemoteMediaRequest " + this.f57558c.a());
     }
 
     @Override
     public final void g() {
-        Log.d("CAST_CLIENT", "onStatusUpdated " + this.f57533c.a());
-        int b10 = this.f57531a.b();
-        if (b10 != this.f57535f) {
+        Log.d("CAST_CLIENT", "onStatusUpdated " + this.f57558c.a());
+        int b10 = this.f57556a.b();
+        if (b10 != this.f57560f) {
             Log.d("CAST_CLIENT", "idleReason " + b10);
-            this.f57535f = b10;
+            this.f57560f = b10;
             if (b10 == 2) {
-                this.f57532b.b(true);
+                this.f57557b.b(true);
             } else if (b10 == 4) {
-                int i7 = this.f57534e;
+                int i7 = this.f57559e;
                 if (i7 == 104) {
                     q(true);
                 } else if (i7 == 102) {
@@ -90,23 +90,23 @@ public final class a extends g {
 
     public final void p() {
         e eVar;
-        this.f57534e = -1;
+        this.f57559e = -1;
         if (this.d == null) {
             this.d = null;
             return;
         }
         String i7 = d.i();
-        if (this.f57536g < this.d.f13573a.size()) {
-            eVar = this.d.a(this.f57536g);
+        if (this.f57561g < this.d.f13573a.size()) {
+            eVar = this.d.a(this.f57561g);
         } else {
-            eVar = d.f57543l;
+            eVar = d.f57568l;
         }
-        MediaInfo mediaInfo = new MediaInfo(d.j(i7, eVar.d) + ("?index=" + this.f57536g + "&attempt=" + this.h), 1, eVar.f57551a, eVar.f57552b, -1L, null, null, null, null, null, null, null, -1L, null, null, null, null);
+        MediaInfo mediaInfo = new MediaInfo(d.j(i7, eVar.d) + ("?index=" + this.f57561g + "&attempt=" + this.h), 1, eVar.f57576a, eVar.f57577b, -1L, null, null, null, null, null, null, null, -1L, null, null, null, null);
         Boolean bool = Boolean.TRUE;
         if (Double.compare(1.0d, 2.0d) <= 0 && Double.compare(1.0d, 0.5d) >= 0) {
             k kVar = new k(mediaInfo, null, bool, -1L, 1.0d, null, null, null, null, null, null, 0L);
             m.d("Must be called from the main thread.");
-            h hVar = this.f57531a;
+            h hVar = this.f57556a;
             if (!hVar.w()) {
                 h.t();
                 return;
@@ -120,16 +120,16 @@ public final class a extends g {
 
     public final void q(boolean z9) {
         if (z9) {
-            this.f57536g++;
+            this.f57561g++;
         } else {
             int i7 = this.h + 1;
             this.h = i7;
             if (i7 > 3) {
                 this.h = 0;
-                this.f57536g++;
+                this.f57561g++;
             }
         }
-        Log.e("CAST_CLIENT", "next attempt " + this.f57534e + " " + this.f57536g + " " + this.h);
+        Log.e("CAST_CLIENT", "next attempt " + this.f57559e + " " + this.f57561g + " " + this.h);
         p();
     }
 }

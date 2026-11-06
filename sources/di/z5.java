@@ -28,7 +28,7 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.mt0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.q11;
-import org.telegram.ui.tt0;
+import org.telegram.ui.ut0;
 public final class z5 implements Runnable {
     public final int f10015a;
     public final boolean f10016b;
@@ -224,9 +224,9 @@ public final class z5 implements Runnable {
                                 if (str4 != str3) {
                                     return;
                                 }
-                                q11Var3.f49048z1 = true;
+                                q11Var3.f49075z1 = true;
                                 q11Var3.z(true, z14);
-                                i01 i01Var = q11Var3.f49004f0;
+                                i01 i01Var = q11Var3.f49031f0;
                                 if (i01Var != null) {
                                     i01Var.d(true);
                                 }
@@ -255,7 +255,7 @@ public final class z5 implements Runnable {
                                     arrayList15.clear();
                                 }
                                 int i16 = 0;
-                                q11Var3.f49010i0.v0(0);
+                                q11Var3.f49037i0.v0(0);
                                 int i17 = q11Var3.W;
                                 if (i17 == 1 || i17 == 14 || i17 == 11 || i17 == 2) {
                                     ArrayList arrayList16 = arrayList8;
@@ -295,7 +295,7 @@ public final class z5 implements Runnable {
                                     i16++;
                                     q11Var3.D1.addAll((ArrayList) obj6);
                                 }
-                                q11Var3.f49024q0.E(true ^ z15);
+                                q11Var3.f49051q0.E(true ^ z15);
                             }
                         });
                     }
@@ -308,7 +308,7 @@ public final class z5 implements Runnable {
                             switch (r4) {
                                 case 0:
                                     q11 q11Var2 = q11Var;
-                                    org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f48987b2, str, false, new lk0(12, linkedHashSet2, (Runnable) obj4), false, false, false, false, 0);
+                                    org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49014b2, str, false, new lk0(12, linkedHashSet2, (Runnable) obj4), false, false, false, false, 0);
                                     return;
                                 default:
                                     q11 q11Var3 = q11Var;
@@ -356,7 +356,7 @@ public final class z5 implements Runnable {
                                         return;
                                     default:
                                         q11 q11Var2 = q11Var;
-                                        org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f48987b2, str, false, new a1.d(q11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
+                                        org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49014b2, str, false, new a1.d(q11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -391,7 +391,7 @@ public final class z5 implements Runnable {
                                         return;
                                     default:
                                         q11 q11Var2 = q11Var;
-                                        org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f48987b2, str, false, new a1.d(q11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
+                                        org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49014b2, str, false, new a1.d(q11Var2, arrayList5, arrayList4, (Runnable) obj4, 18), false, false, false, false, 0);
                                         return;
                                 }
                             }
@@ -406,7 +406,7 @@ public final class z5 implements Runnable {
                             switch (r4) {
                                 case 0:
                                     q11 q11Var2 = q11Var;
-                                    org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f48987b2, str, false, new lk0(12, linkedHashSet, (Runnable) obj4), false, false, false, false, 0);
+                                    org.telegram.messenger.ui.b0(q11Var2.V).V(q11.f49014b2, str, false, new lk0(12, linkedHashSet, (Runnable) obj4), false, false, false, false, 0);
                                     return;
                                 default:
                                     q11 q11Var3 = q11Var;
@@ -421,13 +421,13 @@ public final class z5 implements Runnable {
                                     return;
                             }
                         }
-                    }, new s2(q11Var, strArr, str, linkedHashSet, 12), new tt0(q11Var, d, linkedHashSet, str, hashMap, arrayList4), new s2((Object) q11Var, str, arrayList6, (Object) hashMap2, 13), new org.telegram.ui.y(q11Var, str, arrayList7, 12), c20Var2);
+                    }, new s2(q11Var, strArr, str, linkedHashSet, 12), new ut0(q11Var, d, linkedHashSet, str, hashMap, arrayList4), new s2((Object) q11Var, str, arrayList6, (Object) hashMap2, 13), new org.telegram.ui.y(q11Var, str, arrayList7, 12), c20Var2);
                     return;
                 }
             case 4:
                 p4.v vVar = (p4.v) obj;
                 p4.d0 d0Var = ((p4.m0) ((m.c3) obj3).d).h;
-                p4.g1 g1Var = d0Var.f53100t;
+                p4.g1 g1Var = d0Var.f53126t;
                 za.b(g1Var, (p4.w) obj2);
                 int i17 = g1Var.i();
                 if (z11) {
@@ -465,11 +465,11 @@ public final class z5 implements Runnable {
             default:
                 Bitmap[] bitmapArr = (Bitmap[]) obj2;
                 CountDownLatch countDownLatch = (CountDownLatch) obj;
-                sg.j0 j0Var = ((sg.u0) obj3).D.f55134c;
-                mt0 mt0Var = j0Var.f54974g;
-                sg.i0 h = j0Var.h(new RectF(0.0f, 0.0f, mt0Var.f36132a, mt0Var.f36133b), false, z11, z10);
+                sg.j0 j0Var = ((sg.u0) obj3).D.f55159c;
+                mt0 mt0Var = j0Var.f54999g;
+                sg.i0 h = j0Var.h(new RectF(0.0f, 0.0f, mt0Var.f36070a, mt0Var.f36071b), false, z11, z10);
                 if (h != null) {
-                    bitmapArr[0] = (Bitmap) h.f54951b;
+                    bitmapArr[0] = (Bitmap) h.f54976b;
                 }
                 countDownLatch.countDown();
                 return;

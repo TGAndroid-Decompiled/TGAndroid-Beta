@@ -34,7 +34,7 @@ public interface hx {
 
     void n();
 
-    void o(n31 n31Var);
+    void o(s31 s31Var);
 
     float p();
 

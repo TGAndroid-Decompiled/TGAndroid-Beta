@@ -47,7 +47,7 @@ public final class r8 extends FrameLayout implements org.telegram.ui.ActionBar.a
         this.f12754w = true;
         this.f12755x = new boolean[1];
         this.f12746a = f6Var;
-        w8Var.f39907r = org.telegram.messenger.g0.L(40.0f);
+        w8Var.f39914r = org.telegram.messenger.g0.L(40.0f);
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
         this.f12748c = l9Var;
         l9Var.setRoundRadius(org.telegram.messenger.g0.L(20.0f));

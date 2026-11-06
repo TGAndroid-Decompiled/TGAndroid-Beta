@@ -9,46 +9,46 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.LinearInterpolator;
 import org.telegram.messenger.r2;
 public class c0 extends z0 {
-    public static final boolean f56909q;
-    public PointF f56912k;
-    public final DisplayMetrics f56913l;
-    public float f56915n;
-    public final LinearInterpolator f56910i = new LinearInterpolator();
-    public final DecelerateInterpolator f56911j = new DecelerateInterpolator();
-    public boolean f56914m = false;
-    public int f56916o = 0;
-    public int f56917p = 0;
+    public static final boolean f56934q;
+    public PointF f56937k;
+    public final DisplayMetrics f56938l;
+    public float f56940n;
+    public final LinearInterpolator f56935i = new LinearInterpolator();
+    public final DecelerateInterpolator f56936j = new DecelerateInterpolator();
+    public boolean f56939m = false;
+    public int f56941o = 0;
+    public int f56942p = 0;
 
     static {
         boolean z9 = r2.f25191a;
-        f56909q = true;
+        f56934q = true;
     }
 
     public c0(Context context) {
-        this.f56913l = context.getResources().getDisplayMetrics();
+        this.f56938l = context.getResources().getDisplayMetrics();
     }
 
     @Override
     public final void d(int i7, int i10, y0 y0Var) {
         PointF pointF;
-        if (this.f57097b.f2873y.r() == 0) {
+        if (this.f57122b.f2873y.r() == 0) {
             h();
-        } else if (f56909q && (pointF = this.f56912k) != null && (pointF.x * i7 < 0.0f || pointF.y * i10 < 0.0f)) {
+        } else if (f56934q && (pointF = this.f56937k) != null && (pointF.x * i7 < 0.0f || pointF.y * i10 < 0.0f)) {
             throw new IllegalStateException("Scroll happened in the opposite direction of the target. Some calculations are wrong");
         } else {
-            int i11 = this.f56916o;
+            int i11 = this.f56941o;
             int i12 = i11 - i7;
             int i13 = 0;
             if (i11 * i12 <= 0) {
                 i12 = 0;
             }
-            this.f56916o = i12;
-            int i14 = this.f56917p;
+            this.f56941o = i12;
+            int i14 = this.f56942p;
             int i15 = i14 - i10;
             if (i14 * i15 > 0) {
                 i13 = i15;
             }
-            this.f56917p = i13;
+            this.f56942p = i13;
             if (i12 == 0 && i13 == 0) {
                 q(y0Var);
             }
@@ -57,9 +57,9 @@ public class c0 extends z0 {
 
     @Override
     public final void f() {
-        this.f56917p = 0;
-        this.f56916o = 0;
-        this.f56912k = null;
+        this.f56942p = 0;
+        this.f56941o = 0;
+        this.f56937k = null;
     }
 
     @Override
@@ -68,7 +68,7 @@ public class c0 extends z0 {
         int k10 = k(p(), view);
         int m10 = m((int) Math.sqrt((k10 * k10) + (j3 * j3)));
         if (m10 > 0) {
-            y0Var.b(-j3, -k10, m10, this.f56911j);
+            y0Var.b(-j3, -k10, m10, this.f56936j);
         }
     }
 
@@ -94,19 +94,19 @@ public class c0 extends z0 {
     }
 
     public final int j(int i7, View view) {
-        n0 n0Var = this.f57098c;
+        n0 n0Var = this.f57123c;
         if (n0Var != null && n0Var.d()) {
             o0 o0Var = (o0) view.getLayoutParams();
-            return i(n0.x(view) - ((ViewGroup.MarginLayoutParams) o0Var).leftMargin, n0.y(view) + ((ViewGroup.MarginLayoutParams) o0Var).rightMargin, n0Var.D(), n0Var.f57024m - n0Var.E(), i7);
+            return i(n0.x(view) - ((ViewGroup.MarginLayoutParams) o0Var).leftMargin, n0.y(view) + ((ViewGroup.MarginLayoutParams) o0Var).rightMargin, n0Var.D(), n0Var.f57049m - n0Var.E(), i7);
         }
         return 0;
     }
 
     public int k(int i7, View view) {
-        n0 n0Var = this.f57098c;
+        n0 n0Var = this.f57123c;
         if (n0Var != null && n0Var.e()) {
             o0 o0Var = (o0) view.getLayoutParams();
-            return i(n0.z(view) - ((ViewGroup.MarginLayoutParams) o0Var).topMargin, n0.v(view) + ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin, n0Var.F(), n0Var.f57025n - n0Var.C(), i7);
+            return i(n0.z(view) - ((ViewGroup.MarginLayoutParams) o0Var).topMargin, n0.v(view) + ((ViewGroup.MarginLayoutParams) o0Var).bottomMargin, n0Var.F(), n0Var.f57050n - n0Var.C(), i7);
         }
         return 0;
     }
@@ -121,15 +121,15 @@ public class c0 extends z0 {
 
     public int n(int i7) {
         float abs = Math.abs(i7);
-        if (!this.f56914m) {
-            this.f56915n = l(this.f56913l);
-            this.f56914m = true;
+        if (!this.f56939m) {
+            this.f56940n = l(this.f56938l);
+            this.f56939m = true;
         }
-        return (int) Math.ceil(abs * this.f56915n);
+        return (int) Math.ceil(abs * this.f56940n);
     }
 
     public final int o() {
-        PointF pointF = this.f56912k;
+        PointF pointF = this.f56937k;
         if (pointF != null) {
             float f10 = pointF.x;
             if (f10 != 0.0f) {
@@ -144,7 +144,7 @@ public class c0 extends z0 {
     }
 
     public int p() {
-        PointF pointF = this.f56912k;
+        PointF pointF = this.f56937k;
         if (pointF != null) {
             float f10 = pointF.y;
             if (f10 != 0.0f) {
@@ -159,16 +159,16 @@ public class c0 extends z0 {
     }
 
     public void q(y0 y0Var) {
-        PointF a10 = a(this.f57096a);
+        PointF a10 = a(this.f57121a);
         if (a10 != null && (a10.x != 0.0f || a10.y != 0.0f)) {
             z0.b(a10);
-            this.f56912k = a10;
-            this.f56916o = (int) (a10.x * 10000.0f);
-            this.f56917p = (int) (a10.y * 10000.0f);
-            y0Var.b((int) (this.f56916o * 1.2f), (int) (this.f56917p * 1.2f), (int) (n(10000) * 1.2f), this.f56910i);
+            this.f56937k = a10;
+            this.f56941o = (int) (a10.x * 10000.0f);
+            this.f56942p = (int) (a10.y * 10000.0f);
+            y0Var.b((int) (this.f56941o * 1.2f), (int) (this.f56942p * 1.2f), (int) (n(10000) * 1.2f), this.f56935i);
             return;
         }
-        y0Var.d = this.f57096a;
+        y0Var.d = this.f57121a;
         h();
     }
 

@@ -6,17 +6,17 @@ import android.graphics.RectF;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class px0 extends FrameLayout {
-    public final sx0 f37199a;
-    public boolean f37200b;
-    public boolean f37201c;
+    public final sx0 f37078a;
+    public boolean f37079b;
+    public boolean f37080c;
     public boolean d;
-    public boolean f37202e;
+    public boolean f37081e;
 
     public px0(sx0 sx0Var, View view, boolean z9) {
         super(sx0Var.getContext());
         this.d = false;
-        this.f37202e = true;
-        this.f37199a = sx0Var;
+        this.f37081e = true;
+        this.f37078a = sx0Var;
         setWillNotDraw(false);
         if (!z9) {
             setPadding(org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f), org.telegram.messenger.g0.L(12.66f), org.telegram.messenger.g0.L(9.33f));
@@ -31,13 +31,13 @@ public final class px0 extends FrameLayout {
         float f11;
         float f12;
         float f13;
-        boolean z9 = this.f37200b;
-        sx0 sx0Var = this.f37199a;
-        if (z9 || this.f37201c) {
+        boolean z9 = this.f37079b;
+        sx0 sx0Var = this.f37078a;
+        if (z9 || this.f37080c) {
             canvas2 = canvas;
             float L = org.telegram.messenger.g0.L(10.0f);
-            float[] fArr = sx0Var.f38182c;
-            boolean z10 = this.f37200b;
+            float[] fArr = sx0Var.f38142c;
+            boolean z10 = this.f37079b;
             if (z10 && this.d) {
                 f10 = L;
             } else {
@@ -45,15 +45,15 @@ public final class px0 extends FrameLayout {
             }
             fArr[1] = f10;
             fArr[0] = f10;
-            if (z10 && this.f37202e) {
+            if (z10 && this.f37081e) {
                 f11 = L;
             } else {
                 f11 = 0.0f;
             }
             fArr[3] = f11;
             fArr[2] = f11;
-            boolean z11 = this.f37201c;
-            if (z11 && this.f37202e) {
+            boolean z11 = this.f37080c;
+            if (z11 && this.f37081e) {
                 f12 = L;
             } else {
                 f12 = 0.0f;
@@ -65,27 +65,27 @@ public final class px0 extends FrameLayout {
             }
             fArr[7] = L;
             fArr[6] = L;
-            sx0Var.f38181b.rewind();
+            sx0Var.f38141b.rewind();
             RectF rectF = org.telegram.messenger.g0.P;
             float f14 = sx0Var.h;
             float width = getWidth() - sx0Var.h;
             float height = getHeight();
             float f15 = sx0Var.h;
-            if (this.f37201c) {
+            if (this.f37080c) {
                 f13 = -1.0f;
             } else {
                 f13 = 1.0f;
             }
             rectF.set(f14, f14, width, (f15 * f13) + height);
-            if (!this.f37202e) {
-                rectF.right += sx0Var.f38184f;
+            if (!this.f37081e) {
+                rectF.right += sx0Var.f38144f;
             }
-            sx0Var.f38181b.addRoundRect(rectF, sx0Var.f38182c, Path.Direction.CW);
-            canvas2.drawPath(sx0Var.f38181b, sx0Var.f38183e);
+            sx0Var.f38141b.addRoundRect(rectF, sx0Var.f38142c, Path.Direction.CW);
+            canvas2.drawPath(sx0Var.f38141b, sx0Var.f38143e);
         } else {
             float f16 = sx0Var.h;
             canvas2 = canvas;
-            canvas2.drawRect(f16, f16, getWidth() - sx0Var.h, getHeight() + sx0Var.h, sx0Var.f38183e);
+            canvas2.drawRect(f16, f16, getWidth() - sx0Var.h, getHeight() + sx0Var.h, sx0Var.f38143e);
         }
         super.onDraw(canvas2);
     }

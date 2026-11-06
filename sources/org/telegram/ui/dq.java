@@ -5,20 +5,20 @@ import java.util.Collections;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class dq implements hq {
-    public final oq f45099a;
+    public final oq f45128a;
 
     public dq(oq oqVar) {
-        this.f45099a = oqVar;
+        this.f45128a = oqVar;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        oq.h0(this.f45099a, user);
+        oq.h0(this.f45128a, user);
     }
 
     @Override
     public final void b(long j3) {
-        oq oqVar = this.f45099a;
+        oq oqVar = this.f45128a;
         ArrayList arrayList = oqVar.E;
         a0.h hVar = oqVar.J;
         TLRPC.User a22 = oqVar.getMessagesController().a2(Long.valueOf(j3));
@@ -42,7 +42,7 @@ public final class dq implements hq {
 
     @Override
     public final void c(long j3, TLObject tLObject) {
-        oq oqVar = this.f45099a;
+        oq oqVar = this.f45128a;
         ArrayList arrayList = oqVar.E;
         a0.h hVar = oqVar.J;
         if (tLObject != null && hVar.f(j3) == null) {

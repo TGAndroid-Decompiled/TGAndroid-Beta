@@ -1,25 +1,40 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class g31 implements vv0 {
-    public final n31 f33816a;
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.tgnet.ConnectionsManager;
+public final class g31 extends el0 {
+    public final s31 f33746f;
 
-    public g31(n31 n31Var) {
-        this.f33816a = n31Var;
+    public g31(s31 s31Var, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
+        super(context, 14.0f, f6Var);
+        this.f33746f = s31Var;
     }
 
     @Override
-    public final void a(TLRPC.Document document, String str, Object obj, org.telegram.messenger.ej ejVar, boolean z9, boolean z10, int i7, int i10) {
-        this.f33816a.f36232b.f(document, obj, z10, i7);
-    }
-
-    @Override
-    public final boolean b() {
-        return this.f33816a.f36232b.a();
-    }
-
-    @Override
-    public final boolean c() {
-        return this.f33816a.f36232b.c();
+    public final void a(String str) {
+        jg.d2 d2Var = this.f33746f.f37875w;
+        jg.b2 b2Var = d2Var.S;
+        int i7 = d2Var.f16696c;
+        if (d2Var.N != 0) {
+            ConnectionsManager.getInstance(i7).cancelRequest(d2Var.N, true);
+            d2Var.N = 0;
+        }
+        if (d2Var.O != 0) {
+            ConnectionsManager.getInstance(i7).cancelRequest(d2Var.O, true);
+            d2Var.O = 0;
+        }
+        if (TextUtils.isEmpty(str)) {
+            d2Var.R = null;
+            d2Var.F.clear();
+            d2Var.I.clear();
+            d2Var.E.clear();
+            d2Var.f16697e.b(false);
+            d2Var.f();
+        } else {
+            d2Var.R = str.toLowerCase();
+        }
+        org.telegram.messenger.g0.r(b2Var);
+        org.telegram.messenger.g0.i3(b2Var, 300L);
     }
 }

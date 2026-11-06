@@ -4,21 +4,21 @@ import android.os.Bundle;
 import android.view.View;
 import java.util.ArrayList;
 public final class ku implements org.telegram.ui.Components.bj0 {
-    public final int f47287a;
-    public final ww f47288b;
+    public final int f47314a;
+    public final ww f47315b;
 
     public ku(ww wwVar, int i7) {
-        this.f47287a = i7;
-        this.f47288b = wwVar;
+        this.f47314a = i7;
+        this.f47315b = wwVar;
     }
 
     @Override
     public final void c(int i7, View view) {
         jg.o0 o0Var;
-        switch (this.f47287a) {
+        switch (this.f47314a) {
             case 0:
-                ww wwVar = this.f47288b;
-                Object obj = wwVar.C0.f33656x0.G(i7).G;
+                ww wwVar = this.f47315b;
+                Object obj = wwVar.C0.f33600x0.G(i7).G;
                 if (obj instanceof org.telegram.messenger.ij) {
                     org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) obj;
                     Bundle bundle = new Bundle();
@@ -43,9 +43,9 @@ public final class ku implements org.telegram.ui.Components.bj0 {
                     return;
                 }
             default:
-                ww wwVar2 = this.f47288b;
-                wwVar2.f51518b0.I0(true);
-                ArrayList arrayList = wwVar2.f51518b0.f16888e3;
+                ww wwVar2 = this.f47315b;
+                wwVar2.f51535b0.I0(true);
+                ArrayList arrayList = wwVar2.f51535b0.f16888e3;
                 if (arrayList.isEmpty()) {
                     o0Var = jg.q0.j3[i7];
                 } else {

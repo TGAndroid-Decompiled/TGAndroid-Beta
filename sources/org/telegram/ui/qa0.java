@@ -2,24 +2,24 @@ package org.telegram.ui;
 
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class qa0 implements Runnable {
-    public final int f49151a;
-    public final ce0 f49152b;
+    public final int f49178a;
+    public final ce0 f49179b;
 
     public qa0(ce0 ce0Var, int i7) {
-        this.f49151a = i7;
-        this.f49152b = ce0Var;
+        this.f49178a = i7;
+        this.f49179b = ce0Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f49151a;
-        ce0 ce0Var = this.f49152b;
+        int i7 = this.f49178a;
+        ce0 ce0Var = this.f49179b;
         switch (i7) {
             case 0:
-                ce0Var.f44741c0 = false;
+                ce0Var.f44762c0 = false;
                 return;
             case 1:
-                ce0Var.f44766w0 = false;
+                ce0Var.f44787w0 = false;
                 ce0Var.P1(true, true);
                 return;
             default:

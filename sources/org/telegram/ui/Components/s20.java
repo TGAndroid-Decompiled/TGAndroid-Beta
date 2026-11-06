@@ -4,20 +4,20 @@ import android.view.View;
 import java.io.Serializable;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class s20 implements org.telegram.messenger.a20, org.telegram.messenger.b20 {
-    public final t20 f37918a;
+    public final t20 f37864a;
 
     public s20(t20 t20Var) {
-        this.f37918a = t20Var;
+        this.f37864a = t20Var;
     }
 
     @Override
-    public Boolean a(r31 r31Var, View view, Integer num, Float f10, Float f11) {
-        int i7 = r31Var.d;
+    public Boolean a(w31 w31Var, View view, Integer num, Float f10, Float f11) {
+        int i7 = w31Var.d;
         boolean z9 = false;
         if (i7 != 0) {
-            t20 t20Var = this.f37918a;
-            String str = (String) t20Var.f38238c.get(i7 - 1);
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, t20Var.getContext(), t20Var.f38237b);
+            t20 t20Var = this.f37864a;
+            String str = (String) t20Var.f38197c.get(i7 - 1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, t20Var.getContext(), t20Var.f38196b);
             String M0 = org.telegram.messenger.hd.M0(2131752054, null);
             org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
             u1Var.R = M0;
@@ -36,18 +36,18 @@ public final class s20 implements org.telegram.messenger.a20, org.telegram.messe
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        int i7 = ((r31) obj).d;
-        t20 t20Var = this.f37918a;
+        int i7 = ((w31) obj).d;
+        t20 t20Var = this.f37864a;
         if (i7 == 0) {
-            org.telegram.messenger.oa a10 = org.telegram.messenger.oa.a(t20Var.f38236a);
+            org.telegram.messenger.oa a10 = org.telegram.messenger.oa.a(t20Var.f38195a);
             a10.f24305f.clear();
             a10.d();
-            t20Var.f38240f.O(true);
+            t20Var.f38199f.O(true);
             return;
         }
         org.telegram.messenger.c20 c20Var = t20Var.h;
         if (c20Var != null) {
-            c20Var.a((String) t20Var.f38238c.get(i7 - 1));
+            c20Var.a((String) t20Var.f38197c.get(i7 - 1));
         }
     }
 }

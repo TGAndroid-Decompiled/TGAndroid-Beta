@@ -10,11 +10,11 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class o10 implements View.OnClickListener {
-    public final m4 f48179a = new m4(this, 6);
-    public final c40 f48180b;
+    public final m4 f48208a = new m4(this, 6);
+    public final c40 f48209b;
 
     public o10(c40 c40Var) {
-        this.f48180b = c40Var;
+        this.f48209b = c40Var;
     }
 
     @Override
@@ -22,20 +22,20 @@ public final class o10 implements View.OnClickListener {
         org.telegram.ui.Components.y20 y20Var;
         int i7;
         TLObject M0;
-        c40 c40Var = this.f48180b;
-        m10 m10Var = c40Var.f44606t1;
-        ArrayList arrayList = c40Var.f44552h2;
-        org.telegram.ui.Components.voip.n2 n2Var = c40Var.f44602s1;
+        c40 c40Var = this.f48209b;
+        m10 m10Var = c40Var.f44627t1;
+        ArrayList arrayList = c40Var.f44573h2;
+        org.telegram.ui.Components.voip.n2 n2Var = c40Var.f44623s1;
         org.telegram.ui.Components.zg0 zg0Var = c40Var.B2;
-        org.telegram.messenger.c cVar = c40Var.f44565k1;
-        if (c40Var.R2 != null && c40Var.f44621w3 != 3) {
+        org.telegram.messenger.c cVar = c40Var.f44586k1;
+        if (c40Var.R2 != null && c40Var.f44642w3 != 3) {
             int i10 = 6;
             int i11 = 0;
             if (c40Var.u1() && !c40Var.R2.j()) {
                 z10 z10Var = c40Var.R3;
-                if (z10Var != null && z10Var.f39240b && (org.telegram.messenger.g0.Q1() || c40.f44521w5 == c40Var.t1())) {
+                if (z10Var != null && z10Var.f39237b && (org.telegram.messenger.g0.Q1() || c40.f44542w5 == c40Var.t1())) {
                     c40Var.h1(null);
-                    if (c40.f44521w5) {
+                    if (c40.f44542w5) {
                         org.telegram.messenger.g0.i3(new hz(this, 5), 200L);
                     }
                     c40Var.Z1.setRequestedOrientation(-1);
@@ -46,7 +46,7 @@ public final class o10 implements View.OnClickListener {
                         c40Var.h1(s3Var);
                         return;
                     }
-                    if (c40.f44521w5 == c40Var.t1()) {
+                    if (c40.f44542w5 == c40Var.t1()) {
                         c40Var.h1(s3Var);
                     }
                     if (c40Var.t1()) {
@@ -60,40 +60,40 @@ public final class o10 implements View.OnClickListener {
                     return;
                 }
             }
-            int i12 = c40Var.f44621w3;
+            int i12 = c40Var.f44642w3;
             if (i12 == 5) {
-                if (!c40Var.f44629y3) {
+                if (!c40Var.f44650y3) {
                     try {
                         view.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
-                    c40Var.f44629y3 = true;
+                    c40Var.f44650y3 = true;
                     TL_phone.startScheduledGroupCall startscheduledgroupcall = new TL_phone.startScheduledGroupCall();
                     org.telegram.messenger.r3 r3Var = c40Var.R2;
                     startscheduledgroupcall.call = r3Var.g(r3Var.f25200a);
                     ConnectionsManager.getInstance(cVar.f21723a).sendRequest(startscheduledgroupcall, new RequestDelegate(this) {
-                        public final o10 f47912b;
+                        public final o10 f47938b;
 
                         {
-                            this.f47912b = this;
+                            this.f47938b = this;
                         }
 
                         @Override
                         public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                             switch (r2) {
                                 case 0:
-                                    o10 o10Var = this.f47912b;
+                                    o10 o10Var = this.f47938b;
                                     if (tLObject != null) {
-                                        org.telegram.messenger.qp.s1(o10Var.f48180b.f44565k1.f21723a).O3((TLRPC.Updates) tLObject, false);
+                                        org.telegram.messenger.qp.s1(o10Var.f48209b.f44586k1.f21723a).O3((TLRPC.Updates) tLObject, false);
                                         return;
                                     } else {
                                         o10Var.getClass();
                                         return;
                                     }
                                 default:
-                                    o10 o10Var2 = this.f47912b;
+                                    o10 o10Var2 = this.f47938b;
                                     if (tLObject != null) {
-                                        org.telegram.messenger.qp.s1(o10Var2.f48180b.f44565k1.f21723a).O3((TLRPC.Updates) tLObject, false);
+                                        org.telegram.messenger.qp.s1(o10Var2.f48209b.f44586k1.f21723a).O3((TLRPC.Updates) tLObject, false);
                                         return;
                                     } else {
                                         o10Var2.getClass();
@@ -105,13 +105,13 @@ public final class o10 implements View.OnClickListener {
                 }
             } else if (i12 != 7 && i12 != 6) {
                 if (VoIPService.getSharedInstance() != null && (i7 = c40Var.K3) != 1 && i7 != 2 && i7 != 6 && i7 != 5) {
-                    int i13 = c40Var.f44621w3;
+                    int i13 = c40Var.f44642w3;
                     if (i13 != 2 && i13 != 4) {
                         try {
                             if (i13 == 0) {
                                 LaunchActivity launchActivity = c40Var.Z1;
                                 if (launchActivity != null && launchActivity.checkSelfPermission("android.permission.RECORD_AUDIO") != 0) {
-                                    c8.ia.c(2131624120, 2131743284, new String[]{"android.permission.RECORD_AUDIO"}, new String[]{"android.permission.RECORD_AUDIO"}, new di.e(17));
+                                    c8.ia.c(2131624120, 2131743284, new String[]{"android.permission.RECORD_AUDIO"}, new String[]{"android.permission.RECORD_AUDIO"}, new di.e(18));
                                     return;
                                 }
                                 c40Var.P1(1, true);
@@ -149,12 +149,12 @@ public final class o10 implements View.OnClickListener {
                             i14 = i15;
                         }
                         zg0Var.P(i14);
-                        zg0Var.S(i14 - 1, this.f48179a);
+                        zg0Var.S(i14 - 1, this.f48208a);
                         m10Var.setAnimation(zg0Var);
                         zg0Var.M(i11);
                         m10Var.d();
-                        if (c40Var.f44621w3 == 2) {
-                            long C1 = org.telegram.messenger.ij.C1(((TLRPC.GroupCallParticipant) c40Var.R2.d.f(org.telegram.messenger.ij.C1(c40Var.f44598r2))).peer);
+                        if (c40Var.f44642w3 == 2) {
+                            long C1 = org.telegram.messenger.ij.C1(((TLRPC.GroupCallParticipant) c40Var.R2.d.f(org.telegram.messenger.ij.C1(c40Var.f44619r2))).peer);
                             if (org.telegram.messenger.m5.E(C1)) {
                                 M0 = org.telegram.messenger.qp.s1(cVar.f21723a).a2(Long.valueOf(C1));
                             } else {
@@ -166,7 +166,7 @@ public final class o10 implements View.OnClickListener {
                     }
                 }
             } else {
-                if (i12 == 6 && (y20Var = c40Var.f44540e2) != null) {
+                if (i12 == 6 && (y20Var = c40Var.f44561e2) != null) {
                     y20Var.a();
                 }
                 TL_phone.toggleGroupCallStartSubscription togglegroupcallstartsubscription = new TL_phone.toggleGroupCallStartSubscription();
@@ -177,28 +177,28 @@ public final class o10 implements View.OnClickListener {
                 groupCall.schedule_start_subscribed = z9;
                 togglegroupcallstartsubscription.subscribed = z9;
                 ConnectionsManager.getInstance(cVar.f21723a).sendRequest(togglegroupcallstartsubscription, new RequestDelegate(this) {
-                    public final o10 f47912b;
+                    public final o10 f47938b;
 
                     {
-                        this.f47912b = this;
+                        this.f47938b = this;
                     }
 
                     @Override
                     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
                         switch (r2) {
                             case 0:
-                                o10 o10Var = this.f47912b;
+                                o10 o10Var = this.f47938b;
                                 if (tLObject != null) {
-                                    org.telegram.messenger.qp.s1(o10Var.f48180b.f44565k1.f21723a).O3((TLRPC.Updates) tLObject, false);
+                                    org.telegram.messenger.qp.s1(o10Var.f48209b.f44586k1.f21723a).O3((TLRPC.Updates) tLObject, false);
                                     return;
                                 } else {
                                     o10Var.getClass();
                                     return;
                                 }
                             default:
-                                o10 o10Var2 = this.f47912b;
+                                o10 o10Var2 = this.f47938b;
                                 if (tLObject != null) {
-                                    org.telegram.messenger.qp.s1(o10Var2.f48180b.f44565k1.f21723a).O3((TLRPC.Updates) tLObject, false);
+                                    org.telegram.messenger.qp.s1(o10Var2.f48209b.f44586k1.f21723a).O3((TLRPC.Updates) tLObject, false);
                                     return;
                                 } else {
                                     o10Var2.getClass();

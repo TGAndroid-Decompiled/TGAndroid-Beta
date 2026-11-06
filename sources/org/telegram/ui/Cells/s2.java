@@ -128,9 +128,9 @@ public final class s2 {
                         Typeface o10 = org.telegram.messenger.g0.o();
                         int i16 = org.telegram.ui.ActionBar.k6.X8;
                         ?? metricAffectingSpan = new MetricAffectingSpan();
-                        metricAffectingSpan.f36585a = o10;
-                        metricAffectingSpan.f36587c = i16;
-                        metricAffectingSpan.f36586b = org.telegram.ui.ActionBar.k6.v0(i16);
+                        metricAffectingSpan.f38210a = o10;
+                        metricAffectingSpan.f38212c = i16;
+                        metricAffectingSpan.f38211b = org.telegram.ui.ActionBar.k6.v0(i16);
                         spannableStringBuilder.setSpan(metricAffectingSpan, 0, Math.min(spannableStringBuilder.length(), i12 + 2), 0);
                     }
                     s2Var.f30256g = spannableStringBuilder;

@@ -33,23 +33,23 @@ import zh.m3;
 import zh.n3;
 import zh.o3;
 public final class z0 implements View.OnClickListener {
-    public final int f57727a;
-    public final Object f57728b;
-    public final Object f57729c;
+    public final int f57752a;
+    public final Object f57753b;
+    public final Object f57754c;
 
     public z0(int i7, Object obj, Object obj2) {
-        this.f57727a = i7;
-        this.f57728b = obj;
-        this.f57729c = obj2;
+        this.f57752a = i7;
+        this.f57753b = obj;
+        this.f57754c = obj2;
     }
 
     @Override
     public final void onClick(View view) {
         TL_stars.SavedStarGift savedStarGift;
-        int i7 = this.f57727a;
+        int i7 = this.f57752a;
         int i10 = 0;
-        Object obj = this.f57729c;
-        Object obj2 = this.f57728b;
+        Object obj = this.f57754c;
+        Object obj2 = this.f57753b;
         switch (i7) {
             case 0:
                 f1 f1Var = (f1) obj2;
@@ -62,7 +62,7 @@ public final class z0 implements View.OnClickListener {
                     Long l10 = (Long) obj3;
                     l10.getClass();
                     hashSet.remove(l10);
-                    f1Var.f57615f2.remove(l10);
+                    f1Var.f57640f2.remove(l10);
                 }
                 f1Var.e1();
                 f1Var.R1.b(true, hashSet, new x0(f1Var, 5), null);
@@ -80,7 +80,7 @@ public final class z0 implements View.OnClickListener {
                             case 0:
                                 TLRPC.User user2 = user;
                                 if (user2 != null) {
-                                    f2 f2Var = f1Var2.f36330o1;
+                                    f2 f2Var = f1Var2.f36224o1;
                                     if (f2Var == null) {
                                         f2 T = LaunchActivity.T();
                                         ?? obj4 = new Object();
@@ -102,7 +102,7 @@ public final class z0 implements View.OnClickListener {
                             default:
                                 TLRPC.User user3 = user;
                                 if (user3 != null) {
-                                    f2 f2Var2 = f1Var2.f36330o1;
+                                    f2 f2Var2 = f1Var2.f36224o1;
                                     if (f2Var2 == null) {
                                         f2 T2 = LaunchActivity.T();
                                         if (T2 != 0) {
@@ -131,7 +131,7 @@ public final class z0 implements View.OnClickListener {
                             case 0:
                                 TLRPC.User user2 = user;
                                 if (user2 != null) {
-                                    f2 f2Var = f1Var2.f36330o1;
+                                    f2 f2Var = f1Var2.f36224o1;
                                     if (f2Var == null) {
                                         f2 T = LaunchActivity.T();
                                         ?? obj4 = new Object();
@@ -153,7 +153,7 @@ public final class z0 implements View.OnClickListener {
                             default:
                                 TLRPC.User user3 = user;
                                 if (user3 != null) {
-                                    f2 f2Var2 = f1Var2.f36330o1;
+                                    f2 f2Var2 = f1Var2.f36224o1;
                                     if (f2Var2 == null) {
                                         f2 T2 = LaunchActivity.T();
                                         if (T2 != 0) {
@@ -181,7 +181,7 @@ public final class z0 implements View.OnClickListener {
                 final xg.f fVar = (xg.f) obj2;
                 final yg.a aVar = (yg.a) obj;
                 if (fVar.d) {
-                    if (!aVar.f59298a.Q) {
+                    if (!aVar.f59323a.Q) {
                         aVar.b(true);
                         String str = fVar.h;
                         c20 c20Var = new c20() {
@@ -193,12 +193,12 @@ public final class z0 implements View.OnClickListener {
                                         aVar.b(false);
                                         b0 b0Var = (b0) fVar;
                                         g0.i3(new p(b0Var, 2), 200L);
-                                        b0Var.f57584r.dismiss();
+                                        b0Var.f57609r.dismiss();
                                         return;
                                     default:
                                         aVar.b(false);
                                         f fVar2 = fVar;
-                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58609n, fVar2.f58606c, new d(fVar2, 1));
+                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58634n, fVar2.f58631c, new d(fVar2, 1));
                                         return;
                                 }
                             }
@@ -212,12 +212,12 @@ public final class z0 implements View.OnClickListener {
                                         aVar.b(false);
                                         b0 b0Var = (b0) fVar;
                                         g0.i3(new p(b0Var, 2), 200L);
-                                        b0Var.f57584r.dismiss();
+                                        b0Var.f57609r.dismiss();
                                         return;
                                     default:
                                         aVar.b(false);
                                         f fVar2 = fVar;
-                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58609n, fVar2.f58606c, new d(fVar2, 1));
+                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58634n, fVar2.f58631c, new d(fVar2, 1));
                                         return;
                                 }
                             }
@@ -230,13 +230,13 @@ public final class z0 implements View.OnClickListener {
                     }
                     return;
                 }
-                ((b0) fVar).f57584r.dismiss();
+                ((b0) fVar).f57609r.dismiss();
                 return;
             case 3:
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
-                yg.f fVar2 = ((yg.g) obj2).f59332w;
+                yg.f fVar2 = ((yg.g) obj2).f59357w;
                 if (fVar2 != null) {
-                    a0 a0Var = ((u) fVar2).f57696a;
+                    a0 a0Var = ((u) fVar2).f57721a;
                     a0Var.U1.remove(chat);
                     a0Var.k1(true, true);
                     return;
@@ -284,7 +284,7 @@ public final class z0 implements View.OnClickListener {
                 F2.c(2131231890, hd.M0(2131746140, null), new g3(k3Var, 3), false);
                 F2.c(2131231888, hd.M0(2131746144, null), new g3(k3Var, 4), false);
                 F2.c(2131231889, hd.M0(2131746142, null), new g3(k3Var, 5), false);
-                F2.f35217t = false;
+                F2.f35181t = false;
                 F2.Y = true;
                 F2.a0(0.0f, org.telegram.messenger.g0.L(-8.0f));
                 F2.Z();
@@ -327,7 +327,7 @@ public final class z0 implements View.OnClickListener {
                 }
                 return;
             default:
-                v9 v9Var = ((n3) obj2).f60361c.Q1;
+                v9 v9Var = ((n3) obj2).f60386c.Q1;
                 v9Var.f4909e = !v9Var.f4909e;
                 ((gp0) obj).run();
                 v9Var.j(true);

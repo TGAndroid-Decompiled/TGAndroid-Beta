@@ -1,7 +1,7 @@
 package jg;
 
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.ap0;
+import org.telegram.ui.bp0;
 import org.telegram.ui.mb;
 public final class b0 extends v4.b0 {
     public final int I;
@@ -37,13 +37,13 @@ public final class b0 extends v4.b0 {
         switch (this.I) {
             case 4:
                 mi.m mVar = new mi.m(recyclerView.getContext(), 0);
-                mVar.f57096a = i7;
+                mVar.f57121a = i7;
                 w0(mVar);
                 return;
             case 15:
-                ap0 ap0Var = new ap0(recyclerView.getContext());
-                ap0Var.f57096a = i7;
-                w0(ap0Var);
+                bp0 bp0Var = new bp0(recyclerView.getContext());
+                bp0Var.f57121a = i7;
+                w0(bp0Var);
                 return;
             default:
                 super.v0(recyclerView, a1Var, i7);

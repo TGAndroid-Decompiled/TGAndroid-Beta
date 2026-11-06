@@ -24,7 +24,7 @@ import org.telegram.messenger.yr;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.vr;
 import org.telegram.ui.Components.xr;
 import org.telegram.ui.Components.zg0;
@@ -248,8 +248,8 @@ public final class nb implements Runnable {
                 TLObject tLObject3 = (TLObject) obj;
                 ArrayList arrayList3 = vrVar.V;
                 int i13 = vrVar.P;
-                if (i10 == vrVar.f39657f0 && TextUtils.equals(tL_messages_searchGlobal.f27065q, vrVar.f39658g0)) {
-                    vrVar.f39653b0 = false;
+                if (i10 == vrVar.f39654f0 && TextUtils.equals(tL_messages_searchGlobal.f27065q, vrVar.f39655g0)) {
+                    vrVar.f39650b0 = false;
                     if (!z10) {
                         arrayList3.clear();
                     }
@@ -265,12 +265,12 @@ public final class nb implements Runnable {
                             TLRPC.Message message = arrayList4.get(i14);
                             i14++;
                             ij ijVar = new ij(i13, message, false, true);
-                            ijVar.L5(vrVar.f39658g0, true);
+                            ijVar.L5(vrVar.f39655g0, true);
                             arrayList3.add(ijVar);
                         }
-                        vrVar.f39655d0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
+                        vrVar.f39652d0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList3.size(), messages_messages.count);
-                        vrVar.f39656e0 = messages_messages.next_rate;
+                        vrVar.f39653e0 = messages_messages.next_rate;
                     }
                     vrVar.O(true);
                     return;
@@ -282,7 +282,7 @@ public final class nb implements Runnable {
                 TLObject tLObject4 = (TLObject) obj;
                 ArrayList arrayList5 = xrVar.R;
                 int i15 = xrVar.P;
-                if (i10 == xrVar.f40324c0 && TextUtils.equals(tL_messages_searchGlobal2.f27065q, xrVar.f40325d0)) {
+                if (i10 == xrVar.f40343c0 && TextUtils.equals(tL_messages_searchGlobal2.f27065q, xrVar.f40344d0)) {
                     xrVar.Y = false;
                     if (!z10) {
                         arrayList5.clear();
@@ -299,12 +299,12 @@ public final class nb implements Runnable {
                             TLRPC.Message message2 = arrayList6.get(i16);
                             i16++;
                             ij ijVar2 = new ij(i15, message2, false, true);
-                            ijVar2.L5(xrVar.f40325d0, true);
+                            ijVar2.L5(xrVar.f40344d0, true);
                             arrayList5.add(ijVar2);
                         }
-                        xrVar.f40322a0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
+                        xrVar.f40341a0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList5.size(), messages_messages2.count);
-                        xrVar.f40323b0 = messages_messages2.next_rate;
+                        xrVar.f40342b0 = messages_messages2.next_rate;
                     }
                     xrVar.O(true);
                     return;
@@ -316,7 +316,7 @@ public final class nb implements Runnable {
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj;
                 tt ttVar = (tt) xdVar.d;
                 ttVar.a();
-                org.telegram.ui.Cells.m8 m8Var = ttVar.f50113e;
+                org.telegram.ui.Cells.m8 m8Var = ttVar.f50141e;
                 ttVar.c();
                 int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f28088q6, false);
                 zg0 zg0Var = ttVar.d;
@@ -339,7 +339,7 @@ public final class nb implements Runnable {
                     }
                     ValueAnimator valueAnimator2 = ttVar.h;
                     if (valueAnimator2 != null && valueAnimator2.isRunning()) {
-                        i10 = ttVar.f50115n;
+                        i10 = ttVar.f50143n;
                     }
                     int i17 = i10;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -369,21 +369,21 @@ public final class nb implements Runnable {
                 p4.l0 l0Var = (p4.l0) obj;
                 p4.d0 d0Var = m0Var.h;
                 if (!d0Var.j()) {
-                    if (!((q4.l) m0Var.f53252n.f53686b).f53668a.isActive()) {
+                    if (!((q4.l) m0Var.f53278n.f53711b).f53693a.isActive()) {
                         StringBuilder n10 = jg.g.n(i10, "Ignore incoming player command before initialization. command=", ", pid=");
-                        n10.append(rVar.f53688a.f53690b);
+                        n10.append(rVar.f53713a.f53715b);
                         h2.a.l("MediaSessionLegacyStub", n10.toString());
                         return;
                     }
                     p4.v m0 = m0Var.m0(rVar);
-                    if (!m0Var.f53246g.G(m0, i10)) {
-                        if (i10 == 1 && !d0Var.f53100t.u()) {
+                    if (!m0Var.f53272g.G(m0, i10)) {
+                        if (i10 == 1 && !d0Var.f53126t.u()) {
                             h2.a.l("MediaSessionLegacyStub", "Calling play() omitted due to COMMAND_PLAY_PAUSE not being available. If this play command has started the service for instance for playback resumption, this may prevent the service from being started into the foreground.");
                             return;
                         }
                         return;
                     }
-                    pb.b bVar = d0Var.f53086e;
+                    pb.b bVar = d0Var.f53112e;
                     d0Var.s(m0);
                     bVar.getClass();
                     try {
@@ -438,9 +438,9 @@ public final class nb implements Runnable {
         this.f4431c = i7;
     }
 
-    public nb(f41 f41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z9, TLObject tLObject, int i10) {
+    public nb(k41 k41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z9, TLObject tLObject, int i10) {
         this.f4429a = i10;
-        this.d = f41Var;
+        this.d = k41Var;
         this.f4431c = i7;
         this.f4432e = tL_messages_searchGlobal;
         this.f4430b = z9;

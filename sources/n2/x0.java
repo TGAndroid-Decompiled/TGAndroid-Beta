@@ -4,10 +4,10 @@ import ai.n1;
 import android.os.Handler;
 import java.nio.ByteBuffer;
 import li.b6;
-import org.telegram.ui.Components.g51;
-import org.telegram.ui.Components.h51;
-import org.telegram.ui.Components.ir0;
-import org.telegram.ui.Components.n51;
+import org.telegram.ui.Components.k51;
+import org.telegram.ui.Components.l51;
+import org.telegram.ui.Components.r51;
+import org.telegram.ui.Components.s51;
 public final class x0 extends f2.o {
     public final b6 f20337i;
 
@@ -30,17 +30,17 @@ public final class x0 extends f2.o {
         float[] fArr2 = (float[]) b6Var.d;
         n1 n1Var = (n1) b6Var.f18480c;
         ByteBuffer byteBuffer2 = (ByteBuffer) b6Var.f18481e;
-        n51 n51Var = (n51) b6Var.f18482f;
-        h51 h51Var = n51Var.K;
-        Handler handler = n51Var.f36290a0;
-        if (h51Var != null) {
-            if (order != f2.n.f10922a && n51Var.I) {
-                if (h51Var.s()) {
+        s51 s51Var = (s51) b6Var.f18482f;
+        l51 l51Var = s51Var.K;
+        Handler handler = s51Var.f37900a0;
+        if (l51Var != null) {
+            int i7 = 0;
+            if (order != f2.n.f10922a && s51Var.I) {
+                if (l51Var.s()) {
                     int limit = order.limit();
-                    int i7 = 0;
                     if (limit > 8192) {
                         handler.removeCallbacksAndMessages(null);
-                        n51Var.K.F(false, null);
+                        s51Var.K.F(false, null);
                     } else {
                         byteBuffer2.put(order);
                         int i10 = b6Var.f18478a + limit;
@@ -161,13 +161,13 @@ public final class x0 extends f2.o {
                             }
                             if (System.currentTimeMillis() - b6Var.f18479b >= 64) {
                                 b6Var.f18479b = System.currentTimeMillis();
-                                handler.postDelayed(new g51(1, b6Var, fArr6), 130L);
+                                handler.postDelayed(new k51(1, b6Var, fArr6), 130L);
                             }
                         }
                     }
                 }
             } else {
-                handler.postDelayed(new ir0(b6Var, 29), 80L);
+                handler.postDelayed(new r51(b6Var, 0), 80L);
             }
         }
         l(remaining).put(byteBuffer).flip();

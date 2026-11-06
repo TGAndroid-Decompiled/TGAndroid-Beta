@@ -6,26 +6,26 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 public final class kh0 extends v4.g0 {
-    public final int f35316c;
+    public final int f35319c;
     public final Context d;
-    public final org.telegram.ui.ActionBar.f6 f35317e;
-    public final boolean f35318f;
+    public final org.telegram.ui.ActionBar.f6 f35320e;
+    public final boolean f35321f;
     public final rh0 h;
 
     public kh0(rh0 rh0Var, int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var, boolean z9) {
         this.h = rh0Var;
-        this.f35316c = i7;
+        this.f35319c = i7;
         this.d = context;
-        this.f35317e = f6Var;
-        this.f35318f = z9;
+        this.f35320e = f6Var;
+        this.f35321f = z9;
     }
 
     @Override
     public final int b() {
         int i7;
         rh0 rh0Var = this.h;
-        int size = rh0Var.f37741n.size();
-        if (!rh0Var.H.isEmpty() && !org.telegram.messenger.qp.s1(this.f35316c).D3()) {
+        int size = rh0Var.f37684n.size();
+        if (!rh0Var.H.isEmpty() && !org.telegram.messenger.qp.s1(this.f35319c).D3()) {
             i7 = 1;
         } else {
             i7 = 0;
@@ -35,7 +35,7 @@ public final class kh0 extends v4.g0 {
 
     @Override
     public final int d(int i7) {
-        if (i7 < this.h.f37741n.size()) {
+        if (i7 < this.h.f37684n.size()) {
             return 0;
         }
         return 1;
@@ -43,8 +43,8 @@ public final class kh0 extends v4.g0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        if (d1Var.f56931f == 0) {
-            ((org.telegram.ui.Cells.m6) d1Var.f56927a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f37741n.get(i7));
+        if (d1Var.f56956f == 0) {
+            ((org.telegram.ui.Cells.m6) d1Var.f56952a).setUserReaction((TLRPC.MessagePeerReaction) this.h.f37684n.get(i7));
         }
     }
 
@@ -64,11 +64,11 @@ public final class kh0 extends v4.g0 {
             Context context = this.d;
             m6Var = new FrameLayout(context);
             View view = new View(context);
-            org.telegram.ui.ActionBar.r6.j(view, org.telegram.ui.ActionBar.r6.L(0.06f, org.telegram.ui.ActionBar.k6.E8), this.f35317e);
+            org.telegram.ui.ActionBar.r6.j(view, org.telegram.ui.ActionBar.r6.L(0.06f, org.telegram.ui.ActionBar.k6.E8), this.f35320e);
             m6Var.addView(view, c8.ha.c(8.0f, -1));
             m6Var.addView(rh0Var.J, c8.ha.d(-1, -1.0f, 0, 0.0f, 8.0f, 0.0f, 0.0f));
         } else {
-            m6Var = new org.telegram.ui.Cells.m6(0, this.f35316c, this.d, this.f35317e, true, this.f35318f);
+            m6Var = new org.telegram.ui.Cells.m6(0, this.f35319c, this.d, this.f35320e, true, this.f35321f);
         }
         return new v4.d1(m6Var);
     }

@@ -8,24 +8,24 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
 public class ez extends ReplacementSpan {
-    public final TextPaint f45434a;
-    public final Paint f45435b;
-    public StaticLayout f45436c;
+    public final TextPaint f45439a;
+    public final Paint f45440b;
+    public StaticLayout f45441c;
     public float d;
-    public float f45437e;
-    public int f45438f;
+    public float f45442e;
+    public int f45443f;
     public final int h;
-    public boolean f45439n;
-    public int f45440r;
-    public org.telegram.ui.ActionBar.f6 f45441s;
-    public CharSequence f45442w;
+    public boolean f45444n;
+    public int f45445r;
+    public org.telegram.ui.ActionBar.f6 f45446s;
+    public CharSequence f45447w;
 
     public ez(int i7) {
         TextPaint textPaint = new TextPaint(1);
-        this.f45434a = textPaint;
+        this.f45439a = textPaint;
         Paint paint = new Paint(1);
-        this.f45435b = paint;
-        this.f45442w = "NEW";
+        this.f45440b = paint;
+        this.f45447w = "NEW";
         this.h = i7;
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         paint.setStyle(Paint.Style.FILL);
@@ -33,11 +33,11 @@ public class ez extends ReplacementSpan {
     }
 
     public final void a() {
-        if (this.f45436c == null) {
-            StaticLayout staticLayout = new StaticLayout(this.f45442w, this.f45434a, org.telegram.messenger.g0.f22537q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f45436c = staticLayout;
+        if (this.f45441c == null) {
+            StaticLayout staticLayout = new StaticLayout(this.f45447w, this.f45439a, org.telegram.messenger.g0.f22537q.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f45441c = staticLayout;
             this.d = staticLayout.getLineWidth(0);
-            this.f45437e = this.f45436c.getHeight();
+            this.f45442e = this.f45441c.getHeight();
         }
     }
 
@@ -46,28 +46,28 @@ public class ez extends ReplacementSpan {
         int i14;
         float f11;
         a();
-        if (this.f45439n) {
-            this.f45438f = org.telegram.ui.ActionBar.k6.w0(this.f45440r, this.f45441s);
+        if (this.f45444n) {
+            this.f45443f = org.telegram.ui.ActionBar.k6.w0(this.f45445r, this.f45446s);
         }
-        int i15 = this.f45438f;
+        int i15 = this.f45443f;
         if (i15 == 0) {
             i15 = paint.getColor();
         }
-        Paint paint2 = this.f45435b;
+        Paint paint2 = this.f45440b;
         paint2.setColor(i15);
         if (org.telegram.messenger.g0.B(i15) > 0.721f) {
             i14 = -16777216;
         } else {
             i14 = -1;
         }
-        TextPaint textPaint = this.f45434a;
+        TextPaint textPaint = this.f45439a;
         textPaint.setColor(i14);
         paint2.setAlpha((int) (paint2.getAlpha() * 1.0f));
         textPaint.setAlpha((int) (textPaint.getAlpha() * 1.0f));
         float L = f10 + org.telegram.messenger.g0.L(2.0f);
-        float L2 = (i12 - this.f45437e) + org.telegram.messenger.g0.L(1.0f);
+        float L2 = (i12 - this.f45442e) + org.telegram.messenger.g0.L(1.0f);
         RectF rectF = org.telegram.messenger.g0.P;
-        rectF.set(L, L2, this.d + L, this.f45437e + L2);
+        rectF.set(L, L2, this.d + L, this.f45442e + L2);
         float L3 = org.telegram.messenger.g0.L(4.4f);
         float L4 = org.telegram.messenger.g0.L(-4.0f);
         if (this.h == 8) {
@@ -79,7 +79,7 @@ public class ez extends ReplacementSpan {
         canvas.drawRoundRect(rectF, L3, L3, paint2);
         canvas.save();
         canvas.translate(L, L2);
-        this.f45436c.draw(canvas);
+        this.f45441c.draw(canvas);
         canvas.restore();
     }
 
@@ -91,10 +91,10 @@ public class ez extends ReplacementSpan {
 
     public ez() {
         TextPaint textPaint = new TextPaint(1);
-        this.f45434a = textPaint;
+        this.f45439a = textPaint;
         Paint paint = new Paint(1);
-        this.f45435b = paint;
-        this.f45442w = "NEW";
+        this.f45440b = paint;
+        this.f45447w = "NEW";
         textPaint.setTypeface(org.telegram.messenger.g0.o());
         paint.setStyle(Paint.Style.FILL);
         textPaint.setTextSize(org.telegram.messenger.g0.L(10.0f));

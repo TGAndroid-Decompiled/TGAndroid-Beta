@@ -4,8 +4,8 @@ import android.os.Build;
 import android.view.View;
 import j$.util.Objects;
 public class h1 {
-    public static final k1 f54071b;
-    public final k1 f54072a;
+    public static final k1 f54096b;
+    public final k1 f54097a;
 
     static {
         a1 w0Var;
@@ -19,23 +19,23 @@ public class h1 {
         } else {
             w0Var = new w0();
         }
-        f54071b = w0Var.b().f54084a.a().f54084a.b().f54084a.c();
+        f54096b = w0Var.b().f54109a.a().f54109a.b().f54109a.c();
     }
 
     public h1(k1 k1Var) {
-        this.f54072a = k1Var;
+        this.f54097a = k1Var;
     }
 
     public k1 a() {
-        return this.f54072a;
+        return this.f54097a;
     }
 
     public k1 b() {
-        return this.f54072a;
+        return this.f54097a;
     }
 
     public k1 c() {
-        return this.f54072a;
+        return this.f54097a;
     }
 
     public h e() {
@@ -92,7 +92,7 @@ public class h1 {
     }
 
     public k1 m(int i7, int i10, int i11, int i12) {
-        return f54071b;
+        return f54096b;
     }
 
     public boolean n() {

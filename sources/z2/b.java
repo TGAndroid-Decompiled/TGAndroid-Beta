@@ -7,14 +7,14 @@ import java.nio.ByteBuffer;
 import k2.h;
 import k2.l;
 public final class b extends l implements c4.e {
-    public final String f59448o;
-    public final m f59449p;
+    public final String f59473o;
+    public final m f59474p;
 
     public b(String str, m mVar) {
         super(new i[2], new j[2]);
-        this.f59448o = str;
+        this.f59473o = str;
         o(1024);
-        this.f59449p = mVar;
+        this.f59474p = mVar;
     }
 
     @Override
@@ -29,7 +29,7 @@ public final class b extends l implements c4.e {
 
     @Override
     public final String getName() {
-        return this.f59448o;
+        return this.f59473o;
     }
 
     @Override
@@ -46,7 +46,7 @@ public final class b extends l implements c4.e {
             byteBuffer.getClass();
             byte[] array = byteBuffer.array();
             int limit = byteBuffer.limit();
-            m mVar = this.f59449p;
+            m mVar = this.f59474p;
             if (z9) {
                 mVar.reset();
             }

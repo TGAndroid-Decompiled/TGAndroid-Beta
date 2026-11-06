@@ -6,24 +6,24 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class n6 implements org.telegram.messenger.v10 {
-    public final int f47939a;
-    public final Object f47940b;
-    public final Object f47941c;
+    public final int f47965a;
+    public final Object f47966b;
+    public final Object f47967c;
     public final Object d;
 
     public n6(Object obj, Object obj2, Object obj3, int i7) {
-        this.f47939a = i7;
-        this.f47940b = obj;
-        this.f47941c = obj2;
+        this.f47965a = i7;
+        this.f47966b = obj;
+        this.f47967c = obj2;
         this.d = obj3;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
-        int i7 = this.f47939a;
+        int i7 = this.f47965a;
         Object obj3 = this.d;
-        Object obj4 = this.f47941c;
-        Object obj5 = this.f47940b;
+        Object obj4 = this.f47967c;
+        Object obj5 = this.f47966b;
         int i10 = 0;
         switch (i7) {
             case 0:

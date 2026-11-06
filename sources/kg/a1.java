@@ -24,15 +24,15 @@ import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.np;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
 public final class a1 extends f2 implements ls {
     public boolean D;
     public int E;
     public boolean F;
-    public k41 f17298a;
+    public p41 f17298a;
     public b5 f17299b;
     public boolean f17300c;
     public FrameLayout d;
@@ -55,8 +55,8 @@ public final class a1 extends f2 implements ls {
         boolean z10;
         if (this.f17299b != null) {
             this.f17299b.a(a0(), z9);
-            k41 k41Var = this.f17298a;
-            if (k41Var != null && k41Var.f35167f3 != null) {
+            p41 p41Var = this.f17298a;
+            if (p41Var != null && p41Var.f36781f3 != null) {
                 boolean z11 = this.F;
                 if (this.f17306w != null && (this.f17307x != null || !TextUtils.isEmpty(this.f17308y))) {
                     z10 = true;
@@ -64,7 +64,7 @@ public final class a1 extends f2 implements ls {
                     z10 = false;
                 }
                 if (z11 != z10) {
-                    this.f17298a.f35167f3.O(true);
+                    this.f17298a.f36781f3.O(true);
                 }
             }
         }
@@ -139,7 +139,7 @@ public final class a1 extends f2 implements ls {
     public final void b0() {
         boolean z9;
         String trim;
-        if (this.f17299b.f27354y.f55371f) {
+        if (this.f17299b.f27354y.f55396f) {
             return;
         }
         if (this.f17307x == null && TextUtils.isEmpty(this.f17308y)) {
@@ -204,7 +204,7 @@ public final class a1 extends f2 implements ls {
     }
 
     public final void c0() {
-        f41 f41Var;
+        k41 k41Var;
         if (this.f17305s) {
             return;
         }
@@ -231,9 +231,9 @@ public final class a1 extends f2 implements ls {
             this.f17300c = false;
         }
         d0();
-        k41 k41Var = this.f17298a;
-        if (k41Var != null && (f41Var = k41Var.f35167f3) != null) {
-            f41Var.O(true);
+        p41 p41Var = this.f17298a;
+        if (p41Var != null && (k41Var = p41Var.f36781f3) != null) {
+            k41Var.O(true);
         }
         this.f17305s = true;
     }
@@ -302,13 +302,13 @@ public final class a1 extends f2 implements ls {
         frameLayout4.addView(this.f17304r, ha.c(-1.0f, -1));
         this.f17302f.addView(this.h, ha.d(-2, -2.0f, 17, 0.0f, -31.0f, 0.0f, 0.0f));
         d0();
-        k41 k41Var = new k41(this, new hi.u1(this, 10), new v0(this, 0), null);
-        this.f17298a = k41Var;
-        k41Var.r1();
+        p41 p41Var = new p41(this, new hi.u1(this, 10), new v0(this, 0), null);
+        this.f17298a = p41Var;
+        p41Var.r1();
         this.f17298a.setSectionsDrawBackground(true);
-        k41 k41Var2 = this.f17298a;
-        k41Var2.f35167f3.f33473r = false;
-        frameLayout.addView(k41Var2, ha.c(-1.0f, -1));
+        p41 p41Var2 = this.f17298a;
+        p41Var2.f36781f3.f35132r = false;
+        frameLayout.addView(p41Var2, ha.c(-1.0f, -1));
         c0();
         this.fragmentView = frameLayout;
         return frameLayout;

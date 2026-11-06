@@ -9,20 +9,20 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.MediaController;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class d00 implements View.OnLongClickListener {
-    public final int f32733a;
-    public final Object f32734b;
+    public final int f32737a;
+    public final Object f32738b;
 
     public d00(Object obj, int i7) {
-        this.f32733a = i7;
-        this.f32734b = obj;
+        this.f32737a = i7;
+        this.f32738b = obj;
     }
 
     @Override
     public final boolean onLongClick(View view) {
         int measuredHeight;
         org.telegram.ui.an anVar;
-        int i7 = this.f32733a;
-        Object obj = this.f32734b;
+        int i7 = this.f32737a;
+        Object obj = this.f32738b;
         switch (i7) {
             case 0:
                 final FragmentContextView fragmentContextView = (FragmentContextView) obj;
@@ -61,9 +61,9 @@ public final class d00 implements View.OnLongClickListener {
                 return true;
             case 1:
                 ec0 ec0Var = (ec0) obj;
-                ec0Var.f33212r.setText("");
-                fi.a8.a(ec0Var.f33213s, true);
-                Drawable drawable = ec0Var.f33198a;
+                ec0Var.f33208r.setText("");
+                fi.a8.a(ec0Var.f33209s, true);
+                Drawable drawable = ec0Var.f33194a;
                 if (drawable instanceof qa0) {
                     ((qa0) drawable).x();
                 }

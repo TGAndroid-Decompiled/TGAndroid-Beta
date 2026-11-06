@@ -97,7 +97,7 @@ public final class u4 implements d20 {
                 final org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj3;
                 Context context = (Context) obj2;
                 org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) obj;
-                TL_aicompose.AiComposeTone aiComposeTone = e0Var.f33070e;
+                TL_aicompose.AiComposeTone aiComposeTone = e0Var.f33083e;
                 if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
                     final TL_aicompose.TL_aiComposeTone tL_aiComposeTone = (TL_aicompose.TL_aiComposeTone) aiComposeTone;
                     k60 F = k60.F(g0Var.f28618c, f6Var, e0Var);
@@ -196,7 +196,7 @@ public final class u4 implements d20 {
                 return Boolean.FALSE;
             case 2:
                 View view = (View) obj;
-                ij ijVar = ((th.g) obj2).f55944b;
+                ij ijVar = ((th.g) obj2).f55969b;
                 return th.c.d(view, (String) obj4, (String) obj3, ijVar.F0(), ijVar);
             default:
                 pj0 pj0Var = (pj0) obj4;
@@ -211,7 +211,7 @@ public final class u4 implements d20 {
                     boolean booleanValue = bool.booleanValue();
                     v4.d1 T = pj0Var.T(view2);
                     if (T != null) {
-                        sparseIntArray.put(T.f56931f, booleanValue ? 1 : 0);
+                        sparseIntArray.put(T.f56956f, booleanValue ? 1 : 0);
                     }
                     return bool;
                 } catch (Exception unused2) {

@@ -92,7 +92,7 @@ public final class yc extends LinearLayout {
         wp wpVar = new wp(0, jg.g.h(context, 2131231957));
         wpVar.d = false;
         wpVar.c(org.telegram.messenger.g0.L(18.0f));
-        wpVar.f40056s = org.telegram.messenger.g0.L(0.5f);
+        wpVar.f40063s = org.telegram.messenger.g0.L(0.5f);
         spannableString2.setSpan(wpVar, 0, spannableString2.length(), 33);
     }
 

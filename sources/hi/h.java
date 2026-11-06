@@ -3,27 +3,27 @@ package hi;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
-public final class h extends q31 {
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.w31;
+public final class h extends v31 {
     static {
-        q31.h(new q31());
+        v31.h(new v31());
     }
 
-    public static r31 i(int i7, String str, String str2) {
-        r31 K = r31.K(h.class);
-        K.f37597k = i7;
-        K.f37598l = str;
-        K.f37599m = str2;
+    public static w31 i(int i7, String str, String str2) {
+        w31 K = w31.K(h.class);
+        K.f39829k = i7;
+        K.f39830l = str;
+        K.f39831m = str2;
         return K;
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
-        ((i) view).a(r31Var.f37597k, r31Var.f37598l, r31Var.f37599m);
+    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+        ((i) view).a(w31Var.f39829k, w31Var.f39830l, w31Var.f39831m);
     }
 
     @Override

@@ -12,7 +12,7 @@ public final class zh extends r00 {
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        this.J.h1(this.f37557r, true);
+        this.J.h1(this.f37447r, true);
         return super.onInterceptTouchEvent(motionEvent);
     }
 }

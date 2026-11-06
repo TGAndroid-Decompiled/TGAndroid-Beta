@@ -11,23 +11,23 @@ public class nw extends rk0 {
     public boolean B0;
     public VelocityTracker C0;
     public final gy D0;
-    public final int f36498u0;
-    public boolean f36499v0;
-    public float f36500w0;
-    public boolean f36501x0;
-    public float f36502y0;
-    public float f36503z0;
+    public final int f36392u0;
+    public boolean f36393v0;
+    public float f36394w0;
+    public boolean f36395x0;
+    public float f36396y0;
+    public float f36397z0;
 
     public nw(gy gyVar, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var, gyVar.f34096i2);
+        super(context, f6Var, gyVar.f34044i2);
         this.D0 = gyVar;
-        this.f36501x0 = true;
-        this.f36498u0 = ViewConfiguration.get(context).getScaledTouchSlop();
+        this.f36395x0 = true;
+        this.f36392u0 = ViewConfiguration.get(context).getScaledTouchSlop();
     }
 
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (this.f37793s != null) {
+        if (this.f37736s != null) {
             return super.onInterceptTouchEvent(motionEvent);
         }
         if (getParent() != null) {
@@ -36,17 +36,17 @@ public class nw extends rk0 {
         if (motionEvent.getAction() == 0) {
             this.B0 = false;
             this.A0 = false;
-            this.f36502y0 = motionEvent.getRawX();
-            this.f36503z0 = motionEvent.getRawY();
+            this.f36396y0 = motionEvent.getRawX();
+            this.f36397z0 = motionEvent.getRawY();
         } else if (!this.A0 && !this.B0) {
             gy gyVar = this.D0;
-            if (gyVar.O0 != null && Math.abs(motionEvent.getRawY() - this.f36503z0) >= this.f36498u0) {
+            if (gyVar.O0 != null && Math.abs(motionEvent.getRawY() - this.f36397z0) >= this.f36392u0) {
                 this.A0 = true;
-                this.f36503z0 = motionEvent.getRawY();
+                this.f36397z0 = motionEvent.getRawY();
                 ((bg.w0) gyVar.O0).e();
-                if (this.f36499v0) {
+                if (this.f36393v0) {
                     gyVar.h.i();
-                    this.f36499v0 = false;
+                    this.f36393v0 = false;
                 }
                 return true;
             }
@@ -59,14 +59,14 @@ public class nw extends rk0 {
         boolean z9;
         int i7;
         gy gyVar = this.D0;
-        dt dtVar = gyVar.f34087f2;
+        dt dtVar = gyVar.f34035f2;
         vv vvVar = gyVar.h;
-        if (this.f37793s != null) {
+        if (this.f37736s != null) {
             return super.onTouchEvent(motionEvent);
         }
-        if (this.f36501x0) {
-            this.f36501x0 = false;
-            this.f36500w0 = motionEvent.getX();
+        if (this.f36395x0) {
+            this.f36395x0 = false;
+            this.f36394w0 = motionEvent.getX();
         }
         if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
             gyVar.W1 = motionEvent.getRawX();
@@ -74,23 +74,23 @@ public class nw extends rk0 {
         if (motionEvent.getAction() == 0) {
             this.B0 = false;
             this.A0 = false;
-            this.f36502y0 = motionEvent.getRawX();
-            this.f36503z0 = motionEvent.getRawY();
+            this.f36396y0 = motionEvent.getRawX();
+            this.f36397z0 = motionEvent.getRawY();
         } else if (!this.A0 && !this.B0 && gyVar.O0 != null) {
-            float abs = Math.abs(motionEvent.getRawX() - this.f36502y0);
-            float f10 = this.f36498u0;
-            if (abs >= f10 && canScrollHorizontally((int) (this.f36502y0 - motionEvent.getRawX()))) {
+            float abs = Math.abs(motionEvent.getRawX() - this.f36396y0);
+            float f10 = this.f36392u0;
+            if (abs >= f10 && canScrollHorizontally((int) (this.f36396y0 - motionEvent.getRawX()))) {
                 this.B0 = true;
                 org.telegram.messenger.g0.r(dtVar);
                 gyVar.X1 = true;
                 gyVar.Z();
-            } else if (Math.abs(motionEvent.getRawY() - this.f36503z0) >= f10) {
+            } else if (Math.abs(motionEvent.getRawY() - this.f36397z0) >= f10) {
                 this.A0 = true;
-                this.f36503z0 = motionEvent.getRawY();
+                this.f36397z0 = motionEvent.getRawY();
                 ((bg.w0) gyVar.O0).e();
-                if (this.f36499v0) {
+                if (this.f36393v0) {
                     vvVar.i();
-                    this.f36499v0 = false;
+                    this.f36393v0 = false;
                 }
             }
         }
@@ -104,7 +104,7 @@ public class nw extends rk0 {
             this.C0.addMovement(motionEvent);
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 mw mwVar = gyVar.O0;
-                int round = Math.round(motionEvent.getRawY() - this.f36503z0);
+                int round = Math.round(motionEvent.getRawY() - this.f36397z0);
                 bg.w0 w0Var = (bg.w0) mwVar;
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) w0Var.f3394c;
                 if (w0Var.d()) {
@@ -147,7 +147,7 @@ public class nw extends rk0 {
                         chatActivityEnterView3.n1(w0Var3.f3392a, true, false, true);
                     }
                 }
-                this.f36501x0 = true;
+                this.f36395x0 = true;
                 this.B0 = false;
                 this.A0 = false;
             }
@@ -156,7 +156,7 @@ public class nw extends rk0 {
         }
         float translationX = getTranslationX();
         if (getScrollX() == 0 && translationX == 0.0f) {
-            if (!this.f36499v0 && this.f36500w0 - motionEvent.getX() < 0.0f) {
+            if (!this.f36393v0 && this.f36394w0 - motionEvent.getX() < 0.0f) {
                 if (!vvVar.M) {
                     vvVar.f5335e0 = true;
                     vvVar.setScrollState(1);
@@ -172,28 +172,28 @@ public class nw extends rk0 {
                     MotionEvent obtain = MotionEvent.obtain(uptimeMillis, uptimeMillis, 0, 0.0f, 0.0f, 0);
                     vvVar.W.addMovement(obtain);
                     obtain.recycle();
-                    this.f36499v0 = true;
+                    this.f36393v0 = true;
                     getTranslationX();
                 }
-            } else if (this.f36499v0 && this.f36500w0 - motionEvent.getX() > 0.0f && vvVar.f5335e0) {
+            } else if (this.f36393v0 && this.f36394w0 - motionEvent.getX() > 0.0f && vvVar.f5335e0) {
                 vvVar.i();
-                this.f36499v0 = false;
+                this.f36393v0 = false;
             }
         }
-        if (this.f36499v0) {
+        if (this.f36393v0) {
             motionEvent.getX();
         }
-        this.f36500w0 = motionEvent.getX();
+        this.f36394w0 = motionEvent.getX();
         if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            this.f36501x0 = true;
+            this.f36395x0 = true;
             this.B0 = false;
             this.A0 = false;
-            if (this.f36499v0) {
+            if (this.f36393v0) {
                 vvVar.i();
-                this.f36499v0 = false;
+                this.f36393v0 = false;
             }
         }
-        if (!this.f36499v0 && !super.onTouchEvent(motionEvent)) {
+        if (!this.f36393v0 && !super.onTouchEvent(motionEvent)) {
             return false;
         }
         return true;

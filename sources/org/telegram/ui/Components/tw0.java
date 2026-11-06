@@ -3,26 +3,26 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import android.graphics.Canvas;
 public final class tw0 extends hb0 {
-    public final uw0 f38427y0;
+    public final uw0 f38418y0;
 
     public tw0(uw0 uw0Var, Context context) {
         super(13, context, null);
-        this.f38427y0 = uw0Var;
+        this.f38418y0 = uw0Var;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27956j5, false);
-        uw0 uw0Var = this.f38427y0;
-        if (x02 != uw0Var.f38748a) {
-            uw0Var.f38748a = x02;
+        uw0 uw0Var = this.f38418y0;
+        if (x02 != uw0Var.f38739a) {
+            uw0Var.f38739a = x02;
             setTextColor(x02);
         }
         super.onDraw(canvas);
         float L = org.telegram.messenger.g0.L(31.0f);
-        uw0Var.f38751e.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.h7, false));
-        canvas.drawLine(org.telegram.messenger.g0.L(2.0f), L, getMeasuredWidth() - org.telegram.messenger.g0.L(2.0f), L, uw0Var.f38751e);
+        uw0Var.f38742e.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.h7, false));
+        canvas.drawLine(org.telegram.messenger.g0.L(2.0f), L, getMeasuredWidth() - org.telegram.messenger.g0.L(2.0f), L, uw0Var.f38742e);
         float measuredHeight = getMeasuredHeight() - org.telegram.messenger.g0.L(31.0f);
-        canvas.drawLine(org.telegram.messenger.g0.L(2.0f), measuredHeight, getMeasuredWidth() - org.telegram.messenger.g0.L(2.0f), measuredHeight, uw0Var.f38751e);
+        canvas.drawLine(org.telegram.messenger.g0.L(2.0f), measuredHeight, getMeasuredWidth() - org.telegram.messenger.g0.L(2.0f), measuredHeight, uw0Var.f38742e);
     }
 }

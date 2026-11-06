@@ -15,20 +15,20 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class to extends oj0 {
-    public final org.telegram.ui.ActionBar.f6 f38390c;
+    public final org.telegram.ui.ActionBar.f6 f38381c;
     public ArrayList d;
-    public WeakReference f38391e;
+    public WeakReference f38382e;
     public final int h;
-    public final int f38393n;
-    public final long f38394r;
-    public int f38392f = -1;
-    public final HashMap f38395s = new HashMap();
-    public final HashMap f38396w = new HashMap();
+    public final int f38384n;
+    public final long f38385r;
+    public int f38383f = -1;
+    public final HashMap f38386s = new HashMap();
+    public final HashMap f38387w = new HashMap();
 
     public to(int i7, long j3, org.telegram.ui.ym ymVar, int i10) {
-        this.f38393n = i10;
-        this.f38394r = j3;
-        this.f38390c = ymVar;
+        this.f38384n = i10;
+        this.f38385r = j3;
+        this.f38381c = ymVar;
         this.h = i7;
     }
 
@@ -39,13 +39,13 @@ public final class to extends oj0 {
 
     public final void E(int i7) {
         yz0 yz0Var;
-        int i10 = this.f38392f;
+        int i10 = this.f38383f;
         if (i10 == i7) {
             return;
         }
         if (i10 >= 0) {
             g(i10);
-            WeakReference weakReference = this.f38391e;
+            WeakReference weakReference = this.f38382e;
             if (weakReference == null) {
                 yz0Var = null;
             } else {
@@ -55,7 +55,7 @@ public final class to extends oj0 {
                 yz0Var.setSelected(false);
             }
         }
-        this.f38392f = i7;
+        this.f38383f = i7;
         g(i7);
     }
 
@@ -77,8 +77,8 @@ public final class to extends oj0 {
         int h;
         int intValue;
         String[] split;
-        yz0 yz0Var = (yz0) d1Var.f56927a;
-        org.telegram.ui.ActionBar.j6 i10 = ((uo) this.d.get(i7)).f38697a.i(((uo) this.d.get(i7)).f38699c);
+        yz0 yz0Var = (yz0) d1Var.f56952a;
+        org.telegram.ui.ActionBar.j6 i10 = ((uo) this.d.get(i7)).f38688a.i(((uo) this.d.get(i7)).f38690c);
         if (i10 != null && i10.f27627b != null && !i10.T && new File(i10.f27627b).exists() && i10.f27627b != null) {
             try {
                 FileInputStream fileInputStream2 = new FileInputStream(new File(i10.f27627b));
@@ -232,7 +232,7 @@ public final class to extends oj0 {
                 org.telegram.messenger.a8.g(th5, true);
             }
             if (i10.f27629c != null && !i10.f27634f && !new File(i10.f27629c).exists()) {
-                HashMap hashMap = this.f38396w;
+                HashMap hashMap = this.f38387w;
                 if (!hashMap.containsKey(i10)) {
                     hashMap.put(i10, i10.f27632e);
                     TL_account.getWallPaper getwallpaper = new TL_account.getWallPaper();
@@ -247,7 +247,7 @@ public final class to extends oj0 {
         }
         uo uoVar = (uo) this.d.get(i7);
         uo uoVar2 = yz0Var.G;
-        if (uoVar2 != null && ig.b.a(uoVar2.f38697a.f28457c, uoVar.f38697a.f28457c) && !org.telegram.ui.ww.f51508x4 && yz0Var.V == uoVar.f38699c) {
+        if (uoVar2 != null && ig.b.a(uoVar2.f38688a.f28457c, uoVar.f38688a.f28457c) && !org.telegram.ui.ww.f51525x4 && yz0Var.V == uoVar.f38690c) {
             z9 = true;
         } else {
             z9 = false;
@@ -255,22 +255,22 @@ public final class to extends oj0 {
         yz0Var.setFocusable(true);
         yz0Var.setEnabled(true);
         org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27939i5, yz0Var, null);
-        yz0Var.f(uoVar, this.f38394r, z9);
-        if (i7 == this.f38392f) {
+        yz0Var.f(uoVar, this.f38385r, z9);
+        if (i7 == this.f38383f) {
             z10 = true;
         } else {
             z10 = false;
         }
         yz0Var.g(z10, z9);
-        if (i7 == this.f38392f) {
-            this.f38391e = new WeakReference(yz0Var);
+        if (i7 == this.f38383f) {
+            this.f38382e = new WeakReference(yz0Var);
         }
     }
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         Context context = viewGroup.getContext();
-        org.telegram.ui.ActionBar.f6 f6Var = this.f38390c;
-        return new v4.d1(new yz0(this.h, this.f38393n, context, f6Var));
+        org.telegram.ui.ActionBar.f6 f6Var = this.f38381c;
+        return new v4.d1(new yz0(this.h, this.f38384n, context, f6Var));
     }
 }

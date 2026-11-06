@@ -58,18 +58,18 @@ public final class t0 extends AnimatorListenerAdapter {
                 return;
             case 4:
                 n9 n9Var = (n9) obj;
-                n9Var.f36324g = f10;
+                n9Var.f36218g = f10;
                 n9Var.invalidateSelf();
                 return;
             case 5:
                 ve0 ve0Var = (ve0) obj;
                 ve0Var.H.e();
-                ve0Var.f38935b = f10;
+                ve0Var.f38932b = f10;
                 if (f10 <= 0.0f) {
                     ve0Var.G = -1;
                 }
                 ve0Var.c(true);
-                ve0Var.f38938f = false;
+                ve0Var.f38935f = false;
                 if (ve0Var.P != null && Math.abs(f10 - 1.0f) < 0.01f) {
                     ve0Var.P.run();
                     return;
@@ -77,7 +77,7 @@ public final class t0 extends AnimatorListenerAdapter {
                 return;
             case 6:
                 org.telegram.ui.Wallet.p3 p3Var = (org.telegram.ui.Wallet.p3) obj;
-                org.telegram.ui.Wallet.h6 h6Var = p3Var.f42962r;
+                org.telegram.ui.Wallet.h6 h6Var = p3Var.f42987r;
                 h6Var.getClass();
                 h6Var.setLayerType(0, null);
                 if (f10 == 0.0f) {
@@ -91,7 +91,7 @@ public final class t0 extends AnimatorListenerAdapter {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(p3Var.Q, 1.0f);
                     p3Var.P = ofFloat;
                     ofFloat.setDuration(320L);
-                    p3Var.P.setInterpolator(xq.f40311g);
+                    p3Var.P.setInterpolator(xq.f40330g);
                     p3Var.P.addUpdateListener(new org.telegram.ui.Wallet.m3(p3Var, 1));
                     p3Var.P.start();
                     return;
@@ -103,7 +103,7 @@ public final class t0 extends AnimatorListenerAdapter {
                 if (y5Var.m0 == animator) {
                     y5Var.m0 = null;
                     y5Var.M0(f10);
-                    y5Var.f43358p0.o(false);
+                    y5Var.f43383p0.o(false);
                     return;
                 }
                 return;
@@ -115,8 +115,8 @@ public final class t0 extends AnimatorListenerAdapter {
         switch (this.f28497a) {
             case 5:
                 ve0 ve0Var = (ve0) this.f28499c;
-                ve0Var.f38938f = true;
-                ve0Var.f38936c = this.f28498b;
+                ve0Var.f38935f = true;
+                ve0Var.f38933c = this.f28498b;
                 return;
             default:
                 super.onAnimationStart(animator);

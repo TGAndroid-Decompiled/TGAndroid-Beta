@@ -11,8 +11,8 @@ public final class cj extends mi.l {
     @Override
     public final void F() {
         an anVar = this.X;
-        if (anVar.f43702aa == -1) {
-            anVar.f43702aa = anVar.getNotificationCenter().q(an.f43688od, anVar.f43702aa, false);
+        if (anVar.f43727aa == -1) {
+            anVar.f43727aa = anVar.getNotificationCenter().q(an.f43713od, anVar.f43727aa, false);
         }
     }
 
@@ -32,7 +32,7 @@ public final class cj extends mi.l {
     @Override
     public final void W() {
         an anVar = this.X;
-        anVar.f43702aa = anVar.getNotificationCenter().q(an.f43688od, anVar.f43702aa, false);
+        anVar.f43727aa = anVar.getNotificationCenter().q(an.f43713od, anVar.f43727aa, false);
         Runnable runnable = this.W;
         if (runnable != null) {
             org.telegram.messenger.g0.r(runnable);

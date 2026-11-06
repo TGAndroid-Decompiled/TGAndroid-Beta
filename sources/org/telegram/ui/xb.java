@@ -1,17 +1,17 @@
 package org.telegram.ui;
 public final class xb implements Runnable {
-    public final int f51799a;
-    public final rc f51800b;
+    public final int f51816a;
+    public final rc f51817b;
 
     public xb(rc rcVar, int i7) {
-        this.f51799a = i7;
-        this.f51800b = rcVar;
+        this.f51816a = i7;
+        this.f51817b = rcVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f51799a;
-        rc rcVar = this.f51800b;
+        int i7 = this.f51816a;
+        rc rcVar = this.f51817b;
         switch (i7) {
             case 0:
                 rc.Z(rcVar);

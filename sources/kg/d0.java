@@ -84,8 +84,8 @@ public final class d0 extends kj0 {
 
     @Override
     public final void W(int i7, int i10, v4.d1 d1Var) {
-        if (d1Var.f56931f == 0) {
-            p1 p1Var = (p1) d1Var.f56927a;
+        if (d1Var.f56956f == 0) {
+            p1 p1Var = (p1) d1Var.f56952a;
             Object O = O(i7, i10);
             boolean z9 = true;
             if (i7 == 1 && i10 == M(i7) - 1) {
@@ -122,7 +122,7 @@ public final class d0 extends kj0 {
                 p1Var.setTag(-33024);
             }
         } else {
-            p1Var = new p1(context, this.f17337x.f38950a, false);
+            p1Var = new p1(context, this.f17337x.f38947a, false);
         }
         return new v4.d1(p1Var);
     }

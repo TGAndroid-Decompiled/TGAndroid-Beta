@@ -22,7 +22,7 @@ public abstract class a0 extends View {
         this.f28863b = new b0(i7, context, f6Var);
         f01 f01Var = new f01(i7, this, f6Var, true);
         this.f28864c = f01Var;
-        f01Var.f33426e = new ly0("", 14.0f, org.telegram.messenger.g0.o());
+        f01Var.f33422e = new ly0("", 14.0f, org.telegram.messenger.g0.o());
     }
 
     public final void a(float f10, int i7) {
@@ -73,7 +73,7 @@ public abstract class a0 extends View {
         ly0Var2.m(4);
         float f10 = (int) (org.telegram.messenger.g0.f22537q.x * 0.95f);
         ly0Var2.p(Math.min(f10, b10));
-        if (ly0Var2.f35776b.getLineCount() > 2) {
+        if (ly0Var2.f35781b.getLineCount() > 2) {
             ly0Var2.p(Math.min(f10, b10 * 1.2f));
         }
         float min = Math.min(Math.max(Math.max(0.0f, ly0Var2.b()), ly0Var.b()) + org.telegram.messenger.g0.L(32.0f), f10);

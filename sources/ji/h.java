@@ -58,7 +58,7 @@ public final class h extends FrameLayout implements a6 {
             ri.f fVar = new ri.f(null);
             this.f17092w = fVar;
             fVar.m(g0.L(7.0f), o0.a());
-            fVar.f54457n = true;
+            fVar.f54482n = true;
             cVar = new dh.c(fVar, fVar, fVar);
         } else {
             this.f17092w = null;
@@ -73,7 +73,7 @@ public final class h extends FrameLayout implements a6 {
         addView(l9Var, ha.d(52, 52.0f, 51, 11.0f, 9.0f, 0.0f, 0.0f));
         wp wpVar = new wp(2131231978, 0);
         this.f17091s = wpVar;
-        wpVar.f40055r = g0.L(2.0f);
+        wpVar.f40062r = g0.L(2.0f);
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTypeface(g0.o());

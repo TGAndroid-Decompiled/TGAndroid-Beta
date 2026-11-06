@@ -19,8 +19,8 @@ import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.c40;
 import org.telegram.ui.kp;
 import org.telegram.ui.p90;
-import org.telegram.ui.pv0;
 import org.telegram.ui.qv0;
+import org.telegram.ui.rv0;
 import org.telegram.ui.ww;
 public final class o implements Runnable {
     public final int f4442a = 0;
@@ -106,7 +106,7 @@ public final class o implements Runnable {
                     X2 = org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131744760, org.telegram.messenger.g5.m(10, str, null)));
                 }
                 org.telegram.ui.Components.cc V = new org.telegram.ui.Components.hc(i4Var.M0, i4Var.f9163k0).V(Arrays.asList(tLObject2), X2, null, obj5);
-                V.f32516a = 2;
+                V.f32520a = 2;
                 V.k(true);
                 return;
             case 2:
@@ -159,7 +159,7 @@ public final class o implements Runnable {
                 EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj3;
                 String str2 = (String) obj2;
                 TLRPC.Document document = (TLRPC.Document) obj;
-                ChatActivityEnterView chatActivityEnterView = ((pf) obj4).f36995a;
+                ChatActivityEnterView chatActivityEnterView = ((pf) obj4).f36874a;
                 if (editTextBoldCursor != null) {
                     int selectionEnd = editTextBoldCursor.getSelectionEnd();
                     if (selectionEnd < 0) {
@@ -217,7 +217,7 @@ public final class o implements Runnable {
                 TLObject tLObject3 = (TLObject) obj2;
                 String str3 = (String) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj3;
-                int i10 = p90Var.f48724b;
+                int i10 = p90Var.f48719b;
                 p90Var.c();
                 if (tLObject3 instanceof TLRPC.TL_contacts_resolvedPeer) {
                     TLRPC.TL_contacts_resolvedPeer tL_contacts_resolvedPeer = (TLRPC.TL_contacts_resolvedPeer) tLObject3;
@@ -226,10 +226,10 @@ public final class o implements Runnable {
                     TLRPC.User a22 = qp.s1(i10).a2(Long.valueOf(tL_contacts_resolvedPeer.peer.user_id));
                     if (a22 != null) {
                         org.telegram.ui.Wallet.n9 n9Var = new org.telegram.ui.Wallet.n9(a22);
-                        n9Var.f42841s = j3;
-                        n9Var.f42828g0 = str3;
-                        n9Var.f42829h0 = z9;
-                        n9Var.f42827f0 = true;
+                        n9Var.f42866s = j3;
+                        n9Var.f42853g0 = str3;
+                        n9Var.f42854h0 = z9;
+                        n9Var.f42852f0 = true;
                         p90Var.u(n9Var, false);
                         return;
                     }
@@ -241,10 +241,10 @@ public final class o implements Runnable {
                     return;
                 }
             default:
-                qv0 qv0Var = (qv0) obj4;
-                ProfileActivity profileActivity = qv0Var.f49300b;
-                kp kpVar = new kp(profileActivity.f41688d1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z9, null);
-                kpVar.X0 = new pv0(qv0Var, (ww) obj);
+                rv0 rv0Var = (rv0) obj4;
+                ProfileActivity profileActivity = rv0Var.f49578b;
+                kp kpVar = new kp(profileActivity.f41713d1, -j3, (TLRPC.TL_chatAdminRights) obj3, null, null, (String) obj2, 2, true, !z9, null);
+                kpVar.X0 = new qv0(rv0Var, (ww) obj);
                 profileActivity.presentFragment(kpVar);
                 return;
         }
@@ -295,8 +295,8 @@ public final class o implements Runnable {
         this.f4446f = tL_error;
     }
 
-    public o(qv0 qv0Var, long j3, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str, boolean z9, ww wwVar) {
-        this.f4445e = qv0Var;
+    public o(rv0 rv0Var, long j3, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str, boolean z9, ww wwVar) {
+        this.f4445e = rv0Var;
         this.f4443b = j3;
         this.f4446f = tL_chatAdminRights;
         this.d = str;

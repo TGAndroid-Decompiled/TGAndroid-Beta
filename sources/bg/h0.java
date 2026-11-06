@@ -21,8 +21,8 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.ActionBar.z0;
-import org.telegram.ui.Components.g11;
 import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.l11;
 import org.telegram.ui.Components.m50;
 import org.telegram.ui.an;
 import org.telegram.ui.oy0;
@@ -141,7 +141,7 @@ public final class h0 implements Runnable {
                 m50.M0((Context) obj6, m50Var.f28612a, -j3, ((TLRPC.TL_chatInviteExported) obj4).subscription_pricing, (TLRPC.TL_chatInviteImporter) obj3, (TLRPC.ChannelParticipant) obj, m50Var.I0);
                 return;
             case 3:
-                final g11 g11Var = (g11) obj5;
+                final l11 l11Var = (l11) obj5;
                 TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) obj2;
                 z0 z0Var = (z0) obj6;
                 final k60 k60Var = (k60) obj4;
@@ -163,8 +163,8 @@ public final class h0 implements Runnable {
                 z0Var.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public final void onClick(View view) {
-                        g11 g11Var2 = g11.this;
-                        int i11 = g11Var2.f33786e;
+                        l11 l11Var2 = l11.this;
+                        int i11 = l11Var2.f35485e;
                         k60Var.u();
                         boolean z11 = z10;
                         TLRPC.User user2 = user;
@@ -176,7 +176,7 @@ public final class h0 implements Runnable {
                         tL_channels_editBanned.participant = org.telegram.messenger.qp.n1(user2);
                         tL_channels_editBanned.channel = org.telegram.messenger.qp.i1(chat);
                         tL_channels_editBanned.banned_rights = new TLRPC.TL_chatBannedRights();
-                        ConnectionsManager.getInstance(i11).sendRequest(tL_channels_editBanned, new x1(g11Var2, 14));
+                        ConnectionsManager.getInstance(i11).sendRequest(tL_channels_editBanned, new x1(l11Var2, 14));
                     }
                 });
                 return;
@@ -185,7 +185,7 @@ public final class h0 implements Runnable {
                 f6 f6Var = (f6) obj4;
                 oy0 oy0Var = new oy0(activity, f6Var, this.f3291b, (byte[]) obj3);
                 oy0Var.N0((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) obj6));
-                oy0Var.f48580r1 = new ab.b0((an) obj2, activity, f6Var, (ij) obj, 10);
+                oy0Var.f48575r1 = new ab.b0((an) obj2, activity, f6Var, (ij) obj, 10);
                 oy0Var.show();
                 return;
         }
@@ -221,8 +221,8 @@ public final class h0 implements Runnable {
         this.f3295n = channelParticipant;
     }
 
-    public h0(g11 g11Var, TLRPC.ChannelParticipant channelParticipant, z0 z0Var, k60 k60Var, long j3, TLRPC.User user, TLRPC.Chat chat) {
-        this.d = g11Var;
+    public h0(l11 l11Var, TLRPC.ChannelParticipant channelParticipant, z0 z0Var, k60 k60Var, long j3, TLRPC.User user, TLRPC.Chat chat) {
+        this.d = l11Var;
         this.f3293e = channelParticipant;
         this.f3292c = z0Var;
         this.f3294f = k60Var;

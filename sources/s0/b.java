@@ -14,10 +14,10 @@ import org.telegram.ui.Components.kt0;
 import sg.z;
 import tg.c2;
 public final class b implements z, t3.g, OnFailureListener, jt0, kt0, u9.e, ua.a, r1 {
-    public final int f54476a;
+    public final int f54501a;
 
     public b(int i7) {
-        this.f54476a = i7;
+        this.f54501a = i7;
     }
 
     public static MediaRoute2Info d(Object obj) {
@@ -26,7 +26,7 @@ public final class b implements z, t3.g, OnFailureListener, jt0, kt0, u9.e, ua.a
 
     @Override
     public Typeface a() {
-        switch (this.f54476a) {
+        switch (this.f54501a) {
             case 9:
                 return g0.o1("fonts/rmedium.ttf");
             case 10:
@@ -50,15 +50,15 @@ public final class b implements z, t3.g, OnFailureListener, jt0, kt0, u9.e, ua.a
     @Override
     public void f(Object obj, float f10) {
         ti.i iVar = (ti.i) obj;
-        switch (this.f54476a) {
+        switch (this.f54501a) {
             case 20:
-                WindowManager.LayoutParams layoutParams = iVar.f55968e;
+                WindowManager.LayoutParams layoutParams = iVar.f55993e;
                 iVar.B = f10;
                 layoutParams.x = (int) f10;
                 iVar.r();
                 return;
             default:
-                WindowManager.LayoutParams layoutParams2 = iVar.f55968e;
+                WindowManager.LayoutParams layoutParams2 = iVar.f55993e;
                 iVar.C = f10;
                 layoutParams2.y = (int) f10;
                 iVar.r();
@@ -68,7 +68,7 @@ public final class b implements z, t3.g, OnFailureListener, jt0, kt0, u9.e, ua.a
 
     @Override
     public void g(u1 u1Var, int i7) {
-        switch (this.f54476a) {
+        switch (this.f54501a) {
             case 27:
                 u1Var.dismiss();
                 return;
@@ -81,7 +81,7 @@ public final class b implements z, t3.g, OnFailureListener, jt0, kt0, u9.e, ua.a
     @Override
     public float get(Object obj) {
         ti.i iVar = (ti.i) obj;
-        switch (this.f54476a) {
+        switch (this.f54501a) {
             case 19:
                 return iVar.B;
             default:
@@ -96,7 +96,7 @@ public final class b implements z, t3.g, OnFailureListener, jt0, kt0, u9.e, ua.a
 
     @Override
     public void onFailure(Exception exc) {
-        int i7 = c2.f55471r0;
+        int i7 = c2.f55496r0;
     }
 
     @Override

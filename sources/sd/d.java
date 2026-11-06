@@ -1,6 +1,6 @@
 package sd;
 public abstract class d {
-    public static final a f54887a;
+    public static final a f54912a;
 
     static {
         b bVar;
@@ -10,6 +10,6 @@ public abstract class d {
         } else {
             bVar = new Object();
         }
-        f54887a = bVar;
+        f54912a = bVar;
     }
 }

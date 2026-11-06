@@ -1,29 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
+import android.graphics.Typeface;
 import android.text.TextPaint;
-import android.text.style.URLSpan;
-import android.view.View;
-public final class t31 extends URLSpan {
-    public final ty0 f38246a;
+import android.text.style.MetricAffectingSpan;
+public final class t31 extends MetricAffectingSpan {
+    public Typeface f38210a;
+    public int f38211b;
+    public int f38212c;
 
-    public t31(String str, ty0 ty0Var) {
-        super(str != null ? str.replace((char) 8238, ' ') : str);
-        this.f38246a = ty0Var;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        vf.c.q(view.getContext(), Uri.parse(getURL()), true, true);
+    public t31(Typeface typeface) {
+        this.f38212c = -1;
+        this.f38210a = typeface;
     }
 
     @Override
     public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        ty0 ty0Var = this.f38246a;
-        if (ty0Var != null) {
-            ty0Var.a(textPaint);
+        int i7 = this.f38212c;
+        if (i7 >= 0) {
+            this.f38211b = org.telegram.ui.ActionBar.k6.v0(i7);
         }
-        textPaint.setUnderlineText(true);
+        Typeface typeface = this.f38210a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        int i10 = this.f38211b;
+        if (i10 != 0) {
+            textPaint.setColor(i10);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    @Override
+    public final void updateMeasureState(TextPaint textPaint) {
+        Typeface typeface = this.f38210a;
+        if (typeface != null) {
+            textPaint.setTypeface(typeface);
+        }
+        textPaint.setFlags(textPaint.getFlags() | 128);
+    }
+
+    public t31() {
+        Typeface typeface = Typeface.DEFAULT;
+        this.f38212c = -1;
+        this.f38210a = typeface;
+    }
+
+    public t31(Typeface typeface, int i7) {
+        this.f38212c = -1;
+        this.f38210a = typeface;
+        this.f38211b = i7;
     }
 }

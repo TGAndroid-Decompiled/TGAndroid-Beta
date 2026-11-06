@@ -564,8 +564,8 @@ public final class qs {
                     ekVar.getClass();
                     if (i7 == 1) {
                         long longValue = ((Long) objArr[0]).longValue();
-                        org.telegram.ui.an anVar = ekVar.f45340a;
-                        if (anVar.X6 && longValue == anVar.f43818j6) {
+                        org.telegram.ui.an anVar = ekVar.f45370a;
+                        if (anVar.X6 && longValue == anVar.f43843j6) {
                             this.d.add(new ks(i7, objArr));
                             return;
                         }

@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.view.View;
 import java.util.ArrayList;
 public final class hf implements View.OnClickListener {
-    public final int f46343a;
-    public final an f46344b;
-    public final ArrayList f46345c;
+    public final int f46363a;
+    public final an f46364b;
+    public final ArrayList f46365c;
 
     public hf(an anVar, ArrayList arrayList, int i7) {
-        this.f46343a = i7;
-        this.f46344b = anVar;
-        this.f46345c = arrayList;
+        this.f46363a = i7;
+        this.f46364b = anVar;
+        this.f46365c = arrayList;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f46343a) {
+        switch (this.f46363a) {
             case 0:
-                an anVar = this.f46344b;
-                xh xhVar = new xh(anVar, anVar, anVar.getParentActivity(), anVar.f43998xa, this.f46345c);
+                an anVar = this.f46364b;
+                xh xhVar = new xh(anVar, anVar, anVar.getParentActivity(), anVar.f44023xa, this.f46365c);
                 boolean T9 = anVar.T9();
                 xhVar.f28631h0 = T9;
                 xhVar.f28636n = T9;
@@ -27,9 +27,9 @@ public final class hf implements View.OnClickListener {
                 anVar.showDialog(xhVar);
                 return;
             default:
-                an anVar2 = this.f46344b;
+                an anVar2 = this.f46364b;
                 if (anVar2.getParentActivity() != null && anVar2.getParentActivity() != null) {
-                    new org.telegram.ui.Components.qu(anVar2, anVar2.getParentActivity(), anVar2.f43998xa, this.f46345c).show();
+                    new org.telegram.ui.Components.qu(anVar2, anVar2.getParentActivity(), anVar2.f44023xa, this.f46365c).show();
                     anVar2.O7(true);
                     return;
                 }

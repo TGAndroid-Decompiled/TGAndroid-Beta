@@ -12,7 +12,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.s21;
+import org.telegram.ui.Components.x21;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.bi0;
 public final class q2 implements v10 {
@@ -127,19 +127,19 @@ public final class q2 implements v10 {
                 q3Var.a(stargiftdepositpayload);
                 return;
             case 2:
-                s21 s21Var = (s21) obj5;
+                x21 x21Var = (x21) obj5;
                 String str2 = (String) obj4;
                 org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj3;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
                 ((org.telegram.ui.ActionBar.u1) obj6).dismiss();
                 if (((TLRPC.Bool) obj) instanceof TLRPC.TL_boolTrue) {
-                    s21Var.run();
+                    x21Var.run();
                     return;
                 }
-                org.telegram.ui.ActionBar.v2 v2Var = bi0.f44340a;
+                org.telegram.ui.ActionBar.v2 v2Var = bi0.f44356a;
                 if (v2Var != null) {
                     v2Var.dismiss();
-                    bi0.f44340a = null;
+                    bi0.f44356a = null;
                 }
                 org.telegram.ui.Components.hc a10 = bi0.a();
                 String M03 = org.telegram.messenger.hd.M0(2131753128, null);
@@ -157,7 +157,7 @@ public final class q2 implements v10 {
                 TLRPC.User user = (TLRPC.User) obj3;
                 TLRPC.Updates updates2 = (TLRPC.Updates) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
-                org.telegram.ui.ActionBar.f6 f6Var2 = x0Var.f51355e;
+                org.telegram.ui.ActionBar.f6 f6Var2 = x0Var.f51365e;
                 if (updates2 != null) {
                     qp.s1(x0Var.M).O3(updates2, false);
                     x0Var.x(o7Var, "requested_chat_sent", org.telegram.ui.web.x0.A(str3, "req_id"));
@@ -169,7 +169,7 @@ public final class q2 implements v10 {
                     if (T != null) {
                         T.presentFragment(b0Var);
                     }
-                    org.telegram.ui.web.d0 d0Var = x0Var.f51352c;
+                    org.telegram.ui.web.d0 d0Var = x0Var.f51362c;
                     if (d0Var != null) {
                         d0Var.b();
                         return;

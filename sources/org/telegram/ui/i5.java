@@ -8,24 +8,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 public final class i5 implements RequestDelegate {
-    public final int f46563a;
-    public final t5 f46564b;
-    public final CountDownLatch f46565c;
+    public final int f46572a;
+    public final t5 f46573b;
+    public final CountDownLatch f46574c;
     public final Runnable d;
 
     public i5(t5 t5Var, CountDownLatch countDownLatch, Runnable runnable, int i7) {
-        this.f46563a = i7;
-        this.f46564b = t5Var;
-        this.f46565c = countDownLatch;
+        this.f46572a = i7;
+        this.f46573b = t5Var;
+        this.f46574c = countDownLatch;
         this.d = runnable;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f46563a) {
+        switch (this.f46572a) {
             case 0:
-                final t5 t5Var = this.f46564b;
-                final CountDownLatch countDownLatch = this.f46565c;
+                final t5 t5Var = this.f46573b;
+                final CountDownLatch countDownLatch = this.f46574c;
                 final Runnable runnable = this.d;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
@@ -40,11 +40,11 @@ public final class i5 implements RequestDelegate {
                                 }
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null) {
-                                    t5Var2.f49908l0 = 20;
+                                    t5Var2.f49936l0 = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
                                     boolean z9 = false;
                                     org.telegram.messenger.qp.s1(t5Var2.S).Y3(tL_premium_boostsList.users, false);
-                                    t5Var2.f49907k0 = tL_premium_boostsList.next_offset;
+                                    t5Var2.f49935k0 = tL_premium_boostsList.next_offset;
                                     arrayList.addAll(tL_premium_boostsList.boosts);
                                     int size = arrayList.size();
                                     int i7 = 0;
@@ -60,12 +60,12 @@ public final class i5 implements RequestDelegate {
                                             }
                                             i7 += i11;
                                         } else {
-                                            t5Var2.f49898b0 = Math.max(0, tL_premium_boostsList.count - i7);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && t5Var2.f49898b0 > 0) {
+                                            t5Var2.f49926b0 = Math.max(0, tL_premium_boostsList.count - i7);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && t5Var2.f49926b0 > 0) {
                                                 z9 = true;
                                             }
-                                            t5Var2.f49897a0 = z9;
-                                            t5Var2.f49909n0 = tL_premium_boostsList.count;
+                                            t5Var2.f49925a0 = z9;
+                                            t5Var2.f49937n0 = tL_premium_boostsList.count;
                                             Runnable runnable2 = runnable;
                                             if (runnable2 != null) {
                                                 runnable2.run();
@@ -91,7 +91,7 @@ public final class i5 implements RequestDelegate {
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
                                     boolean z10 = false;
                                     org.telegram.messenger.qp.s1(t5Var3.S).Y3(tL_premium_boostsList2.users, false);
-                                    t5Var3.f49906j0 = tL_premium_boostsList2.next_offset;
+                                    t5Var3.f49934j0 = tL_premium_boostsList2.next_offset;
                                     arrayList2.addAll(tL_premium_boostsList2.boosts);
                                     int size2 = arrayList2.size();
                                     int i13 = 0;
@@ -112,7 +112,7 @@ public final class i5 implements RequestDelegate {
                                                 z10 = true;
                                             }
                                             t5Var3.Y = z10;
-                                            t5Var3.f49910o0 = tL_premium_boostsList2.count;
+                                            t5Var3.f49938o0 = tL_premium_boostsList2.count;
                                             Runnable runnable3 = runnable;
                                             if (runnable3 != null) {
                                                 runnable3.run();
@@ -130,8 +130,8 @@ public final class i5 implements RequestDelegate {
                 });
                 return;
             default:
-                final t5 t5Var2 = this.f46564b;
-                final CountDownLatch countDownLatch2 = this.f46565c;
+                final t5 t5Var2 = this.f46573b;
+                final CountDownLatch countDownLatch2 = this.f46574c;
                 final Runnable runnable2 = this.d;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
@@ -146,11 +146,11 @@ public final class i5 implements RequestDelegate {
                                 }
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null) {
-                                    t5Var22.f49908l0 = 20;
+                                    t5Var22.f49936l0 = 20;
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList = (TL_stories.TL_premium_boostsList) tLObject2;
                                     boolean z9 = false;
                                     org.telegram.messenger.qp.s1(t5Var22.S).Y3(tL_premium_boostsList.users, false);
-                                    t5Var22.f49907k0 = tL_premium_boostsList.next_offset;
+                                    t5Var22.f49935k0 = tL_premium_boostsList.next_offset;
                                     arrayList.addAll(tL_premium_boostsList.boosts);
                                     int size = arrayList.size();
                                     int i7 = 0;
@@ -166,12 +166,12 @@ public final class i5 implements RequestDelegate {
                                             }
                                             i7 += i11;
                                         } else {
-                                            t5Var22.f49898b0 = Math.max(0, tL_premium_boostsList.count - i7);
-                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && t5Var22.f49898b0 > 0) {
+                                            t5Var22.f49926b0 = Math.max(0, tL_premium_boostsList.count - i7);
+                                            if (!TextUtils.isEmpty(tL_premium_boostsList.next_offset) && t5Var22.f49926b0 > 0) {
                                                 z9 = true;
                                             }
-                                            t5Var22.f49897a0 = z9;
-                                            t5Var22.f49909n0 = tL_premium_boostsList.count;
+                                            t5Var22.f49925a0 = z9;
+                                            t5Var22.f49937n0 = tL_premium_boostsList.count;
                                             Runnable runnable22 = runnable2;
                                             if (runnable22 != null) {
                                                 runnable22.run();
@@ -197,7 +197,7 @@ public final class i5 implements RequestDelegate {
                                     TL_stories.TL_premium_boostsList tL_premium_boostsList2 = (TL_stories.TL_premium_boostsList) tLObject3;
                                     boolean z10 = false;
                                     org.telegram.messenger.qp.s1(t5Var3.S).Y3(tL_premium_boostsList2.users, false);
-                                    t5Var3.f49906j0 = tL_premium_boostsList2.next_offset;
+                                    t5Var3.f49934j0 = tL_premium_boostsList2.next_offset;
                                     arrayList2.addAll(tL_premium_boostsList2.boosts);
                                     int size2 = arrayList2.size();
                                     int i13 = 0;
@@ -218,7 +218,7 @@ public final class i5 implements RequestDelegate {
                                                 z10 = true;
                                             }
                                             t5Var3.Y = z10;
-                                            t5Var3.f49910o0 = tL_premium_boostsList2.count;
+                                            t5Var3.f49938o0 = tL_premium_boostsList2.count;
                                             Runnable runnable3 = runnable2;
                                             if (runnable3 != null) {
                                                 runnable3.run();

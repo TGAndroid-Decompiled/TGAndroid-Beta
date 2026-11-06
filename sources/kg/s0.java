@@ -15,13 +15,13 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.b5;
 import org.telegram.ui.ActionBar.f2;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 public final class s0 extends f2 implements ls {
     public b5 f17520a;
-    public k41 f17521b;
+    public p41 f17521b;
     public a0 f17522c;
     public final int[] d;
     public final String[] f17523e;
@@ -51,42 +51,42 @@ public final class s0 extends f2 implements ls {
         }
     }
 
-    public static void Z(s0 s0Var, ArrayList arrayList, f41 f41Var) {
+    public static void Z(s0 s0Var, ArrayList arrayList, k41 k41Var) {
         String M0 = hd.M0(2131752775, null);
         String M02 = hd.M0(2131752773, null);
-        r31 r31Var = new r31(2);
-        r31Var.f37598l = M0;
-        r31Var.f37601o = M02;
-        r31Var.f37599m = "RestrictedEmoji";
-        r31Var.f37600n = "👋";
-        arrayList.add(r31Var);
-        r31 i7 = r31.i(1, hd.M0(2131752769, null));
+        w31 w31Var = new w31(2);
+        w31Var.f39830l = M0;
+        w31Var.f39833o = M02;
+        w31Var.f39831m = "RestrictedEmoji";
+        w31Var.f39832n = "👋";
+        arrayList.add(w31Var);
+        w31 i7 = w31.i(1, hd.M0(2131752769, null));
         i7.L(s0Var.f17526r);
         arrayList.add(i7);
-        arrayList.add(r31.C(null));
+        arrayList.add(w31.C(null));
         if (s0Var.f17526r) {
             s1 d = t1.f(s0Var.currentAccount).d("hello");
             if (d != null) {
-                r31 r31Var2 = new r31(17);
-                r31Var2.G = d;
-                arrayList.add(r31Var2);
+                w31 w31Var2 = new w31(17);
+                w31Var2.G = d;
+                arrayList.add(w31Var2);
             } else {
-                r31 c10 = r31.c(2, 2131232022, hd.M0(2131752774, null));
-                c10.f37603q = true;
+                w31 c10 = w31.c(2, 2131232022, hd.M0(2131752774, null));
+                c10.f39835q = true;
                 arrayList.add(c10);
             }
-            arrayList.add(r31.C(null));
-            arrayList.add(r31.u(hd.M0(2131752688, null)));
-            r31 x10 = r31.x(3, hd.M0(2131752781, null));
+            arrayList.add(w31.C(null));
+            arrayList.add(w31.u(hd.M0(2131752688, null)));
+            w31 x10 = w31.x(3, hd.M0(2131752781, null));
             x10.L(s0Var.f17527s);
             arrayList.add(x10);
-            r31 x11 = r31.x(4, hd.M0(2131752776, null));
+            w31 x11 = w31.x(4, hd.M0(2131752776, null));
             x11.L(!s0Var.f17527s);
             arrayList.add(x11);
-            arrayList.add(r31.C(null));
-            s0Var.f17522c.a(arrayList, f41Var, true);
-            arrayList.add(r31.C(hd.M0(2131752770, null)));
-            arrayList.add(r31.u(hd.M0(2131752772, null)));
+            arrayList.add(w31.C(null));
+            s0Var.f17522c.a(arrayList, k41Var, true);
+            arrayList.add(w31.C(hd.M0(2131752770, null)));
+            arrayList.add(w31.u(hd.M0(2131752772, null)));
             int i10 = 0;
             while (true) {
                 int[] iArr = s0Var.d;
@@ -102,13 +102,13 @@ public final class s0 extends f2 implements ls {
             }
             String[] strArr = s0Var.f17523e;
             ii.c cVar = new ii.c(s0Var, 6);
-            r31 r31Var3 = new r31(14);
-            r31Var3.f37602p = strArr;
-            r31Var3.f37611z = i10;
-            r31Var3.C = cVar;
-            r31Var3.B = -1L;
-            arrayList.add(r31Var3);
-            arrayList.add(r31.C(hd.M0(2131752771, null)));
+            w31 w31Var3 = new w31(14);
+            w31Var3.f39834p = strArr;
+            w31Var3.f39843z = i10;
+            w31Var3.C = cVar;
+            w31Var3.B = -1L;
+            arrayList.add(w31Var3);
+            arrayList.add(w31.C(hd.M0(2131752771, null)));
         }
     }
 
@@ -138,7 +138,7 @@ public final class s0 extends f2 implements ls {
     }
 
     public final void c0() {
-        if (!this.f17520a.f27354y.f55371f) {
+        if (!this.f17520a.f27354y.f55396f) {
             if (!b0()) {
                 finishFragment();
                 return;
@@ -201,13 +201,13 @@ public final class s0 extends f2 implements ls {
             tL_businessRecipients = tL_businessGreetingMessage.recipients;
         }
         a0Var.j(tL_businessRecipients);
-        k41 k41Var = new k41(this, new hi.u1(this, 9), new r0(this, 2), null);
-        this.f17521b = k41Var;
-        k41Var.r1();
+        p41 p41Var = new p41(this, new hi.u1(this, 9), new r0(this, 2), null);
+        this.f17521b = p41Var;
+        p41Var.r1();
         this.f17521b.setSectionsDrawBackground(true);
-        k41 k41Var2 = this.f17521b;
-        k41Var2.f35167f3.f33473r = false;
-        frameLayout.addView(k41Var2, ha.c(-1.0f, -1));
+        p41 p41Var2 = this.f17521b;
+        p41Var2.f36781f3.f35132r = false;
+        frameLayout.addView(p41Var2, ha.c(-1.0f, -1));
         d0();
         this.fragmentView = frameLayout;
         return frameLayout;
@@ -217,7 +217,7 @@ public final class s0 extends f2 implements ls {
         boolean z9;
         int i7;
         boolean z10;
-        f41 f41Var;
+        k41 k41Var;
         TL_account.TL_businessRecipients tL_businessRecipients;
         if (this.f17524f) {
             return;
@@ -256,9 +256,9 @@ public final class s0 extends f2 implements ls {
             }
             a0Var.j(tL_businessRecipients);
         }
-        k41 k41Var = this.f17521b;
-        if (k41Var != null && (f41Var = k41Var.f35167f3) != null) {
-            f41Var.O(true);
+        p41 p41Var = this.f17521b;
+        if (p41Var != null && (k41Var = p41Var.f36781f3) != null) {
+            k41Var.O(true);
         }
         a0(true);
         this.f17524f = true;
@@ -266,11 +266,11 @@ public final class s0 extends f2 implements ls {
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        f41 f41Var;
+        k41 k41Var;
         if (i7 == qs.F1) {
-            k41 k41Var = this.f17521b;
-            if (k41Var != null && (f41Var = k41Var.f35167f3) != null) {
-                f41Var.O(true);
+            p41 p41Var = this.f17521b;
+            if (p41Var != null && (k41Var = p41Var.f36781f3) != null) {
+                k41Var.O(true);
             }
             a0(true);
         } else if (i7 == qs.E0) {

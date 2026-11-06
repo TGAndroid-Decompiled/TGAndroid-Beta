@@ -37,14 +37,14 @@ import org.telegram.messenger.ms;
 import org.telegram.messenger.qs;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.f6;
-import org.telegram.ui.Components.f71;
+import org.telegram.ui.Components.k71;
 import org.telegram.ui.an;
 import org.telegram.ui.cy0;
 import org.telegram.ui.hy0;
 import org.telegram.ui.ie;
 import org.telegram.ui.jy0;
-import org.telegram.ui.web.c1;
 import org.telegram.ui.web.d1;
+import org.telegram.ui.web.e1;
 import ug.w0;
 import zd.a1;
 public final class b0 implements ib.b, ms, jy0, q5.b {
@@ -60,7 +60,7 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
     }
 
     public static void f(String str, String str2, HashMap hashMap) {
-        d1 d1Var = new d1();
+        e1 e1Var = new e1();
         String[] split = str2.split(";(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
         for (int i7 = 0; i7 < split.length; i7++) {
             String trim = split[i7].trim();
@@ -72,13 +72,13 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
                     if (trim3.length() >= 2 && trim3.charAt(0) == '\"' && trim3.charAt(trim3.length() - 1) == '\"') {
                         trim3 = com.google.android.recaptcha.internal.a.k(trim3, 1, 1);
                     }
-                    d1Var.f51107b.put(trim2, trim3);
+                    e1Var.f51126b.put(trim2, trim3);
                 } else {
-                    d1Var.f51106a = trim;
+                    e1Var.f51125a = trim;
                 }
             }
         }
-        hashMap.put(str.trim().toLowerCase(), d1Var);
+        hashMap.put(str.trim().toLowerCase(), e1Var);
     }
 
     public static synchronized b0 k() {
@@ -205,7 +205,7 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         ArrayList arrayList = new ArrayList();
         for (int i7 = 0; i7 < list.size(); i7++) {
             p2.b bVar = (p2.b) list.get(i7);
-            if (!hashMap.containsKey(bVar.f52978b) && !hashMap2.containsKey(Integer.valueOf(bVar.f52979c))) {
+            if (!hashMap.containsKey(bVar.f53004b) && !hashMap2.containsKey(Integer.valueOf(bVar.f53005c))) {
                 arrayList.add(bVar);
             }
         }
@@ -286,11 +286,11 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         if (i7 >= 0) {
             zArr[0] = false;
             String trim = str.trim();
-            Matcher matcher = f71.f33512x0.matcher(trim);
+            Matcher matcher = k71.f35209x0.matcher(trim);
             if (matcher.find()) {
                 trim = trim.substring(matcher.group(0).length());
             } else {
-                Matcher matcher2 = f71.f33513y0.matcher(trim);
+                Matcher matcher2 = k71.f35210y0.matcher(trim);
                 if (matcher2.find()) {
                     trim = trim.substring(matcher2.group(0).length());
                     zArr[0] = true;
@@ -403,19 +403,19 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         Collections.sort(h, new jg.x(10));
         ArrayList arrayList = new ArrayList();
         int i7 = 0;
-        int i10 = ((p2.b) h.get(0)).f52979c;
+        int i10 = ((p2.b) h.get(0)).f53005c;
         int i11 = 0;
         while (true) {
             if (i11 >= h.size()) {
                 break;
             }
             p2.b bVar2 = (p2.b) h.get(i11);
-            if (i10 != bVar2.f52979c) {
+            if (i10 != bVar2.f53005c) {
                 if (arrayList.size() == 1) {
                     return (p2.b) h.get(0);
                 }
             } else {
-                arrayList.add(new Pair(bVar2.f52978b, Integer.valueOf(bVar2.d)));
+                arrayList.add(new Pair(bVar2.f53004b, Integer.valueOf(bVar2.d)));
                 i11++;
             }
         }
@@ -467,11 +467,11 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         this.f907b = file;
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
         hashMap.putAll(q(bufferedReader));
-        d1 d1Var = (d1) hashMap.get("content-type");
-        String str = d1Var == null ? null : (String) d1Var.f51107b.get("boundary");
+        e1 e1Var = (e1) hashMap.get("content-type");
+        String str = e1Var == null ? null : (String) e1Var.f51126b.get("boundary");
         if (str != null) {
             int length = str.length() + 2;
-            c1 c1Var = null;
+            d1 d1Var = null;
             while (true) {
                 String readLine = bufferedReader.readLine();
                 if (readLine == null) {
@@ -479,22 +479,22 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
                 }
                 jArr[0] = jArr[0] + readLine.getBytes().length + 2;
                 if (readLine.length() == length && readLine.substring(2).equals(str)) {
-                    if (c1Var != null) {
-                        c1Var.d = (jArr[0] - length) - 2;
-                        arrayList.add(c1Var);
-                        d1 d1Var2 = (d1) c1Var.f51099a.get("content-location");
-                        hashMap2.put(d1Var2 == null ? null : d1Var2.f51106a, c1Var);
+                    if (d1Var != null) {
+                        d1Var.d = (jArr[0] - length) - 2;
+                        arrayList.add(d1Var);
+                        e1 e1Var2 = (e1) d1Var.f51118a.get("content-location");
+                        hashMap2.put(e1Var2 == null ? null : e1Var2.f51125a, d1Var);
                     }
-                    c1Var = new c1();
-                    c1Var.f51100b = (File) this.f907b;
-                    c1Var.f51099a.putAll(q(bufferedReader));
-                    c1Var.f51101c = jArr[0];
+                    d1Var = new d1();
+                    d1Var.f51119b = (File) this.f907b;
+                    d1Var.f51118a.putAll(q(bufferedReader));
+                    d1Var.f51120c = jArr[0];
                 }
             }
-            if (c1Var != null && c1Var.f51101c != 0 && c1Var.d != 0) {
-                arrayList.add(c1Var);
-                d1 d1Var3 = (d1) c1Var.f51099a.get("content-location");
-                hashMap2.put(d1Var3 != null ? d1Var3.f51106a : null, c1Var);
+            if (d1Var != null && d1Var.f51120c != 0 && d1Var.d != 0) {
+                arrayList.add(d1Var);
+                e1 e1Var3 = (e1) d1Var.f51118a.get("content-location");
+                hashMap2.put(e1Var3 != null ? e1Var3.f51125a : null, d1Var);
             }
         }
         bufferedReader.close();
@@ -506,7 +506,7 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         this.f908c = lVar;
         this.d = h7.a(Integer.MAX_VALUE, null, 6);
         this.f909e = new g6.d0(17);
-        a1 a1Var = (a1) zVar.c().get(zd.y.f60008b);
+        a1 a1Var = (a1) zVar.c().get(zd.y.f60033b);
         if (a1Var != null) {
             a1Var.invokeOnCompletion(new u0(yVar, this, 1));
         }
@@ -541,7 +541,7 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         this.d = new androidx.emoji2.text.s(1024);
         int a10 = bVar.a(6);
         if (a10 != 0) {
-            int i13 = a10 + bVar.f54119a;
+            int i13 = a10 + bVar.f54144a;
             i7 = ((ByteBuffer) bVar.d).getInt(((ByteBuffer) bVar.d).getInt(i13) + i13);
         } else {
             i7 = 0;
@@ -549,7 +549,7 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
         this.f908c = new char[i7 * 2];
         int a11 = bVar.a(6);
         if (a11 != 0) {
-            int i14 = a11 + bVar.f54119a;
+            int i14 = a11 + bVar.f54144a;
             i10 = ((ByteBuffer) bVar.d).getInt(((ByteBuffer) bVar.d).getInt(i14) + i14);
         } else {
             i10 = 0;
@@ -558,11 +558,11 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
             androidx.emoji2.text.o oVar = new androidx.emoji2.text.o(this, i15);
             s1.a b10 = oVar.b();
             int a12 = b10.a(4);
-            Character.toChars(a12 != 0 ? ((ByteBuffer) b10.d).getInt(a12 + b10.f54119a) : 0, (char[]) this.f908c, i15 * 2);
+            Character.toChars(a12 != 0 ? ((ByteBuffer) b10.d).getInt(a12 + b10.f54144a) : 0, (char[]) this.f908c, i15 * 2);
             s1.a b11 = oVar.b();
             int a13 = b11.a(16);
             if (a13 != 0) {
-                int i16 = a13 + b11.f54119a;
+                int i16 = a13 + b11.f54144a;
                 i11 = ((ByteBuffer) b11.d).getInt(((ByteBuffer) b11.d).getInt(i16) + i16);
             } else {
                 i11 = 0;
@@ -572,7 +572,7 @@ public final class b0 implements ib.b, ms, jy0, q5.b {
                 s1.a b12 = oVar.b();
                 int a14 = b12.a(16);
                 if (a14 != 0) {
-                    int i17 = a14 + b12.f54119a;
+                    int i17 = a14 + b12.f54144a;
                     i12 = ((ByteBuffer) b12.d).getInt(((ByteBuffer) b12.d).getInt(i17) + i17);
                 } else {
                     i12 = 0;

@@ -8,21 +8,21 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.HashSet;
 public final class l00 extends View {
-    public final int f47346a;
-    public Object f47347b;
+    public final int f47373a;
+    public Object f47374b;
 
     public l00(int i7, Context context, Object obj) {
         super(context);
-        this.f47346a = i7;
-        this.f47347b = obj;
+        this.f47373a = i7;
+        this.f47374b = obj;
     }
 
     @Override
     public void dispatchDraw(Canvas canvas) {
-        switch (this.f47346a) {
+        switch (this.f47373a) {
             case 1:
                 super.dispatchDraw(canvas);
-                g.b bVar = (g.b) this.f47347b;
+                g.b bVar = (g.b) this.f47374b;
                 if (bVar != null && bVar.a(canvas, getMeasuredWidth(), 0.0f)) {
                     invalidate();
                     return;
@@ -30,7 +30,7 @@ public final class l00 extends View {
                 return;
             case 12:
                 super.dispatchDraw(canvas);
-                tg.b0 b0Var = ((tp0) this.f47347b).F0;
+                tg.b0 b0Var = ((up0) this.f47374b).F0;
                 if (b0Var != null) {
                     b0Var.d(canvas);
                     return;
@@ -44,10 +44,10 @@ public final class l00 extends View {
 
     @Override
     public void onAttachedToWindow() {
-        switch (this.f47346a) {
+        switch (this.f47373a) {
             case 1:
                 super.onAttachedToWindow();
-                g.b bVar = (g.b) this.f47347b;
+                g.b bVar = (g.b) this.f47374b;
                 if (bVar != null) {
                     bVar.f13269i = this;
                     int i7 = 0;
@@ -55,7 +55,7 @@ public final class l00 extends View {
                         p30[] p30VarArr = (p30[]) bVar.f13266e;
                         if (i7 < p30VarArr.length) {
                             p30 p30Var = p30VarArr[i7];
-                            p30Var.f48610i.add(this);
+                            p30Var.f48605i.add(this);
                             p30Var.a();
                             i7++;
                         } else {
@@ -67,9 +67,9 @@ public final class l00 extends View {
                 }
             case 15:
                 super.onAttachedToWindow();
-                zh.e1 e1Var = (zh.e1) this.f47347b;
-                if (e1Var != null && !e1Var.f60180i) {
-                    e1Var.f60180i = true;
+                zh.e1 e1Var = (zh.e1) this.f47374b;
+                if (e1Var != null && !e1Var.f60205i) {
+                    e1Var.f60205i = true;
                     e1Var.a();
                     xg.a aVar = new xg.a(e1Var, 3);
                     e1Var.h = aVar;
@@ -85,17 +85,17 @@ public final class l00 extends View {
 
     @Override
     public void onDetachedFromWindow() {
-        switch (this.f47346a) {
+        switch (this.f47373a) {
             case 1:
                 super.onDetachedFromWindow();
-                g.b bVar = (g.b) this.f47347b;
+                g.b bVar = (g.b) this.f47374b;
                 if (bVar != null && ((l00) bVar.f13269i) != this) {
                     int i7 = 0;
                     while (true) {
                         p30[] p30VarArr = (p30[]) bVar.f13266e;
                         if (i7 < p30VarArr.length) {
                             p30 p30Var = p30VarArr[i7];
-                            p30Var.f48610i.remove(this);
+                            p30Var.f48605i.remove(this);
                             p30Var.a();
                             i7++;
                         } else {
@@ -109,9 +109,9 @@ public final class l00 extends View {
                 break;
             case 15:
                 super.onDetachedFromWindow();
-                zh.e1 e1Var = (zh.e1) this.f47347b;
-                if (e1Var != null && e1Var.f60180i) {
-                    e1Var.f60180i = false;
+                zh.e1 e1Var = (zh.e1) this.f47374b;
+                if (e1Var != null && e1Var.f60205i) {
+                    e1Var.f60205i = false;
                     e1Var.a();
                     xg.a aVar = e1Var.h;
                     HashSet hashSet = org.telegram.messenger.rc.f25264n;
@@ -130,13 +130,13 @@ public final class l00 extends View {
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f47346a) {
+        switch (this.f47373a) {
             case 2:
-                canvas.drawColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27868e7, ((qg0) this.f47347b).I0));
+                canvas.drawColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27868e7, ((qg0) this.f47374b).I0));
                 return;
             case 3:
-                mm0 mm0Var = (mm0) this.f47347b;
-                String format = String.format("%d", Integer.valueOf(Math.max(1, mm0Var.f47810c.size())));
+                mm0 mm0Var = (mm0) this.f47374b;
+                String format = String.format("%d", Integer.valueOf(Math.max(1, mm0Var.f47837c.size())));
                 int ceil = (int) Math.ceil(mm0Var.S.measureText(format));
                 int max = Math.max(org.telegram.messenger.g0.L(16.0f) + ceil, org.telegram.messenger.g0.L(24.0f));
                 int measuredWidth = getMeasuredWidth() / 2;
@@ -154,26 +154,26 @@ public final class l00 extends View {
                 canvas.drawText(format, measuredWidth - (ceil / 2), org.telegram.messenger.g0.L(16.2f), mm0Var.S);
                 return;
             case 4:
-                xm0 xm0Var = (xm0) this.f47347b;
-                String format2 = String.format("%d", Integer.valueOf(Math.max(1, xm0Var.f51899c.size())));
-                int ceil2 = (int) Math.ceil(xm0Var.f51907h0.measureText(format2));
+                xm0 xm0Var = (xm0) this.f47374b;
+                String format2 = String.format("%d", Integer.valueOf(Math.max(1, xm0Var.f51916c.size())));
+                int ceil2 = (int) Math.ceil(xm0Var.f51924h0.measureText(format2));
                 int max2 = Math.max(org.telegram.messenger.g0.L(16.0f) + ceil2, org.telegram.messenger.g0.L(24.0f));
                 int measuredWidth2 = getMeasuredWidth() / 2;
                 getMeasuredHeight();
-                xm0Var.f51907h0.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.C5, false));
-                xm0Var.f51909j0.setColor(org.telegram.ui.ActionBar.k6.x0(null, xm0Var.f51922u0, false));
+                xm0Var.f51924h0.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.C5, false));
+                xm0Var.f51926j0.setColor(org.telegram.ui.ActionBar.k6.x0(null, xm0Var.f51939u0, false));
                 int i12 = max2 / 2;
                 int i13 = measuredWidth2 - i12;
                 int i14 = i12 + measuredWidth2;
-                xm0Var.f51908i0.set(i13, 0.0f, i14, getMeasuredHeight());
-                canvas.drawRoundRect(xm0Var.f51908i0, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), xm0Var.f51909j0);
-                xm0Var.f51909j0.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.B5, false));
-                xm0Var.f51908i0.set(org.telegram.messenger.g0.L(2.0f) + i13, org.telegram.messenger.g0.L(2.0f), i14 - org.telegram.messenger.g0.L(2.0f), getMeasuredHeight() - org.telegram.messenger.g0.L(2.0f));
-                canvas.drawRoundRect(xm0Var.f51908i0, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), xm0Var.f51909j0);
-                canvas.drawText(format2, measuredWidth2 - (ceil2 / 2), org.telegram.messenger.g0.L(16.2f), xm0Var.f51907h0);
+                xm0Var.f51925i0.set(i13, 0.0f, i14, getMeasuredHeight());
+                canvas.drawRoundRect(xm0Var.f51925i0, org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f), xm0Var.f51926j0);
+                xm0Var.f51926j0.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.B5, false));
+                xm0Var.f51925i0.set(org.telegram.messenger.g0.L(2.0f) + i13, org.telegram.messenger.g0.L(2.0f), i14 - org.telegram.messenger.g0.L(2.0f), getMeasuredHeight() - org.telegram.messenger.g0.L(2.0f));
+                canvas.drawRoundRect(xm0Var.f51925i0, org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(10.0f), xm0Var.f51926j0);
+                canvas.drawText(format2, measuredWidth2 - (ceil2 / 2), org.telegram.messenger.g0.L(16.2f), xm0Var.f51924h0);
                 return;
             case 5:
-                ((PhotoViewer) this.f47347b).f41453p3.a(canvas, this);
+                ((PhotoViewer) this.f47374b).f41478p3.a(canvas, this);
                 return;
             case 6:
             case 7:
@@ -184,10 +184,10 @@ public final class l00 extends View {
                 super.onDraw(canvas);
                 return;
             case 8:
-                ((SecretMediaViewer) this.f47347b).O.a(canvas, this);
+                ((SecretMediaViewer) this.f47374b).O.a(canvas, this);
                 return;
             case 11:
-                org.telegram.ui.Wallet.h6 h6Var = (org.telegram.ui.Wallet.h6) this.f47347b;
+                org.telegram.ui.Wallet.h6 h6Var = (org.telegram.ui.Wallet.h6) this.f47374b;
                 float e10 = h6Var.K.e(false, h6Var.J);
                 if (h6Var.Q != null && getWidth() > 0) {
                     org.telegram.ui.Wallet.h6.a(h6Var, canvas, e10);
@@ -196,8 +196,8 @@ public final class l00 extends View {
                 return;
             case 13:
                 super.onDraw(canvas);
-                ug.i0 i0Var = (ug.i0) this.f47347b;
-                if (i0Var.f56493h2 - i0Var.f56492g2 > 1) {
+                ug.i0 i0Var = (ug.i0) this.f47374b;
+                if (i0Var.f56518h2 - i0Var.f56517g2 > 1) {
                     Paint W0 = org.telegram.ui.ActionBar.k6.W0("paintDivider", i0Var.I0);
                     if (W0 == null) {
                         W0 = org.telegram.ui.ActionBar.k6.f27971k0;
@@ -207,23 +207,23 @@ public final class l00 extends View {
                 }
                 return;
             case 14:
-                canvas.drawColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27868e7, ((wg.f1) this.f47347b).I0));
+                canvas.drawColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27868e7, ((wg.f1) this.f47374b).I0));
                 return;
         }
     }
 
     @Override
     public void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        switch (this.f47346a) {
+        switch (this.f47373a) {
             case 9:
                 super.onLayout(z9, i7, i10, i11, i12);
-                g01 g01Var = (g01) this.f47347b;
+                g01 g01Var = (g01) this.f47374b;
                 int[] iArr = g01Var.G;
                 getLocationOnScreen(iArr);
                 Rect rect = g01Var.d;
                 int i13 = iArr[0];
                 rect.set(i13, iArr[1], getWidth() + i13, getHeight() + iArr[1]);
-                org.telegram.messenger.g0.X1(g01Var.f47597c, rect, g01Var.I, g01Var.f47598e);
+                org.telegram.messenger.g0.X1(g01Var.f47624c, rect, g01Var.I, g01Var.f47625e);
                 return;
             default:
                 super.onLayout(z9, i7, i10, i11, i12);
@@ -233,9 +233,9 @@ public final class l00 extends View {
 
     @Override
     public void onMeasure(int i7, int i10) {
-        switch (this.f47346a) {
+        switch (this.f47373a) {
             case 0:
-                o00 o00Var = (o00) this.f47347b;
+                o00 o00Var = (o00) this.f47374b;
                 if (o00Var.H) {
                     o00Var.J = (o00Var.p0().getMeasuredHeight() + o00Var.I) - org.telegram.messenger.g0.L(16.0f);
                 } else {
@@ -253,18 +253,18 @@ public final class l00 extends View {
                 setMeasuredDimension(View.MeasureSpec.getSize(i7), org.telegram.messenger.g0.L(38.0f));
                 return;
             case 6:
-                os0 os0Var = (os0) this.f47347b;
-                PremiumPreviewFragment premiumPreviewFragment = os0Var.f48547c;
+                ps0 ps0Var = (ps0) this.f47374b;
+                PremiumPreviewFragment premiumPreviewFragment = ps0Var.f48949c;
                 if (premiumPreviewFragment.W) {
                     premiumPreviewFragment.Y = 0;
                 } else {
                     int L2 = org.telegram.messenger.g0.L(64.0f);
-                    if (org.telegram.messenger.g0.L(8.0f) + os0Var.f48547c.U.getMeasuredHeight() > L2) {
-                        L2 = os0Var.f48547c.U.getMeasuredHeight() + org.telegram.messenger.g0.L(8.0f);
+                    if (org.telegram.messenger.g0.L(8.0f) + ps0Var.f48949c.U.getMeasuredHeight() > L2) {
+                        L2 = ps0Var.f48949c.U.getMeasuredHeight() + org.telegram.messenger.g0.L(8.0f);
                     }
-                    os0Var.f48547c.Y = L2;
+                    ps0Var.f48949c.Y = L2;
                 }
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(os0Var.f48547c.Y, 1073741824));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(ps0Var.f48949c.Y, 1073741824));
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -274,10 +274,10 @@ public final class l00 extends View {
 
     @Override
     public void setAlpha(float f10) {
-        switch (this.f47346a) {
+        switch (this.f47373a) {
             case 7:
                 super.setAlpha(f10);
-                View view = ((ProfileActivity) this.f47347b).fragmentView;
+                View view = ((ProfileActivity) this.f47374b).fragmentView;
                 if (view != null) {
                     view.invalidate();
                     return;
@@ -285,7 +285,7 @@ public final class l00 extends View {
                 return;
             case 10:
                 super.setAlpha(f10);
-                View view2 = ((v91) this.f47347b).fragmentView;
+                View view2 = ((v91) this.f47374b).fragmentView;
                 if (view2 != null) {
                     view2.invalidate();
                     return;
@@ -299,13 +299,13 @@ public final class l00 extends View {
 
     @Override
     public void setBackground(Drawable drawable) {
-        switch (this.f47346a) {
+        switch (this.f47373a) {
             case 15:
-                if (((zh.e1) this.f47347b) != null) {
+                if (((zh.e1) this.f47374b) != null) {
                     if (isAttachedToWindow()) {
-                        zh.e1 e1Var = (zh.e1) this.f47347b;
-                        if (e1Var.f60180i) {
-                            e1Var.f60180i = false;
+                        zh.e1 e1Var = (zh.e1) this.f47374b;
+                        if (e1Var.f60205i) {
+                            e1Var.f60205i = false;
                             e1Var.a();
                             xg.a aVar = e1Var.h;
                             HashSet hashSet = org.telegram.messenger.rc.f25264n;
@@ -314,15 +314,15 @@ public final class l00 extends View {
                             }
                         }
                     }
-                    this.f47347b = null;
+                    this.f47374b = null;
                 }
                 super.setBackground(drawable);
                 if (drawable instanceof zh.e1) {
-                    this.f47347b = (zh.e1) drawable;
+                    this.f47374b = (zh.e1) drawable;
                     if (isAttachedToWindow()) {
-                        zh.e1 e1Var2 = (zh.e1) this.f47347b;
-                        if (!e1Var2.f60180i) {
-                            e1Var2.f60180i = true;
+                        zh.e1 e1Var2 = (zh.e1) this.f47374b;
+                        if (!e1Var2.f60205i) {
+                            e1Var2.f60205i = true;
                             e1Var2.a();
                             xg.a aVar2 = new xg.a(e1Var2, 3);
                             e1Var2.h = aVar2;
@@ -342,14 +342,14 @@ public final class l00 extends View {
 
     public l00(Context context) {
         super(context);
-        this.f47346a = 15;
+        this.f47373a = 15;
     }
 
     public l00(Context context, g.b bVar) {
         super(context);
-        this.f47346a = 1;
-        this.f47347b = bVar;
+        this.f47373a = 1;
+        this.f47374b = bVar;
         org.telegram.messenger.qs.i(this);
-        setOnClickListener(new org.telegram.ui.Components.n41(17, this, context));
+        setOnClickListener(new org.telegram.ui.Components.s41(17, this, context));
     }
 }

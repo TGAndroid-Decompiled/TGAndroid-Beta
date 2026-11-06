@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class f30 implements bi {
-    public final j30 f33463a;
+    public final j30 f33449a;
 
     public f30(j30 j30Var) {
-        this.f33463a = j30Var;
+        this.f33449a = j30Var;
     }
 
     @Override
     public final void F0() {
-        org.telegram.messenger.g0.v1(this.f33463a.f34864a.getFragmentView().findFocus());
+        org.telegram.messenger.g0.v1(this.f33449a.f34843a.getFragmentView().findFocus());
     }
 
     @Override
@@ -33,9 +33,9 @@ public final class f30 implements bi {
     @Override
     public final void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
         di diVar;
-        j30 j30Var = this.f33463a;
-        org.telegram.ui.ActionBar.f2 f2Var = j30Var.f34864a;
-        if (f2Var != null && f2Var.getParentActivity() != null && (diVar = j30Var.f34866c) != null) {
+        j30 j30Var = this.f33449a;
+        org.telegram.ui.ActionBar.f2 f2Var = j30Var.f34843a;
+        if (f2Var != null && f2Var.getParentActivity() != null && (diVar = j30Var.f34845c) != null) {
             if (i7 != 8 && i7 != 7) {
                 diVar.L(i7);
                 if (i7 == 0) {
@@ -44,8 +44,8 @@ public final class f30 implements bi {
                 }
                 return;
             }
-            HashMap<Object, Object> selectedPhotos = diVar.f32882a2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = j30Var.f34866c.f32882a2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = diVar.f32895a2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = j30Var.f34845c.f32895a2.getSelectedPhotosOrder();
             ArrayList arrayList = new ArrayList();
             boolean z13 = false;
             for (int i12 = 0; i12 < selectedPhotosOrder.size(); i12++) {
@@ -108,14 +108,14 @@ public final class f30 implements bi {
             }
             j30.a(j30Var, z13, arrayList);
             if (i7 != 8) {
-                j30Var.f34866c.a(true);
+                j30Var.f34845c.a(true);
             }
         }
     }
 
     @Override
     public final void t0() {
-        this.f33463a.q();
+        this.f33449a.q();
     }
 
     @Override

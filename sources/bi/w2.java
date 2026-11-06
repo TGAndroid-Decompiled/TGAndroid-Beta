@@ -45,10 +45,10 @@ public final class w2 implements Runnable {
         org.telegram.ui.ActionBar.u1[] u1VarArr = (org.telegram.ui.ActionBar.u1[]) this.d;
         TLRPC.User user = (TLRPC.User) this.f4955e;
         org.telegram.messenger.r3 r3Var = c40Var.R2;
-        if (r3Var != null && !c40Var.f44562j2) {
+        if (r3Var != null && !c40Var.f44583j2) {
             r3Var.a(this.f4954c);
             c40Var.Q0(true);
-            h20 h20Var = c40Var.f44617v3;
+            h20 h20Var = c40Var.f44638v3;
             if (h20Var != null) {
                 h20Var.dismiss();
             }
@@ -225,7 +225,7 @@ public final class w2 implements Runnable {
         try {
             Arrays.fill(bArr4, (byte) 0);
             byte[] secretPhraseToPublicKey = WalletEngine2.secretPhraseToPublicKey(k0Var);
-            TL_wallet.WalletState walletState = n0Var.f42771e;
+            TL_wallet.WalletState walletState = n0Var.f42796e;
             if (walletState instanceof TL_wallet.TL_walletState) {
                 bArr = ((TL_wallet.TL_walletState) walletState).public_key;
             } else {

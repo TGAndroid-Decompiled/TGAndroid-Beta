@@ -8,30 +8,30 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class gb0 implements Runnable {
-    public final int f45910a = 0;
-    public final ob0 f45911b;
-    public final TLRPC.TL_error f45912c;
+    public final int f45937a = 0;
+    public final ob0 f45938b;
+    public final TLRPC.TL_error f45939c;
     public final TLObject d;
-    public final String f45913e;
+    public final String f45940e;
 
     public gb0(ob0 ob0Var, TLRPC.TL_error tL_error, String str, TLObject tLObject) {
-        this.f45911b = ob0Var;
-        this.f45912c = tL_error;
-        this.f45913e = str;
+        this.f45938b = ob0Var;
+        this.f45939c = tL_error;
+        this.f45940e = str;
         this.d = tLObject;
     }
 
     @Override
     public final void run() {
         int i7;
-        int i10 = this.f45910a;
-        String str = this.f45913e;
+        int i10 = this.f45937a;
+        String str = this.f45940e;
         TLObject tLObject = this.d;
-        TLRPC.TL_error tL_error = this.f45912c;
-        final ob0 ob0Var = this.f45911b;
+        TLRPC.TL_error tL_error = this.f45939c;
+        final ob0 ob0Var = this.f45938b;
         switch (i10) {
             case 0:
-                lb0 lb0Var = ob0Var.f48324a;
+                lb0 lb0Var = ob0Var.f48353a;
                 ce0 ce0Var = ob0Var.W;
                 ce0Var.C1(false, true);
                 if (tL_error == null) {
@@ -46,7 +46,7 @@ public final class gb0 implements Runnable {
                     if (tLObject instanceof TLRPC.TL_auth_authorizationSignUpRequired) {
                         TLRPC.TL_help_termsOfService tL_help_termsOfService = ((TLRPC.TL_auth_authorizationSignUpRequired) tLObject).terms_of_service;
                         if (tL_help_termsOfService != null) {
-                            ce0Var.f44757q0 = tL_help_termsOfService;
+                            ce0Var.f44778q0 = tL_help_termsOfService;
                         }
                         ob0Var.n(new Runnable() {
                             @Override
@@ -101,17 +101,17 @@ public final class gb0 implements Runnable {
                         }
                         int i11 = 0;
                         while (true) {
-                            br[] brVarArr = lb0Var.f52294f;
+                            br[] brVarArr = lb0Var.f52311f;
                             if (i11 < brVarArr.length) {
                                 brVarArr[i11].setText("");
-                                lb0Var.f52294f[i11].z(1.0f);
+                                lb0Var.f52311f[i11].z(1.0f);
                                 i11++;
                             } else {
-                                if (nb0Var.getCurrentView() == ob0Var.f48327e) {
+                                if (nb0Var.getCurrentView() == ob0Var.f48356e) {
                                     nb0Var.showNext();
                                     org.telegram.messenger.g0.Z3(ob0Var.h, false, 1.0f, true, true);
                                 }
-                                lb0Var.f52294f[0].requestFocus();
+                                lb0Var.f52311f[0].requestFocus();
                                 org.telegram.messenger.g0.G3(10.0f, lb0Var, new hb0(ob0Var, 3));
                                 ob0Var.removeCallbacks(hb0Var);
                                 ob0Var.postDelayed(hb0Var, 5000L);
@@ -119,10 +119,10 @@ public final class gb0 implements Runnable {
                             }
                         }
                     }
-                    if (lb0Var.f52294f != null) {
+                    if (lb0Var.f52311f != null) {
                         int i12 = 0;
                         while (true) {
-                            br[] brVarArr2 = lb0Var.f52294f;
+                            br[] brVarArr2 = lb0Var.f52311f;
                             if (i12 < brVarArr2.length) {
                                 brVarArr2[i12].setText("");
                                 i12++;
@@ -131,7 +131,7 @@ public final class gb0 implements Runnable {
                             }
                         }
                     }
-                    lb0Var.f52293e = false;
+                    lb0Var.f52310e = false;
                 }
                 ob0Var.F = null;
                 return;
@@ -173,9 +173,9 @@ public final class gb0 implements Runnable {
     }
 
     public gb0(ob0 ob0Var, TLRPC.TL_error tL_error, TLObject tLObject, String str) {
-        this.f45911b = ob0Var;
-        this.f45912c = tL_error;
+        this.f45938b = ob0Var;
+        this.f45939c = tL_error;
         this.d = tLObject;
-        this.f45913e = str;
+        this.f45940e = str;
     }
 }

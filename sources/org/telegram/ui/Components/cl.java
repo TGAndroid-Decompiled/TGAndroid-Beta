@@ -2,22 +2,22 @@ package org.telegram.ui.Components;
 
 import android.os.Build;
 public final class cl implements Runnable {
-    public final int f32605a;
-    public final ChatAttachAlertPhotoLayout f32606b;
+    public final int f32609a;
+    public final ChatAttachAlertPhotoLayout f32610b;
 
     public cl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i7) {
-        this.f32605a = i7;
-        this.f32606b = chatAttachAlertPhotoLayout;
+        this.f32609a = i7;
+        this.f32610b = chatAttachAlertPhotoLayout;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f32605a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32606b;
+        int i7 = this.f32609a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f32610b;
         switch (i7) {
             case 0:
                 boolean z9 = ChatAttachAlertPhotoLayout.f31183q1;
-                chatAttachAlertPhotoLayout.f38951b.f28618c.removeView(chatAttachAlertPhotoLayout.P);
+                chatAttachAlertPhotoLayout.f38948b.f28618c.removeView(chatAttachAlertPhotoLayout.P);
                 chatAttachAlertPhotoLayout.P = null;
                 return;
             case 1:
@@ -38,7 +38,7 @@ public final class cl implements Runnable {
                 return;
             case 5:
                 boolean z12 = ChatAttachAlertPhotoLayout.f31183q1;
-                di diVar = chatAttachAlertPhotoLayout.f38951b;
+                di diVar = chatAttachAlertPhotoLayout.f38948b;
                 if (f0.d.b(diVar.W1.getParentActivity(), "android.permission.CAMERA") != 0) {
                     try {
                         diVar.W1.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 18);
@@ -51,7 +51,7 @@ public final class cl implements Runnable {
                 return;
             default:
                 boolean z13 = ChatAttachAlertPhotoLayout.f31183q1;
-                di diVar2 = chatAttachAlertPhotoLayout.f38951b;
+                di diVar2 = chatAttachAlertPhotoLayout.f38948b;
                 try {
                     if (Build.VERSION.SDK_INT >= 33) {
                         diVar2.W1.getParentActivity().requestPermissions(new String[]{"android.permission.READ_MEDIA_VIDEO", "android.permission.READ_MEDIA_IMAGES"}, 4);

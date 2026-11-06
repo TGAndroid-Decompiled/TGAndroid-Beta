@@ -15,23 +15,23 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.telegram.ui.ActionBar.m5;
 public final class g extends p {
-    public final String f54697f;
-    public final MediaRouter2.RoutingController f54698g;
+    public final String f54722f;
+    public final MediaRouter2.RoutingController f54723g;
     public final Messenger h;
-    public final Messenger f54699i;
-    public final Handler f54701k;
-    public m f54705o;
-    public final k f54706p;
-    public final SparseArray f54700j = new SparseArray();
-    public final AtomicInteger f54702l = new AtomicInteger(1);
-    public final m5 f54703m = new m5(this, 26);
-    public int f54704n = -1;
+    public final Messenger f54724i;
+    public final Handler f54726k;
+    public m f54730o;
+    public final k f54731p;
+    public final SparseArray f54725j = new SparseArray();
+    public final AtomicInteger f54727l = new AtomicInteger(1);
+    public final m5 f54728m = new m5(this, 26);
+    public int f54729n = -1;
 
     public g(k kVar, MediaRouter2.RoutingController routingController, String str) {
         Messenger messenger;
-        this.f54706p = kVar;
-        this.f54698g = routingController;
-        this.f54697f = str;
+        this.f54731p = kVar;
+        this.f54723g = routingController;
+        this.f54722f = str;
         Messenger n10 = k.n(routingController);
         this.h = n10;
         if (n10 == null) {
@@ -39,44 +39,44 @@ public final class g extends p {
         } else {
             messenger = new Messenger(new android.support.v4.media.session.q(this));
         }
-        this.f54699i = messenger;
-        this.f54701k = new Handler(Looper.getMainLooper());
+        this.f54724i = messenger;
+        this.f54726k = new Handler(Looper.getMainLooper());
     }
 
     @Override
     public final void d() {
-        this.f54698g.release();
+        this.f54723g.release();
     }
 
     @Override
     public final void f(int i7) {
-        MediaRouter2.RoutingController routingController = this.f54698g;
+        MediaRouter2.RoutingController routingController = this.f54723g;
         if (routingController == null) {
             return;
         }
         routingController.setVolume(i7);
-        this.f54704n = i7;
-        Handler handler = this.f54701k;
-        m5 m5Var = this.f54703m;
+        this.f54729n = i7;
+        Handler handler = this.f54726k;
+        m5 m5Var = this.f54728m;
         handler.removeCallbacks(m5Var);
         handler.postDelayed(m5Var, 1000L);
     }
 
     @Override
     public final void i(int i7) {
-        MediaRouter2.RoutingController routingController = this.f54698g;
+        MediaRouter2.RoutingController routingController = this.f54723g;
         if (routingController == null) {
             return;
         }
-        int i10 = this.f54704n;
+        int i10 = this.f54729n;
         if (i10 < 0) {
             i10 = routingController.getVolume();
         }
-        int max = Math.max(0, Math.min(i10 + i7, this.f54698g.getVolumeMax()));
-        this.f54704n = max;
-        this.f54698g.setVolume(max);
-        Handler handler = this.f54701k;
-        m5 m5Var = this.f54703m;
+        int max = Math.max(0, Math.min(i10 + i7, this.f54723g.getVolumeMax()));
+        this.f54729n = max;
+        this.f54723g.setVolume(max);
+        Handler handler = this.f54726k;
+        m5 m5Var = this.f54728m;
         handler.removeCallbacks(m5Var);
         handler.postDelayed(m5Var, 1000L);
     }
@@ -84,12 +84,12 @@ public final class g extends p {
     @Override
     public final void m(String str) {
         if (str != null && !str.isEmpty()) {
-            MediaRoute2Info o4 = this.f54706p.o(str);
+            MediaRoute2Info o4 = this.f54731p.o(str);
             if (o4 == null) {
                 Log.w("MR2Provider", "onAddMemberRoute: Specified route not found. routeId=".concat(str));
                 return;
             } else {
-                this.f54698g.selectRoute(o4);
+                this.f54723g.selectRoute(o4);
                 return;
             }
         }
@@ -99,12 +99,12 @@ public final class g extends p {
     @Override
     public final void n(String str) {
         if (str != null && !str.isEmpty()) {
-            MediaRoute2Info o4 = this.f54706p.o(str);
+            MediaRoute2Info o4 = this.f54731p.o(str);
             if (o4 == null) {
                 Log.w("MR2Provider", "onRemoveMemberRoute: Specified route not found. routeId=".concat(str));
                 return;
             } else {
-                this.f54698g.deselectRoute(o4);
+                this.f54723g.deselectRoute(o4);
                 return;
             }
         }
@@ -115,31 +115,31 @@ public final class g extends p {
     public final void o(List list) {
         if (list != null && !list.isEmpty()) {
             String str = (String) list.get(0);
-            k kVar = this.f54706p;
+            k kVar = this.f54731p;
             MediaRoute2Info o4 = kVar.o(str);
             if (o4 == null) {
                 Log.w("MR2Provider", "onUpdateMemberRoutes: Specified route not found. routeId=" + str);
                 return;
             }
-            kVar.f54723r.transferTo(o4);
+            kVar.f54748r.transferTo(o4);
             return;
         }
         Log.w("MR2Provider", "onUpdateMemberRoutes: Ignoring null or empty routeIds.");
     }
 
     public final String p() {
-        m mVar = this.f54705o;
+        m mVar = this.f54730o;
         if (mVar != null) {
             return mVar.d();
         }
-        return this.f54698g.getId();
+        return this.f54723g.getId();
     }
 
     public final void q(int i7, String str) {
         Messenger messenger;
-        MediaRouter2.RoutingController routingController = this.f54698g;
+        MediaRouter2.RoutingController routingController = this.f54723g;
         if (routingController != null && !routingController.isReleased() && (messenger = this.h) != null) {
-            int andIncrement = this.f54702l.getAndIncrement();
+            int andIncrement = this.f54727l.getAndIncrement();
             Message obtain = Message.obtain();
             obtain.what = 7;
             obtain.arg1 = andIncrement;
@@ -147,7 +147,7 @@ public final class g extends p {
             bundle.putInt("volume", i7);
             bundle.putString("routeId", str);
             obtain.setData(bundle);
-            obtain.replyTo = this.f54699i;
+            obtain.replyTo = this.f54724i;
             try {
                 messenger.send(obtain);
             } catch (DeadObjectException unused) {
@@ -159,9 +159,9 @@ public final class g extends p {
 
     public final void r(int i7, String str) {
         Messenger messenger;
-        MediaRouter2.RoutingController routingController = this.f54698g;
+        MediaRouter2.RoutingController routingController = this.f54723g;
         if (routingController != null && !routingController.isReleased() && (messenger = this.h) != null) {
-            int andIncrement = this.f54702l.getAndIncrement();
+            int andIncrement = this.f54727l.getAndIncrement();
             Message obtain = Message.obtain();
             obtain.what = 8;
             obtain.arg1 = andIncrement;
@@ -169,7 +169,7 @@ public final class g extends p {
             bundle.putInt("volume", i7);
             bundle.putString("routeId", str);
             obtain.setData(bundle);
-            obtain.replyTo = this.f54699i;
+            obtain.replyTo = this.f54724i;
             try {
                 messenger.send(obtain);
             } catch (DeadObjectException unused) {

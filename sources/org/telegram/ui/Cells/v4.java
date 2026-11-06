@@ -220,11 +220,11 @@ public final class v4 extends FrameLayout {
                 int L = org.telegram.messenger.g0.L(42.0f);
                 int L2 = org.telegram.messenger.g0.L(42.0f);
                 xpVar.h = L;
-                xpVar.f40301n = L2;
+                xpVar.f40320n = L2;
                 int L3 = org.telegram.messenger.g0.L(24.0f);
                 int L4 = org.telegram.messenger.g0.L(24.0f);
-                xpVar.f40299e = L3;
-                xpVar.f40300f = L4;
+                xpVar.f40318e = L3;
+                xpVar.f40319f = L4;
                 l9Var.setImageDrawable(xpVar);
             }
         }

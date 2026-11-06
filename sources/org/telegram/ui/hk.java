@@ -3,16 +3,16 @@ package org.telegram.ui;
 import android.animation.ValueAnimator;
 import android.app.Activity;
 public final class hk extends org.telegram.ui.Components.ii0 {
-    public final int[] f46377m1;
+    public final int[] f46397m1;
     public ValueAnimator n1;
-    public boolean f46378o1;
-    public final an f46379p1;
+    public boolean f46398o1;
+    public final an f46399p1;
 
     public hk(an anVar, an anVar2, Activity activity, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
         super(3, i7, activity, anVar2, f6Var);
-        this.f46379p1 = anVar;
-        this.f46377m1 = new int[2];
-        this.f46378o1 = true;
+        this.f46399p1 = anVar;
+        this.f46397m1 = new int[2];
+        this.f46398o1 = true;
     }
 
     @Override
@@ -20,10 +20,10 @@ public final class hk extends org.telegram.ui.Components.ii0 {
         org.telegram.ui.ActionBar.k kVar;
         int i13;
         super.onLayout(z9, i7, i10, i11, i12);
-        kVar = ((org.telegram.ui.ActionBar.f2) this.f46379p1).actionBar;
+        kVar = ((org.telegram.ui.ActionBar.f2) this.f46399p1).actionBar;
         org.telegram.ui.ActionBar.r0 j3 = kVar.n(null).j(28);
         if (j3 != null) {
-            int[] iArr = this.f46377m1;
+            int[] iArr = this.f46397m1;
             getLocationInWindow(iArr);
             float x10 = getX();
             float width = getWidth() + x10;
@@ -38,11 +38,11 @@ public final class hk extends org.telegram.ui.Components.ii0 {
             }
             float f10 = width2 + (L * i13);
             if (z10) {
-                s(!this.f46378o1, f10 - x10);
+                s(!this.f46398o1, f10 - x10);
             } else {
-                s(!this.f46378o1, f10 - width);
+                s(!this.f46398o1, f10 - width);
             }
-            this.f46378o1 = false;
+            this.f46398o1 = false;
         }
     }
 

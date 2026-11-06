@@ -589,7 +589,7 @@ public abstract class fu implements rg0 {
         }
         boolean z9 = false;
         for (org.telegram.ui.Cells.t9 t9Var : L) {
-            if ((t9Var instanceof jv) && (n5Var = (jvVar = (jv) t9Var).E) != null && !n5Var.f36278a.isEmpty()) {
+            if ((t9Var instanceof jv) && (n5Var = (jvVar = (jv) t9Var).E) != null && !n5Var.f36192a.isEmpty()) {
                 canvas.save();
                 canvas.translate(jvVar.f23587c, jvVar.d - this.M);
                 org.telegram.ui.Components.r5.drawAnimatedEmojis(canvas, jvVar.f23586b, jvVar.E, 0.0f, jvVar.f23594x, 0.0f, 0.0f, 0.0f, 1.0f, colorFilter);
@@ -608,12 +608,12 @@ public abstract class fu implements rg0 {
                 float f10 = 0.0f;
                 if (tg0Var.g(this)) {
                     if (tg0Var.g(this)) {
-                        i7 = tg0Var.f50029e;
+                        i7 = tg0Var.f50057e;
                     } else {
                         i7 = -1;
                     }
                     if (tg0Var.g(this)) {
-                        f10 = tg0Var.f50030f;
+                        f10 = tg0Var.f50058f;
                     }
                     r(canvas, i7, f10);
                     return;

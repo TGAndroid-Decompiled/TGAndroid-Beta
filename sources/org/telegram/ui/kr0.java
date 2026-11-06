@@ -2,32 +2,50 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.view.ActionMode;
-import android.view.Menu;
+import java.util.ArrayList;
 public final class kr0 extends org.telegram.ui.Cells.a6 {
-    public final mr0 F;
+    public final nr0 F;
 
-    public kr0(mr0 mr0Var, Context context, int i7) {
+    public kr0(nr0 nr0Var, Context context, int i7) {
         super(context, i7, null, null);
-        this.F = mr0Var;
-    }
-
-    @Override
-    public final void g(org.telegram.ui.Cells.z5 z5Var, ActionMode actionMode) {
-        if (z5Var.isFocused() && z5Var.hasSelection()) {
-            Menu menu = actionMode.getMenu();
-            if (menu.findItem(16908321) != null) {
-                an.A8(menu, this.F.d.f48516f.h, false, true, true, true);
-            }
-        }
+        this.F = nr0Var;
     }
 
     @Override
     public final void i(boolean z9) {
-        or0.i0(this.F.d, this, z9);
+        pr0.i0(this.F.d, this, z9);
     }
 
     @Override
     public final void j(org.telegram.ui.Cells.a6 a6Var) {
-        or0.j0(this.F.d, a6Var);
+        pr0.j0(this.F.d, a6Var);
+    }
+
+    @Override
+    public final boolean l(ArrayList arrayList) {
+        pr0 pr0Var = this.F.d;
+        if (arrayList.isEmpty()) {
+            return false;
+        }
+        org.telegram.ui.Cells.z5 z5Var = this.d;
+        z5Var.getText().replace(z5Var.getSelectionStart(), z5Var.getSelectionEnd(), (CharSequence) arrayList.remove(0));
+        int i7 = 0;
+        while (!arrayList.isEmpty() && i7 < pr0Var.f48930n) {
+            for (int length = pr0Var.f48942w.length - 1; length > i7; length--) {
+                CharSequence[] charSequenceArr = pr0Var.f48942w;
+                charSequenceArr[length] = charSequenceArr[length - 1];
+            }
+            pr0Var.f48942w[i7] = (CharSequence) arrayList.remove(0);
+            pr0Var.D++;
+            i7++;
+        }
+        pr0Var.w0();
+        pr0Var.f48924g0 = (pr0Var.f48931n0 + i7) - 1;
+        pr0Var.f48915b.f();
+        return true;
+    }
+
+    @Override
+    public final void g(org.telegram.ui.Cells.z5 z5Var, ActionMode actionMode) {
     }
 }

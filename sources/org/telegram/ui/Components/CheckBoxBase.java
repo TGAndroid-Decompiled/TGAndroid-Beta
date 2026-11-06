@@ -159,7 +159,7 @@ public class CheckBoxBase {
             ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, "progress", f10);
             this.f31257p = ofFloat;
             ofFloat.addListener(new z5(this, 19));
-            this.f31257p.setInterpolator(xq.f40311g);
+            this.f31257p.setInterpolator(xq.f40330g);
             this.f31257p.setDuration(this.H);
             this.f31257p.start();
             return;

@@ -163,7 +163,7 @@ public class UndoView extends FrameLayout implements org.telegram.ui.ActionBar.a
                     animatorSet.setDuration(180L);
                 }
                 animatorSet.setInterpolator(new DecelerateInterpolator());
-                animatorSet.addListener(new j01(this, 4));
+                animatorSet.addListener(new e11(this, 3));
                 animatorSet.start();
                 return;
             }
@@ -495,7 +495,7 @@ public class UndoView extends FrameLayout implements org.telegram.ui.ActionBar.a
         org.telegram.ui.ActionBar.r6.V(b2Var, i7, f6Var);
         int i10 = org.telegram.ui.ActionBar.k6.uj;
         org.telegram.ui.ActionBar.r6.H(b2Var, i10, f6Var);
-        b2Var.setMovementMethod(new a41(this));
+        b2Var.setMovementMethod(new f41(this));
         addView(b2Var, c8.ha.d(-2, -2.0f, 51, 45.0f, 13.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.f31596c = textView;
@@ -536,7 +536,7 @@ public class UndoView extends FrameLayout implements org.telegram.ui.ActionBar.a
         linearLayout.setOrientation(0);
         linearLayout.setBackground(org.telegram.ui.ActionBar.k6.a0(org.telegram.ui.ActionBar.k6.w0(i10, f6Var) & 587202559, org.telegram.messenger.g0.L(2.0f), org.telegram.messenger.g0.L(2.0f)));
         addView(linearLayout, c8.ha.d(-2, -2.0f, 21, 0.0f, 0.0f, 11.0f, 0.0f));
-        linearLayout.setOnClickListener(new z31(this, 0));
+        linearLayout.setOnClickListener(new e41(this, 0));
         ImageView imageView2 = new ImageView(context);
         this.f31599e = imageView2;
         imageView2.setImageResource(2131231001);

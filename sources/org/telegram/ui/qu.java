@@ -4,12 +4,12 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class qu implements View.OnLongClickListener {
-    public final int f49295a;
-    public final ww f49296b;
+    public final int f49314a;
+    public final ww f49315b;
 
     public qu(ww wwVar, int i7) {
-        this.f49295a = i7;
-        this.f49296b = wwVar;
+        this.f49314a = i7;
+        this.f49315b = wwVar;
     }
 
     @Override
@@ -18,8 +18,8 @@ public final class qu implements View.OnLongClickListener {
         boolean z10;
         int i7;
         int i10;
-        int i11 = this.f49295a;
-        ww wwVar = this.f49296b;
+        int i11 = this.f49314a;
+        ww wwVar = this.f49315b;
         switch (i11) {
             case 0:
                 ArrayList arrayList = wwVar.I2;
@@ -83,7 +83,7 @@ public final class qu implements View.OnLongClickListener {
                 H.Z();
                 return true;
             case 1:
-                ww wwVar2 = this.f49296b;
+                ww wwVar2 = this.f49315b;
                 wwVar2.D4(wwVar2.I2, 104, true, true, null);
                 return true;
             case 2:

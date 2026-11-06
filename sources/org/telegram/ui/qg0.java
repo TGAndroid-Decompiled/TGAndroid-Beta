@@ -14,7 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import org.telegram.tgnet.TLRPC;
 public final class qg0 extends org.telegram.ui.Components.na {
-    public static qg0 f49194m2;
+    public static qg0 f49221m2;
     public final og0 P1;
     public final ng0 Q1;
     public final l00 R1;
@@ -26,18 +26,18 @@ public final class qg0 extends org.telegram.ui.Components.na {
     public final ArrayList X1;
     public final HashMap Y1;
     public final ArrayList Z1;
-    public final LinkedHashMap f49195a2;
-    public String f49196b2;
-    public xg.i f49197c2;
+    public final LinkedHashMap f49222a2;
+    public String f49223b2;
+    public xg.i f49224c2;
     public int d2;
-    public int f49198e2;
-    public float f49199f2;
-    public org.telegram.ui.Components.yo f49200g2;
-    public final int f49201h2;
-    public final pg0 f49202i2;
-    public final Boolean f49203j2;
-    public final Boolean f49204k2;
-    public final m4 f49205l2;
+    public int f49225e2;
+    public float f49226f2;
+    public org.telegram.ui.Components.yo f49227g2;
+    public final int f49228h2;
+    public final pg0 f49229i2;
+    public final Boolean f49230j2;
+    public final Boolean f49231k2;
+    public final m4 f49232l2;
 
     public qg0(org.telegram.ui.ActionBar.f2 f2Var, int i7, Boolean bool, Boolean bool2, pg0 pg0Var) {
         super(f2Var, true, false, f2Var.getResourceProvider());
@@ -54,14 +54,14 @@ public final class qg0 extends org.telegram.ui.Components.na {
         this.Y1 = hashMap;
         ArrayList arrayList4 = new ArrayList();
         this.Z1 = arrayList4;
-        this.f49195a2 = new LinkedHashMap();
+        this.f49222a2 = new LinkedHashMap();
         this.d2 = org.telegram.messenger.g0.L(120.0f);
-        this.f49198e2 = -1;
-        this.f49205l2 = new m4(this, 13);
-        this.f49201h2 = i7;
-        this.f49203j2 = bool;
-        this.f49204k2 = bool2;
-        this.f49202i2 = pg0Var;
+        this.f49225e2 = -1;
+        this.f49232l2 = new m4(this, 13);
+        this.f49228h2 = i7;
+        this.f49230j2 = bool;
+        this.f49231k2 = bool2;
+        this.f49229i2 = pg0Var;
         this.l1.setTitle(O0());
         mg0 mg0Var = new mg0(0, getContext(), this.I0);
         this.S1 = mg0Var;
@@ -69,7 +69,7 @@ public final class qg0 extends org.telegram.ui.Components.na {
         mg0Var.setText(O0());
         mg0Var.setCloseImageVisible(false);
         mg0Var.f1071f.c(false, 0.0f);
-        this.f49200g2 = new org.telegram.ui.Components.yo(this, 2);
+        this.f49227g2 = new org.telegram.ui.Components.yo(this, 2);
         ng0 ng0Var = new ng0(this, getContext(), this.I0, 0);
         this.Q1 = ng0Var;
         int i10 = org.telegram.ui.ActionBar.k6.f27921h5;
@@ -99,21 +99,21 @@ public final class qg0 extends org.telegram.ui.Components.na {
         ViewGroup viewGroup4 = this.f28615b;
         int i14 = this.f28645t0;
         viewGroup4.addView(aVar, c8.ha.f(-2.0f, -1, 87, i14, 0, i14, 0));
-        xg.i iVar = this.f49197c2;
-        org.telegram.ui.Components.pj0 pj0Var = this.f36328k1;
-        iVar.f58627n = arrayList;
-        iVar.f58626f = pj0Var;
+        xg.i iVar = this.f49224c2;
+        org.telegram.ui.Components.pj0 pj0Var = this.f36222k1;
+        iVar.f58652n = arrayList;
+        iVar.f58651f = pj0Var;
         int i15 = this.f28645t0;
         pj0Var.setPadding(i15, 0, i15, org.telegram.messenger.g0.L(60.0f));
-        this.f36328k1.j(new g3(this, 21));
-        this.f36328k1.setOnItemClickListener(new l2.q(this, i7, 14));
+        this.f36222k1.j(new g3(this, 21));
+        this.f36222k1.setOnItemClickListener(new l2.q(this, i7, 14));
         v4.k kVar = new v4.k();
         kVar.n(350L);
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.C = false;
-        kVar.f56954m = false;
-        this.f36328k1.setItemAnimator(kVar);
-        this.f36328k1.i(new fi.o1(this, 6));
+        kVar.f56979m = false;
+        this.f36222k1.setItemAnimator(kVar);
+        this.f36222k1.i(new fi.o1(this, 6));
         ng0Var.setText("");
         ng0Var.d.b(false);
         ng0Var.b(false, hashSet, new kg0(this, 1), null);
@@ -133,24 +133,24 @@ public final class qg0 extends org.telegram.ui.Components.na {
     @Override
     public final void K() {
         super.K();
-        f49194m2 = null;
-        org.telegram.messenger.g0.r(this.f49205l2);
+        f49221m2 = null;
+        org.telegram.messenger.g0.r(this.f49232l2);
     }
 
     @Override
     public final org.telegram.ui.Components.oj0 L0(org.telegram.ui.Components.pj0 pj0Var) {
         xg.i iVar = new xg.i(getContext(), this.I0, true);
-        this.f49197c2 = iVar;
-        iVar.f58629s = true;
+        this.f49224c2 = iVar;
+        iVar.f58654s = true;
         return iVar;
     }
 
     @Override
     public final CharSequence O0() {
         int i7;
-        Boolean bool = this.f49203j2;
+        Boolean bool = this.f49230j2;
         if (bool != null && bool.booleanValue()) {
-            if (this.f49201h2 > 1) {
+            if (this.f49228h2 > 1) {
                 i7 = 2131752136;
             } else {
                 i7 = 2131752137;
@@ -171,7 +171,7 @@ public final class qg0 extends org.telegram.ui.Components.na {
         l00 l00Var = this.R1;
         l00Var.setTranslationY(translationY2);
         int measuredHeight = ng0Var.getMeasuredHeight() + mg0Var.getMeasuredHeight();
-        this.f36328k1.setTranslationY((l00Var.getMeasuredHeight() + measuredHeight) - org.telegram.messenger.g0.L(8.0f));
+        this.f36222k1.setTranslationY((l00Var.getMeasuredHeight() + measuredHeight) - org.telegram.messenger.g0.L(8.0f));
     }
 
     @Override
@@ -183,11 +183,11 @@ public final class qg0 extends org.telegram.ui.Components.na {
         if (user == null) {
             return false;
         }
-        Boolean bool = this.f49203j2;
+        Boolean bool = this.f49230j2;
         if (bool != null && org.telegram.messenger.t10.t(user) != bool.booleanValue()) {
             return false;
         }
-        Boolean bool2 = this.f49204k2;
+        Boolean bool2 = this.f49231k2;
         if (bool2 != null && user.premium != bool2.booleanValue()) {
             return false;
         }
@@ -207,10 +207,10 @@ public final class qg0 extends org.telegram.ui.Components.na {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         HashSet hashSet = this.V1;
         if (hashSet.size() == 0) {
-            spannableStringBuilder.append((CharSequence) "d").setSpan(this.f49200g2, 0, 1, 33);
-            Boolean bool = this.f49203j2;
+            spannableStringBuilder.append((CharSequence) "d").setSpan(this.f49227g2, 0, 1, 33);
+            Boolean bool = this.f49230j2;
             if (bool != null && bool.booleanValue()) {
-                if (this.f49201h2 > 1) {
+                if (this.f49228h2 > 1) {
                     i7 = 2131752136;
                 } else {
                     i7 = 2131752137;
@@ -239,7 +239,7 @@ public final class qg0 extends org.telegram.ui.Components.na {
         ArrayList arrayList2 = this.U1;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
-        boolean isEmpty = TextUtils.isEmpty(this.f49196b2);
+        boolean isEmpty = TextUtils.isEmpty(this.f49223b2);
         float f12 = 56.0f;
         HashSet hashSet = this.V1;
         if (!isEmpty) {
@@ -283,7 +283,7 @@ public final class qg0 extends org.telegram.ui.Components.na {
                 i7 = 0;
             }
             long e10 = org.telegram.messenger.p10.i(this.f28612a).e();
-            Boolean bool = this.f49203j2;
+            Boolean bool = this.f49230j2;
             if (bool != null && bool.booleanValue()) {
                 ArrayList arrayList6 = new ArrayList();
                 ArrayList arrayList7 = org.telegram.messenger.qp.s1(this.f28612a).f24929y;
@@ -344,7 +344,7 @@ public final class qg0 extends org.telegram.ui.Components.na {
                         int L = org.telegram.messenger.g0.L(f15) + i10;
                         String upperCase = str.toUpperCase();
                         xg.h hVar = new xg.h(7, false);
-                        hVar.f58614g = upperCase;
+                        hVar.f58639g = upperCase;
                         arrayList2.add(hVar);
                         arrayList2.addAll(arrayList9);
                         i10 = L;
@@ -360,24 +360,24 @@ public final class qg0 extends org.telegram.ui.Components.na {
         }
         int max = Math.max(0, ((int) (org.telegram.messenger.g0.f22537q.y * 0.6f)) - i10);
         xg.h hVar2 = new xg.h(-1, false);
-        hVar2.f58618l = max;
+        hVar2.f58643l = max;
         arrayList2.add(hVar2);
         if (hashSet != null) {
             if (hashSet.size() > 0) {
-                xg.i iVar2 = this.f49197c2;
+                xg.i iVar2 = this.f49224c2;
                 lg0 lg0Var = new lg0(this, 1);
-                org.telegram.ui.Cells.x3 x3Var = iVar2.f58630w;
+                org.telegram.ui.Cells.x3 x3Var = iVar2.f58655w;
                 if (x3Var != null) {
                     x3Var.a(org.telegram.messenger.hd.M0(2131743631, null), lg0Var);
                 }
             } else {
-                org.telegram.ui.Cells.x3 x3Var2 = this.f49197c2.f58630w;
+                org.telegram.ui.Cells.x3 x3Var2 = this.f49224c2.f58655w;
                 if (x3Var2 != null) {
                     x3Var2.setRightText(null);
                 }
             }
         }
-        if (z10 && (iVar = this.f49197c2) != null) {
+        if (z10 && (iVar = this.f49224c2) != null) {
             if (z9) {
                 iVar.E(arrayList, arrayList2);
             } else {
@@ -393,7 +393,7 @@ public final class qg0 extends org.telegram.ui.Components.na {
         int i10 = 0;
         int i11 = 0;
         while (true) {
-            org.telegram.ui.Components.pj0 pj0Var = this.f36328k1;
+            org.telegram.ui.Components.pj0 pj0Var = this.f36222k1;
             if (i10 >= pj0Var.getChildCount()) {
                 break;
             }
@@ -408,11 +408,11 @@ public final class qg0 extends org.telegram.ui.Components.na {
                     if (i12 < arrayList.size()) {
                         xg.h hVar = (xg.h) arrayList.get(i12);
                         ah.r rVar = (ah.r) childAt;
-                        rVar.c(hVar.f58617k, z9);
-                        TLRPC.Chat chat = hVar.f58612e;
+                        rVar.c(hVar.f58642k, z9);
+                        TLRPC.Chat chat = hVar.f58637e;
                         float f10 = 1.0f;
                         if (chat != null) {
-                            if (this.f49197c2.F(chat) > 200) {
+                            if (this.f49224c2.F(chat) > 200) {
                                 f10 = 0.3f;
                             }
                             rVar.i(z9, f10);
@@ -426,8 +426,8 @@ public final class qg0 extends org.telegram.ui.Components.na {
             i10++;
         }
         if (z9) {
-            this.f49197c2.k(0, i7);
-            xg.i iVar = this.f49197c2;
+            this.f49224c2.k(0, i7);
+            xg.i iVar = this.f49224c2;
             iVar.k(i11, iVar.b() - i11);
         }
         e1(z9);

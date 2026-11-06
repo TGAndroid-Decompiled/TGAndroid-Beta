@@ -12,22 +12,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class xe extends vf {
-    public boolean f40241a2;
-    public float f40242b2;
-    public float f40243c2;
+    public boolean f40260a2;
+    public float f40261b2;
+    public float f40262c2;
     public boolean d2;
-    public final ChatActivityEnterView f40244e2;
+    public final ChatActivityEnterView f40263e2;
 
     public xe(ChatActivityEnterView chatActivityEnterView, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(chatActivityEnterView, context, f6Var);
-        this.f40244e2 = chatActivityEnterView;
-        this.f40241a2 = true;
+        this.f40263e2 = chatActivityEnterView;
+        this.f40260a2 = true;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        ChatActivityEnterView chatActivityEnterView = this.f40244e2;
+        ChatActivityEnterView chatActivityEnterView = this.f40263e2;
         View view = chatActivityEnterView.J4;
         if (view != null) {
             setWindowView(view);
@@ -44,9 +44,9 @@ public final class xe extends vf {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (getLayout() != null && this.f40241a2) {
-            this.f40241a2 = false;
-            this.f40244e2.E(true);
+        if (getLayout() != null && this.f40260a2) {
+            this.f40260a2 = false;
+            this.f40263e2.E(true);
         }
     }
 
@@ -54,7 +54,7 @@ public final class xe extends vf {
     public final void onMeasure(int i7, int i10) {
         boolean z9;
         super.onMeasure(i7, i10);
-        ChatActivityEnterView chatActivityEnterView = this.f40244e2;
+        ChatActivityEnterView chatActivityEnterView = this.f40263e2;
         if (chatActivityEnterView.T != chatActivityEnterView.E0.getLineCount()) {
             boolean z10 = false;
             if (chatActivityEnterView.E0.getLineCount() > 2 && chatActivityEnterView.E0.getText() != null && !TextUtils.isEmpty(chatActivityEnterView.E0.getText().toString().trim())) {
@@ -74,7 +74,7 @@ public final class xe extends vf {
     public final boolean onTextContextMenuItem(int i7) {
         ClipData primaryClip;
         if (i7 == 16908322) {
-            ChatActivityEnterView chatActivityEnterView = this.f40244e2;
+            ChatActivityEnterView chatActivityEnterView = this.f40263e2;
             if (chatActivityEnterView.E0 != null) {
                 try {
                     ClipboardManager clipboardManager = (ClipboardManager) chatActivityEnterView.getContext().getSystemService("clipboard");
@@ -112,7 +112,7 @@ public final class xe extends vf {
                                     tg0[] tg0VarArr2 = (tg0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), tg0.class);
                                     for (int i10 = 0; i10 < tg0VarArr2.length; i10++) {
                                         spannableStringBuilder.removeSpan(tg0VarArr2[i10]);
-                                        spannableStringBuilder.removeSpan(tg0VarArr2[i10].f38342a);
+                                        spannableStringBuilder.removeSpan(tg0VarArr2[i10].f38333a);
                                     }
                                 } else {
                                     ug0.a(spannableStringBuilder);
@@ -134,14 +134,14 @@ public final class xe extends vf {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        ChatActivityEnterView chatActivityEnterView = this.f40244e2;
+        ChatActivityEnterView chatActivityEnterView = this.f40263e2;
         if (chatActivityEnterView.s()) {
             if (motionEvent.getAction() == 0) {
-                this.f40242b2 = motionEvent.getX();
-                this.f40243c2 = motionEvent.getY();
+                this.f40261b2 = motionEvent.getX();
+                this.f40262c2 = motionEvent.getY();
                 this.d2 = true;
             } else if (this.d2 && motionEvent.getAction() == 2) {
-                if (Math.abs(motionEvent.getX() - this.f40242b2) > org.telegram.messenger.g0.f22516e || Math.abs(motionEvent.getY() - this.f40243c2) > org.telegram.messenger.g0.f22516e) {
+                if (Math.abs(motionEvent.getX() - this.f40261b2) > org.telegram.messenger.g0.f22516e || Math.abs(motionEvent.getY() - this.f40262c2) > org.telegram.messenger.g0.f22516e) {
                     this.d2 = false;
                 }
             } else if (this.d2) {
@@ -167,6 +167,6 @@ public final class xe extends vf {
     @Override
     public final void setOffsetY(float f10) {
         super.setOffsetY(f10);
-        this.f40244e2.f31152y1.invalidate();
+        this.f40263e2.f31152y1.invalidate();
     }
 }

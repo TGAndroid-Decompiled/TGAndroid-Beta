@@ -274,10 +274,10 @@ public final class mj {
                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                 tL_message.reply_to = tL_messageReplyHeader;
                 if (qmVar != null) {
-                    tL_messageReplyHeader.quote_text = qmVar.f49242i;
+                    tL_messageReplyHeader.quote_text = qmVar.f49269i;
                     int i12 = tL_messageReplyHeader.flags;
                     tL_messageReplyHeader.flags = i12 | 64;
-                    ArrayList<TLRPC.MessageEntity> arrayList = qmVar.f49243j;
+                    ArrayList<TLRPC.MessageEntity> arrayList = qmVar.f49270j;
                     tL_messageReplyHeader.quote_entities = arrayList;
                     if (arrayList != null) {
                         tL_messageReplyHeader.flags = i12 | 192;
@@ -356,13 +356,13 @@ public final class mj {
             mj mjVar = ia0Var.d;
             int i13 = 0;
             while (true) {
-                View[] viewArr = ia0Var.f34579f.f36906e;
+                View[] viewArr = ia0Var.f34542f.f38534e;
                 if (i13 < viewArr.length) {
                     View view = viewArr[i13];
                     if (view != null) {
                         ca0 ca0Var = (ca0) view;
                         FrameLayout frameLayout = ca0Var.F;
-                        if (ca0Var.f32498a == 2) {
+                        if (ca0Var.f32502a == 2) {
                             ha0 ha0Var = ca0Var.H;
                             ha0 ha0Var2 = ca0Var.G;
                             if (mjVar.f24029n && !mjVar.f24030o) {
@@ -431,15 +431,15 @@ public final class mj {
         } else {
             ij ijVar3 = ijVar2;
             if (ijVar3 == null) {
-                ijVar3 = qmVar2.f49236a;
+                ijVar3 = qmVar2.f49263a;
             }
             this.f24018a = new kj(this, null, 1, k5.k(ijVar3), j3, null);
         }
         if (!this.f24018a.f23689e.isEmpty()) {
             this.d = qmVar2;
             if (qmVar2 != null) {
-                this.f24021e = qmVar2.f49237b;
-                this.f24022f = qmVar2.f49238c;
+                this.f24021e = qmVar2.f49264b;
+                this.f24022f = qmVar2.f49265c;
                 return;
             }
             return;

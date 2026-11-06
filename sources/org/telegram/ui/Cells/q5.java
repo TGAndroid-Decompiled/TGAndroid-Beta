@@ -111,13 +111,13 @@ public final class q5 extends FrameLayout {
     }
 
     public final boolean a() {
-        return this.d.f40043a.f31258q;
+        return this.d.f40050a.f31258q;
     }
 
     public final void b(int i7, boolean z9, boolean z10) {
         float f10;
         float f11;
-        this.d.f40043a.f(i7, z9, z10);
+        this.d.f40050a.f(i7, z9, z10);
         boolean z11 = false;
         if (this.D) {
             AnimatorSet animatorSet = this.K;
@@ -202,14 +202,14 @@ public final class q5 extends FrameLayout {
             this.K = null;
             wo woVar = this.d;
             float f11 = 1.0f;
-            if (woVar.f40043a.f31258q) {
+            if (woVar.f40050a.f31258q) {
                 f10 = 0.787f;
             } else {
                 f10 = 1.0f;
             }
             bi.e5 e5Var = this.f30129b;
             e5Var.setScaleX(f10);
-            if (woVar.f40043a.f31258q) {
+            if (woVar.f40050a.f31258q) {
                 f11 = 0.787f;
             }
             e5Var.setScaleY(f11);
@@ -421,7 +421,7 @@ public final class q5 extends FrameLayout {
         super.onAttachedToWindow();
         xh.e eVar = this.N;
         if (eVar != null) {
-            if (eVar.f58665i) {
+            if (eVar.f58690i) {
                 this.N = xh.e.e(this);
             } else {
                 eVar.a(this);
@@ -442,7 +442,7 @@ public final class q5 extends FrameLayout {
     public final void onDraw(Canvas canvas) {
         gf gfVar;
         kf kfVar;
-        boolean z9 = this.d.f40043a.f31258q;
+        boolean z9 = this.d.f40050a.f31258q;
         m5 m5Var = this.f30127a;
         if (!z9 && this.f30129b.getScaleX() == 1.0f && m5Var.getImageReceiver().L() && m5Var.getImageReceiver().f21194h1 == 1.0f && (((gfVar = this.H) == null || !PhotoViewer.K1(gfVar.I)) && ((kfVar = this.I) == null || !PhotoViewer.K1(kfVar.g())))) {
             return;
@@ -477,7 +477,7 @@ public final class q5 extends FrameLayout {
             sb2.append(hd.E0().z0().format(this.H.D * 1000));
         }
         accessibilityNodeInfo.setText(sb2);
-        if (this.d.f40043a.f31258q) {
+        if (this.d.f40050a.f31258q) {
             accessibilityNodeInfo.setSelected(true);
         }
         accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(2131296266, hd.M0(2131747816, null)));

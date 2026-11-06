@@ -68,7 +68,7 @@ public final class c4 extends vh implements ls {
             p10 = i6.m(p10, textPaint.getFontMetricsInt(), false, null, 0);
         } catch (Exception unused) {
         }
-        di diVar = this.f38951b;
+        di diVar = this.f38948b;
         diVar.R2.setTitle(p10);
         this.J.setSwipeOffsetY(0.0f);
         if (s2Var.getWebView() != null) {
@@ -120,15 +120,15 @@ public final class c4 extends vh implements ls {
             alertDialog$Builder.k(hd.M0(2131752916, null), new u3(this));
             alertDialog$Builder.h(hd.M0(2131752589, null), null);
             u1Var.show();
-            r6.V((TextView) u1Var.d(-1), k6.f28089q7, this.f38950a);
+            r6.V((TextView) u1Var.d(-1), k6.f28089q7, this.f38947a);
             return false;
         }
-        this.f38951b.dismiss();
+        this.f38948b.dismiss();
         return true;
     }
 
     public final void P() {
-        di diVar = this.f38951b;
+        di diVar = this.f38948b;
         org.telegram.ui.ActionBar.f2 f2Var = diVar.W1;
         if ((f2Var instanceof an) && ((an) f2Var).l1.Q() > org.telegram.messenger.g0.L(20.0f)) {
             org.telegram.messenger.g0.v1(diVar.W1.getFragmentView());
@@ -147,10 +147,10 @@ public final class c4 extends vh implements ls {
             if (this.f14597y == ((Long) objArr[0]).longValue()) {
                 s2Var.h();
                 this.H = true;
-                this.f38951b.dismiss();
+                this.f38948b.dismiss();
             }
         } else if (i7 == qs.f25027n4) {
-            s2Var.f51365n.b(k6.w0(k6.f27921h5, this.f38950a), 153);
+            s2Var.f51375n.b(k6.w0(k6.f27921h5, this.f38947a), 153);
         }
     }
 
@@ -230,7 +230,7 @@ public final class c4 extends vh implements ls {
     public final void p() {
         qs.f(this.F).n(this, qs.f25102z1);
         qs.e().n(this, qs.f25027n4);
-        org.telegram.ui.ActionBar.y q10 = this.f38951b.R2.q();
+        org.telegram.ui.ActionBar.y q10 = this.f38948b.R2.q();
         org.telegram.ui.ActionBar.r0 r0Var = this.K;
         ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = r0Var.f28420b;
         if (actionBarPopupWindow$ActionBarPopupWindowLayout != null) {
@@ -286,12 +286,12 @@ public final class c4 extends vh implements ls {
     @Override
     public void setTranslationY(float f10) {
         super.setTranslationY(f10);
-        this.f38951b.f28615b.invalidate();
+        this.f38948b.f28615b.invalidate();
     }
 
     @Override
     public final void t() {
-        di diVar = this.f38951b;
+        di diVar = this.f38948b;
         diVar.A0(false);
         diVar.getWindow().setSoftInputMode(48);
     }
@@ -302,7 +302,7 @@ public final class c4 extends vh implements ls {
         this.P = false;
         s2 s2Var = this.f14592n;
         boolean z9 = s2Var.R;
-        di diVar = this.f38951b;
+        di diVar = this.f38948b;
         if (!z9) {
             org.telegram.messenger.g0.R3(diVar.R2.getBackButton(), 2131231240);
         }
@@ -324,7 +324,7 @@ public final class c4 extends vh implements ls {
             }
             return;
         }
-        di diVar = this.f38951b;
+        di diVar = this.f38948b;
         if (i7 == 2131296500) {
             Bundle bundle = new Bundle();
             bundle.putLong("user_id", this.f14595w);
@@ -367,9 +367,9 @@ public final class c4 extends vh implements ls {
         } else if (i7 == 2131296505) {
             int i11 = this.F;
             Context context = getContext();
-            hc hcVar = new hc(xa.a(getContext()), this.f38950a);
+            hc hcVar = new hc(xa.a(getContext()), this.f38947a);
             long j3 = this.f14595w;
-            int i12 = oy0.f48572s1;
+            int i12 = oy0.f48567s1;
             oy0.J0(i11, context, j3, false, false, new ArrayList(), hcVar, null, new byte[0], null, null);
         }
     }
@@ -396,7 +396,7 @@ public final class c4 extends vh implements ls {
             } else {
                 z10 = false;
             }
-            int Q = this.f38951b.f32917l3.Q() + i7;
+            int Q = this.f38948b.f32930l3.Q() + i7;
             setMeasuredDimension(getMeasuredWidth(), i7);
             this.O = true;
             r2Var.setSwipeOffsetAnimationDisallowed(true);

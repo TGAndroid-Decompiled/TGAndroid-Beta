@@ -3,11 +3,11 @@ package bi;
 import android.content.Context;
 import android.view.View;
 import java.util.ArrayList;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.rj0;
-public final class bd extends h61 {
+import org.telegram.ui.Components.w31;
+public final class bd extends l61 {
     public final Context f3528a;
     public final int f3529b;
     public final boolean f3530c;
@@ -42,15 +42,15 @@ public final class bd extends h61 {
         if (this.f3533g != null) {
             adVar.setClipChildren(false);
             adVar.setClipToPadding(false);
-            k41 k41Var = adVar.f3468a;
-            k41Var.setClipToPadding(false);
-            k41Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
-            k41Var.f35167f3.f33473r = false;
-            k41Var.setCaptureSectionsDecoratorAllowed(true);
-            k41Var.setOverScrollMode(0);
+            p41 p41Var = adVar.f3468a;
+            p41Var.setClipToPadding(false);
+            p41Var.s1(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(16.0f), false);
+            p41Var.f36781f3.f35132r = false;
+            p41Var.setCaptureSectionsDecoratorAllowed(true);
+            p41Var.setOverScrollMode(0);
             oi.q qVar = this.h;
             if (qVar != null) {
-                qVar.b(k41Var);
+                qVar.b(p41Var);
             }
         }
         return adVar;
@@ -81,7 +81,7 @@ public final class bd extends h61 {
         if (i7 >= 0) {
             ArrayList arrayList = this.f3534i;
             if (i7 < arrayList.size()) {
-                return ((r31) arrayList.get(i7)).f37611z;
+                return ((w31) arrayList.get(i7)).f39843z;
             }
             return 0;
         }
@@ -96,23 +96,23 @@ public final class bd extends h61 {
         int i10 = this.f3529b;
         if (i7 == 0) {
             ea y10 = ea.y(i10, this.f3530c);
-            arrayList.add(r31.D(0));
+            arrayList.add(w31.D(0));
             if (y10.N(1)) {
-                arrayList.add(r31.D(1));
+                arrayList.add(w31.D(1));
             }
             if (y10.N(2)) {
-                arrayList.add(r31.D(2));
+                arrayList.add(w31.D(2));
                 return;
             }
             return;
         }
         n0 g10 = n0.g(i10);
-        arrayList.add(r31.D(0));
+        arrayList.add(w31.D(0));
         if (!g10.k(j3).f4301a[1].isEmpty()) {
-            arrayList.add(r31.D(1));
+            arrayList.add(w31.D(1));
         }
         if (!g10.k(j3).f4301a[2].isEmpty()) {
-            arrayList.add(r31.D(2));
+            arrayList.add(w31.D(2));
         }
     }
 }

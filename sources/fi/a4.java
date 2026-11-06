@@ -56,7 +56,7 @@ public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
         this.F = new org.telegram.ui.Components.w5(this, 0L, 320L, xqVar);
         i6Var.setCallback(this);
         i6Var.u(-1);
-        i6Var.f34516b = 17;
+        i6Var.f34477b = 17;
         i6Var.w(org.telegram.messenger.g0.L(16.0f));
         i6Var.x(org.telegram.messenger.g0.o1("fonts/num.otf"));
         i6Var.M = org.telegram.messenger.g0.f22537q.x;
@@ -338,14 +338,14 @@ public final class a4 extends View implements org.telegram.ui.ActionBar.a6 {
         if (action == 0) {
             icVar.c(z9);
         } else if (motionEvent.getAction() == 1) {
-            if (icVar.f34592i && z9 && (onClickListener = this.f11597n) != null) {
+            if (icVar.f34555i && z9 && (onClickListener = this.f11597n) != null) {
                 onClickListener.onClick(this);
             }
             icVar.c(false);
         } else if (motionEvent.getAction() == 3) {
             icVar.c(false);
         }
-        if (icVar.f34592i || super.onTouchEvent(motionEvent)) {
+        if (icVar.f34555i || super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

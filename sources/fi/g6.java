@@ -147,7 +147,7 @@ public final class g6 extends View implements o2 {
         this.T = new PointF(-org.telegram.messenger.g0.N(9.666667f), org.telegram.messenger.g0.N(2.3333333f));
         this.U = new PointF(-org.telegram.messenger.g0.N(2.8333333f), org.telegram.messenger.g0.N(8.666667f));
         this.V = new PointF(org.telegram.messenger.g0.N(9.666667f), org.telegram.messenger.g0.N(-3.6666667f));
-        this.f12083h0 = new org.telegram.ui.Components.w5(this, 0L, 200L, xq.f40310f);
+        this.f12083h0 = new org.telegram.ui.Components.w5(this, 0L, 200L, xq.f40329f);
         this.m0 = new org.telegram.ui.Components.w5(this, 0L, 350L, xqVar);
         this.f12089n0 = -1.0f;
         this.f12090o0 = true;
@@ -157,7 +157,7 @@ public final class g6 extends View implements o2 {
         this.f12097t0 = new org.telegram.ui.Components.w5(this, 0L, 350L, xqVar);
         this.B0 = new org.telegram.ui.Components.w5(this, 0L, 350L, xqVar);
         this.C0 = new org.telegram.ui.Components.w5(this, 0L, 650L, xqVar);
-        this.D0 = new org.telegram.ui.Components.w5(this, 0L, 160L, xq.f40312i);
+        this.D0 = new org.telegram.ui.Components.w5(this, 0L, 160L, xq.f40331i);
         this.E0 = new org.telegram.ui.Components.w5(this, 0L, 750L, xqVar);
         this.F0 = new org.telegram.ui.Components.w5(this, 0L, 650L, xqVar);
         this.G0 = new org.telegram.ui.Components.w5(this, 0L, 320L, xqVar);
@@ -216,11 +216,11 @@ public final class g6 extends View implements o2 {
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
         xp xpVar = new xp(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(6.0f), -13750737), mutate);
         this.f12075c = xpVar;
-        xpVar.f40305x = false;
+        xpVar.f40324x = false;
         int L = org.telegram.messenger.g0.L(24.0f);
         int L2 = org.telegram.messenger.g0.L(24.0f);
-        xpVar.f40299e = L;
-        xpVar.f40300f = L2;
+        xpVar.f40318e = L;
+        xpVar.f40319f = L2;
         Drawable mutate2 = activity.getResources().getDrawable(2131232285).mutate();
         this.d = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -277,7 +277,7 @@ public final class g6 extends View implements o2 {
         } else {
             j3 = 310;
         }
-        this.N.f39852g = j3;
+        this.N.f39860g = j3;
         this.M += f10;
         invalidate();
     }
@@ -448,7 +448,7 @@ public final class g6 extends View implements o2 {
         d6 d6Var2 = this.L0;
         if (action == 0) {
             this.f12101w0 = true;
-            if (icVar2.f34592i || icVar3.f34592i) {
+            if (icVar2.f34555i || icVar3.f34555i) {
                 z13 = true;
             }
             this.f12103x0 = z13;
@@ -457,7 +457,7 @@ public final class g6 extends View implements o2 {
             if (Math.abs(i7 - this.f12084i0) < org.telegram.messenger.g0.L(50.0f)) {
                 org.telegram.messenger.g0.i3(d6Var2, ViewConfiguration.getLongPressTimeout());
             }
-            if (icVar3.f34592i) {
+            if (icVar3.f34555i) {
                 org.telegram.messenger.g0.i3(d6Var, ViewConfiguration.getLongPressTimeout());
             }
         } else if (action == 2) {
@@ -485,10 +485,10 @@ public final class g6 extends View implements o2 {
                 org.telegram.messenger.g0.r(d6Var2);
                 org.telegram.messenger.g0.r(d6Var);
                 boolean z14 = this.f12094r0;
-                if (!z14 && icVar.f34592i) {
+                if (!z14 && icVar.f34555i) {
                     ((s9) this.f12071a).c();
                 } else if (z14 && this.f12106z0) {
-                    if (icVar.f34592i) {
+                    if (icVar.f34555i) {
                         this.f12106z0 = false;
                         this.G0.e(true, 1.0f);
                         k3 k3Var = ((s9) this.f12071a).f12819a.T0;
@@ -500,7 +500,7 @@ public final class g6 extends View implements o2 {
                         this.f12098u0 = true;
                         ((s9) this.f12071a).e(false);
                     }
-                } else if (icVar2.f34592i) {
+                } else if (icVar2.f34555i) {
                     if (b()) {
                         ((s9) this.f12071a).a();
                     } else if (!this.f12090o0 && !this.f12094r0 && !this.f12106z0) {
@@ -520,7 +520,7 @@ public final class g6 extends View implements o2 {
                     }
                 }
                 this.f12106z0 = false;
-                if (icVar3.f34592i) {
+                if (icVar3.f34555i) {
                     d(180.0f);
                     ((s9) this.f12071a).b();
                 }

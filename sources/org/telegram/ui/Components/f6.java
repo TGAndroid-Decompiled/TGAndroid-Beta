@@ -5,53 +5,53 @@ import android.text.StaticLayout;
 import android.text.TextPaint;
 import android.view.View;
 public final class f6 {
-    public final n5 f33480a;
-    public final StaticLayout f33481b;
-    public final float f33482c;
+    public final n5 f33459a;
+    public final StaticLayout f33460b;
+    public final float f33461c;
     public final int d;
-    public final float f33483e;
-    public final float f33484f;
-    public final float f33485g;
+    public final float f33462e;
+    public final float f33463f;
+    public final float f33464g;
     public final float h;
-    public final i6 f33486i;
+    public final i6 f33465i;
 
     public f6(i6 i6Var, StaticLayout staticLayout, float f10, int i7) {
         float f11;
         float f12;
         float f13;
-        this.f33486i = i6Var;
-        this.f33481b = staticLayout;
+        this.f33465i = i6Var;
+        this.f33460b = staticLayout;
         this.d = i7;
-        this.f33482c = f10;
+        this.f33461c = f10;
         if (staticLayout != null && staticLayout.getLineCount() > 0) {
             f11 = staticLayout.getLineLeft(0);
         } else {
             f11 = 0.0f;
         }
-        this.f33483e = f11;
+        this.f33462e = f11;
         if (staticLayout != null && staticLayout.getLineCount() > 0) {
             f12 = staticLayout.getLineWidth(0);
         } else {
             f12 = 0.0f;
         }
-        this.f33484f = f12;
+        this.f33463f = f12;
         if (staticLayout != null && staticLayout.getLineCount() > 0) {
             f13 = staticLayout.getLineBaseline(0);
         } else {
             f13 = 0.0f;
         }
-        this.f33485g = f13;
-        this.h = staticLayout != null ? staticLayout.getHeight() - this.f33485g : 0.0f;
+        this.f33464g = f13;
+        this.h = staticLayout != null ? staticLayout.getHeight() - this.f33464g : 0.0f;
         if (i6Var.getCallback() instanceof View) {
-            this.f33480a = r5.update(i6Var.f34529p, (View) i6Var.getCallback(), this.f33480a, staticLayout);
+            this.f33459a = r5.update(i6Var.f34490p, (View) i6Var.getCallback(), this.f33459a, staticLayout);
         }
     }
 
     public final void a(Canvas canvas, float f10) {
         int i7;
-        i6 i6Var = this.f33486i;
+        i6 i6Var = this.f33465i;
         int i10 = i6Var.B;
-        TextPaint textPaint = i6Var.f34514a;
+        TextPaint textPaint = i6Var.f34475a;
         int max = Math.max(0, Math.min(255, (int) (i10 * f10)));
         if (max != 0) {
             textPaint.setAlpha(255);
@@ -63,8 +63,8 @@ public final class f6 {
             } else {
                 i7 = -1;
             }
-            this.f33481b.draw(canvas);
-            r5.drawAnimatedEmojis(canvas, this.f33481b, this.f33480a, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, i6Var.f34515a0);
+            this.f33460b.draw(canvas);
+            r5.drawAnimatedEmojis(canvas, this.f33460b, this.f33459a, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, i6Var.f34476a0);
             if (i7 != -1) {
                 canvas.restoreToCount(i7);
             }

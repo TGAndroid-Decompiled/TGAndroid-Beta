@@ -104,7 +104,7 @@ public final class ya implements c20 {
                 qu quVar = (qu) obj4;
                 int[] iArr = (int[]) obj3;
                 ArrayList arrayList = (ArrayList) obj2;
-                org.telegram.ui.ActionBar.f2 f2Var2 = quVar.f37506j1;
+                org.telegram.ui.ActionBar.f2 f2Var2 = quVar.f37396j1;
                 iArr[0] = iArr[0] + 1;
                 if (((Boolean) obj).booleanValue()) {
                     iArr[1] = iArr[1] + 1;
@@ -154,19 +154,19 @@ public final class ya implements c20 {
                 ij ijVar = (ij) obj2;
                 String str3 = (String) obj;
                 if (i10 == photoViewer.P4) {
-                    photoViewer.f41438n5 = str3;
-                    if (f10Var.s() && f10Var.b(ijVar, photoViewer.f41438n5)) {
-                        if (photoViewer.f41429m5) {
-                            photoViewer.f41442o0.S(20);
-                            photoViewer.f41442o0.t(19);
+                    photoViewer.f41463n5 = str3;
+                    if (f10Var.s() && f10Var.b(ijVar, photoViewer.f41463n5)) {
+                        if (photoViewer.f41454m5) {
+                            photoViewer.f41467o0.S(20);
+                            photoViewer.f41467o0.t(19);
                             return;
                         }
-                        photoViewer.f41442o0.S(19);
-                        photoViewer.f41442o0.t(20);
+                        photoViewer.f41467o0.S(19);
+                        photoViewer.f41467o0.t(20);
                         return;
                     }
-                    photoViewer.f41442o0.t(19);
-                    photoViewer.f41442o0.t(20);
+                    photoViewer.f41467o0.t(19);
+                    photoViewer.f41467o0.t(20);
                     return;
                 }
                 return;

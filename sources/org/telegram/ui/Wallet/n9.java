@@ -40,18 +40,18 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.b80;
-import org.telegram.ui.Components.f41;
-import org.telegram.ui.Components.h41;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w70;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.an;
-import org.telegram.ui.fo0;
-import org.telegram.ui.mt0;
+import org.telegram.ui.go0;
+import org.telegram.ui.nt0;
 import org.telegram.ui.tb0;
-public final class n9 extends h41 implements ls {
+public final class n9 extends m41 implements ls {
     public LinearLayout D;
     public m9 E;
     public ShapeDrawable F;
@@ -75,41 +75,41 @@ public final class n9 extends h41 implements ls {
     public float X;
     public ValueAnimator Y;
     public LinearLayout Z;
-    public r1.g f42820a0;
-    public float f42821b0;
-    public float f42822c0;
-    public fi.d f42823d0;
-    public TL_wallet.walletUserAddress f42824e;
-    public long f42825e0;
-    public TLRPC.User f42826f;
-    public boolean f42827f0;
-    public String f42828g0;
+    public r1.g f42845a0;
+    public float f42846b0;
+    public float f42847c0;
+    public fi.d f42848d0;
+    public TL_wallet.walletUserAddress f42849e;
+    public long f42850e0;
+    public TLRPC.User f42851f;
+    public boolean f42852f0;
+    public String f42853g0;
     public String h;
-    public boolean f42829h0;
-    public int f42830i0;
-    public int f42831j0;
-    public boolean f42832k0;
-    public boolean f42833l0;
+    public boolean f42854h0;
+    public int f42855i0;
+    public int f42856j0;
+    public boolean f42857k0;
+    public boolean f42858l0;
     public DecimalFormat m0;
-    public String f42834n;
-    public DecimalFormat f42835n0;
-    public int f42836o0;
-    public boolean f42837p0;
-    public TL_wallet.walletTransaction f42838q0;
-    public boolean f42839r;
-    public y5 f42840r0;
-    public long f42841s;
-    public ba f42842s0;
-    public an f42843t0;
-    public o6 f42844u0;
-    public int f42845v0;
-    public r8 f42846w;
-    public int f42847w0;
-    public fi.a5 f42848x;
-    public FrameLayout f42849y;
+    public String f42859n;
+    public DecimalFormat f42860n0;
+    public int f42861o0;
+    public boolean f42862p0;
+    public TL_wallet.walletTransaction f42863q0;
+    public boolean f42864r;
+    public y5 f42865r0;
+    public long f42866s;
+    public ba f42867s0;
+    public an f42868t0;
+    public o6 f42869u0;
+    public int f42870v0;
+    public r8 f42871w;
+    public int f42872w0;
+    public fi.a5 f42873x;
+    public FrameLayout f42874y;
 
     public n9(TLRPC.User user) {
-        this.f42841s = 0L;
+        this.f42866s = 0L;
         this.J = new x8(this, 0);
         this.K = new ViewTreeObserver.OnWindowFocusChangeListener() {
             @Override
@@ -123,12 +123,12 @@ public final class n9 extends h41 implements ls {
                 }
             }
         };
-        this.f42825e0 = -1L;
-        this.f42829h0 = true;
-        this.f42836o0 = 6;
-        this.f42826f = user;
+        this.f42850e0 = -1L;
+        this.f42854h0 = true;
+        this.f42861o0 = 6;
+        this.f42851f = user;
         this.h = null;
-        this.f42839r = true;
+        this.f42864r = true;
         n0.x(this.currentAccount).a0(user, new z8(this, 2));
     }
 
@@ -138,16 +138,16 @@ public final class n9 extends h41 implements ls {
 
     public static void e0(n9 n9Var) {
         String q02;
-        fi.d dVar = n9Var.f42823d0;
+        fi.d dVar = n9Var.f42848d0;
         if (dVar.f11752c0 && !dVar.Q) {
             final n0 x10 = n0.x(n9Var.currentAccount);
             long p02 = n9Var.p0();
             long v = x10.v();
-            if (!n9Var.f42839r && WalletEngine2.isValidRecipientAddress(n9Var.h) && p02 > 0) {
+            if (!n9Var.f42864r && WalletEngine2.isValidRecipientAddress(n9Var.h) && p02 > 0) {
                 long j3 = ((org.telegram.messenger.l0) qp.s1(n9Var.currentAccount).f24927x7.f24439l0.f13889b).f23806c;
                 byte[] bArr = null;
                 if (p02 < j3) {
-                    if (n9Var.f42832k0) {
+                    if (n9Var.f42857k0) {
                         q02 = n9Var.l0(j3, n9Var.n0());
                     } else {
                         q02 = q0(j3);
@@ -155,17 +155,17 @@ public final class n9 extends h41 implements ls {
                     n9Var.E.setAmountText(q02);
                     n9Var.H.setSelection(q02.length());
                     EditTextBoldCursor editTextBoldCursor = n9Var.H;
-                    int i7 = -n9Var.f42836o0;
-                    n9Var.f42836o0 = i7;
+                    int i7 = -n9Var.f42861o0;
+                    n9Var.f42861o0 = i7;
                     org.telegram.messenger.g0.G3(i7, editTextBoldCursor, null);
                 } else if (p02 > v) {
                     org.telegram.messenger.p2.APP_ERROR.a();
                     w70 w70Var = n9Var.Q;
-                    int i10 = -n9Var.f42836o0;
-                    n9Var.f42836o0 = i10;
+                    int i10 = -n9Var.f42861o0;
+                    n9Var.f42861o0 = i10;
                     org.telegram.messenger.g0.G3(i10, w70Var, null);
                 } else {
-                    long j10 = n9Var.f42825e0;
+                    long j10 = n9Var.f42850e0;
                     if (j10 >= 0 && p02 + j10 > v) {
                         p02 -= j10;
                     }
@@ -177,22 +177,22 @@ public final class n9 extends h41 implements ls {
                         n9Var.fragmentView.requestFocus();
                         org.telegram.messenger.g0.v1(n9Var.H);
                     }
-                    n9Var.f42823d0.setLoading(true);
-                    n9Var.f42838q0 = null;
-                    if (n9Var.f42826f != null && TextUtils.isEmpty(n9Var.f42834n)) {
-                        n9Var.f42837p0 = true;
-                        TLRPC.User user = n9Var.f42826f;
+                    n9Var.f42848d0.setLoading(true);
+                    n9Var.f42863q0 = null;
+                    if (n9Var.f42851f != null && TextUtils.isEmpty(n9Var.f42859n)) {
+                        n9Var.f42862p0 = true;
+                        TLRPC.User user = n9Var.f42851f;
                         long j11 = p02;
                         String str = n9Var.h;
-                        String str2 = n9Var.f42828g0;
-                        if (n9Var.f42829h0) {
+                        String str2 = n9Var.f42853g0;
+                        if (n9Var.f42854h0) {
                             bArr = n9Var.r0();
                         }
                         x10.d0(user, str, j11, str2, bArr, null, null, new b9(n9Var, 0), new b9(n9Var, 1), null);
                         return;
                     }
-                    final String str3 = n9Var.f42828g0;
-                    if (n9Var.f42829h0) {
+                    final String str3 = n9Var.f42853g0;
+                    if (n9Var.f42854h0) {
                         bArr = n9Var.r0();
                     }
                     if (bArr != null) {
@@ -200,11 +200,11 @@ public final class n9 extends h41 implements ls {
                     }
                     if (x10.F()) {
                         TL_wallet.walletTransaction wallettransaction = new TL_wallet.walletTransaction();
-                        wallettransaction.peer = n0.g(n9Var.f42826f, n9Var.h, n9Var.f42834n);
+                        wallettransaction.peer = n0.g(n9Var.f42851f, n9Var.h, n9Var.f42859n);
                         wallettransaction.comment = str3;
                         wallettransaction.comment_encrypted = z9;
                         wallettransaction.date = n9Var.getConnectionsManager().getCurrentTime();
-                        wallettransaction.fee = Math.max(0L, n9Var.f42825e0);
+                        wallettransaction.fee = Math.max(0L, n9Var.f42850e0);
                         wallettransaction.gasless = true;
                         wallettransaction.amount = p02;
                         org.telegram.messenger.g0.v1(n9Var.H);
@@ -221,11 +221,11 @@ public final class n9 extends h41 implements ls {
                             String str4 = (String) obj2;
                             n9 n9Var2 = n9.this;
                             if (str4 != null) {
-                                n9Var2.f42823d0.setLoading(false);
+                                n9Var2.f42848d0.setLoading(false);
                                 hc.a0(n9Var2).e0(str4, false);
                                 return;
                             }
-                            wallettransaction2.peer = n0.g(n9Var2.f42826f, n9Var2.h, n9Var2.f42834n);
+                            wallettransaction2.peer = n0.g(n9Var2.f42851f, n9Var2.h, n9Var2.f42859n);
                             wallettransaction2.comment = str3;
                             wallettransaction2.comment_encrypted = z10;
                             wallettransaction2.date = n9Var2.getConnectionsManager().getCurrentTime();
@@ -241,19 +241,19 @@ public final class n9 extends h41 implements ls {
 
     public static void f0(n9 n9Var, String str) {
         if ("PASSCODE_FAILED".equalsIgnoreCase(str)) {
-            n9Var.f42837p0 = false;
-            n9Var.f42823d0.setLoading(false);
+            n9Var.f42862p0 = false;
+            n9Var.f42848d0.setLoading(false);
         } else if (str != null) {
-            n9Var.f42837p0 = false;
-            n9Var.f42823d0.setLoading(false);
+            n9Var.f42862p0 = false;
+            n9Var.f42848d0.setLoading(false);
             hc.a0(n9Var).e0(str, false);
-        } else if (n9Var.f42827f0) {
+        } else if (n9Var.f42852f0) {
             org.telegram.ui.ActionBar.q4 parentLayout = n9Var.getParentLayout();
             if (parentLayout == null) {
                 n9Var.finishFragment();
                 return;
             }
-            long j3 = n9Var.f42826f.f27101id;
+            long j3 = n9Var.f42851f.f27101id;
             ArrayList arrayList = new ArrayList(parentLayout.getFragmentStack());
             if (!arrayList.isEmpty() && jg.g.i(1, arrayList) == n9Var) {
                 int size = arrayList.size() - 2;
@@ -264,8 +264,8 @@ public final class n9 extends h41 implements ls {
                     org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) arrayList.get(size);
                     if ((f2Var instanceof an) && f2Var.getCurrentAccount() == n9Var.currentAccount) {
                         an anVar = (an) f2Var;
-                        if (anVar.a() == j3 && anVar.f43766f4 == 0) {
-                            n9Var.f42843t0 = anVar;
+                        if (anVar.a() == j3 && anVar.f43791f4 == 0) {
+                            n9Var.f42868t0 = anVar;
                             for (int size2 = arrayList.size() - 2; size2 > size; size2--) {
                                 ((ActionBarLayout) parentLayout).d0((org.telegram.ui.ActionBar.f2) arrayList.get(size2), false);
                             }
@@ -273,7 +273,7 @@ public final class n9 extends h41 implements ls {
                     }
                     size--;
                 }
-                if (n9Var.f42843t0 == null) {
+                if (n9Var.f42868t0 == null) {
                     n9Var.getNotificationCenter().k(qs.v, Long.valueOf(j3), Boolean.FALSE);
                     an ra2 = an.ra(j3);
                     ra2.setCurrentAccount(n9Var.currentAccount);
@@ -281,7 +281,7 @@ public final class n9 extends h41 implements ls {
                         n9Var.finishFragment();
                         return;
                     }
-                    n9Var.f42843t0 = ra2;
+                    n9Var.f42868t0 = ra2;
                 }
                 n9Var.finishFragment();
             }
@@ -291,19 +291,19 @@ public final class n9 extends h41 implements ls {
     }
 
     public static void g0(n9 n9Var, TL_wallet.walletUserAddress walletuseraddress) {
-        n9Var.f42839r = false;
-        n9Var.f42824e = walletuseraddress;
+        n9Var.f42864r = false;
+        n9Var.f42849e = walletuseraddress;
         if (walletuseraddress != null && walletuseraddress.user_id != 0) {
-            n9Var.f42826f = qp.s1(n9Var.currentAccount).a2(Long.valueOf(walletuseraddress.user_id));
+            n9Var.f42851f = qp.s1(n9Var.currentAccount).a2(Long.valueOf(walletuseraddress.user_id));
         }
-        fi.w3 w3Var = n9Var.f34211a;
+        fi.w3 w3Var = n9Var.f35844a;
         if (w3Var != null) {
-            w3Var.f35167f3.O(true);
+            w3Var.f36781f3.O(true);
         }
         n9Var.C0();
-        r8 r8Var = n9Var.f42846w;
+        r8 r8Var = n9Var.f42871w;
         if (r8Var != null) {
-            r8Var.a(n9Var.h, n9Var.f42826f);
+            r8Var.a(n9Var.h, n9Var.f42851f);
         }
     }
 
@@ -370,7 +370,7 @@ public final class n9 extends h41 implements ls {
     }
 
     public final void A0(String str) {
-        this.f42834n = str;
+        this.f42859n = str;
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
         if (kVar != null) {
             kVar.setTitle(hd.M0(2131743017, null));
@@ -389,8 +389,8 @@ public final class n9 extends h41 implements ls {
             spannableStringBuilder.append((CharSequence) " >");
             wp wpVar = new wp(2131232697, 0);
             float N = org.telegram.messenger.g0.N(0.66f);
-            wpVar.f40055r = 0.0f;
-            wpVar.f40056s = N;
+            wpVar.f40062r = 0.0f;
+            wpVar.f40063s = N;
             spannableStringBuilder.setSpan(wpVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             spannableStringBuilder.setSpan(new fi.ka(this, 9), length, spannableStringBuilder.length(), 33);
             this.Q.setText(spannableStringBuilder);
@@ -421,14 +421,14 @@ public final class n9 extends h41 implements ls {
         CharSequence V;
         String q02;
         E0();
-        if (this.H != null && this.f42823d0 != null) {
+        if (this.H != null && this.f42848d0 != null) {
             n0 x10 = n0.x(this.currentAccount);
             long v = x10.v();
             long p02 = p0();
             long j3 = ((org.telegram.messenger.l0) qp.s1(this.currentAccount).f24927x7.f24439l0.f13889b).f23806c;
             int i7 = (p02 > 0L ? 1 : (p02 == 0L ? 0 : -1));
             if (i7 > 0 && p02 < j3) {
-                if (this.f42832k0) {
+                if (this.f42857k0) {
                     q02 = l0(j3, n0());
                 } else {
                     q02 = q0(j3);
@@ -436,12 +436,12 @@ public final class n9 extends h41 implements ls {
                 this.E.setAmountText(q02);
                 this.H.setSelection(q02.length());
                 EditTextBoldCursor editTextBoldCursor = this.H;
-                int i10 = -this.f42836o0;
-                this.f42836o0 = i10;
+                int i10 = -this.f42861o0;
+                this.f42861o0 = i10;
                 org.telegram.messenger.g0.G3(i10, editTextBoldCursor, null);
                 return;
             }
-            if (WalletEngine2.isValidRecipientAddress(this.h) && !this.f42839r && i7 > 0 && p02 <= v) {
+            if (WalletEngine2.isValidRecipientAddress(this.h) && !this.f42864r && i7 > 0 && p02 <= v) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -461,34 +461,34 @@ public final class n9 extends h41 implements ls {
             } else {
                 str = "";
             }
-            fi.d dVar = this.f42823d0;
-            if (!this.f42839r && !this.f42837p0) {
+            fi.d dVar = this.f42848d0;
+            if (!this.f42864r && !this.f42862p0) {
                 z11 = false;
             } else {
                 z11 = true;
             }
             dVar.setLoading(z11);
-            fi.d dVar2 = this.f42823d0;
+            fi.d dVar2 = this.f42848d0;
             if (TextUtils.isEmpty(str)) {
                 V = hd.M0(2131743021, null);
             } else {
                 V = hd.V(null, null, 2131743022, n0.l("Grams", str, 2131749506));
             }
             dVar2.i(V, true, true);
-            this.f42823d0.setEnabled(z9);
+            this.f42848d0.setEnabled(z9);
             D0();
             F0();
-            if (this.f42832k0) {
+            if (this.f42857k0) {
                 org.telegram.ui.Components.j6 j6Var = this.N;
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 spannableStringBuilder.append((CharSequence) this.M).append((CharSequence) " ");
                 int length = spannableStringBuilder.length();
-                if (this.f42835n0 == null) {
+                if (this.f42860n0 == null) {
                     DecimalFormat decimalFormat = new DecimalFormat("#,##0.##", new DecimalFormatSymbols(Locale.US));
-                    this.f42835n0 = decimalFormat;
+                    this.f42860n0 = decimalFormat;
                     decimalFormat.setRoundingMode(RoundingMode.HALF_UP);
                 }
-                spannableStringBuilder.append((CharSequence) this.f42835n0.format(BigDecimal.valueOf(p02).movePointLeft(9)));
+                spannableStringBuilder.append((CharSequence) this.f42860n0.format(BigDecimal.valueOf(p02).movePointLeft(9)));
                 z0(spannableStringBuilder, length, spannableStringBuilder.length(), '.');
                 spannableStringBuilder.append((CharSequence) " ");
                 int length2 = spannableStringBuilder.length();
@@ -522,7 +522,7 @@ public final class n9 extends h41 implements ls {
                 z10 = false;
             }
             if (z10) {
-                long j3 = this.f42825e0;
+                long j3 = this.f42850e0;
                 if (j3 >= 0) {
                     this.T.setText(hd.V(null, null, 2131743073, n0.s(j3, false)));
                 } else {
@@ -568,8 +568,8 @@ public final class n9 extends h41 implements ls {
             } else {
                 z9 = true;
             }
-            if (z9 != this.f42833l0) {
-                this.f42833l0 = z9;
+            if (z9 != this.f42858l0) {
+                this.f42858l0 = z9;
                 this.D.setVisibility(0);
                 this.O.setVisibility(0);
                 ViewPropertyAnimator animate = this.D.animate();
@@ -593,10 +593,10 @@ public final class n9 extends h41 implements ls {
                     f12 = 0.8f;
                 }
                 ViewPropertyAnimator duration = scaleX.scaleY(f12).withEndAction(new Runnable(this) {
-                    public final n9 f42409b;
+                    public final n9 f42434b;
 
                     {
-                        this.f42409b = this;
+                        this.f42434b = this;
                     }
 
                     @Override
@@ -605,7 +605,7 @@ public final class n9 extends h41 implements ls {
                         int i10;
                         switch (r3) {
                             case 0:
-                                LinearLayout linearLayout = this.f42409b.D;
+                                LinearLayout linearLayout = this.f42434b.D;
                                 if (z9) {
                                     i7 = 0;
                                 } else {
@@ -614,7 +614,7 @@ public final class n9 extends h41 implements ls {
                                 linearLayout.setVisibility(i7);
                                 return;
                             default:
-                                TextView textView = this.f42409b.O;
+                                TextView textView = this.f42434b.O;
                                 if (!z9) {
                                     i10 = 0;
                                 } else {
@@ -642,10 +642,10 @@ public final class n9 extends h41 implements ls {
                     f15 = 0.8f;
                 }
                 scaleX2.scaleY(f15).withEndAction(new Runnable(this) {
-                    public final n9 f42409b;
+                    public final n9 f42434b;
 
                     {
-                        this.f42409b = this;
+                        this.f42434b = this;
                     }
 
                     @Override
@@ -654,7 +654,7 @@ public final class n9 extends h41 implements ls {
                         int i10;
                         switch (r3) {
                             case 0:
-                                LinearLayout linearLayout = this.f42409b.D;
+                                LinearLayout linearLayout = this.f42434b.D;
                                 if (z9) {
                                     i7 = 0;
                                 } else {
@@ -663,7 +663,7 @@ public final class n9 extends h41 implements ls {
                                 linearLayout.setVisibility(i7);
                                 return;
                             default:
-                                TextView textView = this.f42409b.O;
+                                TextView textView = this.f42434b.O;
                                 if (!z9) {
                                     i10 = 0;
                                 } else {
@@ -679,30 +679,30 @@ public final class n9 extends h41 implements ls {
     }
 
     public final void F0() {
-        this.E.d(n0.x(this.currentAccount), this.f42832k0);
+        this.E.d(n0.x(this.currentAccount), this.f42857k0);
     }
 
     public final void G0() {
         boolean z9;
-        float f10 = this.f42821b0;
+        float f10 = this.f42846b0;
         float f11 = 1.0f - f10;
-        float max = Math.max(this.f42822c0, Math.max(0.0f, Math.min(1.0f, f10)));
-        this.f42822c0 = max;
+        float max = Math.max(this.f42847c0, Math.max(0.0f, Math.min(1.0f, f10)));
+        this.f42847c0 = max;
         float f12 = 1.0f - max;
         m9 m9Var = this.E;
-        float f13 = this.f42821b0;
-        if (this.f42820a0 == null && f13 == 1.0f) {
+        float f13 = this.f42846b0;
+        if (this.f42845a0 == null && f13 == 1.0f) {
             z9 = true;
         } else {
             z9 = false;
         }
         m9Var.e(f13, max, z9);
-        this.E.setTranslationY((((this.f42848x.getHeight() / 2.0f) - this.E.getTop()) - (this.E.getHeight() / 2.0f)) * f11);
-        this.N.setAlpha(this.f42822c0);
+        this.E.setTranslationY((((this.f42873x.getHeight() / 2.0f) - this.E.getTop()) - (this.E.getHeight() / 2.0f)) * f11);
+        this.N.setAlpha(this.f42847c0);
         this.N.setTranslationY(org.telegram.messenger.g0.L(16.0f) * f12);
-        this.f42849y.setAlpha(this.f42822c0);
-        this.f42849y.setTranslationY(org.telegram.messenger.g0.L(16.0f) * f12);
-        this.Z.setAlpha(this.f42822c0);
+        this.f42874y.setAlpha(this.f42847c0);
+        this.f42874y.setTranslationY(org.telegram.messenger.g0.L(16.0f) * f12);
+        this.Z.setAlpha(this.f42847c0);
         for (int i7 = 0; i7 < this.Z.getChildCount(); i7++) {
             this.Z.getChildAt(i7).setTranslationY(org.telegram.messenger.g0.L(24.0f) * f12);
         }
@@ -714,7 +714,7 @@ public final class n9 extends h41 implements ls {
     }
 
     @Override
-    public final boolean c0(r31 r31Var, View view) {
+    public final boolean c0(w31 w31Var, View view) {
         return false;
     }
 
@@ -724,7 +724,7 @@ public final class n9 extends h41 implements ls {
         View createView = super.createView(context);
         this.fragmentView = createView;
         createView.setFocusableInTouchMode(true);
-        this.f34211a.setVisibility(8);
+        this.f35844a.setVisibility(8);
         View view = this.fragmentView;
         int i7 = org.telegram.ui.ActionBar.k6.f27848d6;
         org.telegram.ui.ActionBar.r6.i(i7, view, getResourceProvider());
@@ -734,30 +734,30 @@ public final class n9 extends h41 implements ls {
         a10.setContentDescription(hd.M0(2131754839, null));
         a10.e(2, 2131232044, hd.M0(2131743138, null));
         a10.e(3, 2131231778, hd.M0(2131743206, null));
-        this.actionBar.setActionBarMenuOnItemClick(new mt0(this, 20));
+        this.actionBar.setActionBarMenuOnItemClick(new nt0(this, 20));
         FrameLayout frameLayout = (FrameLayout) this.fragmentView;
         frameLayout.setClipChildren(false);
         frameLayout.setClipToPadding(false);
         r8 r8Var = new r8(context, new x8(this, 5), new x8(this, 6), this.resourceProvider);
-        this.f42846w = r8Var;
+        this.f42871w = r8Var;
         frameLayout.addView(r8Var, c8.ha.d(-2, 64.0f, 49, 16.0f, 5.0f, 16.0f, 0.0f));
-        r8 r8Var2 = this.f42846w;
+        r8 r8Var2 = this.f42871w;
         if (r8Var2 != null) {
-            r8Var2.a(this.h, this.f42826f);
+            r8Var2.a(this.h, this.f42851f);
         }
         fi.a5 a5Var = new fi.a5(this, context);
-        this.f42848x = a5Var;
+        this.f42873x = a5Var;
         a5Var.setOrientation(1);
-        this.f42848x.setClipChildren(false);
-        this.f42848x.setClipToPadding(false);
-        frameLayout.addView(this.f42848x, c8.ha.e(-1, -2, 17));
+        this.f42873x.setClipChildren(false);
+        this.f42873x.setClipToPadding(false);
+        frameLayout.addView(this.f42873x, c8.ha.e(-1, -2, 17));
         m9 m9Var = new m9(context, getResourceProvider());
         this.E = m9Var;
-        if (m9Var.getDiamondView().f43270f == null) {
-            this.f42822c0 = 1.0f;
-            this.f42821b0 = 1.0f;
+        if (m9Var.getDiamondView().f43295f == null) {
+            this.f42847c0 = 1.0f;
+            this.f42846b0 = 1.0f;
         }
-        this.f42848x.addView(this.E, c8.ha.t(-1, 64, 49, 16, 0, 16, 0));
+        this.f42873x.addView(this.E, c8.ha.t(-1, 64, 49, 16, 0, 16, 0));
         EditTextBoldCursor editText = this.E.getEditText();
         this.H = editText;
         editText.setFilters(new InputFilter[]{new InputFilter() {
@@ -771,7 +771,7 @@ public final class n9 extends h41 implements ls {
                 int i14 = 9;
                 BigDecimal valueOf = BigDecimal.valueOf(Long.MAX_VALUE, 9);
                 n9 n9Var = n9.this;
-                if (n9Var.f42832k0) {
+                if (n9Var.f42857k0) {
                     BigDecimal n02 = n9Var.n0();
                     valueOf = valueOf.multiply(n02);
                     i14 = n9.m0(n02);
@@ -808,7 +808,7 @@ public final class n9 extends h41 implements ls {
         this.H.setImeOptions(33554438);
         this.H.setOnEditorActionListener(new s8(this, 1));
         this.H.addTextChangedListener(new ah.j(this, 28));
-        long j3 = this.f42841s;
+        long j3 = this.f42866s;
         if (j3 > 0) {
             m9 m9Var2 = this.E;
             BigDecimal valueOf = BigDecimal.valueOf(j3, 9);
@@ -823,7 +823,7 @@ public final class n9 extends h41 implements ls {
         }
         this.L = new SpannableString("⇅");
         wp wpVar = new wp(2131232814, 0);
-        wpVar.f40058x = 0.72f;
+        wpVar.f40065x = 0.72f;
         SpannableString spannableString = this.L;
         spannableString.setSpan(wpVar, 0, spannableString.length(), 33);
         this.M = new SpannableString("G");
@@ -833,7 +833,7 @@ public final class n9 extends h41 implements ls {
         spannableString2.setSpan(wpVar2, 0, spannableString2.length(), 33);
         org.telegram.ui.Components.j6 j6Var = new org.telegram.ui.Components.j6(context, false, true, true, true, true);
         this.N = j6Var;
-        j6Var.f34890c.m(0.35f, 320L, 3.5f, xq.h);
+        j6Var.f34870c.m(0.35f, 320L, 3.5f, xq.h);
         this.N.setScaleProperty(0.25f);
         this.N.setText(o0(n0.x(this.currentAccount), 0L));
         org.telegram.ui.Components.j6 j6Var2 = this.N;
@@ -850,13 +850,13 @@ public final class n9 extends h41 implements ls {
         ShapeDrawable d02 = org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(14.0f), r12);
         this.F = d02;
         j6Var3.setSizeableBackground(d02);
-        this.f42848x.addView(this.N, c8.ha.t(-2, 28, 49, 0, 8, 0, 0));
+        this.f42873x.addView(this.N, c8.ha.t(-2, 28, 49, 0, 8, 0, 0));
         c8.ka.a(this.N);
         this.N.setOnClickListener(new View.OnClickListener(this) {
-            public final n9 f43286b;
+            public final n9 f43311b;
 
             {
-                this.f43286b = this;
+                this.f43311b = this;
             }
 
             @Override
@@ -864,21 +864,21 @@ public final class n9 extends h41 implements ls {
                 String q02;
                 switch (r2) {
                     case 0:
-                        this.f43286b.u0();
+                        this.f43311b.u0();
                         return;
                     case 1:
-                        n9.e0(this.f43286b);
+                        n9.e0(this.f43311b);
                         return;
                     case 2:
-                        n9 n9Var = this.f43286b;
+                        n9 n9Var = this.f43311b;
                         BigDecimal n02 = n9Var.n0();
-                        if (n9Var.f42832k0 || n02.signum() > 0) {
+                        if (n9Var.f42857k0 || n02.signum() > 0) {
                             long p02 = n9Var.p0();
-                            n9Var.f42832k0 = !n9Var.f42832k0;
+                            n9Var.f42857k0 = !n9Var.f42857k0;
                             n9Var.F0();
                             if (p02 <= 0) {
                                 q02 = "";
-                            } else if (n9Var.f42832k0) {
+                            } else if (n9Var.f42857k0) {
                                 q02 = n9Var.l0(p02, n02);
                             } else {
                                 q02 = n9.q0(p02);
@@ -889,18 +889,18 @@ public final class n9 extends h41 implements ls {
                         }
                         return;
                     default:
-                        n9.d0(this.f43286b);
+                        n9.d0(this.f43311b);
                         return;
                 }
             }
         });
         FrameLayout frameLayout2 = new FrameLayout(context);
-        this.f42849y = frameLayout2;
-        this.f42848x.addView(frameLayout2, c8.ha.r(-2, -2, 49));
+        this.f42874y = frameLayout2;
+        this.f42873x.addView(frameLayout2, c8.ha.r(-2, -2, 49));
         LinearLayout linearLayout = new LinearLayout(context);
         this.D = linearLayout;
         linearLayout.setOrientation(1);
-        this.f42849y.addView(this.D, c8.ha.e(-2, -2, 49));
+        this.f42874y.addView(this.D, c8.ha.e(-2, -2, 49));
         TextView textView = new TextView(context);
         this.O = textView;
         textView.setTextSize(1, 14.0f);
@@ -915,17 +915,17 @@ public final class n9 extends h41 implements ls {
         spannableStringBuilder.append((CharSequence) " >");
         wp wpVar3 = new wp(2131232697, 0);
         float N = org.telegram.messenger.g0.N(0.66f);
-        wpVar3.f40055r = 0.0f;
-        wpVar3.f40056s = N;
+        wpVar3.f40062r = 0.0f;
+        wpVar3.f40063s = N;
         spannableStringBuilder.setSpan(wpVar3, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         this.O.setText(spannableStringBuilder);
-        this.f42849y.addView(this.O, c8.ha.d(-2, 28.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
+        this.f42874y.addView(this.O, c8.ha.d(-2, 28.0f, 49, 0.0f, 8.0f, 0.0f, 0.0f));
         c8.ka.a(this.O);
         this.O.setOnClickListener(new View.OnClickListener(this) {
-            public final n9 f43286b;
+            public final n9 f43311b;
 
             {
-                this.f43286b = this;
+                this.f43311b = this;
             }
 
             @Override
@@ -933,21 +933,21 @@ public final class n9 extends h41 implements ls {
                 String q02;
                 switch (r2) {
                     case 0:
-                        this.f43286b.u0();
+                        this.f43311b.u0();
                         return;
                     case 1:
-                        n9.e0(this.f43286b);
+                        n9.e0(this.f43311b);
                         return;
                     case 2:
-                        n9 n9Var = this.f43286b;
+                        n9 n9Var = this.f43311b;
                         BigDecimal n02 = n9Var.n0();
-                        if (n9Var.f42832k0 || n02.signum() > 0) {
+                        if (n9Var.f42857k0 || n02.signum() > 0) {
                             long p02 = n9Var.p0();
-                            n9Var.f42832k0 = !n9Var.f42832k0;
+                            n9Var.f42857k0 = !n9Var.f42857k0;
                             n9Var.F0();
                             if (p02 <= 0) {
                                 q02 = "";
-                            } else if (n9Var.f42832k0) {
+                            } else if (n9Var.f42857k0) {
                                 q02 = n9Var.l0(p02, n02);
                             } else {
                                 q02 = n9.q0(p02);
@@ -958,7 +958,7 @@ public final class n9 extends h41 implements ls {
                         }
                         return;
                     default:
-                        n9.d0(this.f43286b);
+                        n9.d0(this.f43311b);
                         return;
                 }
             }
@@ -971,7 +971,7 @@ public final class n9 extends h41 implements ls {
         this.O.setAlpha(1.0f);
         this.O.setScaleX(1.0f);
         this.O.setScaleY(1.0f);
-        this.f42833l0 = false;
+        this.f42858l0 = false;
         this.P = new TextView(context);
         org.telegram.ui.ActionBar.t4 t4Var = new org.telegram.ui.ActionBar.t4(0, true, false, null);
         t4Var.f28526x = false;
@@ -990,18 +990,18 @@ public final class n9 extends h41 implements ls {
         this.P.setTypeface(org.telegram.messenger.g0.o());
         this.P.setEllipsize(TextUtils.TruncateAt.END);
         this.P.setMaxLines(4);
-        if (TextUtils.isEmpty(this.f42828g0)) {
+        if (TextUtils.isEmpty(this.f42853g0)) {
             this.P.setVisibility(8);
         } else {
-            this.P.setText(this.f42828g0);
+            this.P.setText(this.f42853g0);
             this.P.setVisibility(0);
         }
         this.D.addView(this.P, c8.ha.t(-2, -2, 49, 32, 12, 32, 0));
         this.P.setOnClickListener(new View.OnClickListener(this) {
-            public final n9 f43286b;
+            public final n9 f43311b;
 
             {
-                this.f43286b = this;
+                this.f43311b = this;
             }
 
             @Override
@@ -1009,21 +1009,21 @@ public final class n9 extends h41 implements ls {
                 String q02;
                 switch (r2) {
                     case 0:
-                        this.f43286b.u0();
+                        this.f43311b.u0();
                         return;
                     case 1:
-                        n9.e0(this.f43286b);
+                        n9.e0(this.f43311b);
                         return;
                     case 2:
-                        n9 n9Var = this.f43286b;
+                        n9 n9Var = this.f43311b;
                         BigDecimal n02 = n9Var.n0();
-                        if (n9Var.f42832k0 || n02.signum() > 0) {
+                        if (n9Var.f42857k0 || n02.signum() > 0) {
                             long p02 = n9Var.p0();
-                            n9Var.f42832k0 = !n9Var.f42832k0;
+                            n9Var.f42857k0 = !n9Var.f42857k0;
                             n9Var.F0();
                             if (p02 <= 0) {
                                 q02 = "";
-                            } else if (n9Var.f42832k0) {
+                            } else if (n9Var.f42857k0) {
                                 q02 = n9Var.l0(p02, n02);
                             } else {
                                 q02 = n9.q0(p02);
@@ -1034,7 +1034,7 @@ public final class n9 extends h41 implements ls {
                         }
                         return;
                     default:
-                        n9.d0(this.f43286b);
+                        n9.d0(this.f43311b);
                         return;
                 }
             }
@@ -1064,8 +1064,8 @@ public final class n9 extends h41 implements ls {
         this.Z.addView(this.R, c8.ha.t(-1, -2, 55, 16, 0, 16, 0));
         this.S = new SpannableString(">");
         wp wpVar4 = new wp(2131232697, 0);
-        wpVar4.f40055r = 0.0f;
-        wpVar4.f40056s = org.telegram.messenger.g0.L(1.0f);
+        wpVar4.f40062r = 0.0f;
+        wpVar4.f40063s = org.telegram.messenger.g0.L(1.0f);
         SpannableString spannableString3 = this.S;
         spannableString3.setSpan(wpVar4, 0, spannableString3.length(), 33);
         org.telegram.ui.ActionBar.m2 m2Var = new org.telegram.ui.ActionBar.m2(10, context, this);
@@ -1081,14 +1081,14 @@ public final class n9 extends h41 implements ls {
         spannableString4.setSpan(new b80(org.telegram.messenger.g0.L(80.0f), this.T), 0, this.U.length(), 33);
         fi.d dVar = new fi.d(context, getResourceProvider(), true);
         dVar.setRoundRadius(24);
-        this.f42823d0 = dVar;
+        this.f42848d0 = dVar;
         dVar.setText(hd.M0(2131743021, null));
-        this.f42823d0.setEnabled(false);
-        this.f42823d0.setOnClickListener(new View.OnClickListener(this) {
-            public final n9 f43286b;
+        this.f42848d0.setEnabled(false);
+        this.f42848d0.setOnClickListener(new View.OnClickListener(this) {
+            public final n9 f43311b;
 
             {
-                this.f43286b = this;
+                this.f43311b = this;
             }
 
             @Override
@@ -1096,21 +1096,21 @@ public final class n9 extends h41 implements ls {
                 String q02;
                 switch (r2) {
                     case 0:
-                        this.f43286b.u0();
+                        this.f43311b.u0();
                         return;
                     case 1:
-                        n9.e0(this.f43286b);
+                        n9.e0(this.f43311b);
                         return;
                     case 2:
-                        n9 n9Var = this.f43286b;
+                        n9 n9Var = this.f43311b;
                         BigDecimal n02 = n9Var.n0();
-                        if (n9Var.f42832k0 || n02.signum() > 0) {
+                        if (n9Var.f42857k0 || n02.signum() > 0) {
                             long p02 = n9Var.p0();
-                            n9Var.f42832k0 = !n9Var.f42832k0;
+                            n9Var.f42857k0 = !n9Var.f42857k0;
                             n9Var.F0();
                             if (p02 <= 0) {
                                 q02 = "";
-                            } else if (n9Var.f42832k0) {
+                            } else if (n9Var.f42857k0) {
                                 q02 = n9Var.l0(p02, n02);
                             } else {
                                 q02 = n9.q0(p02);
@@ -1121,12 +1121,12 @@ public final class n9 extends h41 implements ls {
                         }
                         return;
                     default:
-                        n9.d0(this.f43286b);
+                        n9.d0(this.f43311b);
                         return;
                 }
             }
         });
-        this.Z.addView(this.f42823d0, c8.ha.t(-1, 48, 87, 0, 14, 0, 0));
+        this.Z.addView(this.f42848d0, c8.ha.t(-1, 48, 87, 0, 14, 0, 0));
         frameLayout.addView(this.Z, c8.ha.e(-1, -2, 87));
         C0();
         G0();
@@ -1177,11 +1177,11 @@ public final class n9 extends h41 implements ls {
         if (m9Var != null) {
             m9Var.getDiamondView().l(null);
         }
-        r1.g gVar = this.f42820a0;
+        r1.g gVar = this.f42845a0;
         if (gVar != null) {
             gVar.d();
         }
-        this.f42821b0 = 1.0f;
+        this.f42846b0 = 1.0f;
         if (this.E != null) {
             G0();
         }
@@ -1254,18 +1254,18 @@ public final class n9 extends h41 implements ls {
         TL_wallet.walletTransaction wallettransaction;
         m9 m9Var;
         View view2;
-        if (!z9 && this.f42843t0 != null && (wallettransaction = this.f42838q0) != null && wallettransaction.localMessageId != 0 && (m9Var = this.E) != null) {
+        if (!z9 && this.f42868t0 != null && (wallettransaction = this.f42863q0) != null && wallettransaction.localMessageId != 0 && (m9Var = this.E) != null) {
             w6 diamondView = m9Var.getDiamondView();
-            if (diamondView.f43270f != null && diamondView.isShown() && diamondView.getAlpha() > 0.01f && (view2 = this.fragmentView) != null && (view2.getParent() instanceof View) && getParentLayout() != null) {
-                o6 o6Var = new o6(getParentLayout().getView(), (View) this.fragmentView.getParent(), this.E.getDiamondView(), this.f42843t0, this.f42838q0, runnable, null);
-                this.f42844u0 = o6Var;
-                return o6Var.f42893m;
+            if (diamondView.f43295f != null && diamondView.isShown() && diamondView.getAlpha() > 0.01f && (view2 = this.fragmentView) != null && (view2.getParent() instanceof View) && getParentLayout() != null) {
+                o6 o6Var = new o6(getParentLayout().getView(), (View) this.fragmentView.getParent(), this.E.getDiamondView(), this.f42868t0, this.f42863q0, runnable, null);
+                this.f42869u0 = o6Var;
+                return o6Var.f42918m;
             }
         }
-        if (!z9 && this.f42840r0 != null && this.f42838q0 != null && this.E != null && (view = this.fragmentView) != null && (view.getParent() instanceof View) && getParentLayout() != null) {
-            ba baVar = new ba(getParentLayout().getView(), (View) this.fragmentView.getParent(), this.E.getDiamondView(), this.f42840r0, this.f42838q0, runnable, null);
-            this.f42842s0 = baVar;
-            return baVar.f42166m;
+        if (!z9 && this.f42865r0 != null && this.f42863q0 != null && this.E != null && (view = this.fragmentView) != null && (view.getParent() instanceof View) && getParentLayout() != null) {
+            ba baVar = new ba(getParentLayout().getView(), (View) this.fragmentView.getParent(), this.E.getDiamondView(), this.f42865r0, this.f42863q0, runnable, null);
+            this.f42867s0 = baVar;
+            return baVar.f42191m;
         }
         return super.onCustomTransitionAnimation(z9, runnable);
     }
@@ -1280,9 +1280,9 @@ public final class n9 extends h41 implements ls {
     public final void onFragmentDestroy() {
         this.I = false;
         k0();
-        o6 o6Var = this.f42844u0;
+        o6 o6Var = this.f42869u0;
         if (o6Var != null) {
-            AnimatorSet animatorSet = o6Var.f42893m;
+            AnimatorSet animatorSet = o6Var.f42918m;
             if (!o6Var.v) {
                 if (animatorSet.isStarted()) {
                     animatorSet.cancel();
@@ -1290,19 +1290,19 @@ public final class n9 extends h41 implements ls {
                     o6Var.a(false);
                 }
             }
-            this.f42844u0 = null;
+            this.f42869u0 = null;
         }
-        ba baVar = this.f42842s0;
+        ba baVar = this.f42867s0;
         if (baVar != null) {
-            AnimatorSet animatorSet2 = baVar.f42166m;
-            if (!baVar.f42172s) {
+            AnimatorSet animatorSet2 = baVar.f42191m;
+            if (!baVar.f42197s) {
                 if (animatorSet2.isStarted()) {
                     animatorSet2.cancel();
                 } else {
                     baVar.b();
                 }
             }
-            this.f42842s0 = null;
+            this.f42867s0 = null;
         }
         ValueAnimator valueAnimator = this.Y;
         if (valueAnimator != null) {
@@ -1319,21 +1319,21 @@ public final class n9 extends h41 implements ls {
 
     @Override
     public final void onInsets(int i7, int i10, int i11, int i12) {
-        this.f42830i0 = i12;
+        this.f42855i0 = i12;
         if (this.Z != null) {
-            int max = Math.max(0, this.f42831j0 - i12);
-            this.Z.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f) + this.f42830i0);
-            if (this.f42845v0 != max) {
+            int max = Math.max(0, this.f42856j0 - i12);
+            this.Z.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f) + this.f42855i0);
+            if (this.f42870v0 != max) {
                 this.Z.animate().cancel();
                 this.Z.animate().translationY(-max).setDuration(320L).setInterpolator(xq.h).start();
-                this.f42845v0 = max;
+                this.f42870v0 = max;
             }
         }
     }
 
     @Override
     public final r0.k1 onInsetsInternal(View view, r0.k1 k1Var) {
-        this.f42831j0 = k1Var.f54084a.f(8).d;
+        this.f42856j0 = k1Var.f54109a.f(8).d;
         return super.onInsetsInternal(view, k1Var);
     }
 
@@ -1363,8 +1363,8 @@ public final class n9 extends h41 implements ls {
             j0();
             int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.f27848d6);
             LinearLayout linearLayout = this.Z;
-            if (linearLayout != null && themedColor != this.f42847w0 && (linearLayout.getBackground() instanceof GradientDrawable)) {
-                this.f42847w0 = themedColor;
+            if (linearLayout != null && themedColor != this.f42872w0 && (linearLayout.getBackground() instanceof GradientDrawable)) {
+                this.f42872w0 = themedColor;
                 ((GradientDrawable) this.Z.getBackground()).setColors(new int[]{org.telegram.ui.ActionBar.k6.r1(0.0f, themedColor), themedColor, themedColor});
             }
         } catch (Exception e10) {
@@ -1388,13 +1388,13 @@ public final class n9 extends h41 implements ls {
         EditTextBoldCursor editTextBoldCursor;
         m9 m9Var;
         super.onTransitionAnimationStart(z9, z10);
-        if (z9 && !z10 && (m9Var = this.E) != null && this.f42821b0 < 1.0f) {
+        if (z9 && !z10 && (m9Var = this.E) != null && this.f42846b0 < 1.0f) {
             m9Var.getDiamondView().l(new x8(this, 1));
         }
         if (z9 && !z10 && (editTextBoldCursor = this.H) != null) {
             Runnable runnable = this.J;
             editTextBoldCursor.removeCallbacks(runnable);
-            if (this.f42841s > 0) {
+            if (this.f42866s > 0) {
                 EditTextBoldCursor editTextBoldCursor2 = this.H;
                 editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
                 return;
@@ -1409,7 +1409,7 @@ public final class n9 extends h41 implements ls {
         EditTextBoldCursor editTextBoldCursor = this.H;
         if (editTextBoldCursor != null) {
             BigDecimal v02 = v0(editTextBoldCursor.getText().toString());
-            if (this.f42832k0) {
+            if (this.f42857k0) {
                 BigDecimal n02 = n0();
                 if (n02.signum() <= 0) {
                     return 0L;
@@ -1426,13 +1426,13 @@ public final class n9 extends h41 implements ls {
     }
 
     public final byte[] r0() {
-        TL_wallet.walletUserAddress walletuseraddress = this.f42824e;
+        TL_wallet.walletUserAddress walletuseraddress = this.f42849e;
         if (walletuseraddress == null || walletuseraddress.public_key == null) {
             return null;
         }
         int i7 = 0;
         while (true) {
-            byte[] bArr = this.f42824e.public_key;
+            byte[] bArr = this.f42849e.public_key;
             if (i7 >= bArr.length) {
                 return null;
             }
@@ -1466,15 +1466,15 @@ public final class n9 extends h41 implements ls {
     public final void t0() {
         byte[] bArr;
         if (WalletEngine2.isValidRecipientAddress(this.h)) {
-            this.f42825e0 = -1L;
+            this.f42850e0 = -1L;
             D0();
             n0 x10 = n0.x(this.currentAccount);
-            if (x10.F() && !n0.b(x10.t(), this.h) && this.f42826f != null && TextUtils.isEmpty(this.f42834n)) {
+            if (x10.F() && !n0.b(x10.t(), this.h) && this.f42851f != null && TextUtils.isEmpty(this.f42859n)) {
                 return;
             }
             String str = this.h;
-            String str2 = this.f42828g0;
-            if (this.f42829h0) {
+            String str2 = this.f42853g0;
+            if (this.f42854h0) {
                 bArr = r0();
             } else {
                 bArr = null;
@@ -1492,7 +1492,7 @@ public final class n9 extends h41 implements ls {
         boolean z11;
         Activity parentActivity = getParentActivity();
         if (parentActivity != null) {
-            if (this.f42831j0 - this.f42830i0 > org.telegram.messenger.g0.L(20.0f)) {
+            if (this.f42856j0 - this.f42855i0 > org.telegram.messenger.g0.L(20.0f)) {
                 z9 = true;
             } else {
                 z9 = false;
@@ -1510,7 +1510,7 @@ public final class n9 extends h41 implements ls {
             org.telegram.ui.ActionBar.r6.V(x0Var, org.telegram.ui.ActionBar.k6.f27956j5, getResourceProvider());
             org.telegram.ui.ActionBar.r6.E(x0Var, org.telegram.ui.ActionBar.k6.f28144t5, getResourceProvider());
             x0Var.setHint(hd.M0(2131743170, null));
-            x0Var.setText(this.f42828g0);
+            x0Var.setText(this.f42853g0);
             x0Var.setSelection(x0Var.length());
             x0Var.setInputType(147457);
             int i10 = 5;
@@ -1527,7 +1527,7 @@ public final class n9 extends h41 implements ls {
             c2Var.setBackground(h02);
             org.telegram.ui.ActionBar.r6.k(c2Var, h02, null, N, f6Var);
             String M02 = hd.M0(2131743078, null);
-            if (this.f42829h0 && r0() != null) {
+            if (this.f42854h0 && r0() != null) {
                 z10 = false;
             } else {
                 z10 = true;
@@ -1567,7 +1567,7 @@ public final class n9 extends h41 implements ls {
             u1Var.G = 6;
             alertDialog$Builder.o(linearLayout);
             u1Var.f28547a = org.telegram.messenger.g0.L(292.0f);
-            alertDialog$Builder.h(hd.M0(2131752589, null), new fo0(14));
+            alertDialog$Builder.h(hd.M0(2131752589, null), new go0(14));
             alertDialog$Builder.k(hd.M0(2131754486, null), new j8(this, x0Var, c2Var, 2));
             u1Var.setOnShowListener(new DialogInterface.OnShowListener() {
                 @Override
@@ -1585,7 +1585,7 @@ public final class n9 extends h41 implements ls {
             }
             u1Var.f28570j0 = false;
             View d = u1Var.d(-1);
-            if ((d instanceof TextView) && !TextUtils.isEmpty(this.f42828g0)) {
+            if ((d instanceof TextView) && !TextUtils.isEmpty(this.f42853g0)) {
                 x0Var.addTextChangedListener(new tb0(x0Var, (TextView) d));
             }
         }
@@ -1611,12 +1611,12 @@ public final class n9 extends h41 implements ls {
             }
             List fragmentStack = parentLayout.getFragmentStack();
             if (fragmentStack.size() >= 2 && (rf.b.g(2, fragmentStack) instanceof y5) && ((org.telegram.ui.ActionBar.f2) rf.b.g(2, fragmentStack)).getCurrentAccount() == this.currentAccount) {
-                this.f42840r0 = (y5) rf.b.g(2, fragmentStack);
+                this.f42865r0 = (y5) rf.b.g(2, fragmentStack);
             } else {
                 y5 y5Var = new y5();
                 y5Var.setCurrentAccount(this.currentAccount);
                 if (((ActionBarLayout) parentLayout).c(fragmentStack.size() - 1, y5Var)) {
-                    this.f42840r0 = y5Var;
+                    this.f42865r0 = y5Var;
                 }
             }
             finishFragment();
@@ -1624,7 +1624,7 @@ public final class n9 extends h41 implements ls {
     }
 
     public final void x0() {
-        this.f42827f0 = true;
+        this.f42852f0 = true;
     }
 
     public final void y0(float f10) {
@@ -1647,7 +1647,7 @@ public final class n9 extends h41 implements ls {
     }
 
     public n9(int i7, String str) {
-        this.f42841s = 0L;
+        this.f42866s = 0L;
         this.J = new x8(this, 0);
         this.K = new ViewTreeObserver.OnWindowFocusChangeListener() {
             @Override
@@ -1661,22 +1661,22 @@ public final class n9 extends h41 implements ls {
                 }
             }
         };
-        this.f42825e0 = -1L;
-        this.f42829h0 = true;
-        this.f42836o0 = 6;
+        this.f42850e0 = -1L;
+        this.f42854h0 = true;
+        this.f42861o0 = 6;
         setCurrentAccount(i7);
-        this.f42826f = null;
+        this.f42851f = null;
         this.h = str;
         t0();
-        this.f42839r = true;
+        this.f42864r = true;
         n0.x(this.currentAccount).Z(new z8(this, 0), str);
     }
 
     @Override
-    public final void Z(ArrayList arrayList, f41 f41Var) {
+    public final void Z(ArrayList arrayList, k41 k41Var) {
     }
 
     @Override
-    public final void b0(r31 r31Var, View view) {
+    public final void b0(w31 w31Var, View view) {
     }
 }

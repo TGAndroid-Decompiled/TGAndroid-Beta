@@ -171,7 +171,7 @@ public final class t7 extends FrameLayout implements org.telegram.ui.ActionBar.a
             } else {
                 i10 = org.telegram.ui.ActionBar.k6.f28240y6;
             }
-            j6Var2.f34890c.v(org.telegram.ui.ActionBar.k6.w0(i10, this.f30523a), z9);
+            j6Var2.f34870c.v(org.telegram.ui.ActionBar.k6.w0(i10, this.f30523a), z9);
             j6Var2.invalidate();
             if (i7 >= this.f30529r.a()) {
                 f10 = 1.0f;
@@ -242,7 +242,7 @@ public final class t7 extends FrameLayout implements org.telegram.ui.ActionBar.a
                 } else {
                     i7 = org.telegram.ui.ActionBar.k6.f28240y6;
                 }
-                j6Var.f34890c.v(org.telegram.ui.ActionBar.k6.w0(i7, this.f30523a), false);
+                j6Var.f34870c.v(org.telegram.ui.ActionBar.k6.w0(i7, this.f30523a), false);
                 j6Var.invalidate();
             }
         } catch (Exception e10) {

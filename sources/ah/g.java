@@ -330,7 +330,7 @@ public final class g implements View.OnClickListener {
                             i7++;
                         } else {
                             k60 k60Var3 = laVar.U0;
-                            k60Var3.f35216s = 0;
+                            k60Var3.f35180s = 0;
                             k60Var3.Z();
                             return;
                         }
@@ -365,8 +365,8 @@ public final class g implements View.OnClickListener {
                 if (x9Var.f12533k1) {
                     sg.q qVar = new sg.q(context2, x9Var.f12540p1);
                     x9Var.C1 = qVar;
-                    qVar.I0(x9Var.f12531j1.f54992a, 2);
-                    qVar.f55069o1 = new androidx.activity.n(x9Var, l0Var, 1);
+                    qVar.I0(x9Var.f12531j1.f55017a, 2);
+                    qVar.f55094o1 = new androidx.activity.n(x9Var, l0Var, 1);
                     qVar.n1 = new h8(2, x9Var, l0Var);
                     qVar.show();
                     return;
@@ -386,7 +386,7 @@ public final class g implements View.OnClickListener {
                     F2.c(2131232360, hd.M0(2131753703, null), new kg.d(eVar, 2), false);
                 }
                 F2.a0(g0.L(10.0f), g0.L(7.0f));
-                F2.f35216s = 0;
+                F2.f35180s = 0;
                 F2.Z();
                 return;
             case 12:
@@ -459,7 +459,7 @@ public final class g implements View.OnClickListener {
                 ((AlertDialog$Builder) this.f1076c).f27292a.L0.run();
                 return;
             case 19:
-                ((a8) this.f1075b).f31713n.X0((w) this.f1076c, (ij) this.d);
+                ((a8) this.f1075b).f31725n.X0((w) this.f1076c, (ij) this.d);
                 return;
             case 20:
                 di diVar = (di) this.f1075b;
@@ -479,8 +479,8 @@ public final class g implements View.OnClickListener {
                 lhVar.setEffect(j10);
                 diVar.f28620c1 = true;
                 if (diVar.B1 - diVar.C1 < 0) {
-                    g0.F3(diVar.f32933q1);
-                    g0.F3(diVar.f32937r1);
+                    g0.F3(diVar.f32946q1);
+                    g0.F3(diVar.f32950r1);
                     try {
                         lhVar.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
@@ -504,10 +504,10 @@ public final class g implements View.OnClickListener {
                         return;
                     }
                 }
-                vh vhVar = diVar.f32942s2;
-                if (vhVar != diVar.f32882a2 && vhVar != diVar.f32902h2) {
+                vh vhVar = diVar.f32955s2;
+                if (vhVar != diVar.f32895a2 && vhVar != diVar.f32915h2) {
                     if (!vhVar.L(true, 0, 0, j10, diVar.f1())) {
-                        diVar.f32964x4 = true;
+                        diVar.f32977x4 = true;
                         diVar.dismiss();
                     }
                     u12 = false;
@@ -530,7 +530,7 @@ public final class g implements View.OnClickListener {
                 message.invert_media = z12;
                 ((ha0) this.d).a(!z12, true);
                 diVar2.Y1.e(ijVar);
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = diVar2.f32882a2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = diVar2.f32895a2;
                 if (chatAttachAlertPhotoLayout != null && (ha0Var = chatAttachAlertPhotoLayout.f31195d1) != null) {
                     ha0Var.a(!diVar2.T1, true);
                 }
@@ -568,12 +568,12 @@ public final class g implements View.OnClickListener {
                 kt ktVar = (kt) this.f1075b;
                 rt0 rt0Var = (rt0) this.f1076c;
                 f6 f6Var4 = (f6) this.d;
-                et etVar = ktVar.f35413a;
-                kg.k kVar = ktVar.f35414b;
+                et etVar = ktVar.f35416a;
+                kg.k kVar = ktVar.f35417b;
                 if (kVar.isEnabled() && kVar.getAlpha() >= 0.5f) {
                     i1 i1Var = ktVar.K;
                     if (i1Var == null || !i1Var.f27545f) {
-                        if (ktVar.f35418n) {
+                        if (ktVar.f35421n) {
                             etVar.m();
                             k60 k60Var4 = new k60(rt0Var, f6Var4, kVar, false, false, true);
                             k60Var4.X = g0.L(280.0f);
@@ -581,7 +581,7 @@ public final class g implements View.OnClickListener {
                             k60Var4.U = true;
                             k60Var4.Z();
                             return;
-                        } else if (!ktVar.f35416e) {
+                        } else if (!ktVar.f35419e) {
                             ktVar.x(1);
                             boolean isFocused = etVar.isFocused();
                             ft ftVar = ktVar.d;
@@ -596,9 +596,9 @@ public final class g implements View.OnClickListener {
                             }
                             return;
                         } else {
-                            if (ktVar.f35423y) {
+                            if (ktVar.f35426y) {
                                 ktVar.k(true);
-                                ktVar.f35423y = false;
+                                ktVar.f35426y = false;
                                 ktVar.p();
                             }
                             ktVar.v();
@@ -623,8 +623,8 @@ public final class g implements View.OnClickListener {
                 v2 v2Var3 = (v2) this.f1076c;
                 f2 f2Var3 = (f2) this.d;
                 try {
-                    if (q70Var.f37294b != null) {
-                        ((ClipboardManager) org.telegram.messenger.t0.f25555b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", q70Var.f37294b));
+                    if (q70Var.f37173b != null) {
+                        ((ClipboardManager) org.telegram.messenger.t0.f25555b.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", q70Var.f37173b));
                         if (v2Var3 != null && (l2Var = v2Var3.f28618c) != null) {
                             new hc(l2Var, null).k(false).j();
                         } else {
@@ -640,7 +640,7 @@ public final class g implements View.OnClickListener {
                 ca0 ca0Var = (ca0) this.f1075b;
                 ha0 ha0Var2 = (ha0) this.f1076c;
                 ha0 ha0Var3 = (ha0) this.d;
-                ia0 ia0Var = ca0Var.f32503c0;
+                ia0 ia0Var = ca0Var.f32507c0;
                 mj mjVar = ia0Var.d;
                 boolean z13 = mjVar.f24027l;
                 boolean z14 = !z13;
@@ -648,13 +648,13 @@ public final class g implements View.OnClickListener {
                 if (!z13) {
                     if (!mjVar.f24026k) {
                         mjVar.f24026k = true;
-                        ia0Var.f34585y = true;
+                        ia0Var.f34548y = true;
                     }
                 } else {
-                    if (ia0Var.f34585y) {
+                    if (ia0Var.f34548y) {
                         mjVar.f24026k = false;
                     }
-                    ia0Var.f34585y = false;
+                    ia0Var.f34548y = false;
                 }
                 ha0Var2.a(z14, true);
                 ha0Var3.a(mjVar.f24026k, true);

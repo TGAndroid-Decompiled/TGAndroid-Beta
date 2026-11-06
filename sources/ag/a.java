@@ -38,23 +38,23 @@ public final class a implements ServiceConnection {
         g gVar = null;
         switch (this.f1054a) {
             case 0:
-                int i7 = d.f60026a;
+                int i7 = d.f60051a;
                 if (iBinder != null) {
                     IInterface queryLocalInterface = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
                     if (queryLocalInterface != null && (queryLocalInterface instanceof zf.e)) {
                         eVar2 = (zf.e) queryLocalInterface;
                     } else {
                         ?? obj = new Object();
-                        obj.f60025a = iBinder;
+                        obj.f60050a = iBinder;
                         eVar2 = obj;
                     }
                 }
                 e eVar3 = new e(eVar2, componentName);
                 if (((vf.a) ((WeakReference) this.f1055b).get()) != null) {
-                    c.f57210b = eVar3;
-                    if (qp.s1(p10.f24459s0).O2() && (eVar = c.f57210b) != null) {
+                    c.f57235b = eVar3;
+                    if (qp.s1(p10.f24459s0).O2() && (eVar = c.f57235b) != null) {
                         try {
-                            ((zf.c) ((zf.e) eVar.f57127a)).I0();
+                            ((zf.c) ((zf.e) eVar.f57152a)).I0();
                             return;
                         } catch (RemoteException unused) {
                             return;
@@ -91,7 +91,7 @@ public final class a implements ServiceConnection {
                 q qVar = wVar.h;
                 qVar.getClass();
                 try {
-                    qVar.q(c10, (p3) qVar.f53686b);
+                    qVar.q(c10, (p3) qVar.f53711b);
                     return;
                 } catch (Throwable th2) {
                     u.i("BillingLogger", "Unable to log.", th2);
@@ -105,7 +105,7 @@ public final class a implements ServiceConnection {
         switch (this.f1054a) {
             case 0:
                 if (((vf.a) ((WeakReference) this.f1055b).get()) != null) {
-                    c.f57210b = null;
+                    c.f57235b = null;
                     return;
                 }
                 return;

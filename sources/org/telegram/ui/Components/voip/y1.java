@@ -45,15 +45,15 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.n41;
 import org.telegram.ui.Components.p9;
+import org.telegram.ui.Components.s41;
 import org.telegram.ui.Components.t60;
 import org.telegram.ui.Components.v4;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.c40;
-import org.telegram.ui.qu0;
+import org.telegram.ui.ru0;
 public abstract class y1 {
-    public static long f39608a;
+    public static long f39605a;
 
     public static boolean a(TLRPC.TL_messageActionPhoneCall tL_messageActionPhoneCall) {
         TLRPC.PhoneCallDiscardReason phoneCallDiscardReason = tL_messageActionPhoneCall.reason;
@@ -81,7 +81,7 @@ public abstract class y1 {
             if (user == null && chat == null) {
                 return;
             }
-            if (SystemClock.elapsedRealtime() - f39608a < (chat != null ? 200 : 2000)) {
+            if (SystemClock.elapsedRealtime() - f39605a < (chat != null ? 200 : 2000)) {
                 return;
             }
             if (z13 && chat != null && !z12 && (N02 = qp.s1(cVar.f21723a).N0(chat.f26952id)) != null && (peer = N02.groupcall_default_join_as) != null) {
@@ -149,7 +149,7 @@ public abstract class y1 {
                     c40.e1((LaunchActivity) activity, cVar, chat, inputPeer, z9, str);
                     return;
                 }
-                f39608a = SystemClock.elapsedRealtime();
+                f39605a = SystemClock.elapsedRealtime();
                 Intent intent = new Intent(activity, VoIPService.class);
                 if (user != null) {
                     intent.putExtra("user_id", user.f27101id);
@@ -353,7 +353,7 @@ public abstract class y1 {
             VoIPService.getSharedInstance().hangUp(new li.p2(activity, i7, inputGroupCall, z9, groupCall, hashSet));
             return;
         }
-        f39608a = SystemClock.elapsedRealtime();
+        f39605a = SystemClock.elapsedRealtime();
         Intent intent = new Intent(activity, VoIPService.class);
         intent.putExtra("chat_id", 0L);
         int i10 = 0;
@@ -572,7 +572,7 @@ public abstract class y1 {
         }
     }
 
-    public static void k(final Context context, qu0 qu0Var, boolean z9, final long j3, final long j10, final int i7, final boolean z10) {
+    public static void k(final Context context, ru0 ru0Var, boolean z9, final long j3, final long j10, final int i7, final boolean z10) {
         File file;
         String str;
         String str2;
@@ -606,11 +606,11 @@ public abstract class y1 {
         k5.m(textView, 17, null, 2131743257);
         f10.addView(textView);
         final ?? view = new View(context);
-        view.f36946c = new Paint();
+        view.f36825c = new Paint();
         view.d = 5;
-        view.f36947e = 0;
-        view.f36944a = BitmapFactory.decodeResource(view.getResources(), 2131231458).extractAlpha();
-        view.f36945b = BitmapFactory.decodeResource(view.getResources(), 2131231457).extractAlpha();
+        view.f36826e = 0;
+        view.f36823a = BitmapFactory.decodeResource(view.getResources(), 2131231458).extractAlpha();
+        view.f36824b = BitmapFactory.decodeResource(view.getResources(), 2131231457).extractAlpha();
         f10.addView((View) view, ha.t(-2, -2, 1, 0, 16, 0, 0));
         final LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
@@ -696,16 +696,16 @@ public abstract class y1 {
         f10.addView(editTextBoldCursor, ha.k(8.0f, 8.0f, 8.0f, 0.0f, -1, -2));
         final boolean[] zArr = {true};
         final org.telegram.ui.Cells.c2 c2Var2 = new org.telegram.ui.Cells.c2(context, 1);
-        n41 n41Var = new n41(3, zArr, c2Var2);
+        s41 s41Var = new s41(3, zArr, c2Var2);
         c2Var2.e(hd.M0(2131752604, null), null, true, false, false);
         c2Var2.setClipToPadding(false);
-        c2Var2.setOnClickListener(n41Var);
+        c2Var2.setOnClickListener(s41Var);
         f10.addView(c2Var2, ha.k(-8.0f, 0.0f, -8.0f, 0.0f, -1, -2));
         final TextView textView2 = new TextView(context);
         textView2.setTextSize(2, 14.0f);
         org.telegram.messenger.camera.q.o(textView2, k6.f28106r5, null, null, 2131752603);
         textView2.setPadding(org.telegram.messenger.g0.L(8.0f), 0, org.telegram.messenger.g0.L(8.0f), 0);
-        textView2.setOnClickListener(n41Var);
+        textView2.setOnClickListener(s41Var);
         f10.addView(textView2);
         c2Var2.setVisibility(8);
         textView2.setVisibility(8);
@@ -717,7 +717,7 @@ public abstract class y1 {
         alertDialog$Builder.o(f10);
         alertDialog$Builder.k(hd.M0(2131745641, null), new v0.j(14));
         alertDialog$Builder.h(hd.M0(2131752589, null), null);
-        alertDialog$Builder.f27292a.setOnDismissListener(new org.telegram.ui.ActionBar.j2(2, qu0Var));
+        alertDialog$Builder.f27292a.setOnDismissListener(new org.telegram.ui.ActionBar.j2(2, ru0Var));
         final org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
         if (org.telegram.messenger.r2.f25191a && file4.exists()) {
             org.telegram.ui.Components.f2 f2Var = new org.telegram.ui.Components.f2(23, context, file4);

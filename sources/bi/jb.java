@@ -116,8 +116,8 @@ public final class jb implements View.OnClickListener {
                     k60Var.g(tLObject2, z9, new d3(jArr2, j10, ubVar, 11));
                     jArr = jArr2;
                 }
-                k60Var.f35217t = false;
-                k60Var.f35216s = 0;
+                k60Var.f35181t = false;
+                k60Var.f35180s = 0;
                 k60Var.V(5);
                 k60Var.a0(org.telegram.messenger.g0.L(24.0f), 0.0f);
                 k60Var.Z();
@@ -136,7 +136,7 @@ public final class jb implements View.OnClickListener {
                     float scrollX = horizontalScrollView.getScrollX();
                     float x10 = sh0Var.getX() - ((horizontalScrollView.getWidth() - sh0Var.getWidth()) / 2.0f);
                     ValueAnimator duration = ValueAnimator.ofFloat(0.0f, 1.0f).setDuration(150L);
-                    duration.setInterpolator(xq.f40310f);
+                    duration.setInterpolator(xq.f40329f);
                     duration.addUpdateListener(new org.telegram.ui.Cells.b(horizontalScrollView, scrollX, x10, sh0Var2, sh0Var));
                     duration.start();
                     return;

@@ -10,7 +10,7 @@ import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.hx;
-import org.telegram.ui.Components.n31;
+import org.telegram.ui.Components.s31;
 public final class h5 implements hx {
     public final o5 f12133a;
 
@@ -155,7 +155,7 @@ public final class h5 implements hx {
     }
 
     @Override
-    public final void o(n31 n31Var) {
+    public final void o(s31 s31Var) {
     }
 
     @Override

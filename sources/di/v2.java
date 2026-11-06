@@ -76,7 +76,7 @@ public final class v2 implements bi {
         String str2;
         i4 i4Var = this.f9864a;
         if (i4Var.f9192s0.m0 && (storyItem = i4Var.f9213x1.f9038a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || i4Var.f9190r2.f32882a2.getSelectedPhotos().isEmpty())) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || i4Var.f9190r2.f32895a2.getSelectedPhotos().isEmpty())) {
                 u2 u2Var = i4Var.f9190r2;
                 if (u2Var != null) {
                     u2Var.L(i7);
@@ -88,8 +88,8 @@ public final class v2 implements bi {
             if (i7 != 8) {
                 i4Var.f9190r2.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = i4Var.f9190r2.f32882a2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = i4Var.f9190r2.f32882a2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = i4Var.f9190r2.f32895a2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = i4Var.f9190r2.f32895a2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i12 = 0;
                 int i13 = 0;

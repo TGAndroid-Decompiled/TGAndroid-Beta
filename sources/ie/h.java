@@ -39,7 +39,7 @@ public class h {
                 k kVar = k.f13829a;
                 if (andDecrement > 0) {
                     d.f15458g.set(dVar, null);
-                    mVar.C(kVar, mVar.f59957c, new b(new c1.b(dVar, cVar), 2));
+                    mVar.C(kVar, mVar.f59982c, new b(new c1.b(dVar, cVar), 2));
                     return;
                 }
                 AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d;
@@ -90,7 +90,7 @@ public class h {
                             }
                         }
                         d.f15458g.set(dVar, null);
-                        mVar.C(kVar, mVar.f59957c, new b(new c1.b(dVar, cVar), 2));
+                        mVar.C(kVar, mVar.f59982c, new b(new c1.b(dVar, cVar), 2));
                         return;
                     }
                 }

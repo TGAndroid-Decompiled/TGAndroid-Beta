@@ -7,19 +7,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 public final class nk extends FrameLayout {
-    public float f48034a;
-    public float f48035b;
-    public final an f48036c;
+    public float f48060a;
+    public float f48061b;
+    public final an f48062c;
 
     public nk(an anVar, Activity activity) {
         super(activity);
-        this.f48036c = anVar;
+        this.f48062c = anVar;
         setOnLongClickListener(new t(this, 2));
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        an anVar = this.f48036c;
+        an anVar = this.f48062c;
         if (view == anVar.N2) {
             canvas.save();
             canvas.clipRect(0, 0, getMeasuredWidth(), org.telegram.messenger.g0.L(48.0f));
@@ -42,7 +42,7 @@ public final class nk extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        an anVar = this.f48036c;
+        an anVar = this.f48062c;
         if (anVar.O2) {
             int i11 = 0;
             while (true) {
@@ -63,16 +63,16 @@ public final class nk extends FrameLayout {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f48034a = motionEvent.getY();
+        this.f48060a = motionEvent.getY();
         int action = motionEvent.getAction();
-        an anVar = this.f48036c;
+        an anVar = this.f48062c;
         if (action == 1) {
             anVar.finishPreviewFragment();
         } else if (motionEvent.getAction() == 2) {
-            float f10 = this.f48035b - this.f48034a;
+            float f10 = this.f48061b - this.f48060a;
             anVar.movePreviewFragment(f10);
             if (f10 < 0.0f) {
-                this.f48035b = this.f48034a;
+                this.f48061b = this.f48060a;
             }
         }
         return super.onTouchEvent(motionEvent);

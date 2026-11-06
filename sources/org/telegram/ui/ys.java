@@ -3,20 +3,20 @@ package org.telegram.ui;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 public final class ys implements DialogInterface.OnClickListener {
-    public final DataSettingsActivity f52315a;
-    public final SharedPreferences f52316b;
-    public final int f52317c;
+    public final DataSettingsActivity f52319a;
+    public final SharedPreferences f52320b;
+    public final int f52321c;
 
     public ys(DataSettingsActivity dataSettingsActivity, SharedPreferences sharedPreferences, int i7) {
-        this.f52315a = dataSettingsActivity;
-        this.f52316b = sharedPreferences;
-        this.f52317c = i7;
+        this.f52319a = dataSettingsActivity;
+        this.f52320b = sharedPreferences;
+        this.f52321c = i7;
     }
 
     @Override
     public final void onClick(DialogInterface dialogInterface, int i7) {
         int i10;
-        DataSettingsActivity dataSettingsActivity = this.f52315a;
+        DataSettingsActivity dataSettingsActivity = this.f52319a;
         dataSettingsActivity.getClass();
         if (i7 != 0) {
             i10 = 3;
@@ -35,12 +35,12 @@ public final class ys implements DialogInterface.OnClickListener {
             i10 = 0;
         }
         if (i10 != -1) {
-            this.f52316b.edit().putInt("VoipDataSaving", i10).commit();
+            this.f52320b.edit().putInt("VoipDataSaving", i10).commit();
             dataSettingsActivity.U = true;
         }
-        l4 l4Var = dataSettingsActivity.f41186a;
+        l4 l4Var = dataSettingsActivity.f41211a;
         if (l4Var != null) {
-            l4Var.g(this.f52317c);
+            l4Var.g(this.f52321c);
         }
     }
 }

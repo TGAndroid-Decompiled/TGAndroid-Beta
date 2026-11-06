@@ -38,9 +38,9 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.o7;
 import org.telegram.ui.Components.di;
-import org.telegram.ui.Components.o61;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.sp0;
+import org.telegram.ui.Components.t61;
 import org.telegram.ui.Components.wp;
 import org.telegram.ui.Components.xq;
 public abstract class r extends FrameLayout implements a6, ls {
@@ -55,7 +55,7 @@ public abstract class r extends FrameLayout implements a6, ls {
     public final ArrayList f10848f;
     public final ArrayList h;
     public final a f10849n;
-    public final o61 f10850r;
+    public final t61 f10850r;
     public Boolean f10851s;
     public int f10852w;
     public float f10853x;
@@ -99,9 +99,9 @@ public abstract class r extends FrameLayout implements a6, ls {
         aVar.setAllowDisallowInterceptTouch(true);
         aVar.setAdapter(new g5(1, context, sp0Var));
         addView(aVar, ha.e(-1, -1, 119));
-        o61 n10 = aVar.n(9, true);
+        t61 n10 = aVar.n(9, true);
         this.f10850r = n10;
-        n10.f36662r = 12;
+        n10.f38264r = 12;
         n10.setPreTabClick(new q4(sp0Var, 6));
         addView(n10, ha.e(-1, 42, 48));
         i(false);
@@ -114,8 +114,8 @@ public abstract class r extends FrameLayout implements a6, ls {
             diVar.y1(1, false);
             diVar.N2 = true;
             diVar.M2 = false;
-            diVar.f32891d3.setText(hd.M0(2131752121, null));
-            diVar.f32882a2.i0();
+            diVar.f32904d3.setText(hd.M0(2131752121, null));
+            diVar.f32895a2.i0();
             diVar.T3 = new a0((FrameLayout) this, (Object) diVar, (Serializable) str, 21);
             diVar.e1();
             diVar.show();
@@ -412,9 +412,9 @@ public abstract class r extends FrameLayout implements a6, ls {
         wpVar.I = 0.9f;
         wpVar.G = 0.85f;
         spannableString.setSpan(wpVar, 0, 1, 33);
-        o61 o61Var = this.f10850r;
-        o61Var.a(-1, spannableString);
-        o61Var.f36667y.f();
+        t61 t61Var = this.f10850r;
+        t61Var.a(-1, spannableString);
+        t61Var.f38269y.f();
         if (arrayList3.size() + 1 > 1) {
             z10 = true;
         } else {
@@ -441,7 +441,7 @@ public abstract class r extends FrameLayout implements a6, ls {
             } else {
                 f10 = -42.0f;
             }
-            o61Var.setTranslationY(g0.L(f10));
+            t61Var.setTranslationY(g0.L(f10));
             if (z10) {
                 f12 = 42.0f;
             }

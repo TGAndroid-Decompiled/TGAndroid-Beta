@@ -26,18 +26,18 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.k60;
 import org.telegram.ui.Components.lz;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.Components.ys;
 import org.telegram.ui.kx;
 public final class l3 extends na {
-    public static final int f60314c2 = 0;
+    public static final int f60339c2 = 0;
     public final String P1;
     public final k3 Q1;
     public final HorizontalScrollView R1;
@@ -49,8 +49,8 @@ public final class l3 extends na {
     public bi.n2 X1;
     public final HashSet Y1;
     public boolean Z1;
-    public hc f60315a2;
-    public boolean f60316b2;
+    public hc f60340a2;
+    public boolean f60341b2;
 
     public l3(final Context context, String str, final k3 k3Var) {
         super(2, context, (f6) null, false);
@@ -73,7 +73,7 @@ public final class l3 extends na {
         horizontalScrollView.addView(linearLayout);
         v2 v2Var = new v2(context, this.I0);
         this.S1 = v2Var;
-        v2Var.setSorting(k3Var.f60300c.f60161p);
+        v2Var.setSorting(k3Var.f60325c.f60186p);
         linearLayout.addView(v2Var, ha.t(-2, -2, 16, 0, 0, 6, 0));
         v2Var.setOnClickListener(new wg.z0(8, this, k3Var));
         v2 v2Var2 = new v2(context, this.I0);
@@ -81,37 +81,37 @@ public final class l3 extends na {
         v2Var2.setValue(hd.M0(2131750386, null));
         linearLayout.addView(v2Var2, ha.t(-2, -2, 16, 0, 0, 6, 0));
         v2Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final l3 f60286b;
+            public final l3 f60311b;
 
             {
-                this.f60286b = this;
+                this.f60311b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 int i7 = r4;
                 final k3 k3Var2 = k3Var;
-                l3 l3Var = this.f60286b;
+                l3 l3Var = this.f60311b;
                 switch (i7) {
                     case 0:
-                        d3 d3Var = k3Var2.f60300c;
-                        if (!d3Var.f60152f.isEmpty()) {
+                        d3 d3Var = k3Var2.f60325c;
+                        if (!d3Var.f60177f.isEmpty()) {
                             final k60 k60Var = new k60(l3Var.f28618c, l3Var.I0, l3Var.T1, false, true, false);
-                            k60Var.f35217t = false;
+                            k60Var.f35181t = false;
                             k60Var.Y = true;
                             k60Var.a0(0.0f, org.telegram.messenger.g0.L(-8.0f));
                             k60Var.R = true;
-                            k60Var.f35211p = new li.h(k60Var, 8);
+                            k60Var.f35175p = new li.h(k60Var, 8);
                             final String[] strArr = {""};
-                            final ArrayList arrayList = new ArrayList(d3Var.f60152f);
+                            final ArrayList arrayList = new ArrayList(d3Var.f60177f);
                             Collections.sort(arrayList, new Comparator() {
                                 @Override
                                 public final int compare(Object obj, Object obj2) {
                                     switch (r2) {
                                         case 0:
                                             k3 k3Var3 = k3Var2;
-                                            Integer num = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
-                                            Integer num2 = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                                            Integer num = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                                            Integer num2 = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
                                             if (num == null) {
                                                 return 1;
                                             }
@@ -121,8 +121,8 @@ public final class l3 extends na {
                                             return num2.intValue() - num.intValue();
                                         case 1:
                                             k3 k3Var4 = k3Var2;
-                                            Integer num3 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
-                                            Integer num4 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
+                                            Integer num3 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
+                                            Integer num4 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
                                             if (num3 == null) {
                                                 return 1;
                                             }
@@ -132,8 +132,8 @@ public final class l3 extends na {
                                             return num4.intValue() - num3.intValue();
                                         default:
                                             k3 k3Var5 = k3Var2;
-                                            Integer num5 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
-                                            Integer num6 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
+                                            Integer num5 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
+                                            Integer num6 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
                                             if (num5 == null) {
                                                 return 1;
                                             }
@@ -159,31 +159,31 @@ public final class l3 extends na {
                                     switch (i12) {
                                         case 0:
                                             ArrayList arrayList3 = (ArrayList) obj;
-                                            f41 f41Var = (f41) obj2;
+                                            k41 k41Var = (k41) obj2;
                                             String lowerCase = strArr2[0].toLowerCase();
                                             String O3 = org.telegram.messenger.g0.O3(lowerCase);
-                                            d3 d3Var2 = k3Var3.f60300c;
-                                            boolean isEmpty = d3Var2.f60155j.isEmpty();
+                                            d3 d3Var2 = k3Var3.f60325c;
+                                            boolean isEmpty = d3Var2.f60180j.isEmpty();
                                             int size = arrayList2.size();
                                             int i13 = 0;
                                             while (i13 < size) {
                                                 Object obj3 = arrayList2.get(i13);
                                                 i13++;
                                                 TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj3;
-                                                boolean contains = d3Var2.f60155j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                boolean contains = d3Var2.f60180j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                 boolean z10 = !contains;
                                                 if (TextUtils.isEmpty(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(O3) || jg.g.A(" ", lowerCase, stargiftattributemodel.name.toLowerCase()) || stargiftattributemodel.name.toLowerCase().contains(" ".concat(O3))) {
-                                                    Integer num = (Integer) d3Var2.f60158m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                    Integer num = (Integer) d3Var2.f60183m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                     if (num == null) {
                                                         intValue = 0;
                                                     } else {
                                                         intValue = num.intValue();
                                                     }
-                                                    int i14 = x2.f60469b;
-                                                    r31 K = r31.K(x2.class);
+                                                    int i14 = x2.f60494b;
+                                                    w31 K = w31.K(x2.class);
                                                     K.G = stargiftattributemodel;
-                                                    K.f37598l = lowerCase;
-                                                    K.f37611z = intValue;
+                                                    K.f39830l = lowerCase;
+                                                    K.f39843z = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
                                                             z10 = true;
@@ -202,31 +202,31 @@ public final class l3 extends na {
                                             return;
                                         case 1:
                                             ArrayList arrayList4 = (ArrayList) obj;
-                                            f41 f41Var2 = (f41) obj2;
+                                            k41 k41Var2 = (k41) obj2;
                                             String lowerCase2 = strArr2[0].toLowerCase();
                                             String O32 = org.telegram.messenger.g0.O3(lowerCase2);
-                                            d3 d3Var3 = k3Var3.f60300c;
-                                            boolean isEmpty2 = d3Var3.f60156k.isEmpty();
+                                            d3 d3Var3 = k3Var3.f60325c;
+                                            boolean isEmpty2 = d3Var3.f60181k.isEmpty();
                                             int size2 = arrayList2.size();
                                             int i15 = 0;
                                             while (i15 < size2) {
                                                 Object obj4 = arrayList2.get(i15);
                                                 i15++;
                                                 TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj4;
-                                                boolean contains2 = d3Var3.f60156k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                boolean contains2 = d3Var3.f60181k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                 boolean z11 = !contains2;
                                                 if (TextUtils.isEmpty(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(O32) || jg.g.A(" ", lowerCase2, stargiftattributebackdrop.name.toLowerCase()) || stargiftattributebackdrop.name.toLowerCase().contains(" ".concat(O32))) {
-                                                    Integer num2 = (Integer) d3Var3.f60159n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                    Integer num2 = (Integer) d3Var3.f60184n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                     if (num2 == null) {
                                                         intValue2 = 0;
                                                     } else {
                                                         intValue2 = num2.intValue();
                                                     }
-                                                    int i16 = r2.f60405b;
-                                                    r31 K2 = r31.K(r2.class);
+                                                    int i16 = r2.f60430b;
+                                                    w31 K2 = w31.K(r2.class);
                                                     K2.G = stargiftattributebackdrop;
-                                                    K2.f37598l = lowerCase2;
-                                                    K2.f37611z = intValue2;
+                                                    K2.f39830l = lowerCase2;
+                                                    K2.f39843z = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
                                                             z11 = true;
@@ -245,11 +245,11 @@ public final class l3 extends na {
                                             return;
                                         default:
                                             ArrayList arrayList5 = (ArrayList) obj;
-                                            f41 f41Var3 = (f41) obj2;
+                                            k41 k41Var3 = (k41) obj2;
                                             String lowerCase3 = strArr2[0].toLowerCase();
                                             String O33 = org.telegram.messenger.g0.O3(lowerCase3);
-                                            d3 d3Var4 = k3Var3.f60300c;
-                                            boolean isEmpty3 = d3Var4.f60157l.isEmpty();
+                                            d3 d3Var4 = k3Var3.f60325c;
+                                            boolean isEmpty3 = d3Var4.f60182l.isEmpty();
                                             int size3 = arrayList2.size();
                                             int i17 = 0;
                                             while (i17 < size3) {
@@ -257,20 +257,20 @@ public final class l3 extends na {
                                                 i17++;
                                                 TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj5;
                                                 boolean z12 = z9;
-                                                boolean contains3 = d3Var4.f60157l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                boolean contains3 = d3Var4.f60182l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                 boolean z13 = !contains3;
                                                 if (TextUtils.isEmpty(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(O33) || jg.g.A(" ", lowerCase3, stargiftattributepattern.name.toLowerCase()) || stargiftattributepattern.name.toLowerCase().contains(" ".concat(O33))) {
-                                                    Integer num3 = (Integer) d3Var4.f60160o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                    Integer num3 = (Integer) d3Var4.f60185o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                     if (num3 == null) {
                                                         i11 = z12;
                                                     } else {
                                                         i11 = num3.intValue();
                                                     }
-                                                    int i18 = a3.f60092b;
-                                                    r31 K3 = r31.K(a3.class);
+                                                    int i18 = a3.f60117b;
+                                                    w31 K3 = w31.K(a3.class);
                                                     K3.G = stargiftattributepattern;
-                                                    K3.f37598l = lowerCase3;
-                                                    K3.f37611z = i11;
+                                                    K3.f39830l = lowerCase3;
+                                                    K3.f39843z = i11;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
                                                             z13 = true;
@@ -294,19 +294,19 @@ public final class l3 extends na {
                             a20 a20Var = new a20() {
                                 @Override
                                 public final void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-                                    r31 r31Var = (r31) obj;
+                                    w31 w31Var = (w31) obj;
                                     View view2 = (View) obj2;
                                     Integer num = (Integer) number;
                                     Float f10 = (Float) serializable;
                                     Float f11 = (Float) serializable2;
                                     switch (r3) {
                                         case 0:
-                                            long j3 = ((TL_stars.starGiftAttributeModel) r31Var.G).document.f26958id;
-                                            d3 d3Var2 = k3Var2.f60300c;
-                                            HashSet hashSet = d3Var2.f60155j;
+                                            long j3 = ((TL_stars.starGiftAttributeModel) w31Var.G).document.f26958id;
+                                            d3 d3Var2 = k3Var2.f60325c;
+                                            HashSet hashSet = d3Var2.f60180j;
                                             if (!hashSet.contains(Long.valueOf(j3))) {
                                                 if (hashSet.isEmpty()) {
-                                                    ArrayList arrayList2 = d3Var2.f60152f;
+                                                    ArrayList arrayList2 = d3Var2.f60177f;
                                                     int size = arrayList2.size();
                                                     int i11 = 0;
                                                     while (i11 < size) {
@@ -327,12 +327,12 @@ public final class l3 extends na {
                                             k60Var.u();
                                             return;
                                         case 1:
-                                            int i12 = ((TL_stars.starGiftAttributeBackdrop) r31Var.G).backdrop_id;
-                                            d3 d3Var3 = k3Var2.f60300c;
-                                            HashSet hashSet2 = d3Var3.f60156k;
+                                            int i12 = ((TL_stars.starGiftAttributeBackdrop) w31Var.G).backdrop_id;
+                                            d3 d3Var3 = k3Var2.f60325c;
+                                            HashSet hashSet2 = d3Var3.f60181k;
                                             if (!hashSet2.contains(Integer.valueOf(i12))) {
                                                 if (hashSet2.isEmpty()) {
-                                                    ArrayList arrayList3 = d3Var3.f60153g;
+                                                    ArrayList arrayList3 = d3Var3.f60178g;
                                                     int size2 = arrayList3.size();
                                                     int i13 = 0;
                                                     while (i13 < size2) {
@@ -353,9 +353,9 @@ public final class l3 extends na {
                                             k60Var.u();
                                             return;
                                         default:
-                                            long j11 = ((TL_stars.starGiftAttributePattern) r31Var.G).document.f26958id;
-                                            d3 d3Var4 = k3Var2.f60300c;
-                                            HashSet hashSet3 = d3Var4.f60157l;
+                                            long j11 = ((TL_stars.starGiftAttributePattern) w31Var.G).document.f26958id;
+                                            d3 d3Var4 = k3Var2.f60325c;
+                                            HashSet hashSet3 = d3Var4.f60182l;
                                             if (!hashSet3.contains(Long.valueOf(j11))) {
                                                 if (hashSet3.isEmpty()) {
                                                     ArrayList arrayList4 = d3Var4.h;
@@ -384,7 +384,7 @@ public final class l3 extends na {
                             f6 f6Var = l3Var.I0;
                             Context context2 = context;
                             kx kxVar = new kx(context2, i10, 0, false, v10Var, a20Var, null, f6Var, 6);
-                            kxVar.f35167f3.f33473r = false;
+                            kxVar.f36781f3.f35132r = false;
                             FrameLayout frameLayout = new FrameLayout(context2);
                             ImageView imageView = new ImageView(context2);
                             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -408,7 +408,7 @@ public final class l3 extends na {
                                 k60Var.r(frameLayout, ha.o(-1, 44));
                                 k60Var.k();
                             }
-                            if (!d3Var.f60155j.isEmpty()) {
+                            if (!d3Var.f60180j.isEmpty()) {
                                 k60Var.c(2131232357, hd.M0(2131745671, null), new g3(k3Var2, 0), false);
                             }
                             k60Var.q(kxVar);
@@ -417,24 +417,24 @@ public final class l3 extends na {
                         }
                         return;
                     case 1:
-                        d3 d3Var2 = k3Var2.f60300c;
-                        if (!d3Var2.f60153g.isEmpty()) {
+                        d3 d3Var2 = k3Var2.f60325c;
+                        if (!d3Var2.f60178g.isEmpty()) {
                             final k60 k60Var2 = new k60(l3Var.f28618c, l3Var.I0, l3Var.U1, false, true, false);
-                            k60Var2.f35217t = false;
+                            k60Var2.f35181t = false;
                             k60Var2.Y = true;
                             k60Var2.a0(0.0f, org.telegram.messenger.g0.L(-8.0f));
                             k60Var2.R = true;
-                            k60Var2.f35211p = new li.h(k60Var2, 6);
+                            k60Var2.f35175p = new li.h(k60Var2, 6);
                             final String[] strArr2 = {""};
-                            final ArrayList arrayList2 = new ArrayList(d3Var2.f60153g);
+                            final ArrayList arrayList2 = new ArrayList(d3Var2.f60178g);
                             Collections.sort(arrayList2, new Comparator() {
                                 @Override
                                 public final int compare(Object obj, Object obj2) {
                                     switch (r2) {
                                         case 0:
                                             k3 k3Var3 = k3Var2;
-                                            Integer num = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
-                                            Integer num2 = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                                            Integer num = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                                            Integer num2 = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
                                             if (num == null) {
                                                 return 1;
                                             }
@@ -444,8 +444,8 @@ public final class l3 extends na {
                                             return num2.intValue() - num.intValue();
                                         case 1:
                                             k3 k3Var4 = k3Var2;
-                                            Integer num3 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
-                                            Integer num4 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
+                                            Integer num3 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
+                                            Integer num4 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
                                             if (num3 == null) {
                                                 return 1;
                                             }
@@ -455,8 +455,8 @@ public final class l3 extends na {
                                             return num4.intValue() - num3.intValue();
                                         default:
                                             k3 k3Var5 = k3Var2;
-                                            Integer num5 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
-                                            Integer num6 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
+                                            Integer num5 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
+                                            Integer num6 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
                                             if (num5 == null) {
                                                 return 1;
                                             }
@@ -482,31 +482,31 @@ public final class l3 extends na {
                                     switch (i12) {
                                         case 0:
                                             ArrayList arrayList3 = (ArrayList) obj;
-                                            f41 f41Var = (f41) obj2;
+                                            k41 k41Var = (k41) obj2;
                                             String lowerCase = strArr22[0].toLowerCase();
                                             String O3 = org.telegram.messenger.g0.O3(lowerCase);
-                                            d3 d3Var22 = k3Var3.f60300c;
-                                            boolean isEmpty = d3Var22.f60155j.isEmpty();
+                                            d3 d3Var22 = k3Var3.f60325c;
+                                            boolean isEmpty = d3Var22.f60180j.isEmpty();
                                             int size = arrayList22.size();
                                             int i13 = 0;
                                             while (i13 < size) {
                                                 Object obj3 = arrayList22.get(i13);
                                                 i13++;
                                                 TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj3;
-                                                boolean contains = d3Var22.f60155j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                boolean contains = d3Var22.f60180j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                 boolean z10 = !contains;
                                                 if (TextUtils.isEmpty(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(O3) || jg.g.A(" ", lowerCase, stargiftattributemodel.name.toLowerCase()) || stargiftattributemodel.name.toLowerCase().contains(" ".concat(O3))) {
-                                                    Integer num = (Integer) d3Var22.f60158m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                    Integer num = (Integer) d3Var22.f60183m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                     if (num == null) {
                                                         intValue = 0;
                                                     } else {
                                                         intValue = num.intValue();
                                                     }
-                                                    int i14 = x2.f60469b;
-                                                    r31 K = r31.K(x2.class);
+                                                    int i14 = x2.f60494b;
+                                                    w31 K = w31.K(x2.class);
                                                     K.G = stargiftattributemodel;
-                                                    K.f37598l = lowerCase;
-                                                    K.f37611z = intValue;
+                                                    K.f39830l = lowerCase;
+                                                    K.f39843z = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
                                                             z10 = true;
@@ -525,31 +525,31 @@ public final class l3 extends na {
                                             return;
                                         case 1:
                                             ArrayList arrayList4 = (ArrayList) obj;
-                                            f41 f41Var2 = (f41) obj2;
+                                            k41 k41Var2 = (k41) obj2;
                                             String lowerCase2 = strArr22[0].toLowerCase();
                                             String O32 = org.telegram.messenger.g0.O3(lowerCase2);
-                                            d3 d3Var3 = k3Var3.f60300c;
-                                            boolean isEmpty2 = d3Var3.f60156k.isEmpty();
+                                            d3 d3Var3 = k3Var3.f60325c;
+                                            boolean isEmpty2 = d3Var3.f60181k.isEmpty();
                                             int size2 = arrayList22.size();
                                             int i15 = 0;
                                             while (i15 < size2) {
                                                 Object obj4 = arrayList22.get(i15);
                                                 i15++;
                                                 TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj4;
-                                                boolean contains2 = d3Var3.f60156k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                boolean contains2 = d3Var3.f60181k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                 boolean z11 = !contains2;
                                                 if (TextUtils.isEmpty(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(O32) || jg.g.A(" ", lowerCase2, stargiftattributebackdrop.name.toLowerCase()) || stargiftattributebackdrop.name.toLowerCase().contains(" ".concat(O32))) {
-                                                    Integer num2 = (Integer) d3Var3.f60159n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                    Integer num2 = (Integer) d3Var3.f60184n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                     if (num2 == null) {
                                                         intValue2 = 0;
                                                     } else {
                                                         intValue2 = num2.intValue();
                                                     }
-                                                    int i16 = r2.f60405b;
-                                                    r31 K2 = r31.K(r2.class);
+                                                    int i16 = r2.f60430b;
+                                                    w31 K2 = w31.K(r2.class);
                                                     K2.G = stargiftattributebackdrop;
-                                                    K2.f37598l = lowerCase2;
-                                                    K2.f37611z = intValue2;
+                                                    K2.f39830l = lowerCase2;
+                                                    K2.f39843z = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
                                                             z11 = true;
@@ -568,11 +568,11 @@ public final class l3 extends na {
                                             return;
                                         default:
                                             ArrayList arrayList5 = (ArrayList) obj;
-                                            f41 f41Var3 = (f41) obj2;
+                                            k41 k41Var3 = (k41) obj2;
                                             String lowerCase3 = strArr22[0].toLowerCase();
                                             String O33 = org.telegram.messenger.g0.O3(lowerCase3);
-                                            d3 d3Var4 = k3Var3.f60300c;
-                                            boolean isEmpty3 = d3Var4.f60157l.isEmpty();
+                                            d3 d3Var4 = k3Var3.f60325c;
+                                            boolean isEmpty3 = d3Var4.f60182l.isEmpty();
                                             int size3 = arrayList22.size();
                                             int i17 = 0;
                                             while (i17 < size3) {
@@ -580,20 +580,20 @@ public final class l3 extends na {
                                                 i17++;
                                                 TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj5;
                                                 boolean z12 = z9;
-                                                boolean contains3 = d3Var4.f60157l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                boolean contains3 = d3Var4.f60182l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                 boolean z13 = !contains3;
                                                 if (TextUtils.isEmpty(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(O33) || jg.g.A(" ", lowerCase3, stargiftattributepattern.name.toLowerCase()) || stargiftattributepattern.name.toLowerCase().contains(" ".concat(O33))) {
-                                                    Integer num3 = (Integer) d3Var4.f60160o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                    Integer num3 = (Integer) d3Var4.f60185o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                     if (num3 == null) {
                                                         i112 = z12;
                                                     } else {
                                                         i112 = num3.intValue();
                                                     }
-                                                    int i18 = a3.f60092b;
-                                                    r31 K3 = r31.K(a3.class);
+                                                    int i18 = a3.f60117b;
+                                                    w31 K3 = w31.K(a3.class);
                                                     K3.G = stargiftattributepattern;
-                                                    K3.f37598l = lowerCase3;
-                                                    K3.f37611z = i112;
+                                                    K3.f39830l = lowerCase3;
+                                                    K3.f39843z = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
                                                             z13 = true;
@@ -617,19 +617,19 @@ public final class l3 extends na {
                             a20 a20Var2 = new a20() {
                                 @Override
                                 public final void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-                                    r31 r31Var = (r31) obj;
+                                    w31 w31Var = (w31) obj;
                                     View view2 = (View) obj2;
                                     Integer num = (Integer) number;
                                     Float f10 = (Float) serializable;
                                     Float f11 = (Float) serializable2;
                                     switch (r3) {
                                         case 0:
-                                            long j3 = ((TL_stars.starGiftAttributeModel) r31Var.G).document.f26958id;
-                                            d3 d3Var22 = k3Var2.f60300c;
-                                            HashSet hashSet = d3Var22.f60155j;
+                                            long j3 = ((TL_stars.starGiftAttributeModel) w31Var.G).document.f26958id;
+                                            d3 d3Var22 = k3Var2.f60325c;
+                                            HashSet hashSet = d3Var22.f60180j;
                                             if (!hashSet.contains(Long.valueOf(j3))) {
                                                 if (hashSet.isEmpty()) {
-                                                    ArrayList arrayList22 = d3Var22.f60152f;
+                                                    ArrayList arrayList22 = d3Var22.f60177f;
                                                     int size = arrayList22.size();
                                                     int i112 = 0;
                                                     while (i112 < size) {
@@ -650,12 +650,12 @@ public final class l3 extends na {
                                             k60Var2.u();
                                             return;
                                         case 1:
-                                            int i12 = ((TL_stars.starGiftAttributeBackdrop) r31Var.G).backdrop_id;
-                                            d3 d3Var3 = k3Var2.f60300c;
-                                            HashSet hashSet2 = d3Var3.f60156k;
+                                            int i12 = ((TL_stars.starGiftAttributeBackdrop) w31Var.G).backdrop_id;
+                                            d3 d3Var3 = k3Var2.f60325c;
+                                            HashSet hashSet2 = d3Var3.f60181k;
                                             if (!hashSet2.contains(Integer.valueOf(i12))) {
                                                 if (hashSet2.isEmpty()) {
-                                                    ArrayList arrayList3 = d3Var3.f60153g;
+                                                    ArrayList arrayList3 = d3Var3.f60178g;
                                                     int size2 = arrayList3.size();
                                                     int i13 = 0;
                                                     while (i13 < size2) {
@@ -676,9 +676,9 @@ public final class l3 extends na {
                                             k60Var2.u();
                                             return;
                                         default:
-                                            long j11 = ((TL_stars.starGiftAttributePattern) r31Var.G).document.f26958id;
-                                            d3 d3Var4 = k3Var2.f60300c;
-                                            HashSet hashSet3 = d3Var4.f60157l;
+                                            long j11 = ((TL_stars.starGiftAttributePattern) w31Var.G).document.f26958id;
+                                            d3 d3Var4 = k3Var2.f60325c;
+                                            HashSet hashSet3 = d3Var4.f60182l;
                                             if (!hashSet3.contains(Long.valueOf(j11))) {
                                                 if (hashSet3.isEmpty()) {
                                                     ArrayList arrayList4 = d3Var4.h;
@@ -707,7 +707,7 @@ public final class l3 extends na {
                             f6 f6Var2 = l3Var.I0;
                             Context context3 = context;
                             kx kxVar2 = new kx(context3, i11, 0, false, v10Var2, a20Var2, null, f6Var2, 7);
-                            kxVar2.f35167f3.f33473r = false;
+                            kxVar2.f36781f3.f35132r = false;
                             FrameLayout frameLayout2 = new FrameLayout(context3);
                             ImageView imageView2 = new ImageView(context3);
                             imageView2.setScaleType(ImageView.ScaleType.CENTER);
@@ -731,7 +731,7 @@ public final class l3 extends na {
                                 k60Var2.r(frameLayout2, ha.o(-1, 44));
                                 k60Var2.k();
                             }
-                            if (!d3Var2.f60156k.isEmpty()) {
+                            if (!d3Var2.f60181k.isEmpty()) {
                                 k60Var2.c(2131232357, hd.M0(2131745671, null), new g3(k3Var2, 1), false);
                             }
                             k60Var2.q(kxVar2);
@@ -740,14 +740,14 @@ public final class l3 extends na {
                         }
                         return;
                     default:
-                        d3 d3Var3 = k3Var2.f60300c;
+                        d3 d3Var3 = k3Var2.f60325c;
                         if (!d3Var3.h.isEmpty()) {
                             final k60 k60Var3 = new k60(l3Var.f28618c, l3Var.I0, l3Var.V1, false, true, false);
-                            k60Var3.f35217t = false;
+                            k60Var3.f35181t = false;
                             k60Var3.Y = true;
                             k60Var3.a0(0.0f, org.telegram.messenger.g0.L(-8.0f));
                             k60Var3.R = true;
-                            k60Var3.f35211p = new li.h(k60Var3, 7);
+                            k60Var3.f35175p = new li.h(k60Var3, 7);
                             final String[] strArr3 = {""};
                             final ArrayList arrayList3 = new ArrayList(d3Var3.h);
                             Collections.sort(arrayList3, new Comparator() {
@@ -756,8 +756,8 @@ public final class l3 extends na {
                                     switch (r2) {
                                         case 0:
                                             k3 k3Var3 = k3Var2;
-                                            Integer num = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
-                                            Integer num2 = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                                            Integer num = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                                            Integer num2 = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
                                             if (num == null) {
                                                 return 1;
                                             }
@@ -767,8 +767,8 @@ public final class l3 extends na {
                                             return num2.intValue() - num.intValue();
                                         case 1:
                                             k3 k3Var4 = k3Var2;
-                                            Integer num3 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
-                                            Integer num4 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
+                                            Integer num3 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
+                                            Integer num4 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
                                             if (num3 == null) {
                                                 return 1;
                                             }
@@ -778,8 +778,8 @@ public final class l3 extends na {
                                             return num4.intValue() - num3.intValue();
                                         default:
                                             k3 k3Var5 = k3Var2;
-                                            Integer num5 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
-                                            Integer num6 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
+                                            Integer num5 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
+                                            Integer num6 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
                                             if (num5 == null) {
                                                 return 1;
                                             }
@@ -805,31 +805,31 @@ public final class l3 extends na {
                                     switch (i122) {
                                         case 0:
                                             ArrayList arrayList32 = (ArrayList) obj;
-                                            f41 f41Var = (f41) obj2;
+                                            k41 k41Var = (k41) obj2;
                                             String lowerCase = strArr22[0].toLowerCase();
                                             String O3 = org.telegram.messenger.g0.O3(lowerCase);
-                                            d3 d3Var22 = k3Var3.f60300c;
-                                            boolean isEmpty = d3Var22.f60155j.isEmpty();
+                                            d3 d3Var22 = k3Var3.f60325c;
+                                            boolean isEmpty = d3Var22.f60180j.isEmpty();
                                             int size = arrayList22.size();
                                             int i13 = 0;
                                             while (i13 < size) {
                                                 Object obj3 = arrayList22.get(i13);
                                                 i13++;
                                                 TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj3;
-                                                boolean contains = d3Var22.f60155j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                boolean contains = d3Var22.f60180j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                 boolean z10 = !contains;
                                                 if (TextUtils.isEmpty(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(O3) || jg.g.A(" ", lowerCase, stargiftattributemodel.name.toLowerCase()) || stargiftattributemodel.name.toLowerCase().contains(" ".concat(O3))) {
-                                                    Integer num = (Integer) d3Var22.f60158m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                    Integer num = (Integer) d3Var22.f60183m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                     if (num == null) {
                                                         intValue = 0;
                                                     } else {
                                                         intValue = num.intValue();
                                                     }
-                                                    int i14 = x2.f60469b;
-                                                    r31 K = r31.K(x2.class);
+                                                    int i14 = x2.f60494b;
+                                                    w31 K = w31.K(x2.class);
                                                     K.G = stargiftattributemodel;
-                                                    K.f37598l = lowerCase;
-                                                    K.f37611z = intValue;
+                                                    K.f39830l = lowerCase;
+                                                    K.f39843z = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
                                                             z10 = true;
@@ -848,31 +848,31 @@ public final class l3 extends na {
                                             return;
                                         case 1:
                                             ArrayList arrayList4 = (ArrayList) obj;
-                                            f41 f41Var2 = (f41) obj2;
+                                            k41 k41Var2 = (k41) obj2;
                                             String lowerCase2 = strArr22[0].toLowerCase();
                                             String O32 = org.telegram.messenger.g0.O3(lowerCase2);
-                                            d3 d3Var32 = k3Var3.f60300c;
-                                            boolean isEmpty2 = d3Var32.f60156k.isEmpty();
+                                            d3 d3Var32 = k3Var3.f60325c;
+                                            boolean isEmpty2 = d3Var32.f60181k.isEmpty();
                                             int size2 = arrayList22.size();
                                             int i15 = 0;
                                             while (i15 < size2) {
                                                 Object obj4 = arrayList22.get(i15);
                                                 i15++;
                                                 TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj4;
-                                                boolean contains2 = d3Var32.f60156k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                boolean contains2 = d3Var32.f60181k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                 boolean z11 = !contains2;
                                                 if (TextUtils.isEmpty(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(O32) || jg.g.A(" ", lowerCase2, stargiftattributebackdrop.name.toLowerCase()) || stargiftattributebackdrop.name.toLowerCase().contains(" ".concat(O32))) {
-                                                    Integer num2 = (Integer) d3Var32.f60159n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                    Integer num2 = (Integer) d3Var32.f60184n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                     if (num2 == null) {
                                                         intValue2 = 0;
                                                     } else {
                                                         intValue2 = num2.intValue();
                                                     }
-                                                    int i16 = r2.f60405b;
-                                                    r31 K2 = r31.K(r2.class);
+                                                    int i16 = r2.f60430b;
+                                                    w31 K2 = w31.K(r2.class);
                                                     K2.G = stargiftattributebackdrop;
-                                                    K2.f37598l = lowerCase2;
-                                                    K2.f37611z = intValue2;
+                                                    K2.f39830l = lowerCase2;
+                                                    K2.f39843z = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
                                                             z11 = true;
@@ -891,11 +891,11 @@ public final class l3 extends na {
                                             return;
                                         default:
                                             ArrayList arrayList5 = (ArrayList) obj;
-                                            f41 f41Var3 = (f41) obj2;
+                                            k41 k41Var3 = (k41) obj2;
                                             String lowerCase3 = strArr22[0].toLowerCase();
                                             String O33 = org.telegram.messenger.g0.O3(lowerCase3);
-                                            d3 d3Var4 = k3Var3.f60300c;
-                                            boolean isEmpty3 = d3Var4.f60157l.isEmpty();
+                                            d3 d3Var4 = k3Var3.f60325c;
+                                            boolean isEmpty3 = d3Var4.f60182l.isEmpty();
                                             int size3 = arrayList22.size();
                                             int i17 = 0;
                                             while (i17 < size3) {
@@ -903,20 +903,20 @@ public final class l3 extends na {
                                                 i17++;
                                                 TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj5;
                                                 boolean z12 = z9;
-                                                boolean contains3 = d3Var4.f60157l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                boolean contains3 = d3Var4.f60182l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                 boolean z13 = !contains3;
                                                 if (TextUtils.isEmpty(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(O33) || jg.g.A(" ", lowerCase3, stargiftattributepattern.name.toLowerCase()) || stargiftattributepattern.name.toLowerCase().contains(" ".concat(O33))) {
-                                                    Integer num3 = (Integer) d3Var4.f60160o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                    Integer num3 = (Integer) d3Var4.f60185o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                     if (num3 == null) {
                                                         i112 = z12;
                                                     } else {
                                                         i112 = num3.intValue();
                                                     }
-                                                    int i18 = a3.f60092b;
-                                                    r31 K3 = r31.K(a3.class);
+                                                    int i18 = a3.f60117b;
+                                                    w31 K3 = w31.K(a3.class);
                                                     K3.G = stargiftattributepattern;
-                                                    K3.f37598l = lowerCase3;
-                                                    K3.f37611z = i112;
+                                                    K3.f39830l = lowerCase3;
+                                                    K3.f39843z = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
                                                             z13 = true;
@@ -940,19 +940,19 @@ public final class l3 extends na {
                             a20 a20Var3 = new a20() {
                                 @Override
                                 public final void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-                                    r31 r31Var = (r31) obj;
+                                    w31 w31Var = (w31) obj;
                                     View view2 = (View) obj2;
                                     Integer num = (Integer) number;
                                     Float f10 = (Float) serializable;
                                     Float f11 = (Float) serializable2;
                                     switch (r3) {
                                         case 0:
-                                            long j3 = ((TL_stars.starGiftAttributeModel) r31Var.G).document.f26958id;
-                                            d3 d3Var22 = k3Var2.f60300c;
-                                            HashSet hashSet = d3Var22.f60155j;
+                                            long j3 = ((TL_stars.starGiftAttributeModel) w31Var.G).document.f26958id;
+                                            d3 d3Var22 = k3Var2.f60325c;
+                                            HashSet hashSet = d3Var22.f60180j;
                                             if (!hashSet.contains(Long.valueOf(j3))) {
                                                 if (hashSet.isEmpty()) {
-                                                    ArrayList arrayList22 = d3Var22.f60152f;
+                                                    ArrayList arrayList22 = d3Var22.f60177f;
                                                     int size = arrayList22.size();
                                                     int i112 = 0;
                                                     while (i112 < size) {
@@ -973,12 +973,12 @@ public final class l3 extends na {
                                             k60Var3.u();
                                             return;
                                         case 1:
-                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) r31Var.G).backdrop_id;
-                                            d3 d3Var32 = k3Var2.f60300c;
-                                            HashSet hashSet2 = d3Var32.f60156k;
+                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) w31Var.G).backdrop_id;
+                                            d3 d3Var32 = k3Var2.f60325c;
+                                            HashSet hashSet2 = d3Var32.f60181k;
                                             if (!hashSet2.contains(Integer.valueOf(i122))) {
                                                 if (hashSet2.isEmpty()) {
-                                                    ArrayList arrayList32 = d3Var32.f60153g;
+                                                    ArrayList arrayList32 = d3Var32.f60178g;
                                                     int size2 = arrayList32.size();
                                                     int i13 = 0;
                                                     while (i13 < size2) {
@@ -999,9 +999,9 @@ public final class l3 extends na {
                                             k60Var3.u();
                                             return;
                                         default:
-                                            long j11 = ((TL_stars.starGiftAttributePattern) r31Var.G).document.f26958id;
-                                            d3 d3Var4 = k3Var2.f60300c;
-                                            HashSet hashSet3 = d3Var4.f60157l;
+                                            long j11 = ((TL_stars.starGiftAttributePattern) w31Var.G).document.f26958id;
+                                            d3 d3Var4 = k3Var2.f60325c;
+                                            HashSet hashSet3 = d3Var4.f60182l;
                                             if (!hashSet3.contains(Long.valueOf(j11))) {
                                                 if (hashSet3.isEmpty()) {
                                                     ArrayList arrayList4 = d3Var4.h;
@@ -1030,7 +1030,7 @@ public final class l3 extends na {
                             f6 f6Var3 = l3Var.I0;
                             Context context4 = context;
                             kx kxVar3 = new kx(context4, i12, 0, false, v10Var3, a20Var3, null, f6Var3, 8);
-                            kxVar3.f35167f3.f33473r = false;
+                            kxVar3.f36781f3.f35132r = false;
                             FrameLayout frameLayout3 = new FrameLayout(context4);
                             ImageView imageView3 = new ImageView(context4);
                             imageView3.setScaleType(ImageView.ScaleType.CENTER);
@@ -1054,7 +1054,7 @@ public final class l3 extends na {
                                 k60Var3.r(frameLayout3, ha.o(-1, 44));
                                 k60Var3.k();
                             }
-                            if (!d3Var3.f60157l.isEmpty()) {
+                            if (!d3Var3.f60182l.isEmpty()) {
                                 k60Var3.c(2131232357, hd.M0(2131745671, null), new g3(k3Var2, 2), false);
                             }
                             k60Var3.q(kxVar3);
@@ -1070,37 +1070,37 @@ public final class l3 extends na {
         v2Var3.setValue(hd.M0(2131750387, null));
         linearLayout.addView(v2Var3, ha.t(-2, -2, 16, 0, 0, 6, 0));
         v2Var3.setOnClickListener(new View.OnClickListener(this) {
-            public final l3 f60286b;
+            public final l3 f60311b;
 
             {
-                this.f60286b = this;
+                this.f60311b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 int i7 = r4;
                 final k3 k3Var2 = k3Var;
-                l3 l3Var = this.f60286b;
+                l3 l3Var = this.f60311b;
                 switch (i7) {
                     case 0:
-                        d3 d3Var = k3Var2.f60300c;
-                        if (!d3Var.f60152f.isEmpty()) {
+                        d3 d3Var = k3Var2.f60325c;
+                        if (!d3Var.f60177f.isEmpty()) {
                             final k60 k60Var = new k60(l3Var.f28618c, l3Var.I0, l3Var.T1, false, true, false);
-                            k60Var.f35217t = false;
+                            k60Var.f35181t = false;
                             k60Var.Y = true;
                             k60Var.a0(0.0f, org.telegram.messenger.g0.L(-8.0f));
                             k60Var.R = true;
-                            k60Var.f35211p = new li.h(k60Var, 8);
+                            k60Var.f35175p = new li.h(k60Var, 8);
                             final String[] strArr = {""};
-                            final ArrayList arrayList = new ArrayList(d3Var.f60152f);
+                            final ArrayList arrayList = new ArrayList(d3Var.f60177f);
                             Collections.sort(arrayList, new Comparator() {
                                 @Override
                                 public final int compare(Object obj, Object obj2) {
                                     switch (r2) {
                                         case 0:
                                             k3 k3Var3 = k3Var2;
-                                            Integer num = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
-                                            Integer num2 = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                                            Integer num = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                                            Integer num2 = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
                                             if (num == null) {
                                                 return 1;
                                             }
@@ -1110,8 +1110,8 @@ public final class l3 extends na {
                                             return num2.intValue() - num.intValue();
                                         case 1:
                                             k3 k3Var4 = k3Var2;
-                                            Integer num3 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
-                                            Integer num4 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
+                                            Integer num3 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
+                                            Integer num4 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
                                             if (num3 == null) {
                                                 return 1;
                                             }
@@ -1121,8 +1121,8 @@ public final class l3 extends na {
                                             return num4.intValue() - num3.intValue();
                                         default:
                                             k3 k3Var5 = k3Var2;
-                                            Integer num5 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
-                                            Integer num6 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
+                                            Integer num5 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
+                                            Integer num6 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
                                             if (num5 == null) {
                                                 return 1;
                                             }
@@ -1148,31 +1148,31 @@ public final class l3 extends na {
                                     switch (i122) {
                                         case 0:
                                             ArrayList arrayList32 = (ArrayList) obj;
-                                            f41 f41Var = (f41) obj2;
+                                            k41 k41Var = (k41) obj2;
                                             String lowerCase = strArr22[0].toLowerCase();
                                             String O3 = org.telegram.messenger.g0.O3(lowerCase);
-                                            d3 d3Var22 = k3Var3.f60300c;
-                                            boolean isEmpty = d3Var22.f60155j.isEmpty();
+                                            d3 d3Var22 = k3Var3.f60325c;
+                                            boolean isEmpty = d3Var22.f60180j.isEmpty();
                                             int size = arrayList22.size();
                                             int i13 = 0;
                                             while (i13 < size) {
                                                 Object obj3 = arrayList22.get(i13);
                                                 i13++;
                                                 TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj3;
-                                                boolean contains = d3Var22.f60155j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                boolean contains = d3Var22.f60180j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                 boolean z10 = !contains;
                                                 if (TextUtils.isEmpty(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(O3) || jg.g.A(" ", lowerCase, stargiftattributemodel.name.toLowerCase()) || stargiftattributemodel.name.toLowerCase().contains(" ".concat(O3))) {
-                                                    Integer num = (Integer) d3Var22.f60158m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                    Integer num = (Integer) d3Var22.f60183m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                     if (num == null) {
                                                         intValue = 0;
                                                     } else {
                                                         intValue = num.intValue();
                                                     }
-                                                    int i14 = x2.f60469b;
-                                                    r31 K = r31.K(x2.class);
+                                                    int i14 = x2.f60494b;
+                                                    w31 K = w31.K(x2.class);
                                                     K.G = stargiftattributemodel;
-                                                    K.f37598l = lowerCase;
-                                                    K.f37611z = intValue;
+                                                    K.f39830l = lowerCase;
+                                                    K.f39843z = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
                                                             z10 = true;
@@ -1191,31 +1191,31 @@ public final class l3 extends na {
                                             return;
                                         case 1:
                                             ArrayList arrayList4 = (ArrayList) obj;
-                                            f41 f41Var2 = (f41) obj2;
+                                            k41 k41Var2 = (k41) obj2;
                                             String lowerCase2 = strArr22[0].toLowerCase();
                                             String O32 = org.telegram.messenger.g0.O3(lowerCase2);
-                                            d3 d3Var32 = k3Var3.f60300c;
-                                            boolean isEmpty2 = d3Var32.f60156k.isEmpty();
+                                            d3 d3Var32 = k3Var3.f60325c;
+                                            boolean isEmpty2 = d3Var32.f60181k.isEmpty();
                                             int size2 = arrayList22.size();
                                             int i15 = 0;
                                             while (i15 < size2) {
                                                 Object obj4 = arrayList22.get(i15);
                                                 i15++;
                                                 TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj4;
-                                                boolean contains2 = d3Var32.f60156k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                boolean contains2 = d3Var32.f60181k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                 boolean z11 = !contains2;
                                                 if (TextUtils.isEmpty(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(O32) || jg.g.A(" ", lowerCase2, stargiftattributebackdrop.name.toLowerCase()) || stargiftattributebackdrop.name.toLowerCase().contains(" ".concat(O32))) {
-                                                    Integer num2 = (Integer) d3Var32.f60159n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                    Integer num2 = (Integer) d3Var32.f60184n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                     if (num2 == null) {
                                                         intValue2 = 0;
                                                     } else {
                                                         intValue2 = num2.intValue();
                                                     }
-                                                    int i16 = r2.f60405b;
-                                                    r31 K2 = r31.K(r2.class);
+                                                    int i16 = r2.f60430b;
+                                                    w31 K2 = w31.K(r2.class);
                                                     K2.G = stargiftattributebackdrop;
-                                                    K2.f37598l = lowerCase2;
-                                                    K2.f37611z = intValue2;
+                                                    K2.f39830l = lowerCase2;
+                                                    K2.f39843z = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
                                                             z11 = true;
@@ -1234,11 +1234,11 @@ public final class l3 extends na {
                                             return;
                                         default:
                                             ArrayList arrayList5 = (ArrayList) obj;
-                                            f41 f41Var3 = (f41) obj2;
+                                            k41 k41Var3 = (k41) obj2;
                                             String lowerCase3 = strArr22[0].toLowerCase();
                                             String O33 = org.telegram.messenger.g0.O3(lowerCase3);
-                                            d3 d3Var4 = k3Var3.f60300c;
-                                            boolean isEmpty3 = d3Var4.f60157l.isEmpty();
+                                            d3 d3Var4 = k3Var3.f60325c;
+                                            boolean isEmpty3 = d3Var4.f60182l.isEmpty();
                                             int size3 = arrayList22.size();
                                             int i17 = 0;
                                             while (i17 < size3) {
@@ -1246,20 +1246,20 @@ public final class l3 extends na {
                                                 i17++;
                                                 TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj5;
                                                 boolean z12 = z9;
-                                                boolean contains3 = d3Var4.f60157l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                boolean contains3 = d3Var4.f60182l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                 boolean z13 = !contains3;
                                                 if (TextUtils.isEmpty(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(O33) || jg.g.A(" ", lowerCase3, stargiftattributepattern.name.toLowerCase()) || stargiftattributepattern.name.toLowerCase().contains(" ".concat(O33))) {
-                                                    Integer num3 = (Integer) d3Var4.f60160o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                    Integer num3 = (Integer) d3Var4.f60185o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                     if (num3 == null) {
                                                         i112 = z12;
                                                     } else {
                                                         i112 = num3.intValue();
                                                     }
-                                                    int i18 = a3.f60092b;
-                                                    r31 K3 = r31.K(a3.class);
+                                                    int i18 = a3.f60117b;
+                                                    w31 K3 = w31.K(a3.class);
                                                     K3.G = stargiftattributepattern;
-                                                    K3.f37598l = lowerCase3;
-                                                    K3.f37611z = i112;
+                                                    K3.f39830l = lowerCase3;
+                                                    K3.f39843z = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
                                                             z13 = true;
@@ -1283,19 +1283,19 @@ public final class l3 extends na {
                             a20 a20Var = new a20() {
                                 @Override
                                 public final void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-                                    r31 r31Var = (r31) obj;
+                                    w31 w31Var = (w31) obj;
                                     View view2 = (View) obj2;
                                     Integer num = (Integer) number;
                                     Float f10 = (Float) serializable;
                                     Float f11 = (Float) serializable2;
                                     switch (r3) {
                                         case 0:
-                                            long j3 = ((TL_stars.starGiftAttributeModel) r31Var.G).document.f26958id;
-                                            d3 d3Var22 = k3Var2.f60300c;
-                                            HashSet hashSet = d3Var22.f60155j;
+                                            long j3 = ((TL_stars.starGiftAttributeModel) w31Var.G).document.f26958id;
+                                            d3 d3Var22 = k3Var2.f60325c;
+                                            HashSet hashSet = d3Var22.f60180j;
                                             if (!hashSet.contains(Long.valueOf(j3))) {
                                                 if (hashSet.isEmpty()) {
-                                                    ArrayList arrayList22 = d3Var22.f60152f;
+                                                    ArrayList arrayList22 = d3Var22.f60177f;
                                                     int size = arrayList22.size();
                                                     int i112 = 0;
                                                     while (i112 < size) {
@@ -1316,12 +1316,12 @@ public final class l3 extends na {
                                             k60Var.u();
                                             return;
                                         case 1:
-                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) r31Var.G).backdrop_id;
-                                            d3 d3Var32 = k3Var2.f60300c;
-                                            HashSet hashSet2 = d3Var32.f60156k;
+                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) w31Var.G).backdrop_id;
+                                            d3 d3Var32 = k3Var2.f60325c;
+                                            HashSet hashSet2 = d3Var32.f60181k;
                                             if (!hashSet2.contains(Integer.valueOf(i122))) {
                                                 if (hashSet2.isEmpty()) {
-                                                    ArrayList arrayList32 = d3Var32.f60153g;
+                                                    ArrayList arrayList32 = d3Var32.f60178g;
                                                     int size2 = arrayList32.size();
                                                     int i13 = 0;
                                                     while (i13 < size2) {
@@ -1342,9 +1342,9 @@ public final class l3 extends na {
                                             k60Var.u();
                                             return;
                                         default:
-                                            long j11 = ((TL_stars.starGiftAttributePattern) r31Var.G).document.f26958id;
-                                            d3 d3Var4 = k3Var2.f60300c;
-                                            HashSet hashSet3 = d3Var4.f60157l;
+                                            long j11 = ((TL_stars.starGiftAttributePattern) w31Var.G).document.f26958id;
+                                            d3 d3Var4 = k3Var2.f60325c;
+                                            HashSet hashSet3 = d3Var4.f60182l;
                                             if (!hashSet3.contains(Long.valueOf(j11))) {
                                                 if (hashSet3.isEmpty()) {
                                                     ArrayList arrayList4 = d3Var4.h;
@@ -1373,7 +1373,7 @@ public final class l3 extends na {
                             f6 f6Var = l3Var.I0;
                             Context context2 = context;
                             kx kxVar = new kx(context2, i10, 0, false, v10Var, a20Var, null, f6Var, 6);
-                            kxVar.f35167f3.f33473r = false;
+                            kxVar.f36781f3.f35132r = false;
                             FrameLayout frameLayout = new FrameLayout(context2);
                             ImageView imageView = new ImageView(context2);
                             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -1397,7 +1397,7 @@ public final class l3 extends na {
                                 k60Var.r(frameLayout, ha.o(-1, 44));
                                 k60Var.k();
                             }
-                            if (!d3Var.f60155j.isEmpty()) {
+                            if (!d3Var.f60180j.isEmpty()) {
                                 k60Var.c(2131232357, hd.M0(2131745671, null), new g3(k3Var2, 0), false);
                             }
                             k60Var.q(kxVar);
@@ -1406,24 +1406,24 @@ public final class l3 extends na {
                         }
                         return;
                     case 1:
-                        d3 d3Var2 = k3Var2.f60300c;
-                        if (!d3Var2.f60153g.isEmpty()) {
+                        d3 d3Var2 = k3Var2.f60325c;
+                        if (!d3Var2.f60178g.isEmpty()) {
                             final k60 k60Var2 = new k60(l3Var.f28618c, l3Var.I0, l3Var.U1, false, true, false);
-                            k60Var2.f35217t = false;
+                            k60Var2.f35181t = false;
                             k60Var2.Y = true;
                             k60Var2.a0(0.0f, org.telegram.messenger.g0.L(-8.0f));
                             k60Var2.R = true;
-                            k60Var2.f35211p = new li.h(k60Var2, 6);
+                            k60Var2.f35175p = new li.h(k60Var2, 6);
                             final String[] strArr2 = {""};
-                            final ArrayList arrayList2 = new ArrayList(d3Var2.f60153g);
+                            final ArrayList arrayList2 = new ArrayList(d3Var2.f60178g);
                             Collections.sort(arrayList2, new Comparator() {
                                 @Override
                                 public final int compare(Object obj, Object obj2) {
                                     switch (r2) {
                                         case 0:
                                             k3 k3Var3 = k3Var2;
-                                            Integer num = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
-                                            Integer num2 = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                                            Integer num = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                                            Integer num2 = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
                                             if (num == null) {
                                                 return 1;
                                             }
@@ -1433,8 +1433,8 @@ public final class l3 extends na {
                                             return num2.intValue() - num.intValue();
                                         case 1:
                                             k3 k3Var4 = k3Var2;
-                                            Integer num3 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
-                                            Integer num4 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
+                                            Integer num3 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
+                                            Integer num4 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
                                             if (num3 == null) {
                                                 return 1;
                                             }
@@ -1444,8 +1444,8 @@ public final class l3 extends na {
                                             return num4.intValue() - num3.intValue();
                                         default:
                                             k3 k3Var5 = k3Var2;
-                                            Integer num5 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
-                                            Integer num6 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
+                                            Integer num5 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
+                                            Integer num6 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
                                             if (num5 == null) {
                                                 return 1;
                                             }
@@ -1471,31 +1471,31 @@ public final class l3 extends na {
                                     switch (i122) {
                                         case 0:
                                             ArrayList arrayList32 = (ArrayList) obj;
-                                            f41 f41Var = (f41) obj2;
+                                            k41 k41Var = (k41) obj2;
                                             String lowerCase = strArr22[0].toLowerCase();
                                             String O3 = org.telegram.messenger.g0.O3(lowerCase);
-                                            d3 d3Var22 = k3Var3.f60300c;
-                                            boolean isEmpty = d3Var22.f60155j.isEmpty();
+                                            d3 d3Var22 = k3Var3.f60325c;
+                                            boolean isEmpty = d3Var22.f60180j.isEmpty();
                                             int size = arrayList22.size();
                                             int i13 = 0;
                                             while (i13 < size) {
                                                 Object obj3 = arrayList22.get(i13);
                                                 i13++;
                                                 TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj3;
-                                                boolean contains = d3Var22.f60155j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                boolean contains = d3Var22.f60180j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                 boolean z10 = !contains;
                                                 if (TextUtils.isEmpty(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(O3) || jg.g.A(" ", lowerCase, stargiftattributemodel.name.toLowerCase()) || stargiftattributemodel.name.toLowerCase().contains(" ".concat(O3))) {
-                                                    Integer num = (Integer) d3Var22.f60158m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                    Integer num = (Integer) d3Var22.f60183m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                     if (num == null) {
                                                         intValue = 0;
                                                     } else {
                                                         intValue = num.intValue();
                                                     }
-                                                    int i14 = x2.f60469b;
-                                                    r31 K = r31.K(x2.class);
+                                                    int i14 = x2.f60494b;
+                                                    w31 K = w31.K(x2.class);
                                                     K.G = stargiftattributemodel;
-                                                    K.f37598l = lowerCase;
-                                                    K.f37611z = intValue;
+                                                    K.f39830l = lowerCase;
+                                                    K.f39843z = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
                                                             z10 = true;
@@ -1514,31 +1514,31 @@ public final class l3 extends na {
                                             return;
                                         case 1:
                                             ArrayList arrayList4 = (ArrayList) obj;
-                                            f41 f41Var2 = (f41) obj2;
+                                            k41 k41Var2 = (k41) obj2;
                                             String lowerCase2 = strArr22[0].toLowerCase();
                                             String O32 = org.telegram.messenger.g0.O3(lowerCase2);
-                                            d3 d3Var32 = k3Var3.f60300c;
-                                            boolean isEmpty2 = d3Var32.f60156k.isEmpty();
+                                            d3 d3Var32 = k3Var3.f60325c;
+                                            boolean isEmpty2 = d3Var32.f60181k.isEmpty();
                                             int size2 = arrayList22.size();
                                             int i15 = 0;
                                             while (i15 < size2) {
                                                 Object obj4 = arrayList22.get(i15);
                                                 i15++;
                                                 TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj4;
-                                                boolean contains2 = d3Var32.f60156k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                boolean contains2 = d3Var32.f60181k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                 boolean z11 = !contains2;
                                                 if (TextUtils.isEmpty(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(O32) || jg.g.A(" ", lowerCase2, stargiftattributebackdrop.name.toLowerCase()) || stargiftattributebackdrop.name.toLowerCase().contains(" ".concat(O32))) {
-                                                    Integer num2 = (Integer) d3Var32.f60159n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                    Integer num2 = (Integer) d3Var32.f60184n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                     if (num2 == null) {
                                                         intValue2 = 0;
                                                     } else {
                                                         intValue2 = num2.intValue();
                                                     }
-                                                    int i16 = r2.f60405b;
-                                                    r31 K2 = r31.K(r2.class);
+                                                    int i16 = r2.f60430b;
+                                                    w31 K2 = w31.K(r2.class);
                                                     K2.G = stargiftattributebackdrop;
-                                                    K2.f37598l = lowerCase2;
-                                                    K2.f37611z = intValue2;
+                                                    K2.f39830l = lowerCase2;
+                                                    K2.f39843z = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
                                                             z11 = true;
@@ -1557,11 +1557,11 @@ public final class l3 extends na {
                                             return;
                                         default:
                                             ArrayList arrayList5 = (ArrayList) obj;
-                                            f41 f41Var3 = (f41) obj2;
+                                            k41 k41Var3 = (k41) obj2;
                                             String lowerCase3 = strArr22[0].toLowerCase();
                                             String O33 = org.telegram.messenger.g0.O3(lowerCase3);
-                                            d3 d3Var4 = k3Var3.f60300c;
-                                            boolean isEmpty3 = d3Var4.f60157l.isEmpty();
+                                            d3 d3Var4 = k3Var3.f60325c;
+                                            boolean isEmpty3 = d3Var4.f60182l.isEmpty();
                                             int size3 = arrayList22.size();
                                             int i17 = 0;
                                             while (i17 < size3) {
@@ -1569,20 +1569,20 @@ public final class l3 extends na {
                                                 i17++;
                                                 TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj5;
                                                 boolean z12 = z9;
-                                                boolean contains3 = d3Var4.f60157l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                boolean contains3 = d3Var4.f60182l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                 boolean z13 = !contains3;
                                                 if (TextUtils.isEmpty(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(O33) || jg.g.A(" ", lowerCase3, stargiftattributepattern.name.toLowerCase()) || stargiftattributepattern.name.toLowerCase().contains(" ".concat(O33))) {
-                                                    Integer num3 = (Integer) d3Var4.f60160o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                    Integer num3 = (Integer) d3Var4.f60185o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                     if (num3 == null) {
                                                         i112 = z12;
                                                     } else {
                                                         i112 = num3.intValue();
                                                     }
-                                                    int i18 = a3.f60092b;
-                                                    r31 K3 = r31.K(a3.class);
+                                                    int i18 = a3.f60117b;
+                                                    w31 K3 = w31.K(a3.class);
                                                     K3.G = stargiftattributepattern;
-                                                    K3.f37598l = lowerCase3;
-                                                    K3.f37611z = i112;
+                                                    K3.f39830l = lowerCase3;
+                                                    K3.f39843z = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
                                                             z13 = true;
@@ -1606,19 +1606,19 @@ public final class l3 extends na {
                             a20 a20Var2 = new a20() {
                                 @Override
                                 public final void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-                                    r31 r31Var = (r31) obj;
+                                    w31 w31Var = (w31) obj;
                                     View view2 = (View) obj2;
                                     Integer num = (Integer) number;
                                     Float f10 = (Float) serializable;
                                     Float f11 = (Float) serializable2;
                                     switch (r3) {
                                         case 0:
-                                            long j3 = ((TL_stars.starGiftAttributeModel) r31Var.G).document.f26958id;
-                                            d3 d3Var22 = k3Var2.f60300c;
-                                            HashSet hashSet = d3Var22.f60155j;
+                                            long j3 = ((TL_stars.starGiftAttributeModel) w31Var.G).document.f26958id;
+                                            d3 d3Var22 = k3Var2.f60325c;
+                                            HashSet hashSet = d3Var22.f60180j;
                                             if (!hashSet.contains(Long.valueOf(j3))) {
                                                 if (hashSet.isEmpty()) {
-                                                    ArrayList arrayList22 = d3Var22.f60152f;
+                                                    ArrayList arrayList22 = d3Var22.f60177f;
                                                     int size = arrayList22.size();
                                                     int i112 = 0;
                                                     while (i112 < size) {
@@ -1639,12 +1639,12 @@ public final class l3 extends na {
                                             k60Var2.u();
                                             return;
                                         case 1:
-                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) r31Var.G).backdrop_id;
-                                            d3 d3Var32 = k3Var2.f60300c;
-                                            HashSet hashSet2 = d3Var32.f60156k;
+                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) w31Var.G).backdrop_id;
+                                            d3 d3Var32 = k3Var2.f60325c;
+                                            HashSet hashSet2 = d3Var32.f60181k;
                                             if (!hashSet2.contains(Integer.valueOf(i122))) {
                                                 if (hashSet2.isEmpty()) {
-                                                    ArrayList arrayList32 = d3Var32.f60153g;
+                                                    ArrayList arrayList32 = d3Var32.f60178g;
                                                     int size2 = arrayList32.size();
                                                     int i13 = 0;
                                                     while (i13 < size2) {
@@ -1665,9 +1665,9 @@ public final class l3 extends na {
                                             k60Var2.u();
                                             return;
                                         default:
-                                            long j11 = ((TL_stars.starGiftAttributePattern) r31Var.G).document.f26958id;
-                                            d3 d3Var4 = k3Var2.f60300c;
-                                            HashSet hashSet3 = d3Var4.f60157l;
+                                            long j11 = ((TL_stars.starGiftAttributePattern) w31Var.G).document.f26958id;
+                                            d3 d3Var4 = k3Var2.f60325c;
+                                            HashSet hashSet3 = d3Var4.f60182l;
                                             if (!hashSet3.contains(Long.valueOf(j11))) {
                                                 if (hashSet3.isEmpty()) {
                                                     ArrayList arrayList4 = d3Var4.h;
@@ -1696,7 +1696,7 @@ public final class l3 extends na {
                             f6 f6Var2 = l3Var.I0;
                             Context context3 = context;
                             kx kxVar2 = new kx(context3, i11, 0, false, v10Var2, a20Var2, null, f6Var2, 7);
-                            kxVar2.f35167f3.f33473r = false;
+                            kxVar2.f36781f3.f35132r = false;
                             FrameLayout frameLayout2 = new FrameLayout(context3);
                             ImageView imageView2 = new ImageView(context3);
                             imageView2.setScaleType(ImageView.ScaleType.CENTER);
@@ -1720,7 +1720,7 @@ public final class l3 extends na {
                                 k60Var2.r(frameLayout2, ha.o(-1, 44));
                                 k60Var2.k();
                             }
-                            if (!d3Var2.f60156k.isEmpty()) {
+                            if (!d3Var2.f60181k.isEmpty()) {
                                 k60Var2.c(2131232357, hd.M0(2131745671, null), new g3(k3Var2, 1), false);
                             }
                             k60Var2.q(kxVar2);
@@ -1729,14 +1729,14 @@ public final class l3 extends na {
                         }
                         return;
                     default:
-                        d3 d3Var3 = k3Var2.f60300c;
+                        d3 d3Var3 = k3Var2.f60325c;
                         if (!d3Var3.h.isEmpty()) {
                             final k60 k60Var3 = new k60(l3Var.f28618c, l3Var.I0, l3Var.V1, false, true, false);
-                            k60Var3.f35217t = false;
+                            k60Var3.f35181t = false;
                             k60Var3.Y = true;
                             k60Var3.a0(0.0f, org.telegram.messenger.g0.L(-8.0f));
                             k60Var3.R = true;
-                            k60Var3.f35211p = new li.h(k60Var3, 7);
+                            k60Var3.f35175p = new li.h(k60Var3, 7);
                             final String[] strArr3 = {""};
                             final ArrayList arrayList3 = new ArrayList(d3Var3.h);
                             Collections.sort(arrayList3, new Comparator() {
@@ -1745,8 +1745,8 @@ public final class l3 extends na {
                                     switch (r2) {
                                         case 0:
                                             k3 k3Var3 = k3Var2;
-                                            Integer num = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
-                                            Integer num2 = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                                            Integer num = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                                            Integer num2 = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
                                             if (num == null) {
                                                 return 1;
                                             }
@@ -1756,8 +1756,8 @@ public final class l3 extends na {
                                             return num2.intValue() - num.intValue();
                                         case 1:
                                             k3 k3Var4 = k3Var2;
-                                            Integer num3 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
-                                            Integer num4 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
+                                            Integer num3 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
+                                            Integer num4 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
                                             if (num3 == null) {
                                                 return 1;
                                             }
@@ -1767,8 +1767,8 @@ public final class l3 extends na {
                                             return num4.intValue() - num3.intValue();
                                         default:
                                             k3 k3Var5 = k3Var2;
-                                            Integer num5 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
-                                            Integer num6 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
+                                            Integer num5 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
+                                            Integer num6 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
                                             if (num5 == null) {
                                                 return 1;
                                             }
@@ -1794,31 +1794,31 @@ public final class l3 extends na {
                                     switch (i122) {
                                         case 0:
                                             ArrayList arrayList32 = (ArrayList) obj;
-                                            f41 f41Var = (f41) obj2;
+                                            k41 k41Var = (k41) obj2;
                                             String lowerCase = strArr22[0].toLowerCase();
                                             String O3 = org.telegram.messenger.g0.O3(lowerCase);
-                                            d3 d3Var22 = k3Var3.f60300c;
-                                            boolean isEmpty = d3Var22.f60155j.isEmpty();
+                                            d3 d3Var22 = k3Var3.f60325c;
+                                            boolean isEmpty = d3Var22.f60180j.isEmpty();
                                             int size = arrayList22.size();
                                             int i13 = 0;
                                             while (i13 < size) {
                                                 Object obj3 = arrayList22.get(i13);
                                                 i13++;
                                                 TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj3;
-                                                boolean contains = d3Var22.f60155j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                boolean contains = d3Var22.f60180j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                 boolean z10 = !contains;
                                                 if (TextUtils.isEmpty(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(O3) || jg.g.A(" ", lowerCase, stargiftattributemodel.name.toLowerCase()) || stargiftattributemodel.name.toLowerCase().contains(" ".concat(O3))) {
-                                                    Integer num = (Integer) d3Var22.f60158m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                    Integer num = (Integer) d3Var22.f60183m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                     if (num == null) {
                                                         intValue = 0;
                                                     } else {
                                                         intValue = num.intValue();
                                                     }
-                                                    int i14 = x2.f60469b;
-                                                    r31 K = r31.K(x2.class);
+                                                    int i14 = x2.f60494b;
+                                                    w31 K = w31.K(x2.class);
                                                     K.G = stargiftattributemodel;
-                                                    K.f37598l = lowerCase;
-                                                    K.f37611z = intValue;
+                                                    K.f39830l = lowerCase;
+                                                    K.f39843z = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
                                                             z10 = true;
@@ -1837,31 +1837,31 @@ public final class l3 extends na {
                                             return;
                                         case 1:
                                             ArrayList arrayList4 = (ArrayList) obj;
-                                            f41 f41Var2 = (f41) obj2;
+                                            k41 k41Var2 = (k41) obj2;
                                             String lowerCase2 = strArr22[0].toLowerCase();
                                             String O32 = org.telegram.messenger.g0.O3(lowerCase2);
-                                            d3 d3Var32 = k3Var3.f60300c;
-                                            boolean isEmpty2 = d3Var32.f60156k.isEmpty();
+                                            d3 d3Var32 = k3Var3.f60325c;
+                                            boolean isEmpty2 = d3Var32.f60181k.isEmpty();
                                             int size2 = arrayList22.size();
                                             int i15 = 0;
                                             while (i15 < size2) {
                                                 Object obj4 = arrayList22.get(i15);
                                                 i15++;
                                                 TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj4;
-                                                boolean contains2 = d3Var32.f60156k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                boolean contains2 = d3Var32.f60181k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                 boolean z11 = !contains2;
                                                 if (TextUtils.isEmpty(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(O32) || jg.g.A(" ", lowerCase2, stargiftattributebackdrop.name.toLowerCase()) || stargiftattributebackdrop.name.toLowerCase().contains(" ".concat(O32))) {
-                                                    Integer num2 = (Integer) d3Var32.f60159n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                    Integer num2 = (Integer) d3Var32.f60184n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                     if (num2 == null) {
                                                         intValue2 = 0;
                                                     } else {
                                                         intValue2 = num2.intValue();
                                                     }
-                                                    int i16 = r2.f60405b;
-                                                    r31 K2 = r31.K(r2.class);
+                                                    int i16 = r2.f60430b;
+                                                    w31 K2 = w31.K(r2.class);
                                                     K2.G = stargiftattributebackdrop;
-                                                    K2.f37598l = lowerCase2;
-                                                    K2.f37611z = intValue2;
+                                                    K2.f39830l = lowerCase2;
+                                                    K2.f39843z = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
                                                             z11 = true;
@@ -1880,11 +1880,11 @@ public final class l3 extends na {
                                             return;
                                         default:
                                             ArrayList arrayList5 = (ArrayList) obj;
-                                            f41 f41Var3 = (f41) obj2;
+                                            k41 k41Var3 = (k41) obj2;
                                             String lowerCase3 = strArr22[0].toLowerCase();
                                             String O33 = org.telegram.messenger.g0.O3(lowerCase3);
-                                            d3 d3Var4 = k3Var3.f60300c;
-                                            boolean isEmpty3 = d3Var4.f60157l.isEmpty();
+                                            d3 d3Var4 = k3Var3.f60325c;
+                                            boolean isEmpty3 = d3Var4.f60182l.isEmpty();
                                             int size3 = arrayList22.size();
                                             int i17 = 0;
                                             while (i17 < size3) {
@@ -1892,20 +1892,20 @@ public final class l3 extends na {
                                                 i17++;
                                                 TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj5;
                                                 boolean z12 = z9;
-                                                boolean contains3 = d3Var4.f60157l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                boolean contains3 = d3Var4.f60182l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                 boolean z13 = !contains3;
                                                 if (TextUtils.isEmpty(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(O33) || jg.g.A(" ", lowerCase3, stargiftattributepattern.name.toLowerCase()) || stargiftattributepattern.name.toLowerCase().contains(" ".concat(O33))) {
-                                                    Integer num3 = (Integer) d3Var4.f60160o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                    Integer num3 = (Integer) d3Var4.f60185o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                     if (num3 == null) {
                                                         i112 = z12;
                                                     } else {
                                                         i112 = num3.intValue();
                                                     }
-                                                    int i18 = a3.f60092b;
-                                                    r31 K3 = r31.K(a3.class);
+                                                    int i18 = a3.f60117b;
+                                                    w31 K3 = w31.K(a3.class);
                                                     K3.G = stargiftattributepattern;
-                                                    K3.f37598l = lowerCase3;
-                                                    K3.f37611z = i112;
+                                                    K3.f39830l = lowerCase3;
+                                                    K3.f39843z = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
                                                             z13 = true;
@@ -1929,19 +1929,19 @@ public final class l3 extends na {
                             a20 a20Var3 = new a20() {
                                 @Override
                                 public final void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-                                    r31 r31Var = (r31) obj;
+                                    w31 w31Var = (w31) obj;
                                     View view2 = (View) obj2;
                                     Integer num = (Integer) number;
                                     Float f10 = (Float) serializable;
                                     Float f11 = (Float) serializable2;
                                     switch (r3) {
                                         case 0:
-                                            long j3 = ((TL_stars.starGiftAttributeModel) r31Var.G).document.f26958id;
-                                            d3 d3Var22 = k3Var2.f60300c;
-                                            HashSet hashSet = d3Var22.f60155j;
+                                            long j3 = ((TL_stars.starGiftAttributeModel) w31Var.G).document.f26958id;
+                                            d3 d3Var22 = k3Var2.f60325c;
+                                            HashSet hashSet = d3Var22.f60180j;
                                             if (!hashSet.contains(Long.valueOf(j3))) {
                                                 if (hashSet.isEmpty()) {
-                                                    ArrayList arrayList22 = d3Var22.f60152f;
+                                                    ArrayList arrayList22 = d3Var22.f60177f;
                                                     int size = arrayList22.size();
                                                     int i112 = 0;
                                                     while (i112 < size) {
@@ -1962,12 +1962,12 @@ public final class l3 extends na {
                                             k60Var3.u();
                                             return;
                                         case 1:
-                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) r31Var.G).backdrop_id;
-                                            d3 d3Var32 = k3Var2.f60300c;
-                                            HashSet hashSet2 = d3Var32.f60156k;
+                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) w31Var.G).backdrop_id;
+                                            d3 d3Var32 = k3Var2.f60325c;
+                                            HashSet hashSet2 = d3Var32.f60181k;
                                             if (!hashSet2.contains(Integer.valueOf(i122))) {
                                                 if (hashSet2.isEmpty()) {
-                                                    ArrayList arrayList32 = d3Var32.f60153g;
+                                                    ArrayList arrayList32 = d3Var32.f60178g;
                                                     int size2 = arrayList32.size();
                                                     int i13 = 0;
                                                     while (i13 < size2) {
@@ -1988,9 +1988,9 @@ public final class l3 extends na {
                                             k60Var3.u();
                                             return;
                                         default:
-                                            long j11 = ((TL_stars.starGiftAttributePattern) r31Var.G).document.f26958id;
-                                            d3 d3Var4 = k3Var2.f60300c;
-                                            HashSet hashSet3 = d3Var4.f60157l;
+                                            long j11 = ((TL_stars.starGiftAttributePattern) w31Var.G).document.f26958id;
+                                            d3 d3Var4 = k3Var2.f60325c;
+                                            HashSet hashSet3 = d3Var4.f60182l;
                                             if (!hashSet3.contains(Long.valueOf(j11))) {
                                                 if (hashSet3.isEmpty()) {
                                                     ArrayList arrayList4 = d3Var4.h;
@@ -2019,7 +2019,7 @@ public final class l3 extends na {
                             f6 f6Var3 = l3Var.I0;
                             Context context4 = context;
                             kx kxVar3 = new kx(context4, i12, 0, false, v10Var3, a20Var3, null, f6Var3, 8);
-                            kxVar3.f35167f3.f33473r = false;
+                            kxVar3.f36781f3.f35132r = false;
                             FrameLayout frameLayout3 = new FrameLayout(context4);
                             ImageView imageView3 = new ImageView(context4);
                             imageView3.setScaleType(ImageView.ScaleType.CENTER);
@@ -2043,7 +2043,7 @@ public final class l3 extends na {
                                 k60Var3.r(frameLayout3, ha.o(-1, 44));
                                 k60Var3.k();
                             }
-                            if (!d3Var3.f60157l.isEmpty()) {
+                            if (!d3Var3.f60182l.isEmpty()) {
                                 k60Var3.c(2131232357, hd.M0(2131745671, null), new g3(k3Var2, 2), false);
                             }
                             k60Var3.q(kxVar3);
@@ -2059,37 +2059,37 @@ public final class l3 extends na {
         v2Var4.setValue(hd.M0(2131750379, null));
         linearLayout.addView(v2Var4, ha.t(-2, -2, 16, 0, 0, 0, 0));
         v2Var4.setOnClickListener(new View.OnClickListener(this) {
-            public final l3 f60286b;
+            public final l3 f60311b;
 
             {
-                this.f60286b = this;
+                this.f60311b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 int i7 = r4;
                 final k3 k3Var2 = k3Var;
-                l3 l3Var = this.f60286b;
+                l3 l3Var = this.f60311b;
                 switch (i7) {
                     case 0:
-                        d3 d3Var = k3Var2.f60300c;
-                        if (!d3Var.f60152f.isEmpty()) {
+                        d3 d3Var = k3Var2.f60325c;
+                        if (!d3Var.f60177f.isEmpty()) {
                             final k60 k60Var = new k60(l3Var.f28618c, l3Var.I0, l3Var.T1, false, true, false);
-                            k60Var.f35217t = false;
+                            k60Var.f35181t = false;
                             k60Var.Y = true;
                             k60Var.a0(0.0f, org.telegram.messenger.g0.L(-8.0f));
                             k60Var.R = true;
-                            k60Var.f35211p = new li.h(k60Var, 8);
+                            k60Var.f35175p = new li.h(k60Var, 8);
                             final String[] strArr = {""};
-                            final ArrayList arrayList = new ArrayList(d3Var.f60152f);
+                            final ArrayList arrayList = new ArrayList(d3Var.f60177f);
                             Collections.sort(arrayList, new Comparator() {
                                 @Override
                                 public final int compare(Object obj, Object obj2) {
                                     switch (r2) {
                                         case 0:
                                             k3 k3Var3 = k3Var2;
-                                            Integer num = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
-                                            Integer num2 = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                                            Integer num = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                                            Integer num2 = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
                                             if (num == null) {
                                                 return 1;
                                             }
@@ -2099,8 +2099,8 @@ public final class l3 extends na {
                                             return num2.intValue() - num.intValue();
                                         case 1:
                                             k3 k3Var4 = k3Var2;
-                                            Integer num3 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
-                                            Integer num4 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
+                                            Integer num3 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
+                                            Integer num4 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
                                             if (num3 == null) {
                                                 return 1;
                                             }
@@ -2110,8 +2110,8 @@ public final class l3 extends na {
                                             return num4.intValue() - num3.intValue();
                                         default:
                                             k3 k3Var5 = k3Var2;
-                                            Integer num5 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
-                                            Integer num6 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
+                                            Integer num5 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
+                                            Integer num6 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
                                             if (num5 == null) {
                                                 return 1;
                                             }
@@ -2137,31 +2137,31 @@ public final class l3 extends na {
                                     switch (i122) {
                                         case 0:
                                             ArrayList arrayList32 = (ArrayList) obj;
-                                            f41 f41Var = (f41) obj2;
+                                            k41 k41Var = (k41) obj2;
                                             String lowerCase = strArr22[0].toLowerCase();
                                             String O3 = org.telegram.messenger.g0.O3(lowerCase);
-                                            d3 d3Var22 = k3Var3.f60300c;
-                                            boolean isEmpty = d3Var22.f60155j.isEmpty();
+                                            d3 d3Var22 = k3Var3.f60325c;
+                                            boolean isEmpty = d3Var22.f60180j.isEmpty();
                                             int size = arrayList22.size();
                                             int i13 = 0;
                                             while (i13 < size) {
                                                 Object obj3 = arrayList22.get(i13);
                                                 i13++;
                                                 TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj3;
-                                                boolean contains = d3Var22.f60155j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                boolean contains = d3Var22.f60180j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                 boolean z10 = !contains;
                                                 if (TextUtils.isEmpty(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(O3) || jg.g.A(" ", lowerCase, stargiftattributemodel.name.toLowerCase()) || stargiftattributemodel.name.toLowerCase().contains(" ".concat(O3))) {
-                                                    Integer num = (Integer) d3Var22.f60158m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                    Integer num = (Integer) d3Var22.f60183m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                     if (num == null) {
                                                         intValue = 0;
                                                     } else {
                                                         intValue = num.intValue();
                                                     }
-                                                    int i14 = x2.f60469b;
-                                                    r31 K = r31.K(x2.class);
+                                                    int i14 = x2.f60494b;
+                                                    w31 K = w31.K(x2.class);
                                                     K.G = stargiftattributemodel;
-                                                    K.f37598l = lowerCase;
-                                                    K.f37611z = intValue;
+                                                    K.f39830l = lowerCase;
+                                                    K.f39843z = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
                                                             z10 = true;
@@ -2180,31 +2180,31 @@ public final class l3 extends na {
                                             return;
                                         case 1:
                                             ArrayList arrayList4 = (ArrayList) obj;
-                                            f41 f41Var2 = (f41) obj2;
+                                            k41 k41Var2 = (k41) obj2;
                                             String lowerCase2 = strArr22[0].toLowerCase();
                                             String O32 = org.telegram.messenger.g0.O3(lowerCase2);
-                                            d3 d3Var32 = k3Var3.f60300c;
-                                            boolean isEmpty2 = d3Var32.f60156k.isEmpty();
+                                            d3 d3Var32 = k3Var3.f60325c;
+                                            boolean isEmpty2 = d3Var32.f60181k.isEmpty();
                                             int size2 = arrayList22.size();
                                             int i15 = 0;
                                             while (i15 < size2) {
                                                 Object obj4 = arrayList22.get(i15);
                                                 i15++;
                                                 TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj4;
-                                                boolean contains2 = d3Var32.f60156k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                boolean contains2 = d3Var32.f60181k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                 boolean z11 = !contains2;
                                                 if (TextUtils.isEmpty(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(O32) || jg.g.A(" ", lowerCase2, stargiftattributebackdrop.name.toLowerCase()) || stargiftattributebackdrop.name.toLowerCase().contains(" ".concat(O32))) {
-                                                    Integer num2 = (Integer) d3Var32.f60159n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                    Integer num2 = (Integer) d3Var32.f60184n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                     if (num2 == null) {
                                                         intValue2 = 0;
                                                     } else {
                                                         intValue2 = num2.intValue();
                                                     }
-                                                    int i16 = r2.f60405b;
-                                                    r31 K2 = r31.K(r2.class);
+                                                    int i16 = r2.f60430b;
+                                                    w31 K2 = w31.K(r2.class);
                                                     K2.G = stargiftattributebackdrop;
-                                                    K2.f37598l = lowerCase2;
-                                                    K2.f37611z = intValue2;
+                                                    K2.f39830l = lowerCase2;
+                                                    K2.f39843z = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
                                                             z11 = true;
@@ -2223,11 +2223,11 @@ public final class l3 extends na {
                                             return;
                                         default:
                                             ArrayList arrayList5 = (ArrayList) obj;
-                                            f41 f41Var3 = (f41) obj2;
+                                            k41 k41Var3 = (k41) obj2;
                                             String lowerCase3 = strArr22[0].toLowerCase();
                                             String O33 = org.telegram.messenger.g0.O3(lowerCase3);
-                                            d3 d3Var4 = k3Var3.f60300c;
-                                            boolean isEmpty3 = d3Var4.f60157l.isEmpty();
+                                            d3 d3Var4 = k3Var3.f60325c;
+                                            boolean isEmpty3 = d3Var4.f60182l.isEmpty();
                                             int size3 = arrayList22.size();
                                             int i17 = 0;
                                             while (i17 < size3) {
@@ -2235,20 +2235,20 @@ public final class l3 extends na {
                                                 i17++;
                                                 TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj5;
                                                 boolean z12 = z9;
-                                                boolean contains3 = d3Var4.f60157l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                boolean contains3 = d3Var4.f60182l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                 boolean z13 = !contains3;
                                                 if (TextUtils.isEmpty(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(O33) || jg.g.A(" ", lowerCase3, stargiftattributepattern.name.toLowerCase()) || stargiftattributepattern.name.toLowerCase().contains(" ".concat(O33))) {
-                                                    Integer num3 = (Integer) d3Var4.f60160o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                    Integer num3 = (Integer) d3Var4.f60185o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                     if (num3 == null) {
                                                         i112 = z12;
                                                     } else {
                                                         i112 = num3.intValue();
                                                     }
-                                                    int i18 = a3.f60092b;
-                                                    r31 K3 = r31.K(a3.class);
+                                                    int i18 = a3.f60117b;
+                                                    w31 K3 = w31.K(a3.class);
                                                     K3.G = stargiftattributepattern;
-                                                    K3.f37598l = lowerCase3;
-                                                    K3.f37611z = i112;
+                                                    K3.f39830l = lowerCase3;
+                                                    K3.f39843z = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
                                                             z13 = true;
@@ -2272,19 +2272,19 @@ public final class l3 extends na {
                             a20 a20Var = new a20() {
                                 @Override
                                 public final void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-                                    r31 r31Var = (r31) obj;
+                                    w31 w31Var = (w31) obj;
                                     View view2 = (View) obj2;
                                     Integer num = (Integer) number;
                                     Float f10 = (Float) serializable;
                                     Float f11 = (Float) serializable2;
                                     switch (r3) {
                                         case 0:
-                                            long j3 = ((TL_stars.starGiftAttributeModel) r31Var.G).document.f26958id;
-                                            d3 d3Var22 = k3Var2.f60300c;
-                                            HashSet hashSet = d3Var22.f60155j;
+                                            long j3 = ((TL_stars.starGiftAttributeModel) w31Var.G).document.f26958id;
+                                            d3 d3Var22 = k3Var2.f60325c;
+                                            HashSet hashSet = d3Var22.f60180j;
                                             if (!hashSet.contains(Long.valueOf(j3))) {
                                                 if (hashSet.isEmpty()) {
-                                                    ArrayList arrayList22 = d3Var22.f60152f;
+                                                    ArrayList arrayList22 = d3Var22.f60177f;
                                                     int size = arrayList22.size();
                                                     int i112 = 0;
                                                     while (i112 < size) {
@@ -2305,12 +2305,12 @@ public final class l3 extends na {
                                             k60Var.u();
                                             return;
                                         case 1:
-                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) r31Var.G).backdrop_id;
-                                            d3 d3Var32 = k3Var2.f60300c;
-                                            HashSet hashSet2 = d3Var32.f60156k;
+                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) w31Var.G).backdrop_id;
+                                            d3 d3Var32 = k3Var2.f60325c;
+                                            HashSet hashSet2 = d3Var32.f60181k;
                                             if (!hashSet2.contains(Integer.valueOf(i122))) {
                                                 if (hashSet2.isEmpty()) {
-                                                    ArrayList arrayList32 = d3Var32.f60153g;
+                                                    ArrayList arrayList32 = d3Var32.f60178g;
                                                     int size2 = arrayList32.size();
                                                     int i13 = 0;
                                                     while (i13 < size2) {
@@ -2331,9 +2331,9 @@ public final class l3 extends na {
                                             k60Var.u();
                                             return;
                                         default:
-                                            long j11 = ((TL_stars.starGiftAttributePattern) r31Var.G).document.f26958id;
-                                            d3 d3Var4 = k3Var2.f60300c;
-                                            HashSet hashSet3 = d3Var4.f60157l;
+                                            long j11 = ((TL_stars.starGiftAttributePattern) w31Var.G).document.f26958id;
+                                            d3 d3Var4 = k3Var2.f60325c;
+                                            HashSet hashSet3 = d3Var4.f60182l;
                                             if (!hashSet3.contains(Long.valueOf(j11))) {
                                                 if (hashSet3.isEmpty()) {
                                                     ArrayList arrayList4 = d3Var4.h;
@@ -2362,7 +2362,7 @@ public final class l3 extends na {
                             f6 f6Var = l3Var.I0;
                             Context context2 = context;
                             kx kxVar = new kx(context2, i10, 0, false, v10Var, a20Var, null, f6Var, 6);
-                            kxVar.f35167f3.f33473r = false;
+                            kxVar.f36781f3.f35132r = false;
                             FrameLayout frameLayout = new FrameLayout(context2);
                             ImageView imageView = new ImageView(context2);
                             imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -2386,7 +2386,7 @@ public final class l3 extends na {
                                 k60Var.r(frameLayout, ha.o(-1, 44));
                                 k60Var.k();
                             }
-                            if (!d3Var.f60155j.isEmpty()) {
+                            if (!d3Var.f60180j.isEmpty()) {
                                 k60Var.c(2131232357, hd.M0(2131745671, null), new g3(k3Var2, 0), false);
                             }
                             k60Var.q(kxVar);
@@ -2395,24 +2395,24 @@ public final class l3 extends na {
                         }
                         return;
                     case 1:
-                        d3 d3Var2 = k3Var2.f60300c;
-                        if (!d3Var2.f60153g.isEmpty()) {
+                        d3 d3Var2 = k3Var2.f60325c;
+                        if (!d3Var2.f60178g.isEmpty()) {
                             final k60 k60Var2 = new k60(l3Var.f28618c, l3Var.I0, l3Var.U1, false, true, false);
-                            k60Var2.f35217t = false;
+                            k60Var2.f35181t = false;
                             k60Var2.Y = true;
                             k60Var2.a0(0.0f, org.telegram.messenger.g0.L(-8.0f));
                             k60Var2.R = true;
-                            k60Var2.f35211p = new li.h(k60Var2, 6);
+                            k60Var2.f35175p = new li.h(k60Var2, 6);
                             final String[] strArr2 = {""};
-                            final ArrayList arrayList2 = new ArrayList(d3Var2.f60153g);
+                            final ArrayList arrayList2 = new ArrayList(d3Var2.f60178g);
                             Collections.sort(arrayList2, new Comparator() {
                                 @Override
                                 public final int compare(Object obj, Object obj2) {
                                     switch (r2) {
                                         case 0:
                                             k3 k3Var3 = k3Var2;
-                                            Integer num = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
-                                            Integer num2 = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                                            Integer num = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                                            Integer num2 = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
                                             if (num == null) {
                                                 return 1;
                                             }
@@ -2422,8 +2422,8 @@ public final class l3 extends na {
                                             return num2.intValue() - num.intValue();
                                         case 1:
                                             k3 k3Var4 = k3Var2;
-                                            Integer num3 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
-                                            Integer num4 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
+                                            Integer num3 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
+                                            Integer num4 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
                                             if (num3 == null) {
                                                 return 1;
                                             }
@@ -2433,8 +2433,8 @@ public final class l3 extends na {
                                             return num4.intValue() - num3.intValue();
                                         default:
                                             k3 k3Var5 = k3Var2;
-                                            Integer num5 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
-                                            Integer num6 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
+                                            Integer num5 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
+                                            Integer num6 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
                                             if (num5 == null) {
                                                 return 1;
                                             }
@@ -2460,31 +2460,31 @@ public final class l3 extends na {
                                     switch (i122) {
                                         case 0:
                                             ArrayList arrayList32 = (ArrayList) obj;
-                                            f41 f41Var = (f41) obj2;
+                                            k41 k41Var = (k41) obj2;
                                             String lowerCase = strArr22[0].toLowerCase();
                                             String O3 = org.telegram.messenger.g0.O3(lowerCase);
-                                            d3 d3Var22 = k3Var3.f60300c;
-                                            boolean isEmpty = d3Var22.f60155j.isEmpty();
+                                            d3 d3Var22 = k3Var3.f60325c;
+                                            boolean isEmpty = d3Var22.f60180j.isEmpty();
                                             int size = arrayList22.size();
                                             int i13 = 0;
                                             while (i13 < size) {
                                                 Object obj3 = arrayList22.get(i13);
                                                 i13++;
                                                 TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj3;
-                                                boolean contains = d3Var22.f60155j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                boolean contains = d3Var22.f60180j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                 boolean z10 = !contains;
                                                 if (TextUtils.isEmpty(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(O3) || jg.g.A(" ", lowerCase, stargiftattributemodel.name.toLowerCase()) || stargiftattributemodel.name.toLowerCase().contains(" ".concat(O3))) {
-                                                    Integer num = (Integer) d3Var22.f60158m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                    Integer num = (Integer) d3Var22.f60183m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                     if (num == null) {
                                                         intValue = 0;
                                                     } else {
                                                         intValue = num.intValue();
                                                     }
-                                                    int i14 = x2.f60469b;
-                                                    r31 K = r31.K(x2.class);
+                                                    int i14 = x2.f60494b;
+                                                    w31 K = w31.K(x2.class);
                                                     K.G = stargiftattributemodel;
-                                                    K.f37598l = lowerCase;
-                                                    K.f37611z = intValue;
+                                                    K.f39830l = lowerCase;
+                                                    K.f39843z = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
                                                             z10 = true;
@@ -2503,31 +2503,31 @@ public final class l3 extends na {
                                             return;
                                         case 1:
                                             ArrayList arrayList4 = (ArrayList) obj;
-                                            f41 f41Var2 = (f41) obj2;
+                                            k41 k41Var2 = (k41) obj2;
                                             String lowerCase2 = strArr22[0].toLowerCase();
                                             String O32 = org.telegram.messenger.g0.O3(lowerCase2);
-                                            d3 d3Var32 = k3Var3.f60300c;
-                                            boolean isEmpty2 = d3Var32.f60156k.isEmpty();
+                                            d3 d3Var32 = k3Var3.f60325c;
+                                            boolean isEmpty2 = d3Var32.f60181k.isEmpty();
                                             int size2 = arrayList22.size();
                                             int i15 = 0;
                                             while (i15 < size2) {
                                                 Object obj4 = arrayList22.get(i15);
                                                 i15++;
                                                 TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj4;
-                                                boolean contains2 = d3Var32.f60156k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                boolean contains2 = d3Var32.f60181k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                 boolean z11 = !contains2;
                                                 if (TextUtils.isEmpty(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(O32) || jg.g.A(" ", lowerCase2, stargiftattributebackdrop.name.toLowerCase()) || stargiftattributebackdrop.name.toLowerCase().contains(" ".concat(O32))) {
-                                                    Integer num2 = (Integer) d3Var32.f60159n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                    Integer num2 = (Integer) d3Var32.f60184n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                     if (num2 == null) {
                                                         intValue2 = 0;
                                                     } else {
                                                         intValue2 = num2.intValue();
                                                     }
-                                                    int i16 = r2.f60405b;
-                                                    r31 K2 = r31.K(r2.class);
+                                                    int i16 = r2.f60430b;
+                                                    w31 K2 = w31.K(r2.class);
                                                     K2.G = stargiftattributebackdrop;
-                                                    K2.f37598l = lowerCase2;
-                                                    K2.f37611z = intValue2;
+                                                    K2.f39830l = lowerCase2;
+                                                    K2.f39843z = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
                                                             z11 = true;
@@ -2546,11 +2546,11 @@ public final class l3 extends na {
                                             return;
                                         default:
                                             ArrayList arrayList5 = (ArrayList) obj;
-                                            f41 f41Var3 = (f41) obj2;
+                                            k41 k41Var3 = (k41) obj2;
                                             String lowerCase3 = strArr22[0].toLowerCase();
                                             String O33 = org.telegram.messenger.g0.O3(lowerCase3);
-                                            d3 d3Var4 = k3Var3.f60300c;
-                                            boolean isEmpty3 = d3Var4.f60157l.isEmpty();
+                                            d3 d3Var4 = k3Var3.f60325c;
+                                            boolean isEmpty3 = d3Var4.f60182l.isEmpty();
                                             int size3 = arrayList22.size();
                                             int i17 = 0;
                                             while (i17 < size3) {
@@ -2558,20 +2558,20 @@ public final class l3 extends na {
                                                 i17++;
                                                 TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj5;
                                                 boolean z12 = z9;
-                                                boolean contains3 = d3Var4.f60157l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                boolean contains3 = d3Var4.f60182l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                 boolean z13 = !contains3;
                                                 if (TextUtils.isEmpty(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(O33) || jg.g.A(" ", lowerCase3, stargiftattributepattern.name.toLowerCase()) || stargiftattributepattern.name.toLowerCase().contains(" ".concat(O33))) {
-                                                    Integer num3 = (Integer) d3Var4.f60160o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                    Integer num3 = (Integer) d3Var4.f60185o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                     if (num3 == null) {
                                                         i112 = z12;
                                                     } else {
                                                         i112 = num3.intValue();
                                                     }
-                                                    int i18 = a3.f60092b;
-                                                    r31 K3 = r31.K(a3.class);
+                                                    int i18 = a3.f60117b;
+                                                    w31 K3 = w31.K(a3.class);
                                                     K3.G = stargiftattributepattern;
-                                                    K3.f37598l = lowerCase3;
-                                                    K3.f37611z = i112;
+                                                    K3.f39830l = lowerCase3;
+                                                    K3.f39843z = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
                                                             z13 = true;
@@ -2595,19 +2595,19 @@ public final class l3 extends na {
                             a20 a20Var2 = new a20() {
                                 @Override
                                 public final void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-                                    r31 r31Var = (r31) obj;
+                                    w31 w31Var = (w31) obj;
                                     View view2 = (View) obj2;
                                     Integer num = (Integer) number;
                                     Float f10 = (Float) serializable;
                                     Float f11 = (Float) serializable2;
                                     switch (r3) {
                                         case 0:
-                                            long j3 = ((TL_stars.starGiftAttributeModel) r31Var.G).document.f26958id;
-                                            d3 d3Var22 = k3Var2.f60300c;
-                                            HashSet hashSet = d3Var22.f60155j;
+                                            long j3 = ((TL_stars.starGiftAttributeModel) w31Var.G).document.f26958id;
+                                            d3 d3Var22 = k3Var2.f60325c;
+                                            HashSet hashSet = d3Var22.f60180j;
                                             if (!hashSet.contains(Long.valueOf(j3))) {
                                                 if (hashSet.isEmpty()) {
-                                                    ArrayList arrayList22 = d3Var22.f60152f;
+                                                    ArrayList arrayList22 = d3Var22.f60177f;
                                                     int size = arrayList22.size();
                                                     int i112 = 0;
                                                     while (i112 < size) {
@@ -2628,12 +2628,12 @@ public final class l3 extends na {
                                             k60Var2.u();
                                             return;
                                         case 1:
-                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) r31Var.G).backdrop_id;
-                                            d3 d3Var32 = k3Var2.f60300c;
-                                            HashSet hashSet2 = d3Var32.f60156k;
+                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) w31Var.G).backdrop_id;
+                                            d3 d3Var32 = k3Var2.f60325c;
+                                            HashSet hashSet2 = d3Var32.f60181k;
                                             if (!hashSet2.contains(Integer.valueOf(i122))) {
                                                 if (hashSet2.isEmpty()) {
-                                                    ArrayList arrayList32 = d3Var32.f60153g;
+                                                    ArrayList arrayList32 = d3Var32.f60178g;
                                                     int size2 = arrayList32.size();
                                                     int i13 = 0;
                                                     while (i13 < size2) {
@@ -2654,9 +2654,9 @@ public final class l3 extends na {
                                             k60Var2.u();
                                             return;
                                         default:
-                                            long j11 = ((TL_stars.starGiftAttributePattern) r31Var.G).document.f26958id;
-                                            d3 d3Var4 = k3Var2.f60300c;
-                                            HashSet hashSet3 = d3Var4.f60157l;
+                                            long j11 = ((TL_stars.starGiftAttributePattern) w31Var.G).document.f26958id;
+                                            d3 d3Var4 = k3Var2.f60325c;
+                                            HashSet hashSet3 = d3Var4.f60182l;
                                             if (!hashSet3.contains(Long.valueOf(j11))) {
                                                 if (hashSet3.isEmpty()) {
                                                     ArrayList arrayList4 = d3Var4.h;
@@ -2685,7 +2685,7 @@ public final class l3 extends na {
                             f6 f6Var2 = l3Var.I0;
                             Context context3 = context;
                             kx kxVar2 = new kx(context3, i11, 0, false, v10Var2, a20Var2, null, f6Var2, 7);
-                            kxVar2.f35167f3.f33473r = false;
+                            kxVar2.f36781f3.f35132r = false;
                             FrameLayout frameLayout2 = new FrameLayout(context3);
                             ImageView imageView2 = new ImageView(context3);
                             imageView2.setScaleType(ImageView.ScaleType.CENTER);
@@ -2709,7 +2709,7 @@ public final class l3 extends na {
                                 k60Var2.r(frameLayout2, ha.o(-1, 44));
                                 k60Var2.k();
                             }
-                            if (!d3Var2.f60156k.isEmpty()) {
+                            if (!d3Var2.f60181k.isEmpty()) {
                                 k60Var2.c(2131232357, hd.M0(2131745671, null), new g3(k3Var2, 1), false);
                             }
                             k60Var2.q(kxVar2);
@@ -2718,14 +2718,14 @@ public final class l3 extends na {
                         }
                         return;
                     default:
-                        d3 d3Var3 = k3Var2.f60300c;
+                        d3 d3Var3 = k3Var2.f60325c;
                         if (!d3Var3.h.isEmpty()) {
                             final k60 k60Var3 = new k60(l3Var.f28618c, l3Var.I0, l3Var.V1, false, true, false);
-                            k60Var3.f35217t = false;
+                            k60Var3.f35181t = false;
                             k60Var3.Y = true;
                             k60Var3.a0(0.0f, org.telegram.messenger.g0.L(-8.0f));
                             k60Var3.R = true;
-                            k60Var3.f35211p = new li.h(k60Var3, 7);
+                            k60Var3.f35175p = new li.h(k60Var3, 7);
                             final String[] strArr3 = {""};
                             final ArrayList arrayList3 = new ArrayList(d3Var3.h);
                             Collections.sort(arrayList3, new Comparator() {
@@ -2734,8 +2734,8 @@ public final class l3 extends na {
                                     switch (r2) {
                                         case 0:
                                             k3 k3Var3 = k3Var2;
-                                            Integer num = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
-                                            Integer num2 = (Integer) k3Var3.f60300c.f60159n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
+                                            Integer num = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj).backdrop_id));
+                                            Integer num2 = (Integer) k3Var3.f60325c.f60184n.get(Integer.valueOf(((TL_stars.starGiftAttributeBackdrop) obj2).backdrop_id));
                                             if (num == null) {
                                                 return 1;
                                             }
@@ -2745,8 +2745,8 @@ public final class l3 extends na {
                                             return num2.intValue() - num.intValue();
                                         case 1:
                                             k3 k3Var4 = k3Var2;
-                                            Integer num3 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
-                                            Integer num4 = (Integer) k3Var4.f60300c.f60160o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
+                                            Integer num3 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj).document.f26958id));
+                                            Integer num4 = (Integer) k3Var4.f60325c.f60185o.get(Long.valueOf(((TL_stars.starGiftAttributePattern) obj2).document.f26958id));
                                             if (num3 == null) {
                                                 return 1;
                                             }
@@ -2756,8 +2756,8 @@ public final class l3 extends na {
                                             return num4.intValue() - num3.intValue();
                                         default:
                                             k3 k3Var5 = k3Var2;
-                                            Integer num5 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
-                                            Integer num6 = (Integer) k3Var5.f60300c.f60158m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
+                                            Integer num5 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj).document.f26958id));
+                                            Integer num6 = (Integer) k3Var5.f60325c.f60183m.get(Long.valueOf(((TL_stars.starGiftAttributeModel) obj2).document.f26958id));
                                             if (num5 == null) {
                                                 return 1;
                                             }
@@ -2783,31 +2783,31 @@ public final class l3 extends na {
                                     switch (i122) {
                                         case 0:
                                             ArrayList arrayList32 = (ArrayList) obj;
-                                            f41 f41Var = (f41) obj2;
+                                            k41 k41Var = (k41) obj2;
                                             String lowerCase = strArr22[0].toLowerCase();
                                             String O3 = org.telegram.messenger.g0.O3(lowerCase);
-                                            d3 d3Var22 = k3Var3.f60300c;
-                                            boolean isEmpty = d3Var22.f60155j.isEmpty();
+                                            d3 d3Var22 = k3Var3.f60325c;
+                                            boolean isEmpty = d3Var22.f60180j.isEmpty();
                                             int size = arrayList22.size();
                                             int i13 = 0;
                                             while (i13 < size) {
                                                 Object obj3 = arrayList22.get(i13);
                                                 i13++;
                                                 TL_stars.starGiftAttributeModel stargiftattributemodel = (TL_stars.starGiftAttributeModel) obj3;
-                                                boolean contains = d3Var22.f60155j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                boolean contains = d3Var22.f60180j.contains(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                 boolean z10 = !contains;
                                                 if (TextUtils.isEmpty(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(lowerCase) || stargiftattributemodel.name.toLowerCase().startsWith(O3) || jg.g.A(" ", lowerCase, stargiftattributemodel.name.toLowerCase()) || stargiftattributemodel.name.toLowerCase().contains(" ".concat(O3))) {
-                                                    Integer num = (Integer) d3Var22.f60158m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
+                                                    Integer num = (Integer) d3Var22.f60183m.get(Long.valueOf(stargiftattributemodel.document.f26958id));
                                                     if (num == null) {
                                                         intValue = 0;
                                                     } else {
                                                         intValue = num.intValue();
                                                     }
-                                                    int i14 = x2.f60469b;
-                                                    r31 K = r31.K(x2.class);
+                                                    int i14 = x2.f60494b;
+                                                    w31 K = w31.K(x2.class);
                                                     K.G = stargiftattributemodel;
-                                                    K.f37598l = lowerCase;
-                                                    K.f37611z = intValue;
+                                                    K.f39830l = lowerCase;
+                                                    K.f39843z = intValue;
                                                     if (!TextUtils.isEmpty(lowerCase)) {
                                                         if (!isEmpty && !contains) {
                                                             z10 = true;
@@ -2826,31 +2826,31 @@ public final class l3 extends na {
                                             return;
                                         case 1:
                                             ArrayList arrayList4 = (ArrayList) obj;
-                                            f41 f41Var2 = (f41) obj2;
+                                            k41 k41Var2 = (k41) obj2;
                                             String lowerCase2 = strArr22[0].toLowerCase();
                                             String O32 = org.telegram.messenger.g0.O3(lowerCase2);
-                                            d3 d3Var32 = k3Var3.f60300c;
-                                            boolean isEmpty2 = d3Var32.f60156k.isEmpty();
+                                            d3 d3Var32 = k3Var3.f60325c;
+                                            boolean isEmpty2 = d3Var32.f60181k.isEmpty();
                                             int size2 = arrayList22.size();
                                             int i15 = 0;
                                             while (i15 < size2) {
                                                 Object obj4 = arrayList22.get(i15);
                                                 i15++;
                                                 TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) obj4;
-                                                boolean contains2 = d3Var32.f60156k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                boolean contains2 = d3Var32.f60181k.contains(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                 boolean z11 = !contains2;
                                                 if (TextUtils.isEmpty(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(lowerCase2) || stargiftattributebackdrop.name.toLowerCase().startsWith(O32) || jg.g.A(" ", lowerCase2, stargiftattributebackdrop.name.toLowerCase()) || stargiftattributebackdrop.name.toLowerCase().contains(" ".concat(O32))) {
-                                                    Integer num2 = (Integer) d3Var32.f60159n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
+                                                    Integer num2 = (Integer) d3Var32.f60184n.get(Integer.valueOf(stargiftattributebackdrop.backdrop_id));
                                                     if (num2 == null) {
                                                         intValue2 = 0;
                                                     } else {
                                                         intValue2 = num2.intValue();
                                                     }
-                                                    int i16 = r2.f60405b;
-                                                    r31 K2 = r31.K(r2.class);
+                                                    int i16 = r2.f60430b;
+                                                    w31 K2 = w31.K(r2.class);
                                                     K2.G = stargiftattributebackdrop;
-                                                    K2.f37598l = lowerCase2;
-                                                    K2.f37611z = intValue2;
+                                                    K2.f39830l = lowerCase2;
+                                                    K2.f39843z = intValue2;
                                                     if (!TextUtils.isEmpty(lowerCase2)) {
                                                         if (!isEmpty2 && !contains2) {
                                                             z11 = true;
@@ -2869,11 +2869,11 @@ public final class l3 extends na {
                                             return;
                                         default:
                                             ArrayList arrayList5 = (ArrayList) obj;
-                                            f41 f41Var3 = (f41) obj2;
+                                            k41 k41Var3 = (k41) obj2;
                                             String lowerCase3 = strArr22[0].toLowerCase();
                                             String O33 = org.telegram.messenger.g0.O3(lowerCase3);
-                                            d3 d3Var4 = k3Var3.f60300c;
-                                            boolean isEmpty3 = d3Var4.f60157l.isEmpty();
+                                            d3 d3Var4 = k3Var3.f60325c;
+                                            boolean isEmpty3 = d3Var4.f60182l.isEmpty();
                                             int size3 = arrayList22.size();
                                             int i17 = 0;
                                             while (i17 < size3) {
@@ -2881,20 +2881,20 @@ public final class l3 extends na {
                                                 i17++;
                                                 TL_stars.starGiftAttributePattern stargiftattributepattern = (TL_stars.starGiftAttributePattern) obj5;
                                                 boolean z12 = z9;
-                                                boolean contains3 = d3Var4.f60157l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                boolean contains3 = d3Var4.f60182l.contains(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                 boolean z13 = !contains3;
                                                 if (TextUtils.isEmpty(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(lowerCase3) || stargiftattributepattern.name.toLowerCase().startsWith(O33) || jg.g.A(" ", lowerCase3, stargiftattributepattern.name.toLowerCase()) || stargiftattributepattern.name.toLowerCase().contains(" ".concat(O33))) {
-                                                    Integer num3 = (Integer) d3Var4.f60160o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
+                                                    Integer num3 = (Integer) d3Var4.f60185o.get(Long.valueOf(stargiftattributepattern.document.f26958id));
                                                     if (num3 == null) {
                                                         i112 = z12;
                                                     } else {
                                                         i112 = num3.intValue();
                                                     }
-                                                    int i18 = a3.f60092b;
-                                                    r31 K3 = r31.K(a3.class);
+                                                    int i18 = a3.f60117b;
+                                                    w31 K3 = w31.K(a3.class);
                                                     K3.G = stargiftattributepattern;
-                                                    K3.f37598l = lowerCase3;
-                                                    K3.f37611z = i112;
+                                                    K3.f39830l = lowerCase3;
+                                                    K3.f39843z = i112;
                                                     if (!TextUtils.isEmpty(lowerCase3)) {
                                                         if (!isEmpty3 && !contains3) {
                                                             z13 = true;
@@ -2918,19 +2918,19 @@ public final class l3 extends na {
                             a20 a20Var3 = new a20() {
                                 @Override
                                 public final void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-                                    r31 r31Var = (r31) obj;
+                                    w31 w31Var = (w31) obj;
                                     View view2 = (View) obj2;
                                     Integer num = (Integer) number;
                                     Float f10 = (Float) serializable;
                                     Float f11 = (Float) serializable2;
                                     switch (r3) {
                                         case 0:
-                                            long j3 = ((TL_stars.starGiftAttributeModel) r31Var.G).document.f26958id;
-                                            d3 d3Var22 = k3Var2.f60300c;
-                                            HashSet hashSet = d3Var22.f60155j;
+                                            long j3 = ((TL_stars.starGiftAttributeModel) w31Var.G).document.f26958id;
+                                            d3 d3Var22 = k3Var2.f60325c;
+                                            HashSet hashSet = d3Var22.f60180j;
                                             if (!hashSet.contains(Long.valueOf(j3))) {
                                                 if (hashSet.isEmpty()) {
-                                                    ArrayList arrayList22 = d3Var22.f60152f;
+                                                    ArrayList arrayList22 = d3Var22.f60177f;
                                                     int size = arrayList22.size();
                                                     int i112 = 0;
                                                     while (i112 < size) {
@@ -2951,12 +2951,12 @@ public final class l3 extends na {
                                             k60Var3.u();
                                             return;
                                         case 1:
-                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) r31Var.G).backdrop_id;
-                                            d3 d3Var32 = k3Var2.f60300c;
-                                            HashSet hashSet2 = d3Var32.f60156k;
+                                            int i122 = ((TL_stars.starGiftAttributeBackdrop) w31Var.G).backdrop_id;
+                                            d3 d3Var32 = k3Var2.f60325c;
+                                            HashSet hashSet2 = d3Var32.f60181k;
                                             if (!hashSet2.contains(Integer.valueOf(i122))) {
                                                 if (hashSet2.isEmpty()) {
-                                                    ArrayList arrayList32 = d3Var32.f60153g;
+                                                    ArrayList arrayList32 = d3Var32.f60178g;
                                                     int size2 = arrayList32.size();
                                                     int i13 = 0;
                                                     while (i13 < size2) {
@@ -2977,9 +2977,9 @@ public final class l3 extends na {
                                             k60Var3.u();
                                             return;
                                         default:
-                                            long j11 = ((TL_stars.starGiftAttributePattern) r31Var.G).document.f26958id;
-                                            d3 d3Var4 = k3Var2.f60300c;
-                                            HashSet hashSet3 = d3Var4.f60157l;
+                                            long j11 = ((TL_stars.starGiftAttributePattern) w31Var.G).document.f26958id;
+                                            d3 d3Var4 = k3Var2.f60325c;
+                                            HashSet hashSet3 = d3Var4.f60182l;
                                             if (!hashSet3.contains(Long.valueOf(j11))) {
                                                 if (hashSet3.isEmpty()) {
                                                     ArrayList arrayList4 = d3Var4.h;
@@ -3008,7 +3008,7 @@ public final class l3 extends na {
                             f6 f6Var3 = l3Var.I0;
                             Context context4 = context;
                             kx kxVar3 = new kx(context4, i12, 0, false, v10Var3, a20Var3, null, f6Var3, 8);
-                            kxVar3.f35167f3.f33473r = false;
+                            kxVar3.f36781f3.f35132r = false;
                             FrameLayout frameLayout3 = new FrameLayout(context4);
                             ImageView imageView3 = new ImageView(context4);
                             imageView3.setScaleType(ImageView.ScaleType.CENTER);
@@ -3032,7 +3032,7 @@ public final class l3 extends na {
                                 k60Var3.r(frameLayout3, ha.o(-1, 44));
                                 k60Var3.k();
                             }
-                            if (!d3Var3.f60157l.isEmpty()) {
+                            if (!d3Var3.f60182l.isEmpty()) {
                                 k60Var3.c(2131232357, hd.M0(2131745671, null), new g3(k3Var2, 2), false);
                             }
                             k60Var3.q(kxVar3);
@@ -3046,17 +3046,17 @@ public final class l3 extends na {
         getContext();
         v4.s sVar = new v4.s(3);
         sVar.O = new ai.l(this, 17);
-        this.f36328k1.setLayoutManager(sVar);
-        this.f36328k1.setOnItemClickListener(new c2(this, k3Var));
-        this.f36328k1.setPadding(org.telegram.messenger.g0.L(8.0f) + this.f28645t0, 0, org.telegram.messenger.g0.L(8.0f) + this.f28645t0, 0);
-        this.f36328k1.setOnScrollListener(new yh.f(this, 2));
+        this.f36222k1.setLayoutManager(sVar);
+        this.f36222k1.setOnItemClickListener(new c2(this, k3Var));
+        this.f36222k1.setPadding(org.telegram.messenger.g0.L(8.0f) + this.f28645t0, 0, org.telegram.messenger.g0.L(8.0f) + this.f28645t0, 0);
+        this.f36222k1.setOnScrollListener(new yh.f(this, 2));
         v4.k kVar = new v4.k();
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        this.f36328k1.setItemAnimator(kVar);
-        this.f36328k1.setItemSelectorColorProvider(new h(3));
+        this.f36222k1.setItemAnimator(kVar);
+        this.f36222k1.setItemSelectorColorProvider(new h(3));
         j5 j5Var = new j5(context);
         this.W1 = j5Var;
         int L = org.telegram.messenger.g0.L(20.0f);
@@ -3068,14 +3068,14 @@ public final class l3 extends na {
         org.telegram.messenger.g0.m2(new ai.i(j5Var, 6), 12.0f, 12, new ArrayList());
         j5Var.setPivotY(0.0f);
         this.f28618c.addView(j5Var, ha.e(-1, -2, 55));
-        this.f60315a2.O(false);
+        this.f60340a2.O(false);
         k3Var.d = new h3(this, 1);
     }
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
         hc hcVar = new hc(this, pj0Var, getContext(), this.f28612a, new q0(this, 3), this.I0, 5);
-        this.f60315a2 = hcVar;
+        this.f60340a2 = hcVar;
         return hcVar;
     }
 
@@ -3106,17 +3106,17 @@ public final class l3 extends na {
 
     public final void d1() {
         int R;
-        r31 G;
+        w31 G;
         int i7 = 0;
         boolean z9 = false;
         boolean z10 = false;
         while (true) {
-            pj0 pj0Var = this.f36328k1;
+            pj0 pj0Var = this.f36222k1;
             if (i7 >= pj0Var.getChildCount()) {
                 break;
             }
             View childAt = pj0Var.getChildAt(i7);
-            if ((childAt instanceof lz) && (R = RecyclerView.R(childAt) - 1) >= 0 && (G = this.f60315a2.G(R)) != null) {
+            if ((childAt instanceof lz) && (R = RecyclerView.R(childAt) - 1) >= 0 && (G = this.f60340a2.G(R)) != null) {
                 if (G.d < 10) {
                     z9 = true;
                 } else {
@@ -3127,10 +3127,10 @@ public final class l3 extends na {
         }
         k3 k3Var = this.Q1;
         if (z9) {
-            k3Var.f60299b.a();
+            k3Var.f60324b.a();
         }
         if (z10) {
-            k3Var.f60300c.g(false);
+            k3Var.f60325c.g(false);
         }
     }
 }

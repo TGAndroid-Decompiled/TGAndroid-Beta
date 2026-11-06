@@ -22,7 +22,7 @@ public final class y9 extends q1 {
         this.f30937od = z9Var;
         this.f30936nd = i10;
         this.f30933kd = new GestureDetector(context2, new x9(0, this));
-        xq xqVar = xq.f40311g;
+        xq xqVar = xq.f40330g;
         this.f30934ld = new org.telegram.ui.Components.z4(this, 180L, xqVar, 0);
         this.f30935md = new org.telegram.ui.Components.z4(this, 180L, xqVar, 0);
     }

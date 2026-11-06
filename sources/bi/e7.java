@@ -444,15 +444,15 @@ public class e7 extends FrameLayout {
         zh.a1 a1Var = new zh.a1(context);
         this.f3782n = a1Var;
         a1Var.b(org.telegram.messenger.hd.M0(2131749752, null), true);
-        zh.c1 c1Var = a1Var.f60079a;
-        if (c1Var.f60125w == null) {
+        zh.c1 c1Var = a1Var.f60104a;
+        if (c1Var.f60150w == null) {
             ud udVar = new ud(2, 12);
-            c1Var.f60125w = udVar;
+            c1Var.f60150w = udVar;
             udVar.h = 5.0f;
         }
-        Path path = c1Var.f60121f;
-        float f16 = c1Var.f60124s;
-        c1Var.f60126x = true;
+        Path path = c1Var.f60146f;
+        float f16 = c1Var.f60149s;
+        c1Var.f60151x = true;
         zh.c1.d(path, f16, true);
         a1Var.setScaleX(1.2f);
         a1Var.setScaleY(1.2f);
@@ -471,7 +471,7 @@ public class e7 extends FrameLayout {
         ofFloat.addUpdateListener(new a7(this, 1));
         this.f3797x0.addListener(new c7(this, 4));
         this.f3797x0.setDuration(320L);
-        this.f3797x0.setInterpolator(xq.f40311g);
+        this.f3797x0.setInterpolator(xq.f40330g);
         this.f3797x0.start();
     }
 
@@ -1139,7 +1139,7 @@ public class e7 extends FrameLayout {
                 x5VarArr[2].setOnClickListener(this.U);
             }
             this.f3775f0 = starGift.crafted;
-            this.f3782n.f60079a.e(stargiftattributebackdropArr[0], false, true);
+            this.f3782n.f60104a.e(stargiftattributebackdropArr[0], false, true);
         } else {
             stargiftattributebackdropArr[0] = null;
             w70VarArr[0].setTextSize(1, 14.0f);

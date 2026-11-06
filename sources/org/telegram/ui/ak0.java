@@ -6,14 +6,14 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 public final class ak0 extends FrameLayout {
-    public TextView f43667a;
-    public TextView f43668b;
-    public ImageView f43669c;
+    public TextView f43692a;
+    public TextView f43693b;
+    public ImageView f43694c;
     public boolean d;
 
     public final void a(String str, boolean z9) {
-        this.f43667a.setText(str);
-        this.f43668b.setText("");
+        this.f43692a.setText(str);
+        this.f43693b.setText("");
         this.d = z9;
         setWillNotDraw(!z9);
     }
@@ -47,7 +47,7 @@ public final class ak0 extends FrameLayout {
 
     public void setChecked(boolean z9) {
         int i7;
-        ImageView imageView = this.f43669c;
+        ImageView imageView = this.f43694c;
         if (z9) {
             i7 = 0;
         } else {
@@ -63,6 +63,6 @@ public final class ak0 extends FrameLayout {
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f43668b.setText(charSequence);
+        this.f43693b.setText(charSequence);
     }
 }

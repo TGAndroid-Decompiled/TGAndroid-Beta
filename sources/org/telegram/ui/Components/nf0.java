@@ -53,13 +53,13 @@ public final class nf0 extends l9 implements ot0 {
         sf0 sf0Var = this.P;
         float[] fArr = sf0Var.O0;
         Path path = sf0Var.M0;
-        ArrayList arrayList = sf0Var.f38069b1;
+        ArrayList arrayList = sf0Var.f38029b1;
         RectF rectF = sf0Var.N0;
-        org.telegram.ui.er0 er0Var = sf0Var.f38075h1;
-        if (er0Var == null || !er0Var.f45389n) {
+        org.telegram.ui.fr0 fr0Var = sf0Var.f38035h1;
+        if (fr0Var == null || !fr0Var.f45711n) {
             if (this.H != null) {
                 int k10 = sf0Var.D0.k(this.M);
-                if (sf0Var.f38076i1) {
+                if (sf0Var.f38036i1) {
                     k10--;
                 }
                 Drawable t6 = getImageReceiver().t();
@@ -72,7 +72,7 @@ public final class nf0 extends l9 implements ot0 {
                         } else {
                             p80Var = radialProgress2.f31477i;
                         }
-                        if (p80Var.f36940w < 1.0f) {
+                        if (p80Var.f36819w < 1.0f) {
                             radialProgress2.p(true, 1.0f);
                             j10 = 100;
                         }
@@ -81,7 +81,7 @@ public final class nf0 extends l9 implements ot0 {
                         this.I = ofFloat;
                         ofFloat.setStartDelay(j10);
                         this.I.setDuration(this.J * 250.0f);
-                        this.I.setInterpolator(xq.f40310f);
+                        this.I.setInterpolator(xq.f40329f);
                         this.I.addUpdateListener(new c60(this, 3));
                         this.I.addListener(new hi.m2(this, k10, 11));
                         this.I.start();
@@ -97,17 +97,17 @@ public final class nf0 extends l9 implements ot0 {
                             j3 = 750;
                         }
                         if (currentTimeMillis <= 250 + j3 && currentTimeMillis > j3) {
-                            this.H.E = xq.f40310f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
+                            this.H.E = xq.f40329f.getInterpolation(((float) (currentTimeMillis - j3)) / 250.0f);
                         }
                     }
-                    if (sf0Var.f38074g1) {
+                    if (sf0Var.f38034g1) {
                         invalidate();
                     } else {
                         postInvalidateOnAnimation();
                     }
                     invalidate();
                 }
-                int i7 = sf0Var.f38079m1;
+                int i7 = sf0Var.f38039m1;
                 if (i7 == 0 && sf0Var.n1 == 0) {
                     canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.N);
                     canvas2 = canvas;
@@ -117,13 +117,13 @@ public final class nf0 extends l9 implements ot0 {
                     Paint paint = this.N;
                     if (i7 == i10) {
                         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-                        float f10 = sf0Var.f38079m1;
+                        float f10 = sf0Var.f38039m1;
                         canvas2.drawRoundRect(rectF, f10, f10, paint);
                     } else {
                         path.reset();
                         rectF.set(0.0f, 0.0f, getWidth(), getHeight());
                         for (int i11 = 0; i11 < 4; i11++) {
-                            fArr[i11] = sf0Var.f38079m1;
+                            fArr[i11] = sf0Var.f38039m1;
                             fArr[i11 + 4] = sf0Var.n1;
                         }
                         path.addRoundRect(rectF, fArr, Path.Direction.CW);
@@ -146,7 +146,7 @@ public final class nf0 extends l9 implements ot0 {
         int i13;
         super.onSizeChanged(i7, i10, i11, i12);
         if (this.H != null) {
-            if (this.P.f38086z0.getOccupyStatusBar()) {
+            if (this.P.f38046z0.getOccupyStatusBar()) {
                 i13 = org.telegram.messenger.g0.f22531m;
             } else {
                 i13 = 0;
@@ -173,7 +173,7 @@ public final class nf0 extends l9 implements ot0 {
     public final void invalidate() {
         super.invalidate();
         sf0 sf0Var = this.P;
-        if (sf0Var.f38074g1) {
+        if (sf0Var.f38034g1) {
             sf0Var.invalidate();
         }
         Runnable runnable = this.O;

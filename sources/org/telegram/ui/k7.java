@@ -6,28 +6,28 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class k7 extends FrameLayout {
-    public final org.telegram.ui.Components.wo f47108a;
-    public final FrameLayout f47109b;
-    public final TextView f47110c;
+    public final org.telegram.ui.Components.wo f47131a;
+    public final FrameLayout f47132b;
+    public final TextView f47133c;
     public boolean d;
-    public int f47111e;
-    public final int f47112f;
+    public int f47134e;
+    public final int f47135f;
     public final g7 h;
 
     public k7(g7 g7Var, Context context, int i7) {
         super(context);
-        this.f47112f = i7;
+        this.f47135f = i7;
         this.h = g7Var;
         org.telegram.ui.Components.wo woVar = new org.telegram.ui.Components.wo(21, context, null);
-        this.f47108a = woVar;
+        this.f47131a = woVar;
         woVar.setDrawBackgroundAsArc(14);
         woVar.b(org.telegram.ui.ActionBar.k6.i7, org.telegram.ui.ActionBar.k6.f27904g7, org.telegram.ui.ActionBar.k6.f27978k7);
         View view = new View(getContext());
         view.setOnClickListener(new a(this, 7));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f47109b = frameLayout;
+        this.f47132b = frameLayout;
         TextView textView = new TextView(context);
-        this.f47110c = textView;
+        this.f47133c = textView;
         textView.setTextSize(1, 16.0f);
         textView.setGravity(5);
         org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f28030n6, null);

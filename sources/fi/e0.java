@@ -264,11 +264,11 @@ public abstract class e0 extends FrameLayout implements j60 {
         org.telegram.ui.Components.w5[] w5VarArr = this.J;
         float f19 = 0.0f;
         if (!j3 && !this.f11832f0 && !this.f11830e0) {
-            float f20 = w5Var.f39849c;
+            float f20 = w5Var.f39857c;
             t tVar = this.f11831f;
-            if (f20 == tVar.f12827c && w5VarArr[0].f39849c == tVar.d[0]) {
+            if (f20 == tVar.f12827c && w5VarArr[0].f39857c == tVar.d[0]) {
                 b6 b6Var = this.f11826c;
-                if (!b6Var.f11682b && b6Var.d.f39849c <= 0.0f) {
+                if (!b6Var.f11682b && b6Var.d.f39857c <= 0.0f) {
                     setCameraNeedsBlur(false);
                     i(canvas);
                     return;

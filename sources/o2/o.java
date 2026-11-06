@@ -52,11 +52,11 @@ public final class o implements j0 {
                 q0 a10 = this.f20782e.f20785c.a(aVar);
                 if (a10 != null) {
                     q3.a aVar2 = (q3.a) a10.f10484a[0];
-                    String str = aVar2.f53642a;
-                    String str2 = aVar2.f53643b;
+                    String str = aVar2.f53667a;
+                    String str2 = aVar2.f53668b;
                     if ("urn:mpeg:dash:event:2012".equals(str) && ("1".equals(str2) || "2".equals(str2) || "3".equals(str2))) {
                         try {
-                            j11 = m0.V(m0.r(aVar2.f53645e));
+                            j11 = m0.V(m0.r(aVar2.f53670e));
                         } catch (t0 unused) {
                             j11 = -9223372036854775807L;
                         }
@@ -70,9 +70,9 @@ public final class o implements j0 {
             }
         }
         b1 b1Var = this.f20779a;
-        om0 om0Var = b1Var.f58160a;
+        om0 om0Var = b1Var.f58185a;
         synchronized (b1Var) {
-            int i12 = b1Var.f58176s;
+            int i12 = b1Var.f58201s;
             if (i12 == 0) {
                 j10 = -1;
             } else {

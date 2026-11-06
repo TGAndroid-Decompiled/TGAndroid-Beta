@@ -49,7 +49,7 @@ public final class t implements f0, dj0 {
         if (hwVar != null) {
             Long l10 = (Long) view.getTag();
             long longValue = l10.longValue();
-            ww wwVar = hwVar.f46495a;
+            ww wwVar = hwVar.f46504a;
             if (wwVar.getParentActivity() != null && (a22 = wwVar.getMessagesController().a2(l10)) != null) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(wwVar.getParentActivity());
                 String M0 = hd.M0(2131752234, null);

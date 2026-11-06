@@ -12,7 +12,7 @@ import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.r8;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
 public final class e1 extends f2 {
     public final CharSequence f17355a;
@@ -22,7 +22,7 @@ public final class e1 extends f2 {
     public final int f17358e;
     public h9 f17359f;
     public ha.b h;
-    public k41 f17360n;
+    public p41 f17360n;
     public boolean f17361r;
 
     public e1(CharSequence charSequence, ArrayList arrayList, int i7, int i10, int i11) {
@@ -61,9 +61,9 @@ public final class e1 extends f2 {
         this.simpleActionBar.setTitle(this.f17355a);
         this.simpleActionBar.setActionBarMenuOnItemClick(new bi.s(this, 17));
         FrameLayout frameLayout = new FrameLayout(context);
-        k41 k41Var = new k41(this, new hi.u1(this, 12), new q4(this, 25), null);
-        this.f17360n = k41Var;
-        k41Var.r1();
+        p41 p41Var = new p41(this, new hi.u1(this, 12), new q4(this, 25), null);
+        this.f17360n = p41Var;
+        p41Var.r1();
         this.f17360n.setSectionsDrawBackground(true);
         frameLayout.addView(this.f17360n, ha.c(-1.0f, -1));
         this.fragmentView = frameLayout;

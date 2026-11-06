@@ -143,7 +143,7 @@ public abstract class r7 {
             wpVar.H = 0.8f;
             wpVar.I = 0.8f;
         } else {
-            wpVar.f40054n = -1;
+            wpVar.f40061n = -1;
         }
         spannableStringBuilder.setSpan(wpVar, 0, 1, 0);
         return spannableStringBuilder;
@@ -422,15 +422,15 @@ public abstract class r7 {
         if (f9705b == null) {
             e10 e10Var = new e10();
             f9705b = e10Var;
-            e10Var.f33084a = true;
-            e10Var.f33085b = true;
+            e10Var.f33097a = true;
+            e10Var.f33098b = true;
             e10Var.d(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Zk, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.al, false), 0, 0);
-            f9705b.f33086c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
-            f9705b.f33086c.setStyle(Paint.Style.STROKE);
-            f9705b.f33086c.setStrokeCap(Paint.Cap.ROUND);
+            f9705b.f33099c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
+            f9705b.f33099c.setStyle(Paint.Style.STROKE);
+            f9705b.f33099c.setStrokeCap(Paint.Cap.ROUND);
         }
         f9705b.b(imageReceiver.K0, imageReceiver.L0, imageReceiver.y(), imageReceiver.A());
-        return f9705b.f33086c;
+        return f9705b.f33099c;
     }
 
     public static Drawable p() {
@@ -453,15 +453,15 @@ public abstract class r7 {
         if (f9706c == null) {
             e10 e10Var = new e10();
             f9706c = e10Var;
-            e10Var.f33084a = true;
-            e10Var.f33085b = true;
+            e10Var.f33097a = true;
+            e10Var.f33098b = true;
             e10Var.d(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.bl, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.cl, false), 0, 0);
-            f9706c.f33086c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
-            f9706c.f33086c.setStyle(Paint.Style.STROKE);
-            f9706c.f33086c.setStrokeCap(Paint.Cap.ROUND);
+            f9706c.f33099c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
+            f9706c.f33099c.setStyle(Paint.Style.STROKE);
+            f9706c.f33099c.setStrokeCap(Paint.Cap.ROUND);
         }
         f9706c.b(imageReceiver.K0, imageReceiver.L0, imageReceiver.y(), imageReceiver.A());
-        return f9706c.f33086c;
+        return f9706c.f33099c;
     }
 
     public static int r(y6 y6Var, long j3) {
@@ -511,19 +511,19 @@ public abstract class r7 {
         if (e10VarArr[z9 ? 1 : 0] == null) {
             e10 e10Var = new e10();
             e10VarArr[z9 ? 1 : 0] = e10Var;
-            e10Var.f33084a = true;
-            e10Var.f33085b = true;
+            e10Var.f33097a = true;
+            e10Var.f33098b = true;
             if (z9) {
                 e10Var.d(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Xk, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Yk, false), 0, 0);
             } else {
                 e10Var.d(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Vk, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Wk, false), 0, 0);
             }
-            e10VarArr[z9 ? 1 : 0].f33086c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
-            e10VarArr[z9 ? 1 : 0].f33086c.setStyle(Paint.Style.STROKE);
-            e10VarArr[z9 ? 1 : 0].f33086c.setStrokeCap(Paint.Cap.ROUND);
+            e10VarArr[z9 ? 1 : 0].f33099c.setStrokeWidth(org.telegram.messenger.g0.N(2.0f));
+            e10VarArr[z9 ? 1 : 0].f33099c.setStyle(Paint.Style.STROKE);
+            e10VarArr[z9 ? 1 : 0].f33099c.setStrokeCap(Paint.Cap.ROUND);
         }
         e10VarArr[z9 ? 1 : 0].b(imageReceiver.K0, imageReceiver.L0, imageReceiver.y(), imageReceiver.A());
-        return e10VarArr[z9 ? 1 : 0].f33086c;
+        return e10VarArr[z9 ? 1 : 0].f33099c;
     }
 
     public static CharSequence u(TextView textView, boolean z9) {

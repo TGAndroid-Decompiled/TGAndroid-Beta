@@ -159,7 +159,7 @@ public final class l extends AnimatorListenerAdapter {
                 boolean[] zArr2 = (boolean[]) obj;
                 if (!zArr2[0]) {
                     zArr2[0] = true;
-                    int i11 = ProfileStoriesView.f41951s0;
+                    int i11 = ProfileStoriesView.f41976s0;
                     if (iz.o() > 0) {
                         g0.c4(profileStoriesView);
                         g0.i3(new ab(profileStoriesView, 22), 180L);
@@ -319,13 +319,13 @@ public final class l extends AnimatorListenerAdapter {
                     if (viewGroup != null) {
                         viewGroup.removeView(view4);
                     }
-                    anVar.f43862n3 = null;
+                    anVar.f43887n3 = null;
                     anVar.Cb = null;
                     return;
                 }
                 return;
             case 17:
-                q1 q1Var = ((hl) obj2).f46383b;
+                q1 q1Var = ((hl) obj2).f46403b;
                 q1Var.setAlpha(1.0f);
                 q1Var.getTransitionParams().f30862y0 = false;
                 q0 q0Var = new q0("alpha", 2);
@@ -394,16 +394,16 @@ public final class l extends AnimatorListenerAdapter {
             case 25:
                 di diVar = (di) obj2;
                 AnimatorSet animatorSet3 = diVar.f28654z0;
-                if (animatorSet3 != null && animatorSet3.equals(animator) && (gVar = diVar.f32911j4) != null && !gVar.f54144f) {
+                if (animatorSet3 != null && animatorSet3.equals(animator) && (gVar = diVar.f32924j4) != null && !gVar.f54169f) {
                     ((ng) obj).run();
                     return;
                 }
                 return;
             case 26:
                 st stVar = (st) obj2;
-                if (stVar.f38154a.l1.getVisibility() == 0) {
-                    stVar.f38154a.l1.setAlpha(1.0f);
-                    stVar.f38154a.l1.setVisibility(4);
+                if (stVar.f38114a.l1.getVisibility() == 0) {
+                    stVar.f38114a.l1.setAlpha(1.0f);
+                    stVar.f38114a.l1.setVisibility(4);
                 }
                 ((Runnable) obj).run();
                 return;
@@ -413,11 +413,11 @@ public final class l extends AnimatorListenerAdapter {
                 if (animator.equals(gyVar.M0)) {
                     pj0Var.setTranslationY(0.0f);
                     if (pj0Var == gyVar.D0) {
-                        pj0Var.setPadding(0, 0, 0, gyVar.f34118q2);
+                        pj0Var.setPadding(0, 0, 0, gyVar.f34066q2);
                     } else if (pj0Var == gyVar.P) {
-                        pj0Var.setPadding(g0.L(5.0f), 0, g0.L(5.0f), gyVar.f34118q2);
-                    } else if (pj0Var == gyVar.f34091h0) {
-                        pj0Var.setPadding(0, gyVar.f34072b1, 0, gyVar.f34118q2);
+                        pj0Var.setPadding(g0.L(5.0f), 0, g0.L(5.0f), gyVar.f34066q2);
+                    } else if (pj0Var == gyVar.f34039h0) {
+                        pj0Var.setPadding(0, gyVar.f34020b1, 0, gyVar.f34066q2);
                     }
                     gyVar.M0 = null;
                     return;
@@ -426,9 +426,9 @@ public final class l extends AnimatorListenerAdapter {
             case 28:
                 u00 u00Var = (u00) obj2;
                 u00Var.removeView((c20) obj);
-                u00Var.f38465e.clear();
-                u00Var.f38462a = null;
-                u00Var.f38463b = false;
+                u00Var.f38456e.clear();
+                u00Var.f38453a = null;
+                u00Var.f38454b = false;
                 return;
             default:
                 ArrayList arrayList = (ArrayList) obj;
@@ -436,9 +436,9 @@ public final class l extends AnimatorListenerAdapter {
                 for (int i12 = 0; i12 < arrayList.size(); i12++) {
                     u00Var2.removeView((View) arrayList.get(i12));
                 }
-                u00Var2.f38465e.clear();
-                u00Var2.f38462a = null;
-                u00Var2.f38463b = false;
+                u00Var2.f38456e.clear();
+                u00Var2.f38453a = null;
+                u00Var2.f38454b = false;
                 return;
         }
     }

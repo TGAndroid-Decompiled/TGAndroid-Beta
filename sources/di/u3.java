@@ -134,7 +134,7 @@ public final class u3 implements View.OnClickListener {
                 F.c(2131231842, hd.M0(2131749476, null), (jg.c1) obj, false);
                 F.Y = true;
                 F.a0(0.0f, -org.telegram.messenger.g0.L(6.0f));
-                F.f35216s = 0;
+                F.f35180s = 0;
                 F.Z();
                 return;
             case 6:
@@ -143,7 +143,7 @@ public final class u3 implements View.OnClickListener {
                 return;
             case 7:
                 bx0 bx0Var = (bx0) obj2;
-                gx0.Z(bx0Var.f44480a, bx0Var.f44481b, ((org.telegram.ui.Components.g4) obj4).getValue() + 1, (((org.telegram.ui.Components.h4) obj3).getValue() + 1) * 60);
+                gx0.Z(bx0Var.f44501a, bx0Var.f44502b, ((org.telegram.ui.Components.g4) obj4).getValue() + 1, (((org.telegram.ui.Components.h4) obj3).getValue() + 1) * 60);
                 ((org.telegram.ui.ActionBar.v2) ((h9.f1) obj).f14323b).f28651x0.run();
                 return;
             case 8:
@@ -198,7 +198,7 @@ public final class u3 implements View.OnClickListener {
                 Context context = (Context) obj3;
                 org.telegram.ui.ActionBar.z0 z0Var = (org.telegram.ui.ActionBar.z0) obj2;
                 org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = diVar.f32882a2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = diVar.f32895a2;
                 if (chatAttachAlertPhotoLayout != null) {
                     dd.j1(context, chatAttachAlertPhotoLayout.getStarsPrice(), true, new bi.p5(12, diVar, z0Var), f6Var);
                     return;
@@ -210,10 +210,10 @@ public final class u3 implements View.OnClickListener {
                 org.telegram.ui.ActionBar.v2 v2Var2 = (org.telegram.ui.ActionBar.v2) obj2;
                 org.telegram.ui.ActionBar.f2 f2Var = (org.telegram.ui.ActionBar.f2) obj;
                 float[] fArr = q70Var.I;
-                FrameLayout frameLayout2 = q70Var.f37298n;
-                if (q70Var.f37300s == null) {
+                FrameLayout frameLayout2 = q70Var.f37177n;
+                if (q70Var.f37179s == null) {
                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(context2, null);
-                    if (!q70Var.f37303y && q70Var.G) {
+                    if (!q70Var.f37182y && q70Var.G) {
                         org.telegram.ui.ActionBar.z0 z0Var2 = new org.telegram.ui.ActionBar.z0(context2, true, false);
                         z0Var2.j(hd.M0(2131751336, null), 2131232116, null);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.a(z0Var2, ha.o(-1, 48));
@@ -247,20 +247,20 @@ public final class u3 implements View.OnClickListener {
                         p5Var.animate().alpha(1.0f).setDuration(150L);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.measure(View.MeasureSpec.makeMeasureSpec(frameLayout.getMeasuredWidth(), 0), View.MeasureSpec.makeMeasureSpec(frameLayout.getMeasuredHeight(), 0));
                         org.telegram.ui.ActionBar.g1 g1Var = new org.telegram.ui.ActionBar.g1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
-                        q70Var.f37300s = g1Var;
+                        q70Var.f37179s = g1Var;
                         g1Var.setOnDismissListener(new m70(q70Var, p5Var, frameLayout, h1Var, 0));
-                        q70Var.f37300s.setOutsideTouchable(true);
-                        q70Var.f37300s.setFocusable(true);
-                        q70Var.f37300s.setBackgroundDrawable(new ColorDrawable(0));
-                        q70Var.f37300s.setAnimationStyle(2131755192);
-                        q70Var.f37300s.setInputMethodMode(2);
-                        q70Var.f37300s.setSoftInputMode(0);
+                        q70Var.f37179s.setOutsideTouchable(true);
+                        q70Var.f37179s.setFocusable(true);
+                        q70Var.f37179s.setBackgroundDrawable(new ColorDrawable(0));
+                        q70Var.f37179s.setAnimationStyle(2131755192);
+                        q70Var.f37179s.setInputMethodMode(2);
+                        q70Var.f37179s.setSoftInputMode(0);
                         actionBarPopupWindow$ActionBarPopupWindowLayout.setDispatchKeyEventListener(new i70(q70Var, 2));
                         if (org.telegram.messenger.g0.Q1()) {
                             f11 += frameLayout.getPaddingTop();
                             f10 = 0.0f - frameLayout.getPaddingLeft();
                         }
-                        q70Var.f37300s.showAtLocation(frameLayout, 0, (int) (frameLayout.getX() + ((frameLayout.getMeasuredWidth() - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) - org.telegram.messenger.g0.L(16.0f)) + f10), (int) (frameLayout.getY() + f11 + frameLayout2.getMeasuredHeight()));
+                        q70Var.f37179s.showAtLocation(frameLayout, 0, (int) (frameLayout.getX() + ((frameLayout.getMeasuredWidth() - actionBarPopupWindow$ActionBarPopupWindowLayout.getMeasuredWidth()) - org.telegram.messenger.g0.L(16.0f)) + f10), (int) (frameLayout.getY() + f11 + frameLayout2.getMeasuredHeight()));
                         return;
                     }
                     return;
@@ -268,7 +268,7 @@ public final class u3 implements View.OnClickListener {
                 return;
             case 14:
                 ld0 ld0Var = (ld0) obj4;
-                k60 H = k60.H(ld0Var.f47499w, ld0Var.f47491a);
+                k60 H = k60.H(ld0Var.f47526w, ld0Var.f47518a);
                 H.c(2131232182, hd.M0(2131745480, null), new kn0(ld0Var, (String) obj3, (String) obj2, (String) obj, 20), false);
                 H.V(5);
                 H.Z();
@@ -276,7 +276,7 @@ public final class u3 implements View.OnClickListener {
             case 15:
                 k60 G = k60.G(((sy0) obj4).f28618c, (org.telegram.ui.ActionBar.f6) obj2, (ImageView) obj, true);
                 G.V(5);
-                G.f35217t = false;
+                G.f35181t = false;
                 G.a0(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(-32.0f));
                 ((c20) obj3).a(G);
                 return;
@@ -289,7 +289,7 @@ public final class u3 implements View.OnClickListener {
                 int i17 = 0;
                 while (true) {
                     if (i17 < i16.size()) {
-                        if (((TL_stars.SavedStarGift) i16.get(i17)).gift.f27181id == e2Var.f60181i1) {
+                        if (((TL_stars.SavedStarGift) i16.get(i17)).gift.f27181id == e2Var.f60206i1) {
                             savedStarGift = (TL_stars.SavedStarGift) i16.get(i17);
                             i7 = i17;
                         } else {

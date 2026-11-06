@@ -66,52 +66,52 @@ public class RotateBox extends Box {
         Point2D.Float r02 = new Point2D.Float(0.0f, -box.depth);
         switch (i7) {
             case 0:
-                r02.f54466x = 0.0f;
-                r02.f54467y = -box.depth;
+                r02.f54491x = 0.0f;
+                r02.f54492y = -box.depth;
                 return r02;
             case 1:
-                r02.f54466x = box.width / 2.0f;
-                r02.f54467y = -box.depth;
+                r02.f54491x = box.width / 2.0f;
+                r02.f54492y = -box.depth;
                 return r02;
             case 2:
-                r02.f54466x = box.width;
-                r02.f54467y = -box.depth;
+                r02.f54491x = box.width;
+                r02.f54492y = -box.depth;
                 return r02;
             case 3:
-                r02.f54466x = 0.0f;
-                r02.f54467y = box.height;
+                r02.f54491x = 0.0f;
+                r02.f54492y = box.height;
                 return r02;
             case 4:
-                r02.f54466x = box.width / 2.0f;
-                r02.f54467y = box.height;
+                r02.f54491x = box.width / 2.0f;
+                r02.f54492y = box.height;
                 return r02;
             case 5:
-                r02.f54466x = box.width;
-                r02.f54467y = box.height;
+                r02.f54491x = box.width;
+                r02.f54492y = box.height;
                 return r02;
             case 6:
-                r02.f54466x = 0.0f;
-                r02.f54467y = 0.0f;
+                r02.f54491x = 0.0f;
+                r02.f54492y = 0.0f;
                 return r02;
             case 7:
-                r02.f54466x = box.width;
-                r02.f54467y = 0.0f;
+                r02.f54491x = box.width;
+                r02.f54492y = 0.0f;
                 return r02;
             case 8:
-                r02.f54466x = box.width / 2.0f;
-                r02.f54467y = 0.0f;
+                r02.f54491x = box.width / 2.0f;
+                r02.f54492y = 0.0f;
                 return r02;
             case 9:
-                r02.f54466x = 0.0f;
-                r02.f54467y = (box.height - box.depth) / 2.0f;
+                r02.f54491x = 0.0f;
+                r02.f54492y = (box.height - box.depth) / 2.0f;
                 return r02;
             case 10:
-                r02.f54466x = box.width / 2.0f;
-                r02.f54467y = (box.height - box.depth) / 2.0f;
+                r02.f54491x = box.width / 2.0f;
+                r02.f54492y = (box.height - box.depth) / 2.0f;
                 return r02;
             case 11:
-                r02.f54466x = box.width;
-                r02.f54467y = (box.height - box.depth) / 2.0f;
+                r02.f54491x = box.width;
+                r02.f54492y = (box.height - box.depth) / 2.0f;
                 return r02;
             default:
                 return r02;
@@ -184,7 +184,7 @@ public class RotateBox extends Box {
     }
 
     public RotateBox(Box box, double d, Point2D.Float r10) {
-        this(box, d, r10.f54466x, r10.f54467y);
+        this(box, d, r10.f54491x, r10.f54492y);
     }
 
     public RotateBox(Box box, double d, int i7) {

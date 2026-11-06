@@ -36,7 +36,7 @@ public final class m implements bi {
     @Override
     public final void o1(int i7, boolean z9, boolean z10, int i10, int i11, long j3, boolean z11, boolean z12, long j10) {
         di diVar = this.f18690a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = diVar.f32882a2;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = diVar.f32895a2;
         t3 t3Var = this.f18691b.f18757r;
         if (i7 == 7 || i7 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();

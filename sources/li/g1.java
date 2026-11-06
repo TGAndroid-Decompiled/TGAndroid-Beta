@@ -21,10 +21,10 @@ import org.telegram.messenger.p10;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.Components.c41;
 import org.telegram.ui.Components.r70;
 import org.telegram.ui.Components.uy0;
 import org.telegram.ui.Components.ws;
-import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.ys;
 public final class g1 extends ys implements org.telegram.ui.ActionBar.a6 {
     public final d1 A2;
@@ -115,7 +115,7 @@ public final class g1 extends ys implements org.telegram.ui.ActionBar.a6 {
     }
 
     @Override
-    public final x31 A(String str) {
+    public final c41 A(String str) {
         return c6.k(str);
     }
 
@@ -349,14 +349,14 @@ public final class g1 extends ys implements org.telegram.ui.ActionBar.a6 {
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
                     for (uy0 uy0Var : (uy0[]) spanned.getSpans(0, spanned.length(), uy0.class)) {
-                        int i11 = uy0Var.f38768b.f38442a;
+                        int i11 = uy0Var.f38759b.f38433a;
                         if ((65536 & i11) != 0) {
                             int spanStart = spanned.getSpanStart(uy0Var);
                             int spanEnd = spanned.getSpanEnd(uy0Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
                                 if (r70Var == null) {
                                     r70Var = new r70(0);
-                                    r70Var.f37629n = false;
+                                    r70Var.f37572n = false;
                                 }
                                 r70Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i11) != 0) {
@@ -376,13 +376,13 @@ public final class g1 extends ys implements org.telegram.ui.ActionBar.a6 {
                                 } else {
                                     i10 = 0;
                                 }
-                                r70Var.f37630o = i10;
+                                r70Var.f37573o = i10;
                                 layout.getSelectionPath(spanStart, spanEnd, r70Var);
                             }
                         }
                     }
                     if (r70Var != null) {
-                        r70Var.f37629n = true;
+                        r70Var.f37572n = true;
                     }
                     this.f18591l2 = r70Var;
                 }

@@ -6,23 +6,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import java.util.HashSet;
 public final class j50 extends LinearLayout implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.Components.ys f46819a;
-    public boolean f46820b;
-    public int f46821c;
+    public final org.telegram.ui.Components.ys f46843a;
+    public boolean f46844b;
+    public int f46845c;
     public q10 d;
-    public String f46822e;
-    public final i50 f46823f;
+    public String f46846e;
+    public final i50 f46847f;
     public final m50 h;
 
     public j50(m50 m50Var, Context context) {
         super(context);
         this.h = m50Var;
-        this.f46823f = new i50(this);
+        this.f46847f = new i50(this);
         TextView g10 = org.telegram.messenger.k5.g(context, 1, 16.0f);
         org.telegram.ui.ActionBar.r6.V(g10, org.telegram.ui.ActionBar.k6.f27956j5, null);
         g10.setText("t.me/addemoji/");
         org.telegram.ui.Components.ys ysVar = new org.telegram.ui.Components.ys(context, null);
-        this.f46819a = ysVar;
+        this.f46843a = ysVar;
         ysVar.setLines(1);
         ysVar.setSingleLine(true);
         ysVar.setInputType(16384);
@@ -46,14 +46,14 @@ public final class j50 extends LinearLayout implements org.telegram.ui.ActionBar
 
     @Override
     public final void onDraw(Canvas canvas) {
-        if (this.f46820b) {
+        if (this.f46844b) {
             canvas.drawLine(org.telegram.messenger.g0.L(20.0f), getHeight() - 1, getWidth() - getPaddingRight(), getHeight() - 1, org.telegram.ui.ActionBar.k6.f27971k0);
         }
     }
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.Components.ys ysVar = this.f46819a;
+        org.telegram.ui.Components.ys ysVar = this.f46843a;
         try {
             ysVar.setHintColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Je, false));
             ysVar.setCursorColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ke, false));

@@ -138,7 +138,7 @@ public class d7 extends FrameLayout implements ls {
         int i7;
         boolean z10;
         b7 b7Var = this.f29022e;
-        b7Var.f39905p = 1.0f;
+        b7Var.f39912p = 1.0f;
         int i10 = (j3 > Long.MAX_VALUE ? 1 : (j3 == Long.MAX_VALUE ? 0 : -1));
         org.telegram.ui.Components.l9 l9Var = this.f29019a;
         md mdVar = this.f29020b;
@@ -272,7 +272,7 @@ public class d7 extends FrameLayout implements ls {
             r1.h hVar = new r1.h(f11);
             hVar.b(1500.0f);
             hVar.a(1.0f);
-            gVar2.f54150m = hVar;
+            gVar2.f54175m = hVar;
             gVar2.b(new r1.d() {
                 @Override
                 public final void a(r1.g gVar3, float f12, float f13) {
@@ -397,7 +397,7 @@ public class d7 extends FrameLayout implements ls {
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.d.f40043a.f31258q) {
+        if (this.d.f40050a.f31258q) {
             accessibilityNodeInfo.setSelected(true);
         }
     }

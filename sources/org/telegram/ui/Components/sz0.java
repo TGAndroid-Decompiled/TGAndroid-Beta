@@ -16,7 +16,7 @@ public final class sz0 extends EditTextBoldCursor {
         MotionEvent obtain = MotionEvent.obtain(motionEvent);
         float rawX = obtain.getRawX();
         float rawY = obtain.getRawY();
-        ThemeEditorView.EditorAlert editorAlert = this.G1.f38776c;
+        ThemeEditorView.EditorAlert editorAlert = this.G1.f38767c;
         int i7 = ThemeEditorView.EditorAlert.D1;
         obtain.setLocation(rawX, rawY - editorAlert.f28615b.getTranslationY());
         editorAlert.f31576j1.dispatchTouchEvent(obtain);

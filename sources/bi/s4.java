@@ -36,7 +36,7 @@ public final class s4 implements RequestDelegate {
                                     return;
                                 }
                                 org.telegram.ui.Components.cc Y = k7Var2.k().Y(tL_error);
-                                Y.f32533t = true;
+                                Y.f32537t = true;
                                 Y.j();
                                 return;
                             default:
@@ -51,7 +51,7 @@ public final class s4 implements RequestDelegate {
                                     return;
                                 }
                                 org.telegram.ui.Components.cc Y2 = k7Var3.k().Y(tL_error);
-                                Y2.f32533t = true;
+                                Y2.f32537t = true;
                                 Y2.j();
                                 return;
                         }
@@ -78,7 +78,7 @@ public final class s4 implements RequestDelegate {
                                     return;
                                 }
                                 org.telegram.ui.Components.cc Y = k7Var22.k().Y(tL_error);
-                                Y.f32533t = true;
+                                Y.f32537t = true;
                                 Y.j();
                                 return;
                             default:
@@ -93,7 +93,7 @@ public final class s4 implements RequestDelegate {
                                     return;
                                 }
                                 org.telegram.ui.Components.cc Y2 = k7Var3.k().Y(tL_error);
-                                Y2.f32533t = true;
+                                Y2.f32537t = true;
                                 Y2.j();
                                 return;
                         }

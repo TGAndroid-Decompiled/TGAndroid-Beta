@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 public final class tz extends org.telegram.ui.Components.kj0 {
-    public final Context f50159r;
-    public final int f50160s;
-    public final yz f50161w;
+    public final Context f50181r;
+    public final int f50182s;
+    public final yz f50183w;
 
     public tz(yz yzVar, Context context, int i7) {
-        this.f50161w = yzVar;
-        this.f50159r = context;
-        this.f50160s = i7;
+        this.f50183w = yzVar;
+        this.f50181r = context;
+        this.f50182s = i7;
     }
 
     @Override
@@ -29,12 +29,12 @@ public final class tz extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final int M(int i7) {
-        yz yzVar = this.f50161w;
+        yz yzVar = this.f50183w;
         int i10 = 1;
-        if (i7 >= yzVar.f52390n.size()) {
+        if (i7 >= yzVar.f52397n.size()) {
             return 1;
         }
-        int size = ((ArrayList) yzVar.f52395r.get(yzVar.f52390n.get(i7))).size();
+        int size = ((ArrayList) yzVar.f52402r.get(yzVar.f52397n.get(i7))).size();
         if (i7 == 0) {
             i10 = 0;
         }
@@ -48,13 +48,13 @@ public final class tz extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final int P(int i7, int i10) {
-        if (i7 >= this.f50161w.f52390n.size()) {
+        if (i7 >= this.f50183w.f52397n.size()) {
             return 2;
         }
         if (i7 != 0 && i10 == 0) {
             return 0;
         }
-        int i11 = this.f50160s;
+        int i11 = this.f50182s;
         if (i11 != 2 && i11 != 4) {
             return 1;
         }
@@ -63,13 +63,13 @@ public final class tz extends org.telegram.ui.Components.kj0 {
 
     @Override
     public final int R() {
-        yz yzVar = this.f50161w;
+        yz yzVar = this.f50183w;
         int i7 = 0;
-        if (yzVar.f52390n.isEmpty()) {
+        if (yzVar.f52397n.isEmpty()) {
             return 0;
         }
-        int size = yzVar.f52390n.size();
-        if (!yzVar.f52390n.isEmpty() && !yzVar.N) {
+        int size = yzVar.f52397n.size();
+        if (!yzVar.f52397n.isEmpty() && !yzVar.N) {
             i7 = 1;
         }
         return size + i7;
@@ -78,18 +78,18 @@ public final class tz extends org.telegram.ui.Components.kj0 {
     @Override
     public final View T(int i7, View view) {
         if (view == null) {
-            view = new org.telegram.ui.Cells.x3(this.f50159r, null);
+            view = new org.telegram.ui.Cells.x3(this.f50181r, null);
             view.setBackgroundColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27868e7, false) & (-218103809));
         }
         if (i7 == 0) {
             view.setAlpha(0.0f);
             return view;
         }
-        yz yzVar = this.f50161w;
-        if (i7 < yzVar.f52390n.size()) {
+        yz yzVar = this.f50183w;
+        if (i7 < yzVar.f52397n.size()) {
             view.setAlpha(1.0f);
             org.telegram.ui.Cells.x3 x3Var = (org.telegram.ui.Cells.x3) view;
-            x3Var.setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.ij) ((ArrayList) yzVar.f52395r.get((String) yzVar.f52390n.get(i7))).get(0)).f23237k.date, false));
+            x3Var.setText(org.telegram.messenger.hd.e0(((org.telegram.messenger.ij) ((ArrayList) yzVar.f52402r.get((String) yzVar.f52397n.get(i7))).get(0)).f23237k.date, false));
         }
         return view;
     }
@@ -106,13 +106,13 @@ public final class tz extends org.telegram.ui.Components.kj0 {
     public final void W(int i7, int i10, v4.d1 d1Var) {
         boolean z9;
         boolean z10;
-        yz yzVar = this.f50161w;
-        ArrayList arrayList = yzVar.f52390n;
-        int i11 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        yz yzVar = this.f50183w;
+        ArrayList arrayList = yzVar.f52397n;
+        int i11 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         if (i11 != 2) {
-            ArrayList arrayList2 = (ArrayList) yzVar.f52395r.get((String) arrayList.get(i7));
-            int i12 = d1Var.f56931f;
+            ArrayList arrayList2 = (ArrayList) yzVar.f52402r.get((String) arrayList.get(i7));
+            int i12 = d1Var.f56956f;
             boolean z11 = false;
             if (i12 != 0) {
                 boolean z12 = true;
@@ -163,7 +163,7 @@ public final class tz extends org.telegram.ui.Components.kj0 {
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         FrameLayout frameLayout;
         FrameLayout frameLayout2;
-        Context context = this.f50159r;
+        Context context = this.f50181r;
         if (i7 != 0) {
             if (i7 != 1) {
                 if (i7 != 2) {
@@ -171,7 +171,7 @@ public final class tz extends org.telegram.ui.Components.kj0 {
                     return jg.g.r(frameLayout2, frameLayout2, -1, -2);
                 }
                 org.telegram.ui.Components.lz lzVar = new org.telegram.ui.Components.lz(context, null);
-                int i10 = this.f50160s;
+                int i10 = this.f50182s;
                 if (i10 != 2 && i10 != 4) {
                     lzVar.setViewType(3);
                 } else {

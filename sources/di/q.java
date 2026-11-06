@@ -31,8 +31,8 @@ import org.telegram.messenger.qs;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.dh0;
 import org.telegram.ui.Components.e10;
-import org.telegram.ui.Components.o31;
 import org.telegram.ui.Components.pc;
+import org.telegram.ui.Components.t31;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.pv;
 import org.telegram.ui.ww;
@@ -158,14 +158,14 @@ public abstract class q extends FrameLayout implements ls, te.b {
         iVar.setClipChildren(false);
         pcVar.h = new ab(pvVar, 14);
         ai.m0 m0Var = new ai.m0(pvVar, 7);
-        pcVar.f36969l = true;
-        pcVar.f36967j = m0Var;
+        pcVar.f36848l = true;
+        pcVar.f36846j = m0Var;
         iVar.j(new ai.b(pvVar, 8));
         v4.k kVar = new v4.k();
         this.R = kVar;
         kVar.C = false;
         kVar.n(150L);
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         iVar.setItemAnimator(kVar);
         v4.b0 b0Var = new v4.b0(0, false);
         this.S = b0Var;
@@ -200,7 +200,7 @@ public abstract class q extends FrameLayout implements ls, te.b {
         addView(imageView, ha.c(22.0f, 90));
         org.telegram.ui.Components.g5 g5Var = new org.telegram.ui.Components.g5(org.telegram.messenger.g0.L(26.0f), null);
         this.f9586a0 = g5Var;
-        g5Var.f33854a = true;
+        g5Var.f33785a = true;
         g5Var.setCallback(this);
         ImageView imageView2 = new ImageView(context);
         this.W = imageView2;
@@ -222,7 +222,7 @@ public abstract class q extends FrameLayout implements ls, te.b {
         ?? kVar2 = new v4.k();
         this.d = kVar2;
         kVar2.C = false;
-        kVar2.f56954m = false;
+        kVar2.f56979m = false;
         iVar2.setItemAnimator(kVar2);
         iVar2.setAdapter(mVar2);
         iVar2.setClipChildren(false);
@@ -346,7 +346,7 @@ public abstract class q extends FrameLayout implements ls, te.b {
         int i10;
         int i11;
         float a10 = c8.j9.a(Math.min(this.N, this.f9591d0), 0.0f, 1.0f);
-        float f10 = this.f9585a.f55370e;
+        float f10 = this.f9585a.f55395e;
         float f11 = 1.0f - f10;
         float f12 = f10 * a10;
         float f13 = f11 * a10;
@@ -825,7 +825,7 @@ public abstract class q extends FrameLayout implements ls, te.b {
             SpannableStringBuilder S2 = org.telegram.messenger.g0.S2(hd.N0("StoriesPremiumHint2").replace('\n', ' '), org.telegram.ui.ActionBar.k6.uj, 0, new d(this, 1), null);
             ClickableSpan[] clickableSpanArr = (ClickableSpan[]) S2.getSpans(0, S2.length(), ClickableSpan.class);
             if (clickableSpanArr != null && clickableSpanArr.length >= 1) {
-                S2.setSpan(new o31(org.telegram.messenger.g0.o()), S2.getSpanStart(clickableSpanArr[0]), S2.getSpanEnd(clickableSpanArr[0]), 33);
+                S2.setSpan(new t31(org.telegram.messenger.g0.o()), S2.getSpanStart(clickableSpanArr[0]), S2.getSpanEnd(clickableSpanArr[0]), 33);
             }
             fi.m3 m3Var2 = this.J;
             m3Var2.h = fi.m3.a(S2, m3Var2.getTextPaint());
@@ -945,8 +945,8 @@ public abstract class q extends FrameLayout implements ls, te.b {
             pcVar.getClass();
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set((int) iVar.getX(), (int) iVar.getY(), x10, y10);
-            pcVar.f36966i = false;
-            pcVar.f36962c = 0;
+            pcVar.f36845i = false;
+            pcVar.f36841c = 0;
             pcVar.a(rectF);
             if (pcVar.b(motionEvent)) {
                 return true;

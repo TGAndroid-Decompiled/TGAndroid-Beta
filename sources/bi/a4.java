@@ -105,7 +105,7 @@ public final class a4 implements Runnable {
                     if (caVar != null) {
                         caVar.b();
                     }
-                    TLRPC.ChatFull chatFull = anVar.f43892p8;
+                    TLRPC.ChatFull chatFull = anVar.f43917p8;
                     Context context = p7Var.getContext();
                     int currentAccount = anVar.getCurrentAccount();
                     long a10 = anVar.a();
@@ -244,7 +244,7 @@ public final class a4 implements Runnable {
                 ii0 ii0Var = (ii0) obj;
                 b0Var.f6192l = true;
                 b0Var.f6183a.invalidate();
-                ii0Var.f34650c1 = false;
+                ii0Var.f34613c1 = false;
                 ii0Var.invalidate();
                 b0Var.c(true);
                 return;
@@ -280,28 +280,28 @@ public final class a4 implements Runnable {
                     throw null;
                 }
             case 22:
-                ((d3.e) ((q4.q) obj2).f53687c).h.a((e2.x1) obj);
+                ((d3.e) ((q4.q) obj2).f53712c).h.a((e2.x1) obj);
                 return;
             case 23:
                 String str2 = h2.m0.f14112a;
-                j2.n.U(((l2.c0) ((d3.h0) ((wf.b) obj2).f57539c)).f17771a.G, (l2.c) obj);
+                j2.n.U(((l2.c0) ((d3.h0) ((wf.b) obj2).f57564c)).f17771a.G, (l2.c) obj);
                 return;
             case 24:
                 e2.x1 x1Var = (e2.x1) obj;
                 String str3 = h2.m0.f14112a;
-                l2.i0 i0Var = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57539c)).f17771a;
+                l2.i0 i0Var = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57564c)).f17771a;
                 i0Var.f17867k0 = x1Var;
                 i0Var.f17870m.e(25, new l2.b0(x1Var));
                 return;
             case 25:
                 String str4 = h2.m0.f14112a;
-                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57539c)).f17771a.f17881s;
+                m2.e eVar = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57564c)).f17771a.f17881s;
                 m2.a U = eVar.U();
                 eVar.V(U, 1030, new hi.x3(U, (Exception) obj, 26));
                 return;
             case 26:
                 String str5 = h2.m0.f14112a;
-                m2.e eVar2 = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57539c)).f17771a.f17881s;
+                m2.e eVar2 = ((l2.c0) ((d3.h0) ((wf.b) obj2).f57564c)).f17771a.f17881s;
                 m2.a U2 = eVar2.U();
                 eVar2.V(U2, 1019, new m2.c(U2, (String) obj, 3));
                 return;

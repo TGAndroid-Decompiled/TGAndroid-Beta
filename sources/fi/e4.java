@@ -26,7 +26,7 @@ public final class e4 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 o5 o5Var = (o5) this.f11875c;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o5Var.f12531j1.f54992a = i0.a.f(floatValue, ((Integer) this.d).intValue(), this.f11874b);
+                o5Var.f12531j1.f55017a = i0.a.f(floatValue, ((Integer) this.d).intValue(), this.f11874b);
                 k5 k5Var = o5Var.C0;
                 if (k5Var != null) {
                     k5Var.invalidate();
@@ -34,7 +34,7 @@ public final class e4 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 1:
-                ((yq0) this.f11875c).f40680e.R1.put(this.f11874b, (Float) valueAnimator.getAnimatedValue());
+                ((yq0) this.f11875c).f40699e.R1.put(this.f11874b, (Float) valueAnimator.getAnimatedValue());
                 ((pj0) this.d).invalidate();
                 return;
             case 2:
@@ -43,7 +43,7 @@ public final class e4 implements ValueAnimator.AnimatorUpdateListener {
                 mxVar.getClass();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 for (int i7 = 0; i7 < 3; i7++) {
-                    float[] fArr2 = mxVar.f47873f;
+                    float[] fArr2 = mxVar.f47899f;
                     float f11 = fArr[i7];
                     if (i7 == this.f11874b) {
                         f10 = 1.0f;
@@ -57,7 +57,7 @@ public final class e4 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 tg.g0 g0Var = (tg.g0) this.f11875c;
                 float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g0Var.f55576t1.f54992a = i0.a.f(floatValue3, ((Integer) this.d).intValue(), this.f11874b);
+                g0Var.f55601t1.f55017a = i0.a.f(floatValue3, ((Integer) this.d).intValue(), this.f11874b);
                 tg.e0 e0Var = g0Var.L0;
                 if (e0Var != null) {
                     e0Var.invalidate();

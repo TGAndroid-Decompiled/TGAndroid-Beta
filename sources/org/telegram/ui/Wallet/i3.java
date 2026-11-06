@@ -103,7 +103,7 @@ public abstract class i3 {
                                                                     i12 = i13;
                                                                     d3 d3Var = new d3(i12, d20Var4, v10Var4, h3Var2, x10Var4, z16, z17, v0Var4, 1);
                                                                     h3Var2.Z = 1;
-                                                                    h3Var2.f42027b0 = d3Var;
+                                                                    h3Var2.f42052b0 = d3Var;
                                                                     h3Var2.x0(new g60(v0Var4, z16, h3Var2, 13));
                                                                     h3Var = h3Var2;
                                                                 } else {
@@ -169,7 +169,7 @@ public abstract class i3 {
                                                         boolean z16 = z14;
                                                         d3 d3Var = new d3(i18, d20Var4, v10Var4, h3Var, x10Var4, z16, z15, v0Var4, 0);
                                                         h3Var.Z = 1;
-                                                        h3Var.f42027b0 = d3Var;
+                                                        h3Var.f42052b0 = d3Var;
                                                         h3Var.I = password;
                                                         h3Var.J = false;
                                                         org.telegram.ui.ActionBar.f2 T2 = LaunchActivity.T();

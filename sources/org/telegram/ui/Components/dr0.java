@@ -14,7 +14,7 @@ public final class dr0 extends rs0 {
         super.f();
         xs0 xs0Var = this.h;
         sr0 g02 = xs0Var.g0(0);
-        if (g02 != null && g02.f38146n.getVisibility() == 0) {
+        if (g02 != null && g02.f38106n.getVisibility() == 0) {
             xs0Var.K.f();
         }
     }

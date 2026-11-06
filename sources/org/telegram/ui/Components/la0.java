@@ -17,24 +17,24 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 public final class la0 implements View.OnClickListener {
-    public final int f35582a;
-    public final Object f35583b;
+    public final int f35587a;
+    public final Object f35588b;
 
     public la0(Object obj, int i7) {
-        this.f35582a = i7;
-        this.f35583b = obj;
+        this.f35587a = i7;
+        this.f35588b = obj;
     }
 
     @Override
     public final void onClick(View view) {
         TLRPC.Chat chat;
         int i7;
-        int i10 = this.f35582a;
-        Object obj = this.f35583b;
+        int i10 = this.f35587a;
+        Object obj = this.f35588b;
         switch (i10) {
             case 0:
                 na0 na0Var = (na0) obj;
-                na0.b(na0Var.getContext(), na0Var.f36342a, na0Var.f36347n, false, na0Var.f36352y, new gp(na0Var, 27), na0Var.f36344c);
+                na0.b(na0Var.getContext(), na0Var.f36236a, na0Var.f36241n, false, na0Var.f36246y, new gp(na0Var, 27), na0Var.f36238c);
                 return;
             case 1:
                 ((mb0) obj).onBackPressed();
@@ -47,35 +47,35 @@ public final class la0 implements View.OnClickListener {
                 l4Var.getClass();
                 org.telegram.ui.Cells.r5 r5Var = (org.telegram.ui.Cells.r5) view;
                 int intValue = ((Integer) r5Var.getTag()).intValue();
-                sd0 sd0Var = (sd0) l4Var.f47379e;
+                sd0 sd0Var = (sd0) l4Var.f47406e;
                 if (intValue == sd0Var.D) {
                     sd0Var.N = r5Var.getCurrentColor();
                 } else {
                     sd0Var.O = r5Var.getCurrentColor();
                 }
-                ry ryVar = sd0Var.f38041l0;
+                ry ryVar = sd0Var.f38001l0;
                 if (ryVar != null) {
                     ryVar.c(false, false, false);
                 }
                 sd0Var.d();
                 return;
             case 4:
-                view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(((zd0) obj).f40892a.D.url)));
+                view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse(((zd0) obj).f40917a.D.url)));
                 return;
             case 5:
                 oe0 oe0Var = (oe0) obj;
                 oe0Var.getClass();
                 le0 le0Var = (le0) oe0Var;
-                me0 me0Var = le0Var.f35640e;
+                me0 me0Var = le0Var.f35645e;
                 pe0 pe0Var = (pe0) le0Var.getTag(2131296585);
-                if (pe0Var.f36991b.size() > 15) {
-                    boolean z9 = pe0Var.f36993e;
-                    pe0Var.f36993e = !z9;
+                if (pe0Var.f36870b.size() > 15) {
+                    boolean z9 = pe0Var.f36872e;
+                    pe0Var.f36872e = !z9;
                     if (!z9) {
-                        pe0Var.f36994f = 10;
+                        pe0Var.f36873f = 10;
                     }
-                    me0Var.f35995s.J0(le0Var);
-                    me0Var.f35995s.f37385j1.X(true);
+                    me0Var.f35933s.J0(le0Var);
+                    me0Var.f35933s.f37275j1.X(true);
                     return;
                 }
                 return;
@@ -86,7 +86,7 @@ public final class la0 implements View.OnClickListener {
                 dl0 dl0Var = (dl0) ((bi.k5) obj).d;
                 Activity activity = dl0Var.F;
                 org.telegram.ui.ActionBar.f2 f2Var = dl0Var.G;
-                int i11 = org.telegram.ui.p6.f48665j1;
+                int i11 = org.telegram.ui.p6.f48660j1;
                 if (f2Var != null && activity != null) {
                     final org.telegram.ui.p6 p6Var = new org.telegram.ui.p6(1, activity, false);
                     p6Var.f28647v0 = false;
@@ -208,21 +208,21 @@ public final class la0 implements View.OnClickListener {
             case 9:
                 ql0 ql0Var = (ql0) obj;
                 ql0Var.getClass();
-                new ug.w0(ql0Var.f37443b, 24, true).show();
+                new ug.w0(ql0Var.f37333b, 24, true).show();
                 return;
             case 10:
                 ((fm0) obj).R(false);
                 return;
             case 11:
                 po0 po0Var = (po0) ((fi.i1) obj).f12169w;
-                ArrayList arrayList = po0Var.f37142s;
+                ArrayList arrayList = po0Var.f37021s;
                 if (!arrayList.isEmpty()) {
-                    po0Var.f37141r = TextUtils.join(" ", arrayList).toString();
-                    po0Var.f37140n = false;
+                    po0Var.f37020r = TextUtils.join(" ", arrayList).toString();
+                    po0Var.f37019n = false;
                     po0Var.d();
-                    po0Var.f37144x = null;
-                    if (po0Var.f37136b != 0) {
-                        po0Var.f37136b = 0;
+                    po0Var.f37023x = null;
+                    if (po0Var.f37015b != 0) {
+                        po0Var.f37015b = 0;
                         oo0 oo0Var = po0Var.H;
                         if (oo0Var != null) {
                             ((org.telegram.ui.fu) oo0Var).i(0);
@@ -234,10 +234,10 @@ public final class la0 implements View.OnClickListener {
                 }
                 return;
             case 12:
-                xs0 xs0Var = ((jr0) obj).f35062f;
-                org.telegram.ui.ActionBar.f2 f2Var2 = xs0Var.f40405x1;
+                xs0 xs0Var = ((jr0) obj).f35023f;
+                org.telegram.ui.ActionBar.f2 f2Var2 = xs0Var.f40424x1;
                 if (f2Var2 != null && f2Var2.getParentLayout() != null) {
-                    ((ActionBarLayout) xs0Var.f40405x1.getParentLayout()).r();
+                    ((ActionBarLayout) xs0Var.f40424x1.getParentLayout()).r();
                     return;
                 }
                 return;
@@ -245,7 +245,7 @@ public final class la0 implements View.OnClickListener {
                 ((ir0) obj).run();
                 return;
             case 14:
-                ((av0) obj).f31915b.getImageReceiver().P0(false);
+                ((av0) obj).f31927b.getImageReceiver().P0(false);
                 return;
             case 15:
                 org.telegram.messenger.g0.i3((di.c5) obj, 100L);
@@ -254,19 +254,19 @@ public final class la0 implements View.OnClickListener {
                 ((EditTextBoldCursor) obj).setText("");
                 return;
             case 17:
-                sz0 sz0Var = ((uz0) obj).f38775b;
+                sz0 sz0Var = ((uz0) obj).f38766b;
                 sz0Var.setText("");
                 org.telegram.messenger.g0.K3(sz0Var);
                 return;
             case 18:
-                ((d01) obj).f32736b.getImageReceiver().P0(false);
+                ((d01) obj).f32740b.getImageReceiver().P0(false);
                 return;
             case 19:
-                ((e21) obj).dismiss();
+                ((j21) obj).dismiss();
                 return;
             case 20:
                 org.telegram.ui.an anVar = ((org.telegram.ui.bk) obj).D;
-                if (!anVar.getUserConfig().q() && ((chat = anVar.f43747e) == null || !chat.autotranslation)) {
+                if (!anVar.getUserConfig().q() && ((chat = anVar.f43772e) == null || !chat.autotranslation)) {
                     i7 = ((org.telegram.ui.ActionBar.f2) anVar).currentAccount;
                     SharedPreferences.Editor edit = org.telegram.messenger.qp.s1(i7).f24749d7.edit();
                     edit.putInt("dialog_show_translate_count" + anVar.a(), 14).commit();

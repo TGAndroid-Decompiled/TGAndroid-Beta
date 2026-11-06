@@ -35,7 +35,7 @@ public abstract class id {
                 mediaExtractor.release();
                 int i7 = dVar.f2993c;
                 synchronized (xVar) {
-                    xVar2.f58135s = i7;
+                    xVar2.f58160s = i7;
                 }
                 if (mediaFormat != null) {
                     xVar2.n(mediaFormat, false);
@@ -89,7 +89,7 @@ public abstract class id {
                             hy0 hy0Var = new hy0(25);
                             j12 = 0;
                             jd.c(file, j14, max, min, dVar.f2991a, dVar.f2992b, dVar.f2993c, hy0Var);
-                            if (((MediaFormat) hy0Var.d) != null && !((ArrayList) hy0Var.f46519b).isEmpty()) {
+                            if (((MediaFormat) hy0Var.d) != null && !((ArrayList) hy0Var.f46528b).isEmpty()) {
                                 boolean m10 = wi.x.m(trackFormat, (MediaFormat) hy0Var.d, "csd-0", "csd-1");
                                 if (min >= max2) {
                                     if (m10) {
@@ -238,9 +238,9 @@ public abstract class id {
     }
 
     public static void e(wi.x xVar, hy0 hy0Var, long j3) {
-        ArrayList arrayList = (ArrayList) hy0Var.f46519b;
+        ArrayList arrayList = (ArrayList) hy0Var.f46528b;
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
-            xVar.q(true, (ByteBuffer) arrayList.get(i7), (MediaCodec.BufferInfo) ((ArrayList) hy0Var.f46520c).get(i7), -j3);
+            xVar.q(true, (ByteBuffer) arrayList.get(i7), (MediaCodec.BufferInfo) ((ArrayList) hy0Var.f46529c).get(i7), -j3);
         }
     }
 }

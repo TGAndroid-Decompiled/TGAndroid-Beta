@@ -29,11 +29,11 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ci;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.Components.r00;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.xq;
 public final class w6 extends org.telegram.ui.Components.na implements ls, org.telegram.messenger.x5, te.b {
     public int A2;
@@ -57,7 +57,7 @@ public final class w6 extends org.telegram.ui.Components.na implements ls, org.t
     public final ri.c f13036e2;
     public final dh.c f13037f2;
     public final u6 f13038g2;
-    public f41 f13039h2;
+    public k41 f13039h2;
     public ij f13040i2;
     public String f13041j2;
     public int f13042k2;
@@ -296,10 +296,10 @@ public final class w6 extends org.telegram.ui.Components.na implements ls, org.t
                 }
             }
         };
-        this.f36333r1 = 0.35f;
+        this.f36227r1 = 0.35f;
         N();
         Y0();
-        this.f36341z1 = org.telegram.messenger.g0.L(4.0f);
+        this.f36235z1 = org.telegram.messenger.g0.L(4.0f);
         this.A1 = org.telegram.messenger.g0.L(-20.0f);
         this.R1 = z9;
         this.Q1 = org.telegram.messenger.z5.q(this.f28612a).k();
@@ -312,9 +312,9 @@ public final class w6 extends org.telegram.ui.Components.na implements ls, org.t
             this.d2 = gVar;
             this.X0.a(gVar);
             ri.f fVar = new ri.f(d);
-            fVar.f54456f = d;
+            fVar.f54481f = d;
             fVar.d = gVar;
-            fVar.f54455e = -2;
+            fVar.f54480e = -2;
             dh.c cVar = new dh.c(fVar, fVar, fVar);
             this.f13037f2 = cVar;
             cVar.f8710k = true;
@@ -339,7 +339,7 @@ public final class w6 extends org.telegram.ui.Components.na implements ls, org.t
             @Override
             public final void d(Canvas canvas, RectF rectF) {
                 w6 w6Var2 = w6.this;
-                pj0 pj0Var = w6Var2.f36328k1;
+                pj0 pj0Var = w6Var2.f36222k1;
                 ih.d.b(pj0Var, canvas, rectF, pj0Var, w6Var2.f28615b, 255);
             }
         };
@@ -350,29 +350,29 @@ public final class w6 extends org.telegram.ui.Components.na implements ls, org.t
         FrameLayout frameLayout = new FrameLayout(context);
         this.f13034b2 = frameLayout;
         r00 r00Var = new r00(context, f6Var);
-        r00Var.f37557r.setOnFocusChangeListener(new v6(this, 0));
-        r00Var.f37560x = true;
+        r00Var.f37447r.setOnFocusChangeListener(new v6(this, 0));
+        r00Var.f37450x = true;
         r00Var.setPadding(org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f), org.telegram.messenger.g0.L(3.0f));
         r00Var.updateColors();
         r00Var.setPadding(org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f));
-        r00Var.f37557r.addTextChangedListener(new ah.j(this, 5));
-        r00Var.f37557r.setHint(hd.M0(2131745837, null));
+        r00Var.f37447r.addTextChangedListener(new ah.j(this, 5));
+        r00Var.f37447r.setHint(hd.M0(2131745837, null));
         frameLayout.addView(ciVar, c8.ha.g());
         frameLayout.addView(r00Var, c8.ha.d(-1, 48.0f, 51, 0.0f, 8.0f, 0.0f, 4.0f));
         r00Var.setupBlurredBackground(this.f13037f2.c(r00Var, c8.g0.o(f6Var), false));
         frameLayout.setPadding(org.telegram.messenger.g0.L(8.0f) + this.f28645t0, 0, org.telegram.messenger.g0.L(8.0f) + this.f28645t0, 0);
         this.f28615b.addView(frameLayout, c8.ha.e(-1, -2, 55));
         w0(i7);
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int i10 = this.f28645t0;
         pj0Var.setPadding(i10, 0, i10, 0);
-        this.f36328k1.r1();
+        this.f36222k1.r1();
         v4.k kVar = new v4.k();
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.C = false;
         kVar.o(xqVar);
         kVar.n(350L);
-        this.f36328k1.setItemAnimator(kVar);
+        this.f36222k1.setItemAnimator(kVar);
         if (!z9) {
             int i11 = this.f28612a;
             kp kpVar = new kp(i11, p10.i(i11).e());
@@ -490,9 +490,9 @@ public final class w6 extends org.telegram.ui.Components.na implements ls, org.t
                 });
             }
         }
-        this.f36328k1.setOnScrollListener(new ai.b(this, 12));
-        this.f36328k1.setOnItemClickListener(new di.f0(this, c20Var, f6Var, 1));
-        this.X0.b(this.f36328k1);
+        this.f36222k1.setOnScrollListener(new ai.b(this, 12));
+        this.f36222k1.setOnItemClickListener(new di.f0(this, c20Var, f6Var, 1));
+        this.X0.b(this.f36222k1);
         this.X0.i(this.f28615b);
         oi.q qVar = this.X0;
         qVar.f21096a = new t6(this);
@@ -516,10 +516,10 @@ public final class w6 extends org.telegram.ui.Components.na implements ls, org.t
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(pj0Var, getContext(), this.f28612a, 0, false, new r6(this, 0), this.I0);
-        this.f13039h2 = f41Var;
-        f41Var.f33473r = false;
-        return f41Var;
+        k41 k41Var = new k41(pj0Var, getContext(), this.f28612a, 0, false, new r6(this, 0), this.I0);
+        this.f13039h2 = k41Var;
+        k41Var.f35132r = false;
+        return k41Var;
     }
 
     @Override
@@ -597,34 +597,34 @@ public final class w6 extends org.telegram.ui.Components.na implements ls, org.t
             }
             if (!arrayList3.isEmpty() || z10) {
                 if (!arrayList.isEmpty() && arrayList.size() > 1) {
-                    arrayList.add(r31.C(null));
+                    arrayList.add(w31.C(null));
                     i10 = org.telegram.messenger.g0.L(12.0f);
                 } else {
                     i10 = 0;
                 }
                 this.f13039h2.V();
-                arrayList.add(r31.u(str));
+                arrayList.add(w31.u(str));
                 int size2 = arrayList3.size();
                 while (i11 < size2) {
                     Object obj2 = arrayList3.get(i11);
                     i11++;
                     fc fcVar = new fc(this, 1);
                     int i13 = org.telegram.ui.Cells.f7.f29126b;
-                    r31 K = r31.K(org.telegram.ui.Cells.f7.class);
+                    w31 K = w31.K(org.telegram.ui.Cells.f7.class);
                     K.G = (ij) obj2;
                     K.H = fcVar;
                     arrayList.add(K);
                     i10 += org.telegram.messenger.g0.L(56.0f);
                 }
                 if (z10) {
-                    arrayList.add(r31.p(4));
-                    arrayList.add(r31.p(4));
-                    arrayList.add(r31.p(4));
+                    arrayList.add(w31.p(4));
+                    arrayList.add(w31.p(4));
+                    arrayList.add(w31.p(4));
                     i10 += org.telegram.messenger.g0.L(56.0f) * 3;
                 }
                 if (z11 && !z10) {
-                    r31 c10 = r31.c(i7, 2131230871, hd.M0(2131745340, null));
-                    c10.f37603q = true;
+                    w31 c10 = w31.c(i7, 2131230871, hd.M0(2131745340, null));
+                    c10.f39835q = true;
                     arrayList.add(c10);
                     i10 += org.telegram.messenger.g0.L(50.0f);
                 }
@@ -778,7 +778,7 @@ public final class w6 extends org.telegram.ui.Components.na implements ls, org.t
         boolean z9 = false;
         int i7 = 0;
         while (true) {
-            pj0 pj0Var = this.f36328k1;
+            pj0 pj0Var = this.f36222k1;
             if (i7 >= pj0Var.getChildCount()) {
                 break;
             }

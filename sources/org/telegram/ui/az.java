@@ -17,19 +17,19 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_chatlists;
 public abstract class az extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
     public TL_chatlists.TL_exportedChatlistInvite D;
-    public final org.telegram.ui.ActionBar.f2 f44107a;
-    public final int f44108b;
-    public final int f44109c;
+    public final org.telegram.ui.ActionBar.f2 f44123a;
+    public final int f44124b;
+    public final int f44125c;
     public final Drawable d;
-    public final Drawable f44110e;
-    public final org.telegram.ui.Components.j6 f44111f;
+    public final Drawable f44126e;
+    public final org.telegram.ui.Components.j6 f44127f;
     public final org.telegram.ui.Components.j6 h;
-    public final Paint f44112n;
-    public final Paint f44113r;
-    public float f44114s;
-    public boolean f44115w;
-    public ValueAnimator f44116x;
-    public String f44117y;
+    public final Paint f44128n;
+    public final Paint f44129r;
+    public float f44130s;
+    public boolean f44131w;
+    public ValueAnimator f44132x;
+    public String f44133y;
 
     public az(Context context, org.telegram.ui.ActionBar.f2 f2Var, int i7, int i10) {
         super(context);
@@ -41,12 +41,12 @@ public abstract class az extends FrameLayout implements org.telegram.ui.ActionBa
         float f13;
         float f14;
         float f15;
-        this.f44107a = f2Var;
-        this.f44108b = i7;
-        this.f44109c = i10;
+        this.f44123a = f2Var;
+        this.f44124b = i7;
+        this.f44125c = i10;
         setImportantForAccessibility(1);
         org.telegram.ui.Components.j6 j6Var = new org.telegram.ui.Components.j6(context, true, true, false);
-        this.f44111f = j6Var;
+        this.f44127f = j6Var;
         j6Var.setTextSize(org.telegram.messenger.g0.L(15.66f));
         org.telegram.ui.ActionBar.r6.Z(j6Var, org.telegram.ui.ActionBar.k6.G6, null);
         if (org.telegram.messenger.hd.f22871a0) {
@@ -117,23 +117,23 @@ public abstract class az extends FrameLayout implements org.telegram.ui.ActionBa
         }
         addView(imageView, c8.ha.d(40, 40.0f, i15, f14, 4.0f, f15, 4.0f));
         Paint paint = new Paint();
-        this.f44112n = paint;
+        this.f44128n = paint;
         paint.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false));
         Paint paint2 = new Paint();
-        this.f44113r = paint2;
+        this.f44129r = paint2;
         paint2.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.kk, false));
         Drawable mutate = getContext().getResources().getDrawable(2131232205).mutate();
         this.d = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1, mode));
         Drawable mutate2 = getContext().getResources().getDrawable(2131232206).mutate();
-        this.f44110e = mutate2;
+        this.f44126e = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
         setWillNotDraw(false);
     }
 
     public final void a() {
         String substring;
-        String str = this.f44117y;
+        String str = this.f44133y;
         if (str == null) {
             substring = null;
         } else {
@@ -145,36 +145,36 @@ public abstract class az extends FrameLayout implements org.telegram.ui.ActionBa
         TL_chatlists.TL_chatlists_deleteExportedInvite tL_chatlists_deleteExportedInvite = new TL_chatlists.TL_chatlists_deleteExportedInvite();
         TL_chatlists.TL_inputChatlistDialogFilter tL_inputChatlistDialogFilter = new TL_chatlists.TL_inputChatlistDialogFilter();
         tL_chatlists_deleteExportedInvite.chatlist = tL_inputChatlistDialogFilter;
-        tL_inputChatlistDialogFilter.filter_id = this.f44109c;
+        tL_inputChatlistDialogFilter.filter_id = this.f44125c;
         tL_chatlists_deleteExportedInvite.slug = substring;
         zy zyVar = new zy(this, 2);
-        ConnectionsManager.getInstance(this.f44108b).sendRequest(tL_chatlists_deleteExportedInvite, new ld(27, this, zyVar));
+        ConnectionsManager.getInstance(this.f44124b).sendRequest(tL_chatlists_deleteExportedInvite, new ld(27, this, zyVar));
         org.telegram.messenger.g0.i3(zyVar, 150L);
     }
 
     public abstract void b(TL_chatlists.TL_exportedChatlistInvite tL_exportedChatlistInvite);
 
     public void c() {
-        org.telegram.ui.ActionBar.f2 f2Var = this.f44107a;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f44123a;
         if (!(f2Var instanceof gz)) {
             return;
         }
-        zs zsVar = ((gz) f2Var).f46140a;
+        zs zsVar = ((gz) f2Var).f46160a;
         org.telegram.ui.Components.k60 H = org.telegram.ui.Components.k60.H(f2Var, this);
         H.W(zsVar.U0(this, false));
         H.c(2131232320, org.telegram.messenger.hd.M0(2131750471, null), new zy(this, 0), false);
         H.c(2131232108, org.telegram.messenger.hd.M0(2131751535, null), new zy(this, 1), true);
         if (org.telegram.messenger.hd.f22871a0) {
-            H.f35198i = 3;
+            H.f35162i = 3;
         }
         H.Z();
     }
 
     public final void d() {
-        if (this.f44117y == null) {
+        if (this.f44133y == null) {
             return;
         }
-        org.telegram.ui.Components.lg0 lg0Var = new org.telegram.ui.Components.lg0(getContext(), org.telegram.messenger.hd.M0(2131749169, null), this.f44117y, org.telegram.messenger.hd.M0(2131746505, null), false);
+        org.telegram.ui.Components.lg0 lg0Var = new org.telegram.ui.Components.lg0(getContext(), org.telegram.messenger.hd.M0(2131749169, null), this.f44133y, org.telegram.messenger.hd.M0(2131746505, null), false);
         lg0Var.I0();
         lg0Var.show();
     }
@@ -188,7 +188,7 @@ public abstract class az extends FrameLayout implements org.telegram.ui.ActionBa
         }
         this.D = tL_exportedChatlistInvite;
         String str = tL_exportedChatlistInvite.url;
-        this.f44117y = str;
+        this.f44133y = str;
         if (str.startsWith("http://")) {
             str = str.substring(7);
         }
@@ -196,43 +196,43 @@ public abstract class az extends FrameLayout implements org.telegram.ui.ActionBa
             str = str.substring(8);
         }
         boolean isEmpty = TextUtils.isEmpty(tL_exportedChatlistInvite.title);
-        org.telegram.ui.Components.j6 j6Var = this.f44111f;
+        org.telegram.ui.Components.j6 j6Var = this.f44127f;
         if (isEmpty) {
             j6Var.c(str, z10, true);
         } else {
             j6Var.c(tL_exportedChatlistInvite.title, z10, true);
         }
         this.h.c(org.telegram.messenger.hd.G(tL_exportedChatlistInvite.peers.size(), "FilterInviteChats", new Object[0]), z10, true);
-        if (this.f44115w != z9) {
-            this.f44115w = z9;
+        if (this.f44131w != z9) {
+            this.f44131w = z9;
             invalidate();
         }
         boolean z11 = tL_exportedChatlistInvite.revoked;
-        if ((z11 ? 1.0f : 0.0f) != this.f44114s) {
-            ValueAnimator valueAnimator = this.f44116x;
+        if ((z11 ? 1.0f : 0.0f) != this.f44130s) {
+            ValueAnimator valueAnimator = this.f44132x;
             if (valueAnimator != null) {
                 valueAnimator.cancel();
-                this.f44116x = null;
+                this.f44132x = null;
             }
             float f10 = 0.0f;
             if (z10) {
-                float f11 = this.f44114s;
+                float f11 = this.f44130s;
                 if (z11) {
                     f10 = 1.0f;
                 }
                 ValueAnimator ofFloat = ValueAnimator.ofFloat(f11, f10);
-                this.f44116x = ofFloat;
+                this.f44132x = ofFloat;
                 ofFloat.addUpdateListener(new a3(this, 10));
-                this.f44116x.addListener(new org.telegram.ui.Components.t9(28, this, z11));
-                this.f44116x.setInterpolator(org.telegram.ui.Components.xq.h);
-                this.f44116x.setDuration(350L);
-                this.f44116x.start();
+                this.f44132x.addListener(new org.telegram.ui.Components.t9(28, this, z11));
+                this.f44132x.setInterpolator(org.telegram.ui.Components.xq.h);
+                this.f44132x.setDuration(350L);
+                this.f44132x.start();
                 return;
             }
             if (z11) {
                 f10 = 1.0f;
             }
-            this.f44114s = f10;
+            this.f44130s = f10;
             invalidate();
         }
     }
@@ -248,26 +248,26 @@ public abstract class az extends FrameLayout implements org.telegram.ui.ActionBa
             L = org.telegram.messenger.g0.L(32.0f);
         }
         float f10 = L;
-        canvas.drawCircle(f10, getMeasuredHeight() / 2.0f, org.telegram.messenger.g0.L(16.0f), this.f44112n);
+        canvas.drawCircle(f10, getMeasuredHeight() / 2.0f, org.telegram.messenger.g0.L(16.0f), this.f44128n);
         float f11 = 0.0f;
-        if (this.f44114s > 0.0f) {
-            canvas.drawCircle(f10, getMeasuredHeight() / 2.0f, org.telegram.messenger.g0.L(16.0f) * this.f44114s, this.f44113r);
+        if (this.f44130s > 0.0f) {
+            canvas.drawCircle(f10, getMeasuredHeight() / 2.0f, org.telegram.messenger.g0.L(16.0f) * this.f44130s, this.f44129r);
         }
-        float f12 = this.f44114s;
+        float f12 = this.f44130s;
         if (f12 < 1.0f) {
             Drawable drawable = this.d;
             drawable.setAlpha((int) ((1.0f - f12) * 255.0f));
             drawable.setBounds(L - org.telegram.messenger.g0.L(14.0f), (getMeasuredHeight() / 2) - org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f) + L, org.telegram.messenger.g0.L(14.0f) + (getMeasuredHeight() / 2));
             drawable.draw(canvas);
         }
-        float f13 = this.f44114s;
+        float f13 = this.f44130s;
         if (f13 > 0.0f) {
-            Drawable drawable2 = this.f44110e;
+            Drawable drawable2 = this.f44126e;
             drawable2.setAlpha((int) (f13 * 255.0f));
             drawable2.setBounds(L - org.telegram.messenger.g0.L(14.0f), (getMeasuredHeight() / 2) - org.telegram.messenger.g0.L(14.0f), org.telegram.messenger.g0.L(14.0f) + L, org.telegram.messenger.g0.L(14.0f) + (getMeasuredHeight() / 2));
             drawable2.draw(canvas);
         }
-        if (this.f44115w) {
+        if (this.f44131w) {
             if (!org.telegram.messenger.hd.f22871a0) {
                 f11 = org.telegram.messenger.g0.L(64.0f);
             }
@@ -315,8 +315,8 @@ public abstract class az extends FrameLayout implements org.telegram.ui.ActionBa
     @Override
     public final void updateColors() {
         try {
-            this.f44112n.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false));
-            this.f44113r.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.kk, false));
+            this.f44128n.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Ci, false));
+            this.f44129r.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.kk, false));
             invalidate();
         } catch (Exception e10) {
             org.telegram.messenger.a8.g(e10, true);

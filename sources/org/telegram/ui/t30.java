@@ -3,17 +3,17 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 public final class t30 extends org.telegram.ui.Cells.f4 {
-    public final w30 f49885g0;
+    public final w30 f49913g0;
 
     public t30(w30 w30Var, Context context) {
         super(context);
-        this.f49885g0 = w30Var;
+        this.f49913g0 = w30Var;
     }
 
     @Override
     public final void d(org.telegram.ui.Cells.f4 f4Var) {
-        c40 c40Var = this.f49885g0.M;
-        c40 c40Var2 = c40.f44519u5;
+        c40 c40Var = this.f49913g0.M;
+        c40 c40Var2 = c40.f44540u5;
         c40Var.L1(f4Var);
     }
 

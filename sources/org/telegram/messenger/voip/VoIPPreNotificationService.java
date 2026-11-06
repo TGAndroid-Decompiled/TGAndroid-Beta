@@ -294,8 +294,8 @@ public class VoIPPreNotificationService {
 
     public static void lambda$dismiss$5() {
         LaunchActivity launchActivity = LaunchActivity.G1;
-        if (launchActivity != null && launchActivity.f41239g1 && VoIPService.getSharedInstance() == null) {
-            launchActivity.f41239g1 = false;
+        if (launchActivity != null && launchActivity.f41264g1 && VoIPService.getSharedInstance() == null) {
+            launchActivity.f41264g1 = false;
             ec1 ec1Var = ec1.l1;
             if (ec1Var != null) {
                 ec1Var.e();

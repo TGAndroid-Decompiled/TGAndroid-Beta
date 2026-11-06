@@ -4,10 +4,10 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ca implements org.telegram.ui.Components.bj0 {
-    public final la f44708a;
+    public final la f44729a;
 
     public ca(la laVar) {
-        this.f44708a = laVar;
+        this.f44729a = laVar;
     }
 
     @Override
@@ -16,13 +16,13 @@ public final class ca implements org.telegram.ui.Components.bj0 {
         int i11;
         int i12;
         boolean z9 = view instanceof ia;
-        la laVar = this.f44708a;
+        la laVar = this.f44729a;
         if (z9) {
             ia iaVar = (ia) view;
-            TLRPC.TL_username tL_username = iaVar.f46616w;
-            if (tL_username != null && !iaVar.f46614r) {
-                if (tL_username.editable && laVar.f47465y == 0) {
-                    laVar.f47456b.y0(0);
+            TLRPC.TL_username tL_username = iaVar.f46625w;
+            if (tL_username != null && !iaVar.f46623r) {
+                if (tL_username.editable && laVar.f47492y == 0) {
+                    laVar.f47483b.y0(0);
                     laVar.j0(true);
                     return;
                 }

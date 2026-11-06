@@ -1,22 +1,22 @@
 package org.telegram.ui;
 public final class gh implements Runnable {
-    public final int f45976a = 1;
-    public final an f45977b;
-    public final int f45978c;
+    public final int f46003a = 1;
+    public final an f46004b;
+    public final int f46005c;
     public final org.telegram.messenger.ij d;
 
     public gh(an anVar, int i7, org.telegram.messenger.ij ijVar) {
-        this.f45977b = anVar;
-        this.f45978c = i7;
+        this.f46004b = anVar;
+        this.f46005c = i7;
         this.d = ijVar;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f45976a;
+        int i7 = this.f46003a;
         org.telegram.messenger.ij ijVar = this.d;
-        int i10 = this.f45978c;
-        an anVar = this.f45977b;
+        int i10 = this.f46005c;
+        an anVar = this.f46004b;
         switch (i7) {
             case 0:
                 anVar.B4 = null;
@@ -32,8 +32,8 @@ public final class gh implements Runnable {
     }
 
     public gh(an anVar, org.telegram.messenger.ij ijVar, int i7) {
-        this.f45977b = anVar;
+        this.f46004b = anVar;
         this.d = ijVar;
-        this.f45978c = i7;
+        this.f46005c = i7;
     }
 }

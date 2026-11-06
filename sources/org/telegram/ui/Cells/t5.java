@@ -12,8 +12,8 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.dr0;
 import org.telegram.ui.er0;
+import org.telegram.ui.fr0;
 public final class t5 extends FrameLayout {
     public final int f30517a = 0;
     public final org.telegram.ui.Components.l9 f30518b;
@@ -63,28 +63,28 @@ public final class t5 extends FrameLayout {
     @Override
     public void dispatchDraw(Canvas canvas) {
         float f10;
-        dr0 dr0Var;
+        er0 er0Var;
         switch (this.f30517a) {
             case 1:
-                er0 er0Var = (er0) this.f30521f;
-                float[] fArr = er0Var.Q;
-                if (er0Var.C == null) {
-                    float f11 = er0Var.P;
+                fr0 fr0Var = (fr0) this.f30521f;
+                float[] fArr = fr0Var.Q;
+                if (fr0Var.C == null) {
+                    float f11 = fr0Var.P;
                     if (f11 != 1.0f) {
                         float f12 = f11 + 0.07272727f;
-                        er0Var.P = f12;
+                        fr0Var.P = f12;
                         if (f12 > 1.0f) {
-                            er0Var.P = 1.0f;
+                            fr0Var.P = 1.0f;
                         } else {
-                            er0Var.e();
+                            fr0Var.e();
                         }
                     }
                 }
-                float interpolation = xq.f40310f.getInterpolation(er0Var.P) * er0Var.A;
+                float interpolation = xq.f40329f.getInterpolation(fr0Var.P) * fr0Var.A;
                 float measuredHeight = getMeasuredHeight();
                 float f13 = 0.0f;
-                if (interpolation != 1.0f && (dr0Var = er0Var.F) != null) {
-                    dr0Var.a(fArr);
+                if (interpolation != 1.0f && (er0Var = fr0Var.F) != null) {
+                    er0Var.a(fArr);
                     canvas.save();
                     float f14 = 1.0f - interpolation;
                     float f15 = fArr[0] * f14;
@@ -100,7 +100,7 @@ public final class t5 extends FrameLayout {
                     super.dispatchDraw(canvas);
                     f10 = measuredHeight;
                 }
-                er0Var.c(canvas, 1.0f - interpolation, er0Var.f45390o - getLeft(), er0Var.f45391p - getTop(), f13, f10);
+                fr0Var.c(canvas, 1.0f - interpolation, fr0Var.f45712o - getLeft(), fr0Var.f45713p - getTop(), f13, f10);
                 return;
             default:
                 super.dispatchDraw(canvas);
@@ -137,9 +137,9 @@ public final class t5 extends FrameLayout {
         }
     }
 
-    public t5(er0 er0Var, Context context) {
+    public t5(fr0 fr0Var, Context context) {
         super(context);
-        this.f30521f = er0Var;
+        this.f30521f = fr0Var;
         new Path();
         new Paint(1);
         FrameLayout frameLayout = new FrameLayout(context);

@@ -66,12 +66,12 @@ public class h8 extends NestedScrollView implements j60 {
         setFadingEdgeLength(org.telegram.messenger.g0.L(12.0f));
         setVerticalFadingEdgeEnabled(true);
         setWillNotDraw(false);
-        r1.g gVar = new r1.g((Object) g8Var, (r1.e) r1.g.f54134p, 0.0f);
+        r1.g gVar = new r1.g((Object) g8Var, (r1.e) r1.g.f54159p, 0.0f);
         this.f9094a0 = gVar;
-        gVar.f54150m.b(100.0f);
+        gVar.f54175m.b(100.0f);
         gVar.f(1.0f);
         gVar.b(new a8(0, this));
-        gVar.f54150m.a(1.0f);
+        gVar.f54175m.a(1.0f);
         try {
             NestedScrollView.class.getDeclaredMethod("a", null).setAccessible(true);
         } catch (Exception e10) {
@@ -117,7 +117,7 @@ public class h8 extends NestedScrollView implements j60 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new z7(this, getScrollY(), f10, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(xq.f40310f);
+        ofFloat.setInterpolator(xq.f40329f);
         ofFloat.start();
     }
 
@@ -130,7 +130,7 @@ public class h8 extends NestedScrollView implements j60 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new z7(this, getScrollY(), f10, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(xq.f40310f);
+        ofFloat.setInterpolator(xq.f40329f);
         ofFloat.start();
     }
 
@@ -144,8 +144,8 @@ public class h8 extends NestedScrollView implements j60 {
 
     public final void K(float f10) {
         r1.g gVar = this.f9094a0;
-        if (!gVar.f54144f) {
-            gVar.f54140a = f10;
+        if (!gVar.f54169f) {
+            gVar.f54165a = f10;
             gVar.h();
         }
         if (getScrollY() < org.telegram.messenger.g0.L(2.0f)) {
@@ -223,7 +223,7 @@ public class h8 extends NestedScrollView implements j60 {
                 boolean z9 = this.f9096c0;
                 g8 g8Var = this.f9095b0;
                 if (!z9) {
-                    if (!this.f9094a0.f54144f) {
+                    if (!this.f9094a0.f54169f) {
                         OverScroller overScroller = this.f9104k0;
                         if (overScroller != null) {
                             f10 = overScroller.getCurrVelocity();

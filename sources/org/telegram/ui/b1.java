@@ -5,23 +5,23 @@ import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 public final class b1 extends v4.m0 {
-    public final h1 f44133a;
+    public final h1 f44149a;
 
     public b1(h1 h1Var) {
-        this.f44133a = h1Var;
+        this.f44149a = h1Var;
     }
 
     @Override
     public final void e(Rect rect, View view, RecyclerView recyclerView, v4.a1 a1Var) {
         org.telegram.messenger.aj ajVar;
         float[] fArr;
-        g1 g1Var = this.f44133a.f46169w;
+        g1 g1Var = this.f44149a.f46189w;
         int i7 = 0;
         rect.bottom = 0;
         if (view instanceof a2) {
-            ajVar = (org.telegram.messenger.aj) g1Var.f45749b.get(((a2) view).N);
+            ajVar = (org.telegram.messenger.aj) g1Var.f45776b.get(((a2) view).N);
         } else if (view instanceof v2) {
-            ajVar = (org.telegram.messenger.aj) g1Var.f45749b.get(((v2) view).L);
+            ajVar = (org.telegram.messenger.aj) g1Var.f45776b.get(((v2) view).L);
         } else {
             ajVar = null;
         }
@@ -38,10 +38,10 @@ public final class b1 extends v4.m0 {
                 i10++;
             }
             int M = (org.telegram.messenger.g0.M(11.0f) * (ajVar.d - ajVar.f21444c)) + i11;
-            int size = g1Var.f45748a.size();
+            int size = g1Var.f45775a.size();
             while (true) {
                 if (i7 < size) {
-                    org.telegram.messenger.aj ajVar2 = (org.telegram.messenger.aj) g1Var.f45748a.get(i7);
+                    org.telegram.messenger.aj ajVar2 = (org.telegram.messenger.aj) g1Var.f45775a.get(i7);
                     byte b10 = ajVar2.f21444c;
                     byte b11 = ajVar.f21444c;
                     if (b10 == b11 && ((ajVar2.f21442a != ajVar.f21442a || ajVar2.f21443b != ajVar.f21443b || b10 != b11 || ajVar2.d != ajVar.d) && b10 == b11)) {

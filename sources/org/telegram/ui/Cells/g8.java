@@ -281,7 +281,7 @@ public final class g8 extends FrameLayout implements org.telegram.ui.ActionBar.a
     public final boolean a() {
         int i7 = this.f29197a;
         if (i7 == 1) {
-            return this.f29200e.f40043a.f31258q;
+            return this.f29200e.f40050a.f31258q;
         }
         if (i7 == 3) {
             if (this.h.getVisibility() != 0) {
@@ -407,7 +407,7 @@ public final class g8 extends FrameLayout implements org.telegram.ui.ActionBar.a
             ImageView imageView = this.f29202n;
             imageView.setVisibility(0);
             ViewPropertyAnimator duration = imageView.animate().alpha(fArr[0]).scaleX(fArr2[0]).scaleY(fArr2[0]).setDuration(200L);
-            xq xqVar = ks.f35406a;
+            xq xqVar = ks.f35409a;
             duration.setInterpolator(xqVar).withEndAction(new Runnable(this) {
                 public final g8 f28936b;
 
@@ -844,7 +844,7 @@ public final class g8 extends FrameLayout implements org.telegram.ui.ActionBar.a
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         wo woVar = this.f29200e;
-        if (woVar != null && woVar.f40043a.f31258q) {
+        if (woVar != null && woVar.f40050a.f31258q) {
             accessibilityNodeInfo.setCheckable(true);
             accessibilityNodeInfo.setChecked(true);
         }

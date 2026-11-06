@@ -38,7 +38,7 @@ public class k3 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
         this.f29415y = i6Var;
         i6Var.n(0.2f, 160L, xq.h);
         i6Var.w(org.telegram.messenger.g0.L(15.33f));
-        i6Var.f34516b = 5;
+        i6Var.f34477b = 5;
         this.f29408e = i7;
         i3 i3Var = new i3(this, context, f6Var, i7, f6Var, z10);
         this.d = i3Var;

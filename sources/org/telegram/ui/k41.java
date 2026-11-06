@@ -6,25 +6,25 @@ import android.graphics.Typeface;
 import android.text.TextPaint;
 import android.view.View;
 public final class k41 {
-    public final org.telegram.ui.Components.kz f47081a;
-    public ng.f f47082b;
-    public final int f47083c;
+    public final org.telegram.ui.Components.kz f47104a;
+    public ng.f f47105b;
+    public final int f47106c;
     public final l41 d;
 
     public k41(l41 l41Var, int i7) {
         this.d = l41Var;
-        this.f47083c = i7;
+        this.f47106c = i7;
         ?? view = new View(l41Var.getContext());
-        view.f35443c = true;
+        view.f35446c = true;
         TextPaint textPaint = new TextPaint(1);
-        view.f35444e = textPaint;
-        view.f35445f = new Paint(1);
+        view.f35447e = textPaint;
+        view.f35448f = new Paint(1);
         Paint paint = new Paint(1);
         view.h = paint;
         Paint paint2 = new Paint(1);
-        view.f35446n = paint2;
-        view.f35450x = org.telegram.messenger.g0.L(35.0f);
-        view.f35451y = org.telegram.messenger.g0.L(22.0f);
+        view.f35449n = paint2;
+        view.f35453x = org.telegram.messenger.g0.L(35.0f);
+        view.f35454y = org.telegram.messenger.g0.L(22.0f);
         view.D = org.telegram.messenger.g0.L(8.0f);
         view.E = org.telegram.messenger.g0.L(3.5f);
         view.F = new RectF();
@@ -38,9 +38,9 @@ public final class k41 {
         paint2.setStyle(style);
         paint2.setStrokeCap(Paint.Cap.ROUND);
         paint2.setStrokeWidth(org.telegram.messenger.g0.L(2.0f));
-        this.f47081a = view;
+        this.f47104a = view;
         view.setPadding(org.telegram.messenger.g0.L(16.0f), 0, org.telegram.messenger.g0.L(16.0f), 0);
         l41Var.h.addView(view);
-        l41Var.f47387n.add(this);
+        l41Var.f47414n.add(this);
     }
 }

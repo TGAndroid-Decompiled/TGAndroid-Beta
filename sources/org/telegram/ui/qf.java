@@ -9,14 +9,14 @@ import java.util.Iterator;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class qf implements Runnable {
-    public final int f49189a;
-    public final Object f49190b;
-    public final Object f49191c;
+    public final int f49216a;
+    public final Object f49217b;
+    public final Object f49218c;
 
     public qf(int i7, Object obj, Object obj2) {
-        this.f49189a = i7;
-        this.f49190b = obj;
-        this.f49191c = obj2;
+        this.f49216a = i7;
+        this.f49217b = obj;
+        this.f49218c = obj2;
     }
 
     @Override
@@ -29,12 +29,12 @@ public final class qf implements Runnable {
         String str;
         String a02;
         TLRPC.Chat M0;
-        int i7 = this.f49189a;
+        int i7 = this.f49216a;
         org.telegram.messenger.ij ijVar = null;
         boolean z9 = true;
         boolean z10 = false;
-        Object obj = this.f49191c;
-        Object obj2 = this.f49190b;
+        Object obj = this.f49218c;
+        Object obj2 = this.f49217b;
         switch (i7) {
             case 0:
                 an.a0((an) obj2, (org.telegram.ui.Components.k60) obj);
@@ -75,7 +75,7 @@ public final class qf implements Runnable {
                 an anVar4 = (an) obj2;
                 Activity parentActivity = anVar4.getParentActivity();
                 String str2 = ((TLRPC.TL_bankCardOpenUrl) obj).url;
-                if (anVar4.f43969v8 != 0) {
+                if (anVar4.f43994v8 != 0) {
                     z9 = false;
                 }
                 vf.c.q(parentActivity, Uri.parse(str2), z9, false);
@@ -134,7 +134,7 @@ public final class qf implements Runnable {
                     fi.m3 m3Var2 = anVar6.Y0;
                     m3Var2.f12436q0 = new ae(anVar6, 3);
                     m3Var2.w();
-                    org.telegram.ui.Components.z20.f40819x.b();
+                    org.telegram.ui.Components.z20.f40839x.b();
                     return;
                 }
                 return;
@@ -143,7 +143,7 @@ public final class qf implements Runnable {
                 return;
             case 15:
                 org.telegram.messenger.ij ijVar2 = (org.telegram.messenger.ij) obj;
-                an anVar7 = ((di) obj2).f45055s;
+                an anVar7 = ((di) obj2).f45080s;
                 org.telegram.messenger.ij ijVar3 = (org.telegram.messenger.ij) anVar7.E6[0].get(ijVar2.f1());
                 if (ijVar3 != null && ijVar3 != ijVar2) {
                     org.telegram.messenger.ij ijVar4 = (org.telegram.messenger.ij) anVar7.E6[0].get(ijVar2.f1());
@@ -155,15 +155,15 @@ public final class qf implements Runnable {
                 return;
             case 16:
                 org.telegram.ui.Cells.t0 t0Var = (org.telegram.ui.Cells.t0) obj;
-                an anVar8 = ((el) ((em) obj2).f45346f).f45343a.Q;
-                int i11 = an.f43682id;
+                an anVar8 = ((el) ((em) obj2).f45376f).f45373a.Q;
+                int i11 = an.f43707id;
                 anVar8.lb();
                 t0Var.getMessageObject().f23262r = false;
                 t0Var.invalidate();
                 return;
             case 17:
                 fi.m3 m3Var3 = (fi.m3) obj;
-                an anVar9 = ((lm) obj2).f47534a;
+                an anVar9 = ((lm) obj2).f47561a;
                 anVar9.l1.removeView(m3Var3);
                 if (m3Var3 == anVar9.O1) {
                     anVar9.O1 = null;
@@ -172,7 +172,7 @@ public final class qf implements Runnable {
                 return;
             case 18:
                 Long l10 = (Long) obj;
-                an anVar10 = ((fm) obj2).S2.f47534a;
+                an anVar10 = ((fm) obj2).S2.f47561a;
                 if (l10.longValue() < 0 && (M0 = anVar10.getMessagesController().M0(Long.valueOf(-l10.longValue()))) != null) {
                     str = M0.title;
                 } else {
@@ -197,15 +197,15 @@ public final class qf implements Runnable {
                 TLRPC.TL_channels_checkUsername tL_channels_checkUsername = new TLRPC.TL_channels_checkUsername();
                 tL_channels_checkUsername.username = str3;
                 tL_channels_checkUsername.channel = goVar.getMessagesController().h1(goVar.Z);
-                goVar.f46031h0 = goVar.getConnectionsManager().sendRequest(tL_channels_checkUsername, new z9(goVar, str3, tL_channels_checkUsername, 6), 2);
+                goVar.f46058h0 = goVar.getConnectionsManager().sendRequest(tL_channels_checkUsername, new z9(goVar, str3, tL_channels_checkUsername, 6), 2);
                 return;
             case 21:
                 go goVar2 = (go) obj2;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
                 z10 = (tL_error2 == null || !tL_error2.text.equals("CHANNELS_ADMIN_PUBLIC_TOO_MUCH")) ? true : true;
-                goVar2.f46024c0 = z10;
-                if (!z10 && goVar2.getUserConfig().q() && !goVar2.f46025d0 && goVar2.f46047y != null) {
-                    goVar2.f46025d0 = true;
+                goVar2.f46051c0 = z10;
+                if (!z10 && goVar2.getUserConfig().q() && !goVar2.f46052d0 && goVar2.f46074y != null) {
+                    goVar2.f46052d0 = true;
                     goVar2.h0();
                     goVar2.getConnectionsManager().sendRequest(new TLRPC.TL_channels_getAdminedPublicChannels(), new qn(goVar2, 1));
                     return;
@@ -221,7 +221,7 @@ public final class qf implements Runnable {
                     TLRPC.messages_Chats messages_chats = (TLRPC.messages_Chats) tLObject;
                     soVar.getMessagesController().S3(messages_chats.chats, false);
                     ArrayList<TLRPC.Chat> arrayList = messages_chats.chats;
-                    soVar.f49784w = arrayList;
+                    soVar.f49805w = arrayList;
                     Iterator<TLRPC.Chat> it = arrayList.iterator();
                     while (it.hasNext()) {
                         TLRPC.Chat next = it.next();
@@ -230,20 +230,20 @@ public final class qf implements Runnable {
                         }
                     }
                 }
-                soVar.f49785x = false;
-                soVar.f49786y = true;
+                soVar.f49806x = false;
+                soVar.f49807y = true;
                 soVar.g0();
                 return;
             case 24:
-                ((oo) obj2).f48434y.d.P = false;
+                ((oo) obj2).f48463y.d.P = false;
                 ((org.telegram.ui.Components.d70) obj).run();
                 return;
             case 25:
-                ((oo) obj2).f48434y.d.O = false;
+                ((oo) obj2).f48463y.d.O = false;
                 ((org.telegram.ui.Components.e70) obj).run();
                 return;
             case 26:
-                so soVar2 = ((oo) obj2).f48434y.d;
+                so soVar2 = ((oo) obj2).f48463y.d;
                 soVar2.O = false;
                 soVar2.P = false;
                 ((Runnable) obj).run();
@@ -253,7 +253,7 @@ public final class qf implements Runnable {
                 ooVar.getClass();
                 ((TLRPC.Chat) obj).join_request = true;
                 ooVar.h = true;
-                ooVar.f33494c.setChecked(true);
+                ooVar.f33472c.setChecked(true);
                 return;
             case 28:
                 oq oqVar = (oq) obj2;
@@ -262,7 +262,7 @@ public final class qf implements Runnable {
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) obj;
-                oq oqVar2 = ((dq) obj2).f45099a;
+                oq oqVar2 = ((dq) obj2).f45128a;
                 if (org.telegram.ui.Components.hc.a(oqVar2)) {
                     org.telegram.ui.Components.hc.C(user.first_name, oqVar2).j();
                     return;

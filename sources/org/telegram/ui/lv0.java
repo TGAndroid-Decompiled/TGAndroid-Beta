@@ -1,17 +1,23 @@
 package org.telegram.ui;
+public final class lv0 extends nq0 {
+    public final ProfileActivity f47596a;
 
-import android.content.Context;
-public final class lv0 extends org.telegram.ui.ActionBar.y4 {
-    public final ProfileActivity f47569s0;
-
-    public lv0(ProfileActivity profileActivity, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        super(context, f6Var);
-        this.f47569s0 = profileActivity;
+    public lv0(ProfileActivity profileActivity) {
+        this.f47596a = profileActivity;
     }
 
     @Override
-    public final void Y(int i7, float f10, float f11, te.c cVar) {
-        super.Y(i7, f10, f11, cVar);
-        ProfileActivity.s1(this.f47569s0);
+    public final org.telegram.ui.wq0 E(org.telegram.messenger.ij r17, org.telegram.tgnet.TLRPC.FileLocation r18, int r19, boolean r20, boolean r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.lv0.E(org.telegram.messenger.ij, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.wq0");
+    }
+
+    @Override
+    public final void G() {
+        this.f47596a.f41719e0.getImageReceiver().O0(true, true);
+    }
+
+    @Override
+    public final void f(String str, String str2, boolean z9) {
+        this.f47596a.f41800q0.p(str, str2, z9);
     }
 }

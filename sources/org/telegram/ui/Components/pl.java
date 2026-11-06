@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.view.View;
 import java.util.ArrayList;
 import java.util.HashMap;
-public abstract class pl extends org.telegram.ui.mq0 {
-    public final ChatAttachAlertPhotoLayout f37087a;
+public abstract class pl extends org.telegram.ui.nq0 {
+    public final ChatAttachAlertPhotoLayout f36966a;
 
     public pl(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f37087a = chatAttachAlertPhotoLayout;
+        this.f36966a = chatAttachAlertPhotoLayout;
     }
 
     @Override
@@ -17,7 +17,7 @@ public abstract class pl extends org.telegram.ui.mq0 {
 
     @Override
     public final boolean O() {
-        di diVar = this.f37087a.f38951b;
+        di diVar = this.f36966a.f38948b;
         if (diVar != null && diVar.Z1) {
             return true;
         }
@@ -27,7 +27,7 @@ public abstract class pl extends org.telegram.ui.mq0 {
     @Override
     public final int S(int i7) {
         boolean z9 = ChatAttachAlertPhotoLayout.f31183q1;
-        org.telegram.messenger.gf e02 = this.f37087a.e0(i7);
+        org.telegram.messenger.gf e02 = this.f36966a.e0(i7);
         if (e02 == null) {
             return -1;
         }
@@ -42,10 +42,10 @@ public abstract class pl extends org.telegram.ui.mq0 {
     @Override
     public final int k(int i7, org.telegram.messenger.j20 j20Var) {
         boolean z9;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f37087a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f36966a;
         jl jlVar = chatAttachAlertPhotoLayout.f31219r;
         jl jlVar2 = chatAttachAlertPhotoLayout.E;
-        di diVar = chatAttachAlertPhotoLayout.f38951b;
+        di diVar = chatAttachAlertPhotoLayout.f38948b;
         if (diVar.M3 < 0 || ChatAttachAlertPhotoLayout.f31185s1.size() < diVar.M3 || x(i7)) {
             boolean z10 = ChatAttachAlertPhotoLayout.f31183q1;
             org.telegram.messenger.gf e02 = chatAttachAlertPhotoLayout.e0(i7);
@@ -109,7 +109,7 @@ public abstract class pl extends org.telegram.ui.mq0 {
     @Override
     public final void m() {
         boolean z9 = ChatAttachAlertPhotoLayout.f31183q1;
-        this.f37087a.y0();
+        this.f36966a.y0();
     }
 
     @Override
@@ -120,7 +120,7 @@ public abstract class pl extends org.telegram.ui.mq0 {
     @Override
     public final boolean x(int i7) {
         boolean z9 = ChatAttachAlertPhotoLayout.f31183q1;
-        org.telegram.messenger.gf e02 = this.f37087a.e0(i7);
+        org.telegram.messenger.gf e02 = this.f36966a.e0(i7);
         if (e02 != null && ChatAttachAlertPhotoLayout.f31185s1.containsKey(Integer.valueOf(e02.C))) {
             return true;
         }

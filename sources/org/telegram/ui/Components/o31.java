@@ -1,53 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Typeface;
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class o31 extends MetricAffectingSpan {
-    public Typeface f36585a;
-    public int f36586b;
-    public int f36587c;
+import android.view.MotionEvent;
+import org.telegram.tgnet.TLRPC;
+public abstract class o31 {
+    public String[] f36471a = new String[0];
 
-    public o31(Typeface typeface) {
-        this.f36587c = -1;
-        this.f36585a = typeface;
+    public boolean a() {
+        return false;
     }
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        int i7 = this.f36587c;
-        if (i7 >= 0) {
-            this.f36586b = org.telegram.ui.ActionBar.k6.v0(i7);
-        }
-        Typeface typeface = this.f36585a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        int i10 = this.f36586b;
-        if (i10 != 0) {
-            textPaint.setColor(i10);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
+    public String[] b() {
+        return this.f36471a;
     }
 
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        Typeface typeface = this.f36585a;
-        if (typeface != null) {
-            textPaint.setTypeface(typeface);
-        }
-        textPaint.setFlags(textPaint.getFlags() | 128);
+    public boolean c() {
+        return false;
     }
 
-    public o31() {
-        Typeface typeface = Typeface.DEFAULT;
-        this.f36587c = -1;
-        this.f36585a = typeface;
+    public boolean d(h31 h31Var, MotionEvent motionEvent) {
+        return false;
     }
 
-    public o31(Typeface typeface, int i7) {
-        this.f36587c = -1;
-        this.f36585a = typeface;
-        this.f36586b = i7;
+    public boolean e(h31 h31Var, k kVar, MotionEvent motionEvent) {
+        return false;
+    }
+
+    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z9);
+
+    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    public void i(String[] strArr) {
+        this.f36471a = strArr;
+    }
+
+    public void f(TLRPC.Document document, Object obj, boolean z9, int i7) {
     }
 }

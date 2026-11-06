@@ -46,12 +46,12 @@ public final class f extends l2.b implements Handler.Callback {
     public boolean X;
     public u Y;
     public long Z;
-    public long f59454a0;
+    public long f59479a0;
 
     public f(c0 c0Var, Looper looper) {
         super(3);
         Handler handler;
-        d dVar = e.f59453a;
+        d dVar = e.f59478a;
         this.U = c0Var;
         if (looper == null) {
             handler = null;
@@ -64,7 +64,7 @@ public final class f extends l2.b implements Handler.Callback {
         this.I = new qb.a(5);
         this.J = new h(1, 0);
         this.V = new wf.b(27, false);
-        this.f59454a0 = -9223372036854775807L;
+        this.f59479a0 = -9223372036854775807L;
         this.Z = -9223372036854775807L;
     }
 
@@ -76,7 +76,7 @@ public final class f extends l2.b implements Handler.Callback {
         if (!equals) {
             d dVar = (d) this.L;
             dVar.getClass();
-            if (!((s) dVar.f59452b).w(uVar) && !Objects.equals(str, "application/cea-608") && !Objects.equals(str, "application/x-mp4-cea-608") && !Objects.equals(str, "application/cea-708")) {
+            if (!((s) dVar.f59477b).w(uVar) && !Objects.equals(str, "application/cea-608") && !Objects.equals(str, "application/x-mp4-cea-608") && !Objects.equals(str, "application/cea-708")) {
                 if (s0.l(str)) {
                     return g.b(1, 0, 0, 0);
                 }
@@ -213,7 +213,7 @@ public final class f extends l2.b implements Handler.Callback {
     @Override
     public final void n() {
         this.Y = null;
-        this.f59454a0 = -9223372036854775807L;
+        this.f59479a0 = -9223372036854775807L;
         g2.d dVar = new g2.d(H(this.Z), t1.f14397e);
         Handler handler = this.T;
         if (handler != null) {
@@ -248,7 +248,7 @@ public final class f extends l2.b implements Handler.Callback {
         }
         this.W = false;
         this.X = false;
-        this.f59454a0 = -9223372036854775807L;
+        this.f59479a0 = -9223372036854775807L;
         u uVar = this.Y;
         if (uVar != null && !Objects.equals(uVar.f10615s, "application/x-media3-cues")) {
             if (this.N != 0) {
@@ -297,7 +297,7 @@ public final class f extends l2.b implements Handler.Callback {
         boolean z9;
         long j11;
         if (this.D) {
-            long j12 = this.f59454a0;
+            long j12 = this.f59479a0;
             if (j12 != -9223372036854775807L && j3 >= j12) {
                 K();
                 this.X = true;
@@ -478,7 +478,7 @@ public final class f extends l2.b implements Handler.Callback {
                                     this.W = true;
                                     this.M = false;
                                 } else {
-                                    u uVar2 = (u) bVar.f57539c;
+                                    u uVar2 = (u) bVar.f57564c;
                                     if (uVar2 != null) {
                                         iVar.f5286r = uVar2.f10619x;
                                         iVar.c();

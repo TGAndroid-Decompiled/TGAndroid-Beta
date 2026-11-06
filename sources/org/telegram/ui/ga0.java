@@ -4,15 +4,15 @@ import android.content.Intent;
 import android.net.Uri;
 import org.telegram.tgnet.TLRPC;
 public final class ga0 extends org.telegram.ui.ActionBar.j {
-    public final pa0 f45904a;
+    public final pa0 f45931a;
 
     public ga0(pa0 pa0Var) {
-        this.f45904a = pa0Var;
+        this.f45931a = pa0Var;
     }
 
     @Override
     public final void b(int i7) {
-        pa0 pa0Var = this.f45904a;
+        pa0 pa0Var = this.f45931a;
         if (i7 == -1) {
             pa0Var.finishFragment();
             return;

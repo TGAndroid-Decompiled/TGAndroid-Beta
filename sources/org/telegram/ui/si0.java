@@ -4,34 +4,34 @@ import android.content.Intent;
 import android.net.Uri;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class si0 implements org.telegram.ui.ActionBar.r1, ps, qj0 {
-    public final int f49759a;
-    public final bk0 f49760b;
+    public final int f49780a;
+    public final bk0 f49781b;
 
     public si0(bk0 bk0Var, int i7) {
-        this.f49759a = i7;
-        this.f49760b = bk0Var;
+        this.f49780a = i7;
+        this.f49781b = bk0Var;
     }
 
     @Override
     public void a(String str, String str2) {
-        this.f49760b.B1();
+        this.f49781b.B1();
     }
 
     @Override
     public void b(ms msVar) {
         String str;
-        switch (this.f49759a) {
+        switch (this.f49780a) {
             case 2:
-                bk0 bk0Var = this.f49760b;
-                bk0Var.Y[5].setText(msVar.f47842a);
-                bk0Var.f44384s = msVar.d;
+                bk0 bk0Var = this.f49781b;
+                bk0Var.Y[5].setText(msVar.f47870a);
+                bk0Var.f44400s = msVar.d;
                 return;
             default:
-                bk0 bk0Var2 = this.f49760b;
-                bk0Var2.Y[0].setText(msVar.f47842a);
-                if (bk0Var2.U0.indexOf(msVar.f47842a) != -1) {
+                bk0 bk0Var2 = this.f49781b;
+                bk0Var2.Y[0].setText(msVar.f47870a);
+                if (bk0Var2.U0.indexOf(msVar.f47870a) != -1) {
                     bk0Var2.Z0 = true;
-                    String str2 = (String) bk0Var2.V0.get(msVar.f47842a);
+                    String str2 = (String) bk0Var2.V0.get(msVar.f47870a);
                     bk0Var2.Y[1].setText(str2);
                     String str3 = (String) bk0Var2.X0.get(str2);
                     EditTextBoldCursor editTextBoldCursor = bk0Var2.Y[2];
@@ -53,9 +53,9 @@ public final class si0 implements org.telegram.ui.ActionBar.r1, ps, qj0 {
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f49759a) {
+        switch (this.f49780a) {
             case 0:
-                bk0 bk0Var = this.f49760b;
+                bk0 bk0Var = this.f49781b;
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
                     intent.setData(Uri.parse("package:" + org.telegram.messenger.t0.f25555b.getPackageName()));
@@ -66,15 +66,15 @@ public final class si0 implements org.telegram.ui.ActionBar.r1, ps, qj0 {
                     return;
                 }
             case 1:
-                this.f49760b.finishFragment();
+                this.f49781b.finishFragment();
                 return;
             case 2:
             case 3:
             default:
-                bk0.f0(this.f49760b);
+                bk0.f0(this.f49781b);
                 return;
             case 4:
-                bk0.i0(this.f49760b);
+                bk0.i0(this.f49781b);
                 return;
         }
     }

@@ -59,14 +59,14 @@ public final class l7 extends FrameLayout {
         SpannableString spannableString = new SpannableString("x");
         this.h = spannableString;
         b80 b80Var = new b80(org.telegram.messenger.g0.L(200.0f), j6Var);
-        b80Var.f32078e = 0.8f;
+        b80Var.f32072e = 0.8f;
         b80Var.a(org.telegram.ui.ActionBar.k6.r1(0.4f, textColor), org.telegram.ui.ActionBar.k6.r1(0.08f, textColor));
         spannableString.setSpan(b80Var, 0, spannableString.length(), 33);
         int textColor2 = j6Var2.getTextColor();
         SpannableString spannableString2 = new SpannableString("x");
         this.f12342n = spannableString2;
         b80 b80Var2 = new b80(org.telegram.messenger.g0.L(140.0f), j6Var2);
-        b80Var2.f32078e = 0.8f;
+        b80Var2.f32072e = 0.8f;
         b80Var2.a(org.telegram.ui.ActionBar.k6.r1(0.4f, textColor2), org.telegram.ui.ActionBar.k6.r1(0.08f, textColor2));
         spannableString2.setSpan(b80Var2, 0, spannableString2.length(), 33);
         ImageView imageView3 = new ImageView(context);

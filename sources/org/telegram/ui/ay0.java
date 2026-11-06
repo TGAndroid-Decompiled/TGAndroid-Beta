@@ -8,14 +8,14 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class ay0 extends org.telegram.ui.ActionBar.f2 implements org.telegram.messenger.ls {
-    public org.telegram.ui.Components.pj0 f44101a;
-    public wx0 f44102b;
-    public int f44103c;
+    public org.telegram.ui.Components.pj0 f44117a;
+    public wx0 f44118b;
+    public int f44119c;
     public int d;
-    public int f44104e;
-    public int f44105f;
+    public int f44120e;
+    public int f44121f;
     public ab.b0 h;
-    public yx0 f44106n;
+    public yx0 f44122n;
 
     public ay0() {
         super(null);
@@ -33,12 +33,12 @@ public final class ay0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
                 return;
             }
             org.telegram.messenger.ui.b0(ay0Var.currentAccount).a2(xVar.f30756f.reaction);
-            ay0Var.f44101a.getAdapter().k(0, ay0Var.f44101a.getAdapter().b());
+            ay0Var.f44117a.getAdapter().k(0, ay0Var.f44117a.getAdapter().b());
         } else if (view instanceof zx0) {
             zx0 zx0Var = (zx0) view;
-            if (ay0Var.f44106n == null) {
+            if (ay0Var.f44122n == null) {
                 h11[] h11VarArr = new h11[1];
-                org.telegram.ui.Components.g5 g5Var = zx0Var.f52667a;
+                org.telegram.ui.Components.g5 g5Var = zx0Var.f52693a;
                 if (g5Var != null) {
                     g5Var.f();
                     zx0Var.b();
@@ -69,7 +69,7 @@ public final class ay0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
                 xx0Var.setSaveState(3);
                 xx0Var.y(g5Var, zx0Var);
                 yx0 yx0Var = new yx0(ay0Var, xx0Var);
-                ay0Var.f44106n = yx0Var;
+                ay0Var.f44122n = yx0Var;
                 h11VarArr[0] = yx0Var;
                 yx0Var.showAsDropDown(zx0Var, 0, i10, 53);
                 h11VarArr[0].b();
@@ -82,22 +82,22 @@ public final class ay0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         setHasOwnBackground(true);
         this.simpleActionBar.setTitle(org.telegram.messenger.hd.M0(2131746386, null));
         this.simpleActionBar.setBackButtonImage(2131231240);
-        this.simpleActionBar.setActionBarMenuOnItemClick(new mt0(this, 5));
+        this.simpleActionBar.setActionBarMenuOnItemClick(new nt0(this, 5));
         FrameLayout frameLayout = new FrameLayout(context);
         org.telegram.ui.Components.pj0 pj0Var = new org.telegram.ui.Components.pj0(context, null);
-        this.f44101a = pj0Var;
+        this.f44117a = pj0Var;
         pj0Var.r1();
-        this.f44101a.setSectionsDrawBackground(true);
-        ((v4.k) this.f44101a.getItemAnimator()).f56954m = false;
-        this.f44101a.setLayoutManager(new v4.b0());
-        org.telegram.ui.Components.pj0 pj0Var2 = this.f44101a;
+        this.f44117a.setSectionsDrawBackground(true);
+        ((v4.k) this.f44117a.getItemAnimator()).f56979m = false;
+        this.f44117a.setLayoutManager(new v4.b0());
+        org.telegram.ui.Components.pj0 pj0Var2 = this.f44117a;
         wx0 wx0Var = new wx0(this, context);
-        this.f44102b = wx0Var;
+        this.f44118b = wx0Var;
         pj0Var2.setAdapter(wx0Var);
-        this.f44101a.setOnItemClickListener(new vx0(this, 0));
-        frameLayout.addView(this.f44101a, c8.ha.c(-1.0f, -1));
+        this.f44117a.setOnItemClickListener(new vx0(this, 0));
+        frameLayout.addView(this.f44117a, c8.ha.c(-1.0f, -1));
         this.fragmentView = frameLayout;
-        this.f44102b.f();
+        this.f44118b.f();
         h0();
         return frameLayout;
     }
@@ -106,17 +106,17 @@ public final class ay0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         if (i10 == this.currentAccount) {
             if (i7 == org.telegram.messenger.qs.V4) {
-                this.f44102b.f();
+                this.f44118b.f();
             } else if (i7 == org.telegram.messenger.qs.f24984f5) {
                 h0();
-                this.f44102b.f();
+                this.f44118b.f();
             }
         }
     }
 
     @Override
     public final org.telegram.ui.Components.pj0 getListViewForSimpleGlass() {
-        return this.f44101a;
+        return this.f44117a;
     }
 
     @Override
@@ -125,17 +125,17 @@ public final class ay0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
     }
 
     public final void h0() {
-        this.f44105f = 2;
-        this.f44103c = 1;
+        this.f44121f = 2;
+        this.f44119c = 1;
         if (org.telegram.messenger.p10.i(this.currentAccount).q()) {
             this.d = -1;
-            int i7 = this.f44105f;
-            this.f44105f = i7 + 1;
-            this.f44104e = i7;
+            int i7 = this.f44121f;
+            this.f44121f = i7 + 1;
+            this.f44120e = i7;
             return;
         }
-        this.f44104e = -1;
-        this.d = this.f44105f;
+        this.f44120e = -1;
+        this.d = this.f44121f;
     }
 
     @Override

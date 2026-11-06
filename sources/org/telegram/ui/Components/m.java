@@ -14,14 +14,14 @@ public final class m extends mo0 {
     @Override
     public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
         String str;
-        FrameLayout frameLayout = this.R2.f33755y2;
+        FrameLayout frameLayout = this.R2.f33699y2;
         if (z9) {
             hc hcVar = new hc(frameLayout, this.I0);
             if (hVar.m() == 1) {
                 long j3 = hVar.j(0);
                 if (j3 == org.telegram.messenger.p10.i(this.f28612a).f24478n) {
                     cc G = hcVar.G(2131624190, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131754967, new Object[0])));
-                    G.f32531r = false;
+                    G.f32535r = false;
                     G.j();
                 } else if (j3 < 0) {
                     TLRPC.Chat M0 = org.telegram.messenger.qp.s1(this.f28612a).M0(Long.valueOf(-j3));
@@ -31,16 +31,16 @@ public final class m extends mo0 {
                         str = M0.title;
                     }
                     cc G2 = hcVar.G(2131624028, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131754971, str)));
-                    G2.f32531r = false;
+                    G2.f32535r = false;
                     G2.j();
                 } else {
                     cc G3 = hcVar.G(2131624028, 5000, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.a0(null, null, 2131754971, org.telegram.messenger.qp.s1(this.f28612a).a2(Long.valueOf(j3)).first_name)));
-                    G3.f32531r = false;
+                    G3.f32535r = false;
                     G3.j();
                 }
             } else {
                 cc Q = hcVar.Q(2131624028, 36, org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(hVar.m(), "AIEditorStyleSharedToManyChats", Integer.valueOf(hVar.m()))));
-                Q.f32531r = false;
+                Q.f32535r = false;
                 Q.j();
             }
             try {

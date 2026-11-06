@@ -35,7 +35,7 @@ public final class p implements TextView.OnEditorActionListener {
                     if (TextUtils.isEmpty(q0Var.f17501f.getText())) {
                         q0Var.D = null;
                         q0Var.d.b();
-                        q0Var.f17499c.f35167f3.O(true);
+                        q0Var.f17499c.f36781f3.O(true);
                     } else {
                         org.telegram.messenger.g0.h3(k0Var);
                     }

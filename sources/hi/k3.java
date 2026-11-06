@@ -192,8 +192,8 @@ public final class k3 extends ClickableSpan {
                     }
                 }, hd.M0(2131752477, null), z11);
                 H.V(5);
-                H.f35217t = false;
-                H.f35216s = 0;
+                H.f35181t = false;
+                H.f35180s = 0;
                 H.a0(org.telegram.messenger.g0.L(24.0f), -org.telegram.messenger.g0.L(24.0f));
                 H.Z();
                 return;

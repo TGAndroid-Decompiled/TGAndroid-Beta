@@ -31,8 +31,8 @@ public final class ie implements Runnable {
             default:
                 org.telegram.ui.g4 g4Var = (org.telegram.ui.g4) this.f23164c;
                 k60 k60Var = (k60) this.d;
-                g4Var.f45804h0.M.c(true, 0.0f);
-                k60Var.f35211p = new org.telegram.ui.b0(g4Var, this.f23163b, 0);
+                g4Var.f45831h0.M.c(true, 0.0f);
+                k60Var.f35175p = new org.telegram.ui.b0(g4Var, this.f23163b, 0);
                 k60Var.Z();
                 return;
         }

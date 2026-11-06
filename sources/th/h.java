@@ -8,15 +8,15 @@ import org.telegram.messenger.t5;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.k6;
 public final class h extends sh.c {
-    public final TLRPC.Document f55946b;
-    public final Object f55947c;
+    public final TLRPC.Document f55971b;
+    public final Object f55972c;
 
     public h(Object obj, TLRPC.Document document) {
         boolean z9;
-        this.f55946b = document;
-        this.f55947c = obj;
+        this.f55971b = document;
+        this.f55972c = obj;
         ij.I2(document);
-        ImageReceiver imageReceiver = this.f55177a;
+        ImageReceiver imageReceiver = this.f55202a;
         if (!ij.v4(document) && !ij.O4(document)) {
             z9 = false;
         } else {
@@ -28,7 +28,7 @@ public final class h extends sh.c {
 
     @Override
     public final void c(Canvas canvas, int i7, int i10) {
-        ImageReceiver imageReceiver = this.f55177a;
+        ImageReceiver imageReceiver = this.f55202a;
         imageReceiver.y0(0.0f, 0.0f, i7, i10);
         imageReceiver.h(canvas, null);
     }

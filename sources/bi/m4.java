@@ -7,11 +7,11 @@ import org.telegram.messenger.x10;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.e21;
+import org.telegram.ui.Components.j21;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.iy0;
 import org.telegram.ui.oy0;
-import org.telegram.ui.vn0;
+import org.telegram.ui.wn0;
 import org.telegram.ui.ww;
 public final class m4 implements Runnable {
     public final int f4317a = 0;
@@ -78,10 +78,10 @@ public final class m4 implements Runnable {
                 f10Var.getClass();
                 TLRPC.Message message = ijVar.f23237k;
                 message.translatedToLanguage = (String) this.f4320e;
-                message.translatedText = e21.P0((TLRPC.TL_textWithEntities) this.f4321f, (TLRPC.TL_textWithEntities) this.h);
+                message.translatedText = j21.P0((TLRPC.TL_textWithEntities) this.f4321f, (TLRPC.TL_textWithEntities) this.h);
                 f10Var.getMessagesStorage().X1(sVar.f11070a, ijVar.f23237k);
                 f10Var.L.remove(sVar);
-                org.telegram.messenger.g0.i3((vn0) this.f4323r, Math.max(0L, 400 - (System.currentTimeMillis() - this.f4318b)));
+                org.telegram.messenger.g0.i3((wn0) this.f4323r, Math.max(0L, 400 - (System.currentTimeMillis() - this.f4318b)));
                 return;
             case 2:
                 ww.p0((ww) this.f4319c, (org.telegram.ui.ActionBar.u1) this.f4320e, (TLObject) this.f4321f, (TLRPC.User) this.d, (TLRPC.Chat) this.h, this.f4318b, (TLRPC.TL_error) this.f4322n, (TLRPC.TL_messages_checkHistoryImportPeer) this.f4323r);
@@ -94,7 +94,7 @@ public final class m4 implements Runnable {
                 org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f4323r;
                 oy0 oy0Var = new oy0(context, i0Var, this.f4318b, bArr);
                 oy0Var.N0((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f4321f));
-                oy0Var.f48580r1 = new iy0((org.telegram.messenger.video.a) this.h, hcVar, context, i0Var, dVar);
+                oy0Var.f48575r1 = new iy0((org.telegram.messenger.video.a) this.h, hcVar, context, i0Var, dVar);
                 oy0Var.show();
                 return;
             default:
@@ -103,14 +103,14 @@ public final class m4 implements Runnable {
         }
     }
 
-    public m4(f10 f10Var, ij ijVar, String str, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, f3.s sVar, vn0 vn0Var, long j3) {
+    public m4(f10 f10Var, ij ijVar, String str, TLRPC.TL_textWithEntities tL_textWithEntities, TLRPC.TL_textWithEntities tL_textWithEntities2, f3.s sVar, wn0 wn0Var, long j3) {
         this.f4319c = f10Var;
         this.d = ijVar;
         this.f4320e = str;
         this.f4321f = tL_textWithEntities;
         this.h = tL_textWithEntities2;
         this.f4322n = sVar;
-        this.f4323r = vn0Var;
+        this.f4323r = wn0Var;
         this.f4318b = j3;
     }
 

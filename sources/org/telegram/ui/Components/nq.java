@@ -9,15 +9,15 @@ import android.widget.TextView;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class nq extends oj0 {
-    public final oq f36468c;
+    public final oq f36362c;
 
     public nq(oq oqVar) {
-        this.f36468c = oqVar;
+        this.f36362c = oqVar;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f == 3) {
+        if (d1Var.f56956f == 3) {
             return true;
         }
         return false;
@@ -25,7 +25,7 @@ public final class nq extends oj0 {
 
     @Override
     public final int b() {
-        oq oqVar = this.f36468c;
+        oq oqVar = this.f36362c;
         if (oqVar.R1) {
             return oqVar.Q1.size() + 3;
         }
@@ -55,11 +55,11 @@ public final class nq extends oj0 {
         TLObject M0;
         String str;
         boolean z9;
-        int i10 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        int i10 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         boolean z10 = true;
         if (i10 == 3) {
-            oq oqVar = this.f36468c;
+            oq oqVar = this.f36362c;
             TLRPC.Peer peer = (TLRPC.Peer) oqVar.Q1.get(i7 - 3);
             long C1 = org.telegram.messenger.ij.C1(peer);
             if (C1 > 0) {
@@ -96,7 +96,7 @@ public final class nq extends oj0 {
         String a02;
         String a03;
         Context context = viewGroup.getContext();
-        oq oqVar = this.f36468c;
+        oq oqVar = this.f36362c;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {

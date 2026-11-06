@@ -6,33 +6,33 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.ArrayList;
 public final class rf0 extends ep {
-    public final ArrayList f37724c = new ArrayList();
+    public final ArrayList f37667c = new ArrayList();
     public final ArrayList d = new ArrayList();
-    public final Context f37725e;
-    public final Paint f37726f;
-    public l9 f37727g;
+    public final Context f37668e;
+    public final Paint f37669f;
+    public l9 f37670g;
     public final sf0 h;
 
     public rf0(sf0 sf0Var, Context context, org.telegram.ui.wv0 wv0Var) {
         this.h = sf0Var;
-        this.f37725e = context;
-        this.f37727g = wv0Var;
+        this.f37668e = context;
+        this.f37670g = wv0Var;
         Paint paint = new Paint(1);
-        this.f37726f = paint;
+        this.f37669f = paint;
         paint.setColor(-16777216);
     }
 
     @Override
     public final void a(c5.k kVar, Object obj) {
         pf0 pf0Var = (pf0) obj;
-        View view = pf0Var.f36997b;
+        View view = pf0Var.f36876b;
         if (view != null) {
             kVar.removeView(view);
         }
-        if (pf0Var.f36996a) {
+        if (pf0Var.f36875a) {
             return;
         }
-        nf0 nf0Var = pf0Var.f36998c;
+        nf0 nf0Var = pf0Var.f36877c;
         if (nf0Var.getImageReceiver().m0 != null) {
             Drawable t6 = nf0Var.getImageReceiver().t();
             if (t6 instanceof v5) {
@@ -46,12 +46,12 @@ public final class rf0 extends ep {
 
     @Override
     public final int b() {
-        return this.f37724c.size();
+        return this.f37667c.size();
     }
 
     @Override
     public final int c(Object obj) {
-        int indexOf = this.f37724c.indexOf((pf0) obj);
+        int indexOf = this.f37667c.indexOf((pf0) obj);
         if (indexOf == -1) {
             return -2;
         }
@@ -71,12 +71,12 @@ public final class rf0 extends ep {
     @Override
     public final boolean f(View view, Object obj) {
         pf0 pf0Var = (pf0) obj;
-        if (pf0Var.f36996a) {
-            if (view == pf0Var.f36997b) {
+        if (pf0Var.f36875a) {
+            if (view == pf0Var.f36876b) {
                 return true;
             }
             return false;
-        } else if (view == pf0Var.f36998c) {
+        } else if (view == pf0Var.f36877c) {
             return true;
         } else {
             return false;
@@ -98,12 +98,12 @@ public final class rf0 extends ep {
             }
             i7++;
         }
-        ArrayList arrayList2 = this.f37724c;
+        ArrayList arrayList2 = this.f37667c;
         arrayList2.clear();
         arrayList.clear();
         sf0 sf0Var = this.h;
         int size2 = sf0Var.X0.size();
-        if (sf0Var.f38076i1) {
+        if (sf0Var.f38036i1) {
             size2++;
         }
         org.telegram.messenger.yo yoVar = sf0Var.S0;
@@ -124,7 +124,7 @@ public final class rf0 extends ep {
     public final int j() {
         sf0 sf0Var = this.h;
         int size = sf0Var.X0.size();
-        if (sf0Var.f38076i1) {
+        if (sf0Var.f38036i1) {
             size++;
         }
         if (size >= 2) {

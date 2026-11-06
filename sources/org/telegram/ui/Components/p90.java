@@ -8,15 +8,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 public final class p90 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final org.telegram.ui.ActionBar.f6 f36949a;
-    public final i6 f36950b;
-    public final i6 f36951c;
+    public final org.telegram.ui.ActionBar.f6 f36828a;
+    public final i6 f36829b;
+    public final i6 f36830c;
 
     public p90(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
-        this.f36949a = f6Var;
+        this.f36828a = f6Var;
         i6 i6Var = new i6(true, true, true);
-        this.f36950b = i6Var;
+        this.f36829b = i6Var;
         xq xqVar = xq.h;
         i6Var.n(0.3f, 430L, xqVar);
         i6Var.x(org.telegram.messenger.g0.o());
@@ -27,7 +27,7 @@ public final class p90 extends FrameLayout implements org.telegram.ui.ActionBar.
         Point point = org.telegram.messenger.g0.f22537q;
         i6Var.M = point.x;
         i6 i6Var2 = new i6(true, true, true);
-        this.f36951c = i6Var2;
+        this.f36830c = i6Var2;
         i6Var2.n(0.3f, 430L, xqVar);
         i6Var2.u(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.B8, f6Var));
         i6Var2.w(org.telegram.messenger.g0.L(14.0f));
@@ -43,7 +43,7 @@ public final class p90 extends FrameLayout implements org.telegram.ui.ActionBar.
         } else {
             z10 = false;
         }
-        this.f36951c.t(charSequence, z10, true);
+        this.f36830c.t(charSequence, z10, true);
     }
 
     @Override
@@ -59,19 +59,19 @@ public final class p90 extends FrameLayout implements org.telegram.ui.ActionBar.
         } else {
             z10 = false;
         }
-        this.f36950b.t(charSequence, z10, true);
+        this.f36829b.t(charSequence, z10, true);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         int L = org.telegram.messenger.g0.L(29.0f);
         int L2 = org.telegram.messenger.g0.L(18.83f);
-        i6 i6Var = this.f36951c;
+        i6 i6Var = this.f36830c;
         int paddingLeft = getPaddingLeft();
         int L3 = r0 - org.telegram.messenger.g0.L(32.0f);
         int measuredWidth = getMeasuredWidth() - getPaddingRight();
         int L4 = org.telegram.messenger.g0.L(32.0f) + r0;
-        i6 i6Var2 = this.f36950b;
+        i6 i6Var2 = this.f36829b;
         i6Var2.setBounds(paddingLeft, L3, measuredWidth, L4);
         i6Var2.draw(canvas);
         i6Var.setBounds(getPaddingLeft(), r0 - org.telegram.messenger.g0.L(32.0f), getMeasuredWidth() - getPaddingRight(), org.telegram.messenger.g0.L(32.0f) + r0);
@@ -87,12 +87,12 @@ public final class p90 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void updateColors() {
         try {
-            i6 i6Var = this.f36950b;
-            org.telegram.ui.ActionBar.f6 f6Var = this.f36949a;
+            i6 i6Var = this.f36829b;
+            org.telegram.ui.ActionBar.f6 f6Var = this.f36828a;
             if (i6Var != null) {
                 i6Var.u(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.A8, f6Var));
             }
-            i6 i6Var2 = this.f36951c;
+            i6 i6Var2 = this.f36830c;
             if (i6Var2 != null) {
                 i6Var2.u(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.B8, f6Var));
             }
@@ -104,7 +104,7 @@ public final class p90 extends FrameLayout implements org.telegram.ui.ActionBar.
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (this.f36950b != drawable && this.f36951c != drawable && !super.verifyDrawable(drawable)) {
+        if (this.f36829b != drawable && this.f36830c != drawable && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

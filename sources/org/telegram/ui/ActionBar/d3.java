@@ -112,7 +112,7 @@ public final class d3 extends FrameLayout {
         if (launchActivity == null) {
             k3Var = null;
         } else {
-            k3Var = launchActivity.f41267w0;
+            k3Var = launchActivity.f41292w0;
         }
         if (k3Var != null && (valueAnimator = k3Var.d) != null) {
             valueAnimator.cancel();
@@ -216,9 +216,9 @@ public final class d3 extends FrameLayout {
                 org.telegram.ui.t3 t3Var = g4Var.K;
                 z2.b(t3Var);
                 sheetFragment.addSheet(t3Var);
-                org.telegram.ui.s3 s3Var = t3Var.f49876c;
+                org.telegram.ui.s3 s3Var = t3Var.f49904c;
                 t3Var.h = false;
-                t3Var.f49879n = false;
+                t3Var.f49907n = false;
                 ValueAnimator valueAnimator = t3Var.D;
                 if (valueAnimator != null) {
                     valueAnimator.cancel();
@@ -227,8 +227,8 @@ public final class d3 extends FrameLayout {
                 if (valueAnimator2 != null) {
                     valueAnimator2.cancel();
                 }
-                t3Var.f49884y = 0.0f;
-                t3Var.f49883x = 0.0f;
+                t3Var.f49912y = 0.0f;
+                t3Var.f49911x = 0.0f;
                 t3Var.r();
                 t3Var.A();
                 s3Var.invalidate();
@@ -513,8 +513,8 @@ public final class d3 extends FrameLayout {
         for (int i7 = 0; i7 < tabs.size(); i7++) {
             c3 c3Var = tabs.get(i7);
             org.telegram.ui.g4 g4Var = c3Var.J;
-            if (g4Var != null && !g4Var.f45800d0.isEmpty()) {
-                Object i10 = jg.g.i(1, c3Var.J.f45800d0);
+            if (g4Var != null && !g4Var.f45827d0.isEmpty()) {
+                Object i10 = jg.g.i(1, c3Var.J.f45827d0);
                 if ((i10 instanceof TLRPC.WebPage) && ((TLRPC.WebPage) i10).f27107id == webPage.f27107id) {
                     e(c3Var);
                     return c3Var;
@@ -582,7 +582,7 @@ public final class d3 extends FrameLayout {
             }
             ViewParent parent = getParent();
             if (parent instanceof View) {
-                WeakHashMap weakHashMap = r0.i0.f54073a;
+                WeakHashMap weakHashMap = r0.i0.f54098a;
                 r0.y.c((View) parent);
             }
         }

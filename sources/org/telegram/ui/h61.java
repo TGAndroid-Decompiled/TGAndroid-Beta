@@ -6,14 +6,14 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.ui.ThemeActivity;
 public final class h61 extends org.telegram.ui.Components.oj0 {
-    public final Context f46207c;
+    public final Context f46227c;
     public org.telegram.ui.ActionBar.j6 d;
-    public ArrayList f46208e;
-    public final ThemeActivity f46209f;
+    public ArrayList f46228e;
+    public final ThemeActivity f46229f;
 
     public h61(ThemeActivity themeActivity, Context context) {
-        this.f46209f = themeActivity;
-        this.f46207c = context;
+        this.f46229f = themeActivity;
+        this.f46227c = context;
         f();
     }
 
@@ -24,10 +24,10 @@ public final class h61 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final int b() {
-        if (this.f46208e.isEmpty()) {
+        if (this.f46228e.isEmpty()) {
             return 0;
         }
-        return this.f46208e.size() + 1;
+        return this.f46228e.size() + 1;
     }
 
     @Override
@@ -41,19 +41,19 @@ public final class h61 extends org.telegram.ui.Components.oj0 {
     @Override
     public final void f() {
         org.telegram.ui.ActionBar.j6 D0;
-        if (this.f46209f.f41992f == 1) {
+        if (this.f46229f.f42017f == 1) {
             D0 = org.telegram.ui.ActionBar.k6.J;
         } else {
             D0 = org.telegram.ui.ActionBar.k6.D0();
         }
         this.d = D0;
-        this.f46208e = new ArrayList(this.d.f27628b0);
+        this.f46228e = new ArrayList(this.d.f27628b0);
         super.f();
     }
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         int d = d(i7);
         if (d != 0) {
             if (d != 1) {
@@ -61,25 +61,25 @@ public final class h61 extends org.telegram.ui.Components.oj0 {
             }
             y51 y51Var = (y51) view;
             org.telegram.ui.ActionBar.j6 j6Var = this.d;
-            int i10 = y51.f52077c;
+            int i10 = y51.f52098c;
             y51Var.getClass();
             if (j6Var.W >= 8) {
-                y51Var.f52079b = new int[]{j6Var.l(6), j6Var.l(4), j6Var.l(7), j6Var.l(2), j6Var.l(0), j6Var.l(5), j6Var.l(3)};
+                y51Var.f52100b = new int[]{j6Var.l(6), j6Var.l(4), j6Var.l(7), j6Var.l(2), j6Var.l(0), j6Var.l(5), j6Var.l(3)};
                 return;
             } else {
-                y51Var.f52079b = new int[7];
+                y51Var.f52100b = new int[7];
                 return;
             }
         }
         ThemeActivity.InnerAccentView innerAccentView = (ThemeActivity.InnerAccentView) view;
         innerAccentView.d = this.d;
-        innerAccentView.f42022e = (org.telegram.ui.ActionBar.h6) this.f46208e.get(i7);
+        innerAccentView.f42047e = (org.telegram.ui.ActionBar.h6) this.f46228e.get(i7);
         innerAccentView.a(false);
     }
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        Context context = this.f46207c;
+        Context context = this.f46227c;
         if (i7 != 0) {
             return new v4.d1(new y51(context));
         }

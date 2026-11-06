@@ -62,8 +62,8 @@ public final class b5 extends AnimatorListenerAdapter {
                 animator.removeAllListeners();
                 mi.l lVar = (mi.l) this.f11680e;
                 v4.d1 d1Var = (v4.d1) this.d;
-                lVar.X(d1Var.f56927a);
-                View view2 = d1Var.f56927a;
+                lVar.X(d1Var.f56952a);
+                View view2 = d1Var.f56952a;
                 if (view2 instanceof org.telegram.ui.Cells.q1) {
                     org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) view2;
                     if (q1Var.f29939nb) {
@@ -81,7 +81,7 @@ public final class b5 extends AnimatorListenerAdapter {
                         cjVar.f21828j = false;
                     }
                 }
-                if (lVar.f56993z.remove(d1Var)) {
+                if (lVar.f57018z.remove(d1Var)) {
                     lVar.v(d1Var);
                     lVar.G();
                     return;
@@ -89,31 +89,31 @@ public final class b5 extends AnimatorListenerAdapter {
                 return;
             case 2:
                 an anVar = (an) this.f11680e;
-                anVar.f43754e6 = true;
+                anVar.f43779e6 = true;
                 ((org.telegram.ui.ActionBar.f2) anVar).fragmentBeginToShow = true;
-                anVar.f43881oa = null;
+                anVar.f43906oa = null;
                 org.telegram.messenger.g0.i3(new bh(this, 1), 32L);
                 super.onAnimationEnd(animator);
                 anVar.l1.invalidate();
                 anVar.l1.setSkipBackgroundDrawing(false);
-                anVar.f43846la = false;
+                anVar.f43871la = false;
                 an anVar2 = (an) this.f11679c;
-                anVar2.f43869na = 0.0f;
+                anVar2.f43894na = 0.0f;
                 anVar2.fragmentView.invalidate();
-                anVar2.f44013z0.invalidate();
+                anVar2.f44038z0.invalidate();
                 anVar2.ma = null;
                 anVar.fragmentView.setAlpha(1.0f);
                 ((Runnable) this.d).run();
-                anVar.f43873o1.setTranslationY(0.0f);
-                anVar2.f43873o1.setTranslationY(0.0f);
-                anVar2.f43873o1.getAvatarImageView().setTranslationY(0.0f);
-                anVar.f43873o1.getAvatarImageView().setScaleX(1.0f);
-                anVar.f43873o1.getAvatarImageView().setScaleY(1.0f);
-                anVar.f43873o1.getAvatarImageView().setAlpha(1.0f);
-                anVar2.f43873o1.getAvatarImageView().setScaleX(1.0f);
-                anVar2.f43873o1.getAvatarImageView().setScaleY(1.0f);
-                anVar2.f43873o1.getAvatarImageView().setAlpha(1.0f);
-                lg lgVar = anVar2.f43693a1;
+                anVar.f43898o1.setTranslationY(0.0f);
+                anVar2.f43898o1.setTranslationY(0.0f);
+                anVar2.f43898o1.getAvatarImageView().setTranslationY(0.0f);
+                anVar.f43898o1.getAvatarImageView().setScaleX(1.0f);
+                anVar.f43898o1.getAvatarImageView().setScaleY(1.0f);
+                anVar.f43898o1.getAvatarImageView().setAlpha(1.0f);
+                anVar2.f43898o1.getAvatarImageView().setScaleX(1.0f);
+                anVar2.f43898o1.getAvatarImageView().setScaleY(1.0f);
+                anVar2.f43898o1.getAvatarImageView().setAlpha(1.0f);
+                lg lgVar = anVar2.f43718a1;
                 if (lgVar != null) {
                     lgVar.setAlpha(1.0f);
                     return;

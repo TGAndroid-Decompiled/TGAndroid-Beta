@@ -44,7 +44,7 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.k3;
 import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.ws;
 import org.telegram.ui.qw;
 import org.telegram.ui.v91;
@@ -85,12 +85,12 @@ public final class y implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.
                 for (int i10 = 0; i10 < childCount; i10++) {
                     actionBarLayout.o(actionBarLayout.getChildAt(i10), k1Var);
                 }
-                return r0.k1.f54083b;
+                return r0.k1.f54108b;
             default:
                 k3 k3Var = (k3) obj;
-                k3Var.f27728s = k1Var.f54084a.f(2).d;
+                k3Var.f27728s = k1Var.f54109a.f(2).d;
                 k3Var.invalidate();
-                return r0.k1.f54083b;
+                return r0.k1.f54108b;
         }
     }
 
@@ -139,11 +139,11 @@ public final class y implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.
                 GZIPOutputStream gZIPOutputStream = new GZIPOutputStream(outputStream);
                 org.telegram.ui.Components.n nVar = bVar.f19873a;
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(gZIPOutputStream));
-                pa.d dVar = (pa.d) nVar.f36166a;
-                pa.e eVar = new pa.e(bufferedWriter, dVar.f53395a, dVar.f53396b, dVar.f53397c, dVar.d);
+                pa.d dVar = (pa.d) nVar.f36104a;
+                pa.e eVar = new pa.e(bufferedWriter, dVar.f53421a, dVar.f53422b, dVar.f53423c, dVar.d);
                 eVar.h((n5.m) mVar.f14265c);
                 eVar.j();
-                eVar.f53399b.flush();
+                eVar.f53425b.flush();
                 gZIPOutputStream.close();
                 if (outputStream != null) {
                     outputStream.close();
@@ -255,7 +255,7 @@ public final class y implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.
 
     @Override
     public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
-        r31 r31Var = (r31) obj;
+        w31 w31Var = (w31) obj;
         View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
@@ -318,7 +318,7 @@ public final class y implements h2.o, ws, li.m0, a20, org.telegram.ui.ActionBar.
                     if (viewGroup != null) {
                         e10.b(viewGroup.getY(), aVar.f21026m.getWidth(), aVar.f21027n.getY() + aVar.f21027n.getHeight());
                     }
-                    dVar.f21053b = e10.f54036b;
+                    dVar.f21053b = e10.f54061b;
                     while (dVar.f21053b > arrayList.size()) {
                         arrayList.add(new oi.b(arrayList.size()));
                     }

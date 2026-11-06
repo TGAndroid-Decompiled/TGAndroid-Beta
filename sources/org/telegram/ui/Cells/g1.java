@@ -4,7 +4,7 @@ import android.util.Property;
 import android.view.View;
 import org.telegram.ui.Components.ii0;
 import org.telegram.ui.Components.wz0;
-import org.telegram.ui.br0;
+import org.telegram.ui.cr0;
 public final class g1 extends Property {
     public final int f29136a;
 
@@ -21,11 +21,11 @@ public final class g1 extends Property {
             case 1:
                 return Integer.valueOf(Math.round(((View) obj).getTranslationY()));
             case 2:
-                return Float.valueOf(((ii0) obj).f34682w);
+                return Float.valueOf(((ii0) obj).f34645w);
             case 3:
                 return Float.valueOf(((wz0) obj).h);
             default:
-                return Float.valueOf(((br0) obj).f44450a);
+                return Float.valueOf(((cr0) obj).f44878a);
         }
     }
 
@@ -47,7 +47,7 @@ public final class g1 extends Property {
                 wz0Var.invalidate();
                 return;
             default:
-                ((br0) obj).b(((Float) obj2).floatValue());
+                ((cr0) obj).b(((Float) obj2).floatValue());
                 return;
         }
     }

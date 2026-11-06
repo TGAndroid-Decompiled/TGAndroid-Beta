@@ -70,23 +70,23 @@ import ug.w0;
 import x2.q1;
 import y7.i6;
 public final class e implements m, hi0, jy0 {
-    public static volatile e f56812f;
-    public final int f56813a;
-    public final Object f56814b;
-    public Object f56815c;
+    public static volatile e f56837f;
+    public final int f56838a;
+    public final Object f56839b;
+    public Object f56840c;
     public Object d;
-    public Object f56816e;
+    public Object f56841e;
 
     public e(Object obj, Object obj2, Object obj3, Object obj4, int i7) {
-        this.f56813a = i7;
-        this.f56816e = obj;
-        this.f56814b = obj2;
-        this.f56815c = obj3;
+        this.f56838a = i7;
+        this.f56841e = obj;
+        this.f56839b = obj2;
+        this.f56840c = obj3;
         this.d = obj4;
     }
 
     public v0 A(v vVar) {
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             try {
                 return ((p4.h) ((a0.f) this.d).get(vVar)) != null ? null : null;
             } catch (Throwable th2) {
@@ -96,7 +96,7 @@ public final class e implements m, hi0, jy0 {
     }
 
     public e1 B(v vVar) {
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             try {
                 if (((p4.h) ((a0.f) this.d).get(vVar)) != null) {
                     return null;
@@ -110,18 +110,18 @@ public final class e implements m, hi0, jy0 {
 
     public s C(v vVar) {
         p4.h hVar;
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             hVar = (p4.h) ((a0.f) this.d).get(vVar);
         }
         if (hVar != null) {
-            return hVar.f53165b;
+            return hVar.f53191b;
         }
         return null;
     }
 
     public boolean D(v vVar) {
         boolean z9;
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             if (((a0.f) this.d).get(vVar) != null) {
                 z9 = true;
             } else {
@@ -133,7 +133,7 @@ public final class e implements m, hi0, jy0 {
 
     @Override
     public boolean E() {
-        switch (this.f56813a) {
+        switch (this.f56838a) {
             case 9:
                 return false;
             default:
@@ -147,11 +147,11 @@ public final class e implements m, hi0, jy0 {
 
     public boolean G(v vVar, int i7) {
         p4.h hVar;
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             hVar = (p4.h) ((a0.f) this.d).get(vVar);
         }
-        d0 d0Var = (d0) ((WeakReference) this.f56816e).get();
-        if (hVar != null && hVar.f53167e.a(i7) && d0Var != null && d0Var.f53100t.t().a(i7)) {
+        d0 d0Var = (d0) ((WeakReference) this.f56841e).get();
+        if (hVar != null && hVar.f53193e.a(i7) && d0Var != null && d0Var.f53126t.t().a(i7)) {
             return true;
         }
         return false;
@@ -160,7 +160,7 @@ public final class e implements m, hi0, jy0 {
     public boolean H(v vVar, int i7) {
         p4.h hVar;
         boolean z9;
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             hVar = (p4.h) ((a0.f) this.d).get(vVar);
         }
         if (hVar != null) {
@@ -172,8 +172,8 @@ public final class e implements m, hi0, jy0 {
                 z9 = false;
             }
             ia.e("Use contains(Command) for custom command", z9);
-            for (i1 i1Var : j1Var.f53218a) {
-                if (i1Var.f53190a == i7) {
+            for (i1 i1Var : j1Var.f53244a) {
+                if (i1Var.f53216a == i7) {
                     return true;
                 }
             }
@@ -183,13 +183,13 @@ public final class e implements m, hi0, jy0 {
 
     public boolean I(v vVar, i1 i1Var) {
         p4.h hVar;
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             hVar = (p4.h) ((a0.f) this.d).get(vVar);
         }
         if (hVar != null) {
-            t0 t0Var = hVar.d.f53218a;
+            t0 t0Var = hVar.d.f53244a;
             i1Var.getClass();
-            if (t0Var.contains(i1Var) || p4.d.j(i1Var.f53191b)) {
+            if (t0Var.contains(i1Var) || p4.d.j(i1Var.f53217b)) {
                 return true;
             }
             return false;
@@ -200,7 +200,7 @@ public final class e implements m, hi0, jy0 {
     public void J(o0 o0Var) {
         r rVar = o0Var.f2467c;
         String str = rVar.f2493e;
-        HashMap hashMap = (HashMap) this.f56815c;
+        HashMap hashMap = (HashMap) this.f56840c;
         if (hashMap.get(str) != null) {
             return;
         }
@@ -211,10 +211,10 @@ public final class e implements m, hi0, jy0 {
     }
 
     public void K(o0 o0Var) {
-        HashMap hashMap = (HashMap) this.f56815c;
+        HashMap hashMap = (HashMap) this.f56840c;
         r rVar = o0Var.f2467c;
         if (rVar.S) {
-            ((l0) this.f56816e).f(rVar);
+            ((l0) this.f56841e).f(rVar);
         }
         if (hashMap.get(rVar.f2493e) == o0Var && ((o0) hashMap.put(rVar.f2493e, null)) != null && i0.K(2)) {
             Log.v("FragmentManager", "Removed fragment from active set " + rVar);
@@ -223,25 +223,25 @@ public final class e implements m, hi0, jy0 {
 
     @Override
     public void L(Canvas canvas, RectF rectF, float f10, float f11, float f12, int i7, boolean z9) {
-        int i10 = this.f56813a;
+        int i10 = this.f56838a;
     }
 
     @Override
     public void M() {
-        int i7 = this.f56813a;
+        int i7 = this.f56838a;
     }
 
     public boolean N(k.a aVar, MenuItem menuItem) {
-        return ((ActionMode.Callback) this.f56814b).onActionItemClicked(r(aVar), new l.r((Context) this.f56815c, (l0.a) menuItem));
+        return ((ActionMode.Callback) this.f56839b).onActionItemClicked(r(aVar), new l.r((Context) this.f56840c, (l0.a) menuItem));
     }
 
     public boolean O(k.a aVar, Menu menu) {
-        ActionMode.Callback callback = (ActionMode.Callback) this.f56814b;
+        ActionMode.Callback callback = (ActionMode.Callback) this.f56839b;
         k.e r10 = r(aVar);
-        l lVar = (l) this.f56816e;
+        l lVar = (l) this.f56841e;
         Menu menu2 = (Menu) lVar.get(menu);
         if (menu2 == null) {
-            menu2 = new a0((Context) this.f56815c, (k) menu);
+            menu2 = new a0((Context) this.f56840c, (k) menu);
             lVar.put(menu, menu2);
         }
         return callback.onCreateActionMode(r10, menu2);
@@ -254,16 +254,16 @@ public final class e implements m, hi0, jy0 {
 
     public void S() {
         boolean z9;
-        if (((d) this.f56815c) == null) {
-            d dVar = (d) ((ArrayDeque) this.f56814b).pollFirst();
-            this.f56815c = dVar;
+        if (((d) this.f56840c) == null) {
+            d dVar = (d) ((ArrayDeque) this.f56839b).pollFirst();
+            this.f56840c = dVar;
             if (dVar != null) {
                 b bVar = new b(this, dVar, 0);
                 this.d = bVar;
                 g0.i3(bVar, 10000L);
-                a aVar = dVar.f56810b;
-                String str = aVar.f56800b;
-                String str2 = aVar.f56803f;
+                a aVar = dVar.f56835b;
+                String str = aVar.f56825b;
+                String str2 = aVar.f56828f;
                 c cVar = new c(this, dVar);
                 hy0 k10 = i.k(str);
                 byte[] f10 = i.f(str2);
@@ -276,7 +276,7 @@ public final class e implements m, hi0, jy0 {
                         z9 = false;
                     }
                     if (z9) {
-                        synchronized (i.f56823y) {
+                        synchronized (i.f56848y) {
                             i iVar = i.A;
                             if (iVar != null) {
                                 iVar.q();
@@ -285,14 +285,14 @@ public final class e implements m, hi0, jy0 {
                             try {
                                 i iVar2 = new i(k10, str2, f10);
                                 i.A = iVar2;
-                                iVar2.f56845x = cVar;
+                                iVar2.f56870x = cVar;
                                 r0 r0Var = r0.f25165f;
                                 if (r0Var != null) {
                                     r0Var.d.add(iVar2);
                                 }
-                                iVar2.f56832j.execute(new f(iVar2, 1));
+                                iVar2.f56857j.execute(new f(iVar2, 1));
                                 g0.h3(new f(iVar2, 2));
-                                i7 = i.A.f56831i.getLocalPort();
+                                i7 = i.A.f56856i.getLocalPort();
                             } catch (Exception e10) {
                                 a8.g(e10, true);
                                 i iVar3 = i.A;
@@ -313,17 +313,17 @@ public final class e implements m, hi0, jy0 {
     }
 
     public void T(v vVar) {
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             try {
                 p4.h hVar = (p4.h) ((a0.f) this.d).remove(vVar);
                 if (hVar == null) {
                     return;
                 }
-                ((a0.f) this.f56815c).remove(hVar.f53164a);
-                hVar.f53165b.g();
-                d0 d0Var = (d0) ((WeakReference) this.f56816e).get();
+                ((a0.f) this.f56840c).remove(hVar.f53190a);
+                hVar.f53191b.g();
+                d0 d0Var = (d0) ((WeakReference) this.f56841e).get();
                 if (d0Var != null && !d0Var.j()) {
-                    m0.W(d0Var.f53092l, new p4.e(d0Var, vVar, 0));
+                    m0.W(d0Var.f53118l, new p4.e(d0Var, vVar, 0));
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -333,7 +333,7 @@ public final class e implements m, hi0, jy0 {
 
     @Override
     public boolean U() {
-        switch (this.f56813a) {
+        switch (this.f56838a) {
             case 9:
                 return false;
             default:
@@ -355,15 +355,15 @@ public final class e implements m, hi0, jy0 {
 
     @Override
     public void a() {
-        g0.i3(new ey0((f2) this.f56814b, (Context) this.f56815c, (f6) this.d, (v80) this.f56816e, 2), 200L);
+        g0.i3(new ey0((f2) this.f56839b, (Context) this.f56840c, (f6) this.d, (v80) this.f56841e, 2), 200L);
     }
 
     public void b(Object obj, v vVar, j1 j1Var, y0 y0Var) {
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             try {
                 v x10 = x(obj);
                 if (x10 == null) {
-                    ((a0.f) this.f56815c).put(obj, vVar);
+                    ((a0.f) this.f56840c).put(obj, vVar);
                     ?? obj2 = new Object();
                     obj2.f6682c = new Object();
                     obj2.d = new l(0);
@@ -372,7 +372,7 @@ public final class e implements m, hi0, jy0 {
                     p4.h hVar = (p4.h) ((a0.f) this.d).get(x10);
                     hVar.getClass();
                     hVar.d = j1Var;
-                    hVar.f53167e = y0Var;
+                    hVar.f53193e = y0Var;
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -387,13 +387,13 @@ public final class e implements m, hi0, jy0 {
 
     @Override
     public void d() {
-        g0.i3(new by0(4, (f2) this.f56814b, (v80) this.f56816e), 200L);
+        g0.i3(new by0(4, (f2) this.f56839b, (v80) this.f56841e), 200L);
     }
 
     public void e(r rVar) {
-        if (!((ArrayList) this.f56814b).contains(rVar)) {
-            synchronized (((ArrayList) this.f56814b)) {
-                ((ArrayList) this.f56814b).add(rVar);
+        if (!((ArrayList) this.f56839b).contains(rVar)) {
+            synchronized (((ArrayList) this.f56839b)) {
+                ((ArrayList) this.f56839b).add(rVar);
             }
             rVar.f2503w = true;
             return;
@@ -402,17 +402,17 @@ public final class e implements m, hi0, jy0 {
     }
 
     public void f(v vVar, int i7, p4.g gVar) {
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             try {
                 p4.h hVar = (p4.h) ((a0.f) this.d).get(vVar);
                 if (hVar != null) {
-                    y0 y0Var = hVar.f53169g;
+                    y0 y0Var = hVar.f53195g;
                     y0Var.getClass();
                     ca.i iVar = new ca.i();
                     iVar.c(y0Var.f10656a);
                     iVar.b(i7);
-                    hVar.f53169g = new y0(iVar.d());
-                    hVar.f53166c.add(gVar);
+                    hVar.f53195g = new y0(iVar.d());
+                    hVar.f53192c.add(gVar);
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -422,7 +422,7 @@ public final class e implements m, hi0, jy0 {
 
     @Override
     public void g() {
-        f2 f2Var = (f2) this.f56814b;
+        f2 f2Var = (f2) this.f56839b;
         f2Var.showDialog(new w0(f2Var, 3, true));
     }
 
@@ -449,53 +449,53 @@ public final class e implements m, hi0, jy0 {
         int i10 = 0;
         while (i10 < arrayList.size()) {
             mr mrVar = (mr) arrayList.get(i10);
-            L = q.w(4.0f, mrVar.f36108g, L);
+            L = q.w(4.0f, mrVar.f36046g, L);
             if (L < 0) {
                 break;
             }
             if (hd.f22871a0) {
-                canvas.translate(-mrVar.f36108g, 0.0f);
+                canvas.translate(-mrVar.f36046g, 0.0f);
                 mrVar.a(canvas);
                 canvas.translate(-g0.L(4.0f), 0.0f);
             } else {
                 mrVar.a(canvas);
-                canvas.translate(g0.L(4.0f) + mrVar.f36108g, 0.0f);
+                canvas.translate(g0.L(4.0f) + mrVar.f36046g, 0.0f);
             }
             i10++;
         }
         if (i10 < arrayList.size()) {
             int size = arrayList.size() - i10;
-            mr mrVar2 = (mr) this.f56816e;
-            if (mrVar2 == null || mrVar2.f36103a != size) {
+            mr mrVar2 = (mr) this.f56841e;
+            if (mrVar2 == null || mrVar2.f36041a != size) {
                 ?? obj = new Object();
-                obj.f36103a = size;
+                obj.f36041a = size;
                 ly0 ly0Var = new ly0(jg.g.j(size, "+"), 10.0f, g0.o());
-                ly0Var.r((t2) this.f56814b);
-                obj.f36105c = ly0Var;
+                ly0Var.r((t2) this.f56839b);
+                obj.f36043c = ly0Var;
                 int L2 = g0.L(9.32f);
-                ly0 ly0Var2 = obj.f36105c;
-                obj.f36108g = L2 + ((int) ly0Var2.f35777c);
+                ly0 ly0Var2 = obj.f36043c;
+                obj.f36046g = L2 + ((int) ly0Var2.f35782c);
                 ly0Var2.i();
                 int i11 = k6.f28032n8;
-                obj.f36107f = i11;
-                obj.f36106e = true;
+                obj.f36045f = i11;
+                obj.f36044e = true;
                 obj.d = k6.x0(null, i11, false);
-                this.f56816e = obj;
+                this.f56841e = obj;
             }
             if (hd.f22871a0) {
-                canvas.translate(-((mr) this.f56816e).f36108g, 0.0f);
-                ((mr) this.f56816e).a(canvas);
+                canvas.translate(-((mr) this.f56841e).f36046g, 0.0f);
+                ((mr) this.f56841e).a(canvas);
                 canvas.translate(-g0.L(4.0f), 0.0f);
             } else {
-                ((mr) this.f56816e).a(canvas);
-                canvas.translate(g0.L(4.0f) + ((mr) this.f56816e).f36108g, 0.0f);
+                ((mr) this.f56841e).a(canvas);
+                canvas.translate(g0.L(4.0f) + ((mr) this.f56841e).f36046g, 0.0f);
             }
         }
         canvas.restore();
     }
 
     public void m(d dVar) {
-        if (((d) this.f56815c) != dVar) {
+        if (((d) this.f56840c) != dVar) {
             return;
         }
         b bVar = (b) this.d;
@@ -503,12 +503,12 @@ public final class e implements m, hi0, jy0 {
             g0.r(bVar);
             this.d = null;
         }
-        b bVar2 = (b) this.f56816e;
+        b bVar2 = (b) this.f56841e;
         if (bVar2 != null) {
             g0.r(bVar2);
-            this.f56816e = null;
+            this.f56841e = null;
         }
-        synchronized (i.f56823y) {
+        synchronized (i.f56848y) {
             try {
                 i iVar = i.A;
                 if (iVar != null) {
@@ -519,13 +519,13 @@ public final class e implements m, hi0, jy0 {
                 throw th2;
             }
         }
-        this.f56815c = null;
-        dVar.f56811c.run(-1L);
+        this.f56840c = null;
+        dVar.f56836c.run(-1L);
         S();
     }
 
     public r n(String str) {
-        o0 o0Var = (o0) ((HashMap) this.f56815c).get(str);
+        o0 o0Var = (o0) ((HashMap) this.f56840c).get(str);
         if (o0Var != null) {
             return o0Var.f2467c;
         }
@@ -533,7 +533,7 @@ public final class e implements m, hi0, jy0 {
     }
 
     public r o(String str) {
-        for (o0 o0Var : ((HashMap) this.f56815c).values()) {
+        for (o0 o0Var : ((HashMap) this.f56840c).values()) {
             if (o0Var != null) {
                 r rVar = o0Var.f2467c;
                 if (!str.equals(rVar.f2493e)) {
@@ -548,19 +548,19 @@ public final class e implements m, hi0, jy0 {
     }
 
     public void p(p4.h hVar) {
-        d0 d0Var = (d0) ((WeakReference) this.f56816e).get();
+        d0 d0Var = (d0) ((WeakReference) this.f56841e).get();
         if (d0Var != null) {
             AtomicBoolean atomicBoolean = new AtomicBoolean(true);
             while (atomicBoolean.get()) {
                 atomicBoolean.set(false);
-                p4.g gVar = (p4.g) hVar.f53166c.poll();
+                p4.g gVar = (p4.g) hVar.f53192c.poll();
                 if (gVar == null) {
-                    hVar.f53168f = false;
+                    hVar.f53194f = false;
                     return;
                 }
                 AtomicBoolean atomicBoolean2 = new AtomicBoolean(true);
                 p4.h hVar2 = hVar;
-                m0.W(d0Var.f53092l, new w(d0Var, x(hVar.f53164a), new c01(this, gVar, atomicBoolean2, hVar2, atomicBoolean, 8)));
+                m0.W(d0Var.f53118l, new w(d0Var, x(hVar.f53190a), new c01(this, gVar, atomicBoolean2, hVar2, atomicBoolean, 8)));
                 atomicBoolean2.set(false);
                 hVar = hVar2;
             }
@@ -568,30 +568,30 @@ public final class e implements m, hi0, jy0 {
     }
 
     public void q(final v vVar) {
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             try {
                 p4.h hVar = (p4.h) ((a0.f) this.d).get(vVar);
                 if (hVar == null) {
                     return;
                 }
-                final y0 y0Var = hVar.f53169g;
-                hVar.f53169g = y0.f10654b;
-                hVar.f53166c.add(new p4.g(vVar, y0Var) {
-                    public final v f53151b;
+                final y0 y0Var = hVar.f53195g;
+                hVar.f53195g = y0.f10654b;
+                hVar.f53192c.add(new p4.g(vVar, y0Var) {
+                    public final v f53177b;
 
                     @Override
                     public final m9.y run() {
-                        d0 d0Var = (d0) ((WeakReference) ui.e.this.f56816e).get();
+                        d0 d0Var = (d0) ((WeakReference) ui.e.this.f56841e).get();
                         if (d0Var != null) {
-                            d0Var.p(this.f53151b);
+                            d0Var.p(this.f53177b);
                         }
                         return m9.w.f19996b;
                     }
                 });
-                if (hVar.f53168f) {
+                if (hVar.f53194f) {
                     return;
                 }
-                hVar.f53168f = true;
+                hVar.f53194f = true;
                 p(hVar);
             } catch (Throwable th2) {
                 throw th2;
@@ -608,14 +608,14 @@ public final class e implements m, hi0, jy0 {
                 return eVar;
             }
         }
-        k.e eVar2 = new k.e((Context) this.f56815c, aVar);
+        k.e eVar2 = new k.e((Context) this.f56840c, aVar);
         arrayList.add(eVar2);
         return eVar2;
     }
 
     public ArrayList s() {
         ArrayList arrayList = new ArrayList();
-        for (o0 o0Var : ((HashMap) this.f56815c).values()) {
+        for (o0 o0Var : ((HashMap) this.f56840c).values()) {
             if (o0Var != null) {
                 arrayList.add(o0Var);
             }
@@ -625,7 +625,7 @@ public final class e implements m, hi0, jy0 {
 
     public ArrayList t() {
         ArrayList arrayList = new ArrayList();
-        for (o0 o0Var : ((HashMap) this.f56815c).values()) {
+        for (o0 o0Var : ((HashMap) this.f56840c).values()) {
             if (o0Var != null) {
                 arrayList.add(o0Var.f2467c);
             } else {
@@ -636,20 +636,20 @@ public final class e implements m, hi0, jy0 {
     }
 
     public String toString() {
-        switch (this.f56813a) {
+        switch (this.f56838a) {
             case 15:
-                return ((i6) this.f56816e).toString();
+                return ((i6) this.f56841e).toString();
             default:
                 return super.toString();
         }
     }
 
     public y0 u(v vVar) {
-        synchronized (this.f56814b) {
+        synchronized (this.f56839b) {
             try {
                 p4.h hVar = (p4.h) ((a0.f) this.d).get(vVar);
                 if (hVar != null) {
-                    return hVar.f53167e;
+                    return hVar.f53193e;
                 }
                 return null;
             } catch (Throwable th2) {
@@ -660,7 +660,7 @@ public final class e implements m, hi0, jy0 {
 
     @Override
     public boolean v() {
-        switch (this.f56813a) {
+        switch (this.f56838a) {
             case 9:
                 return true;
             default:
@@ -670,27 +670,27 @@ public final class e implements m, hi0, jy0 {
 
     public h9.i0 w() {
         h9.i0 q10;
-        synchronized (this.f56814b) {
-            q10 = h9.i0.q(((a0.f) this.f56815c).values());
+        synchronized (this.f56839b) {
+            q10 = h9.i0.q(((a0.f) this.f56840c).values());
         }
         return q10;
     }
 
     public v x(Object obj) {
         v vVar;
-        synchronized (this.f56814b) {
-            vVar = (v) ((a0.f) this.f56815c).get(obj);
+        synchronized (this.f56839b) {
+            vVar = (v) ((a0.f) this.f56840c).get(obj);
         }
         return vVar;
     }
 
     public List y() {
         ArrayList arrayList;
-        if (((ArrayList) this.f56814b).isEmpty()) {
+        if (((ArrayList) this.f56839b).isEmpty()) {
             return Collections.EMPTY_LIST;
         }
-        synchronized (((ArrayList) this.f56814b)) {
-            arrayList = new ArrayList((ArrayList) this.f56814b);
+        synchronized (((ArrayList) this.f56839b)) {
+            arrayList = new ArrayList((ArrayList) this.f56839b);
         }
         return arrayList;
     }
@@ -706,14 +706,14 @@ public final class e implements m, hi0, jy0 {
         int i15;
         int D;
         f4.a aVar = (f4.a) this.d;
-        x xVar = (x) this.f56815c;
-        x xVar2 = (x) this.f56814b;
+        x xVar = (x) this.f56840c;
+        x xVar2 = (x) this.f56839b;
         xVar2.L(i7 + i10, bArr);
         xVar2.N(i7);
-        if (((Inflater) this.f56816e) == null) {
-            this.f56816e = new Inflater();
+        if (((Inflater) this.f56841e) == null) {
+            this.f56841e = new Inflater();
         }
-        if (m0.Q(xVar2, xVar, (Inflater) this.f56816e)) {
+        if (m0.Q(xVar2, xVar, (Inflater) this.f56841e)) {
             xVar2.L(xVar.f14164c, xVar.f14162a);
         }
         int i16 = 0;
@@ -860,66 +860,66 @@ public final class e implements m, hi0, jy0 {
     }
 
     public e(Object obj, Object obj2, Object obj3, Object obj4, boolean z9, int i7) {
-        this.f56813a = i7;
-        this.f56814b = obj;
-        this.f56815c = obj2;
+        this.f56838a = i7;
+        this.f56839b = obj;
+        this.f56840c = obj2;
         this.d = obj3;
-        this.f56816e = obj4;
+        this.f56841e = obj4;
     }
 
     public e(t2 t2Var) {
-        this.f56813a = 8;
-        this.f56815c = new ArrayList();
+        this.f56838a = 8;
+        this.f56840c = new ArrayList();
         this.d = new ArrayList();
-        this.f56816e = null;
-        this.f56814b = t2Var;
+        this.f56841e = null;
+        this.f56839b = t2Var;
     }
 
     public e(int i7) {
-        this.f56813a = i7;
+        this.f56838a = i7;
         switch (i7) {
             case 1:
-                this.f56814b = new ArrayList();
-                this.f56815c = new HashMap();
+                this.f56839b = new ArrayList();
+                this.f56840c = new HashMap();
                 this.d = new HashMap();
                 return;
             case 2:
-                this.f56814b = new x();
-                this.f56815c = new x();
+                this.f56839b = new x();
+                this.f56840c = new x();
                 this.d = new f4.a();
                 return;
             case 7:
-                this.f56814b = new ArrayList();
-                this.f56815c = new ArrayList();
+                this.f56839b = new ArrayList();
+                this.f56840c = new ArrayList();
                 this.d = new ArrayList();
-                this.f56816e = new ArrayList();
+                this.f56841e = new ArrayList();
                 return;
             default:
-                this.f56814b = new ArrayDeque();
+                this.f56839b = new ArrayDeque();
                 return;
         }
     }
 
     public e(d0 d0Var) {
-        this.f56813a = 12;
-        this.f56815c = new l(0);
+        this.f56838a = 12;
+        this.f56840c = new l(0);
         this.d = new l(0);
-        this.f56814b = new Object();
-        this.f56816e = new WeakReference(d0Var);
+        this.f56839b = new Object();
+        this.f56841e = new WeakReference(d0Var);
     }
 
     public e(Context context, ActionMode.Callback callback) {
-        this.f56813a = 4;
-        this.f56815c = context;
-        this.f56814b = callback;
+        this.f56838a = 4;
+        this.f56840c = context;
+        this.f56839b = callback;
         this.d = new ArrayList();
-        this.f56816e = new l(0);
+        this.f56841e = new l(0);
     }
 
     public e(ng.e eVar) {
-        this.f56813a = 6;
+        this.f56838a = 6;
         LinearLayout linearLayout = new LinearLayout(eVar.getContext());
-        this.f56816e = linearLayout;
+        this.f56841e = linearLayout;
         linearLayout.setPadding(g0.L(4.0f), g0.L(2.0f), g0.L(4.0f), g0.L(2.0f));
         if (eVar.E) {
             TextView textView = new TextView(eVar.getContext());
@@ -931,10 +931,10 @@ public final class e implements m, hi0, jy0 {
             textView.setTextSize(1, 13.0f);
         }
         TextView textView2 = new TextView(eVar.getContext());
-        this.f56815c = textView2;
+        this.f56840c = textView2;
         linearLayout.addView(textView2, ha.k(0.0f, 0.0f, 20.0f, 0.0f, -2, -2));
         q5 q5Var = new q5(eVar.getContext());
-        this.f56814b = q5Var;
+        this.f56839b = q5Var;
         linearLayout.addView(q5Var, ha.o(-1, -2));
         textView2.setGravity(8388611);
         q5Var.setGravity(8388613);
@@ -945,34 +945,34 @@ public final class e implements m, hi0, jy0 {
 
     public e(t1 t1Var, i2.i iVar, q4.q qVar, i2.i iVar2) {
         Object obj;
-        this.f56813a = 3;
+        this.f56838a = 3;
         if (t1Var != null) {
             obj = h9.i0.q(t1Var);
         } else {
             h9.g0 g0Var = h9.i0.f14329b;
             obj = t1.f14397e;
         }
-        this.f56814b = obj;
-        this.f56815c = iVar;
+        this.f56839b = obj;
+        this.f56840c = iVar;
         this.d = qVar;
-        this.f56816e = iVar2;
+        this.f56841e = iVar2;
     }
 
     public e(b0 b0Var, List list) {
-        this.f56813a = 5;
-        this.f56816e = b0Var;
-        this.f56814b = new ie.d();
-        this.f56815c = zd.b0.a();
+        this.f56838a = 5;
+        this.f56841e = b0Var;
+        this.f56839b = new ie.d();
+        this.f56840c = zd.b0.a();
         this.d = hd.f.l(list);
     }
 
     public e(q1 q1Var, boolean[] zArr) {
-        this.f56813a = 14;
-        this.f56814b = q1Var;
-        this.f56815c = zArr;
-        int i7 = q1Var.f58329a;
+        this.f56838a = 14;
+        this.f56839b = q1Var;
+        this.f56840c = zArr;
+        int i7 = q1Var.f58354a;
         this.d = new boolean[i7];
-        this.f56816e = new boolean[i7];
+        this.f56841e = new boolean[i7];
     }
 
     private final void Q() {

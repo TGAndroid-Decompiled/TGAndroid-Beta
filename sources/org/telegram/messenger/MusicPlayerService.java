@@ -123,7 +123,7 @@ public class MusicPlayerService extends Service implements ls {
         } else {
             w8Var = new org.telegram.ui.Components.w8((TLRPC.Chat) tLObject);
         }
-        w8Var.f39907r = 1;
+        w8Var.f39914r = 1;
         float f12 = i10;
         Bitmap createBitmap = Bitmap.createBitmap(g0.L(f12), g0.L(f12), Bitmap.Config.ARGB_8888);
         w8Var.setBounds(0, 0, createBitmap.getWidth(), createBitmap.getHeight());

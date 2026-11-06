@@ -7,7 +7,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.c20;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.an;
-import org.telegram.ui.sp0;
+import org.telegram.ui.tp0;
 import org.telegram.ui.yb1;
 public final class v3 implements ValueAnimator.AnimatorUpdateListener {
     public final int f12918a;
@@ -154,19 +154,19 @@ public final class v3 implements ValueAnimator.AnimatorUpdateListener {
             case 16:
                 org.telegram.ui.Components.voip.a0 a0Var = (org.telegram.ui.Components.voip.a0) this.f12919b;
                 a0Var.getClass();
-                a0Var.f39029r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a0Var.f39026r = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 a0Var.e();
                 return;
             case 17:
                 org.telegram.ui.Components.voip.o0 o0Var = (org.telegram.ui.Components.voip.o0) this.f12919b;
                 o0Var.getClass();
-                o0Var.f39382i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o0Var.f39379i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 return;
             case 18:
                 yb1 yb1Var = (yb1) this.f12919b;
                 yb1Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 int L = (org.telegram.messenger.g0.f22537q.x - org.telegram.messenger.g0.L(36.0f)) - org.telegram.messenger.g0.L(52.0f);
-                org.telegram.ui.Components.voip.x0 x0Var = yb1Var.f39615c;
+                org.telegram.ui.Components.voip.x0 x0Var = yb1Var.f39612c;
                 x0Var.getLayoutParams().width = org.telegram.messenger.g0.L(52.0f) + ((int) (L * yb1Var.E));
                 x0Var.requestLayout();
                 return;
@@ -179,49 +179,49 @@ public final class v3 implements ValueAnimator.AnimatorUpdateListener {
             case 20:
                 org.telegram.ui.Components.voip.e2 e2Var = (org.telegram.ui.Components.voip.e2) this.f12919b;
                 e2Var.getClass();
-                e2Var.f39126w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e2Var.f39119b.invalidate();
+                e2Var.f39123w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                e2Var.f39116b.invalidate();
                 return;
             case 21:
                 di.z2 z2Var = (di.z2) this.f12919b;
-                ((di.c4) z2Var.K1).f35557a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                ((di.c4) z2Var.K1).f35562a.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 z2Var.invalidate();
                 return;
             case 22:
-                org.telegram.ui.web.k1 k1Var = (org.telegram.ui.web.k1) this.f12919b;
+                org.telegram.ui.web.l1 l1Var = (org.telegram.ui.web.l1) this.f12919b;
                 float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k1Var.U = floatValue6;
-                k1Var.V.setAlpha(floatValue6);
-                k1Var.invalidate();
+                l1Var.U = floatValue6;
+                l1Var.V.setAlpha(floatValue6);
+                l1Var.invalidate();
                 return;
             case 23:
                 org.telegram.ui.l0 l0Var = (org.telegram.ui.l0) this.f12919b;
                 float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                l0Var.f51175a0 = floatValue7;
+                l0Var.f51201a0 = floatValue7;
                 l0Var.j(floatValue7);
-                l0Var.f51177b0.setAlpha(l0Var.f51175a0);
-                l0Var.R.setTranslationX(org.telegram.messenger.g0.L(56.0f) * l0Var.f51175a0);
-                l0Var.O.setTranslationX(org.telegram.messenger.g0.L(112.0f) * l0Var.f51175a0);
+                l0Var.f51203b0.setAlpha(l0Var.f51201a0);
+                l0Var.R.setTranslationX(org.telegram.messenger.g0.L(56.0f) * l0Var.f51201a0);
+                l0Var.O.setTranslationX(org.telegram.messenger.g0.L(112.0f) * l0Var.f51201a0);
                 l0Var.invalidate();
                 return;
             case 24:
-                ((sp0) ((tg.o0) this.f12919b)).K.f41356e0.invalidate();
+                ((tp0) ((tg.o0) this.f12919b)).K.f41381e0.invalidate();
                 return;
             case 25:
                 tg.h1 h1Var = (tg.h1) this.f12919b;
                 h1Var.getClass();
-                h1Var.f55602n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                h1Var.f55627n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 h1Var.invalidate();
                 return;
             case 26:
                 tg.o1 o1Var = (tg.o1) this.f12919b;
                 o1Var.getClass();
-                o1Var.f55776y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o1Var.f55801y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 o1Var.invalidate();
                 return;
             case 27:
                 sg.i iVar = (sg.i) this.f12919b;
-                iVar.f55776y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                iVar.f55801y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 iVar.invalidate();
                 return;
             case 28:
@@ -233,11 +233,11 @@ public final class v3 implements ValueAnimator.AnimatorUpdateListener {
                 tg.i2 i2Var = (tg.i2) this.f12919b;
                 float floatValue8 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 i2Var.D = floatValue8;
-                bi.t tVar = i2Var.f55641c;
+                bi.t tVar = i2Var.f55666c;
                 tVar.setAlpha(floatValue8);
                 tVar.setScaleX(org.telegram.messenger.g0.T1(0.9f, 1.0f, i2Var.D));
                 tVar.setScaleY(org.telegram.messenger.g0.T1(0.9f, 1.0f, i2Var.D));
-                i2Var.f55640b.invalidate();
+                i2Var.f55665b.invalidate();
                 return;
         }
     }

@@ -119,8 +119,8 @@ public class q0 extends FrameLayout implements te.b, a6 {
                     xp N2 = k6.N(org.telegram.messenger.g0.L(32.0f), 2131231000);
                     int L = org.telegram.messenger.g0.L(16.0f);
                     int L2 = org.telegram.messenger.g0.L(16.0f);
-                    N2.f40299e = L;
-                    N2.f40300f = L2;
+                    N2.f40318e = L;
+                    N2.f40319f = L2;
                     k6.B1(N2, k6.w0(i7, f6Var), false);
                     k6.B1(N2, k6.w0(i10, f6Var), true);
                     l9Var.setImageDrawable(N2);
@@ -144,8 +144,8 @@ public class q0 extends FrameLayout implements te.b, a6 {
             xp N3 = k6.N(org.telegram.messenger.g0.L(32.0f), 2131230993);
             int L4 = org.telegram.messenger.g0.L(16.0f);
             int L5 = org.telegram.messenger.g0.L(16.0f);
-            N3.f40299e = L4;
-            N3.f40300f = L5;
+            N3.f40318e = L4;
+            N3.f40319f = L5;
             k6.B1(N3, k6.w0(i7, f6Var), false);
             k6.B1(N3, k6.w0(i10, f6Var), true);
             l9Var.setImageDrawable(N3);
@@ -169,7 +169,7 @@ public class q0 extends FrameLayout implements te.b, a6 {
 
     public void setSelectedForDelete(boolean z9) {
         te.a aVar = this.f28383a;
-        if (aVar.f55371f != z9) {
+        if (aVar.f55396f != z9) {
             l2.w wVar = this.h;
             org.telegram.messenger.g0.r(wVar);
             aVar.a(z9, true);
@@ -182,7 +182,7 @@ public class q0 extends FrameLayout implements te.b, a6 {
     @Override
     public final void updateColors() {
         int w02;
-        float f10 = this.f28383a.f55370e;
+        float f10 = this.f28383a.f55395e;
         boolean z9 = this.f28389r;
         f6 f6Var = this.f28388n;
         if (z9) {

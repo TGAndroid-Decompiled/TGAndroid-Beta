@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 public final class n extends org.telegram.ui.Components.oj0 {
-    public final Context f47898c;
+    public final Context f47924c;
     public final o d;
 
     public n(o oVar, Context context) {
         this.d = oVar;
-        this.f47898c = context;
+        this.f47924c = context;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f == 0) {
+        if (d1Var.f56956f == 0) {
             return true;
         }
         return false;
@@ -30,13 +30,13 @@ public final class n extends org.telegram.ui.Components.oj0 {
     @Override
     public final int d(int i7) {
         o oVar = this.d;
-        if (i7 >= oVar.f48162y && i7 < oVar.D) {
+        if (i7 >= oVar.f48191y && i7 < oVar.D) {
             return 0;
         }
         if (i7 == oVar.E) {
             return 1;
         }
-        if (i7 != oVar.F && i7 != oVar.f48161x) {
+        if (i7 != oVar.F && i7 != oVar.f48190x) {
             return 0;
         }
         return 2;
@@ -47,12 +47,12 @@ public final class n extends org.telegram.ui.Components.oj0 {
         int i10;
         boolean z9;
         boolean z10;
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         o oVar = this.d;
-        a0.h hVar = oVar.f48152a;
+        a0.h hVar = oVar.f48181a;
         ArrayList arrayList = oVar.h;
         if (d(i7) == 0) {
-            int i11 = i7 - oVar.f48162y;
+            int i11 = i7 - oVar.f48191y;
             org.telegram.ui.Cells.v vVar = (org.telegram.ui.Cells.v) view;
             TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i11);
             if (i11 != arrayList.size() - 1) {
@@ -82,7 +82,7 @@ public final class n extends org.telegram.ui.Components.oj0 {
             vVar.setOnCheckedChangeListener(new ni.c(1, this, stickerSetCovered));
         } else if (d(i7) == 2) {
             org.telegram.ui.Cells.z8 z8Var = (org.telegram.ui.Cells.z8) view;
-            if (i7 == oVar.f48161x) {
+            if (i7 == oVar.f48190x) {
                 z8Var.setTopPadding(17);
                 z8Var.setBottomPadding(10);
                 if (oVar.H == 5) {
@@ -101,7 +101,7 @@ public final class n extends org.telegram.ui.Components.oj0 {
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        Context context = this.f47898c;
+        Context context = this.f47924c;
         View view = null;
         if (i7 != 0) {
             if (i7 != 1) {

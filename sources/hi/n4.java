@@ -166,7 +166,7 @@ public final class n4 extends Drawable implements r6, ls {
         } else {
             i7 = 28;
         }
-        float L = (org.telegram.messenger.g0.L((i7 + 38) + 6.66f) + this.h.f35777c) / 2.0f;
+        float L = (org.telegram.messenger.g0.L((i7 + 38) + 6.66f) + this.h.f35782c) / 2.0f;
         float L2 = org.telegram.messenger.g0.L(32.0f) / 2.0f;
         RectF rectF = this.f14825n;
         rectF.set(bounds.centerX() - L, bounds.centerY() - L2, bounds.centerX() + L, bounds.centerY() + L2);

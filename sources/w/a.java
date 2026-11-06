@@ -33,10 +33,10 @@ import j$.util.Objects;
 import java.util.ArrayList;
 import kotlin.jvm.internal.j;
 public final class a implements Parcelable.Creator {
-    public final int f57447a;
+    public final int f57472a;
 
     public a(int i7) {
-        this.f57447a = i7;
+        this.f57472a = i7;
     }
 
     @Override
@@ -54,7 +54,7 @@ public final class a implements Parcelable.Creator {
         Bundle bundle = null;
         byte[] bArr = null;
         String str3 = null;
-        switch (this.f57447a) {
+        switch (this.f57472a) {
             case 0:
                 Bundle readBundle = inParcel.readBundle(a.class.getClassLoader());
                 Objects.requireNonNull(readBundle);
@@ -602,7 +602,7 @@ public final class a implements Parcelable.Creator {
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f57447a) {
+        switch (this.f57472a) {
             case 0:
                 return new b[i7];
             case 1:

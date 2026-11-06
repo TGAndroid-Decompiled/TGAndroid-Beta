@@ -35,7 +35,7 @@ public final class zo extends fi.m3 {
                 canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.F.getAlpha(), i1Var.b().getAlpha()) * f10), 31);
                 Path path = this.E0;
                 canvas.drawPath(path, paint);
-                if (i1Var.f39205e) {
+                if (i1Var.f39202e) {
                     paint.setShader(((Paint) i1Var.d.f335a).getShader());
                     canvas.drawPath(path, paint);
                 }

@@ -143,9 +143,9 @@ public class WebmEncoder {
                 for (int i12 = (int) f12; i11 != i12; i12--) {
                     h20Var.J.r(true);
                 }
-                s5 s5Var = h20Var.J.f38859w;
+                s5 s5Var = h20Var.J.f38851w;
                 if (s5Var != null) {
-                    bitmap = s5Var.f37942b;
+                    bitmap = s5Var.f37888b;
                 } else {
                     bitmap = null;
                 }
@@ -404,8 +404,8 @@ public class WebmEncoder {
             h20Var.H = matrix;
             Bitmap bitmap = h20Var.G;
             if (bitmap == null && (v5Var = h20Var.J) != null) {
-                s5 s5Var = v5Var.f38859w;
-                bitmap = s5Var != null ? s5Var.f37942b : null;
+                s5 s5Var = v5Var.f38851w;
+                bitmap = s5Var != null ? s5Var.f37888b : null;
             }
             if (bitmap != null) {
                 matrix.postScale(1.0f / bitmap.getWidth(), 1.0f / bitmap.getHeight());

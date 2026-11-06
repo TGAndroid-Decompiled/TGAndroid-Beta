@@ -174,7 +174,7 @@ public final class m9 implements v10 {
                         if (num.intValue() == 1) {
                             hc.l(null, profileActivity, z10).j();
                         } else if (num.intValue() == 2) {
-                            hc.l(org.telegram.messenger.m5.t(profileActivity.f41688d1), profileActivity, z10).j();
+                            hc.l(org.telegram.messenger.m5.t(profileActivity.f41713d1), profileActivity, z10).j();
                         } else if (tL_error2 != null) {
                             hc.d0(tL_error2);
                         }
@@ -191,11 +191,11 @@ public final class m9 implements v10 {
                 org.telegram.ui.Wallet.f0 f0Var = (org.telegram.ui.Wallet.f0) obj3;
                 TL_wallet.nftItems nftitems = (TL_wallet.nftItems) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                ArrayList arrayList = f0Var.f42419b;
-                ArrayList arrayList2 = f0Var.f42420c;
-                f0Var.f42427l = -1;
-                f0Var.f42425j = false;
-                f0Var.f42424i = false;
+                ArrayList arrayList = f0Var.f42444b;
+                ArrayList arrayList2 = f0Var.f42445c;
+                f0Var.f42452l = -1;
+                f0Var.f42450j = false;
+                f0Var.f42449i = false;
                 if (nftitems != null) {
                     if (z10) {
                         arrayList.clear();
@@ -221,9 +221,9 @@ public final class m9 implements v10 {
                         }
                     }
                     String str2 = nftitems.next_offset;
-                    f0Var.f42422f = str2;
+                    f0Var.f42447f = str2;
                     boolean isEmpty = TextUtils.isEmpty(str2);
-                    f0Var.f42423g = isEmpty;
+                    f0Var.f42448g = isEmpty;
                     f0Var.h = true;
                     if (isEmpty) {
                         for (int size2 = arrayList2.size() - 1; size2 >= 0; size2--) {
@@ -236,7 +236,7 @@ public final class m9 implements v10 {
                     f0Var.h();
                 } else {
                     if (z10) {
-                        f0Var.f42423g = false;
+                        f0Var.f42448g = false;
                         f0Var.h = false;
                     }
                     if (tL_error3 == null) {
@@ -244,7 +244,7 @@ public final class m9 implements v10 {
                     } else {
                         str = tL_error3.text;
                     }
-                    f0Var.f42426k = str;
+                    f0Var.f42451k = str;
                 }
                 f0Var.g();
                 return;

@@ -10,27 +10,27 @@ import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class l0 implements v10 {
-    public final int f42696a;
-    public final m0 f42697b;
-    public final TL_wallet.getTransactions f42698c;
+    public final int f42721a;
+    public final m0 f42722b;
+    public final TL_wallet.getTransactions f42723c;
 
     public l0(m0 m0Var, TL_wallet.getTransactions gettransactions, int i7) {
-        this.f42696a = i7;
-        this.f42697b = m0Var;
-        this.f42698c = gettransactions;
+        this.f42721a = i7;
+        this.f42722b = m0Var;
+        this.f42723c = gettransactions;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         boolean z9;
         boolean z10;
-        switch (this.f42696a) {
+        switch (this.f42721a) {
             case 0:
                 TL_wallet.walletTransactions wallettransactions = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                m0 m0Var = this.f42697b;
-                int i7 = m0Var.f42739l.f42768a;
-                m0Var.f42738k = -1;
+                m0 m0Var = this.f42722b;
+                int i7 = m0Var.f42764l.f42793a;
+                m0Var.f42763k = -1;
                 if (wallettransactions != null) {
                     int i10 = 0;
                     qp.s1(i7).Y3(wallettransactions.users, false);
@@ -50,12 +50,12 @@ public final class l0 implements v10 {
                                     c10.f27215id = wallettransaction2.f27215id;
                                 }
                             } else {
-                                m0Var.f42731b.add(wallettransaction2);
+                                m0Var.f42756b.add(wallettransaction2);
                             }
                         }
                     }
-                    m0Var.f42735g = wallettransactions.next_offset;
-                    if (wallettransactions.transactions.size() < this.f42698c.limit) {
+                    m0Var.f42760g = wallettransactions.next_offset;
+                    if (wallettransactions.transactions.size() < this.f42723c.limit) {
                         m0Var.h = true;
                     }
                 } else {
@@ -65,16 +65,16 @@ public final class l0 implements v10 {
                 m0Var.i();
                 return;
             default:
-                m0 m0Var2 = this.f42697b;
-                HashMap hashMap = m0Var2.f42734f;
+                m0 m0Var2 = this.f42722b;
+                HashMap hashMap = m0Var2.f42759f;
                 HashSet hashSet = m0Var2.d;
                 TL_wallet.walletTransactions wallettransactions2 = (TL_wallet.walletTransactions) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                int i11 = m0Var2.f42739l.f42768a;
-                ArrayList arrayList2 = m0Var2.f42731b;
-                m0Var2.f42737j = -1;
+                int i11 = m0Var2.f42764l.f42793a;
+                ArrayList arrayList2 = m0Var2.f42756b;
+                m0Var2.f42762j = -1;
                 boolean z11 = false;
-                m0Var2.f42736i = false;
+                m0Var2.f42761i = false;
                 if (wallettransactions2 != null) {
                     qp.s1(i11).Y3(wallettransactions2.users, false);
                     qp.s1(i11).S3(wallettransactions2.chats, false);
@@ -158,8 +158,8 @@ public final class l0 implements v10 {
                                     m0Var2.f(wallettransaction7);
                                 }
                             }
-                            m0Var2.f42735g = wallettransactions2.next_offset;
-                            if (wallettransactions2.transactions.size() < this.f42698c.limit) {
+                            m0Var2.f42760g = wallettransactions2.next_offset;
+                            if (wallettransactions2.transactions.size() < this.f42723c.limit) {
                                 z11 = true;
                             }
                             m0Var2.h = z11;

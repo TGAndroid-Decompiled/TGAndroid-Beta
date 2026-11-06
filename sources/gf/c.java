@@ -23,21 +23,21 @@ public final class c {
         boolean z9;
         ?? obj = new Object();
         int i7 = this.f13873c;
-        obj.f58537a = i7;
+        obj.f58562a = i7;
         int i10 = this.f13871a;
-        obj.f58538b = i10;
+        obj.f58563b = i10;
         boolean z10 = false;
-        obj.f58539c = 0;
+        obj.f58564c = 0;
         obj.d = false;
-        obj.f58540e = this.f13872b;
-        obj.f58541f = -1.0f;
+        obj.f58565e = this.f13872b;
+        obj.f58566f = -1.0f;
         if (i7 != 2 && i10 == 2) {
             Log.e("FaceDetector", "Contour is not supported for non-SELFIE mode.");
             z9 = false;
         } else {
             z9 = true;
         }
-        if (obj.f58538b == 2 && obj.f58539c == 1) {
+        if (obj.f58563b == 2 && obj.f58564c == 1) {
             Log.e("FaceDetector", "Classification is not supported with contour.");
         } else {
             z10 = z9;

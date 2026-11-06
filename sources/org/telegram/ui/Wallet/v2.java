@@ -27,7 +27,7 @@ import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.d10;
 public abstract class v2 {
-    public static final ArrayList f43206a = new ArrayList();
+    public static final ArrayList f43231a = new ArrayList();
 
     public static void a(Context context, LinearLayout linearLayout, TLRPC.User user, CharSequence charSequence, org.telegram.ui.ActionBar.f6 f6Var) {
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
@@ -139,7 +139,7 @@ public abstract class v2 {
         z2Var.K0(f12);
         final u2 u2Var = new u2(z2Var, s2Var);
         final g gVar = new g(u2Var, h, dVar, 9);
-        u2Var.f43175g = gVar;
+        u2Var.f43200g = gVar;
         dVar.setOnClickListener(new i2(u2Var, 1));
         h.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,7 +175,7 @@ public abstract class v2 {
                             JSONObject jSONObject3 = jSONObject2;
                             k0 k0Var = (k0) obj;
                             String str4 = (String) obj2;
-                            if (!u2Var3.f43173e) {
+                            if (!u2Var3.f43198e) {
                                 if (k0Var != null && str4 == null) {
                                     if (str3.equals(n0Var2.t()) && Arrays.equals(bArr3, n0Var2.y())) {
                                         k0 b10 = k0Var.b();
@@ -185,12 +185,12 @@ public abstract class v2 {
                                     }
                                     hc.b0(hd.M0(2131742960, null));
                                     u2Var3.d = false;
-                                    if (!u2Var3.f43174f) {
-                                        u2Var3.f43174f = true;
-                                        u2Var3.f43171b.a();
+                                    if (!u2Var3.f43199f) {
+                                        u2Var3.f43199f = true;
+                                        u2Var3.f43196b.a();
                                     }
-                                    if (!u2Var3.f43173e) {
-                                        u2Var3.f43170a.dismiss();
+                                    if (!u2Var3.f43198e) {
+                                        u2Var3.f43195a.dismiss();
                                         return;
                                     }
                                     return;
@@ -224,26 +224,26 @@ public abstract class v2 {
         h6 h6Var = new h6(context, 2131232809, 24);
         h6Var.getCardHolderView().setMaxLines(2);
         h6Var.getCardHolderView().setSingleLine(false);
-        List<d2> list = e2Var.f42391b;
-        h6Var.setCardHolder(f8.c0(((d2) list.get(0)).f42301a));
+        List<d2> list = e2Var.f42416b;
+        h6Var.setCardHolder(f8.c0(((d2) list.get(0)).f42326a));
         org.telegram.ui.Components.j6 balanceView = h6Var.getBalanceView();
-        long j3 = e2Var.f42392c;
+        long j3 = e2Var.f42417c;
         balanceView.setText(f2.k(j3));
         h6Var.getUsdBalanceView().setText(x10.m(j3, false));
         linearLayout.addView(h6Var, c8.ha.o(-1, -2));
         LinearLayout F = f2.F(context, hd.M0(2131743208, null), f6Var2);
         for (d2 d2Var : list) {
-            if (d2Var.f42302b != null && d2Var.d == null) {
+            if (d2Var.f42327b != null && d2Var.d == null) {
                 i10 = 2131743154;
             } else {
                 i10 = 2131742982;
             }
             String M0 = hd.M0(i10, null);
             Object[] objArr = new Object[1];
-            objArr[c10] = f2.C(d2Var.f42301a);
+            objArr[c10] = f2.C(d2Var.f42326a);
             org.telegram.ui.ActionBar.f6 f6Var3 = f6Var2;
             LinearLayout linearLayout2 = F;
-            linearLayout2.addView(f2.c(context, M0, hd.V(null, null, 2131742977, objArr), f2.b(-d2Var.f42304e), d2Var.d, f6Var3), c8.ha.o(-1, -2));
+            linearLayout2.addView(f2.c(context, M0, hd.V(null, null, 2131742977, objArr), f2.b(-d2Var.f42329e), d2Var.d, f6Var3), c8.ha.o(-1, -2));
             F = linearLayout2;
             f6Var2 = f6Var3;
             c10 = 0;
@@ -279,14 +279,14 @@ public abstract class v2 {
         ?? r02 = new ls() {
             @Override
             public final void didReceivedNotification(int i11, int i12, Object[] objArr2) {
-                if (iArr[0] == 2 && x10.v() >= e2Var.f42392c) {
+                if (iArr[0] == 2 && x10.v() >= e2Var.f42417c) {
                     runnableArr[0].run();
                 }
             }
         };
         qs.f(i7).b(r02, qs.f24954a4);
         u2Var.h = new h2(i7, r02);
-        u2Var.f43175g = g7Var;
+        u2Var.f43200g = g7Var;
         dVar.setOnClickListener(new i2(u2Var, 0));
         h.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -298,22 +298,22 @@ public abstract class v2 {
                     final n0 n0Var = x10;
                     if (i11 == 2) {
                         n0Var.v();
-                        di.e eVar = new di.e(25);
+                        di.e eVar = new di.e(26);
                         n0 x11 = n0.x(i12);
                         x11.m0(new d10(i12, eVar, x11));
                     } else if (i11 == 1) {
                         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i12);
                         final e2 e2Var2 = e2Var;
-                        long j10 = e2Var2.f42390a;
+                        long j10 = e2Var2.f42415a;
                         if (j10 != 0 && j10 <= connectionsManager.getCurrentTime()) {
                             hc.b0(hd.M0(2131742959, null));
                             u2Var2.d = false;
-                            if (!u2Var2.f43174f) {
-                                u2Var2.f43174f = true;
-                                u2Var2.f43171b.a();
+                            if (!u2Var2.f43199f) {
+                                u2Var2.f43199f = true;
+                                u2Var2.f43196b.a();
                             }
-                            if (!u2Var2.f43173e) {
-                                u2Var2.f43170a.dismiss();
+                            if (!u2Var2.f43198e) {
+                                u2Var2.f43195a.dismiss();
                                 return;
                             }
                             return;
@@ -344,10 +344,10 @@ public abstract class v2 {
                                 final org.telegram.ui.ActionBar.f6 f6Var6 = f6Var5;
                                 k0 k0Var = (k0) obj;
                                 String str4 = (String) obj2;
-                                if (!u2Var3.f43173e) {
+                                if (!u2Var3.f43198e) {
                                     if (k0Var != null && str4 == null) {
                                         if (str3.equals(n0Var2.t()) && Arrays.equals(bArr3, n0Var2.y())) {
-                                            final WalletEngine2 walletEngine2 = n0Var2.f42769b;
+                                            final WalletEngine2 walletEngine2 = n0Var2.f42794b;
                                             if (walletEngine2 == null) {
                                                 z2Var4.a(hd.M0(2131742960, null));
                                                 return;
@@ -384,48 +384,48 @@ public abstract class v2 {
                                                             final byte[] bArr6 = f11;
                                                             final org.telegram.ui.ActionBar.f6 f6Var8 = f6Var7;
                                                             try {
-                                                                if (u2Var5.f43173e) {
+                                                                if (u2Var5.f43198e) {
                                                                     return;
                                                                 }
                                                                 walletEngine23.prepareTonConnectTransfer(k0Var3, e2Var5, "widget:" + user5.f27101id + ":" + Utilities.f21331b.nextLong(), new v10(i15, n0Var4, z2Var7, u2Var5, str6, bArr5, bArr6, f6Var8) {
-                                                                    public final int f42951a;
-                                                                    public final n0 f42952b;
-                                                                    public final u2 f42953c;
+                                                                    public final int f42976a;
+                                                                    public final n0 f42977b;
+                                                                    public final u2 f42978c;
                                                                     public final String d;
-                                                                    public final byte[] f42954e;
-                                                                    public final byte[] f42955f;
+                                                                    public final byte[] f42979e;
+                                                                    public final byte[] f42980f;
 
                                                                     {
-                                                                        this.f42953c = u2Var5;
+                                                                        this.f42978c = u2Var5;
                                                                         this.d = str6;
-                                                                        this.f42954e = bArr5;
-                                                                        this.f42955f = bArr6;
+                                                                        this.f42979e = bArr5;
+                                                                        this.f42980f = bArr6;
                                                                     }
 
                                                                     @Override
                                                                     public final void a(Object obj3, Object obj4) {
                                                                         TL_wallet.sendTransfer sendtransfer = (TL_wallet.sendTransfer) obj3;
                                                                         String str7 = (String) obj4;
-                                                                        u2 u2Var6 = this.f42953c;
-                                                                        if (!u2Var6.f43173e || u2Var6.d) {
+                                                                        u2 u2Var6 = this.f42978c;
+                                                                        if (!u2Var6.f43198e || u2Var6.d) {
                                                                             if (sendtransfer == null) {
                                                                                 if (str7 == null) {
                                                                                     str7 = hd.M0(2131742987, null);
                                                                                 }
                                                                                 hc.b0(str7);
                                                                                 u2Var6.d = false;
-                                                                                if (!u2Var6.f43174f) {
-                                                                                    u2Var6.f43174f = true;
-                                                                                    u2Var6.f43171b.a();
+                                                                                if (!u2Var6.f43199f) {
+                                                                                    u2Var6.f43199f = true;
+                                                                                    u2Var6.f43196b.a();
                                                                                 }
-                                                                                if (!u2Var6.f43173e) {
-                                                                                    u2Var6.f43170a.dismiss();
+                                                                                if (!u2Var6.f43198e) {
+                                                                                    u2Var6.f43195a.dismiss();
                                                                                     return;
                                                                                 }
                                                                                 return;
                                                                             }
-                                                                            int i16 = this.f42951a;
-                                                                            ConnectionsManager.getInstance(i16).sendRequestTyped(sendtransfer, new d3.b(1), new org.telegram.messenger.f9(i16, this.f42952b, this.d, this.f42954e, this.f42955f, sendtransfer, u2Var6));
+                                                                            int i16 = this.f42976a;
+                                                                            ConnectionsManager.getInstance(i16).sendRequestTyped(sendtransfer, new d3.b(1), new org.telegram.messenger.f9(i16, this.f42977b, this.d, this.f42979e, this.f42980f, sendtransfer, u2Var6));
                                                                         }
                                                                     }
                                                                 });
@@ -440,12 +440,12 @@ public abstract class v2 {
                                         }
                                         hc.b0(hd.M0(2131742960, null));
                                         u2Var3.d = false;
-                                        if (!u2Var3.f43174f) {
-                                            u2Var3.f43174f = true;
-                                            u2Var3.f43171b.a();
+                                        if (!u2Var3.f43199f) {
+                                            u2Var3.f43199f = true;
+                                            u2Var3.f43196b.a();
                                         }
-                                        if (!u2Var3.f43173e) {
-                                            u2Var3.f43170a.dismiss();
+                                        if (!u2Var3.f43198e) {
+                                            u2Var3.f43195a.dismiss();
                                             return;
                                         }
                                         return;

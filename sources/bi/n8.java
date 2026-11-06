@@ -19,7 +19,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.s21;
+import org.telegram.ui.Components.x21;
 import org.telegram.ui.UserInfoActivity;
 import org.telegram.ui.i90;
 import org.telegram.ui.p90;
@@ -148,13 +148,13 @@ public final class n8 implements Runnable {
                 String str6 = (String) this.f4415e;
                 String str7 = (String) this.f4418r;
                 String str8 = (String) this.f4416f;
-                org.telegram.ui.Wallet.f2 f2Var = ((org.telegram.ui.Wallet.n0) this.f4414c).f42773g;
+                org.telegram.ui.Wallet.f2 f2Var = ((org.telegram.ui.Wallet.n0) this.f4414c).f42798g;
                 i90 i90Var = new i90((p90) this.f4413b, (String) this.h, 1);
                 f2Var.getClass();
                 TL_wallet.tonConnectCreateSession tonconnectcreatesession = new TL_wallet.tonConnectCreateSession();
                 tonconnectcreatesession.dapp_client_id = (String) this.d;
                 tonconnectcreatesession.manifest_url = str5;
-                f2Var.f42439f.sendRequestTyped(tonconnectcreatesession, new d3.b(1), new org.telegram.ui.Wallet.f1(f2Var, i90Var, str6, str5, str7, str8, 0));
+                f2Var.f42464f.sendRequestTyped(tonconnectcreatesession, new d3.b(1), new org.telegram.ui.Wallet.f1(f2Var, i90Var, str6, str5, str7, str8, 0));
                 return;
             case 5:
                 UserInfoActivity.d0((UserInfoActivity) this.f4414c, (TLRPC.TL_error) this.h, (TLObject) this.f4413b, (TL_account.TL_birthday) this.d, (TLRPC.UserFull) this.f4417n, (TLObject) this.f4415e, (int[]) this.f4418r, (ArrayList) this.f4416f);
@@ -165,14 +165,14 @@ public final class n8 implements Runnable {
                 TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.d;
                 String str9 = (String) this.f4417n;
                 byte[] bArr = (byte[]) this.f4415e;
-                String str10 = ((org.telegram.ui.Wallet.c2) this.f4418r).f42191a;
+                String str10 = ((org.telegram.ui.Wallet.c2) this.f4418r).f42216a;
                 org.telegram.ui.Wallet.t tVar = (org.telegram.ui.Wallet.t) this.f4416f;
                 org.telegram.ui.Wallet.k0 k0Var = (org.telegram.ui.Wallet.k0) this.h;
-                if (f2Var2.d(a2Var, tonconnectsession, str9, bArr) && ((str3 = a2Var.f42074e.client_id) == null || str10.equalsIgnoreCase(str3))) {
+                if (f2Var2.d(a2Var, tonconnectsession, str9, bArr) && ((str3 = a2Var.f42099e.client_id) == null || str10.equalsIgnoreCase(str3))) {
                     TL_wallet.tonConnectRegisterKey tonconnectregisterkey = new TL_wallet.tonConnectRegisterKey();
                     tonconnectregisterkey.session_id = tonconnectsession.f27214id;
                     tonconnectregisterkey.client_id = str10;
-                    f2Var2.f42439f.sendRequestTyped(tonconnectregisterkey, new d3.b(1), new org.telegram.ui.Wallet.e1(f2Var2, tVar, k0Var, tonconnectsession, str9, bArr, a2Var));
+                    f2Var2.f42464f.sendRequestTyped(tonconnectregisterkey, new d3.b(1), new org.telegram.ui.Wallet.e1(f2Var2, tVar, k0Var, tonconnectsession, str9, bArr, a2Var));
                     return;
                 }
                 tVar.a("Wallet or TON Connect session changed. Open the request again.");
@@ -188,7 +188,7 @@ public final class n8 implements Runnable {
                 org.telegram.ui.Wallet.t tVar2 = (org.telegram.ui.Wallet.t) this.h;
                 f2Var3.getClass();
                 try {
-                    org.telegram.messenger.g0.h3(new r7(f2Var3, a2Var2, tonconnectsession2, str11, bArr2, org.telegram.ui.Wallet.f2.r(k0Var2, tonconnectsession2, str11, bArr2, a2Var2.f42071a, a2Var2.f42072b, a2Var2.d, tonconnectchallenge, f2Var3.f42439f.getCurrentTime()), tVar2, 13));
+                    org.telegram.messenger.g0.h3(new r7(f2Var3, a2Var2, tonconnectsession2, str11, bArr2, org.telegram.ui.Wallet.f2.r(k0Var2, tonconnectsession2, str11, bArr2, a2Var2.f42096a, a2Var2.f42097b, a2Var2.d, tonconnectchallenge, f2Var3.f42464f.getCurrentTime()), tVar2, 13));
                     return;
                 } catch (Exception e10) {
                     org.telegram.messenger.g0.h3(new org.telegram.ui.Wallet.d1(tVar2, org.telegram.ui.Wallet.f2.i("prepare connect challenge", e10), 1));
@@ -205,7 +205,7 @@ public final class n8 implements Runnable {
                 org.telegram.ui.Wallet.v1 v1Var2 = (org.telegram.ui.Wallet.v1) this.h;
                 f2Var4.getClass();
                 try {
-                    org.telegram.messenger.g0.h3(new s21(f2Var4, str12, bArr3, tonconnectsession3, org.telegram.ui.Wallet.f2.s(k0Var3, tonconnectsession3, str12, bArr3, jSONArray, tL_urlAuthResultRequest.domain, null, null, f2Var4.f42439f.getCurrentTime()), v1Var2, k0Var3, jSONArray, tL_urlAuthResultRequest));
+                    org.telegram.messenger.g0.h3(new x21(f2Var4, str12, bArr3, tonconnectsession3, org.telegram.ui.Wallet.f2.s(k0Var3, tonconnectsession3, str12, bArr3, jSONArray, tL_urlAuthResultRequest.domain, null, null, f2Var4.f42464f.getCurrentTime()), v1Var2, k0Var3, jSONArray, tL_urlAuthResultRequest));
                     return;
                 } catch (Exception e11) {
                     v1Var2.a(null, org.telegram.ui.Wallet.f2.i("prepare OAuth identity", e11));

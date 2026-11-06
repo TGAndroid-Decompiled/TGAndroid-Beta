@@ -9,10 +9,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 public final class ba0 implements org.telegram.ui.Cells.l1 {
-    public final org.telegram.ui.x7 f32098a;
+    public final org.telegram.ui.x7 f32092a;
 
     public ba0(org.telegram.ui.x7 x7Var) {
-        this.f32098a = x7Var;
+        this.f32092a = x7Var;
     }
 
     @Override
@@ -22,9 +22,9 @@ public final class ba0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final CharacterStyle C1(org.telegram.ui.Cells.q1 q1Var) {
-        ca0 ca0Var = (ca0) this.f32098a.d;
-        if (ca0Var.f32498a == 2) {
-            org.telegram.messenger.mj mjVar = ca0Var.f32503c0.d;
+        ca0 ca0Var = (ca0) this.f32092a.d;
+        if (ca0Var.f32502a == 2) {
+            org.telegram.messenger.mj mjVar = ca0Var.f32507c0.d;
             if (!mjVar.f24029n) {
                 return mjVar.f24037w;
             }
@@ -50,15 +50,15 @@ public final class ba0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final void N0(org.telegram.ui.Cells.q1 q1Var, CharacterStyle characterStyle, boolean z9) {
-        ca0 ca0Var = (ca0) this.f32098a.d;
-        if (ca0Var.f32498a == 2 && ca0Var.f32503c0.d.f24037w != characterStyle && q1Var.getMessageObject() != null && (characterStyle instanceof URLSpan)) {
+        ca0 ca0Var = (ca0) this.f32092a.d;
+        if (ca0Var.f32502a == 2 && ca0Var.f32507c0.d.f24037w != characterStyle && q1Var.getMessageObject() != null && (characterStyle instanceof URLSpan)) {
             URLSpan uRLSpan = (URLSpan) characterStyle;
             String url = uRLSpan.getURL();
-            ia0 ia0Var = ca0Var.f32503c0;
+            ia0 ia0Var = ca0Var.f32507c0;
             org.telegram.messenger.mj mjVar = ia0Var.d;
             mjVar.f24037w = uRLSpan;
             mjVar.v = null;
-            org.telegram.ui.an anVar = ia0Var.f34577c;
+            org.telegram.ui.an anVar = ia0Var.f34540c;
             if (anVar != null && url != null) {
                 anVar.yb(url, true);
             }
@@ -67,7 +67,7 @@ public final class ba0 implements org.telegram.ui.Cells.l1 {
     }
 
     @Override
-    public final org.telegram.ui.er0 N1() {
+    public final org.telegram.ui.fr0 N1() {
         return null;
     }
 
@@ -138,9 +138,9 @@ public final class ba0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean d() {
-        ca0 ca0Var = (ca0) this.f32098a.d;
-        if (ca0Var.f32498a == 2) {
-            org.telegram.messenger.mj mjVar = ca0Var.f32503c0.d;
+        ca0 ca0Var = (ca0) this.f32092a.d;
+        if (ca0Var.f32502a == 2) {
+            org.telegram.messenger.mj mjVar = ca0Var.f32507c0.d;
             if (!mjVar.f24029n && !mjVar.f24024i) {
                 return true;
             }
@@ -181,7 +181,7 @@ public final class ba0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final org.telegram.ui.Cells.j9 k2() {
-        return ((ca0) this.f32098a.d).f32504e;
+        return ((ca0) this.f32092a.d).f32508e;
     }
 
     @Override
@@ -196,9 +196,9 @@ public final class ba0 implements org.telegram.ui.Cells.l1 {
 
     @Override
     public final boolean p1(org.telegram.ui.Cells.q1 q1Var, int i7) {
-        ca0 ca0Var = (ca0) this.f32098a.d;
-        if (ca0Var.f32498a == 2 && i7 == 1) {
-            org.telegram.messenger.mj mjVar = ca0Var.f32503c0.d;
+        ca0 ca0Var = (ca0) this.f32092a.d;
+        if (ca0Var.f32502a == 2 && i7 == 1) {
+            org.telegram.messenger.mj mjVar = ca0Var.f32507c0.d;
             if (!mjVar.f24029n) {
                 TLRPC.WebPage webPage = mjVar.v;
                 if (webPage == null || (webPage instanceof TLRPC.TL_webPagePending)) {

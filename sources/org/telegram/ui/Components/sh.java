@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class sh implements org.telegram.ui.wm0 {
-    public boolean f38090a;
-    public final HashMap f38091b;
-    public final ArrayList f38092c;
+    public boolean f38050a;
+    public final HashMap f38051b;
+    public final ArrayList f38052c;
     public final di d;
 
     public sh(di diVar, HashMap hashMap, ArrayList arrayList) {
         this.d = diVar;
-        this.f38091b = hashMap;
-        this.f38092c = arrayList;
+        this.f38051b = hashMap;
+        this.f38052c = arrayList;
     }
 
     @Override
@@ -25,13 +25,13 @@ public final class sh implements org.telegram.ui.wm0 {
     public final void v0(int i7, boolean z9, boolean z10) {
         String str;
         if (!z9) {
-            HashMap hashMap = this.f38091b;
-            if (!hashMap.isEmpty() && !this.f38090a) {
-                this.f38090a = true;
+            HashMap hashMap = this.f38051b;
+            if (!hashMap.isEmpty() && !this.f38050a) {
+                this.f38050a = true;
                 ArrayList arrayList = new ArrayList();
                 int i10 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f38092c;
+                    ArrayList arrayList2 = this.f38052c;
                     if (i10 < arrayList2.size()) {
                         Object obj = hashMap.get(arrayList2.get(i10));
                         ?? obj2 = new Object();

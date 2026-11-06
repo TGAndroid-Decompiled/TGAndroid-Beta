@@ -11,7 +11,7 @@ import org.telegram.messenger.qp;
 import org.telegram.messenger.t10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.e21;
+import org.telegram.ui.Components.j21;
 public final class g4 {
     public TL_stories.StoryItem f9038a = null;
     public x6 f9039b = null;
@@ -391,7 +391,7 @@ public final class g4 {
         }
         TL_stories.StoryItem storyItem = g4Var.f9038a;
         if (storyItem != null) {
-            if (storyItem.translated && storyItem.translatedText != null && TextUtils.equals(storyItem.translatedLng, e21.M0())) {
+            if (storyItem.translated && storyItem.translatedText != null && TextUtils.equals(storyItem.translatedLng, j21.M0())) {
                 this.f9043g = true;
                 TLRPC.TL_textWithEntities tL_textWithEntities = g4Var.f9038a.translatedText;
                 String str = tL_textWithEntities.text;

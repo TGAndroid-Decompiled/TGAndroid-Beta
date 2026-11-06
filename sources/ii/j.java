@@ -7,9 +7,9 @@ import org.telegram.messenger.t3;
 import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_communities;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.hc;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.w31;
 public final class j implements v10 {
     public final int f15546a;
     public final p f15547b;
@@ -41,8 +41,8 @@ public final class j implements v10 {
                 return;
             default:
                 ArrayList arrayList2 = (ArrayList) obj;
-                f41 f41Var = (f41) obj2;
-                arrayList2.add(r31.l(140, pVar.f15587s));
+                k41 k41Var = (k41) obj2;
+                arrayList2.add(w31.l(140, pVar.f15587s));
                 if (t3.y(1, pVar.I)) {
                     TLRPC.Chat chat = pVar.I;
                     if (chat != null && (chatPhoto = chat.photo) != null && !(chatPhoto instanceof TLRPC.TL_chatPhotoEmpty)) {
@@ -50,23 +50,23 @@ public final class j implements v10 {
                     } else {
                         i7 = 2131751851;
                     }
-                    r31 c10 = r31.c(141, 2131232496, hd.M0(i7, null));
-                    c10.f37603q = true;
+                    w31 c10 = w31.c(141, 2131232496, hd.M0(i7, null));
+                    c10.f39835q = true;
                     arrayList2.add(c10);
-                    arrayList2.add(r31.E(2, org.telegram.messenger.g0.L(14.0f)));
-                    arrayList2.add(r31.t(0, hd.M0(2131751874, null)));
-                    arrayList2.add(r31.j(7, pVar.f15586r));
-                    arrayList2.add(r31.E(1, org.telegram.messenger.g0.L(14.0f)));
+                    arrayList2.add(w31.E(2, org.telegram.messenger.g0.L(14.0f)));
+                    arrayList2.add(w31.t(0, hd.M0(2131751874, null)));
+                    arrayList2.add(w31.j(7, pVar.f15586r));
+                    arrayList2.add(w31.E(1, org.telegram.messenger.g0.L(14.0f)));
                 }
                 if (t3.w(2, pVar.I)) {
-                    arrayList2.add(r31.t(3, hd.M0(2131751872, null)));
-                    r31 y10 = r31.y(150, hd.M0(2131751843, null), hd.M0(2131751842, null));
+                    arrayList2.add(w31.t(3, hd.M0(2131751872, null)));
+                    w31 y10 = w31.y(150, hd.M0(2131751843, null), hd.M0(2131751842, null));
                     y10.L(pVar.f15585n);
                     arrayList2.add(y10);
-                    r31 y11 = r31.y(151, hd.M0(2131751841, null), hd.M0(2131751840, null));
+                    w31 y11 = w31.y(151, hd.M0(2131751841, null), hd.M0(2131751840, null));
                     y11.L(!pVar.f15585n);
                     arrayList2.add(y11);
-                    arrayList2.add(r31.E(4, org.telegram.messenger.g0.L(14.0f)));
+                    arrayList2.add(w31.E(4, org.telegram.messenger.g0.L(14.0f)));
                 }
                 if (t3.N(pVar.I)) {
                     String M0 = hd.M0(2131751965, null);
@@ -77,7 +77,7 @@ public final class j implements v10 {
                     } else {
                         str = Integer.toString(chatFull.admins_count);
                     }
-                    arrayList2.add(r31.d(142, 2131232049, M0, str));
+                    arrayList2.add(w31.d(142, 2131232049, M0, str));
                     String M02 = hd.M0(2131751895, null);
                     TLRPC.ChatFull chatFull2 = pVar.J;
                     if (chatFull2 == null) {
@@ -85,17 +85,17 @@ public final class j implements v10 {
                     } else {
                         str2 = Integer.toString(chatFull2.requests_pending);
                     }
-                    arrayList2.add(r31.d(143, 2131231029, M02, str2));
+                    arrayList2.add(w31.d(143, 2131231029, M02, str2));
                     String M03 = hd.M0(2131751881, null);
                     TLRPC.ChatFull chatFull3 = pVar.J;
                     if (chatFull3 != null) {
                         str3 = Integer.toString(chatFull3.kicked_count);
                     }
-                    arrayList2.add(r31.d(144, 2131232415, M03, str3));
+                    arrayList2.add(w31.d(144, 2131232415, M03, str3));
                 }
-                arrayList2.add(r31.E(5, org.telegram.messenger.g0.L(14.0f)));
-                r31 c11 = r31.c(146, 2131232176, hd.M0(2131751918, null));
-                c11.f37603q = true;
+                arrayList2.add(w31.E(5, org.telegram.messenger.g0.L(14.0f)));
+                w31 c11 = w31.c(146, 2131232176, hd.M0(2131751918, null));
+                c11.f39835q = true;
                 arrayList2.add(c11);
                 TLRPC.ChatFull chatFull4 = pVar.J;
                 if (chatFull4 != null && (arrayList = chatFull4.linked_peers) != null) {
@@ -103,7 +103,7 @@ public final class j implements v10 {
                     while (i11 < size) {
                         TL_communities.CommunityPeer communityPeer = arrayList.get(i11);
                         i11++;
-                        arrayList2.add(r31.w(pVar.getMessagesController().e2(m5.o(communityPeer.peer))));
+                        arrayList2.add(w31.w(pVar.getMessagesController().e2(m5.o(communityPeer.peer))));
                     }
                     return;
                 }

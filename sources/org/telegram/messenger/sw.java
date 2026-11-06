@@ -47,12 +47,12 @@ public final class sw implements Runnable {
             case 1:
                 org.telegram.ui.an anVar = (org.telegram.ui.an) obj2;
                 ii0 ii0Var = (ii0) obj;
-                org.telegram.ui.ActionBar.g1 g1Var = anVar.f43757e9;
+                org.telegram.ui.ActionBar.g1 g1Var = anVar.f43782e9;
                 if (g1Var != null && anVar.fragmentView != null && !g1Var.isShowing()) {
                     Activity parentActivity = anVar.getParentActivity();
                     Typeface typeface = g0.f22509a;
                     if (parentActivity != null && !parentActivity.isDestroyed() && !parentActivity.isFinishing()) {
-                        anVar.f43757e9.showAtLocation(anVar.f44013z0, 51, i12, i11);
+                        anVar.f43782e9.showAtLocation(anVar.f44038z0, 51, i12, i11);
                         if (z9 && ii0Var != null) {
                             ii0Var.r(true);
                         }
@@ -79,7 +79,7 @@ public final class sw implements Runnable {
                 }
                 if (e10 != null && Q != null) {
                     org.telegram.ui.Components.hc a02 = org.telegram.ui.Components.hc.a0(Q);
-                    int i13 = mbVar.f35974a.h;
+                    int i13 = mbVar.f35912a.h;
                     if (z9) {
                         rVar = new jg.r(i12, i11, Q, 10);
                     } else {
@@ -123,7 +123,7 @@ public final class sw implements Runnable {
                     notificationsSettingsActivity.getNotificationsController().m(i12);
                 }
                 h5Var.f29272e.b(0, !z9, true);
-                notificationsSettingsActivity.f41288c.g(i11);
+                notificationsSettingsActivity.f41313c.g(i11);
                 return;
         }
     }

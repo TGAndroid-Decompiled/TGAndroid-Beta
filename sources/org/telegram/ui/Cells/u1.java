@@ -41,7 +41,7 @@ public final class u1 {
         int intrinsicWidth = (int) (drawable.getIntrinsicWidth() * 0.8f);
         int intrinsicHeight = (int) (drawable.getIntrinsicHeight() * 0.8f);
         int A = (int) com.google.android.recaptcha.internal.a.A(z2Var.M0, intrinsicWidth, 2.0f, z2Var.K0);
-        int interpolation = (int) ((((z2Var.N0 / 2.0f) - intrinsicHeight) + z2Var.L0) - ((1.0f - xq.f40314k.getInterpolation(z2Var.f21194h1)) * org.telegram.messenger.g0.L(16.0f)));
+        int interpolation = (int) ((((z2Var.N0 / 2.0f) - intrinsicHeight) + z2Var.L0) - ((1.0f - xq.f40333k.getInterpolation(z2Var.f21194h1)) * org.telegram.messenger.g0.L(16.0f)));
         drawable.setAlpha((int) (Math.min(1.0f, z2Var.f21194h1 * 5.0f) * 255.0f));
         drawable.setBounds(A, interpolation, intrinsicWidth + A, intrinsicHeight + interpolation);
         drawable.draw(canvas);
@@ -233,7 +233,7 @@ public final class u1 {
                 if (f17 > 0.0f) {
                     if (z2Var.L() || z2Var.N()) {
                         int L = (int) (((z2Var.M0 / f12) + z2Var.K0) - org.telegram.messenger.g0.L(31.0f));
-                        int L2 = (int) ((((z2Var.N0 / f12) + z2Var.L0) - org.telegram.messenger.g0.L(38.0f)) - ((f10 - xq.f40314k.getInterpolation(f17)) * org.telegram.messenger.g0.L(16.0f)));
+                        int L2 = (int) ((((z2Var.N0 / f12) + z2Var.L0) - org.telegram.messenger.g0.L(38.0f)) - ((f10 - xq.f40333k.getInterpolation(f17)) * org.telegram.messenger.g0.L(16.0f)));
                         h6.m mVar = q1Var.Rb;
                         if (((Drawable) mVar.f14265c) == null) {
                             mVar.f14265c = jg.g.h((Context) mVar.f14264b, 2131231634);

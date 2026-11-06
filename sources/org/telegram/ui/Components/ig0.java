@@ -8,28 +8,28 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 public final class ig0 extends Drawable {
-    public final Drawable f34626a;
-    public final Drawable f34627b;
-    public final Paint f34628c;
+    public final Drawable f34589a;
+    public final Drawable f34590b;
+    public final Paint f34591c;
     public final RectF d;
-    public int f34629e;
-    public long f34630f;
-    public float f34631g;
+    public int f34592e;
+    public long f34593f;
+    public float f34594g;
     public boolean h;
-    public boolean f34632i;
+    public boolean f34595i;
 
     public ig0(Context context) {
         Paint paint = new Paint(1);
-        this.f34628c = paint;
+        this.f34591c = paint;
         this.d = new RectF();
-        this.f34629e = 0;
-        this.f34626a = jg.g.h(context, 2131232507);
-        this.f34627b = jg.g.h(context, 2131232506);
+        this.f34592e = 0;
+        this.f34589a = jg.g.h(context, 2131232507);
+        this.f34590b = jg.g.h(context, 2131232506);
         paint.setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(1.66f));
         paint.setStrokeCap(Paint.Cap.ROUND);
-        this.f34630f = SystemClock.elapsedRealtime();
+        this.f34593f = SystemClock.elapsedRealtime();
     }
 
     public final void a(Drawable drawable) {
@@ -39,16 +39,16 @@ public final class ig0 extends Drawable {
 
     public final void b(boolean z9, boolean z10, boolean z11) {
         float f10;
-        this.f34632i = z9;
+        this.f34595i = z9;
         this.h = z10;
-        this.f34630f = SystemClock.elapsedRealtime();
+        this.f34593f = SystemClock.elapsedRealtime();
         if (!z11) {
             if (this.h) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
             }
-            this.f34631g = f10;
+            this.f34594g = f10;
         }
         invalidateSelf();
     }
@@ -75,9 +75,9 @@ public final class ig0 extends Drawable {
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
-        this.f34626a.setColorFilter(colorFilter);
-        this.f34627b.setColorFilter(colorFilter);
-        this.f34628c.setColorFilter(colorFilter);
+        this.f34589a.setColorFilter(colorFilter);
+        this.f34590b.setColorFilter(colorFilter);
+        this.f34591c.setColorFilter(colorFilter);
     }
 
     @Override

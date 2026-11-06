@@ -12,7 +12,7 @@ public final class hw0 extends kg.f1 {
 
     @Override
     public final int a(int i7) {
-        ProfileActivity profileActivity = this.G.f47027e;
+        ProfileActivity profileActivity = this.G.f47050e;
         RectF rectF = ProfileActivity.S6;
         profileActivity.getClass();
         return i7;

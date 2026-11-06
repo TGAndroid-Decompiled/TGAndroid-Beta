@@ -117,12 +117,12 @@ public abstract class zd extends View {
         i6Var.setCallback(this);
         Point point = org.telegram.messenger.g0.f22537q;
         i6Var.M = point.x;
-        i6Var.f34516b = 17;
+        i6Var.f34477b = 17;
         i6Var2.u(-570425345);
         i6Var2.w(org.telegram.messenger.g0.L(11.0f));
         i6Var2.setCallback(this);
         i6Var2.M = point.x;
-        i6Var2.f34516b = 17;
+        i6Var2.f34477b = 17;
         paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, f6Var));
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(org.telegram.messenger.g0.L(1.0f));
@@ -269,8 +269,8 @@ public abstract class zd extends View {
                 z12 = false;
             }
             float W1 = org.telegram.messenger.g0.W1(w5Var2.d(z12), L2, L3);
-            if (L + ly0Var.f35777c + (org.telegram.messenger.g0.L(16.0f) * 2) > rectF2.right) {
-                f15 = (L - W1) - ly0Var.f35777c;
+            if (L + ly0Var.f35782c + (org.telegram.messenger.g0.L(16.0f) * 2) > rectF2.right) {
+                f15 = (L - W1) - ly0Var.f35782c;
             } else {
                 f15 = L + W1;
             }
@@ -318,8 +318,8 @@ public abstract class zd extends View {
                 z10 = false;
             }
             float W12 = org.telegram.messenger.g0.W1(w5Var.d(z10), L5, L6);
-            if (ly0Var.f35777c + L4 + (org.telegram.messenger.g0.L(16.0f) * 2) > rectF2.right) {
-                f14 = (L4 - W12) - ly0Var.f35777c;
+            if (ly0Var.f35782c + L4 + (org.telegram.messenger.g0.L(16.0f) * 2) > rectF2.right) {
+                f14 = (L4 - W12) - ly0Var.f35782c;
             } else {
                 f14 = W12 + L4;
             }
@@ -437,7 +437,7 @@ public abstract class zd extends View {
         udVar2.a(canvas2, -1);
         canvas2.restore();
         canvas2.save();
-        float f32 = 1.0f - (this.f5203f0.f55370e * f22);
+        float f32 = 1.0f - (this.f5203f0.f55395e * f22);
         canvas2.scale(f32, f32, rectF5.centerX(), rectF5.top - (rectF5.height() * f11));
         this.G.setBounds((int) ((rectF5.centerX() - (i6Var2.c() / f12)) + org.telegram.messenger.g0.L(-12.0f)), (int) (rectF5.centerY() - org.telegram.messenger.g0.L(10.0f)), (int) ((rectF5.centerX() - (i6Var2.c() / f12)) + org.telegram.messenger.g0.L(8.0f)), (int) (rectF5.centerY() + org.telegram.messenger.g0.L(10.0f)));
         if (this.F) {
@@ -447,7 +447,7 @@ public abstract class zd extends View {
         i6Var2.draw(canvas2);
         canvas2.restore();
         i6Var.o(rectF5.left, rectF5.top + org.telegram.messenger.g0.L(10.0f), rectF5.right, rectF5.bottom + org.telegram.messenger.g0.L(10.0f));
-        i6Var.B = (int) (this.f5203f0.f55370e * 255.0f);
+        i6Var.B = (int) (this.f5203f0.f55395e * 255.0f);
         i6Var.draw(canvas2);
         canvas2.restore();
     }

@@ -40,7 +40,7 @@ public class c0 extends oj0 {
     public void t(v4.d1 d1Var, int i7) {
         TLRPC.Chat chat;
         String str;
-        o4 o4Var = (o4) d1Var.f56927a;
+        o4 o4Var = (o4) d1Var.f56952a;
         int i10 = this.d;
         TLRPC.TL_topPeer tL_topPeer = (TLRPC.TL_topPeer) ui.b0(i10).f25810i1.get(i7);
         new TLRPC.TL_dialog();

@@ -61,7 +61,7 @@ public final class i extends g90 {
     public void i() {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((di) this.W).f32882a2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((di) this.W).f32895a2;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.X();
                     return;
@@ -76,7 +76,7 @@ public final class i extends g90 {
     public void n(boolean z9) {
         switch (this.V) {
             case 1:
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((di) this.W).f32882a2;
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = ((di) this.W).f32895a2;
                 if (chatAttachAlertPhotoLayout != null) {
                     chatAttachAlertPhotoLayout.X();
                     return;

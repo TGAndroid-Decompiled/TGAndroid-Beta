@@ -67,7 +67,7 @@ public final class r implements View.OnClickListener {
                     } else {
                         String M0 = org.telegram.messenger.hd.M0(2131749729, null);
                         ai.i iVar = new ai.i(a1Var, 4);
-                        Pattern pattern = org.telegram.ui.Components.v4.f38823a;
+                        Pattern pattern = org.telegram.ui.Components.v4.f38814a;
                         kg.x1 b10 = kg.x1.b(p10.f24459s0);
                         b10.g();
                         if (!b10.d.isEmpty()) {
@@ -222,7 +222,7 @@ public final class r implements View.OnClickListener {
                     return;
                 }
                 org.telegram.ui.Components.cc Q = new org.telegram.ui.Components.hc(i4Var.L0, i4Var.f9163k0).Q(2131624011, 36, org.telegram.messenger.hd.M0(2131744665, null));
-                Q.f32516a = 3;
+                Q.f32520a = 3;
                 Q.k(true);
                 return;
             case 11:
@@ -337,7 +337,7 @@ public final class r implements View.OnClickListener {
                     r0Var.D();
                     return;
                 } else if (q0Var.getFilter().h) {
-                    if (!q0Var.f28383a.f55371f) {
+                    if (!q0Var.f28383a.f55396f) {
                         q0Var.setSelectedForDelete(true);
                         return;
                     }

@@ -3,20 +3,20 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
 public final class k8 implements View.OnClickListener {
-    public final int f47115a;
-    public final i9 f47116b;
+    public final int f47138a;
+    public final i9 f47139b;
 
     public k8(i9 i9Var, int i7) {
-        this.f47115a = i7;
-        this.f47116b = i9Var;
+        this.f47138a = i7;
+        this.f47139b = i9Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f47115a) {
+        switch (this.f47138a) {
             case 0:
                 Long l10 = (Long) view.getTag();
-                i9 i9Var = this.f47116b;
+                i9 i9Var = this.f47139b;
                 org.telegram.messenger.r3 g12 = i9Var.getMessagesController().g1(l10.longValue(), false, null);
                 TLRPC.Chat M0 = i9Var.getMessagesController().M0(l10);
                 i9Var.M = M0;
@@ -28,7 +28,7 @@ public final class k8 implements View.OnClickListener {
                 i9Var.getMessagesController().V2(0, l10.longValue(), true);
                 return;
             default:
-                i9 i9Var2 = this.f47116b;
+                i9 i9Var2 = this.f47139b;
                 i9Var2.getClass();
                 i9.l0(i9Var2);
                 return;

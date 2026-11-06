@@ -19,10 +19,10 @@ public final class s extends na implements org.telegram.messenger.ls {
     public final FrameLayout V1;
     public final FrameLayout W1;
     public final fi.d X1;
-    public f41 Y1;
+    public k41 Y1;
     public int Z1;
-    public final TL_aicompose.aiComposeToneExample[] f37900a2;
-    public int f37901b2;
+    public final TL_aicompose.aiComposeToneExample[] f37843a2;
+    public int f37844b2;
 
     public s(Context context, TL_aicompose.AiComposeTone aiComposeTone, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context, null, false, false, 2, f6Var);
@@ -33,7 +33,7 @@ public final class s extends na implements org.telegram.messenger.ls {
         R1.b();
         this.P1 = aiComposeTone;
         TL_aicompose.aiComposeToneExample[] aicomposetoneexampleArr = new TL_aicompose.aiComposeToneExample[((org.telegram.messenger.j0) org.telegram.messenger.qp.s1(this.f28612a).f24927x7.P.f13555b).f23432c];
-        this.f37900a2 = aicomposetoneexampleArr;
+        this.f37843a2 = aicomposetoneexampleArr;
         if (aiComposeTone instanceof TL_aicompose.TL_aiComposeTone) {
             aicomposetoneexampleArr[0] = ((TL_aicompose.TL_aiComposeTone) aiComposeTone).example_english;
         }
@@ -79,22 +79,22 @@ public final class s extends na implements org.telegram.messenger.ls {
         int i12 = org.telegram.ui.ActionBar.k6.f27792a7;
         this.f28613a0 = i12;
         v0(org.telegram.ui.ActionBar.k6.w0(i12, this.I0));
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int i13 = this.f28645t0;
         pj0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(66.0f));
-        this.f36328k1.setClipToPadding(false);
-        this.f36328k1.r1();
-        this.f36328k1.setOnItemClickListener(new k(this, 1));
+        this.f36222k1.setClipToPadding(false);
+        this.f36222k1.r1();
+        this.f36222k1.setOnItemClickListener(new k(this, 1));
         this.C1 = false;
         this.B1 = org.telegram.messenger.g0.L(36.0f);
-        this.f36333r1 = 0.35f;
+        this.f36227r1 = 0.35f;
         this.F1 = true;
         r rVar = new r(this);
-        rVar.f56954m = false;
+        rVar.f56979m = false;
         rVar.C = false;
         rVar.o(xq.h);
         rVar.n(350L);
-        this.f36328k1.setItemAnimator(rVar);
+        this.f36222k1.setItemAnimator(rVar);
         FrameLayout frameLayout3 = new FrameLayout(context);
         this.V1 = frameLayout3;
         frameLayout3.setPadding(org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(12.0f));
@@ -136,9 +136,9 @@ public final class s extends na implements org.telegram.messenger.ls {
             int length = spannableStringBuilder.length();
             spannableStringBuilder.append((CharSequence) org.telegram.messenger.hd.M0(2131748778, null));
             b80 b80Var = new b80(null, L, 0, null);
-            b80Var.f32079f = org.telegram.messenger.g0.L(6.0f);
+            b80Var.f32073f = org.telegram.messenger.g0.L(6.0f);
             b80Var.h = 0.5f;
-            b80Var.f32080n = true;
+            b80Var.f32074n = true;
             spannableStringBuilder.setSpan(b80Var, length, spannableStringBuilder.length(), 33);
         }
         return spannableStringBuilder;
@@ -146,10 +146,10 @@ public final class s extends na implements org.telegram.messenger.ls {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(pj0Var, getContext(), this.f28612a, 0, true, new d(this, 1), this.I0);
-        this.Y1 = f41Var;
-        f41Var.f33473r = false;
-        return f41Var;
+        k41 k41Var = new k41(pj0Var, getContext(), this.f28612a, 0, true, new d(this, 1), this.I0);
+        this.Y1 = k41Var;
+        k41Var.f35132r = false;
+        return k41Var;
     }
 
     @Override
@@ -218,8 +218,8 @@ public final class s extends na implements org.telegram.messenger.ls {
         try {
             super.s0();
             int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27792a7, this.I0);
-            if (w02 != this.f37901b2) {
-                this.f37901b2 = w02;
+            if (w02 != this.f37844b2) {
+                this.f37844b2 = w02;
                 v0(w02);
                 this.V1.setBackground(new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{org.telegram.ui.ActionBar.k6.r1(0.0f, w02), w02, w02}));
             }

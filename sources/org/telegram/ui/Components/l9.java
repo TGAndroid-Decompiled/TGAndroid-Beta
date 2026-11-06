@@ -18,27 +18,27 @@ public class l9 extends View {
     public ly0 D;
     public Path E;
     public ColorMatrixColorFilter F;
-    public ImageReceiver f35557a;
-    public ImageReceiver f35558b;
-    public int f35559c;
+    public ImageReceiver f35562a;
+    public ImageReceiver f35563b;
+    public int f35564c;
     public int d;
-    public i5 f35560e;
-    public ColorFilter f35561f;
+    public i5 f35565e;
+    public ColorFilter f35566f;
     public w8 h;
-    public boolean f35562n;
-    public boolean f35563r;
-    public boolean f35564s;
-    public boolean f35565w;
-    public boolean f35566x;
-    public ValueAnimator f35567y;
+    public boolean f35567n;
+    public boolean f35568r;
+    public boolean f35569s;
+    public boolean f35570w;
+    public boolean f35571x;
+    public ValueAnimator f35572y;
 
     public l9(Context context) {
         super(context);
-        this.f35559c = -1;
+        this.f35564c = -1;
         this.d = -1;
-        this.f35566x = true;
+        this.f35571x = true;
         ImageReceiver c10 = c();
-        this.f35557a = c10;
+        this.f35562a = c10;
         c10.n1 = 0.0f;
         c10.f21233z1 = true;
         c10.f21192g1 = new u(this, 14);
@@ -46,14 +46,14 @@ public class l9 extends View {
 
     public final void a() {
         Bitmap n10;
-        if (this.f35563r && this.f35558b.n() == null && this.f35557a.n() != null && (n10 = this.f35557a.n()) != null && !n10.isRecycled()) {
-            this.f35558b.v0(Utilities.D(n10, false));
+        if (this.f35568r && this.f35563b.n() == null && this.f35562a.n() != null && (n10 = this.f35562a.n()) != null && !n10.isRecycled()) {
+            this.f35563b.v0(Utilities.D(n10, false));
             invalidate();
         }
     }
 
     public final void b() {
-        this.f35557a.f();
+        this.f35562a.f();
     }
 
     public ImageReceiver c() {
@@ -61,27 +61,27 @@ public class l9 extends View {
     }
 
     public final void d() {
-        if (this.f35563r) {
-            if (this.f35558b.n() != null && !this.f35558b.n().isRecycled()) {
-                this.f35558b.n().recycle();
+        if (this.f35568r) {
+            if (this.f35563b.n() != null && !this.f35563b.n().isRecycled()) {
+                this.f35563b.n().recycle();
             }
-            this.f35558b.w0(null);
+            this.f35563b.w0(null);
             a();
         }
     }
 
     public final void e(TLObject tLObject, w8 w8Var) {
-        this.f35557a.i0(tLObject, w8Var, null);
+        this.f35562a.i0(tLObject, w8Var, null);
         d();
     }
 
     public final void g(int i7, long j3, Object obj, String str, String str2, String str3, org.telegram.messenger.hc hcVar, org.telegram.messenger.hc hcVar2) {
-        this.f35557a.r0(hcVar, str, hcVar2, str2, null, j3, str3, obj, i7);
+        this.f35562a.r0(hcVar, str, hcVar2, str2, null, j3, str3, obj, i7);
         d();
     }
 
     public i5 getAnimatedEmojiDrawable() {
-        return this.f35560e;
+        return this.f35565e;
     }
 
     public w8 getAvatarDrawable() {
@@ -92,11 +92,11 @@ public class l9 extends View {
     }
 
     public ImageReceiver getImageReceiver() {
-        return this.f35557a;
+        return this.f35562a;
     }
 
     public int[] getRoundRadius() {
-        return this.f35557a.W0;
+        return this.f35562a.W0;
     }
 
     public final void h(String str, String str2, Drawable drawable) {
@@ -116,26 +116,26 @@ public class l9 extends View {
     }
 
     public final void m(org.telegram.messenger.hc hcVar, String str, org.telegram.messenger.hc hcVar2, String str2, Drawable drawable, Object obj) {
-        this.f35557a.u0(hcVar, str, hcVar2, str2, null, null, drawable, 0L, null, obj, 1);
+        this.f35562a.u0(hcVar, str, hcVar2, str2, null, null, drawable, 0L, null, obj, 1);
         d();
     }
 
     public final void n(org.telegram.messenger.hc hcVar, String str, org.telegram.messenger.hc hcVar2, String str2, Drawable drawable, String str3, int i7, Object obj) {
-        this.f35557a.r0(hcVar, str, hcVar2, str2, drawable, i7, str3, obj, 0);
+        this.f35562a.r0(hcVar, str, hcVar2, str2, drawable, i7, str3, obj, 0);
         d();
     }
 
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f35562n = true;
-        if (this.f35566x) {
-            this.f35557a.P();
+        this.f35567n = true;
+        if (this.f35571x) {
+            this.f35562a.P();
         }
-        if (this.f35564s) {
-            this.f35558b.P();
+        if (this.f35569s) {
+            this.f35563b.P();
         }
-        i5 i5Var = this.f35560e;
+        i5 i5Var = this.f35565e;
         if (i5Var != null) {
             i5Var.a(this);
         }
@@ -144,14 +144,14 @@ public class l9 extends View {
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f35562n = false;
-        if (this.f35566x) {
-            this.f35557a.R();
+        this.f35567n = false;
+        if (this.f35571x) {
+            this.f35562a.R();
         }
-        if (this.f35564s) {
-            this.f35558b.R();
+        if (this.f35569s) {
+            this.f35563b.R();
         }
-        i5 i5Var = this.f35560e;
+        i5 i5Var = this.f35565e;
         if (i5Var != null) {
             i5Var.n(this);
         }
@@ -162,42 +162,42 @@ public class l9 extends View {
         ImageReceiver imageReceiver;
         int i7;
         ColorFilter colorFilter;
-        i5 i5Var = this.f35560e;
+        i5 i5Var = this.f35565e;
         if (i5Var != null) {
-            imageReceiver = i5Var.f34505k;
+            imageReceiver = i5Var.f34450k;
         } else {
-            imageReceiver = this.f35557a;
+            imageReceiver = this.f35562a;
         }
         if (imageReceiver != null) {
-            if (i5Var != null && (colorFilter = this.f35561f) != null) {
+            if (i5Var != null && (colorFilter = this.f35566f) != null) {
                 i5Var.setColorFilter(colorFilter);
             }
-            int i10 = this.f35559c;
+            int i10 = this.f35564c;
             if (i10 != -1 && (i7 = this.d) != -1) {
-                if (this.f35565w) {
+                if (this.f35570w) {
                     imageReceiver.y0(0.0f, 0.0f, i10, i7);
-                    if (this.f35564s) {
-                        this.f35558b.y0(0.0f, 0.0f, this.f35559c, this.d);
+                    if (this.f35569s) {
+                        this.f35563b.y0(0.0f, 0.0f, this.f35564c, this.d);
                     }
                 } else {
                     int height = getHeight();
                     int i11 = this.d;
-                    imageReceiver.y0((getWidth() - this.f35559c) / 2, (height - i11) / 2, this.f35559c, i11);
-                    if (this.f35564s) {
+                    imageReceiver.y0((getWidth() - this.f35564c) / 2, (height - i11) / 2, this.f35564c, i11);
+                    if (this.f35569s) {
                         int height2 = getHeight();
                         int i12 = this.d;
-                        this.f35558b.y0((getWidth() - this.f35559c) / 2, (height2 - i12) / 2, this.f35559c, i12);
+                        this.f35563b.y0((getWidth() - this.f35564c) / 2, (height2 - i12) / 2, this.f35564c, i12);
                     }
                 }
             } else {
                 imageReceiver.y0(0.0f, 0.0f, getWidth(), getHeight());
-                if (this.f35564s) {
-                    this.f35558b.y0(0.0f, 0.0f, getWidth(), getHeight());
+                if (this.f35569s) {
+                    this.f35563b.y0(0.0f, 0.0f, getWidth(), getHeight());
                 }
             }
             imageReceiver.h(canvas, null);
-            if (this.f35564s) {
-                this.f35558b.h(canvas, null);
+            if (this.f35569s) {
+                this.f35563b.h(canvas, null);
             }
         }
     }
@@ -206,47 +206,47 @@ public class l9 extends View {
         n(hcVar, str, null, null, drawable, null, 0, obj);
     }
 
-    public final void q(y41 y41Var, org.telegram.messenger.hc hcVar, String str, org.telegram.messenger.hc hcVar2, org.telegram.messenger.hc hcVar3, String str2, int i7, String str3) {
-        if (y41Var != null) {
-            this.f35557a.w0(y41Var);
+    public final void q(c51 c51Var, org.telegram.messenger.hc hcVar, String str, org.telegram.messenger.hc hcVar2, org.telegram.messenger.hc hcVar3, String str2, int i7, String str3) {
+        if (c51Var != null) {
+            this.f35562a.w0(c51Var);
         } else {
-            this.f35557a.u0(hcVar, str, hcVar2, null, hcVar3, str2, null, i7, null, str3, 1);
+            this.f35562a.u0(hcVar, str, hcVar2, null, hcVar3, str2, null, i7, null, str3, 1);
         }
         d();
     }
 
     public final void r() {
-        this.f35557a.G0(0, 0, true);
+        this.f35562a.G0(0, 0, true);
     }
 
     public final void s(int i7, int i10, boolean z9) {
-        this.f35557a.G0(i7, i10, true);
+        this.f35562a.G0(i7, i10, true);
     }
 
     public void setAnimatedEmojiDrawable(i5 i5Var) {
-        i5 i5Var2 = this.f35560e;
+        i5 i5Var2 = this.f35565e;
         if (i5Var2 == i5Var) {
             return;
         }
-        if (this.f35562n && i5Var2 != null) {
+        if (this.f35567n && i5Var2 != null) {
             i5Var2.n(this);
         }
-        this.f35560e = i5Var;
-        if (this.f35562n && i5Var != null) {
+        this.f35565e = i5Var;
+        if (this.f35567n && i5Var != null) {
             i5Var.a(this);
         }
         invalidate();
     }
 
     public void setAspectFit(boolean z9) {
-        this.f35557a.R0 = z9;
+        this.f35562a.R0 = z9;
     }
 
     public void setBlurAllowed(boolean z9) {
-        if (!this.f35562n) {
-            this.f35564s = z9;
+        if (!this.f35567n) {
+            this.f35569s = z9;
             if (z9) {
-                this.f35558b = new ImageReceiver(null);
+                this.f35563b = new ImageReceiver(null);
                 return;
             }
             return;
@@ -269,73 +269,73 @@ public class l9 extends View {
     }
 
     public void setColorFilter(ColorFilter colorFilter) {
-        this.f35557a.f21206o1 = colorFilter;
+        this.f35562a.f21206o1 = colorFilter;
     }
 
     public void setEmojiColorFilter(ColorFilter colorFilter) {
-        this.f35561f = colorFilter;
+        this.f35566f = colorFilter;
         invalidate();
     }
 
     public void setHasBlur(boolean z9) {
-        if (z9 && !this.f35564s) {
+        if (z9 && !this.f35569s) {
             throw new IllegalStateException("You should call setBlurAllowed(...) before calling setHasBlur(true)!");
         }
-        this.f35563r = z9;
+        this.f35568r = z9;
         if (!z9) {
-            if (this.f35558b.n() != null && !this.f35558b.n().isRecycled()) {
-                this.f35558b.n().recycle();
+            if (this.f35563b.n() != null && !this.f35563b.n().isRecycled()) {
+                this.f35563b.n().recycle();
             }
-            this.f35558b.w0(null);
+            this.f35563b.w0(null);
         }
         a();
     }
 
     public void setImageBitmap(Bitmap bitmap) {
-        this.f35557a.v0(bitmap);
+        this.f35562a.v0(bitmap);
         d();
     }
 
     public void setImageDrawable(Drawable drawable) {
-        this.f35557a.w0(drawable);
+        this.f35562a.w0(drawable);
         d();
     }
 
     public void setImageResource(int i7) {
-        this.f35557a.w0(getResources().getDrawable(i7));
+        this.f35562a.w0(getResources().getDrawable(i7));
         invalidate();
         d();
     }
 
     public void setLayerNum(int i7) {
-        this.f35557a.E0(i7);
+        this.f35562a.E0(i7);
     }
 
     public void setRoundRadius(int i7) {
-        this.f35557a.J0(i7);
-        if (this.f35564s) {
-            this.f35558b.J0(i7);
+        this.f35562a.J0(i7);
+        if (this.f35569s) {
+            this.f35563b.J0(i7);
         }
         invalidate();
     }
 
     public final void t(int i7, int i10, int i11, int i12) {
-        this.f35557a.K0(i7, i10, i11, i12);
-        if (this.f35564s) {
-            this.f35558b.K0(i7, i10, i11, i12);
+        this.f35562a.K0(i7, i10, i11, i12);
+        if (this.f35569s) {
+            this.f35563b.K0(i7, i10, i11, i12);
         }
         invalidate();
     }
 
     public final void u(int i7, int i10) {
-        this.f35559c = i7;
+        this.f35564c = i7;
         this.d = i10;
         invalidate();
     }
 
     @Override
     public boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f35557a.t() && drawable != this.f35557a.S && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f35562a.t() && drawable != this.f35562a.S && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

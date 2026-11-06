@@ -2,13 +2,13 @@ package org.telegram.ui;
 
 import android.content.Context;
 public final class xy extends org.telegram.ui.Cells.n4 {
-    public final org.telegram.ui.Cells.w3 f51995r;
+    public final org.telegram.ui.Cells.w3 f52016r;
 
     public xy(Context context, org.telegram.ui.ActionBar.f6 f6Var) {
         super(context);
         int i7;
         org.telegram.ui.Cells.w3 w3Var = new org.telegram.ui.Cells.w3(context, true, true, true, 3);
-        this.f51995r = w3Var;
+        this.f52016r = w3Var;
         if (org.telegram.messenger.hd.f22871a0) {
             i7 = 3;
         } else {

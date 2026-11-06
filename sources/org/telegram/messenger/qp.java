@@ -1838,9 +1838,9 @@ public final class qp extends c1 implements ls {
             int i10 = this.currentAccount;
             long e10 = getUserConfig().e();
             if (e10 == 0) {
-                Object obj = org.telegram.ui.Wallet.r0.f43054f;
+                Object obj = org.telegram.ui.Wallet.r0.f43079f;
             } else {
-                synchronized (org.telegram.ui.Wallet.r0.f43054f) {
+                synchronized (org.telegram.ui.Wallet.r0.f43079f) {
                     try {
                         ArrayList n10 = org.telegram.ui.Wallet.r0.n(context, e10);
                         int size = n10.size();
@@ -2432,14 +2432,14 @@ public final class qp extends c1 implements ls {
                             u1Var.show();
                             return false;
                         }
-                        hiVar.f57207b = new k7(this, sendRequest, f2Var, 15);
+                        hiVar.f57232b = new k7(this, sendRequest, f2Var, 15);
                         hiVar.d();
                         return false;
                     }
                     return true;
                 } else if (i7 != 0 && ijVar != null && hiVar != null) {
                     hiVar.d();
-                    hiVar.f57207b = s0(-j10, i7, new h6.m(hiVar, f2Var, bundle, 21));
+                    hiVar.f57232b = s0(-j10, i7, new h6.m(hiVar, f2Var, bundle, 21));
                     return false;
                 } else {
                     return true;
@@ -3902,17 +3902,17 @@ public final class qp extends c1 implements ls {
             org.telegram.ui.Wallet.r0.z(n0Var.J);
             n0Var.G.clear();
             n0Var.N.clear();
-            WalletEngine2 walletEngine2 = n0Var.f42769b;
+            WalletEngine2 walletEngine2 = n0Var.f42794b;
             if (walletEngine2 != null) {
                 walletEngine2.close();
-                n0Var.f42769b = null;
+                n0Var.f42794b = null;
                 n0Var.d = null;
             }
-            org.telegram.ui.Wallet.f0 f0Var = n0Var.f42780o;
+            org.telegram.ui.Wallet.f0 f0Var = n0Var.f42805o;
             if (f0Var != null) {
                 f0Var.c();
             }
-            int i11 = n0Var.f42768a;
+            int i11 = n0Var.f42793a;
             if (n0Var.A >= 0) {
                 ConnectionsManager.getInstance(i11).cancelRequest(n0Var.A, true);
                 n0Var.A = -1;
@@ -3927,16 +3927,16 @@ public final class qp extends c1 implements ls {
             }
             n0Var.f0();
             n0Var.E.clear();
-            org.telegram.ui.Wallet.a1 a1Var = n0Var.f42784s;
+            org.telegram.ui.Wallet.a1 a1Var = n0Var.f42809s;
             if (a1Var != null) {
                 a1Var.h();
-                n0Var.f42784s = null;
+                n0Var.f42809s = null;
             }
             g0.r(n0Var.F);
             synchronized (org.telegram.ui.Wallet.n0.class) {
                 try {
-                    if (org.telegram.ui.Wallet.n0.O[n0Var.f42768a] == n0Var) {
-                        org.telegram.ui.Wallet.n0.O[n0Var.f42768a] = null;
+                    if (org.telegram.ui.Wallet.n0.O[n0Var.f42793a] == n0Var) {
+                        org.telegram.ui.Wallet.n0.O[n0Var.f42793a] = null;
                     }
                 } finally {
                 }
@@ -3951,7 +3951,7 @@ public final class qp extends c1 implements ls {
             m10Var.a();
         }
         this.J3 = false;
-        org.telegram.ui.ww.f51509y4[this.currentAccount] = false;
+        org.telegram.ui.ww.f51526y4[this.currentAccount] = false;
         this.f24749d7.edit().clear().commit();
         this.f24769f7.edit().putLong("lastGifLoadTime", 0L).putLong("lastStickersLoadTime", 0L).putLong("lastStickersLoadTimeMask", 0L).putLong("lastStickersLoadTimeFavs", 0L).commit();
         k5.d(this.f24759e7.edit().remove("archivehint").remove("proximityhint").remove("archivehint_l").remove("gifhint"), "reminderhint", "soundHint", "dcDomainName2", "webFileDatacenterId").remove("themehint").remove("showFiltersTooltip").remove("transcribeButtonPressed").commit();
@@ -10373,9 +10373,9 @@ public final class qp extends c1 implements ls {
         }
         ui.e eVar = new ui.e(7);
         ArrayList arrayList3 = (ArrayList) eVar.d;
-        ArrayList arrayList4 = (ArrayList) eVar.f56816e;
-        ArrayList arrayList5 = (ArrayList) eVar.f56815c;
-        ArrayList arrayList6 = (ArrayList) eVar.f56814b;
+        ArrayList arrayList4 = (ArrayList) eVar.f56841e;
+        ArrayList arrayList5 = (ArrayList) eVar.f56840c;
+        ArrayList arrayList6 = (ArrayList) eVar.f56839b;
         int size2 = arrayList2.size();
         while (i7 < size2) {
             Object obj = arrayList2.get(i7);
@@ -10470,7 +10470,7 @@ public final class qp extends c1 implements ls {
         }
         boolean[] zArr = {false};
         if (bVar != null) {
-            bVar.f57207b = new lk(1, zArr);
+            bVar.f57232b = new lk(1, zArr);
             bVar.d();
         }
         wl wlVar = new wl(this, f2Var, bVar, zArr, user, str, z9, z10, r9);

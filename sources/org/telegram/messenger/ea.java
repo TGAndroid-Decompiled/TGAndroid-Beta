@@ -19,7 +19,7 @@ public final class ea {
             v7.i iVar = (v7.i) fVar.f19939a;
             Parcel O0 = iVar.O0(iVar.P0(), 4);
             Parcelable.Creator<LatLng> creator = LatLng.CREATOR;
-            int i7 = v7.b.f57130a;
+            int i7 = v7.b.f57155a;
             if (O0.readInt() == 0) {
                 createFromParcel = null;
             } else {

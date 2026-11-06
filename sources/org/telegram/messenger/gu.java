@@ -234,10 +234,10 @@ public final class gu {
                     a80 a80Var2 = new a80();
                     this.f22718x = a80Var2;
                     a80Var2.D = true;
-                    a80Var2.f31734x.setStrokeWidth(g0.N(1.25f));
+                    a80Var2.f31746x.setStrokeWidth(g0.N(1.25f));
                 } else {
-                    a80Var.f31715b = -1L;
-                    a80Var.f31716c = -1L;
+                    a80Var.f31727b = -1L;
+                    a80Var.f31728c = -1L;
                 }
             } else {
                 a80 a80Var3 = this.f22718x;
@@ -250,7 +250,7 @@ public final class gu {
         a80 a80Var4 = this.f22718x;
         if (a80Var4 != null) {
             if (z9 || a80Var4.d()) {
-                float strokeWidth = this.f22718x.f31734x.getStrokeWidth();
+                float strokeWidth = this.f22718x.f31746x.getStrokeWidth();
                 RectF rectF = this.f22720z;
                 rectF.set(0.0f, 0.0f, this.f22701e, c());
                 float f10 = strokeWidth / 2.0f;

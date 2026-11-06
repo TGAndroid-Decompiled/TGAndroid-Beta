@@ -34,20 +34,20 @@ import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.ActionBar.y1;
 import org.telegram.ui.Cells.h6;
 import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.i30;
 import org.telegram.ui.Components.j30;
 import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.k60;
 import org.telegram.ui.Components.l9;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.v4;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w8;
 import org.telegram.ui.Components.xq;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.an;
 import org.telegram.ui.oq;
-import org.telegram.ui.vq0;
+import org.telegram.ui.wq0;
 public final class p extends f2 implements i30, ls, te.b {
     public RadialProgressView D;
     public w8 E;
@@ -62,7 +62,7 @@ public final class p extends f2 implements i30, ls, te.b {
     public final te.a f15581b;
     public long f15582c;
     public s1 d;
-    public k41 f15583e;
+    public p41 f15583e;
     public String f15584f;
     public boolean h;
     public boolean f15585n;
@@ -79,14 +79,14 @@ public final class p extends f2 implements i30, ls, te.b {
         this.L = new n(this);
     }
 
-    public static boolean Z(p pVar, r31 r31Var, View view) {
+    public static boolean Z(p pVar, w31 w31Var, View view) {
         long j3;
         boolean t6;
         boolean z9;
         boolean z10;
         boolean z11;
         int i7;
-        Object obj = r31Var.G;
+        Object obj = w31Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             j3 = -chat.f26952id;
@@ -139,10 +139,10 @@ public final class p extends f2 implements i30, ls, te.b {
         return false;
     }
 
-    public static void a0(p pVar, r31 r31Var) {
+    public static void a0(p pVar, w31 w31Var) {
         TLRPC.Chat M0;
         TLRPC.ChatPhoto chatPhoto;
-        int i7 = r31Var.d;
+        int i7 = w31Var.d;
         if (i7 == 140) {
             if (!pVar.F.g() && (chatPhoto = (M0 = pVar.getMessagesController().M0(Long.valueOf(pVar.f15582c))).photo) != null && chatPhoto.photo_big != null) {
                 hc hcVar = null;
@@ -198,7 +198,7 @@ public final class p extends f2 implements i30, ls, te.b {
         } else if (i7 == 146) {
             m0.e(pVar.K, pVar, pVar.currentAccount, pVar.I);
         } else {
-            Object obj = r31Var.G;
+            Object obj = w31Var.G;
             if (obj instanceof TLRPC.Chat) {
                 pVar.presentFragment(an.ra(-((TLRPC.Chat) obj).f26952id));
             } else if (obj instanceof TLRPC.User) {
@@ -326,20 +326,20 @@ public final class p extends f2 implements i30, ls, te.b {
         this.D.setNoProgress(false);
         this.f15587s.addView(this.D, ha.d(64, 64.0f, 81, 0.0f, 0.0f, 0.0f, 32.0f));
         f0(false, false);
-        k41 k41Var = new k41(this, new j(this, 1), new k(this), new k(this));
-        this.f15583e = k41Var;
-        k41Var.setClipToPadding(false);
-        k41 k41Var2 = this.f15583e;
-        f41 f41Var = k41Var2.f35167f3;
-        f41Var.f33473r = false;
-        f41Var.f33474s = true;
-        k41Var2.r1();
+        p41 p41Var = new p41(this, new j(this, 1), new k(this), new k(this));
+        this.f15583e = p41Var;
+        p41Var.setClipToPadding(false);
+        p41 p41Var2 = this.f15583e;
+        k41 k41Var = p41Var2.f36781f3;
+        k41Var.f35132r = false;
+        k41Var.f35133s = true;
+        p41Var2.r1();
         this.actionBar.setBackground(null);
         this.d.addView(this.f15583e, ha.c(-1.0f, -1));
         this.d.addView(this.actionBar, ha.e(-1, -2, 48));
         s1 s1Var2 = this.d;
         k kVar2 = new k(this);
-        WeakHashMap weakHashMap = r0.i0.f54073a;
+        WeakHashMap weakHashMap = r0.i0.f54098a;
         r0.a0.i(s1Var2, kVar2);
         s1 s1Var3 = this.d;
         this.fragmentView = s1Var3;
@@ -362,7 +362,7 @@ public final class p extends f2 implements i30, ls, te.b {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
             if (chatFull.f26953id == this.f15582c) {
                 this.J = chatFull;
-                this.f15583e.f35167f3.O(true);
+                this.f15583e.f36781f3.O(true);
             }
         }
     }
@@ -377,7 +377,7 @@ public final class p extends f2 implements i30, ls, te.b {
 
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
-        if (dialog != this.F.f34866c && super.dismissDialogOnPause(dialog)) {
+        if (dialog != this.F.f34845c && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -450,7 +450,7 @@ public final class p extends f2 implements i30, ls, te.b {
     }
 
     @Override
-    public final vq0 getCloseIntoObject() {
+    public final wq0 getCloseIntoObject() {
         return null;
     }
 
@@ -486,8 +486,8 @@ public final class p extends f2 implements i30, ls, te.b {
         this.J = getMessagesController().N0(this.f15582c);
         j30 j30Var = new j30(3, true, true);
         this.F = j30Var;
-        j30Var.f34864a = this;
-        j30Var.f34865b = this;
+        j30Var.f34843a = this;
+        j30Var.f34844b = this;
         getNotificationCenter().c(this, qs.T);
         return super.onFragmentCreate();
     }
@@ -540,7 +540,7 @@ public final class p extends f2 implements i30, ls, te.b {
     public final void restoreSelfArgs(Bundle bundle) {
         j30 j30Var = this.F;
         if (j30Var != null) {
-            j30Var.f34868f = bundle.getString("path");
+            j30Var.f34847f = bundle.getString("path");
         }
     }
 
@@ -548,7 +548,7 @@ public final class p extends f2 implements i30, ls, te.b {
     public final void saveSelfArgs(Bundle bundle) {
         String str;
         j30 j30Var = this.F;
-        if (j30Var != null && (str = j30Var.f34868f) != null) {
+        if (j30Var != null && (str = j30Var.f34847f) != null) {
             bundle.putString("path", str);
         }
         e5 e5Var = this.f15586r;

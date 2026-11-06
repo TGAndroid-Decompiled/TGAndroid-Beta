@@ -6,21 +6,21 @@ import android.view.View;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 public final class t81 extends q11 {
-    public boolean f49961e2;
-    public final u81 f49962f2;
+    public boolean f49989e2;
+    public final u81 f49990f2;
 
     public t81(u81 u81Var, u81 u81Var2, Activity activity) {
         super(u81Var2, activity, false, null, 3, null);
-        this.f49962f2 = u81Var;
-        this.f49961e2 = true;
+        this.f49990f2 = u81Var;
+        this.f49989e2 = true;
     }
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
         super.onLayout(z9, i7, i10, i11, i12);
-        if (this.f49961e2) {
-            this.f49961e2 = false;
-            this.f49962f2.f50320f.s(null);
+        if (this.f49989e2) {
+            this.f49989e2 = false;
+            this.f49990f2.f50342f.s(null);
         }
     }
 
@@ -29,7 +29,7 @@ public final class t81 extends q11 {
         int i7;
         int i10;
         long j3;
-        u81 u81Var = this.f49962f2;
+        u81 u81Var = this.f49990f2;
         i7 = ((org.telegram.ui.ActionBar.f2) u81Var).currentAccount;
         boolean z9 = false;
         if (!TextUtils.isEmpty(org.telegram.messenger.p10.i(i7).f24469e0)) {

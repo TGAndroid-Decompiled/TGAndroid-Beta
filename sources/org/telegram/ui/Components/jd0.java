@@ -20,19 +20,19 @@ public final class jd0 extends FrameLayout {
     public boolean K;
     public id0 L;
     public int M;
-    public PointF f34948a;
-    public float f34949b;
-    public float f34950c;
+    public PointF f34909a;
+    public float f34910b;
+    public float f34911c;
     public mt0 d;
-    public PointF f34951e;
-    public float f34952f;
+    public PointF f34912e;
+    public float f34913f;
     public float h;
-    public float f34953n;
-    public RectF f34954r;
-    public float f34955s;
-    public float f34956w;
-    public float f34957x;
-    public float f34958y;
+    public float f34914n;
+    public RectF f34915r;
+    public float f34916s;
+    public float f34917w;
+    public float f34918x;
+    public float f34919y;
 
     public static float a(float f10) {
         return (f10 * 3.1415927f) / 180.0f;
@@ -52,28 +52,28 @@ public final class jd0 extends FrameLayout {
     private PointF getActualCenterPoint() {
         int i7;
         mt0 mt0Var = this.d;
-        float f10 = mt0Var.f36132a;
-        float width = (this.f34951e.x * f10) + ((getWidth() - f10) / 2.0f);
+        float f10 = mt0Var.f36070a;
+        float width = (this.f34912e.x * f10) + ((getWidth() - f10) / 2.0f);
         if (!this.K) {
             i7 = org.telegram.messenger.g0.f22531m;
         } else {
             i7 = 0;
         }
         float height = getHeight();
-        float f11 = mt0Var.f36133b;
+        float f11 = mt0Var.f36071b;
         float A = com.google.android.recaptcha.internal.a.A(height, f11, 2.0f, i7);
-        float f12 = mt0Var.f36132a;
-        return new PointF(width, (this.f34951e.y * f12) + org.telegram.messenger.k5.y(f12, f11, 2.0f, A));
+        float f12 = mt0Var.f36070a;
+        return new PointF(width, (this.f34912e.y * f12) + org.telegram.messenger.k5.y(f12, f11, 2.0f, A));
     }
 
     private float getActualInnerRadius() {
         mt0 mt0Var = this.d;
-        return Math.min(mt0Var.f36132a, mt0Var.f36133b) * this.f34952f;
+        return Math.min(mt0Var.f36070a, mt0Var.f36071b) * this.f34913f;
     }
 
     private float getActualOuterRadius() {
         mt0 mt0Var = this.d;
-        return Math.min(mt0Var.f36132a, mt0Var.f36133b) * this.h;
+        return Math.min(mt0Var.f36070a, mt0Var.f36071b) * this.h;
     }
 
     public final void c(int i7, MotionEvent motionEvent) {
@@ -92,10 +92,10 @@ public final class jd0 extends FrameLayout {
         float f12 = y10 - actualCenterPoint.y;
         float sqrt = (float) Math.sqrt((f12 * f12) + (f11 * f11));
         mt0 mt0Var = this.d;
-        float min = Math.min(mt0Var.f36132a, mt0Var.f36133b);
-        float f13 = this.f34952f * min;
+        float min = Math.min(mt0Var.f36070a, mt0Var.f36071b);
+        float f13 = this.f34913f * min;
         float f14 = this.h * min;
-        float abs = (float) Math.abs((Math.sin(a(this.f34953n) + 1.5707963267948966d) * f12) + (Math.cos(a(this.f34953n) + 1.5707963267948966d) * f11));
+        float abs = (float) Math.abs((Math.sin(a(this.f34914n) + 1.5707963267948966d) * f12) + (Math.cos(a(this.f34914n) + 1.5707963267948966d) * f11));
         float f15 = 0.0f;
         if (i7 != 1) {
             if (i7 != 2) {
@@ -112,8 +112,8 @@ public final class jd0 extends FrameLayout {
                     if (c10 != 2) {
                         if (c10 != 3) {
                             if (c10 == 5) {
-                                float f16 = x10 - this.f34955s;
-                                float f17 = y10 - this.f34956w;
+                                float f16 = x10 - this.f34916s;
+                                float f17 = y10 - this.f34917w;
                                 if (x10 > actualCenterPoint.x) {
                                     z9 = true;
                                 } else {
@@ -134,73 +134,73 @@ public final class jd0 extends FrameLayout {
                                 } else {
                                     i12 = 0;
                                 }
-                                this.f34953n = (((((float) Math.sqrt((f17 * f17) + (f16 * f16))) * ((i12 * 2) - 1)) / 3.1415927f) / 1.15f) + this.f34953n;
-                                this.f34955s = x10;
-                                this.f34956w = y10;
+                                this.f34914n = (((((float) Math.sqrt((f17 * f17) + (f16 * f16))) * ((i12 * 2) - 1)) / 3.1415927f) / 1.15f) + this.f34914n;
+                                this.f34916s = x10;
+                                this.f34917w = y10;
                             }
                         } else {
-                            this.h = Math.max(this.f34952f + 0.02f, (this.f34950c + (abs - this.f34949b)) / min);
+                            this.h = Math.max(this.f34913f + 0.02f, (this.f34911c + (abs - this.f34910b)) / min);
                         }
                     } else {
-                        this.f34952f = Math.min(Math.max(0.1f, (this.f34950c + (abs - this.f34949b)) / min), this.h - 0.02f);
+                        this.f34913f = Math.min(Math.max(0.1f, (this.f34911c + (abs - this.f34910b)) / min), this.h - 0.02f);
                     }
                 } else {
-                    float f18 = x10 - this.f34955s;
-                    float f19 = y10 - this.f34956w;
-                    float width = (getWidth() - mt0Var.f36132a) / 2.0f;
+                    float f18 = x10 - this.f34916s;
+                    float f19 = y10 - this.f34917w;
+                    float width = (getWidth() - mt0Var.f36070a) / 2.0f;
                     if (!z12) {
                         i11 = org.telegram.messenger.g0.f22531m;
                     } else {
                         i11 = 0;
                     }
                     float height = getHeight();
-                    float f20 = mt0Var.f36133b;
+                    float f20 = mt0Var.f36071b;
                     float A = com.google.android.recaptcha.internal.a.A(height, f20, 2.0f, i11);
-                    PointF pointF = new PointF(org.telegram.messenger.camera.q.z(this.f34948a.x, f18, mt0Var.f36132a + width, width), org.telegram.messenger.camera.q.z(this.f34948a.y, f19, f20 + A, A));
+                    PointF pointF = new PointF(org.telegram.messenger.camera.q.z(this.f34909a.x, f18, mt0Var.f36070a + width, width), org.telegram.messenger.camera.q.z(this.f34909a.y, f19, f20 + A, A));
                     float f21 = pointF.x - width;
-                    float f22 = mt0Var.f36132a;
-                    this.f34951e = new PointF(f21 / f22, (((f22 - mt0Var.f36133b) / 2.0f) + (pointF.y - A)) / f22);
+                    float f22 = mt0Var.f36070a;
+                    this.f34912e = new PointF(f21 / f22, (((f22 - mt0Var.f36071b) / 2.0f) + (pointF.y - A)) / f22);
                 }
             } else if (i13 == 1) {
                 int c11 = p1.g.c(this.M);
                 if (c11 != 1) {
                     if (c11 != 2) {
                         if (c11 == 3) {
-                            this.h = Math.max(this.f34952f + 0.02f, (this.f34950c + (sqrt - this.f34949b)) / min);
+                            this.h = Math.max(this.f34913f + 0.02f, (this.f34911c + (sqrt - this.f34910b)) / min);
                         }
                     } else {
-                        this.f34952f = Math.min(Math.max(0.1f, (this.f34950c + (sqrt - this.f34949b)) / min), this.h - 0.02f);
+                        this.f34913f = Math.min(Math.max(0.1f, (this.f34911c + (sqrt - this.f34910b)) / min), this.h - 0.02f);
                     }
                 } else {
-                    float f23 = x10 - this.f34955s;
-                    float f24 = y10 - this.f34956w;
-                    float width2 = (getWidth() - mt0Var.f36132a) / 2.0f;
+                    float f23 = x10 - this.f34916s;
+                    float f24 = y10 - this.f34917w;
+                    float width2 = (getWidth() - mt0Var.f36070a) / 2.0f;
                     if (!z12) {
                         i10 = org.telegram.messenger.g0.f22531m;
                     } else {
                         i10 = 0;
                     }
                     float height2 = getHeight();
-                    float f25 = mt0Var.f36133b;
+                    float f25 = mt0Var.f36071b;
                     float A2 = com.google.android.recaptcha.internal.a.A(height2, f25, 2.0f, i10);
-                    PointF pointF2 = new PointF(org.telegram.messenger.camera.q.z(this.f34948a.x, f23, mt0Var.f36132a + width2, width2), org.telegram.messenger.camera.q.z(this.f34948a.y, f24, f25 + A2, A2));
+                    PointF pointF2 = new PointF(org.telegram.messenger.camera.q.z(this.f34909a.x, f23, mt0Var.f36070a + width2, width2), org.telegram.messenger.camera.q.z(this.f34909a.y, f24, f25 + A2, A2));
                     float f26 = pointF2.x - width2;
-                    float f27 = mt0Var.f36132a;
-                    this.f34951e = new PointF(f26 / f27, (((f27 - mt0Var.f36133b) / 2.0f) + (pointF2.y - A2)) / f27);
+                    float f27 = mt0Var.f36070a;
+                    this.f34912e = new PointF(f26 / f27, (((f27 - mt0Var.f36071b) / 2.0f) + (pointF2.y - A2)) / f27);
                 }
             }
             invalidate();
             id0 id0Var = this.L;
             if (id0Var != null) {
-                PointF pointF3 = this.f34951e;
-                float f28 = this.f34952f;
+                PointF pointF3 = this.f34912e;
+                float f28 = this.f34913f;
                 float f29 = this.h;
-                sd0 sd0Var = ((md0) id0Var).f35992a;
-                sd0Var.f38026a0 = f29;
-                sd0Var.f38028b0 = pointF3;
-                sd0Var.f38030c0 = f28;
-                sd0Var.f38031d0 = a(this.f34953n) + 1.5707964f;
-                ry ryVar = sd0Var.f38041l0;
+                sd0 sd0Var = ((md0) id0Var).f35930a;
+                sd0Var.f37986a0 = f29;
+                sd0Var.f37988b0 = pointF3;
+                sd0Var.f37990c0 = f28;
+                sd0Var.f37991d0 = a(this.f34914n) + 1.5707964f;
+                ry ryVar = sd0Var.f38001l0;
                 if (ryVar != null) {
                     ryVar.c(false, false, false);
                     return;
@@ -210,8 +210,8 @@ public final class jd0 extends FrameLayout {
             return;
         }
         boolean z13 = false;
-        this.f34955s = motionEvent.getX();
-        this.f34956w = motionEvent.getY();
+        this.f34916s = motionEvent.getX();
+        this.f34917w = motionEvent.getY();
         if (Math.abs(f14 - f13) < N) {
             z13 = true;
         }
@@ -229,33 +229,33 @@ public final class jd0 extends FrameLayout {
         if (i14 == 0) {
             if (sqrt < f31) {
                 this.M = 2;
-                this.f34948a = actualCenterPoint;
+                this.f34909a = actualCenterPoint;
                 return;
             }
             float f32 = f13 - f30;
             if (abs > f32 && abs < f10 + f13) {
                 this.M = 3;
-                this.f34949b = abs;
-                this.f34950c = f13;
+                this.f34910b = abs;
+                this.f34911c = f13;
             } else if (abs > f14 - f15 && abs < f14 + f30) {
                 this.M = 4;
-                this.f34949b = abs;
-                this.f34950c = f14;
+                this.f34910b = abs;
+                this.f34911c = f14;
             } else if (abs <= f32 || abs >= f14 + f30) {
                 this.M = 6;
             }
         } else if (i14 == 1) {
             if (sqrt < f31) {
                 this.M = 2;
-                this.f34948a = actualCenterPoint;
+                this.f34909a = actualCenterPoint;
             } else if (sqrt > f13 - f30 && sqrt < f10 + f13) {
                 this.M = 3;
-                this.f34949b = sqrt;
-                this.f34950c = f13;
+                this.f34910b = sqrt;
+                this.f34911c = f13;
             } else if (sqrt > f14 - f15 && sqrt < f30 + f14) {
                 this.M = 4;
-                this.f34949b = sqrt;
-                this.f34950c = f14;
+                this.f34910b = sqrt;
+                this.f34911c = f14;
             }
         }
     }
@@ -270,30 +270,30 @@ public final class jd0 extends FrameLayout {
                 return;
             }
         } else {
-            this.f34957x = b(motionEvent);
-            this.f34958y = 1.0f;
+            this.f34918x = b(motionEvent);
+            this.f34919y = 1.0f;
             this.M = 5;
         }
         float b10 = b(motionEvent);
-        float c10 = com.google.android.recaptcha.internal.a.c(b10 - this.f34957x, org.telegram.messenger.g0.f22536p, 0.01f, this.f34958y);
-        this.f34958y = c10;
-        float max = Math.max(0.1f, this.f34952f * c10);
-        this.f34952f = max;
-        this.h = Math.max(max + 0.02f, this.h * this.f34958y);
-        this.f34958y = 1.0f;
-        this.f34957x = b10;
+        float c10 = com.google.android.recaptcha.internal.a.c(b10 - this.f34918x, org.telegram.messenger.g0.f22536p, 0.01f, this.f34919y);
+        this.f34919y = c10;
+        float max = Math.max(0.1f, this.f34913f * c10);
+        this.f34913f = max;
+        this.h = Math.max(max + 0.02f, this.h * this.f34919y);
+        this.f34919y = 1.0f;
+        this.f34918x = b10;
         invalidate();
         id0 id0Var = this.L;
         if (id0Var != null) {
-            PointF pointF = this.f34951e;
-            float f10 = this.f34952f;
+            PointF pointF = this.f34912e;
+            float f10 = this.f34913f;
             float f11 = this.h;
-            sd0 sd0Var = ((md0) id0Var).f35992a;
-            sd0Var.f38026a0 = f11;
-            sd0Var.f38028b0 = pointF;
-            sd0Var.f38030c0 = f10;
-            sd0Var.f38031d0 = a(this.f34953n) + 1.5707964f;
-            ry ryVar = sd0Var.f38041l0;
+            sd0 sd0Var = ((md0) id0Var).f35930a;
+            sd0Var.f37986a0 = f11;
+            sd0Var.f37988b0 = pointF;
+            sd0Var.f37990c0 = f10;
+            sd0Var.f37991d0 = a(this.f34914n) + 1.5707964f;
+            ry ryVar = sd0Var.f38001l0;
             if (ryVar != null) {
                 ryVar.c(false, false, false);
             }
@@ -305,7 +305,7 @@ public final class jd0 extends FrameLayout {
         Paint paint;
         Canvas canvas2 = canvas;
         Paint paint2 = this.J;
-        RectF rectF = this.f34954r;
+        RectF rectF = this.f34915r;
         Paint paint3 = paint2;
         Paint paint4 = this.I;
         super.onDraw(canvas);
@@ -316,7 +316,7 @@ public final class jd0 extends FrameLayout {
         int i7 = this.H;
         int i10 = 0;
         if (i7 == 0) {
-            canvas2.rotate(this.f34953n);
+            canvas2.rotate(this.f34914n);
             float L = org.telegram.messenger.g0.L(6.0f);
             float L2 = org.telegram.messenger.g0.L(12.0f);
             float L3 = org.telegram.messenger.g0.L(1.5f);

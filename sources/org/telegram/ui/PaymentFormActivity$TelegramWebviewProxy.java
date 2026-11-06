@@ -2,10 +2,10 @@ package org.telegram.ui;
 
 import android.webkit.JavascriptInterface;
 public class PaymentFormActivity$TelegramWebviewProxy {
-    public final hl0 f41310a;
+    public final hl0 f41335a;
 
     public PaymentFormActivity$TelegramWebviewProxy(hl0 hl0Var) {
-        this.f41310a = hl0Var;
+        this.f41335a = hl0Var;
     }
 
     @JavascriptInterface

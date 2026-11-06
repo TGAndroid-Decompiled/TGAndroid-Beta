@@ -121,8 +121,8 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 return;
             case 11:
                 bn bnVar = (bn) this.f40b;
-                bnVar.f32195j0.b((TLRPC.TL_messageMediaPoll) this.f41c, bnVar.O, bnVar.f32200m1, (ArrayList) this.d, z9, i7, ((Long) this.f42e).longValue());
-                bnVar.f38951b.a(true);
+                bnVar.f32189j0.b((TLRPC.TL_messageMediaPoll) this.f41c, bnVar.O, bnVar.f32194m1, (ArrayList) this.d, z9, i7, ((Long) this.f42e).longValue());
+                bnVar.f38948b.a(true);
                 return;
             case 12:
                 is isVar = (is) this.f40b;
@@ -291,13 +291,13 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                     } else {
                         str = null;
                     }
-                    kb0 kb0Var = ah0Var.f43628j1;
+                    kb0 kb0Var = ah0Var.f43653j1;
                     if (kb0Var != null) {
                         kb0Var.getEditText().setText(str4);
                     } else {
                         ah0Var.A1 = str4;
                     }
-                    kb0 kb0Var2 = ah0Var.f43629k1;
+                    kb0 kb0Var2 = ah0Var.f43654k1;
                     if (kb0Var2 != null) {
                         kb0Var2.getEditText().setText(str);
                     } else {
@@ -316,7 +316,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.q0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().b0(notificationsCustomSettingsActivity.f41282s);
+                notificationsCustomSettingsActivity.getNotificationsController().b0(notificationsCustomSettingsActivity.f41307s);
                 return;
             default:
                 v91 v91Var = (v91) obj4;
@@ -449,7 +449,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                     if (xrVar.f26506b != 0) {
                         qg.d.a(anVar, xrVar);
                     }
-                    if (b8Var.f32068w2.u0(anVar, true, false)) {
+                    if (b8Var.f32062w2.u0(anVar, true, false)) {
                         anVar.dc(arrayList2);
                         if (xrVar.f26506b != 0) {
                             wwVar.removeSelfFromStack();
@@ -472,7 +472,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                             tL_document = tL_document2;
                         } else {
                             tL_document = tL_document2;
-                            gz.C(b8Var.f28612a).r0(ez.e(tL_document, null, ijVar.f23237k.attachPath, j3, null, null, null, null, null, z10, i7, 0, 0, b8Var.f32049m2, false));
+                            gz.C(b8Var.f28612a).r0(ez.e(tL_document, null, ijVar.f23237k.attachPath, j3, null, null, null, null, null, z10, i7, 0, 0, b8Var.f32043m2, false));
                         }
                         i12++;
                         tL_document2 = tL_document;
@@ -498,7 +498,7 @@ public final class d implements OnFailureListener, p, q1, qw, r1, t4, fb0, ri, t
                 TLRPC.User user2 = (TLRPC.User) obj3;
                 String str2 = (String) obj2;
                 mb0 mb0Var2 = (mb0) obj;
-                di diVar = ((jh) obj4).f34974e;
+                di diVar = ((jh) obj4).f34935e;
                 long j13 = ((xr) arrayList.get(0)).f26505a;
                 Bundle k12 = p0.k("scrollToTopOnResume", true);
                 if (m5.C(j13)) {

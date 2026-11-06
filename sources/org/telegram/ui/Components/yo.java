@@ -5,21 +5,21 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.text.style.ReplacementSpan;
 public final class yo extends ReplacementSpan {
-    public final int f40668a;
-    public final Object f40669b;
+    public final int f40687a;
+    public final Object f40688b;
 
     public yo(Object obj, int i7) {
-        this.f40668a = i7;
-        this.f40669b = obj;
+        this.f40687a = i7;
+        this.f40688b = obj;
     }
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
-        switch (this.f40668a) {
+        switch (this.f40687a) {
             case 0:
                 Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
                 int i14 = ((fontMetricsInt.ascent + fontMetricsInt.descent) / 2) + i12;
-                Drawable drawable = (Drawable) this.f40669b;
+                Drawable drawable = (Drawable) this.f40688b;
                 int i15 = (int) f10;
                 drawable.setBounds(i15, i14 - org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(24.0f) + i15, org.telegram.messenger.g0.L(12.0f) + i14);
                 drawable.setAlpha(paint.getAlpha());
@@ -35,7 +35,7 @@ public final class yo extends ReplacementSpan {
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        switch (this.f40668a) {
+        switch (this.f40687a) {
             case 0:
                 if (fontMetricsInt != null) {
                     Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
@@ -50,19 +50,19 @@ public final class yo extends ReplacementSpan {
                 }
                 return org.telegram.messenger.g0.L(32.0f);
             case 1:
-                return ((l90) this.f40669b).f35578y;
+                return ((l90) this.f40688b).f35583y;
             case 2:
-                return (int) ((org.telegram.ui.qg0) this.f40669b).f49199f2;
+                return (int) ((org.telegram.ui.qg0) this.f40688b).f49226f2;
             case 3:
-                return (int) ((wg.f1) this.f40669b).f57621l2;
+                return (int) ((wg.f1) this.f40688b).f57646l2;
             default:
-                return ((org.telegram.messenger.f6) this.f40669b).getSize(paint, charSequence, i7, i10, fontMetricsInt);
+                return ((org.telegram.messenger.f6) this.f40688b).getSize(paint, charSequence, i7, i10, fontMetricsInt);
         }
     }
 
     public yo(zg0 zg0Var) {
-        this.f40668a = 0;
-        this.f40669b = zg0Var;
+        this.f40687a = 0;
+        this.f40688b = zg0Var;
     }
 
     private final void a(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {

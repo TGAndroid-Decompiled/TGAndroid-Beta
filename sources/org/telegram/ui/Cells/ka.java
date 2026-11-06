@@ -47,7 +47,7 @@ public final class ka implements View.OnClickListener {
                 SpannableStringBuilder S2 = org.telegram.messenger.g0.S2(M0, i13, 0, new f(wwVar, 11), null);
                 SpannableString spannableString = new SpannableString(">");
                 wp wpVar = new wp(2131230875, 0);
-                wpVar.f40059y = org.telegram.ui.ActionBar.k6.x0(null, i13, false);
+                wpVar.f40066y = org.telegram.ui.ActionBar.k6.x0(null, i13, false);
                 wpVar.H = 0.7f;
                 wpVar.I = 0.7f;
                 wpVar.E = org.telegram.messenger.g0.L(12.0f);
@@ -66,7 +66,7 @@ public final class ka implements View.OnClickListener {
             default:
                 an anVar = (an) f2Var;
                 String str = (String) serializable;
-                Pattern pattern = org.telegram.ui.Components.v4.f38823a;
+                Pattern pattern = org.telegram.ui.Components.v4.f38814a;
                 if (anVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.v2 h = org.telegram.messenger.camera.q.h(anVar.getParentActivity(), false, 1, null);
                     if (z9) {

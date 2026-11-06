@@ -6,33 +6,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class qr implements org.telegram.ui.Components.dj0, r0.m, org.telegram.ui.ActionBar.r1 {
-    public final ContactsActivity f49280a;
+    public final ContactsActivity f49298a;
 
     public qr(ContactsActivity contactsActivity) {
-        this.f49280a = contactsActivity;
+        this.f49298a = contactsActivity;
     }
 
     @Override
     public r0.k1 S0(View view, r0.k1 k1Var) {
         i0.b I0 = org.telegram.messenger.g0.I0(k1Var, false);
         int i7 = I0.d;
-        ContactsActivity contactsActivity = this.f49280a;
-        contactsActivity.f41166k0 = i7;
-        oi.a.e(contactsActivity.d, I0.f15118b, i7, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), contactsActivity.f41163h0);
+        ContactsActivity contactsActivity = this.f49298a;
+        contactsActivity.f41191k0 = i7;
+        oi.a.e(contactsActivity.d, I0.f15118b, i7, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), contactsActivity.f41188h0);
         contactsActivity.j0();
         contactsActivity.i0();
-        return r0.k1.f54083b;
+        return r0.k1.f54108b;
     }
 
     @Override
     public boolean c(int i7, View view) {
-        ContactsActivity contactsActivity = this.f49280a;
+        ContactsActivity contactsActivity = this.f49298a;
         v4.g0 adapter = contactsActivity.d.getAdapter();
-        sr srVar = contactsActivity.f41153b;
+        sr srVar = contactsActivity.f41178b;
         if (adapter == srVar) {
             int S = srVar.S(i7);
-            int Q = contactsActivity.f41153b.Q(i7);
-            org.telegram.ui.Components.cc ccVar = org.telegram.ui.Components.cc.f32515w;
+            int Q = contactsActivity.f41178b.Q(i7);
+            org.telegram.ui.Components.cc ccVar = org.telegram.ui.Components.cc.f32519w;
             if (ccVar != null) {
                 ccVar.b();
             }
@@ -57,7 +57,7 @@ public final class qr implements org.telegram.ui.Components.dj0, r0.m, org.teleg
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        ContactsActivity contactsActivity = this.f49280a;
+        ContactsActivity contactsActivity = this.f49298a;
         a0.h hVar = contactsActivity.Z;
         ArrayList arrayList = new ArrayList(hVar.m());
         for (int i10 = 0; i10 < hVar.m(); i10++) {
@@ -84,10 +84,10 @@ public final class qr implements org.telegram.ui.Components.dj0, r0.m, org.teleg
             contactsController.getNotificationCenter().k(org.telegram.messenger.qs.O, new Object[0]);
             org.telegram.ui.Components.ub ubVar = new org.telegram.ui.Components.ub(parentActivity, contactsActivity.getResourceProvider());
             ubVar.setTimer();
-            ubVar.f38590b.setText(org.telegram.messenger.hd.G(hashMap.size(), "ContactsDeletedUndo", new Object[0]));
+            ubVar.f38581b.setText(org.telegram.messenger.hd.G(hashMap.size(), "ContactsDeletedUndo", new Object[0]));
             org.telegram.ui.Components.ac acVar = new org.telegram.ui.Components.ac(parentActivity, contactsActivity.getResourceProvider(), true, true);
-            acVar.f31748b = new org.telegram.messenger.b4(27, contactsController, hashMap);
-            acVar.f31749c = new org.telegram.messenger.w4(contactsController, arrayList, 1);
+            acVar.f31760b = new org.telegram.messenger.b4(27, contactsController, hashMap);
+            acVar.f31761c = new org.telegram.messenger.w4(contactsController, arrayList, 1);
             ubVar.setButton(acVar);
             org.telegram.ui.Components.cc.g(contactsActivity, ubVar, 5000).j();
         }

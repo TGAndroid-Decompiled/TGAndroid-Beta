@@ -94,8 +94,8 @@ public final class c implements v10 {
                 org.telegram.ui.Wallet.z2 z2Var = (org.telegram.ui.Wallet.z2) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
-                if (!zArr[0] && !b2Var.f42107m && !b2Var.f42108n) {
-                    boolean z10 = b2Var.f42110p;
+                if (!zArr[0] && !b2Var.f42132m && !b2Var.f42133n) {
+                    boolean z10 = b2Var.f42135p;
                     zArr2[0] = z10;
                     dVar.setEnabled(z10);
                     boolean z11 = zArr2[0];

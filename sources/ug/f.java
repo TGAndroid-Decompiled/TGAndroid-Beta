@@ -20,22 +20,22 @@ import org.telegram.ui.Components.e10;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.w8;
 public final class f extends FrameLayout {
-    public final l9 f56441a;
-    public final e10 f56442b;
-    public final int f56443c;
+    public final l9 f56466a;
+    public final e10 f56467b;
+    public final int f56468c;
     public final i d;
 
     public f(i iVar, Context context) {
         super(context);
         this.d = iVar;
         e10 e10Var = new e10();
-        this.f56442b = e10Var;
-        int i7 = iVar.f56486f;
-        f6 f6Var = iVar.f56405a;
+        this.f56467b = e10Var;
+        int i7 = iVar.f56511f;
+        f6 f6Var = iVar.f56430a;
         if (i7 == 0) {
-            this.f56443c = org.telegram.messenger.g0.L(150.0f);
+            this.f56468c = org.telegram.messenger.g0.L(150.0f);
             l9 l9Var = new l9(context);
-            this.f56441a = l9Var;
+            this.f56466a = l9Var;
             l9Var.setRoundRadius((int) (org.telegram.messenger.g0.L(65.0f) / 2.0f));
             addView(l9Var, ha.d(65, 65.0f, 1, 0.0f, 32.0f, 0.0f, 0.0f));
             TLRPC.User f10 = p10.i(p10.f24459s0).f();
@@ -46,11 +46,11 @@ public final class f extends FrameLayout {
             com.google.android.recaptcha.internal.a.q(textView, 1, 20.0f);
             org.telegram.messenger.camera.q.o(textView, k6.G6, f6Var, null, 2131743806);
             addView(textView, ha.d(-2, -2.0f, 1, 0.0f, 111.0f, 0.0f, 0.0f));
-            e10Var.f33094m = true;
-            e10Var.f33084a = true;
+            e10Var.f33107m = true;
+            e10Var.f33097a = true;
             e10Var.d(k6.x0(null, k6.Ak, false), k6.x0(null, k6.zk, false), 0, 0);
             Paint.Style style = Paint.Style.STROKE;
-            Paint paint = e10Var.f33086c;
+            Paint paint = e10Var.f33099c;
             paint.setStyle(style);
             paint.setStrokeCap(Paint.Cap.ROUND);
             paint.setStrokeWidth(org.telegram.messenger.g0.N(3.3f));
@@ -64,8 +64,8 @@ public final class f extends FrameLayout {
             int i10 = k6.Ak;
             canvas.drawColor(i0.a.f(0.5f, k6.w0(i10, f6Var), k6.w0(k6.f27921h5, f6Var)));
             qdVar.setBackgroundBitmap(createBitmap);
-            vg.f fVar = qdVar.f57295b;
-            fVar.f57279z = i10;
+            vg.f fVar = qdVar.f57320b;
+            fVar.f57304z = i10;
             fVar.A = k6.zk;
             fVar.b();
             addView(qdVar, ha.e(160, 160, 1));
@@ -85,20 +85,20 @@ public final class f extends FrameLayout {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        if (this.d.f56486f == 0) {
+        if (this.d.f56511f == 0) {
             Rect rect = org.telegram.messenger.g0.Q;
-            this.f56441a.getHitRect(rect);
+            this.f56466a.getHitRect(rect);
             RectF rectF = org.telegram.messenger.g0.P;
             rectF.set(rect);
             rectF.inset(-org.telegram.messenger.g0.L(5.0f), -org.telegram.messenger.g0.L(5.0f));
-            e10 e10Var = this.f56442b;
+            e10 e10Var = this.f56467b;
             e10Var.c(rectF);
             float f10 = 360.0f / 7;
             for (int i7 = 0; i7 < 7; i7++) {
                 float f11 = (i7 * f10) - 90.0f;
                 float f12 = 5;
                 float f13 = f11 + f12;
-                canvas.drawArc(org.telegram.messenger.g0.P, f13, ((f11 + f10) - f12) - f13, false, e10Var.f33086c);
+                canvas.drawArc(org.telegram.messenger.g0.P, f13, ((f11 + f10) - f12) - f13, false, e10Var.f33099c);
             }
         }
         super.dispatchDraw(canvas);
@@ -106,7 +106,7 @@ public final class f extends FrameLayout {
 
     @Override
     public final void onMeasure(int i7, int i10) {
-        int i11 = this.f56443c;
+        int i11 = this.f56468c;
         if (i11 > 0) {
             i10 = View.MeasureSpec.makeMeasureSpec(i11, 1073741824);
         }

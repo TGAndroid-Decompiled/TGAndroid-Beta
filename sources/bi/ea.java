@@ -863,7 +863,7 @@ public final class ea {
             return;
         }
         org.telegram.ui.Components.cc K = org.telegram.ui.Components.hc.a0(T2).K(2131624226, org.telegram.messenger.hd.M0(2131744965, null), org.telegram.messenger.hd.M0(2131744964, null), new ai.m0(4));
-        K.f32523j = 5000;
+        K.f32527j = 5000;
         K.k(true);
     }
 
@@ -1046,9 +1046,9 @@ public final class ea {
                 w8Var.s(chatInvite.color);
                 String str3 = chatInvite.title;
                 w8Var.A = true;
-                w8Var.f39903n = 0;
-                w8Var.f39902m = false;
-                org.telegram.ui.Components.w8.a(str3, null, null, w8Var.f39906q);
+                w8Var.f39910n = 0;
+                w8Var.f39909m = false;
+                org.telegram.ui.Components.w8.a(str3, null, null, w8Var.f39913q);
                 TLRPC.Photo photo = chatInvite.photo;
                 if (photo != null) {
                     l9Var.j(org.telegram.messenger.hc.i(org.telegram.messenger.w7.w(photo.sizes, org.telegram.messenger.g0.L(80.0f), false, null, false), chatInvite.photo), "80_80", w8Var, chatInvite);
@@ -1380,7 +1380,7 @@ public final class ea {
                                             }
                                             qp.s1(eaVar4.f3807a).f24759e7.edit().putBoolean("show_gift_for_" + j16, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j16, true).apply();
                                             LaunchActivity launchActivity = LaunchActivity.G1;
-                                            if (launchActivity != null && (r80Var = launchActivity.f41265v0) != null) {
+                                            if (launchActivity != null && (r80Var = launchActivity.f41290v0) != null) {
                                                 r80Var.c(true);
                                             }
                                         }

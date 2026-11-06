@@ -17,25 +17,25 @@ public final class z3 implements Runnable {
             case 1:
                 zh.i0 i0Var = this.f5147b;
                 rh.h hVar = i0Var.n1;
-                jh.f fVar = i0Var.f60242m1;
+                jh.f fVar = i0Var.f60267m1;
                 if (fVar != null) {
                     fVar.d();
                 }
-                zh.h0 h0Var = i0Var.f60253y1;
+                zh.h0 h0Var = i0Var.f60278y1;
                 if (h0Var != null) {
                     h0Var.setTranslationY(-hVar.d());
                 }
-                org.telegram.ui.Components.j6 j6Var = i0Var.f60247s1;
+                org.telegram.ui.Components.j6 j6Var = i0Var.f60272s1;
                 if (j6Var != null) {
                     j6Var.setTranslationY(-hVar.d());
                 }
                 i0Var.I0();
                 return;
             case 2:
-                this.f5147b.f60253y1.performClick();
+                this.f5147b.f60278y1.performClick();
                 return;
             default:
-                this.f5147b.f60243o1.I0();
+                this.f5147b.f60268o1.I0();
                 return;
         }
     }

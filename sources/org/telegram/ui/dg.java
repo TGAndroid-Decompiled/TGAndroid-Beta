@@ -4,17 +4,17 @@ import android.os.Bundle;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class dg implements nr0, qw {
-    public final boolean f45039a;
-    public final int f45040b;
-    public final Object f45041c;
+public final class dg implements or0, qw {
+    public final boolean f45064a;
+    public final int f45065b;
+    public final Object f45066c;
     public final Object d;
 
     public dg(an anVar, boolean z9, org.telegram.messenger.ij ijVar, int i7) {
-        this.f45041c = anVar;
-        this.f45039a = z9;
+        this.f45066c = anVar;
+        this.f45064a = z9;
         this.d = ijVar;
-        this.f45040b = i7;
+        this.f45065b = i7;
     }
 
     @Override
@@ -30,9 +30,9 @@ public final class dg implements nr0, qw {
     @Override
     public void a(TLRPC.MessageMedia messageMedia) {
         int i7;
-        an anVar = (an) this.f45041c;
+        an anVar = (an) this.f45066c;
         org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) this.d;
-        if (this.f45039a) {
+        if (this.f45064a) {
             TLRPC.TL_messages_appendTodoList tL_messages_appendTodoList = new TLRPC.TL_messages_appendTodoList();
             tL_messages_appendTodoList.peer = anVar.getMessagesController().j1(org.telegram.messenger.ij.B0(ijVar.f23237k));
             tL_messages_appendTodoList.msg_id = ijVar.f1();
@@ -41,7 +41,7 @@ public final class dg implements nr0, qw {
                 int i10 = 0;
                 int i11 = 0;
                 while (true) {
-                    i7 = this.f45040b;
+                    i7 = this.f45065b;
                     if (i10 >= i7) {
                         break;
                     }
@@ -78,13 +78,13 @@ public final class dg implements nr0, qw {
 
     @Override
     public boolean y(ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, v91 v91Var) {
-        LaunchActivity launchActivity = (LaunchActivity) this.f45041c;
+        LaunchActivity launchActivity = (LaunchActivity) this.f45066c;
         String str = (String) this.d;
         String str2 = LaunchActivity.B1;
         long j3 = ((org.telegram.messenger.xr) arrayList.get(0)).f26505a;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
-        bundle.putBoolean("hasUrl", this.f45039a);
+        bundle.putBoolean("hasUrl", this.f45064a);
         if (org.telegram.messenger.m5.C(j3)) {
             bundle.putInt("enc_id", (int) (4294967295L & j3));
         } else if (org.telegram.messenger.m5.E(j3)) {
@@ -92,7 +92,7 @@ public final class dg implements nr0, qw {
         } else {
             bundle.putLong("chat_id", -j3);
         }
-        int i11 = this.f45040b;
+        int i11 = this.f45065b;
         if (!org.telegram.messenger.qp.s1(i11).E(bundle, wwVar, null, null)) {
             return true;
         }
@@ -103,9 +103,9 @@ public final class dg implements nr0, qw {
     }
 
     public dg(LaunchActivity launchActivity, boolean z9, int i7, String str) {
-        this.f45041c = launchActivity;
-        this.f45039a = z9;
-        this.f45040b = i7;
+        this.f45066c = launchActivity;
+        this.f45064a = z9;
+        this.f45065b = i7;
         this.d = str;
     }
 }

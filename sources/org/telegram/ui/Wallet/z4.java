@@ -9,38 +9,38 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.h61;
-public final class z4 extends h61 {
-    public final ArrayList f43395a;
-    public final Context f43396b;
-    public final org.telegram.ui.ActionBar.f6 f43397c;
+import org.telegram.ui.Components.l61;
+public final class z4 extends l61 {
+    public final ArrayList f43420a;
+    public final Context f43421b;
+    public final org.telegram.ui.ActionBar.f6 f43422c;
     public final Rect d;
-    public final int f43398e;
-    public final a3[] f43399f;
+    public final int f43423e;
+    public final a3[] f43424f;
 
     public z4(ArrayList arrayList, Context context, org.telegram.ui.ActionBar.f6 f6Var, Rect rect, int i7, a3[] a3VarArr) {
-        this.f43395a = arrayList;
-        this.f43396b = context;
-        this.f43397c = f6Var;
+        this.f43420a = arrayList;
+        this.f43421b = context;
+        this.f43422c = f6Var;
         this.d = rect;
-        this.f43398e = i7;
-        this.f43399f = a3VarArr;
+        this.f43423e = i7;
+        this.f43424f = a3VarArr;
     }
 
     @Override
     public final void b(View view, int i7, int i10) {
         FrameLayout frameLayout = (FrameLayout) view;
         frameLayout.removeAllViews();
-        a3[] a3VarArr = this.f43399f;
-        frameLayout.addView(y5.t0(this.f43396b, this.f43398e, (TL_wallet.walletTransaction) this.f43395a.get(i7), null, null, null, null, this.f43397c, a3VarArr, true), c8.ha.c(-2.0f, -1));
+        a3[] a3VarArr = this.f43424f;
+        frameLayout.addView(y5.t0(this.f43421b, this.f43423e, (TL_wallet.walletTransaction) this.f43420a.get(i7), null, null, null, null, this.f43422c, a3VarArr, true), c8.ha.c(-2.0f, -1));
     }
 
     @Override
     public final View d(int i7) {
-        FrameLayout frameLayout = new FrameLayout(this.f43396b);
+        FrameLayout frameLayout = new FrameLayout(this.f43421b);
         int L = org.telegram.messenger.g0.L(20.0f);
         int i10 = org.telegram.ui.ActionBar.k6.f27848d6;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f43397c;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f43422c;
         ShapeDrawable e02 = org.telegram.ui.ActionBar.k6.e0(L, 0, org.telegram.ui.ActionBar.k6.w0(i10, f6Var));
         Rect rect = this.d;
         InsetDrawable insetDrawable = new InsetDrawable((Drawable) e02, rect.left, 0, rect.right, 0);
@@ -52,6 +52,6 @@ public final class z4 extends h61 {
 
     @Override
     public final int e() {
-        return this.f43395a.size();
+        return this.f43420a.size();
     }
 }

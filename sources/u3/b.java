@@ -6,22 +6,22 @@ import e2.p0;
 import e2.u;
 import java.util.ArrayList;
 public final class b implements p0 {
-    public final ArrayList f56199a;
+    public final ArrayList f56224a;
 
     public b(ArrayList arrayList) {
-        this.f56199a = arrayList;
+        this.f56224a = arrayList;
         boolean z9 = false;
         if (!arrayList.isEmpty()) {
-            long j3 = ((a) arrayList.get(0)).f56197b;
+            long j3 = ((a) arrayList.get(0)).f56222b;
             int i7 = 1;
             while (true) {
                 if (i7 >= arrayList.size()) {
                     break;
-                } else if (((a) arrayList.get(i7)).f56196a < j3) {
+                } else if (((a) arrayList.get(i7)).f56221a < j3) {
                     z9 = true;
                     break;
                 } else {
-                    j3 = ((a) arrayList.get(i7)).f56197b;
+                    j3 = ((a) arrayList.get(i7)).f56222b;
                     i7++;
                 }
             }
@@ -44,17 +44,17 @@ public final class b implements p0 {
             return true;
         }
         if (obj != null && b.class == obj.getClass()) {
-            return this.f56199a.equals(((b) obj).f56199a);
+            return this.f56224a.equals(((b) obj).f56224a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f56199a.hashCode();
+        return this.f56224a.hashCode();
     }
 
     public final String toString() {
-        return "SlowMotion: segments=" + this.f56199a;
+        return "SlowMotion: segments=" + this.f56224a;
     }
 
     @Override

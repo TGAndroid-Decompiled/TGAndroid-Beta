@@ -1,43 +1,52 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class h31 implements wv0 {
-    public final TLRPC.InputStickerSet f34207a;
-    public final n31 f34208b;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class h31 extends pj0 {
+    public final o31 f34158e3;
+    public final s31 f34159f3;
 
-    public h31(n31 n31Var, TLRPC.InputStickerSet inputStickerSet) {
-        this.f34208b = n31Var;
-        this.f34207a = inputStickerSet;
+    public h31(s31 s31Var, Context context, o31 o31Var) {
+        super(context, null);
+        this.f34159f3 = s31Var;
+        this.f34158e3 = o31Var;
     }
 
     @Override
-    public final void a() {
-        n31 n31Var = this.f34208b;
-        v4.g0 adapter = n31Var.f36236n.getAdapter();
-        m31 m31Var = n31Var.f36238s;
-        TLRPC.InputStickerSet inputStickerSet = this.f34207a;
-        int i7 = 0;
-        if (adapter == m31Var) {
-            while (i7 < m31Var.f35860e.size()) {
-                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) m31Var.f35860e.get(i7);
-                if (stickerSetCovered.set.f26979id == inputStickerSet.f26972id) {
-                    m31Var.F(stickerSetCovered, null);
-                    return;
-                }
-                i7++;
-            }
-            return;
+    public final boolean E0(float f10) {
+        if (f10 >= org.telegram.messenger.g0.L(58.0f) + this.f34159f3.E) {
+            return true;
         }
-        jg.d2 d2Var = n31Var.f36239w;
-        ArrayList arrayList = d2Var.E;
-        while (i7 < arrayList.size()) {
-            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i7);
-            if (stickerSetCovered2.set.f26979id == inputStickerSet.f26972id) {
-                d2Var.F(stickerSetCovered2, null);
-                return;
-            }
-            i7++;
+        return false;
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        this.f34159f3.F = true;
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        boolean d = this.f34158e3.d(this, motionEvent);
+        if (!super.onInterceptTouchEvent(motionEvent) && !d) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.f34159f3.L != null) {
+            return false;
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (!this.f34159f3.H) {
+            super.requestLayout();
         }
     }
 }

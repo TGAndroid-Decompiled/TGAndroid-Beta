@@ -22,10 +22,10 @@ import org.telegram.ui.Components.w8;
 import wg.z0;
 public final class g extends c implements a6 {
     public int D;
-    public final ImageView f59331s;
-    public f f59332w;
-    public TLRPC.Chat f59333x;
-    public boolean f59334y;
+    public final ImageView f59356s;
+    public f f59357w;
+    public TLRPC.Chat f59358x;
+    public boolean f59359y;
 
     public g(Context context, f6 f6Var) {
         super(context, f6Var);
@@ -35,7 +35,7 @@ public final class g extends c implements a6 {
         float f12;
         this.d.setTypeface(g0.o());
         ImageView imageView = new ImageView(context);
-        this.f59331s = imageView;
+        this.f59356s = imageView;
         imageView.setFocusable(false);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         int x02 = k6.x0(null, k6.Ji, false);
@@ -81,12 +81,12 @@ public final class g extends c implements a6 {
         int i11;
         String M0;
         String str2;
-        this.f59334y = z9;
-        this.f59333x = chat;
-        w8 w8Var = this.f59310b;
+        this.f59359y = z9;
+        this.f59358x = chat;
+        w8 w8Var = this.f59335b;
         w8Var.q(chat);
         int L = g0.L(20.0f);
-        l9 l9Var = this.f59311c;
+        l9 l9Var = this.f59336c;
         l9Var.setRoundRadius(L);
         l9Var.e(chat, w8Var);
         String str3 = chat.title;
@@ -118,9 +118,9 @@ public final class g extends c implements a6 {
             }
             setSubtitle(hd.G(i7, str, new Object[0]));
         }
-        r6.Y(this.f59312e, k6.f28106r5, this.f59309a);
+        r6.Y(this.f59337e, k6.f28106r5, this.f59334a);
         setDivider(true);
-        ImageView imageView = this.f59331s;
+        ImageView imageView = this.f59356s;
         if (z9) {
             imageView.setVisibility(0);
         } else {
@@ -130,24 +130,24 @@ public final class g extends c implements a6 {
     }
 
     public TLRPC.Chat getChat() {
-        return this.f59333x;
+        return this.f59358x;
     }
 
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        this.f59331s.measure(View.MeasureSpec.makeMeasureSpec(g0.L(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(g0.L(48.0f), 1073741824));
+        this.f59356s.measure(View.MeasureSpec.makeMeasureSpec(g0.L(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(g0.L(48.0f), 1073741824));
     }
 
     public void setChatDeleteListener(f fVar) {
-        this.f59332w = fVar;
+        this.f59357w = fVar;
     }
 
     @Override
     public final void updateColors() {
         try {
             int x02 = k6.x0(null, k6.Ji, false);
-            ImageView imageView = this.f59331s;
+            ImageView imageView = this.f59356s;
             if (imageView != null && x02 != this.D) {
                 this.D = x02;
                 k6.H1(imageView.getBackground(), x02, true);

@@ -5,8 +5,8 @@ import android.widget.TextView;
 import org.telegram.messenger.ls;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.jz;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.pj0;
 import org.telegram.ui.LaunchActivity;
@@ -20,7 +20,7 @@ public final class tc extends org.telegram.ui.Components.na implements ls {
     public Runnable T1;
     public final TLRPC.InputPeer U1;
     public final boolean V1;
-    public f41 W1;
+    public k41 W1;
     public boolean X1;
 
     public tc(android.content.Context r17, org.telegram.ui.ActionBar.f6 r18, long r19, int r21, java.lang.String r22, java.lang.Runnable r23, long r24) {
@@ -36,9 +36,9 @@ public final class tc extends org.telegram.ui.Components.na implements ls {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(this.f36328k1, getContext(), this.f28612a, 0, true, new ai.e(this, 10), this.I0);
-        this.W1 = f41Var;
-        return f41Var;
+        k41 k41Var = new k41(this.f36222k1, getContext(), this.f28612a, 0, true, new ai.e(this, 10), this.I0);
+        this.W1 = k41Var;
+        return k41Var;
     }
 
     @Override
@@ -54,9 +54,9 @@ public final class tc extends org.telegram.ui.Components.na implements ls {
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         Runnable runnable;
         if (i7 == qs.f25076v3 || i7 == qs.f25097y3) {
-            f41 f41Var = this.W1;
-            if (f41Var != null) {
-                f41Var.O(true);
+            k41 k41Var = this.W1;
+            if (k41Var != null) {
+                k41Var.O(true);
             }
             long j3 = ea.y(this.f28612a, false).p().amount;
             long j10 = this.P1;

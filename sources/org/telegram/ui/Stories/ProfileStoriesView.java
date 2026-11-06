@@ -35,10 +35,10 @@ import org.telegram.ui.Components.dh0;
 import org.telegram.ui.Components.i6;
 import org.telegram.ui.Components.w5;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.bv0;
+import org.telegram.ui.cv0;
 import org.telegram.ui.wv0;
 public class ProfileStoriesView extends View implements ls {
-    public static final int f41951s0 = 0;
+    public static final int f41976s0 = 0;
     public dh0 D;
     public boolean E;
     public boolean F;
@@ -59,49 +59,49 @@ public class ProfileStoriesView extends View implements ls {
     public final w5 U;
     public final w5 V;
     public float W;
-    public final Paint f41952a;
-    public ValueAnimator f41953a0;
-    public final Paint f41954b;
-    public final Path f41955b0;
-    public final int f41956c;
-    public final Matrix f41957c0;
+    public final Paint f41977a;
+    public ValueAnimator f41978a0;
+    public final Paint f41979b;
+    public final Path f41980b0;
+    public final int f41981c;
+    public final Matrix f41982c0;
     public final long d;
-    public final PathMeasure f41958d0;
-    public final boolean f41959e;
-    public final Path f41960e0;
-    public final View f41961f;
-    public float f41962f0;
-    public float f41963g0;
+    public final PathMeasure f41983d0;
+    public final boolean f41984e;
+    public final Path f41985e0;
+    public final View f41986f;
+    public float f41987f0;
+    public float f41988g0;
     public final wv0 h;
-    public float f41964h0;
-    public float f41965i0;
-    public float f41966j0;
-    public boolean f41967k0;
-    public final w5 f41968l0;
+    public float f41989h0;
+    public float f41990i0;
+    public float f41991j0;
+    public boolean f41992k0;
+    public final w5 f41993l0;
     public final w5 m0;
-    public final i6 f41969n;
-    public final n f41970n0;
-    public final j4 f41971o0;
-    public long f41972p0;
-    public float f41973q0;
-    public int f41974r;
-    public float f41975r0;
-    public int f41976s;
-    public k4 f41977w;
-    public final ArrayList f41978x;
-    public boolean f41979y;
+    public final i6 f41994n;
+    public final n f41995n0;
+    public final j4 f41996o0;
+    public long f41997p0;
+    public float f41998q0;
+    public int f41999r;
+    public float f42000r0;
+    public int f42001s;
+    public k4 f42002w;
+    public final ArrayList f42003x;
+    public boolean f42004y;
 
     public ProfileStoriesView(Context context, int i7, long j3, boolean z9, View view, wv0 wv0Var, f6 f6Var) {
         super(context);
         Paint paint = new Paint(1);
-        this.f41952a = paint;
+        this.f41977a = paint;
         Paint paint2 = new Paint(1);
-        this.f41954b = paint2;
+        this.f41979b = paint2;
         Paint paint3 = new Paint(1);
         i6 i6Var = new i6(false, true, true);
-        this.f41969n = i6Var;
+        this.f41994n = i6Var;
         Paint paint4 = new Paint(1);
-        this.f41978x = new ArrayList();
+        this.f42003x = new ArrayList();
         Paint paint5 = new Paint(1);
         this.G = 1.0f;
         this.H = 1.0f;
@@ -113,23 +113,23 @@ public class ProfileStoriesView extends View implements ls {
         xq xqVar = xq.h;
         this.T = new w5(this, 0L, 480L, xqVar);
         this.U = new w5(this, 0L, 240L, xqVar);
-        this.V = new w5(this, 0L, 150L, xq.f40310f);
+        this.V = new w5(this, 0L, 150L, xq.f40329f);
         this.W = 1.0f;
-        this.f41955b0 = new Path();
-        this.f41957c0 = new Matrix();
-        this.f41958d0 = new PathMeasure();
-        this.f41960e0 = new Path();
-        this.f41968l0 = new w5(this, 0L, 350L, xqVar);
+        this.f41980b0 = new Path();
+        this.f41982c0 = new Matrix();
+        this.f41983d0 = new PathMeasure();
+        this.f41985e0 = new Path();
+        this.f41993l0 = new w5(this, 0L, 350L, xqVar);
         this.m0 = new w5(this, 0L, 350L, xqVar);
-        bv0 bv0Var = (bv0) this;
-        this.f41970n0 = new n(bv0Var, 14);
-        this.f41971o0 = new j4(bv0Var, 0);
-        this.f41956c = i7;
+        cv0 cv0Var = (cv0) this;
+        this.f41995n0 = new n(cv0Var, 14);
+        this.f41996o0 = new j4(cv0Var, 0);
+        this.f41981c = i7;
         this.d = j3;
-        this.f41959e = z9;
-        this.f41961f = view;
+        this.f41984e = z9;
+        this.f41986f = view;
         this.h = wv0Var;
-        wv0Var.getImageReceiver().E1 = new j4(bv0Var, 1);
+        wv0Var.getImageReceiver().E1 = new j4(cv0Var, 1);
         this.M = qp.s1(i7).P1();
         paint.setColor(1526726655);
         paint.getAlpha();
@@ -180,7 +180,7 @@ public class ProfileStoriesView extends View implements ls {
     }
 
     private float getExpandRight() {
-        return this.f41965i0 - (this.f41968l0.d(this.f41967k0) * g0.L(71.0f));
+        return this.f41990i0 - (this.f41993l0.d(this.f41992k0) * g0.L(71.0f));
     }
 
     public final void a(Canvas canvas, k4 k4Var, k4 k4Var2) {
@@ -224,17 +224,17 @@ public class ProfileStoriesView extends View implements ls {
             float f12 = f10 + f11;
             float f13 = (((int) f12) / 90) * 90;
             float f14 = (-199.0f) + f13;
-            Path path = this.f41955b0;
+            Path path = this.f41980b0;
             path.rewind();
             path.addRoundRect(rectF, height, height, Path.Direction.CW);
-            Matrix matrix = this.f41957c0;
+            Matrix matrix = this.f41982c0;
             matrix.reset();
             matrix.postRotate(f13, rectF.centerX(), rectF.centerY());
             path.transform(matrix);
-            PathMeasure pathMeasure = this.f41958d0;
+            PathMeasure pathMeasure = this.f41983d0;
             pathMeasure.setPath(path, false);
             float length = pathMeasure.getLength();
-            Path path2 = this.f41960e0;
+            Path path2 = this.f41985e0;
             path2.reset();
             pathMeasure.getSegment(((f12 - f14) / 360.0f) * length, length * (((f12 - f11) - f14) / 360.0f), path2, true);
             path2.rLineTo(0.0f, 0.0f);
@@ -348,15 +348,15 @@ public class ProfileStoriesView extends View implements ls {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f41979y = true;
+        this.f42004y = true;
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f41978x;
+            ArrayList arrayList = this.f42003x;
             if (i7 < arrayList.size()) {
                 ((k4) arrayList.get(i7)).f9287b.P();
                 i7++;
             } else {
-                qs.f(this.f41956c).c(this, qs.f25078v5);
+                qs.f(this.f41981c).c(this, qs.f25078v5);
                 return;
             }
         }
@@ -366,14 +366,14 @@ public class ProfileStoriesView extends View implements ls {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         int i7 = 0;
-        this.f41979y = false;
+        this.f42004y = false;
         while (true) {
-            ArrayList arrayList = this.f41978x;
+            ArrayList arrayList = this.f42003x;
             if (i7 < arrayList.size()) {
                 ((k4) arrayList.get(i7)).f9287b.R();
                 i7++;
             } else {
-                qs.f(this.f41956c).n(this, qs.f25078v5);
+                qs.f(this.f41981c).n(this, qs.f25078v5);
                 return;
             }
         }
@@ -384,32 +384,32 @@ public class ProfileStoriesView extends View implements ls {
         boolean z9;
         if (this.N < 0.9f) {
             z9 = this.Q.contains(motionEvent.getX(), motionEvent.getY());
-        } else if (motionEvent.getX() >= this.f41962f0 && motionEvent.getX() <= this.f41963g0 && Math.abs(motionEvent.getY() - this.f41964h0) < g0.L(32.0f)) {
+        } else if (motionEvent.getX() >= this.f41987f0 && motionEvent.getX() <= this.f41988g0 && Math.abs(motionEvent.getY() - this.f41989h0) < g0.L(32.0f)) {
             z9 = true;
         } else {
             z9 = false;
         }
-        j4 j4Var = this.f41971o0;
+        j4 j4Var = this.f41996o0;
         if (z9 && motionEvent.getAction() == 0) {
-            this.f41972p0 = System.currentTimeMillis();
-            this.f41973q0 = motionEvent.getX();
-            this.f41975r0 = motionEvent.getY();
+            this.f41997p0 = System.currentTimeMillis();
+            this.f41998q0 = motionEvent.getX();
+            this.f42000r0 = motionEvent.getY();
             g0.r(j4Var);
             g0.i3(j4Var, ViewConfiguration.getLongPressTimeout());
             return true;
         }
         if (motionEvent.getAction() == 1) {
             g0.r(j4Var);
-            if (z9 && System.currentTimeMillis() - this.f41972p0 <= ViewConfiguration.getTapTimeout() && r9.a(this.f41973q0, this.f41975r0, motionEvent.getX(), motionEvent.getY()) <= g0.L(12.0f)) {
+            if (z9 && System.currentTimeMillis() - this.f41997p0 <= ViewConfiguration.getTapTimeout() && r9.a(this.f41998q0, this.f42000r0, motionEvent.getX(), motionEvent.getY()) <= g0.L(12.0f)) {
                 y6 y6Var = this.M;
                 long j3 = this.d;
-                if (y6Var.M(j3) || y6Var.K(j3) || !this.f41978x.isEmpty()) {
-                    e(this.f41970n0);
+                if (y6Var.M(j3) || y6Var.K(j3) || !this.f42003x.isEmpty()) {
+                    e(this.f41995n0);
                     return true;
                 }
             }
         } else if (motionEvent.getAction() == 3) {
-            this.f41972p0 = -1L;
+            this.f41997p0 = -1L;
             g0.r(j4Var);
         }
         return super.onTouchEvent(motionEvent);
@@ -452,7 +452,7 @@ public class ProfileStoriesView extends View implements ls {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f41969n && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f41994n && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

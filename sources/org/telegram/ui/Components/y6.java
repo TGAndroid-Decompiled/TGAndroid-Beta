@@ -6,23 +6,23 @@ import java.io.File;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 public final class y6 implements org.telegram.messenger.c20 {
-    public final int f40531a;
-    public final b8 f40532b;
+    public final int f40551a;
+    public final b8 f40552b;
 
     public y6(b8 b8Var, int i7) {
-        this.f40531a = i7;
-        this.f40532b = b8Var;
+        this.f40551a = i7;
+        this.f40552b = b8Var;
     }
 
     @Override
     public final void a(Object obj) {
         TLRPC.Document F0;
-        switch (this.f40531a) {
+        switch (this.f40551a) {
             case 0:
                 org.telegram.messenger.ij ijVar = (org.telegram.messenger.ij) obj;
                 if (ijVar != null) {
-                    b8 b8Var = this.f40532b;
-                    if (b8Var.f32049m2 != null && (F0 = ijVar.F0()) != null) {
+                    b8 b8Var = this.f40552b;
+                    if (b8Var.f32043m2 != null && (F0 = ijVar.F0()) != null) {
                         if (F0.f26958id != 0) {
                             TLRPC.TL_account_saveMusic tL_account_saveMusic = new TLRPC.TL_account_saveMusic();
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
@@ -30,14 +30,14 @@ public final class y6 implements org.telegram.messenger.c20 {
                             tL_inputDocument.f26964id = F0.f26958id;
                             tL_inputDocument.access_hash = F0.access_hash;
                             tL_inputDocument.file_reference = F0.file_reference;
-                            org.telegram.messenger.kp kpVar = b8Var.f32049m2;
+                            org.telegram.messenger.kp kpVar = b8Var.f32043m2;
                             if (kpVar != null) {
                                 kpVar.f23734c.add(0, kpVar.d(F0));
                                 kpVar.e();
                             }
-                            b8Var.f32050n2.clear();
-                            b8Var.f32050n2.addAll(b8Var.f32049m2.f23734c);
-                            b8Var.f32055q1.f();
+                            b8Var.f32044n2.clear();
+                            b8Var.f32044n2.addAll(b8Var.f32043m2.f23734c);
+                            b8Var.f32049q1.f();
                             ConnectionsManager.getInstance(b8Var.f28612a).sendRequest(tL_account_saveMusic, null);
                             return;
                         }
@@ -55,7 +55,7 @@ public final class y6 implements org.telegram.messenger.c20 {
                 return;
             default:
                 Uri uri = (Uri) obj;
-                b8 b8Var2 = this.f40532b;
+                b8 b8Var2 = this.f40552b;
                 org.telegram.ui.ActionBar.f6 f6Var = b8Var2.I0;
                 new hc((FrameLayout) b8Var2.f28615b, f6Var).o(gc.F, f6Var).j();
                 return;

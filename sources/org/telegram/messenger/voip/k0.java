@@ -3,7 +3,7 @@ package org.telegram.messenger.voip;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.q1;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.zt0;
 import org.telegram.ui.rk;
 public final class k0 implements Runnable {
@@ -42,9 +42,9 @@ public final class k0 implements Runnable {
         this.f26126e = q1Var;
     }
 
-    public k0(f41 f41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z9, int i10) {
+    public k0(k41 k41Var, int i7, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z9, int i10) {
         this.f26123a = i10;
-        this.d = f41Var;
+        this.d = k41Var;
         this.f26124b = i7;
         this.f26126e = tL_messages_searchGlobal;
         this.f26125c = z9;

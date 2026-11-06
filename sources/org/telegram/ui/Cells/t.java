@@ -50,7 +50,7 @@ public final class t extends pj0 implements ls {
         if (qp.s1(this.f30289g3).D3()) {
             int i7 = 0;
             while (i7 < arrayList.size()) {
-                if (((w80) arrayList.get(i7)).f51018e) {
+                if (((w80) arrayList.get(i7)).f51024e) {
                     arrayList.remove(i7);
                     i7--;
                 }

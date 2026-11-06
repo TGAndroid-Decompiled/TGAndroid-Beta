@@ -14,16 +14,16 @@ import q6.m;
 import u8.o;
 public final class a extends r6.a {
     public static final Parcelable.Creator<a> CREATOR = new o(14);
-    public final List f57122a;
-    public final boolean f57123b;
-    public final String f57124c;
+    public final List f57147a;
+    public final boolean f57148b;
+    public final String f57149c;
     public final String d;
 
     public a(ArrayList arrayList, boolean z9, String str, String str2) {
         m.g(arrayList);
-        this.f57122a = arrayList;
-        this.f57123b = z9;
-        this.f57124c = str;
+        this.f57147a = arrayList;
+        this.f57148b = z9;
+        this.f57149c = str;
         this.d = str2;
     }
 
@@ -41,23 +41,23 @@ public final class a extends r6.a {
             return false;
         }
         a aVar = (a) obj;
-        if (this.f57123b != aVar.f57123b || !m.k(this.f57122a, aVar.f57122a) || !m.k(this.f57124c, aVar.f57124c) || !m.k(this.d, aVar.d)) {
+        if (this.f57148b != aVar.f57148b || !m.k(this.f57147a, aVar.f57147a) || !m.k(this.f57149c, aVar.f57149c) || !m.k(this.d, aVar.d)) {
             return false;
         }
         return true;
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f57123b), this.f57122a, this.f57124c, this.d});
+        return Arrays.hashCode(new Object[]{Boolean.valueOf(this.f57148b), this.f57147a, this.f57149c, this.d});
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i7) {
         int r10 = wb.r(parcel, 20293);
-        wb.p(parcel, 1, this.f57122a);
+        wb.p(parcel, 1, this.f57147a);
         wb.q(parcel, 2, 4);
-        parcel.writeInt(this.f57123b ? 1 : 0);
-        wb.l(parcel, 3, this.f57124c);
+        parcel.writeInt(this.f57148b ? 1 : 0);
+        wb.l(parcel, 3, this.f57149c);
         wb.l(parcel, 4, this.d);
         wb.s(parcel, r10);
     }

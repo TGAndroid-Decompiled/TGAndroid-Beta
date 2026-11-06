@@ -7,14 +7,14 @@ import android.graphics.drawable.Drawable;
 import android.os.SystemClock;
 import android.view.View;
 public final class y30 extends Drawable {
-    public long f52045b;
+    public long f52066b;
     public int d;
-    public final View f52047e;
-    public final Paint f52044a = new Paint(1);
-    public float f52046c = 1.0f;
+    public final View f52068e;
+    public final Paint f52065a = new Paint(1);
+    public float f52067c = 1.0f;
 
     public y30(View view) {
-        this.f52047e = view;
+        this.f52068e = view;
     }
 
     @Override
@@ -22,36 +22,36 @@ public final class y30 extends Drawable {
         int L;
         int centerX = getBounds().centerX();
         int centerY = getBounds().centerY();
-        View view = this.f52047e;
+        View view = this.f52068e;
         if (view instanceof org.telegram.ui.ActionBar.k5) {
             L = org.telegram.messenger.g0.L(1.0f) + centerY;
             centerX -= org.telegram.messenger.g0.L(3.0f);
         } else {
             L = org.telegram.messenger.g0.L(2.0f) + centerY;
         }
-        Paint paint = this.f52044a;
+        Paint paint = this.f52065a;
         paint.setColor(-1147527);
-        paint.setAlpha((int) (this.f52046c * 255.0f));
+        paint.setAlpha((int) (this.f52067c * 255.0f));
         canvas.drawCircle(centerX, L, org.telegram.messenger.g0.L(4.0f), paint);
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        long j3 = elapsedRealtime - this.f52045b;
+        long j3 = elapsedRealtime - this.f52066b;
         if (j3 > 17) {
             j3 = 17;
         }
-        this.f52045b = elapsedRealtime;
+        this.f52066b = elapsedRealtime;
         int i7 = this.d;
         if (i7 == 0) {
-            float f10 = (((float) j3) / 2000.0f) + this.f52046c;
-            this.f52046c = f10;
+            float f10 = (((float) j3) / 2000.0f) + this.f52067c;
+            this.f52067c = f10;
             if (f10 >= 1.0f) {
-                this.f52046c = 1.0f;
+                this.f52067c = 1.0f;
                 this.d = 1;
             }
         } else if (i7 == 1) {
-            float f11 = this.f52046c - (((float) j3) / 2000.0f);
-            this.f52046c = f11;
+            float f11 = this.f52067c - (((float) j3) / 2000.0f);
+            this.f52067c = f11;
             if (f11 < 0.5f) {
-                this.f52046c = 0.5f;
+                this.f52067c = 0.5f;
                 this.d = 0;
             }
         }

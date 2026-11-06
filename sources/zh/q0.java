@@ -12,17 +12,17 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.f41;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.up0;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.xq;
 public final class q0 implements v10 {
-    public final int f60391a;
-    public final Object f60392b;
+    public final int f60416a;
+    public final Object f60417b;
 
     public q0(Object obj, int i7) {
-        this.f60391a = i7;
-        this.f60392b = obj;
+        this.f60416a = i7;
+        this.f60417b = obj;
     }
 
     @Override
@@ -39,30 +39,30 @@ public final class q0 implements v10 {
         boolean z11;
         int i13;
         long j3;
-        int i14 = this.f60391a;
+        int i14 = this.f60416a;
         int i15 = 3;
         boolean z12 = false;
-        Object obj3 = this.f60392b;
+        Object obj3 = this.f60417b;
         int i16 = 1;
         switch (i14) {
             case 0:
-                ((h1) obj3).d1((ArrayList) obj, (f41) obj2);
+                ((h1) obj3).d1((ArrayList) obj, (k41) obj2);
                 return;
             case 1:
                 a2 a2Var = (a2) obj3;
                 ArrayList arrayList = (ArrayList) obj;
-                f41 f41Var = (f41) obj2;
-                f6 f6Var = a2Var.f60083c;
-                up0 up0Var = a2Var.f60081a;
-                v9 v9Var = a2Var.f60084e;
+                k41 k41Var = (k41) obj2;
+                f6 f6Var = a2Var.f60108c;
+                up0 up0Var = a2Var.f60106a;
+                v9 v9Var = a2Var.f60109e;
                 if (v9Var != null) {
                     if ((!v9Var.f4909e || v9Var.f4911g != 783) && v9Var.f4915l.size() <= 0) {
-                        v9 v9Var2 = a2Var.f60084e;
+                        v9 v9Var2 = a2Var.f60109e;
                         if (v9Var2.f4913j && !v9Var2.f4912i) {
                             return;
                         }
                     }
-                    v9 v9Var3 = a2Var.f60084e;
+                    v9 v9Var3 = a2Var.f60109e;
                     if (v9Var3 == null || (i12 = v9Var3.f4917n) == 0) {
                         i7 = 3;
                         i10 = 3;
@@ -71,7 +71,7 @@ public final class q0 implements v10 {
                         i10 = Math.min(3, i12);
                     }
                     int max = Math.max(1, i10);
-                    v9 v9Var4 = a2Var.f60084e;
+                    v9 v9Var4 = a2Var.f60109e;
                     if (v9Var4 != null) {
                         ArrayList arrayList2 = v9Var4.f4915l;
                         int size = arrayList2.size();
@@ -82,15 +82,15 @@ public final class q0 implements v10 {
                             i18++;
                             TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj4;
                             boolean z13 = a2Var.d;
-                            int i19 = y0.f60470b;
-                            r31 K = r31.K(y0.class);
-                            K.f37607u = 1;
-                            K.f37611z = 0;
+                            int i19 = y0.f60495b;
+                            w31 K = w31.K(y0.class);
+                            K.f39839u = 1;
+                            K.f39843z = 0;
                             K.G = savedStarGift;
-                            K.f37603q = true;
-                            K.f37593f = false;
-                            K.f37604r = z13;
-                            if (a2Var.h && (a2Var.f60084e != up0Var.d || savedStarGift.pinned_to_top)) {
+                            K.f39835q = true;
+                            K.f39825f = false;
+                            K.f39836r = z13;
+                            if (a2Var.h && (a2Var.f60109e != up0Var.d || savedStarGift.pinned_to_top)) {
                                 z9 = true;
                             } else {
                                 z9 = false;
@@ -102,7 +102,7 @@ public final class q0 implements v10 {
                                 i17 = 3;
                             }
                         }
-                        v9 v9Var5 = a2Var.f60084e;
+                        v9 v9Var5 = a2Var.f60109e;
                         if (v9Var5.f4912i || !v9Var5.f4913j) {
                             int i20 = 0;
                             while (true) {
@@ -113,36 +113,36 @@ public final class q0 implements v10 {
                                 }
                                 if (i20 < i11) {
                                     i20++;
-                                    r31 q10 = r31.q(i20, 34);
-                                    q10.f37607u = 1;
+                                    w31 q10 = w31.q(i20, 34);
+                                    q10.f39839u = 1;
                                     arrayList.add(q10);
                                 }
                             }
                         }
                     }
-                    if (up0Var.d == a2Var.f60084e) {
-                        arrayList.add(r31.D(org.telegram.messenger.g0.L(20.0f)));
-                        if (up0Var.f60189c == p10.i(a2Var.f60082b).e()) {
+                    if (up0Var.d == a2Var.f60109e) {
+                        arrayList.add(w31.D(org.telegram.messenger.g0.L(20.0f)));
+                        if (up0Var.f60214c == p10.i(a2Var.f60107b).e()) {
                             int i21 = k6.f28258z6;
                             int w02 = k6.w0(i21, f6Var);
                             String M0 = hd.M0(2131746670, null);
                             int L = org.telegram.messenger.g0.L(24.0f);
-                            int i22 = b2.f60098b;
-                            r31 K2 = r31.K(b2.class);
-                            K2.f37598l = M0;
-                            K2.f37611z = 17;
+                            int i22 = b2.f60123b;
+                            w31 K2 = w31.K(b2.class);
+                            K2.f39830l = M0;
+                            K2.f39843z = 17;
                             K2.B = w02;
                             K2.A = 14.0f;
-                            K2.f37595i = L;
-                            K2.f37597k = 0;
-                            K2.f37603q = false;
+                            K2.f39827i = L;
+                            K2.f39829k = 0;
+                            K2.f39835q = false;
                             K2.G = f6Var;
                             K2.H = Integer.valueOf(i21);
                             arrayList.add(K2);
                         }
-                        arrayList.add(r31.D(org.telegram.messenger.g0.L(82.0f)));
+                        arrayList.add(w31.D(org.telegram.messenger.g0.L(82.0f)));
                     } else if (!arrayList.isEmpty()) {
-                        arrayList.add(r31.D(org.telegram.messenger.g0.L(82.0f)));
+                        arrayList.add(w31.D(org.telegram.messenger.g0.L(82.0f)));
                     }
                     if (!arrayList.isEmpty()) {
                         if (a2Var.H) {
@@ -150,9 +150,9 @@ public final class q0 implements v10 {
                         } else {
                             f10 = 12.0f;
                         }
-                        arrayList.add(0, r31.D(org.telegram.messenger.g0.L(f10)));
+                        arrayList.add(0, w31.D(org.telegram.messenger.g0.L(f10)));
                     }
-                    if (a2Var.f60085f.getSpanCount() != max) {
+                    if (a2Var.f60110f.getSpanCount() != max) {
                         org.telegram.messenger.g0.h3(new l1(a2Var, max, 1));
                     }
                     up0Var.p();
@@ -163,7 +163,7 @@ public final class q0 implements v10 {
             case 2:
                 m3 m3Var = (m3) obj3;
                 ArrayList arrayList3 = (ArrayList) obj;
-                f41 f41Var2 = (f41) obj2;
+                k41 k41Var2 = (k41) obj2;
                 d3 d3Var = m3Var.d;
                 ArrayList arrayList4 = d3Var.d;
                 int size2 = arrayList4.size();
@@ -173,64 +173,64 @@ public final class q0 implements v10 {
                     i23++;
                     arrayList3.add(y0.i(0, (TL_stars.TL_starGiftUnique) obj5, false, false, false, true, false));
                 }
-                if (d3Var.f60165t || !d3Var.f60166u) {
-                    r31 q11 = r31.q(-1, 34);
-                    q11.f37607u = 1;
+                if (d3Var.f60190t || !d3Var.f60191u) {
+                    w31 q11 = w31.q(-1, 34);
+                    q11.f39839u = 1;
                     arrayList3.add(q11);
-                    r31 q12 = r31.q(-2, 34);
-                    q12.f37607u = 1;
+                    w31 q12 = w31.q(-2, 34);
+                    q12.f39839u = 1;
                     arrayList3.add(q12);
-                    r31 q13 = r31.q(-3, 34);
-                    q13.f37607u = 1;
+                    w31 q13 = w31.q(-3, 34);
+                    q13.f39839u = 1;
                     arrayList3.add(q13);
                     if (d3Var.d.isEmpty()) {
-                        r31 q14 = r31.q(-4, 34);
-                        q14.f37607u = 1;
+                        w31 q14 = w31.q(-4, 34);
+                        q14.f39839u = 1;
                         arrayList3.add(q14);
-                        r31 q15 = r31.q(-5, 34);
-                        q15.f37607u = 1;
+                        w31 q15 = w31.q(-5, 34);
+                        q15.f39839u = 1;
                         arrayList3.add(q15);
-                        r31 q16 = r31.q(-6, 34);
-                        q16.f37607u = 1;
+                        w31 q16 = w31.q(-6, 34);
+                        q16.f39839u = 1;
                         arrayList3.add(q16);
-                        r31 q17 = r31.q(-7, 34);
-                        q17.f37607u = 1;
+                        w31 q17 = w31.q(-7, 34);
+                        q17.f39839u = 1;
                         arrayList3.add(q17);
-                        r31 q18 = r31.q(-8, 34);
-                        q18.f37607u = 1;
+                        w31 q18 = w31.q(-8, 34);
+                        q18.f39839u = 1;
                         arrayList3.add(q18);
-                        r31 q19 = r31.q(-9, 34);
-                        q19.f37607u = 1;
+                        w31 q19 = w31.q(-9, 34);
+                        q19.f39839u = 1;
                         arrayList3.add(q19);
-                        r31 q20 = r31.q(-10, 34);
-                        q20.f37607u = 1;
+                        w31 q20 = w31.q(-10, 34);
+                        q20.f39839u = 1;
                         arrayList3.add(q20);
-                        r31 q21 = r31.q(-11, 34);
-                        q21.f37607u = 1;
+                        w31 q21 = w31.q(-11, 34);
+                        q21.f39839u = 1;
                         arrayList3.add(q21);
-                        r31 q22 = r31.q(-12, 34);
-                        q22.f37607u = 1;
+                        w31 q22 = w31.q(-12, 34);
+                        q22.f39839u = 1;
                         arrayList3.add(q22);
-                        r31 q23 = r31.q(-13, 34);
-                        q23.f37607u = 1;
+                        w31 q23 = w31.q(-13, 34);
+                        q23.f39839u = 1;
                         arrayList3.add(q23);
-                        r31 q24 = r31.q(-14, 34);
-                        q24.f37607u = 1;
+                        w31 q24 = w31.q(-14, 34);
+                        q24.f39839u = 1;
                         arrayList3.add(q24);
-                        r31 q25 = r31.q(-15, 34);
-                        q25.f37607u = 1;
+                        w31 q25 = w31.q(-15, 34);
+                        q25.f39839u = 1;
                         arrayList3.add(q25);
                     }
                 }
-                if (arrayList3.isEmpty() && !d3Var.f60165t) {
+                if (arrayList3.isEmpty() && !d3Var.f60190t) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (m3Var.f60349y != z10) {
-                    m3Var.f60349y = z10;
-                    m3Var.f60348x.setVisibility(0);
-                    ViewPropertyAnimator animate = m3Var.f60348x.animate();
+                if (m3Var.f60374y != z10) {
+                    m3Var.f60374y = z10;
+                    m3Var.f60373x.setVisibility(0);
+                    ViewPropertyAnimator animate = m3Var.f60373x.animate();
                     float f13 = 1.0f;
                     if (z10) {
                         f11 = 1.0f;
@@ -254,14 +254,14 @@ public final class q0 implements v10 {
             case 3:
                 l3 l3Var = (l3) obj3;
                 ArrayList arrayList5 = (ArrayList) obj;
-                f41 f41Var3 = (f41) obj2;
+                k41 k41Var3 = (k41) obj2;
                 k3 k3Var = l3Var.Q1;
                 if (k3Var != null) {
-                    v9 v9Var6 = k3Var.f60299b;
-                    d3 d3Var2 = k3Var.f60300c;
+                    v9 v9Var6 = k3Var.f60324b;
+                    d3 d3Var2 = k3Var.f60325c;
                     if (v9Var6 != null && d3Var2 != null) {
                         int currentTime = ConnectionsManager.getInstance(l3Var.f28612a).getCurrentTime();
-                        arrayList5.add(r31.t(-1, hd.M0(2131749769, null)));
+                        arrayList5.add(w31.t(-1, hd.M0(2131749769, null)));
                         ArrayList arrayList6 = v9Var6.f4915l;
                         int size3 = arrayList6.size();
                         boolean z14 = true;
@@ -282,8 +282,8 @@ public final class q0 implements v10 {
                                 } else {
                                     z11 = 0;
                                 }
-                                r31 i27 = y0.i(0, savedStarGift2.gift, false, true, false, false, true);
-                                i27.f37594g = z11;
+                                w31 i27 = y0.i(0, savedStarGift2.gift, false, true, false, false, true);
+                                i27.f39826g = z11;
                                 arrayList5.add(i27);
                                 i24++;
                                 i16 = i26;
@@ -294,30 +294,30 @@ public final class q0 implements v10 {
                         boolean z16 = z14;
                         if (!v9Var6.f4912i && v9Var6.f4913j) {
                             if (z16) {
-                                arrayList5.add(r31.g(hd.M0(2131749768, null)));
+                                arrayList5.add(w31.g(hd.M0(2131749768, null)));
                             }
                         } else {
                             int i29 = i24 % 3;
                             int i30 = 6 - i29;
                             int i31 = 0;
                             while (i31 < i30) {
-                                r31 q26 = r31.q((i31 - i29) + 1, 35);
-                                q26.f37607u = i28;
+                                w31 q26 = w31.q((i31 - i29) + 1, 35);
+                                q26.f39839u = i28;
                                 arrayList5.add(q26);
                                 i31++;
                                 i28 = 1;
                             }
                         }
-                        if (d3Var2.f60151e > 0 || l3Var.f60316b2) {
-                            l3Var.f60316b2 = true;
+                        if (d3Var2.f60176e > 0 || l3Var.f60341b2) {
+                            l3Var.f60341b2 = true;
                             String M02 = hd.M0(2131749771, null);
-                            r31 r31Var = new r31(42);
-                            r31Var.d = -2;
-                            r31Var.f37601o = M02;
-                            arrayList5.add(r31Var);
+                            w31 w31Var = new w31(42);
+                            w31Var.d = -2;
+                            w31Var.f39833o = M02;
+                            arrayList5.add(w31Var);
                             HorizontalScrollView horizontalScrollView = l3Var.R1;
                             if (horizontalScrollView != null) {
-                                arrayList5.add(r31.j(-3, horizontalScrollView));
+                                arrayList5.add(w31.j(-3, horizontalScrollView));
                             }
                             ArrayList arrayList7 = d3Var2.d;
                             int size4 = arrayList7.size();
@@ -327,24 +327,24 @@ public final class q0 implements v10 {
                                 i32++;
                                 arrayList5.add(y0.i(0, (TL_stars.TL_starGiftUnique) obj7, false, true, false, true, true));
                             }
-                            if (d3Var2.f60165t || !d3Var2.f60166u) {
-                                r31 q27 = r31.q(10, 35);
-                                q27.f37607u = 1;
+                            if (d3Var2.f60190t || !d3Var2.f60191u) {
+                                w31 q27 = w31.q(10, 35);
+                                q27.f39839u = 1;
                                 arrayList5.add(q27);
-                                r31 q28 = r31.q(11, 35);
-                                q28.f37607u = 1;
+                                w31 q28 = w31.q(11, 35);
+                                q28.f39839u = 1;
                                 arrayList5.add(q28);
-                                r31 q29 = r31.q(12, 35);
-                                q29.f37607u = 1;
+                                w31 q29 = w31.q(12, 35);
+                                q29.f39839u = 1;
                                 arrayList5.add(q29);
-                                r31 q30 = r31.q(13, 35);
-                                q30.f37607u = 1;
+                                w31 q30 = w31.q(13, 35);
+                                q30.f39839u = 1;
                                 arrayList5.add(q30);
-                                r31 q31 = r31.q(14, 35);
-                                q31.f37607u = 1;
+                                w31 q31 = w31.q(14, 35);
+                                q31.f39839u = 1;
                                 arrayList5.add(q31);
-                                r31 q32 = r31.q(15, 35);
-                                q32.f37607u = 1;
+                                w31 q32 = w31.q(15, 35);
+                                q32.f39839u = 1;
                                 arrayList5.add(q32);
                                 return;
                             }
@@ -358,38 +358,38 @@ public final class q0 implements v10 {
             default:
                 o3 o3Var = (o3) obj3;
                 ArrayList arrayList8 = (ArrayList) obj;
-                f41 f41Var4 = (f41) obj2;
+                k41 k41Var4 = (k41) obj2;
                 v9 v9Var7 = o3Var.Q1;
                 if (v9Var7 != null) {
                     ArrayList arrayList9 = v9Var7.f4915l;
-                    arrayList8.add(r31.D(org.telegram.messenger.g0.L(16.0f)));
+                    arrayList8.add(w31.D(org.telegram.messenger.g0.L(16.0f)));
                     if (v9Var7.f4912i && arrayList9.isEmpty()) {
-                        r31 q33 = r31.q(1, 34);
-                        q33.f37607u = 1;
+                        w31 q33 = w31.q(1, 34);
+                        q33.f39839u = 1;
                         arrayList8.add(q33);
-                        r31 q34 = r31.q(2, 34);
-                        q34.f37607u = 1;
+                        w31 q34 = w31.q(2, 34);
+                        q34.f39839u = 1;
                         arrayList8.add(q34);
-                        r31 q35 = r31.q(3, 34);
-                        q35.f37607u = 1;
+                        w31 q35 = w31.q(3, 34);
+                        q35.f39839u = 1;
                         arrayList8.add(q35);
-                        r31 q36 = r31.q(4, 34);
-                        q36.f37607u = 1;
+                        w31 q36 = w31.q(4, 34);
+                        q36.f39839u = 1;
                         arrayList8.add(q36);
-                        r31 q37 = r31.q(5, 34);
-                        q37.f37607u = 1;
+                        w31 q37 = w31.q(5, 34);
+                        q37.f39839u = 1;
                         arrayList8.add(q37);
-                        r31 q38 = r31.q(6, 34);
-                        q38.f37607u = 1;
+                        w31 q38 = w31.q(6, 34);
+                        q38.f39839u = 1;
                         arrayList8.add(q38);
-                        r31 q39 = r31.q(7, 34);
-                        q39.f37607u = 1;
+                        w31 q39 = w31.q(7, 34);
+                        q39.f39839u = 1;
                         arrayList8.add(q39);
-                        r31 q40 = r31.q(8, 34);
-                        q40.f37607u = 1;
+                        w31 q40 = w31.q(8, 34);
+                        q40.f39839u = 1;
                         arrayList8.add(q40);
-                        r31 q41 = r31.q(9, 34);
-                        q41.f37607u = 1;
+                        w31 q41 = w31.q(9, 34);
+                        q41.f39839u = 1;
                         arrayList8.add(q41);
                     } else {
                         int size5 = arrayList9.size();
@@ -400,14 +400,14 @@ public final class q0 implements v10 {
                             i34++;
                             TL_stars.SavedStarGift savedStarGift3 = (TL_stars.SavedStarGift) obj8;
                             if (!savedStarGift3.collection_id.contains(Integer.valueOf(o3Var.P1))) {
-                                int i35 = y0.f60470b;
-                                r31 K3 = r31.K(y0.class);
-                                K3.f37607u = 1;
-                                K3.f37611z = z12 ? 1 : 0;
+                                int i35 = y0.f60495b;
+                                w31 K3 = w31.K(y0.class);
+                                K3.f39839u = 1;
+                                K3.f39843z = z12 ? 1 : 0;
                                 K3.G = savedStarGift3;
-                                K3.f37603q = true;
-                                K3.f37593f = true;
-                                K3.f37604r = z12;
+                                K3.f39835q = true;
+                                K3.f39825f = true;
+                                K3.f39836r = z12;
                                 HashSet hashSet = o3Var.R1;
                                 int i36 = i15;
                                 int i37 = savedStarGift3.msg_id;
@@ -418,7 +418,7 @@ public final class q0 implements v10 {
                                     j3 = i37;
                                 }
                                 K3.L(hashSet.contains(Long.valueOf(j3)));
-                                K3.f37607u = 1;
+                                K3.f39839u = 1;
                                 arrayList8.add(K3);
                                 i33--;
                                 if (i33 == 0) {
@@ -440,14 +440,14 @@ public final class q0 implements v10 {
                                 }
                                 if (i39 < i13) {
                                     i39++;
-                                    r31 q42 = r31.q(i39, 34);
-                                    q42.f37607u = 1;
+                                    w31 q42 = w31.q(i39, 34);
+                                    q42.f39839u = 1;
                                     arrayList8.add(q42);
                                 }
                             }
                         }
                     }
-                    arrayList8.add(r31.D(org.telegram.messenger.g0.L(68.0f)));
+                    arrayList8.add(w31.D(org.telegram.messenger.g0.L(68.0f)));
                     return;
                 }
                 return;

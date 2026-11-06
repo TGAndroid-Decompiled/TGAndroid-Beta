@@ -76,12 +76,12 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f31436f.f36493a.a();
+        this.f31436f.f36387a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
-        this.f31436f.f36493a.b();
+        this.f31436f.f36387a.b();
         super.onDetachedFromWindow();
     }
 
@@ -96,9 +96,9 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
         float f10 = 0.0f;
         if (this.f31441x || this.f31442y != 0.0f) {
             qe0 qe0Var = this.E;
-            qe0Var.f37397x1.setAlpha((int) (this.f31442y * 255.0f));
+            qe0Var.f37287x1.setAlpha((int) (this.f31442y * 255.0f));
             l9 l9Var = this.f31432a;
-            canvas.drawCircle((l9Var.getMeasuredWidth() / 2) + l9Var.getLeft(), (l9Var.getMeasuredHeight() / 2) + l9Var.getTop(), l9Var.getMeasuredWidth() / 2, qe0Var.f37397x1);
+            canvas.drawCircle((l9Var.getMeasuredWidth() / 2) + l9Var.getLeft(), (l9Var.getMeasuredHeight() / 2) + l9Var.getTop(), l9Var.getMeasuredWidth() / 2, qe0Var.f37287x1);
             if (this.f31440w % 2 == 0) {
                 L = org.telegram.messenger.g0.L(65.0f);
                 L2 = org.telegram.messenger.g0.L(48.0f);
@@ -110,7 +110,7 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
                 L = (getMeasuredWidth() - L) - L2;
             }
             qe0Var.D1.set(L, measuredHeight - org.telegram.messenger.g0.L(4.0f), L + L2, org.telegram.messenger.g0.L(4.0f) + measuredHeight);
-            canvas.drawRoundRect(qe0Var.D1, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), qe0Var.f37397x1);
+            canvas.drawRoundRect(qe0Var.D1, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), qe0Var.f37287x1);
             if (this.f31440w % 2 == 0) {
                 L3 = org.telegram.messenger.g0.L(119.0f);
                 L4 = org.telegram.messenger.g0.L(60.0f);
@@ -122,7 +122,7 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
                 L3 = (getMeasuredWidth() - L3) - L4;
             }
             qe0Var.D1.set(L3, measuredHeight - org.telegram.messenger.g0.L(4.0f), L3 + L4, org.telegram.messenger.g0.L(4.0f) + measuredHeight);
-            canvas.drawRoundRect(qe0Var.D1, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), qe0Var.f37397x1);
+            canvas.drawRoundRect(qe0Var.D1, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), qe0Var.f37287x1);
         }
         if (this.f31439s) {
             if (!org.telegram.messenger.hd.f22871a0) {
@@ -156,7 +156,7 @@ public class PollVotesAlert$UserCell extends LinearLayout implements org.telegra
         nu0 nu0Var = this.f31436f;
         if (nu0Var != null) {
             try {
-                g5 g5Var = nu0Var.f36493a;
+                g5 g5Var = nu0Var.f36387a;
                 if (g5Var != null) {
                     z9 = true;
                 } else {

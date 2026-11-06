@@ -3,21 +3,21 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.accessibility.AccessibilityNodeInfo;
 public final class yc extends org.telegram.ui.Components.ch0 {
-    public final int f52187r;
-    public final Object f52188s;
+    public final int f52208r;
+    public final Object f52209s;
 
     public yc(int i7, Context context, Object obj) {
         super(context);
-        this.f52187r = i7;
-        this.f52188s = obj;
+        this.f52208r = i7;
+        this.f52209s = obj;
     }
 
     @Override
     public void invalidate(int i7, int i10, int i11, int i12) {
-        switch (this.f52187r) {
+        switch (this.f52208r) {
             case 0:
                 super.invalidate(i7, i10, i11, i12);
-                ((bd) this.f52188s).h.invalidate();
+                ((bd) this.f52209s).h.invalidate();
                 return;
             case 1:
             case 2:
@@ -26,21 +26,21 @@ public final class yc extends org.telegram.ui.Components.ch0 {
                 return;
             case 3:
                 super.invalidate(i7, i10, i11, i12);
-                ((d50) this.f52188s).f44925e.invalidate();
+                ((d50) this.f52209s).f44950e.invalidate();
                 return;
             case 4:
                 super.invalidate(i7, i10, i11, i12);
-                ((pc0) this.f52188s).h.invalidate();
+                ((pc0) this.f52209s).h.invalidate();
                 return;
         }
     }
 
     @Override
     public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f52187r) {
+        switch (this.f52208r) {
             case 1:
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                if (((org.telegram.ui.Components.vo) this.f52188s).D1) {
+                if (((org.telegram.ui.Components.vo) this.f52209s).D1) {
                     accessibilityNodeInfo.setText(org.telegram.messenger.hd.M0(2131754751, null));
                     return;
                 } else {
@@ -55,10 +55,10 @@ public final class yc extends org.telegram.ui.Components.ch0 {
 
     @Override
     public void invalidate() {
-        switch (this.f52187r) {
+        switch (this.f52208r) {
             case 0:
                 super.invalidate();
-                ((bd) this.f52188s).h.invalidate();
+                ((bd) this.f52209s).h.invalidate();
                 return;
             case 1:
             default:
@@ -66,15 +66,15 @@ public final class yc extends org.telegram.ui.Components.ch0 {
                 return;
             case 2:
                 super.invalidate();
-                ((org.telegram.ui.Components.g10) this.f52188s).invalidate();
+                ((org.telegram.ui.Components.g10) this.f52209s).invalidate();
                 return;
             case 3:
                 super.invalidate();
-                ((d50) this.f52188s).f44925e.invalidate();
+                ((d50) this.f52209s).f44950e.invalidate();
                 return;
             case 4:
                 super.invalidate();
-                ((pc0) this.f52188s).h.invalidate();
+                ((pc0) this.f52209s).h.invalidate();
                 return;
         }
     }

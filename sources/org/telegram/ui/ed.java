@@ -3,29 +3,29 @@ package org.telegram.ui;
 import android.text.SpannableStringBuilder;
 import org.telegram.tgnet.ConnectionsManager;
 public final class ed implements Runnable {
-    public final int f45289a;
-    public final zd f45290b;
-    public final int f45291c;
+    public final int f45319a;
+    public final zd f45320b;
+    public final int f45321c;
 
     public ed(zd zdVar, int i7, int i10) {
-        this.f45289a = i10;
-        this.f45290b = zdVar;
-        this.f45291c = i7;
+        this.f45319a = i10;
+        this.f45320b = zdVar;
+        this.f45321c = i7;
     }
 
     @Override
     public final void run() {
         boolean z9;
         String H;
-        int i7 = this.f45289a;
-        int i10 = this.f45291c;
-        zd zdVar = this.f45290b;
+        int i7 = this.f45319a;
+        int i10 = this.f45321c;
+        zd zdVar = this.f45320b;
         switch (i7) {
             case 0:
                 vf.c.t(zdVar.getContext(), org.telegram.messenger.hd.M0(i10, null));
                 return;
             case 1:
-                ed edVar = zdVar.f52529f1;
+                ed edVar = zdVar.f52536f1;
                 bi.v vVar = zdVar.O0;
                 org.telegram.ui.Components.cc.e();
                 if (zdVar.D0.amount < org.telegram.messenger.qp.s1(i10).R5) {
@@ -43,7 +43,7 @@ public final class ed implements Runnable {
                 edVar.run();
                 return;
             default:
-                ed edVar2 = zdVar.f52529f1;
+                ed edVar2 = zdVar.f52536f1;
                 int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
                 pd pdVar = zdVar.G0;
                 if (zdVar.N0 <= 0 && zdVar.B0 <= currentTime) {
@@ -54,20 +54,20 @@ public final class ed implements Runnable {
                 pdVar.setEnabled(z9);
                 if (currentTime < zdVar.B0) {
                     pdVar.i(org.telegram.messenger.hd.M0(2131748366, null), true, true);
-                    if (zdVar.f52528e1 == null) {
-                        zdVar.f52528e1 = new SpannableStringBuilder("l");
+                    if (zdVar.f52535e1 == null) {
+                        zdVar.f52535e1 = new SpannableStringBuilder("l");
                         org.telegram.ui.Components.wp wpVar = new org.telegram.ui.Components.wp(2131231976, 0);
-                        wpVar.f40054n = 1;
-                        zdVar.f52528e1.setSpan(wpVar, 0, 1, 33);
+                        wpVar.f40061n = 1;
+                        zdVar.f52535e1.setSpan(wpVar, 0, 1, 33);
                     }
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
-                    spannableStringBuilder.append((CharSequence) zdVar.f52528e1).append((CharSequence) bi.z.w0(zdVar.B0 - currentTime));
+                    spannableStringBuilder.append((CharSequence) zdVar.f52535e1).append((CharSequence) bi.z.w0(zdVar.B0 - currentTime));
                     pdVar.g(spannableStringBuilder, true);
                     org.telegram.ui.Components.cc ccVar = zdVar.P0;
                     if (ccVar != null) {
-                        org.telegram.ui.Components.gb gbVar = ccVar.f32519e;
+                        org.telegram.ui.Components.gb gbVar = ccVar.f32523e;
                         if ((gbVar instanceof org.telegram.ui.Components.kb) && gbVar.isAttachedToWindow()) {
-                            org.telegram.messenger.k5.r(null, null, 2131752952, new Object[]{bi.z.w0(zdVar.B0 - currentTime)}, ((org.telegram.ui.Components.kb) zdVar.P0.f32519e).f35249b);
+                            org.telegram.messenger.k5.r(null, null, 2131752952, new Object[]{bi.z.w0(zdVar.B0 - currentTime)}, ((org.telegram.ui.Components.kb) zdVar.P0.f32523e).f35252b);
                         }
                     }
                     org.telegram.messenger.g0.r(edVar2);

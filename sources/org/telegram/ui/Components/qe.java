@@ -8,14 +8,14 @@ import android.view.View;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class qe implements Runnable {
-    public final int f37381a;
-    public int f37382b;
-    public final KeyEvent.Callback f37383c;
+    public final int f37271a;
+    public int f37272b;
+    public final KeyEvent.Callback f37273c;
 
     public qe(KeyEvent.Callback callback, int i7, int i10) {
-        this.f37381a = i10;
-        this.f37383c = callback;
-        this.f37382b = i7;
+        this.f37271a = i10;
+        this.f37273c = callback;
+        this.f37272b = i7;
     }
 
     @Override
@@ -24,14 +24,14 @@ public final class qe implements Runnable {
         boolean z9;
         boolean z10;
         int max;
-        int i7 = this.f37381a;
-        KeyEvent.Callback callback = this.f37383c;
+        int i7 = this.f37271a;
+        KeyEvent.Callback callback = this.f37273c;
         switch (i7) {
             case 0:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) callback;
                 mf mfVar = chatActivityEnterView.U0;
-                if (mfVar != null && (currentPage = mfVar.getCurrentPage()) != this.f37382b) {
-                    this.f37382b = currentPage;
+                if (mfVar != null && (currentPage = mfVar.getCurrentPage()) != this.f37272b) {
+                    this.f37272b = currentPage;
                     boolean z11 = chatActivityEnterView.f31148x3;
                     int i10 = 2;
                     if (currentPage != 1 && currentPage != 2) {
@@ -66,23 +66,23 @@ public final class qe implements Runnable {
                 }
                 return;
             case 1:
-                int i11 = this.f37382b;
+                int i11 = this.f37272b;
                 vo voVar = (vo) callback;
-                v4.n0 layoutManager = voVar.f39007s1.getLayoutManager();
+                v4.n0 layoutManager = voVar.f39004s1.getLayoutManager();
                 if (layoutManager != null) {
                     if (i11 > voVar.G1) {
                         max = Math.min(i11 + 1, voVar.n1.d.size() - 1);
                     } else {
                         max = Math.max(i11 - 1, 0);
                     }
-                    qo qoVar = voVar.f39012x1;
-                    qoVar.f57096a = max;
+                    qo qoVar = voVar.f39009x1;
+                    qoVar.f57121a = max;
                     layoutManager.w0(qoVar);
                 }
                 voVar.G1 = i11;
                 return;
             default:
-                int i12 = this.f37382b;
+                int i12 = this.f37272b;
                 fi.a8 a8Var = (fi.a8) callback;
                 if (((qe) a8Var.f11615f) == this) {
                     ArrayList arrayList = new ArrayList();
@@ -110,8 +110,8 @@ public final class qe implements Runnable {
     }
 
     public qe(ChatActivityEnterView chatActivityEnterView) {
-        this.f37381a = 0;
-        this.f37383c = chatActivityEnterView;
-        this.f37382b = -1;
+        this.f37271a = 0;
+        this.f37273c = chatActivityEnterView;
+        this.f37272b = -1;
     }
 }

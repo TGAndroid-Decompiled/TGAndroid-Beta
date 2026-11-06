@@ -12,10 +12,10 @@ public final class i implements Runnable {
     public final void run() {
         switch (this.f26113a) {
             case 0:
-                VideoCapturerDevice.AnonymousClass1.lambda$onStop$0();
+                VideoCapturerDevice.AnonymousClass1.a();
                 return;
             case 1:
-                VideoCapturerDevice.AnonymousClass2.lambda$onFirstFrameAvailable$0();
+                VideoCapturerDevice.AnonymousClass2.a();
                 return;
             case 2:
                 VoIPPreNotificationService.d();

@@ -22,7 +22,7 @@ public final class cc extends ReplacementSpan {
     public final void draw(Canvas canvas, CharSequence charSequence, int i7, int i10, float f10, int i11, int i12, int i13, Paint paint) {
         RectF rectF = org.telegram.messenger.g0.P;
         int i14 = i11 + i13;
-        rectF.set(f10, (i14 - org.telegram.messenger.g0.L(20.0f)) / 2.0f, org.telegram.messenger.g0.L(12.0f) + f10 + this.f3607b.f35777c, (org.telegram.messenger.g0.L(20.0f) + i14) / 2.0f);
+        rectF.set(f10, (i14 - org.telegram.messenger.g0.L(20.0f)) / 2.0f, org.telegram.messenger.g0.L(12.0f) + f10 + this.f3607b.f35782c, (org.telegram.messenger.g0.L(20.0f) + i14) / 2.0f);
         canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(4.0f), org.telegram.messenger.g0.L(4.0f), this.f3606a);
         int i15 = this.f3608c;
         this.f3607b.c(f10 + org.telegram.messenger.g0.L(6.0f), i14 / 2.0f, 1.0f, i15, canvas);
@@ -30,6 +30,6 @@ public final class cc extends ReplacementSpan {
 
     @Override
     public final int getSize(Paint paint, CharSequence charSequence, int i7, int i10, Paint.FontMetricsInt fontMetricsInt) {
-        return (int) (org.telegram.messenger.g0.L(12.0f) + this.f3607b.f35777c);
+        return (int) (org.telegram.messenger.g0.L(12.0f) + this.f3607b.f35782c);
     }
 }

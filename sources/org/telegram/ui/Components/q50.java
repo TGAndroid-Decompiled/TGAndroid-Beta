@@ -6,15 +6,15 @@ import android.view.ViewGroup;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class q50 extends oj0 {
-    public final x50 f37250c;
+    public final x50 f37149c;
 
     public q50(x50 x50Var) {
-        this.f37250c = x50Var;
+        this.f37149c = x50Var;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56931f;
+        int i7 = d1Var.f56956f;
         if (i7 == 3 || i7 == 1) {
             return true;
         }
@@ -22,9 +22,9 @@ public final class q50 extends oj0 {
     }
 
     public final TLObject E(int i7) {
-        x50 x50Var = this.f37250c;
+        x50 x50Var = this.f37149c;
         if (x50Var.d2 != null) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) x50Var.f40160e2.get(i7 - x50Var.P1);
+            TLRPC.Dialog dialog = (TLRPC.Dialog) x50Var.f40172e2.get(i7 - x50Var.P1);
             if (org.telegram.messenger.m5.E(dialog.f26956id)) {
                 return org.telegram.messenger.qp.s1(x50Var.f28612a).a2(Long.valueOf(dialog.f26956id));
             }
@@ -35,12 +35,12 @@ public final class q50 extends oj0 {
 
     @Override
     public final int b() {
-        return this.f37250c.T1;
+        return this.f37149c.T1;
     }
 
     @Override
     public final int d(int i7) {
-        x50 x50Var = this.f37250c;
+        x50 x50Var = this.f37149c;
         if (i7 == x50Var.O1) {
             return 1;
         }
@@ -66,8 +66,8 @@ public final class q50 extends oj0 {
         boolean z9;
         long j10;
         boolean z10;
-        int i10 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        int i10 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         if (i10 != 2) {
             if (i10 == 3) {
                 org.telegram.ui.Cells.h4 h4Var = (org.telegram.ui.Cells.h4) view;
@@ -80,7 +80,7 @@ public final class q50 extends oj0 {
                 } else {
                     j3 = 0;
                 }
-                x50 x50Var = this.f37250c;
+                x50 x50Var = this.f37149c;
                 boolean z11 = false;
                 if (i7 != x50Var.Q1) {
                     z9 = true;
@@ -127,7 +127,7 @@ public final class q50 extends oj0 {
         boolean z9;
         Context context = viewGroup.getContext();
         if (i7 != 2) {
-            x50 x50Var = this.f37250c;
+            x50 x50Var = this.f37149c;
             if (i7 != 3) {
                 if (i7 != 4) {
                     if (i7 != 5) {
@@ -139,7 +139,7 @@ public final class q50 extends oj0 {
                     } else {
                         p50 p50Var = new p50(context, null, 0, null, 0);
                         p50Var.setLayoutParams(new v4.o0(-1, -1));
-                        p50Var.f31917e.setVisibility(8);
+                        p50Var.f31929e.setVisibility(8);
                         org.telegram.ui.wr wrVar = x50Var.d2;
                         xh.l lVar = p50Var.d;
                         if (wrVar != null) {

@@ -13,24 +13,24 @@ import android.os.Bundle;
 import android.os.Process;
 import android.provider.Settings;
 public final class u {
-    public static final Object f53692b = new Object();
-    public static volatile u f53693c;
-    public Object f53694a;
+    public static final Object f53717b = new Object();
+    public static volatile u f53718c;
+    public Object f53719a;
 
     public static u a(Context context) {
         u uVar;
-        synchronized (f53692b) {
+        synchronized (f53717b) {
             try {
-                if (f53693c == null) {
+                if (f53718c == null) {
                     Context applicationContext = context.getApplicationContext();
                     ?? obj = new Object();
                     j2.n nVar = new j2.n(25, false);
                     nVar.f16453b = applicationContext;
                     nVar.f16454c = applicationContext.getContentResolver();
-                    obj.f53694a = nVar;
-                    f53693c = obj;
+                    obj.f53719a = nVar;
+                    f53718c = obj;
                 }
-                uVar = f53693c;
+                uVar = f53718c;
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -39,11 +39,11 @@ public final class u {
     }
 
     public boolean b(r rVar) {
-        j2.n nVar = (j2.n) this.f53694a;
-        t tVar = rVar.f53688a;
+        j2.n nVar = (j2.n) this.f53719a;
+        t tVar = rVar.f53713a;
         Context context = (Context) nVar.f16453b;
-        int i7 = tVar.f53691c;
-        String str = tVar.f53689a;
+        int i7 = tVar.f53716c;
+        String str = tVar.f53714a;
         try {
             int i10 = Build.VERSION.SDK_INT;
             if (i10 != 23 || !str.equals("android.media.session.MediaController")) {
@@ -52,7 +52,7 @@ public final class u {
                     if (i10 < 28) {
                         i7 = applicationInfo.uid;
                     }
-                    if (i7 != 1000 && i7 != Process.myUid() && context.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", tVar.f53690b, tVar.f53691c) != 0 && !nVar.h0(tVar, "android.permission.STATUS_BAR_SERVICE") && !nVar.h0(tVar, "android.permission.MEDIA_CONTENT_CONTROL")) {
+                    if (i7 != 1000 && i7 != Process.myUid() && context.checkPermission("android.permission.MEDIA_CONTENT_CONTROL", tVar.f53715b, tVar.f53716c) != 0 && !nVar.h0(tVar, "android.permission.STATUS_BAR_SERVICE") && !nVar.h0(tVar, "android.permission.MEDIA_CONTENT_CONTROL")) {
                         String string = Settings.Secure.getString((ContentResolver) nVar.f16454c, "enabled_notification_listeners");
                         if (string != null) {
                             for (String str2 : string.split(":")) {
@@ -76,31 +76,31 @@ public final class u {
     }
 
     public void c(String str, Bitmap bitmap) {
-        Integer num = (Integer) i.f53663c.get(str);
+        Integer num = (Integer) i.f53688c.get(str);
         if (num != null && num.intValue() != 2) {
             throw new IllegalArgumentException(p0.p("The ", str, " key cannot be used to put a Bitmap"));
         }
-        ((Bundle) this.f53694a).putParcelable(str, bitmap);
+        ((Bundle) this.f53719a).putParcelable(str, bitmap);
     }
 
     public void d(long j3, String str) {
-        Integer num = (Integer) i.f53663c.get(str);
+        Integer num = (Integer) i.f53688c.get(str);
         if (num != null && num.intValue() != 0) {
             throw new IllegalArgumentException(p0.p("The ", str, " key cannot be used to put a long"));
         }
-        ((Bundle) this.f53694a).putLong(str, j3);
+        ((Bundle) this.f53719a).putLong(str, j3);
     }
 
     public void e(String str, y yVar) {
         Rating rating;
-        float f10 = yVar.f53710b;
-        int i7 = yVar.f53709a;
-        Integer num = (Integer) i.f53663c.get(str);
+        float f10 = yVar.f53735b;
+        int i7 = yVar.f53734a;
+        Integer num = (Integer) i.f53688c.get(str);
         if (num != null && num.intValue() != 3) {
             throw new IllegalArgumentException(p0.p("The ", str, " key cannot be used to put a Rating"));
         }
-        Bundle bundle = (Bundle) this.f53694a;
-        if (yVar.f53711c == null) {
+        Bundle bundle = (Bundle) this.f53719a;
+        if (yVar.f53736c == null) {
             if (yVar.b()) {
                 boolean z9 = true;
                 switch (i7) {
@@ -108,21 +108,21 @@ public final class u {
                         if (i7 != 1 || f10 != 1.0f) {
                             z9 = false;
                         }
-                        yVar.f53711c = Rating.newHeartRating(z9);
+                        yVar.f53736c = Rating.newHeartRating(z9);
                         break;
                     case 2:
                         if (i7 != 2 || f10 != 1.0f) {
                             z9 = false;
                         }
-                        yVar.f53711c = Rating.newThumbRating(z9);
+                        yVar.f53736c = Rating.newThumbRating(z9);
                         break;
                     case 3:
                     case 4:
                     case 5:
-                        yVar.f53711c = Rating.newStarRating(i7, yVar.a());
+                        yVar.f53736c = Rating.newStarRating(i7, yVar.a());
                         break;
                     case 6:
-                        yVar.f53711c = Rating.newPercentageRating((i7 == 6 && yVar.b()) ? -1.0f : -1.0f);
+                        yVar.f53736c = Rating.newPercentageRating((i7 == 6 && yVar.b()) ? -1.0f : -1.0f);
                         break;
                     default:
                         rating = null;
@@ -130,25 +130,25 @@ public final class u {
                 }
                 bundle.putParcelable(str, rating);
             }
-            yVar.f53711c = Rating.newUnratedRating(i7);
+            yVar.f53736c = Rating.newUnratedRating(i7);
         }
-        rating = yVar.f53711c;
+        rating = yVar.f53736c;
         bundle.putParcelable(str, rating);
     }
 
     public void f(String str, String str2) {
-        Integer num = (Integer) i.f53663c.get(str);
+        Integer num = (Integer) i.f53688c.get(str);
         if (num != null && num.intValue() != 1) {
             throw new IllegalArgumentException(p0.p("The ", str, " key cannot be used to put a String"));
         }
-        ((Bundle) this.f53694a).putCharSequence(str, str2);
+        ((Bundle) this.f53719a).putCharSequence(str, str2);
     }
 
     public void g(CharSequence charSequence, String str) {
-        Integer num = (Integer) i.f53663c.get(str);
+        Integer num = (Integer) i.f53688c.get(str);
         if (num != null && num.intValue() != 1) {
             throw new IllegalArgumentException(p0.p("The ", str, " key cannot be used to put a CharSequence"));
         }
-        ((Bundle) this.f53694a).putCharSequence(str, charSequence);
+        ((Bundle) this.f53719a).putCharSequence(str, charSequence);
     }
 }

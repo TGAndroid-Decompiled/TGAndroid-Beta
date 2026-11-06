@@ -14,7 +14,7 @@ import j$.util.Objects;
 import org.telegram.messenger.hd;
 import org.telegram.messenger.qs;
 import org.telegram.ui.Components.FragmentContextView;
-import org.telegram.ui.Components.c21;
+import org.telegram.ui.Components.h21;
 import org.telegram.ui.Components.i00;
 import org.telegram.ui.SessionsActivity;
 import org.telegram.ui.Wallet.n9;
@@ -58,13 +58,13 @@ public final class m2 extends TextView {
             case 6:
                 super.draw(canvas);
                 z21 z21Var = (z21) this.f28299b;
-                org.telegram.ui.Components.voip.n nVar = z21Var.f52442c;
-                if (nVar.f39322g <= 1.0f) {
-                    SessionsActivity sessionsActivity = z21Var.f52444f;
+                org.telegram.ui.Components.voip.n nVar = z21Var.f52449c;
+                if (nVar.f39319g <= 1.0f) {
+                    SessionsActivity sessionsActivity = z21Var.f52451f;
                     if (sessionsActivity.V && sessionsActivity.W) {
                         RectF rectF2 = org.telegram.messenger.g0.P;
                         rectF2.set(0.0f, 0.0f, getWidth(), getHeight());
-                        nVar.f39321f = getMeasuredWidth();
+                        nVar.f39318f = getMeasuredWidth();
                         nVar.a(org.telegram.messenger.g0.L(8.0f), canvas, rectF2, null);
                         invalidate();
                         return;
@@ -112,10 +112,10 @@ public final class m2 extends TextView {
                 if (((org.telegram.ui.Components.voip.n) this.f28299b) == null) {
                     org.telegram.ui.Components.voip.n nVar = new org.telegram.ui.Components.voip.n();
                     this.f28299b = nVar;
-                    nVar.f39325k = false;
-                    nVar.f39327m = 2.0f;
+                    nVar.f39322k = false;
+                    nVar.f39324m = 2.0f;
                 }
-                ((org.telegram.ui.Components.voip.n) this.f28299b).f39321f = getMeasuredWidth();
+                ((org.telegram.ui.Components.voip.n) this.f28299b).f39318f = getMeasuredWidth();
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
                 ((org.telegram.ui.Components.voip.n) this.f28299b).a(org.telegram.messenger.g0.L(22.0f), canvas, rectF, null);
@@ -131,7 +131,7 @@ public final class m2 extends TextView {
                 return;
             case 9:
                 org.telegram.ui.Wallet.h6 h6Var = (org.telegram.ui.Wallet.h6) this.f28299b;
-                float e10 = h6Var.f42552g0.e(false, h6Var.f42549e0);
+                float e10 = h6Var.f42577g0.e(false, h6Var.f42574e0);
                 TextPaint paint2 = getPaint();
                 Objects.requireNonNull(paint2);
                 h6Var.c(e10, new org.telegram.ui.Wallet.e3(paint2, 3), new org.telegram.ui.Wallet.n(14, this, canvas));
@@ -191,7 +191,7 @@ public final class m2 extends TextView {
             case 3:
                 super.onMeasure(i7, i10);
                 if (hd.f22871a0) {
-                    ((c21) this.f28299b).f32382b.setPivotX(getMeasuredWidth());
+                    ((h21) this.f28299b).f34149b.setPivotX(getMeasuredWidth());
                     return;
                 }
                 return;
@@ -201,7 +201,7 @@ public final class m2 extends TextView {
                 return;
             case 11:
                 super.onMeasure(i7, i10);
-                ((org.telegram.ui.web.n1) this.f28299b).f51239c.setPivotY(getMeasuredHeight() / 2.0f);
+                ((org.telegram.ui.web.o1) this.f28299b).f51260c.setPivotY(getMeasuredHeight() / 2.0f);
                 return;
             default:
                 super.onMeasure(i7, i10);
@@ -214,7 +214,7 @@ public final class m2 extends TextView {
         switch (this.f28298a) {
             case 2:
                 super.onSizeChanged(i7, i10, i11, i12);
-                ((FragmentContextView) this.f28299b).O.f39321f = getWidth();
+                ((FragmentContextView) this.f28299b).O.f39318f = getWidth();
                 return;
             default:
                 super.onSizeChanged(i7, i10, i11, i12);

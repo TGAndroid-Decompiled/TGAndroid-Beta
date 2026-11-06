@@ -15,7 +15,7 @@ public final class e implements Runnable {
                 this.f26094b.notifyStateUpdate();
                 return;
             default:
-                GroupCallMessagesController.lambda$sendCallMessage$4(this.f26094b);
+                GroupCallMessagesController.c(this.f26094b);
                 return;
         }
     }

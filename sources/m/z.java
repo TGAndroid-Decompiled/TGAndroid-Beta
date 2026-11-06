@@ -32,7 +32,7 @@ public class z {
 
     public KeyListener a(KeyListener keyListener) {
         if (!(keyListener instanceof NumberKeyListener)) {
-            ((m4.d0) ((org.telegram.ui.Components.n) this.f19314c).f36166a).getClass();
+            ((m4.d0) ((org.telegram.ui.Components.n) this.f19314c).f36104a).getClass();
             if (keyListener instanceof t1.e) {
                 return keyListener;
             }
@@ -98,7 +98,7 @@ public class z {
             nVar.getClass();
             inputConnection = null;
         } else {
-            m4.d0 d0Var = (m4.d0) nVar.f36166a;
+            m4.d0 d0Var = (m4.d0) nVar.f36104a;
             d0Var.getClass();
             if (!(inputConnection instanceof t1.b)) {
                 inputConnection = new t1.b((EditText) d0Var.f19608a, inputConnection, editorInfo);
@@ -108,11 +108,11 @@ public class z {
     }
 
     public void d(boolean z9) {
-        t1.i iVar = (t1.i) ((m4.d0) ((org.telegram.ui.Components.n) this.f19314c).f36166a).f19609b;
-        if (iVar.f55253c != z9) {
-            if (iVar.f55252b != null) {
+        t1.i iVar = (t1.i) ((m4.d0) ((org.telegram.ui.Components.n) this.f19314c).f36104a).f19609b;
+        if (iVar.f55278c != z9) {
+            if (iVar.f55277b != null) {
                 androidx.emoji2.text.l a10 = androidx.emoji2.text.l.a();
-                t1.h hVar = iVar.f55252b;
+                t1.h hVar = iVar.f55277b;
                 a10.getClass();
                 ob.a(hVar, "initCallback cannot be null");
                 ReentrantReadWriteLock reentrantReadWriteLock = a10.f2310a;
@@ -123,9 +123,9 @@ public class z {
                     reentrantReadWriteLock.writeLock().unlock();
                 }
             }
-            iVar.f55253c = z9;
+            iVar.f55278c = z9;
             if (z9) {
-                t1.i.a(iVar.f55251a, androidx.emoji2.text.l.a().b());
+                t1.i.a(iVar.f55276a, androidx.emoji2.text.l.a().b());
             }
         }
     }

@@ -6,37 +6,37 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class qn implements RequestDelegate {
-    public final int f49251a;
-    public final go f49252b;
+    public final int f49278a;
+    public final go f49279b;
 
     public qn(go goVar, int i7) {
-        this.f49251a = i7;
-        this.f49252b = goVar;
+        this.f49278a = i7;
+        this.f49279b = goVar;
     }
 
     @Override
     public final void run(final TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f49251a) {
+        switch (this.f49278a) {
             case 0:
                 if (tLObject instanceof TLRPC.TL_boolTrue) {
-                    org.telegram.messenger.g0.h3(new rn(this.f49252b, 3));
+                    org.telegram.messenger.g0.h3(new rn(this.f49279b, 3));
                     return;
                 }
                 return;
             case 1:
-                final go goVar = this.f49252b;
+                final go goVar = this.f49279b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
                                 go goVar2 = goVar;
-                                ArrayList arrayList = goVar2.f46029f0;
-                                goVar2.f46025d0 = false;
+                                ArrayList arrayList = goVar2.f46056f0;
+                                goVar2.f46052d0 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && goVar2.getParentActivity() != null) {
                                     for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                                        goVar2.f46036n.removeView((View) arrayList.get(i7));
+                                        goVar2.f46063n.removeView((View) arrayList.get(i7));
                                     }
                                     arrayList.clear();
                                     TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
@@ -49,7 +49,7 @@ public final class qn implements RequestDelegate {
                                         }
                                         nVar.a(chat, z9);
                                         arrayList.add(nVar);
-                                        goVar2.f46047y.addView(nVar, c8.ha.o(-1, 72));
+                                        goVar2.f46074y.addView(nVar, c8.ha.o(-1, 72));
                                     }
                                     goVar2.h0();
                                     return;
@@ -66,7 +66,7 @@ public final class qn implements RequestDelegate {
                                         }
                                     }
                                 }
-                                goVar3.f46044s0 = false;
+                                goVar3.f46071s0 = false;
                                 org.telegram.messenger.g0.h3(new rn(goVar3, 4));
                                 return;
                         }
@@ -74,19 +74,19 @@ public final class qn implements RequestDelegate {
                 });
                 return;
             case 2:
-                final go goVar2 = this.f49252b;
+                final go goVar2 = this.f49279b;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
                     public final void run() {
                         switch (r3) {
                             case 0:
                                 go goVar22 = goVar2;
-                                ArrayList arrayList = goVar22.f46029f0;
-                                goVar22.f46025d0 = false;
+                                ArrayList arrayList = goVar22.f46056f0;
+                                goVar22.f46052d0 = false;
                                 TLObject tLObject2 = tLObject;
                                 if (tLObject2 != null && goVar22.getParentActivity() != null) {
                                     for (int i7 = 0; i7 < arrayList.size(); i7++) {
-                                        goVar22.f46036n.removeView((View) arrayList.get(i7));
+                                        goVar22.f46063n.removeView((View) arrayList.get(i7));
                                     }
                                     arrayList.clear();
                                     TLRPC.TL_messages_chats tL_messages_chats = (TLRPC.TL_messages_chats) tLObject2;
@@ -99,7 +99,7 @@ public final class qn implements RequestDelegate {
                                         }
                                         nVar.a(chat, z9);
                                         arrayList.add(nVar);
-                                        goVar22.f46047y.addView(nVar, c8.ha.o(-1, 72));
+                                        goVar22.f46074y.addView(nVar, c8.ha.o(-1, 72));
                                     }
                                     goVar22.h0();
                                     return;
@@ -116,7 +116,7 @@ public final class qn implements RequestDelegate {
                                         }
                                     }
                                 }
-                                goVar3.f46044s0 = false;
+                                goVar3.f46071s0 = false;
                                 org.telegram.messenger.g0.h3(new rn(goVar3, 4));
                                 return;
                         }
@@ -124,7 +124,7 @@ public final class qn implements RequestDelegate {
                 });
                 return;
             default:
-                org.telegram.messenger.g0.h3(new qf(21, this.f49252b, tL_error));
+                org.telegram.messenger.g0.h3(new qf(21, this.f49279b, tL_error));
                 return;
         }
     }

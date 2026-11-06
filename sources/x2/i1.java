@@ -6,19 +6,19 @@ import h9.t1;
 import java.util.Collections;
 import java.util.List;
 public final class i1 extends e2.l1 {
-    public static final Object f58231q = new Object();
-    public final long f58232e;
-    public final long f58233f;
-    public final long f58234g;
+    public static final Object f58256q = new Object();
+    public final long f58257e;
+    public final long f58258f;
+    public final long f58259g;
     public final long h;
-    public final long f58235i;
-    public final long f58236j;
-    public final boolean f58237k;
-    public final boolean f58238l;
-    public final boolean f58239m;
-    public final Object f58240n;
-    public final e2.l0 f58241o;
-    public final e2.f0 f58242p;
+    public final long f58260i;
+    public final long f58261j;
+    public final boolean f58262k;
+    public final boolean f58263l;
+    public final boolean f58264m;
+    public final Object f58265n;
+    public final e2.l0 f58266o;
+    public final e2.f0 f58267p;
 
     static {
         boolean z9;
@@ -50,24 +50,24 @@ public final class i1 extends e2.l1 {
     }
 
     public i1(long j3, long j10, long j11, long j12, long j13, long j14, boolean z9, boolean z10, boolean z11, qb.a aVar, e2.l0 l0Var, e2.f0 f0Var) {
-        this.f58232e = j3;
-        this.f58233f = j10;
-        this.f58234g = j11;
+        this.f58257e = j3;
+        this.f58258f = j10;
+        this.f58259g = j11;
         this.h = j12;
-        this.f58235i = j13;
-        this.f58236j = j14;
-        this.f58237k = z9;
-        this.f58238l = z10;
-        this.f58239m = z11;
-        this.f58240n = aVar;
+        this.f58260i = j13;
+        this.f58261j = j14;
+        this.f58262k = z9;
+        this.f58263l = z10;
+        this.f58264m = z11;
+        this.f58265n = aVar;
         l0Var.getClass();
-        this.f58241o = l0Var;
-        this.f58242p = f0Var;
+        this.f58266o = l0Var;
+        this.f58267p = f0Var;
     }
 
     @Override
     public final int b(Object obj) {
-        if (f58231q.equals(obj)) {
+        if (f58256q.equals(obj)) {
             return 0;
         }
         return -1;
@@ -78,14 +78,14 @@ public final class i1 extends e2.l1 {
         Object obj;
         ia.j(i7, 1);
         if (z9) {
-            obj = f58231q;
+            obj = f58256q;
         } else {
             obj = null;
         }
         Object obj2 = obj;
         i1Var.getClass();
         e2.c cVar = e2.c.f10190c;
-        i1Var.h(null, obj2, 0, this.f58234g, -this.f58235i, cVar, false);
+        i1Var.h(null, obj2, 0, this.f58259g, -this.f58260i, cVar, false);
         return i1Var;
     }
 
@@ -97,7 +97,7 @@ public final class i1 extends e2.l1 {
     @Override
     public final Object l(int i7) {
         ia.j(i7, 1);
-        return f58231q;
+        return f58256q;
     }
 
     @Override

@@ -75,11 +75,11 @@ public final class vy extends org.telegram.ui.Components.na {
 
     @Override
     public final void U0(org.telegram.ui.Components.rt0 rt0Var) {
-        org.telegram.ui.Components.pj0 pj0Var = this.f36328k1;
+        org.telegram.ui.Components.pj0 pj0Var = this.f36222k1;
         pj0Var.setOverScrollMode(2);
         pj0Var.setOnItemClickListener(new h(this, 11));
         v4.k kVar = new v4.k();
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.C = false;
         kVar.o(org.telegram.ui.Components.xq.h);
         kVar.n(350L);
@@ -94,7 +94,7 @@ public final class vy extends org.telegram.ui.Components.na {
         while (true) {
             voVar = this.Q1;
             int size = voVar.h.size();
-            f2Var = this.f36330o1;
+            f2Var = this.f36224o1;
             if (i7 >= size) {
                 break;
             }
@@ -152,7 +152,7 @@ public final class vy extends org.telegram.ui.Components.na {
         } else {
             i10 = 0;
         }
-        this.f36328k1.setPadding(L, 0, L2, i10);
+        this.f36222k1.setPadding(L, 0, L2, i10);
     }
 
     public final void h1(boolean z9) {
@@ -170,7 +170,7 @@ public final class vy extends org.telegram.ui.Components.na {
             arrayList2.add(new rg.a(8, false));
             for (int i7 = 0; i7 < arrayList3.size(); i7++) {
                 ?? aVar2 = new rg.a(7, false);
-                aVar2.f52370m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i7);
+                aVar2.f52377m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i7);
                 arrayList2.add(aVar2);
             }
         }
@@ -179,7 +179,7 @@ public final class vy extends org.telegram.ui.Components.na {
             if (z9) {
                 uyVar.E(arrayList, arrayList2);
             } else {
-                this.f36328k1.getAdapter().f();
+                this.f36222k1.getAdapter().f();
             }
         }
     }

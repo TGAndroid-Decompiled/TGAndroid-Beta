@@ -64,8 +64,8 @@ import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Cells.t0;
 import org.telegram.ui.Components.cj0;
 import org.telegram.ui.Components.dj0;
-import org.telegram.ui.Components.r31;
 import org.telegram.ui.Components.t4;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Wallet.v1;
 import org.telegram.ui.gl0;
 import v4.l0;
@@ -300,14 +300,14 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
         switch (this.f37a) {
             case 10:
                 y yVar = (y) this.f38b;
-                r31 r31Var = (r31) obj;
+                w31 w31Var = (w31) obj;
                 View view = (View) obj2;
                 Integer num = (Integer) number;
                 Float f10 = (Float) serializable;
                 Float f11 = (Float) serializable2;
                 z zVar = yVar.f5061r;
-                if (r31Var.G instanceof TL_stars.StarsTransaction) {
-                    dd.k1(yVar.getContext(), true, zVar.f5110b, z.p0(zVar), (TL_stars.StarsTransaction) r31Var.G, z.q0(zVar));
+                if (w31Var.G instanceof TL_stars.StarsTransaction) {
+                    dd.k1(yVar.getContext(), true, zVar.f5110b, z.p0(zVar), (TL_stars.StarsTransaction) w31Var.G, z.q0(zVar));
                     return;
                 } else if (yVar.h) {
                     yVar.h = false;
@@ -321,13 +321,13 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 return;
             default:
                 ad adVar = (ad) this.f38b;
-                r31 r31Var2 = (r31) obj;
+                w31 w31Var2 = (w31) obj;
                 View view2 = (View) obj2;
                 Integer num2 = (Integer) number;
                 Float f12 = (Float) serializable;
                 Float f13 = (Float) serializable2;
-                if (r31Var2.G instanceof TL_stars.StarsTransaction) {
-                    dd.k1(adVar.getContext(), false, 0L, adVar.f3470c, (TL_stars.StarsTransaction) r31Var2.G, adVar.f3469b);
+                if (w31Var2.G instanceof TL_stars.StarsTransaction) {
+                    dd.k1(adVar.getContext(), false, 0L, adVar.f3470c, (TL_stars.StarsTransaction) w31Var2.G, adVar.f3469b);
                     return;
                 }
                 return;
@@ -384,7 +384,7 @@ public final class c implements OnSuccessListener, p, Continuation, OnCompleteLi
                 r7Var.getClass();
                 if (!task.isSuccessful() && (exception = task.getException()) != null && !TextUtils.isEmpty(exception.getMessage()) && exception.getMessage().contains("FID_ALREADY_USED:")) {
                     Log.w("FirebaseMessaging", "FID_ALREADY_USED Detected. Retrying with FID cache clearing!");
-                    ((va.c) ((va.d) r7Var.d)).f57174c.b().delete();
+                    ((va.c) ((va.d) r7Var.d)).f57199c.b().delete();
                     return r7Var.C();
                 }
                 return task;

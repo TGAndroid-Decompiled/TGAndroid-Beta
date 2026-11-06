@@ -9,7 +9,7 @@ import org.telegram.messenger.hd;
 import org.telegram.messenger.ij;
 import org.telegram.messenger.qp;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.t31;
 public final class n3 {
     public boolean f29600a;
     public StaticLayout f29601b;
@@ -55,7 +55,7 @@ public final class n3 {
                 String format = String.format(M02, str3);
                 if (indexOf >= 0) {
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(format);
-                    spannableStringBuilder.setSpan(new o31(org.telegram.messenger.g0.o()), indexOf, str3.length() + indexOf, 33);
+                    spannableStringBuilder.setSpan(new t31(org.telegram.messenger.g0.o()), indexOf, str3.length() + indexOf, 33);
                     str2 = spannableStringBuilder;
                 } else {
                     str2 = format;

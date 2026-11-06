@@ -6,17 +6,17 @@ import android.text.TextWatcher;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
 public final class mk0 implements TextWatcher {
-    public boolean f47794a;
-    public String f47795b;
-    public boolean f47796c;
+    public boolean f47821a;
+    public String f47822b;
+    public boolean f47823c;
     public int d;
-    public int f47797e;
-    public boolean f47798f;
+    public int f47824e;
+    public boolean f47825f;
     public final char[] h = {',', '.', 1643, 12289, 11841, 65040, 65041, 65104, 65105, 65292, 65380, 699};
-    public final hl0 f47799n;
+    public final hl0 f47826n;
 
     public mk0(hl0 hl0Var) {
-        this.f47799n = hl0Var;
+        this.f47826n = hl0Var;
     }
 
     public final int a(String str) {
@@ -42,7 +42,7 @@ public final class mk0 implements TextWatcher {
         String str;
         String str2;
         String substring;
-        hl0 hl0Var = this.f47799n;
+        hl0 hl0Var = this.f47826n;
         if (hl0Var.m0) {
             return;
         }
@@ -52,7 +52,7 @@ public final class mk0 implements TextWatcher {
         } else {
             j3 = 0;
         }
-        String str3 = this.f47795b;
+        String str3 = this.f47822b;
         if (str3 == null) {
             str3 = org.telegram.messenger.hd.n(editable.toString());
         }
@@ -299,7 +299,7 @@ public final class mk0 implements TextWatcher {
         String o4 = a8.p0.o(longValue2, "");
         String str6 = "" + (i7 - 1);
         if (a10 > 0 && o4.length() > str6.length()) {
-            if (this.f47797e - a10 < o4.length()) {
+            if (this.f47824e - a10 < o4.length()) {
                 substring = o4.substring(0, str6.length());
             } else {
                 substring = o4.substring(o4.length() - str6.length());
@@ -315,36 +315,36 @@ public final class mk0 implements TextWatcher {
                 hl0Var.H0 = Long.valueOf(j10);
             }
         }
-        int selectionStart = hl0Var.f46401f[0].getSelectionStart();
+        int selectionStart = hl0Var.f46421f[0].getSelectionStart();
         hl0Var.m0 = true;
         if (hl0Var.H0.longValue() == 0) {
-            hl0Var.f46401f[0].setText("");
+            hl0Var.f46421f[0].setText("");
         } else {
-            EditTextBoldCursor editTextBoldCursor = hl0Var.f46401f[0];
+            EditTextBoldCursor editTextBoldCursor = hl0Var.f46421f[0];
             str5 = org.telegram.messenger.hd.E0().q(hl0Var.H0.longValue(), false, z9, true, hl0Var.C0.invoice.currency);
             editTextBoldCursor.setText(str5);
         }
-        if (j3 < hl0Var.H0.longValue() && j3 != 0 && this.f47794a && selectionStart >= 0) {
-            EditTextBoldCursor editTextBoldCursor2 = hl0Var.f46401f[0];
+        if (j3 < hl0Var.H0.longValue() && j3 != 0 && this.f47821a && selectionStart >= 0) {
+            EditTextBoldCursor editTextBoldCursor2 = hl0Var.f46421f[0];
             editTextBoldCursor2.setSelection(Math.min(selectionStart, editTextBoldCursor2.length()));
-        } else if (this.f47796c && this.d != hl0Var.f46401f[0].length()) {
-            EditTextBoldCursor editTextBoldCursor3 = hl0Var.f46401f[0];
+        } else if (this.f47823c && this.d != hl0Var.f46421f[0].length()) {
+            EditTextBoldCursor editTextBoldCursor3 = hl0Var.f46421f[0];
             editTextBoldCursor3.setSelection(Math.max(0, Math.min(selectionStart, editTextBoldCursor3.length())));
-        } else if (!this.f47798f && z9 && a10 >= 0) {
+        } else if (!this.f47825f && z9 && a10 >= 0) {
             int a11 = a(str5);
             if (a11 > 0) {
-                hl0Var.f46401f[0].setSelection(a11 + 1);
+                hl0Var.f46421f[0].setSelection(a11 + 1);
             } else {
-                EditTextBoldCursor editTextBoldCursor4 = hl0Var.f46401f[0];
+                EditTextBoldCursor editTextBoldCursor4 = hl0Var.f46421f[0];
                 editTextBoldCursor4.setSelection(editTextBoldCursor4.length());
             }
         } else {
-            EditTextBoldCursor editTextBoldCursor5 = hl0Var.f46401f[0];
+            EditTextBoldCursor editTextBoldCursor5 = hl0Var.f46421f[0];
             editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
         }
-        this.f47798f = z9;
+        this.f47825f = z9;
         hl0Var.R0();
-        this.f47795b = null;
+        this.f47822b = null;
         hl0Var.m0 = false;
     }
 
@@ -353,22 +353,22 @@ public final class mk0 implements TextWatcher {
         int length;
         boolean z9;
         String str;
-        if (!this.f47799n.m0) {
-            this.f47794a = !TextUtils.isEmpty(charSequence);
-            this.f47795b = null;
+        if (!this.f47826n.m0) {
+            this.f47821a = !TextUtils.isEmpty(charSequence);
+            this.f47822b = null;
             if (charSequence == null) {
                 length = 0;
             } else {
                 length = charSequence.length();
             }
             this.d = length;
-            this.f47797e = i7;
+            this.f47824e = i7;
             if (i10 == 1 && i11 == 0) {
                 z9 = true;
             } else {
                 z9 = false;
             }
-            this.f47796c = z9;
+            this.f47823c = z9;
             if (z9) {
                 String n10 = org.telegram.messenger.hd.n(charSequence);
                 char charAt = n10.charAt(i7);
@@ -381,7 +381,7 @@ public final class mk0 implements TextWatcher {
                 long longValue = Utilities.A(pf.b.d(str, false)).longValue();
                 if ((charAt >= '0' && charAt <= '9') || (str.length() != 0 && longValue == 0)) {
                     if (a10 > 0 && i7 > a10 && longValue == 0) {
-                        this.f47795b = n10.substring(0, a10 - 1);
+                        this.f47822b = n10.substring(0, a10 - 1);
                         return;
                     }
                     return;
@@ -391,7 +391,7 @@ public final class mk0 implements TextWatcher {
                     if (i12 >= 0) {
                         char charAt2 = n10.charAt(i12);
                         if (charAt2 >= '0' && charAt2 <= '9') {
-                            this.f47795b = n10.substring(0, i12) + n10.substring(i7);
+                            this.f47822b = n10.substring(0, i12) + n10.substring(i7);
                             return;
                         }
                         i7 = i12;

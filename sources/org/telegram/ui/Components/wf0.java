@@ -10,21 +10,21 @@ import android.os.Build;
 import android.util.DisplayMetrics;
 import android.widget.FrameLayout;
 public class wf0 extends FrameLayout {
-    public final Paint f39951a;
-    public final Path f39952b;
-    public final vf0 f39953c;
+    public final Paint f39958a;
+    public final Path f39959b;
+    public final vf0 f39960c;
     public float d;
-    public float f39954e;
-    public float f39955f;
+    public float f39961e;
+    public float f39962f;
     public boolean h;
-    public org.telegram.messenger.bs f39956n;
+    public org.telegram.messenger.bs f39963n;
 
     public wf0(Context context) {
         super(context);
         float f10;
         Paint paint = new Paint(1);
-        this.f39951a = paint;
-        this.f39952b = new Path();
+        this.f39958a = paint;
+        this.f39959b = new Path();
         paint.setColor(-16777216);
         if (Build.VERSION.SDK_INT >= 31 && org.telegram.messenger.iz.o() >= 1) {
             if (org.telegram.messenger.iz.o() == 2) {
@@ -32,9 +32,9 @@ public class wf0 extends FrameLayout {
             } else {
                 f10 = 1.5f;
             }
-            this.f39953c = new uf0(this, f10);
+            this.f39960c = new uf0(this, f10);
         } else {
-            this.f39953c = new tf0(this);
+            this.f39960c = new tf0(this);
         }
         setIntensity(15.0f);
         setBlurIntensity(0.0f);
@@ -54,13 +54,13 @@ public class wf0 extends FrameLayout {
             super.draw(canvas);
             return;
         }
-        this.f39953c.b(new ax(this, 13), canvas);
+        this.f39960c.b(new ax(this, 13), canvas);
     }
 
     public float getAvatarEndScale() {
         float min;
         int L;
-        org.telegram.messenger.bs bsVar = this.f39956n;
+        org.telegram.messenger.bs bsVar = this.f39963n;
         if (bsVar == null) {
             return 0.8f;
         }
@@ -68,14 +68,14 @@ public class wf0 extends FrameLayout {
             min = bsVar.f21692e.width() - org.telegram.messenger.g0.L(2.0f);
             L = org.telegram.messenger.g0.L(100.0f);
         } else {
-            min = Math.min(bsVar.f21692e.width(), this.f39956n.f21692e.height());
+            min = Math.min(bsVar.f21692e.width(), this.f39963n.f21692e.height());
             L = org.telegram.messenger.g0.L(100.0f);
         }
         return Math.min(0.8f, min / L);
     }
 
     public float getHiddenAvatarSizeDp() {
-        org.telegram.messenger.bs bsVar = this.f39956n;
+        org.telegram.messenger.bs bsVar = this.f39963n;
         if (bsVar != null && bsVar.f21691c) {
             return (bsVar.f21692e.width() * 0.5f) / org.telegram.messenger.g0.f22536p;
         }
@@ -161,27 +161,27 @@ public class wf0 extends FrameLayout {
                     } catch (Throwable th2) {
                         org.telegram.messenger.a8.e("Failed to parse notch info", th2);
                     }
-                    this.f39956n = bsVar;
+                    this.f39963n = bsVar;
                     if ((bsVar != null && bsVar.f21689a != 17) || getWidth() > getHeight()) {
-                        this.f39956n = null;
+                        this.f39963n = null;
                     }
-                    this.f39953c.d(i7, i10);
+                    this.f39960c.d(i7, i10);
                 }
             }
         }
         bsVar = null;
-        this.f39956n = bsVar;
+        this.f39963n = bsVar;
         if (bsVar != null) {
-            this.f39956n = null;
-            this.f39953c.d(i7, i10);
+            this.f39963n = null;
+            this.f39960c.d(i7, i10);
         }
-        this.f39956n = null;
-        this.f39953c.d(i7, i10);
+        this.f39963n = null;
+        this.f39960c.d(i7, i10);
     }
 
     public void setBlurIntensity(float f10) {
-        this.f39955f = f10;
-        this.f39953c.c(f10);
+        this.f39962f = f10;
+        this.f39960c.c(f10);
         invalidate();
     }
 
@@ -212,12 +212,12 @@ public class wf0 extends FrameLayout {
 
     public void setIntensity(float f10) {
         this.d = f10;
-        this.f39953c.a(f10);
+        this.f39960c.a(f10);
         invalidate();
     }
 
     public void setPullProgress(float f10) {
-        this.f39954e = f10;
+        this.f39961e = f10;
         invalidate();
     }
 }

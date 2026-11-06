@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.TextUtils;
 import java.util.ArrayList;
 import org.telegram.tgnet.ConnectionsManager;
-public abstract class u20 extends f41 {
+public abstract class u20 extends k41 {
     public final int P;
     public final ArrayList Q;
     public boolean R;
@@ -16,18 +16,18 @@ public abstract class u20 extends f41 {
     public boolean X;
     public int Y;
     public String Z;
-    public String f38500a0;
-    public int f38501b0;
-    public org.telegram.ui.q8 f38502c0;
-    public final boolean[] f38503d0;
+    public String f38479a0;
+    public int f38480b0;
+    public org.telegram.ui.q8 f38481c0;
+    public final boolean[] f38482d0;
 
     public u20(pj0 pj0Var, Context context, int i7) {
         super(pj0Var, context, i7, 0, false, null, null);
         this.Q = new ArrayList();
         this.V = 0;
         this.W = -1;
-        this.f38503d0 = new boolean[1];
-        this.f33475w = new d(this, 16);
+        this.f38482d0 = new boolean[1];
+        this.f35134w = new d(this, 16);
         this.P = i7;
     }
 
@@ -68,7 +68,7 @@ public abstract class u20 extends f41 {
             ConnectionsManager.getInstance(this.P).cancelRequest(this.W, true);
             this.W = -1;
         }
-        org.telegram.messenger.g0.r(this.f38502c0);
+        org.telegram.messenger.g0.r(this.f38481c0);
         this.V++;
         this.U = false;
     }
@@ -87,8 +87,8 @@ public abstract class u20 extends f41 {
 
     public final void Z(String str) {
         this.Z = str;
-        String Y = Y(str, this.f38503d0);
-        if (!TextUtils.equals(this.f38500a0, Y)) {
+        String Y = Y(str, this.f38482d0);
+        if (!TextUtils.equals(this.f38479a0, Y)) {
             this.Q.clear();
             this.X = false;
             this.Y = 0;
@@ -104,7 +104,7 @@ public abstract class u20 extends f41 {
         this.U = true;
         O(true);
         org.telegram.ui.q8 q8Var = new org.telegram.ui.q8(this, i7, Y);
-        this.f38502c0 = q8Var;
+        this.f38481c0 = q8Var;
         org.telegram.messenger.g0.i3(q8Var, 300L);
     }
 }

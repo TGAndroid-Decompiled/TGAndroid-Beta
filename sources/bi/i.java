@@ -27,7 +27,7 @@ import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.c40;
 import org.telegram.ui.la1;
-import org.telegram.ui.qv0;
+import org.telegram.ui.rv0;
 import org.telegram.ui.ww;
 public final class i implements la1, org.telegram.ui.ActionBar.r1, org.telegram.messenger.lc, cj0, dp, w5.b, v5.e, ua.a {
     public final int f4018a;
@@ -44,7 +44,7 @@ public final class i implements la1, org.telegram.ui.ActionBar.r1, org.telegram.
 
     @Override
     public void a(boolean z9, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        org.telegram.messenger.g0.h3(new o((qv0) this.f4020c, this.f4019b, tL_chatAdminRights, str, z9, (ww) this.d));
+        org.telegram.messenger.g0.h3(new o((rv0) this.f4020c, this.f4019b, tL_chatAdminRights, str, z9, (ww) this.d));
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class i implements la1, org.telegram.ui.ActionBar.r1, org.telegram.
         boolean z9;
         String str = (String) this.f4020c;
         SQLiteDatabase sQLiteDatabase = (SQLiteDatabase) obj;
-        int i7 = ((r5.c) this.d).f54296a;
+        int i7 = ((r5.c) this.d).f54321a;
         Cursor rawQuery = sQLiteDatabase.rawQuery("SELECT 1 FROM log_event_dropped WHERE log_source = ? AND reason = ?", new String[]{str, Integer.toString(i7)});
         try {
             if (rawQuery.getCount() > 0) {
@@ -150,7 +150,7 @@ public final class i implements la1, org.telegram.ui.ActionBar.r1, org.telegram.
             case 4:
             default:
                 c40 c40Var = (c40) this.f4020c;
-                qp.s1(c40Var.f44565k1.f21723a).n(c40Var.l1(), (TLRPC.User) this.d, null, (org.telegram.ui.ActionBar.f2) c40Var.Z1.M().getFragmentStack().get(c40Var.Z1.M().getFragmentStack().size() - 1), new r3(c40Var, this.f4019b, 26));
+                qp.s1(c40Var.f44586k1.f21723a).n(c40Var.l1(), (TLRPC.User) this.d, null, (org.telegram.ui.ActionBar.f2) c40Var.Z1.M().getFragmentStack().get(c40Var.Z1.M().getFragmentStack().size() - 1), new r3(c40Var, this.f4019b, 26));
                 return;
             case 5:
                 tq tqVar = (tq) this.f4020c;

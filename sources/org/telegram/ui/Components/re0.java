@@ -19,14 +19,14 @@ public final class re0 extends org.telegram.ui.Cells.z implements im0, org.teleg
     public int I;
     public int J;
     public int K;
-    public boolean f37716f;
+    public boolean f37659f;
     public org.telegram.messenger.ij h;
-    public int f37717n;
-    public TextPaint f37718r;
-    public jm0 f37719s;
-    public bg0 f37720w;
-    public int f37721x;
-    public int f37722y;
+    public int f37660n;
+    public TextPaint f37661r;
+    public jm0 f37662s;
+    public bg0 f37663w;
+    public int f37664x;
+    public int f37665y;
 
     @Override
     public final void C(boolean z9) {
@@ -59,7 +59,7 @@ public final class re0 extends org.telegram.ui.Cells.z implements im0, org.teleg
 
     @Override
     public final void i(long j3, long j10) {
-        this.f37720w.a(Math.min(1.0f, ((float) j3) / ((float) j10)));
+        this.f37663w.a(Math.min(1.0f, ((float) j3) / ((float) j10)));
         if (this.D != 3) {
             v();
         }
@@ -69,13 +69,13 @@ public final class re0 extends org.telegram.ui.Cells.z implements im0, org.teleg
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        org.telegram.messenger.z5.q(this.f37717n).v(this);
+        org.telegram.messenger.z5.q(this.f37660n).v(this);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.h != null) {
-            if (!this.f37716f) {
+            if (!this.f37659f) {
                 requestLayout();
                 return;
             }
@@ -102,20 +102,20 @@ public final class re0 extends org.telegram.ui.Cells.z implements im0, org.teleg
             canvas.save();
             int i11 = this.D;
             if (i11 != 0 && i11 != 1) {
-                canvas.translate(org.telegram.messenger.g0.L(12.0f) + this.f37721x, this.f37722y);
-                bg0 bg0Var = this.f37720w;
-                float f10 = bg0Var.f32148e / 2;
-                float f11 = bg0Var.f32149f / 2.0f;
-                canvas.drawRect(0.0f, f10 - f11, bg0Var.d, f11 + f10, bg0Var.f32145a);
-                float f12 = bg0Var.f32148e / 2;
-                canvas.drawRect(0.0f, f12 - f11, bg0Var.f32147c * bg0Var.d, f11 + f12, bg0Var.f32146b);
+                canvas.translate(org.telegram.messenger.g0.L(12.0f) + this.f37664x, this.f37665y);
+                bg0 bg0Var = this.f37663w;
+                float f10 = bg0Var.f32142e / 2;
+                float f11 = bg0Var.f32143f / 2.0f;
+                canvas.drawRect(0.0f, f10 - f11, bg0Var.d, f11 + f10, bg0Var.f32139a);
+                float f12 = bg0Var.f32142e / 2;
+                canvas.drawRect(0.0f, f12 - f11, bg0Var.f32141c * bg0Var.d, f11 + f12, bg0Var.f32140b);
             } else {
-                canvas.translate(this.f37721x, this.f37722y);
-                this.f37719s.b(canvas);
+                canvas.translate(this.f37664x, this.f37665y);
+                this.f37662s.b(canvas);
             }
             canvas.restore();
             int i12 = this.D;
-            this.f37718r.setColor(-6182221);
+            this.f37661r.setColor(-6182221);
             Drawable drawable = org.telegram.ui.ActionBar.k6.U4[i12][this.G];
             int L = org.telegram.messenger.g0.L(36.0f);
             org.telegram.ui.Cells.z.s(((L - drawable.getIntrinsicWidth()) / 2) + this.E, ((L - drawable.getIntrinsicHeight()) / 2) + this.F, drawable);
@@ -129,21 +129,21 @@ public final class re0 extends org.telegram.ui.Cells.z implements im0, org.teleg
 
     @Override
     public final void onLayout(boolean z9, int i7, int i10, int i11, int i12) {
-        bg0 bg0Var = this.f37720w;
+        bg0 bg0Var = this.f37663w;
         if (this.h != null) {
-            this.f37721x = org.telegram.messenger.g0.L(54.0f);
+            this.f37664x = org.telegram.messenger.g0.L(54.0f);
             this.E = org.telegram.messenger.g0.L(10.0f);
             this.I = (getMeasuredWidth() - this.J) - org.telegram.messenger.g0.L(16.0f);
-            this.f37719s.i((getMeasuredWidth() - org.telegram.messenger.g0.L(70.0f)) - this.J, org.telegram.messenger.g0.L(30.0f));
+            this.f37662s.i((getMeasuredWidth() - org.telegram.messenger.g0.L(70.0f)) - this.J, org.telegram.messenger.g0.L(30.0f));
             bg0Var.d = (getMeasuredWidth() - org.telegram.messenger.g0.L(94.0f)) - this.J;
-            bg0Var.f32148e = org.telegram.messenger.g0.L(30.0f);
-            this.f37722y = org.telegram.messenger.g0.L(13.0f);
+            bg0Var.f32142e = org.telegram.messenger.g0.L(30.0f);
+            this.f37665y = org.telegram.messenger.g0.L(13.0f);
             this.F = org.telegram.messenger.g0.L(10.0f);
             w();
-            if (!z9 && this.f37716f) {
+            if (!z9 && this.f37659f) {
                 return;
             }
-            this.f37716f = true;
+            this.f37659f = true;
         }
     }
 
@@ -159,18 +159,18 @@ public final class re0 extends org.telegram.ui.Cells.z implements im0, org.teleg
 
     public void setMessageObject(org.telegram.messenger.ij ijVar) {
         if (this.h != ijVar) {
-            this.f37717n = ijVar.I1;
-            jm0 jm0Var = this.f37719s;
+            this.f37660n = ijVar.I1;
+            jm0 jm0Var = this.f37662s;
             int i7 = org.telegram.ui.ActionBar.k6.f27947ie;
             int x02 = org.telegram.ui.ActionBar.k6.x0(null, i7, false);
             int x03 = org.telegram.ui.ActionBar.k6.x0(null, i7, false);
             int i10 = org.telegram.ui.ActionBar.k6.le;
             jm0Var.g(x02, x03, org.telegram.ui.ActionBar.k6.x0(null, i10, false), org.telegram.ui.ActionBar.k6.x0(null, i10, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27984ke, false));
-            bg0 bg0Var = this.f37720w;
-            bg0Var.f32145a.setColor(-2497813);
-            bg0Var.f32146b.setColor(-7944712);
+            bg0 bg0Var = this.f37663w;
+            bg0Var.f32139a.setColor(-2497813);
+            bg0Var.f32140b.setColor(-7944712);
             this.h = ijVar;
-            this.f37716f = false;
+            this.f37659f = false;
             requestLayout();
         }
         v();
@@ -179,7 +179,7 @@ public final class re0 extends org.telegram.ui.Cells.z implements im0, org.teleg
     @Override
     public final void updateColors() {
         try {
-            jm0 jm0Var = this.f37719s;
+            jm0 jm0Var = this.f37662s;
             if (jm0Var != null && this.h != null) {
                 int i7 = org.telegram.ui.ActionBar.k6.f27947ie;
                 int x02 = org.telegram.ui.ActionBar.k6.x0(null, i7, false);
@@ -194,11 +194,11 @@ public final class re0 extends org.telegram.ui.Cells.z implements im0, org.teleg
     }
 
     public final void v() {
-        bg0 bg0Var = this.f37720w;
+        bg0 bg0Var = this.f37663w;
         String S0 = this.h.S0();
-        org.telegram.messenger.w7.G(this.f37717n);
+        org.telegram.messenger.w7.G(this.f37660n);
         if (org.telegram.messenger.w7.N(this.h.f23237k, false, true).exists()) {
-            org.telegram.messenger.z5.q(this.f37717n).v(this);
+            org.telegram.messenger.z5.q(this.f37660n).v(this);
             boolean I = MediaController.B().I(this.h);
             if (I && (!I || !MediaController.B().H())) {
                 this.D = 1;
@@ -207,8 +207,8 @@ public final class re0 extends org.telegram.ui.Cells.z implements im0, org.teleg
             }
             bg0Var.a(0.0f);
         } else {
-            org.telegram.messenger.z5.q(this.f37717n).a(S0, null, this);
-            if (!org.telegram.messenger.w7.G(this.f37717n).T(S0)) {
+            org.telegram.messenger.z5.q(this.f37660n).a(S0, null, this);
+            if (!org.telegram.messenger.w7.G(this.f37660n).T(S0)) {
                 this.D = 2;
                 bg0Var.a(0.0f);
             } else {
@@ -226,13 +226,13 @@ public final class re0 extends org.telegram.ui.Cells.z implements im0, org.teleg
 
     public final void w() {
         int i7;
-        TextPaint textPaint = this.f37718r;
+        TextPaint textPaint = this.f37661r;
         org.telegram.messenger.ij ijVar = this.h;
         if (ijVar == null) {
             return;
         }
-        jm0 jm0Var = this.f37719s;
-        if (!jm0Var.f35015e) {
+        jm0 jm0Var = this.f37662s;
+        if (!jm0Var.f34976e) {
             jm0Var.h(ijVar.f23197b0);
         }
         if (!MediaController.B().I(this.h)) {

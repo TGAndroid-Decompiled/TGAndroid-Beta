@@ -5,15 +5,15 @@ import android.text.TextUtils;
 import android.view.View;
 import java.util.ArrayList;
 public final class j implements View.OnLongClickListener {
-    public final int f34838a;
-    public final Object f34839b;
-    public final Object f34840c;
+    public final int f34801a;
+    public final Object f34802b;
+    public final Object f34803c;
     public final Object d;
 
     public j(Object obj, Object obj2, Object obj3, int i7) {
-        this.f34838a = i7;
-        this.f34839b = obj;
-        this.f34840c = obj2;
+        this.f34801a = i7;
+        this.f34802b = obj;
+        this.f34803c = obj2;
         this.d = obj3;
     }
 
@@ -23,23 +23,23 @@ public final class j implements View.OnLongClickListener {
         int i7;
         xe xeVar;
         boolean z10;
-        int i10 = this.f34838a;
+        int i10 = this.f34801a;
         Object obj = this.d;
-        Object obj2 = this.f34840c;
-        Object obj3 = this.f34839b;
+        Object obj2 = this.f34803c;
+        Object obj3 = this.f34802b;
         switch (i10) {
             case 0:
                 g0 g0Var = (g0) obj3;
                 org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) obj2;
                 Context context = (Context) obj;
-                if (g0Var.f33735e2) {
+                if (g0Var.f33679e2) {
                     return false;
                 }
-                if (g0Var.f33737g2 != null) {
+                if (g0Var.f33681g2 != null) {
                     if (g0Var.l1() == null) {
                         return false;
                     }
-                } else if (g0Var.f33736f2 == null || g0Var.m1() == null) {
+                } else if (g0Var.f33680f2 == null || g0Var.m1() == null) {
                     return false;
                 }
                 if (g0Var.d2 == org.telegram.messenger.p10.i(g0Var.f28612a).e()) {
@@ -47,7 +47,7 @@ public final class j implements View.OnLongClickListener {
                 } else {
                     z9 = false;
                 }
-                k60 F = k60.F(g0Var.f28618c, f6Var, g0Var.f33754x2);
+                k60 F = k60.F(g0Var.f28618c, f6Var, g0Var.f33698x2);
                 F.l(2131231508, org.telegram.messenger.hd.M0(2131745584, null), new a(g0Var, 4), !z9);
                 if (z9) {
                     i7 = 2131745515;
@@ -73,7 +73,7 @@ public final class j implements View.OnLongClickListener {
                     return false;
                 }
                 org.telegram.ui.bg0 bg0Var = new org.telegram.ui.bg0(chatActivityEnterView.getContext(), f6Var2);
-                bg0Var.f44311g0 = true;
+                bg0Var.f44327g0 = true;
                 ArrayList arrayList = new ArrayList();
                 if (djVar != null) {
                     ArrayList arrayList2 = djVar.d;

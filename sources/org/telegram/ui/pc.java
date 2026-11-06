@@ -10,29 +10,29 @@ import java.util.HashMap;
 import java.util.HashSet;
 import org.telegram.tgnet.TLRPC;
 public final class pc extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final int f48781a;
-    public final org.telegram.ui.ActionBar.f6 f48782b;
-    public final ArrayList f48783c;
+    public final int f48776a;
+    public final org.telegram.ui.ActionBar.f6 f48777b;
+    public final ArrayList f48778c;
     public final e61 d;
-    public final org.telegram.ui.Components.lz f48784e;
-    public boolean f48785f;
+    public final org.telegram.ui.Components.lz f48779e;
+    public boolean f48780f;
     public final nc h;
-    public boolean f48786n;
-    public org.telegram.messenger.c20 f48787r;
-    public String f48788s;
-    public TLRPC.WallPaper f48789w;
-    public final HashMap f48790x;
-    public final HashMap f48791y;
+    public boolean f48781n;
+    public org.telegram.messenger.c20 f48782r;
+    public String f48783s;
+    public TLRPC.WallPaper f48784w;
+    public final HashMap f48785x;
+    public final HashMap f48786y;
 
     public pc(int i7, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
         super(activity);
-        this.f48783c = new ArrayList();
-        this.f48790x = new HashMap();
-        this.f48791y = new HashMap();
-        this.f48781a = i7;
-        this.f48782b = f6Var;
+        this.f48778c = new ArrayList();
+        this.f48785x = new HashMap();
+        this.f48786y = new HashMap();
+        this.f48776a = i7;
+        this.f48777b = f6Var;
         org.telegram.ui.Components.lz lzVar = new org.telegram.ui.Components.lz(getContext(), f6Var);
-        this.f48784e = lzVar;
+        this.f48779e = lzVar;
         lzVar.setViewType(14);
         lzVar.setVisibility(0);
         addView(lzVar, c8.ha.d(-1, 104.0f, 8388611, 16.0f, 13.0f, 16.0f, 6.0f));
@@ -56,7 +56,7 @@ public final class pc extends FrameLayout implements org.telegram.ui.ActionBar.a
         f10.l(true);
         f10.l(false);
         f10.q(new oc(this, i7), true);
-        if (!this.f48786n) {
+        if (!this.f48781n) {
             org.telegram.messenger.g0.Z3(lzVar, true, 1.0f, true, false);
         } else {
             org.telegram.messenger.g0.Z3(lzVar, false, 1.0f, true, false);
@@ -66,17 +66,17 @@ public final class pc extends FrameLayout implements org.telegram.ui.ActionBar.a
     public final void a(String str, boolean z9) {
         ArrayList arrayList;
         int R;
-        this.f48788s = str;
+        this.f48783s = str;
         int i7 = -1;
         int i10 = 0;
         while (true) {
-            arrayList = this.f48783c;
+            arrayList = this.f48778c;
             boolean z10 = true;
             if (i10 >= arrayList.size()) {
                 break;
             }
             org.telegram.ui.Components.uo uoVar = (org.telegram.ui.Components.uo) arrayList.get(i10);
-            if (!TextUtils.equals(this.f48788s, uoVar.a()) && (!TextUtils.isEmpty(str) || !uoVar.f38697a.f28455a)) {
+            if (!TextUtils.equals(this.f48783s, uoVar.a()) && (!TextUtils.isEmpty(str) || !uoVar.f38688a.f28455a)) {
                 z10 = false;
             }
             uoVar.d = z10;
@@ -103,30 +103,30 @@ public final class pc extends FrameLayout implements org.telegram.ui.ActionBar.a
     }
 
     public void setGalleryWallpaper(TLRPC.WallPaper wallPaper) {
-        this.f48789w = wallPaper;
+        this.f48784w = wallPaper;
         org.telegram.messenger.g0.d0(this.d, new lc(this, 1));
-        if (this.f48789w != null) {
-            ArrayList arrayList = this.f48783c;
-            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.uo) arrayList.get(0)).f38697a.f28455a) && this.f48785f) {
-                arrayList.add(0, new org.telegram.ui.Components.uo(org.telegram.ui.ActionBar.r3.a(this.f48781a)));
+        if (this.f48784w != null) {
+            ArrayList arrayList = this.f48778c;
+            if ((arrayList.isEmpty() || ((org.telegram.ui.Components.uo) arrayList.get(0)).f38688a.f28455a) && this.f48780f) {
+                arrayList.add(0, new org.telegram.ui.Components.uo(org.telegram.ui.ActionBar.r3.a(this.f48776a)));
                 this.h.f();
             }
         }
     }
 
     public void setOnEmoticonSelected(org.telegram.messenger.c20 c20Var) {
-        this.f48787r = c20Var;
+        this.f48782r = c20Var;
     }
 
     public void setWithRemovedStub(boolean z9) {
-        this.f48785f = z9;
+        this.f48780f = z9;
     }
 
     @Override
     public final void updateColors() {
         ?? r02;
         nc ncVar;
-        org.telegram.ui.ActionBar.f6 f6Var = this.f48782b;
+        org.telegram.ui.ActionBar.f6 f6Var = this.f48777b;
         if (f6Var != null) {
             r02 = f6Var.a();
         } else {
@@ -135,13 +135,13 @@ public final class pc extends FrameLayout implements org.telegram.ui.ActionBar.a
         int i7 = 0;
         boolean z9 = false;
         while (true) {
-            ArrayList arrayList = this.f48783c;
+            ArrayList arrayList = this.f48778c;
             if (i7 >= arrayList.size()) {
                 break;
             }
             org.telegram.ui.Components.uo uoVar = (org.telegram.ui.Components.uo) arrayList.get(i7);
-            if (uoVar.f38699c != r02) {
-                uoVar.f38699c = r02;
+            if (uoVar.f38690c != r02) {
+                uoVar.f38690c = r02;
                 z9 = true;
             }
             i7++;

@@ -18,7 +18,7 @@ public final class fm extends org.telegram.ui.Components.mo0 {
     @Override
     public final void K() {
         int i7;
-        an anVar = this.S2.f47534a;
+        an anVar = this.S2.f47561a;
         Activity parentActivity = anVar.getParentActivity();
         i7 = ((org.telegram.ui.ActionBar.f2) anVar).classGuid;
         org.telegram.messenger.g0.a3(parentActivity, i7);
@@ -31,25 +31,25 @@ public final class fm extends org.telegram.ui.Components.mo0 {
     @Override
     public final void R0(a0.h hVar, int i7, TLRPC.TL_forumTopic tL_forumTopic, boolean z9) {
         lm lmVar = this.S2;
-        an anVar = lmVar.f47534a;
-        int i10 = an.f43682id;
+        an anVar = lmVar.f47561a;
+        int i10 = an.f43707id;
         anVar.f8();
-        if (lmVar.f47534a.M3 != null && z9) {
+        if (lmVar.f47561a.M3 != null && z9) {
             if (hVar.m() == 1) {
-                if (((TLRPC.Dialog) hVar.n(0)).f26956id != lmVar.f47534a.getUserConfig().e() || !org.telegram.ui.Components.hc.a0(lmVar.f47534a).g0(i7, ((TLRPC.Dialog) hVar.n(0)).f26956id)) {
-                    lmVar.f47534a.M3.k(((TLRPC.Dialog) hVar.n(0)).f26956id, 53, Integer.valueOf(i7), tL_forumTopic, null, null);
+                if (((TLRPC.Dialog) hVar.n(0)).f26956id != lmVar.f47561a.getUserConfig().e() || !org.telegram.ui.Components.hc.a0(lmVar.f47561a).g0(i7, ((TLRPC.Dialog) hVar.n(0)).f26956id)) {
+                    lmVar.f47561a.M3.k(((TLRPC.Dialog) hVar.n(0)).f26956id, 53, Integer.valueOf(i7), tL_forumTopic, null, null);
                     return;
                 }
                 return;
             }
-            lmVar.f47534a.M3.k(0L, 53, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
+            lmVar.f47561a.M3.k(0L, 53, Integer.valueOf(i7), Integer.valueOf(hVar.m()), null, null);
         }
     }
 
     @Override
     public final void S0(final View view) {
         fi.oa oaVar;
-        an anVar = this.S2.f47534a;
+        an anVar = this.S2.f47561a;
         org.telegram.messenger.dj djVar = null;
         if (view instanceof org.telegram.ui.Cells.d7) {
             oaVar = fi.qa.b((org.telegram.ui.Cells.d7) view);

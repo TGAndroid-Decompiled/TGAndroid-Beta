@@ -9,7 +9,7 @@ import org.telegram.messenger.hd;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.pa0;
 public final class v0 implements a20, org.telegram.ui.ActionBar.r1 {
     public final int f17558a;
@@ -46,13 +46,13 @@ public final class v0 implements a20, org.telegram.ui.ActionBar.r1 {
     @Override
     public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
         a1 a1Var = this.f17559b;
-        r31 r31Var = (r31) obj;
+        w31 w31Var = (w31) obj;
         View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
-        int i7 = r31Var.d;
-        if (i7 != 1 && r31Var.f37591c != a1Var.f17302f) {
+        int i7 = w31Var.d;
+        if (i7 != 1 && w31Var.f39823c != a1Var.f17302f) {
             if (i7 == 2) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(a1Var.getParentActivity());
                 alertDialog$Builder.f27292a.R = hd.M0(2131752694, null);
@@ -61,9 +61,9 @@ public final class v0 implements a20, org.telegram.ui.ActionBar.r1 {
                 alertDialog$Builder.h(hd.M0(2131752589, null), null);
                 a1Var.showDialog(alertDialog$Builder.f27292a);
             }
-        } else if (a1Var.f17307x != null && r31Var.f37591c != a1Var.f17302f) {
+        } else if (a1Var.f17307x != null && w31Var.f39823c != a1Var.f17302f) {
             a1Var.f17307x = null;
-            a1Var.f17298a.f35167f3.O(true);
+            a1Var.f17298a.f36781f3.O(true);
         } else {
             pa0 pa0Var = new pa0(8);
             if (a1Var.f17307x != null) {

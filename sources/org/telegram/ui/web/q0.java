@@ -13,12 +13,12 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.m5;
 public final class q0 extends WebViewClient {
-    public final WebView f51269a;
-    public final r0 f51270b;
+    public final WebView f51279a;
+    public final r0 f51280b;
 
     public q0(r0 r0Var, WebView webView) {
-        this.f51270b = r0Var;
-        this.f51269a = webView;
+        this.f51280b = r0Var;
+        this.f51279a = webView;
     }
 
     @Override
@@ -26,7 +26,7 @@ public final class q0 extends WebViewClient {
         f6 f6Var;
         Integer valueOf;
         Boolean valueOf2;
-        u0 u0Var = this.f51270b.f51281e;
+        u0 u0Var = this.f51280b.f51292e;
         if (Build.VERSION.SDK_INT >= 26) {
             StringBuilder sb2 = new StringBuilder("newWebView.onRenderProcessGone priority=");
             if (renderProcessGoneDetail == null) {
@@ -55,7 +55,7 @@ public final class q0 extends WebViewClient {
             if (x0Var == null) {
                 f6Var = null;
             } else {
-                f6Var = x0Var.f51355e;
+                f6Var = x0Var.f51365e;
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, context, f6Var);
             org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
@@ -73,10 +73,10 @@ public final class q0 extends WebViewClient {
 
     @Override
     public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        x0 x0Var = this.f51270b.f51281e.Q;
+        x0 x0Var = this.f51280b.f51292e.Q;
         if (x0Var != null) {
-            x0Var.H(Uri.parse(str), null, !x0Var.f51367o0, false, false);
-            this.f51269a.destroy();
+            x0Var.H(Uri.parse(str), null, !x0Var.f51377o0, false, false);
+            this.f51279a.destroy();
         }
         return true;
     }

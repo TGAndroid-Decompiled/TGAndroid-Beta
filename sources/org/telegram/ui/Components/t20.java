@@ -7,25 +7,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 public final class t20 extends FrameLayout {
-    public final int f38236a;
-    public final org.telegram.ui.ActionBar.f6 f38237b;
-    public ArrayList f38238c;
+    public final int f38195a;
+    public final org.telegram.ui.ActionBar.f6 f38196b;
+    public ArrayList f38197c;
     public final FrameLayout d;
-    public final k41 f38239e;
-    public final f41 f38240f;
+    public final p41 f38198e;
+    public final k41 f38199f;
     public org.telegram.messenger.c20 h;
 
     public t20(int i7, Activity activity, org.telegram.ui.ActionBar.f6 f6Var) {
         super(activity);
-        this.f38236a = i7;
-        this.f38237b = f6Var;
-        k41 k41Var = new k41(activity, i7, 0, false, new d(this, 15), new s20(this), new s20(this), f6Var);
-        this.f38239e = k41Var;
-        k41Var.setClipToPadding(false);
-        f41 f41Var = (f41) k41Var.getAdapter();
-        this.f38240f = f41Var;
-        f41Var.f33473r = false;
-        addView(k41Var, -1, -1);
+        this.f38195a = i7;
+        this.f38196b = f6Var;
+        p41 p41Var = new p41(activity, i7, 0, false, new d(this, 15), new s20(this), new s20(this), f6Var);
+        this.f38198e = p41Var;
+        p41Var.setClipToPadding(false);
+        k41 k41Var = (k41) p41Var.getAdapter();
+        this.f38199f = k41Var;
+        k41Var.f35132r = false;
+        addView(p41Var, -1, -1);
         FrameLayout frameLayout = new FrameLayout(activity);
         this.d = frameLayout;
         ImageView imageView = new ImageView(activity);
@@ -40,7 +40,7 @@ public final class t20 extends FrameLayout {
         textView.setGravity(17);
         frameLayout.addView(textView, c8.ha.d(-2, -2.0f, 81, 0.0f, 56.0f, 0.0f, 0.0f));
         addView(frameLayout, c8.ha.e(210, -2, 17));
-        k41Var.setEmptyView(frameLayout);
+        p41Var.setEmptyView(frameLayout);
     }
 
     public void setOnHashtagClickListener(org.telegram.messenger.c20 c20Var) {
@@ -48,6 +48,6 @@ public final class t20 extends FrameLayout {
     }
 
     public void setOnScrollListener(v4.s0 s0Var) {
-        this.f38239e.j(s0Var);
+        this.f38198e.j(s0Var);
     }
 }

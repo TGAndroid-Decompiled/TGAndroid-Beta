@@ -2,18 +2,18 @@ package org.telegram.ui.Components;
 
 import java.util.Locale;
 public final class cg0 implements db0, fb0 {
-    public final int f32564a;
-    public final hg0 f32565b;
+    public final int f32568a;
+    public final hg0 f32569b;
 
     public cg0(hg0 hg0Var, int i7) {
-        this.f32564a = i7;
-        this.f32565b = hg0Var;
+        this.f32568a = i7;
+        this.f32569b = hg0Var;
     }
 
     @Override
     public String h(int i7) {
-        int i10 = this.f32564a;
-        hg0 hg0Var = this.f32565b;
+        int i10 = this.f32568a;
+        hg0 hg0Var = this.f32569b;
         switch (i10) {
             case 0:
                 if (hg0Var.O) {
@@ -43,7 +43,7 @@ public final class cg0 implements db0, fb0 {
 
     @Override
     public void n(hb0 hb0Var, int i7) {
-        hg0 hg0Var = this.f32565b;
+        hg0 hg0Var = this.f32569b;
         try {
             hg0Var.performHapticFeedback(3, 2);
         } catch (Exception unused) {

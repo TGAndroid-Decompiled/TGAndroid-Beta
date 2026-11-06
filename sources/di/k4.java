@@ -48,7 +48,7 @@ public final class k4 {
         imageReceiver.J0(org.telegram.messenger.g0.L(200.0f));
         imageReceiver.H0(profileStoriesView);
         this.f9295l = storyItem.media instanceof TLRPC.TL_messageMediaVideoStream;
-        if (profileStoriesView.f41979y) {
+        if (profileStoriesView.f42004y) {
             imageReceiver.P();
         }
         e10[] e10VarArr = r7.f9704a;

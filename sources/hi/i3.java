@@ -118,7 +118,7 @@ public final class i3 implements View.OnClickListener {
                                             i10 = 2131744288;
                                         }
                                         cc I = a02.I(2131623989, org.telegram.messenger.hd.M0(i10, null), tL_messages_editChatParticipantRank2.rank);
-                                        gb gbVar = I.f32519e;
+                                        gb gbVar = I.f32523e;
                                         if (gbVar.getLayoutParams() instanceof FrameLayout.LayoutParams) {
                                             ((FrameLayout.LayoutParams) gbVar.getLayoutParams()).width = -2;
                                             ((FrameLayout.LayoutParams) gbVar.getLayoutParams()).gravity |= 1;

@@ -15,9 +15,9 @@ public final class mz extends org.telegram.ui.Components.lz {
     public final int getColumnsCount() {
         switch (this.U) {
             case 0:
-                return ((yz) this.V).f52397s;
+                return ((yz) this.V).f52404s;
             default:
-                return ((wz) this.V).d.f52397s;
+                return ((wz) this.V).d.f52404s;
         }
     }
 }

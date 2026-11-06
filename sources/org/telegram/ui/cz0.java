@@ -6,18 +6,18 @@ import android.graphics.Path;
 import android.widget.FrameLayout;
 import java.util.HashSet;
 public final class cz0 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
-    public final Path f44894a;
-    public fh.g f44895b;
+    public final Path f44919a;
+    public fh.g f44920b;
 
     public cz0(Activity activity) {
         super(activity);
-        this.f44894a = new Path();
+        this.f44919a = new Path();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         canvas.save();
-        canvas.clipPath(this.f44894a);
+        canvas.clipPath(this.f44919a);
         super.dispatchDraw(canvas);
         canvas.restore();
     }
@@ -25,19 +25,19 @@ public final class cz0 extends FrameLayout implements org.telegram.ui.ActionBar.
     @Override
     public final void onSizeChanged(int i7, int i10, int i11, int i12) {
         super.onSizeChanged(i7, i10, i11, i12);
-        Path path = this.f44894a;
+        Path path = this.f44919a;
         path.rewind();
         path.addRoundRect(org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(9.0f), i7 - org.telegram.messenger.g0.L(9.0f), i10 - org.telegram.messenger.g0.L(9.0f), org.telegram.messenger.g0.L(16.0f), org.telegram.messenger.g0.L(16.0f), Path.Direction.CW);
     }
 
     public void setBlurredBackground(fh.g gVar) {
-        this.f44895b = gVar;
+        this.f44920b = gVar;
         setBackground(gVar);
     }
 
     @Override
     public final void updateColors() {
-        fh.g gVar = this.f44895b;
+        fh.g gVar = this.f44920b;
         if (gVar != null) {
             gVar.updateColors();
         }

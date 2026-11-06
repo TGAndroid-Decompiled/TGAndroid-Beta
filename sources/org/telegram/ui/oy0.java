@@ -13,17 +13,17 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
 import org.telegram.tgnet.tl.TL_stories;
 public final class oy0 extends org.telegram.ui.ActionBar.v2 {
-    public static final int f48572s1 = 0;
-    public final fi.g1 f48573i1;
-    public final Paint f48574j1;
-    public int f48575k1;
+    public static final int f48567s1 = 0;
+    public final fi.g1 f48568i1;
+    public final Paint f48569j1;
+    public int f48570k1;
     public final boolean l1;
-    public final boolean f48576m1;
+    public final boolean f48571m1;
     public final boolean n1;
-    public final ArrayList f48577o1;
-    public final byte[] f48578p1;
-    public final long f48579q1;
-    public jy0 f48580r1;
+    public final ArrayList f48572o1;
+    public final byte[] f48573p1;
+    public final long f48574q1;
+    public jy0 f48575r1;
 
     public oy0(Context context, org.telegram.ui.ActionBar.f6 f6Var, long j3, byte[] bArr) {
         this(true, context, f6Var, j3, false, false, null, bArr);
@@ -32,15 +32,15 @@ public final class oy0 extends org.telegram.ui.ActionBar.v2 {
     public static void I0(oy0 oy0Var, CharSequence charSequence, byte[] bArr, String str) {
         TLRPC.TL_messages_report tL_messages_report;
         ?? r02;
-        long j3 = oy0Var.f48579q1;
-        ArrayList arrayList = oy0Var.f48577o1;
+        long j3 = oy0Var.f48574q1;
+        ArrayList arrayList = oy0Var.f48572o1;
         if (oy0Var.l1) {
             r02 = new TLRPC.TL_messages_reportSponsoredMessage();
-            r02.random_id = oy0Var.f48578p1;
+            r02.random_id = oy0Var.f48573p1;
             r02.option = bArr;
         } else {
             String str2 = "";
-            if (oy0Var.f48576m1) {
+            if (oy0Var.f48571m1) {
                 ?? tL_stories_report = new TL_stories.TL_stories_report();
                 tL_stories_report.peer = org.telegram.messenger.qp.s1(oy0Var.f28612a).j1(j3);
                 if (arrayList != null) {
@@ -127,7 +127,7 @@ public final class oy0 extends org.telegram.ui.ActionBar.v2 {
                             oy0Var.O0((TLRPC.TL_reportResultChooseOption) reportResult);
                         } else if (reportResult instanceof TLRPC.TL_reportResultAddComment) {
                             TLRPC.TL_reportResultAddComment tL_reportResultAddComment = (TLRPC.TL_reportResultAddComment) reportResult;
-                            View[] viewPages = oy0Var.f48573i1.getViewPages();
+                            View[] viewPages = oy0Var.f48568i1.getViewPages();
                             View view = viewPages[0];
                             if (view instanceof ny0) {
                                 ((ny0) view).a(0);
@@ -138,7 +138,7 @@ public final class oy0 extends org.telegram.ui.ActionBar.v2 {
                                 ((ny0) view2).a(1);
                             }
                         }
-                        oy0Var.f48580r1 = new hy0(zArr2, c20Var2, hcVar, 0);
+                        oy0Var.f48575r1 = new hy0(zArr2, c20Var2, hcVar, 0);
                         oy0Var.n(new bi.l9(2, c20Var2, zArr2));
                         oy0Var.show();
                     }
@@ -172,7 +172,7 @@ public final class oy0 extends org.telegram.ui.ActionBar.v2 {
                         oy0Var.O0((TLRPC.TL_reportResultChooseOption) reportResult);
                     } else if (reportResult instanceof TLRPC.TL_reportResultAddComment) {
                         TLRPC.TL_reportResultAddComment tL_reportResultAddComment = (TLRPC.TL_reportResultAddComment) reportResult;
-                        View[] viewPages = oy0Var.f48573i1.getViewPages();
+                        View[] viewPages = oy0Var.f48568i1.getViewPages();
                         View view = viewPages[0];
                         if (view instanceof ny0) {
                             ((ny0) view).a(0);
@@ -183,7 +183,7 @@ public final class oy0 extends org.telegram.ui.ActionBar.v2 {
                             ((ny0) view2).a(1);
                         }
                     }
-                    oy0Var.f48580r1 = new hy0(zArr2, c20Var2, hcVar, 0);
+                    oy0Var.f48575r1 = new hy0(zArr2, c20Var2, hcVar, 0);
                     oy0Var.n(new bi.l9(2, c20Var2, zArr2));
                     oy0Var.show();
                 }
@@ -231,15 +231,15 @@ public final class oy0 extends org.telegram.ui.ActionBar.v2 {
 
     @Override
     public final boolean G() {
-        View currentView = this.f48573i1.getCurrentView();
+        View currentView = this.f48568i1.getCurrentView();
         if (!(currentView instanceof ny0)) {
             return true;
         }
-        return !((ny0) currentView).f48144f.canScrollVertically(-1);
+        return !((ny0) currentView).f48173f.canScrollVertically(-1);
     }
 
     public final void N0(TLRPC.TL_channels_sponsoredMessageReportResultChooseOption tL_channels_sponsoredMessageReportResultChooseOption) {
-        View[] viewPages = this.f48573i1.getViewPages();
+        View[] viewPages = this.f48568i1.getViewPages();
         View view = viewPages[0];
         if (view instanceof ny0) {
             ((ny0) view).a(0);
@@ -252,7 +252,7 @@ public final class oy0 extends org.telegram.ui.ActionBar.v2 {
     }
 
     public final void O0(TLRPC.TL_reportResultChooseOption tL_reportResultChooseOption) {
-        View[] viewPages = this.f48573i1.getViewPages();
+        View[] viewPages = this.f48568i1.getViewPages();
         View view = viewPages[0];
         if (view instanceof ny0) {
             ((ny0) view).a(0);
@@ -267,8 +267,8 @@ public final class oy0 extends org.telegram.ui.ActionBar.v2 {
     @Override
     public final void onBackPressed() {
         ly0 ly0Var;
-        fi.g1 g1Var = this.f48573i1;
-        if ((g1Var.getCurrentView() instanceof ny0) && (ly0Var = ((ny0) g1Var.getCurrentView()).f48145n) != null) {
+        fi.g1 g1Var = this.f48568i1;
+        if ((g1Var.getCurrentView() instanceof ny0) && (ly0Var = ((ny0) g1Var.getCurrentView()).f48174n) != null) {
             org.telegram.messenger.g0.v1(ly0Var);
         }
         if (g1Var.getCurrentPosition() > 0) {
@@ -281,7 +281,7 @@ public final class oy0 extends org.telegram.ui.ActionBar.v2 {
     @Override
     public final void s0() {
         int i7;
-        Paint paint = this.f48574j1;
+        Paint paint = this.f48569j1;
         super.s0();
         try {
             int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, this.I0);
@@ -292,9 +292,9 @@ public final class oy0 extends org.telegram.ui.ActionBar.v2 {
                     viewGroup.invalidate();
                 }
             }
-            if (this.F0 < 0 && (i7 = this.G0) == this.f48575k1 && w02 != i7) {
+            if (this.F0 < 0 && (i7 = this.G0) == this.f48570k1 && w02 != i7) {
                 this.G0 = w02;
-                this.f48575k1 = w02;
+                this.f48570k1 = w02;
                 E0(w02);
             }
         } catch (Exception e10) {
@@ -305,22 +305,22 @@ public final class oy0 extends org.telegram.ui.ActionBar.v2 {
     public oy0(boolean z9, Context context, org.telegram.ui.ActionBar.f6 f6Var, long j3, boolean z10, boolean z11, ArrayList arrayList, byte[] bArr) {
         super(1, context, f6Var, true);
         Paint paint = new Paint(1);
-        this.f48574j1 = paint;
+        this.f48569j1 = paint;
         this.l1 = z9;
-        this.f48577o1 = arrayList;
-        this.f48576m1 = z10;
+        this.f48572o1 = arrayList;
+        this.f48571m1 = z10;
         this.n1 = z11;
-        this.f48578p1 = bArr;
-        this.f48579q1 = j3;
+        this.f48573p1 = bArr;
+        this.f48574q1 = j3;
         int i7 = org.telegram.ui.ActionBar.k6.f27921h5;
         paint.setColor(org.telegram.ui.ActionBar.k6.w0(i7, f6Var));
         P(i7);
-        this.f48575k1 = this.G0;
+        this.f48570k1 = this.G0;
         this.P0 = true;
         this.Q0 = true;
         this.f28615b = new x50(this, context);
         fi.g1 g1Var = new fi.g1(6, context, this);
-        this.f48573i1 = g1Var;
+        this.f48568i1 = g1Var;
         int i10 = this.f28645t0;
         g1Var.setPadding(i10, 0, i10, 0);
         this.f28615b.addView(g1Var, c8.ha.e(-1, -1, 119));

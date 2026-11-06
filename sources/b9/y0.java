@@ -72,7 +72,7 @@ public final class y0 extends q6.h {
     @Override
     public final void h(q6.b bVar) {
         int i7;
-        q6.c0 c0Var = this.f53728k;
+        q6.c0 c0Var = this.f53753k;
         AtomicInteger atomicInteger = this.C;
         Context context = this.h;
         if (!c()) {
@@ -91,13 +91,13 @@ public final class y0 extends q6.h {
                     }
                     PendingIntent activity = PendingIntent.getActivity(context, 0, intent, i8.b.f15396a);
                     q6.m.h(bVar, "Connection progress callbacks cannot be null.");
-                    this.f53732o = bVar;
+                    this.f53757o = bVar;
                     c0Var.sendMessage(c0Var.obtainMessage(3, atomicInteger.get(), 6, activity));
                     return;
                 }
             } catch (PackageManager.NameNotFoundException unused) {
                 q6.m.h(bVar, "Connection progress callbacks cannot be null.");
-                this.f53732o = bVar;
+                this.f53757o = bVar;
                 c0Var.sendMessage(c0Var.obtainMessage(3, atomicInteger.get(), 16, null));
                 return;
             }

@@ -14,7 +14,7 @@ import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.Components.po0;
 import org.telegram.ui.Components.u20;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.au0;
+import org.telegram.ui.bu0;
 import org.telegram.ui.c9;
 public final class v implements RequestDelegate {
     public final int f16948a;
@@ -64,7 +64,7 @@ public final class v implements RequestDelegate {
                 return;
             case 8:
                 RectF rectF = ProfileActivity.S6;
-                org.telegram.messenger.g0.i3(new au0((ProfileActivity) obj2, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) obj, 0), i10);
+                org.telegram.messenger.g0.i3(new bu0((ProfileActivity) obj2, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) obj, 0), i10);
                 return;
             default:
                 TLRPC.Chat chat = (TLRPC.Chat) obj2;

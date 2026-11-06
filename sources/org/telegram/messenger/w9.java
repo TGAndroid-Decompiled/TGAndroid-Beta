@@ -186,14 +186,14 @@ public final class w9 extends c1 {
             tL_inputInvoiceStarGiftAuctionBid.bid_amount = j10;
             tL_inputInvoiceStarGiftAuctionBid.update_bid = z9;
             if (lVar != null) {
-                long j11 = lVar.f60302a;
+                long j11 = lVar.f60327a;
                 if (j11 == 0) {
                     tL_inputInvoiceStarGiftAuctionBid.peer = new TLRPC.TL_inputPeerSelf();
                 } else {
                     tL_inputInvoiceStarGiftAuctionBid.peer = getMessagesController().j1(j11);
                 }
-                tL_inputInvoiceStarGiftAuctionBid.message = lVar.f60304c;
-                tL_inputInvoiceStarGiftAuctionBid.hide_name = lVar.f60303b;
+                tL_inputInvoiceStarGiftAuctionBid.message = lVar.f60329c;
+                tL_inputInvoiceStarGiftAuctionBid.hide_name = lVar.f60328b;
             } else if (!z9) {
                 tL_inputInvoiceStarGiftAuctionBid.peer = new TLRPC.TL_inputPeerSelf();
                 tL_inputInvoiceStarGiftAuctionBid.hide_name = false;

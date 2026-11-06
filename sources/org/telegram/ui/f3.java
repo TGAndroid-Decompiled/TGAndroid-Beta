@@ -7,31 +7,31 @@ import java.util.Collections;
 import java.util.List;
 import org.telegram.tgnet.TLRPC;
 public final class f3 implements q0.a {
-    public final int f45466a;
-    public final Object f45467b;
+    public final int f45471a;
+    public final Object f45472b;
 
     public f3(Object obj, int i7) {
-        this.f45466a = i7;
-        this.f45467b = obj;
+        this.f45471a = i7;
+        this.f45472b = obj;
     }
 
     @Override
     public final void accept(Object obj) {
         ArrayList arrayList;
         String j3;
-        int i7 = this.f45466a;
+        int i7 = this.f45471a;
         boolean z9 = true;
-        Object obj2 = this.f45467b;
+        Object obj2 = this.f45472b;
         switch (i7) {
             case 0:
                 k3 k3Var = (k3) obj2;
                 Float f10 = (Float) obj;
                 g4 g4Var = k3Var.L;
-                if (k3Var == g4Var.f45816u0[0]) {
-                    if (g4Var.f45804h0.f51180d0.getCurrentProgress() > f10.floatValue()) {
-                        g4Var.f45804h0.f51180d0.a(false, 0.0f);
+                if (k3Var == g4Var.f45843u0[0]) {
+                    if (g4Var.f45831h0.f51206d0.getCurrentProgress() > f10.floatValue()) {
+                        g4Var.f45831h0.f51206d0.a(false, 0.0f);
                     }
-                    g4Var.f45804h0.f51180d0.a(true, f10.floatValue());
+                    g4Var.f45831h0.f51206d0.a(true, f10.floatValue());
                     return;
                 }
                 return;
@@ -40,7 +40,7 @@ public final class f3 implements q0.a {
                 return;
             case 2:
                 TLRPC.User user = (TLRPC.User) obj;
-                oq oqVar = ((fq) obj2).f45685b;
+                oq oqVar = ((fq) obj2).f45692b;
                 iq B0 = oqVar.B0();
                 ArrayList arrayList2 = oqVar.E;
                 a0.h hVar = oqVar.L;
@@ -53,7 +53,7 @@ public final class f3 implements q0.a {
                     hVar = oqVar.J;
                 }
                 if (hVar.f(user.f27101id) == null) {
-                    if (org.telegram.messenger.t3.T(oqVar.f48470n)) {
+                    if (org.telegram.messenger.t3.T(oqVar.f48498n)) {
                         TLRPC.TL_channelParticipant tL_channelParticipant = new TLRPC.TL_channelParticipant();
                         tL_channelParticipant.inviter_id = oqVar.getUserConfig().e();
                         TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
@@ -99,16 +99,16 @@ public final class f3 implements q0.a {
             case 6:
                 ProfileActivity profileActivity = (ProfileActivity) obj2;
                 TLRPC.User user2 = (TLRPC.User) obj;
-                for (int i11 = 0; i11 < profileActivity.f41799t2.participants.participants.size(); i11++) {
-                    if (profileActivity.f41799t2.participants.participants.get(i11).user_id == user2.f27101id) {
-                        profileActivity.f41799t2.participants.participants.remove(i11);
+                for (int i11 = 0; i11 < profileActivity.f41824t2.participants.participants.size(); i11++) {
+                    if (profileActivity.f41824t2.participants.participants.get(i11).user_id == user2.f27101id) {
+                        profileActivity.f41824t2.participants.participants.remove(i11);
                         profileActivity.D5(true, false);
                         return;
                     }
                 }
                 return;
             default:
-                View view = ((ProxyListActivity) obj2).f41849b.T((View) obj).f56927a;
+                View view = ((ProxyListActivity) obj2).f41874b.T((View) obj).f56952a;
                 if (view instanceof nx0) {
                     nx0 nx0Var = (nx0) view;
                     if (nx0Var.d != org.telegram.messenger.iz.B1) {

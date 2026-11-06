@@ -110,8 +110,8 @@ public final class p9 implements Runnable {
                 TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = (TLRPC.TL_inputStorePaymentAuthCode) obj3;
                 String str6 = (String) obj2;
                 TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = (TLRPC.TL_payments_canPurchaseStore) obj;
-                ce0 ce0Var = ld0Var.f47499w;
-                fi.d dVar = ld0Var.f47492b;
+                ce0 ce0Var = ld0Var.f47526w;
+                fi.d dVar = ld0Var.f47519b;
                 org.telegram.messenger.a8.b("LoginBilling canPurchaseStore returned " + tLObject3 + " " + tL_error);
                 if (tLObject3 instanceof TLRPC.TL_boolTrue) {
                     dVar.i(org.telegram.messenger.hd.a0(null, null, 2131745968, hVar.f11154a), false, true);
@@ -125,11 +125,11 @@ public final class p9 implements Runnable {
                     dVar.setOnClickListener(new di.d0(ld0Var, lVar, tL_inputStorePaymentAuthCode, str6, tL_payments_canPurchaseStore, 14));
                     return;
                 } else if (tLObject3 instanceof TLRPC.TL_boolFalse) {
-                    ld0Var.f47494e = "RESPONSE_FALSE";
+                    ld0Var.f47521e = "RESPONSE_FALSE";
                     new org.telegram.ui.Components.hc(ce0Var.Z, null).H(2131624011, org.telegram.messenger.hd.a0(null, null, 2131743879, "RESPONSE_FALSE"));
                     return;
                 } else if (tL_error != null) {
-                    ld0Var.f47494e = tL_error.text;
+                    ld0Var.f47521e = tL_error.text;
                     new org.telegram.ui.Components.hc(ce0Var.Z, null).f0(tL_error, false);
                     return;
                 } else {

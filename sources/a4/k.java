@@ -407,7 +407,7 @@ public class k implements a0 {
                                     i12 = a(i12, str);
                                 } else {
                                     if (charAt2 < 'u') {
-                                        c10 = qe.c.f53973a[charAt2];
+                                        c10 = qe.c.f53998a[charAt2];
                                     } else {
                                         c10 = 0;
                                     }
@@ -741,7 +741,7 @@ public class k implements a0 {
         }
         iArr[i7] = 1;
         for (zw0 zw0Var : ((zw0[][]) this.d)[i7]) {
-            x(zw0Var.f41098a.f33710b);
+            x(zw0Var.f41123a.f33654b);
             int i10 = this.f191b;
             this.f191b = i10 - 1;
             ((zw0[]) this.f192c)[i10] = zw0Var;
@@ -832,7 +832,7 @@ public class k implements a0 {
         zw0[][] zw0VarArr2 = new zw0[e10];
         int[] iArr = new int[e10];
         for (zw0 zw0Var : zw0VarArr) {
-            int i7 = zw0Var.f41098a.f33709a;
+            int i7 = zw0Var.f41123a.f33653a;
             iArr[i7] = iArr[i7] + 1;
         }
         for (int i10 = 0; i10 < e10; i10++) {
@@ -840,7 +840,7 @@ public class k implements a0 {
         }
         Arrays.fill(iArr, 0);
         for (zw0 zw0Var2 : zw0VarArr) {
-            int i11 = zw0Var2.f41098a.f33709a;
+            int i11 = zw0Var2.f41123a.f33653a;
             zw0[] zw0VarArr3 = zw0VarArr2[i11];
             int i12 = iArr[i11];
             iArr[i11] = i12 + 1;

@@ -185,7 +185,7 @@ public final class t5 implements View.OnClickListener {
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) obj2;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) obj;
                 qp messagesController = v91Var.getMessagesController();
-                long j3 = -v91Var.f50619a;
+                long j3 = -v91Var.f50629a;
                 if (messagesController.r2(j3, tL_forumTopic.f27004id, null)) {
                     v91Var.getNotificationsController().G(j3, tL_forumTopic.f27004id, false);
                     v91Var.finishPreviewFragment();

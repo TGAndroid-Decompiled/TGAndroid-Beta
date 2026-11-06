@@ -61,7 +61,7 @@ import org.telegram.ui.Cells.j9;
 import org.telegram.ui.Cells.l1;
 import org.telegram.ui.Cells.q1;
 import org.telegram.ui.Components.r5;
-import org.telegram.ui.er0;
+import org.telegram.ui.fr0;
 import org.xml.sax.Attributes;
 import pb.h;
 import q2.f;
@@ -389,7 +389,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
     }
 
     @Override
-    public er0 N1() {
+    public fr0 N1() {
         return null;
     }
 
@@ -621,7 +621,7 @@ public final class a implements k, eg.a, g, fg.a, d, ja.a, b, Continuation, u9.d
 
     @Override
     public q2.l m(j jVar, e2.u uVar) {
-        return q2.l.f53622z;
+        return q2.l.f53647z;
     }
 
     @Override

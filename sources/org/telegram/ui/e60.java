@@ -12,21 +12,21 @@ public final class e60 extends ActionBarPopupWindow$ActionBarPopupWindowLayout i
     public final org.telegram.ui.ActionBar.z0 U;
     public final org.telegram.ui.ActionBar.z0 V;
     public final org.telegram.ui.ActionBar.z0 W;
-    public final ArrayList f45178a0;
-    public final d60 f45179b0;
-    public int f45180c0;
-    public final org.telegram.messenger.u2 f45181d0;
-    public b60 f45182e0;
-    public ArrayList f45183f0;
-    public final org.telegram.ui.ActionBar.f2 f45184g0;
-    public final FrameLayout f45185h0;
+    public final ArrayList f45208a0;
+    public final d60 f45209b0;
+    public int f45210c0;
+    public final org.telegram.messenger.u2 f45211d0;
+    public b60 f45212e0;
+    public ArrayList f45213f0;
+    public final org.telegram.ui.ActionBar.f2 f45214g0;
+    public final FrameLayout f45215h0;
 
     public e60(Context context, org.telegram.ui.ActionBar.f2 f2Var) {
         super(context, null);
         ArrayList arrayList = new ArrayList();
-        this.f45178a0 = arrayList;
-        this.f45184g0 = f2Var;
-        this.f45181d0 = f2Var.getMessagesController().f24872r7;
+        this.f45208a0 = arrayList;
+        this.f45214g0 = f2Var;
+        this.f45211d0 = f2Var.getMessagesController().f24872r7;
         setFitItems(true);
         org.telegram.ui.ActionBar.z0 c10 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232061, org.telegram.messenger.hd.G(1, "Days", new Object[0]), false, null);
         org.telegram.ui.ActionBar.z0 c11 = org.telegram.ui.ActionBar.r0.c(false, false, this, 2131232064, org.telegram.messenger.hd.G(2, "Days", new Object[0]), false, null);
@@ -46,7 +46,7 @@ public final class e60 extends ActionBarPopupWindow$ActionBarPopupWindowLayout i
         arrayList.add(new c60(c14, 2));
         arrayList.add(new c60(c15, 4));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f45185h0 = frameLayout;
+        this.f45215h0 = frameLayout;
         org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.H8, frameLayout, null);
         View view = new View(context);
         org.telegram.ui.ActionBar.r6.a0(view, context, 2131231229, org.telegram.ui.ActionBar.k6.f27812b7);
@@ -54,11 +54,11 @@ public final class e60 extends ActionBarPopupWindow$ActionBarPopupWindowLayout i
         frameLayout.setTag(2131296437, 1);
         a(frameLayout, c8.ha.o(-1, 8));
         d60 d60Var = new d60(this, context);
-        this.f45179b0 = d60Var;
+        this.f45209b0 = d60Var;
         a(d60Var, c8.ha.o(-1, 48));
-        d60Var.setOnClickListener(new org.telegram.ui.Components.n41(19, this, f2Var));
-        for (int i10 = 0; i10 < this.f45178a0.size(); i10++) {
-            ((c60) this.f45178a0.get(i10)).f44682a.setOnClickListener(new ai.v(this, ((c60) this.f45178a0.get(i10)).f44683b, 24));
+        d60Var.setOnClickListener(new org.telegram.ui.Components.s41(19, this, f2Var));
+        for (int i10 = 0; i10 < this.f45208a0.size(); i10++) {
+            ((c60) this.f45208a0.get(i10)).f44703a.setOnClickListener(new ai.v(this, ((c60) this.f45208a0.get(i10)).f44704b, 24));
         }
         org.telegram.ui.Components.w70 w70Var = new org.telegram.ui.Components.w70(context, null);
         this.T = w70Var;
@@ -73,15 +73,15 @@ public final class e60 extends ActionBarPopupWindow$ActionBarPopupWindowLayout i
     }
 
     public final void g() {
-        if (this.f45183f0 != null) {
-            this.f45179b0.f44941b.setTranslationX((3 - Math.min(3, this.f45183f0.size())) * org.telegram.messenger.g0.L(12.0f));
+        if (this.f45213f0 != null) {
+            this.f45209b0.f44966b.setTranslationX((3 - Math.min(3, this.f45213f0.size())) * org.telegram.messenger.g0.L(12.0f));
         }
     }
 
     public final void h(boolean z9) {
         int i7;
-        this.f45180c0 = -1;
-        this.f45185h0.setVisibility(0);
+        this.f45210c0 = -1;
+        this.f45215h0.setVisibility(0);
         if (z9) {
             i7 = 8;
         } else {
@@ -89,11 +89,11 @@ public final class e60 extends ActionBarPopupWindow$ActionBarPopupWindowLayout i
         }
         this.U.setVisibility(i7);
         this.T.setVisibility(0);
-        this.f45179b0.setVisibility(8);
+        this.f45209b0.setVisibility(8);
     }
 
     public void setCallback(b60 b60Var) {
-        this.f45182e0 = b60Var;
+        this.f45212e0 = b60Var;
     }
 
     @Override

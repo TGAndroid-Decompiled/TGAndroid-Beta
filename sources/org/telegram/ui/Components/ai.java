@@ -15,21 +15,21 @@ public final class ai extends oj0 {
     public int I;
     public int J;
     public final di K;
-    public final Context f31812c;
+    public final Context f31824c;
     public int d;
-    public int f31813e;
-    public int f31814f;
+    public int f31825e;
+    public int f31826f;
     public final ArrayList h = new ArrayList();
-    public int f31815n;
-    public int f31816r;
-    public int f31817s;
-    public int f31818w;
-    public int f31819x;
-    public int f31820y;
+    public int f31827n;
+    public int f31828r;
+    public int f31829s;
+    public int f31830w;
+    public int f31831x;
+    public int f31832y;
 
     public ai(di diVar, Context context) {
         this.K = diVar;
-        this.f31812c = context;
+        this.f31824c = context;
     }
 
     @Override
@@ -41,7 +41,7 @@ public final class ai extends oj0 {
     public final int b() {
         int i7 = this.J;
         di diVar = this.K;
-        if (diVar.B3 == null && (diVar.W1 instanceof org.telegram.ui.an) && !diVar.f32965y1) {
+        if (diVar.B3 == null && (diVar.W1 instanceof org.telegram.ui.an) && !diVar.f32978y1) {
             return org.telegram.messenger.ui.b0(diVar.D3).f25812j1.size() + i7;
         }
         return i7;
@@ -52,7 +52,7 @@ public final class ai extends oj0 {
         if (i7 >= this.J) {
             return 1;
         }
-        if (i7 >= this.f31813e && i7 < this.f31814f) {
+        if (i7 >= this.f31825e && i7 < this.f31826f) {
             return 1;
         }
         return 0;
@@ -64,58 +64,58 @@ public final class ai extends oj0 {
         int i7 = 0;
         this.J = 0;
         this.d = -1;
-        this.f31815n = -1;
-        this.f31817s = -1;
-        this.f31818w = -1;
-        this.f31819x = -1;
-        this.f31820y = -1;
+        this.f31827n = -1;
+        this.f31829s = -1;
+        this.f31830w = -1;
+        this.f31831x = -1;
+        this.f31832y = -1;
         this.D = -1;
         this.E = -1;
         this.F = -1;
         this.H = -1;
         this.I = -1;
         this.G = -1;
-        this.f31813e = -1;
-        this.f31814f = -1;
-        this.f31816r = -1;
+        this.f31825e = -1;
+        this.f31826f = -1;
+        this.f31828r = -1;
         di diVar = this.K;
         int i10 = diVar.D3;
         org.telegram.ui.ActionBar.f2 f2Var = diVar.W1;
         boolean z9 = true;
-        if (diVar.f32965y1) {
+        if (diVar.f32978y1) {
             this.J = 1;
             this.d = 0;
-            int i11 = diVar.f32969z1;
+            int i11 = diVar.f32982z1;
             if (i11 == 0 || c8.yc.a(i11, 16)) {
                 int i12 = this.J;
                 this.J = i12 + 1;
-                this.f31815n = i12;
+                this.f31827n = i12;
             }
-            int i13 = diVar.f32969z1;
+            int i13 = diVar.f32982z1;
             if (i13 == 0 || c8.yc.a(i13, 8192)) {
                 int i14 = this.J;
                 this.J = i14 + 1;
                 this.F = i14;
             }
-            int i15 = diVar.f32969z1;
+            int i15 = diVar.f32982z1;
             if (i15 == 0 || c8.yc.a(i15, 16384)) {
                 int i16 = this.J;
                 this.J = i16 + 1;
                 this.G = i16;
             }
-            int i17 = diVar.f32969z1;
+            int i17 = diVar.f32982z1;
             if (i17 == 0 || c8.yc.a(i17, 8)) {
                 int i18 = this.J;
                 this.J = i18 + 1;
-                this.f31817s = i18;
+                this.f31829s = i18;
             }
-            int i19 = diVar.f32969z1;
+            int i19 = diVar.f32982z1;
             if (i19 == 0 || c8.yc.a(i19, 64)) {
                 int i20 = this.J;
                 this.J = i20 + 1;
                 this.E = i20;
             }
-            int i21 = diVar.f32969z1;
+            int i21 = diVar.f32982z1;
             if (i21 == 0 || c8.yc.a(i21, 32768)) {
                 int i22 = this.J;
                 this.J = i22 + 1;
@@ -124,18 +124,18 @@ public final class ai extends oj0 {
         } else if (!(f2Var instanceof org.telegram.ui.an)) {
             this.d = 0;
             this.J = 2;
-            this.f31815n = 1;
+            this.f31827n = 1;
             if (diVar.N1) {
                 this.J = 3;
-                this.f31817s = 2;
+                this.f31829s = 2;
             }
         } else if (diVar.B3 != null) {
             int i23 = diVar.A3;
             if (i23 == -1) {
                 this.d = 0;
-                this.f31815n = 1;
+                this.f31827n = 1;
                 this.J = 3;
-                this.f31817s = 2;
+                this.f31829s = 2;
             } else {
                 if (i23 == 0) {
                     this.J = 1;
@@ -144,18 +144,18 @@ public final class ai extends oj0 {
                 if (i23 == 1) {
                     int i24 = this.J;
                     this.J = i24 + 1;
-                    this.f31815n = i24;
+                    this.f31827n = i24;
                 }
                 if (i23 == 2) {
                     int i25 = this.J;
                     this.J = i25 + 1;
-                    this.f31817s = i25;
+                    this.f31829s = i25;
                 }
             }
         } else {
             TLRPC.User j3 = ((org.telegram.ui.an) f2Var).j();
             if (f2Var instanceof org.telegram.ui.an) {
-                chat = ((org.telegram.ui.an) f2Var).f43747e;
+                chat = ((org.telegram.ui.an) f2Var).f43772e;
             } else {
                 chat = null;
             }
@@ -165,11 +165,11 @@ public final class ai extends oj0 {
             int i26 = this.J;
             this.d = i26;
             this.J = i26 + 2;
-            this.f31815n = i26 + 1;
-            if (((org.telegram.messenger.h0) org.telegram.messenger.qp.s1(i10).f24927x7.f24435j0.f13889b).f22767c && ((org.telegram.ui.an) f2Var).f43766f4 == 0 && di.g1(j3)) {
+            this.f31827n = i26 + 1;
+            if (((org.telegram.messenger.h0) org.telegram.messenger.qp.s1(i10).f24927x7.f24435j0.f13889b).f22767c && ((org.telegram.ui.an) f2Var).f43791f4 == 0 && di.g1(j3)) {
                 int i27 = this.J;
                 this.J = i27 + 1;
-                this.f31816r = i27;
+                this.f31828r = i27;
             }
             boolean z10 = diVar.K3;
             if (z10) {
@@ -187,30 +187,30 @@ public final class ai extends oj0 {
             if (diVar.I3) {
                 int i30 = this.J;
                 this.J = i30 + 1;
-                this.f31818w = i30;
+                this.f31830w = i30;
             }
             if (diVar.K3) {
                 int i31 = this.J;
                 this.J = i31 + 1;
-                this.f31820y = i31;
+                this.f31832y = i31;
             }
             int i32 = this.J;
             int i33 = i32 + 1;
             this.J = i33;
-            this.f31817s = i32;
+            this.f31829s = i32;
             if (diVar.J3) {
                 this.J = i32 + 2;
-                this.f31819x = i33;
+                this.f31831x = i33;
             }
-            if ((f2Var instanceof org.telegram.ui.an) && ((org.telegram.ui.an) f2Var).f43766f4 == 0 && j3 != null && !z9 && !j3.bot && !kg.t1.f(i10).f17545b.isEmpty()) {
+            if ((f2Var instanceof org.telegram.ui.an) && ((org.telegram.ui.an) f2Var).f43791f4 == 0 && j3 != null && !z9 && !j3.bot && !kg.t1.f(i10).f17545b.isEmpty()) {
                 int i34 = this.J;
                 this.J = i34 + 1;
                 this.D = i34;
             }
             if ((diVar.F3 || diVar.G3) && !z9 && ((chat == null || !org.telegram.messenger.t3.p0(chat)) && (f2Var instanceof org.telegram.ui.an) && !((org.telegram.ui.an) f2Var).c() && !((org.telegram.ui.an) f2Var).z())) {
                 org.telegram.ui.an anVar = (org.telegram.ui.an) f2Var;
-                if (anVar.f43766f4 != 5) {
-                    this.f31813e = this.J;
+                if (anVar.f43791f4 != 5) {
+                    this.f31825e = this.J;
                     ArrayList arrayList = this.h;
                     arrayList.clear();
                     ArrayList<TLRPC.TL_attachMenuBot> arrayList2 = org.telegram.messenger.ui.b0(i10).f25791b.bots;
@@ -220,7 +220,7 @@ public final class ai extends oj0 {
                         i7++;
                         TLRPC.TL_attachMenuBot tL_attachMenuBot2 = tL_attachMenuBot;
                         if (tL_attachMenuBot2.show_in_attach_menu) {
-                            TLObject tLObject = anVar.f43747e;
+                            TLObject tLObject = anVar.f43772e;
                             if (tLObject == null) {
                                 tLObject = anVar.j();
                             }
@@ -231,7 +231,7 @@ public final class ai extends oj0 {
                     }
                     int size2 = arrayList.size() + this.J;
                     this.J = size2;
-                    this.f31814f = size2;
+                    this.f31826f = size2;
                 }
             }
         }
@@ -246,7 +246,7 @@ public final class ai extends oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View xhVar;
-        Context context = this.f31812c;
+        Context context = this.f31824c;
         di diVar = this.K;
         if (i7 != 0) {
             xhVar = new wh(diVar, context);

@@ -61,7 +61,7 @@ public abstract class t extends FrameLayout {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             spannableStringBuilder.append((CharSequence) "* ");
             spannableStringBuilder.append((CharSequence) sVar.f14936e);
-            spannableStringBuilder.setSpan(new r5(sVar.f14937f, 1.4f, i6Var.f34514a.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new r5(sVar.f14937f, 1.4f, i6Var.f34475a.getFontMetricsInt()), 0, 1, 33);
             i6Var.t(spannableStringBuilder, z9, true);
             return;
         }
@@ -120,7 +120,7 @@ public abstract class t extends FrameLayout {
         String str2 = ((s) this.f14948e.d).f14939i;
         r[] rVarArr = this.f14949f;
         int i13 = 1;
-        if (rVarArr[1].f14903b.f39849c < rVarArr[0].f14903b.f39849c) {
+        if (rVarArr[1].f14903b.f39857c < rVarArr[0].f14903b.f39857c) {
             i7 = 1;
         } else {
             i7 = 0;
@@ -159,7 +159,7 @@ public abstract class t extends FrameLayout {
             RectF rectF = rVar.f14902a;
             float d = w5Var.d(sVar.f14933a);
             if (!sVar.f14933a) {
-                e10 = w5Var4.f39849c;
+                e10 = w5Var4.f39857c;
                 i6Var = i6Var2;
             } else {
                 wa waVar2 = this.f14948e;
@@ -177,7 +177,7 @@ public abstract class t extends FrameLayout {
                 e10 = w5Var4.e(false, f10);
             }
             if (!sVar.f14933a) {
-                e11 = w5Var3.f39849c;
+                e11 = w5Var3.f39857c;
             } else {
                 wa waVar3 = this.f14948e;
                 if (((s) waVar3.d).f14933a && ((s) waVar3.f701c).f14933a) {
@@ -193,7 +193,7 @@ public abstract class t extends FrameLayout {
                 e11 = w5Var3.e(false, f11);
             }
             if (!sVar.f14933a) {
-                e12 = w5Var2.f39849c;
+                e12 = w5Var2.f39857c;
             } else {
                 wa waVar4 = this.f14948e;
                 if (((s) waVar4.d).f14933a && ((s) waVar4.f701c).f14933a && ("left".equalsIgnoreCase(str2) || "right".equalsIgnoreCase(str2))) {
@@ -227,7 +227,7 @@ public abstract class t extends FrameLayout {
                 if (i6Var3.Z != r12) {
                     i6Var3.Z = r12;
                     str = str2;
-                    i6Var3.f34515a0 = new PorterDuffColorFilter(r12, PorterDuff.Mode.SRC_IN);
+                    i6Var3.f34476a0 = new PorterDuffColorFilter(r12, PorterDuff.Mode.SRC_IN);
                 } else {
                     str = str2;
                 }
@@ -287,7 +287,7 @@ public abstract class t extends FrameLayout {
     }
 
     public float getAnimatedTotalHeight() {
-        return this.f14947c.f39849c;
+        return this.f14947c.f39857c;
     }
 
     public int getTotalHeight() {

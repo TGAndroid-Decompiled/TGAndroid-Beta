@@ -210,7 +210,7 @@ public final class u implements Runnable {
                         if (c61Var != null) {
                             Object[] objArr = new Object[i10];
                             objArr[0] = h0Var2.Z;
-                            ((TextView) c61Var.f44685b).setText(hd.a0(null, null, 2131745751, objArr));
+                            ((TextView) c61Var.f44706b).setText(hd.a0(null, null, 2131745751, objArr));
                         }
                         h0Var2.f();
                         h0Var2.O = i7;

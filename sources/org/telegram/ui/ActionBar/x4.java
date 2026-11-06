@@ -192,8 +192,8 @@ public final class x4 extends FrameLayout {
             case 1:
                 super.setTranslationX(f10);
                 an0 an0Var = (an0) this.h;
-                x4[] x4VarArr = an0Var.f44030n;
-                if (an0Var.f44032s && (x4Var = x4VarArr[0]) == this) {
+                x4[] x4VarArr = an0Var.f44055n;
+                if (an0Var.f44057s && (x4Var = x4VarArr[0]) == this) {
                     an0Var.h.i(Math.abs(x4Var.getTranslationX()) / x4VarArr[0].getMeasuredWidth(), x4VarArr[1].f28745b);
                     return;
                 }

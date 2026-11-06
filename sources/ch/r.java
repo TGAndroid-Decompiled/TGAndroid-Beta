@@ -45,7 +45,7 @@ public final class r extends FrameLayout {
         this.f6384a = anVar;
         setClipToPadding(false);
         setClipChildren(false);
-        anVar.f44013z0.j(new ai.b(this, 7));
+        anVar.f44038z0.j(new ai.b(this, 7));
     }
 
     public final void a(boolean z9) {
@@ -108,12 +108,12 @@ public final class r extends FrameLayout {
                 org.telegram.messenger.g0.h3(new p(this, 0));
             }
             an anVar = this.f6384a;
-            aj ajVar = anVar.f44013z0;
+            aj ajVar = anVar.f44038z0;
             int[] iArr = this.D;
             ajVar.getLocationInWindow(iArr);
             boolean z12 = true;
             getLocationInWindow(iArr);
-            float f13 = (iArr[1] - iArr[1]) - anVar.f43784ga;
+            float f13 = (iArr[1] - iArr[1]) - anVar.f43809ga;
             boolean z13 = false;
             for (int i11 = 0; i11 < ajVar.getChildCount(); i11++) {
                 View childAt = ajVar.getChildAt(i11);
@@ -157,7 +157,7 @@ public final class r extends FrameLayout {
                         float y10 = (q1Var.getY() + f13) - org.telegram.messenger.g0.L(74.0f);
                         float L4 = org.telegram.messenger.g0.L(14.0f);
                         float L5 = height - org.telegram.messenger.g0.L(218.0f);
-                        lj ljVar = anVar.f43838l2;
+                        lj ljVar = anVar.f43863l2;
                         if (ljVar != null && ljVar.getVisibility() == 0) {
                             L4 += ljVar.getHeight();
                         }
@@ -179,7 +179,7 @@ public final class r extends FrameLayout {
                         if (!z9) {
                             this.f6389n = this.f6390r;
                         }
-                        float interpolation = (xq.f40310f.getInterpolation(this.f6389n) * this.f6391s) + y10;
+                        float interpolation = (xq.f40329f.getInterpolation(this.f6389n) * this.f6391s) + y10;
                         q qVar3 = this.f6385b;
                         if (qVar3 != null) {
                             if (z10 != qVar3.N) {
@@ -193,7 +193,7 @@ public final class r extends FrameLayout {
                                     this.f6385b.setVisibility(0);
                                     if (!this.f6394y) {
                                         this.f6394y = true;
-                                        this.f6385b.p(this.f6387e, anVar.f43892p8, true);
+                                        this.f6385b.p(this.f6387e, anVar.f43917p8, true);
                                     }
                                 }
                             }

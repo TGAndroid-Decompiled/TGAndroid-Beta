@@ -528,7 +528,7 @@ public final class i1 extends oj0 implements ls {
                 this.S = j3;
             }
             an anVar2 = this.G0;
-            if (anVar2 != null && (chat = anVar2.f43747e) != null) {
+            if (anVar2 != null && (chat = anVar2.f43772e) != null) {
                 boolean t6 = t3.t(chat);
                 this.f16781h0 = t6;
                 if (!t6) {
@@ -661,7 +661,7 @@ public final class i1 extends oj0 implements ls {
         TLRPC.Chat chat;
         this.f16778f = p10.f24459s0;
         this.f16798w = chatFull;
-        if (!this.f16781h0 && this.f16799w0 != null && (anVar = this.G0) != null && (chat = anVar.f43747e) != null) {
+        if (!this.f16781h0 && this.f16799w0 != null && (anVar = this.G0) != null && (chat = anVar.f43772e) != null) {
             boolean t6 = t3.t(chat);
             this.f16781h0 = t6;
             if (t6) {
@@ -874,8 +874,8 @@ public final class i1 extends oj0 implements ls {
         } else {
             i10 = i7;
         }
-        int i11 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        int i11 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         if (i11 == 4) {
             x7 x7Var = (x7) view;
             if (i10 >= 0 && i10 < this.A0.size()) {
@@ -954,7 +954,7 @@ public final class i1 extends oj0 implements ls {
             }
         } else if (i11 == 3) {
             TextView textView = (TextView) view;
-            TLRPC.Chat chat = this.G0.f43747e;
+            TLRPC.Chat chat = this.G0.f43772e;
             if (chat != null) {
                 if (!t3.N(chat) && (tL_chatBannedRights = chat.default_banned_rights) != null && tL_chatBannedRights.send_inline) {
                     textView.setText(hd.M0(2131749543, null));
@@ -1022,7 +1022,7 @@ public final class i1 extends oj0 implements ls {
                 }
                 TLRPC.Chat chat2 = this.f16785l0;
                 if (chat2 == null && (anVar = this.G0) != null) {
-                    chat2 = anVar.f43747e;
+                    chat2 = anVar.f43772e;
                 }
                 g1Var.a(i12, str3, chat2);
             } else if (i11 == 7) {
@@ -1088,7 +1088,7 @@ public final class i1 extends oj0 implements ls {
                                 if (booleanValue) {
                                     wp wpVar = new wp(2131231942, 0);
                                     wpVar.a(k6.A6);
-                                    wpVar.f40054n = 1;
+                                    wpVar.f40061n = 1;
                                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(str4);
                                     spannableStringBuilder.append((CharSequence) " *");
                                     spannableStringBuilder.setSpan(wpVar, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
@@ -1149,7 +1149,7 @@ public final class i1 extends oj0 implements ls {
                                         r6.y(tmVar, colorDrawable, k6.f27792a7, f6Var, PorterDuff.Mode.SRC_IN);
                                     }
                                     xp xpVar = new xp(colorDrawable, k6.X0(context, 2131231229, k6.w0(k6.f27812b7, f6Var)), 0, 0);
-                                    xpVar.f40305x = true;
+                                    xpVar.f40324x = true;
                                     tmVar.setBackground(xpVar);
                                     view = tmVar;
                                 }

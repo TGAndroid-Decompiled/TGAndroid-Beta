@@ -25,8 +25,8 @@ import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.r1;
 import org.telegram.ui.ActionBar.u1;
 import org.telegram.ui.Components.cj0;
-import org.telegram.ui.Components.r31;
 import org.telegram.ui.Components.voip.y1;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.bk0;
@@ -93,13 +93,13 @@ public final class j implements Continuation, la1, r1, cj0, vr, androidx.car.app
             case 2:
                 kg.a0 a0Var = (kg.a0) this.f951c;
                 boolean z10 = this.f950b;
-                r31 r31Var = (r31) this.d;
+                w31 w31Var = (w31) this.d;
                 if (!z10) {
                     arrayList = a0Var.f17294k;
                 } else {
                     arrayList = a0Var.f17293j;
                 }
-                arrayList.remove(Long.valueOf(r31Var.f37609x));
+                arrayList.remove(Long.valueOf(w31Var.f39841x));
                 a0Var.f17289e.run();
                 return;
             case 3:
@@ -111,24 +111,24 @@ public final class j implements Continuation, la1, r1, cj0, vr, androidx.car.app
                     TLRPC.TL_messages_deletePhoneCallHistory tL_messages_deletePhoneCallHistory = new TLRPC.TL_messages_deletePhoneCallHistory();
                     tL_messages_deletePhoneCallHistory.revoke = z12;
                     i9Var.getConnectionsManager().sendRequest(tL_messages_deletePhoneCallHistory, new d3(2, i9Var, z12));
-                    i9Var.f46603y.clear();
+                    i9Var.f46612y.clear();
                     i9Var.D = false;
                     i9Var.F = true;
-                    i9Var.f46602x.setVisibility(8);
-                    i9Var.f46595c.f35167f3.O(true);
+                    i9Var.f46611x.setVisibility(8);
+                    i9Var.f46604c.f36781f3.O(true);
                 } else {
                     i9Var.getMessagesController().Z(new ArrayList(i9Var.H), null, null, 0L, 0, zArr[0], 0);
                 }
                 i9Var.j0(false);
                 return;
             case 4:
-                ((ca) this.f951c).f44708a.o0((TLRPC.TL_username) this.d, this.f950b, true);
+                ((ca) this.f951c).f44729a.o0((TLRPC.TL_username) this.d, this.f950b, true);
                 return;
             case 5:
                 boolean z13 = this.f950b;
-                fo foVar = ((co) this.f951c).f44843a;
+                fo foVar = ((co) this.f951c).f44864a;
                 foVar.z1((TLRPC.TL_username) this.d, z13, true);
-                foVar.f45678h3.b0();
+                foVar.f45683h3.b0();
                 return;
             case 6:
                 f2 f2Var = (f2) this.f951c;
@@ -154,7 +154,7 @@ public final class j implements Continuation, la1, r1, cj0, vr, androidx.car.app
                 gz gzVar = (gz) this.f951c;
                 yy yyVar = (yy) this.d;
                 boolean z16 = this.f950b;
-                int i10 = yyVar.f52367j;
+                int i10 = yyVar.f52374j;
                 if (i10 > 0) {
                     gzVar.D &= ~i10;
                 } else {

@@ -446,7 +446,7 @@ public class u1 extends Dialog implements Drawable.Callback, ls {
                         for (Map.Entry entry : this.Z.entrySet()) {
                             Integer num = (Integer) entry.getValue();
                             num.getClass();
-                            animatedDrawable.f40948s.put((String) entry.getKey(), num);
+                            animatedDrawable.f40973s.put((String) entry.getKey(), num);
                             animatedDrawable.G();
                         }
                         this.f28555c1 = this.f28554c0;
@@ -488,7 +488,7 @@ public class u1 extends Dialog implements Drawable.Callback, ls {
             this.f28561f = lVar;
             qs.i(lVar);
             xh.l lVar2 = this.f28561f;
-            lVar2.f58724s = 3;
+            lVar2.f58749s = 3;
             lVar2.setText(this.R);
             xh.l lVar3 = this.f28561f;
             int f17 = f(k6.f27956j5);

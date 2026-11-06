@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import java.util.ArrayList;
-public class vr extends f41 {
+public class vr extends k41 {
     public final int P;
     public final int Q;
     public final boolean R;
@@ -16,26 +16,26 @@ public class vr extends f41 {
     public boolean X;
     public final SpannableStringBuilder Y;
     public int Z;
-    public int f39652a0;
-    public boolean f39653b0;
-    public boolean f39654c0;
-    public boolean f39655d0;
-    public int f39656e0;
-    public int f39657f0;
-    public String f39658g0;
-    public final rr f39659h0;
-    public boolean f39660i0;
-    public final s2 f39661j0;
+    public int f39649a0;
+    public boolean f39650b0;
+    public boolean f39651c0;
+    public boolean f39652d0;
+    public int f39653e0;
+    public int f39654f0;
+    public String f39655g0;
+    public final rr f39656h0;
+    public boolean f39657i0;
+    public final s2 f39658j0;
 
     public vr(pj0 pj0Var, Context context, int i7, int i10, boolean z9, org.telegram.ui.ActionBar.f6 f6Var) {
         super(pj0Var, context, i7, 0, true, null, f6Var);
         this.T = new ArrayList();
         this.U = new ArrayList();
         this.V = new ArrayList();
-        this.f39659h0 = new rr(this, 0);
-        this.f39660i0 = true;
-        this.f39661j0 = new s2(this, 3);
-        this.f33475w = new d(this, 8);
+        this.f39656h0 = new rr(this, 0);
+        this.f39657i0 = true;
+        this.f39658j0 = new s2(this, 3);
+        this.f35134w = new d(this, 8);
         this.P = i7;
         this.Q = i10;
         this.R = z9;
@@ -46,16 +46,16 @@ public class vr extends f41 {
     }
 
     public final void W() {
-        boolean isEmpty = TextUtils.isEmpty(this.f39658g0);
+        boolean isEmpty = TextUtils.isEmpty(this.f39655g0);
         pj0 pj0Var = this.d;
         if (!isEmpty) {
-            if (this.f39655d0 && !this.f39653b0 && pj0Var != null) {
+            if (this.f39652d0 && !this.f39650b0 && pj0Var != null) {
                 int i7 = 0;
                 while (true) {
                     if (i7 >= pj0Var.getChildCount()) {
                         break;
                     } else if (pj0Var.getChildAt(i7) instanceof lz) {
-                        if (this.f39655d0 && !this.f39653b0 && !TextUtils.isEmpty(this.f39658g0)) {
+                        if (this.f39652d0 && !this.f39650b0 && !TextUtils.isEmpty(this.f39655g0)) {
                             X(true);
                         }
                     } else {
@@ -64,7 +64,7 @@ public class vr extends f41 {
                 }
             }
         } else {
-            if (!this.f39660i0) {
+            if (!this.f39657i0) {
                 if (pj0Var != null) {
                     for (int i10 = 0; i10 < pj0Var.getChildCount(); i10++) {
                         if (!(pj0Var.getChildAt(i10) instanceof lz)) {
@@ -75,7 +75,7 @@ public class vr extends f41 {
             this.S.a();
             break;
         }
-        this.f39660i0 = false;
+        this.f39657i0 = false;
     }
 
     public final void X(boolean r10) {

@@ -30,8 +30,8 @@ import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.g51;
 import org.telegram.ui.Components.gy;
+import org.telegram.ui.Components.k51;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.an;
@@ -104,29 +104,29 @@ public final class l4 implements Runnable {
                     } else if (tLObject instanceof TLRPC.TL_boolTrue) {
                         TL_stars.TL_starGiftUnique H1 = k7Var.H1();
                         org.telegram.ui.Wallet.n0 x10 = org.telegram.ui.Wallet.n0.x(k7Var.f28612a);
-                        org.telegram.ui.Wallet.h hVar = x10.f42790z;
+                        org.telegram.ui.Wallet.h hVar = x10.f42815z;
                         if (H1 != null) {
                             str = H1.gift_address;
                         } else {
                             str = null;
                         }
                         org.telegram.messenger.g0.r(hVar);
-                        x10.f42788x = str;
-                        x10.f42789y = 0;
-                        if (x10.f42780o == null) {
-                            x10.f42780o = new org.telegram.ui.Wallet.f0(x10);
+                        x10.f42813x = str;
+                        x10.f42814y = 0;
+                        if (x10.f42805o == null) {
+                            x10.f42805o = new org.telegram.ui.Wallet.f0(x10);
                         }
-                        org.telegram.ui.Wallet.f0 f0Var = x10.f42780o;
-                        if (!f0Var.f42425j) {
+                        org.telegram.ui.Wallet.f0 f0Var = x10.f42805o;
+                        if (!f0Var.f42450j) {
                             f0Var.b();
                             f0Var.f(true);
                         }
                         x10.B().g();
                         x10.E();
-                        int i17 = x10.f42789y;
+                        int i17 = x10.f42814y;
                         long[] jArr = org.telegram.ui.Wallet.n0.P;
                         if (i17 < 7) {
-                            x10.f42789y = i17 + 1;
+                            x10.f42814y = i17 + 1;
                             org.telegram.messenger.g0.i3(hVar, jArr[i17]);
                         }
                         if (H1 != null && !TextUtils.isEmpty(H1.slug)) {
@@ -159,7 +159,7 @@ public final class l4 implements Runnable {
                 if (tL_error2 != null) {
                     if (!"PASSWORD_MISSING".equals(tL_error2.text) && !tL_error2.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error2.text.startsWith("SESSION_TOO_FRESH_")) {
                         if ("SRP_ID_INVALID".equals(tL_error2.text)) {
-                            ConnectionsManager.getInstance(zdVar.f52537o0).sendRequest(new TL_account.getPassword(), new u9(zdVar, twoStepVerificationActivity2, z10, 3), 8);
+                            ConnectionsManager.getInstance(zdVar.f52544o0).sendRequest(new TL_account.getPassword(), new u9(zdVar, twoStepVerificationActivity2, z10, 3), 8);
                             return;
                         }
                         if (twoStepVerificationActivity2 != null) {
@@ -316,7 +316,7 @@ public final class l4 implements Runnable {
                         return;
                     }
                     try {
-                        org.telegram.messenger.g0.u2(ijVar, anVar.getParentActivity(), anVar.f43998xa, false);
+                        org.telegram.messenger.g0.u2(ijVar, anVar.getParentActivity(), anVar.f44023xa, false);
                         return;
                     } catch (Exception e11) {
                         org.telegram.messenger.a8.g(e11, true);
@@ -330,8 +330,8 @@ public final class l4 implements Runnable {
                 TLRPC.TL_username tL_username = (TLRPC.TL_username) this.f4266f;
                 boolean z12 = this.f4263b;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.d;
-                fo foVar = coVar.f44843a;
-                go goVar = foVar.f45678h3;
+                fo foVar = coVar.f44864a;
+                go goVar = foVar.f45683h3;
                 goVar.P.remove(((TLRPC.TL_channels_toggleUsername) this.f4265e).username);
                 if (((TLObject) this.h) instanceof TLRPC.TL_boolTrue) {
                     foVar.z1(tL_username, !z12, false);
@@ -366,7 +366,7 @@ public final class l4 implements Runnable {
                         i19++;
                         groupCall = ((TL_update.TL_updateGroupCall) obj).call;
                     }
-                    Utilities.d.c(new g51(10, ssVar, updates));
+                    Utilities.d.c(new k51(10, ssVar, updates));
                     if (groupCall != null && LaunchActivity.G1 != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
                         tL_inputGroupCall.f26969id = groupCall.f26962id;
@@ -407,7 +407,7 @@ public final class l4 implements Runnable {
                 int[] iArr3 = (int[]) this.f4266f;
                 int[] iArr4 = (int[]) this.h;
                 boolean z14 = this.f4263b;
-                org.telegram.messenger.q5 q5Var = org.telegram.ui.Wallet.ca.f42289a;
+                org.telegram.messenger.q5 q5Var = org.telegram.ui.Wallet.ca.f42314a;
                 int i20 = 0;
                 while (true) {
                     int i21 = 287;
@@ -457,7 +457,7 @@ public final class l4 implements Runnable {
                                         }
                                     }
                                 }
-                                iArr3[(i30 * 288) + i28] = org.telegram.ui.Wallet.ca.f42290b[i31];
+                                iArr3[(i30 * 288) + i28] = org.telegram.ui.Wallet.ca.f42315b[i31];
                                 i30++;
                                 i16 = 0;
                                 i21 = 287;

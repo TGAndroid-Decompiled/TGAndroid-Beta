@@ -1,19 +1,19 @@
 package org.telegram.ui.Components;
 public final class iz {
-    public byte f34827a;
-    public byte f34828b;
-    public byte f34829c;
+    public byte f34790a;
+    public byte f34791b;
+    public byte f34792c;
     public byte d;
-    public byte f34830e;
-    public byte f34831f;
-    public float f34832g;
+    public byte f34793e;
+    public byte f34794f;
+    public float f34795g;
     public float h;
-    public short f34833i;
-    public float f34834j;
-    public float f34835k;
-    public final jz f34836l;
+    public short f34796i;
+    public float f34797j;
+    public float f34798k;
+    public final jz f34799l;
 
     public iz(jz jzVar) {
-        this.f34836l = jzVar;
+        this.f34799l = jzVar;
     }
 }

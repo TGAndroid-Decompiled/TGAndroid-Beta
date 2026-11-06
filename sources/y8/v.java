@@ -11,11 +11,11 @@ import com.google.android.gms.wallet.MaskedWallet;
 import com.google.android.gms.wallet.wobs.CommonWalletObject;
 import java.util.ArrayList;
 public final class v implements Parcelable.Creator {
-    public final int f59217a;
+    public final int f59242a;
 
     @Override
     public final Object createFromParcel(Parcel parcel) {
-        switch (this.f59217a) {
+        switch (this.f59242a) {
             case 0:
                 int z9 = vb.z(parcel);
                 String str = null;
@@ -108,9 +108,9 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z10);
                 ?? obj2 = new Object();
-                obj2.f59145a = str4;
-                obj2.f59146b = str5;
-                obj2.f59147c = i7;
+                obj2.f59170a = str4;
+                obj2.f59171b = str5;
+                obj2.f59172c = i7;
                 return obj2;
             case 2:
                 int z11 = vb.z(parcel);
@@ -149,12 +149,12 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z11);
                 ?? obj3 = new Object();
-                obj3.f59148a = arrayList;
-                obj3.f59149b = str8;
-                obj3.f59150c = str6;
+                obj3.f59173a = arrayList;
+                obj3.f59174b = str8;
+                obj3.f59175c = str6;
                 obj3.d = arrayList2;
-                obj3.f59151e = z12;
-                obj3.f59152f = str7;
+                obj3.f59176e = z12;
+                obj3.f59177f = str7;
                 return obj3;
             case 3:
                 int z13 = vb.z(parcel);
@@ -260,19 +260,19 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z13);
                 ?? obj4 = new Object();
-                obj4.f59153a = str9;
-                obj4.f59154b = str20;
-                obj4.f59155c = str12;
+                obj4.f59178a = str9;
+                obj4.f59179b = str20;
+                obj4.f59180c = str12;
                 obj4.d = str13;
-                obj4.f59156e = str14;
-                obj4.f59157f = str15;
+                obj4.f59181e = str14;
+                obj4.f59182f = str15;
                 obj4.h = str16;
-                obj4.f59158n = str17;
-                obj4.f59159r = str11;
-                obj4.f59160s = str10;
-                obj4.f59161w = i10;
-                obj4.f59162x = arrayList3;
-                obj4.f59163y = fVar;
+                obj4.f59183n = str17;
+                obj4.f59184r = str11;
+                obj4.f59185s = str10;
+                obj4.f59186w = i10;
+                obj4.f59187x = arrayList3;
+                obj4.f59188y = fVar;
                 obj4.D = arrayList6;
                 obj4.E = str18;
                 obj4.F = str19;
@@ -393,7 +393,7 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z17);
                 ?? obj6 = new Object();
-                obj6.f59167a = pendingIntent;
+                obj6.f59192a = pendingIntent;
                 return obj6;
             case 7:
                 int z18 = vb.z(parcel);
@@ -525,8 +525,8 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z20);
                 ?? obj8 = new Object();
-                obj8.f59876a = str37;
-                obj8.f59877b = str38;
+                obj8.f59901a = str37;
+                obj8.f59902b = str38;
                 return obj8;
             case 9:
                 int z21 = vb.z(parcel);
@@ -552,9 +552,9 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z21);
                 ?? obj9 = new Object();
-                obj9.f59878a = str39;
-                obj9.f59879b = str40;
-                obj9.f59880c = arrayList18;
+                obj9.f59903a = str39;
+                obj9.f59904b = str40;
+                obj9.f59905c = arrayList18;
                 return obj9;
             case 10:
                 int z22 = vb.z(parcel);
@@ -592,12 +592,12 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z22);
                 ?? obj10 = new Object();
-                obj10.f59884a = i13;
-                obj10.f59885b = str41;
-                obj10.f59886c = d;
+                obj10.f59909a = i13;
+                obj10.f59910b = str41;
+                obj10.f59911c = d;
                 obj10.d = str42;
-                obj10.f59887e = j3;
-                obj10.f59888f = i14;
+                obj10.f59912e = j3;
+                obj10.f59913f = i14;
                 return obj10;
             case 11:
                 int z23 = vb.z(parcel);
@@ -623,9 +623,9 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z23);
                 ?? obj11 = new Object();
-                obj11.f59881a = str43;
-                obj11.f59882b = dVar;
-                obj11.f59883c = fVar4;
+                obj11.f59906a = str43;
+                obj11.f59907b = dVar;
+                obj11.f59908c = fVar4;
                 return obj11;
             case 12:
                 int z24 = vb.z(parcel);
@@ -646,8 +646,8 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z24);
                 ?? obj12 = new Object();
-                obj12.f59889a = str44;
-                obj12.f59890b = str45;
+                obj12.f59914a = str44;
+                obj12.f59915b = str45;
                 return obj12;
             case 13:
                 int z25 = vb.z(parcel);
@@ -668,8 +668,8 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z25);
                 ?? obj13 = new Object();
-                obj13.f59891a = j10;
-                obj13.f59892b = j11;
+                obj13.f59916a = j10;
+                obj13.f59917b = j11;
                 return obj13;
             case 14:
                 int z26 = vb.z(parcel);
@@ -690,8 +690,8 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z26);
                 ?? obj14 = new Object();
-                obj14.f59893a = str46;
-                obj14.f59894b = str47;
+                obj14.f59918a = str46;
+                obj14.f59919b = str47;
                 return obj14;
             default:
                 int z27 = vb.z(parcel);
@@ -727,18 +727,18 @@ public final class v implements Parcelable.Creator {
                 }
                 vb.m(parcel, z27);
                 ?? obj15 = new Object();
-                obj15.f59895a = str48;
-                obj15.f59896b = str49;
-                obj15.f59897c = fVar5;
+                obj15.f59920a = str48;
+                obj15.f59921b = str49;
+                obj15.f59922c = fVar5;
                 obj15.d = gVar;
-                obj15.f59898e = gVar2;
+                obj15.f59923e = gVar2;
                 return obj15;
         }
     }
 
     @Override
     public final Object[] newArray(int i7) {
-        switch (this.f59217a) {
+        switch (this.f59242a) {
             case 0:
                 return new FullWallet[i7];
             case 1:

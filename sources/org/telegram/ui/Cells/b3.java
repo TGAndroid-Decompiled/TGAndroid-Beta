@@ -126,7 +126,7 @@ public final class b3 extends FrameLayout implements org.telegram.ui.ActionBar.a
         }
         int min = Math.min(3, size);
         org.telegram.ui.Components.z8 z8Var = this.f28927n;
-        if (min != z8Var.f40861a.f40556n) {
+        if (min != z8Var.f40886a.f40575n) {
             z9 = true;
         } else {
             z9 = false;

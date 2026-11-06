@@ -10,40 +10,40 @@ import org.telegram.messenger.qs;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.rt0;
+import org.telegram.ui.Components.w31;
 public final class p4 extends org.telegram.ui.ActionBar.f2 implements ls {
     public final long f14868a;
     public org.telegram.ui.ActionBar.y1 f14869b;
-    public k41 f14870c;
+    public p41 f14870c;
 
     public p4(long j3) {
         super(null);
         this.f14868a = j3;
     }
 
-    public final void Z(ArrayList arrayList, f41 f41Var) {
+    public final void Z(ArrayList arrayList, k41 k41Var) {
         bi.l0 e10 = bi.n0.g(this.currentAccount).e(this.f14868a);
         ArrayList arrayList2 = e10.f4247e;
         for (int i7 = 0; i7 < arrayList2.size(); i7++) {
             Object obj = arrayList2.get(i7);
             int i10 = m3.f14795b;
-            r31 K = r31.K(m3.class);
+            w31 K = w31.K(m3.class);
             K.G = obj;
-            K.f37604r = false;
+            K.f39836r = false;
             arrayList.add(K);
         }
         if (e10.h) {
-            arrayList.add(r31.p(29));
-            arrayList.add(r31.p(29));
-            arrayList.add(r31.p(29));
+            arrayList.add(w31.p(29));
+            arrayList.add(w31.p(29));
+            arrayList.add(w31.p(29));
         }
     }
 
-    public final void a0(r31 r31Var) {
-        Object obj = r31Var.G;
+    public final void a0(w31 w31Var) {
+        Object obj = w31Var.G;
         if (obj instanceof TL_payments.starRefProgram) {
             q3.J0(getParentActivity(), this.currentAccount, (TL_payments.starRefProgram) obj, this.f14868a, this.resourceProvider, false);
         }
@@ -66,18 +66,18 @@ public final class p4 extends org.telegram.ui.ActionBar.f2 implements ls {
         r6.m(this.actionBar, 5, i7, null);
         this.actionBar.setTitle(hd.M0(2131752471, null));
         rt0 rt0Var = new rt0(context, null);
-        k41 k41Var = new k41(this, new u1(this, 2), new di.q4(this, 22), null);
-        this.f14870c = k41Var;
-        rt0Var.addView(k41Var, ha.e(-1, -1, 119));
+        p41 p41Var = new p41(this, new u1(this, 2), new di.q4(this, 22), null);
+        this.f14870c = p41Var;
+        rt0Var.addView(p41Var, ha.e(-1, -1, 119));
         this.fragmentView = rt0Var;
         return rt0Var;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
-        k41 k41Var;
-        if (i7 == qs.K3 && ((Long) objArr[0]).longValue() == this.f14868a && (k41Var = this.f14870c) != null && (k41Var.getAdapter() instanceof f41)) {
-            ((f41) this.f14870c.getAdapter()).O(true);
+        p41 p41Var;
+        if (i7 == qs.K3 && ((Long) objArr[0]).longValue() == this.f14868a && (p41Var = this.f14870c) != null && (p41Var.getAdapter() instanceof k41)) {
+            ((k41) this.f14870c.getAdapter()).O(true);
         }
     }
 

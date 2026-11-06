@@ -1,7 +1,7 @@
 package org.telegram.ui;
 public final class db extends mi.l {
     public int W;
-    public fq0 X;
+    public gq0 X;
     public final mb Y;
 
     public db(mb mbVar, org.telegram.ui.Components.pj0 pj0Var, org.telegram.ui.ActionBar.f6 f6Var) {
@@ -13,13 +13,13 @@ public final class db extends mi.l {
     @Override
     public final void N() {
         super.N();
-        fq0 fq0Var = this.X;
-        if (fq0Var != null) {
-            org.telegram.messenger.g0.r(fq0Var);
+        gq0 gq0Var = this.X;
+        if (gq0Var != null) {
+            org.telegram.messenger.g0.r(gq0Var);
         }
-        fq0 fq0Var2 = new fq0(this, 20);
-        this.X = fq0Var2;
-        org.telegram.messenger.g0.h3(fq0Var2);
+        gq0 gq0Var2 = new gq0(this, 20);
+        this.X = gq0Var2;
+        org.telegram.messenger.g0.h3(gq0Var2);
     }
 
     @Override
@@ -27,9 +27,9 @@ public final class db extends mi.l {
         if (this.W == -1) {
             this.W = this.Y.getNotificationCenter().q(mb.R0, this.W, false);
         }
-        fq0 fq0Var = this.X;
-        if (fq0Var != null) {
-            org.telegram.messenger.g0.r(fq0Var);
+        gq0 gq0Var = this.X;
+        if (gq0Var != null) {
+            org.telegram.messenger.g0.r(gq0Var);
             this.X = null;
         }
         if (org.telegram.messenger.r2.f25191a) {

@@ -7,22 +7,22 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 public final class is0 extends oj0 {
-    public final Context f34776c;
+    public final Context f34739c;
     public final org.telegram.messenger.vv d;
     public boolean h;
-    public rr0 f34781s;
-    public final xs0 f34784y;
-    public final ArrayList f34777e = new ArrayList();
-    public final ArrayList f34778f = new ArrayList();
-    public final ir0 f34779n = new ir0(this, 2);
-    public final v4.u0 f34780r = new v4.u0();
-    public final v4.y f34782w = new v4.y(new ei.d(this, 6));
-    public final HashSet f34783x = new HashSet();
+    public rr0 f34744s;
+    public final xs0 f34747y;
+    public final ArrayList f34740e = new ArrayList();
+    public final ArrayList f34741f = new ArrayList();
+    public final ir0 f34742n = new ir0(this, 2);
+    public final v4.u0 f34743r = new v4.u0();
+    public final v4.y f34745w = new v4.y(new ei.d(this, 6));
+    public final HashSet f34746x = new HashSet();
 
     public is0(xs0 xs0Var, Context context) {
-        this.f34784y = xs0Var;
-        this.f34776c = context;
-        org.telegram.messenger.vv G1 = xs0Var.f40405x1.getMessagesController().G1();
+        this.f34747y = xs0Var;
+        this.f34739c = context;
+        org.telegram.messenger.vv G1 = xs0Var.f40424x1.getMessagesController().G1();
         this.d = G1;
         if (xs0Var.x0()) {
             G1.g(false);
@@ -47,7 +47,7 @@ public final class is0 extends oj0 {
             int i10 = 0;
             int i11 = 0;
             while (true) {
-                arrayList = this.f34778f;
+                arrayList = this.f34741f;
                 if (i11 < arrayList.size()) {
                     if (((org.telegram.messenger.uv) arrayList.get(i11)).f25886a == dialogId) {
                         uvVar = (org.telegram.messenger.uv) arrayList.get(i11);
@@ -63,9 +63,9 @@ public final class is0 extends oj0 {
                 return;
             }
             Long valueOf = Long.valueOf(uvVar.f25886a);
-            HashSet hashSet = this.f34783x;
+            HashSet hashSet = this.f34746x;
             boolean contains = hashSet.contains(valueOf);
-            xs0 xs0Var = this.f34784y;
+            xs0 xs0Var = this.f34747y;
             if (contains) {
                 hashSet.remove(Long.valueOf(uvVar.f25886a));
                 if (hashSet.size() <= 0 && xs0Var.E1) {
@@ -75,11 +75,11 @@ public final class is0 extends oj0 {
                 hashSet.add(Long.valueOf(uvVar.f25886a));
                 if (hashSet.size() > 0 && !xs0Var.E1) {
                     xs0Var.o1(true);
-                    org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40401w0;
+                    org.telegram.ui.ActionBar.r0 r0Var = xs0Var.f40420w0;
                     if (r0Var != null) {
                         r0Var.setVisibility(8);
                     }
-                    org.telegram.ui.ActionBar.r0 r0Var2 = xs0Var.f40398v0;
+                    org.telegram.ui.ActionBar.r0 r0Var2 = xs0Var.f40417v0;
                     if (r0Var2 != null) {
                         r0Var2.setVisibility(8);
                     }
@@ -112,7 +112,7 @@ public final class is0 extends oj0 {
                     break;
                 }
             }
-            org.telegram.ui.ActionBar.r0 r0Var3 = xs0Var.f40404x0;
+            org.telegram.ui.ActionBar.r0 r0Var3 = xs0Var.f40423x0;
             if (r0Var3 != null) {
                 if (z9) {
                     i7 = 8;
@@ -121,7 +121,7 @@ public final class is0 extends oj0 {
                 }
                 r0Var3.setVisibility(i7);
             }
-            org.telegram.ui.ActionBar.r0 r0Var4 = xs0Var.f40407y0;
+            org.telegram.ui.ActionBar.r0 r0Var4 = xs0Var.f40426y0;
             if (r0Var4 != null) {
                 if (!z9) {
                     i10 = 8;
@@ -133,9 +133,9 @@ public final class is0 extends oj0 {
     }
 
     public final void F(boolean z9) {
-        ArrayList arrayList = this.f34777e;
+        ArrayList arrayList = this.f34740e;
         arrayList.clear();
-        ArrayList arrayList2 = this.f34778f;
+        ArrayList arrayList2 = this.f34741f;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         arrayList2.addAll(this.d.f26204j);
@@ -146,13 +146,13 @@ public final class is0 extends oj0 {
 
     @Override
     public final int b() {
-        return this.f34778f.size();
+        return this.f34741f.size();
     }
 
     @Override
     public final long c(int i7) {
         if (i7 >= 0) {
-            ArrayList arrayList = this.f34778f;
+            ArrayList arrayList = this.f34741f;
             if (i7 < arrayList.size()) {
                 return ((org.telegram.messenger.uv) arrayList.get(i7)).f25886a;
             }
@@ -167,17 +167,17 @@ public final class is0 extends oj0 {
 
     @Override
     public final void t(v4.d1 d1Var, int i7) {
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         if (!(view instanceof org.telegram.ui.Cells.t2)) {
             return;
         }
         org.telegram.ui.Cells.t2 t2Var = (org.telegram.ui.Cells.t2) view;
-        ArrayList arrayList = this.f34778f;
+        ArrayList arrayList = this.f34741f;
         org.telegram.messenger.uv uvVar = (org.telegram.messenger.uv) arrayList.get(i7);
         t2Var.d0(uvVar.f25886a, uvVar.d, uvVar.c(), false, false);
         boolean z9 = true;
         t2Var.f30473s0 = true;
-        t2Var.c0(this.f34783x.contains(Long.valueOf(uvVar.f25886a)), false);
+        t2Var.c0(this.f34746x.contains(Long.valueOf(uvVar.f25886a)), false);
         if (i7 + 1 >= arrayList.size()) {
             z9 = false;
         }
@@ -186,8 +186,8 @@ public final class is0 extends oj0 {
 
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
-        hs0 hs0Var = new hs0(this, this.f34776c);
-        xs0 xs0Var = this.f34784y;
+        hs0 hs0Var = new hs0(this, this.f34739c);
+        xs0 xs0Var = this.f34747y;
         hs0Var.setDialogCellDelegate(xs0Var);
         hs0Var.f30467r0 = true;
         org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f27848d6, hs0Var, xs0Var.H1);

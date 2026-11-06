@@ -6,13 +6,13 @@ import android.text.TextWatcher;
 import android.text.style.ImageSpan;
 import android.view.KeyEvent;
 public final class hh implements TextWatcher {
-    public final int f34339a;
-    public boolean f34340b;
-    public boolean f34341c;
+    public final int f34289a;
+    public boolean f34290b;
+    public boolean f34291c;
     public final KeyEvent.Callback d;
 
     public hh(KeyEvent.Callback callback, int i7) {
-        this.f34339a = i7;
+        this.f34289a = i7;
         this.d = callback;
     }
 
@@ -22,26 +22,26 @@ public final class hh implements TextWatcher {
         boolean z10;
         int i7;
         boolean z11;
-        switch (this.f34339a) {
+        switch (this.f34289a) {
             case 0:
                 di diVar = (di) this.d;
-                j6 j6Var = diVar.f32937r1;
-                gh ghVar = diVar.f32966y2;
-                j6 j6Var2 = diVar.f32933q1;
-                if (this.f34341c != TextUtils.isEmpty(editable)) {
-                    vh vhVar = diVar.f32942s2;
+                j6 j6Var = diVar.f32950r1;
+                gh ghVar = diVar.f32979y2;
+                j6 j6Var2 = diVar.f32946q1;
+                if (this.f34291c != TextUtils.isEmpty(editable)) {
+                    vh vhVar = diVar.f32955s2;
                     if (vhVar != null) {
                         vhVar.D(vhVar.getSelectedItemsCount());
                     }
-                    this.f34341c = !this.f34341c;
+                    this.f34291c = !this.f34291c;
                 }
                 boolean z12 = false;
-                if (this.f34340b) {
+                if (this.f34290b) {
                     for (ImageSpan imageSpan : (ImageSpan[]) editable.getSpans(0, editable.length(), ImageSpan.class)) {
                         editable.removeSpan(imageSpan);
                     }
                     org.telegram.messenger.i6.l(editable, ghVar.getEditText().getPaint().getFontMetricsInt(), false);
-                    this.f34340b = false;
+                    this.f34290b = false;
                 }
                 int codePointCount = Character.codePointCount(editable, 0, editable.length());
                 diVar.C1 = codePointCount;
@@ -101,16 +101,16 @@ public final class hh implements TextWatcher {
                 return;
             default:
                 org.telegram.ui.Wallet.m9 m9Var = (org.telegram.ui.Wallet.m9) this.d;
-                if (this.f34340b) {
-                    this.f34340b = false;
-                    this.f34341c = true;
+                if (this.f34290b) {
+                    this.f34290b = false;
+                    this.f34291c = true;
                     try {
                         editable.append('.');
-                        this.f34341c = false;
-                        m9Var.f42755c.setSelection(editable.length());
+                        this.f34291c = false;
+                        m9Var.f42780c.setSelection(editable.length());
                         return;
                     } catch (Throwable th2) {
-                        this.f34341c = false;
+                        this.f34291c = false;
                         throw th2;
                     }
                 }
@@ -121,12 +121,12 @@ public final class hh implements TextWatcher {
 
     @Override
     public final void beforeTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
-        switch (this.f34339a) {
+        switch (this.f34289a) {
             case 0:
                 return;
             default:
                 org.telegram.ui.Wallet.m9 m9Var = (org.telegram.ui.Wallet.m9) this.d;
-                org.telegram.ui.Wallet.i9 i9Var = m9Var.f42755c;
+                org.telegram.ui.Wallet.i9 i9Var = m9Var.f42780c;
                 if (charSequence.length() > 0 && i10 == charSequence.length() && i11 == 0 && i9Var.getLayout() != null) {
                     m9Var.N = i9Var.getLayout().getLineLeft(0) - i9Var.getScrollX();
                     return;
@@ -139,18 +139,18 @@ public final class hh implements TextWatcher {
     public final void onTextChanged(CharSequence charSequence, int i7, int i10, int i11) {
         boolean z9;
         float f10;
-        switch (this.f34339a) {
+        switch (this.f34289a) {
             case 0:
                 di diVar = (di) this.d;
                 if (i11 - i10 >= 1) {
-                    this.f34340b = true;
+                    this.f34290b = true;
                 }
-                if (diVar.f32968y4 == null) {
+                if (diVar.f32981y4 == null) {
                     di.K0(diVar);
                 }
-                if (diVar.f32968y4.getAdapter() != null) {
-                    diVar.f32968y4.setReversed(false);
-                    diVar.f32968y4.getAdapter().U(charSequence, diVar.f32966y2.getEditText().getSelectionStart(), null, false, false);
+                if (diVar.f32981y4.getAdapter() != null) {
+                    diVar.f32981y4.setReversed(false);
+                    diVar.f32981y4.getAdapter().U(charSequence, diVar.f32979y2.getEditText().getSelectionStart(), null, false, false);
                     diVar.J1();
                     return;
                 }
@@ -162,15 +162,15 @@ public final class hh implements TextWatcher {
                 } else {
                     z9 = false;
                 }
-                this.f34340b = z9;
+                this.f34290b = z9;
                 org.telegram.ui.Wallet.m9 m9Var = (org.telegram.ui.Wallet.m9) this.d;
-                if (!m9Var.R && !this.f34341c) {
+                if (!m9Var.R && !this.f34291c) {
                     if (i10 != 0 || i11 != 0) {
                         org.telegram.ui.Wallet.w6 w6Var = m9Var.d;
                         if (i11 > 0 && i11 >= i10) {
                             z10 = true;
                         }
-                        if (w6Var.f43283y && w6Var.f43279r && w6Var.D == -1) {
+                        if (w6Var.f43308y && w6Var.f43304r && w6Var.D == -1) {
                             ch0 ch0Var = w6Var.h;
                             if (ch0Var != null) {
                                 if (!ch0Var.b()) {
@@ -180,13 +180,13 @@ public final class hh implements TextWatcher {
                                 }
                                 return;
                             }
-                            float f11 = w6Var.f43267d0;
+                            float f11 = w6Var.f43292d0;
                             if (z10) {
                                 f10 = -160.0f;
                             } else {
                                 f10 = 160.0f;
                             }
-                            w6Var.f43267d0 = org.telegram.messenger.camera.q.z(f11, f10, 360.0f, -360.0f);
+                            w6Var.f43292d0 = org.telegram.messenger.camera.q.z(f11, f10, 360.0f, -360.0f);
                             return;
                         }
                         return;

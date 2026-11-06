@@ -49,7 +49,7 @@ public final class ps implements ms, ls {
                         if (iArr[0] == 0) {
                             Activity activity = x0Var.W;
                             if (activity != null) {
-                                x0Var.f51359g0 = org.telegram.ui.s9.j0(activity, 3, new org.telegram.ui.Components.n(x0Var));
+                                x0Var.f51369g0 = org.telegram.ui.s9.j0(activity, 3, new org.telegram.ui.Components.n(x0Var));
                                 return;
                             }
                             return;

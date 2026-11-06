@@ -6,8 +6,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.p61;
-public final class f5 extends p61 {
+import org.telegram.ui.Components.u61;
+public final class f5 extends u61 {
     public final k7 V;
 
     public f5(k7 k7Var, Context context) {
@@ -73,11 +73,11 @@ public final class f5 extends p61 {
     @Override
     public final void G() {
         super.G();
-        int i7 = this.f36904b;
+        int i7 = this.f38532b;
         k7 k7Var = this.V;
         boolean z9 = false;
         if (i7 != k7Var.I1(false)) {
-            if (this.f36904b > k7Var.I1(false)) {
+            if (this.f38532b > k7Var.I1(false)) {
                 z9 = true;
             }
             org.telegram.messenger.g0.h3(new k1(2, this, z9));

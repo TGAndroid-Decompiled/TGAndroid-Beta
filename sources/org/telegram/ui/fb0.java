@@ -6,24 +6,24 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class fb0 implements RequestDelegate {
-    public final int f45580a;
-    public final ob0 f45581b;
-    public final Bundle f45582c;
+    public final int f45585a;
+    public final ob0 f45586b;
+    public final Bundle f45587c;
     public final TLRPC.TL_auth_resetLoginEmail d;
 
     public fb0(ob0 ob0Var, Bundle bundle, TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail, int i7) {
-        this.f45580a = i7;
-        this.f45581b = ob0Var;
-        this.f45582c = bundle;
+        this.f45585a = i7;
+        this.f45586b = ob0Var;
+        this.f45587c = bundle;
         this.d = tL_auth_resetLoginEmail;
     }
 
     @Override
     public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f45580a) {
+        switch (this.f45585a) {
             case 0:
-                final ob0 ob0Var = this.f45581b;
-                final Bundle bundle = this.f45582c;
+                final ob0 ob0Var = this.f45586b;
+                final Bundle bundle = this.f45587c;
                 final TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail = this.d;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
@@ -77,7 +77,7 @@ public final class fb0 implements RequestDelegate {
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
                                         auth_sentcodetype.email_pattern = ob0Var2.D.getString("emailPattern");
-                                        ob0Var2.f48334y = true;
+                                        ob0Var2.f48363y = true;
                                     }
                                     ce0Var2.y1(bundle2, tL_auth_sentCode, true);
                                     return;
@@ -98,8 +98,8 @@ public final class fb0 implements RequestDelegate {
                 });
                 return;
             default:
-                final ob0 ob0Var2 = this.f45581b;
-                final Bundle bundle2 = this.f45582c;
+                final ob0 ob0Var2 = this.f45586b;
+                final Bundle bundle2 = this.f45587c;
                 final TLRPC.TL_auth_resetLoginEmail tL_auth_resetLoginEmail2 = this.d;
                 org.telegram.messenger.g0.h3(new Runnable() {
                     @Override
@@ -153,7 +153,7 @@ public final class fb0 implements RequestDelegate {
                                     TLRPC.auth_SentCodeType auth_sentcodetype = tL_auth_sentCode.type;
                                     if (auth_sentcodetype instanceof TLRPC.TL_auth_sentCodeTypeEmailCode) {
                                         auth_sentcodetype.email_pattern = ob0Var22.D.getString("emailPattern");
-                                        ob0Var22.f48334y = true;
+                                        ob0Var22.f48363y = true;
                                     }
                                     ce0Var2.y1(bundle22, tL_auth_sentCode, true);
                                     return;

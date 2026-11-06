@@ -16,25 +16,25 @@ import android.graphics.drawable.Drawable;
 import android.widget.ImageView;
 import java.util.Arrays;
 public final class wz0 extends ImageView {
-    public static final org.telegram.ui.Cells.g1 f40110x = new org.telegram.ui.Cells.g1(Float.class, "radius", 3);
-    public final Paint f40111a;
-    public final Matrix f40112b;
-    public RadialGradient f40113c;
+    public static final org.telegram.ui.Cells.g1 f40117x = new org.telegram.ui.Cells.g1(Float.class, "radius", 3);
+    public final Paint f40118a;
+    public final Matrix f40119b;
+    public RadialGradient f40120c;
     public boolean d;
-    public float f40114e;
-    public float f40115f;
+    public float f40121e;
+    public float f40122f;
     public float h;
-    public ch0 f40116n;
-    public ColorFilter f40117r;
-    public final int[] f40118s;
-    public final int[] f40119w;
+    public ch0 f40123n;
+    public ColorFilter f40124r;
+    public final int[] f40125s;
+    public final int[] f40126w;
 
     public wz0(Context context) {
         super(context);
-        this.f40111a = new Paint(1);
-        this.f40112b = new Matrix();
-        this.f40118s = new int[2];
-        this.f40119w = new int[2];
+        this.f40118a = new Paint(1);
+        this.f40119b = new Matrix();
+        this.f40125s = new int[2];
+        this.f40126w = new int[2];
     }
 
     public static void a(Bitmap bitmap, org.telegram.ui.ActionBar.n3 n3Var, ch0 ch0Var) {
@@ -66,14 +66,14 @@ public final class wz0 extends ImageView {
 
     public final void b(float f10, float f11, boolean z9) {
         PorterDuff.Mode mode;
-        this.f40114e = f10;
-        this.f40115f = f11;
+        this.f40121e = f10;
+        this.f40122f = f11;
         this.d = z9;
-        RadialGradient radialGradient = this.f40113c;
-        Paint paint = this.f40111a;
+        RadialGradient radialGradient = this.f40120c;
+        Paint paint = this.f40118a;
         if (radialGradient == null) {
             RadialGradient radialGradient2 = new RadialGradient(0.0f, 0.0f, 100.0f, new int[]{-16777216, -16777216, 0}, new float[]{0.0f, 0.6f, 1.0f}, Shader.TileMode.CLAMP);
-            this.f40113c = radialGradient2;
+            this.f40120c = radialGradient2;
             paint.setShader(radialGradient2);
         }
         if (z9) {
@@ -87,29 +87,29 @@ public final class wz0 extends ImageView {
     @Override
     public final void onDraw(Canvas canvas) {
         Drawable drawable;
-        if (this.f40113c == null) {
+        if (this.f40120c == null) {
             super.onDraw(canvas);
         } else if (this.h < 1.0f && !this.d) {
         } else {
             int saveLayer = canvas.saveLayer(0.0f, 0.0f, getWidth(), getHeight(), null);
             super.onDraw(canvas);
-            ch0 ch0Var = this.f40116n;
+            ch0 ch0Var = this.f40123n;
             if (ch0Var != null) {
                 drawable = ch0Var.getDrawable();
             } else {
                 drawable = null;
             }
-            if (drawable != null && this.f40116n.isAttachedToWindow()) {
-                ch0 ch0Var2 = this.f40116n;
-                int[] iArr = this.f40118s;
+            if (drawable != null && this.f40123n.isAttachedToWindow()) {
+                ch0 ch0Var2 = this.f40123n;
+                int[] iArr = this.f40125s;
                 ch0Var2.getLocationInWindow(iArr);
-                int[] iArr2 = this.f40119w;
+                int[] iArr2 = this.f40126w;
                 getLocationInWindow(iArr2);
                 ColorFilter colorFilter = drawable.getColorFilter();
                 canvas.save();
-                canvas.translate(this.f40116n.getPaddingLeft() + (iArr[0] - iArr2[0]), this.f40116n.getPaddingTop() + (iArr[1] - iArr2[1]));
-                canvas.concat(this.f40116n.getImageMatrix());
-                drawable.setColorFilter(this.f40117r);
+                canvas.translate(this.f40123n.getPaddingLeft() + (iArr[0] - iArr2[0]), this.f40123n.getPaddingTop() + (iArr[1] - iArr2[1]));
+                canvas.concat(this.f40123n.getImageMatrix());
+                drawable.setColorFilter(this.f40124r);
                 drawable.draw(canvas);
                 drawable.setColorFilter(colorFilter);
                 canvas.restore();
@@ -120,11 +120,11 @@ public final class wz0 extends ImageView {
             float f10 = this.h;
             if (f10 >= 1.0f) {
                 float f11 = f10 / 100.0f;
-                Matrix matrix = this.f40112b;
+                Matrix matrix = this.f40119b;
                 matrix.setScale(f11, f11);
-                matrix.postTranslate(this.f40114e, this.f40115f);
-                this.f40113c.setLocalMatrix(matrix);
-                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f40111a);
+                matrix.postTranslate(this.f40121e, this.f40122f);
+                this.f40120c.setLocalMatrix(matrix);
+                canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f40118a);
             }
             canvas.restoreToCount(saveLayer);
         }

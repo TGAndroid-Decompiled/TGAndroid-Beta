@@ -2,26 +2,26 @@ package org.telegram.ui.Components;
 
 import java.util.ArrayList;
 public final class xk0 implements Runnable {
-    public final int f40276a = 1;
-    public final dl0 f40277b;
-    public final String f40278c;
+    public final int f40295a = 1;
+    public final dl0 f40296b;
+    public final String f40297c;
     public final ArrayList d;
-    public final ArrayList f40279e;
+    public final ArrayList f40298e;
 
     public xk0(dl0 dl0Var, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f40277b = dl0Var;
-        this.f40278c = str;
+        this.f40296b = dl0Var;
+        this.f40297c = str;
         this.d = arrayList;
-        this.f40279e = arrayList2;
+        this.f40298e = arrayList2;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f40276a;
-        ArrayList arrayList = this.f40279e;
+        int i7 = this.f40295a;
+        ArrayList arrayList = this.f40298e;
         ArrayList arrayList2 = this.d;
-        String str = this.f40278c;
-        dl0 dl0Var = this.f40277b;
+        String str = this.f40297c;
+        dl0 dl0Var = this.f40296b;
         switch (i7) {
             case 0:
                 int i10 = dl0Var.d;
@@ -48,15 +48,15 @@ public final class xk0 implements Runnable {
                 org.telegram.messenger.g0.h3(new xk0(dl0Var, str, arrayList3, arrayList4));
                 return;
             default:
-                av0 av0Var = dl0Var.f32985a;
+                av0 av0Var = dl0Var.f32998a;
                 if (str.equals(dl0Var.L)) {
-                    if (dl0Var.f32991r == 0) {
+                    if (dl0Var.f33004r == 0) {
                         dl0Var.N.b(0);
                     }
                     dl0Var.e(arrayList2, arrayList, true);
-                    if (dl0Var.f32991r == 0) {
+                    if (dl0Var.f33004r == 0) {
                         av0Var.e(false, true);
-                        w70 w70Var = av0Var.f31917e;
+                        w70 w70Var = av0Var.f31929e;
                         av0Var.d.setText(org.telegram.messenger.hd.M0(2131745801, null));
                         w70Var.setVisibility(0);
                         w70Var.setText(org.telegram.messenger.hd.M0(2131745808, null));
@@ -69,9 +69,9 @@ public final class xk0 implements Runnable {
     }
 
     public xk0(dl0 dl0Var, ArrayList arrayList, String str, ArrayList arrayList2) {
-        this.f40277b = dl0Var;
+        this.f40296b = dl0Var;
         this.d = arrayList;
-        this.f40278c = str;
-        this.f40279e = arrayList2;
+        this.f40297c = str;
+        this.f40298e = arrayList2;
     }
 }

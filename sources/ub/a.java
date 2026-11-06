@@ -17,24 +17,24 @@ import z7.ma;
 import z7.oa;
 import z7.z6;
 public final class a {
-    public volatile Bitmap f56373a;
-    public final int f56374b;
-    public final int f56375c;
+    public volatile Bitmap f56398a;
+    public final int f56399b;
+    public final int f56400c;
     public final int d;
-    public final int f56376e;
+    public final int f56401e;
 
     public a(Bitmap bitmap, int i7) {
         m.g(bitmap);
-        this.f56373a = bitmap;
-        this.f56374b = bitmap.getWidth();
-        this.f56375c = bitmap.getHeight();
+        this.f56398a = bitmap;
+        this.f56399b = bitmap.getWidth();
+        this.f56400c = bitmap.getHeight();
         boolean z9 = true;
         if (i7 != 0 && i7 != 90 && i7 != 180 && i7 != 270) {
             z9 = false;
         }
         m.a("Invalid rotation. Only 0, 90, 180, 270 are supported currently.", z9);
         this.d = i7;
-        this.f56376e = -1;
+        this.f56401e = -1;
     }
 
     public static a a(Bitmap bitmap, int i7) {
@@ -64,9 +64,9 @@ public final class a {
         }
         long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
         k7 k7Var = k7.INPUT_IMAGE_CONSTRUCTION;
-        Task task2 = a10.f59773e;
+        Task task2 = a10.f59798e;
         long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a10.f59776i;
+        HashMap hashMap = a10.f59801i;
         if (hashMap.get(k7Var) == null) {
             task = task2;
             aVar = aVar2;
@@ -88,14 +88,14 @@ public final class a {
         obj.f19230g = Integer.valueOf(i7 & Integer.MAX_VALUE);
         f7 f7Var = new f7(obj);
         ?? obj2 = new Object();
-        obj2.f58884c = f7Var;
+        obj2.f58909c = f7Var;
         i0 i0Var = new i0((d6) obj2);
         if (task.isSuccessful()) {
             a11 = (String) task.getResult();
         } else {
-            a11 = j.f53774c.a(a10.f59775g);
+            a11 = j.f53799c.a(a10.f59800g);
         }
-        pb.m.f53427a.execute(new h(a10, i0Var, a11));
+        pb.m.f53453a.execute(new h(a10, i0Var, a11));
         return aVar;
     }
 }

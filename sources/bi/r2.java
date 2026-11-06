@@ -119,7 +119,7 @@ public final class r2 implements c20 {
                 org.telegram.ui.ActionBar.f2[] f2VarArr = (org.telegram.ui.ActionBar.f2[]) obj2;
                 Runnable runnable = (Runnable) obj;
                 ((org.telegram.ui.ActionBar.u1) obj3).dismiss();
-                ww wwVar = ((xv) obj4).f51971b;
+                ww wwVar = ((xv) obj4).f51992b;
                 wwVar.getMessagesController().T2(Long.valueOf(j3), null, 32);
                 qw qwVar = wwVar.C2;
                 wwVar.removeSelfFromStack();

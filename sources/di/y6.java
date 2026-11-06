@@ -640,7 +640,7 @@ public final class y6 {
                                 }
                             } else {
                                 org.telegram.ui.Components.i5 i5Var = new org.telegram.ui.Components.i5(1, i7, d.f6357g);
-                                i5Var.f34507m = true;
+                                i5Var.f34452m = true;
                                 i5Var.u();
                             }
                         }

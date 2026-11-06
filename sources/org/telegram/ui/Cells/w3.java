@@ -28,7 +28,7 @@ public final class w3 extends org.telegram.ui.Components.j6 {
     public int getBaseline() {
         switch (this.f30719s) {
             case 5:
-                return Math.round((getHeight() - getDrawable().f34519e) / 2.0f) - getPaint().getFontMetricsInt().ascent;
+                return Math.round((getHeight() - getDrawable().f34480e) / 2.0f) - getPaint().getFontMetricsInt().ascent;
             default:
                 return super.getBaseline();
         }

@@ -43,11 +43,11 @@ public final class i3 {
             arrayList3.clear();
             while (i12 < i13) {
                 ij ijVar = (ij) L.get(i12);
-                if (anVar.f43840l4 != ijVar && ijVar.f1() > 0 && ((ijVar.f23237k.action == null || ijVar.z()) && j3 - ijVar.E > 15000)) {
+                if (anVar.f43865l4 != ijVar && ijVar.f1() > 0 && ((ijVar.f23237k.action == null || ijVar.z()) && j3 - ijVar.E > 15000)) {
                     ijVar.E = j3;
                     arrayList.add(ijVar);
                 }
-                if (anVar.f43840l4 != ijVar && ijVar.f1() > 0 && ((ijVar.r2() || ((messageMedia = ijVar.f23237k.media) != null && (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) && !messageMedia.extended_media.isEmpty() && (ijVar.f23237k.media.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMediaPreview))) && j3 - ijVar.F > 30000)) {
+                if (anVar.f43865l4 != ijVar && ijVar.f1() > 0 && ((ijVar.r2() || ((messageMedia = ijVar.f23237k.media) != null && (messageMedia instanceof TLRPC.TL_messageMediaPaidMedia) && !messageMedia.extended_media.isEmpty() && (ijVar.f23237k.media.extended_media.get(0) instanceof TLRPC.TL_messageExtendedMediaPreview))) && j3 - ijVar.F > 30000)) {
                     ijVar.F = j3;
                     arrayList2.add(ijVar);
                 }

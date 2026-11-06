@@ -135,13 +135,13 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
         switch (this.f87a) {
             case 27:
                 wk wkVar = (wk) this.f89c;
-                wkVar.f39993n0.d((TLRPC.TL_messageMediaGeo) this.f88b, wkVar.f39994o0, z9, i7, ((Long) this.d).longValue());
-                wkVar.f38951b.a(true);
+                wkVar.f40000n0.d((TLRPC.TL_messageMediaGeo) this.f88b, wkVar.f40001o0, z9, i7, ((Long) this.d).longValue());
+                wkVar.f38948b.a(true);
                 return;
             default:
                 bn bnVar = (bn) this.f89c;
-                bnVar.f32195j0.b((TLRPC.TL_messageMediaToDo) this.f88b, null, null, null, z9, i7, ((Long) this.d).longValue());
-                bnVar.f38951b.a(true);
+                bnVar.f32189j0.b((TLRPC.TL_messageMediaToDo) this.f88b, null, null, null, z9, i7, ((Long) this.d).longValue());
+                bnVar.f38948b.a(true);
                 return;
         }
     }
@@ -521,8 +521,8 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
                 TextView textView = ikVar.U;
                 String str = null;
                 if (x0Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
-                    int i12 = -ikVar.f34716v0;
-                    ikVar.f34716v0 = i12;
+                    int i12 = -ikVar.f34679v0;
+                    ikVar.f34679v0 = i12;
                     g0.G3(i12, x0Var, null);
                     return;
                 }
@@ -530,12 +530,12 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
                 if (!TextUtils.isEmpty(trim3)) {
                     str = trim3;
                 }
-                ikVar.f34713s0 = str;
-                ikVar.f34714t0 = !c2Var.b();
-                if (TextUtils.isEmpty(ikVar.f34713s0)) {
+                ikVar.f34676s0 = str;
+                ikVar.f34677t0 = !c2Var.b();
+                if (TextUtils.isEmpty(ikVar.f34676s0)) {
                     textView.setVisibility(8);
                 } else {
-                    textView.setText(ikVar.f34713s0);
+                    textView.setText(ikVar.f34676s0);
                     textView.setVisibility(0);
                 }
                 ikVar.k0();
@@ -599,7 +599,7 @@ public final class h implements p, SuccessContinuation, androidx.car.app.utils.b
         } else {
             o7Var.e(canvas, rectF, f10);
         }
-        if (ui0Var != null && ui0Var.f38651a0 && ui0Var.getVisibility() == 0) {
+        if (ui0Var != null && ui0Var.f38642a0 && ui0Var.getVisibility() == 0) {
             canvas.saveLayerAlpha(0.0f, 0.0f, canvas.getWidth(), canvas.getHeight(), (int) (f10 * 255.0f), 31);
             canvas.translate(iArr[0], iArr[1]);
             ui0Var.draw(canvas);

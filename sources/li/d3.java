@@ -24,7 +24,7 @@ public final class d3 implements x4 {
         t3 t3Var = this.d;
         t3Var.f18877g4.remove(sVar);
         t3Var.f18894s3.remove(this.f18518b);
-        t3Var.f35167f3.O(true);
+        t3Var.f36781f3.O(true);
         t3Var.f18887o3.onContentChanged();
     }
 
@@ -42,7 +42,7 @@ public final class d3 implements x4 {
             ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f26958id;
         }
         t3Var.f18877g4.remove(sVar);
-        t3Var.f35167f3.O(false);
+        t3Var.f36781f3.O(false);
         t3Var.f18887o3.onContentChanged();
     }
 

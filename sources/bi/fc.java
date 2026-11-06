@@ -35,7 +35,7 @@ public final class fc implements d20 {
             case 4:
                 tg.g0 g0Var = (tg.g0) callback;
                 if (((Integer) obj).intValue() == 2) {
-                    di diVar = new di(g0Var.getContext(), new tg.w(g0Var), false, false, false, g0Var.f55588z1);
+                    di diVar = new di(g0Var.getContext(), new tg.w(g0Var), false, false, false, g0Var.f55613z1);
                     diVar.f28636n = true;
                     diVar.A1(org.telegram.messenger.hd.M0(2131754428, null));
                     diVar.T3 = new m4.d0(g0Var, diVar, false);
@@ -43,7 +43,7 @@ public final class fc implements d20 {
                     diVar.y1(1, false);
                     diVar.e1();
                     MediaController.f21246g2 = true;
-                    diVar.f32882a2.i0();
+                    diVar.f32895a2.i0();
                     diVar.show();
                 }
                 return Boolean.TRUE;

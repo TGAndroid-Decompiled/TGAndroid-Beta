@@ -7,8 +7,8 @@ import c8.td;
 import java.util.ArrayList;
 import org.telegram.messenger.rc;
 import org.telegram.ui.Components.ms;
-import org.telegram.ui.Components.p61;
 import org.telegram.ui.Components.pj0;
+import org.telegram.ui.Components.u61;
 public final class q {
     public static r F;
     public static int G;
@@ -32,7 +32,7 @@ public final class q {
     public int f21118z;
     public final h f21097b = new h(this);
     public final ArrayList f21098c = new ArrayList();
-    public qi.b d = qi.b.f54037c;
+    public qi.b d = qi.b.f54062c;
     public final RectF f21099e = new RectF();
     public final xe.b f21107n = new xe.b();
     public final ArrayList f21108o = new ArrayList();
@@ -64,7 +64,7 @@ public final class q {
             return;
         }
         this.f21107n.add(pj0Var);
-        pj0Var.D2.f36774b.add(new ms() {
+        pj0Var.D2.f36652b.add(new ms() {
             @Override
             public final void a(int i7, boolean z9) {
                 int i10;
@@ -87,10 +87,10 @@ public final class q {
         pj0Var.j(new ai.b(this, 23));
     }
 
-    public final void c(p61 p61Var) {
-        if (p61Var != null) {
+    public final void c(u61 u61Var) {
+        if (u61Var != null) {
             g gVar = new g(this);
-            ArrayList arrayList = p61Var.R;
+            ArrayList arrayList = u61Var.R;
             if (!arrayList.contains(gVar)) {
                 arrayList.add(gVar);
             }
@@ -111,10 +111,10 @@ public final class q {
             aVar.getClass();
             return aVar;
         }
-        aVar.f54036b = 0;
-        int i7 = aVar2.f54036b;
+        aVar.f54061b = 0;
+        int i7 = aVar2.f54061b;
         for (int i10 = 0; i10 < i7; i10++) {
-            RectF rectF = (RectF) aVar2.f54035a.get(i10);
+            RectF rectF = (RectF) aVar2.f54060a.get(i10);
             aVar.a(rectF.left, rectF.top, rectF.right, rectF.bottom);
         }
         return aVar;
@@ -140,15 +140,15 @@ public final class q {
         if (view2 != view) {
             h hVar = this.f21097b;
             if (view2 != null && (cVar = (xf.c) view2.getTag(2131296697)) != null) {
-                ArrayList arrayList = cVar.f58580a;
+                ArrayList arrayList = cVar.f58605a;
                 if (arrayList.remove(hVar)) {
-                    xf.a aVar = cVar.f58581b;
+                    xf.a aVar = cVar.f58606b;
                     if (aVar != null) {
-                        ((xe.b) aVar.f58579a.f8841b).remove(hVar);
+                        ((xe.b) aVar.f58604a.f8841b).remove(hVar);
                     }
                     if (arrayList.isEmpty()) {
-                        cVar.f58581b = null;
-                        view2.removeOnAttachStateChangeListener(cVar.f58582c);
+                        cVar.f58606b = null;
+                        view2.removeOnAttachStateChangeListener(cVar.f58607c);
                         view2.setTag(2131296697, null);
                     }
                 }
@@ -161,13 +161,13 @@ public final class q {
                 if (cVar2 == null) {
                     cVar2 = new xf.c();
                     view.setTag(2131296697, cVar2);
-                    view.addOnAttachStateChangeListener(cVar2.f58582c);
+                    view.addOnAttachStateChangeListener(cVar2.f58607c);
                 }
-                ArrayList arrayList2 = cVar2.f58580a;
+                ArrayList arrayList2 = cVar2.f58605a;
                 if (!arrayList2.contains(hVar)) {
                     arrayList2.add(hVar);
                     if (view.isAttachedToWindow() && (a10 = td.a(view, cVar2)) != null) {
-                        ((xe.b) a10.f58579a.f8841b).add(hVar);
+                        ((xe.b) a10.f58604a.f8841b).add(hVar);
                     }
                 }
             }

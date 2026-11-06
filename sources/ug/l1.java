@@ -11,30 +11,30 @@ import org.telegram.ui.Cells.m8;
 import org.telegram.ui.Components.ch0;
 public final class l1 extends m8 {
     public final ud W;
-    public final int f56576a0;
-    public final sg.t0 f56577b0;
+    public final int f56601a0;
+    public final sg.t0 f56602b0;
 
     public l1(int i7, Context context, f6 f6Var) {
         super(context, f6Var);
         int i10;
         this.W = new ud(1, 15);
-        this.f56577b0 = new sg.t0(this, 20);
+        this.f56602b0 = new sg.t0(this, 20);
         if (i7 == 1) {
             i10 = k6.Tk;
         } else {
             i10 = k6.Ak;
         }
-        this.f56576a0 = i10;
+        this.f56601a0 = i10;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         boolean e10 = rc.e(131072);
-        sg.t0 t0Var = this.f56577b0;
+        sg.t0 t0Var = this.f56602b0;
         if (e10) {
             ud udVar = this.W;
             udVar.d();
-            udVar.a(canvas, k6.x0(null, this.f56576a0, false));
+            udVar.a(canvas, k6.x0(null, this.f56601a0, false));
             bg.k.d().a(15, t0Var);
         } else {
             bg.k.d().f(t0Var);
@@ -45,7 +45,7 @@ public final class l1 extends m8 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        bg.k.d().f(this.f56577b0);
+        bg.k.d().f(this.f56602b0);
     }
 
     @Override

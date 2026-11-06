@@ -91,12 +91,12 @@ public final class f implements View.OnClickListener {
                 if (g10) {
                     calendar.set(13, 0);
                 }
-                c40Var.f44531b4 = (int) (calendar.getTimeInMillis() / 1000);
+                c40Var.f44552b4 = (int) (calendar.getTimeInMillis() / 1000);
                 c40Var.R1(false);
                 TL_phone.createGroupCall creategroupcall = new TL_phone.createGroupCall();
                 creategroupcall.peer = qp.l1(chat);
                 creategroupcall.random_id = Utilities.f21331b.nextInt();
-                creategroupcall.schedule_date = c40Var.f44531b4;
+                creategroupcall.schedule_date = c40Var.f44552b4;
                 creategroupcall.flags |= 2;
                 ConnectionsManager.getInstance(cVar.f21723a).sendRequest(creategroupcall, new z9(c40Var, chat, inputPeer, 11), 2);
                 return;

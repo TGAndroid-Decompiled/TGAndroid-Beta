@@ -3,7 +3,7 @@ package bi;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.v10;
 import org.telegram.ui.Components.xq;
-import org.telegram.ui.tp0;
+import org.telegram.ui.up0;
 public final class q9 implements q0.a {
     public final int f4582a;
     public final Object f4583b;
@@ -43,7 +43,7 @@ public final class q9 implements q0.a {
                 a3Var.E.setLoadProgressAnimated(f10.floatValue());
                 if (f10.floatValue() == 1.0f) {
                     ValueAnimator duration = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration.setInterpolator(xq.f40310f);
+                    duration.setInterpolator(xq.f40329f);
                     duration.addUpdateListener(new hi.w1(a3Var, 1));
                     duration.addListener(new t5(a3Var, 27));
                     duration.start();
@@ -56,7 +56,7 @@ public final class q9 implements q0.a {
                 c4Var.I.setLoadProgressAnimated(f11.floatValue());
                 if (f11.floatValue() == 1.0f) {
                     ValueAnimator duration2 = ValueAnimator.ofFloat(1.0f, 0.0f).setDuration(200L);
-                    duration2.setInterpolator(xq.f40310f);
+                    duration2.setInterpolator(xq.f40329f);
                     duration2.addUpdateListener(new hi.t3(c4Var, 1));
                     duration2.addListener(new t5(c4Var, 28));
                     duration2.start();
@@ -83,13 +83,13 @@ public final class q9 implements q0.a {
                         w4Var.getAdapter().f();
                         return;
                     default:
-                        tp0 tp0Var = (tp0) nVar.d;
-                        tp0Var.w0(false);
-                        sg.l0 l0Var2 = tp0Var.E1;
+                        up0 up0Var = (up0) nVar.d;
+                        up0Var.w0(false);
+                        sg.l0 l0Var2 = up0Var.E1;
                         l0Var2.h(intValue, true);
                         l0Var2.g();
-                        tp0Var.setNewColor(intValue);
-                        tg.d0 d0Var = tp0Var.f55568p1;
+                        up0Var.setNewColor(intValue);
+                        tg.d0 d0Var = up0Var.f55593p1;
                         d0Var.setSelectedColorIndex(l0Var2.d());
                         d0Var.getAdapter().f();
                         return;

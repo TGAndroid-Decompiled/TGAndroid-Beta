@@ -203,10 +203,10 @@ public final class a0 implements Runnable {
                 el elVar = (el) obj2;
                 elVar.getClass();
                 ij messageObject = ((org.telegram.ui.Cells.t0) obj).getMessageObject();
-                jl jlVar = elVar.f45343a;
+                jl jlVar = elVar.f45373a;
                 an anVar = jlVar.Q;
                 int f12 = messageObject.f1();
-                if (ij.B0(messageObject.f23237k) == jlVar.Q.f43714b7) {
+                if (ij.B0(messageObject.f23237k) == jlVar.Q.f43739b7) {
                     i10 = 1;
                 } else {
                     i10 = 0;
@@ -215,7 +215,7 @@ public final class a0 implements Runnable {
                 return;
             case 12:
                 org.telegram.ui.Cells.q1 q1Var = (org.telegram.ui.Cells.q1) obj;
-                an anVar2 = ((lm) obj2).f47534a;
+                an anVar2 = ((lm) obj2).f47561a;
                 if (anVar2.O1 != null) {
                     q1Var.getLocationInWindow(new int[2]);
                     anVar2.O1.setTranslationY(org.telegram.messenger.camera.q.D(520.0f, iArr[1] - m3Var.getTop(), i16));
@@ -227,21 +227,21 @@ public final class a0 implements Runnable {
             default:
                 final uw uwVar = (uw) obj2;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) obj;
-                vw vwVar = uwVar.f50501g;
+                vw vwVar = uwVar.f50511g;
                 ww wwVar = uwVar.h;
                 ArrayList arrayList2 = wwVar.R1;
                 if (arrayList2 != null) {
                     arrayList2.remove(dialog);
                     int i21 = dialog.pinnedNum;
                     wwVar.W0 = null;
-                    vwVar.f50833a.invalidate();
-                    int N0 = vwVar.f50835c.N0();
+                    vwVar.f50839a.invalidate();
+                    int N0 = vwVar.f50841c.N0();
                     if (N0 == i16 - 1) {
-                        vwVar.f50835c.m(N0).requestLayout();
+                        vwVar.f50841c.m(N0).requestLayout();
                     }
                     if (wwVar.getMessagesController().C2(dialog.f26956id, false)) {
                         wwVar.getMessagesController().j2();
-                        vwVar.f50843y.D();
+                        vwVar.f50849y.D();
                         vwVar.q(true);
                         return;
                     }
@@ -254,7 +254,7 @@ public final class a0 implements Runnable {
                     }
                     int d = messagesController.d(i11, -1, j3);
                     if (d != 2 || i17 != 0) {
-                        vwVar.f50843y.D();
+                        vwVar.f50849y.D();
                         vwVar.q(true);
                     }
                     if (wwVar.W2 == 0) {
@@ -266,16 +266,16 @@ public final class a0 implements Runnable {
                                 edit.putBoolean("archiveHidden", iz.f23402q1);
                                 edit.apply();
                             }
-                            vwVar.f50843y.D();
+                            vwVar.f50849y.D();
                             if (i17 == 0) {
                                 wwVar.M4(true, true);
                                 vwVar.q(true);
                                 wwVar.z3();
                             } else {
                                 vwVar.q(true);
-                                if (!iz.f23402q1 && vwVar.f50835c.L0() == 0) {
-                                    wwVar.f51536e2 = true;
-                                    sw swVar = vwVar.f50833a;
+                                if (!iz.f23402q1 && vwVar.f50841c.L0() == 0) {
+                                    wwVar.f51553e2 = true;
+                                    sw swVar = vwVar.f50839a;
                                     if (iz.f23399p1) {
                                         f10 = 76.0f;
                                     } else {
@@ -285,7 +285,7 @@ public final class a0 implements Runnable {
                                 }
                             }
                             i13 = ((f2) wwVar).currentAccount;
-                            wwVar.R1.add(0, (TLRPC.Dialog) wwVar.d4(i13, vwVar.f50840s, wwVar.W2, false).get(0));
+                            wwVar.R1.add(0, (TLRPC.Dialog) wwVar.d4(i13, vwVar.f50846s, wwVar.W2, false).get(0));
                             vwVar.q(true);
                             org.telegram.messenger.g0.i3(new Runnable() {
                                 @Override
@@ -301,12 +301,12 @@ public final class a0 implements Runnable {
                                 }
                             }, 300L);
                         } else if (d == 1) {
-                            v4.d1 K = vwVar.f50833a.K(0);
+                            v4.d1 K = vwVar.f50839a.K(0);
                             if (K != null) {
-                                View view = K.f56927a;
+                                View view = K.f56952a;
                                 if (view instanceof t2) {
                                     t2 t2Var = (t2) view;
-                                    if (t2Var.f30387a2.f39903n == 2) {
+                                    if (t2Var.f30387a2.f39910n == 2) {
                                         t2Var.f30392b2 = true;
                                         t2Var.f30397c2 = 0.0f;
                                         k6.f28159u1.T(true, 0.0f);
@@ -346,8 +346,8 @@ public final class a0 implements Runnable {
                         }
                     }
                     if (wwVar.W2 != 0 && wwVar.R1.isEmpty()) {
-                        vwVar.f50833a.setEmptyView(null);
-                        vwVar.f50842x.setVisibility(4);
+                        vwVar.f50839a.setEmptyView(null);
+                        vwVar.f50848x.setVisibility(4);
                         return;
                     }
                     return;

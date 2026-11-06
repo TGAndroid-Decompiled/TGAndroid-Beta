@@ -36,7 +36,7 @@ public final class r9 extends q9 {
         ch.f0 f0Var = this.f9735c;
         org.telegram.ui.Components.i5 i5Var = f0Var.f6242b;
         if (i5Var != null) {
-            imageReceiver = i5Var.f34505k;
+            imageReceiver = i5Var.f34450k;
         } else {
             imageReceiver = f0Var.f6241a;
         }

@@ -9,7 +9,7 @@ public final class u extends g {
 
     public u(v vVar) {
         this.f16548b = new AtomicReference(vVar);
-        this.f16549c = new y(vVar.f53726i, 0);
+        this.f16549c = new y(vVar.f53751i, 0);
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class u extends g {
             v.Y.b("ICastDeviceControllerListener.onDisconnected: %d", Integer.valueOf(i7));
             if (i7 != 0) {
                 int i10 = vVar.C.get();
-                c0 c0Var = vVar.f53728k;
+                c0 c0Var = vVar.f53753k;
                 c0Var.sendMessage(c0Var.obtainMessage(6, i10, 2));
             }
         }

@@ -10,10 +10,10 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 public final class lc1 implements org.telegram.ui.ActionBar.r1, qw {
-    public final mc1 f47487a;
+    public final mc1 f47514a;
 
     public lc1(mc1 mc1Var) {
-        this.f47487a = mc1Var;
+        this.f47514a = mc1Var;
     }
 
     @Override
@@ -33,10 +33,10 @@ public final class lc1 implements org.telegram.ui.ActionBar.r1, qw {
         char c10;
         int i10;
         String str;
-        mc1 mc1Var = this.f47487a;
-        WallpapersListActivity wallpapersListActivity = mc1Var.f47758a;
+        mc1 mc1Var = this.f47514a;
+        WallpapersListActivity wallpapersListActivity = mc1Var.f47785a;
         Activity parentActivity = wallpapersListActivity.getParentActivity();
-        LongSparseArray longSparseArray = wallpapersListActivity.f43465e0;
+        LongSparseArray longSparseArray = wallpapersListActivity.f43490e0;
         org.telegram.ui.ActionBar.u1 u1Var2 = new org.telegram.ui.ActionBar.u1(3, parentActivity, null);
         wallpapersListActivity.L = u1Var2;
         char c11 = 0;
@@ -50,12 +50,12 @@ public final class lc1 implements org.telegram.ui.ActionBar.r1, qw {
             Object valueAt = longSparseArray.valueAt(i11);
             if (valueAt instanceof oc1) {
                 oc1 oc1Var = (oc1) valueAt;
-                TLRPC.WallPaper wallPaper = oc1Var.f48352l;
+                TLRPC.WallPaper wallPaper = oc1Var.f48381l;
                 if (wallPaper != null && wallPaper.f27106id < 0) {
                     org.telegram.messenger.yr messagesStorage = wallpapersListActivity.getMessagesStorage();
                     c10 = c11;
-                    messagesStorage.f26688a.c(new org.telegram.messenger.xp(messagesStorage, oc1Var.f48352l.f27106id, 1));
-                    wallpapersListActivity.f43460b0.remove(oc1Var);
+                    messagesStorage.f26688a.c(new org.telegram.messenger.xp(messagesStorage, oc1Var.f48381l.f27106id, 1));
+                    wallpapersListActivity.f43485b0.remove(oc1Var);
                     wallpapersListActivity.Z.remove(oc1Var.a());
                 } else {
                     c10 = c11;
@@ -119,11 +119,11 @@ public final class lc1 implements org.telegram.ui.ActionBar.r1, qw {
         int i15;
         int i16;
         String b10;
-        WallpapersListActivity wallpapersListActivity = this.f47487a.f47758a;
+        WallpapersListActivity wallpapersListActivity = this.f47514a.f47785a;
         StringBuilder sb2 = new StringBuilder();
         int i17 = 0;
         while (true) {
-            longSparseArray = wallpapersListActivity.f43465e0;
+            longSparseArray = wallpapersListActivity.f43490e0;
             if (i17 >= longSparseArray.size()) {
                 break;
             }

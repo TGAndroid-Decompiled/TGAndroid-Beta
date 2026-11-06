@@ -12,8 +12,8 @@ import org.telegram.ui.ActionBar.k5;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 public final class h extends FrameLayout {
-    public final k5 f59335a;
-    public long f59336b;
+    public final k5 f59360a;
+    public long f59361b;
 
     public h(Context context, f6 f6Var) {
         super(context);
@@ -35,7 +35,7 @@ public final class h extends FrameLayout {
         k5Var.setGravity(i7);
         addView(k5Var);
         k5 k5Var2 = new k5(context);
-        this.f59335a = k5Var2;
+        this.f59360a = k5Var2;
         k5Var2.setTextSize(16);
         r6.Y(k5Var2, k6.L6, f6Var);
         if (hd.f22871a0) {
@@ -81,7 +81,7 @@ public final class h extends FrameLayout {
     }
 
     public long getSelectedTime() {
-        return this.f59336b;
+        return this.f59361b;
     }
 
     @Override
@@ -90,8 +90,8 @@ public final class h extends FrameLayout {
     }
 
     public void setDate(long j3) {
-        this.f59336b = j3;
+        this.f59361b = j3;
         Date date = new Date(j3);
-        this.f59335a.l(hd.a0("formatDateAtTime", null, 2131742784, hd.E0().q0().format(date), hd.E0().p0().format(date)), false);
+        this.f59360a.l(hd.a0("formatDateAtTime", null, 2131742784, hd.E0().q0().format(date), hd.E0().p0().format(date)), false);
     }
 }

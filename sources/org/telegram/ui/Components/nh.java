@@ -3,15 +3,15 @@ package org.telegram.ui.Components;
 import android.content.Intent;
 import java.util.ArrayList;
 public final class nh implements mj {
-    public final di f36399a;
+    public final di f36293a;
 
     public nh(di diVar) {
-        this.f36399a = diVar;
+        this.f36293a = diVar;
     }
 
     @Override
     public final void A() {
-        di diVar = this.f36399a;
+        di diVar = this.f36293a;
         mj mjVar = diVar.O1;
         if (mjVar != null) {
             mjVar.A();
@@ -35,12 +35,12 @@ public final class nh implements mj {
 
     @Override
     public final void S() {
-        this.f36399a.p1(true);
+        this.f36293a.p1(true);
     }
 
     @Override
     public final void n(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z9, int i7, long j3, boolean z10, long j10) {
-        di diVar = this.f36399a;
+        di diVar = this.f36293a;
         mj mjVar = diVar.O1;
         if (mjVar != null) {
             mjVar.n(arrayList, str, arrayList2, arrayList3, z9, i7, j3, z10, j10);
@@ -64,7 +64,7 @@ public final class nh implements mj {
 
     @Override
     public final void p(ArrayList arrayList, boolean z9, int i7, long j3) {
-        di diVar = this.f36399a;
+        di diVar = this.f36293a;
         mj mjVar = diVar.O1;
         if (mjVar != null) {
             mjVar.p(arrayList, z9, i7, j3);

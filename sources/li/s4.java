@@ -135,7 +135,7 @@ public final class s4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
             return null;
         }
         xh.e eVar = this.M;
-        if (eVar != null && eVar.f58665i) {
+        if (eVar != null && eVar.f58690i) {
             this.M = null;
         }
         if (this.M == null) {
@@ -602,7 +602,7 @@ public final class s4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
         int paddingTop = getPaddingTop();
         j(canvas);
         org.telegram.ui.Components.w5 w5Var = this.U;
-        float f13 = w5Var.f39849c;
+        float f13 = w5Var.f39857c;
         ArrayList arrayList = this.D;
         if (arrayList.size() >= 2 && f13 > 0.001f) {
             if (m0 == null) {
@@ -650,7 +650,7 @@ public final class s4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
             int width = getWidth();
             int height = getHeight();
             if (width > 0 && height > 0) {
-                if (canvas.isHardwareAccelerated() && !fVar.f54458r) {
+                if (canvas.isHardwareAccelerated() && !fVar.f54483r) {
                     try {
                         j(fVar.i(width, height));
                     } finally {
@@ -676,7 +676,7 @@ public final class s4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
                 h(canvas, imageView2);
             }
         }
-        if (w5Var.f39853i) {
+        if (w5Var.f39861i) {
             requestLayout();
         }
     }
@@ -770,7 +770,7 @@ public final class s4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
             z9 = false;
         }
         int i10 = -1;
-        if (m() && !this.U.f39853i) {
+        if (m() && !this.U.f39861i) {
             ArrayList arrayList = this.D;
             if (arrayList.size() >= 2) {
                 if (actionMasked == 0) {

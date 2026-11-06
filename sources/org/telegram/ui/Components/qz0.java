@@ -9,17 +9,17 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.ui.Components.ThemeEditorView;
 public final class qz0 extends oj0 {
-    public final Context f37540c;
+    public final Context f37430c;
     public int d;
-    public ArrayList f37541e = new ArrayList();
-    public ArrayList f37542f = new ArrayList();
+    public ArrayList f37431e = new ArrayList();
+    public ArrayList f37432f = new ArrayList();
     public org.telegram.ui.q8 h;
-    public String f37543n;
-    public final ThemeEditorView.EditorAlert f37544r;
+    public String f37433n;
+    public final ThemeEditorView.EditorAlert f37434r;
 
     public qz0(ThemeEditorView.EditorAlert editorAlert, Context context) {
-        this.f37544r = editorAlert;
-        this.f37540c = context;
+        this.f37434r = editorAlert;
+        this.f37430c = context;
     }
 
     public static CharSequence E(String str, String str2) {
@@ -64,10 +64,10 @@ public final class qz0 extends oj0 {
 
     @Override
     public final int b() {
-        if (this.f37541e.isEmpty()) {
+        if (this.f37431e.isEmpty()) {
             return 0;
         }
-        return this.f37541e.size() + 1;
+        return this.f37431e.size() + 1;
     }
 
     @Override
@@ -81,17 +81,17 @@ public final class qz0 extends oj0 {
     @Override
     public final void t(v4.d1 d1Var, int i7) {
         int c10;
-        if (d1Var.f56931f == 0) {
+        if (d1Var.f56956f == 0) {
             boolean z9 = true;
             int i10 = i7 - 1;
-            org.telegram.ui.ActionBar.t6 t6Var = (org.telegram.ui.ActionBar.t6) ((ArrayList) this.f37541e.get(i10)).get(0);
+            org.telegram.ui.ActionBar.t6 t6Var = (org.telegram.ui.ActionBar.t6) ((ArrayList) this.f37431e.get(i10)).get(0);
             if (t6Var.f28534e == org.telegram.ui.ActionBar.k6.Be) {
                 c10 = 0;
             } else {
                 c10 = t6Var.c();
             }
-            org.telegram.ui.Cells.u8 u8Var = (org.telegram.ui.Cells.u8) d1Var.f56927a;
-            u8Var.f30578a.setText((CharSequence) this.f37542f.get(i10));
+            org.telegram.ui.Cells.u8 u8Var = (org.telegram.ui.Cells.u8) d1Var.f56952a;
+            u8Var.f30578a.setText((CharSequence) this.f37432f.get(i10));
             u8Var.f30579b = c10;
             if (c10 != 0) {
                 z9 = false;
@@ -104,7 +104,7 @@ public final class qz0 extends oj0 {
     @Override
     public final v4.d1 x(ViewGroup viewGroup, int i7) {
         View u8Var;
-        Context context = this.f37540c;
+        Context context = this.f37430c;
         if (i7 != 0) {
             u8Var = new View(context);
             u8Var.setLayoutParams(new v4.o0(-1, org.telegram.messenger.g0.L(56.0f)));

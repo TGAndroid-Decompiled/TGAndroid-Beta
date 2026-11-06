@@ -5,7 +5,7 @@ import org.telegram.messenger.v10;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Components.b70;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.w60;
 public final class mc implements v10 {
     public final int f4376a;
@@ -25,7 +25,7 @@ public final class mc implements v10 {
         TLRPC.Updates updates;
         switch (this.f4376a) {
             case 0:
-                oc.d1((oc) this.f4378c, (r31) this.d, this.f4377b, (Boolean) obj, (String) obj2);
+                oc.d1((oc) this.f4378c, (w31) this.d, this.f4377b, (Boolean) obj, (String) obj2);
                 return;
             case 1:
                 b70 b70Var = (b70) this.f4378c;

@@ -7,10 +7,10 @@ import java.util.Collections;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.v91;
 public final class uo0 implements m00, org.telegram.messenger.wr, org.telegram.ui.qw {
-    public final xs0 f38700a;
+    public final xs0 f38691a;
 
     public uo0(xs0 xs0Var) {
-        this.f38700a = xs0Var;
+        this.f38691a = xs0Var;
     }
 
     @Override
@@ -25,11 +25,11 @@ public final class uo0 implements m00, org.telegram.messenger.wr, org.telegram.u
 
     @Override
     public void a(String str) {
-        r0.getStoriesController().r(r0.l1, str, new ro0(this.f38700a, 0));
+        r0.getStoriesController().r(r0.l1, str, new ro0(this.f38691a, 0));
     }
 
     public void b(boolean z9) {
-        xs0 xs0Var = this.f38700a;
+        xs0 xs0Var = this.f38691a;
         if (!z9) {
             xs0Var.requestLayout();
         }
@@ -40,9 +40,9 @@ public final class uo0 implements m00, org.telegram.messenger.wr, org.telegram.u
     public boolean y(org.telegram.ui.ww wwVar, ArrayList arrayList, CharSequence charSequence, boolean z9, boolean z10, int i7, int i10, v91 v91Var) {
         int i11;
         UndoView undoView;
-        xs0 xs0Var = this.f38700a;
-        SparseArray[] sparseArrayArr = xs0Var.f40340b1;
-        org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40405x1;
+        xs0 xs0Var = this.f38691a;
+        SparseArray[] sparseArrayArr = xs0Var.f40359b1;
+        org.telegram.ui.ActionBar.f2 f2Var = xs0Var.f40424x1;
         ArrayList arrayList2 = new ArrayList();
         boolean z11 = true;
         int i12 = 1;
@@ -68,11 +68,11 @@ public final class uo0 implements m00, org.telegram.messenger.wr, org.telegram.u
             sparseArrayArr[i12].clear();
             i12--;
         }
-        xs0Var.f40344c1 = 0;
+        xs0Var.f40363c1 = 0;
         xs0Var.o1(false);
         is0 is0Var = xs0Var.T;
         if (is0Var != null) {
-            is0Var.f34783x.clear();
+            is0Var.f34746x.clear();
         }
         UndoView undoView2 = null;
         if (arrayList.size() <= 1 && ((org.telegram.messenger.xr) arrayList.get(0)).f26505a != f2Var.getUserConfig().e() && charSequence == null) {

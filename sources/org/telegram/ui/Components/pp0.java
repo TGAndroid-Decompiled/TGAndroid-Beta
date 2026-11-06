@@ -6,25 +6,25 @@ import android.net.NetworkInfo;
 import j$.util.Objects;
 import org.telegram.tgnet.TLRPC;
 public final class pp0 implements Runnable {
-    public final int f37147a;
-    public final int f37148b;
-    public final Object f37149c;
+    public final int f37026a;
+    public final int f37027b;
+    public final Object f37028c;
     public final Object d;
-    public final Object f37150e;
+    public final Object f37029e;
 
     public pp0(int i7, TLRPC.TL_error tL_error, org.telegram.ui.ActionBar.f2 f2Var, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction) {
-        this.f37147a = 15;
-        this.f37148b = i7;
+        this.f37026a = 15;
+        this.f37027b = i7;
         this.d = tL_error;
-        this.f37149c = f2Var;
-        this.f37150e = tL_payments_assignPlayMarketTransaction;
+        this.f37028c = f2Var;
+        this.f37029e = tL_payments_assignPlayMarketTransaction;
     }
 
     private final void a() {
-        ia.c cVar = (ia.c) this.f37149c;
+        ia.c cVar = (ia.c) this.f37028c;
         o5.i iVar = (o5.i) this.d;
-        int i7 = this.f37148b;
-        Runnable runnable = (Runnable) this.f37150e;
+        int i7 = this.f37027b;
+        Runnable runnable = (Runnable) this.f37029e;
         w5.c cVar2 = (w5.c) cVar.f15419f;
         try {
             try {
@@ -54,26 +54,26 @@ public final class pp0 implements Runnable {
     }
 
     public pp0(Object obj, int i7, Object obj2, Object obj3, int i10) {
-        this.f37147a = i10;
-        this.f37149c = obj;
-        this.f37148b = i7;
+        this.f37026a = i10;
+        this.f37028c = obj;
+        this.f37027b = i7;
         this.d = obj2;
-        this.f37150e = obj3;
+        this.f37029e = obj3;
     }
 
     public pp0(Object obj, Object obj2, int i7, Object obj3, int i10) {
-        this.f37147a = i10;
-        this.f37149c = obj;
+        this.f37026a = i10;
+        this.f37028c = obj;
         this.d = obj2;
-        this.f37148b = i7;
-        this.f37150e = obj3;
+        this.f37027b = i7;
+        this.f37029e = obj3;
     }
 
     public pp0(Object obj, Object obj2, Object obj3, int i7, int i10) {
-        this.f37147a = i10;
-        this.f37149c = obj;
+        this.f37026a = i10;
+        this.f37028c = obj;
         this.d = obj2;
-        this.f37150e = obj3;
-        this.f37148b = i7;
+        this.f37029e = obj3;
+        this.f37027b = i7;
     }
 }

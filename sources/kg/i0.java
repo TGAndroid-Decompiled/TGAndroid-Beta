@@ -20,7 +20,7 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.k41;
 import org.telegram.ui.Components.l9;
 import org.telegram.ui.Components.na;
 import org.telegram.ui.Components.oj0;
@@ -38,7 +38,7 @@ public final class i0 extends na {
     public final FrameLayout T1;
     public final fi.d U1;
     public final fi.d V1;
-    public f41 W1;
+    public k41 W1;
     public boolean X1;
     public Boolean Y1;
     public int Z1;
@@ -51,7 +51,7 @@ public final class i0 extends na {
         TLRPC.User a22 = qp.s1(this.f28612a).a2(Long.valueOf(tL_connectedBot.bot_id));
         this.Q1 = a22;
         this.B1 = org.telegram.messenger.g0.L(36.0f);
-        this.f36333r1 = 0.15f;
+        this.f36227r1 = 0.15f;
         a0 a0Var = new a0(activity, this.f28612a, new h9(this, 24), f6Var);
         this.R1 = a0Var;
         TL_account.TL_businessBotRecipients tL_businessBotRecipients = tL_connectedBot.recipients;
@@ -92,11 +92,11 @@ public final class i0 extends na {
         v0(k6.w0(i7, this.I0));
         P(i7);
         this.Z1 = this.G0;
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int i10 = this.f28645t0;
         pj0Var.setPadding(i10, 0, i10, org.telegram.messenger.g0.L(72.0f));
-        this.f36328k1.r1();
-        this.f36328k1.setOnItemClickListener(new ai.k(this, 16));
+        this.f36222k1.r1();
+        this.f36222k1.setOnItemClickListener(new ai.k(this, 16));
         FrameLayout frameLayout = new FrameLayout(activity);
         this.T1 = frameLayout;
         frameLayout.setPadding(org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(6.0f), org.telegram.messenger.g0.L(12.0f), org.telegram.messenger.g0.L(12.0f));
@@ -124,14 +124,14 @@ public final class i0 extends na {
         e10.rightMargin += i12;
         this.f28615b.addView(frameLayout, e10);
         v4.k kVar = new v4.k();
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        this.f36328k1.setItemAnimator(kVar);
-        f41 f41Var = this.W1;
-        if (f41Var != null) {
-            f41Var.O(false);
+        this.f36222k1.setItemAnimator(kVar);
+        k41 k41Var = this.W1;
+        if (k41Var != null) {
+            k41Var.O(false);
         }
     }
 
@@ -155,10 +155,10 @@ public final class i0 extends na {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(pj0Var, getContext(), this.f28612a, 0, true, new hi.u1(this, 7), this.I0);
-        this.W1 = f41Var;
-        f41Var.f33473r = false;
-        return f41Var;
+        k41 k41Var = new k41(pj0Var, getContext(), this.f28612a, 0, true, new hi.u1(this, 7), this.I0);
+        this.W1 = k41Var;
+        k41Var.f35132r = false;
+        return k41Var;
     }
 
     @Override

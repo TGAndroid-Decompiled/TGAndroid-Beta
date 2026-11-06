@@ -3,28 +3,28 @@ package org.telegram.ui.Components;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class hf extends AnimatorListenerAdapter {
-    public final boolean f34313a;
-    public final float f34314b;
-    public final float f34315c;
+    public final boolean f34263a;
+    public final float f34264b;
+    public final float f34265c;
     public final float d;
-    public final float f34316e;
-    public final ChatActivityEnterView f34317f;
+    public final float f34266e;
+    public final ChatActivityEnterView f34267f;
 
     public hf(ChatActivityEnterView chatActivityEnterView, boolean z9, float f10, float f11, float f12, float f13) {
-        this.f34317f = chatActivityEnterView;
-        this.f34313a = z9;
-        this.f34314b = f10;
-        this.f34315c = f11;
+        this.f34267f = chatActivityEnterView;
+        this.f34263a = z9;
+        this.f34264b = f10;
+        this.f34265c = f11;
         this.d = f12;
-        this.f34316e = f13;
+        this.f34266e = f13;
     }
 
     @Override
     public final void onAnimationCancel(Animator animator) {
         float f10;
         int i7;
-        ChatActivityEnterView chatActivityEnterView = this.f34317f;
-        boolean z9 = this.f34313a;
+        ChatActivityEnterView chatActivityEnterView = this.f34267f;
+        boolean z9 = this.f34263a;
         if (z9) {
             int i10 = ChatActivityEnterView.s5;
             chatActivityEnterView.X();
@@ -38,7 +38,7 @@ public final class hf extends AnimatorListenerAdapter {
             }
             cn0Var.setVisibility(i7);
             chatActivityEnterView.f31098p0.setAlpha(this.d);
-            chatActivityEnterView.f31098p0.setTranslationX(this.f34316e);
+            chatActivityEnterView.f31098p0.setTranslationX(this.f34266e);
             f10 = chatActivityEnterView.f31098p0.getTranslationX();
         } else {
             f10 = 0.0f;
@@ -51,8 +51,8 @@ public final class hf extends AnimatorListenerAdapter {
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        if (!this.f34313a) {
-            ChatActivityEnterView chatActivityEnterView = this.f34317f;
+        if (!this.f34263a) {
+            ChatActivityEnterView chatActivityEnterView = this.f34267f;
             cn0 cn0Var = chatActivityEnterView.f31098p0;
             if (cn0Var != null) {
                 cn0Var.setVisibility(8);
@@ -66,8 +66,8 @@ public final class hf extends AnimatorListenerAdapter {
     @Override
     public final void onAnimationStart(Animator animator) {
         float f10;
-        boolean z9 = this.f34313a;
-        ChatActivityEnterView chatActivityEnterView = this.f34317f;
+        boolean z9 = this.f34263a;
+        ChatActivityEnterView chatActivityEnterView = this.f34267f;
         if (z9) {
             int i7 = ChatActivityEnterView.s5;
             chatActivityEnterView.X();
@@ -75,8 +75,8 @@ public final class hf extends AnimatorListenerAdapter {
         }
         cn0 cn0Var = chatActivityEnterView.f31098p0;
         if (cn0Var != null) {
-            cn0Var.setAlpha(this.f34314b);
-            chatActivityEnterView.f31098p0.setTranslationX(this.f34315c);
+            cn0Var.setAlpha(this.f34264b);
+            chatActivityEnterView.f31098p0.setTranslationX(this.f34265c);
             f10 = chatActivityEnterView.f31098p0.getTranslationX();
         } else {
             f10 = 0.0f;

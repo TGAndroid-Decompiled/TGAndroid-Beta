@@ -106,7 +106,7 @@ public class r8 extends View {
             if (getParent() instanceof View) {
                 View view = (View) getParent();
                 Objects.requireNonNull(view);
-                icVar.f34590f = new nt(1, view);
+                icVar.f34553f = new nt(1, view);
             }
             icVar.c(true);
             yVar.setHotspot(motionEvent.getX(), motionEvent.getY());

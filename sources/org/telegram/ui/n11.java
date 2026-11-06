@@ -2,9 +2,9 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 public final class n11 extends TLRPC.Document {
-    public final CharSequence f47913a;
+    public final CharSequence f47939a;
 
     public n11(CharSequence charSequence) {
-        this.f47913a = charSequence;
+        this.f47939a = charSequence;
     }
 }

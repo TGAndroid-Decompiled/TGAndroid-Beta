@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import android.view.animation.DecelerateInterpolator;
 import org.telegram.messenger.MediaController;
 public final class e40 implements Runnable {
-    public final int f33133a;
-    public final g40 f33134b;
+    public final int f33135a;
+    public final g40 f33136b;
 
     public e40(g40 g40Var, int i7) {
-        this.f33133a = i7;
-        this.f33134b = g40Var;
+        this.f33135a = i7;
+        this.f33136b = g40Var;
     }
 
     @Override
     public final void run() {
         org.telegram.messenger.j20 j20Var;
-        int i7 = this.f33133a;
-        g40 g40Var = this.f33134b;
+        int i7 = this.f33135a;
+        g40 g40Var = this.f33136b;
         switch (i7) {
             case 0:
                 g40Var.H0.r(false, false);
@@ -38,26 +38,26 @@ public final class e40 implements Runnable {
                 j20Var3.f23453k = 360;
                 j20Var3.f23451i = 360;
                 j20Var3.f23454l = 360;
-                j20Var3.f23457o = o40Var.f36600f0.getAbsolutePath();
-                g40Var.h(o40Var.f36600f0);
-                o40Var.R.f23460r = o40Var.f36608j0;
-                org.telegram.messenger.qs.f(o40Var.f36596e).k(162, Integer.valueOf(o40Var.U), o40Var.R, o40Var.f36600f0.getAbsolutePath(), g40Var.A0);
+                j20Var3.f23457o = o40Var.f36484f0.getAbsolutePath();
+                g40Var.h(o40Var.f36484f0);
+                o40Var.R.f23460r = o40Var.f36492j0;
+                org.telegram.messenger.qs.f(o40Var.f36480e).k(162, Integer.valueOf(o40Var.U), o40Var.R, o40Var.f36484f0.getAbsolutePath(), g40Var.A0);
                 return;
             case 2:
                 if (g40Var.G0 && (j20Var = g40Var.H0.R) != null) {
                     j20Var.P = false;
                 }
-                g40Var.c(g40Var.f33817a, 0L, true);
+                g40Var.c(g40Var.f33747a, 0L, true);
                 MediaController.B().Y(false);
                 return;
             case 3:
-                g40Var.H0.f36605h1 = null;
+                g40Var.H0.f36489h1 = null;
                 return;
             case 4:
-                g40Var.H0.f36617q0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                g40Var.H0.f36501q0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
                 return;
             default:
-                g40Var.H0.f36617q0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
+                g40Var.H0.f36501q0.animate().setDuration(120L).alpha(0.0f).setInterpolator(new DecelerateInterpolator()).start();
                 return;
         }
     }

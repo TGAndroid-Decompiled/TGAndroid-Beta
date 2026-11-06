@@ -6,9 +6,9 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.r41;
 public final class dv extends fu implements Drawable.Callback {
-    public final m41 W;
+    public final r41 W;
     public final int X;
     public final int Y;
     public final int Z;
@@ -20,16 +20,16 @@ public final class dv extends fu implements Drawable.Callback {
         super(kvVar, rect, i7);
         this.Z = i10;
         this.f22094a0 = i11;
-        m41 m41Var = new m41();
-        this.W = m41Var;
-        m41Var.setCallback(this);
-        m41Var.f35884n = hd.M0(2131743832, null);
-        m41Var.f35885o = hd.M0(2131743833, null);
-        m41Var.f35886p = hd.M0(2131743827, null);
-        m41Var.f35880j = new ds(kvVar, 7);
+        r41 r41Var = new r41();
+        this.W = r41Var;
+        r41Var.setCallback(this);
+        r41Var.f37542n = hd.M0(2131743832, null);
+        r41Var.f37543o = hd.M0(2131743833, null);
+        r41Var.f37544p = hd.M0(2131743827, null);
+        r41Var.f37538j = new ds(kvVar, 7);
         int i12 = this.f22445c;
         this.X = i12;
-        this.Y = m41Var.a(i12);
+        this.Y = r41Var.a(i12);
     }
 
     @Override
@@ -42,7 +42,7 @@ public final class dv extends fu implements Drawable.Callback {
     public final boolean Y(MotionEvent motionEvent) {
         View view = this.V;
         if (view != null) {
-            return this.W.f35879i.a(view, motionEvent);
+            return this.W.f37537i.a(view, motionEvent);
         }
         return false;
     }
@@ -83,9 +83,9 @@ public final class dv extends fu implements Drawable.Callback {
         Rect rect = this.f22444b;
         int i7 = rect.left;
         int i10 = rect.top;
-        m41 m41Var = this.W;
-        m41Var.setBounds(i7, i10, this.X + i7, this.Y + i10);
-        m41Var.draw(canvas);
+        r41 r41Var = this.W;
+        r41Var.setBounds(i7, i10, this.X + i7, this.Y + i10);
+        r41Var.draw(canvas);
     }
 
     @Override

@@ -68,7 +68,7 @@ public final class h4 extends FrameLayout implements org.telegram.ui.ActionBar.a
         } else {
             f10 = 1.1f;
         }
-        w8Var.f39905p = f10;
+        w8Var.f39912p = f10;
         w8Var.i(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.T7, false), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27793a8, false));
         return w8Var;
     }
@@ -78,8 +78,8 @@ public final class h4 extends FrameLayout implements org.telegram.ui.ActionBar.a
         if (z9) {
             int L = org.telegram.messenger.g0.L(18.0f);
             int L2 = org.telegram.messenger.g0.L(18.0f);
-            xpVar.f40299e = L;
-            xpVar.f40300f = L2;
+            xpVar.f40318e = L;
+            xpVar.f40319f = L2;
         }
         return xpVar;
     }
@@ -101,7 +101,7 @@ public final class h4 extends FrameLayout implements org.telegram.ui.ActionBar.a
                 ofFloat.addUpdateListener(new r(this, 3));
                 this.G.addListener(new m.a(this, 23));
                 this.G.setDuration(180L);
-                this.G.setInterpolator(xq.f40311g);
+                this.G.setInterpolator(xq.f40330g);
                 this.G.start();
             } else {
                 float f11 = 0.82f;
@@ -156,7 +156,7 @@ public final class h4 extends FrameLayout implements org.telegram.ui.ActionBar.a
                     this.S = new ug.y0(org.telegram.ui.ActionBar.k6.zk, org.telegram.ui.ActionBar.k6.Ak, -1, -1, this.M);
                 }
                 this.S.d((int) (width - org.telegram.messenger.g0.L(10.0f)), 0.0f, (int) (height - org.telegram.messenger.g0.L(10.0f)), (int) (org.telegram.messenger.g0.L(10.0f) + width), 0.0f, (int) (org.telegram.messenger.g0.L(10.0f) + height));
-                paint = this.S.f56752f;
+                paint = this.S.f56777f;
             } else {
                 if (this.U == null) {
                     this.U = new Paint();
@@ -267,7 +267,7 @@ public final class h4 extends FrameLayout implements org.telegram.ui.ActionBar.a
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         wo woVar = this.d;
         if (woVar != null) {
-            z9 = woVar.f40043a.f31258q;
+            z9 = woVar.f40050a.f31258q;
         } else {
             z9 = this.H;
         }

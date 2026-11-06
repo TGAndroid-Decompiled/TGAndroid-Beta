@@ -14,13 +14,13 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.m3;
 import org.telegram.ui.Components.hx;
-import org.telegram.ui.Components.n31;
 import org.telegram.ui.Components.r5;
+import org.telegram.ui.Components.s31;
 public final class a0 implements hx {
-    public final g0 f55438a;
+    public final g0 f55463a;
 
     public a0(g0 g0Var) {
-        this.f55438a = g0Var;
+        this.f55463a = g0Var;
     }
 
     @Override
@@ -60,7 +60,7 @@ public final class a0 implements hx {
 
     @Override
     public final boolean k() {
-        b editText = ((k2) this.f55438a.B0).getEditText();
+        b editText = ((k2) this.f55463a.B0).getEditText();
         if (editText == null || editText.length() == 0) {
             return false;
         }
@@ -73,7 +73,7 @@ public final class a0 implements hx {
         k2 k2Var;
         b editText;
         f6[] f6VarArr;
-        j jVar = this.f55438a.B0;
+        j jVar = this.f55463a.B0;
         if (!(jVar instanceof k2) || (editText = (k2Var = (k2) jVar).getEditText()) == null) {
             return;
         }
@@ -100,8 +100,8 @@ public final class a0 implements hx {
 
     @Override
     public final void n() {
-        g0 g0Var = this.f55438a;
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var.getContext(), g0Var.f55588z1);
+        g0 g0Var = this.f55463a;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(0, g0Var.getContext(), g0Var.f55613z1);
         String M0 = hd.M0(2131752068, null);
         org.telegram.ui.ActionBar.u1 u1Var = alertDialog$Builder.f27292a;
         u1Var.R = M0;
@@ -119,7 +119,7 @@ public final class a0 implements hx {
     @Override
     public final void x(long j3, TLRPC.Document document, String str, boolean z9) {
         r5 r5Var;
-        b editText = ((k2) this.f55438a.B0).getEditText();
+        b editText = ((k2) this.f55463a.B0).getEditText();
         if (editText == null) {
             return;
         }
@@ -159,7 +159,7 @@ public final class a0 implements hx {
     }
 
     @Override
-    public final void o(n31 n31Var) {
+    public final void o(s31 s31Var) {
     }
 
     @Override

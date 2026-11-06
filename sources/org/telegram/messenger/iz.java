@@ -893,14 +893,14 @@ public abstract class iz {
             int i10 = 0;
             if (i7 >= 0) {
                 hz hzVar = (hz) arrayList.get(i7);
-                serializedData.writeString(hzVar.f22996a.f56800b);
-                serializedData.writeInt32(hzVar.f22996a.f56801c);
+                serializedData.writeString(hzVar.f22996a.f56825b);
+                serializedData.writeInt32(hzVar.f22996a.f56826c);
                 serializedData.writeString(hzVar.f22996a.d);
-                serializedData.writeString(hzVar.f22996a.f56802e);
-                serializedData.writeString(hzVar.f22996a.f56803f);
+                serializedData.writeString(hzVar.f22996a.f56827e);
+                serializedData.writeString(hzVar.f22996a.f56828f);
                 serializedData.writeInt64(hzVar.f22997b);
                 serializedData.writeInt64(hzVar.f22999e);
-                int c10 = p1.g.c(hzVar.f22996a.f56799a);
+                int c10 = p1.g.c(hzVar.f22996a.f56824a);
                 if (c10 != 1) {
                     if (c10 == 2) {
                         i10 = 2;

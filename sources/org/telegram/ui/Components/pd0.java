@@ -4,26 +4,26 @@ import android.graphics.Matrix;
 import android.graphics.SurfaceTexture;
 import android.view.TextureView;
 public final class pd0 implements TextureView.SurfaceTextureListener {
-    public final boolean f36984a;
-    public final y9 f36985b;
-    public final sd0 f36986c;
+    public final boolean f36863a;
+    public final y9 f36864b;
+    public final sd0 f36865c;
 
     public pd0(sd0 sd0Var, boolean z9, y9 y9Var) {
-        this.f36986c = sd0Var;
-        this.f36984a = z9;
-        this.f36985b = y9Var;
+        this.f36865c = sd0Var;
+        this.f36863a = z9;
+        this.f36864b = y9Var;
     }
 
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i7, int i10) {
-        sd0 sd0Var = this.f36986c;
-        TextureView textureView = sd0Var.f38038i0;
-        if (sd0Var.f38041l0 == null && surfaceTexture != null) {
-            ry ryVar = new ry(surfaceTexture, sd0Var.C0, sd0Var.H0, sd0Var.f38055w0, this.f36984a, this.f36985b, i7, i10);
-            sd0Var.f38041l0 = ryVar;
-            if (!this.f36984a) {
+        sd0 sd0Var = this.f36865c;
+        TextureView textureView = sd0Var.f37998i0;
+        if (sd0Var.f38001l0 == null && surfaceTexture != null) {
+            ry ryVar = new ry(surfaceTexture, sd0Var.C0, sd0Var.H0, sd0Var.f38015w0, this.f36863a, this.f36864b, i7, i10);
+            sd0Var.f38001l0 = ryVar;
+            if (!this.f36863a) {
                 ryVar.h(sd0Var.J0, sd0Var.K0);
-                ry ryVar2 = sd0Var.f38041l0;
+                ry ryVar2 = sd0Var.f38001l0;
                 Matrix transform = textureView.getTransform(null);
                 int width = textureView.getWidth();
                 int height = textureView.getHeight();
@@ -39,21 +39,21 @@ public final class pd0 implements TextureView.SurfaceTextureListener {
                     ryVar2.c(false, false, false);
                 }
             }
-            sd0Var.f38041l0.d(sd0Var);
-            ry ryVar3 = sd0Var.f38041l0;
+            sd0Var.f38001l0.d(sd0Var);
+            ry ryVar3 = sd0Var.f38001l0;
             ryVar3.getClass();
             ryVar3.postRunnable(new ny(ryVar3, i7, i10, 1));
-            sd0Var.f38041l0.c(true, true, false);
+            sd0Var.f38001l0.c(true, true, false);
         }
     }
 
     @Override
     public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        sd0 sd0Var = this.f36986c;
-        ry ryVar = sd0Var.f38041l0;
+        sd0 sd0Var = this.f36865c;
+        ry ryVar = sd0Var.f38001l0;
         if (ryVar != null) {
             ryVar.postRunnable(new oy(ryVar, 0));
-            sd0Var.f38041l0 = null;
+            sd0Var.f38001l0 = null;
             return true;
         }
         return true;
@@ -61,12 +61,12 @@ public final class pd0 implements TextureView.SurfaceTextureListener {
 
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i7, int i10) {
-        sd0 sd0Var = this.f36986c;
-        ry ryVar = sd0Var.f38041l0;
+        sd0 sd0Var = this.f36865c;
+        ry ryVar = sd0Var.f38001l0;
         if (ryVar != null) {
             ryVar.postRunnable(new ny(ryVar, i7, i10, 1));
-            sd0Var.f38041l0.c(false, true, false);
-            sd0Var.f38041l0.postRunnable(new ob0(this, 3));
+            sd0Var.f38001l0.c(false, true, false);
+            sd0Var.f38001l0.postRunnable(new ob0(this, 3));
         }
     }
 

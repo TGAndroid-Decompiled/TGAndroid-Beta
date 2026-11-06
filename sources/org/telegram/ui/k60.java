@@ -9,29 +9,29 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import org.telegram.ui.Components.RadioButton;
 public final class k60 extends org.telegram.ui.Components.oj0 {
-    public final int f47103c;
+    public final int f47126c;
     public final Context d;
-    public final boolean f47104e;
-    public final org.telegram.ui.ActionBar.f2 f47105f;
+    public final boolean f47127e;
+    public final org.telegram.ui.ActionBar.f2 f47128f;
 
     public k60(org.telegram.ui.ActionBar.f2 f2Var, Context context, boolean z9, int i7) {
-        this.f47103c = i7;
-        this.f47105f = f2Var;
+        this.f47126c = i7;
+        this.f47128f = f2Var;
         this.d = context;
-        this.f47104e = z9;
+        this.f47127e = z9;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        switch (this.f47103c) {
+        switch (this.f47126c) {
             case 0:
-                int i7 = d1Var.f56931f;
+                int i7 = d1Var.f56956f;
                 if (i7 != 0 && i7 != 4 && i7 != 5 && i7 != 2) {
                     return false;
                 }
                 return true;
             default:
-                if (d1Var.f56931f == 0) {
+                if (d1Var.f56956f == 0) {
                     return true;
                 }
                 return false;
@@ -42,11 +42,11 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
     public final int b() {
         int i7;
         int i10;
-        switch (this.f47103c) {
+        switch (this.f47126c) {
             case 0:
-                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f47105f;
-                if (this.f47104e) {
-                    ArrayList arrayList = languageSelectActivity.f41222e;
+                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f47128f;
+                if (this.f47127e) {
+                    ArrayList arrayList = languageSelectActivity.f41247e;
                     if (arrayList == null) {
                         return 0;
                     }
@@ -68,22 +68,22 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
                     }
                     i10 = i7 + 1;
                 }
-                int size = i10 + 1 + languageSelectActivity.f41223f.size();
+                int size = i10 + 1 + languageSelectActivity.f41248f.size();
                 if (!languageSelectActivity.h.isEmpty()) {
                     return languageSelectActivity.h.size() + 1 + size;
                 }
                 return size;
             default:
-                qy0 qy0Var = (qy0) this.f47105f;
+                qy0 qy0Var = (qy0) this.f47128f;
                 int i11 = 0;
-                if (this.f47104e) {
-                    ArrayList arrayList2 = qy0Var.f49311f;
+                if (this.f47127e) {
+                    ArrayList arrayList2 = qy0Var.f49331f;
                     if (arrayList2 == null) {
                         return 0;
                     }
                     return arrayList2.size();
                 }
-                if (qy0Var.f49310e >= 0) {
+                if (qy0Var.f49330e >= 0) {
                     i11 = 1;
                 }
                 return i11 + qy0Var.h.size();
@@ -111,7 +111,7 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
         float f12;
         org.telegram.ui.Cells.y6 y6Var;
         org.telegram.ui.Cells.n4 n4Var;
-        int i14 = this.f47103c;
+        int i14 = this.f47126c;
         Context context = this.d;
         switch (i14) {
             case 0:
@@ -232,9 +232,9 @@ public final class k60 extends org.telegram.ui.Components.oj0 {
 
     @Override
     public void y(v4.d1 d1Var) {
-        switch (this.f47103c) {
+        switch (this.f47126c) {
             case 0:
-                View view = d1Var.f56927a;
+                View view = d1Var.f56952a;
                 if (view instanceof org.telegram.ui.Cells.b9) {
                     ((org.telegram.ui.Cells.b9) view).c();
                     return;

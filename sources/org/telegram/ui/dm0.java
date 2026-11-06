@@ -5,29 +5,29 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 public final class dm0 {
-    public boolean f45074f;
-    public boolean f45075g;
+    public boolean f45099f;
+    public boolean f45100g;
     public boolean h;
-    public Path f45076i;
-    public Paint f45077j;
-    public Drawable f45078k;
-    public final org.telegram.ui.Components.ic f45079l;
-    public boolean f45080m;
-    public final org.telegram.ui.Components.w5 f45081n;
-    public int f45082o;
-    public final em0 f45085r;
-    public final Paint f45070a = new Paint(1);
-    public final Paint f45071b = new Paint(1);
-    public final Paint f45072c = new Paint(1);
+    public Path f45101i;
+    public Paint f45102j;
+    public Drawable f45103k;
+    public final org.telegram.ui.Components.ic f45104l;
+    public boolean f45105m;
+    public final org.telegram.ui.Components.w5 f45106n;
+    public int f45107o;
+    public final em0 f45110r;
+    public final Paint f45095a = new Paint(1);
+    public final Paint f45096b = new Paint(1);
+    public final Paint f45097c = new Paint(1);
     public final Path d = new Path();
-    public final Path f45073e = new Path();
-    public final RectF f45083p = new RectF();
-    public final RectF f45084q = new RectF();
+    public final Path f45098e = new Path();
+    public final RectF f45108p = new RectF();
+    public final RectF f45109q = new RectF();
 
     public dm0(em0 em0Var) {
-        this.f45085r = em0Var;
-        this.f45079l = new org.telegram.ui.Components.ic(em0Var);
-        this.f45081n = new org.telegram.ui.Components.w5(em0Var, 0L, 320L, org.telegram.ui.Components.xq.h);
+        this.f45110r = em0Var;
+        this.f45104l = new org.telegram.ui.Components.ic(em0Var);
+        this.f45106n = new org.telegram.ui.Components.w5(em0Var, 0L, 320L, org.telegram.ui.Components.xq.h);
     }
 
     public final void a(org.telegram.messenger.fp fpVar) {
@@ -35,8 +35,8 @@ public final class dm0 {
         int e10;
         int[] iArr;
         boolean z9;
-        em0 em0Var = this.f45085r;
-        org.telegram.ui.ActionBar.f6 f6Var = em0Var.f45347a;
+        em0 em0Var = this.f45110r;
+        org.telegram.ui.ActionBar.f6 f6Var = em0Var.f45377a;
         if (fpVar == null) {
             return;
         }
@@ -47,9 +47,9 @@ public final class dm0 {
         } else {
             a10 = f6Var.a();
         }
-        int i7 = em0Var.f45349c;
-        Paint paint = this.f45071b;
-        Paint paint2 = this.f45070a;
+        int i7 = em0Var.f45379c;
+        Paint paint = this.f45096b;
+        Paint paint2 = this.f45095a;
         boolean z10 = true;
         if (i7 == 1) {
             if (a10 && fpVar.g() != fpVar.f() && fpVar.i() == fpVar.f()) {
@@ -59,7 +59,7 @@ public final class dm0 {
                 paint2.setColor(fpVar.e(0, f6Var));
                 paint.setColor(fpVar.e(1, f6Var));
             }
-            this.f45072c.setColor(fpVar.e(2, f6Var));
+            this.f45097c.setColor(fpVar.e(2, f6Var));
             int h = fpVar.h(a10);
             if (a10) {
                 iArr = iArr3;
@@ -71,7 +71,7 @@ public final class dm0 {
             } else {
                 z9 = false;
             }
-            this.f45074f = z9;
+            this.f45099f = z9;
             int j3 = fpVar.j(a10);
             if (a10) {
                 iArr2 = iArr3;
@@ -79,7 +79,7 @@ public final class dm0 {
             if (j3 == iArr2[0]) {
                 z10 = false;
             }
-            this.f45075g = z10;
+            this.f45100g = z10;
             return;
         }
         paint2.setColor(fpVar.e(0, f6Var));
@@ -89,7 +89,7 @@ public final class dm0 {
             e10 = fpVar.e(0, f6Var);
         }
         paint.setColor(e10);
-        this.f45074f = fpVar.o(a10);
-        this.f45075g = false;
+        this.f45099f = fpVar.o(a10);
+        this.f45100g = false;
     }
 }

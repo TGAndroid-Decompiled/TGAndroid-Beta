@@ -550,7 +550,7 @@ public final class fj implements rg0 {
         }
         this.T.setColor(i0.a.o(i10, 38));
         canvas.drawRect(rectF.left + g0.L(10.0f), (rectF.bottom - g0.L(38.0f)) - g0.f1(), rectF.right - g0.L(6.66f), rectF.bottom - g0.L(38.0f), this.T);
-        float min = Math.min(rectF.width() - g0.L(12.0f), (this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + this.Q.f35777c);
+        float min = Math.min(rectF.width() - g0.L(12.0f), (this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + this.Q.f35782c);
         float centerX = rectF.centerX() - (min / 2.0f);
         float L = rectF.bottom - (g0.L(38.0f) / 2.0f);
         if (this.O != i7) {
@@ -564,7 +564,7 @@ public final class fj implements rg0 {
         this.P.draw(canvas);
         float intrinsicWidth = (this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f) + centerX;
         ly0 ly0Var = this.Q;
-        ly0Var.f35788p = g0.L(12.0f) + ((int) (min - ((this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f))));
+        ly0Var.f35793p = g0.L(12.0f) + ((int) (min - ((this.P.getIntrinsicWidth() * 0.8f) + g0.L(5.0f))));
         ly0Var.c(intrinsicWidth, L, f10, i7, canvas);
     }
 
@@ -628,7 +628,7 @@ public final class fj implements rg0 {
         }
         ly0 ly0Var = new ly0(b10, i11 - (i10 / 2), g0.o());
         this.L = ly0Var;
-        this.M = g0.L(4.0f) + ((int) (ly0Var.f35775a.getTextSize() * 1.714f));
+        this.M = g0.L(4.0f) + ((int) (ly0Var.f35780a.getTextSize() * 1.714f));
     }
 
     public final void n(String str, boolean z9) {

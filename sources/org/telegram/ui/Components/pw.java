@@ -16,16 +16,16 @@ public final class pw extends oj0 {
     public int E;
     public final gy F;
     public ArrayList h;
-    public int f37182c = -1;
+    public int f37061c = -1;
     public int d = -1;
-    public int f37183e = -1;
-    public int f37184f = -1;
-    public final ArrayList f37185n = new ArrayList();
-    public final SparseIntArray f37186r = new SparseIntArray();
-    public final SparseIntArray f37187s = new SparseIntArray();
-    public final SparseIntArray f37188w = new SparseIntArray();
-    public final SparseIntArray f37189x = new SparseIntArray();
-    public final ArrayList f37190y = new ArrayList();
+    public int f37062e = -1;
+    public int f37063f = -1;
+    public final ArrayList f37064n = new ArrayList();
+    public final SparseIntArray f37065r = new SparseIntArray();
+    public final SparseIntArray f37066s = new SparseIntArray();
+    public final SparseIntArray f37067w = new SparseIntArray();
+    public final SparseIntArray f37068x = new SparseIntArray();
+    public final ArrayList f37069y = new ArrayList();
 
     public pw(gy gyVar) {
         this.F = gyVar;
@@ -33,7 +33,7 @@ public final class pw extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56931f;
+        int i7 = d1Var.f56956f;
         if (i7 != 0 && i7 != 4 && i7 != 3 && i7 != 6) {
             return false;
         }
@@ -47,8 +47,8 @@ public final class pw extends oj0 {
         Integer num;
         float f10;
         gy gyVar = this.F;
-        ArrayList arrayList = gyVar.f34117q1;
-        int i10 = this.f37189x.get(i7);
+        ArrayList arrayList = gyVar.f34065q1;
+        int i10 = this.f37068x.get(i7);
         if (i10 >= 0 && i10 < arrayList.size()) {
             tw twVar = (tw) arrayList.get(i10);
             if (!twVar.h) {
@@ -57,27 +57,27 @@ public final class pw extends oj0 {
                 } else {
                     z9 = false;
                 }
-                int intValue = ((Integer) this.f37190y.get(i10)).intValue();
-                gyVar.f34111o1.add(Long.valueOf(twVar.f38420b.f26979id));
-                if (!org.telegram.messenger.p10.i(gyVar.f34076c1).q() && !gyVar.U0) {
+                int intValue = ((Integer) this.f37069y.get(i10)).intValue();
+                gyVar.f34059o1.add(Long.valueOf(twVar.f38411b.f26979id));
+                if (!org.telegram.messenger.p10.i(gyVar.f34024c1).q() && !gyVar.U0) {
                     z10 = false;
                 } else {
                     z10 = true;
                 }
                 int i11 = gyVar.Q.J * 3;
-                if ((twVar.f38423f && !twVar.f38424g && (twVar.f38422e || z10)) || twVar.h) {
-                    min = twVar.f38421c.size();
+                if ((twVar.f38414f && !twVar.f38415g && (twVar.f38413e || z10)) || twVar.h) {
+                    min = twVar.f38412c.size();
                 } else {
-                    min = Math.min(i11, twVar.f38421c.size());
+                    min = Math.min(i11, twVar.f38412c.size());
                 }
                 Integer num2 = null;
-                if (twVar.f38421c.size() > i11) {
+                if (twVar.f38412c.size() > i11) {
                     num = Integer.valueOf(intValue + 1 + min);
                 } else {
                     num = null;
                 }
                 twVar.h = true;
-                int size = twVar.f38421c.size() - min;
+                int size = twVar.f38412c.size() - min;
                 if (size > 0) {
                     num = Integer.valueOf(intValue + 1 + min);
                     num2 = Integer.valueOf(size);
@@ -85,10 +85,10 @@ public final class pw extends oj0 {
                 G(false);
                 H();
                 if (num != null && num2 != null) {
-                    gyVar.f34126s2 = view;
-                    gyVar.f34129t2 = num.intValue();
-                    gyVar.f34132u2 = num2.intValue() + num.intValue();
-                    gyVar.f34135v2 = SystemClock.elapsedRealtime();
+                    gyVar.f34074s2 = view;
+                    gyVar.f34077t2 = num.intValue();
+                    gyVar.f34080u2 = num2.intValue() + num.intValue();
+                    gyVar.f34083v2 = SystemClock.elapsedRealtime();
                     o(num.intValue(), num2.intValue());
                     g(num.intValue());
                     if (z9) {
@@ -111,14 +111,14 @@ public final class pw extends oj0 {
         if (gyVar.T2) {
             return;
         }
-        ArrayList arrayList2 = new ArrayList(this.f37185n);
-        org.telegram.messenger.ui b02 = org.telegram.messenger.ui.b0(gyVar.f34076c1);
+        ArrayList arrayList2 = new ArrayList(this.f37064n);
+        org.telegram.messenger.ui b02 = org.telegram.messenger.ui.b0(gyVar.f34024c1);
         ArrayList arrayList3 = b02.f25829s0[1];
         arrayList.clear();
         int size = arrayList3.size();
         for (int i7 = 0; i7 < size; i7++) {
             TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList3.get(i7);
-            if (!b02.B0(stickerSetCovered.set.f26979id, true) || gyVar.f34114p1.contains(Long.valueOf(stickerSetCovered.set.f26979id))) {
+            if (!b02.B0(stickerSetCovered.set.f26979id, true) || gyVar.f34062p1.contains(Long.valueOf(stickerSetCovered.set.f26979id))) {
                 arrayList.add(stickerSetCovered);
             }
         }
@@ -139,11 +139,11 @@ public final class pw extends oj0 {
         TLRPC.TL_messages_stickerSet Y;
         gy gyVar = this.F;
         ArrayList arrayList = gyVar.n1;
-        ArrayList arrayList2 = gyVar.f34111o1;
-        int i10 = gyVar.f34076c1;
-        ArrayList arrayList3 = gyVar.f34117q1;
+        ArrayList arrayList2 = gyVar.f34059o1;
+        int i10 = gyVar.f34024c1;
+        ArrayList arrayList3 = gyVar.f34065q1;
         arrayList3.clear();
-        if (gyVar.f34077c2) {
+        if (gyVar.f34025c2) {
             org.telegram.messenger.ui b02 = org.telegram.messenger.ui.b0(i10);
             if (z9 || this.h == null) {
                 this.h = new ArrayList(b02.s0(5));
@@ -157,15 +157,15 @@ public final class pw extends oj0 {
             TLRPC.ChatFull chatFull = gyVar.J1;
             if (chatFull != null && (stickerSet = chatFull.emojiset) != null && (Y = b02.Y(stickerSet)) != null) {
                 tw twVar = new tw();
-                twVar.f38420b = gyVar.J1.emojiset;
-                twVar.f38421c = new ArrayList(Y.documents);
-                twVar.f38422e = true;
-                twVar.f38423f = true;
-                twVar.f38424g = false;
+                twVar.f38411b = gyVar.J1.emojiset;
+                twVar.f38412c = new ArrayList(Y.documents);
+                twVar.f38413e = true;
+                twVar.f38414f = true;
+                twVar.f38415g = false;
                 twVar.h = true;
-                twVar.f38425i = true;
+                twVar.f38416i = true;
                 arrayList3.add(twVar);
-                TLRPC.StickerSet stickerSet2 = twVar.f38420b;
+                TLRPC.StickerSet stickerSet2 = twVar.f38411b;
                 int i11 = 0;
                 while (true) {
                     if (i11 >= arrayList4.size()) {
@@ -185,12 +185,12 @@ public final class pw extends oj0 {
                     TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) arrayList4.get(i12);
                     if (tL_messages_stickerSet2 != null && !org.telegram.messenger.ij.W3(tL_messages_stickerSet2)) {
                         tw twVar2 = new tw();
-                        twVar2.f38420b = tL_messages_stickerSet2.set;
-                        twVar2.f38421c = new ArrayList(tL_messages_stickerSet2.documents);
+                        twVar2.f38411b = tL_messages_stickerSet2.set;
+                        twVar2.f38412c = new ArrayList(tL_messages_stickerSet2.documents);
                         i7 = 1;
-                        twVar2.f38422e = true;
-                        twVar2.f38423f = b02.B0(tL_messages_stickerSet2.set.f26979id, true);
-                        twVar2.f38424g = false;
+                        twVar2.f38413e = true;
+                        twVar2.f38414f = b02.B0(tL_messages_stickerSet2.set.f26979id, true);
+                        twVar2.f38415g = false;
                         twVar2.h = true;
                         arrayList3.add(twVar2);
                         arrayList4.remove(i12);
@@ -206,11 +206,11 @@ public final class pw extends oj0 {
                 if (z10) {
                     tw twVar3 = new tw();
                     TLRPC.StickerSet stickerSet3 = tL_messages_stickerSet3.set;
-                    twVar3.f38420b = stickerSet3;
-                    twVar3.f38421c = tL_messages_stickerSet3.documents;
-                    twVar3.f38422e = false;
-                    twVar3.f38423f = b02.B0(stickerSet3.f26979id, true);
-                    twVar3.f38424g = false;
+                    twVar3.f38411b = stickerSet3;
+                    twVar3.f38412c = tL_messages_stickerSet3.documents;
+                    twVar3.f38413e = false;
+                    twVar3.f38414f = b02.B0(stickerSet3.f26979id, true);
+                    twVar3.f38415g = false;
                     twVar3.h = true;
                     arrayList3.add(twVar3);
                 } else {
@@ -227,22 +227,22 @@ public final class pw extends oj0 {
                     }
                     if (arrayList5.size() > 0) {
                         tw twVar4 = new tw();
-                        twVar4.f38420b = tL_messages_stickerSet3.set;
-                        twVar4.f38421c = new ArrayList(arrayList5);
-                        twVar4.f38422e = true;
-                        twVar4.f38423f = b02.B0(tL_messages_stickerSet3.set.f26979id, true);
-                        twVar4.f38424g = false;
+                        twVar4.f38411b = tL_messages_stickerSet3.set;
+                        twVar4.f38412c = new ArrayList(arrayList5);
+                        twVar4.f38413e = true;
+                        twVar4.f38414f = b02.B0(tL_messages_stickerSet3.set.f26979id, true);
+                        twVar4.f38415g = false;
                         twVar4.h = true;
                         arrayList3.add(twVar4);
                     }
                     if (arrayList6.size() > 0) {
                         tw twVar5 = new tw();
-                        twVar5.f38420b = tL_messages_stickerSet3.set;
-                        twVar5.f38421c = new ArrayList(arrayList6);
-                        twVar5.f38422e = false;
-                        twVar5.f38423f = b02.B0(tL_messages_stickerSet3.set.f26979id, true);
-                        twVar5.f38424g = false;
-                        twVar5.h = arrayList2.contains(Long.valueOf(twVar5.f38420b.f26979id));
+                        twVar5.f38411b = tL_messages_stickerSet3.set;
+                        twVar5.f38412c = new ArrayList(arrayList6);
+                        twVar5.f38413e = false;
+                        twVar5.f38414f = b02.B0(tL_messages_stickerSet3.set.f26979id, true);
+                        twVar5.f38415g = false;
+                        twVar5.h = arrayList2.contains(Long.valueOf(twVar5.f38411b.f26979id));
                         arrayList3.add(twVar5);
                     }
                 }
@@ -250,27 +250,27 @@ public final class pw extends oj0 {
             for (int i15 = 0; i15 < arrayList.size(); i15++) {
                 TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i15);
                 tw twVar6 = new tw();
-                twVar6.f38423f = b02.B0(stickerSetCovered.set.f26979id, true);
+                twVar6.f38414f = b02.B0(stickerSetCovered.set.f26979id, true);
                 TLRPC.StickerSet stickerSet4 = stickerSetCovered.set;
-                twVar6.f38420b = stickerSet4;
+                twVar6.f38411b = stickerSet4;
                 if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
-                    twVar6.f38421c = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+                    twVar6.f38412c = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
                 } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
                     TLRPC.TL_messages_stickerSet l02 = b02.l0(org.telegram.messenger.ui.Z(stickerSet4), Integer.valueOf(stickerSetCovered.set.hash), true, false, null);
                     if (l02 != null) {
-                        twVar6.f38421c = l02.documents;
+                        twVar6.f38412c = l02.documents;
                     } else {
                         twVar6.d = org.telegram.messenger.ui.Z(stickerSetCovered.set);
                     }
                 } else {
-                    twVar6.f38421c = stickerSetCovered.covers;
+                    twVar6.f38412c = stickerSetCovered.covers;
                 }
-                ArrayList arrayList7 = twVar6.f38421c;
+                ArrayList arrayList7 = twVar6.f38412c;
                 if (arrayList7 != null && !arrayList7.isEmpty()) {
                     int i16 = 0;
                     while (true) {
-                        if (i16 < twVar6.f38421c.size()) {
-                            if (!org.telegram.messenger.ij.n3((TLRPC.Document) twVar6.f38421c.get(i16))) {
+                        if (i16 < twVar6.f38412c.size()) {
+                            if (!org.telegram.messenger.ij.n3((TLRPC.Document) twVar6.f38412c.get(i16))) {
                                 z11 = true;
                                 break;
                             }
@@ -280,9 +280,9 @@ public final class pw extends oj0 {
                             break;
                         }
                     }
-                    twVar6.f38422e = !z11;
-                    twVar6.h = arrayList2.contains(Long.valueOf(twVar6.f38420b.f26979id));
-                    twVar6.f38424g = true;
+                    twVar6.f38413e = !z11;
+                    twVar6.h = arrayList2.contains(Long.valueOf(twVar6.f38411b.f26979id));
+                    twVar6.f38415g = true;
                     arrayList3.add(twVar6);
                 }
             }
@@ -312,10 +312,10 @@ public final class pw extends oj0 {
         if (i7 == this.d) {
             return 4;
         }
-        if (i7 == this.f37182c || i7 == this.f37184f) {
+        if (i7 == this.f37061c || i7 == this.f37063f) {
             return 1;
         }
-        SparseIntArray sparseIntArray = this.f37186r;
+        SparseIntArray sparseIntArray = this.f37065r;
         if (sparseIntArray.indexOfKey(i7) >= 0) {
             int i10 = sparseIntArray.get(i7);
             char[] cArr = org.telegram.messenger.j6.f23475a;
@@ -323,13 +323,13 @@ public final class pw extends oj0 {
                 return 1;
             }
             return 5;
-        } else if (this.F.f34078d0 && i7 == 0) {
+        } else if (this.F.f34026d0 && i7 == 0) {
             return 2;
         } else {
-            if (this.f37188w.indexOfKey(i7) >= 0) {
+            if (this.f37067w.indexOfKey(i7) >= 0) {
                 return 3;
             }
-            if (this.f37189x.indexOfKey(i7) >= 0) {
+            if (this.f37068x.indexOfKey(i7) >= 0) {
                 return 6;
             }
             return 0;
@@ -353,28 +353,28 @@ public final class pw extends oj0 {
         tw twVar;
         int i11 = i7;
         gy gyVar = this.F;
-        String[] strArr = gyVar.f34068a1;
+        String[] strArr = gyVar.f34016a1;
         gw gwVar = gyVar.Q;
-        int i12 = gyVar.f34076c1;
-        ArrayList arrayList = gyVar.f34117q1;
-        int i13 = d1Var.f56931f;
-        View view = d1Var.f56927a;
+        int i12 = gyVar.f34024c1;
+        ArrayList arrayList = gyVar.f34065q1;
+        int i13 = d1Var.f56956f;
+        View view = d1Var.f56952a;
         int i14 = 8;
         boolean z9 = true;
         tw twVar2 = null;
         if (i13 != 0) {
-            SparseIntArray sparseIntArray = this.f37186r;
+            SparseIntArray sparseIntArray = this.f37065r;
             if (i13 != 1) {
                 if (i13 != 5) {
                     if (i13 == 6) {
                         vw vwVar = (vw) view;
-                        int i15 = this.f37189x.get(i11);
+                        int i15 = this.f37068x.get(i11);
                         int i16 = gwVar.J * 3;
                         if (i15 >= 0 && i15 < arrayList.size()) {
                             twVar2 = (tw) arrayList.get(i15);
                         }
                         if (twVar2 != null) {
-                            vwVar.f39697a.setText("+" + ((twVar2.f38421c.size() - i16) + 1));
+                            vwVar.f39694a.setText("+" + ((twVar2.f38412c.size() - i16) + 1));
                             return;
                         }
                         return;
@@ -390,24 +390,24 @@ public final class pw extends oj0 {
                 } else {
                     twVar = null;
                 }
-                if (twVar3 == null || !twVar3.f38424g || (twVar != null && !twVar.f38422e && twVar.f38423f && !org.telegram.messenger.p10.i(i12).q())) {
+                if (twVar3 == null || !twVar3.f38415g || (twVar != null && !twVar.f38413e && twVar.f38414f && !org.telegram.messenger.p10.i(i12).q())) {
                     z9 = false;
                 }
                 if (twVar3 != null && twVar3.d != null) {
                     org.telegram.messenger.ui.b0(i12).m0(twVar3.d, false);
                     twVar3.d = null;
                 }
-                ug.p0 p0Var = xwVar.f40428r;
+                ug.p0 p0Var = xwVar.f40447r;
                 if (twVar3 != null) {
-                    xwVar.f40431x = twVar3;
-                    xwVar.f40432y = z9;
-                    xwVar.d.l(twVar3.f38420b.title, false);
-                    TextView textView = xwVar.f40425e;
-                    if (twVar3.f38425i) {
+                    xwVar.f40450x = twVar3;
+                    xwVar.f40451y = z9;
+                    xwVar.d.l(twVar3.f38411b.title, false);
+                    TextView textView = xwVar.f40444e;
+                    if (twVar3.f38416i) {
                         i14 = 0;
                     }
                     textView.setVisibility(i14);
-                    if (twVar3.f38423f && !twVar3.f38420b.official) {
+                    if (twVar3.f38414f && !twVar3.f38411b.official) {
                         p0Var.b(org.telegram.messenger.hd.M0(2131746083, null), new ww(xwVar, 5), false);
                     } else {
                         p0Var.b(org.telegram.messenger.hd.M0(2131743877, null), new ww(xwVar, 6), false);
@@ -420,15 +420,15 @@ public final class pw extends oj0 {
             org.telegram.ui.Cells.j8 j8Var = (org.telegram.ui.Cells.j8) view;
             j8Var.getClass();
             int i18 = sparseIntArray.get(i11);
-            if (i11 == this.f37182c) {
+            if (i11 == this.f37061c) {
                 j8Var.b(org.telegram.messenger.hd.M0(2131750836, null), 2131232096, org.telegram.messenger.hd.M0(2131754899, null), 0, 0);
                 return;
-            } else if (i11 == this.f37184f) {
+            } else if (i11 == this.f37063f) {
                 j8Var.a(0, org.telegram.messenger.hd.M0(2131746360, null));
                 return;
             } else if (i18 >= strArr.length) {
                 try {
-                    j8Var.a(0, ((tw) arrayList.get(i18 - strArr.length)).f38420b.title);
+                    j8Var.a(0, ((tw) arrayList.get(i18 - strArr.length)).f38411b.title);
                     return;
                 } catch (Exception unused) {
                     j8Var.a(0, "");
@@ -440,12 +440,12 @@ public final class pw extends oj0 {
             }
         }
         px pxVar = (px) view;
-        pxVar.f37193a = i11;
-        pxVar.f37196e = null;
-        if (gyVar.f34078d0) {
+        pxVar.f37072a = i11;
+        pxVar.f37075e = null;
+        if (gyVar.f34026d0) {
             i11--;
         }
-        if (this.f37184f >= 0) {
+        if (this.f37063f >= 0) {
             i11--;
         }
         if (this.d >= 0) {
@@ -499,21 +499,21 @@ public final class pw extends oj0 {
                 int i21 = gwVar.J * 3;
                 int i22 = 0;
                 while (true) {
-                    ArrayList arrayList2 = this.f37190y;
+                    ArrayList arrayList2 = this.f37069y;
                     if (i22 >= arrayList2.size()) {
                         break;
                     }
                     tw twVar4 = (tw) arrayList.get(i22);
                     int intValue = ((Integer) arrayList2.get(i22)).intValue() + 1;
-                    if ((twVar4.f38423f && !twVar4.f38424g && (twVar4.f38422e || q10)) || twVar4.h) {
-                        min = twVar4.f38421c.size();
+                    if ((twVar4.f38414f && !twVar4.f38415g && (twVar4.f38413e || q10)) || twVar4.h) {
+                        min = twVar4.f38412c.size();
                     } else {
-                        min = Math.min(i21, twVar4.f38421c.size());
+                        min = Math.min(i21, twVar4.f38412c.size());
                     }
-                    int i23 = pxVar.f37193a;
+                    int i23 = pxVar.f37072a;
                     if (i23 >= intValue && (i10 = i23 - intValue) < min) {
-                        pxVar.f37196e = twVar4;
-                        TLRPC.Document document2 = (TLRPC.Document) twVar4.f38421c.get(i10);
+                        pxVar.f37075e = twVar4;
+                        TLRPC.Document document2 = (TLRPC.Document) twVar4.f38412c.get(i10);
                         if (document2 == null) {
                             valueOf = null;
                         } else {
@@ -564,14 +564,14 @@ public final class pw extends oj0 {
                         if (i7 != 5) {
                             if (i7 != 6) {
                                 View view = new View(gyVar.getContext());
-                                view.setLayoutParams(new v4.o0(-1, gyVar.f34072b1));
+                                view.setLayoutParams(new v4.o0(-1, gyVar.f34020b1));
                                 j8Var = view;
                             } else {
                                 Context context = gyVar.getContext();
                                 org.telegram.ui.ActionBar.f6 f6Var = gyVar.Z1;
                                 ?? frameLayout = new FrameLayout(context);
                                 TextView textView = new TextView(context);
-                                frameLayout.f39697a = textView;
+                                frameLayout.f39694a = textView;
                                 textView.setTextSize(1, 13.0f);
                                 org.telegram.ui.ActionBar.r6.V(textView, org.telegram.ui.ActionBar.k6.f27848d6, f6Var);
                                 int L = org.telegram.messenger.g0.L(11.0f);
@@ -603,7 +603,7 @@ public final class pw extends oj0 {
                     j8Var = new uw(gyVar, gyVar.getContext());
                 }
             } else {
-                org.telegram.ui.Cells.j8 j8Var2 = new org.telegram.ui.Cells.j8(gyVar.getContext(), true, false, gyVar.Z1, gyVar.f34096i2);
+                org.telegram.ui.Cells.j8 j8Var2 = new org.telegram.ui.Cells.j8(gyVar.getContext(), true, false, gyVar.Z1, gyVar.f34044i2);
                 j8Var2.setOnIconClickListener(new h0(this, 13));
                 j8Var = j8Var2;
             }

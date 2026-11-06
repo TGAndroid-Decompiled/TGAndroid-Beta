@@ -42,9 +42,9 @@ public class m6 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
         int i7 = org.telegram.ui.ActionBar.k6.f28240y6;
         H = new oa0(2131232234, i7);
         oa0 oa0Var = new oa0(2131232323, i7);
-        oa0Var.f36689g = 16;
+        oa0Var.f36567g = 16;
         oa0Var.h = 16;
-        oa0Var.f36690i = 5.66f;
+        oa0Var.f36568i = 5.66f;
         I = oa0Var;
         int i10 = org.telegram.ui.ActionBar.k6.Vk;
         J = new oa0(2131231971, i10);
@@ -109,7 +109,7 @@ public class m6 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
         nu0 nu0Var = new nu0(this);
         this.f29553w = nu0Var;
         d4Var.setDrawablePadding(org.telegram.messenger.g0.L(3.0f));
-        d4Var.i(nu0Var.f36493a);
+        d4Var.i(nu0Var.f36387a);
         org.telegram.ui.ActionBar.k5 k5Var = new org.telegram.ui.ActionBar.k5(context);
         this.f29548e = k5Var;
         k5Var.setTextSize(13);
@@ -205,13 +205,13 @@ public class m6 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f29553w.f36493a.a();
+        this.f29553w.f36387a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.f29553w.f36493a.b();
+        this.f29553w.f36387a.b();
         this.E.g();
     }
 
@@ -257,7 +257,7 @@ public class m6 extends FrameLayout implements org.telegram.ui.ActionBar.a6 {
         nu0 nu0Var = this.f29553w;
         if (nu0Var != null) {
             try {
-                org.telegram.ui.Components.g5 g5Var = nu0Var.f36493a;
+                org.telegram.ui.Components.g5 g5Var = nu0Var.f36387a;
                 if (g5Var != null) {
                     z9 = true;
                 } else {

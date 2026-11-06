@@ -2,21 +2,21 @@ package org.telegram.ui.Components;
 
 import android.widget.FrameLayout;
 public final class a7 implements Runnable {
-    public final int f31701a;
-    public final b8 f31702b;
-    public final k60 f31703c;
+    public final int f31710a;
+    public final b8 f31711b;
+    public final k60 f31712c;
 
     public a7(b8 b8Var, k60 k60Var, int i7) {
-        this.f31701a = i7;
-        this.f31702b = b8Var;
-        this.f31703c = k60Var;
+        this.f31710a = i7;
+        this.f31711b = b8Var;
+        this.f31712c = k60Var;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f31701a;
-        k60 k60Var = this.f31703c;
-        b8 b8Var = this.f31702b;
+        int i7 = this.f31710a;
+        k60 k60Var = this.f31712c;
+        b8 b8Var = this.f31711b;
         switch (i7) {
             case 0:
                 b8Var.getClass();

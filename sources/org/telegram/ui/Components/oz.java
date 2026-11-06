@@ -4,18 +4,18 @@ import android.content.Context;
 import android.view.ViewGroup;
 import org.telegram.tgnet.tl.TL_chatlists;
 public final class oz extends oj0 {
-    public final vz f36813c;
+    public final vz f36691c;
 
     public oz(vz vzVar) {
-        this.f36813c = vzVar;
+        this.f36691c = vzVar;
     }
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        if (d1Var.f56931f == 2) {
+        if (d1Var.f56956f == 2) {
             int b10 = d1Var.b();
-            vz vzVar = this.f36813c;
-            if (b10 >= vzVar.f39776j2 && d1Var.b() <= vzVar.f39777k2) {
+            vz vzVar = this.f36691c;
+            if (b10 >= vzVar.f39773j2 && d1Var.b() <= vzVar.f39774k2) {
                 return true;
             }
             return false;
@@ -25,18 +25,18 @@ public final class oz extends oj0 {
 
     @Override
     public final int b() {
-        return this.f36813c.f39773g2;
+        return this.f36691c.f39770g2;
     }
 
     @Override
     public final int d(int i7) {
-        vz vzVar = this.f36813c;
+        vz vzVar = this.f36691c;
         vzVar.getClass();
         if (i7 == 0) {
             return 0;
         }
-        if (i7 != vzVar.f39774h2 && i7 != vzVar.f39778l2 && i7 != vzVar.f39782p2) {
-            if (i7 != vzVar.f39775i2 && i7 != vzVar.f39779m2) {
+        if (i7 != vzVar.f39771h2 && i7 != vzVar.f39775l2 && i7 != vzVar.f39779p2) {
+            if (i7 != vzVar.f39772i2 && i7 != vzVar.f39776m2) {
                 return 2;
             }
             return 3;
@@ -54,7 +54,7 @@ public final class oz extends oj0 {
         uz uzVar;
         uz uzVar2;
         boolean z9;
-        vz vzVar = this.f36813c;
+        vz vzVar = this.f36691c;
         if (i7 == 0) {
             Context context = vzVar.getContext();
             if (!(vzVar.R1 instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) && vzVar.S1 == null) {
@@ -63,7 +63,7 @@ public final class oz extends oj0 {
                 z9 = true;
             }
             uzVar = new uz(vzVar, context, z9, vzVar.X1, vzVar.V1, vzVar.W1);
-            vzVar.f39772f2 = uzVar;
+            vzVar.f39769f2 = uzVar;
         } else {
             uzVar = null;
             if (i7 == 1) {

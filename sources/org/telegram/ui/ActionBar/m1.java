@@ -49,11 +49,11 @@ public final class m1 extends ScrollView {
                 int size = View.MeasureSpec.getSize(i7);
                 int size2 = View.MeasureSpec.getSize(i10);
                 if (!org.telegram.messenger.g0.Q1() && size2 <= size) {
-                    x50Var.f40165j2 = org.telegram.messenger.g0.L(56.0f);
+                    x50Var.f40177j2 = org.telegram.messenger.g0.L(56.0f);
                 } else {
-                    x50Var.f40165j2 = org.telegram.messenger.g0.L(144.0f);
+                    x50Var.f40177j2 = org.telegram.messenger.g0.L(144.0f);
                 }
-                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(x50Var.f40165j2, Integer.MIN_VALUE));
+                super.onMeasure(i7, View.MeasureSpec.makeMeasureSpec(x50Var.f40177j2, Integer.MIN_VALUE));
                 return;
             case 2:
                 super.onMeasure(i7, i10);
@@ -64,7 +64,7 @@ public final class m1 extends ScrollView {
                 super.onMeasure(i7, i10);
                 return;
             case 4:
-                ((bk0) this.f28297b).f44385s0 = View.MeasureSpec.getSize(i10) - org.telegram.messenger.g0.L(30.0f);
+                ((bk0) this.f28297b).f44401s0 = View.MeasureSpec.getSize(i10) - org.telegram.messenger.g0.L(30.0f);
                 super.onMeasure(i7, i10);
                 return;
         }
@@ -84,7 +84,7 @@ public final class m1 extends ScrollView {
     public boolean requestChildRectangleOnScreen(View view, Rect rect, boolean z9) {
         switch (this.f28296a) {
             case 3:
-                int i7 = ((ce0) this.f28297b).f44736a;
+                int i7 = ((ce0) this.f28297b).f44757a;
                 if (i7 == 1 || i7 == 2 || i7 == 4) {
                     rect.bottom = org.telegram.messenger.g0.L(40.0f) + rect.bottom;
                 }
@@ -97,8 +97,8 @@ public final class m1 extends ScrollView {
                 return super.requestChildRectangleOnScreen(view, rect, z9);
             case 5:
                 UsersSelectActivity usersSelectActivity = (UsersSelectActivity) this.f28297b;
-                if (usersSelectActivity.f42054w) {
-                    usersSelectActivity.f42054w = false;
+                if (usersSelectActivity.f42079w) {
+                    usersSelectActivity.f42079w = false;
                     return false;
                 }
                 rect.offset(view.getLeft() - view.getScrollX(), view.getTop() - view.getScrollY());

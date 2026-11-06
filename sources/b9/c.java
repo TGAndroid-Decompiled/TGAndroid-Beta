@@ -5,10 +5,6 @@ import com.google.android.gms.wearable.internal.DataItemAssetParcelable;
 public final class c implements Parcelable.Creator {
     public final int f3030a;
 
-    public c(int i7) {
-        this.f3030a = i7;
-    }
-
     @Override
     public final java.lang.Object createFromParcel(android.os.Parcel r10) {
         throw new UnsupportedOperationException("Method not decompiled: b9.c.createFromParcel(android.os.Parcel):java.lang.Object");

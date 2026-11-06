@@ -7,25 +7,25 @@ import android.widget.ScrollView;
 import java.util.ArrayList;
 import org.telegram.tgnet.tl.TL_iv;
 public final class c implements View.OnClickListener {
-    public final int f32345a;
-    public final g0 f32346b;
+    public final int f32339a;
+    public final g0 f32340b;
 
     public c(g0 g0Var, int i7) {
-        this.f32345a = i7;
-        this.f32346b = g0Var;
+        this.f32339a = i7;
+        this.f32340b = g0Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i7 = this.f32345a;
+        int i7 = this.f32339a;
         int i10 = 0;
-        g0 g0Var = this.f32346b;
+        g0 g0Var = this.f32340b;
         switch (i7) {
             case 0:
                 g0Var.dismiss();
                 return;
             case 1:
-                org.telegram.ui.Cells.k3 k3Var = g0Var.f33749s2;
+                org.telegram.ui.Cells.k3 k3Var = g0Var.f33693s2;
                 org.telegram.messenger.g0.v1(k3Var.d);
                 g0Var.A2 = k3Var.getText().toString();
                 g0Var.v1();
@@ -33,13 +33,13 @@ public final class c implements View.OnClickListener {
                 g0Var.p1();
                 return;
             case 2:
-                if (g0Var.f33734c2 != null) {
+                if (g0Var.f33678c2 != null) {
                     TL_iv.RichMessage l1 = g0Var.l1();
                     if (l1 != null) {
-                        g0Var.f33734c2.a(l1);
+                        g0Var.f33678c2.a(l1);
                     }
-                } else if (g0Var.f33733b2 != null && g0Var.m1() != null) {
-                    g0Var.f33733b2.a(g0Var.m1());
+                } else if (g0Var.f33677b2 != null && g0Var.m1() != null) {
+                    g0Var.f33677b2.a(g0Var.m1());
                 }
                 g0Var.dismiss();
                 return;
@@ -53,10 +53,10 @@ public final class c implements View.OnClickListener {
                 g0Var.I0();
                 return;
             case 5:
-                final g0 g0Var2 = this.f32346b;
+                final g0 g0Var2 = this.f32340b;
                 k60 F = k60.F(g0Var2.f28618c, g0Var2.I0, view);
                 F.X = org.telegram.messenger.g0.L(450.0f);
-                F.f35217t = false;
+                F.f35181t = false;
                 F.Y = true;
                 ScrollView scrollView = new ScrollView(g0Var2.getContext());
                 LinearLayout linearLayout = new LinearLayout(g0Var2.getContext());
@@ -65,15 +65,15 @@ public final class c implements View.OnClickListener {
                 F.q(scrollView);
                 ArrayList o4 = org.telegram.messenger.f10.o(null);
                 ArrayList n10 = org.telegram.messenger.f10.n();
-                if (!TextUtils.isEmpty(g0Var2.f33741k2)) {
-                    g0Var2.g1(F, linearLayout, true, e21.K0(e21.O0(g0Var2.f33741k2, null, null)), null);
+                if (!TextUtils.isEmpty(g0Var2.f33685k2)) {
+                    g0Var2.g1(F, linearLayout, true, j21.K0(j21.O0(g0Var2.f33685k2, null, null)), null);
                 }
                 int size = o4.size();
                 int i11 = 0;
                 while (i11 < size) {
                     int i12 = i11 + 1;
                     final org.telegram.messenger.y00 y00Var = (org.telegram.messenger.y00) o4.get(i11);
-                    if (!TextUtils.equals(y00Var.f26554a, g0Var2.f33741k2)) {
+                    if (!TextUtils.equals(y00Var.f26554a, g0Var2.f33685k2)) {
                         g0Var2.g1(F, linearLayout, false, y00Var.f26555b, new Runnable() {
                             @Override
                             public final void run() {
@@ -82,16 +82,16 @@ public final class c implements View.OnClickListener {
                                         g0 g0Var3 = g0Var2;
                                         g0Var3.h1();
                                         String str = y00Var.f26554a;
-                                        g0Var3.f33741k2 = str;
-                                        e21.S0(str);
+                                        g0Var3.f33685k2 = str;
+                                        j21.S0(str);
                                         g0Var3.p1();
                                         return;
                                     default:
                                         g0 g0Var4 = g0Var2;
                                         g0Var4.h1();
                                         String str2 = y00Var.f26554a;
-                                        g0Var4.f33741k2 = str2;
-                                        e21.S0(str2);
+                                        g0Var4.f33685k2 = str2;
+                                        j21.S0(str2);
                                         g0Var4.p1();
                                         return;
                                 }
@@ -108,7 +108,7 @@ public final class c implements View.OnClickListener {
                     Object obj = n10.get(i10);
                     i10++;
                     final org.telegram.messenger.y00 y00Var2 = (org.telegram.messenger.y00) obj;
-                    g0Var2.g1(F, linearLayout, TextUtils.equals(y00Var2.f26554a, g0Var2.f33741k2), y00Var2.f26555b, new Runnable() {
+                    g0Var2.g1(F, linearLayout, TextUtils.equals(y00Var2.f26554a, g0Var2.f33685k2), y00Var2.f26555b, new Runnable() {
                         @Override
                         public final void run() {
                             switch (r3) {
@@ -116,16 +116,16 @@ public final class c implements View.OnClickListener {
                                     g0 g0Var3 = g0Var2;
                                     g0Var3.h1();
                                     String str = y00Var2.f26554a;
-                                    g0Var3.f33741k2 = str;
-                                    e21.S0(str);
+                                    g0Var3.f33685k2 = str;
+                                    j21.S0(str);
                                     g0Var3.p1();
                                     return;
                                 default:
                                     g0 g0Var4 = g0Var2;
                                     g0Var4.h1();
                                     String str2 = y00Var2.f26554a;
-                                    g0Var4.f33741k2 = str2;
-                                    e21.S0(str2);
+                                    g0Var4.f33685k2 = str2;
+                                    j21.S0(str2);
                                     g0Var4.p1();
                                     return;
                             }

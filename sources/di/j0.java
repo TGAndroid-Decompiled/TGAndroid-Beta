@@ -33,7 +33,7 @@ public final class j0 extends Drawable {
                 Drawable drawable = (Drawable) this.f9240b;
                 drawable.setBounds(bounds);
                 drawable.draw(canvas);
-                ((ly0) this.d).c(bounds.centerX() - (((ly0) this.d).f35777c / 2.0f), org.telegram.messenger.g0.L(0.15f) + bounds.centerY(), drawable.getAlpha() / 255.0f, -1, canvas);
+                ((ly0) this.d).c(bounds.centerX() - (((ly0) this.d).f35782c / 2.0f), org.telegram.messenger.g0.L(0.15f) + bounds.centerY(), drawable.getAlpha() / 255.0f, -1, canvas);
                 canvas.restore();
                 return;
             case 1:
@@ -55,17 +55,17 @@ public final class j0 extends Drawable {
                 return;
             default:
                 org.telegram.ui.Components.voip.n nVar = (org.telegram.ui.Components.voip.n) this.d;
-                int i7 = nVar.f39320e;
-                Matrix matrix = nVar.f39323i;
-                nVar.f39321f = getBounds().width();
+                int i7 = nVar.f39317e;
+                Matrix matrix = nVar.f39320i;
+                nVar.f39318f = getBounds().width();
                 RectF rectF = org.telegram.messenger.g0.P;
                 rectF.set(getBounds());
                 nVar.a(this.f9241c, canvas, rectF, null);
                 rz rzVar = (rz) this.f9240b;
                 if (rzVar != null) {
-                    rzVar.f25377c = nVar.f39317a;
-                    int i10 = nVar.f39321f;
-                    float f11 = (((i7 * 2) + i10) * nVar.f39322g) - i7;
+                    rzVar.f25377c = nVar.f39314a;
+                    int i10 = nVar.f39318f;
+                    float f11 = (((i7 * 2) + i10) * nVar.f39319g) - i7;
                     int i11 = (int) (i10 * 0.5f);
                     int width = getBounds().width();
                     int height = getBounds().height();
@@ -79,12 +79,12 @@ public final class j0 extends Drawable {
                     matrix.reset();
                     matrix.setScale(1.0f / min, 0.0f, i7 / 2.0f, 0.0f);
                     matrix.setTranslate((f11 - rzVar.getBounds().left) - (i7 / min), 0.0f);
-                    nVar.f39318b.setLocalMatrix(matrix);
+                    nVar.f39315b.setLocalMatrix(matrix);
                     int i12 = i11 / 2;
                     rzVar.setBounds(getBounds().centerX() - i12, getBounds().centerY() - i12, getBounds().centerX() + i12, getBounds().centerY() + i12);
                     rzVar.draw(canvas);
                 }
-                nVar.f39329o.invalidate();
+                nVar.f39326o.invalidate();
                 return;
         }
     }
@@ -166,8 +166,8 @@ public final class j0 extends Drawable {
                 return;
             default:
                 org.telegram.ui.Components.voip.n nVar = (org.telegram.ui.Components.voip.n) this.d;
-                nVar.f39317a.setAlpha(i7);
-                nVar.f39319c.setAlpha(i7);
+                nVar.f39314a.setAlpha(i7);
+                nVar.f39316c.setAlpha(i7);
                 return;
         }
     }
@@ -206,7 +206,7 @@ public final class j0 extends Drawable {
         this.f9240b = jg.g.h(context, 2131231174);
         ly0 ly0Var = new ly0(jg.g.j(i7, ""), 8.0f, org.telegram.messenger.g0.o1("fonts/num.otf"));
         this.d = ly0Var;
-        ly0Var.f35775a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        ly0Var.f35780a.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
     }
 
     private final void a(int i7) {

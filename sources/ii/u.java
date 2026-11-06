@@ -19,7 +19,7 @@ import org.telegram.ui.Cells.q8;
 import org.telegram.ui.Components.b70;
 import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.k60;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.an;
 import org.telegram.ui.v91;
 import r0.h1;
@@ -35,24 +35,24 @@ public final class u implements a20, r0.m, b20 {
 
     @Override
     public k1 S0(View view, k1 k1Var) {
-        h1 h1Var = k1Var.f54084a;
+        h1 h1Var = k1Var.f54109a;
         i0.b f10 = h1Var.f(527);
         d0 d0Var = this.f15607b;
         d0Var.K1 = f10;
         d0Var.L1 = h1Var.f(519);
         d0Var.f15512w1.j(org.telegram.messenger.g0.L(56.0f) + d0Var.K1.f15118b, d0Var.K1.d, false);
         d0Var.f15514y1.invalidate();
-        return k1.f54083b;
+        return k1.f54108b;
     }
 
     @Override
-    public Boolean a(r31 r31Var, View view, Integer num, Float f10, Float f11) {
+    public Boolean a(w31 w31Var, View view, Integer num, Float f10, Float f11) {
         boolean z9;
         long j3;
         boolean z10;
         boolean z11;
         int i7 = d0.M1;
-        Object obj = r31Var.G;
+        Object obj = w31Var.G;
         boolean z12 = obj instanceof TLRPC.Chat;
         d0 d0Var = this.f15607b;
         boolean z13 = true;
@@ -111,7 +111,7 @@ public final class u implements a20, r0.m, b20 {
                 Integer num = (Integer) number;
                 Float f10 = (Float) serializable;
                 Float f11 = (Float) serializable2;
-                d0Var.L0((r31) obj);
+                d0Var.L0((w31) obj);
                 return;
             case 1:
             default:
@@ -120,7 +120,7 @@ public final class u implements a20, r0.m, b20 {
                 Float f12 = (Float) serializable;
                 Float f13 = (Float) serializable2;
                 int i11 = d0.M1;
-                d0Var.I0((r31) obj);
+                d0Var.I0((w31) obj);
                 return;
             case 2:
                 View view3 = (View) obj2;
@@ -128,17 +128,17 @@ public final class u implements a20, r0.m, b20 {
                 Float f14 = (Float) serializable;
                 Float f15 = (Float) serializable2;
                 int i12 = d0.M1;
-                d0Var.L0((r31) obj);
+                d0Var.L0((w31) obj);
                 return;
             case 3:
-                r31 r31Var = (r31) obj;
+                w31 w31Var = (w31) obj;
                 View view4 = (View) obj2;
                 Integer num4 = (Integer) number;
                 Float f16 = (Float) serializable;
                 Float f17 = (Float) serializable2;
                 f2 f2Var = d0Var.f15506q1;
-                if (!d0Var.I0(r31Var)) {
-                    int i13 = r31Var.d;
+                if (!d0Var.I0(w31Var)) {
+                    int i13 = w31Var.d;
                     boolean z9 = false;
                     if (i13 == 101) {
                         d0Var.n1 = !d0Var.n1;
@@ -147,7 +147,7 @@ public final class u implements a20, r0.m, b20 {
                             ((q8) view4).getCheckBox().c(d0Var.n1, true);
                             return;
                         } else {
-                            d0Var.f15507r1.d.f35167f3.O(false);
+                            d0Var.f15507r1.d.f36781f3.O(false);
                             return;
                         }
                     } else if (i13 == 100) {
@@ -155,7 +155,7 @@ public final class u implements a20, r0.m, b20 {
                         d0Var.D1.e();
                         return;
                     } else {
-                        Object obj3 = r31Var.G;
+                        Object obj3 = w31Var.G;
                         if (obj3 instanceof TLRPC.Chat) {
                             TLRPC.Chat chat2 = (TLRPC.Chat) obj3;
                             z9 = t3.V(chat2);
@@ -171,7 +171,7 @@ public final class u implements a20, r0.m, b20 {
                         if (b10 != 1 && b10 != 2) {
                             if (b10 == 3) {
                                 b70 b70Var = new b70(d0Var.getContext(), chat, null, d0Var.f15506q1, d0Var.I0);
-                                b70Var.f32022p1 = new hc((FrameLayout) d0Var.f28615b, d0Var.I0);
+                                b70Var.f32025p1 = new hc((FrameLayout) d0Var.f28615b, d0Var.I0);
                                 b70Var.show();
                                 return;
                             } else if (b10 == 4) {
@@ -189,7 +189,7 @@ public final class u implements a20, r0.m, b20 {
                         }
                         if (f2Var instanceof an) {
                             an anVar = (an) f2Var;
-                            TLRPC.Chat chat3 = anVar.f43747e;
+                            TLRPC.Chat chat3 = anVar.f43772e;
                             TLRPC.User j10 = anVar.j();
                             if ((chat3 != null && chat3.f26952id == (-j3)) || (j10 != null && j10.f27101id == j3)) {
                                 d0Var.dismiss();

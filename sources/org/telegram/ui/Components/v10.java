@@ -27,27 +27,27 @@ public final class v10 extends FrameLayout implements org.telegram.messenger.ls,
     public float L;
     public final OvershootInterpolator M;
     public float N;
-    public final Paint f38798a;
-    public final r9 f38799b;
-    public final r9 f38800c;
+    public final Paint f38789a;
+    public final r9 f38790b;
+    public final r9 f38791c;
     public float d;
-    public float f38801e;
-    public float f38802f;
+    public float f38792e;
+    public float f38793f;
     public u10 h;
-    public u10 f38803n;
-    public float f38804r;
-    public boolean f38805s;
-    public float f38806w;
-    public final LinearGradient f38807x;
-    public final Matrix f38808y;
+    public u10 f38794n;
+    public float f38795r;
+    public boolean f38796s;
+    public float f38797w;
+    public final LinearGradient f38798x;
+    public final Matrix f38799y;
 
     public v10(Context context, int i7) {
         super(context);
-        this.f38798a = new Paint(1);
-        this.f38799b = new r9(8);
-        this.f38800c = new r9(9);
-        this.f38804r = 1.0f;
-        this.f38808y = new Matrix();
+        this.f38789a = new Paint(1);
+        this.f38790b = new r9(8);
+        this.f38791c = new r9(9);
+        this.f38795r = 1.0f;
+        this.f38799y = new Matrix();
         this.D = 0.0f;
         new Random();
         this.I = new u10[4];
@@ -56,12 +56,12 @@ public final class v10 extends FrameLayout implements org.telegram.messenger.ls,
         for (int i10 = 0; i10 < 4; i10++) {
             this.I[i10] = new u10(i10);
         }
-        this.f38799b.f37650b = org.telegram.messenger.g0.L(37.0f);
-        this.f38799b.f37649a = org.telegram.messenger.g0.L(32.0f);
-        this.f38800c.f37650b = org.telegram.messenger.g0.L(37.0f);
-        this.f38800c.f37649a = org.telegram.messenger.g0.L(32.0f);
-        this.f38799b.b();
-        this.f38800c.b();
+        this.f38790b.f37593b = org.telegram.messenger.g0.L(37.0f);
+        this.f38790b.f37592a = org.telegram.messenger.g0.L(32.0f);
+        this.f38791c.f37593b = org.telegram.messenger.g0.L(37.0f);
+        this.f38791c.f37592a = org.telegram.messenger.g0.L(32.0f);
+        this.f38790b.b();
+        this.f38791c.b();
         zg0 zg0Var = new zg0(2131624333, org.telegram.messenger.g0.L(22.0f), org.telegram.messenger.g0.L(30.0f), true, null);
         this.G = zg0Var;
         setWillNotDraw(false);
@@ -70,13 +70,13 @@ public final class v10 extends FrameLayout implements org.telegram.messenger.ls,
         imageView.setAnimation(zg0Var);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         addView(imageView);
-        this.f38807x = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
+        this.f38798x = new LinearGradient(0.0f, 0.0f, org.telegram.messenger.g0.L(350.0f), 0.0f, new int[]{-2801343, -561538, 0}, new float[]{0.0f, 0.4f, 1.0f}, Shader.TileMode.CLAMP);
     }
 
     private void setAmplitude(double d) {
         float min = (float) (Math.min(8500.0d, d) / 8500.0d);
-        this.f38801e = min;
-        this.f38802f = (min - this.d) / 265.0f;
+        this.f38792e = min;
+        this.f38793f = (min - this.d) / 265.0f;
     }
 
     public final void a() {
@@ -137,7 +137,7 @@ public final class v10 extends FrameLayout implements org.telegram.messenger.ls,
         }
         zg0 zg0Var = this.G;
         zg0Var.P(i7);
-        zg0Var.N(zg0Var.f40933f - 1, false, true);
+        zg0Var.N(zg0Var.f40958f - 1, false, true);
         a();
     }
 
@@ -196,9 +196,9 @@ public final class v10 extends FrameLayout implements org.telegram.messenger.ls,
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         int i7;
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        p10 p10Var = p10.f36845e0;
+        p10 p10Var = p10.f36729e0;
         if (p10Var != null) {
-            if (p10Var.f36861y) {
+            if (p10Var.f36745y) {
                 i7 = 2131754901;
             } else {
                 i7 = 2131754816;
@@ -247,18 +247,18 @@ public final class v10 extends FrameLayout implements org.telegram.messenger.ls,
     public void setState(int i7) {
         String M0;
         u10 u10Var = this.h;
-        if (u10Var != null && u10Var.f38490i == i7) {
+        if (u10Var != null && u10Var.f38472i == i7) {
             return;
         }
-        this.f38803n = u10Var;
+        this.f38794n = u10Var;
         u10 u10Var2 = this.I[i7];
         this.h = u10Var2;
         float f10 = 0.0f;
         if (u10Var != null) {
-            this.f38804r = 0.0f;
+            this.f38795r = 0.0f;
         } else {
-            this.f38804r = 1.0f;
-            int i10 = u10Var2.f38490i;
+            this.f38795r = 1.0f;
+            int i10 = u10Var2.f38472i;
             if (i10 != 3 && i10 != 2) {
                 f10 = 1.0f;
             }

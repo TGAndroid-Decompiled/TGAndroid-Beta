@@ -1,73 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.os.AsyncTask;
-import java.util.ArrayList;
-public final class v51 extends AsyncTask {
-    public int f38869a = 0;
-    public final Paint f38870b = new Paint(3);
-    public final y51 f38871c;
+import org.telegram.ui.PhotoViewer;
+public final class v51 implements Runnable {
+    public final int f38861a;
+    public final y51 f38862b;
 
-    public v51(y51 y51Var) {
-        this.f38871c = y51Var;
+    public v51(y51 y51Var, int i7) {
+        this.f38861a = i7;
+        this.f38862b = y51Var;
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        Bitmap frameAtTime;
-        y51 y51Var = this.f38871c;
-        this.f38869a = ((Integer[]) objArr)[0].intValue();
-        Bitmap bitmap = null;
-        if (!isCancelled()) {
-            try {
-                frameAtTime = y51Var.D.getFrameAtTime(y51Var.H * this.f38869a * 1000, 2);
-            } catch (Exception e10) {
-                e = e10;
-            }
-            try {
-                if (!isCancelled()) {
-                    if (frameAtTime != null) {
-                        Bitmap createBitmap = Bitmap.createBitmap(y51Var.I, y51Var.J, frameAtTime.getConfig());
-                        Canvas canvas = new Canvas(createBitmap);
-                        float max = Math.max(y51Var.I / frameAtTime.getWidth(), y51Var.J / frameAtTime.getHeight());
-                        int width = (int) (frameAtTime.getWidth() * max);
-                        int height = (int) (frameAtTime.getHeight() * max);
-                        Rect rect = new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight());
-                        int i7 = y51Var.I;
-                        int i10 = y51Var.J;
-                        canvas.drawBitmap(frameAtTime, rect, new Rect((i7 - width) / 2, (i10 - height) / 2, (i7 + width) / 2, (i10 + height) / 2), this.f38870b);
-                        frameAtTime.recycle();
-                        return createBitmap;
-                    }
-                    return frameAtTime;
+    public final void run() {
+        switch (this.f38861a) {
+            case 0:
+                y51 y51Var = this.f38862b;
+                y51Var.h = 0.0f;
+                v5 v5Var = y51Var.f40535b;
+                if (v5Var != null) {
+                    v5Var.u();
+                    y51Var.f40535b = null;
+                    return;
                 }
-            } catch (Exception e11) {
-                e = e11;
-                bitmap = frameAtTime;
-                org.telegram.messenger.a8.g(e, true);
-                return bitmap;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        if (!isCancelled()) {
-            y51 y51Var = this.f38871c;
-            ArrayList arrayList = y51Var.F;
-            ?? obj2 = new Object();
-            obj2.f39860a = bitmap;
-            arrayList.add(obj2);
-            y51Var.invalidate();
-            int i7 = this.f38869a;
-            if (i7 < y51Var.K) {
-                y51Var.d(i7 + 1);
-            }
+                return;
+            case 1:
+                y51 y51Var2 = this.f38862b;
+                y51Var2.f40533a = true;
+                y51Var2.f40540e = null;
+                if (y51Var2.f40535b != null) {
+                    y51Var2.f40547s = true;
+                    PhotoViewer photoViewer = y51Var2.M.f47564a;
+                    if (photoViewer.f41515t3) {
+                        photoViewer.Y2(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                y51 y51Var3 = this.f38862b;
+                y51Var3.f40533a = true;
+                y51Var3.f40540e = null;
+                if (y51Var3.f40535b != null) {
+                    y51Var3.f40547s = true;
+                    PhotoViewer photoViewer2 = y51Var3.M.f47564a;
+                    if (photoViewer2.f41515t3) {
+                        photoViewer2.Y2(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 }

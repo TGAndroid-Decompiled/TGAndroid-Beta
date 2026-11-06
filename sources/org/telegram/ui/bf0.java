@@ -6,17 +6,17 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 public final class bf0 extends org.telegram.ui.Components.oj0 {
-    public final Context f44296c;
+    public final Context f44312c;
     public final cf0 d;
 
     public bf0(cf0 cf0Var, Context context) {
         this.d = cf0Var;
-        this.f44296c = context;
+        this.f44312c = context;
     }
 
     @Override
     public final void A(v4.d1 d1Var) {
-        View view = d1Var.f56927a;
+        View view = d1Var.f56952a;
         if (view instanceof org.telegram.ui.Cells.a5) {
             ((org.telegram.ui.Cells.a5) view).a();
         }
@@ -26,7 +26,7 @@ public final class bf0 extends org.telegram.ui.Components.oj0 {
     public final boolean D(v4.d1 d1Var) {
         int b10 = d1Var.b();
         cf0 cf0Var = this.d;
-        if (cf0Var.Q != b10 && cf0Var.f44801y != b10) {
+        if (cf0Var.Q != b10 && cf0Var.f44822y != b10) {
             if (b10 < cf0Var.D || b10 >= cf0Var.E) {
                 if ((b10 < cf0Var.H || b10 >= cf0Var.I) && b10 != cf0Var.N) {
                     if (b10 >= cf0Var.U && b10 < cf0Var.V) {
@@ -49,19 +49,19 @@ public final class bf0 extends org.telegram.ui.Components.oj0 {
     @Override
     public final int d(int i7) {
         cf0 cf0Var = this.d;
-        if (i7 == cf0Var.f44794r) {
+        if (i7 == cf0Var.f44815r) {
             return 0;
         }
-        if (i7 == cf0Var.f44796s || i7 == cf0Var.L || i7 == cf0Var.S || i7 == cf0Var.P) {
+        if (i7 == cf0Var.f44817s || i7 == cf0Var.L || i7 == cf0Var.S || i7 == cf0Var.P) {
             return 1;
         }
-        if (i7 == cf0Var.f44799w) {
+        if (i7 == cf0Var.f44820w) {
             return 2;
         }
-        if (i7 == cf0Var.f44801y) {
+        if (i7 == cf0Var.f44822y) {
             return 3;
         }
-        if (i7 != cf0Var.f44800x && i7 != cf0Var.J && i7 != cf0Var.M && i7 != cf0Var.R && i7 != cf0Var.T) {
+        if (i7 != cf0Var.f44821x && i7 != cf0Var.J && i7 != cf0Var.M && i7 != cf0Var.R && i7 != cf0Var.T) {
             if (i7 < cf0Var.D || i7 >= cf0Var.E) {
                 if (i7 >= cf0Var.H && i7 < cf0Var.I) {
                     return 5;
@@ -107,13 +107,13 @@ public final class bf0 extends org.telegram.ui.Components.oj0 {
         org.telegram.ui.ActionBar.f6 f6Var2;
         int i10;
         cf0 cf0Var = this.d;
-        Context context = this.f44296c;
+        Context context = this.f44312c;
         switch (i7) {
             case 1:
                 q70Var = new org.telegram.ui.Cells.n4(context, 23);
                 break;
             case 2:
-                org.telegram.ui.Components.q70 q70Var2 = new org.telegram.ui.Components.q70(this.f44296c, cf0Var, null, true, cf0Var.h);
+                org.telegram.ui.Components.q70 q70Var2 = new org.telegram.ui.Components.q70(this.f44312c, cf0Var, null, true, cf0Var.h);
                 q70Var2.setPermanent(true);
                 q70Var2.setDelegate(new af0(this, q70Var2));
                 q70Var = q70Var2;
@@ -132,7 +132,7 @@ public final class bf0 extends org.telegram.ui.Components.oj0 {
                 org.telegram.ui.Components.lz lzVar2 = new org.telegram.ui.Components.lz(context, null);
                 lzVar2.setIsSingleCell(true);
                 lzVar2.setViewType(9);
-                lzVar2.f35802x = false;
+                lzVar2.f35807x = false;
                 lzVar = lzVar2;
                 q70Var = lzVar;
                 break;
@@ -150,7 +150,7 @@ public final class bf0 extends org.telegram.ui.Components.oj0 {
                 q70Var = new org.telegram.ui.Cells.z8(context);
                 break;
             case 10:
-                q70Var = new org.telegram.ui.Cells.a5(this.f44296c, 8, 6, false, null);
+                q70Var = new org.telegram.ui.Cells.a5(this.f44312c, 8, 6, false, null);
                 break;
             case 11:
                 f6Var2 = ((org.telegram.ui.ActionBar.f2) cf0Var).resourceProvider;

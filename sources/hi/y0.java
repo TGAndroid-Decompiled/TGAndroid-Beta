@@ -143,8 +143,8 @@ public final class y0 implements Runnable {
                 String str5 = (String) obj3;
                 TLRPC.User user = (TLRPC.User) obj2;
                 String str6 = (String) obj;
-                ArrayList arrayList = launchActivity.f41236f0;
-                ArrayList arrayList2 = launchActivity.f41232d0;
+                ArrayList arrayList = launchActivity.f41261f0;
+                ArrayList arrayList2 = launchActivity.f41257d0;
                 ArrayList arrayList3 = launchActivity.C0;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
                     TLRPC.TL_attachMenuBotsBot tL_attachMenuBotsBot = (TLRPC.TL_attachMenuBotsBot) tLObject3;
@@ -226,7 +226,7 @@ public final class y0 implements Runnable {
                                 if (anVar.j() != null) {
                                     tLObject = anVar.j();
                                 } else {
-                                    tLObject = anVar.f43747e;
+                                    tLObject = anVar.f43772e;
                                 }
                                 if (!ui.t(tL_attachMenuBot, tLObject)) {
                                     a02 = hc.a0(f2Var);

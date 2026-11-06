@@ -20,22 +20,22 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import wi.q;
 public final class c {
-    public static volatile long f59288g;
+    public static volatile long f59313g;
     public static volatile long h;
-    public static final HashSet f59289i = new HashSet(Arrays.asList("audio/mpeg3", "audio/mpeg", "audio/ogg", "audio/m4a"));
-    public final long f59290a;
-    public final int f59292c;
+    public static final HashSet f59314i = new HashSet(Arrays.asList("audio/mpeg3", "audio/mpeg", "audio/ogg", "audio/m4a"));
+    public final long f59315a;
+    public final int f59317c;
     public int d;
-    public boolean f59294f;
-    public String f59291b = null;
-    public final ArrayList f59293e = new ArrayList();
+    public boolean f59319f;
+    public String f59316b = null;
+    public final ArrayList f59318e = new ArrayList();
 
     public c(int i7) {
-        this.f59292c = i7;
-        this.f59290a = p10.i(i7).f24478n;
+        this.f59317c = i7;
+        this.f59315a = p10.i(i7).f24478n;
         SharedPreferences d = d();
         try {
-            f59288g = d.getLong("hash", 0L);
+            f59313g = d.getLong("hash", 0L);
             h = d.getLong("lastReload", 0L);
         } catch (Exception e10) {
             a8.g(e10, true);
@@ -48,33 +48,33 @@ public final class c {
             return;
         }
         ?? obj = new Object();
-        obj.f59285a = document;
+        obj.f59310a = document;
         int i7 = this.d;
         this.d = i7 + 1;
-        obj.f59287c = i7;
+        obj.f59312c = i7;
         obj.d = false;
-        this.f59293e.add(obj);
+        this.f59318e.add(obj);
         h();
     }
 
     public final void b() {
-        if (!this.f59294f) {
+        if (!this.f59319f) {
             f(true);
-            this.f59294f = true;
+            this.f59319f = true;
         }
-        Utilities.f21333e.c(new q(5, this, new ArrayList(this.f59293e)));
+        Utilities.f21333e.c(new q(5, this, new ArrayList(this.f59318e)));
     }
 
     public final TLRPC.Document c(long j3) {
-        ArrayList arrayList = this.f59293e;
-        if (!this.f59294f) {
+        ArrayList arrayList = this.f59318e;
+        if (!this.f59319f) {
             f(true);
-            this.f59294f = true;
+            this.f59319f = true;
         }
         for (int i7 = 0; i7 < arrayList.size(); i7++) {
             try {
-                if (arrayList.get(i7) != null && ((b) arrayList.get(i7)).f59285a != null && ((b) arrayList.get(i7)).f59285a.f26958id == j3) {
-                    return ((b) arrayList.get(i7)).f59285a;
+                if (arrayList.get(i7) != null && ((b) arrayList.get(i7)).f59310a != null && ((b) arrayList.get(i7)).f59310a.f26958id == j3) {
+                    return ((b) arrayList.get(i7)).f59310a;
                 }
             } catch (Exception e10) {
                 a8.g(e10, true);
@@ -85,27 +85,27 @@ public final class c {
     }
 
     public final SharedPreferences d() {
-        if (this.f59291b == null) {
-            this.f59291b = "ringtones_pref_" + this.f59290a;
+        if (this.f59316b == null) {
+            this.f59316b = "ringtones_pref_" + this.f59315a;
         }
-        return t0.f25555b.getSharedPreferences(this.f59291b, 0);
+        return t0.f25555b.getSharedPreferences(this.f59316b, 0);
     }
 
     public final String e(long j3) {
-        if (!this.f59294f) {
+        if (!this.f59319f) {
             f(true);
-            this.f59294f = true;
+            this.f59319f = true;
         }
         int i7 = 0;
         while (true) {
-            ArrayList arrayList = this.f59293e;
+            ArrayList arrayList = this.f59318e;
             if (i7 < arrayList.size()) {
-                if (((b) arrayList.get(i7)).f59285a != null && ((b) arrayList.get(i7)).f59285a.f26958id == j3) {
-                    if (!TextUtils.isEmpty(((b) arrayList.get(i7)).f59286b)) {
-                        return ((b) arrayList.get(i7)).f59286b;
+                if (((b) arrayList.get(i7)).f59310a != null && ((b) arrayList.get(i7)).f59310a.f26958id == j3) {
+                    if (!TextUtils.isEmpty(((b) arrayList.get(i7)).f59311b)) {
+                        return ((b) arrayList.get(i7)).f59311b;
                     }
-                    w7.G(this.f59292c);
-                    return w7.I(((b) arrayList.get(i7)).f59285a).toString();
+                    w7.G(this.f59317c);
+                    return w7.I(((b) arrayList.get(i7)).f59310a).toString();
                 }
                 i7++;
             } else {
@@ -117,7 +117,7 @@ public final class c {
     public final void f(boolean z9) {
         SharedPreferences d = d();
         int i7 = d.getInt("count", 0);
-        ArrayList arrayList = this.f59293e;
+        ArrayList arrayList = this.f59318e;
         arrayList.clear();
         for (int i10 = 0; i10 < i7; i10++) {
             String string = d.getString("tone_document" + i10, "");
@@ -126,11 +126,11 @@ public final class c {
             try {
                 TLRPC.Document TLdeserialize = TLRPC.Document.TLdeserialize(serializedData, serializedData.readInt32(true), true);
                 ?? obj = new Object();
-                obj.f59285a = TLdeserialize;
-                obj.f59286b = string2;
+                obj.f59310a = TLdeserialize;
+                obj.f59311b = string2;
                 int i11 = this.d;
                 this.d = i11 + 1;
-                obj.f59287c = i11;
+                obj.f59312c = i11;
                 arrayList.add(obj);
             } catch (Throwable th2) {
                 boolean z10 = r2.f25191a;
@@ -150,14 +150,14 @@ public final class c {
             z10 = true;
         }
         TL_account.getSavedRingtones getsavedringtones = new TL_account.getSavedRingtones();
-        getsavedringtones.hash = f59288g;
+        getsavedringtones.hash = f59313g;
         if (z10) {
-            ConnectionsManager.getInstance(this.f59292c).sendRequest(getsavedringtones, new j0(this, 26));
+            ConnectionsManager.getInstance(this.f59317c).sendRequest(getsavedringtones, new j0(this, 26));
             return;
         }
-        if (!this.f59294f) {
+        if (!this.f59319f) {
             f(true);
-            this.f59294f = true;
+            this.f59319f = true;
         }
         b();
     }
@@ -169,12 +169,12 @@ public final class c {
         int i7 = 0;
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f59293e;
+            ArrayList arrayList = this.f59318e;
             if (i7 < arrayList.size()) {
                 if (!((b) arrayList.get(i7)).d) {
                     i10++;
-                    TLRPC.Document document = ((b) arrayList.get(i7)).f59285a;
-                    String str = ((b) arrayList.get(i7)).f59286b;
+                    TLRPC.Document document = ((b) arrayList.get(i7)).f59310a;
+                    String str = ((b) arrayList.get(i7)).f59311b;
                     SerializedData serializedData = new SerializedData(document.getObjectSize());
                     document.serializeToStream(serializedData);
                     edit.putString("tone_document" + i7, Utilities.f(serializedData.toByteArray()));
@@ -186,7 +186,7 @@ public final class c {
             } else {
                 edit.putInt("count", i10);
                 edit.apply();
-                qs.f(this.f59292c).k(qs.f24978e5, new Object[0]);
+                qs.f(this.f59317c).k(qs.f24978e5, new Object[0]);
                 return;
             }
         }

@@ -81,13 +81,13 @@ public class e extends FrameLayout implements te.b, a6 {
         int i11 = i7 & 65535;
         if (i10 >= 0) {
             n[] nVarArr = this.f18354a;
-            if (i10 < nVarArr.length && (nVar = nVarArr[i10]) != null && i11 == 1 && ((te.a) nVar.d).f55371f) {
+            if (i10 < nVarArr.length && (nVar = nVarArr[i10]) != null && i11 == 1 && ((te.a) nVar.d).f55396f) {
                 fe feVar = this.f18356c[i10];
                 if (feVar != null) {
                     final kh.a aVar = (kh.a) nVar.f1847c;
                     boolean z9 = nVar.f1846b;
-                    int i12 = feVar.f45609a;
-                    final an anVar = feVar.f45610b;
+                    int i12 = feVar.f45614a;
+                    final an anVar = feVar.f45615b;
                     switch (i12) {
                         case 27:
                             if (anVar.X0 == null && !z9 && (((m3Var = anVar.Z0) == null || !m3Var.V) && z20.h.c())) {
@@ -100,7 +100,7 @@ public class e extends FrameLayout implements te.b, a6 {
                                         switch (i13) {
                                             case 0:
                                                 if (anVar2.getParentActivity() != null) {
-                                                    float f11 = anVar2.f43974w.f(2).d / org.telegram.messenger.g0.f22536p;
+                                                    float f11 = anVar2.f43999w.f(2).d / org.telegram.messenger.g0.f22536p;
                                                     float width = ((aVar2.getWidth() / 2.0f) + (anVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22536p;
                                                     fi.m3 m3Var2 = new fi.m3(anVar2.getParentActivity(), 3);
                                                     anVar2.Z0 = m3Var2;
@@ -119,13 +119,13 @@ public class e extends FrameLayout implements te.b, a6 {
                                                     fi.m3 m3Var4 = anVar2.Z0;
                                                     m3Var4.f12436q0 = new xf(anVar2, 14);
                                                     m3Var4.w();
-                                                    org.telegram.ui.Components.z20.f40814f.b();
+                                                    org.telegram.ui.Components.z20.f40834f.b();
                                                     return;
                                                 }
                                                 return;
                                             default:
                                                 if (anVar2.getParentActivity() != null) {
-                                                    float f12 = anVar2.f43974w.f(2).d / org.telegram.messenger.g0.f22536p;
+                                                    float f12 = anVar2.f43999w.f(2).d / org.telegram.messenger.g0.f22536p;
                                                     float width2 = ((aVar2.getWidth() / 2.0f) + (anVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22536p;
                                                     fi.m3 m3Var5 = new fi.m3(anVar2.getParentActivity(), 3);
                                                     anVar2.X0 = m3Var5;
@@ -149,7 +149,7 @@ public class e extends FrameLayout implements te.b, a6 {
                             }
                             break;
                         default:
-                            if (anVar.Z0 == null && !z9 && z20.f40814f.c()) {
+                            if (anVar.Z0 == null && !z9 && z20.f40834f.c()) {
                                 g0.i3(new Runnable() {
                                     @Override
                                     public final void run() {
@@ -159,7 +159,7 @@ public class e extends FrameLayout implements te.b, a6 {
                                         switch (i13) {
                                             case 0:
                                                 if (anVar2.getParentActivity() != null) {
-                                                    float f11 = anVar2.f43974w.f(2).d / org.telegram.messenger.g0.f22536p;
+                                                    float f11 = anVar2.f43999w.f(2).d / org.telegram.messenger.g0.f22536p;
                                                     float width = ((aVar2.getWidth() / 2.0f) + (anVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22536p;
                                                     fi.m3 m3Var2 = new fi.m3(anVar2.getParentActivity(), 3);
                                                     anVar2.Z0 = m3Var2;
@@ -178,13 +178,13 @@ public class e extends FrameLayout implements te.b, a6 {
                                                     fi.m3 m3Var4 = anVar2.Z0;
                                                     m3Var4.f12436q0 = new xf(anVar2, 14);
                                                     m3Var4.w();
-                                                    org.telegram.ui.Components.z20.f40814f.b();
+                                                    org.telegram.ui.Components.z20.f40834f.b();
                                                     return;
                                                 }
                                                 return;
                                             default:
                                                 if (anVar2.getParentActivity() != null) {
-                                                    float f12 = anVar2.f43974w.f(2).d / org.telegram.messenger.g0.f22536p;
+                                                    float f12 = anVar2.f43999w.f(2).d / org.telegram.messenger.g0.f22536p;
                                                     float width2 = ((aVar2.getWidth() / 2.0f) + (anVar2.l1.getWidth() - (aVar2.getX() + aVar2.getWidth()))) / org.telegram.messenger.g0.f22536p;
                                                     fi.m3 m3Var5 = new fi.m3(anVar2.getParentActivity(), 3);
                                                     anVar2.X0 = m3Var5;
@@ -247,7 +247,7 @@ public class e extends FrameLayout implements te.b, a6 {
         for (n nVar : nVarArr) {
             if (nVar != null) {
                 kh.a aVar = (kh.a) nVar.f1847c;
-                float f11 = ((te.a) nVar.d).f55370e * this.f18364y;
+                float f11 = ((te.a) nVar.d).f55395e * this.f18364y;
                 if (f11 > 0.0f) {
                     i7 = 0;
                 } else {
@@ -262,7 +262,7 @@ public class e extends FrameLayout implements te.b, a6 {
         int[] iArr2 = I;
         n nVar2 = nVarArr[iArr2[0]];
         if (nVar2 != null) {
-            float L = ((te.a) nVar2.d).f55370e * g0.L(54.0f);
+            float L = ((te.a) nVar2.d).f55395e * g0.L(54.0f);
             ((kh.a) nVar2.f1847c).setTranslationX(g0.L(1.0f) + this.D);
             this.D += L;
         }
@@ -275,7 +275,7 @@ public class e extends FrameLayout implements te.b, a6 {
             n nVar3 = nVarArr[iArr[i10]];
             if (nVar3 != null) {
                 kh.a aVar2 = (kh.a) nVar3.f1847c;
-                float L2 = ((te.a) nVar3.d).f55370e * g0.L(54.0f);
+                float L2 = ((te.a) nVar3.d).f55395e * g0.L(54.0f);
                 aVar2.setTranslationX(((getMeasuredWidth() - aVar2.getMeasuredWidth()) - g0.L(1.0f)) - this.E);
                 this.E += L2;
             }
@@ -299,7 +299,7 @@ public class e extends FrameLayout implements te.b, a6 {
             this.D = f12 * f13;
             this.E *= f13;
         }
-        float f14 = this.f18363x.f55370e;
+        float f14 = this.f18363x.f55395e;
         if (f14 > 0.0f && getMeasuredWidth() > 0) {
             float measuredWidth = getMeasuredWidth();
             for (int i12 = 0; i12 < getContainer().getChildCount(); i12++) {
@@ -319,7 +319,7 @@ public class e extends FrameLayout implements te.b, a6 {
         if (dVar != null) {
             float f15 = this.D;
             float f16 = this.E;
-            jh.f fVar = ((fe) dVar).f45610b.T;
+            jh.f fVar = ((fe) dVar).f45615b.T;
             fVar.f17045y = f15;
             fVar.D = f16;
             fVar.invalidate();
@@ -335,7 +335,7 @@ public class e extends FrameLayout implements te.b, a6 {
         n[] nVarArr = this.f18354a;
         n nVar = nVarArr[i11];
         if (nVar != null) {
-            if (((te.a) nVar.d).f55371f) {
+            if (((te.a) nVar.d).f55396f) {
                 i10 = g0.L(54.0f);
             } else {
                 i10 = 0;
@@ -345,7 +345,7 @@ public class e extends FrameLayout implements te.b, a6 {
         for (int i12 = 0; i12 < 4; i12++) {
             n nVar2 = nVarArr[J[i12]];
             if (nVar2 != null) {
-                if (((te.a) nVar2.d).f55371f) {
+                if (((te.a) nVar2.d).f55396f) {
                     i7 = g0.L(54.0f);
                 } else {
                     i7 = 0;
@@ -411,7 +411,7 @@ public class e extends FrameLayout implements te.b, a6 {
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        int i7 = (int) (this.f18364y * 255.0f * this.f18362w.f55370e);
+        int i7 = (int) (this.f18364y * 255.0f * this.f18362w.f55395e);
         if (i7 > 0) {
             float measuredWidth = (getMeasuredWidth() - g0.L(10.0f)) - this.E;
             float measuredHeight = getMeasuredHeight() - g0.L(9.0f);

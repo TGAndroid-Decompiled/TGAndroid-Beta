@@ -1,25 +1,25 @@
 package org.telegram.ui;
 public final class rf implements org.telegram.messenger.v10 {
-    public final int f49485a;
-    public final an f49486b;
-    public final String f49487c;
+    public final int f49505a;
+    public final an f49506b;
+    public final String f49507c;
 
     public rf(an anVar, String str, int i7) {
-        this.f49485a = i7;
-        this.f49486b = anVar;
-        this.f49487c = str;
+        this.f49505a = i7;
+        this.f49506b = anVar;
+        this.f49507c = str;
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         Boolean bool = (Boolean) obj;
         Boolean bool2 = (Boolean) obj2;
-        switch (this.f49485a) {
+        switch (this.f49505a) {
             case 0:
                 if (bool.booleanValue()) {
                     boolean booleanValue = bool2.booleanValue();
-                    an anVar = this.f49486b;
-                    String str = this.f49487c;
+                    an anVar = this.f49506b;
+                    String str = this.f49507c;
                     if (booleanValue) {
                         anVar.getMessagesController().p(str, false);
                     }
@@ -29,11 +29,11 @@ public final class rf implements org.telegram.messenger.v10 {
                 }
                 return;
             default:
-                an anVar2 = this.f49486b;
+                an anVar2 = this.f49506b;
                 anVar2.getClass();
                 if (bool.booleanValue()) {
                     boolean booleanValue2 = bool2.booleanValue();
-                    String str2 = this.f49487c;
+                    String str2 = this.f49507c;
                     if (booleanValue2) {
                         anVar2.getMessagesController().p(str2, true);
                     }

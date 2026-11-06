@@ -1,64 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-public final class d61 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f32771a;
-    public final p61 f32772b;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.os.AsyncTask;
+public final class d61 extends AsyncTask {
+    public int f32783a = 0;
+    public final g61 f32784b;
 
-    public d61(p61 p61Var, int i7) {
-        this.f32771a = i7;
-        this.f32772b = p61Var;
+    public d61(g61 g61Var) {
+        this.f32784b = g61Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f32771a) {
-            case 0:
-                p61 p61Var = this.f32772b;
-                p61Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View[] viewArr = p61Var.f36906e;
-                View view = viewArr[1];
-                if (view != null) {
-                    if (p61Var.D) {
-                        p61Var.F(view, (1.0f - floatValue) * viewArr[0].getMeasuredWidth());
-                        View view2 = viewArr[0];
-                        p61Var.F(view2, (-view2.getMeasuredWidth()) * floatValue);
-                    } else {
-                        p61Var.F(view, (1.0f - floatValue) * (-viewArr[0].getMeasuredWidth()));
-                        View view3 = viewArr[0];
-                        p61Var.F(view3, view3.getMeasuredWidth() * floatValue);
+    public final Object doInBackground(Object[] objArr) {
+        Bitmap frameAtTime;
+        g61 g61Var = this.f32784b;
+        this.f32783a = ((Integer[]) objArr)[0].intValue();
+        Bitmap bitmap = null;
+        if (!isCancelled()) {
+            try {
+                frameAtTime = g61Var.f33813r.getFrameAtTime(g61Var.f33817y * this.f32783a * 1000, 2);
+            } catch (Exception e10) {
+                e = e10;
+            }
+            try {
+                if (!isCancelled()) {
+                    if (frameAtTime != null) {
+                        Bitmap createBitmap = Bitmap.createBitmap(g61Var.D, g61Var.E, frameAtTime.getConfig());
+                        Canvas canvas = new Canvas(createBitmap);
+                        float max = Math.max(g61Var.D / frameAtTime.getWidth(), g61Var.E / frameAtTime.getHeight());
+                        int width = (int) (frameAtTime.getWidth() * max);
+                        int height = (int) (frameAtTime.getHeight() * max);
+                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((g61Var.D - width) / 2, (g61Var.E - height) / 2, width, height), (Paint) null);
+                        frameAtTime.recycle();
+                        return createBitmap;
                     }
-                    p61Var.f36905c = floatValue;
-                    p61Var.x(true);
-                    f61 f61Var = p61Var.M;
-                    if (f61Var != null) {
-                        f61Var.f36665w.invalidate();
-                        p61Var.M.f36665w.g1();
-                        p61Var.M.invalidate();
-                        return;
-                    }
-                    return;
+                    return frameAtTime;
                 }
-                return;
-            case 1:
-                p61 p61Var2 = this.f32772b;
-                p61Var2.getClass();
-                p61Var2.T = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
-            case 2:
-                p61 p61Var3 = this.f32772b;
-                p61Var3.N.onAnimationUpdate(valueAnimator);
-                p61Var3.M.f36640a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                p61Var3.M.f36665w.g1();
-                p61Var3.M.invalidate();
-                return;
-            default:
-                p61 p61Var4 = this.f32772b;
-                p61Var4.getClass();
-                p61Var4.T = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                return;
+            } catch (Exception e11) {
+                e = e11;
+                bitmap = frameAtTime;
+                org.telegram.messenger.a8.g(e, true);
+                return bitmap;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public final void onPostExecute(Object obj) {
+        Bitmap bitmap = (Bitmap) obj;
+        if (!isCancelled()) {
+            g61 g61Var = this.f32784b;
+            g61Var.f33815w.add(bitmap);
+            g61Var.invalidate();
+            int i7 = this.f32783a;
+            if (i7 < g61Var.F) {
+                g61Var.b(i7 + 1);
+            } else {
+                g61Var.O = true;
+            }
         }
     }
 }

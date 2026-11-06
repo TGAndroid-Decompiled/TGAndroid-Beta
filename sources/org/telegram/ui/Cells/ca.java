@@ -86,7 +86,7 @@ public final class ca implements dj0, bg.p, lc, org.telegram.messenger.j9, xo, w
                             } catch (Exception unused) {
                             }
                             if (t0Var.getContext() instanceof LaunchActivity) {
-                                ((LaunchActivity) t0Var.getContext()).f41265v0.c(false);
+                                ((LaunchActivity) t0Var.getContext()).f41290v0.c(false);
                             }
                             TLRPC.VideoSize videoSize = t0Var.I1;
                             if (videoSize != null && (q0Var = t0Var.f30307f1) != null) {
@@ -96,9 +96,9 @@ public final class ca implements dj0, bg.p, lc, org.telegram.messenger.j9, xo, w
                             return;
                         }
                         return;
-                    } else if (B.f40925a0 < 1) {
+                    } else if (B.f40950a0 < 1) {
                         B.stop();
-                        B.N(B.f40931e[0] - 1, false, false);
+                        B.N(B.f40956e[0] - 1, false, false);
                         return;
                     } else {
                         return;

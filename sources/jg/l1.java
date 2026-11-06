@@ -39,11 +39,11 @@ public final class l1 extends FrameLayout {
         setWillNotDraw(false);
         y8 y8Var = new y8(this, false);
         this.f16829b = y8Var;
-        y8Var.f40554l = true;
-        y8Var.f40558p = org.telegram.messenger.g0.L(75.0f);
-        y8Var.f40557o = org.telegram.messenger.g0.L(48.0f);
-        y8Var.f40565x = true;
-        y8Var.f40561s = org.telegram.messenger.g0.L(22.0f);
+        y8Var.f40573l = true;
+        y8Var.f40577p = org.telegram.messenger.g0.L(75.0f);
+        y8Var.f40576o = org.telegram.messenger.g0.L(48.0f);
+        y8Var.f40584x = true;
+        y8Var.f40580s = org.telegram.messenger.g0.L(22.0f);
         for (int i10 = 0; i10 < 2; i10++) {
             this.f16830c[i10] = new TextView(context);
             r6.V(this.f16830c[i10], k6.G6, f6Var);

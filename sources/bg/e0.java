@@ -28,8 +28,8 @@ import org.telegram.ui.Components.t4;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.an;
 import org.telegram.ui.c40;
-import org.telegram.ui.qv0;
-import org.telegram.ui.vq0;
+import org.telegram.ui.rv0;
+import org.telegram.ui.wq0;
 import org.telegram.ui.ww;
 import ti.p;
 import wg.f1;
@@ -86,14 +86,14 @@ public final class e0 implements i30, r1, c7, t4, w5.b, v9.g {
         switch (this.f3271a) {
             case 7:
                 v9.f fVar = (v9.f) this.f3273c;
-                return fVar.f57156b.schedule(new v9.d(fVar, (Runnable) this.d, qtVar, 1), this.f3272b, (TimeUnit) this.f3274e);
+                return fVar.f57181b.schedule(new v9.d(fVar, (Runnable) this.d, qtVar, 1), this.f3272b, (TimeUnit) this.f3274e);
             default:
                 final v9.f fVar2 = (v9.f) this.f3273c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f57156b.schedule(new Callable() {
+                return fVar2.f57181b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f57155a.submit(new p(15, callable, qtVar));
+                        return f.this.f57180a.submit(new p(15, callable, qtVar));
                     }
                 }, this.f3272b, (TimeUnit) this.f3274e);
         }
@@ -146,7 +146,7 @@ public final class e0 implements i30, r1, c7, t4, w5.b, v9.g {
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.f3274e;
-                ProfileActivity profileActivity = ((qv0) this.f3273c).f49300b;
+                ProfileActivity profileActivity = ((rv0) this.f3273c).f49578b;
                 profileActivity.M1 = true;
                 Bundle k10 = a8.p0.k("scrollToTopOnResume", true);
                 long j3 = -this.f3272b;
@@ -164,7 +164,7 @@ public final class e0 implements i30, r1, c7, t4, w5.b, v9.g {
     }
 
     @Override
-    public vq0 getCloseIntoObject() {
+    public wq0 getCloseIntoObject() {
         return null;
     }
 

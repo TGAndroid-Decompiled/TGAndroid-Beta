@@ -154,7 +154,7 @@ public abstract class h0 extends oj0 {
 
     @Override
     public final boolean D(v4.d1 d1Var) {
-        int i7 = d1Var.f56931f;
+        int i7 = d1Var.f56956f;
         if (i7 != 1 && i7 != 4 && i7 != 10) {
             return true;
         }
@@ -219,20 +219,20 @@ public abstract class h0 extends oj0 {
             if (((TLRPC.User) obj).bot) {
                 return wwVar.A2;
             }
-            return wwVar.f51641z2;
+            return wwVar.f51658z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (t3.T(chat)) {
-                return wwVar.f51637y2;
+                return wwVar.f51654y2;
             }
             if (t3.n0(chat)) {
-                if (wwVar.f51620v2 || wwVar.f51626w2) {
+                if (wwVar.f51637v2 || wwVar.f51643w2) {
                     return true;
                 }
                 return false;
-            } else if (wwVar.f51620v2 || wwVar.f51632x2) {
+            } else if (wwVar.f51637v2 || wwVar.f51649x2) {
                 return true;
             } else {
                 return false;
@@ -495,7 +495,7 @@ public abstract class h0 extends oj0 {
 
     public final boolean L() {
         if (!this.N && !ui.b0(this.f16757s0).f25810i1.isEmpty()) {
-            if (this.f16744h0 != 14 || this.f16755r0.f51641z2) {
+            if (this.f16744h0 != 14 || this.f16755r0.f51658z2) {
                 return true;
             }
             return false;
@@ -995,7 +995,7 @@ public abstract class h0 extends oj0 {
                 textView2.setGravity(17);
                 c61Var2.addView(textView2, ha.t(-1, -2, 1, 0, 8, 0, 9));
                 TextView textView3 = new TextView(context);
-                c61Var2.f44685b = textView3;
+                c61Var2.f44706b = textView3;
                 textView3.setTextSize(1, 14.0f);
                 r6.V(textView3, i11, null);
                 textView3.setText(hd.a0(null, null, 2131745751, ""));

@@ -11,20 +11,20 @@ import android.widget.FrameLayout;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 public final class h00 extends FrameLayout {
-    public final RectF f34170a;
-    public final FragmentContextView f34171b;
+    public final RectF f34118a;
+    public final FragmentContextView f34119b;
 
     public h00(FragmentContextView fragmentContextView, Context context) {
         super(context);
-        this.f34171b = fragmentContextView;
-        this.f34170a = new RectF();
+        this.f34119b = fragmentContextView;
+        this.f34118a = new RectF();
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         float f10;
         super.dispatchDraw(canvas);
-        FragmentContextView fragmentContextView = this.f34171b;
+        FragmentContextView fragmentContextView = this.f34119b;
         org.telegram.ui.ActionBar.f2 f2Var = fragmentContextView.h;
         i6 i6Var = fragmentContextView.f31386j0;
         if (fragmentContextView.U == 4 && fragmentContextView.f31384h0) {
@@ -60,7 +60,7 @@ public final class h00 extends FrameLayout {
             float f11 = measuredWidth;
             float f12 = L2;
             float L3 = org.telegram.messenger.g0.L(28.0f) + L2;
-            RectF rectF = this.f34170a;
+            RectF rectF = this.f34118a;
             rectF.set(f11, f12, measuredWidth + L, L3);
             canvas.save();
             float a10 = fragmentContextView.f31387k0.a(0.1f);
@@ -82,9 +82,9 @@ public final class h00 extends FrameLayout {
         org.telegram.messenger.r3 groupCall;
         int i7;
         int i10;
-        FragmentContextView fragmentContextView = this.f34171b;
+        FragmentContextView fragmentContextView = this.f34119b;
         if (fragmentContextView.U == 4 && fragmentContextView.f31384h0 && fragmentContextView.f31387k0 != null) {
-            boolean contains = this.f34170a.contains(motionEvent.getX(), motionEvent.getY());
+            boolean contains = this.f34118a.contains(motionEvent.getX(), motionEvent.getY());
             if (motionEvent.getAction() == 0) {
                 fragmentContextView.f31387k0.c(contains);
             } else if (motionEvent.getAction() == 2) {
@@ -139,7 +139,7 @@ public final class h00 extends FrameLayout {
             }
         }
         ic icVar2 = fragmentContextView.f31387k0;
-        if ((icVar2 != null && icVar2.f34592i) || super.dispatchTouchEvent(motionEvent)) {
+        if ((icVar2 != null && icVar2.f34555i) || super.dispatchTouchEvent(motionEvent)) {
             return true;
         }
         return false;
@@ -148,7 +148,7 @@ public final class h00 extends FrameLayout {
     @Override
     public final void invalidate() {
         super.invalidate();
-        FragmentContextView fragmentContextView = this.f34171b;
+        FragmentContextView fragmentContextView = this.f34119b;
         z8 z8Var = fragmentContextView.f31375b0;
         if (z8Var != null && z8Var.getVisibility() == 0) {
             fragmentContextView.f31375b0.invalidate();
@@ -157,7 +157,7 @@ public final class h00 extends FrameLayout {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f34171b.f31386j0 && !super.verifyDrawable(drawable)) {
+        if (drawable != this.f34119b.f31386j0 && !super.verifyDrawable(drawable)) {
             return false;
         }
         return true;

@@ -4,33 +4,33 @@ import android.app.Activity;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 public final class e1 implements Runnable {
-    public final int f33079a;
-    public final int f33080b;
-    public final long f33081c;
+    public final int f33092a;
+    public final int f33093b;
+    public final long f33094c;
     public final long d;
-    public final org.telegram.messenger.c20 f33082e;
-    public final long f33083f;
+    public final org.telegram.messenger.c20 f33095e;
+    public final long f33096f;
 
     public e1(int i7, long j3, long j10, org.telegram.messenger.c20 c20Var, long j11, int i10) {
-        this.f33079a = i10;
-        this.f33080b = i7;
-        this.f33081c = j3;
+        this.f33092a = i10;
+        this.f33093b = i7;
+        this.f33094c = j3;
         this.d = j10;
-        this.f33082e = c20Var;
-        this.f33083f = j11;
+        this.f33095e = c20Var;
+        this.f33096f = j11;
     }
 
     @Override
     public final void run() {
         org.telegram.ui.ActionBar.f6 bVar;
-        switch (this.f33079a) {
+        switch (this.f33092a) {
             case 0:
-                int i7 = this.f33080b;
+                int i7 = this.f33093b;
                 long j3 = bi.ea.y(i7, false).p().amount;
-                long j10 = this.f33081c;
+                long j10 = this.f33094c;
                 int i10 = (j3 > j10 ? 1 : (j3 == j10 ? 0 : -1));
-                org.telegram.messenger.c20 c20Var = this.f33082e;
-                long j11 = this.f33083f;
+                org.telegram.messenger.c20 c20Var = this.f33095e;
+                long j11 = this.f33096f;
                 if (i10 < 0) {
                     Activity u02 = org.telegram.messenger.g0.u0();
                     org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
@@ -54,8 +54,8 @@ public final class e1 implements Runnable {
                 c20Var.a(Long.valueOf(j11));
                 return;
             default:
-                int i11 = this.f33080b;
-                e1 e1Var = new e1(i11, this.f33081c, this.d, this.f33082e, this.f33083f, 0);
+                int i11 = this.f33093b;
+                e1 e1Var = new e1(i11, this.f33094c, this.d, this.f33095e, this.f33096f, 0);
                 if (!bi.ea.y(i11, false).f3810e) {
                     bi.ea y10 = bi.ea.y(i11, false);
                     y10.f3810e = false;

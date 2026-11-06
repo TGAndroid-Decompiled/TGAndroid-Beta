@@ -20,21 +20,21 @@ import org.telegram.messenger.m20;
 import org.telegram.messenger.qs;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.f41;
-import org.telegram.ui.Components.h41;
-import org.telegram.ui.Components.r31;
-public final class ia extends h41 implements ls {
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.w31;
+public final class ia extends m41 implements ls {
     public static void d0(ia iaVar, TL_wallet.tonConnectSession tonconnectsession, c20 c20Var) {
-        f2 f2Var = n0.x(iaVar.currentAccount).f42773g;
+        f2 f2Var = n0.x(iaVar.currentAccount).f42798g;
         f2Var.getClass();
         org.telegram.messenger.g0.h3(new g(f2Var, tonconnectsession, c20Var, 4));
     }
 
     @Override
-    public final void Z(ArrayList arrayList, f41 f41Var) {
-        f2 f2Var = n0.x(this.currentAccount).f42773g;
+    public final void Z(ArrayList arrayList, k41 k41Var) {
+        f2 f2Var = n0.x(this.currentAccount).f42798g;
         if (!f2Var.d.isEmpty()) {
-            arrayList.add(r31.u(hd.M0(2131743207, null)));
+            arrayList.add(w31.u(hd.M0(2131743207, null)));
         }
         ArrayList arrayList2 = f2Var.d;
         int size = arrayList2.size();
@@ -42,12 +42,12 @@ public final class ia extends h41 implements ls {
         while (i7 < size) {
             Object obj = arrayList2.get(i7);
             i7++;
-            int i10 = ga.f42519b;
-            r31 K = r31.K(ga.class);
+            int i10 = ga.f42544b;
+            w31 K = w31.K(ga.class);
             K.G = (TL_wallet.tonConnectSession) obj;
             arrayList.add(K);
         }
-        arrayList.add(r31.C(hd.M0(2131743156, null)));
+        arrayList.add(w31.C(hd.M0(2131743156, null)));
     }
 
     @Override
@@ -56,11 +56,11 @@ public final class ia extends h41 implements ls {
     }
 
     @Override
-    public final void b0(r31 r31Var, View view) {
+    public final void b0(w31 w31Var, View view) {
         String M0;
         String str;
         TLRPC.WebDocument webDocument;
-        Object obj = r31Var.G;
+        Object obj = w31Var.G;
         if (obj instanceof TL_wallet.tonConnectSession) {
             TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) obj;
             Activity parentActivity = getParentActivity();
@@ -143,24 +143,24 @@ public final class ia extends h41 implements ls {
     }
 
     @Override
-    public final boolean c0(r31 r31Var, View view) {
+    public final boolean c0(w31 w31Var, View view) {
         return false;
     }
 
     @Override
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
-        this.actionBar.setAdaptiveBackground(this.f34211a);
-        this.f34211a.r1();
-        this.f34211a.setClipToPadding(false);
+        this.actionBar.setAdaptiveBackground(this.f35844a);
+        this.f35844a.r1();
+        this.f35844a.setClipToPadding(false);
         return this.fragmentView;
     }
 
     @Override
     public final void didReceivedNotification(int i7, int i10, Object... objArr) {
         fi.w3 w3Var;
-        if (i7 == qs.f24954a4 && (w3Var = this.f34211a) != null) {
-            w3Var.f35167f3.O(true);
+        if (i7 == qs.f24954a4 && (w3Var = this.f35844a) != null) {
+            w3Var.f36781f3.O(true);
         }
     }
 
@@ -183,7 +183,7 @@ public final class ia extends h41 implements ls {
 
     @Override
     public final void onInsets(int i7, int i10, int i11, int i12) {
-        this.f34211a.setPadding(0, 0, 0, i12);
-        this.f34211a.setClipToPadding(false);
+        this.f35844a.setPadding(0, 0, 0, i12);
+        this.f35844a.setClipToPadding(false);
     }
 }

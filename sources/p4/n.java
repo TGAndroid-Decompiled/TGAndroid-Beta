@@ -4,7 +4,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 public abstract class n {
-    public static final int f53269a = 0;
+    public static final int f53295a = 0;
 
     static {
         h9.t0.s("android.media.metadata.TITLE", "android.media.metadata.ARTIST", "android.media.metadata.DURATION", "android.media.metadata.ALBUM", "android.media.metadata.AUTHOR", "android.media.metadata.WRITER", "android.media.metadata.COMPOSER", "android.media.metadata.COMPILATION", "android.media.metadata.DATE", "android.media.metadata.YEAR", "android.media.metadata.GENRE", "android.media.metadata.TRACK_NUMBER", "android.media.metadata.NUM_TRACKS", "android.media.metadata.DISC_NUMBER", "android.media.metadata.ALBUM_ARTIST", "android.media.metadata.ART", "android.media.metadata.ART_URI", "android.media.metadata.ALBUM_ART", "android.media.metadata.ALBUM_ART_URI", "android.media.metadata.USER_RATING", "android.media.metadata.RATING", "android.media.metadata.DISPLAY_TITLE", "android.media.metadata.DISPLAY_SUBTITLE", "android.media.metadata.DISPLAY_DESCRIPTION", "android.media.metadata.DISPLAY_ICON", "android.media.metadata.DISPLAY_ICON_URI", "android.media.metadata.MEDIA_ID", "android.media.metadata.MEDIA_URI", "android.media.metadata.BT_FOLDER_TYPE", "android.media.metadata.ADVERTISEMENT", "android.media.metadata.DOWNLOAD_STATUS", "androidx.media3.session.EXTRAS_KEY_MEDIA_TYPE_COMPAT");
@@ -34,7 +34,7 @@ public abstract class n {
     public static q4.i b(e2.o0 o0Var, String str, Uri uri, long j3, Bitmap bitmap) {
         Long l10;
         ?? obj = new Object();
-        obj.f53694a = new Bundle();
+        obj.f53719a = new Bundle();
         obj.f("android.media.metadata.MEDIA_ID", str);
         CharSequence charSequence = o0Var.f10427a;
         Bundle bundle = o0Var.J;
@@ -125,13 +125,13 @@ public abstract class n {
                 }
             }
         }
-        return new q4.i((Bundle) obj.f53694a);
+        return new q4.i((Bundle) obj.f53719a);
     }
 
     public static e2.d1 c(q4.y yVar) {
         if (yVar != null) {
-            float f10 = yVar.f53710b;
-            int i7 = yVar.f53709a;
+            float f10 = yVar.f53735b;
+            int i7 = yVar.f53734a;
             boolean z9 = true;
             switch (i7) {
                 case 1:

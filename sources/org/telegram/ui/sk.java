@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.tgnet.TLRPC;
 public final class sk implements org.telegram.ui.Components.bi {
-    public final an f49764a;
+    public final an f49785a;
 
     public sk(an anVar) {
-        this.f49764a = anVar;
+        this.f49785a = anVar;
     }
 
     @Override
     public final void F0() {
-        this.f49764a.Z.L();
+        this.f49785a.Z.L();
     }
 
     @Override
@@ -24,7 +24,7 @@ public final class sk implements org.telegram.ui.Components.bi {
     @Override
     public final void Y0(TLRPC.User user) {
         String n10 = org.telegram.messenger.t10.n(user);
-        an anVar = this.f49764a;
+        an anVar = this.f49785a;
         if (anVar.Z != null && user != null && !TextUtils.isEmpty(n10)) {
             qj qjVar = anVar.Z;
             qjVar.setFieldText("@" + n10 + " ");
@@ -34,12 +34,12 @@ public final class sk implements org.telegram.ui.Components.bi {
 
     @Override
     public final void c0(org.telegram.ui.Components.qg qgVar) {
-        this.f49764a.w8(qgVar);
+        this.f49785a.w8(qgVar);
     }
 
     @Override
     public final boolean f0() {
-        return this.f49764a.pa();
+        return this.f49785a.pa();
     }
 
     @Override
@@ -60,15 +60,15 @@ public final class sk implements org.telegram.ui.Components.bi {
         boolean z17;
         String str2;
         TLRPC.Message message;
-        an anVar = this.f49764a;
+        an anVar = this.f49785a;
         if (anVar.getParentActivity() != null && (u2Var = anVar.X1) != null) {
-            boolean z18 = u2Var.f32961x1;
+            boolean z18 = u2Var.f32974x1;
             org.telegram.messenger.ij ijVar = u2Var.B3;
             anVar.F5 = ijVar;
             if (ijVar != null && (message = ijVar.f23237k) != null) {
                 message.invert_media = z11;
             }
-            if (i7 != 8 && i7 != 7 && (i7 != 4 || u2Var.f32882a2.getSelectedPhotos().isEmpty())) {
+            if (i7 != 8 && i7 != 7 && (i7 != 4 || u2Var.f32895a2.getSelectedPhotos().isEmpty())) {
                 di.u2 u2Var2 = anVar.X1;
                 if (u2Var2 != null) {
                     u2Var2.L(i7);
@@ -80,8 +80,8 @@ public final class sk implements org.telegram.ui.Components.bi {
             if (u2Var3 != null && i7 != 8) {
                 u2Var3.a(true);
             }
-            HashMap<Object, Object> selectedPhotos = anVar.X1.f32882a2.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = anVar.X1.f32882a2.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = anVar.X1.f32895a2.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = anVar.X1.f32895a2.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int ceil = (int) Math.ceil(selectedPhotos.size() / 10.0f);
                 int i14 = 0;
@@ -164,17 +164,17 @@ public final class sk implements org.telegram.ui.Components.bi {
                     }
                     org.telegram.messenger.ij ijVar2 = anVar.F5;
                     if (ijVar2 != null && ijVar2.q5()) {
-                        org.telegram.messenger.nj njVar = anVar.f43980w5;
+                        org.telegram.messenger.nj njVar = anVar.f44005w5;
                         if (njVar == null) {
                             njVar = org.telegram.messenger.nj.b(anVar.F5.f23237k.suggested_post);
                         }
                         org.telegram.messenger.nj njVar2 = njVar;
                         org.telegram.messenger.c accountInstance = anVar.getAccountInstance();
                         int i18 = ceil;
-                        long j11 = anVar.f43818j6;
+                        long j11 = anVar.f43843j6;
                         org.telegram.messenger.ij ijVar3 = anVar.F5;
                         int i19 = i14;
-                        org.telegram.messenger.ij ijVar4 = anVar.f43840l4;
+                        org.telegram.messenger.ij ijVar4 = anVar.f43865l4;
                         qm qmVar = anVar.B5;
                         if (i7 != 4 && !z12) {
                             c11 = 4;
@@ -194,16 +194,16 @@ public final class sk implements org.telegram.ui.Components.bi {
                         i13 = i14;
                         c10 = 4;
                         org.telegram.messenger.c accountInstance2 = anVar.getAccountInstance();
-                        long j12 = anVar.f43818j6;
+                        long j12 = anVar.f43843j6;
                         org.telegram.messenger.ij ijVar5 = anVar.D5;
-                        org.telegram.messenger.ij ijVar6 = anVar.f43840l4;
+                        org.telegram.messenger.ij ijVar6 = anVar.f43865l4;
                         qm qmVar2 = anVar.B5;
                         if (i7 != 4 && !z12) {
                             z14 = false;
                         } else {
                             z14 = true;
                         }
-                        org.telegram.messenger.gz.X(accountInstance2, arrayList2, j12, ijVar5, ijVar6, null, qmVar2, z14, z9, anVar.F5, null, z10, i10, i11, z13, null, anVar.W8(), j3, z11, j10, anVar.h9(), anVar.f43980w5, null, false);
+                        org.telegram.messenger.gz.X(accountInstance2, arrayList2, j12, ijVar5, ijVar6, null, qmVar2, z14, z9, anVar.F5, null, z10, i10, i11, z13, null, anVar.W8(), j3, z11, j10, anVar.h9(), anVar.f44005w5, null, false);
                     }
                     i14 = i13 + 1;
                     ceil = i12;
@@ -217,10 +217,10 @@ public final class sk implements org.telegram.ui.Components.bi {
                 hashMap = selectedPhotos;
             }
             if (i10 != 0) {
-                if (anVar.f43778g4 == -1) {
-                    anVar.f43778g4 = 0;
+                if (anVar.f43803g4 == -1) {
+                    anVar.f43803g4 = 0;
                 }
-                anVar.f43778g4 += hashMap.size();
+                anVar.f43803g4 += hashMap.size();
                 anVar.id(true);
             }
         }

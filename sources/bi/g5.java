@@ -7,15 +7,15 @@ import android.view.View;
 import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.WeakHashMap;
+import org.telegram.ui.Components.a31;
 import org.telegram.ui.Components.dl0;
 import org.telegram.ui.Components.dm0;
-import org.telegram.ui.Components.e21;
 import org.telegram.ui.Components.em0;
-import org.telegram.ui.Components.h61;
-import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.j21;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.ob0;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.sp0;
-import org.telegram.ui.Components.v21;
 import org.telegram.ui.an;
 import org.telegram.ui.bn;
 import org.telegram.ui.cn;
@@ -32,13 +32,13 @@ import org.telegram.ui.o91;
 import org.telegram.ui.oy0;
 import org.telegram.ui.q91;
 import org.telegram.ui.r91;
-import org.telegram.ui.rq0;
+import org.telegram.ui.sq0;
 import org.telegram.ui.sv;
 import org.telegram.ui.v91;
 import org.telegram.ui.ww;
 import org.telegram.ui.yz;
 import org.telegram.ui.zs;
-public final class g5 extends h61 {
+public final class g5 extends l61 {
     public final int f3939a;
     public final Object f3940b;
     public final Object f3941c;
@@ -97,9 +97,9 @@ public final class g5 extends h61 {
                 return;
             case 2:
                 if (view instanceof cn) {
-                    ((cn) view).f44837a.nd(((an) obj).I3);
+                    ((cn) view).f44858a.nd(((an) obj).I3);
                 }
-                WeakHashMap weakHashMap = r0.i0.f54073a;
+                WeakHashMap weakHashMap = r0.i0.f54098a;
                 r0.y.c(view);
                 return;
             case 3:
@@ -115,14 +115,14 @@ public final class g5 extends h61 {
                 return;
             case 7:
                 r91 r91Var = (r91) obj;
-                r91Var.M(view, i7, r91Var.f49398d0, true);
+                r91Var.M(view, i7, r91Var.f49418d0, true);
                 return;
             case 8:
                 nb1 nb1Var = (nb1) obj;
-                SparseArray sparseArray = nb1Var.f47987a;
+                SparseArray sparseArray = nb1Var.f48013a;
                 lb1 lb1Var = (lb1) sparseArray.get(i7);
                 if (lb1Var != null) {
-                    f2Var = lb1Var.f47478a;
+                    f2Var = lb1Var.f47505a;
                 } else {
                     org.telegram.ui.ActionBar.f2 a02 = nb1Var.a0(i7);
                     lb1 lb1Var2 = new lb1(a02);
@@ -130,15 +130,15 @@ public final class g5 extends h61 {
                     f2Var = a02;
                     lb1Var = lb1Var2;
                 }
-                if (!lb1Var.f47479b) {
+                if (!lb1Var.f47506b) {
                     f2Var.onFragmentCreate();
-                    lb1Var.f47479b = true;
+                    lb1Var.f47506b = true;
                 }
                 f2Var.setParentLayout(nb1Var.getParentLayout());
                 f2Var.setSimpleMenuOverlayHost(nb1Var);
                 if (f2Var.getFragmentView() == null) {
                     f2Var.performCreateView((Context) this.f3940b);
-                    f2Var.setTitleOverlayText(nb1Var.f47992n, nb1Var.f47993r, nb1Var.f47994s);
+                    f2Var.setTitleOverlayText(nb1Var.f48018n, nb1Var.f48019r, nb1Var.f48020s);
                 }
                 FrameLayout frameLayout2 = (FrameLayout) view;
                 frameLayout2.removeAllViews();
@@ -152,13 +152,13 @@ public final class g5 extends h61 {
                     org.telegram.messenger.g0.E2(f2Var.getActionBar());
                     frameLayout2.addView(f2Var.getActionBar());
                 }
-                WeakHashMap weakHashMap2 = r0.i0.f54073a;
+                WeakHashMap weakHashMap2 = r0.i0.f54098a;
                 r0.y.c(frameLayout2);
                 nb1Var.checkSystemBarColors();
                 nb1Var.Z();
                 return;
             case 9:
-                org.telegram.ui.Wallet.y5.Y0((k41) view, false);
+                org.telegram.ui.Wallet.y5.Y0((p41) view, false);
                 return;
             default:
                 return;
@@ -218,11 +218,11 @@ public final class g5 extends h61 {
                 bundle.putString("searchHashtag", anVar.I3);
                 mj mjVar = new mj(context, anVar.getParentLayout(), bundle, 0);
                 mjVar.h = false;
-                bn bnVar = mjVar.f44837a;
-                bnVar.M.f54461a = anVar.M;
-                bnVar.f43971va = anVar.f43998xa;
-                bnVar.f43985wa = anVar;
-                bnVar.f43821j9 = new org.telegram.ui.f(this, 12);
+                bn bnVar = mjVar.f44858a;
+                bnVar.M.f54486a = anVar.M;
+                bnVar.f43996va = anVar.f44023xa;
+                bnVar.f44010wa = anVar;
+                bnVar.f43846j9 = new org.telegram.ui.f(this, 12);
                 return mjVar;
             case 3:
                 fw fwVar = (fw) this.f3941c;
@@ -231,25 +231,25 @@ public final class g5 extends h61 {
                     return fwVar.W;
                 }
                 if (i7 == 3) {
-                    return fwVar.f33641h0;
+                    return fwVar.f33585h0;
                 }
                 if (i7 == 4) {
                     return fwVar.m0;
                 }
                 if (i7 == 5) {
-                    return fwVar.f33652t0;
+                    return fwVar.f33596t0;
                 }
                 if (i7 == 2) {
                     dl0 dl0Var = new dl0(fwVar.J0, wwVar);
                     fwVar.I0 = dl0Var;
                     dl0Var.b(fwVar.W0, fwVar.X0, false);
-                    fwVar.I0.f32986b.setClipToPadding(false);
-                    fwVar.I0.f32986b.j(new dm0(this, 0));
-                    fwVar.I0.f32986b.D0(new ob0(fwVar, 19));
+                    fwVar.I0.f32999b.setClipToPadding(false);
+                    fwVar.I0.f32999b.j(new dm0(this, 0));
+                    fwVar.I0.f32999b.D0(new ob0(fwVar, 19));
                     fwVar.I0.setUiCallback(fwVar);
                     return fwVar.I0;
                 } else if (i7 == 6) {
-                    return fwVar.f33650r0;
+                    return fwVar.f33594r0;
                 } else {
                     yz yzVar = new yz(wwVar);
                     yzVar.setChatPreviewDelegate(fwVar.R0);
@@ -259,7 +259,7 @@ public final class g5 extends h61 {
                     if (cVar != null) {
                         yzVar.setBlurredBackgroundDrawableFactory(cVar);
                     }
-                    zs zsVar = yzVar.f52375b;
+                    zs zsVar = yzVar.f52382b;
                     zsVar.setClipToPadding(false);
                     zsVar.j(new dm0(this, 1));
                     zsVar.D0(new ob0(fwVar, 19));
@@ -277,29 +277,29 @@ public final class g5 extends h61 {
                 return frameLayout4;
             case 7:
                 r91 r91Var = (r91) this.f3941c;
-                v91 v91Var = r91Var.f49415v0;
+                v91 v91Var = r91Var.f49435v0;
                 if (i7 == 1) {
                     return r91Var.V;
                 }
                 if (i7 == 2) {
                     i10 = ((org.telegram.ui.ActionBar.f2) v91Var).currentAccount;
                     dl0 dl0Var2 = new dl0(i10, v91Var);
-                    dl0Var2.f32986b.j(new q91(0));
+                    dl0Var2.f32999b.j(new q91(0));
                     dl0Var2.setUiCallback(r91Var);
                     return dl0Var2;
                 }
                 yz yzVar2 = new yz(v91Var);
-                yzVar2.setChatPreviewDelegate(r91Var.f49413t0);
+                yzVar2.setChatPreviewDelegate(r91Var.f49433t0);
                 yzVar2.setUiCallback(r91Var);
-                yzVar2.f52375b.j(new q91(1));
+                yzVar2.f52382b.j(new q91(1));
                 return yzVar2;
             case 8:
-                return new rq0((Context) this.f3940b, 13);
+                return new sq0((Context) this.f3940b, 13);
             case 9:
                 org.telegram.ui.Wallet.y5 y5Var = (org.telegram.ui.Wallet.y5) this.f3941c;
-                k41[] k41VarArr = y5Var.f43361r0;
-                k41 k41Var = k41VarArr[i7];
-                if (k41Var == null) {
+                p41[] p41VarArr = y5Var.f43386r0;
+                p41 p41Var = p41VarArr[i7];
+                if (p41Var == null) {
                     Context context2 = (Context) this.f3940b;
                     i11 = ((org.telegram.ui.ActionBar.f2) y5Var).currentAccount;
                     i12 = ((org.telegram.ui.ActionBar.f2) y5Var).classGuid;
@@ -325,12 +325,12 @@ public final class g5 extends h61 {
                         kxVar.setSelectorType(9);
                         kxVar.setSelectorDrawableColor(0);
                     }
-                    kxVar.f35167f3.f33473r = false;
-                    kxVar.j(new v21(this, i7));
-                    k41VarArr[i7] = kxVar;
+                    kxVar.f36781f3.f35132r = false;
+                    kxVar.j(new a31(this, i7));
+                    p41VarArr[i7] = kxVar;
                     return kxVar;
                 }
-                return k41Var;
+                return p41Var;
             default:
                 if (i7 == 0) {
                     return ((wg.a0) this.f3940b).f28615b;
@@ -363,7 +363,7 @@ public final class g5 extends h61 {
                 ((nb1) this.f3941c).getClass();
                 return 4;
             case 9:
-                if (((org.telegram.ui.Wallet.y5) this.f3941c).f43348f0) {
+                if (((org.telegram.ui.Wallet.y5) this.f3941c).f43373f0) {
                     return 2;
                 }
                 return 1;
@@ -395,7 +395,7 @@ public final class g5 extends h61 {
                 if (i7 == 0) {
                     return org.telegram.messenger.hd.M0(2131746709, null);
                 }
-                String O0 = e21.O0(((di.j6) ((sp0) this.f3941c).f10848f.get(i7 - 1)).E, null, null);
+                String O0 = j21.O0(((di.j6) ((sp0) this.f3941c).f10848f.get(i7 - 1)).E, null, null);
                 if (O0 == null) {
                     return null;
                 }
@@ -410,25 +410,25 @@ public final class g5 extends h61 {
                 return org.telegram.messenger.hd.M0(2131745739, null);
             case 3:
                 ArrayList arrayList = (ArrayList) obj;
-                if (((em0) arrayList.get(i7)).f33286a == 0) {
+                if (((em0) arrayList.get(i7)).f33282a == 0) {
                     return org.telegram.messenger.hd.M0(2131745824, null);
                 }
-                if (((em0) arrayList.get(i7)).f33286a == 1) {
+                if (((em0) arrayList.get(i7)).f33282a == 1) {
                     return org.telegram.messenger.hd.M0(2131752258, null);
                 }
-                if (((em0) arrayList.get(i7)).f33286a == 4) {
+                if (((em0) arrayList.get(i7)).f33282a == 4) {
                     return org.telegram.messenger.hd.M0(2131754178, null);
                 }
-                if (((em0) arrayList.get(i7)).f33286a == 6) {
+                if (((em0) arrayList.get(i7)).f33282a == 6) {
                     return org.telegram.messenger.hd.M0(2131745734, null);
                 }
-                if (((em0) arrayList.get(i7)).f33286a == 2) {
+                if (((em0) arrayList.get(i7)).f33282a == 2) {
                     return org.telegram.messenger.hd.M0(2131751344, null);
                 }
-                if (((em0) arrayList.get(i7)).f33286a == 5) {
+                if (((em0) arrayList.get(i7)).f33282a == 5) {
                     return org.telegram.messenger.hd.M0(2131746583, null);
                 }
-                jg.o0 o0Var = jg.q0.j3[((em0) arrayList.get(i7)).f33287b];
+                jg.o0 o0Var = jg.q0.j3[((em0) arrayList.get(i7)).f33283b];
                 String str = o0Var.f16869c;
                 if (str != null) {
                     return str;
@@ -442,13 +442,13 @@ public final class g5 extends h61 {
                 return super.g(i7);
             case 7:
                 ArrayList arrayList2 = (ArrayList) obj;
-                if (((o91) arrayList2.get(i7)).f48310a == 0) {
+                if (((o91) arrayList2.get(i7)).f48339a == 0) {
                     return org.telegram.messenger.hd.M0(2131745757, null);
                 }
-                if (((o91) arrayList2.get(i7)).f48310a == 1) {
+                if (((o91) arrayList2.get(i7)).f48339a == 1) {
                     return org.telegram.messenger.hd.M0(2131751344, null);
                 }
-                jg.o0 o0Var2 = jg.q0.j3[((o91) arrayList2.get(i7)).f48311b];
+                jg.o0 o0Var2 = jg.q0.j3[((o91) arrayList2.get(i7)).f48340b];
                 String str2 = o0Var2.f16869c;
                 if (str2 != null) {
                     return str2;
@@ -479,25 +479,25 @@ public final class g5 extends h61 {
                 return i7;
             case 3:
                 ArrayList arrayList = (ArrayList) this.f3940b;
-                if (((em0) arrayList.get(i7)).f33286a == 0) {
+                if (((em0) arrayList.get(i7)).f33282a == 0) {
                     return 1;
                 }
-                if (((em0) arrayList.get(i7)).f33286a == 1) {
+                if (((em0) arrayList.get(i7)).f33282a == 1) {
                     return 3;
                 }
-                if (((em0) arrayList.get(i7)).f33286a == 4) {
+                if (((em0) arrayList.get(i7)).f33282a == 4) {
                     return 4;
                 }
-                if (((em0) arrayList.get(i7)).f33286a == 2) {
+                if (((em0) arrayList.get(i7)).f33282a == 2) {
                     return 2;
                 }
-                if (((em0) arrayList.get(i7)).f33286a == 5) {
+                if (((em0) arrayList.get(i7)).f33282a == 5) {
                     return 5;
                 }
-                if (((em0) arrayList.get(i7)).f33286a == 6) {
+                if (((em0) arrayList.get(i7)).f33282a == 6) {
                     return 6;
                 }
-                return ((em0) arrayList.get(i7)).f33286a + i7;
+                return ((em0) arrayList.get(i7)).f33282a + i7;
             case 5:
                 if (i7 == 0) {
                     return 0;
@@ -505,13 +505,13 @@ public final class g5 extends h61 {
                 return 1;
             case 7:
                 ArrayList arrayList2 = (ArrayList) this.f3940b;
-                if (((o91) arrayList2.get(i7)).f48310a == 0) {
+                if (((o91) arrayList2.get(i7)).f48339a == 0) {
                     return 1;
                 }
-                if (((o91) arrayList2.get(i7)).f48310a == 1) {
+                if (((o91) arrayList2.get(i7)).f48339a == 1) {
                     return 2;
                 }
-                return ((o91) arrayList2.get(i7)).f48310a + i7;
+                return ((o91) arrayList2.get(i7)).f48339a + i7;
             case 9:
             case 10:
                 return i7;
@@ -524,7 +524,7 @@ public final class g5 extends h61 {
         arrayList.add(new em0(0));
         fw fwVar = (fw) this.f3941c;
         if (fwVar.V0 == 0) {
-            if (fwVar.f33651s0) {
+            if (fwVar.f33595s0) {
                 arrayList.add(new em0(5));
             }
             arrayList.add(new em0(1));
@@ -532,23 +532,23 @@ public final class g5 extends h61 {
             arrayList.add(new em0(6));
             if (!fwVar.Q0) {
                 em0 em0Var = new em0(3);
-                em0Var.f33287b = 0;
+                em0Var.f33283b = 0;
                 arrayList.add(em0Var);
-                sv svVar = fwVar.f45712d1.F3;
+                sv svVar = fwVar.f45739d1.F3;
                 if (svVar == null || !svVar.c()) {
                     arrayList.add(new em0(2));
                 }
                 em0 em0Var2 = new em0(3);
-                em0Var2.f33287b = 1;
+                em0Var2.f33283b = 1;
                 arrayList.add(em0Var2);
                 em0 em0Var3 = new em0(3);
-                em0Var3.f33287b = 2;
+                em0Var3.f33283b = 2;
                 arrayList.add(em0Var3);
                 em0 em0Var4 = new em0(3);
-                em0Var4.f33287b = 3;
+                em0Var4.f33283b = 3;
                 arrayList.add(em0Var4);
                 em0 em0Var5 = new em0(3);
-                em0Var5.f33287b = 4;
+                em0Var5.f33283b = 4;
                 arrayList.add(em0Var5);
             }
         }
@@ -568,19 +568,19 @@ public final class g5 extends h61 {
         this.f3940b = arrayList;
         arrayList.add(new o91(0));
         o91 o91Var = new o91(2);
-        o91Var.f48311b = 0;
+        o91Var.f48340b = 0;
         arrayList.add(o91Var);
         o91 o91Var2 = new o91(2);
-        o91Var2.f48311b = 1;
+        o91Var2.f48340b = 1;
         arrayList.add(o91Var2);
         o91 o91Var3 = new o91(2);
-        o91Var3.f48311b = 2;
+        o91Var3.f48340b = 2;
         arrayList.add(o91Var3);
         o91 o91Var4 = new o91(2);
-        o91Var4.f48311b = 3;
+        o91Var4.f48340b = 3;
         arrayList.add(o91Var4);
         o91 o91Var5 = new o91(2);
-        o91Var5.f48311b = 4;
+        o91Var5.f48340b = 4;
         arrayList.add(o91Var5);
     }
 

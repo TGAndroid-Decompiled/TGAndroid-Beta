@@ -210,7 +210,7 @@ public final class l4 {
             this.f29499o = d;
             if (d != null) {
                 RadialProgress2 radialProgress2 = d.G;
-                if (radialProgress2.f31477i.f36935q != 4 && radialProgress2.f31471a.contains(x10, y10)) {
+                if (radialProgress2.f31477i.f36814q != 4 && radialProgress2.f31471a.contains(x10, y10)) {
                     z11 = true;
                     this.f29500p = z11;
                 }
@@ -221,14 +221,14 @@ public final class l4 {
             k4 d2 = d(x10, y10);
             if (d2 != null) {
                 RadialProgress2 radialProgress22 = d2.G;
-                if (radialProgress22.f31477i.f36935q != 4 && radialProgress22.f31471a.contains(x10, y10)) {
+                if (radialProgress22.f31477i.f36814q != 4 && radialProgress22.f31471a.contains(x10, y10)) {
                     z9 = true;
                     k4Var = this.f29499o;
                     if (k4Var != null && k4Var == d2) {
                         q1Var = this.f29487a;
                         if (q1Var.getDelegate() != null && motionEvent.getAction() == 1) {
                             ij messageObject = q1Var.getMessageObject();
-                            if (!this.f29500p && z9 && d2.G.f31477i.f36935q == 3 && messageObject != null) {
+                            if (!this.f29500p && z9 && d2.G.f31477i.f36814q == 3 && messageObject != null) {
                                 if (messageObject.p4()) {
                                     gz.C(messageObject.I1).g(messageObject);
                                 }
@@ -484,7 +484,7 @@ public final class l4 {
             if (tL_messageMediaPaidMedia != null) {
                 ly0 ly0Var = new ly0(dd.a1(z16, hd.H(',', "UnlockPaidContent", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, org.telegram.messenger.g0.o());
                 this.f29501q = ly0Var;
-                if (ly0Var.f35777c > this.f29492g - org.telegram.messenger.g0.L(30.0f)) {
+                if (ly0Var.f35782c > this.f29492g - org.telegram.messenger.g0.L(30.0f)) {
                     this.f29501q = new ly0(dd.a1(false, hd.H(',', "UnlockPaidContentShort", (int) tL_messageMediaPaidMedia.stars_amount), 0.7f, null), 14.0f, org.telegram.messenger.g0.o());
                 }
             }

@@ -5,48 +5,48 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_stats;
 public abstract class m41 extends l41 {
-    public final int f47636w;
-    public final c51 f47637x;
+    public final int f47663w;
+    public final c51 f47664x;
 
     public m41(c51 c51Var, Context context, int i7, int i10, lg.f fVar) {
         super(context, i10, fVar, null);
-        this.f47637x = c51Var;
-        this.f47636w = i7;
+        this.f47664x = c51Var;
+        this.f47663w = i7;
     }
 
     @Override
     public final void b(o41 o41Var) {
         int i7;
-        c51 c51Var = this.f47637x;
+        c51 c51Var = this.f47664x;
         i7 = ((org.telegram.ui.ActionBar.f2) c51Var).classGuid;
-        o41Var.a(this.f47636w, i7, c51Var.f44643a.stats_dc, new eh(2, c51Var, this.f47388r));
+        o41Var.a(this.f47663w, i7, c51Var.f44664a.stats_dc, new eh(2, c51Var, this.f47415r));
     }
 
     @Override
     public final void c() {
         int i7;
-        if (this.f47388r.f48227c <= 0) {
+        if (this.f47415r.f48256c <= 0) {
             performClick();
-            lg.g gVar = this.f47383b;
+            lg.g gVar = this.f47410b;
             if (gVar.f18319t0.G) {
                 long selectedDate = gVar.getSelectedDate();
-                if (this.f47389s == 4) {
-                    o41 o41Var = this.f47388r;
-                    o41Var.f48228e = new mg.e(o41Var.d, selectedDate);
+                if (this.f47416s == 4) {
+                    o41 o41Var = this.f47415r;
+                    o41Var.f48257e = new mg.e(o41Var.d, selectedDate);
                     g(false);
-                } else if (this.f47388r.f48230g == null) {
+                } else if (this.f47415r.f48259g == null) {
                 } else {
-                    c51 c51Var = this.f47637x;
+                    c51 c51Var = this.f47664x;
                     c51.c0(c51Var);
-                    String str = this.f47388r.f48230g + "_" + selectedDate;
+                    String str = this.f47415r.f48259g + "_" + selectedDate;
                     mg.b bVar = (mg.b) c51Var.U.f(str);
                     if (bVar != null) {
-                        this.f47388r.f48228e = bVar;
+                        this.f47415r.f48257e = bVar;
                         g(false);
                         return;
                     }
                     TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-                    tL_loadAsyncGraph.token = this.f47388r.f48230g;
+                    tL_loadAsyncGraph.token = this.f47415r.f48259g;
                     if (selectedDate != 0) {
                         tL_loadAsyncGraph.f27185x = selectedDate;
                         tL_loadAsyncGraph.flags |= 1;
@@ -54,10 +54,10 @@ public abstract class m41 extends l41 {
                     ?? obj = new Object();
                     c51Var.Y = obj;
                     c51Var.S.getClass();
-                    obj.f44181a = RecyclerView.R(this);
+                    obj.f44197a = RecyclerView.R(this);
                     gVar.f18319t0.d(true, false);
-                    int i10 = this.f47636w;
-                    int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new ko0(this, str, obj, 10), null, null, 0, c51Var.f44643a.stats_dc, 1, true);
+                    int i10 = this.f47663w;
+                    int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new lo0(this, str, obj, 10), null, null, 0, c51Var.f44664a.stats_dc, 1, true);
                     ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
                     i7 = ((org.telegram.ui.ActionBar.f2) c51Var).classGuid;
                     connectionsManager.bindRequestToGuid(sendRequest, i7);
@@ -68,6 +68,6 @@ public abstract class m41 extends l41 {
 
     @Override
     public final void f() {
-        c51.c0(this.f47637x);
+        c51.c0(this.f47664x);
     }
 }

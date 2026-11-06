@@ -183,7 +183,7 @@ public final class n1 implements qw, org.telegram.ui.ActionBar.r1, ni.p, ResultC
         uo uoVar = (uo) this.f14806e;
         Pair pair = (Pair) obj;
         if (pair != null && ((Long) pair.first).longValue() == this.f14805c) {
-            Drawable drawable = uoVar.f38698b;
+            Drawable drawable = uoVar.f38689b;
             if (drawable instanceof qa0) {
                 qa0 qa0Var = (qa0) drawable;
                 if (this.f14804b >= 0) {

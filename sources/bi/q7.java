@@ -21,7 +21,7 @@ import org.telegram.ui.Components.fb0;
 import org.telegram.ui.Components.hb0;
 import org.telegram.ui.Components.kn0;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.bv0;
+import org.telegram.ui.cv0;
 import org.telegram.ui.ld0;
 import org.telegram.ui.q11;
 public final class q7 implements org.telegram.messenger.q1, di.j9, OnFailureListener, org.telegram.ui.ActionBar.r1, fb0, f5.m, ri {
@@ -104,8 +104,8 @@ public final class q7 implements org.telegram.messenger.q1, di.j9, OnFailureList
             rectF5.set(centerX - width2, centerY - height, centerX + width2, centerY + height);
         } catch (Exception unused) {
         }
-        int i7 = ProfileStoriesView.f41951s0;
-        ((bv0) nVar.f825b).a(canvas, k4Var, k4Var2);
+        int i7 = ProfileStoriesView.f41976s0;
+        ((cv0) nVar.f825b).a(canvas, k4Var, k4Var2);
         rectF4.set(rectF2);
         rectF5.set(rectF3);
     }
@@ -125,7 +125,7 @@ public final class q7 implements org.telegram.messenger.q1, di.j9, OnFailureList
         kotlin.jvm.internal.j.e(e10, "e");
         CredentialProviderPlayServicesImpl.Companion.getClass();
         kotlin.jvm.internal.j.e(request, "request");
-        for (v0.h hVar : request.f56857a) {
+        for (v0.h hVar : request.f56882a) {
         }
         Log.w("GetCredentialController", "Pre-u credman get flow failed; retrying with gis flow");
         new c1.e(aVar.f10883e).h(request, cancellationSignal, executor, gVar);

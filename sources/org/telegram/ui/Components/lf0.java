@@ -4,17 +4,17 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class lf0 implements c5.g {
-    public final sf0 f35645a;
+    public final sf0 f35650a;
 
     public lf0(sf0 sf0Var) {
-        this.f35645a = sf0Var;
+        this.f35650a = sf0Var;
     }
 
     @Override
     public final void a(int i7) {
         boolean z9;
-        sf0 sf0Var = this.f35645a;
-        int i10 = sf0Var.f38080o1;
+        sf0 sf0Var = this.f35650a;
+        int i10 = sf0Var.f38040o1;
         int i11 = 0;
         if (i7 >= i10) {
             z9 = true;
@@ -23,7 +23,7 @@ public final class lf0 implements c5.g {
         }
         if (i7 != i10) {
             sf0Var.getClass();
-            sf0Var.f38080o1 = i7;
+            sf0Var.f38040o1 = i7;
         }
         org.telegram.messenger.yo yoVar = sf0Var.S0;
         if (yoVar != null) {
@@ -38,11 +38,11 @@ public final class lf0 implements c5.g {
     @Override
     public final void b(float f10, int i7, int i10) {
         org.telegram.messenger.hc hcVar;
-        sf0 sf0Var = this.f35645a;
+        sf0 sf0Var = this.f35650a;
         sf0Var.B(f10, i7);
         if (i10 == 0) {
             int k10 = sf0Var.D0.k(i7);
-            if (sf0Var.f38076i1) {
+            if (sf0Var.f38036i1) {
                 k10--;
             }
             sf0Var.getCurrentItemView();
@@ -52,7 +52,7 @@ public final class lf0 implements c5.g {
                 if (childAt instanceof l9) {
                     rf0 rf0Var = sf0Var.D0;
                     int k11 = rf0Var.k(rf0Var.d.indexOf(childAt));
-                    if (sf0Var.f38076i1) {
+                    if (sf0Var.f38036i1) {
                         k11--;
                     }
                     ImageReceiver imageReceiver = ((l9) childAt).getImageReceiver();

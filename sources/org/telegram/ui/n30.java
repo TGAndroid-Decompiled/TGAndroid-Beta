@@ -13,48 +13,48 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 public final class n30 extends Dialog {
-    public final di.b3 f47922a;
-    public final l00 f47923b;
-    public Bitmap f47924c;
+    public final di.b3 f47948a;
+    public final l00 f47949b;
+    public Bitmap f47950c;
     public Paint d;
-    public BitmapShader f47925e;
-    public final Matrix f47926f;
+    public BitmapShader f47951e;
+    public final Matrix f47952f;
     public float h;
-    public ValueAnimator f47927n;
-    public boolean f47928r;
+    public ValueAnimator f47953n;
+    public boolean f47954r;
 
     public n30(Context context, l00 l00Var) {
         super(context, 2131755352);
-        this.f47926f = new Matrix();
-        this.f47923b = l00Var;
+        this.f47952f = new Matrix();
+        this.f47949b = l00Var;
         l00Var.setVisibility(4);
         org.telegram.messenger.g0.l2(new org.telegram.ui.Components.ex(12, this, l00Var), 14.0f);
         di.b3 b3Var = new di.b3(this, context, l00Var);
-        this.f47922a = b3Var;
+        this.f47948a = b3Var;
         b3Var.setOnClickListener(new a(this, 28));
     }
 
     public final void b(float f10, m30 m30Var) {
-        ValueAnimator valueAnimator = this.f47927n;
+        ValueAnimator valueAnimator = this.f47953n;
         if (valueAnimator != null) {
             valueAnimator.cancel();
-            this.f47927n = null;
+            this.f47953n = null;
         }
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.h, f10);
-        this.f47927n = ofFloat;
+        this.f47953n = ofFloat;
         ofFloat.addUpdateListener(new a3(this, 13));
-        this.f47927n.addListener(new bi.o7(this, f10, m30Var, 4));
-        this.f47927n.setDuration(420L);
-        this.f47927n.setInterpolator(org.telegram.ui.Components.xq.h);
-        this.f47927n.start();
+        this.f47953n.addListener(new bi.o7(this, f10, m30Var, 4));
+        this.f47953n.setDuration(420L);
+        this.f47953n.setInterpolator(org.telegram.ui.Components.xq.h);
+        this.f47953n.start();
     }
 
     @Override
     public final void dismiss() {
-        if (this.f47928r) {
+        if (this.f47954r) {
             return;
         }
-        this.f47928r = true;
+        this.f47954r = true;
         b(0.0f, new m30(this, 0));
         try {
             WindowManager.LayoutParams attributes = getWindow().getAttributes();
@@ -70,7 +70,7 @@ public final class n30 extends Dialog {
         super.onCreate(bundle);
         Window window = getWindow();
         window.setWindowAnimations(2131755178);
-        setContentView(this.f47922a, new ViewGroup.LayoutParams(-1, -1));
+        setContentView(this.f47948a, new ViewGroup.LayoutParams(-1, -1));
         WindowManager.LayoutParams attributes = window.getAttributes();
         attributes.width = -1;
         attributes.height = -1;

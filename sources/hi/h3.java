@@ -99,8 +99,8 @@ public final class h3 implements View.OnClickListener {
                     i10 = i12;
                     f6Var = f6Var2;
                 }
-                k60Var.f35217t = false;
-                k60Var.f35216s = 0;
+                k60Var.f35181t = false;
+                k60Var.f35180s = 0;
                 k60Var.V(5);
                 k60Var.a0(org.telegram.messenger.g0.L(24.0f), 0.0f);
                 k60Var.Z();

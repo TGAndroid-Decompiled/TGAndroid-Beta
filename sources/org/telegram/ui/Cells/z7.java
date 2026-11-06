@@ -86,7 +86,7 @@ public class z7 extends FrameLayout implements ls, rg.c {
     public final void a(boolean z9) {
         ImageView imageView = this.J;
         if (z9) {
-            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(xq.f40310f).start();
+            imageView.animate().alpha(0.0f).scaleX(0.4f).scaleY(0.4f).setDuration(200L).setInterpolator(xq.f40329f).start();
         } else {
             imageView.setAlpha(0.0f);
         }
@@ -157,7 +157,7 @@ public class z7 extends FrameLayout implements ls, rg.c {
             imageView.setAlpha(0.0f);
             imageView.setScaleX(0.4f);
             imageView.setScaleY(0.4f);
-            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(xq.f40310f).start();
+            imageView.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(200L).setInterpolator(xq.f40329f).start();
             return;
         }
         imageView.setAlpha(1.0f);

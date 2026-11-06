@@ -13,10 +13,10 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class bw implements org.telegram.ui.is {
-    public final gy f32308a;
+    public final gy f32302a;
 
     public bw(gy gyVar) {
-        this.f32308a = gyVar;
+        this.f32302a = gyVar;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class bw implements org.telegram.ui.is {
 
     @Override
     public final void C(TLRPC.Document document) {
-        org.telegram.ui.ActionBar.f2 f2Var = this.f32308a.Y1;
+        org.telegram.ui.ActionBar.f2 f2Var = this.f32302a.Y1;
         if (f2Var instanceof org.telegram.ui.an) {
             ((org.telegram.ui.an) f2Var).Cb(document);
         }
@@ -51,24 +51,24 @@ public final class bw implements org.telegram.ui.is {
     public final void F(TLRPC.Document document) {
         TLRPC.TL_stickers_removeStickerFromSet tL_stickers_removeStickerFromSet = new TLRPC.TL_stickers_removeStickerFromSet();
         tL_stickers_removeStickerFromSet.sticker = org.telegram.messenger.ui.a0(document, "").document;
-        ConnectionsManager.getInstance(this.f32308a.f34076c1).sendRequest(tL_stickers_removeStickerFromSet, new x1(this, 3));
+        ConnectionsManager.getInstance(this.f32302a.f34024c1).sendRequest(tL_stickers_removeStickerFromSet, new x1(this, 3));
     }
 
     @Override
     public final String G(boolean z9) {
-        gy gyVar = this.f32308a;
+        gy gyVar = this.f32302a;
         if (z9) {
-            v4.g0 adapter = gyVar.f34091h0.getAdapter();
-            lx lxVar = gyVar.f34097j0;
+            v4.g0 adapter = gyVar.f34039h0.getAdapter();
+            lx lxVar = gyVar.f34045j0;
             if (adapter == lxVar) {
-                return lxVar.f35762x;
+                return lxVar.f35767x;
             }
             return null;
         }
         v4.g0 adapter2 = gyVar.P.getAdapter();
         gx gxVar = gyVar.S;
         if (adapter2 == gxVar) {
-            return gxVar.f34061w;
+            return gxVar.f34009w;
         }
         return null;
     }
@@ -79,12 +79,12 @@ public final class bw implements org.telegram.ui.is {
         SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(org.telegram.messenger.ij.U(document));
         valueOf.setSpan(new r5(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
         if (org.telegram.messenger.g0.g(valueOf)) {
-            gy gyVar = this.f32308a;
+            gy gyVar = this.f32302a;
             org.telegram.ui.ActionBar.f2 f2Var = gyVar.Y1;
             if (f2Var != null) {
                 hcVar = hc.a0(f2Var);
             } else {
-                hcVar = new hc(gyVar.f34119r, gyVar.Z1);
+                hcVar = new hc(gyVar.f34067r, gyVar.Z1);
             }
             org.telegram.messenger.camera.q.r(null, 2131751185, hcVar);
         }
@@ -102,7 +102,7 @@ public final class bw implements org.telegram.ui.is {
 
     @Override
     public final void L() {
-        this.f32308a.W();
+        this.f32302a.W();
     }
 
     @Override
@@ -110,7 +110,7 @@ public final class bw implements org.telegram.ui.is {
         if (inputStickerSet == null) {
             return;
         }
-        this.f32308a.f34128t1.d(null, inputStickerSet, false);
+        this.f32302a.f34076t1.d(null, inputStickerSet, false);
     }
 
     @Override
@@ -148,17 +148,17 @@ public final class bw implements org.telegram.ui.is {
 
     @Override
     public final long a() {
-        return this.f32308a.f34128t1.a();
+        return this.f32302a.f34076t1.a();
     }
 
     @Override
     public final boolean b() {
-        return this.f32308a.f34128t1.b();
+        return this.f32302a.f34076t1.b();
     }
 
     @Override
     public final boolean c() {
-        return this.f32308a.f34128t1.c();
+        return this.f32302a.f34076t1.c();
     }
 
     @Override
@@ -168,7 +168,7 @@ public final class bw implements org.telegram.ui.is {
 
     @Override
     public final boolean e(TLRPC.Document document) {
-        return this.f32308a.f34128t1.j();
+        return this.f32302a.f34076t1.j();
     }
 
     @Override
@@ -183,8 +183,8 @@ public final class bw implements org.telegram.ui.is {
 
     @Override
     public final boolean h() {
-        gy gyVar = this.f32308a;
-        if (gyVar.Y1 == null && gyVar.f34130u0) {
+        gy gyVar = this.f32302a;
+        if (gyVar.Y1 == null && gyVar.f34078u0) {
             return false;
         }
         return true;
@@ -200,7 +200,7 @@ public final class bw implements org.telegram.ui.is {
         if (i7 != 2) {
             return true;
         }
-        gy gyVar = this.f32308a;
+        gy gyVar = this.f32302a;
         org.telegram.ui.ActionBar.f2 f2Var = gyVar.Y1;
         if ((f2Var instanceof org.telegram.ui.an) && ((org.telegram.ui.an) f2Var).S6()) {
             if (org.telegram.messenger.p10.i(org.telegram.messenger.p10.f24459s0).q() || (((org.telegram.ui.an) gyVar.Y1).j() != null && org.telegram.messenger.t10.B(((org.telegram.ui.an) gyVar.Y1).j()))) {
@@ -213,7 +213,7 @@ public final class bw implements org.telegram.ui.is {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z9, int i7, int i10) {
-        this.f32308a.f34128t1.m(null, document, str, obj, null, z9, i7);
+        this.f32302a.f34076t1.m(null, document, str, obj, null, z9, i7);
     }
 
     @Override
@@ -237,8 +237,8 @@ public final class bw implements org.telegram.ui.is {
                 break;
             }
         }
-        gy gyVar = this.f32308a;
-        yv0.M0(gyVar.Y1, org.telegram.messenger.ui.b0(gyVar.f34076c1).m0(inputStickerSet, true), document);
+        gy gyVar = this.f32302a;
+        yv0.M0(gyVar.Y1, org.telegram.messenger.ui.b0(gyVar.f34024c1).m0(inputStickerSet, true), document);
     }
 
     @Override
@@ -257,7 +257,7 @@ public final class bw implements org.telegram.ui.is {
             if (hashMap.isEmpty() || arrayList.isEmpty()) {
                 org.telegram.messenger.i6.a(org.telegram.messenger.i6.f23067o[0]);
             }
-            pw pwVar = this.f32308a.R;
+            pw pwVar = this.f32302a.R;
             if (pwVar != null) {
                 pwVar.F(false);
             }
@@ -266,22 +266,22 @@ public final class bw implements org.telegram.ui.is {
 
     @Override
     public final void s(int i7, int i10, Object obj, TLObject tLObject, boolean z9) {
-        gy gyVar = this.f32308a;
-        kv kvVar = gyVar.f34091h0;
-        if (kvVar.getAdapter() == gyVar.f34108n0) {
-            gyVar.f34128t1.v(null, tLObject, null, obj, z9, i7, i10);
-        } else if (kvVar.getAdapter() == gyVar.f34097j0) {
-            gyVar.f34128t1.v(null, tLObject, null, obj, z9, i7, i10);
+        gy gyVar = this.f32302a;
+        kv kvVar = gyVar.f34039h0;
+        if (kvVar.getAdapter() == gyVar.f34056n0) {
+            gyVar.f34076t1.v(null, tLObject, null, obj, z9, i7, i10);
+        } else if (kvVar.getAdapter() == gyVar.f34045j0) {
+            gyVar.f34076t1.v(null, tLObject, null, obj, z9, i7, i10);
         }
     }
 
     @Override
     public final void t() {
-        sw swVar = this.f32308a.P;
-        if (swVar != null && swVar.f38177l3 != null) {
-            while (swVar.f38177l3.size() > 0) {
-                rw rwVar = (rw) swVar.f38177l3.valueAt(0);
-                swVar.f38177l3.removeAt(0);
+        sw swVar = this.f32302a.P;
+        if (swVar != null && swVar.f38137l3 != null) {
+            while (swVar.f38137l3.size() > 0) {
+                rw rwVar = (rw) swVar.f38137l3.valueAt(0);
+                swVar.f38137l3.removeAt(0);
                 if (rwVar != null) {
                     View view = rwVar.d;
                     if (view != null && (view.getBackground() instanceof RippleDrawable)) {
@@ -301,8 +301,8 @@ public final class bw implements org.telegram.ui.is {
         TLRPC.EmojiStatus emojiStatus;
         Object obj;
         hc hcVar;
-        gy gyVar = this.f32308a;
-        FrameLayout frameLayout = gyVar.f34119r;
+        gy gyVar = this.f32302a;
+        FrameLayout frameLayout = gyVar.f34067r;
         org.telegram.ui.ActionBar.f2 f2Var = gyVar.Y1;
         org.telegram.ui.ActionBar.f6 f6Var = gyVar.Z1;
         if (document == null) {
@@ -318,18 +318,18 @@ public final class bw implements org.telegram.ui.is {
         } else {
             obj = f10.emoji_status;
         }
-        org.telegram.messenger.qp.s1(gyVar.f34076c1).h5(emojiStatus, null);
+        org.telegram.messenger.qp.s1(gyVar.f34024c1).h5(emojiStatus, null);
         fq fqVar = new fq(9, this, obj);
         if (document == null) {
             ub ubVar = new ub(gyVar.getContext(), f6Var);
-            ubVar.f38590b.setText(org.telegram.messenger.hd.M0(2131746286, null));
-            ImageView imageView = ubVar.f38589a;
+            ubVar.f38581b.setText(org.telegram.messenger.hd.M0(2131746286, null));
+            ImageView imageView = ubVar.f38580a;
             imageView.setImageResource(2131232362);
             imageView.setScaleX(0.8f);
             imageView.setScaleY(0.8f);
             org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.z9, f6Var, PorterDuff.Mode.MULTIPLY);
             ac acVar = new ac(gyVar.getContext(), f6Var, true);
-            acVar.f31748b = fqVar;
+            acVar.f31760b = fqVar;
             ubVar.setButton(acVar);
             if (f2Var != null) {
                 cc.g(f2Var, ubVar, 1500).j();
@@ -349,12 +349,12 @@ public final class bw implements org.telegram.ui.is {
 
     @Override
     public final void x(TLObject tLObject, Object obj) {
-        gy gyVar = this.f32308a;
-        kv kvVar = gyVar.f34091h0;
-        if (kvVar.getAdapter() != gyVar.f34108n0 && kvVar.getAdapter() != gyVar.f34097j0) {
+        gy gyVar = this.f32302a;
+        kv kvVar = gyVar.f34039h0;
+        if (kvVar.getAdapter() != gyVar.f34056n0 && kvVar.getAdapter() != gyVar.f34045j0) {
             return;
         }
-        gyVar.f34128t1.e(tLObject, obj);
+        gyVar.f34076t1.e(tLObject, obj);
     }
 
     @Override

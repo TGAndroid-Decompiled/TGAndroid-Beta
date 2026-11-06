@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.telegram.tgnet.TLRPC;
 public abstract class b {
-    public static boolean f44119a;
+    public static boolean f44135a;
 
     public static boolean a(int i7, TLRPC.User user) {
         String n10;
@@ -31,7 +31,7 @@ public abstract class b {
 
     public static void b(int i7) {
         org.telegram.ui.ActionBar.f6 f6Var;
-        if (!f44119a && org.telegram.messenger.p10.f24459s0 == i7) {
+        if (!f44135a && org.telegram.messenger.p10.f24459s0 == i7) {
             Context context = LaunchActivity.G1;
             if (context == null) {
                 context = org.telegram.messenger.t0.f25555b;
@@ -50,7 +50,7 @@ public abstract class b {
     }
 
     public static void c(int i7, Context context, org.telegram.ui.ActionBar.f6 f6Var) {
-        if (f44119a) {
+        if (f44135a) {
             return;
         }
         org.telegram.ui.ActionBar.v2 l10 = org.telegram.messenger.k5.l(1, context, f6Var, false);
@@ -75,7 +75,7 @@ public abstract class b {
         q0Var2.a(2131231860, org.telegram.messenger.hd.M0(2131754705, null), org.telegram.messenger.hd.M0(2131754706, null));
         f10.addView(q0Var2, c8.ha.t(-1, -2, 17, 0, 0, 0, 0));
         bi.q0 q0Var3 = new bi.q0(1, context, f6Var);
-        q0Var3.a(2131231803, org.telegram.messenger.hd.M0(2131754703, null), org.telegram.messenger.g0.U2(org.telegram.messenger.hd.a0(null, null, 2131754704, org.telegram.messenger.hd.f0(org.telegram.messenger.qp.s1(i7).N6)), new fq0(e0Var, 2)));
+        q0Var3.a(2131231803, org.telegram.messenger.hd.M0(2131754703, null), org.telegram.messenger.g0.U2(org.telegram.messenger.hd.a0(null, null, 2131754704, org.telegram.messenger.hd.f0(org.telegram.messenger.qp.s1(i7).N6)), new gq0(e0Var, 2)));
         f10.addView(q0Var3, c8.ha.t(-1, -2, 17, 0, 0, 0, 0));
         fi.d dVar = new fi.d(context, f6Var, true);
         dVar.i(org.telegram.messenger.hd.M0(2131754698, null), false, true);
@@ -89,7 +89,7 @@ public abstract class b {
         org.telegram.ui.ActionBar.v2[] v2VarArr = {l10};
         l10.T0 = false;
         l10.N();
-        f44119a = true;
+        f44135a = true;
         v2VarArr[0].show();
         v2VarArr[0].setOnDismissListener(new fi.d1(1));
     }

@@ -15,7 +15,7 @@ public final class tq extends na {
     public String T1;
     public String U1;
     public SpannableStringBuilder V1;
-    public f41 W1;
+    public k41 W1;
     public final boolean X1;
     public bi.t Y1;
 
@@ -24,7 +24,7 @@ public final class tq extends na {
         TLRPC.Chat M0;
         tq naVar = new na(context, null, false, false, bVar);
         naVar.P1 = true;
-        naVar.f36333r1 = 0.126f;
+        naVar.f36227r1 = 0.126f;
         naVar.Q1 = null;
         naVar.S1 = false;
         long n10 = org.telegram.messenger.m5.n(getgroupcallstreamrtmpurl.peer);
@@ -46,12 +46,12 @@ public final class tq extends na {
             }
         }
         v4.k kVar = new v4.k();
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        naVar.f36328k1.setItemAnimator(kVar);
-        pj0 pj0Var = naVar.f36328k1;
+        naVar.f36222k1.setItemAnimator(kVar);
+        pj0 pj0Var = naVar.f36222k1;
         int i11 = naVar.f28645t0;
         if (naVar.X1) {
             i10 = org.telegram.messenger.g0.L(z9 ? 124.0f : 72.0f);
@@ -66,9 +66,9 @@ public final class tq extends na {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(naVar.U1);
         naVar.V1 = spannableStringBuilder;
         ?? obj = new Object();
-        obj.f38442a |= 256;
-        obj.f38443b = 0;
-        obj.f38444c = spannableStringBuilder.length();
+        obj.f38433a |= 256;
+        obj.f38434b = 0;
+        obj.f38435c = spannableStringBuilder.length();
         naVar.V1.setSpan(new uy0(obj, 0), 0, naVar.V1.length(), 0);
         naVar.W1.O(false);
     }
@@ -85,9 +85,9 @@ public final class tq extends na {
 
     @Override
     public final oj0 L0(pj0 pj0Var) {
-        f41 f41Var = new f41(pj0Var, getContext(), this.f28612a, 0, true, new d(this, 7), this.I0);
-        this.W1 = f41Var;
-        return f41Var;
+        k41 k41Var = new k41(pj0Var, getContext(), this.f28612a, 0, true, new d(this, 7), this.I0);
+        this.W1 = k41Var;
+        return k41Var;
     }
 
     @Override
@@ -98,7 +98,7 @@ public final class tq extends na {
     public tq(org.telegram.ui.ActionBar.f2 f2Var, TLRPC.Peer peer, long j3, boolean z9, r60 r60Var) {
         super(f2Var, false);
         this.P1 = false;
-        this.f36333r1 = 0.26f;
+        this.f36227r1 = 0.26f;
         this.Q1 = r60Var;
         this.S1 = z9;
         Context context = this.f28615b.getContext();
@@ -134,15 +134,15 @@ public final class tq extends na {
             dVar.setOnClickListener(new rq(this, context, dVar, j3, 0));
             this.f28615b.addView(dVar, c8.ha.d(-1, 48.0f, 80, 16.0f, 0.0f, 16.0f, 12.0f));
         }
-        pj0 pj0Var = this.f36328k1;
+        pj0 pj0Var = this.f36222k1;
         int i11 = this.f28645t0;
         pj0Var.setPadding(i11, 0, i11, org.telegram.messenger.g0.L((z10 ? 52 : 0) + 72));
         v4.k kVar = new v4.k();
-        kVar.f56954m = false;
+        kVar.f56979m = false;
         kVar.C = false;
         kVar.o(xq.h);
         kVar.n(350L);
-        this.f36328k1.setItemAnimator(kVar);
+        this.f36222k1.setItemAnimator(kVar);
         N();
         b1();
         TL_phone.getGroupCallStreamRtmpUrl getgroupcallstreamrtmpurl = new TL_phone.getGroupCallStreamRtmpUrl();

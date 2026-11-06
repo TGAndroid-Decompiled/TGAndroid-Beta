@@ -52,7 +52,7 @@ public final class h8 extends v4.s0 {
             case 1:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
                 jl jlVar = chatAttachAlertPhotoLayout.E;
-                di diVar = chatAttachAlertPhotoLayout.f38951b;
+                di diVar = chatAttachAlertPhotoLayout.f38948b;
                 if (i7 == 0) {
                     int L = org.telegram.messenger.g0.L(13.0f);
                     org.telegram.ui.ActionBar.r0 r0Var = diVar.U2;
@@ -64,7 +64,7 @@ public final class h8 extends v4.s0 {
                     int i13 = L + i10;
                     int i14 = diVar.f28644s0;
                     if (((diVar.V3[0] - i14) - i13) + i14 < (diVar.I2.getAlpha() * diVar.I2.getMeasuredHeight()) + org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() && (xi0Var = (xi0) jlVar.K(0)) != null) {
-                        View view = xi0Var.f56927a;
+                        View view = xi0Var.f56952a;
                         int top = view.getTop();
                         topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
                         if (top > topScrollOffset) {
@@ -112,7 +112,7 @@ public final class h8 extends v4.s0 {
                 return;
             case 1:
                 ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) obj;
-                di diVar = chatAttachAlertPhotoLayout.f38951b;
+                di diVar = chatAttachAlertPhotoLayout.f38948b;
                 jl jlVar = chatAttachAlertPhotoLayout.E;
                 if (jlVar.getChildCount() > 0) {
                     diVar.M1(chatAttachAlertPhotoLayout, i10);

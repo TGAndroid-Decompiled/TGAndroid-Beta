@@ -84,11 +84,11 @@ public final class y7 extends View {
             f10 = 0.0f;
         }
         w5Var2.e(false, f10);
-        if (w5Var2.f39849c != 0.0f) {
+        if (w5Var2.f39857c != 0.0f) {
             float measuredHeight = getMeasuredHeight() / 2.0f;
-            paint.setAlpha((int) (w5Var2.f39849c * 255.0f));
+            paint.setAlpha((int) (w5Var2.f39857c * 255.0f));
             RectF rectF = org.telegram.messenger.g0.P;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth() * w5Var.f39849c, getMeasuredHeight());
+            rectF.set(0.0f, 0.0f, getMeasuredWidth() * w5Var.f39857c, getMeasuredHeight());
             canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
         }
     }

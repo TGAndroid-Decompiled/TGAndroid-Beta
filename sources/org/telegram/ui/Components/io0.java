@@ -3,11 +3,11 @@ package org.telegram.ui.Components;
 import android.content.Context;
 import org.telegram.tgnet.TLRPC;
 public final class io0 extends jg.c0 {
-    public final jo0 f34742n;
+    public final jo0 f34705n;
 
     public io0(jo0 jo0Var, Context context, int i7, org.telegram.ui.ActionBar.f6 f6Var) {
         super(i7, context, f6Var, true, true);
-        this.f34742n = jo0Var;
+        this.f34705n = jo0Var;
     }
 
     @Override
@@ -15,10 +15,10 @@ public final class io0 extends jg.c0 {
         TLRPC.Chat chat;
         boolean z9;
         String str;
-        org.telegram.ui.Cells.o4 o4Var = (org.telegram.ui.Cells.o4) d1Var.f56927a;
-        mo0 mo0Var = this.f34742n.K;
+        org.telegram.ui.Cells.o4 o4Var = (org.telegram.ui.Cells.o4) d1Var.f56952a;
+        mo0 mo0Var = this.f34705n.K;
         TLRPC.User user = null;
-        if (mo0Var.Z1 || mo0Var.f36054a2) {
+        if (mo0Var.Z1 || mo0Var.f35992a2) {
             int i10 = org.telegram.ui.ActionBar.k6.f27821bh;
             int i11 = org.telegram.ui.ActionBar.k6.Tg;
             org.telegram.ui.ActionBar.r6.V(o4Var.f29643b, i10, null);

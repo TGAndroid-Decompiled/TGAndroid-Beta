@@ -1,22 +1,22 @@
 package org.telegram.ui.Components;
 public final class iw extends c8.ja {
-    public final gy f34806a;
+    public final gy f34769a;
 
     public iw(gy gyVar) {
-        this.f34806a = gyVar;
+        this.f34769a = gyVar;
     }
 
     @Override
     public final void a() {
-        gy gyVar = this.f34806a;
-        gyVar.f34085f0 = false;
+        gy gyVar = this.f34769a;
+        gyVar.f34033f0 = false;
         gyVar.P.B1();
     }
 
     @Override
     public final void b() {
-        gy gyVar = this.f34806a;
+        gy gyVar = this.f34769a;
         gyVar.P.B1();
-        gyVar.f34085f0 = true;
+        gyVar.f34033f0 = true;
     }
 }

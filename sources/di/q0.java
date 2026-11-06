@@ -2,21 +2,21 @@ package di;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
-public final class q0 extends q31 {
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.w31;
+public final class q0 extends v31 {
     public static final int f9621b = 0;
 
     static {
-        q31.h(new q31());
+        v31.h(new v31());
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
-        ((r0) view).set((t0) r31Var.G);
+    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
+        ((r0) view).set((t0) w31Var.G);
     }
 
     @Override
@@ -25,8 +25,8 @@ public final class q0 extends q31 {
     }
 
     @Override
-    public final boolean e(r31 r31Var, r31 r31Var2) {
-        if (r31Var.G == r31Var2.G) {
+    public final boolean e(w31 w31Var, w31 w31Var2) {
+        if (w31Var.G == w31Var2.G) {
             return true;
         }
         return false;

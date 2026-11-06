@@ -1,121 +1,207 @@
 package org.telegram.ui.web;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
+import android.content.Context;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import c8.ha;
+import c8.wa;
+import fi.u2;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.TimeZone;
+import org.telegram.messenger.a8;
 import org.telegram.messenger.c20;
-import org.telegram.messenger.sz;
-public final class a1 extends AsyncTask {
-    public final int f51076a = 1;
-    public final HashMap f51077b = new HashMap();
-    public Exception f51078c;
-    public final c20 d;
+import org.telegram.messenger.hd;
+import org.telegram.ui.ActionBar.k6;
+import org.telegram.ui.ActionBar.r6;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.NumberTextView;
+import org.telegram.ui.Components.av0;
+import org.telegram.ui.Components.k41;
+import org.telegram.ui.Components.m41;
+import org.telegram.ui.Components.ui;
+import org.telegram.ui.Components.w31;
+import org.telegram.ui.nt0;
+public final class a1 extends m41 {
+    public final c20 f51082e;
+    public boolean f51084n;
+    public String f51085r;
+    public NumberTextView f51086s;
+    public org.telegram.ui.ActionBar.r0 f51088x;
+    public av0 f51089y;
+    public ArrayList f51083f = wa.a(new ii.c(this, 17));
+    public final ArrayList h = new ArrayList();
+    public final HashSet f51087w = new HashSet();
 
-    public a1(c20 c20Var) {
-        this.d = c20Var;
+    public a1(org.telegram.ui.a0 a0Var, c20 c20Var) {
+        this.f51082e = c20Var;
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        BufferedReader bufferedReader;
-        switch (this.f51076a) {
-            case 0:
-                try {
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry : this.f51077b.entrySet()) {
-                        if (entry.getKey() != null && entry.getValue() != null) {
-                            httpURLConnection.setRequestProperty((String) entry.getKey(), (String) entry.getValue());
-                        }
+    public final void Z(ArrayList arrayList, k41 k41Var) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeZone(TimeZone.getDefault());
+        int i7 = 5;
+        int i10 = 2;
+        if (TextUtils.isEmpty(this.f51085r)) {
+            ArrayList arrayList2 = this.f51083f;
+            if (arrayList2 != null) {
+                int i11 = 0;
+                for (int size = arrayList2.size() - 1; size >= 0; size--) {
+                    y0 y0Var = (y0) this.f51083f.get(size);
+                    calendar.setTimeInMillis(y0Var.f51404b);
+                    int i12 = calendar.get(5) + (calendar.get(2) * 100) + (calendar.get(1) * 10000);
+                    if (i11 != i12) {
+                        arrayList.add(w31.r(hd.u(y0Var.f51404b / 1000, false)));
+                        i11 = i12;
                     }
-                    httpURLConnection.setRequestMethod("GET");
-                    httpURLConnection.setDoInput(true);
-                    int responseCode = httpURLConnection.getResponseCode();
-                    if (responseCode >= 200 && responseCode < 300) {
-                        if (httpURLConnection.getContentType() != null && httpURLConnection.getContentType().contains("svg")) {
-                            return sz.g(new BufferedInputStream(httpURLConnection.getInputStream()), 64, 64);
-                        }
-                        return BitmapFactory.decodeStream(new BufferedInputStream(httpURLConnection.getInputStream()));
-                    }
-                    httpURLConnection.disconnect();
-                    return null;
-                } catch (Exception e10) {
-                    this.f51078c = e10;
-                    return null;
+                    String str = this.f51085r;
+                    int i13 = f.f51127b;
+                    w31 K = w31.K(f.class);
+                    K.f39843z = 3;
+                    K.f39835q = false;
+                    K.H = y0Var;
+                    K.f39831m = str;
+                    arrayList.add(K);
                 }
-            default:
-                try {
-                    HttpURLConnection httpURLConnection2 = (HttpURLConnection) new URL(((String[]) objArr)[0]).openConnection();
-                    for (Map.Entry entry2 : this.f51077b.entrySet()) {
-                        if (entry2.getKey() != null && entry2.getValue() != null) {
-                            httpURLConnection2.setRequestProperty((String) entry2.getKey(), (String) entry2.getValue());
-                        }
-                    }
-                    httpURLConnection2.setRequestMethod("GET");
-                    httpURLConnection2.setDoInput(true);
-                    int responseCode2 = httpURLConnection2.getResponseCode();
-                    if (responseCode2 >= 200 && responseCode2 < 300) {
-                        bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection2.getInputStream()));
-                    } else {
-                        bufferedReader = new BufferedReader(new InputStreamReader(httpURLConnection2.getErrorStream()));
-                    }
-                    StringBuilder sb2 = new StringBuilder();
-                    while (true) {
-                        String readLine = bufferedReader.readLine();
-                        if (readLine != null) {
-                            sb2.append(readLine);
-                        } else {
-                            bufferedReader.close();
-                            return sb2.toString();
-                        }
-                    }
-                } catch (Exception e11) {
-                    this.f51078c = e11;
-                    return null;
+            }
+        } else {
+            ArrayList arrayList3 = this.h;
+            int size2 = arrayList3.size() - 1;
+            int i14 = 0;
+            while (size2 >= 0) {
+                y0 y0Var2 = (y0) arrayList3.get(size2);
+                calendar.setTimeInMillis(y0Var2.f51404b);
+                int i15 = calendar.get(i7) + (calendar.get(i10) * 100) + (calendar.get(1) * 10000);
+                if (i14 != i15) {
+                    arrayList.add(w31.r(hd.u(y0Var2.f51404b / 1000, false)));
+                    i14 = i15;
                 }
-                break;
+                String str2 = this.f51085r;
+                int i16 = f.f51127b;
+                w31 K2 = w31.K(f.class);
+                K2.f39843z = 3;
+                K2.f39835q = false;
+                K2.H = y0Var2;
+                K2.f39831m = str2;
+                arrayList.add(K2);
+                size2--;
+                i7 = 5;
+                i10 = 2;
+            }
+            if (this.f51084n) {
+                arrayList.add(w31.p(32));
+                arrayList.add(w31.p(32));
+                arrayList.add(w31.p(32));
+            }
+        }
+        if (!arrayList.isEmpty()) {
+            arrayList.add(w31.C(null));
         }
     }
 
     @Override
-    public final void onPostExecute(Object obj) {
-        switch (this.f51076a) {
-            case 0:
-                Bitmap bitmap = (Bitmap) obj;
-                org.telegram.ui.Wallet.t tVar = (org.telegram.ui.Wallet.t) this.d;
-                if (tVar != null) {
-                    if (this.f51078c == null) {
-                        tVar.a(bitmap);
-                        return;
-                    } else {
-                        tVar.a(null);
-                        return;
-                    }
-                }
-                return;
-            default:
-                String str = (String) obj;
-                c20 c20Var = this.d;
-                if (c20Var != null) {
-                    if (this.f51078c == null) {
-                        c20Var.a(str);
-                        return;
-                    } else {
-                        c20Var.a(null);
-                        return;
-                    }
-                }
-                return;
+    public final CharSequence a0() {
+        return hd.M0(2131742921, null);
+    }
+
+    @Override
+    public final void b0(w31 w31Var, View view) {
+        if (w31Var.H(f.class) && !this.actionBar.v()) {
+            finishFragment();
+            this.f51082e.a((y0) w31Var.H);
         }
     }
 
-    public a1(org.telegram.ui.Wallet.t tVar) {
-        this.d = tVar;
+    @Override
+    public final boolean c0(w31 w31Var, View view) {
+        return false;
+    }
+
+    @Override
+    public final View createView(Context context) {
+        int i7;
+        this.fragmentView = super.createView(context);
+        org.telegram.ui.ActionBar.k kVar = this.actionBar;
+        int i10 = k6.f27848d6;
+        r6.i(i10, kVar, getResourceProvider());
+        this.actionBar.setActionModeColor(k6.x0(null, i10, false));
+        this.actionBar.setBackButtonImage(2131231240);
+        org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
+        int i11 = k6.G6;
+        r6.m(kVar2, 5, i11, getResourceProvider());
+        r6.m(this.actionBar, 3, k6.f28260z8, getResourceProvider());
+        r6.m(this.actionBar, 1, i11, getResourceProvider());
+        r6.b(this.actionBar, i11, getResourceProvider(), true);
+        this.actionBar.setCastShadows(true);
+        this.actionBar.setActionBarMenuOnItemClick(new nt0(this, 22));
+        org.telegram.ui.ActionBar.y n10 = this.actionBar.n(null);
+        NumberTextView numberTextView = new NumberTextView(n10.getContext());
+        this.f51086s = numberTextView;
+        numberTextView.setTextSize(18);
+        this.f51086s.setTypeface(org.telegram.messenger.g0.o());
+        this.f51086s.setTextColor(getThemedColor(k6.f28242y8));
+        this.f51086s.setOnTouchListener(new ei.b(2));
+        n10.addView(this.f51086s, ha.m(1.0f, 0, -1, 65, 0, 0));
+        org.telegram.ui.ActionBar.r0 c10 = this.actionBar.q().c(0, 2131232486, getResourceProvider());
+        c10.N();
+        c10.H = new u2(this);
+        this.f51088x = c10;
+        c10.setSearchFieldHint(hd.M0(2131745837, null));
+        this.f51088x.setContentDescription(hd.M0(2131745837, null));
+        EditTextBoldCursor searchField = this.f51088x.getSearchField();
+        r6.V(searchField, i11, getResourceProvider());
+        r6.E(searchField, k6.Gj, getResourceProvider());
+        r6.w(searchField, i11, getResourceProvider());
+        av0 av0Var = new av0(context, null, 1, null);
+        this.f51089y = av0Var;
+        if (TextUtils.isEmpty(this.f51085r)) {
+            i7 = 2131742919;
+        } else {
+            i7 = 2131742918;
+        }
+        av0Var.d.setText(hd.M0(i7, null));
+        this.f51089y.f31929e.setVisibility(8);
+        this.f51089y.e(false, false);
+        this.f51089y.setAnimateLayoutChange(true);
+        ((FrameLayout) this.fragmentView).addView(this.f51089y, ha.c(-1.0f, -1));
+        this.f35844a.setEmptyView(this.f51089y);
+        this.f35844a.j(new ui(this, 25));
+        return this.fragmentView;
+    }
+
+    @Override
+    public final boolean isLightStatusBar() {
+        if (org.telegram.messenger.g0.B(getThemedColor(k6.f27848d6)) > 0.721f) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void onThemeColorsChanged() {
+        try {
+            super.onThemeColorsChanged();
+            org.telegram.ui.ActionBar.k kVar = this.actionBar;
+            if (kVar != null) {
+                kVar.setActionModeColor(k6.x0(null, k6.f27848d6, false));
+            }
+        } catch (Exception e10) {
+            a8.g(e10, true);
+        }
+        try {
+            NumberTextView numberTextView = this.f51086s;
+            if (numberTextView != null) {
+                numberTextView.setTextColor(getThemedColor(k6.f28242y8));
+            }
+            org.telegram.ui.ActionBar.r0 r0Var = this.f51088x;
+            if (r0Var != null && r0Var.getSearchField() != null) {
+                this.f51088x.getSearchField().setCursorColor(getThemedColor(k6.G6));
+            }
+        } catch (Exception e11) {
+            a8.g(e11, true);
+        }
     }
 }

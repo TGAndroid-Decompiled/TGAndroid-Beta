@@ -4,11 +4,11 @@ import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
 public final class wy extends org.telegram.ui.Cells.n4 {
     public final gz D;
-    public final TextView f51657r;
-    public final bi.rc f51658s;
-    public int f51659w;
-    public final org.telegram.ui.Components.z4 f51660x;
-    public boolean f51661y;
+    public final TextView f51674r;
+    public final bi.rc f51675s;
+    public int f51676w;
+    public final org.telegram.ui.Components.z4 f51677x;
+    public boolean f51678y;
 
     public wy(org.telegram.ui.gz r13, android.content.Context r14) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wy.<init>(org.telegram.ui.gz, android.content.Context):void");
@@ -25,7 +25,7 @@ public final class wy extends org.telegram.ui.Cells.n4 {
             i10 = 2131750620;
         }
         String M0 = org.telegram.messenger.hd.M0(i10, null);
-        TextView textView = this.f51657r;
+        TextView textView = this.f51674r;
         textView.setText(M0);
         int i11 = 0;
         if (i7 < 0) {
@@ -37,16 +37,16 @@ public final class wy extends org.telegram.ui.Cells.n4 {
             int[] iArr = org.telegram.ui.ActionBar.k6.f28109r8;
             i11 = gzVar.getThemedColor(iArr[i7 % iArr.length]);
         }
-        this.f51659w = i11;
-        bi.rc rcVar = this.f51658s;
+        this.f51676w = i11;
+        bi.rc rcVar = this.f51675s;
         if (!z10) {
             rcVar.setEmojiColor(i11);
         }
         if (!z9) {
-            this.f51660x.a(this.f51659w, true);
+            this.f51677x.a(this.f51676w, true);
         }
-        if (z10 != this.f51661y) {
-            this.f51661y = z10;
+        if (z10 != this.f51678y) {
+            this.f51678y = z10;
             ViewPropertyAnimator animate = textView.animate();
             float f11 = 0.0f;
             if (z10) {
@@ -73,7 +73,7 @@ public final class wy extends org.telegram.ui.Cells.n4 {
         if (charSequence.length() > 12) {
             charSequence = charSequence.subSequence(0, 12);
         }
-        bi.rc rcVar = this.f51658s;
+        bi.rc rcVar = this.f51675s;
         CharSequence m10 = org.telegram.messenger.i6.m(charSequence, rcVar.getPaint().getFontMetricsInt(), false, null, 0);
         if (z9 && !org.telegram.messenger.hd.f22871a0) {
             z10 = true;

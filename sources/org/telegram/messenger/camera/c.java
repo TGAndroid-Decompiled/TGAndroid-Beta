@@ -15,7 +15,7 @@ public final class c implements Runnable {
     public final void run() {
         switch (this.f21756a) {
             case 0:
-                ((Camera2Session.AnonymousClass1) this.f21757b).lambda$onError$0();
+                Camera2Session.AnonymousClass1.a((Camera2Session.AnonymousClass1) this.f21757b);
                 return;
             case 1:
                 CameraView.VideoRecorder.a((CameraView.VideoRecorder) this.f21757b);

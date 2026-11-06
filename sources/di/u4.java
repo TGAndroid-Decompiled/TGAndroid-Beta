@@ -74,10 +74,10 @@ public final class u4 implements dj0 {
                     return false;
                 }
                 k60 F = k60.F(p9Var.f9578w, bVar, view);
-                F.f35198i = 3;
-                F.f35200j = true;
+                F.f35162i = 3;
+                F.f35164j = true;
                 F.W(new ColorDrawable(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f27921h5, bVar)));
-                F.f35216s = 133;
+                F.f35180s = 133;
                 if (d && !N && !z9 && !B) {
                     z11 = true;
                 } else {

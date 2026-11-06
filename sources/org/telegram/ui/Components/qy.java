@@ -2,22 +2,22 @@ package org.telegram.ui.Components;
 
 import android.graphics.SurfaceTexture;
 public final class qy implements SurfaceTexture.OnFrameAvailableListener {
-    public final int f37538a;
-    public final org.telegram.messenger.q5 f37539b;
+    public final int f37428a;
+    public final org.telegram.messenger.q5 f37429b;
 
     public qy(org.telegram.messenger.q5 q5Var, int i7) {
-        this.f37538a = i7;
-        this.f37539b = q5Var;
+        this.f37428a = i7;
+        this.f37429b = q5Var;
     }
 
     @Override
     public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
-        switch (this.f37538a) {
+        switch (this.f37428a) {
             case 0:
-                ((ry) this.f37539b).c(false, true, true);
+                ((ry) this.f37429b).c(false, true, true);
                 return;
             default:
-                ((a40) this.f37539b).requestRender(true, false);
+                ((a40) this.f37429b).requestRender(true, false);
                 return;
         }
     }

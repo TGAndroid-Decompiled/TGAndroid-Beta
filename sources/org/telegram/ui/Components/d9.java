@@ -11,8 +11,8 @@ public abstract class d9 {
                 parentLayout.setPulledDialogs(new ArrayList());
             }
             for (c9 c9Var : parentLayout.getPulledDialogs()) {
-                if (tL_forumTopic != null || c9Var.f32476f != j3) {
-                    if (tL_forumTopic != null && (tL_forumTopic2 = c9Var.f32475e) != null && tL_forumTopic2.f27004id == tL_forumTopic.f27004id) {
+                if (tL_forumTopic != null || c9Var.f32480f != j3) {
+                    if (tL_forumTopic != null && (tL_forumTopic2 = c9Var.f32479e) != null && tL_forumTopic2.f27004id == tL_forumTopic.f27004id) {
                         return;
                     }
                 } else {
@@ -20,14 +20,14 @@ public abstract class d9 {
                 }
             }
             ?? obj = new Object();
-            obj.f32472a = org.telegram.ui.an.class;
-            obj.f32473b = i7;
-            obj.f32476f = j3;
+            obj.f32476a = org.telegram.ui.an.class;
+            obj.f32477b = i7;
+            obj.f32480f = j3;
             obj.h = i11;
-            obj.f32477g = i10;
-            obj.f32474c = chat;
+            obj.f32481g = i10;
+            obj.f32478c = chat;
             obj.d = user;
-            obj.f32475e = tL_forumTopic;
+            obj.f32479e = tL_forumTopic;
             parentLayout.getPulledDialogs().add(obj);
         }
     }

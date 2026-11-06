@@ -5,20 +5,20 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.LaunchActivity;
 public final class kf implements Runnable {
-    public final org.telegram.messenger.ij f35269a;
-    public final long f35270b;
-    public final TL_keyboard.KeyboardButtonProto f35271c;
+    public final org.telegram.messenger.ij f35272a;
+    public final long f35273b;
+    public final TL_keyboard.KeyboardButtonProto f35274c;
     public final org.telegram.messenger.ij d;
-    public final TLRPC.User f35272e;
-    public final ChatActivityEnterView f35273f;
+    public final TLRPC.User f35275e;
+    public final ChatActivityEnterView f35276f;
 
     public kf(ChatActivityEnterView chatActivityEnterView, org.telegram.messenger.ij ijVar, long j3, TL_keyboard.KeyboardButtonProto keyboardButtonProto, org.telegram.messenger.ij ijVar2, TLRPC.User user) {
-        this.f35273f = chatActivityEnterView;
-        this.f35269a = ijVar;
-        this.f35270b = j3;
-        this.f35271c = keyboardButtonProto;
+        this.f35276f = chatActivityEnterView;
+        this.f35272a = ijVar;
+        this.f35273b = j3;
+        this.f35274c = keyboardButtonProto;
         this.d = ijVar2;
-        this.f35272e = user;
+        this.f35275e = user;
     }
 
     @Override
@@ -26,13 +26,13 @@ public final class kf implements Runnable {
         int i7;
         long h92;
         String F1;
-        ChatActivityEnterView chatActivityEnterView = this.f35273f;
+        ChatActivityEnterView chatActivityEnterView = this.f35276f;
         org.telegram.ui.an anVar = chatActivityEnterView.P2;
         if (chatActivityEnterView.f31082m1.Q() <= org.telegram.messenger.g0.L(20.0f) && !chatActivityEnterView.s0()) {
             if (anVar != null) {
                 int i10 = chatActivityEnterView.Q;
-                long j3 = this.f35269a.f23237k.dialog_id;
-                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f35271c;
+                long j3 = this.f35272a.f23237k.dialog_id;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f35274c;
                 String text = keyboardButtonProto.getText();
                 String url = keyboardButtonProto.getUrl();
                 boolean c10 = cg.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
@@ -47,7 +47,7 @@ public final class kf implements Runnable {
                 } else {
                     h92 = anVar.h9();
                 }
-                hi.q4 b10 = hi.q4.b(i10, j3, this.f35270b, text, url, c10 ? 1 : 0, i7, h92, null, false, null, null, 0, false, false);
+                hi.q4 b10 = hi.q4.b(i10, j3, this.f35273b, text, url, c10 ? 1 : 0, i7, h92, null, false, null, null, 0, false, false);
                 LaunchActivity launchActivity = LaunchActivity.G1;
                 if (launchActivity != null && launchActivity.O() != null && LaunchActivity.G1.O().k(b10) != null) {
                     hi.y yVar = chatActivityEnterView.f31077l0;
@@ -57,7 +57,7 @@ public final class kf implements Runnable {
                     }
                     return;
                 }
-                TLRPC.User user = this.f35272e;
+                TLRPC.User user = this.f35275e;
                 if (user == null) {
                     F1 = null;
                 } else {

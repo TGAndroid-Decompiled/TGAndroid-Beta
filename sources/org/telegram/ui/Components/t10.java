@@ -13,26 +13,26 @@ public final class t10 extends LinearLayout implements VoIPService.StateListener
     public boolean D;
     public float E;
     public float F;
-    public TextView f38218a;
-    public TextView f38219b;
-    public org.telegram.ui.Components.voip.n2 f38220c;
+    public TextView f38177a;
+    public TextView f38178b;
+    public org.telegram.ui.Components.voip.n2 f38179c;
     public org.telegram.ui.Components.voip.n2 d;
-    public l9 f38221e;
-    public RectF f38222f;
+    public l9 f38180e;
+    public RectF f38181f;
     public Paint h;
-    public LinearGradient f38223n;
-    public int f38224r;
-    public float f38225s;
-    public float f38226w;
-    public boolean f38227x;
-    public int f38228y;
+    public LinearGradient f38182n;
+    public int f38183r;
+    public float f38184s;
+    public float f38185w;
+    public boolean f38186x;
+    public int f38187y;
 
     public final void a(float f10, float f11, int i7) {
-        this.f38224r = i7;
-        this.f38225s = f10;
-        this.f38226w = f11;
+        this.f38183r = i7;
+        this.f38184s = f10;
+        this.f38185w = f11;
         invalidate();
-        this.f38227x = true;
+        this.f38186x = true;
     }
 
     public final void b(boolean z9) {
@@ -42,7 +42,7 @@ public final class t10 extends LinearLayout implements VoIPService.StateListener
         float f10;
         int i7;
         org.telegram.ui.Components.voip.n2 n2Var = this.d;
-        org.telegram.ui.Components.voip.n2 n2Var2 = this.f38220c;
+        org.telegram.ui.Components.voip.n2 n2Var2 = this.f38179c;
         if (n2Var2 != null && n2Var != null && (sharedInstance = VoIPService.getSharedInstance()) != null) {
             boolean isBluetoothOn = sharedInstance.isBluetoothOn();
             if (!isBluetoothOn && sharedInstance.isSpeakerphoneOn()) {
@@ -86,7 +86,7 @@ public final class t10 extends LinearLayout implements VoIPService.StateListener
 
     public final void c() {
         String str;
-        TextView textView = this.f38219b;
+        TextView textView = this.f38178b;
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null && sharedInstance.groupCall != null) {
             int callState = sharedInstance.getCallState();
@@ -122,7 +122,7 @@ public final class t10 extends LinearLayout implements VoIPService.StateListener
         String str;
         float f10;
         org.telegram.messenger.r3 r3Var;
-        int i7 = this.f38228y;
+        int i7 = this.f38187y;
         super.onAttachedToWindow();
         VoIPService sharedInstance = VoIPService.getSharedInstance();
         if (sharedInstance != null && sharedInstance.groupCall != null) {
@@ -143,7 +143,7 @@ public final class t10 extends LinearLayout implements VoIPService.StateListener
             w8Var.i(x02, org.telegram.ui.ActionBar.k6.x0(null, iArr2[w8.e(j10)], false));
             w8Var.q(chat);
             if (chat != null) {
-                this.f38221e.j(org.telegram.messenger.hc.e(chat.photo.photo_small), "50_50", w8Var, null);
+                this.f38180e.j(org.telegram.messenger.hc.e(chat.photo.photo_small), "50_50", w8Var, null);
             }
             if (sharedInstance.isConference() && (r3Var = sharedInstance.groupCall) != null) {
                 if (r3Var.f25203e.size() == 1) {
@@ -172,7 +172,7 @@ public final class t10 extends LinearLayout implements VoIPService.StateListener
             if (str != null) {
                 str = str.replace("\n", " ").replaceAll(" +", " ").trim();
             }
-            this.f38218a.setText(str);
+            this.f38177a.setText(str);
             c();
             sharedInstance.registerStateListener(this);
             if (VoIPService.getSharedInstance() != null) {
@@ -213,7 +213,7 @@ public final class t10 extends LinearLayout implements VoIPService.StateListener
         if (sharedInstance != null) {
             sharedInstance.unregisterStateListener(this);
         }
-        org.telegram.messenger.qs.f(this.f38228y).n(this, org.telegram.messenger.qs.f25082w2);
+        org.telegram.messenger.qs.f(this.f38187y).n(this, org.telegram.messenger.qs.f25082w2);
     }
 
     @Override

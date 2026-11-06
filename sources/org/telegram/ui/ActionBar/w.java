@@ -74,7 +74,7 @@ public final class w extends FrameLayout {
             actionBarLayout.o(this, actionBarLayout.f27268s1);
             return;
         }
-        WeakHashMap weakHashMap = r0.i0.f54073a;
+        WeakHashMap weakHashMap = r0.i0.f54098a;
         r0.y.c(this);
     }
 
@@ -429,7 +429,7 @@ public final class w extends FrameLayout {
             if (actionBarLayout.f27268s1 != null && getParent() == actionBarLayout) {
                 actionBarLayout.o(this, actionBarLayout.f27268s1);
             } else if (view != null) {
-                WeakHashMap weakHashMap = r0.i0.f54073a;
+                WeakHashMap weakHashMap = r0.i0.f54098a;
                 r0.y.c(view);
             }
         }

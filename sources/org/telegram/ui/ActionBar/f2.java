@@ -343,7 +343,7 @@ public abstract class f2 {
         if (dialog != null) {
             dialog.dismiss();
         } else if (this.inPreviewMode && (e2Var = this.previewDelegate) != null) {
-            ((wy0) ((li0) e2Var).f47524b).a();
+            ((wy0) ((li0) e2Var).f47551b).a();
         } else {
             finishFragment(true);
         }
@@ -967,7 +967,7 @@ public abstract class f2 {
         int i13 = I0.f15119c;
         this.bottomInset = i10;
         onInsets(i12, i11, i13, i10);
-        return r0.k1.f54083b;
+        return r0.k1.f54108b;
     }
 
     public void onPause() {

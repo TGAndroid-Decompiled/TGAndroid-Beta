@@ -56,66 +56,66 @@ public final class vy {
     public int Y0;
     public int Z;
     public final FloatBuffer Z0;
-    public int f39711a0;
-    public final FloatBuffer f39712a1;
-    public int f39714b0;
-    public final FloatBuffer f39715b1;
-    public boolean f39716c;
-    public int f39717c0;
-    public ByteBuffer f39718c1;
+    public int f39708a0;
+    public final FloatBuffer f39709a1;
+    public int f39711b0;
+    public final FloatBuffer f39712b1;
+    public boolean f39713c;
+    public int f39714c0;
+    public ByteBuffer f39715c1;
     public boolean d;
-    public int f39719d0;
-    public ByteBuffer f39720d1;
-    public sy f39721e;
-    public int f39722e0;
-    public ByteBuffer f39723e1;
-    public float f39724f;
-    public int f39725f0;
-    public ty f39726f1;
-    public sy f39727g;
-    public int f39728g0;
-    public final boolean f39729g1;
+    public int f39716d0;
+    public ByteBuffer f39717d1;
+    public sy f39718e;
+    public int f39719e0;
+    public ByteBuffer f39720e1;
+    public float f39721f;
+    public int f39722f0;
+    public ty f39723f1;
+    public sy f39724g;
+    public int f39725g0;
+    public final boolean f39726g1;
     public boolean h;
-    public int f39730h0;
-    public fi.d7 f39731h1;
-    public int f39732i;
-    public int f39733i0;
-    public int f39735j;
-    public int f39736j0;
-    public int f39737k;
-    public int f39738k0;
-    public int f39739l;
-    public int f39740l0;
-    public int f39741m;
+    public int f39727h0;
+    public fi.d7 f39728h1;
+    public int f39729i;
+    public int f39730i0;
+    public int f39732j;
+    public int f39733j0;
+    public int f39734k;
+    public int f39735k0;
+    public int f39736l;
+    public int f39737l0;
+    public int f39738m;
     public int m0;
-    public int f39742n;
-    public int f39743n0;
-    public uy f39744o;
-    public int f39745o0;
-    public int f39746p;
-    public int f39747p0;
-    public int f39748q;
-    public int f39749q0;
-    public int f39750r;
-    public int f39751r0;
-    public int f39752s;
-    public int f39753s0;
-    public int f39754t;
-    public int f39755t0;
-    public int f39756u;
-    public int f39757u0;
+    public int f39739n;
+    public int f39740n0;
+    public uy f39741o;
+    public int f39742o0;
+    public int f39743p;
+    public int f39744p0;
+    public int f39745q;
+    public int f39746q0;
+    public int f39747r;
+    public int f39748r0;
+    public int f39749s;
+    public int f39750s0;
+    public int f39751t;
+    public int f39752t0;
+    public int f39753u;
+    public int f39754u0;
     public int v;
-    public int f39758v0;
-    public int f39759w;
-    public int f39760w0;
-    public int f39761x;
-    public int f39762x0;
-    public int f39763y;
-    public int f39764y0;
-    public int f39765z;
-    public int f39766z0;
-    public boolean f39710a = true;
-    public boolean f39713b = true;
+    public int f39755v0;
+    public int f39756w;
+    public int f39757w0;
+    public int f39758x;
+    public int f39759x0;
+    public int f39760y;
+    public int f39761y0;
+    public int f39762z;
+    public int f39763z0;
+    public boolean f39707a = true;
+    public boolean f39710b = true;
     public final int[] H = new int[2];
     public final int[] I = new int[2];
     public final int[] J = new int[2];
@@ -125,11 +125,11 @@ public final class vy {
     public final int[] S0 = new int[4];
     public final int[] T0 = new int[1];
     public final int[] V0 = new int[1];
-    public boolean f39734i1 = true;
+    public boolean f39731i1 = true;
 
     public vy(boolean z9, fi.d7 d7Var) {
-        this.f39729g1 = z9;
-        this.f39731h1 = d7Var;
+        this.f39726g1 = z9;
+        this.f39728h1 = d7Var;
         ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
         allocateDirect.order(ByteOrder.nativeOrder());
         FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
@@ -139,13 +139,13 @@ public final class vy {
         ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
         allocateDirect2.order(ByteOrder.nativeOrder());
         FloatBuffer asFloatBuffer2 = allocateDirect2.asFloatBuffer();
-        this.f39715b1 = asFloatBuffer2;
+        this.f39712b1 = asFloatBuffer2;
         asFloatBuffer2.put(new float[]{-1.0f, -1.0f, 1.0f, -1.0f, -1.0f, 1.0f, 1.0f, 1.0f});
         asFloatBuffer2.position(0);
         ByteBuffer allocateDirect3 = ByteBuffer.allocateDirect(32);
         allocateDirect3.order(ByteOrder.nativeOrder());
         FloatBuffer asFloatBuffer3 = allocateDirect3.asFloatBuffer();
-        this.f39712a1 = asFloatBuffer3;
+        this.f39709a1 = asFloatBuffer3;
         asFloatBuffer3.put(new float[]{0.0f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f});
         asFloatBuffer3.position(0);
     }
@@ -205,20 +205,20 @@ public final class vy {
                 this.X = GLES20.glGetUniformLocation(this.T, "shadows");
                 this.Y = GLES20.glGetUniformLocation(this.T, "highlights");
                 this.Z = GLES20.glGetUniformLocation(this.T, "exposure");
-                this.f39711a0 = GLES20.glGetUniformLocation(this.T, "contrast");
-                this.f39714b0 = GLES20.glGetUniformLocation(this.T, "saturation");
-                this.f39717c0 = GLES20.glGetUniformLocation(this.T, "warmth");
-                this.f39719d0 = GLES20.glGetUniformLocation(this.T, "vignette");
-                this.f39722e0 = GLES20.glGetUniformLocation(this.T, "grain");
-                this.f39725f0 = GLES20.glGetUniformLocation(this.T, "width");
-                this.f39728g0 = GLES20.glGetUniformLocation(this.T, "height");
-                this.f39730h0 = GLES20.glGetUniformLocation(this.T, "curvesImage");
-                this.f39733i0 = GLES20.glGetUniformLocation(this.T, "skipTone");
-                this.f39736j0 = GLES20.glGetUniformLocation(this.T, "fadeAmount");
-                this.f39738k0 = GLES20.glGetUniformLocation(this.T, "shadowsTintIntensity");
-                this.f39740l0 = GLES20.glGetUniformLocation(this.T, "highlightsTintIntensity");
+                this.f39708a0 = GLES20.glGetUniformLocation(this.T, "contrast");
+                this.f39711b0 = GLES20.glGetUniformLocation(this.T, "saturation");
+                this.f39714c0 = GLES20.glGetUniformLocation(this.T, "warmth");
+                this.f39716d0 = GLES20.glGetUniformLocation(this.T, "vignette");
+                this.f39719e0 = GLES20.glGetUniformLocation(this.T, "grain");
+                this.f39722f0 = GLES20.glGetUniformLocation(this.T, "width");
+                this.f39725g0 = GLES20.glGetUniformLocation(this.T, "height");
+                this.f39727h0 = GLES20.glGetUniformLocation(this.T, "curvesImage");
+                this.f39730i0 = GLES20.glGetUniformLocation(this.T, "skipTone");
+                this.f39733j0 = GLES20.glGetUniformLocation(this.T, "fadeAmount");
+                this.f39735k0 = GLES20.glGetUniformLocation(this.T, "shadowsTintIntensity");
+                this.f39737l0 = GLES20.glGetUniformLocation(this.T, "highlightsTintIntensity");
                 this.m0 = GLES20.glGetUniformLocation(this.T, "shadowsTintColor");
-                this.f39743n0 = GLES20.glGetUniformLocation(this.T, "highlightsTintColor");
+                this.f39740n0 = GLES20.glGetUniformLocation(this.T, "highlightsTintColor");
             }
             int h10 = h(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;uniform highp float inputWidth;uniform highp float inputHeight;varying vec2 leftTexCoord;varying vec2 rightTexCoord;varying vec2 topTexCoord;varying vec2 bottomTexCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;highp vec2 widthStep = vec2(1.0 / inputWidth, 0.0);highp vec2 heightStep = vec2(0.0, 1.0 / inputHeight);leftTexCoord = inputTexCoord - widthStep;rightTexCoord = inputTexCoord + widthStep;topTexCoord = inputTexCoord + heightStep;bottomTexCoord = inputTexCoord - heightStep;}");
             int h11 = h(35632, "precision highp float;varying vec2 vTextureCoord;varying vec2 leftTexCoord;varying vec2 rightTexCoord;varying vec2 topTexCoord;varying vec2 bottomTexCoord;uniform sampler2D sTexture;uniform float sharpen;void main() {vec4 result = texture2D(sTexture, vTextureCoord);vec3 leftTextureColor = texture2D(sTexture, leftTexCoord).rgb;vec3 rightTextureColor = texture2D(sTexture, rightTexCoord).rgb;vec3 topTextureColor = texture2D(sTexture, topTexCoord).rgb;vec3 bottomTextureColor = texture2D(sTexture, bottomTexCoord).rgb;result.rgb = result.rgb * (1.0 + 4.0 * sharpen) - (leftTextureColor + rightTextureColor + topTextureColor + bottomTextureColor) * sharpen;gl_FragColor = result;}");
@@ -243,56 +243,56 @@ public final class vy {
                     this.I0 = GLES20.glGetUniformLocation(this.H0, "sharpen");
                 }
                 sy syVar = new sy(8.0f, 3.0f, false);
-                this.f39727g = syVar;
+                this.f39724g = syVar;
                 if (syVar.a() && j()) {
                     int h12 = h(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
                     int h13 = h(35632, "varying highp vec2 vTextureCoord;uniform sampler2D sTexture;uniform sampler2D inputImageTexture2;uniform lowp float excludeSize;uniform lowp vec2 excludePoint;uniform lowp float excludeBlurSize;uniform highp float angle;uniform highp float aspectRatio;void main() {lowp vec4 sharpImageColor = texture2D(sTexture, vTextureCoord);lowp vec4 blurredImageColor = texture2D(inputImageTexture2, vTextureCoord);highp vec2 texCoordToUse = vec2(vTextureCoord.x, (vTextureCoord.y * aspectRatio + 0.5 - 0.5 * aspectRatio));highp float distanceFromCenter = abs((texCoordToUse.x - excludePoint.x) * aspectRatio * cos(angle) + (texCoordToUse.y - excludePoint.y) * sin(angle));gl_FragColor = mix(sharpImageColor, blurredImageColor, smoothstep(excludeSize - excludeBlurSize, excludeSize, distanceFromCenter));}");
                     if (h12 != 0 && h13 != 0) {
                         int glCreateProgram3 = GLES20.glCreateProgram();
-                        this.f39745o0 = glCreateProgram3;
+                        this.f39742o0 = glCreateProgram3;
                         GLES20.glAttachShader(glCreateProgram3, h12);
-                        GLES20.glAttachShader(this.f39745o0, h13);
-                        GLES20.glBindAttribLocation(this.f39745o0, 0, "position");
-                        GLES20.glBindAttribLocation(this.f39745o0, 1, "inputTexCoord");
-                        GLES20.glLinkProgram(this.f39745o0);
-                        GLES20.glGetProgramiv(this.f39745o0, 35714, iArr3, 0);
+                        GLES20.glAttachShader(this.f39742o0, h13);
+                        GLES20.glBindAttribLocation(this.f39742o0, 0, "position");
+                        GLES20.glBindAttribLocation(this.f39742o0, 1, "inputTexCoord");
+                        GLES20.glLinkProgram(this.f39742o0);
+                        GLES20.glGetProgramiv(this.f39742o0, 35714, iArr3, 0);
                         if (iArr3[0] == 0) {
-                            GLES20.glDeleteProgram(this.f39745o0);
-                            this.f39745o0 = 0;
+                            GLES20.glDeleteProgram(this.f39742o0);
+                            this.f39742o0 = 0;
                         } else {
-                            this.f39747p0 = GLES20.glGetAttribLocation(this.f39745o0, "position");
-                            this.f39749q0 = GLES20.glGetAttribLocation(this.f39745o0, "inputTexCoord");
-                            this.f39751r0 = GLES20.glGetUniformLocation(this.f39745o0, "sTexture");
-                            this.f39753s0 = GLES20.glGetUniformLocation(this.f39745o0, "inputImageTexture2");
-                            this.f39755t0 = GLES20.glGetUniformLocation(this.f39745o0, "excludeSize");
-                            this.f39757u0 = GLES20.glGetUniformLocation(this.f39745o0, "excludePoint");
-                            this.f39758v0 = GLES20.glGetUniformLocation(this.f39745o0, "excludeBlurSize");
-                            this.f39760w0 = GLES20.glGetUniformLocation(this.f39745o0, "angle");
-                            this.f39762x0 = GLES20.glGetUniformLocation(this.f39745o0, "aspectRatio");
+                            this.f39744p0 = GLES20.glGetAttribLocation(this.f39742o0, "position");
+                            this.f39746q0 = GLES20.glGetAttribLocation(this.f39742o0, "inputTexCoord");
+                            this.f39748r0 = GLES20.glGetUniformLocation(this.f39742o0, "sTexture");
+                            this.f39750s0 = GLES20.glGetUniformLocation(this.f39742o0, "inputImageTexture2");
+                            this.f39752t0 = GLES20.glGetUniformLocation(this.f39742o0, "excludeSize");
+                            this.f39754u0 = GLES20.glGetUniformLocation(this.f39742o0, "excludePoint");
+                            this.f39755v0 = GLES20.glGetUniformLocation(this.f39742o0, "excludeBlurSize");
+                            this.f39757w0 = GLES20.glGetUniformLocation(this.f39742o0, "angle");
+                            this.f39759x0 = GLES20.glGetUniformLocation(this.f39742o0, "aspectRatio");
                         }
                         int h14 = h(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
                         int h15 = h(35632, "varying highp vec2 vTextureCoord;uniform sampler2D sTexture;uniform sampler2D inputImageTexture2;uniform lowp float excludeSize;uniform lowp vec2 excludePoint;uniform lowp float excludeBlurSize;uniform highp float aspectRatio;void main() {lowp vec4 sharpImageColor = texture2D(sTexture, vTextureCoord);lowp vec4 blurredImageColor = texture2D(inputImageTexture2, vTextureCoord);highp vec2 texCoordToUse = vec2(vTextureCoord.x, (vTextureCoord.y * aspectRatio + 0.5 - 0.5 * aspectRatio));highp float distanceFromCenter = distance(excludePoint, texCoordToUse);gl_FragColor = mix(sharpImageColor, blurredImageColor, smoothstep(excludeSize - excludeBlurSize, excludeSize, distanceFromCenter));}");
                         if (h14 != 0 && h15 != 0) {
                             int glCreateProgram4 = GLES20.glCreateProgram();
-                            this.f39764y0 = glCreateProgram4;
+                            this.f39761y0 = glCreateProgram4;
                             GLES20.glAttachShader(glCreateProgram4, h14);
-                            GLES20.glAttachShader(this.f39764y0, h15);
-                            GLES20.glBindAttribLocation(this.f39764y0, 0, "position");
-                            GLES20.glBindAttribLocation(this.f39764y0, 1, "inputTexCoord");
-                            GLES20.glLinkProgram(this.f39764y0);
-                            GLES20.glGetProgramiv(this.f39764y0, 35714, iArr3, 0);
+                            GLES20.glAttachShader(this.f39761y0, h15);
+                            GLES20.glBindAttribLocation(this.f39761y0, 0, "position");
+                            GLES20.glBindAttribLocation(this.f39761y0, 1, "inputTexCoord");
+                            GLES20.glLinkProgram(this.f39761y0);
+                            GLES20.glGetProgramiv(this.f39761y0, 35714, iArr3, 0);
                             if (iArr3[0] == 0) {
-                                GLES20.glDeleteProgram(this.f39764y0);
-                                this.f39764y0 = 0;
+                                GLES20.glDeleteProgram(this.f39761y0);
+                                this.f39761y0 = 0;
                             } else {
-                                this.f39766z0 = GLES20.glGetAttribLocation(this.f39764y0, "position");
-                                this.A0 = GLES20.glGetAttribLocation(this.f39764y0, "inputTexCoord");
-                                this.B0 = GLES20.glGetUniformLocation(this.f39764y0, "sTexture");
-                                this.C0 = GLES20.glGetUniformLocation(this.f39764y0, "inputImageTexture2");
-                                this.D0 = GLES20.glGetUniformLocation(this.f39764y0, "excludeSize");
-                                this.E0 = GLES20.glGetUniformLocation(this.f39764y0, "excludePoint");
-                                this.F0 = GLES20.glGetUniformLocation(this.f39764y0, "excludeBlurSize");
-                                this.G0 = GLES20.glGetUniformLocation(this.f39764y0, "aspectRatio");
+                                this.f39763z0 = GLES20.glGetAttribLocation(this.f39761y0, "position");
+                                this.A0 = GLES20.glGetAttribLocation(this.f39761y0, "inputTexCoord");
+                                this.B0 = GLES20.glGetUniformLocation(this.f39761y0, "sTexture");
+                                this.C0 = GLES20.glGetUniformLocation(this.f39761y0, "inputImageTexture2");
+                                this.D0 = GLES20.glGetUniformLocation(this.f39761y0, "excludeSize");
+                                this.E0 = GLES20.glGetUniformLocation(this.f39761y0, "excludePoint");
+                                this.F0 = GLES20.glGetUniformLocation(this.f39761y0, "excludeBlurSize");
+                                this.G0 = GLES20.glGetUniformLocation(this.f39761y0, "aspectRatio");
                             }
                             int h16 = h(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
                             int h17 = h(35632, "precision highp float;varying vec2 vTextureCoord;uniform sampler2D sTexture;uniform sampler2D inputImageTexture2;uniform float intensity;float enhance(float value) {const vec2 offset = vec2(0.001953125, 0.03125);value = value + offset.x;vec2 coord = (clamp(vTextureCoord, 0.125, 1.0 - 0.125001) - 0.125) * 4.0;vec2 frac = fract(coord);coord = floor(coord);float p00 = float(coord.y * 4.0 + coord.x) * 0.0625 + offset.y;float p01 = float(coord.y * 4.0 + coord.x + 1.0) * 0.0625 + offset.y;float p10 = float((coord.y + 1.0) * 4.0 + coord.x) * 0.0625 + offset.y;float p11 = float((coord.y + 1.0) * 4.0 + coord.x + 1.0) * 0.0625 + offset.y;vec3 c00 = texture2D(inputImageTexture2, vec2(value, p00)).rgb;vec3 c01 = texture2D(inputImageTexture2, vec2(value, p01)).rgb;vec3 c10 = texture2D(inputImageTexture2, vec2(value, p10)).rgb;vec3 c11 = texture2D(inputImageTexture2, vec2(value, p11)).rgb;float c1 = ((c00.r - c00.g) / (c00.b - c00.g));float c2 = ((c01.r - c01.g) / (c01.b - c01.g));float c3 = ((c10.r - c10.g) / (c10.b - c10.g));float c4 = ((c11.r - c11.g) / (c11.b - c11.g));float c1_2 = mix(c1, c2, frac.x);float c3_4 = mix(c3, c4, frac.x);return mix(c1_2, c3_4, frac.y);}vec3 hsv_to_rgb(vec3 c) {vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);}void main() {vec4 texel = texture2D(sTexture, vTextureCoord);vec4 hsv = texel;hsv.y = min(1.0, hsv.y * 1.2);hsv.z = min(1.0, enhance(hsv.z) * 1.1);gl_FragColor = vec4(hsv_to_rgb(mix(texel.xyz, hsv.xyz, intensity)), texel.w);}");
@@ -319,21 +319,21 @@ public final class vy {
                                 int h19 = h(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;varying vec2 texCoord2;void main() {gl_Position = position;vTextureCoord = inputTexCoord;texCoord2 = inputTexCoord;}");
                                 if (h19 != 0 && h18 != 0) {
                                     int glCreateProgram6 = GLES20.glCreateProgram();
-                                    this.f39746p = glCreateProgram6;
+                                    this.f39743p = glCreateProgram6;
                                     GLES20.glAttachShader(glCreateProgram6, h19);
-                                    GLES20.glAttachShader(this.f39746p, h18);
-                                    GLES20.glBindAttribLocation(this.f39746p, 0, "position");
-                                    GLES20.glBindAttribLocation(this.f39746p, 1, "inputTexCoord");
-                                    GLES20.glLinkProgram(this.f39746p);
-                                    GLES20.glGetProgramiv(this.f39746p, 35714, iArr3, 0);
+                                    GLES20.glAttachShader(this.f39743p, h18);
+                                    GLES20.glBindAttribLocation(this.f39743p, 0, "position");
+                                    GLES20.glBindAttribLocation(this.f39743p, 1, "inputTexCoord");
+                                    GLES20.glLinkProgram(this.f39743p);
+                                    GLES20.glGetProgramiv(this.f39743p, 35714, iArr3, 0);
                                     if (iArr3[0] == 0) {
-                                        GLES20.glDeleteProgram(this.f39746p);
-                                        this.f39746p = 0;
+                                        GLES20.glDeleteProgram(this.f39743p);
+                                        this.f39743p = 0;
                                     } else {
-                                        this.f39748q = GLES20.glGetAttribLocation(this.f39746p, "position");
-                                        this.f39750r = GLES20.glGetAttribLocation(this.f39746p, "inputTexCoord");
-                                        this.f39752s = GLES20.glGetUniformLocation(this.f39746p, "sTexture");
-                                        this.f39754t = GLES20.glGetUniformLocation(this.f39746p, "inputImageTexture2");
+                                        this.f39745q = GLES20.glGetAttribLocation(this.f39743p, "position");
+                                        this.f39747r = GLES20.glGetAttribLocation(this.f39743p, "inputTexCoord");
+                                        this.f39749s = GLES20.glGetUniformLocation(this.f39743p, "sTexture");
+                                        this.f39751t = GLES20.glGetUniformLocation(this.f39743p, "inputImageTexture2");
                                     }
                                     int h20 = h(35632, "precision lowp float;varying highp vec2 vTextureCoord;uniform sampler2D sTexture;void main() {vec4 color = texture2D(sTexture, vTextureCoord);float hardLightColor = color.b;for (int i = 0; i < 3; ++i){if (hardLightColor < 0.5) {hardLightColor = hardLightColor * hardLightColor * 2.0;} else {hardLightColor = 1.0 - (1.0 - hardLightColor) * (1.0 - hardLightColor) * 2.0;}}float k = 255.0 / (164.0 - 75.0);hardLightColor = (hardLightColor - 75.0 / 255.0) * k;gl_FragColor = vec4(vec3(hardLightColor), color.a);}");
                                     int h21 = h(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = inputTexCoord;}");
@@ -356,7 +356,7 @@ public final class vy {
                                         }
                                         uy uyVar = new uy(0);
                                         int[] iArr4 = new int[1];
-                                        uyVar.f38766b = iArr4;
+                                        uyVar.f38757b = iArr4;
                                         ArrayList arrayList = new ArrayList();
                                         arrayList.add(new PointF(0.0f, 0.0f));
                                         arrayList.add(new PointF(0.5f, 0.5f));
@@ -389,7 +389,7 @@ public final class vy {
                                             allocateDirect.position(0);
                                             GLES20.glTexImage2D(3553, 0, 6408, 256, 1, 0, 6408, 5121, allocateDirect);
                                         }
-                                        this.f39744o = uyVar;
+                                        this.f39741o = uyVar;
                                         return true;
                                     }
                                 }
@@ -405,78 +405,78 @@ public final class vy {
     public final boolean b() {
         int i7;
         ty tyVar;
-        ty tyVar2 = this.f39726f1;
+        ty tyVar2 = this.f39723f1;
         if (tyVar2 != null) {
             i7 = tyVar2.getBlurType();
         } else {
             i7 = 0;
         }
-        if (this.f39729g1 || (tyVar = this.f39726f1) == null || tyVar.n() || i7 == 0) {
+        if (this.f39726g1 || (tyVar = this.f39723f1) == null || tyVar.n() || i7 == 0) {
             return false;
         }
-        boolean z9 = this.f39710a;
+        boolean z9 = this.f39707a;
         int[] iArr = this.S0;
         if (z9) {
-            if (!this.f39716c) {
+            if (!this.f39713c) {
                 GLES20.glBindTexture(3553, iArr[2]);
                 GLES20.glTexParameteri(3553, 10241, 9729);
                 GLES20.glTexParameteri(3553, 10240, 9729);
                 GLES20.glTexParameteri(3553, 10242, 33071);
                 GLES20.glTexParameteri(3553, 10243, 33071);
                 GLES20.glTexImage2D(3553, 0, 6408, this.X0, this.Y0, 0, 6408, 5121, null);
-                this.f39716c = true;
+                this.f39713c = true;
             }
-            GLES20.glUseProgram(this.f39727g.f38189c);
-            GLES20.glUniform1i(this.f39727g.f38191f, 0);
-            GLES20.glEnableVertexAttribArray(this.f39727g.f38190e);
-            GLES20.glVertexAttribPointer(this.f39727g.f38190e, 2, 5126, false, 8, (Buffer) this.f39712a1);
-            GLES20.glEnableVertexAttribArray(this.f39727g.d);
-            GLES20.glVertexAttribPointer(this.f39727g.d, 2, 5126, false, 8, (Buffer) this.f39715b1);
+            GLES20.glUseProgram(this.f39724g.f38149c);
+            GLES20.glUniform1i(this.f39724g.f38151f, 0);
+            GLES20.glEnableVertexAttribArray(this.f39724g.f38150e);
+            GLES20.glVertexAttribPointer(this.f39724g.f38150e, 2, 5126, false, 8, (Buffer) this.f39709a1);
+            GLES20.glEnableVertexAttribArray(this.f39724g.d);
+            GLES20.glVertexAttribPointer(this.f39724g.d, 2, 5126, false, 8, (Buffer) this.f39712b1);
             GLES20.glBindFramebuffer(36160, this.U0[0]);
             GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr[0], 0);
             GLES20.glActiveTexture(33984);
             GLES20.glBindTexture(3553, iArr[1]);
-            GLES20.glUniform1f(this.f39727g.f38192g, 0.0f);
-            GLES20.glUniform1f(this.f39727g.h, 1.0f / this.Y0);
+            GLES20.glUniform1f(this.f39724g.f38152g, 0.0f);
+            GLES20.glUniform1f(this.f39724g.h, 1.0f / this.Y0);
             GLES20.glDrawArrays(5, 0, 4);
             GLES20.glBindFramebuffer(36160, this.U0[2]);
             GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr[2], 0);
             GLES20.glActiveTexture(33984);
             GLES20.glBindTexture(3553, iArr[0]);
-            GLES20.glUniform1f(this.f39727g.f38192g, 1.0f / this.X0);
-            GLES20.glUniform1f(this.f39727g.h, 0.0f);
+            GLES20.glUniform1f(this.f39724g.f38152g, 1.0f / this.X0);
+            GLES20.glUniform1f(this.f39724g.h, 0.0f);
             GLES20.glDrawArrays(5, 0, 4);
-            this.f39710a = false;
+            this.f39707a = false;
         }
         GLES20.glBindFramebuffer(36160, this.U0[0]);
         GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr[0], 0);
         if (i7 == 1) {
-            GLES20.glUseProgram(this.f39764y0);
+            GLES20.glUseProgram(this.f39761y0);
             GLES20.glUniform1i(this.B0, 0);
             GLES20.glUniform1i(this.C0, 1);
-            GLES20.glUniform1f(this.D0, this.f39726f1.getBlurExcludeSize());
-            GLES20.glUniform1f(this.F0, this.f39726f1.getBlurExcludeBlurSize());
-            PointF blurExcludePoint = this.f39726f1.getBlurExcludePoint();
+            GLES20.glUniform1f(this.D0, this.f39723f1.getBlurExcludeSize());
+            GLES20.glUniform1f(this.F0, this.f39723f1.getBlurExcludeBlurSize());
+            PointF blurExcludePoint = this.f39723f1.getBlurExcludePoint();
             GLES20.glUniform2f(this.E0, blurExcludePoint.x, blurExcludePoint.y);
             GLES20.glUniform1f(this.G0, this.Y0 / this.X0);
             GLES20.glEnableVertexAttribArray(this.A0);
-            GLES20.glVertexAttribPointer(this.A0, 2, 5126, false, 8, (Buffer) this.f39712a1);
-            GLES20.glEnableVertexAttribArray(this.f39766z0);
-            GLES20.glVertexAttribPointer(this.f39766z0, 2, 5126, false, 8, (Buffer) this.f39715b1);
+            GLES20.glVertexAttribPointer(this.A0, 2, 5126, false, 8, (Buffer) this.f39709a1);
+            GLES20.glEnableVertexAttribArray(this.f39763z0);
+            GLES20.glVertexAttribPointer(this.f39763z0, 2, 5126, false, 8, (Buffer) this.f39712b1);
         } else if (i7 == 2) {
-            GLES20.glUseProgram(this.f39745o0);
-            GLES20.glUniform1i(this.f39751r0, 0);
-            GLES20.glUniform1i(this.f39753s0, 1);
-            GLES20.glUniform1f(this.f39755t0, this.f39726f1.getBlurExcludeSize());
-            GLES20.glUniform1f(this.f39758v0, this.f39726f1.getBlurExcludeBlurSize());
-            GLES20.glUniform1f(this.f39760w0, this.f39726f1.getBlurAngle());
-            PointF blurExcludePoint2 = this.f39726f1.getBlurExcludePoint();
-            GLES20.glUniform2f(this.f39757u0, blurExcludePoint2.x, blurExcludePoint2.y);
-            GLES20.glUniform1f(this.f39762x0, this.Y0 / this.X0);
-            GLES20.glEnableVertexAttribArray(this.f39749q0);
-            GLES20.glVertexAttribPointer(this.f39749q0, 2, 5126, false, 8, (Buffer) this.f39712a1);
-            GLES20.glEnableVertexAttribArray(this.f39747p0);
-            GLES20.glVertexAttribPointer(this.f39747p0, 2, 5126, false, 8, (Buffer) this.f39715b1);
+            GLES20.glUseProgram(this.f39742o0);
+            GLES20.glUniform1i(this.f39748r0, 0);
+            GLES20.glUniform1i(this.f39750s0, 1);
+            GLES20.glUniform1f(this.f39752t0, this.f39723f1.getBlurExcludeSize());
+            GLES20.glUniform1f(this.f39755v0, this.f39723f1.getBlurExcludeBlurSize());
+            GLES20.glUniform1f(this.f39757w0, this.f39723f1.getBlurAngle());
+            PointF blurExcludePoint2 = this.f39723f1.getBlurExcludePoint();
+            GLES20.glUniform2f(this.f39754u0, blurExcludePoint2.x, blurExcludePoint2.y);
+            GLES20.glUniform1f(this.f39759x0, this.Y0 / this.X0);
+            GLES20.glEnableVertexAttribArray(this.f39746q0);
+            GLES20.glVertexAttribPointer(this.f39746q0, 2, 5126, false, 8, (Buffer) this.f39709a1);
+            GLES20.glEnableVertexAttribArray(this.f39744p0);
+            GLES20.glVertexAttribPointer(this.f39744p0, 2, 5126, false, 8, (Buffer) this.f39712b1);
         }
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, iArr[1]);
@@ -488,7 +488,7 @@ public final class vy {
 
     public final void c() {
         int[] iArr = this.U0;
-        boolean z9 = this.f39729g1;
+        boolean z9 = this.f39726g1;
         int i7 = !z9 ? 1 : 0;
         GLES20.glBindFramebuffer(36160, iArr[i7]);
         int[] iArr2 = this.S0;
@@ -497,59 +497,59 @@ public final class vy {
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, iArr2[z9 ? 1 : 0]);
         GLES20.glUniform1i(this.W, 0);
-        ty tyVar = this.f39726f1;
+        ty tyVar = this.f39723f1;
         float f10 = 1.0f;
         if (tyVar != null && !tyVar.n()) {
-            GLES20.glUniform1f(this.X, this.f39726f1.getShadowsValue());
-            GLES20.glUniform1f(this.Y, this.f39726f1.getHighlightsValue());
-            GLES20.glUniform1f(this.Z, this.f39726f1.getExposureValue());
-            GLES20.glUniform1f(this.f39711a0, this.f39726f1.getContrastValue());
-            GLES20.glUniform1f(this.f39714b0, this.f39726f1.getSaturationValue());
-            GLES20.glUniform1f(this.f39717c0, this.f39726f1.getWarmthValue());
-            GLES20.glUniform1f(this.f39719d0, this.f39726f1.getVignetteValue());
-            GLES20.glUniform1f(this.f39722e0, this.f39726f1.getGrainValue());
-            GLES20.glUniform1f(this.f39736j0, this.f39726f1.getFadeValue());
-            int tintHighlightsColor = this.f39726f1.getTintHighlightsColor();
-            int tintShadowsColor = this.f39726f1.getTintShadowsColor();
-            GLES20.glUniform3f(this.f39743n0, ((tintHighlightsColor >> 16) & 255) / 255.0f, ((tintHighlightsColor >> 8) & 255) / 255.0f, (tintHighlightsColor & 255) / 255.0f);
-            GLES20.glUniform1f(this.f39740l0, this.f39726f1.getTintHighlightsIntensityValue());
+            GLES20.glUniform1f(this.X, this.f39723f1.getShadowsValue());
+            GLES20.glUniform1f(this.Y, this.f39723f1.getHighlightsValue());
+            GLES20.glUniform1f(this.Z, this.f39723f1.getExposureValue());
+            GLES20.glUniform1f(this.f39708a0, this.f39723f1.getContrastValue());
+            GLES20.glUniform1f(this.f39711b0, this.f39723f1.getSaturationValue());
+            GLES20.glUniform1f(this.f39714c0, this.f39723f1.getWarmthValue());
+            GLES20.glUniform1f(this.f39716d0, this.f39723f1.getVignetteValue());
+            GLES20.glUniform1f(this.f39719e0, this.f39723f1.getGrainValue());
+            GLES20.glUniform1f(this.f39733j0, this.f39723f1.getFadeValue());
+            int tintHighlightsColor = this.f39723f1.getTintHighlightsColor();
+            int tintShadowsColor = this.f39723f1.getTintShadowsColor();
+            GLES20.glUniform3f(this.f39740n0, ((tintHighlightsColor >> 16) & 255) / 255.0f, ((tintHighlightsColor >> 8) & 255) / 255.0f, (tintHighlightsColor & 255) / 255.0f);
+            GLES20.glUniform1f(this.f39737l0, this.f39723f1.getTintHighlightsIntensityValue());
             GLES20.glUniform3f(this.m0, ((tintShadowsColor >> 16) & 255) / 255.0f, ((tintShadowsColor >> 8) & 255) / 255.0f, (tintShadowsColor & 255) / 255.0f);
-            GLES20.glUniform1f(this.f39738k0, this.f39726f1.getTintShadowsIntensityValue());
-            boolean o4 = this.f39726f1.o();
-            int i10 = this.f39733i0;
+            GLES20.glUniform1f(this.f39735k0, this.f39723f1.getTintShadowsIntensityValue());
+            boolean o4 = this.f39723f1.o();
+            int i10 = this.f39730i0;
             if (o4) {
                 f10 = 0.0f;
             }
             GLES20.glUniform1f(i10, f10);
             if (o4) {
-                ByteBuffer h = this.f39726f1.h();
+                ByteBuffer h = this.f39723f1.h();
                 GLES20.glActiveTexture(33985);
                 GLES20.glBindTexture(3553, this.V0[0]);
                 GLES20.glTexImage2D(3553, 0, 6408, 200, 1, 0, 6408, 5121, h);
-                GLES20.glUniform1i(this.f39730h0, 1);
+                GLES20.glUniform1i(this.f39727h0, 1);
             }
         } else {
             GLES20.glUniform1f(this.X, 1.0f);
             GLES20.glUniform1f(this.Y, 1.0f);
             GLES20.glUniform1f(this.Z, 0.0f);
-            GLES20.glUniform1f(this.f39711a0, 1.0f);
-            GLES20.glUniform1f(this.f39714b0, 1.0f);
-            GLES20.glUniform1f(this.f39717c0, 0.0f);
-            GLES20.glUniform1f(this.f39719d0, 0.0f);
-            GLES20.glUniform1f(this.f39722e0, 0.0f);
-            GLES20.glUniform1f(this.f39736j0, 0.0f);
-            GLES20.glUniform3f(this.f39743n0, 0.0f, 0.0f, 0.0f);
-            GLES20.glUniform1f(this.f39740l0, 0.0f);
+            GLES20.glUniform1f(this.f39708a0, 1.0f);
+            GLES20.glUniform1f(this.f39711b0, 1.0f);
+            GLES20.glUniform1f(this.f39714c0, 0.0f);
+            GLES20.glUniform1f(this.f39716d0, 0.0f);
+            GLES20.glUniform1f(this.f39719e0, 0.0f);
+            GLES20.glUniform1f(this.f39733j0, 0.0f);
+            GLES20.glUniform3f(this.f39740n0, 0.0f, 0.0f, 0.0f);
+            GLES20.glUniform1f(this.f39737l0, 0.0f);
             GLES20.glUniform3f(this.m0, 0.0f, 0.0f, 0.0f);
-            GLES20.glUniform1f(this.f39738k0, 0.0f);
-            GLES20.glUniform1f(this.f39733i0, 1.0f);
+            GLES20.glUniform1f(this.f39735k0, 0.0f);
+            GLES20.glUniform1f(this.f39730i0, 1.0f);
         }
-        GLES20.glUniform1f(this.f39725f0, this.X0);
-        GLES20.glUniform1f(this.f39728g0, this.Y0);
+        GLES20.glUniform1f(this.f39722f0, this.X0);
+        GLES20.glUniform1f(this.f39725g0, this.Y0);
         GLES20.glEnableVertexAttribArray(this.V);
-        GLES20.glVertexAttribPointer(this.V, 2, 5126, false, 8, (Buffer) this.f39712a1);
+        GLES20.glVertexAttribPointer(this.V, 2, 5126, false, 8, (Buffer) this.f39709a1);
         GLES20.glEnableVertexAttribArray(this.U);
-        GLES20.glVertexAttribPointer(this.U, 2, 5126, false, 8, (Buffer) this.f39715b1);
+        GLES20.glVertexAttribPointer(this.U, 2, 5126, false, 8, (Buffer) this.f39712b1);
         GLES20.glDrawArrays(5, 0, 4);
     }
 
@@ -559,7 +559,7 @@ public final class vy {
         int i10;
         char c10;
         FloatBuffer floatBuffer;
-        boolean z10 = this.f39729g1;
+        boolean z10 = this.f39726g1;
         if (z10) {
             z9 = true;
         } else {
@@ -593,12 +593,12 @@ public final class vy {
             GLES20.glUniform1i(this.K[c10], 0);
             int[] iArr4 = this.J;
             GLES20.glEnableVertexAttribArray(iArr4[c10]);
-            GLES20.glVertexAttribPointer(iArr4[c10], 2, 5126, false, 8, (Buffer) this.f39712a1);
+            GLES20.glVertexAttribPointer(iArr4[c10], 2, 5126, false, 8, (Buffer) this.f39709a1);
             int[] iArr5 = this.I;
             GLES20.glEnableVertexAttribArray(iArr5[c10]);
             int i12 = iArr5[c10];
             if (z10) {
-                floatBuffer = this.f39715b1;
+                floatBuffer = this.f39712b1;
             } else {
                 floatBuffer = this.Z0;
             }
@@ -609,25 +609,25 @@ public final class vy {
         }
         if (!this.W0) {
             int i13 = this.X0 * this.Y0 * 4;
-            ByteBuffer byteBuffer = this.f39718c1;
+            ByteBuffer byteBuffer = this.f39715c1;
             if (byteBuffer == null || i13 > byteBuffer.capacity()) {
-                this.f39718c1 = ByteBuffer.allocateDirect(i13);
+                this.f39715c1 = ByteBuffer.allocateDirect(i13);
             }
-            if (this.f39720d1 == null) {
-                this.f39720d1 = ByteBuffer.allocateDirect(16384);
+            if (this.f39717d1 == null) {
+                this.f39717d1 = ByteBuffer.allocateDirect(16384);
             }
-            if (this.f39723e1 == null) {
-                this.f39723e1 = ByteBuffer.allocateDirect(32896);
+            if (this.f39720e1 == null) {
+                this.f39720e1 = ByteBuffer.allocateDirect(32896);
             }
-            GLES20.glReadPixels(0, 0, this.X0, this.Y0, 6408, 5121, this.f39718c1);
+            GLES20.glReadPixels(0, 0, this.X0, this.Y0, 6408, 5121, this.f39715c1);
             i7 = 33984;
-            Utilities.calcCDT(this.f39718c1, this.X0, this.Y0, this.f39720d1, this.f39723e1);
+            Utilities.calcCDT(this.f39715c1, this.X0, this.Y0, this.f39717d1, this.f39720e1);
             GLES20.glBindTexture(3553, iArr2[1]);
-            GLES20.glTexImage2D(3553, 0, 6408, 256, 16, 0, 6408, 5121, this.f39720d1);
+            GLES20.glTexImage2D(3553, 0, 6408, 256, 16, 0, 6408, 5121, this.f39717d1);
             if (!z10) {
-                this.f39718c1 = null;
-                this.f39720d1 = null;
-                this.f39723e1 = null;
+                this.f39715c1 = null;
+                this.f39717d1 = null;
+                this.f39720e1 = null;
             }
             this.W0 = true;
         } else {
@@ -642,21 +642,21 @@ public final class vy {
         GLES20.glActiveTexture(33985);
         GLES20.glBindTexture(3553, iArr2[1]);
         GLES20.glUniform1i(this.S, 1);
-        ty tyVar = this.f39726f1;
+        ty tyVar = this.f39723f1;
         if (tyVar != null && !tyVar.n()) {
-            GLES20.glUniform1f(this.R, this.f39726f1.getEnhanceValue());
+            GLES20.glUniform1f(this.R, this.f39723f1.getEnhanceValue());
         } else {
             GLES20.glUniform1f(this.R, 0.0f);
         }
         GLES20.glEnableVertexAttribArray(this.P);
-        GLES20.glVertexAttribPointer(this.P, 2, 5126, false, 8, (Buffer) this.f39712a1);
+        GLES20.glVertexAttribPointer(this.P, 2, 5126, false, 8, (Buffer) this.f39709a1);
         GLES20.glEnableVertexAttribArray(this.O);
         GLES20.glVertexAttribPointer(this.O, 2, 5126, false, 8, (Buffer) this.Z0);
         GLES20.glDrawArrays(5, 0, 4);
     }
 
     public final void e() {
-        if (this.f39729g1) {
+        if (this.f39726g1) {
             return;
         }
         GLES20.glBindFramebuffer(36160, this.U0[0]);
@@ -666,41 +666,41 @@ public final class vy {
         GLES20.glActiveTexture(33984);
         GLES20.glBindTexture(3553, iArr[1]);
         GLES20.glUniform1i(this.N0, 0);
-        ty tyVar = this.f39726f1;
+        ty tyVar = this.f39723f1;
         if (tyVar != null && !tyVar.n()) {
-            GLES20.glUniform1f(this.I0, this.f39726f1.getSharpenValue());
+            GLES20.glUniform1f(this.I0, this.f39723f1.getSharpenValue());
         } else {
             GLES20.glUniform1f(this.I0, 0.0f);
         }
         GLES20.glUniform1f(this.J0, this.X0);
         GLES20.glUniform1f(this.K0, this.Y0);
         GLES20.glEnableVertexAttribArray(this.M0);
-        GLES20.glVertexAttribPointer(this.M0, 2, 5126, false, 8, (Buffer) this.f39712a1);
+        GLES20.glVertexAttribPointer(this.M0, 2, 5126, false, 8, (Buffer) this.f39709a1);
         GLES20.glEnableVertexAttribArray(this.L0);
-        GLES20.glVertexAttribPointer(this.L0, 2, 5126, false, 8, (Buffer) this.f39715b1);
+        GLES20.glVertexAttribPointer(this.L0, 2, 5126, false, 8, (Buffer) this.f39712b1);
         GLES20.glDrawArrays(5, 0, 4);
     }
 
     public final void f() {
         int i7;
         int i10;
-        ty tyVar = this.f39726f1;
-        if (tyVar != null && !tyVar.n() && this.f39726f1.getSoftenSkinValue() > 0.0f && (i7 = this.X0) > 0 && this.Y0 > 0) {
-            boolean z9 = this.f39713b;
+        ty tyVar = this.f39723f1;
+        if (tyVar != null && !tyVar.n() && this.f39723f1.getSoftenSkinValue() > 0.0f && (i7 = this.X0) > 0 && this.Y0 > 0) {
+            boolean z9 = this.f39710b;
             int[] iArr = this.T0;
-            boolean z10 = this.f39729g1;
+            boolean z10 = this.f39726g1;
             int[] iArr2 = this.S0;
             if (z9 || z10) {
                 float f10 = i7 * 0.006f;
-                if (this.f39721e == null || Math.abs(this.f39724f - f10) > 1.0E-4d) {
-                    sy syVar = this.f39721e;
-                    if (syVar != null && (i10 = syVar.f38189c) != 0) {
+                if (this.f39718e == null || Math.abs(this.f39721f - f10) > 1.0E-4d) {
+                    sy syVar = this.f39718e;
+                    if (syVar != null && (i10 = syVar.f38149c) != 0) {
                         GLES20.glDeleteProgram(i10);
-                        syVar.f38189c = 0;
+                        syVar.f38149c = 0;
                     }
-                    this.f39724f = f10;
+                    this.f39721f = f10;
                     sy syVar2 = new sy(f10, 2.0f, true);
-                    this.f39721e = syVar2;
+                    this.f39718e = syVar2;
                     syVar2.a();
                 }
                 if (!this.d) {
@@ -712,19 +712,19 @@ public final class vy {
                     GLES20.glTexImage2D(3553, 0, 6408, this.X0, this.Y0, 0, 6408, 5121, null);
                     this.d = true;
                 }
-                GLES20.glUseProgram(this.f39732i);
-                GLES20.glUniform1i(this.f39739l, 0);
-                GLES20.glEnableVertexAttribArray(this.f39737k);
-                GLES20.glVertexAttribPointer(this.f39737k, 2, 5126, false, 8, (Buffer) this.f39712a1);
-                GLES20.glEnableVertexAttribArray(this.f39735j);
+                GLES20.glUseProgram(this.f39729i);
+                GLES20.glUniform1i(this.f39736l, 0);
+                GLES20.glEnableVertexAttribArray(this.f39734k);
+                GLES20.glVertexAttribPointer(this.f39734k, 2, 5126, false, 8, (Buffer) this.f39709a1);
+                GLES20.glEnableVertexAttribArray(this.f39732j);
                 if (z10) {
-                    GLES20.glUniformMatrix4fv(this.f39741m, 1, false, this.P0, 0);
-                    int i11 = this.f39742n;
+                    GLES20.glUniformMatrix4fv(this.f39738m, 1, false, this.P0, 0);
+                    int i11 = this.f39739n;
                     if (i11 != -1) {
                         GLES20.glUniform2f(i11, this.X0, this.Y0);
                     }
                 }
-                GLES20.glVertexAttribPointer(this.f39735j, 2, 5126, false, 8, (Buffer) this.f39715b1);
+                GLES20.glVertexAttribPointer(this.f39732j, 2, 5126, false, 8, (Buffer) this.f39712b1);
                 GLES20.glBindFramebuffer(36160, this.U0[0]);
                 GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr2[0], 0);
                 GLES20.glActiveTexture(33984);
@@ -734,33 +734,33 @@ public final class vy {
                     GLES20.glBindTexture(3553, iArr[0]);
                 }
                 GLES20.glDrawArrays(5, 0, 4);
-                GLES20.glUseProgram(this.f39721e.f38189c);
-                GLES20.glUniform1i(this.f39721e.f38191f, 0);
-                GLES20.glEnableVertexAttribArray(this.f39721e.f38190e);
-                GLES20.glVertexAttribPointer(this.f39721e.f38190e, 2, 5126, false, 8, (Buffer) this.f39712a1);
-                GLES20.glEnableVertexAttribArray(this.f39721e.d);
-                GLES20.glVertexAttribPointer(this.f39721e.d, 2, 5126, false, 8, (Buffer) this.f39715b1);
+                GLES20.glUseProgram(this.f39718e.f38149c);
+                GLES20.glUniform1i(this.f39718e.f38151f, 0);
+                GLES20.glEnableVertexAttribArray(this.f39718e.f38150e);
+                GLES20.glVertexAttribPointer(this.f39718e.f38150e, 2, 5126, false, 8, (Buffer) this.f39709a1);
+                GLES20.glEnableVertexAttribArray(this.f39718e.d);
+                GLES20.glVertexAttribPointer(this.f39718e.d, 2, 5126, false, 8, (Buffer) this.f39712b1);
                 GLES20.glBindFramebuffer(36160, this.U0[1]);
                 GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr2[1], 0);
                 GLES20.glActiveTexture(33984);
                 GLES20.glBindTexture(3553, iArr2[0]);
-                GLES20.glUniform1f(this.f39721e.f38192g, 0.0f);
-                GLES20.glUniform1f(this.f39721e.h, 1.0f / this.Y0);
+                GLES20.glUniform1f(this.f39718e.f38152g, 0.0f);
+                GLES20.glUniform1f(this.f39718e.h, 1.0f / this.Y0);
                 GLES20.glDrawArrays(5, 0, 4);
                 GLES20.glBindFramebuffer(36160, this.U0[3]);
                 GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr2[3], 0);
                 GLES20.glActiveTexture(33984);
                 GLES20.glBindTexture(3553, iArr2[1]);
-                GLES20.glUniform1f(this.f39721e.f38192g, 1.0f / this.X0);
-                GLES20.glUniform1f(this.f39721e.h, 0.0f);
+                GLES20.glUniform1f(this.f39718e.f38152g, 1.0f / this.X0);
+                GLES20.glUniform1f(this.f39718e.h, 0.0f);
                 GLES20.glDrawArrays(5, 0, 4);
-                GLES20.glUseProgram(this.f39746p);
-                GLES20.glUniform1i(this.f39752s, 0);
-                GLES20.glUniform1i(this.f39754t, 1);
-                GLES20.glEnableVertexAttribArray(this.f39750r);
-                GLES20.glVertexAttribPointer(this.f39750r, 2, 5126, false, 8, (Buffer) this.f39712a1);
-                GLES20.glEnableVertexAttribArray(this.f39748q);
-                GLES20.glVertexAttribPointer(this.f39748q, 2, 5126, false, 8, (Buffer) this.f39715b1);
+                GLES20.glUseProgram(this.f39743p);
+                GLES20.glUniform1i(this.f39749s, 0);
+                GLES20.glUniform1i(this.f39751t, 1);
+                GLES20.glEnableVertexAttribArray(this.f39747r);
+                GLES20.glVertexAttribPointer(this.f39747r, 2, 5126, false, 8, (Buffer) this.f39709a1);
+                GLES20.glEnableVertexAttribArray(this.f39745q);
+                GLES20.glVertexAttribPointer(this.f39745q, 2, 5126, false, 8, (Buffer) this.f39712b1);
                 GLES20.glBindFramebuffer(36160, this.U0[1]);
                 GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr2[1], 0);
                 GLES20.glActiveTexture(33984);
@@ -771,27 +771,27 @@ public final class vy {
                 GLES20.glUseProgram(this.D);
                 GLES20.glUniform1i(this.G, 0);
                 GLES20.glEnableVertexAttribArray(this.F);
-                GLES20.glVertexAttribPointer(this.F, 2, 5126, false, 8, (Buffer) this.f39712a1);
+                GLES20.glVertexAttribPointer(this.F, 2, 5126, false, 8, (Buffer) this.f39709a1);
                 GLES20.glEnableVertexAttribArray(this.E);
-                GLES20.glVertexAttribPointer(this.E, 2, 5126, false, 8, (Buffer) this.f39715b1);
+                GLES20.glVertexAttribPointer(this.E, 2, 5126, false, 8, (Buffer) this.f39712b1);
                 GLES20.glBindFramebuffer(36160, this.U0[3]);
                 GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr2[3], 0);
                 GLES20.glActiveTexture(33984);
                 GLES20.glBindTexture(3553, iArr2[1]);
                 GLES20.glDrawArrays(5, 0, 4);
-                this.f39713b = false;
+                this.f39710b = false;
             }
             this.h = true;
             this.W0 = false;
-            GLES20.glUseProgram(this.f39756u);
-            GLES20.glUniform1i(this.f39761x, 0);
-            GLES20.glUniform1i(this.f39763y, 1);
-            GLES20.glUniform1i(this.f39765z, 2);
-            GLES20.glUniform1f(this.A, this.f39726f1.getSoftenSkinValue());
-            GLES20.glEnableVertexAttribArray(this.f39759w);
-            GLES20.glVertexAttribPointer(this.f39759w, 2, 5126, false, 8, (Buffer) this.f39712a1);
+            GLES20.glUseProgram(this.f39753u);
+            GLES20.glUniform1i(this.f39758x, 0);
+            GLES20.glUniform1i(this.f39760y, 1);
+            GLES20.glUniform1i(this.f39762z, 2);
+            GLES20.glUniform1f(this.A, this.f39723f1.getSoftenSkinValue());
+            GLES20.glEnableVertexAttribArray(this.f39756w);
+            GLES20.glVertexAttribPointer(this.f39756w, 2, 5126, false, 8, (Buffer) this.f39709a1);
             GLES20.glEnableVertexAttribArray(this.v);
-            GLES20.glVertexAttribPointer(this.v, 2, 5126, false, 8, (Buffer) this.f39715b1);
+            GLES20.glVertexAttribPointer(this.v, 2, 5126, false, 8, (Buffer) this.f39712b1);
             if (z10) {
                 GLES20.glUniformMatrix4fv(this.B, 1, false, this.P0, 0);
                 int i12 = this.C;
@@ -810,7 +810,7 @@ public final class vy {
             GLES20.glActiveTexture(33985);
             GLES20.glBindTexture(3553, iArr2[3]);
             GLES20.glActiveTexture(33986);
-            GLES20.glBindTexture(3553, ((int[]) this.f39744o.f38766b)[0]);
+            GLES20.glBindTexture(3553, ((int[]) this.f39741o.f38757b)[0]);
             GLES20.glDrawArrays(5, 0, 4);
         } else if (this.h) {
             this.W0 = false;
@@ -820,7 +820,7 @@ public final class vy {
 
     public final int g(int i7) {
         char c10;
-        boolean z9 = this.f39729g1;
+        boolean z9 = this.f39726g1;
         int[] iArr = this.S0;
         if (z9) {
             if (i7 == 0) {
@@ -850,7 +850,7 @@ public final class vy {
             int[] iArr4 = this.T0;
             GLES20.glGenTextures(1, iArr4, 0);
             float Z0 = org.telegram.messenger.g0.Z0(true);
-            boolean z9 = this.f39734i1;
+            boolean z9 = this.f39731i1;
             if ((z9 && (this.X0 > Z0 || this.Y0 > Z0)) || i7 % 360 != 0) {
                 if (z9 && (this.X0 > Z0 || this.Y0 > Z0)) {
                     f10 = Z0 / bitmap.getWidth();
@@ -918,7 +918,7 @@ public final class vy {
         boolean z9;
         int h12;
         int h13;
-        fi.d7 d7Var = this.f39731h1;
+        fi.d7 d7Var = this.f39728h1;
         if (d7Var != null) {
             i7 = d7Var.a();
         } else {
@@ -934,7 +934,7 @@ public final class vy {
         } else {
             str = org.telegram.messenger.g0.y2(null, 2131624046);
         }
-        boolean z10 = this.f39729g1;
+        boolean z10 = this.f39726g1;
         if (!z10) {
             str2 = "";
         } else {
@@ -1024,26 +1024,26 @@ public final class vy {
                         h = h(35633, "attribute vec4 position;uniform mat4 videoMatrix;attribute vec4 inputTexCoord;varying vec2 vTextureCoord;void main() {gl_Position = position;vTextureCoord = vec2(videoMatrix * inputTexCoord).xy;}");
                         h7 = h(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;uniform %2$s sTexture;void main() {vec4 inp = texture2D(sTexture, vTextureCoord);vec4 image = vec4(inp.rgb * pow(2.0, -1.0), inp.w);vec4 base = vec4(image.g, image.g, image.g, 1.0);vec4 overlay = vec4(image.b, image.b, image.b, 1.0);float ba = 2.0 * overlay.b * base.b + overlay.b * (1.0 - base.a) + base.b * (1.0 - overlay.a);gl_FragColor = vec4(ba,ba,ba,image.a);}", str2, str3));
                     }
-                    GLES20.glDeleteProgram(this.f39732i);
+                    GLES20.glDeleteProgram(this.f39729i);
                     if (i11 == 0 && i12 != 0) {
                         int glCreateProgram2 = GLES20.glCreateProgram();
-                        this.f39732i = glCreateProgram2;
+                        this.f39729i = glCreateProgram2;
                         GLES20.glAttachShader(glCreateProgram2, i11);
-                        GLES20.glAttachShader(this.f39732i, i12);
-                        GLES20.glBindAttribLocation(this.f39732i, 0, "position");
-                        GLES20.glBindAttribLocation(this.f39732i, 1, "inputTexCoord");
-                        GLES20.glLinkProgram(this.f39732i);
-                        GLES20.glGetProgramiv(this.f39732i, 35714, iArr, 0);
+                        GLES20.glAttachShader(this.f39729i, i12);
+                        GLES20.glBindAttribLocation(this.f39729i, 0, "position");
+                        GLES20.glBindAttribLocation(this.f39729i, 1, "inputTexCoord");
+                        GLES20.glLinkProgram(this.f39729i);
+                        GLES20.glGetProgramiv(this.f39729i, 35714, iArr, 0);
                         if (iArr[0] == 0) {
-                            GLES20.glDeleteProgram(this.f39732i);
-                            this.f39732i = 0;
+                            GLES20.glDeleteProgram(this.f39729i);
+                            this.f39729i = 0;
                         } else {
-                            this.f39735j = GLES20.glGetAttribLocation(this.f39732i, "position");
-                            this.f39737k = GLES20.glGetAttribLocation(this.f39732i, "inputTexCoord");
-                            this.f39739l = GLES20.glGetUniformLocation(this.f39732i, "sTexture");
+                            this.f39732j = GLES20.glGetAttribLocation(this.f39729i, "position");
+                            this.f39734k = GLES20.glGetAttribLocation(this.f39729i, "inputTexCoord");
+                            this.f39736l = GLES20.glGetUniformLocation(this.f39729i, "sTexture");
                             if (z11) {
-                                this.f39741m = GLES20.glGetUniformLocation(this.f39732i, "videoMatrix");
-                                this.f39742n = GLES20.glGetUniformLocation(this.f39732i, "texSize");
+                                this.f39738m = GLES20.glGetUniformLocation(this.f39729i, "videoMatrix");
+                                this.f39739n = GLES20.glGetUniformLocation(this.f39729i, "texSize");
                             }
                         }
                         if (z11) {
@@ -1062,32 +1062,32 @@ public final class vy {
                             h10 = h(35633, "attribute vec4 position;attribute vec2 inputTexCoord;varying vec2 vTextureCoord;varying vec2 texCoord2;void main() {gl_Position = position;vTextureCoord = inputTexCoord;texCoord2 = inputTexCoord;}");
                             h11 = h(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;varying highp vec2 texCoord2;uniform %2$s sTexture;uniform sampler2D toneCurveTexture;uniform sampler2D inputImageTexture3;uniform lowp float mixturePercent;void main() {vec4 image = texture2D(sTexture, vTextureCoord);vec4 mask = texture2D(inputImageTexture3, texCoord2);float redCurveValue = texture2D(toneCurveTexture, vec2(image.r, 0.0)).r;float greenCurveValue = texture2D(toneCurveTexture, vec2(image.g, 0.0)).g;float blueCurveValue = texture2D(toneCurveTexture, vec2(image.b, 0.0)).b;vec4 result = vec4(redCurveValue, greenCurveValue, blueCurveValue, image.a);vec4 tone = mix(image, result, mixturePercent);gl_FragColor = vec4(mix(image.rgb, tone.rgb, 1.0 - mask.b), 1.0);}", str2, str3));
                         }
-                        GLES20.glDeleteProgram(this.f39756u);
+                        GLES20.glDeleteProgram(this.f39753u);
                         if (h10 == 0 || h11 == 0) {
                             return false;
                         }
                         int glCreateProgram3 = GLES20.glCreateProgram();
-                        this.f39756u = glCreateProgram3;
+                        this.f39753u = glCreateProgram3;
                         GLES20.glAttachShader(glCreateProgram3, h10);
-                        GLES20.glAttachShader(this.f39756u, h11);
-                        GLES20.glBindAttribLocation(this.f39756u, 0, "position");
-                        GLES20.glBindAttribLocation(this.f39756u, 1, "inputTexCoord");
-                        GLES20.glLinkProgram(this.f39756u);
-                        GLES20.glGetProgramiv(this.f39756u, 35714, iArr, 0);
+                        GLES20.glAttachShader(this.f39753u, h11);
+                        GLES20.glBindAttribLocation(this.f39753u, 0, "position");
+                        GLES20.glBindAttribLocation(this.f39753u, 1, "inputTexCoord");
+                        GLES20.glLinkProgram(this.f39753u);
+                        GLES20.glGetProgramiv(this.f39753u, 35714, iArr, 0);
                         if (iArr[0] == 0) {
-                            GLES20.glDeleteProgram(this.f39756u);
-                            this.f39756u = 0;
+                            GLES20.glDeleteProgram(this.f39753u);
+                            this.f39753u = 0;
                             return true;
                         }
-                        this.v = GLES20.glGetAttribLocation(this.f39756u, "position");
-                        this.f39759w = GLES20.glGetAttribLocation(this.f39756u, "inputTexCoord");
-                        this.f39761x = GLES20.glGetUniformLocation(this.f39756u, "sTexture");
-                        this.f39763y = GLES20.glGetUniformLocation(this.f39756u, "inputImageTexture3");
-                        this.f39765z = GLES20.glGetUniformLocation(this.f39756u, "toneCurveTexture");
-                        this.A = GLES20.glGetUniformLocation(this.f39756u, "mixturePercent");
+                        this.v = GLES20.glGetAttribLocation(this.f39753u, "position");
+                        this.f39756w = GLES20.glGetAttribLocation(this.f39753u, "inputTexCoord");
+                        this.f39758x = GLES20.glGetUniformLocation(this.f39753u, "sTexture");
+                        this.f39760y = GLES20.glGetUniformLocation(this.f39753u, "inputImageTexture3");
+                        this.f39762z = GLES20.glGetUniformLocation(this.f39753u, "toneCurveTexture");
+                        this.A = GLES20.glGetUniformLocation(this.f39753u, "mixturePercent");
                         if (z11) {
-                            this.B = GLES20.glGetUniformLocation(this.f39756u, "videoMatrix");
-                            this.C = GLES20.glGetUniformLocation(this.f39756u, "texSize");
+                            this.B = GLES20.glGetUniformLocation(this.f39753u, "videoMatrix");
+                            this.C = GLES20.glGetUniformLocation(this.f39753u, "texSize");
                             return true;
                         }
                         return true;
@@ -1097,7 +1097,7 @@ public final class vy {
                 h7 = h(35632, String.format(Locale.US, "%1$s\nprecision lowp float;varying highp vec2 vTextureCoord;uniform %2$s sTexture;void main() {vec4 inp = texture2D(sTexture, vTextureCoord);vec4 image = vec4(inp.rgb * pow(2.0, -1.0), inp.w);vec4 base = vec4(image.g, image.g, image.g, 1.0);vec4 overlay = vec4(image.b, image.b, image.b, 1.0);float ba = 2.0 * overlay.b * base.b + overlay.b * (1.0 - base.a) + base.b * (1.0 - overlay.a);gl_FragColor = vec4(ba,ba,ba,image.a);}", str2, str3));
                 i11 = h;
                 i12 = h7;
-                GLES20.glDeleteProgram(this.f39732i);
+                GLES20.glDeleteProgram(this.f39729i);
                 return i11 == 0 ? false : false;
             }
         }

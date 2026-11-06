@@ -163,8 +163,8 @@ public final class s6 extends FrameLayout {
         paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, L, new int[]{x02, i15}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
         xp xpVar = new xp(r6Var, mutate);
         if (lowerCase != null && lowerCase.contains("fragment")) {
-            xpVar.f40299e = (int) ((mutate.getIntrinsicWidth() / 44.0f) * f10);
-            xpVar.f40300f = (int) ((mutate.getIntrinsicHeight() / 44.0f) * f10);
+            xpVar.f40318e = (int) ((mutate.getIntrinsicWidth() / 44.0f) * f10);
+            xpVar.f40319f = (int) ((mutate.getIntrinsicHeight() / 44.0f) * f10);
         }
         return xpVar;
     }
@@ -255,8 +255,8 @@ public final class s6 extends FrameLayout {
             }
             if (spannableStringBuilder.length() != 0) {
                 fs fsVar = new fs();
-                fsVar.f33679b = org.telegram.messenger.g0.L(1.5f);
-                fsVar.f33680c = 7.0f;
+                fsVar.f33623b = org.telegram.messenger.g0.L(1.5f);
+                fsVar.f33624c = 7.0f;
                 fsVar.d = 2.0f;
                 spannableStringBuilder.append((CharSequence) " . ").setSpan(fsVar, spannableStringBuilder.length() - 2, spannableStringBuilder.length() - 1, 0);
             }

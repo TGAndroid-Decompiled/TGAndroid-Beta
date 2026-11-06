@@ -16,14 +16,14 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class q10 implements Runnable {
-    public final int f48983a;
-    public final Object f48984b;
-    public final Object f48985c;
+    public final int f49010a;
+    public final Object f49011b;
+    public final Object f49012c;
 
     public q10(int i7, Object obj, Object obj2) {
-        this.f48983a = i7;
-        this.f48984b = obj;
-        this.f48985c = obj2;
+        this.f49010a = i7;
+        this.f49011b = obj;
+        this.f49012c = obj2;
     }
 
     @Override
@@ -32,11 +32,11 @@ public final class q10 implements Runnable {
         byte[] bArr;
         int i7;
         int i10;
-        switch (this.f48983a) {
+        switch (this.f49010a) {
             case 0:
-                m4 m4Var = (m4) this.f48984b;
+                m4 m4Var = (m4) this.f49011b;
                 try {
-                    Bitmap bitmap = ((org.telegram.ui.Components.voip.k2) this.f48985c).f39284e.getBitmap(100, 100);
+                    Bitmap bitmap = ((org.telegram.ui.Components.voip.k2) this.f49012c).f39281e.getBitmap(100, 100);
                     if (bitmap != null) {
                         org.telegram.messenger.g0.h3(new q10(1, m4Var, a8.ba.b(bitmap, true)));
                         return;
@@ -47,25 +47,25 @@ public final class q10 implements Runnable {
                     return;
                 }
             case 1:
-                ((c40) ((m4) this.f48984b).f47633b).L2.setNewColors((int[]) this.f48985c);
+                ((c40) ((m4) this.f49011b).f47660b).L2.setNewColors((int[]) this.f49012c);
                 return;
             case 2:
-                m50.a0((m50) this.f48984b, (TLRPC.TL_error) this.f48985c);
+                m50.a0((m50) this.f49011b, (TLRPC.TL_error) this.f49012c);
                 return;
             case 3:
-                i50 i50Var = (i50) this.f48984b;
-                String str = (String) this.f48985c;
-                j50 j50Var = i50Var.f46566a;
-                j50Var.f46822e = str;
+                i50 i50Var = (i50) this.f49011b;
+                String str = (String) this.f49012c;
+                j50 j50Var = i50Var.f46575a;
+                j50Var.f46846e = str;
                 TLRPC.TL_messages_getStickerSet tL_messages_getStickerSet = new TLRPC.TL_messages_getStickerSet();
                 TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
                 tL_messages_getStickerSet.stickerset = tL_inputStickerSetShortName;
                 tL_inputStickerSetShortName.short_name = str;
-                j50Var.f46821c = j50Var.h.getConnectionsManager().sendRequest(tL_messages_getStickerSet, new h50(0, i50Var, str), 66);
+                j50Var.f46845c = j50Var.h.getConnectionsManager().sendRequest(tL_messages_getStickerSet, new h50(0, i50Var, str), 66);
                 return;
             case 4:
-                TLObject tLObject = (TLObject) this.f48985c;
-                j50 j50Var2 = ((i50) this.f48984b).f46566a;
+                TLObject tLObject = (TLObject) this.f49012c;
+                j50 j50Var2 = ((i50) this.f49011b).f46575a;
                 if (tLObject != null) {
                     m50.f0(j50Var2.h, (TLRPC.TL_messages_stickerSet) tLObject);
                     return;
@@ -74,10 +74,10 @@ public final class q10 implements Runnable {
                     return;
                 }
             case 5:
-                l50 l50Var = (l50) this.f48984b;
-                String str2 = (String) this.f48985c;
+                l50 l50Var = (l50) this.f49011b;
+                String str2 = (String) this.f49012c;
                 l50Var.h = str2;
-                m50 m50Var = l50Var.f47396r;
+                m50 m50Var = l50Var.f47423r;
                 if (m50Var.N) {
                     TLRPC.TL_messages_searchEmojiStickerSets tL_messages_searchEmojiStickerSets = new TLRPC.TL_messages_searchEmojiStickerSets();
                     tL_messages_searchEmojiStickerSets.f27064q = str2;
@@ -87,19 +87,19 @@ public final class q10 implements Runnable {
                     tL_messages_searchStickerSets2.f27066q = str2;
                     tL_messages_searchStickerSets = tL_messages_searchStickerSets2;
                 }
-                l50Var.f47395n = m50Var.getConnectionsManager().sendRequest(tL_messages_searchStickerSets, new z9(l50Var, str2, str2, 14), 66);
+                l50Var.f47422n = m50Var.getConnectionsManager().sendRequest(tL_messages_searchStickerSets, new z9(l50Var, str2, str2, 14), 66);
                 return;
             case 6:
-                org.telegram.messenger.g0.i3(new org.telegram.ui.ActionBar.p(11, (a60) this.f48984b, (org.telegram.messenger.s2) this.f48985c), 150L);
+                org.telegram.messenger.g0.i3(new org.telegram.ui.ActionBar.p(11, (a60) this.f49011b, (org.telegram.messenger.s2) this.f49012c), 150L);
                 return;
             case 7:
-                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f48984b;
-                languageSelectActivity.f41222e = (ArrayList) this.f48985c;
-                languageSelectActivity.f41221c.f();
+                LanguageSelectActivity languageSelectActivity = (LanguageSelectActivity) this.f49011b;
+                languageSelectActivity.f41247e = (ArrayList) this.f49012c;
+                languageSelectActivity.f41246c.f();
                 return;
             case 8:
-                LanguageSelectActivity languageSelectActivity2 = (LanguageSelectActivity) this.f48984b;
-                String str3 = (String) this.f48985c;
+                LanguageSelectActivity languageSelectActivity2 = (LanguageSelectActivity) this.f49011b;
+                String str3 = (String) this.f49012c;
                 if (str3.trim().toLowerCase().length() == 0) {
                     org.telegram.messenger.g0.h3(new q10(7, languageSelectActivity2, new ArrayList()));
                     return;
@@ -113,9 +113,9 @@ public final class q10 implements Runnable {
                         arrayList.add(edVar);
                     }
                 }
-                int size2 = languageSelectActivity2.f41223f.size();
+                int size2 = languageSelectActivity2.f41248f.size();
                 for (int i12 = 0; i12 < size2; i12++) {
-                    org.telegram.messenger.ed edVar2 = (org.telegram.messenger.ed) languageSelectActivity2.f41223f.get(i12);
+                    org.telegram.messenger.ed edVar2 = (org.telegram.messenger.ed) languageSelectActivity2.f41248f.get(i12);
                     if (edVar2.f22174a.toLowerCase().startsWith(str3) || edVar2.f22175b.toLowerCase().startsWith(str3)) {
                         arrayList.add(edVar2);
                     }
@@ -123,8 +123,8 @@ public final class q10 implements Runnable {
                 org.telegram.messenger.g0.h3(new q10(7, languageSelectActivity2, arrayList));
                 return;
             case 9:
-                LaunchActivity launchActivity = (LaunchActivity) this.f48984b;
-                TLObject tLObject2 = (TLObject) this.f48985c;
+                LaunchActivity launchActivity = (LaunchActivity) this.f49011b;
+                TLObject tLObject2 = (TLObject) this.f49012c;
                 String str4 = LaunchActivity.B1;
                 if (tLObject2 instanceof TL_account.resolvedBusinessChatLinks) {
                     TL_account.resolvedBusinessChatLinks resolvedbusinesschatlinks = (TL_account.resolvedBusinessChatLinks) tLObject2;
@@ -146,8 +146,8 @@ public final class q10 implements Runnable {
                 launchActivity.F0(org.telegram.ui.Components.v4.K(launchActivity, org.telegram.messenger.hd.M0(2131752716, null), org.telegram.messenger.hd.M0(2131752712, null)));
                 return;
             case 10:
-                LaunchActivity launchActivity2 = (LaunchActivity) this.f48984b;
-                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f48985c;
+                LaunchActivity launchActivity2 = (LaunchActivity) this.f49011b;
+                TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f49012c;
                 String str5 = LaunchActivity.B1;
                 org.telegram.messenger.qp.s1(launchActivity2.O).Y3(tL_chatInviteJoinResultWebView.users, false);
                 org.telegram.messenger.k2 b10 = org.telegram.messenger.k2.b(launchActivity2.O);
@@ -159,40 +159,40 @@ public final class q10 implements Runnable {
                 String M0 = org.telegram.messenger.hd.M0(2131753894, null);
                 StringBuilder sb2 = new StringBuilder();
                 org.telegram.messenger.camera.q.q(null, 2131751106, sb2, "\n");
-                sb2.append(((TLRPC.TL_error) this.f48985c).text);
-                org.telegram.ui.Components.v4.r0((g) this.f48984b, M0, sb2.toString(), null);
+                sb2.append(((TLRPC.TL_error) this.f49012c).text);
+                org.telegram.ui.Components.v4.r0((g) this.f49011b, M0, sb2.toString(), null);
                 return;
             case 12:
-                LaunchActivity launchActivity3 = (LaunchActivity) this.f48984b;
-                String str7 = (String) this.f48985c;
-                if (!launchActivity3.f41251o0.getFragmentStack().isEmpty()) {
-                    launchActivity3.f41251o0.getFragmentStack().get(0).presentFragment(new PremiumPreviewFragment(0, Uri.parse(str7).getQueryParameter("ref")));
+                LaunchActivity launchActivity3 = (LaunchActivity) this.f49011b;
+                String str7 = (String) this.f49012c;
+                if (!launchActivity3.f41276o0.getFragmentStack().isEmpty()) {
+                    launchActivity3.f41276o0.getFragmentStack().get(0).presentFragment(new PremiumPreviewFragment(0, Uri.parse(str7).getQueryParameter("ref")));
                     return;
                 }
                 return;
             case 13:
                 String str8 = LaunchActivity.B1;
-                ((LaunchActivity) this.f48984b).k0((TL_account.Password) this.f48985c);
+                ((LaunchActivity) this.f49011b).k0((TL_account.Password) this.f49012c);
                 return;
             case 14:
-                org.telegram.ui.Components.cc ccVar = (org.telegram.ui.Components.cc) this.f48985c;
-                if (!((LaunchActivity) this.f48984b).Q && LaunchActivity.F1) {
+                org.telegram.ui.Components.cc ccVar = (org.telegram.ui.Components.cc) this.f49012c;
+                if (!((LaunchActivity) this.f49011b).Q && LaunchActivity.F1) {
                     ccVar.j();
                     return;
                 }
                 return;
             case 15:
-                LaunchActivity launchActivity4 = (LaunchActivity) this.f48984b;
-                Runnable runnable = (Runnable) this.f48985c;
-                launchActivity4.f41251o0.getView().setVisibility(4);
+                LaunchActivity launchActivity4 = (LaunchActivity) this.f49011b;
+                Runnable runnable = (Runnable) this.f49012c;
+                launchActivity4.f41276o0.getView().setVisibility(4);
                 if (org.telegram.messenger.g0.Q1()) {
-                    ActionBarLayout actionBarLayout = launchActivity4.f41253p0;
-                    if (actionBarLayout != null && actionBarLayout.getView() != null && launchActivity4.f41253p0.getView().getVisibility() == 0) {
-                        launchActivity4.f41253p0.getView().setVisibility(4);
+                    ActionBarLayout actionBarLayout = launchActivity4.f41278p0;
+                    if (actionBarLayout != null && actionBarLayout.getView() != null && launchActivity4.f41278p0.getView().getVisibility() == 0) {
+                        launchActivity4.f41278p0.getView().setVisibility(4);
                     }
-                    ActionBarLayout actionBarLayout2 = launchActivity4.f41255q0;
+                    ActionBarLayout actionBarLayout2 = launchActivity4.f41280q0;
                     if (actionBarLayout2 != null && actionBarLayout2.getView() != null) {
-                        launchActivity4.f41255q0.getView().setVisibility(4);
+                        launchActivity4.f41280q0.getView().setVisibility(4);
                     }
                 }
                 if (runnable != null) {
@@ -202,11 +202,11 @@ public final class q10 implements Runnable {
                 return;
             case 16:
                 String str9 = LaunchActivity.B1;
-                ((LaunchActivity) this.f48984b).t0((u71) this.f48985c);
+                ((LaunchActivity) this.f49011b).t0((u71) this.f49012c);
                 return;
             case 17:
-                LaunchActivity launchActivity5 = (LaunchActivity) this.f48984b;
-                vf.b bVar = (vf.b) this.f48985c;
+                LaunchActivity launchActivity5 = (LaunchActivity) this.f49011b;
+                vf.b bVar = (vf.b) this.f49012c;
                 launchActivity5.O0 = null;
                 launchActivity5.P0 = null;
                 launchActivity5.Q0 = null;
@@ -219,8 +219,8 @@ public final class q10 implements Runnable {
                 }
                 return;
             case 18:
-                vf.b bVar2 = (vf.b) this.f48984b;
-                org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.f48985c;
+                vf.b bVar2 = (vf.b) this.f49011b;
+                org.telegram.ui.ActionBar.u1 u1Var = (org.telegram.ui.ActionBar.u1) this.f49012c;
                 String str10 = LaunchActivity.B1;
                 if (bVar2 != null) {
                     bVar2.b();
@@ -231,20 +231,20 @@ public final class q10 implements Runnable {
                 }
                 return;
             case 19:
-                p90 p90Var = (p90) this.f48984b;
-                TLObject tLObject3 = (TLObject) this.f48985c;
+                p90 p90Var = (p90) this.f49011b;
+                TLObject tLObject3 = (TLObject) this.f49012c;
                 p90Var.c();
                 if (tLObject3 != null) {
-                    p90Var.f48723a.k0((TL_account.Password) tLObject3);
+                    p90Var.f48718a.k0((TL_account.Password) tLObject3);
                     return;
                 }
                 return;
             case 20:
-                ((FiltersSetupActivity) this.f48985c).d0(((p90) this.f48984b).f48723a.M());
+                ((FiltersSetupActivity) this.f49012c).d0(((p90) this.f49011b).f48718a.M());
                 return;
             case 21:
-                pa0 pa0Var = (pa0) this.f48984b;
-                GLSurfaceView gLSurfaceView = (GLSurfaceView) this.f48985c;
+                pa0 pa0Var = (pa0) this.f49011b;
+                GLSurfaceView gLSurfaceView = (GLSurfaceView) this.f49012c;
                 if (gLSurfaceView.getWidth() != 0 && gLSurfaceView.getHeight() != 0) {
                     ByteBuffer allocateDirect = ByteBuffer.allocateDirect(gLSurfaceView.getHeight() * gLSurfaceView.getWidth() * 4);
                     GLES20.glReadPixels(0, 0, gLSurfaceView.getWidth(), gLSurfaceView.getHeight(), 6408, 5121, allocateDirect);
@@ -259,40 +259,40 @@ public final class q10 implements Runnable {
                 }
                 return;
             case 22:
-                pa0 pa0Var2 = (pa0) this.f48984b;
-                pa0Var2.f48738c.setImageResource(2131232211);
-                pa0Var2.m0(((org.telegram.messenger.rd) this.f48985c).f25269f);
-                pa0Var2.f48767y = false;
+                pa0 pa0Var2 = (pa0) this.f49011b;
+                pa0Var2.f48733c.setImageResource(2131232211);
+                pa0Var2.m0(((org.telegram.messenger.rd) this.f49012c).f25269f);
+                pa0Var2.f48762y = false;
                 return;
             case 23:
-                ((EditText) this.f48984b).removeTextChangedListener((fi.h7) this.f48985c);
+                ((EditText) this.f49011b).removeTextChangedListener((fi.h7) this.f49012c);
                 return;
             case 24:
-                Runnable runnable2 = (Runnable) this.f48985c;
-                lb0 lb0Var = ((ob0) this.f48984b).f48324a;
+                Runnable runnable2 = (Runnable) this.f49012c;
+                lb0 lb0Var = ((ob0) this.f49011b).f48353a;
                 int i13 = 0;
                 while (true) {
-                    br[] brVarArr = lb0Var.f52294f;
+                    br[] brVarArr = lb0Var.f52311f;
                     if (i13 < brVarArr.length) {
                         brVarArr[i13].C(0.0f);
                         i13++;
                     } else {
                         runnable2.run();
-                        lb0Var.f52293e = false;
+                        lb0Var.f52310e = false;
                         return;
                     }
                 }
             case 25:
-                xb0 xb0Var = (xb0) this.f48984b;
+                xb0 xb0Var = (xb0) this.f49011b;
                 ce0 ce0Var = xb0Var.D;
                 ce0Var.C1(false, false);
-                org.telegram.messenger.g0.v1(xb0Var.f51801a);
-                ce0Var.G1((TLRPC.TL_auth_authorization) ((TLObject) this.f48985c), false);
+                org.telegram.messenger.g0.v1(xb0Var.f51818a);
+                ce0Var.G1((TLRPC.TL_auth_authorization) ((TLObject) this.f49012c), false);
                 return;
             case 26:
-                xb0 xb0Var2 = (xb0) this.f48984b;
-                String str11 = (String) this.f48985c;
-                TLRPC.PasswordKdfAlgo passwordKdfAlgo = xb0Var2.f51806n.current_algo;
+                xb0 xb0Var2 = (xb0) this.f49011b;
+                String str11 = (String) this.f49012c;
+                TLRPC.PasswordKdfAlgo passwordKdfAlgo = xb0Var2.f51823n.current_algo;
                 boolean z9 = passwordKdfAlgo instanceof TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow;
                 if (z9) {
                     bArr = org.telegram.messenger.pv.c(org.telegram.messenger.g0.h1(str11), (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
@@ -301,7 +301,7 @@ public final class q10 implements Runnable {
                 }
                 vb0 vb0Var = new vb0(xb0Var2, 2);
                 if (z9) {
-                    TL_account.Password password = xb0Var2.f51806n;
+                    TL_account.Password password = xb0Var2.f51823n;
                     TLRPC.TL_inputCheckPasswordSRP d = org.telegram.messenger.pv.d(bArr, password.srp_id, password.srp_B, (TLRPC.TL_passwordKdfAlgoSHA256SHA256PBKDF2HMACSHA512iter100000SHA256ModPow) passwordKdfAlgo);
                     if (d == null) {
                         TLRPC.TL_error tL_error = new TLRPC.TL_error();
@@ -317,10 +317,10 @@ public final class q10 implements Runnable {
                 }
                 return;
             case 27:
-                pc0 pc0Var = (pc0) this.f48984b;
+                pc0 pc0Var = (pc0) this.f49011b;
                 pc0Var.P.C1(false, false);
                 org.telegram.messenger.g0.v1(pc0Var.P.fragmentView.findFocus());
-                pc0Var.P.G1((TLRPC.TL_auth_authorization) ((TLRPC.auth_Authorization) this.f48985c), true);
+                pc0Var.P.G1((TLRPC.TL_auth_authorization) ((TLRPC.auth_Authorization) this.f49012c), true);
                 TLRPC.FileLocation fileLocation = pc0Var.O;
                 if (fileLocation != null) {
                     Utilities.f21334f.c(new q10(28, pc0Var, fileLocation));
@@ -328,8 +328,8 @@ public final class q10 implements Runnable {
                 }
                 return;
             case 28:
-                TLRPC.FileLocation fileLocation2 = (TLRPC.FileLocation) this.f48985c;
-                i10 = ((org.telegram.ui.ActionBar.f2) ((pc0) this.f48984b).P).currentAccount;
+                TLRPC.FileLocation fileLocation2 = (TLRPC.FileLocation) this.f49012c;
+                i10 = ((org.telegram.ui.ActionBar.f2) ((pc0) this.f49011b).P).currentAccount;
                 org.telegram.messenger.qp s12 = org.telegram.messenger.qp.s1(i10);
                 if (fileLocation2 != null) {
                     StringBuilder sb3 = new StringBuilder();
@@ -343,16 +343,16 @@ public final class q10 implements Runnable {
                 }
                 return;
             default:
-                qc0 qc0Var = (qc0) this.f48984b;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f48985c;
+                qc0 qc0Var = (qc0) this.f49011b;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f49012c;
                 ce0 ce0Var2 = qc0Var.G;
                 ce0Var2.C1(false, true);
                 if (tL_error2 == null) {
-                    if (qc0Var.f49169r != null && qc0Var.f49170s != null && qc0Var.f49171w != null) {
+                    if (qc0Var.f49196r != null && qc0Var.f49197s != null && qc0Var.f49198w != null) {
                         Bundle bundle2 = new Bundle();
-                        bundle2.putString("phoneFormated", qc0Var.f49169r);
-                        bundle2.putString("phoneHash", qc0Var.f49170s);
-                        bundle2.putString("code", qc0Var.f49171w);
+                        bundle2.putString("phoneFormated", qc0Var.f49196r);
+                        bundle2.putString("phoneHash", qc0Var.f49197s);
+                        bundle2.putString("code", qc0Var.f49198w);
                         ce0Var2.M1(5, true, bundle2, false);
                         return;
                     }

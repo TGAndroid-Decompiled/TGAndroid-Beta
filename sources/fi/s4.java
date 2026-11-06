@@ -41,13 +41,13 @@ public final class s4 implements View.OnLongClickListener {
                 int i11 = o5Var.f12538o1;
                 if (o5Var.f12544r1 != null) {
                     sg.l0 e12 = sg.l0.e(i11);
-                    e12.f55018k = !e12.f55018k;
-                    e12.f55010a.edit().putBoolean("fill_shapes", e12.f55018k).apply();
-                    boolean z10 = sg.l0.e(i11).f55018k;
+                    e12.f55043k = !e12.f55043k;
+                    e12.f55035a.edit().putBoolean("fill_shapes", e12.f55043k).apply();
+                    boolean z10 = sg.l0.e(i11).f55043k;
                     for (int i12 = 0; i12 < o5Var.f12544r1.getItemsCount(); i12++) {
                         View childAt = o5Var.f12544r1.L.getChildAt(i12);
                         if (childAt instanceof l5) {
-                            sg.g gVar = (sg.g) sg.g.f54935c.get(i12);
+                            sg.g gVar = (sg.g) sg.g.f54960c.get(i12);
                             if (z10) {
                                 e10 = gVar.m();
                             } else {
@@ -80,8 +80,8 @@ public final class s4 implements View.OnLongClickListener {
                 y6Var2.d(vaVar.f12991s.f12587p);
                 y6Var2.h = new v8(vaVar, 0);
                 F.q(y6Var2);
-                F.f35211p = new u8(vaVar, 1);
-                F.f35216s = 0;
+                F.f35175p = new u8(vaVar, 1);
+                F.f35180s = 0;
                 F.V(5);
                 F.a0(org.telegram.messenger.g0.L(46.0f), -org.telegram.messenger.g0.L(4.0f));
                 F.P(-1155851493);
@@ -97,8 +97,8 @@ public final class s4 implements View.OnLongClickListener {
             case 4:
                 li.p pVar = ((li.l) obj).f18675a;
                 li.y3 y3Var = pVar.f18758s;
-                org.telegram.ui.ActionBar.f6 f6Var2 = pVar.f38950a;
-                di diVar = pVar.f38951b;
+                org.telegram.ui.ActionBar.f6 f6Var2 = pVar.f38947a;
+                di diVar = pVar.f38948b;
                 li.t3 t3Var = pVar.f18757r;
                 int i13 = pVar.f18756n;
                 if (!p10.i(i13).q()) {
@@ -172,7 +172,7 @@ public final class s4 implements View.OnLongClickListener {
                         q10.setBackground(new li.a2(org.telegram.ui.ActionBar.k6.d0(org.telegram.messenger.g0.L(22.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Ci, f6Var))));
                         bg0 bg0Var3 = pVar.O;
                         int L = org.telegram.messenger.g0.L(44.0f);
-                        bg0Var3.f44316l0 = true;
+                        bg0Var3.f44332l0 = true;
                         bg0Var3.X = L;
                     } else {
                         f6Var = f6Var2;
@@ -211,16 +211,16 @@ public final class s4 implements View.OnLongClickListener {
                 return true;
             default:
                 tg.g0 g0Var = (tg.g0) obj;
-                int i14 = g0Var.f55586y1;
+                int i14 = g0Var.f55611y1;
                 if (g0Var.B1 != null) {
                     sg.l0 e13 = sg.l0.e(i14);
-                    e13.f55018k = !e13.f55018k;
-                    e13.f55010a.edit().putBoolean("fill_shapes", e13.f55018k).apply();
-                    boolean z11 = sg.l0.e(i14).f55018k;
+                    e13.f55043k = !e13.f55043k;
+                    e13.f55035a.edit().putBoolean("fill_shapes", e13.f55043k).apply();
+                    boolean z11 = sg.l0.e(i14).f55043k;
                     for (int i15 = 0; i15 < g0Var.B1.getItemsCount(); i15++) {
                         View childAt2 = g0Var.B1.L.getChildAt(i15);
                         if (childAt2 instanceof tg.f0) {
-                            sg.g gVar2 = (sg.g) sg.g.f54935c.get(i15);
+                            sg.g gVar2 = (sg.g) sg.g.f54960c.get(i15);
                             if (z11) {
                                 e11 = gVar2.m();
                             } else {

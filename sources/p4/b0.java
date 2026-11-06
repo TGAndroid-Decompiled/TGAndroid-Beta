@@ -7,30 +7,30 @@ import android.os.Message;
 import android.os.RemoteException;
 import c8.za;
 public final class b0 extends Handler {
-    public boolean f53053a;
-    public boolean f53054b;
-    public final d0 f53055c;
+    public boolean f53079a;
+    public boolean f53080b;
+    public final d0 f53081c;
 
     public b0(d0 d0Var, Looper looper) {
         super(looper);
-        this.f53055c = d0Var;
-        this.f53053a = true;
-        this.f53054b = true;
+        this.f53081c = d0Var;
+        this.f53079a = true;
+        this.f53080b = true;
     }
 
     public final void a(boolean z9, boolean z10) {
         boolean z11;
         boolean z12 = false;
-        if (this.f53053a && z9) {
+        if (this.f53079a && z9) {
             z11 = true;
         } else {
             z11 = false;
         }
-        this.f53053a = z11;
-        if (this.f53054b && z10) {
+        this.f53079a = z11;
+        if (this.f53080b && z10) {
             z12 = true;
         }
-        this.f53054b = z12;
+        this.f53080b = z12;
         if (!hasMessages(1)) {
             sendEmptyMessage(1);
         }
@@ -41,15 +41,15 @@ public final class b0 extends Handler {
         v vVar;
         int i7;
         e1 e1Var;
-        d0 d0Var = this.f53055c;
-        c1 c1Var = d0Var.f53088g;
+        d0 d0Var = this.f53081c;
+        c1 c1Var = d0Var.f53114g;
         if (message.what == 1) {
-            e1 c10 = d0Var.f53099s.c(d0Var.f53100t.T0(), d0Var.f53100t.R0(), d0Var.f53099s.f53135k);
-            d0Var.f53099s = c10;
-            boolean z9 = this.f53053a;
-            boolean z10 = this.f53054b;
+            e1 c10 = d0Var.f53125s.c(d0Var.f53126t.T0(), d0Var.f53126t.R0(), d0Var.f53125s.f53161k);
+            d0Var.f53125s = c10;
+            boolean z9 = this.f53079a;
+            boolean z10 = this.f53080b;
             e1 a12 = c1Var.a1(c10);
-            ui.e eVar = c1Var.f53066b;
+            ui.e eVar = c1Var.f53092b;
             h9.i0 w10 = eVar.w();
             for (int i10 = 0; i10 < w10.size(); i10++) {
                 v vVar2 = (v) w10.get(i10);
@@ -65,7 +65,7 @@ public final class b0 extends Handler {
                     e1 B = eVar.B(vVar2);
                     if (B == null) {
                         eVar.A(vVar2);
-                        e2.y0 a10 = za.a(eVar.u(vVar2), d0Var.f53100t.t());
+                        e2.y0 a10 = za.a(eVar.u(vVar2), d0Var.f53126t.t());
                         try {
                             u uVar = vVar2.d;
                             uVar.getClass();
@@ -79,7 +79,7 @@ public final class b0 extends Handler {
                             try {
                                 uVar.a(i7, e1Var, a10, z9, z10);
                             } catch (DeadObjectException unused) {
-                                c1Var.f53066b.T(vVar);
+                                c1Var.f53092b.T(vVar);
                             } catch (RemoteException e10) {
                                 e = e10;
                                 h2.a.m("MediaSessionImpl", "Exception in " + vVar, e);
@@ -98,8 +98,8 @@ public final class b0 extends Handler {
                     vVar = vVar2;
                 }
             }
-            this.f53053a = true;
-            this.f53054b = true;
+            this.f53079a = true;
+            this.f53080b = true;
             return;
         }
         throw new IllegalStateException("Invalid message what=" + message.what);

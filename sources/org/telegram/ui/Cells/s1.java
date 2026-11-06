@@ -139,14 +139,14 @@ public final class s1 {
             if (ly0Var != null) {
                 ly0Var.c(org.telegram.messenger.g0.L(10.0f), org.telegram.messenger.g0.L(12.0f), f15, p10, canvas);
                 if (this.d != null) {
-                    rectF.set((int) (org.telegram.messenger.g0.L(10.0f) + this.f30234c.f35777c + org.telegram.messenger.g0.L(4.0f)), org.telegram.messenger.g0.L(4.33f), org.telegram.messenger.g0.L(10.0f) + L2 + this.d.f35777c, org.telegram.messenger.g0.L(21.66f));
+                    rectF.set((int) (org.telegram.messenger.g0.L(10.0f) + this.f30234c.f35782c + org.telegram.messenger.g0.L(4.0f)), org.telegram.messenger.g0.L(4.33f), org.telegram.messenger.g0.L(10.0f) + L2 + this.d.f35782c, org.telegram.messenger.g0.L(21.66f));
                     ic icVar2 = this.f30235e;
                     if (icVar2 != null) {
                         f14 = icVar2.a(0.1f);
                     }
                     canvas.save();
                     canvas.scale(f14, f14, rectF.centerX(), rectF.centerY());
-                    canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(17.0f), org.telegram.messenger.g0.L(17.0f), this.f30249t.f40977g);
+                    canvas.drawRoundRect(rectF, org.telegram.messenger.g0.L(17.0f), org.telegram.messenger.g0.L(17.0f), this.f30249t.f41002g);
                     this.d.c(org.telegram.messenger.g0.L(5.0f) + L2, org.telegram.messenger.g0.L(12.0f), f15, p10, canvas);
                     canvas.restore();
                 }

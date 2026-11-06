@@ -10,33 +10,33 @@ import z7.ia;
 import z7.pa;
 import z7.qa;
 public final class d implements Callable {
-    public final int f57195a = 1;
-    public final Object f57196b;
-    public final Object f57197c;
+    public final int f57220a = 1;
+    public final Object f57221b;
+    public final Object f57222c;
 
     public d(MobileVisionBase mobileVisionBase, ub.a aVar) {
-        this.f57196b = mobileVisionBase;
-        this.f57197c = aVar;
+        this.f57221b = mobileVisionBase;
+        this.f57222c = aVar;
     }
 
     @Override
     public final Object call() {
         ia iaVar;
-        int i7 = this.f57195a;
-        Object obj = this.f57196b;
-        Object obj2 = this.f57197c;
+        int i7 = this.f57220a;
+        Object obj = this.f57221b;
+        Object obj2 = this.f57222c;
         switch (i7) {
             case 0:
                 MobileVisionBase mobileVisionBase = (MobileVisionBase) obj;
                 ub.a aVar = (ub.a) obj2;
-                HashMap hashMap = ia.f59711f;
+                HashMap hashMap = ia.f59736f;
                 qa.b();
-                int i10 = pa.f59798a;
+                int i10 = pa.f59823a;
                 qa.b();
                 if (!Boolean.parseBoolean("")) {
                     iaVar = ha.h;
                 } else {
-                    HashMap hashMap2 = ia.f59711f;
+                    HashMap hashMap2 = ia.f59736f;
                     if (hashMap2.get("detectorTaskWithResource#run") == null) {
                         hashMap2.put("detectorTaskWithResource#run", new ia("detectorTaskWithResource#run"));
                     }
@@ -64,7 +64,7 @@ public final class d implements Callable {
     }
 
     public d(ShortcutInfoCompatSaverImpl shortcutInfoCompatSaverImpl, String str) {
-        this.f57197c = shortcutInfoCompatSaverImpl;
-        this.f57196b = str;
+        this.f57222c = shortcutInfoCompatSaverImpl;
+        this.f57221b = str;
     }
 }

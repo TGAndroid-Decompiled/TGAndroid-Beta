@@ -9,19 +9,19 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 public abstract class yx extends FrameLayout {
     public float[] D;
-    public FrameLayout f52350a;
-    public org.telegram.ui.ActionBar.k5 f52351b;
-    public org.telegram.ui.ActionBar.k5 f52352c;
+    public FrameLayout f52357a;
+    public org.telegram.ui.ActionBar.k5 f52358b;
+    public org.telegram.ui.ActionBar.k5 f52359c;
     public ImageView d;
-    public xx f52353e;
-    public bi.md f52354f;
+    public xx f52360e;
+    public bi.md f52361f;
     public bi.md h;
-    public TextView f52355n;
-    public org.telegram.ui.ActionBar.f2 f52356r;
-    public String f52357s;
-    public float f52358w;
-    public ValueAnimator f52359x;
-    public org.telegram.ui.ActionBar.g1 f52360y;
+    public TextView f52362n;
+    public org.telegram.ui.ActionBar.f2 f52363r;
+    public String f52364s;
+    public float f52365w;
+    public ValueAnimator f52366x;
+    public org.telegram.ui.ActionBar.g1 f52367y;
 
     public static void a(FrameLayout frameLayout, FrameLayout frameLayout2, float[] fArr) {
         float f10 = 0.0f;

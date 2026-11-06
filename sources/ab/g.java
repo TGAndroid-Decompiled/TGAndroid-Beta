@@ -101,7 +101,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
 
     @Override
     public k60 a(g1 g1Var) {
-        li.p pVar = (li.p) ((wf.b) this.f928b).f57539c;
+        li.p pVar = (li.p) ((wf.b) this.f928b).f57564c;
         k60 k60Var = new k60(pVar, (f6) this.f929c, g1Var, false, false, true);
         pVar.H = k60Var;
         return k60Var;
@@ -179,7 +179,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                 u9.a aVar = (u9.a) this.f929c;
                 try {
                     Trace.beginSection(str2);
-                    return aVar.f56342f.e(r7Var);
+                    return aVar.f56367f.e(r7Var);
                 } finally {
                     Trace.endSection();
                 }
@@ -208,7 +208,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
         l2 l2Var = s8Var.f28618c;
         if (i7 >= 0 && i7 < arrayList2.size()) {
             b8 b8Var = (b8) arrayList2.get(i7);
-            int i14 = b8Var.f54415a;
+            int i14 = b8Var.f54440a;
             int i15 = 0;
             if (i14 == 3) {
                 if (b8Var.f11700n && s8Var.f12815w1) {
@@ -378,7 +378,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                                 i13 = 2131744671;
                             }
                             cc G = hcVar.G(2131624055, 4, hd.M0(i13, null));
-                            G.f32523j = 5000;
+                            G.f32527j = 5000;
                             G.k(true);
                             return;
                         }
@@ -389,7 +389,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                             i12 = 2131744685;
                         }
                         cc G2 = hcVar2.G(2131624112, 4, hd.M0(i12, null));
-                        G2.f32523j = 5000;
+                        G2.f32527j = 5000;
                         G2.k(true);
                     } else if (i17 == 1) {
                         boolean d2 = m8Var.d();
@@ -403,7 +403,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                                 i11 = 2131744672;
                             }
                             cc G3 = hcVar3.G(2131624102, 4, hd.M0(i11, null));
-                            G3.f32523j = 5000;
+                            G3.f32527j = 5000;
                             G3.k(true);
                         } else {
                             hc hcVar4 = new hc(l2Var, s8Var.I0);
@@ -413,7 +413,7 @@ public final class g implements OnCompleteListener, Continuation, CameraView.Cam
                                 i10 = 2131744686;
                             }
                             cc G4 = hcVar4.G(2131624020, 4, hd.M0(i10, null));
-                            G4.f32523j = 5000;
+                            G4.f32527j = 5000;
                             G4.k(true);
                         }
                         n8Var.h(true);

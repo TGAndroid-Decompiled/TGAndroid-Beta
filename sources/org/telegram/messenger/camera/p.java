@@ -11,6 +11,6 @@ public final class p implements SurfaceTexture.OnFrameAvailableListener {
 
     @Override
     public final void onFrameAvailable(SurfaceTexture surfaceTexture) {
-        CameraView.CameraGLThread.d(this.f21782a, surfaceTexture);
+        this.f21782a.updTex(surfaceTexture);
     }
 }

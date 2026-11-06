@@ -9,26 +9,26 @@ import android.view.View;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.f41;
 import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.o31;
+import org.telegram.ui.Components.p41;
 import org.telegram.ui.Components.pj0;
-import org.telegram.ui.Components.q31;
-import org.telegram.ui.Components.r31;
-public final class r2 extends q31 {
-    public static final int f60405b = 0;
+import org.telegram.ui.Components.t31;
+import org.telegram.ui.Components.v31;
+import org.telegram.ui.Components.w31;
+public final class r2 extends v31 {
+    public static final int f60430b = 0;
 
     static {
-        q31.h(new q31());
+        v31.h(new v31());
     }
 
     @Override
-    public final void b(View view, r31 r31Var, boolean z9, f41 f41Var, k41 k41Var) {
+    public final void b(View view, w31 w31Var, boolean z9, k41 k41Var, p41 p41Var) {
         s2 s2Var = (s2) view;
-        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) r31Var.G;
-        int i7 = r31Var.f37611z;
-        String str = (String) r31Var.f37598l;
-        boolean z10 = r31Var.f37592e;
+        TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = (TL_stars.starGiftAttributeBackdrop) w31Var.G;
+        int i7 = w31Var.f39843z;
+        String str = (String) w31Var.f39830l;
+        boolean z10 = w31Var.f39824e;
         s2Var.getClass();
         ShapeDrawable L = k6.L(org.telegram.messenger.g0.L(20.0f), stargiftattributebackdrop.center_color | (-16777216));
         SpannableStringBuilder spannableStringBuilder = stargiftattributebackdrop.name;
@@ -40,7 +40,7 @@ public final class r2 extends q31 {
             spannableStringBuilder2.append((CharSequence) "  ");
             int length = spannableStringBuilder2.length();
             spannableStringBuilder2.append((CharSequence) Integer.toString(i7));
-            spannableStringBuilder2.setSpan(new o31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
+            spannableStringBuilder2.setSpan(new t31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
             spannableStringBuilder = spannableStringBuilder2;
         }
         s2Var.j(spannableStringBuilder, 0, L);

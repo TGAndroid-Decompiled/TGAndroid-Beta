@@ -3,18 +3,18 @@ package org.telegram.ui;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class tg implements Runnable {
-    public final int f50023a;
-    public final View f50024b;
+    public final int f50051a;
+    public final View f50052b;
 
     public tg(int i7, View view) {
-        this.f50023a = i7;
-        this.f50024b = view;
+        this.f50051a = i7;
+        this.f50052b = view;
     }
 
     @Override
     public final void run() {
-        int i7 = this.f50023a;
-        View view = this.f50024b;
+        int i7 = this.f50051a;
+        View view = this.f50052b;
         switch (i7) {
             case 0:
                 try {

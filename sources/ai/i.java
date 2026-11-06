@@ -53,11 +53,11 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.f2;
 import org.telegram.ui.ActionBar.v2;
-import org.telegram.ui.Components.c51;
-import org.telegram.ui.Components.f41;
+import org.telegram.ui.Components.g51;
 import org.telegram.ui.Components.he0;
 import org.telegram.ui.Components.k41;
-import org.telegram.ui.Components.r31;
+import org.telegram.ui.Components.p41;
+import org.telegram.ui.Components.w31;
 import org.telegram.ui.ProfileActivity;
 public final class i implements c20 {
     public final int f1236a;
@@ -76,7 +76,7 @@ public final class i implements c20 {
         boolean z9;
         int i7;
         float f10;
-        f41 f41Var;
+        k41 k41Var;
         TLRPC.User user = null;
         int i10 = 0;
         boolean z10 = false;
@@ -322,7 +322,7 @@ public final class i implements c20 {
                 if (view2 instanceof a4) {
                     w3Var.getClass();
                     int R = RecyclerView.R(view2);
-                    r31 G = w3Var.f35167f3.G(R);
+                    w31 G = w3Var.f36781f3.G(R);
                     if (G != null) {
                         a4 a4Var = (a4) view2;
                         a4Var.setPosition(b4Var.b(R));
@@ -393,9 +393,9 @@ public final class i implements c20 {
                 return;
             case 24:
                 d7 d7Var = (d7) obj;
-                c51 c51Var = ((y5) this.f1237b).f13179n;
-                if (c51Var != null) {
-                    c51Var.setHDRInfo(d7Var);
+                g51 g51Var = ((y5) this.f1237b).f13179n;
+                if (g51Var != null) {
+                    g51Var.setHDRInfo(d7Var);
                     return;
                 }
                 return;
@@ -423,8 +423,8 @@ public final class i implements c20 {
                     m7Var.e1();
                     return;
                 }
-                m7Var.f12460g2 = h0Var.f55594e;
-                m7Var.f12459f2 = h0Var.f55595f;
+                m7Var.f12460g2 = h0Var.f55619e;
+                m7Var.f12459f2 = h0Var.f55620f;
                 return;
             case 27:
                 ((j8) this.f1237b).f12241n.W.f12817y1 = ((Integer) obj).intValue();
@@ -437,9 +437,9 @@ public final class i implements c20 {
                 ArrayList arrayList5 = qVar.f14872b;
                 arrayList5.clear();
                 arrayList5.addAll((ArrayList) obj);
-                k41 k41Var = qVar.f14871a;
-                if (k41Var != null && (f41Var = k41Var.f35167f3) != null) {
-                    f41Var.O(true);
+                p41 p41Var = qVar.f14871a;
+                if (p41Var != null && (k41Var = p41Var.f36781f3) != null) {
+                    k41Var.O(true);
                     return;
                 }
                 return;

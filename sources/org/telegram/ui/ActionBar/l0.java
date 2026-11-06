@@ -28,10 +28,10 @@ public final class l0 extends FrameLayout {
             case 2:
                 boolean drawChild = super.drawChild(canvas, view, j3);
                 u71 u71Var = (u71) this.f28272c;
-                if (view == u71Var.f50297t0 && u71.v0(u71Var) != null) {
+                if (view == u71Var.f50319t0 && u71.v0(u71Var) != null) {
                     q4 w02 = u71.w0(u71Var);
-                    if (u71Var.f50297t0.getVisibility() == 0) {
-                        i7 = (int) (u71Var.f50297t0.getTranslationY() + u71Var.f50297t0.getMeasuredHeight());
+                    if (u71Var.f50319t0.getVisibility() == 0) {
+                        i7 = (int) (u71Var.f50319t0.getTranslationY() + u71Var.f50319t0.getMeasuredHeight());
                     } else {
                         i7 = 0;
                     }
@@ -146,21 +146,21 @@ public final class l0 extends FrameLayout {
                     i16 = 0;
                 }
                 TextView textView2 = anVar.Z1;
-                if (textView2 != null && textView2.getVisibility() == 0 && (textView = anVar.f43709b2) != null && textView.getVisibility() == 0) {
+                if (textView2 != null && textView2.getVisibility() == 0 && (textView = anVar.f43734b2) != null && textView.getVisibility() == 0) {
                     size3 = org.telegram.messenger.camera.q.y(31.0f, size3, 2);
                 }
                 this.f28271b = true;
-                TextView textView3 = anVar.f43709b2;
+                TextView textView3 = anVar.f43734b2;
                 if (textView3 != null && textView3.getVisibility() == 0) {
-                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) anVar.f43709b2.getLayoutParams();
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) anVar.f43734b2.getLayoutParams();
                     layoutParams.width = size3;
                     TextView textView4 = anVar.Z1;
                     if (textView4 != null && textView4.getVisibility() == 0) {
-                        anVar.f43709b2.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
+                        anVar.f43734b2.setPadding(org.telegram.messenger.g0.L(4.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
                         layoutParams.leftMargin = i16 + size3;
                         layoutParams.width -= org.telegram.messenger.g0.L(15.0f);
                     } else {
-                        anVar.f43709b2.setPadding(org.telegram.messenger.g0.L(48.0f), 0, org.telegram.messenger.g0.L(48.0f), 0);
+                        anVar.f43734b2.setPadding(org.telegram.messenger.g0.L(48.0f), 0, org.telegram.messenger.g0.L(48.0f), 0);
                         layoutParams.leftMargin = i16;
                     }
                 }
@@ -168,7 +168,7 @@ public final class l0 extends FrameLayout {
                 if (textView5 != null && textView5.getVisibility() == 0) {
                     FrameLayout.LayoutParams layoutParams2 = (FrameLayout.LayoutParams) anVar.Z1.getLayoutParams();
                     layoutParams2.width = size3;
-                    TextView textView6 = anVar.f43709b2;
+                    TextView textView6 = anVar.f43734b2;
                     if (textView6 != null && textView6.getVisibility() == 0) {
                         anVar.Z1.setPadding(org.telegram.messenger.g0.L(11.0f), 0, org.telegram.messenger.g0.L(4.0f), 0);
                     } else {
@@ -183,12 +183,12 @@ public final class l0 extends FrameLayout {
                 int size4 = View.MeasureSpec.getSize(i7);
                 int size5 = View.MeasureSpec.getSize(i10);
                 setMeasuredDimension(size4, size5);
-                if (((u71) this.f28272c).f50258e != null) {
+                if (((u71) this.f28272c).f50280e != null) {
                     this.f28271b = true;
                     if (!org.telegram.messenger.g0.Q1()) {
-                        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) ((u71) this.f28272c).f50258e.getLayoutParams();
+                        FrameLayout.LayoutParams layoutParams3 = (FrameLayout.LayoutParams) ((u71) this.f28272c).f50280e.getLayoutParams();
                         layoutParams3.topMargin = org.telegram.messenger.g0.f22531m;
-                        ((u71) this.f28272c).f50258e.setLayoutParams(layoutParams3);
+                        ((u71) this.f28272c).f50280e.setLayoutParams(layoutParams3);
                     }
                     if (!org.telegram.messenger.g0.Q1() && org.telegram.messenger.t0.f25555b.getResources().getConfiguration().orientation == 2) {
                         ((u71) this.f28272c).h.setTextSize(1, 18.0f);
@@ -197,17 +197,17 @@ public final class l0 extends FrameLayout {
                     }
                     this.f28271b = false;
                 }
-                measureChildWithMargins(((u71) this.f28272c).f50297t0, i7, 0, i10, 0);
-                int measuredHeight = ((u71) this.f28272c).f50297t0.getMeasuredHeight();
-                if (((u71) this.f28272c).f50297t0.getVisibility() == 0) {
+                measureChildWithMargins(((u71) this.f28272c).f50319t0, i7, 0, i10, 0);
+                int measuredHeight = ((u71) this.f28272c).f50319t0.getMeasuredHeight();
+                if (((u71) this.f28272c).f50319t0.getVisibility() == 0) {
                     size5 -= measuredHeight;
                 }
-                FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) ((u71) this.f28272c).f50301v0.getLayoutParams();
+                FrameLayout.LayoutParams layoutParams4 = (FrameLayout.LayoutParams) ((u71) this.f28272c).f50323v0.getLayoutParams();
                 layoutParams4.topMargin = measuredHeight;
                 u71 u71Var = (u71) this.f28272c;
                 int i25 = 58;
-                if (u71Var.f50248b == 2) {
-                    q61 q61Var = u71Var.f50301v0;
+                if (u71Var.f50270b == 2) {
+                    q61 q61Var = u71Var.f50323v0;
                     int L = org.telegram.messenger.g0.L(4.0f);
                     u71 u71Var2 = (u71) this.f28272c;
                     if (!u71Var2.L1 && u71Var2.K1 > 0) {
@@ -223,9 +223,9 @@ public final class l0 extends FrameLayout {
                     }
                     q61Var.setPadding(0, L, 0, L2 + i23);
                 }
-                ((u71) this.f28272c).f50301v0.measure(View.MeasureSpec.makeMeasureSpec(size4, 1073741824), View.MeasureSpec.makeMeasureSpec(size5 - layoutParams4.bottomMargin, 1073741824));
-                ((FrameLayout.LayoutParams) ((u71) this.f28272c).f50310y0.getLayoutParams()).topMargin = measuredHeight;
-                ((u71) this.f28272c).f50310y0.measure(View.MeasureSpec.makeMeasureSpec(size4, 1073741824), View.MeasureSpec.makeMeasureSpec(size5, 1073741824));
+                ((u71) this.f28272c).f50323v0.measure(View.MeasureSpec.makeMeasureSpec(size4, 1073741824), View.MeasureSpec.makeMeasureSpec(size5 - layoutParams4.bottomMargin, 1073741824));
+                ((FrameLayout.LayoutParams) ((u71) this.f28272c).f50332y0.getLayoutParams()).topMargin = measuredHeight;
+                ((u71) this.f28272c).f50332y0.measure(View.MeasureSpec.makeMeasureSpec(size4, 1073741824), View.MeasureSpec.makeMeasureSpec(size5, 1073741824));
                 bi.m5 m5Var = ((u71) this.f28272c).R1;
                 if (m5Var != null) {
                     ((FrameLayout.LayoutParams) m5Var.getLayoutParams()).topMargin = measuredHeight;
@@ -257,7 +257,7 @@ public final class l0 extends FrameLayout {
                     layoutParams5.height = L7 + i21;
                     measureChildWithMargins(((u71) this.f28272c).D0, i7, 0, i10, 0);
                 }
-                Drawable drawable = ((u71) this.f28272c).f50291r;
+                Drawable drawable = ((u71) this.f28272c).f50313r;
                 if (drawable != null) {
                     drawable.getPadding(org.telegram.messenger.g0.Q);
                 }
@@ -269,7 +269,7 @@ public final class l0 extends FrameLayout {
                         if (frameLayout != null) {
                             FrameLayout.LayoutParams layoutParams6 = (FrameLayout.LayoutParams) frameLayout.getLayoutParams();
                             if (i26 == 0) {
-                                if (((u71) this.f28272c).f50248b == 2) {
+                                if (((u71) this.f28272c).f50270b == 2) {
                                     i19 = 321;
                                 } else {
                                     i19 = 273;

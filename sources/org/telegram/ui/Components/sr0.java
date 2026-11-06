@@ -20,19 +20,19 @@ public abstract class sr0 extends FrameLayout {
     public final Paint M;
     public org.telegram.ui.ActionBar.f6 N;
     public Drawable O;
-    public long f38141a;
-    public boolean f38142b;
-    public ObjectAnimator f38143c;
+    public long f38101a;
+    public boolean f38102b;
+    public ObjectAnimator f38103c;
     public v4.k d;
-    public v4.u0 f38144e;
-    public v4.u0 f38145f;
+    public v4.u0 f38104e;
+    public v4.u0 f38105f;
     public cq0 h;
-    public rr0 f38146n;
-    public dq0 f38147r;
-    public lq0 f38148s;
-    public nq0 f38149w;
-    public aq0 f38150x;
-    public kq0 f38151y;
+    public rr0 f38106n;
+    public dq0 f38107r;
+    public lq0 f38108s;
+    public nq0 f38109w;
+    public aq0 f38110x;
+    public kq0 f38111y;
 
     public sr0(Context context) {
         super(context);
@@ -90,7 +90,7 @@ public abstract class sr0 extends FrameLayout {
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j3) {
-        if (view == this.f38146n) {
+        if (view == this.f38106n) {
             return true;
         }
         return super.drawChild(canvas, view, j3);

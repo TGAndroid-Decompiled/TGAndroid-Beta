@@ -80,11 +80,11 @@ public abstract class vf extends ys {
             chatActivityEnterView.L0 = null;
         }
         org.telegram.ui.qm qmVar = chatActivityEnterView.V2;
-        if (qmVar != null && anVar != null && qmVar.f49240f) {
+        if (qmVar != null && anVar != null && qmVar.f49267f) {
             anVar.uc();
             return;
         }
-        t0.h hVar = (t0.h) qtVar.f37504b;
+        t0.h hVar = (t0.h) qtVar.f37394b;
         if (hVar.getDescription().hasMimeType("image/gif")) {
             org.telegram.messenger.c cVar = chatActivityEnterView.R;
             Uri c10 = hVar.c();
@@ -217,8 +217,8 @@ public abstract class vf extends ys {
             } else {
                 z9 = false;
             }
-            if (wdVar.f34967x != z9) {
-                wdVar.f34967x = z9;
+            if (wdVar.f34928x != z9) {
+                wdVar.f34928x = z9;
                 wdVar.invalidate();
             }
             if (!z9 && (k60Var = chatActivityEnterView.Y4) != null) {
@@ -251,16 +251,16 @@ public abstract class vf extends ys {
                     pc pcVar = new pc(this);
                     this.Y1 = pcVar;
                     pcVar.h = new Runnable(this) {
-                        public final vf f38332b;
+                        public final vf f38323b;
 
                         {
-                            this.f38332b = this;
+                            this.f38323b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i10 = r2;
-                            vf vfVar = this.f38332b;
+                            vf vfVar = this.f38323b;
                             switch (i10) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = vfVar.Z1;
@@ -283,8 +283,8 @@ public abstract class vf extends ys {
                 RectF rectF = org.telegram.messenger.g0.P;
                 float f10 = 0;
                 rectF.set(f10, f10, measuredWidth, measuredHeight);
-                pcVar2.f36966i = false;
-                pcVar2.f36962c = 0;
+                pcVar2.f36845i = false;
+                pcVar2.f36841c = 0;
                 pcVar2.a(rectF);
                 return this.Y1.b(motionEvent);
             } else if (chatActivityEnterView.s0() && motionEvent.getAction() == 0) {
@@ -303,16 +303,16 @@ public abstract class vf extends ys {
                     chatActivityEnterView.n1(false, true, false, true);
                     chatActivityEnterView.f31079l3 = true;
                     org.telegram.messenger.g0.i3(new Runnable(this) {
-                        public final vf f38332b;
+                        public final vf f38323b;
 
                         {
-                            this.f38332b = this;
+                            this.f38323b = this;
                         }
 
                         @Override
                         public final void run() {
                             int i10 = r2;
-                            vf vfVar = this.f38332b;
+                            vf vfVar = this.f38323b;
                             switch (i10) {
                                 case 0:
                                     ChatActivityEnterView chatActivityEnterView2 = vfVar.Z1;

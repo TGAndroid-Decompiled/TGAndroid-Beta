@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
 public final class ae implements t4 {
-    public final int f31773a;
-    public final ChatActivityEnterView f31774b;
+    public final int f31785a;
+    public final ChatActivityEnterView f31786b;
 
     public ae(ChatActivityEnterView chatActivityEnterView, int i7) {
-        this.f31773a = i7;
-        this.f31774b = chatActivityEnterView;
+        this.f31785a = i7;
+        this.f31786b = chatActivityEnterView;
     }
 
     @Override
     public final void L(int i7, int i10, boolean z9) {
-        switch (this.f31773a) {
+        switch (this.f31785a) {
             case 0:
-                ChatActivityEnterView chatActivityEnterView = this.f31774b;
+                ChatActivityEnterView chatActivityEnterView = this.f31786b;
                 boolean T0 = chatActivityEnterView.T0(z9, i7, i10, 0L, true);
                 ue ueVar = chatActivityEnterView.L0;
                 if (ueVar != null) {
@@ -22,7 +22,7 @@ public final class ae implements t4 {
                 }
                 return;
             default:
-                ChatActivityEnterView chatActivityEnterView2 = this.f31774b;
+                ChatActivityEnterView chatActivityEnterView2 = this.f31786b;
                 chatActivityEnterView2.T0(z9, i7, i10, 0L, true);
                 ue ueVar2 = chatActivityEnterView2.L0;
                 if (ueVar2 != null) {
