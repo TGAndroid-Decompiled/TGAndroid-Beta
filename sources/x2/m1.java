@@ -8,20 +8,20 @@ import java.util.List;
 import java.util.Map;
 public final class m1 extends a {
     public final j2.m h;
-    public final j2.g f58306i;
-    public final e2.u f58307j;
-    public final pb.b f58309l;
-    public final i1 f58311n;
-    public final e2.l0 f58312o;
-    public j2.d0 f58313p;
-    public final long f58308k = -9223372036854775807L;
-    public final boolean f58310m = true;
+    public final j2.g f58312i;
+    public final e2.u f58313j;
+    public final pb.b f58315l;
+    public final i1 f58317n;
+    public final e2.l0 f58318o;
+    public j2.d0 f58319p;
+    public final long f58314k = -9223372036854775807L;
+    public final boolean f58316m = true;
 
     public m1(e2.k0 k0Var, j2.n nVar, pb.b bVar) {
         e2.g0 g0Var;
         e2.d0 d0Var;
-        this.f58306i = nVar;
-        this.f58309l = bVar;
+        this.f58312i = nVar;
+        this.f58315l = bVar;
         boolean z9 = true;
         e2.z zVar = new e2.z();
         e2.c0 c0Var = new e2.c0();
@@ -48,7 +48,7 @@ public final class m1 extends a {
             g0Var = null;
         }
         e2.l0 l0Var = new e2.l0(uri2, new e2.a0(zVar), g0Var, new e2.f0(e0Var), e2.o0.L, h0Var);
-        this.f58312o = l0Var;
+        this.f58318o = l0Var;
         e2.t tVar = new e2.t();
         String str = k0Var.f10310b;
         tVar.f10563r = e2.s0.n(str == null ? "text/x-unknown" : str);
@@ -58,33 +58,33 @@ public final class m1 extends a {
         tVar.f10549b = k0Var.f10313f;
         String str2 = k0Var.f10314g;
         tVar.f10548a = str2 != null ? str2 : null;
-        this.f58307j = new e2.u(tVar);
+        this.f58313j = new e2.u(tVar);
         Map map = Collections.EMPTY_MAP;
         Uri uri3 = k0Var.f10309a;
         ia.k(uri3, "The uri must be set.");
         this.h = new j2.m(uri3, 1, null, map, 0L, -1L, null, 1);
-        this.f58311n = new i1(-9223372036854775807L, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, 0L, 0L, true, false, false, null, l0Var, null);
+        this.f58317n = new i1(-9223372036854775807L, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, 0L, 0L, true, false, false, null, l0Var, null);
     }
 
     @Override
     public final e0 c(g0 g0Var, h6.m mVar, long j3) {
-        return new l1(this.h, this.f58306i, this.f58313p, this.f58307j, this.f58308k, this.f58309l, b(g0Var), this.f58310m, null);
+        return new l1(this.h, this.f58312i, this.f58319p, this.f58313j, this.f58314k, this.f58315l, b(g0Var), this.f58316m, null);
     }
 
     @Override
     public final e2.l0 i() {
-        return this.f58312o;
+        return this.f58318o;
     }
 
     @Override
     public final void m(j2.d0 d0Var) {
-        this.f58313p = d0Var;
-        n(this.f58311n);
+        this.f58319p = d0Var;
+        n(this.f58317n);
     }
 
     @Override
     public final void o(e0 e0Var) {
-        ((l1) e0Var).f58291r.e(null);
+        ((l1) e0Var).f58297r.e(null);
     }
 
     @Override

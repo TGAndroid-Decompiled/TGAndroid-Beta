@@ -151,7 +151,7 @@ public final class d4 {
         this.J = new org.telegram.ui.Components.w5(new l(t0Var, 6), 320L, xqVar, 0);
         a4 a4Var = new a4(t0Var, t0Var);
         this.I = a4Var;
-        a4Var.f60151y = -1;
+        a4Var.f60157y = -1;
         zh.c1.d(path, 1.0f, false);
         paint3.setStyle(style);
         paint3.setStrokeWidth(org.telegram.messenger.g0.N(4.0f));

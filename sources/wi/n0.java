@@ -1,18 +1,15 @@
 package wi;
 public final class n0 {
-    public static final n0 f58020a;
-    public static final n0 f58021b;
-    public static final n0 f58022c;
-    public static final n0[] d;
+    public static final n0 f58018a;
+    public static final n0 f58019b;
+    public static final n0[] f58020c;
 
     static {
-        ?? r02 = new Enum("HIGH", 0);
-        f58020a = r02;
-        ?? r12 = new Enum("MEDIUM", 1);
-        f58021b = r12;
-        ?? r32 = new Enum("LOW", 2);
-        f58022c = r32;
-        d = new n0[]{r02, r12, r32};
+        ?? r02 = new Enum("FRONT", 0);
+        f58018a = r02;
+        ?? r12 = new Enum("BACK", 1);
+        f58019b = r12;
+        f58020c = new n0[]{r02, r12};
     }
 
     public static n0 valueOf(String str) {
@@ -20,6 +17,6 @@ public final class n0 {
     }
 
     public static n0[] values() {
-        return (n0[]) d.clone();
+        return (n0[]) f58020c.clone();
     }
 }

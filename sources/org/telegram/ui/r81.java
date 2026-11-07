@@ -194,21 +194,21 @@ public final class r81 extends AnimatorListenerAdapter {
                 Iterator it = fVar.h.iterator();
                 while (it.hasNext()) {
                     xh.b bVar2 = (xh.b) it.next();
-                    if (fVar.f58696c.size() < fVar.d) {
-                        fVar.f58696c.push(bVar2);
+                    if (fVar.f58702c.size() < fVar.d) {
+                        fVar.f58702c.push(bVar2);
                     }
                     it.remove();
                 }
-                Runnable runnable = fVar.f58708q;
+                Runnable runnable = fVar.f58714q;
                 if (runnable != null) {
                     runnable.run();
-                    fVar.f58708q = null;
+                    fVar.f58714q = null;
                 }
-                fVar.f58709r = null;
+                fVar.f58715r = null;
                 fVar.invalidateSelf();
                 return;
             default:
-                ((zh.g0) obj).f60227b.f60271s1.setVisibility(8);
+                ((zh.g0) obj).f60233b.f60277s1.setVisibility(8);
                 return;
         }
     }

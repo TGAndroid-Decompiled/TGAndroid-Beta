@@ -29,21 +29,21 @@ import org.telegram.ui.Components.w70;
 import org.telegram.ui.Components.xq;
 import ug.p1;
 public final class r extends FrameLayout {
-    public final qd f59379a;
-    public final o f59380b;
-    public final TextView f59381c;
+    public final qd f59385a;
+    public final o f59386b;
+    public final TextView f59387c;
     public final w70 d;
-    public final f6 f59382e;
-    public final n0 f59383f;
+    public final f6 f59388e;
+    public final n0 f59389f;
     public final Paint[] h;
-    public ValueAnimator f59384n;
+    public ValueAnimator f59390n;
 
     public r(Context context, f6 f6Var) {
         super(context);
-        this.f59382e = f6Var;
+        this.f59388e = f6Var;
         LinearLayout f10 = k5.f(context, 1);
         qd qdVar = new qd(context, 1, 0, 5);
-        this.f59379a = qdVar;
+        this.f59385a = qdVar;
         Bitmap createBitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(createBitmap);
         int i7 = k6.Ak;
@@ -55,7 +55,7 @@ public final class r extends FrameLayout {
         fVar.b();
         f10.addView(qdVar, ha.r(160, 160, 1));
         o oVar = new o(this, context);
-        this.f59380b = oVar;
+        this.f59386b = oVar;
         this.h = new Paint[20];
         a(0.0f);
         p1 p1Var = oVar.f56701a;
@@ -67,14 +67,14 @@ public final class r extends FrameLayout {
         p1Var.c();
         qdVar.setStarParticlesView(oVar);
         TextView textView = new TextView(context);
-        this.f59381c = textView;
+        this.f59387c = textView;
         org.telegram.messenger.camera.q.m(textView, 1, 22.0f);
         int i10 = k6.G6;
         r6.V(textView, i10, f6Var);
         textView.setGravity(1);
         f10.addView(textView, ha.t(-2, -2, 1, 24, -8, 24, 0));
         n0 n0Var = new n0(this);
-        this.f59383f = n0Var;
+        this.f59389f = n0Var;
         w70 w70Var = new w70(context, n0Var, f6Var);
         this.d = w70Var;
         w70Var.setTextSize(1, 15.0f);
@@ -92,7 +92,7 @@ public final class r extends FrameLayout {
 
     public final void a(float f10) {
         int i7 = k6.zk;
-        f6 f6Var = this.f59382e;
+        f6 f6Var = this.f59388e;
         int w02 = k6.w0(i7, f6Var);
         int w03 = k6.w0(k6.Ak, f6Var);
         int f11 = i0.a.f(f10, w02, -371690);
@@ -113,7 +113,7 @@ public final class r extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        n0 n0Var = this.f59383f;
+        n0 n0Var = this.f59389f;
         if (n0Var != null) {
             canvas.save();
             w70 w70Var = this.d;
@@ -128,9 +128,9 @@ public final class r extends FrameLayout {
     @Override
     public final void onMeasure(int i7, int i10) {
         super.onMeasure(i7, i10);
-        qd qdVar = this.f59379a;
+        qd qdVar = this.f59385a;
         float measuredHeight = (qdVar.getMeasuredHeight() / 2.0f) + qdVar.getTop();
-        o oVar = this.f59380b;
+        o oVar = this.f59386b;
         oVar.setTranslationY(measuredHeight - (oVar.getMeasuredHeight() / 2.0f));
     }
 
@@ -142,9 +142,9 @@ public final class r extends FrameLayout {
         marginLayoutParams.topMargin = -g0.L(6.0f);
         setLayoutParams(marginLayoutParams);
         int i10 = k6.f27793a7;
-        f6 f6Var = this.f59382e;
+        f6 f6Var = this.f59388e;
         r6.i(i10, this, f6Var);
-        this.f59381c.setText(hd.a0("BoostingBoostsViaGifts", null, 2131753562, new Object[0]));
+        this.f59387c.setText(hd.a0("BoostingBoostsViaGifts", null, 2131753562, new Object[0]));
         if (t3.V(chat)) {
             i7 = 2131753510;
         } else {
@@ -157,29 +157,29 @@ public final class r extends FrameLayout {
     }
 
     public void setPaused(boolean z9) {
-        this.f59379a.setPaused(z9);
-        this.f59380b.setPaused(z9);
+        this.f59385a.setPaused(z9);
+        this.f59386b.setPaused(z9);
     }
 
     public void setStars(final boolean z9) {
         final float f10;
-        ValueAnimator valueAnimator = this.f59384n;
+        ValueAnimator valueAnimator = this.f59390n;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        qd qdVar = this.f59379a;
+        qd qdVar = this.f59385a;
         final float f11 = qdVar.f57319b.f57290l;
         if (z9) {
             f10 = 1.0f;
         } else {
             f10 = 0.0f;
         }
-        this.f59384n = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.f59390n = ValueAnimator.ofFloat(0.0f, 1.0f);
         final float[] fArr = {0.0f};
         g0.r(qdVar.f57325e0);
         qdVar.d();
         qdVar.l();
-        this.f59384n.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        this.f59390n.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
                 int i7;
@@ -191,8 +191,8 @@ public final class r extends FrameLayout {
                 float floatValue = ((Float) valueAnimator2.getAnimatedValue()).floatValue();
                 float f14 = floatValue - fArr2[0];
                 fArr2[0] = floatValue;
-                rVar.f59379a.f57319b.f57290l = g0.T1(f12, f13, floatValue);
-                vg.f fVar = rVar.f59379a.f57319b;
+                rVar.f59385a.f57319b.f57290l = g0.T1(f12, f13, floatValue);
+                vg.f fVar = rVar.f59385a.f57319b;
                 float f15 = fVar.f57285f;
                 float f16 = f14 * 360.0f;
                 if (z10) {
@@ -201,13 +201,13 @@ public final class r extends FrameLayout {
                     i7 = -1;
                 }
                 fVar.f57285f = (f16 * i7) + f15;
-                rVar.f59379a.f57319b.b();
-                rVar.a(rVar.f59379a.f57319b.f57290l);
+                rVar.f59385a.f57319b.b();
+                rVar.a(rVar.f59385a.f57319b.f57290l);
             }
         });
-        this.f59384n.addListener(new q(this, fArr, f11, f10, z9));
-        this.f59384n.setDuration(680L);
-        this.f59384n.setInterpolator(xq.h);
-        this.f59384n.start();
+        this.f59390n.addListener(new q(this, fArr, f11, f10, z9));
+        this.f59390n.setDuration(680L);
+        this.f59390n.setInterpolator(xq.h);
+        this.f59390n.start();
     }
 }

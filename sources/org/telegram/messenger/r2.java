@@ -25,7 +25,7 @@ public abstract class r2 {
             z9 = false;
         }
         f25200b = z9;
-        f25201c = "13.2.1";
+        f25201c = "13.2.2";
         d = 4;
         f25202e = "014b35b6184100b085b0d0572f9b5103";
         f25203f = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";

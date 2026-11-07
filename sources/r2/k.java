@@ -170,7 +170,7 @@ public final class k implements e0, u {
                         s2.m b10 = iVar.f54209g.b(jVar.f54226y, false);
                         b10.getClass();
                         i0 i0Var2 = b10.f54607r;
-                        int i10 = (int) (jVar.f58825s - b10.f54600k);
+                        int i10 = (int) (jVar.f58831s - b10.f54600k);
                         if (i10 < 0) {
                             j3 = 0;
                         } else {

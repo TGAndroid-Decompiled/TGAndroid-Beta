@@ -73,7 +73,7 @@ public final class r2 implements Runnable {
                 w70Var.setText(org.telegram.messenger.g0.I2(org.telegram.messenger.g0.U2(M0, new f1(0, v)), true, org.telegram.messenger.g0.L(2.6666667f), org.telegram.messenger.g0.L(0.66f)));
                 return;
             case 1:
-                ((org.telegram.messenger.re) obj).t(i16);
+                ((org.telegram.messenger.re) obj).u(i16);
                 return;
             case 2:
                 uc ucVar = (uc) obj;

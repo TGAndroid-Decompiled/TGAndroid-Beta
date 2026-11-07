@@ -38,7 +38,7 @@ public final class y40 implements org.telegram.ui.Components.cj0, ma0 {
             org.telegram.ui.ActionBar.g1 g1Var = d50Var.f44955x;
             if (g1Var == null || !g1Var.isShowing()) {
                 org.telegram.messenger.re reVar = new org.telegram.messenger.re(d50Var.getParentActivity(), null, new f(d50Var, 19), true, 1, null);
-                reVar.t(d50Var.W);
+                reVar.u(d50Var.W);
                 org.telegram.ui.ActionBar.g1 g1Var2 = new org.telegram.ui.ActionBar.g1((ActionBarPopupWindow$ActionBarPopupWindowLayout) reVar.f25280b, -2, -2);
                 d50Var.f44955x = g1Var2;
                 g1Var2.f27482e = true;

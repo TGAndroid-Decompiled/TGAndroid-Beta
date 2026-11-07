@@ -141,10 +141,10 @@ public final class l1 implements View.OnClickListener {
                 PhotoViewer.p1().c0(1.0f, 0.0f, 0.0f, false);
                 return;
             case 23:
-                int i19 = zh.m.f60341s2;
+                int i19 = zh.m.f60347s2;
                 return;
             case 24:
-                org.telegram.ui.Components.jc[] jcVarArr = zh.v.f60451h2;
+                org.telegram.ui.Components.jc[] jcVarArr = zh.v.f60457h2;
                 return;
             default:
                 int i20 = zh.c0.Y1;

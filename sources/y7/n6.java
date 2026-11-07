@@ -183,14 +183,14 @@ public enum n6 implements f {
     OPTIONAL_MODULE_SMART_REPLY_INFERENCE(523),
     OPTIONAL_MODULE_SMART_REPLY_RELEASE(524);
     
-    public final int f59019a;
+    public final int f59025a;
 
     n6(int i7) {
-        this.f59019a = i7;
+        this.f59025a = i7;
     }
 
     @Override
     public final int zza() {
-        return this.f59019a;
+        return this.f59025a;
     }
 }

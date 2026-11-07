@@ -344,7 +344,7 @@ public final class b implements Callable {
                 while (true) {
                     a0.b bVar5 = (a0.b) it;
                     if (bVar5.hasNext()) {
-                        g0.c cVar2 = ((x4.f) bVar5.next()).f58537c;
+                        g0.c cVar2 = ((x4.f) bVar5.next()).f58543c;
                         ?? obj = new Object();
                         obj.f13396a = cVar2.f13396a;
                         obj.f13397b = cVar2.f13397b;
@@ -383,15 +383,15 @@ public final class b implements Callable {
                 }
                 throw new IllegalArgumentException("Shortcut must have an intent");
             case 7:
-                return BitmapFactory.decodeFile(((x4.f) this.f55b).f58536b);
+                return BitmapFactory.decodeFile(((x4.f) this.f55b).f58542b);
             case 8:
                 e9 e9Var = (e9) this.f55b;
                 e9Var.getClass();
-                return j.f53798c.a(e9Var.f58924g);
+                return j.f53798c.a(e9Var.f58930g);
             default:
                 ma maVar = (ma) this.f55b;
                 maVar.getClass();
-                return j.f53798c.a(maVar.f59799g);
+                return j.f53798c.a(maVar.f59805g);
         }
     }
 }

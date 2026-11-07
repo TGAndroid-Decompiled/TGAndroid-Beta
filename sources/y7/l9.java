@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.RandomAccess;
 public abstract class l9 extends i9 implements List, RandomAccess {
-    public static final j9 f59001b = new j9(n9.f59020e, 0);
+    public static final j9 f59007b = new j9(n9.f59026e, 0);
 
     @Override
     public final void add(int i7, Object obj) {
@@ -109,7 +109,7 @@ public abstract class l9 extends i9 implements List, RandomAccess {
             return this;
         }
         if (i11 == 0) {
-            return n9.f59020e;
+            return n9.f59026e;
         }
         return new k9(this, i7, i11);
     }
@@ -137,7 +137,7 @@ public abstract class l9 extends i9 implements List, RandomAccess {
         int size = size();
         if (i7 >= 0 && i7 <= size) {
             if (isEmpty()) {
-                return f59001b;
+                return f59007b;
             }
             return new j9(this, i7);
         }

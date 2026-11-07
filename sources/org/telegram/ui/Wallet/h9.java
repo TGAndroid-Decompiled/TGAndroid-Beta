@@ -54,28 +54,28 @@ public final class h9 implements ValueAnimator.AnimatorUpdateListener {
             default:
                 yh.l lVar = (yh.l) this.f42599g;
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lVar.f59443y = floatValue2;
+                lVar.f59449y = floatValue2;
                 float f14 = this.f42595b;
                 float z9 = com.google.android.recaptcha.internal.a.z(1.0f, f14, floatValue2, f14);
                 yh.k kVar = lVar.D;
                 kVar.setScaleX(z9);
                 kVar.setScaleY(z9);
-                kVar.setTranslationX((1.0f - lVar.f59443y) * this.f42596c);
-                kVar.setTranslationY((1.0f - lVar.f59443y) * this.d);
-                int i10 = (int) ((1.0f - lVar.f59443y) * this.f42597e);
+                kVar.setTranslationX((1.0f - lVar.f59449y) * this.f42596c);
+                kVar.setTranslationY((1.0f - lVar.f59449y) * this.d);
+                int i10 = (int) ((1.0f - lVar.f59449y) * this.f42597e);
                 lVar.h.N(i10, i10);
-                float a10 = c8.j9.a((lVar.f59443y * 2.0f) - 1.0f, 0.0f, 1.0f);
-                lVar.f59435c.setAlpha((int) (a10 * 255.0f));
+                float a10 = c8.j9.a((lVar.f59449y * 2.0f) - 1.0f, 0.0f, 1.0f);
+                lVar.f59441c.setAlpha((int) (a10 * 255.0f));
                 lVar.d.setAlpha(a10);
-                lVar.f59436e.setAlpha(a10);
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = lVar.f59437f;
-                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - lVar.f59443y) * this.f42598f);
+                lVar.f59442e.setAlpha(a10);
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = lVar.f59443f;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - lVar.f59449y) * this.f42598f);
                 actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(a10);
-                BitmapDrawable bitmapDrawable = lVar.f59442x;
+                BitmapDrawable bitmapDrawable = lVar.f59448x;
                 if (bitmapDrawable != null) {
-                    bitmapDrawable.setAlpha((int) (lVar.f59443y * 255.0f));
+                    bitmapDrawable.setAlpha((int) (lVar.f59449y * 255.0f));
                 }
-                lVar.f59438n.setAlpha(a10);
+                lVar.f59444n.setAlpha(a10);
                 return;
         }
     }

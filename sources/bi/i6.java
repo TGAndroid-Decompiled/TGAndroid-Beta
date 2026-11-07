@@ -61,7 +61,7 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
         org.telegram.ui.ActionBar.f6 f6Var = (org.telegram.ui.ActionBar.f6) this.f4047e;
         Integer num = (Integer) number;
         View view = (View) obj;
-        t9 t9Var = up0Var.f60214e;
+        t9 t9Var = up0Var.f60220e;
         if (num.intValue() != -1 && num.intValue() != -2 && num.intValue() != 0 && !up0Var.O) {
             int i10 = 0;
             while (true) {
@@ -79,7 +79,7 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
                 }
             }
             int i11 = this.f4045b;
-            String r10 = org.telegram.messenger.m5.r(qp.s1(i11).e2(up0Var.f60213c));
+            String r10 = org.telegram.messenger.m5.r(qp.s1(i11).e2(up0Var.f60219c));
             boolean h = t9Var.h();
             if (TextUtils.isEmpty(r10) && !h) {
                 return Boolean.FALSE;
@@ -88,7 +88,7 @@ public final class i6 implements org.telegram.ui.ActionBar.r1, fb0, ri, org.tele
             H.W(new wp0(up0Var));
             H.l(2131231828, org.telegram.messenger.hd.M0(2131750237, null), new zh.i1(up0Var, 2), h);
             H.l(2131232363, org.telegram.messenger.hd.M0(2131750233, null), new jg.c1(up0Var, i11, r10, tL_starGiftCollection, context, f6Var, f2Var, 18), !TextUtils.isEmpty(r10));
-            H.l(2131232116, org.telegram.messenger.hd.M0(2131750235, null), new wi.q(13, up0Var, tL_starGiftCollection), h);
+            H.l(2131232116, org.telegram.messenger.hd.M0(2131750235, null), new wi.s(13, up0Var, tL_starGiftCollection), h);
             H.l(2131232773, org.telegram.messenger.hd.M0(2131750234, null), new zh.i1(up0Var, 1), h);
             H.m(2131232108, new d10(up0Var, i7, tL_starGiftCollection, 26), org.telegram.messenger.hd.M0(2131750236, null), h, true);
             up0Var.I = H;

@@ -31,7 +31,12 @@ public final class lg implements Runnable {
                         if (eeVar != null) {
                             eeVar.j(org.telegram.ui.Components.hg.f34311a, false);
                         }
+                        qjVar.J3 = true;
                         qjVar.F2 = true;
+                        org.telegram.ui.Components.wf wfVar = qjVar.Z2;
+                        if (wfVar != null) {
+                            wfVar.R0(1);
+                        }
                         qjVar.N1(0, true);
                         if (this.f47540c) {
                             qjVar.O = true;

@@ -15,7 +15,7 @@ import e2.z0;
 import java.util.List;
 import org.telegram.ui.Components.n40;
 import org.telegram.ui.Components.t51;
-import wi.t0;
+import wi.u0;
 public final class z implements a1 {
     public final int f14168a;
     public final Object f14169b;
@@ -121,9 +121,9 @@ public final class z implements a1 {
                 }
                 return;
             default:
-                t0 t0Var = (t0) this.f14169b;
-                if (t0Var.Z == 5) {
-                    t0Var.y(z9);
+                u0 u0Var = (u0) this.f14169b;
+                if (u0Var.f58103a0 == 5) {
+                    u0Var.z(z9);
                     return;
                 }
                 return;
@@ -197,12 +197,12 @@ public final class z implements a1 {
                 }
                 return;
             default:
-                t0 t0Var = (t0) this.f14169b;
-                wi.n nVar = t0Var.f58108m;
-                nVar.b("preview playback state=" + i7);
-                if (t0Var.Z == 5 && i7 == 4 && (i0Var2 = t0Var.V) != null) {
-                    i0Var2.Z0(5, t0Var.J);
-                    t0Var.V.f();
+                u0 u0Var = (u0) this.f14169b;
+                wi.o oVar = u0Var.f58114m;
+                oVar.b("preview playback state=" + i7);
+                if (u0Var.f58103a0 == 5 && i7 == 4 && (i0Var2 = u0Var.W) != null) {
+                    i0Var2.Z0(5, u0Var.K);
+                    u0Var.W.f();
                     return;
                 }
                 return;
@@ -227,9 +227,9 @@ public final class z implements a1 {
             case 2:
                 return;
             default:
-                t0 t0Var = (t0) this.f14169b;
-                if (t0Var.Z == 5) {
-                    n40.n((n40) t0Var.d.f37389b);
+                u0 u0Var = (u0) this.f14169b;
+                if (u0Var.f58103a0 == 5) {
+                    n40.o((n40) u0Var.d.f37389b);
                     return;
                 }
                 return;
@@ -281,10 +281,10 @@ public final class z implements a1 {
                 ((vi.h) this.f14169b).g(v0Var);
                 return;
             default:
-                t0 t0Var = (t0) this.f14169b;
-                wi.n nVar = t0Var.f58108m;
-                nVar.b("preview player error: code=" + v0Var.f10629a);
-                t0Var.h(v0Var);
+                u0 u0Var = (u0) this.f14169b;
+                wi.o oVar = u0Var.f58114m;
+                oVar.b("preview player error: code=" + v0Var.f10629a);
+                u0Var.h(v0Var);
                 return;
         }
     }

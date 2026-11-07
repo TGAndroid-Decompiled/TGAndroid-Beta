@@ -318,7 +318,7 @@ public final class g implements View.OnClickListener {
             case 27:
                 final wg.g0 g0Var = (wg.g0) obj;
                 yg.a aVar3 = g0Var.I2;
-                if (!aVar3.f59322a.Q) {
+                if (!aVar3.f59328a.Q) {
                     aVar3.b(true);
                     String str = g0Var.J2;
                     c20 c20Var = new c20() {

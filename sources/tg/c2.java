@@ -2453,7 +2453,7 @@ public final class c2 extends FrameLayout implements ls {
             ub.a a11 = ub.a.a(bitmap, i7);
             a10.g(a11).addOnSuccessListener(new m3(d4Var, 24)).addOnFailureListener(new i6(this, bitmap, i7, jn0Var, d4Var, 5));
             if (this.f55501c0 == null) {
-                xb.a aVar2 = xb.a.f58587b;
+                xb.a aVar2 = xb.a.f58593b;
                 q6.m.h(aVar2, "options cannot be null");
                 synchronized (vb.c.class) {
                     cVar = (vb.c) pb.g.c().a(vb.c.class);
@@ -2462,11 +2462,11 @@ public final class c2 extends FrameLayout implements ls {
                 q6.m.g(bVar);
                 yb.c cVar2 = (yb.c) bVar.get();
                 cVar2.getClass();
-                ta taVar = cVar2.f59248c;
+                ta taVar = cVar2.f59254c;
                 ?? obj2 = new Object();
                 obj2.f337c = y7.TYPE_THIN;
                 pb.m.f53451a.execute(new pa(taVar, new wa((b8) obj2, 1), a8.ON_DEVICE_IMAGE_LABEL_CREATE, taVar.b(), 0));
-                new ImageLabelerImpl((pb.e) cVar2.f59246a.R0(aVar2), (Executor) cVar2.f59247b.f53432a.get(), new n6.c("vision.ica", 1L)).g(a11).addOnSuccessListener(new m3(this, 25)).addOnFailureListener(new s0.b(18));
+                new ImageLabelerImpl((pb.e) cVar2.f59252a.R0(aVar2), (Executor) cVar2.f59253b.f53432a.get(), new n6.c("vision.ica", 1L)).g(a11).addOnSuccessListener(new m3(this, 25)).addOnFailureListener(new s0.b(18));
             }
             ArrayList arrayList2 = ui.b0(this.f55496a).f25825n;
             for (int i14 = 0; i14 < Math.min(arrayList2.size(), 9); i14++) {

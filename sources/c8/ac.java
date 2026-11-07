@@ -14,14 +14,14 @@ public abstract class ac {
         ab.b0 b0Var = new ab.b0(15, false);
         b0Var.d = languageIdentifierImpl.f7910f;
         ?? obj = new Object();
-        obj.f58907b = LanguageIdentifierImpl.k();
+        obj.f58913b = LanguageIdentifierImpl.k();
         b0Var.f909e = new y7.l7(obj);
         a8.wa waVar = new a8.wa(b0Var, 1);
-        Task task = e9Var.f58922e;
+        Task task = e9Var.f58928e;
         if (task.isSuccessful()) {
             a10 = (String) task.getResult();
         } else {
-            a10 = q6.j.f53798c.a(e9Var.f58924g);
+            a10 = q6.j.f53798c.a(e9Var.f58930g);
         }
         pb.m.f53451a.execute(new a8.pa(e9Var, waVar, y7.n6.ON_DEVICE_LANGUAGE_IDENTIFICATION_CREATE, a10, 7));
         ((tb.e) languageIdentifierImpl.d.get()).f53442b.incrementAndGet();

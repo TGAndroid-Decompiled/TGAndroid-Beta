@@ -162,7 +162,7 @@ public final class df implements e2.a1 {
                         b10.f53123s = b10.f53123s.c(l1Var, g1Var.R0(), i7);
                         b10.f53109c.a(false, true);
                         try {
-                            b10.h.f53272j.s(l1Var);
+                            b10.h.f53272j.t(l1Var);
                             return;
                         } catch (RemoteException e10) {
                             h2.a.d("MediaSessionImpl", "Exception in using media1 API", e10);
@@ -493,13 +493,13 @@ public final class df implements e2.a1 {
                                     a8.ia.p(z9);
                                     b10.f53123s = new p4.e1(v0Var, i10, l1Var, b1Var, b1Var2, i11, w0Var, i7, z10, x1Var, l1Var2, i12, o0Var, f10, f11, eVar, i13, dVar, oVar, i14, z11, z12, i15, i16, i17, z13, z14, o0Var2, j3, j10, j11, s1Var, q1Var);
                                     b10.f53109c.a(true, true);
-                                    b10.h.f53272j.q(i7);
+                                    b10.h.f53272j.r(i7);
                                     return;
                                 }
                             } else {
                                 q1Var = q1Var2;
                             }
-                            b10.h.f53272j.q(i7);
+                            b10.h.f53272j.r(i7);
                             return;
                         } catch (RemoteException e10) {
                             h2.a.d("MediaSessionImpl", "Exception in using media1 API", e10);
@@ -796,13 +796,13 @@ public final class df implements e2.a1 {
                                 a8.ia.p(z9);
                                 b10.f53123s = new p4.e1(v0Var, i7, l1Var, b1Var, b1Var2, i10, w0Var, i11, z10, x1Var, l1Var2, i12, o0Var, f10, f11, eVar, i13, dVar, oVar, i14, z11, z12, i15, i16, i17, z13, z14, o0Var2, j3, j10, j11, s1Var, q1Var);
                                 b10.f53109c.a(true, true);
-                                b10.h.f53272j.p(o0Var);
+                                b10.h.f53272j.q(o0Var);
                                 return;
                             }
                         } else {
                             q1Var = q1Var2;
                         }
-                        b10.h.f53272j.p(o0Var);
+                        b10.h.f53272j.q(o0Var);
                         return;
                     } catch (RemoteException e10) {
                         h2.a.d("MediaSessionImpl", "Exception in using media1 API", e10);
@@ -975,13 +975,13 @@ public final class df implements e2.a1 {
                                     a8.ia.p(z9);
                                     b10.f53123s = new p4.e1(v0Var, i7, l1Var, b1Var, b1Var2, i10, w0Var, i11, z10, x1Var, l1Var2, i12, o0Var2, f10, f11, eVar, i13, dVar, oVar, i14, z11, z12, i15, i16, i17, z13, z14, o0Var, j3, j10, j11, s1Var, q1Var);
                                     b10.f53109c.a(true, true);
-                                    b10.h.f53272j.u();
+                                    b10.h.f53272j.v();
                                     return;
                                 }
                             } else {
                                 q1Var = q1Var2;
                             }
-                            b10.h.f53272j.u();
+                            b10.h.f53272j.v();
                             return;
                         } catch (RemoteException e10) {
                             h2.a.d("MediaSessionImpl", "Exception in using media1 API", e10);
@@ -1137,13 +1137,13 @@ public final class df implements e2.a1 {
                                     a8.ia.p(z10);
                                     b10.f53123s = new p4.e1(v0Var, i7, l1Var, b1Var, b1Var2, i10, w0Var, i11, z9, x1Var, l1Var2, i12, o0Var, f10, f11, eVar, i13, dVar, oVar, i14, z11, z12, i15, i16, i17, z13, z14, o0Var2, j3, j10, j11, s1Var, q1Var);
                                     b10.f53109c.a(true, true);
-                                    b10.h.f53272j.r(z9);
+                                    b10.h.f53272j.s(z9);
                                     return;
                                 }
                             } else {
                                 q1Var = q1Var2;
                             }
-                            b10.h.f53272j.r(z9);
+                            b10.h.f53272j.s(z9);
                             return;
                         } catch (RemoteException e10) {
                             h2.a.d("MediaSessionImpl", "Exception in using media1 API", e10);
@@ -1236,13 +1236,13 @@ public final class df implements e2.a1 {
                                     a8.ia.p(z9);
                                     b10.f53123s = new p4.e1(v0Var, i7, l1Var, b1Var, b1Var2, i10, w0Var, i11, z10, x1Var, l1Var2, i12, o0Var, f10, f11, eVar, i13, dVar, oVar, i14, z11, z12, i15, i16, i17, z13, z14, o0Var2, j3, j10, j11, s1Var, q1Var);
                                     b10.f53109c.a(true, true);
-                                    b10.h.f53272j.n(l0Var);
+                                    b10.h.f53272j.o(l0Var);
                                     return;
                                 }
                             } else {
                                 q1Var = q1Var2;
                             }
-                            b10.h.f53272j.n(l0Var);
+                            b10.h.f53272j.o(l0Var);
                             return;
                         } catch (RemoteException e10) {
                             h2.a.d("MediaSessionImpl", "Exception in using media1 API", e10);

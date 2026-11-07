@@ -118,7 +118,7 @@ public final class s extends x {
     }
 
     public static void g(q1 q1Var, e2.q1 q1Var2, HashMap hashMap) {
-        for (int i7 = 0; i7 < q1Var.f58353a; i7++) {
+        for (int i7 = 0; i7 < q1Var.f58359a; i7++) {
             n1 n1Var = (n1) q1Var2.H.get(q1Var.a(i7));
             if (n1Var != null) {
                 m1 m1Var = n1Var.f10401a;
@@ -202,7 +202,7 @@ public final class s extends x {
             int i7 = 0;
             m1 m1Var = null;
             k kVar = null;
-            for (int i10 = 0; i10 < q1Var.f58353a; i10++) {
+            for (int i10 = 0; i10 < q1Var.f58359a; i10++) {
                 m1 a10 = q1Var.a(i10);
                 int[] iArr2 = iArr[i10];
                 for (int i11 = 0; i11 < a10.f10373a; i11++) {
@@ -235,7 +235,7 @@ public final class s extends x {
         while (i12 < i11) {
             if (i7 == wVar2.f136b[i12]) {
                 q1 q1Var = wVar2.f137c[i12];
-                for (int i13 = 0; i13 < q1Var.f58353a; i13++) {
+                for (int i13 = 0; i13 < q1Var.f58359a; i13++) {
                     m1 a10 = q1Var.a(i13);
                     t1 h = pVar.h(i12, a10, iArr[i12][i13]);
                     int i14 = a10.f10373a;

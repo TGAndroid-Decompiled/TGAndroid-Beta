@@ -31,7 +31,7 @@ public final class s30 extends AnimatorListenerAdapter {
             default:
                 o40 o40Var3 = this.f37867b;
                 if (animator.equals(o40Var3.f36520d0)) {
-                    o40Var3.c(true);
+                    o40Var3.d(true);
                     o40Var3.f36527f1 = false;
                     o40Var3.setVisibility(4);
                     return;

@@ -108,7 +108,7 @@ public final class pk extends org.telegram.ui.Components.l9 {
             case 3:
                 org.telegram.ui.Components.voip.n nVar2 = (org.telegram.ui.Components.voip.n) this.I;
                 super.onDraw(canvas);
-                if (((org.telegram.ui.Components.n40) this.J).f36207l0) {
+                if (((org.telegram.ui.Components.n40) this.J).m0) {
                     float min = Math.min(getWidth(), getHeight()) * 0.5f;
                     RectF rectF3 = org.telegram.messenger.g0.P;
                     rectF3.set(0.0f, 0.0f, getWidth(), getHeight());

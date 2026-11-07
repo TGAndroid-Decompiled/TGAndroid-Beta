@@ -20,7 +20,7 @@ public final class ei extends AnimatorListenerAdapter {
                 org.telegram.ui.Components.t40 t40Var = anVar.f43911p3;
                 if (t40Var != null) {
                     t40Var.setIsMessageTransition(false);
-                    anVar.f43911p3.c(true);
+                    anVar.f43911p3.d(true);
                     anVar.f43911p3.setVisibility(4);
                     return;
                 }

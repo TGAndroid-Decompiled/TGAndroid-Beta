@@ -172,7 +172,7 @@ public final class t implements c20 {
                 up0 up0Var = (up0) this.f43144b;
                 TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f43145c;
                 String str6 = (String) obj;
-                bi.t9 t9Var = up0Var.f60214e;
+                bi.t9 t9Var = up0Var.f60220e;
                 int i7 = tL_starGiftCollection.collection_id;
                 t9Var.getClass();
                 TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();

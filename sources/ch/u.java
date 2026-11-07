@@ -125,7 +125,7 @@ public final class u implements ValueAnimator.AnimatorUpdateListener {
                     floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * (o40Var.getMeasuredHeight() / 2.0f);
                 }
                 o40Var.D0 = floatValue;
-                o40Var.w();
+                o40Var.x();
                 return;
             case 8:
                 l90 l90Var = (l90) this.f6402c;

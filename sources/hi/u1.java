@@ -61,7 +61,7 @@ public final class u1 implements v10 {
         for (TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift : list) {
             s9 s9Var = dVar.Q1;
             wg.z0 z0Var = new wg.z0(6, dVar, tL_StarGiftAuctionAcquiredGift);
-            int i7 = zh.b.f60119b;
+            int i7 = zh.b.f60125b;
             x31 K = x31.K(zh.b.class);
             K.G = tL_StarGiftAuctionAcquiredGift;
             K.H = s9Var;

@@ -53,18 +53,18 @@ public final class f extends i0 implements kd.d, id.c {
         x xVar = this.d;
         if (xVar.d(context)) {
             this.f10776f = vVar;
-            this.f59981c = 0;
+            this.f59987c = 0;
             xVar.c(cVar.getContext(), this);
             return;
         }
         t0 a11 = v1.a();
-        if (a11.f60014c >= 4294967296L) {
+        if (a11.f60020c >= 4294967296L) {
             this.f10776f = vVar;
-            this.f59981c = 0;
-            hd.d dVar = a11.f60015e;
+            this.f59987c = 0;
+            hd.d dVar = a11.f60021e;
             if (dVar == null) {
                 dVar = new hd.d();
-                a11.f60015e = dVar;
+                a11.f60021e = dVar;
             }
             dVar.addLast(this);
             return;

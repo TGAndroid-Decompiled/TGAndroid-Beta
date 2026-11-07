@@ -17,21 +17,21 @@ import org.telegram.ui.Components.x31;
 import org.telegram.ui.jl0;
 import org.telegram.ui.ql0;
 public final class c2 implements a20, cj0 {
-    public final org.telegram.ui.ActionBar.v2 f60152a;
-    public final Object f60153b;
+    public final org.telegram.ui.ActionBar.v2 f60158a;
+    public final Object f60159b;
 
     public c2(org.telegram.ui.ActionBar.v2 v2Var, Object obj) {
-        this.f60152a = v2Var;
-        this.f60153b = obj;
+        this.f60158a = v2Var;
+        this.f60159b = obj;
     }
 
     @Override
     public void f(float f10, float f11, int i7, View view) {
         TL_stars.SavedStarGift savedStarGift;
         cg.b bVar;
-        l3 l3Var = (l3) this.f60152a;
-        k3 k3Var = (k3) this.f60153b;
-        x31 G = l3Var.f60339a2.G(i7 - 1);
+        l3 l3Var = (l3) this.f60158a;
+        k3 k3Var = (k3) this.f60159b;
+        x31 G = l3Var.f60345a2.G(i7 - 1);
         if (G != null) {
             Object obj = G.G;
             if (obj instanceof TL_stars.StarGift) {
@@ -58,7 +58,7 @@ public final class c2 implements a20, cj0 {
                     ea.x(l3Var.f28613a, bVar2).H(tL_starGiftUnique, e10, null, true, new jl0(l3Var, u1Var2, bVar2, tL_starGiftUnique, e10));
                 } else {
                     if (!z9) {
-                        ArrayList arrayList = k3Var.f60323b.f4915l;
+                        ArrayList arrayList = k3Var.f60329b.f4915l;
                         int size = arrayList.size();
                         int i10 = 0;
                         while (true) {
@@ -100,19 +100,19 @@ public final class c2 implements a20, cj0 {
     public void i(Object obj, Object obj2, Number number, Serializable serializable, Serializable serializable2) {
         boolean z9;
         boolean z10;
-        e2 e2Var = (e2) this.f60152a;
-        fi.d dVar = (fi.d) this.f60153b;
+        e2 e2Var = (e2) this.f60158a;
+        fi.d dVar = (fi.d) this.f60159b;
         View view = (View) obj2;
         Integer num = (Integer) number;
         Float f10 = (Float) serializable;
         Float f11 = (Float) serializable2;
         long j3 = ((TL_stars.SavedStarGift) ((x31) obj).G).gift.f27182id;
-        if (e2Var.f60205i1 == j3) {
-            e2Var.f60205i1 = 0L;
+        if (e2Var.f60211i1 == j3) {
+            e2Var.f60211i1 = 0L;
         } else {
-            e2Var.f60205i1 = j3;
+            e2Var.f60211i1 = j3;
         }
-        if (e2Var.f60205i1 != 0) {
+        if (e2Var.f60211i1 != 0) {
             z9 = true;
         } else {
             z9 = false;
@@ -124,7 +124,7 @@ public final class c2 implements a20, cj0 {
                 View childAt = viewGroup.getChildAt(i7);
                 if (childAt instanceof ql0) {
                     ql0 ql0Var = (ql0) childAt;
-                    if (e2Var.f60205i1 == ql0Var.getGiftId()) {
+                    if (e2Var.f60211i1 == ql0Var.getGiftId()) {
                         z10 = true;
                     } else {
                         z10 = false;

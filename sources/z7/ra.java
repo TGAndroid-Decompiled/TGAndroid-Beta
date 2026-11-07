@@ -4,16 +4,16 @@ import c8.ie;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 public final class ra extends a8.i0 implements ListIterator {
-    public final int f59839b;
-    public int f59840c;
+    public final int f59845b;
+    public int f59846c;
     public final ta d;
 
     public ra(ta taVar, int i7) {
         super(10);
         int size = taVar.size();
         if (i7 >= 0 && i7 <= size) {
-            this.f59839b = size;
-            this.f59840c = i7;
+            this.f59845b = size;
+            this.f59846c = i7;
             this.d = taVar;
             return;
         }
@@ -31,7 +31,7 @@ public final class ra extends a8.i0 implements ListIterator {
 
     @Override
     public final boolean hasNext() {
-        if (this.f59840c < this.f59839b) {
+        if (this.f59846c < this.f59845b) {
             return true;
         }
         return false;
@@ -39,7 +39,7 @@ public final class ra extends a8.i0 implements ListIterator {
 
     @Override
     public final boolean hasPrevious() {
-        if (this.f59840c > 0) {
+        if (this.f59846c > 0) {
             return true;
         }
         return false;
@@ -48,8 +48,8 @@ public final class ra extends a8.i0 implements ListIterator {
     @Override
     public final Object next() {
         if (hasNext()) {
-            int i7 = this.f59840c;
-            this.f59840c = i7 + 1;
+            int i7 = this.f59846c;
+            this.f59846c = i7 + 1;
             return a(i7);
         }
         throw new NoSuchElementException();
@@ -57,14 +57,14 @@ public final class ra extends a8.i0 implements ListIterator {
 
     @Override
     public final int nextIndex() {
-        return this.f59840c;
+        return this.f59846c;
     }
 
     @Override
     public final Object previous() {
         if (hasPrevious()) {
-            int i7 = this.f59840c - 1;
-            this.f59840c = i7;
+            int i7 = this.f59846c - 1;
+            this.f59846c = i7;
             return a(i7);
         }
         throw new NoSuchElementException();
@@ -72,7 +72,7 @@ public final class ra extends a8.i0 implements ListIterator {
 
     @Override
     public final int previousIndex() {
-        return this.f59840c - 1;
+        return this.f59846c - 1;
     }
 
     @Override

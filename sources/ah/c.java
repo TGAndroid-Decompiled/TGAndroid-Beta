@@ -25,8 +25,8 @@ public final class c extends yg.c {
         this.f1063x = textPaint;
         this.f1064y = new a3.f(this, 3);
         textPaint.setTextSize(g0.L(20.0f));
-        this.f59337f.setVisibility(8);
-        this.f59335c.setVisibility(8);
+        this.f59343f.setVisibility(8);
+        this.f59341c.setVisibility(8);
         wo woVar = new wo(21, context, f6Var);
         this.f1061s = woVar;
         woVar.b(k6.B5, k6.f27959j7, k6.C5);
@@ -106,7 +106,7 @@ public final class c extends yg.c {
         } else {
             f13 = 20.0f;
         }
-        this.f59336e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
+        this.f59342e.setLayoutParams(ha.d(-1, -2.0f, i13, f12, 0.0f, f13, 0.0f));
         boolean z11 = hd.f22878a0;
         if (z11) {
             i11 = 5;
@@ -122,7 +122,7 @@ public final class c extends yg.c {
         } else {
             f15 = 15.0f;
         }
-        this.f59337f.setLayoutParams(ha.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
+        this.f59343f.setLayoutParams(ha.d(22, 22.0f, i14, f14, 0.0f, f15, 0.0f));
     }
 
     public final void f() {

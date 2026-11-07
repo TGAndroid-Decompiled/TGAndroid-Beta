@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.List;
 public final class q0 extends u0 {
     public static final PathInterpolator f54120e = new PathInterpolator(0.0f, 1.1f, 0.0f, 1.0f);
-    public static final x1.a f54121f = new x1.b(x1.a.f58166c);
+    public static final x1.a f54121f = new x1.b(x1.a.f58172c);
     public static final DecelerateInterpolator f54122g = new DecelerateInterpolator(1.5f);
     public static final AccelerateInterpolator h = new AccelerateInterpolator(1.5f);
 

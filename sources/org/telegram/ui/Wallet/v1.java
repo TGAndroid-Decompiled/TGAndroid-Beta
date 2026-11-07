@@ -92,7 +92,7 @@ public final class v1 implements v10 {
                 TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption = (TL_stars.TL_starsGiveawayOption) obj4;
                 Boolean bool = (Boolean) obj;
                 String str2 = (String) obj2;
-                a0Var.f57592i2.f59322a.setLoading(false);
+                a0Var.f57592i2.f59328a.setLoading(false);
                 if (a0Var.getContext() != null) {
                     org.telegram.ui.ActionBar.f2 T = LaunchActivity.T();
                     r80 r80Var = LaunchActivity.G1.f41289v0;
@@ -133,7 +133,7 @@ public final class v1 implements v10 {
                         int i13 = pl0.f48847b;
                         x31 K = x31.K(pl0.class);
                         K.G = savedStarGift;
-                        if (e2Var.f60205i1 == savedStarGift.gift.f27182id) {
+                        if (e2Var.f60211i1 == savedStarGift.gift.f27182id) {
                             z9 = true;
                         } else {
                             z9 = false;

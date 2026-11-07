@@ -268,7 +268,7 @@ public final class p4 implements v10 {
                     } else {
                         zh.l3 l3Var = new zh.l3(k7Var2.getContext(), tL_starGiftUnique2.title, k7Var2.O2);
                         l3Var.Y1.addAll(hashSet);
-                        l3Var.f60339a2.O(true);
+                        l3Var.f60345a2.O(true);
                         l3Var.Z1 = bool.booleanValue();
                         l3Var.W1.set(org.telegram.messenger.g0.X2(org.telegram.messenger.hd.G(4 - hashSet.size(), "GiftCraftSelect", new Object[0])));
                         l3Var.X1 = new n2(c20Var, 0);

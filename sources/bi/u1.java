@@ -31,7 +31,7 @@ public final class u1 extends FrameLayout implements te.b, org.telegram.ui.Actio
         zh.w0 w0Var = new zh.w0(frameLayout, f6Var, true);
         this.f4786c = w0Var;
         frameLayout.setBackground(w0Var);
-        w0Var.f60485w = 1;
+        w0Var.f60491w = 1;
         addView(frameLayout, c8.ha.e(-1, -1, 119));
         org.telegram.ui.Components.l9 l9Var = new org.telegram.ui.Components.l9(context);
         this.d = l9Var;
@@ -91,13 +91,13 @@ public final class u1 extends FrameLayout implements te.b, org.telegram.ui.Actio
     public final void b() {
         int f10;
         zh.w0 w0Var = this.f4786c;
-        w0Var.f60488z = null;
+        w0Var.f60494z = null;
         Integer num = this.h;
         te.a aVar = this.f4790r;
         TextView textView = this.f4788f;
         if (num != null) {
             f10 = org.telegram.ui.ActionBar.k6.w(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27849d6, false), org.telegram.ui.ActionBar.k6.r1(org.telegram.messenger.g0.T1(0.15f, 1.0f, aVar.f55394e), this.h.intValue()));
-            w0Var.f60488z = this.h;
+            w0Var.f60494z = this.h;
             this.f4785b.invalidate();
             textView.setTextColor(i0.a.f(aVar.f55394e, this.h.intValue(), -1));
         } else if (this.f4791s) {

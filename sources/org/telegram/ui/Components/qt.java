@@ -458,13 +458,13 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
         int i10 = 0;
         for (r2.q qVar : kVar.J) {
             qVar.l();
-            i10 += qVar.Y.f58353a;
+            i10 += qVar.Y.f58359a;
         }
         e2.m1[] m1VarArr = new e2.m1[i10];
         int i11 = 0;
         for (r2.q qVar2 : kVar.J) {
             qVar2.l();
-            int i12 = qVar2.Y.f58353a;
+            int i12 = qVar2.Y.f58359a;
             int i13 = 0;
             while (i13 < i12) {
                 qVar2.l();
@@ -547,7 +547,7 @@ public final class qt implements ti.m, r0.m, wr0, ue.a, jg.y1, q5.b, x2.d1, com.
     public androidx.lifecycle.p0 t(Class cls, y1.b bVar) {
         androidx.lifecycle.m0 m0Var = null;
         for (y1.c cVar : (y1.c[]) this.f37389b) {
-            if (cVar.f58776a.equals(cls)) {
+            if (cVar.f58782a.equals(cls)) {
                 m0Var = new androidx.lifecycle.m0();
             }
         }

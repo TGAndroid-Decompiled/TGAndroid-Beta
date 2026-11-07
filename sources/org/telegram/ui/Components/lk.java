@@ -116,7 +116,7 @@ public final class lk implements View.OnClickListener {
                         i7 = 0;
                     }
                     org.telegram.messenger.re reVar = new org.telegram.messenger.re(knVar.getContext(), null, new hn(knVar, r4), true, 0, knVar.f35340d0);
-                    reVar.t(i7);
+                    reVar.u(i7);
                     in inVar = new in(knVar, (ActionBarPopupWindow$ActionBarPopupWindowLayout) reVar.f25280b);
                     org.telegram.ui.ActionBar.g1[] g1VarArr = {inVar};
                     inVar.f27482e = true;

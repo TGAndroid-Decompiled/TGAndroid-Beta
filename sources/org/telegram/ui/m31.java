@@ -461,7 +461,7 @@ public final class m31 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         arrayList.add(i31.i(18, -14965523, -15431455, 2131232705, org.telegram.messenger.hd.M0(2131744243, null), null, null));
         arrayList.add(i31.i(23, -3903756, -6335009, 2131232706, org.telegram.messenger.hd.M0(2131744240, null), null, null));
         arrayList.add(i31.i(19, -11154873, -14175180, 2131232713, org.telegram.messenger.hd.M0(2131746782, null), null, null));
-        xi.a aVar = xi.e.f58761a;
+        xi.a aVar = xi.e.f58767a;
         aVar.a();
         if (aVar.d) {
             arrayList.add(org.telegram.ui.Components.x31.C(null));

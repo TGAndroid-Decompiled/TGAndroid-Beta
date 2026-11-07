@@ -336,7 +336,7 @@ public final class v1 extends org.telegram.ui.ActionBar.n0 {
                 return;
             case 16:
                 w80 w80Var = (w80) ((w4) obj).f4962b;
-                w80Var.f59465y = false;
+                w80Var.f59471y = false;
                 w80Var.j(null);
                 return;
             case 17:

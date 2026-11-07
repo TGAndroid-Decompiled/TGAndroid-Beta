@@ -17,17 +17,17 @@ public final class k40 extends TextureView {
 
     @Override
     public void invalidate() {
-        wi.s0 s0Var;
+        wi.t0 t0Var;
         switch (this.f35160a) {
             case 0:
                 n40 n40Var = (n40) this.f35161b;
-                if (!n40Var.H0 && (s0Var = n40Var.Q) != null && s0Var.f58045a == 3) {
-                    n40Var.H0 = true;
+                if (!n40Var.I0 && (t0Var = n40Var.Q) != null && t0Var.f58049a == 3) {
+                    n40Var.I0 = true;
                     try {
-                        n40Var.F0 = SystemClock.elapsedRealtimeNanos();
-                        n40Var.D();
+                        n40Var.G0 = SystemClock.elapsedRealtimeNanos();
+                        n40Var.F();
                     } finally {
-                        n40Var.H0 = false;
+                        n40Var.I0 = false;
                     }
                 }
                 super.invalidate();
@@ -47,7 +47,7 @@ public final class k40 extends TextureView {
                 return;
             case 2:
                 xh.e eVar = (xh.e) this.f35161b;
-                setMeasuredDimension(eVar.f58688g, eVar.h);
+                setMeasuredDimension(eVar.f58694g, eVar.h);
                 return;
             default:
                 super.onMeasure(i7, i10);

@@ -15,31 +15,31 @@ import org.telegram.ui.Components.k40;
 import org.telegram.ui.Components.w30;
 import org.telegram.ui.sq0;
 public final class e {
-    public static HashMap f58682n;
-    public final double f58683a;
-    public final double f58684b;
-    public final int f58685c;
+    public static HashMap f58688n;
+    public final double f58689a;
+    public final double f58690b;
+    public final int f58691c;
     public final sq0 d;
-    public final k40 f58686e;
-    public d f58687f;
-    public final int f58688g;
+    public final k40 f58692e;
+    public d f58693f;
+    public final int f58694g;
     public final int h;
-    public boolean f58689i;
-    public final ArrayList f58690j = new ArrayList();
-    public final HashMap f58691k = new HashMap();
-    public int f58692l = 0;
-    public final c f58693m = new c(this, 0);
+    public boolean f58695i;
+    public final ArrayList f58696j = new ArrayList();
+    public final HashMap f58697k = new HashMap();
+    public int f58698l = 0;
+    public final c f58699m = new c(this, 0);
 
     public e(int i7, sq0 sq0Var, int i10, int i11) {
         double d = 1.0d / ((int) g0.f22545r);
-        this.f58683a = d;
-        this.f58684b = d * 4.0d;
-        this.f58685c = i7;
-        this.f58688g = i10;
+        this.f58689a = d;
+        this.f58690b = d * 4.0d;
+        this.f58691c = i7;
+        this.f58694g = i10;
         this.h = i11;
         this.d = sq0Var;
         k40 k40Var = new k40(2, sq0Var.getContext(), this);
-        this.f58686e = k40Var;
+        this.f58692e = k40Var;
         k40Var.setSurfaceTextureListener(new w30(this, 5));
         k40Var.setOpaque(false);
         sq0Var.addView(k40Var);
@@ -48,10 +48,10 @@ public final class e {
     public static e d(int i7, View view, ViewGroup viewGroup) {
         int min;
         if (view != null) {
-            if (f58682n == null) {
-                f58682n = new HashMap();
+            if (f58688n == null) {
+                f58688n = new HashMap();
             }
-            e eVar = (e) f58682n.get(Integer.valueOf(i7));
+            e eVar = (e) f58688n.get(Integer.valueOf(i7));
             if (eVar == null) {
                 int o4 = iz.o();
                 if (o4 != 1) {
@@ -67,7 +67,7 @@ public final class e {
                     min = Math.min(900, (int) (((point3.x + point3.y) / 2.0f) * 0.8f));
                 }
                 if (viewGroup != null) {
-                    HashMap hashMap = f58682n;
+                    HashMap hashMap = f58688n;
                     Integer valueOf = Integer.valueOf(i7);
                     sq0 sq0Var = new sq0(viewGroup.getContext(), 20);
                     viewGroup.addView(sq0Var);
@@ -98,33 +98,33 @@ public final class e {
 
     public static void f(boolean z9) {
         d dVar;
-        HashMap hashMap = f58682n;
+        HashMap hashMap = f58688n;
         if (hashMap != null) {
             for (e eVar : hashMap.values()) {
-                if (eVar.f58685c == 0 && (dVar = eVar.f58687f) != null) {
-                    dVar.f58672b = z9;
+                if (eVar.f58691c == 0 && (dVar = eVar.f58693f) != null) {
+                    dVar.f58678b = z9;
                 }
             }
         }
     }
 
     public final void a(View view) {
-        if (!this.f58689i) {
-            ArrayList arrayList = this.f58690j;
+        if (!this.f58695i) {
+            ArrayList arrayList = this.f58696j;
             if (!arrayList.contains(view)) {
                 arrayList.add(view);
-                int i7 = this.f58692l;
-                this.f58692l = i7 + 1;
-                this.f58691k.put(view, Integer.valueOf(i7));
+                int i7 = this.f58698l;
+                this.f58698l = i7 + 1;
+                this.f58697k.put(view, Integer.valueOf(i7));
             }
         }
     }
 
     public final void b(View view) {
-        this.f58690j.remove(view);
-        this.f58691k.remove(view);
-        if (!this.f58689i) {
-            c cVar = this.f58693m;
+        this.f58696j.remove(view);
+        this.f58697k.remove(view);
+        if (!this.f58695i) {
+            c cVar = this.f58699m;
             g0.r(cVar);
             g0.i3(cVar, 30L);
         }
@@ -133,11 +133,11 @@ public final class e {
     public final void c(Canvas canvas, View view, int i7, int i10, float f10, boolean z9) {
         if (canvas != null && view != null) {
             canvas.save();
-            Integer num = (Integer) this.f58691k.get(view);
+            Integer num = (Integer) this.f58697k.get(view);
             if (num == null) {
                 num = 0;
             }
-            int i11 = this.f58688g;
+            int i11 = this.f58694g;
             int i12 = this.h;
             if (i7 > i11 || i10 > i12) {
                 float max = Math.max(i7 / i11, i10 / i12);
@@ -152,7 +152,7 @@ public final class e {
             if (num.intValue() % 4 == 3) {
                 canvas.scale(1.0f, -1.0f, i11 / 2.0f, i12 / 2.0f);
             }
-            k40 k40Var = this.f58686e;
+            k40 k40Var = this.f58692e;
             if (z9) {
                 Bitmap bitmap = k40Var.getBitmap();
                 if (bitmap != null) {

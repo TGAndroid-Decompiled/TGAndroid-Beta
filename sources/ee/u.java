@@ -25,14 +25,14 @@ public class u {
         int i7 = atomicIntegerFieldUpdater.get(this);
         atomicIntegerFieldUpdater.set(this, i7 + 1);
         q0VarArr[i7] = q0Var;
-        q0Var.f60009b = i7;
+        q0Var.f60015b = i7;
         d(i7);
     }
 
     public final void b(q0 q0Var) {
         synchronized (this) {
             if (q0Var.b() != null) {
-                c(q0Var.f60009b);
+                c(q0Var.f60015b);
             }
         }
     }
@@ -67,7 +67,7 @@ public class u {
         kotlin.jvm.internal.j.b(q0Var2);
         q0VarArr[i7] = q0Var;
         q0VarArr[i10] = q0Var2;
-        q0Var.f60009b = i7;
-        q0Var2.f60009b = i10;
+        q0Var.f60015b = i7;
+        q0Var2.f60015b = i10;
     }
 }

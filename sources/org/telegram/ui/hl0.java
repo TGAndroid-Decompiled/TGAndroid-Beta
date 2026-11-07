@@ -689,7 +689,7 @@ public final class hl0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
                 throw new IllegalArgumentException(jg.g.j(i7, "Invalid environment value "));
             }
             lVar.f3009a = i7;
-            this.f46417e = new com.google.android.gms.common.api.j(context, y8.p.f59216a, new y8.o(lVar), com.google.android.gms.common.api.i.f6542c);
+            this.f46417e = new com.google.android.gms.common.api.j(context, y8.p.f59222a, new y8.o(lVar), com.google.android.gms.common.api.i.f6542c);
             try {
                 JSONObject put = new JSONObject().put("apiVersion", 2).put("apiVersionMinor", 0);
                 put.put("allowedPaymentMethods", new JSONArray().put(u0()));
@@ -703,7 +703,7 @@ public final class hl0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
             String jSONObject = ((JSONObject) empty.get()).toString();
             ?? obj = new Object();
             q6.m.h(jSONObject, "isReadyToPayRequestJson cannot be null!");
-            obj.f59176f = jSONObject;
+            obj.f59182f = jSONObject;
             b9.j0 j0Var = this.f46417e;
             j0Var.getClass();
             com.google.android.gms.common.api.internal.s b10 = com.google.android.gms.common.api.internal.t.b();

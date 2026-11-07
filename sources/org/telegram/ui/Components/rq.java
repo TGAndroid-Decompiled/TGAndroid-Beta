@@ -71,7 +71,7 @@ public final class rq implements View.OnClickListener {
                 ArrayList arrayList3 = a0Var.V1;
                 ArrayList arrayList4 = a0Var.X1;
                 yg.a aVar = a0Var.f57592i2;
-                if (!aVar.f59322a.Q) {
+                if (!aVar.f59328a.Q) {
                     if (a0Var.i1()) {
                         if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
                             tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) prepaidGiveaway;
@@ -99,7 +99,7 @@ public final class rq implements View.OnClickListener {
                         return;
                     }
                     int i12 = a0Var.Z1;
-                    int i13 = yg.d.f59351w;
+                    int i13 = yg.d.f59357w;
                     if (i12 == 3) {
                         Activity W = org.telegram.messenger.g0.W(a0Var.getContext());
                         if (W == null) {
@@ -109,9 +109,9 @@ public final class rq implements View.OnClickListener {
                             TL_stars.TL_starsGiveawayOption g12 = a0Var.g1(a0Var.f57591h2);
                             int e12 = a0Var.e1();
                             if (g12 != null) {
-                                aVar.f59322a.setLoading(true);
+                                aVar.f59328a.setLoading(true);
                                 int i14 = a0Var.f57586b2;
-                                int i15 = yg.u.f59391w;
+                                int i15 = yg.u.f59397w;
                                 if (i14 == 1) {
                                     z10 = true;
                                 } else {
@@ -290,7 +290,7 @@ public final class rq implements View.OnClickListener {
                                     }
                                 }
                                 int i30 = a0Var.f57586b2;
-                                int i31 = yg.u.f59391w;
+                                int i31 = yg.u.f59397w;
                                 if (i30 == 1) {
                                     z9 = true;
                                 } else {

@@ -68,8 +68,8 @@ public final class l00 extends View {
             case 15:
                 super.onAttachedToWindow();
                 zh.e1 e1Var = (zh.e1) this.f47373b;
-                if (e1Var != null && !e1Var.f60204i) {
-                    e1Var.f60204i = true;
+                if (e1Var != null && !e1Var.f60210i) {
+                    e1Var.f60210i = true;
                     e1Var.a();
                     xg.a aVar = new xg.a(e1Var, 3);
                     e1Var.h = aVar;
@@ -110,8 +110,8 @@ public final class l00 extends View {
             case 15:
                 super.onDetachedFromWindow();
                 zh.e1 e1Var = (zh.e1) this.f47373b;
-                if (e1Var != null && e1Var.f60204i) {
-                    e1Var.f60204i = false;
+                if (e1Var != null && e1Var.f60210i) {
+                    e1Var.f60210i = false;
                     e1Var.a();
                     xg.a aVar = e1Var.h;
                     HashSet hashSet = org.telegram.messenger.rc.f25272n;
@@ -304,8 +304,8 @@ public final class l00 extends View {
                 if (((zh.e1) this.f47373b) != null) {
                     if (isAttachedToWindow()) {
                         zh.e1 e1Var = (zh.e1) this.f47373b;
-                        if (e1Var.f60204i) {
-                            e1Var.f60204i = false;
+                        if (e1Var.f60210i) {
+                            e1Var.f60210i = false;
                             e1Var.a();
                             xg.a aVar = e1Var.h;
                             HashSet hashSet = org.telegram.messenger.rc.f25272n;
@@ -321,8 +321,8 @@ public final class l00 extends View {
                     this.f47373b = (zh.e1) drawable;
                     if (isAttachedToWindow()) {
                         zh.e1 e1Var2 = (zh.e1) this.f47373b;
-                        if (!e1Var2.f60204i) {
-                            e1Var2.f60204i = true;
+                        if (!e1Var2.f60210i) {
+                            e1Var2.f60210i = true;
                             e1Var2.a();
                             xg.a aVar2 = new xg.a(e1Var2, 3);
                             e1Var2.h = aVar2;

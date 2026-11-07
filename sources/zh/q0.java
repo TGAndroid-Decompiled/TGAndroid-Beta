@@ -17,12 +17,12 @@ import org.telegram.ui.Components.up0;
 import org.telegram.ui.Components.x31;
 import org.telegram.ui.Components.xq;
 public final class q0 implements v10 {
-    public final int f60415a;
-    public final Object f60416b;
+    public final int f60421a;
+    public final Object f60422b;
 
     public q0(Object obj, int i7) {
-        this.f60415a = i7;
-        this.f60416b = obj;
+        this.f60421a = i7;
+        this.f60422b = obj;
     }
 
     @Override
@@ -39,10 +39,10 @@ public final class q0 implements v10 {
         boolean z11;
         int i13;
         long j3;
-        int i14 = this.f60415a;
+        int i14 = this.f60421a;
         int i15 = 3;
         boolean z12 = false;
-        Object obj3 = this.f60416b;
+        Object obj3 = this.f60422b;
         int i16 = 1;
         switch (i14) {
             case 0:
@@ -52,17 +52,17 @@ public final class q0 implements v10 {
                 a2 a2Var = (a2) obj3;
                 ArrayList arrayList = (ArrayList) obj;
                 l41 l41Var = (l41) obj2;
-                f6 f6Var = a2Var.f60107c;
-                up0 up0Var = a2Var.f60105a;
-                v9 v9Var = a2Var.f60108e;
+                f6 f6Var = a2Var.f60113c;
+                up0 up0Var = a2Var.f60111a;
+                v9 v9Var = a2Var.f60114e;
                 if (v9Var != null) {
                     if ((!v9Var.f4909e || v9Var.f4911g != 783) && v9Var.f4915l.size() <= 0) {
-                        v9 v9Var2 = a2Var.f60108e;
+                        v9 v9Var2 = a2Var.f60114e;
                         if (v9Var2.f4913j && !v9Var2.f4912i) {
                             return;
                         }
                     }
-                    v9 v9Var3 = a2Var.f60108e;
+                    v9 v9Var3 = a2Var.f60114e;
                     if (v9Var3 == null || (i12 = v9Var3.f4917n) == 0) {
                         i7 = 3;
                         i10 = 3;
@@ -71,7 +71,7 @@ public final class q0 implements v10 {
                         i10 = Math.min(3, i12);
                     }
                     int max = Math.max(1, i10);
-                    v9 v9Var4 = a2Var.f60108e;
+                    v9 v9Var4 = a2Var.f60114e;
                     if (v9Var4 != null) {
                         ArrayList arrayList2 = v9Var4.f4915l;
                         int size = arrayList2.size();
@@ -82,7 +82,7 @@ public final class q0 implements v10 {
                             i18++;
                             TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj4;
                             boolean z13 = a2Var.d;
-                            int i19 = y0.f60494b;
+                            int i19 = y0.f60500b;
                             x31 K = x31.K(y0.class);
                             K.f40168u = 1;
                             K.f40172z = 0;
@@ -90,7 +90,7 @@ public final class q0 implements v10 {
                             K.f40164q = true;
                             K.f40154f = false;
                             K.f40165r = z13;
-                            if (a2Var.h && (a2Var.f60108e != up0Var.d || savedStarGift.pinned_to_top)) {
+                            if (a2Var.h && (a2Var.f60114e != up0Var.d || savedStarGift.pinned_to_top)) {
                                 z9 = true;
                             } else {
                                 z9 = false;
@@ -102,7 +102,7 @@ public final class q0 implements v10 {
                                 i17 = 3;
                             }
                         }
-                        v9 v9Var5 = a2Var.f60108e;
+                        v9 v9Var5 = a2Var.f60114e;
                         if (v9Var5.f4912i || !v9Var5.f4913j) {
                             int i20 = 0;
                             while (true) {
@@ -120,14 +120,14 @@ public final class q0 implements v10 {
                             }
                         }
                     }
-                    if (up0Var.d == a2Var.f60108e) {
+                    if (up0Var.d == a2Var.f60114e) {
                         arrayList.add(x31.D(org.telegram.messenger.g0.L(20.0f)));
-                        if (up0Var.f60213c == p10.i(a2Var.f60106b).e()) {
+                        if (up0Var.f60219c == p10.i(a2Var.f60112b).e()) {
                             int i21 = k6.f28259z6;
                             int w02 = k6.w0(i21, f6Var);
                             String M0 = hd.M0(2131746670, null);
                             int L = org.telegram.messenger.g0.L(24.0f);
-                            int i22 = b2.f60122b;
+                            int i22 = b2.f60128b;
                             x31 K2 = x31.K(b2.class);
                             K2.f40159l = M0;
                             K2.f40172z = 17;
@@ -152,7 +152,7 @@ public final class q0 implements v10 {
                         }
                         arrayList.add(0, x31.D(org.telegram.messenger.g0.L(f10)));
                     }
-                    if (a2Var.f60109f.getSpanCount() != max) {
+                    if (a2Var.f60115f.getSpanCount() != max) {
                         org.telegram.messenger.g0.h3(new l1(a2Var, max, 1));
                     }
                     up0Var.p();
@@ -173,7 +173,7 @@ public final class q0 implements v10 {
                     i23++;
                     arrayList3.add(y0.i(0, (TL_stars.TL_starGiftUnique) obj5, false, false, false, true, false));
                 }
-                if (d3Var.f60189t || !d3Var.f60190u) {
+                if (d3Var.f60195t || !d3Var.f60196u) {
                     x31 q11 = x31.q(-1, 34);
                     q11.f40168u = 1;
                     arrayList3.add(q11);
@@ -222,15 +222,15 @@ public final class q0 implements v10 {
                         arrayList3.add(q25);
                     }
                 }
-                if (arrayList3.isEmpty() && !d3Var.f60189t) {
+                if (arrayList3.isEmpty() && !d3Var.f60195t) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (m3Var.f60373y != z10) {
-                    m3Var.f60373y = z10;
-                    m3Var.f60372x.setVisibility(0);
-                    ViewPropertyAnimator animate = m3Var.f60372x.animate();
+                if (m3Var.f60379y != z10) {
+                    m3Var.f60379y = z10;
+                    m3Var.f60378x.setVisibility(0);
+                    ViewPropertyAnimator animate = m3Var.f60378x.animate();
                     float f13 = 1.0f;
                     if (z10) {
                         f11 = 1.0f;
@@ -257,8 +257,8 @@ public final class q0 implements v10 {
                 l41 l41Var3 = (l41) obj2;
                 k3 k3Var = l3Var.Q1;
                 if (k3Var != null) {
-                    v9 v9Var6 = k3Var.f60323b;
-                    d3 d3Var2 = k3Var.f60324c;
+                    v9 v9Var6 = k3Var.f60329b;
+                    d3 d3Var2 = k3Var.f60330c;
                     if (v9Var6 != null && d3Var2 != null) {
                         int currentTime = ConnectionsManager.getInstance(l3Var.f28613a).getCurrentTime();
                         arrayList5.add(x31.t(-1, hd.M0(2131749769, null)));
@@ -308,8 +308,8 @@ public final class q0 implements v10 {
                                 i28 = 1;
                             }
                         }
-                        if (d3Var2.f60175e > 0 || l3Var.f60340b2) {
-                            l3Var.f60340b2 = true;
+                        if (d3Var2.f60181e > 0 || l3Var.f60346b2) {
+                            l3Var.f60346b2 = true;
                             String M02 = hd.M0(2131749771, null);
                             x31 x31Var = new x31(42);
                             x31Var.d = -2;
@@ -327,7 +327,7 @@ public final class q0 implements v10 {
                                 i32++;
                                 arrayList5.add(y0.i(0, (TL_stars.TL_starGiftUnique) obj7, false, true, false, true, true));
                             }
-                            if (d3Var2.f60189t || !d3Var2.f60190u) {
+                            if (d3Var2.f60195t || !d3Var2.f60196u) {
                                 x31 q27 = x31.q(10, 35);
                                 q27.f40168u = 1;
                                 arrayList5.add(q27);
@@ -400,7 +400,7 @@ public final class q0 implements v10 {
                             i34++;
                             TL_stars.SavedStarGift savedStarGift3 = (TL_stars.SavedStarGift) obj8;
                             if (!savedStarGift3.collection_id.contains(Integer.valueOf(o3Var.P1))) {
-                                int i35 = y0.f60494b;
+                                int i35 = y0.f60500b;
                                 x31 K3 = x31.K(y0.class);
                                 K3.f40168u = 1;
                                 K3.f40172z = z12 ? 1 : 0;

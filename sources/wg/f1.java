@@ -138,7 +138,7 @@ public class f1 extends na implements ls {
             } else {
                 z9 = false;
             }
-            iVar.f58656y = z9;
+            iVar.f58662y = z9;
         }
         mg0 mg0Var = new mg0(1, getContext(), f6Var);
         this.T1 = mg0Var;
@@ -260,8 +260,8 @@ public class f1 extends na implements ls {
         viewGroup5.addView(frameLayout, ha.f(300.0f, -1, 87, i18, 0, i18, org.telegram.messenger.g0.L(68.0f)));
         xg.i iVar2 = this.f57641h2;
         pj0 pj0Var = this.f36261k1;
-        iVar2.f58651n = arrayList;
-        iVar2.f58650f = pj0Var;
+        iVar2.f58657n = arrayList;
+        iVar2.f58656f = pj0Var;
         int i19 = this.f28646t0;
         if (i10 != 1) {
             f11 = 60.0f;
@@ -357,7 +357,7 @@ public class f1 extends na implements ls {
     public final oj0 L0(pj0 pj0Var) {
         xg.i iVar = new xg.i(getContext(), this.I0, false);
         this.f57641h2 = iVar;
-        iVar.f58653s = true;
+        iVar.f58659s = true;
         return iVar;
     }
 
@@ -482,7 +482,7 @@ public class f1 extends na implements ls {
         z0 z0Var;
         int i7 = this.P1;
         if (i7 == 4) {
-            TLRPC.User user = hVar.f58635c;
+            TLRPC.User user = hVar.f58641c;
             if (user == null) {
                 return hVar;
             }
@@ -557,17 +557,17 @@ public class f1 extends na implements ls {
                     }
                 }
             };
-            hVar.f58645o = r22;
-            hVar.f58646p = r32;
+            hVar.f58651o = r22;
+            hVar.f58652p = r32;
             return hVar;
         }
-        TLRPC.User user2 = hVar.f58635c;
+        TLRPC.User user2 = hVar.f58641c;
         if (i7 == 3) {
             z0Var = null;
         } else {
             z0Var = new z0(1, this, user2);
         }
-        hVar.f58644n = z0Var;
+        hVar.f58650n = z0Var;
         return hVar;
     }
 
@@ -720,8 +720,8 @@ public class f1 extends na implements ls {
                     }
                     xg.h hVar = (xg.h) arrayList.get(R2);
                     ah.r rVar = (ah.r) childAt;
-                    rVar.c(hVar.f58641k, z9);
-                    TLRPC.Chat chat = hVar.f58636e;
+                    rVar.c(hVar.f58647k, z9);
+                    TLRPC.Chat chat = hVar.f58642e;
                     float f10 = 1.0f;
                     if (chat != null) {
                         if (this.f57641h2.F(chat) > 200) {

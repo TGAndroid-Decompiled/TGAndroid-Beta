@@ -4,23 +4,23 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicIntegerFieldUpdater;
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 public final class h1 implements x0 {
-    public static final AtomicIntegerFieldUpdater f59977b = AtomicIntegerFieldUpdater.newUpdater(h1.class, "_isCompleting$volatile");
-    public static final AtomicReferenceFieldUpdater f59978c = AtomicReferenceFieldUpdater.newUpdater(h1.class, Object.class, "_rootCause$volatile");
+    public static final AtomicIntegerFieldUpdater f59983b = AtomicIntegerFieldUpdater.newUpdater(h1.class, "_isCompleting$volatile");
+    public static final AtomicReferenceFieldUpdater f59984c = AtomicReferenceFieldUpdater.newUpdater(h1.class, Object.class, "_rootCause$volatile");
     public static final AtomicReferenceFieldUpdater d = AtomicReferenceFieldUpdater.newUpdater(h1.class, Object.class, "_exceptionsHolder$volatile");
     private volatile Object _exceptionsHolder$volatile;
     private volatile int _isCompleting$volatile = 0;
     private volatile Object _rootCause$volatile;
-    public final o1 f59979a;
+    public final o1 f59985a;
 
     public h1(o1 o1Var, Throwable th2) {
-        this.f59979a = o1Var;
+        this.f59985a = o1Var;
         this._rootCause$volatile = th2;
     }
 
     public final void a(Throwable th2) {
         Throwable c10 = c();
         if (c10 == null) {
-            f59978c.set(this, th2);
+            f59984c.set(this, th2);
         } else if (th2 != c10) {
             AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = d;
             Object obj = atomicReferenceFieldUpdater.get(this);
@@ -44,11 +44,11 @@ public final class h1 implements x0 {
 
     @Override
     public final o1 b() {
-        return this.f59979a;
+        return this.f59985a;
     }
 
     public final Throwable c() {
-        return (Throwable) f59978c.get(this);
+        return (Throwable) f59984c.get(this);
     }
 
     public final boolean d() {
@@ -97,7 +97,7 @@ public final class h1 implements x0 {
         StringBuilder sb2 = new StringBuilder("Finishing[cancelling=");
         sb2.append(d());
         sb2.append(", completing=");
-        if (f59977b.get(this) != 0) {
+        if (f59983b.get(this) != 0) {
             z9 = true;
         } else {
             z9 = false;
@@ -108,7 +108,7 @@ public final class h1 implements x0 {
         sb2.append(", exceptions=");
         sb2.append(d.get(this));
         sb2.append(", list=");
-        sb2.append(this.f59979a);
+        sb2.append(this.f59985a);
         sb2.append(']');
         return sb2.toString();
     }

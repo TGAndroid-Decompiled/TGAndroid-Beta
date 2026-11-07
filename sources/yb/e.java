@@ -35,29 +35,29 @@ import q6.m;
 import q6.p;
 public final class e extends pb.e {
     public boolean d = true;
-    public final t8 f59250e;
-    public final a f59251f;
-    public final ta f59252g;
+    public final t8 f59256e;
+    public final a f59257f;
+    public final ta f59258g;
     public final va h;
 
     public e(xb.a aVar, a aVar2, ta taVar) {
         m.h(aVar, "ImageLabelerOptions can not be null");
-        this.f59251f = aVar2;
-        this.f59252g = taVar;
+        this.f59257f = aVar2;
+        this.f59258g = taVar;
         i iVar = new i(1, false);
         iVar.f8209b = Float.valueOf(aVar.f57548a);
-        this.f59250e = new t8(iVar);
+        this.f59256e = new t8(iVar);
         this.h = new va(g.c().b(), 0);
     }
 
     @Override
     public final synchronized void b() {
-        this.f59251f.zzb();
-        ta taVar = this.f59252g;
+        this.f59257f.zzb();
+        ta taVar = this.f59258g;
         ?? obj = new Object();
         obj.f337c = y7.TYPE_THIN;
         q qVar = new q(2, false);
-        qVar.f53710b = this.f59250e;
+        qVar.f53710b = this.f59256e;
         s sVar = u.f672b;
         Object[] objArr = {z7.NO_ERROR};
         u0.a(1, objArr);
@@ -68,9 +68,9 @@ public final class e extends pb.e {
 
     @Override
     public final synchronized void c() {
-        this.f59251f.zzc();
+        this.f59257f.zzc();
         this.d = true;
-        ta taVar = this.f59252g;
+        ta taVar = this.f59258g;
         ?? obj = new Object();
         obj.f337c = y7.TYPE_THIN;
         pb.m.f53451a.execute(new pa(taVar, new wa((b8) obj, 0), a8.ON_DEVICE_IMAGE_LABEL_CLOSE, taVar.b(), 0));
@@ -83,7 +83,7 @@ public final class e extends pb.e {
         synchronized (this) {
             long elapsedRealtime = SystemClock.elapsedRealtime();
             try {
-                a10 = this.f59251f.a(aVar);
+                a10 = this.f59257f.a(aVar);
                 f(z7.NO_ERROR, aVar, elapsedRealtime);
                 this.d = false;
             } catch (lb.a e10) {
@@ -103,7 +103,7 @@ public final class e extends pb.e {
         int i7;
         o7 o7Var;
         long elapsedRealtime = SystemClock.elapsedRealtime() - j3;
-        ta taVar = this.f59252g;
+        ta taVar = this.f59258g;
         a8 a8Var = a8.ON_DEVICE_IMAGE_LABEL_DETECT;
         taVar.getClass();
         long elapsedRealtime2 = SystemClock.elapsedRealtime();
@@ -161,15 +161,15 @@ public final class e extends pb.e {
             bVar.f57562b = o7Var;
             bVar.f57563c = Integer.valueOf(i7 & Integer.MAX_VALUE);
             a0Var.d = new p7(bVar);
-            a0Var.f1764c = this.f59250e;
+            a0Var.f1764c = this.f59256e;
             obj.f338e = new r8(a0Var);
             pb.m.f53451a.execute(new pa(taVar, new wa((b8) obj, 0), a8Var, taVar.b(), 0));
         }
         android.support.v4.media.session.a0 a0Var2 = new android.support.v4.media.session.a0(3, false);
-        a0Var2.d = this.f59250e;
+        a0Var2.d = this.f59256e;
         a0Var2.f1763b = z7Var;
         a0Var2.f1764c = Boolean.valueOf(this.d);
-        pb.m.f53451a.execute(new qa(this.f59252g, new e1(a0Var2), elapsedRealtime));
+        pb.m.f53451a.execute(new qa(this.f59258g, new e1(a0Var2), elapsedRealtime));
         long currentTimeMillis = System.currentTimeMillis();
         va vaVar = this.h;
         int i11 = z7Var.f751a;

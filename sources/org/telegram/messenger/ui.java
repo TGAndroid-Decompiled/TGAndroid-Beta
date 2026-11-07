@@ -4269,13 +4269,13 @@ public final class ui extends c1 {
     public final void i1(String str, TLRPC.Document document, boolean z9) {
         this.Z.remove(str);
         yf.c cVar = this.f25854z0;
-        ArrayList arrayList = cVar.f59317e;
+        ArrayList arrayList = cVar.f59323e;
         boolean z10 = true;
         if (z9) {
             int i7 = 0;
             while (true) {
                 if (i7 < arrayList.size()) {
-                    if (((yf.b) arrayList.get(i7)).d && str.equals(((yf.b) arrayList.get(i7)).f59310b)) {
+                    if (((yf.b) arrayList.get(i7)).d && str.equals(((yf.b) arrayList.get(i7)).f59316b)) {
                         arrayList.remove(i7);
                         break;
                     }
@@ -4289,9 +4289,9 @@ public final class ui extends c1 {
             int i10 = 0;
             while (true) {
                 if (i10 < arrayList.size()) {
-                    if (((yf.b) arrayList.get(i10)).d && str.equals(((yf.b) arrayList.get(i10)).f59310b)) {
+                    if (((yf.b) arrayList.get(i10)).d && str.equals(((yf.b) arrayList.get(i10)).f59316b)) {
                         ((yf.b) arrayList.get(i10)).d = false;
-                        ((yf.b) arrayList.get(i10)).f59309a = document;
+                        ((yf.b) arrayList.get(i10)).f59315a = document;
                         break;
                     }
                     i10++;
@@ -4305,7 +4305,7 @@ public final class ui extends c1 {
             }
         }
         if (z10) {
-            qs.f(cVar.f59316c).k(qs.f24986e5, new Object[0]);
+            qs.f(cVar.f59322c).k(qs.f24986e5, new Object[0]);
         }
     }
 
@@ -4504,12 +4504,12 @@ public final class ui extends c1 {
         yf.c cVar = this.f25854z0;
         cVar.getClass();
         ?? obj = new Object();
-        obj.f59310b = str;
+        obj.f59316b = str;
         int i7 = cVar.d;
         cVar.d = i7 + 1;
-        obj.f59311c = i7;
+        obj.f59317c = i7;
         obj.d = true;
-        cVar.f59317e.add(obj);
+        cVar.f59323e.add(obj);
     }
 
     public final void m() {

@@ -610,7 +610,7 @@ public final class k0 extends FrameLayout {
         if (voVar != null && voVar.f26075n) {
             i10 = 26;
         }
-        lVar.f58748s = i10;
+        lVar.f58754s = i10;
         addView(lVar, c8.ha.d(-2, -2.0f, 49, 20.0f, 84.0f, 20.0f, 0.0f));
         TextView textView = new TextView(context);
         if (vyVar.R1.isEmpty()) {

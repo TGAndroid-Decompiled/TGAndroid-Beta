@@ -15,9 +15,9 @@ public final class i implements Comparator {
         String str2 = (String) obj2;
         switch (this.f27144a) {
             case 0:
-                return ConnectionsManager.GoogleDnsLoadTask.lambda$doInBackground$0(str, str2);
+                return ConnectionsManager.GoogleDnsLoadTask.b(str, str2);
             default:
-                return ConnectionsManager.MozillaDnsLoadTask.lambda$doInBackground$0(str, str2);
+                return ConnectionsManager.MozillaDnsLoadTask.a(str, str2);
         }
     }
 }

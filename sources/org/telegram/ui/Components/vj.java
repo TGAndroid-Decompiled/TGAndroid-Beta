@@ -555,7 +555,7 @@ public final class vj extends vh {
         } else {
             str = null;
         }
-        if (file.length() != 0 && str != null && yf.c.f59313i.contains(str)) {
+        if (file.length() != 0 && str != null && yf.c.f59319i.contains(str)) {
             if (file.length() > org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24467s0).f24824l4) {
                 new hc(this.f38969b.f28619c, null).u(org.telegram.messenger.hd.a0("TooLargeError", null, 2131744043, new Object[0]), org.telegram.messenger.hd.a0("ErrorRingtoneSizeTooBig", null, 2131751103, Integer.valueOf(org.telegram.messenger.qp.s1(org.telegram.messenger.p10.f24467s0).f24824l4 / 1024)), null).j();
                 return false;

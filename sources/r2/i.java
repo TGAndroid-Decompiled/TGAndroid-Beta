@@ -214,7 +214,7 @@ public final class i {
             s2.m b10 = this.f54209g.b(jVar.f54226y, false);
             b10.getClass();
             i0 i0Var2 = b10.f54607r;
-            int i10 = (int) (jVar.f58825s - b10.f54600k);
+            int i10 = (int) (jVar.f58831s - b10.f54600k);
             if (i10 >= 0) {
                 if (i10 < i0Var2.size()) {
                     i0Var = ((s2.j) i0Var2.get(i10)).f54581y;
@@ -226,7 +226,7 @@ public final class i {
                     if (hVar.f54576y) {
                         return 0;
                     }
-                    if (Objects.equals(Uri.parse(h2.e.f(b10.f54631a, hVar.f54582a)), jVar.f58800b.f16446a)) {
+                    if (Objects.equals(Uri.parse(h2.e.f(b10.f54631a, hVar.f54582a)), jVar.f58806b.f16446a)) {
                         return 1;
                     }
                     return 2;

@@ -6179,7 +6179,7 @@ public class ProfileActivity extends org.telegram.ui.ActionBar.f2 implements org
                 i7 = this.f41823t2.ttl_period;
             }
             this.f41815s0.b(i7);
-            this.Z0.t(i7);
+            this.Z0.u(i7);
         }
     }
 

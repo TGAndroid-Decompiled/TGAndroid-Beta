@@ -124,7 +124,7 @@ public final class td0 implements View.OnClickListener {
             case 6:
                 zh.v vVar = (zh.v) callback;
                 int i10 = vVar.f28613a;
-                org.telegram.messenger.s9 s9Var = vVar.f60456e2;
+                org.telegram.messenger.s9 s9Var = vVar.f60462e2;
                 new bi.w1((Context) obj2, (org.telegram.ui.ActionBar.f6) obj, i10, s9Var.d.title, s9Var.h, false).show();
                 vVar.dismiss();
                 return;
@@ -141,7 +141,7 @@ public final class td0 implements View.OnClickListener {
             default:
                 zh.a2 a2Var = (zh.a2) callback;
                 ((k60) obj2).u();
-                up0 up0Var2 = a2Var.f60105a;
+                up0 up0Var2 = a2Var.f60111a;
                 zh.t1 t1Var = new zh.t1(a2Var, (TL_stars.SavedStarGift) obj, 0);
                 HashMap hashMap = zh.f2.U;
                 up0Var2.h(null, t1Var);

@@ -233,7 +233,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                             }
                             if (o40Var.f36538l0 != null) {
                                 if (!o40Var.f36548t0) {
-                                    o40Var.u();
+                                    o40Var.v();
                                 }
                                 zg0 zg0Var = o40Var.E;
                                 if (zg0Var != null) {
@@ -261,7 +261,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                     default:
                         o40 o40Var2 = this.f37155b;
                         o40Var2.f36521d1 = true ^ o40Var2.f36521d1;
-                        o40Var2.v();
+                        o40Var2.w();
                         return;
                 }
             }
@@ -296,7 +296,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                             }
                             if (o40Var.f36538l0 != null) {
                                 if (!o40Var.f36548t0) {
-                                    o40Var.u();
+                                    o40Var.v();
                                 }
                                 zg0 zg0Var = o40Var.E;
                                 if (zg0Var != null) {
@@ -324,12 +324,12 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                     default:
                         o40 o40Var2 = this.f37155b;
                         o40Var2.f36521d1 = true ^ o40Var2.f36521d1;
-                        o40Var2.v();
+                        o40Var2.w();
                         return;
                 }
             }
         });
-        v();
+        w();
         if (!z9) {
             p2Var.a(imageView);
             p2Var.a(imageView2);
@@ -353,7 +353,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         setVisibility(4);
     }
 
-    public static int k(o40 o40Var, int i7, String str) {
+    public static int l(o40 o40Var, int i7, String str) {
         int glCreateShader = GLES20.glCreateShader(i7);
         GLES20.glShaderSource(glCreateShader, str);
         GLES20.glCompileShader(glCreateShader);
@@ -369,7 +369,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         return glCreateShader;
     }
 
-    public static boolean l() {
+    public static boolean m() {
         int ceil;
         if (!org.telegram.messenger.iz.Y && org.telegram.messenger.iz.o() < 1) {
             int o4 = org.telegram.messenger.iz.o();
@@ -428,7 +428,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
     @Override
     public final void a(boolean z9) {
         int i7;
-        t();
+        u();
         t51 t51Var = this.S;
         if (t51Var != null) {
             t51Var.m0();
@@ -440,7 +440,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         this.f36536k0 = true;
         this.f36532i0 = false;
         this.f36521d1 = false;
-        v();
+        w();
         org.telegram.messenger.qs f10 = org.telegram.messenger.qs.f(this.f36522e);
         Integer valueOf = Integer.valueOf(this.U);
         if (z9) {
@@ -450,7 +450,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         }
         f10.k(org.telegram.messenger.qs.f25033n2, valueOf, Integer.valueOf(i7));
         if (this.f36538l0 != null) {
-            q();
+            r();
             this.f36538l0.a(0, true, 0, 0, 0L);
             this.f36538l0 = null;
         } else {
@@ -468,7 +468,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
             this.f36523e0 = null;
         }
         MediaController.B().Y(false);
-        r(false, false);
+        s(false, false);
         invalidate();
     }
 
@@ -477,10 +477,10 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         t51 t51Var = this.S;
         if (t51Var != null) {
             if (i7 == 0) {
-                s();
+                t();
                 this.S.h0();
             } else if (i7 == 1) {
-                t();
+                u();
                 this.S.g0();
             } else if (i7 == 2) {
                 t51Var.q0(f10 * ((float) t51Var.U()), false);
@@ -491,20 +491,20 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
     @Override
     public final void c(boolean z9) {
         CountDownLatch countDownLatch;
-        ViewGroup viewGroup;
         if (this.f36545r0) {
             int i7 = 0;
             while (true) {
                 Camera2Session[] camera2SessionArr = this.f36549u0;
-                if (i7 >= camera2SessionArr.length) {
-                    break;
+                if (i7 < camera2SessionArr.length) {
+                    Camera2Session camera2Session = camera2SessionArr[i7];
+                    if (camera2Session != null) {
+                        camera2Session.destroy(z9);
+                        camera2SessionArr[i7] = null;
+                    }
+                    i7++;
+                } else {
+                    return;
                 }
-                Camera2Session camera2Session = camera2SessionArr[i7];
-                if (camera2Session != null) {
-                    camera2Session.destroy(z9);
-                    camera2SessionArr[i7] = null;
-                }
-                i7++;
             }
         } else {
             CameraSession cameraSession = this.f36547s0;
@@ -520,11 +520,17 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                 cameraController.close(cameraSession2, countDownLatch, null);
             }
         }
+    }
+
+    @Override
+    public final void d(boolean z9) {
+        ViewGroup viewGroup;
+        c(z9);
         u30 u30Var = this.f36525f;
         u30Var.setTranslationX(0.0f);
         this.f36543q0.setTranslationX(0.0f);
         this.D0 = 0.0f;
-        w();
+        x();
         MediaController.B().c0();
         TextureView textureView = this.f36542p0;
         if (textureView != null && (viewGroup = (ViewGroup) textureView.getParent()) != null) {
@@ -552,24 +558,53 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
     }
 
     @Override
-    public final boolean e() {
+    public final boolean f() {
         return !this.f36532i0;
     }
 
     @Override
-    public final void f(float f10) {
+    public final void g(float f10) {
         this.C0 = f10 / 2.0f;
-        w();
+        x();
     }
 
     @Override
-    public final void g(int i7, int i10, int i11, long j3, long j10, boolean z9) {
+    public View getButtonsLayout() {
+        return this.f36515a1;
+    }
+
+    @Override
+    public RectF getCameraRect() {
+        u30 u30Var = this.f36525f;
+        int[] iArr = this.W;
+        u30Var.getLocationOnScreen(iArr);
+        int i7 = iArr[0];
+        return new RectF(i7, iArr[1], u30Var.getWidth() + i7, u30Var.getHeight() + iArr[1]);
+    }
+
+    @Override
+    public View getMuteImageView() {
+        return this.F;
+    }
+
+    @Override
+    public Paint getPaint() {
+        return this.f36539n;
+    }
+
+    @Override
+    public TextureView getTextureView() {
+        return this.f36542p0;
+    }
+
+    @Override
+    public final void h(int i7, int i10, int i11, long j3, long j10, boolean z9) {
         boolean z10;
         int i12;
         int i13;
         long j11;
         if (this.f36542p0 != null) {
-            t();
+            u();
             t51 t51Var = this.S;
             if (t51Var != null) {
                 t51Var.m0();
@@ -639,7 +674,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                 gfVar.f26844y = j3;
                 this.h.u(gfVar, this.R, z9, i10, 0, false, j10);
                 if (i10 != 0) {
-                    r(false, false);
+                    s(false, false);
                 }
                 MediaController.B().Y(false);
                 return;
@@ -652,7 +687,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
             this.f36536k0 = z10;
             this.f36532i0 = false;
             this.f36521d1 = false;
-            v();
+            w();
             if (!this.f36536k0) {
                 if (i7 == 3) {
                     i14 = 2;
@@ -671,7 +706,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                 } else {
                     i13 = 1;
                 }
-                q();
+                r();
                 i12 = i16;
                 this.f36538l0.a(i13, z9, i10, i11, j3);
                 this.f36538l0 = null;
@@ -680,43 +715,14 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
             }
             if (this.f36536k0) {
                 org.telegram.messenger.qs.f(i15).k(org.telegram.messenger.qs.f25070t2, Integer.valueOf(i12), Boolean.TRUE, Integer.valueOf((int) this.f36534j0));
-                r(false, false);
+                s(false, false);
                 MediaController.B().Y(false);
             }
         }
     }
 
     @Override
-    public View getButtonsLayout() {
-        return this.f36515a1;
-    }
-
-    @Override
-    public RectF getCameraRect() {
-        u30 u30Var = this.f36525f;
-        int[] iArr = this.W;
-        u30Var.getLocationOnScreen(iArr);
-        int i7 = iArr[0];
-        return new RectF(i7, iArr[1], u30Var.getWidth() + i7, u30Var.getHeight() + iArr[1]);
-    }
-
-    @Override
-    public View getMuteImageView() {
-        return this.F;
-    }
-
-    @Override
-    public Paint getPaint() {
-        return this.f36539n;
-    }
-
-    @Override
-    public TextureView getTextureView() {
-        return this.f36542p0;
-    }
-
-    @Override
-    public final void h(dh.c cVar, org.telegram.ui.oi oiVar) {
+    public final void i(dh.c cVar, org.telegram.ui.oi oiVar) {
         View view = this.f36515a1;
         fh.g c10 = cVar.c(view, oiVar, false);
         c10.q(org.telegram.messenger.g0.L(6.0f));
@@ -725,7 +731,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
     }
 
     @Override
-    public final void i(boolean z9) {
+    public final void j(boolean z9) {
         boolean z10;
         String str;
         boolean z11;
@@ -762,7 +768,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                 if (!this.f36545r0) {
                     this.I = true;
                 }
-                v();
+                w();
                 this.f36534j0 = 0L;
                 this.G = 0.0f;
             }
@@ -772,7 +778,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
             this.N = null;
             this.O = null;
             this.f36552w0 = true;
-            if (o()) {
+            if (p()) {
                 if (MediaController.B().f21292u0 != null) {
                     if (!org.telegram.messenger.ij.M4(MediaController.B().f21292u0.f23244k) && !MediaController.B().f21292u0.i4()) {
                         if (org.telegram.messenger.iz.F0 && (t51Var = MediaController.B().f21268i0) != null) {
@@ -821,7 +827,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                                 }
                             }
                         }
-                        v();
+                        w();
                         Camera2Session[] camera2SessionArr2 = this.f36549u0;
                         boolean z15 = this.I;
                         Camera2Session camera2Session2 = camera2SessionArr2[!z15 ? 1 : 0];
@@ -879,14 +885,14 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                 this.X0 = true;
                 this.f36527f1 = z9;
                 setVisibility(0);
-                r(true, z9);
+                s(true, z9);
                 MediaController.B().Y(true);
             }
         }
     }
 
     @Override
-    public final void j() {
+    public final void k() {
         boolean z9;
         int i7;
         int i10;
@@ -899,7 +905,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
             }
             this.f36536k0 = z9;
             this.f36532i0 = false;
-            v();
+            w();
             if (this.f36538l0 != null) {
                 org.telegram.messenger.qs f10 = org.telegram.messenger.qs.f(this.f36522e);
                 int i12 = org.telegram.messenger.qs.f25033n2;
@@ -910,7 +916,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                     i7 = 2;
                 }
                 f10.k(i12, valueOf, Integer.valueOf(i7));
-                q();
+                r();
                 a40 a40Var = this.f36538l0;
                 boolean z10 = this.f36536k0;
                 if (z10) {
@@ -928,7 +934,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
             }
             if (this.f36536k0) {
                 org.telegram.messenger.qs.f(this.f36522e).k(org.telegram.messenger.qs.f25070t2, Integer.valueOf(this.U), Boolean.TRUE, Integer.valueOf((int) this.f36534j0));
-                r(false, false);
+                s(false, false);
                 MediaController.B().Y(false);
                 return;
             }
@@ -939,13 +945,13 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         g40 g40Var2 = this.f36531h1;
         if (g40Var2 != null) {
             g40Var2.T.sendMessage(g40Var2.T.obtainMessage(5));
-            c(false);
+            d(false);
             t51 t51Var = this.S;
             if (t51Var != null) {
                 t51Var.m0();
                 this.S = null;
             }
-            i(true);
+            j(true);
             try {
                 performHapticFeedback(3, 2);
             } catch (Exception unused) {
@@ -956,11 +962,11 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         }
     }
 
-    public final Size m(ArrayList arrayList) {
+    public final Size n(ArrayList arrayList) {
         int i7;
         ArrayList arrayList2 = new ArrayList();
         int i10 = 1200;
-        if (l()) {
+        if (m()) {
             i7 = 1440;
         } else {
             i7 = 1200;
@@ -973,7 +979,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                 arrayList2.add((Size) arrayList.get(i11));
             }
         }
-        if (!arrayList2.isEmpty() && l()) {
+        if (!arrayList2.isEmpty() && m()) {
             Collections.sort(arrayList2, new org.telegram.ui.oe(9));
             return (Size) arrayList2.get(0);
         }
@@ -988,7 +994,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         return CameraController.chooseOptimalSize(arrayList, 480, 270, size, false);
     }
 
-    public final void n() {
+    public final void o() {
         float min;
         if (this.f36537k1 == null) {
             if (this.f36545r0) {
@@ -1011,99 +1017,6 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                 this.f36537k1.start();
             }
         }
-    }
-
-    public final boolean o() {
-        int i7;
-        int i10;
-        if (!this.f36545r0) {
-            ArrayList<CameraInfo> cameras = CameraController.getInstance().getCameras();
-            if (cameras != null) {
-                CameraInfo cameraInfo = null;
-                int i11 = 0;
-                while (i11 < cameras.size()) {
-                    CameraInfo cameraInfo2 = cameras.get(i11);
-                    if (!cameraInfo2.isFrontface()) {
-                        cameraInfo = cameraInfo2;
-                    }
-                    if ((this.I && cameraInfo2.isFrontface()) || (!this.I && !cameraInfo2.isFrontface())) {
-                        this.H = cameraInfo2;
-                        break;
-                    }
-                    i11++;
-                    cameraInfo = cameraInfo2;
-                }
-                if (this.H == null) {
-                    this.H = cameraInfo;
-                }
-                CameraInfo cameraInfo3 = this.H;
-                if (cameraInfo3 != null) {
-                    ArrayList<Size> previewSizes = cameraInfo3.getPreviewSizes();
-                    ArrayList<Size> pictureSizes = this.H.getPictureSizes();
-                    Size m10 = m(previewSizes);
-                    Size[] sizeArr = this.m0;
-                    sizeArr[0] = m10;
-                    Size m11 = m(pictureSizes);
-                    this.f36540n0 = m11;
-                    if (sizeArr[0].mWidth != m11.mWidth) {
-                        boolean z9 = false;
-                        for (int size = previewSizes.size() - 1; size >= 0; size--) {
-                            Size size2 = previewSizes.get(size);
-                            int size3 = pictureSizes.size() - 1;
-                            while (true) {
-                                if (size3 < 0) {
-                                    break;
-                                }
-                                Size size4 = pictureSizes.get(size3);
-                                int i12 = size2.mWidth;
-                                Size size5 = this.f36540n0;
-                                if (i12 >= size5.mWidth && (i10 = size2.mHeight) >= size5.mHeight && i12 == size4.mWidth && i10 == size4.mHeight) {
-                                    sizeArr[0] = size2;
-                                    this.f36540n0 = size4;
-                                    z9 = true;
-                                    break;
-                                }
-                                size3--;
-                            }
-                            if (z9) {
-                                break;
-                            }
-                        }
-                        if (!z9) {
-                            for (int size6 = previewSizes.size() - 1; size6 >= 0; size6--) {
-                                Size size7 = previewSizes.get(size6);
-                                int size8 = pictureSizes.size() - 1;
-                                while (true) {
-                                    if (size8 < 0) {
-                                        break;
-                                    }
-                                    Size size9 = pictureSizes.get(size8);
-                                    int i13 = size7.mWidth;
-                                    if (i13 >= 360 && (i7 = size7.mHeight) >= 360 && i13 == size9.mWidth && i7 == size9.mHeight) {
-                                        sizeArr[0] = size7;
-                                        this.f36540n0 = size9;
-                                        z9 = true;
-                                        break;
-                                    }
-                                    size8--;
-                                }
-                                if (z9) {
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    if (org.telegram.messenger.r2.f25199a) {
-                        StringBuilder sb2 = new StringBuilder("InstantCamera preview w = ");
-                        sb2.append(sizeArr[0].mWidth);
-                        sb2.append(" h = ");
-                        jg.g.s(sizeArr[0].mHeight, sb2);
-                    }
-                }
-            }
-            return false;
-        }
-        return true;
     }
 
     @Override
@@ -1193,7 +1106,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         super.onSizeChanged(i7, i10, i11, i12);
         if (getVisibility() != 0) {
             this.D0 = getMeasuredHeight() / 2.0f;
-            w();
+            x();
         }
     }
 
@@ -1265,12 +1178,12 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                     }
                 } else {
                     this.S0 = false;
-                    n();
+                    o();
                     return false;
                 }
             } else if ((motionEvent.getActionMasked() == 1 || ((motionEvent.getActionMasked() == 6 && motionEvent.getPointerCount() >= 2 && ((this.U0 == motionEvent.getPointerId(0) && this.V0 == motionEvent.getPointerId(1)) || (this.U0 == motionEvent.getPointerId(1) && this.V0 == motionEvent.getPointerId(0)))) || motionEvent.getActionMasked() == 3)) && this.S0) {
                 this.S0 = false;
-                n();
+                o();
                 return true;
             }
         } else {
@@ -1291,7 +1204,100 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         return true;
     }
 
-    public final void p(String str) {
+    public final boolean p() {
+        int i7;
+        int i10;
+        if (!this.f36545r0) {
+            ArrayList<CameraInfo> cameras = CameraController.getInstance().getCameras();
+            if (cameras != null) {
+                CameraInfo cameraInfo = null;
+                int i11 = 0;
+                while (i11 < cameras.size()) {
+                    CameraInfo cameraInfo2 = cameras.get(i11);
+                    if (!cameraInfo2.isFrontface()) {
+                        cameraInfo = cameraInfo2;
+                    }
+                    if ((this.I && cameraInfo2.isFrontface()) || (!this.I && !cameraInfo2.isFrontface())) {
+                        this.H = cameraInfo2;
+                        break;
+                    }
+                    i11++;
+                    cameraInfo = cameraInfo2;
+                }
+                if (this.H == null) {
+                    this.H = cameraInfo;
+                }
+                CameraInfo cameraInfo3 = this.H;
+                if (cameraInfo3 != null) {
+                    ArrayList<Size> previewSizes = cameraInfo3.getPreviewSizes();
+                    ArrayList<Size> pictureSizes = this.H.getPictureSizes();
+                    Size n10 = n(previewSizes);
+                    Size[] sizeArr = this.m0;
+                    sizeArr[0] = n10;
+                    Size n11 = n(pictureSizes);
+                    this.f36540n0 = n11;
+                    if (sizeArr[0].mWidth != n11.mWidth) {
+                        boolean z9 = false;
+                        for (int size = previewSizes.size() - 1; size >= 0; size--) {
+                            Size size2 = previewSizes.get(size);
+                            int size3 = pictureSizes.size() - 1;
+                            while (true) {
+                                if (size3 < 0) {
+                                    break;
+                                }
+                                Size size4 = pictureSizes.get(size3);
+                                int i12 = size2.mWidth;
+                                Size size5 = this.f36540n0;
+                                if (i12 >= size5.mWidth && (i10 = size2.mHeight) >= size5.mHeight && i12 == size4.mWidth && i10 == size4.mHeight) {
+                                    sizeArr[0] = size2;
+                                    this.f36540n0 = size4;
+                                    z9 = true;
+                                    break;
+                                }
+                                size3--;
+                            }
+                            if (z9) {
+                                break;
+                            }
+                        }
+                        if (!z9) {
+                            for (int size6 = previewSizes.size() - 1; size6 >= 0; size6--) {
+                                Size size7 = previewSizes.get(size6);
+                                int size8 = pictureSizes.size() - 1;
+                                while (true) {
+                                    if (size8 < 0) {
+                                        break;
+                                    }
+                                    Size size9 = pictureSizes.get(size8);
+                                    int i13 = size7.mWidth;
+                                    if (i13 >= 360 && (i7 = size7.mHeight) >= 360 && i13 == size9.mWidth && i7 == size9.mHeight) {
+                                        sizeArr[0] = size7;
+                                        this.f36540n0 = size9;
+                                        z9 = true;
+                                        break;
+                                    }
+                                    size8--;
+                                }
+                                if (z9) {
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    if (org.telegram.messenger.r2.f25199a) {
+                        StringBuilder sb2 = new StringBuilder("InstantCamera preview w = ");
+                        sb2.append(sizeArr[0].mWidth);
+                        sb2.append(" h = ");
+                        jg.g.s(sizeArr[0].mHeight, sb2);
+                    }
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final void q(String str) {
         if (!org.telegram.messenger.r2.f25199a) {
             return;
         }
@@ -1303,7 +1309,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         org.telegram.messenger.a8.b("InstantCamera legacy switch[" + this.f36556y0 + "] " + str + ", path=" + this.B0 + ", elapsedMs=" + j10 + ", thread=" + Thread.currentThread().getName());
     }
 
-    public final void q() {
+    public final void r() {
         Bitmap bitmap = this.f36542p0.getBitmap();
         if (bitmap != null && bitmap.getPixel(0, 0) != 0) {
             Bitmap createScaledBitmap = Bitmap.createScaledBitmap(this.f36542p0.getBitmap(), 50, 50, true);
@@ -1320,7 +1326,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         }
     }
 
-    public final void r(boolean z9, boolean z10) {
+    public final void s(boolean z9, boolean z10) {
         float f10;
         float f11;
         float f12;
@@ -1357,7 +1363,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                 measuredHeight = getMeasuredHeight() / 2.0f;
             }
             this.D0 = measuredHeight;
-            w();
+            x();
         }
         this.P0 = z9;
         View view = this.O0;
@@ -1450,21 +1456,6 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         this.f36520d0.start();
     }
 
-    public final void s() {
-        Timer timer = this.f36529g1;
-        if (timer != null) {
-            try {
-                timer.cancel();
-                this.f36529g1 = null;
-            } catch (Exception e10) {
-                org.telegram.messenger.a8.g(e10, true);
-            }
-        }
-        Timer timer2 = new Timer();
-        this.f36529g1 = timer2;
-        timer2.schedule(new fi.h2(this, 2), 0L, 17L);
-    }
-
     @Override
     public void setInternalPadding(int i7) {
         setPadding(0, 0, 0, i7);
@@ -1535,9 +1526,24 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                 org.telegram.messenger.a8.g(e10, true);
             }
         }
+        Timer timer2 = new Timer();
+        this.f36529g1 = timer2;
+        timer2.schedule(new fi.h2(this, 2), 0L, 17L);
     }
 
     public final void u() {
+        Timer timer = this.f36529g1;
+        if (timer != null) {
+            try {
+                timer.cancel();
+                this.f36529g1 = null;
+            } catch (Exception e10) {
+                org.telegram.messenger.a8.g(e10, true);
+            }
+        }
+    }
+
+    public final void v() {
         int i7;
         String str;
         String str2;
@@ -1577,9 +1583,9 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         sb2.append(this.f36535j1);
         sb2.append(", targetSurface=");
         sb2.append(this.f36557z0);
-        p(sb2.toString());
+        q(sb2.toString());
         if (!this.f36545r0 || !this.f36548t0) {
-            q();
+            r();
             Bitmap bitmap = this.T;
             if (bitmap != null) {
                 this.f36552w0 = false;
@@ -1588,7 +1594,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
             }
         }
         this.I = !this.I;
-        v();
+        w();
         if (this.f36545r0) {
             if (this.f36548t0) {
                 this.f36550v0 = this.f36549u0[!this.I ? 1 : 0];
@@ -1615,7 +1621,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
             this.f36550v0 = create;
             if (create == null) {
                 this.A0 = false;
-                p("failed: Camera2Session.create returned null");
+                q("failed: Camera2Session.create returned null");
                 return;
             }
             create.setRecordingVideo(true);
@@ -1634,7 +1640,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
                 this.f36547s0 = null;
             }
         }
-        o();
+        p();
         this.J = false;
         a40 a40Var3 = this.f36538l0;
         Handler handler3 = a40Var3.getHandler();
@@ -1643,7 +1649,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         }
     }
 
-    public final void v() {
+    public final void w() {
         boolean z9;
         boolean z10;
         int i7;
@@ -1729,7 +1735,7 @@ public final class o40 extends t40 implements org.telegram.messenger.ls {
         }
     }
 
-    public final void w() {
+    public final void x() {
         this.f36543q0.setTranslationY(this.D0 + this.C0);
         this.f36525f.setTranslationY(this.D0 + this.C0);
     }

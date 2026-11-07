@@ -296,15 +296,18 @@ public final class d extends v {
                         if (b12 != b13) {
                             laVar.d = true;
                         }
-                        arrayList3.set(i15, (TLRPC.TL_username) arrayList3.get(i16));
-                        arrayList3.set(i16, (TLRPC.TL_username) arrayList3.get(i15));
+                        arrayList3.add(i16, (TLRPC.TL_username) arrayList3.remove(i15));
                         eaVar.j(b12, b13);
-                        int size = arrayList3.size() + 3;
-                        if (b12 != size && b13 != size) {
+                        int size = arrayList3.size();
+                        int i17 = size + 3;
+                        if (b12 != i17 && b13 != i17) {
                             return true;
                         }
-                        eaVar.h(b12, 3);
                         eaVar.h(b13, 3);
+                        if (b13 == i17) {
+                            i17 = size + 2;
+                        }
+                        eaVar.h(i17, 3);
                         return true;
                     }
                 }
@@ -316,19 +319,19 @@ public final class d extends v {
                         eo eoVar = ((fo) obj).f45679e3;
                         int b14 = d1Var.b();
                         int b15 = d1Var2.b();
-                        int i17 = b14 - 1;
-                        int i18 = b15 - 1;
+                        int i18 = b14 - 1;
+                        int i19 = b15 - 1;
                         fo foVar = eoVar.f45390c;
                         go goVar = foVar.f45682h3;
                         ArrayList arrayList4 = goVar.N;
-                        if (i17 >= goVar.N.size() || i18 >= arrayList4.size()) {
+                        if (i18 >= goVar.N.size() || i19 >= arrayList4.size()) {
                             return true;
                         }
                         if (b14 != b15) {
                             foVar.f45680f3 = true;
                         }
-                        arrayList4.set(i17, (TLRPC.TL_username) arrayList4.get(i18));
-                        arrayList4.set(i18, (TLRPC.TL_username) arrayList4.get(i17));
+                        arrayList4.set(i18, (TLRPC.TL_username) arrayList4.get(i19));
+                        arrayList4.set(i19, (TLRPC.TL_username) arrayList4.get(i18));
                         eoVar.j(b14, b15);
                         int size2 = arrayList4.size();
                         if (b14 != size2 && b15 != size2) {
@@ -364,25 +367,25 @@ public final class d extends v {
                 int b18 = d1Var.b();
                 int b19 = d1Var2.b();
                 bn bnVar = (bn) l4Var.f47405e;
-                int i19 = bnVar.f32241t0;
+                int i20 = bnVar.f32241t0;
                 sh.d dVar = bnVar.f32228m1;
-                int i20 = b18 - i19;
-                int i21 = b19 - i19;
-                if (i20 < 0 || i21 < 0 || i20 >= (i7 = bnVar.M) || i21 >= i7) {
+                int i21 = b18 - i20;
+                int i22 = b19 - i20;
+                if (i21 < 0 || i22 < 0 || i21 >= (i7 = bnVar.M) || i22 >= i7) {
                     return true;
                 }
-                sh.c b20 = dVar.b(i20);
+                sh.c b20 = dVar.b(i21);
                 SparseArray sparseArray = dVar.f55202a;
-                sparseArray.put(i20, dVar.b(i21));
-                sparseArray.put(i21, b20);
+                sparseArray.put(i21, dVar.b(i22));
+                sparseArray.put(i22, b20);
                 CharSequence[] charSequenceArr = bnVar.K;
-                CharSequence charSequence = charSequenceArr[i20];
-                charSequenceArr[i20] = charSequenceArr[i21];
-                charSequenceArr[i21] = charSequence;
+                CharSequence charSequence = charSequenceArr[i21];
+                charSequenceArr[i21] = charSequenceArr[i22];
+                charSequenceArr[i22] = charSequence;
                 boolean[] zArr = bnVar.L;
-                boolean z9 = zArr[i20];
-                zArr[i20] = zArr[i21];
-                zArr[i21] = z9;
+                boolean z9 = zArr[i21];
+                zArr[i21] = zArr[i22];
+                zArr[i22] = z9;
                 l4Var.j(b18, b19);
                 return true;
             case 5:
@@ -392,15 +395,15 @@ public final class d extends v {
                 if (b21 >= dl0Var.f33035w && d1Var2.b() < dl0Var.f33036x) {
                     int b22 = d1Var.b();
                     int b23 = d1Var2.b();
-                    int i22 = dl0Var.f33035w;
-                    int i23 = b22 - i22;
-                    int i24 = b23 - i22;
-                    arrayList5.indexOf(Integer.valueOf(i23));
+                    int i23 = dl0Var.f33035w;
+                    int i24 = b22 - i23;
+                    int i25 = b23 - i23;
+                    arrayList5.indexOf(Integer.valueOf(i24));
                     arrayList5.get(b22 - dl0Var.f33035w);
-                    ij ijVar3 = (ij) arrayList5.get(i23);
-                    ij ijVar4 = (ij) arrayList5.get(i24);
-                    arrayList5.set(i23, ijVar4);
-                    arrayList5.set(i24, ijVar3);
+                    ij ijVar3 = (ij) arrayList5.get(i24);
+                    ij ijVar4 = (ij) arrayList5.get(i25);
+                    arrayList5.set(i24, ijVar4);
+                    arrayList5.set(i25, ijVar3);
                     z5 q10 = z5.q(dl0Var.d);
                     ArrayList arrayList6 = q10.G;
                     int indexOf = arrayList6.indexOf(ijVar3);
@@ -497,26 +500,26 @@ public final class d extends v {
                 int b30 = d1Var.b();
                 int b31 = d1Var2.b();
                 pr0 pr0Var = nr0Var.d;
-                int i25 = pr0Var.f48930n0;
-                int i26 = b30 - i25;
-                int i27 = b31 - i25;
-                if (i26 < 0 || i27 < 0 || i26 >= (i11 = pr0Var.D) || i27 >= i11) {
+                int i26 = pr0Var.f48930n0;
+                int i27 = b30 - i26;
+                int i28 = b31 - i26;
+                if (i27 < 0 || i28 < 0 || i27 >= (i11 = pr0Var.D) || i28 >= i11) {
                     return true;
                 }
                 CharSequence[] charSequenceArr2 = pr0Var.f48941w;
-                CharSequence charSequence2 = charSequenceArr2[i26];
-                charSequenceArr2[i26] = charSequenceArr2[i27];
-                charSequenceArr2[i27] = charSequence2;
+                CharSequence charSequence2 = charSequenceArr2[i27];
+                charSequenceArr2[i27] = charSequenceArr2[i28];
+                charSequenceArr2[i28] = charSequence2;
                 int[] iArr = pr0Var.f48934r;
                 if (iArr != null) {
-                    int i28 = iArr[i26];
-                    iArr[i26] = iArr[i27];
-                    iArr[i27] = i28;
+                    int i29 = iArr[i27];
+                    iArr[i27] = iArr[i28];
+                    iArr[i28] = i29;
                 }
                 boolean[] zArr2 = pr0Var.f48943x;
-                boolean z10 = zArr2[i26];
-                zArr2[i26] = zArr2[i27];
-                zArr2[i27] = z10;
+                boolean z10 = zArr2[i27];
+                zArr2[i27] = zArr2[i28];
+                zArr2[i28] = z10;
                 nr0Var.j(b30, b31);
                 return true;
         }
@@ -525,6 +528,7 @@ public final class d extends v {
     @Override
     public void o(RecyclerView recyclerView, d1 d1Var, d1 d1Var2, int i7, int i10, int i11) {
         switch (this.d) {
+            case 1:
             case 7:
                 return;
             default:
@@ -786,7 +790,7 @@ public final class d extends v {
     private final void D(d1 d1Var) {
     }
 
-    private final void u(d1 d1Var) {
+    private final void E(d1 d1Var) {
     }
 
     private final void v(d1 d1Var) {
@@ -805,5 +809,8 @@ public final class d extends v {
     }
 
     private final void t(RecyclerView recyclerView, d1 d1Var, d1 d1Var2, int i7, int i10, int i11) {
+    }
+
+    private final void u(RecyclerView recyclerView, d1 d1Var, d1 d1Var2, int i7, int i10, int i11) {
     }
 }

@@ -112,7 +112,7 @@ public final class us implements xs, h2.j, cj0 {
                 }
                 org.telegram.messenger.c20 c20Var = f1Var.f57653t2;
                 if (c20Var != null && hVar != null) {
-                    int i12 = hVar.f58639i;
+                    int i12 = hVar.f58645i;
                     if (i12 == 4) {
                         c20Var.a(-98L);
                     } else if (i12 == 5) {
@@ -205,7 +205,7 @@ public final class us implements xs, h2.j, cj0 {
                         boolean z13 = !z10;
                         if (iVar.D != z13) {
                             iVar.D = z13;
-                            org.telegram.messenger.g0.d0(iVar.f58650f, new xg.g(z13));
+                            org.telegram.messenger.g0.d0(iVar.f58656f, new xg.g(z13));
                         }
                     }
                     f1Var.e1();

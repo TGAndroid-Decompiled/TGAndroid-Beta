@@ -235,7 +235,7 @@ public final class y8 implements org.telegram.ui.Components.ab {
                 if (f10 > 0.0f) {
                     org.telegram.ui.Components.up0 up0Var = profileActivity.N.f40370a0;
                     View view = profileActivity.fragmentView;
-                    FrameLayout frameLayout = up0Var.f60217r;
+                    FrameLayout frameLayout = up0Var.f60223r;
                     if (view != null && frameLayout != null && frameLayout.getVisibility() == 0 && frameLayout.getAlpha() > 0.0f) {
                         view.getLocationInWindow(new int[2]);
                         frameLayout.getLocationInWindow(new int[2]);

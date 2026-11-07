@@ -56,7 +56,7 @@ public final class r extends yg.c implements a6 {
         this.G = true;
         this.K = new nu0(this);
         this.d.setTypeface(g0.o());
-        this.f59337f.setVisibility(8);
+        this.f59343f.setVisibility(8);
         if (z10) {
             wo woVar = new wo(21, context, f6Var);
             this.f1111w = woVar;
@@ -307,7 +307,7 @@ public final class r extends yg.c implements a6 {
         this.f1112x.setVisibility(8);
         this.I = chat;
         this.H = null;
-        w8 w8Var = this.f59334b;
+        w8 w8Var = this.f59340b;
         w8Var.q(chat);
         if (t3.c0(chat)) {
             f10 = 12.0f;
@@ -315,7 +315,7 @@ public final class r extends yg.c implements a6 {
             f10 = 20.0f;
         }
         int L = g0.L(f10);
-        l9 l9Var = this.f59335c;
+        l9 l9Var = this.f59341c;
         l9Var.setRoundRadius(L);
         l9Var.e(chat, w8Var);
         String str2 = chat.title;
@@ -342,7 +342,7 @@ public final class r extends yg.c implements a6 {
             M0 = hd.M0(i10, null);
         }
         setSubtitle(M0);
-        r6.Y(this.f59336e, k6.f28107r5, this.f59333a);
+        r6.Y(this.f59342e, k6.f28107r5, this.f59339a);
         if (i7 > 200) {
             f11 = 0.3f;
         } else {
@@ -384,18 +384,18 @@ public final class r extends yg.c implements a6 {
         this.J = tL_myBoost;
         TLRPC.Chat M0 = qp.s1(p10.f24467s0).M0(Long.valueOf(-m5.o(tL_myBoost.peer)));
         this.I = M0;
-        w8 w8Var = this.f59334b;
+        w8 w8Var = this.f59340b;
         w8Var.q(M0);
         int L = g0.L(20.0f);
-        l9 l9Var = this.f59335c;
+        l9 l9Var = this.f59341c;
         l9Var.setRoundRadius(L);
         l9Var.e(this.I, w8Var);
         String str = this.I.title;
         d4 d4Var = this.d;
         d4Var.k(str);
         int i7 = k6.f28107r5;
-        f6 f6Var = this.f59333a;
-        k5 k5Var = this.f59336e;
+        f6 f6Var = this.f59339a;
+        k5 k5Var = this.f59342e;
         r6.Y(k5Var, i7, f6Var);
         setSubtitle(hd.a0(null, null, 2131753661, hd.E0().o0().format(new Date(tL_myBoost.expires * 1000))));
         int i10 = tL_myBoost.cooldown_until_date;
@@ -426,10 +426,10 @@ public final class r extends yg.c implements a6 {
         this.f1112x.setVisibility(8);
         this.H = user;
         this.I = null;
-        w8 w8Var = this.f59334b;
+        w8 w8Var = this.f59340b;
         w8Var.r(user);
         int L = g0.L(20.0f);
-        l9 l9Var = this.f59335c;
+        l9 l9Var = this.f59341c;
         l9Var.setRoundRadius(L);
         l9Var.e(user, w8Var);
         String p10 = t10.p(user);
@@ -452,7 +452,7 @@ public final class r extends yg.c implements a6 {
         } else {
             i7 = k6.f28107r5;
         }
-        r6.Y(this.f59336e, i7, this.f59333a);
+        r6.Y(this.f59342e, i7, this.f59339a);
         wo woVar = this.f1111w;
         if (woVar != null) {
             woVar.setAlpha(1.0f);

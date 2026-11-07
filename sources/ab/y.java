@@ -227,7 +227,7 @@ public final class y implements OnSuccessListener, g7, hb1, r1, bg.p, bp, a1, h2
     @Override
     public void m(xh.f fVar, float f10, float f11) {
         xh.l lVar = (xh.l) this.f1009c;
-        if (!lVar.d && !lVar.f58744e && !lVar.f58745f && this.f1008b) {
+        if (!lVar.d && !lVar.f58750e && !lVar.f58751f && this.f1008b) {
             lVar.c(f10, f11);
         }
     }

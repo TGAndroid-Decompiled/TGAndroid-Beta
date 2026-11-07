@@ -140,15 +140,15 @@ public final class q {
         if (view2 != view) {
             h hVar = this.f21097b;
             if (view2 != null && (cVar = (xf.c) view2.getTag(2131296697)) != null) {
-                ArrayList arrayList = cVar.f58604a;
+                ArrayList arrayList = cVar.f58610a;
                 if (arrayList.remove(hVar)) {
-                    xf.a aVar = cVar.f58605b;
+                    xf.a aVar = cVar.f58611b;
                     if (aVar != null) {
-                        ((xe.b) aVar.f58603a.f8841b).remove(hVar);
+                        ((xe.b) aVar.f58609a.f8841b).remove(hVar);
                     }
                     if (arrayList.isEmpty()) {
-                        cVar.f58605b = null;
-                        view2.removeOnAttachStateChangeListener(cVar.f58606c);
+                        cVar.f58611b = null;
+                        view2.removeOnAttachStateChangeListener(cVar.f58612c);
                         view2.setTag(2131296697, null);
                     }
                 }
@@ -161,13 +161,13 @@ public final class q {
                 if (cVar2 == null) {
                     cVar2 = new xf.c();
                     view.setTag(2131296697, cVar2);
-                    view.addOnAttachStateChangeListener(cVar2.f58606c);
+                    view.addOnAttachStateChangeListener(cVar2.f58612c);
                 }
-                ArrayList arrayList2 = cVar2.f58604a;
+                ArrayList arrayList2 = cVar2.f58610a;
                 if (!arrayList2.contains(hVar)) {
                     arrayList2.add(hVar);
                     if (view.isAttachedToWindow() && (a10 = ud.a(view, cVar2)) != null) {
-                        ((xe.b) a10.f58603a.f8841b).add(hVar);
+                        ((xe.b) a10.f58609a.f8841b).add(hVar);
                     }
                 }
             }

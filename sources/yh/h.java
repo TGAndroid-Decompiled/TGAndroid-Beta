@@ -18,10 +18,10 @@ import org.telegram.ui.Components.oj0;
 import org.telegram.ui.Components.w8;
 import v4.d1;
 public final class h extends oj0 {
-    public final m f59426c;
+    public final m f59432c;
 
     public h(m mVar) {
-        this.f59426c = mVar;
+        this.f59432c = mVar;
     }
 
     @Override
@@ -33,8 +33,8 @@ public final class h extends oj0 {
     }
 
     public final void E(List list) {
-        m mVar = this.f59426c;
-        ArrayList arrayList = mVar.f59446c;
+        m mVar = this.f59432c;
+        ArrayList arrayList = mVar.f59452c;
         boolean isEmpty = arrayList.isEmpty();
         int i7 = 0;
         while (i7 < list.size()) {
@@ -64,18 +64,18 @@ public final class h extends oj0 {
 
     @Override
     public final int b() {
-        m mVar = this.f59426c;
+        m mVar = this.f59432c;
         int i7 = 1;
-        return ((mVar.f59446c.isEmpty() || !mVar.f59464x) ? 0 : 0) + mVar.f59446c.size() + (!mVar.B ? 1 : 0);
+        return ((mVar.f59452c.isEmpty() || !mVar.f59470x) ? 0 : 0) + mVar.f59452c.size() + (!mVar.B ? 1 : 0);
     }
 
     @Override
     public final int d(int i7) {
-        m mVar = this.f59426c;
+        m mVar = this.f59432c;
         if (i7 == 0 && !mVar.B) {
             return 2;
         }
-        if (i7 == b() - 1 && !mVar.f59446c.isEmpty() && mVar.f59464x) {
+        if (i7 == b() - 1 && !mVar.f59452c.isEmpty() && mVar.f59470x) {
             return 4;
         }
         return 0;
@@ -84,8 +84,8 @@ public final class h extends oj0 {
     @Override
     public final void t(d1 d1Var, int i7) {
         boolean z9;
-        m mVar = this.f59426c;
-        ArrayList arrayList = mVar.f59446c;
+        m mVar = this.f59432c;
+        ArrayList arrayList = mVar.f59452c;
         int i10 = d1Var.f56955f;
         View view = d1Var.f56951a;
         if (i10 == 0) {
@@ -93,7 +93,7 @@ public final class h extends oj0 {
             int i11 = i7 - (!mVar.B ? 1 : 0);
             LongSparseArray longSparseArray = mVar.d;
             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) arrayList.get(i11);
-            if (i11 == arrayList.size() - 1 && !mVar.f59464x) {
+            if (i11 == arrayList.size() - 1 && !mVar.f59470x) {
                 z9 = false;
             } else {
                 z9 = true;
@@ -131,15 +131,15 @@ public final class h extends oj0 {
     @Override
     public final d1 x(ViewGroup viewGroup, int i7) {
         e5 e5Var;
-        m mVar = this.f59426c;
-        boolean z9 = mVar.f59444a;
+        m mVar = this.f59432c;
+        boolean z9 = mVar.f59450a;
         if (i7 != 1) {
             if (i7 != 2) {
                 if (i7 != 3) {
                     if (i7 != 4) {
                         e5Var = new e5(viewGroup.getContext(), mVar, z9);
                     } else {
-                        f2 f2Var = mVar.f59449g;
+                        f2 f2Var = mVar.f59455g;
                         s2 s2Var = new s2(2, f2Var.getParentActivity(), f2Var.getResourceProvider());
                         if (mVar.B) {
                             r6.i(k6.f27849d6, s2Var, f2Var.getResourceProvider());

@@ -101,13 +101,13 @@ public final class h4 implements Runnable {
                 }
                 return;
             default:
-                wi.t0 t0Var = (wi.t0) this.d;
-                wi.p0 p0Var = (wi.p0) this.f3994e;
+                wi.u0 u0Var = (wi.u0) this.d;
+                wi.q0 q0Var = (wi.q0) this.f3994e;
                 long j17 = this.f3992b;
                 long j18 = this.f3993c;
-                synchronized (t0Var.f58103g) {
-                    if (!p0Var.d && !p0Var.f58036e) {
-                        ((hy0) t0Var.f58101e).a(p0Var.f58033a, p0Var.f58034b, j17, j18);
+                synchronized (u0Var.f58109g) {
+                    if (!q0Var.d && !q0Var.f58037e) {
+                        ((hy0) u0Var.f58107e).a(q0Var.f58034a, q0Var.f58035b, j17, j18);
                         return;
                     }
                     return;

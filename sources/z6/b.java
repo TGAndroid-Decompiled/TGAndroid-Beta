@@ -3,27 +3,27 @@ package z6;
 import android.content.Context;
 import androidx.biometric.t;
 public final class b {
-    public static final b f59613b;
-    public t f59614a;
+    public static final b f59619b;
+    public t f59620a;
 
     static {
         ?? obj = new Object();
-        obj.f59614a = null;
-        f59613b = obj;
+        obj.f59620a = null;
+        f59619b = obj;
     }
 
     public static t a(Context context) {
         t tVar;
-        b bVar = f59613b;
+        b bVar = f59619b;
         synchronized (bVar) {
             try {
-                if (bVar.f59614a == null) {
+                if (bVar.f59620a == null) {
                     if (context.getApplicationContext() != null) {
                         context = context.getApplicationContext();
                     }
-                    bVar.f59614a = new t(context, 4);
+                    bVar.f59620a = new t(context, 4);
                 }
-                tVar = bVar.f59614a;
+                tVar = bVar.f59620a;
             } catch (Throwable th2) {
                 throw th2;
             }

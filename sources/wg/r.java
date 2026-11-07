@@ -52,40 +52,40 @@ public final class r implements Runnable {
                     return;
                 }
             case 1:
-                wi.t tVar = (wi.t) this.f57708b;
-                wi.m0 m0Var = (wi.m0) this.f57709c;
-                wi.m0 m0Var2 = (wi.m0) this.d;
+                wi.u uVar = (wi.u) this.f57708b;
+                wi.n0 n0Var = (wi.n0) this.f57709c;
+                wi.n0 n0Var2 = (wi.n0) this.d;
                 Handler handler = (Handler) this.f57710e;
-                if (tVar.f58083r0 && tVar.W == 0 && tVar.T) {
-                    tVar.N.g(tVar.L, tVar.D, false);
-                    tVar.U = false;
-                    tVar.V = false;
-                    tVar.f58056c0 = 0.0f;
-                    tVar.W = 1;
+                if (uVar.f58087r0 && uVar.W == 0 && uVar.T) {
+                    uVar.N.g(uVar.L, uVar.D, false);
+                    uVar.U = false;
+                    uVar.V = false;
+                    uVar.f58060c0 = 0.0f;
+                    uVar.W = 1;
                     long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
-                    tVar.X = elapsedRealtimeNanos;
-                    tVar.Y = elapsedRealtimeNanos;
-                    tVar.f58057d0 = m0Var;
-                    tVar.f58059e0 = m0Var2;
-                    String[] strArr = wi.u0.f58121a;
-                    synchronized (wi.u0.class) {
-                        wi.u0.b();
-                        if (m0Var != m0Var2) {
-                            if (m0Var == wi.m0.f58015b) {
+                    uVar.X = elapsedRealtimeNanos;
+                    uVar.Y = elapsedRealtimeNanos;
+                    uVar.f58061d0 = n0Var;
+                    uVar.f58063e0 = n0Var2;
+                    String[] strArr = wi.v0.f58127a;
+                    synchronized (wi.v0.class) {
+                        wi.v0.b();
+                        if (n0Var != n0Var2) {
+                            if (n0Var == wi.n0.f58019b) {
                                 i7 = 0;
                             }
-                            a10 = wi.u0.a(i7);
+                            a10 = wi.v0.a(i7);
                         } else {
                             throw new IllegalArgumentException("Camera switch direction must change");
                         }
                     }
-                    tVar.f58054b0 = a10;
-                    tVar.Z = ((Math.max(210, Math.min(300, 300 - ((Math.max(0, a10 - 400) * 3) / 20))) * 45) / 100) * 1000000;
-                    tVar.f58052a0 = (max - max2) * 1000000;
-                    tVar.f58065i.b("synthetic camera switch started: from=" + m0Var + ", to=" + m0Var2 + ", expectedWaitMs=" + tVar.f58054b0 + ", targetBlurRadiusPx=" + (((tVar.N.f57841a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((tVar.Z + tVar.f58052a0) / 1000000));
-                    tVar.Q = -1L;
-                    handler.removeCallbacks(tVar.f58094x0);
-                    handler.post(tVar.f58094x0);
+                    uVar.f58058b0 = a10;
+                    uVar.Z = ((Math.max(210, Math.min(300, 300 - ((Math.max(0, a10 - 400) * 3) / 20))) * 45) / 100) * 1000000;
+                    uVar.f58056a0 = (max - max2) * 1000000;
+                    uVar.f58069i.b("synthetic camera switch started: from=" + n0Var + ", to=" + n0Var2 + ", expectedWaitMs=" + uVar.f58058b0 + ", targetBlurRadiusPx=" + (((uVar.N.f57843a * 4.0f) / 48.0f) * 1.15f) + ", overdueBlurGrowth=0.35, revealMs=" + ((uVar.Z + uVar.f58056a0) / 1000000));
+                    uVar.Q = -1L;
+                    handler.removeCallbacks(uVar.f58100y0);
+                    handler.post(uVar.f58100y0);
                     return;
                 }
                 return;
@@ -94,36 +94,36 @@ public final class r implements Runnable {
                 TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) this.f57709c;
                 zh.z0 z0Var = (zh.z0) this.d;
                 final View view = (View) this.f57710e;
-                up0 up0Var = a2Var.f60105a;
+                up0 up0Var = a2Var.f60111a;
                 if (savedStarGift.unsaved) {
                     savedStarGift.unsaved = false;
                     z0Var.i(savedStarGift, true, false);
                     TL_stars.saveStarGift savestargift = new TL_stars.saveStarGift();
-                    savestargift.stargift = a2Var.f60108e.h(savedStarGift);
+                    savestargift.stargift = a2Var.f60114e.h(savedStarGift);
                     savestargift.unsave = savedStarGift.unsaved;
-                    ConnectionsManager.getInstance(a2Var.f60106b).sendRequest(savestargift, null, 64);
+                    ConnectionsManager.getInstance(a2Var.f60112b).sendRequest(savestargift, null, 64);
                 }
                 boolean z9 = savedStarGift.pinned_to_top;
                 final boolean z10 = !z9;
-                if (a2Var.f60108e.o(savedStarGift, z10, false)) {
-                    new e2(a2Var.getContext(), up0Var.f60213c, savedStarGift, a2Var.f60107c, new u10() {
+                if (a2Var.f60114e.o(savedStarGift, z10, false)) {
+                    new e2(a2Var.getContext(), up0Var.f60219c, savedStarGift, a2Var.f60113c, new u10() {
                         @Override
                         public final Object run() {
                             ((z0) view).d(z10, true);
                             a2 a2Var2 = a2.this;
-                            a2Var2.f60109f.v0(0);
-                            return hc.a0(a2Var2.f60105a.f60211a);
+                            a2Var2.f60115f.v0(0);
+                            return hc.a0(a2Var2.f60111a.f60217a);
                         }
                     }).show();
                     return;
                 }
                 if (!z9) {
-                    hc.a0(up0Var.f60211a).I(2131624054, hd.M0(2131750075, null), hd.M0(2131750076, null)).j();
+                    hc.a0(up0Var.f60217a).I(2131624054, hd.M0(2131750075, null), hd.M0(2131750076, null)).j();
                 } else {
-                    k5.o(null, 2131749879, hc.a0(up0Var.f60211a), 2131624060, 36);
+                    k5.o(null, 2131749879, hc.a0(up0Var.f60217a), 2131624060, 36);
                 }
                 ((zh.z0) view).d(z10, true);
-                a2Var.f60109f.v0(0);
+                a2Var.f60115f.v0(0);
                 return;
         }
     }

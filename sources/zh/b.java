@@ -20,7 +20,7 @@ import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
 public final class b extends w31 {
-    public static final int f60119b = 0;
+    public static final int f60125b = 0;
 
     static {
         w31.h(new w31());
@@ -32,7 +32,7 @@ public final class b extends w31 {
         s9 s9Var = (s9) x31Var.H;
         TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift = (TL_stars.TL_StarGiftAuctionAcquiredGift) x31Var.G;
         View.OnClickListener onClickListener = x31Var.D;
-        int i7 = c.f60140c;
+        int i7 = c.f60146c;
         cVar.removeAllViews();
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("*");
         spannableStringBuilder.setSpan(new r5(s9Var.f25440c, k6.f28124s2.getFontMetricsInt()), 0, spannableStringBuilder.length(), 33);
@@ -42,9 +42,9 @@ public final class b extends w31 {
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
         spannableStringBuilder2.append((CharSequence) dd.a1(false, jg.g.m(tL_StarGiftAuctionAcquiredGift.bid_amount, ',', new StringBuilder("⭐️")), 0.75f, null));
         String a02 = hd.a0(null, null, 2131750307, Integer.valueOf(tL_StarGiftAuctionAcquiredGift.pos));
-        tx0 tx0Var = new tx0(cVar.getContext(), cVar.f60141a);
+        tx0 tx0Var = new tx0(cVar.getContext(), cVar.f60147a);
         tx0Var.a(spannableStringBuilder).setFilled(true);
-        tx0Var.n(hd.M0(2131750310, null), cVar.f60142b, m5.o(tL_StarGiftAuctionAcquiredGift.peer), new wi.q(10, cVar, onClickListener));
+        tx0Var.n(hd.M0(2131750310, null), cVar.f60148b, m5.o(tL_StarGiftAuctionAcquiredGift.peer), new wi.s(10, cVar, onClickListener));
         tx0Var.g(tL_StarGiftAuctionAcquiredGift.date, hd.M0(2131750314, null));
         tx0Var.e(hd.M0(2131750315, null), spannableStringBuilder2, a02, null, null);
         cVar.addView(tx0Var, ha.c(-2.0f, -1));

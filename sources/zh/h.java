@@ -5,10 +5,10 @@ import org.telegram.messenger.b20;
 import org.telegram.messenger.k9;
 import org.telegram.ui.Components.x31;
 public final class h implements org.telegram.ui.ActionBar.r1, b20, k9 {
-    public final int f60240a;
+    public final int f60246a;
 
     public h(int i7) {
-        this.f60240a = i7;
+        this.f60246a = i7;
     }
 
     @Override
@@ -18,7 +18,7 @@ public final class h implements org.telegram.ui.ActionBar.r1, b20, k9 {
 
     @Override
     public void g(org.telegram.ui.ActionBar.u1 u1Var, int i7) {
-        switch (this.f60240a) {
+        switch (this.f60246a) {
             case 0:
                 u1Var.dismiss();
                 return;
@@ -31,7 +31,7 @@ public final class h implements org.telegram.ui.ActionBar.r1, b20, k9 {
     @Override
     public Object j(Object obj) {
         Integer num = (Integer) obj;
-        int i7 = l3.f60338c2;
+        int i7 = l3.f60344c2;
         return 0;
     }
 }

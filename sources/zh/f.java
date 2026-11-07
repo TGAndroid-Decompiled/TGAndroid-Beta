@@ -55,7 +55,7 @@ public final class f extends na implements u9 {
             i7++;
             s9 s9Var = (s9) obj;
             e eVar = new e(context, s9Var);
-            eVar.f60191a.setOnClickListener(new td0(this, context, s9Var, 4));
+            eVar.f60197a.setOnClickListener(new td0(this, context, s9Var, 4));
             linearLayout.addView(eVar, ha.o(-1, -2));
             this.Q1.put(s9Var.f25439b, eVar);
         }
@@ -107,7 +107,7 @@ public final class f extends na implements u9 {
                 eVar.b(this.S1);
                 long max = Math.max(0, i7 - ConnectionsManager.getInstance(this.f28613a).getCurrentTime());
                 eVar.a(max, this.S1);
-                eVar.f60195f.a(max);
+                eVar.f60201f.a(max);
             }
         }
     }

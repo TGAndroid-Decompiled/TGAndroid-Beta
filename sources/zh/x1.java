@@ -11,10 +11,10 @@ import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 public final class x1 extends v4.v {
     public final up0 d;
-    public final a2 f60492e;
+    public final a2 f60498e;
 
     public x1(a2 a2Var, up0 up0Var) {
-        this.f60492e = a2Var;
+        this.f60498e = a2Var;
         this.d = up0Var;
     }
 
@@ -42,32 +42,32 @@ public final class x1 extends v4.v {
 
     @Override
     public final boolean j() {
-        return this.f60492e.h;
+        return this.f60498e.h;
     }
 
     @Override
     public final boolean k() {
-        return this.f60492e.h;
+        return this.f60498e.h;
     }
 
     @Override
     public final boolean n(RecyclerView recyclerView, v4.d1 d1Var, v4.d1 d1Var2) {
         bi.g1 g1Var;
-        a2 a2Var = this.f60492e;
-        fi.w3 w3Var = a2Var.f60109f;
-        if (a2Var.f60108e != null && a2Var.h && r(s(d1Var)) && r(s(d1Var2))) {
+        a2 a2Var = this.f60498e;
+        fi.w3 w3Var = a2Var.f60115f;
+        if (a2Var.f60114e != null && a2Var.h && r(s(d1Var)) && r(s(d1Var2))) {
             int b10 = d1Var.b();
             int b11 = d1Var2.b();
-            int indexOf = a2Var.f60108e.f4915l.indexOf(s(d1Var));
-            int indexOf2 = a2Var.f60108e.f4915l.indexOf(s(d1Var2));
+            int indexOf = a2Var.f60114e.f4915l.indexOf(s(d1Var));
+            int indexOf2 = a2Var.f60114e.f4915l.indexOf(s(d1Var2));
             if (indexOf >= 0 && indexOf2 >= 0) {
                 boolean z9 = a2Var.d;
                 up0 up0Var = this.d;
                 if (z9) {
-                    a2Var.f60108e.m(indexOf, indexOf2);
-                    up0Var.f60214e.n(a2Var.f60108e.d);
+                    a2Var.f60114e.m(indexOf, indexOf2);
+                    up0Var.f60220e.n(a2Var.f60114e.d);
                 } else {
-                    v9 v9Var = a2Var.f60108e;
+                    v9 v9Var = a2Var.f60114e;
                     if (v9Var.f4920q == null) {
                         v9Var.f4920q = v9Var.i();
                     }
@@ -92,9 +92,9 @@ public final class x1 extends v4.v {
 
     @Override
     public final void p(v4.d1 d1Var, int i7) {
-        a2 a2Var = this.f60492e;
+        a2 a2Var = this.f60498e;
         if (i7 == 0) {
-            v9 v9Var = a2Var.f60108e;
+            v9 v9Var = a2Var.f60114e;
             if (v9Var != null) {
                 ArrayList arrayList = v9Var.f4920q;
                 if (arrayList != null) {
@@ -114,7 +114,7 @@ public final class x1 extends v4.v {
             }
             return;
         }
-        fi.w3 w3Var = a2Var.f60109f;
+        fi.w3 w3Var = a2Var.f60115f;
         if (w3Var != null) {
             w3Var.I0(false);
         }
@@ -124,9 +124,9 @@ public final class x1 extends v4.v {
     }
 
     public final boolean r(TL_stars.SavedStarGift savedStarGift) {
-        a2 a2Var = this.f60492e;
+        a2 a2Var = this.f60498e;
         if (a2Var.h) {
-            if (a2Var.f60108e == this.d.d) {
+            if (a2Var.f60114e == this.d.d) {
                 if (savedStarGift == null || !savedStarGift.pinned_to_top) {
                     return false;
                 }

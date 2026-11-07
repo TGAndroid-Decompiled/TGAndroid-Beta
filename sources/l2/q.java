@@ -445,7 +445,7 @@ public final class q implements h2.o, qr, db0, lc, t4, dj0, cj0, org.telegram.ui
                 boolean z11 = !z10;
                 if (iVar.D != z11) {
                     iVar.D = z11;
-                    org.telegram.messenger.g0.d0(iVar.f58650f, new xg.g(z11));
+                    org.telegram.messenger.g0.d0(iVar.f58656f, new xg.g(z11));
                 }
             }
             f1Var.e1();

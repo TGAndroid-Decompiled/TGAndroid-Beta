@@ -75,12 +75,12 @@ public final class p4 implements bj0 {
                 xg.c cVar = a0Var.Y1;
                 int i11 = 0;
                 while (true) {
-                    if (i11 >= cVar.f58618e.size()) {
+                    if (i11 >= cVar.f58624e.size()) {
                         break;
                     }
-                    xg.b bVar = (xg.b) cVar.f58618e.get(i11);
+                    xg.b bVar = (xg.b) cVar.f58624e.get(i11);
                     if (bVar.f54439a == 15) {
-                        int i12 = bVar.f58616l;
+                        int i12 = bVar.f58622l;
                         int i13 = yg.y.L;
                         if (i12 == 1) {
                             if (!z11) {
@@ -103,7 +103,7 @@ public final class p4 implements bj0 {
         if (view instanceof yg.c) {
             if (view instanceof yg.d) {
                 int selectedType = ((yg.d) view).getSelectedType();
-                int i14 = yg.d.f59351w;
+                int i14 = yg.d.f59357w;
                 if (selectedType != 2 && selectedType != 3) {
                     if (selectedType == 1) {
                         sg.i0 i0Var2 = a0Var.f57593j2;

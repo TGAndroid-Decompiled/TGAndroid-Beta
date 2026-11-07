@@ -94,7 +94,7 @@ public final class m7 {
         this.J = new org.telegram.ui.Components.ic(view);
         this.d = new ImageReceiver(view);
         this.f4334e = new org.telegram.ui.Components.g5(org.telegram.messenger.g0.L(28.0f), view);
-        j0Var.f60301r = view;
+        j0Var.f60307r = view;
         j0Var.d.H0(view);
     }
 
@@ -182,8 +182,8 @@ public final class m7 {
         my0Var2.c(f11 - (my0Var2.f36125c / 2.0f), this.f4347s, 1.0f, i12, canvas2);
         if (this.f4353z) {
             zh.j0 j0Var = this.f4352y;
-            int i13 = j0Var.f60303t;
-            int i14 = j0Var.f60304u;
+            int i13 = j0Var.f60309t;
+            int i14 = j0Var.f60310u;
             int i15 = (int) (f11 - (i13 / 2.0f));
             int i16 = (int) this.f4351x;
             int i17 = i13 + i15;
@@ -235,7 +235,7 @@ public final class m7 {
             canvas2.drawPath(path2, paint3);
             canvas2.restore();
             c1Var.setBounds(((int) rectF.right) - org.telegram.messenger.g0.L(46.67f), ((int) rectF.top) - org.telegram.messenger.g0.L(1.33f), org.telegram.messenger.g0.L(1.33f) + ((int) rectF.right), org.telegram.messenger.g0.L(46.67f) + ((int) rectF.top));
-            c1Var.f60151y = i20;
+            c1Var.f60157y = i20;
             c1Var.draw(canvas2);
         }
         canvas2.restore();
@@ -349,7 +349,7 @@ public final class m7 {
         TLRPC.TL_textWithEntities tL_textWithEntities = tL_messageActionStarGiftUnique.message;
         zh.j0 j0Var = this.f4352y;
         if (tL_textWithEntities != null) {
-            TextPaint textPaint = j0Var.f60288c;
+            TextPaint textPaint = j0Var.f60294c;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
             ij.b(spannableStringBuilder, tL_textWithEntities.entities, false, false, false, false, 0);
             Spannable C5 = ij.C5(org.telegram.messenger.i6.m(spannableStringBuilder, textPaint.getFontMetricsInt(), false, null, 0), tL_textWithEntities.entities, textPaint.getFontMetricsInt(), false);
@@ -362,11 +362,11 @@ public final class m7 {
             }
             this.f4353z = true;
             j0Var.c(e22);
-            j0Var.f60296m = C5;
-            j0Var.f60302s = -1;
+            j0Var.f60302m = C5;
+            j0Var.f60308s = -1;
             j0Var.b(((int) f12) - org.telegram.messenger.g0.L(24.0f));
             if (!this.N) {
-                StaticLayout staticLayout = j0Var.f60297n;
+                StaticLayout staticLayout = j0Var.f60303n;
                 if (staticLayout != null) {
                     i10 = staticLayout.getLineCount();
                 } else {
@@ -374,7 +374,7 @@ public final class m7 {
                 }
                 if (i10 > 3) {
                     this.N = true;
-                    StaticLayout staticLayout2 = j0Var.f60297n;
+                    StaticLayout staticLayout2 = j0Var.f60303n;
                     if (staticLayout2 != null) {
                         i12 = staticLayout2.getLineCount();
                     }
@@ -385,12 +385,12 @@ public final class m7 {
             }
             float L4 = L3 + org.telegram.messenger.g0.L(4.0f);
             this.f4351x = L4;
-            L3 = L4 + j0Var.f60304u + org.telegram.messenger.g0.L(3.0f);
+            L3 = L4 + j0Var.f60310u + org.telegram.messenger.g0.L(3.0f);
         } else {
             this.f4353z = false;
             j0Var.c(null);
-            j0Var.f60296m = null;
-            j0Var.f60302s = -1;
+            j0Var.f60302m = null;
+            j0Var.f60308s = -1;
             if (this.f4341m != null) {
                 if (!arrayList.isEmpty()) {
                     L3 += org.telegram.messenger.g0.L(6.0f);
@@ -473,7 +473,7 @@ public final class m7 {
         this.f4349u = 0.0f;
         this.v = 0.0f;
         zh.j0 j0Var = this.f4352y;
-        TextPaint textPaint = j0Var.f60288c;
+        TextPaint textPaint = j0Var.f60294c;
         if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
             ij.b(spannableStringBuilder, tL_textWithEntities.entities, false, false, false, false, 0);
@@ -488,11 +488,11 @@ public final class m7 {
         }
         this.f4353z = true;
         j0Var.c(tLObject);
-        j0Var.f60296m = spanned;
-        j0Var.f60302s = -1;
+        j0Var.f60302m = spanned;
+        j0Var.f60308s = -1;
         j0Var.b(((int) f10) - org.telegram.messenger.g0.L(24.0f));
         if (!this.N) {
-            StaticLayout staticLayout = j0Var.f60297n;
+            StaticLayout staticLayout = j0Var.f60303n;
             if (staticLayout != null) {
                 i7 = staticLayout.getLineCount();
             } else {
@@ -500,7 +500,7 @@ public final class m7 {
             }
             if (i7 > 3) {
                 this.N = true;
-                StaticLayout staticLayout2 = j0Var.f60297n;
+                StaticLayout staticLayout2 = j0Var.f60303n;
                 if (staticLayout2 != null) {
                     i10 = staticLayout2.getLineCount();
                 }
@@ -511,7 +511,7 @@ public final class m7 {
         }
         float L2 = i12 + org.telegram.messenger.g0.L(4.0f);
         this.f4351x = L2;
-        float L3 = L2 + j0Var.f60304u + org.telegram.messenger.g0.L(3.0f) + org.telegram.messenger.g0.L(11.66f);
+        float L3 = L2 + j0Var.f60310u + org.telegram.messenger.g0.L(3.0f) + org.telegram.messenger.g0.L(11.66f);
         this.A = L3;
         this.C = new my0(str, 14.0f, org.telegram.messenger.g0.o());
         float L4 = org.telegram.messenger.g0.L(30.0f);

@@ -180,7 +180,7 @@ public final class yt implements x5 {
                     View view = kvVar.Q;
                     if (view != null) {
                         xh.e eVar2 = kvVar.R;
-                        if (eVar2 != null && eVar2.f58689i) {
+                        if (eVar2 != null && eVar2.f58695i) {
                             kvVar.R = null;
                         }
                         if (kvVar.R == null) {

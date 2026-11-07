@@ -204,7 +204,7 @@ public final class l extends g.p {
                 return 1000;
             case 16:
                 zh.h1 h1Var = (zh.h1) this.d;
-                jy jyVar3 = h1Var.f60242a2;
+                jy jyVar3 = h1Var.f60248a2;
                 l41 l41Var2 = h1Var.Q1;
                 if (l41Var2 != null && i7 != 0) {
                     x31 G3 = l41Var2.G(i7 - 1);
@@ -215,7 +215,7 @@ public final class l extends g.p {
                 }
                 return jyVar3.J;
             case 17:
-                x31 G4 = ((l3) this.d).f60339a2.G(i7 - 1);
+                x31 G4 = ((l3) this.d).f60345a2.G(i7 - 1);
                 if (G4 == null || (i17 = G4.f40168u) == -1) {
                     return 3;
                 }

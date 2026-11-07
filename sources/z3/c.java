@@ -6,11 +6,11 @@ import h2.m0;
 import h2.x;
 import java.nio.charset.StandardCharsets;
 public abstract class c {
-    public static final byte[] f59486a;
+    public static final byte[] f59492a;
 
     static {
         String str = m0.f14112a;
-        f59486a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        f59492a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(x xVar) {

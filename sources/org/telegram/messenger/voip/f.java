@@ -16,13 +16,13 @@ public final class f implements Runnable {
     public final void run() {
         switch (this.f26108a) {
             case 0:
-                this.f26109b.lambda$processUpdate$0(this.f26110c, this.d);
+                GroupCallMessagesController.a(this.f26109b, this.f26110c, this.d);
                 return;
             case 1:
-                this.f26109b.lambda$processUpdate$1(this.f26110c, this.d);
+                GroupCallMessagesController.f(this.f26109b, this.f26110c, this.d);
                 return;
             default:
-                this.f26109b.lambda$processUpdate$2(this.f26110c, this.d);
+                GroupCallMessagesController.g(this.f26109b, this.f26110c, this.d);
                 return;
         }
     }

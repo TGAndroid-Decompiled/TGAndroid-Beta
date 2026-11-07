@@ -87,7 +87,7 @@ public final class va extends AnimatorListenerAdapter {
                 org.telegram.ui.Components.t40 t40Var = ((hl) lVar.f1086c).f46403c.Q.f43911p3;
                 if (t40Var != null) {
                     t40Var.setIsMessageTransition(false);
-                    ((hl) lVar.f1086c).f46403c.Q.f43911p3.c(true);
+                    ((hl) lVar.f1086c).f46403c.Q.f43911p3.d(true);
                     ((hl) lVar.f1086c).f46403c.Q.f43911p3.setVisibility(4);
                     return;
                 }

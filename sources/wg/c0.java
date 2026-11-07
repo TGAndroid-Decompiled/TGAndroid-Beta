@@ -43,10 +43,10 @@ public final class c0 extends na {
         l2 l2Var = this.f28619c;
         b0Var.getClass();
         b0Var.d = tL_payments_checkedGiftCode.used_date == 0;
-        b0Var.f58631e = f2Var;
-        b0Var.f58632f = tL_payments_checkedGiftCode;
+        b0Var.f58637e = f2Var;
+        b0Var.f58638f = tL_payments_checkedGiftCode;
         b0Var.h = str;
-        b0Var.f58633n = l2Var;
+        b0Var.f58639n = l2Var;
     }
 
     public static boolean d1(Intent intent, vf.b bVar) {

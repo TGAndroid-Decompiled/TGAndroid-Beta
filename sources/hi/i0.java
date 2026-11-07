@@ -29,7 +29,7 @@ public final class i0 extends FrameLayout {
         this.f14709c = keyboardButton;
         xh.l lVar = new xh.l(context);
         this.f14707a = lVar;
-        lVar.f58747r = false;
+        lVar.f58753r = false;
         lVar.setTextSize(1, 14.0f);
         lVar.setTypeface(org.telegram.messenger.g0.o());
         qs.i(lVar);

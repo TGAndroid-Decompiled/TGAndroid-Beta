@@ -15,60 +15,60 @@ public final class l implements f3.o {
     public long[][] D;
     public int E;
     public o3.b F;
-    public final c4.k f59539a;
-    public final int f59540b;
-    public final boolean f59541c;
+    public final c4.k f59545a;
+    public final int f59546b;
+    public final boolean f59547c;
     public final x d;
-    public final x f59542e;
-    public final x f59543f;
-    public final x f59544g;
+    public final x f59548e;
+    public final x f59549f;
+    public final x f59550g;
     public final ArrayDeque h;
-    public final o f59545i;
-    public final ArrayList f59546j;
-    public t1 f59547k;
-    public int f59548l;
-    public int f59549m;
-    public long f59550n;
-    public int f59551o;
-    public x f59552p;
-    public int f59553q;
-    public int f59554r;
-    public int f59555s;
-    public int f59556t;
-    public boolean f59557u;
+    public final o f59551i;
+    public final ArrayList f59552j;
+    public t1 f59553k;
+    public int f59554l;
+    public int f59555m;
+    public long f59556n;
+    public int f59557o;
+    public x f59558p;
+    public int f59559q;
+    public int f59560r;
+    public int f59561s;
+    public int f59562t;
+    public boolean f59563u;
     public boolean v;
-    public boolean f59558w;
-    public long f59559x;
-    public boolean f59560y;
-    public boolean f59561z;
+    public boolean f59564w;
+    public long f59565x;
+    public boolean f59566y;
+    public boolean f59567z;
 
     public l(c4.k kVar, int i7) {
         boolean z9;
         int i10;
-        this.f59539a = kVar;
-        this.f59540b = i7;
+        this.f59545a = kVar;
+        this.f59546b = i7;
         if ((i7 & 256) != 0) {
             z9 = true;
         } else {
             z9 = false;
         }
-        this.f59541c = z9;
+        this.f59547c = z9;
         g0 g0Var = i0.f14329b;
-        this.f59547k = t1.f14397e;
+        this.f59553k = t1.f14397e;
         if ((i7 & 4) != 0) {
             i10 = 3;
         } else {
             i10 = 0;
         }
-        this.f59548l = i10;
-        this.f59545i = new o();
-        this.f59546j = new ArrayList();
-        this.f59544g = new x(16);
+        this.f59554l = i10;
+        this.f59551i = new o();
+        this.f59552j = new ArrayList();
+        this.f59550g = new x(16);
         this.h = new ArrayDeque();
         this.d = new x(i2.o.f15202a);
-        this.f59542e = new x(6);
-        this.f59543f = new x();
-        this.f59553q = -1;
+        this.f59548e = new x(6);
+        this.f59549f = new x();
+        this.f59559q = -1;
         this.B = f3.q.f11069q;
         this.C = new k[0];
     }
@@ -77,7 +77,7 @@ public final class l implements f3.o {
     public final boolean b(f3.p pVar) {
         boolean z9;
         t1 t1Var;
-        if ((this.f59540b & 2) != 0) {
+        if ((this.f59546b & 2) != 0) {
             z9 = true;
         } else {
             z9 = false;
@@ -89,7 +89,7 @@ public final class l implements f3.o {
             g0 g0Var = i0.f14329b;
             t1Var = t1.f14397e;
         }
-        this.f59547k = t1Var;
+        this.f59553k = t1Var;
         if (m10 == null) {
             return true;
         }
@@ -98,8 +98,8 @@ public final class l implements f3.o {
 
     @Override
     public final void c(f3.q qVar) {
-        if ((this.f59540b & 16) == 0) {
-            qVar = new ab.q(qVar, this.f59539a);
+        if ((this.f59546b & 16) == 0) {
+            qVar = new ab.q(qVar, this.f59545a);
         }
         this.B = qVar;
     }
@@ -108,32 +108,32 @@ public final class l implements f3.o {
     public final void d(long j3, long j10) {
         k[] kVarArr;
         this.h.clear();
-        this.f59551o = 0;
-        this.f59553q = -1;
-        this.f59554r = 0;
-        this.f59555s = 0;
-        this.f59556t = 0;
-        this.f59557u = false;
-        this.f59561z = false;
+        this.f59557o = 0;
+        this.f59559q = -1;
+        this.f59560r = 0;
+        this.f59561s = 0;
+        this.f59562t = 0;
+        this.f59563u = false;
+        this.f59567z = false;
         if (j3 == 0) {
-            if (this.f59548l != 3) {
-                this.f59548l = 0;
-                this.f59551o = 0;
+            if (this.f59554l != 3) {
+                this.f59554l = 0;
+                this.f59557o = 0;
                 return;
             }
-            o oVar = this.f59545i;
-            oVar.f59566a.clear();
-            oVar.f59567b = 0;
-            this.f59546j.clear();
+            o oVar = this.f59551i;
+            oVar.f59572a.clear();
+            oVar.f59573b = 0;
+            this.f59552j.clear();
             return;
         }
         for (k kVar : this.C) {
-            t tVar = kVar.f59535b;
+            t tVar = kVar.f59541b;
             int a10 = tVar.a(j10);
             if (a10 == -1) {
                 a10 = tVar.b(j10);
             }
-            kVar.f59537e = a10;
+            kVar.f59543e = a10;
             k0 k0Var = kVar.d;
             if (k0Var != null) {
                 k0Var.f11050b = false;
@@ -144,7 +144,7 @@ public final class l implements f3.o {
 
     @Override
     public final List e() {
-        return this.f59547k;
+        return this.f59553k;
     }
 
     @Override

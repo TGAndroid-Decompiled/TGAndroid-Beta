@@ -151,7 +151,7 @@ public final class u3 implements View.OnClickListener {
                 ((org.telegram.ui.ActionBar.v2) ((h9.f1) obj).f14323b).f28652x0.run();
                 return;
             case 9:
-                ((re) obj4).l();
+                ((re) obj4).m();
                 org.telegram.ui.Components.v4.k((Context) obj3, (org.telegram.ui.ActionBar.f6) obj2, new org.telegram.ui.Components.u((org.telegram.ui.Components.f8) obj, 13));
                 return;
             case 10:
@@ -289,7 +289,7 @@ public final class u3 implements View.OnClickListener {
                 int i17 = 0;
                 while (true) {
                     if (i17 < i16.size()) {
-                        if (((TL_stars.SavedStarGift) i16.get(i17)).gift.f27182id == e2Var.f60205i1) {
+                        if (((TL_stars.SavedStarGift) i16.get(i17)).gift.f27182id == e2Var.f60211i1) {
                             savedStarGift = (TL_stars.SavedStarGift) i16.get(i17);
                             i7 = i17;
                         } else {

@@ -231,7 +231,7 @@ public final class j0 implements RequestDelegate {
                 org.telegram.messenger.g0.h3(new ti.p(26, (wg.f1) obj, tLObject));
                 return;
             case 26:
-                org.telegram.messenger.g0.h3(new wi.q(4, (yf.c) obj, tLObject));
+                org.telegram.messenger.g0.h3(new wi.s(4, (yf.c) obj, tLObject));
                 return;
             default:
                 org.telegram.messenger.g0.h3(new r31((yf.d) obj, tLObject, tL_error));

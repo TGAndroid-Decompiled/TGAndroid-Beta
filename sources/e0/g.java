@@ -217,7 +217,7 @@ public final class g {
         this.f10051a = 1;
         h4 h4Var = new h4(context, 3);
         h4Var.f9076c = file;
-        vi.f fVar = (vi.f) xi.e.f58763c.a();
+        vi.f fVar = (vi.f) xi.e.f58769c.a();
         if (fVar != null) {
             h4Var.d = fVar;
             h4Var.f9074a = false;

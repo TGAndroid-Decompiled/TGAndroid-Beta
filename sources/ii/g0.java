@@ -60,9 +60,9 @@ public final class g0 implements v10 {
                 zh.m mVar = (zh.m) obj3;
                 Boolean bool2 = (Boolean) obj;
                 String str2 = (String) obj2;
-                FrameLayout frameLayout = mVar.f60344c2;
+                FrameLayout frameLayout = mVar.f60350c2;
                 mVar.S1.setLoading(false);
-                mVar.f60358r2 = false;
+                mVar.f60364r2 = false;
                 if (bool2 != null) {
                     if (j3 > 0) {
                         z9 = true;

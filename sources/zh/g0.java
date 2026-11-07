@@ -13,12 +13,12 @@ import org.telegram.ui.Components.wf;
 import org.telegram.ui.qm;
 import org.telegram.ui.r81;
 public final class g0 implements wf {
-    public final TL_stars.TL_starGiftUnique f60226a;
-    public final i0 f60227b;
+    public final TL_stars.TL_starGiftUnique f60232a;
+    public final i0 f60233b;
 
     public g0(i0 i0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f60227b = i0Var;
-        this.f60226a = tL_starGiftUnique;
+        this.f60233b = i0Var;
+        this.f60232a = tL_starGiftUnique;
     }
 
     @Override
@@ -59,12 +59,12 @@ public final class g0 implements wf {
     public final void d(CharSequence charSequence) {
         int i7;
         boolean z9;
-        i0 i0Var = this.f60227b;
-        j6 j6Var = i0Var.f60271s1;
-        i0Var.f60263i1.a(this.f60226a, p10.i(i0Var.f28613a).e(), i0Var.f60267o1.getTextWithEntities(), hd.M0(2131749744, null), true);
+        i0 i0Var = this.f60233b;
+        j6 j6Var = i0Var.f60277s1;
+        i0Var.f60269i1.a(this.f60232a, p10.i(i0Var.f28613a).e(), i0Var.f60273o1.getTextWithEntities(), hd.M0(2131749744, null), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
-        i0Var.f60275w1 = codePointCount;
-        int i10 = i0Var.f60274v1;
+        i0Var.f60281w1 = codePointCount;
+        int i10 = i0Var.f60280v1;
         if (i10 > 0 && (i7 = i10 - codePointCount) <= 15) {
             if (i7 < -9999) {
                 i7 = -9999;

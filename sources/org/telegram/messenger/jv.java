@@ -711,7 +711,7 @@ public final class jv implements org.telegram.ui.Cells.t9, ex0 {
                 float height = staticLayout.getHeight();
                 float sqrt = (float) Math.sqrt((height * height) + (width * width));
                 View view5 = this.S;
-                this.L.f58708q = new hv(this, view5, kvVar);
+                this.L.f58714q = new hv(this, view5, kvVar);
                 int size2 = arrayList.size();
                 int i15 = 0;
                 while (i15 < size2) {

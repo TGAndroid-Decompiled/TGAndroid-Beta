@@ -591,7 +591,7 @@ public final class q4 implements g7, j9, xh.j, r0.m, OnSuccessListener, w10, dj0
         g8 g8Var;
         f8 f8Var = (f8) this.f9634b;
         if (!f8Var.v.f9061y) {
-            fVar.f58708q = new e8(f8Var, 2);
+            fVar.f58714q = new e8(f8Var, 2);
             float sqrt = (float) Math.sqrt(Math.pow(g8Var.getHeight(), 2.0d) + Math.pow(g8Var.getWidth(), 2.0d));
             ArrayList arrayList = f8Var.f9009i;
             int size = arrayList.size();

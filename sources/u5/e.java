@@ -87,7 +87,7 @@ public final class e implements w5.b, u9.d, d5.a, r1, cj0, wh.a, ua.a, p, m, q1 
     public void a(f fVar, List list) {
         int i7;
         h1 h1Var = (h1) this.f56262b;
-        ArrayList arrayList = h1Var.f60245e2;
+        ArrayList arrayList = h1Var.f60251e2;
         Iterator it = list.iterator();
         long j3 = 0;
         while (true) {
@@ -126,7 +126,7 @@ public final class e implements w5.b, u9.d, d5.a, r1, cj0, wh.a, ua.a, p, m, q1 
         if (Log.isLoggable("FirebaseCrashlytics", 3)) {
             Log.d("FirebaseCrashlytics", "Crashlytics native component now available.", null);
         }
-        aVar.f58569b.set((x9.a) bVar.get());
+        aVar.f58575b.set((x9.a) bVar.get());
     }
 
     @Override

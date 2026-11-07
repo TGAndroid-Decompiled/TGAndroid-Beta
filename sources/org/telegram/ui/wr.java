@@ -329,16 +329,16 @@ public final class wr implements ax, org.telegram.ui.Components.cj0, org.telegra
                         arrayList.add(document);
                         yf.c cVar = sh0Var.getMediaDataController().f25854z0;
                         TLRPC.Document document2 = qh0Var.f49235e;
-                        ArrayList arrayList2 = cVar.f59317e;
+                        ArrayList arrayList2 = cVar.f59323e;
                         if (document2 != null) {
-                            if (!cVar.f59318f) {
+                            if (!cVar.f59324f) {
                                 cVar.f(true);
-                                cVar.f59318f = true;
+                                cVar.f59324f = true;
                             }
                             int i12 = 0;
                             while (true) {
                                 if (i12 < arrayList2.size()) {
-                                    if (((yf.b) arrayList2.get(i12)).f59309a != null && ((yf.b) arrayList2.get(i12)).f59309a.f26959id == document2.f26959id) {
+                                    if (((yf.b) arrayList2.get(i12)).f59315a != null && ((yf.b) arrayList2.get(i12)).f59315a.f26959id == document2.f26959id) {
                                         arrayList2.remove(i12);
                                     } else {
                                         i12++;
@@ -348,11 +348,11 @@ public final class wr implements ax, org.telegram.ui.Components.cj0, org.telegra
                         }
                     }
                     if (qh0Var.f49237g != null && (dVar = (yf.d) sh0Var.getMediaDataController().Z.get(qh0Var.f49237g)) != null) {
-                        dVar.f59321c = true;
+                        dVar.f59327c = true;
                         dVar.a();
-                        int i13 = dVar.f59319a;
+                        int i13 = dVar.f59325a;
                         org.telegram.messenger.w7 G = org.telegram.messenger.w7.G(i13);
-                        String str2 = dVar.f59320b;
+                        String str2 = dVar.f59326b;
                         G.b(str2, false);
                         org.telegram.messenger.ui.b0(i13).i1(str2, null, true);
                     }

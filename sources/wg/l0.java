@@ -42,7 +42,7 @@ public final class l0 extends CountDownTimer {
                 if (childAt instanceof ah.r) {
                     ah.r rVar = (ah.r) childAt;
                     if (arrayList2.contains(rVar.getBoost())) {
-                        k5 k5Var = rVar.f59336e;
+                        k5 k5Var = rVar.f59342e;
                         d4 d4Var = rVar.d;
                         int i11 = rVar.J.cooldown_until_date;
                         if (i11 > 0) {

@@ -88,7 +88,7 @@ public final class nl extends org.telegram.ui.ActionBar.i1 {
                 anVar.l1.setBackgroundTranslation(i10);
                 org.telegram.ui.Components.t40 t40Var = anVar.f43911p3;
                 if (t40Var != null) {
-                    t40Var.f(f10);
+                    t40Var.g(f10);
                 }
                 fi.p5 p5Var = anVar.M2;
                 if (p5Var != null) {

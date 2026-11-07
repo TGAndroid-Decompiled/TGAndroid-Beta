@@ -14,11 +14,11 @@ import org.telegram.ui.ActionBar.f6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.q41;
 public final class e2 extends org.telegram.ui.ActionBar.v2 {
-    public long f60205i1;
+    public long f60211i1;
 
     public e2(Context context, long j3, TL_stars.SavedStarGift savedStarGift, f6 f6Var, u10 u10Var) {
         super(1, context, f6Var, false);
-        this.f60205i1 = 0L;
+        this.f60211i1 = 0L;
         N();
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);

@@ -201,7 +201,7 @@ public final class v0 implements v10 {
                         return;
                     } else if (s9Var.f25441e.bid_date > 0 && !s9Var.f()) {
                         zh.m mVar = new zh.m(context2, f6Var, null, s9Var);
-                        mVar.f60346f2 = runnable;
+                        mVar.f60352f2 = runnable;
                         mVar.show();
                         return;
                     } else {

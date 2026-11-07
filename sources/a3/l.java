@@ -117,7 +117,7 @@ public final class l implements g9.k, Continuation, l5.e, h2.j, Vector.TLDeseria
             case 5:
                 if (task.isSuccessful()) {
                     aa.b bVar = (aa.b) task.getResult();
-                    x9.b bVar2 = x9.b.f58570a;
+                    x9.b bVar2 = x9.b.f58576a;
                     bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f776b);
                     z9 = true;
                     if (bVar.f777c.delete()) {

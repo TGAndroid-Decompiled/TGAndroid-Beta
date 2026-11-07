@@ -15,7 +15,7 @@ import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
 public final class x2 extends w31 {
-    public static final int f60493b = 0;
+    public static final int f60499b = 0;
 
     static {
         w31.h(new w31());
@@ -29,16 +29,16 @@ public final class x2 extends w31 {
         String str = (String) x31Var.f40159l;
         boolean z10 = x31Var.f40153e;
         ch0 ch0Var = y2Var.f28813c;
-        w2 w2Var = y2Var.f60495a0;
+        w2 w2Var = y2Var.f60501a0;
         if (w2Var == null || y2Var.W != stargiftattributemodel.document.f26959id) {
             y2Var.W = stargiftattributemodel.document.f26959id;
             if (w2Var != null) {
                 w2Var.n(ch0Var);
             }
-            y2Var.f60495a0 = new i5(3, y2Var.V, stargiftattributemodel.document);
+            y2Var.f60501a0 = new i5(3, y2Var.V, stargiftattributemodel.document);
         }
         if (ch0Var.isAttachedToWindow()) {
-            y2Var.f60495a0.a(ch0Var);
+            y2Var.f60501a0.a(ch0Var);
         }
         SpannableStringBuilder spannableStringBuilder = stargiftattributemodel.name;
         if (!TextUtils.isEmpty(str)) {
@@ -52,7 +52,7 @@ public final class x2 extends w31 {
             spannableStringBuilder2.setSpan(new u31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
             spannableStringBuilder = spannableStringBuilder2;
         }
-        y2Var.j(spannableStringBuilder, 0, y2Var.f60495a0);
+        y2Var.j(spannableStringBuilder, 0, y2Var.f60501a0);
         y2Var.setChecked(z10);
     }
 

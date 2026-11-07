@@ -239,7 +239,7 @@ public final class k7 extends FrameLayout implements org.telegram.ui.ActionBar.a
         }
         int L = org.telegram.messenger.g0.L(f10);
         e();
-        this.M.f58708q = new i7(this, 0);
+        this.M.f58714q = new i7(this, 0);
         int i12 = i7 - L;
         float sqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
         int i13 = this.N;

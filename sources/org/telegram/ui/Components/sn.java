@@ -44,7 +44,7 @@ public final class sn implements Runnable {
                 TL_stories.TL_prepaidStarsGiveaway tL_prepaidStarsGiveaway = (TL_stories.TL_prepaidStarsGiveaway) obj;
                 int l10 = wg.s.l(a0Var.f57588e2);
                 int i10 = a0Var.f57586b2;
-                int i11 = yg.u.f59391w;
+                int i11 = yg.u.f59397w;
                 if (i10 == 1) {
                     z9 = true;
                 } else {

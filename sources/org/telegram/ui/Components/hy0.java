@@ -3,7 +3,7 @@ package org.telegram.ui.Components;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
-public final class hy0 implements wi.q0, org.telegram.messenger.ls {
+public final class hy0 implements wi.r0, org.telegram.messenger.ls {
     public final int f34440a;
     public final boolean f34441b;
     public final HashMap f34442c = new HashMap();

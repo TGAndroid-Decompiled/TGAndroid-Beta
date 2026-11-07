@@ -70,9 +70,9 @@ public final class o implements j0 {
             }
         }
         b1 b1Var = this.f20779a;
-        om0 om0Var = b1Var.f58184a;
+        om0 om0Var = b1Var.f58190a;
         synchronized (b1Var) {
-            int i12 = b1Var.f58200s;
+            int i12 = b1Var.f58206s;
             if (i12 == 0) {
                 j10 = -1;
             } else {

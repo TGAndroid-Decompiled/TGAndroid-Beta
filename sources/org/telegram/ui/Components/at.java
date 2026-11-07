@@ -21,7 +21,7 @@ public final class at implements Runnable {
                 editTextBoldCursor.h();
                 ArrayList arrayList = editTextBoldCursor.f32645a;
                 if (!arrayList.isEmpty()) {
-                    ((xh.f) arrayList.get(0)).f58708q = new at(editTextBoldCursor, 1);
+                    ((xh.f) arrayList.get(0)).f58714q = new at(editTextBoldCursor, 1);
                     float sqrt = (float) Math.sqrt(Math.pow(editTextBoldCursor.getHeight(), 2.0d) + Math.pow(editTextBoldCursor.getWidth(), 2.0d));
                     int size = arrayList.size();
                     while (i7 < size) {

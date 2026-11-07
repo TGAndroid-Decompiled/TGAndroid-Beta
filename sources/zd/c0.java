@@ -6,13 +6,13 @@ import java.util.concurrent.locks.LockSupport;
 public final class c0 extends s0 implements Runnable {
     private static volatile Thread _thread;
     private static volatile int debugStatus;
-    public static final c0 f59957s;
-    public static final long f59958w;
+    public static final c0 f59963s;
+    public static final long f59964w;
 
     static {
         Long l10;
         ?? s0Var = new s0();
-        f59957s = s0Var;
+        f59963s = s0Var;
         s0Var.i(false);
         TimeUnit timeUnit = TimeUnit.MILLISECONDS;
         try {
@@ -20,7 +20,7 @@ public final class c0 extends s0 implements Runnable {
         } catch (SecurityException unused) {
             l10 = 1000L;
         }
-        f59958w = timeUnit.toNanos(l10.longValue());
+        f59964w = timeUnit.toNanos(l10.longValue());
     }
 
     @Override
@@ -39,7 +39,7 @@ public final class c0 extends s0 implements Runnable {
             q(nanoTime, p0Var);
             return p0Var;
         }
-        return p1.f60006a;
+        return p1.f60012a;
     }
 
     @Override
@@ -52,7 +52,7 @@ public final class c0 extends s0 implements Runnable {
                 if (thread == null) {
                     thread = new Thread(this, "kotlinx.coroutines.DefaultExecutor");
                     _thread = thread;
-                    thread.setContextClassLoader(f59957s.getClass().getClassLoader());
+                    thread.setContextClassLoader(f59963s.getClass().getClassLoader());
                     thread.setDaemon(true);
                     thread.start();
                 }
@@ -89,7 +89,7 @@ public final class c0 extends s0 implements Runnable {
         }
         debugStatus = 3;
         s0.h.set(this, null);
-        s0.f60011n.set(this, null);
+        s0.f60017n.set(this, null);
         notifyAll();
     }
 
@@ -98,7 +98,7 @@ public final class c0 extends s0 implements Runnable {
         boolean z9;
         boolean z10;
         boolean p10;
-        v1.f60023a.set(this);
+        v1.f60029a.set(this);
         try {
             synchronized (this) {
                 int i7 = debugStatus;
@@ -122,7 +122,7 @@ public final class c0 extends s0 implements Runnable {
                     if (j10 == Long.MAX_VALUE) {
                         long nanoTime = System.nanoTime();
                         if (j3 == Long.MAX_VALUE) {
-                            j3 = f59958w + nanoTime;
+                            j3 = f59964w + nanoTime;
                         }
                         long j11 = j3 - nanoTime;
                         if (j11 <= 0) {

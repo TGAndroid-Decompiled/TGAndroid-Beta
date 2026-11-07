@@ -295,7 +295,7 @@ public final class ll implements org.telegram.ui.Components.wf {
     @Override
     public final boolean X0() {
         org.telegram.ui.Components.t40 t40Var = this.f47557b.f43911p3;
-        if (t40Var != null && t40Var.e()) {
+        if (t40Var != null && t40Var.f()) {
             return true;
         }
         return false;
@@ -389,7 +389,7 @@ public final class ll implements org.telegram.ui.Components.wf {
         if (anVar.f43911p3 == null && CameraView.isCameraAllowed() && anVar.getParentActivity() != null) {
             Activity parentActivity = anVar.getParentActivity();
             ym ymVar = anVar.f44022xa;
-            if (org.telegram.ui.Components.t40.d(org.telegram.messenger.p10.f24467s0)) {
+            if (org.telegram.ui.Components.t40.e(org.telegram.messenger.p10.f24467s0)) {
                 o40Var = new org.telegram.ui.Components.n40(parentActivity, anVar, ymVar);
             } else {
                 o40Var = new org.telegram.ui.Components.o40(parentActivity, anVar, ymVar, true);
@@ -399,7 +399,7 @@ public final class ll implements org.telegram.ui.Components.wf {
             anVar.f43911p3.setTrimCallback(new fe(anVar, 1));
             anVar.f43911p3.setRecordingUiFrameCallback(new wi(anVar));
             anVar.f43911p3.setClipToPadding(false);
-            anVar.f43911p3.h(anVar.K, anVar.f44011x);
+            anVar.f43911p3.i(anVar.K, anVar.f44011x);
             int indexOfChild = anVar.l1.indexOfChild(anVar.T);
             if (indexOfChild < 0) {
                 indexOfChild = anVar.l1.getChildCount();
@@ -409,7 +409,7 @@ public final class ll implements org.telegram.ui.Components.wf {
         org.telegram.ui.Components.t40 t40Var = anVar.f43911p3;
         if (t40Var != null) {
             if (i7 == 0) {
-                t40Var.i(false);
+                t40Var.j(false);
                 anVar.f44037z0.C0();
                 anVar.C0.T();
             } else if (i7 != 1 && i7 != 3 && i7 != 4) {
@@ -420,7 +420,7 @@ public final class ll implements org.telegram.ui.Components.wf {
                     t40Var.a(z10);
                 }
             } else {
-                t40Var.g(i7, i10, i11, j3, j10, z9);
+                t40Var.h(i7, i10, i11, j3, j10, z9);
             }
         }
     }
@@ -534,7 +534,7 @@ public final class ll implements org.telegram.ui.Components.wf {
     public final void c1() {
         org.telegram.ui.Components.t40 t40Var = this.f47557b.f43911p3;
         if (t40Var != null) {
-            t40Var.j();
+            t40Var.k();
         }
     }
 

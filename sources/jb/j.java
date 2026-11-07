@@ -18,7 +18,7 @@ public final class j implements y0 {
     public final Object b(FileInputStream fileInputStream) {
         try {
             pe.b bVar = pe.b.d;
-            String str = new String(lb.b(fileInputStream), xd.a.f58588a);
+            String str = new String(lb.b(fileInputStream), xd.a.f58594a);
             bVar.getClass();
             return (i) bVar.a(i.Companion.serializer(), str);
         } catch (Exception e10) {
@@ -28,7 +28,7 @@ public final class j implements y0 {
 
     @Override
     public final void c(Object obj, g1 g1Var) {
-        byte[] bytes = pe.b.d.b(i.Companion.serializer(), (i) obj).getBytes(xd.a.f58588a);
+        byte[] bytes = pe.b.d.b(i.Companion.serializer(), (i) obj).getBytes(xd.a.f58594a);
         kotlin.jvm.internal.j.d(bytes, "getBytes(...)");
         g1Var.write(bytes);
     }

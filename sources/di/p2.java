@@ -162,7 +162,7 @@ public final class p2 implements wf {
         o40 o40Var = i4Var.f9194s2;
         if (o40Var != null) {
             if (i7 == 0) {
-                o40Var.i(false);
+                o40Var.j(false);
             } else if (i7 != 1 && i7 != 3 && i7 != 4) {
                 if (i7 == 2 || i7 == 5) {
                     if (i7 == 2) {
@@ -171,7 +171,7 @@ public final class p2 implements wf {
                     o40Var.a(z10);
                 }
             } else {
-                o40Var.g(i7, i10, i11, j3, j10, z9);
+                o40Var.h(i7, i10, i11, j3, j10, z9);
             }
         }
     }
@@ -245,7 +245,7 @@ public final class p2 implements wf {
     public final void c1() {
         o40 o40Var = this.f9505a.f9194s2;
         if (o40Var != null) {
-            o40Var.j();
+            o40Var.k();
         }
     }
 

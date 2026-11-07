@@ -2,74 +2,74 @@ package wi;
 
 import android.os.Handler;
 public final class d implements Runnable {
-    public final int f57838a;
-    public final j f57839b;
-    public final m f57840c;
+    public final int f57833a;
+    public final k f57834b;
+    public final n f57835c;
 
-    public d(j jVar, m mVar, int i7) {
-        this.f57838a = i7;
-        this.f57839b = jVar;
-        this.f57840c = mVar;
+    public d(k kVar, n nVar, int i7) {
+        this.f57833a = i7;
+        this.f57834b = kVar;
+        this.f57835c = nVar;
     }
 
     @Override
     public final void run() {
-        t tVar;
-        switch (this.f57838a) {
+        u uVar;
+        switch (this.f57833a) {
             case 0:
-                j jVar = this.f57839b;
-                d dVar = new d(jVar, this.f57840c, 3);
-                Handler handler = jVar.f57935n;
+                k kVar = this.f57834b;
+                d dVar = new d(kVar, this.f57835c, 3);
+                Handler handler = kVar.f57940n;
                 if (handler != null) {
                     handler.post(dVar);
                     return;
                 }
                 return;
             case 1:
-                j jVar2 = this.f57839b;
-                d dVar2 = new d(jVar2, this.f57840c, 2);
-                Handler handler2 = jVar2.f57935n;
+                k kVar2 = this.f57834b;
+                d dVar2 = new d(kVar2, this.f57835c, 2);
+                Handler handler2 = kVar2.f57940n;
                 if (handler2 != null) {
                     handler2.post(dVar2);
                     return;
                 }
                 return;
             case 2:
-                j jVar3 = this.f57839b;
-                m mVar = this.f57840c;
-                if (jVar3.V && !jVar3.f57904b0 && jVar3.f57961x == mVar) {
-                    jVar3.k();
-                    if (jVar3.f57923i0 == 0) {
-                        jVar3.f57923i0 = mVar.f57994e;
+                k kVar3 = this.f57834b;
+                n nVar = this.f57835c;
+                if (kVar3.V && !kVar3.Z && kVar3.f57965x == nVar) {
+                    kVar3.j();
+                    if (kVar3.f57923g0 == 0) {
+                        kVar3.f57923g0 = nVar.f57998e;
                     }
-                    n nVar = jVar3.f57925j;
-                    nVar.b("common A/V start completed: segmentElapsedMs=" + j.z(jVar3.F0));
-                    t0 t0Var = (t0) jVar3.f57928k.f37389b;
-                    t0Var.f58104i.post(new i0(t0Var, 2));
+                    o oVar = kVar3.f57930j;
+                    oVar.b("common A/V start completed: segmentElapsedMs=" + k.A(kVar3.D0));
+                    u0 u0Var = (u0) kVar3.f57933k.f37389b;
+                    u0Var.f58110i.post(new j0(u0Var, 2));
                     return;
                 }
                 return;
             default:
-                j jVar4 = this.f57839b;
-                m mVar2 = this.f57840c;
-                if (jVar4.V && !jVar4.f57904b0 && jVar4.f57961x == mVar2 && jVar4.A != null && (tVar = jVar4.f57959w) != null) {
+                k kVar4 = this.f57834b;
+                n nVar2 = this.f57835c;
+                if (kVar4.V && !kVar4.Z && kVar4.f57965x == nVar2 && kVar4.A != null && (uVar = kVar4.f57963w) != null) {
                     try {
-                        long j3 = mVar2.F;
+                        long j3 = nVar2.F;
                         if (j3 > 0) {
-                            tVar.f58078p = j3;
-                            tVar.Q = -1L;
-                            tVar.R = 0L;
-                            tVar.S = -1L;
-                            tVar.f58080q = Long.MAX_VALUE;
-                            tVar.f58085s0 = true;
-                            n nVar2 = jVar4.f57925j;
-                            nVar2.b("common A/V start armed; waiting for next camera frame: segmentElapsedMs=" + j.z(jVar4.F0));
+                            uVar.f58082p = j3;
+                            uVar.Q = -1L;
+                            uVar.R = 0L;
+                            uVar.S = -1L;
+                            uVar.f58084q = Long.MAX_VALUE;
+                            uVar.f58091t0 = true;
+                            o oVar2 = kVar4.f57930j;
+                            oVar2.b("common A/V start armed; waiting for next camera frame: segmentElapsedMs=" + k.A(kVar4.D0));
                             return;
                         }
                         throw new IllegalArgumentException("Invalid recording time origin");
                     } catch (RuntimeException e10) {
-                        jVar4.k();
-                        jVar4.N(e10);
+                        kVar4.j();
+                        kVar4.N(e10);
                         return;
                     }
                 }

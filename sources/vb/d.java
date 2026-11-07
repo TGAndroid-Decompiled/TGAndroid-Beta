@@ -29,14 +29,14 @@ public final class d implements Callable {
             case 0:
                 MobileVisionBase mobileVisionBase = (MobileVisionBase) obj;
                 ub.a aVar = (ub.a) obj2;
-                HashMap hashMap = ia.f59735f;
+                HashMap hashMap = ia.f59741f;
                 qa.b();
-                int i10 = pa.f59822a;
+                int i10 = pa.f59828a;
                 qa.b();
                 if (!Boolean.parseBoolean("")) {
                     iaVar = ha.h;
                 } else {
-                    HashMap hashMap2 = ia.f59735f;
+                    HashMap hashMap2 = ia.f59741f;
                     if (hashMap2.get("detectorTaskWithResource#run") == null) {
                         hashMap2.put("detectorTaskWithResource#run", new ia("detectorTaskWithResource#run"));
                     }

@@ -125,8 +125,8 @@ public final class w0 extends na {
         viewGroup4.addView(aVar, ha.f(-2.0f, -1, 87, i12, 0, i12, 0));
         xg.i iVar = this.f57733g2;
         pj0 pj0Var = this.f36261k1;
-        iVar.f58651n = arrayList;
-        iVar.f58650f = pj0Var;
+        iVar.f58657n = arrayList;
+        iVar.f58656f = pj0Var;
         int i13 = this.f28646t0;
         pj0Var.setPadding(i13, 0, i13, org.telegram.messenger.g0.L(60.0f));
         this.f36261k1.j(new ui(this, 28));
@@ -436,10 +436,10 @@ public final class w0 extends na {
                 arrayList7.clear();
                 arrayList7.addAll(arrayList6);
                 if (arrayList6.isEmpty()) {
-                    int i11 = yg.d.f59351w;
+                    int i11 = yg.d.f59357w;
                     a0Var3.f57585a2 = 0;
                 } else {
-                    int i12 = yg.d.f59351w;
+                    int i12 = yg.d.f59357w;
                     a0Var3.f57585a2 = 1;
                 }
                 a0Var3.f57589f2 = 0;
@@ -519,14 +519,14 @@ public final class w0 extends na {
         if (this.f57736j2 == 1) {
             String M0 = hd.M0(2131749551, null);
             xg.h hVar = new xg.h(9, false);
-            hVar.f58639i = 1;
-            hVar.f58640j = 2131231873;
-            hVar.f58638g = M0;
+            hVar.f58645i = 1;
+            hVar.f58646j = 2131231873;
+            hVar.f58644g = M0;
             arrayList2.add(hVar);
         }
         xg.h hVar2 = new xg.h(10, false);
         x3 x3Var = this.R1;
-        hVar2.f58647q = x3Var;
+        hVar2.f58653q = x3Var;
         arrayList2.add(hVar2);
         int i10 = this.f57736j2;
         HashSet hashSet = this.W1;
@@ -545,8 +545,8 @@ public final class w0 extends na {
                         i7 += org.telegram.messenger.g0.L(44.0f);
                         boolean contains = hashSet.contains(Long.valueOf(tL_help_country.default_name.hashCode()));
                         xg.h hVar3 = new xg.h(6, true);
-                        hVar3.f58637f = tL_help_country;
-                        hVar3.f58641k = contains;
+                        hVar3.f58643f = tL_help_country;
+                        hVar3.f58647k = contains;
                         arrayList4.add(hVar3);
                         arrayList3 = arrayList3;
                     }
@@ -555,7 +555,7 @@ public final class w0 extends na {
                 if (!arrayList4.isEmpty()) {
                     String upperCase = str.toUpperCase();
                     xg.h hVar4 = new xg.h(7, false);
-                    hVar4.f58638g = upperCase;
+                    hVar4.f58644g = upperCase;
                     arrayList2.add(hVar4);
                     arrayList2.addAll(arrayList4);
                     i7 = org.telegram.messenger.g0.L(32.0f) + i7;
@@ -576,9 +576,9 @@ public final class w0 extends na {
             boolean contains2 = hashSet.contains(Long.valueOf(m5.n(inputPeer)));
             xg.h hVar5 = new xg.h(3, true);
             hVar5.d = inputPeer;
-            hVar5.f58635c = null;
-            hVar5.f58636e = null;
-            hVar5.f58641k = contains2;
+            hVar5.f58641c = null;
+            hVar5.f58642e = null;
+            hVar5.f58647k = contains2;
             arrayList2.add(hVar5);
         }
         if (arrayList2.isEmpty()) {
@@ -587,7 +587,7 @@ public final class w0 extends na {
         }
         int max = Math.max(0, ((int) (org.telegram.messenger.g0.f22544q.y * 0.6f)) - i7);
         xg.h hVar6 = new xg.h(-1, false);
-        hVar6.f58642l = max;
+        hVar6.f58648l = max;
         arrayList2.add(hVar6);
         if (hashSet.size() > 0 && this.f57736j2 != 3) {
             x3Var.a(hd.M0(2131743631, null), new s0(this, 0));
@@ -622,8 +622,8 @@ public final class w0 extends na {
                         if (R < arrayList.size()) {
                             xg.h hVar = (xg.h) arrayList.get(R);
                             ah.r rVar = (ah.r) childAt;
-                            rVar.c(hVar.f58641k, z9);
-                            TLRPC.Chat chat = hVar.f58636e;
+                            rVar.c(hVar.f58647k, z9);
+                            TLRPC.Chat chat = hVar.f58642e;
                             float f10 = 1.0f;
                             if (chat != null) {
                                 if (this.f57733g2.F(chat) > 200) {

@@ -20,13 +20,13 @@ public final class xy0 extends org.telegram.ui.ActionBar.f2 {
 
     public static void Z(xy0 xy0Var, int i7) {
         if (i7 == 1) {
-            xi.a aVar = xi.e.f58762b;
+            xi.a aVar = xi.e.f58768b;
             boolean z9 = !MediaController.s0(xy0Var.currentAccount);
             synchronized (aVar) {
                 aVar.d = z9;
-                aVar.f58754c = true;
-                aVar.f58753b = true;
-                xi.d.f58760a.edit().putBoolean("audio_recorder_v2_enabled", z9).apply();
+                aVar.f58760c = true;
+                aVar.f58759b = true;
+                xi.d.f58766a.edit().putBoolean("audio_recorder_v2_enabled", z9).apply();
             }
             ((l4) xy0Var.f52017c).f();
         } else if (MediaController.s0(xy0Var.currentAccount) && i7 == 2) {
@@ -40,15 +40,15 @@ public final class xy0 extends org.telegram.ui.ActionBar.f2 {
     public static void a0(xy0 xy0Var, int i7) {
         if (i7 == 1) {
             xi.a aVar = xi.e.d;
-            boolean z9 = !org.telegram.ui.Components.t40.d(xy0Var.currentAccount);
+            boolean z9 = !org.telegram.ui.Components.t40.e(xy0Var.currentAccount);
             synchronized (aVar) {
                 aVar.d = z9;
-                aVar.f58754c = true;
-                aVar.f58753b = true;
-                xi.d.f58760a.edit().putBoolean("round_video_camera2_enabled", z9).apply();
+                aVar.f58760c = true;
+                aVar.f58759b = true;
+                xi.d.f58766a.edit().putBoolean("round_video_camera2_enabled", z9).apply();
             }
             ((l4) xy0Var.f52017c).f();
-        } else if (org.telegram.ui.Components.t40.d(xy0Var.currentAccount)) {
+        } else if (org.telegram.ui.Components.t40.e(xy0Var.currentAccount)) {
             int i10 = 0;
             if (i7 == 2) {
                 xy0Var.g0(2131745987, new CharSequence[]{"480p", "360p"}, new go0(6));
@@ -69,7 +69,7 @@ public final class xy0 extends org.telegram.ui.ActionBar.f2 {
                     }
                 }
             } else if (i7 == 8) {
-                xi.a aVar2 = xi.e.f58767i;
+                xi.a aVar2 = xi.e.f58773i;
                 aVar2.a();
                 aVar2.b(true ^ aVar2.d);
                 ((l4) xy0Var.f52017c).g(i7);

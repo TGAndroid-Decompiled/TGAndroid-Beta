@@ -77,10 +77,10 @@ public final class a0 extends na implements ls {
         this.V1 = new ArrayList();
         this.W1 = new ArrayList();
         this.X1 = new ArrayList();
-        int i7 = yg.d.f59351w;
+        int i7 = yg.d.f59357w;
         this.Z1 = 2;
         this.f57585a2 = 0;
-        int i10 = yg.u.f59391w;
+        int i10 = yg.u.f59397w;
         this.f57586b2 = 0;
         this.d2 = 12;
         Calendar calendar = Calendar.getInstance();
@@ -108,7 +108,7 @@ public final class a0 extends na implements ls {
         ((ViewGroup.MarginLayoutParams) this.l1.getLayoutParams()).leftMargin = 0;
         ((ViewGroup.MarginLayoutParams) this.l1.getLayoutParams()).rightMargin = 0;
         if (prepaidGiveaway instanceof TL_stories.TL_prepaidStarsGiveaway) {
-            int i12 = yg.d.f59351w;
+            int i12 = yg.d.f59357w;
             this.Z1 = 3;
         }
         v4.k kVar = new v4.k();
@@ -130,12 +130,12 @@ public final class a0 extends na implements ls {
         u uVar = new u(this);
         u uVar2 = new u(this);
         u uVar3 = new u(this);
-        cVar.f58618e = arrayList;
-        cVar.f58623w = M0;
-        cVar.f58619f = pj0Var2;
+        cVar.f58624e = arrayList;
+        cVar.f58629w = M0;
+        cVar.f58625f = pj0Var2;
         cVar.h = uVar;
-        cVar.f58620n = uVar2;
-        cVar.f58622s = uVar3;
+        cVar.f58626n = uVar2;
+        cVar.f58628s = uVar3;
         k1(false, false);
         yg.a aVar = new yg.a(getContext(), this.I0);
         this.f57592i2 = aVar;
@@ -156,7 +156,7 @@ public final class a0 extends na implements ls {
     @Override
     public final CharSequence O0() {
         int i7 = this.f57585a2;
-        int i10 = yg.d.f59351w;
+        int i10 = yg.d.f59357w;
         if (i7 == 1) {
             return hd.M0(2131749679, null);
         }
@@ -203,7 +203,7 @@ public final class a0 extends na implements ls {
 
     public final int e1() {
         int i7 = this.Z1;
-        int i10 = yg.d.f59351w;
+        int i10 = yg.d.f59357w;
         if (i7 == 2) {
             return ((Integer) this.Q1.get(this.f57589f2)).intValue();
         }
@@ -222,7 +222,7 @@ public final class a0 extends na implements ls {
         int e12;
         int g10;
         int i7 = this.Z1;
-        int i10 = yg.d.f59351w;
+        int i10 = yg.d.f59357w;
         if (i7 == 2) {
             e12 = ((Integer) this.Q1.get(this.f57589f2)).intValue();
             g10 = s.g();
@@ -253,7 +253,7 @@ public final class a0 extends na implements ls {
 
     public final List h1() {
         int i7 = this.Z1;
-        int i10 = yg.d.f59351w;
+        int i10 = yg.d.f59357w;
         if (i7 == 2) {
             return this.Q1;
         }
@@ -291,7 +291,7 @@ public final class a0 extends na implements ls {
             return;
         }
         int i7 = this.f57585a2;
-        int i10 = yg.d.f59351w;
+        int i10 = yg.d.f59357w;
         if (i7 == 0) {
             aVar.a(f1(), z9);
             return;
@@ -303,14 +303,14 @@ public final class a0 extends na implements ls {
         } else {
             z10 = false;
         }
-        aVar.f59325e = true;
-        fi.d dVar = aVar.f59322a;
+        aVar.f59331e = true;
+        fi.d dVar = aVar.f59328a;
         dVar.k();
         dVar.setShowZero(true);
         dVar.setEnabled(z10);
         dVar.c(g10, z9);
         dVar.i(hd.M0(2131749679, null), z9, true);
-        r6.i(k6.f27922h5, aVar.f59323b, aVar.f59324c);
+        r6.i(k6.f27922h5, aVar.f59329b, aVar.f59330c);
     }
 
     public final void k1(boolean r28, boolean r29) {

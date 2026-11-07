@@ -30,7 +30,7 @@ public final class j extends a {
         boolean z10;
         b1[] b1VarArr;
         long j3;
-        i0 i0Var = this.f58779y;
+        i0 i0Var = this.f58785y;
         i0Var.getClass();
         if (this.H == 0) {
             long j10 = this.F;
@@ -41,25 +41,25 @@ public final class j extends a {
                 }
             }
             e eVar = this.G;
-            long j11 = this.f58777w;
+            long j11 = this.f58783w;
             long j12 = -9223372036854775807L;
             if (j11 == -9223372036854775807L) {
                 j3 = -9223372036854775807L;
             } else {
                 j3 = j11 - this.F;
             }
-            long j13 = this.f58778x;
+            long j13 = this.f58784x;
             if (j13 != -9223372036854775807L) {
                 j12 = j13 - this.F;
             }
             eVar.b(i0Var, j3, j12);
         }
         try {
-            j2.m b10 = this.f58800b.b(this.H);
-            c0 c0Var = this.f58805r;
+            j2.m b10 = this.f58806b.b(this.H);
+            c0 c0Var = this.f58811r;
             f3.l lVar = new f3.l(c0Var, b10.f16449e, c0Var.open(b10));
             while (!this.I) {
-                int f10 = this.G.f58791a.f(lVar, e.f58790w);
+                int f10 = this.G.f58797a.f(lVar, e.f58796w);
                 if (f10 != 1) {
                     z9 = true;
                 } else {
@@ -82,24 +82,24 @@ public final class j extends a {
             if (s0.k(str) && ((i7 > 1 || i10 > 1) && i7 != -1 && i10 != -1)) {
                 j0 f11 = i0Var.f(4);
                 int i11 = i7 * i10;
-                long j14 = (this.f58804n - this.h) / i11;
+                long j14 = (this.f58810n - this.h) / i11;
                 for (int i12 = 1; i12 < i11; i12++) {
                     f11.b(0, new x());
                     f11.c(i12 * j14, 0, 0, 0, null);
                 }
             }
-            this.H = lVar.d - this.f58800b.f16449e;
-            p0.a(this.f58805r);
+            this.H = lVar.d - this.f58806b.f16449e;
+            p0.a(this.f58811r);
             this.J = !this.I;
         } catch (Throwable th2) {
-            p0.a(this.f58805r);
+            p0.a(this.f58811r);
             throw th2;
         }
     }
 
     @Override
     public final long b() {
-        return this.f58825s + this.E;
+        return this.f58831s + this.E;
     }
 
     @Override

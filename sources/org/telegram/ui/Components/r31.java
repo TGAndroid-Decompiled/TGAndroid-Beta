@@ -54,9 +54,9 @@ public final class r31 implements Runnable {
 
     private final void b() {
         File file = (File) this.d;
-        wi.q0 q0Var = ((wi.t0) this.f37484b).f58101e;
-        long j3 = ((wi.p0) this.f37485c).f58033a;
-        hy0 hy0Var = (hy0) q0Var;
+        wi.r0 r0Var = ((wi.u0) this.f37484b).f58107e;
+        long j3 = ((wi.q0) this.f37485c).f58034a;
+        hy0 hy0Var = (hy0) r0Var;
         synchronized (hy0Var) {
             if (hy0Var.d) {
                 return;
@@ -592,31 +592,31 @@ public final class r31 implements Runnable {
                 ((ii.c) this.f37484b).a(new Pair((HashMap) this.f37485c, (ArrayList) this.d));
                 return;
             case 24:
-                wi.t tVar = (wi.t) this.f37484b;
+                wi.u uVar = (wi.u) this.f37484b;
                 HandlerThread handlerThread = (HandlerThread) this.f37485c;
                 CountDownLatch countDownLatch = (CountDownLatch) this.d;
-                tVar.getClass();
+                uVar.getClass();
                 try {
-                    tVar.i();
+                    uVar.i();
                     return;
                 } finally {
                     handlerThread.quitSafely();
                     countDownLatch.countDown();
                 }
             case 25:
-                wi.t0 t0Var = (wi.t0) this.f37484b;
-                wi.x xVar = (wi.x) this.f37485c;
+                wi.u0 u0Var4 = (wi.u0) this.f37484b;
+                wi.y yVar3 = (wi.y) this.f37485c;
                 File file2 = (File) this.d;
-                Handler handler = t0Var.f58104i;
+                Handler handler = u0Var4.f58110i;
                 try {
-                    xVar.c(file2);
-                    t0Var.g();
-                    long h = xVar.h();
-                    t0Var.f58108m.b("preview snapshot completed: durationMs=" + h + ", size=" + file2.length() + ", elapsedMs=" + wi.t0.f(t0Var.M));
-                    handler.post(new wi.f0(t0Var, h, 1));
+                    yVar3.c(file2);
+                    u0Var4.g();
+                    long h = yVar3.h();
+                    u0Var4.f58114m.b("preview snapshot completed: durationMs=" + h + ", size=" + file2.length() + ", elapsedMs=" + wi.u0.f(u0Var4.N));
+                    handler.post(new wi.g0(u0Var4, h, 1));
                     return;
                 } catch (Exception e15) {
-                    handler.post(new wi.e0(t0Var, e15, 3));
+                    handler.post(new wi.f0(u0Var4, e15, 3));
                     return;
                 }
             case 26:
@@ -630,7 +630,7 @@ public final class r31 implements Runnable {
                 if (v70Var != null && lVar.H == x70Var) {
                     v70Var.a(clickableSpan);
                     lVar.H = null;
-                    lVar.f58751y.f(true);
+                    lVar.f58757y.f(true);
                     return;
                 }
                 return;
@@ -638,15 +638,15 @@ public final class r31 implements Runnable {
                 yf.d dVar = (yf.d) this.f37484b;
                 TLObject tLObject3 = (TLObject) this.d;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) this.f37485c;
-                String str6 = dVar.f59320b;
-                int i25 = dVar.f59319a;
+                String str6 = dVar.f59326b;
+                int i25 = dVar.f59325a;
                 if (tLObject3 != null) {
                     org.telegram.messenger.ui.b0(i25).i1(str6, (TLRPC.Document) tLObject3, false);
                 } else {
                     dVar.a();
                     org.telegram.messenger.ui.b0(i25).i1(str6, null, true);
                     if (tL_error3 != null) {
-                        org.telegram.messenger.qs.f(i25).d(new wi.q(7, dVar, tL_error3));
+                        org.telegram.messenger.qs.f(i25).d(new wi.s(7, dVar, tL_error3));
                     }
                 }
                 dVar.a();

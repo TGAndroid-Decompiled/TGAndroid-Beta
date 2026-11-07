@@ -9,33 +9,33 @@ import android.view.Surface;
 import org.telegram.ui.Components.qt;
 import org.telegram.ui.g60;
 public final class f extends CameraCaptureSession.StateCallback {
-    public final int f57869a;
-    public final j f57870b;
+    public final int f57866a;
+    public final k f57867b;
 
-    public f(j jVar, int i7) {
-        this.f57869a = i7;
-        this.f57870b = jVar;
+    public f(k kVar, int i7) {
+        this.f57866a = i7;
+        this.f57867b = kVar;
     }
 
     @Override
     public final void onClosed(CameraCaptureSession cameraCaptureSession) {
-        switch (this.f57869a) {
+        switch (this.f57866a) {
             case 0:
-                j jVar = this.f57870b;
-                if (jVar.B == cameraCaptureSession) {
-                    jVar.B = null;
-                    jVar.D = null;
-                    jVar.f57944q0 = false;
+                k kVar = this.f57867b;
+                if (kVar.B == cameraCaptureSession) {
+                    kVar.B = null;
+                    kVar.D = null;
+                    kVar.f57941n0 = false;
                     return;
                 }
                 return;
             default:
-                j jVar2 = this.f57870b;
-                if (jVar2.A == cameraCaptureSession) {
-                    jVar2.A = null;
-                    jVar2.C = null;
-                    jVar2.Q = false;
-                    jVar2.f57925j.b("capture session closed");
+                k kVar2 = this.f57867b;
+                if (kVar2.A == cameraCaptureSession) {
+                    kVar2.A = null;
+                    kVar2.C = null;
+                    kVar2.Q = false;
+                    kVar2.f57930j.b("capture session closed");
                     return;
                 }
                 return;
@@ -44,55 +44,47 @@ public final class f extends CameraCaptureSession.StateCallback {
 
     @Override
     public final void onConfigureFailed(CameraCaptureSession cameraCaptureSession) {
-        switch (this.f57869a) {
+        switch (this.f57866a) {
             case 0:
                 cameraCaptureSession.close();
-                j jVar = this.f57870b;
-                if (jVar.f57936n0 && jVar.f57953t0 != null && cameraCaptureSession.getDevice() == jVar.f57953t0) {
-                    jVar.A("standby session configuration failed", null, true);
+                k kVar = this.f57867b;
+                if (kVar.f57937l0 && kVar.f57946p0 != null && cameraCaptureSession.getDevice() == kVar.f57946p0) {
+                    kVar.B("standby session configuration failed", null, true);
                     return;
                 }
                 return;
             default:
                 cameraCaptureSession.close();
-                if (this.f57870b.f57965z != null) {
+                if (this.f57867b.f57969z != null) {
                     CameraDevice device = cameraCaptureSession.getDevice();
-                    j jVar2 = this.f57870b;
-                    if (device == jVar2.f57965z) {
-                        if (jVar2.A == cameraCaptureSession) {
-                            jVar2.A = null;
-                            jVar2.C = null;
+                    k kVar2 = this.f57867b;
+                    if (device == kVar2.f57969z) {
+                        if (kVar2.A == cameraCaptureSession) {
+                            kVar2.A = null;
+                            kVar2.C = null;
                         }
-                        if (jVar2.V) {
-                            j jVar3 = this.f57870b;
-                            if (jVar3.f57965z != null && !jVar3.f57904b0) {
-                                j jVar4 = this.f57870b;
-                                if (jVar4.f57936n0) {
-                                    jVar4.A("active session configuration failed", null, false);
+                        if (kVar2.V) {
+                            k kVar3 = this.f57867b;
+                            if (kVar3.f57969z != null && !kVar3.Z) {
+                                k kVar4 = this.f57867b;
+                                if (kVar4.f57937l0) {
+                                    kVar4.B("active session configuration failed", null, false);
                                     return;
-                                } else if (jVar4.f57953t0 != null && !jVar4.m0) {
-                                    if (jVar4.X && jVar4.E0) {
-                                        jVar4.L("session configuration failed", null);
-                                        return;
-                                    }
-                                    jVar4.f57925j.b("camera session configuration failed with warm device open");
-                                    this.f57870b.R("session configuration failed", null);
-                                    return;
-                                } else if (jVar4.J == o0.FPS_60) {
-                                    jVar4.B("60 fps session configuration failed", null);
+                                } else if (kVar4.J == p0.FPS_60) {
+                                    kVar4.C("60 fps session configuration failed", null);
                                     return;
                                 } else {
-                                    jVar4.N(new IllegalStateException("Camera capture session configuration failed"));
+                                    kVar4.N(new IllegalStateException("Camera capture session configuration failed"));
                                     return;
                                 }
                             }
                         }
-                        this.f57870b.f57925j.b("stale capture session configuration failure ignored");
+                        this.f57867b.f57930j.b("stale capture session configuration failure ignored");
                         return;
                     }
                 }
-                n nVar = this.f57870b.f57925j;
-                nVar.b("stale capture session configuration failure ignored: id=" + cameraCaptureSession.getDevice().getId());
+                o oVar = this.f57867b.f57930j;
+                oVar.b("stale capture session configuration failure ignored: id=" + cameraCaptureSession.getDevice().getId());
                 return;
         }
     }
@@ -104,150 +96,137 @@ public final class f extends CameraCaptureSession.StateCallback {
         boolean z9;
         boolean z10;
         String str;
-        String str2;
-        switch (this.f57869a) {
+        switch (this.f57866a) {
             case 0:
-                if (this.f57870b.V) {
-                    j jVar = this.f57870b;
-                    if (jVar.f57936n0 && jVar.f57953t0 != null) {
+                if (this.f57867b.V) {
+                    k kVar = this.f57867b;
+                    if (kVar.f57937l0 && kVar.f57946p0 != null) {
                         CameraDevice device = cameraCaptureSession.getDevice();
-                        j jVar2 = this.f57870b;
-                        CameraDevice cameraDevice = jVar2.f57953t0;
-                        if (device == cameraDevice && (surface = jVar2.v) != null && (iVar = jVar2.f57962x0) != null) {
+                        k kVar2 = this.f57867b;
+                        CameraDevice cameraDevice = kVar2.f57946p0;
+                        if (device == cameraDevice && (surface = kVar2.v) != null && (iVar = kVar2.f57949q0) != null) {
                             try {
-                                jVar2.B = cameraCaptureSession;
-                                jVar2.D = jVar2.x(cameraDevice, surface, iVar, false, true);
-                                CaptureRequest build = this.f57870b.D.build();
-                                j jVar3 = this.f57870b;
-                                cameraCaptureSession.setRepeatingRequest(build, jVar3.f57957u1, jVar3.f57935n);
-                                j jVar4 = this.f57870b;
-                                jVar4.f57944q0 = true;
-                                jVar4.f57925j.b("standby capture session configured: id=" + cameraCaptureSession.getDevice().getId() + ", elapsedMs=" + j.z(this.f57870b.H0));
-                                j.f(this.f57870b);
+                                kVar2.B = cameraCaptureSession;
+                                kVar2.D = kVar2.x(cameraDevice, surface, iVar, false, true);
+                                CaptureRequest build = this.f57867b.D.build();
+                                k kVar3 = this.f57867b;
+                                cameraCaptureSession.setRepeatingRequest(build, kVar3.f57956s1, kVar3.f57940n);
+                                k kVar4 = this.f57867b;
+                                kVar4.f57941n0 = true;
+                                kVar4.f57930j.b("standby capture session configured: id=" + cameraCaptureSession.getDevice().getId() + ", elapsedMs=" + k.A(this.f57867b.F0));
+                                k.d(this.f57867b);
                                 return;
                             } catch (Exception e10) {
-                                this.f57870b.A("standby request submission failed", e10, true);
+                                this.f57867b.B("standby request submission failed", e10, true);
                                 return;
                             }
                         }
                     }
                 }
-                this.f57870b.f57925j.b("stale standby capture session ignored: id=" + cameraCaptureSession.getDevice().getId());
+                this.f57867b.f57930j.b("stale standby capture session ignored: id=" + cameraCaptureSession.getDevice().getId());
                 cameraCaptureSession.close();
                 return;
             default:
-                if (this.f57870b.V && this.f57870b.f57965z != null) {
+                if (this.f57867b.V && this.f57867b.f57969z != null) {
                     CameraDevice device2 = cameraCaptureSession.getDevice();
-                    j jVar5 = this.f57870b;
-                    CameraDevice cameraDevice2 = jVar5.f57965z;
+                    k kVar5 = this.f57867b;
+                    CameraDevice cameraDevice2 = kVar5.f57969z;
                     if (device2 == cameraDevice2) {
-                        jVar5.A = cameraCaptureSession;
+                        kVar5.A = cameraCaptureSession;
                         try {
-                            jVar5.G = jVar5.H;
-                            if (cameraDevice2 != null && jVar5.f57955u != null) {
-                                jVar5.C = jVar5.x(cameraDevice2, jVar5.f57955u, jVar5.l(), true, true);
-                                t tVar = this.f57870b.f57959w;
-                                if (tVar != null) {
-                                    Handler handler = tVar.f58088u;
-                                    if (tVar.f58083r0 && handler != null) {
-                                        handler.post(new o(tVar, 0));
+                            kVar5.G = kVar5.H;
+                            if (cameraDevice2 != null && kVar5.f57960u != null) {
+                                kVar5.C = kVar5.x(cameraDevice2, kVar5.f57960u, kVar5.k(), true, true);
+                                u uVar = this.f57867b.f57963w;
+                                if (uVar != null) {
+                                    Handler handler = uVar.f58092u;
+                                    if (uVar.f58087r0 && handler != null) {
+                                        handler.post(new q(uVar, 0));
                                     }
                                 }
-                                j jVar6 = this.f57870b;
-                                if (jVar6.f57936n0 && jVar6.f57964y0 != null) {
+                                k kVar6 = this.f57867b;
+                                if (kVar6.f57937l0 && kVar6.f57952r0 != null) {
                                     z9 = true;
                                 } else {
                                     z9 = false;
                                 }
-                                if (jVar6.Z && !z9) {
+                                if (kVar6.X && !z9) {
                                     z10 = true;
                                 } else {
                                     z10 = false;
                                 }
-                                CameraCaptureSession cameraCaptureSession2 = jVar6.A;
-                                CaptureRequest.Builder builder = jVar6.C;
+                                CameraCaptureSession cameraCaptureSession2 = kVar6.A;
+                                CaptureRequest.Builder builder = kVar6.C;
                                 if (cameraCaptureSession2 != null && builder != null) {
-                                    cameraCaptureSession2.setRepeatingRequest(builder.build(), jVar6.f57957u1, jVar6.f57935n);
+                                    cameraCaptureSession2.setRepeatingRequest(builder.build(), kVar6.f57956s1, kVar6.f57940n);
                                 }
-                                j jVar7 = this.f57870b;
-                                if (jVar7.f57936n0) {
-                                    jVar7.f57941p0 = true;
+                                k kVar7 = this.f57867b;
+                                if (kVar7.f57937l0) {
+                                    kVar7.m0 = true;
                                 }
                                 if (!z9) {
-                                    jVar7.Z = false;
+                                    kVar7.X = false;
                                 }
                                 if (z10) {
-                                    jVar7.X = false;
+                                    kVar7.W = false;
                                 }
-                                jVar7.f57901a0 = z10;
-                                n nVar = this.f57870b.f57925j;
+                                kVar7.Y = z10;
+                                o oVar = this.f57867b.f57930j;
                                 StringBuilder sb2 = new StringBuilder("capture session configured: facing=");
-                                sb2.append(this.f57870b.G);
+                                sb2.append(this.f57867b.G);
                                 sb2.append(", fpsRange=");
-                                sb2.append(this.f57870b.K);
+                                sb2.append(this.f57867b.K);
                                 sb2.append(", elapsedMs=");
-                                sb2.append(j.z(this.f57870b.H0));
+                                sb2.append(k.A(this.f57867b.F0));
                                 sb2.append(", segmentElapsedMs=");
-                                sb2.append(j.z(this.f57870b.F0));
+                                sb2.append(k.A(this.f57867b.D0));
                                 if (z10) {
-                                    StringBuilder sb3 = new StringBuilder(", switchPath=");
-                                    if (this.f57870b.E0) {
-                                        str2 = "WARM_DEVICE";
-                                    } else {
-                                        str2 = "SEQUENTIAL";
-                                    }
-                                    sb3.append(str2);
-                                    sb3.append(", switchElapsedMs=");
-                                    sb3.append(j.z(this.f57870b.I0));
-                                    str = sb3.toString();
+                                    str = ", switchPath=SEQUENTIAL, switchElapsedMs=" + k.A(this.f57867b.G0);
                                 } else {
                                     str = "";
                                 }
                                 sb2.append(str);
-                                nVar.b(sb2.toString());
-                                j jVar8 = this.f57870b;
-                                jVar8.f57906c.post(new a(jVar8, 8));
-                                j jVar9 = this.f57870b;
-                                qt qtVar = jVar9.f57928k;
-                                m0 m0Var = jVar9.G;
-                                n0 n0Var = jVar9.I;
-                                o0 o0Var = jVar9.J;
-                                Size size = jVar9.f57943q;
-                                Size size2 = jVar9.f57946r;
-                                j jVar10 = this.f57870b;
-                                ((t0) qtVar.f37389b).f58104i.post(new g60(qtVar, new h(m0Var, n0Var, o0Var, size, size2, jVar10.O, jVar10.F()), z10, 18));
+                                oVar.b(sb2.toString());
+                                k kVar8 = this.f57867b;
+                                kVar8.f57911c.post(new a(kVar8, 9));
+                                k kVar9 = this.f57867b;
+                                qt qtVar = kVar9.f57933k;
+                                n0 n0Var = kVar9.G;
+                                o0 o0Var = kVar9.I;
+                                p0 p0Var = kVar9.J;
+                                Size size = kVar9.f57948q;
+                                Size size2 = kVar9.f57951r;
+                                k kVar10 = this.f57867b;
+                                ((u0) qtVar.f37389b).f58110i.post(new g60(qtVar, new h(n0Var, o0Var, p0Var, size, size2, kVar10.O, kVar10.G()), z10, 18));
                                 if (z9) {
-                                    j.f(this.f57870b);
+                                    k.d(this.f57867b);
                                     return;
                                 }
-                                m0 m0Var2 = this.f57870b.F;
-                                j jVar11 = this.f57870b;
-                                if (m0Var2 != jVar11.G) {
-                                    jVar11.a0(jVar11.F);
+                                n0 n0Var2 = this.f57867b.F;
+                                k kVar11 = this.f57867b;
+                                if (n0Var2 != kVar11.G) {
+                                    kVar11.Z(kVar11.F);
                                     return;
                                 }
                                 return;
                             }
                             throw new IllegalStateException("Camera request surfaces are unavailable");
                         } catch (Exception e11) {
-                            j jVar12 = this.f57870b;
-                            if (jVar12.f57936n0) {
-                                jVar12.A("active request submission failed", e11, false);
+                            k kVar12 = this.f57867b;
+                            if (kVar12.f57937l0) {
+                                kVar12.B("active request submission failed", e11, false);
                                 return;
-                            } else if (jVar12.X && jVar12.E0) {
-                                jVar12.L("request submission failed", e11);
-                                return;
-                            } else if (jVar12.J == o0.FPS_60) {
-                                jVar12.B("60 fps request submission rejected", e11);
+                            } else if (kVar12.J == p0.FPS_60) {
+                                kVar12.C("60 fps request submission rejected", e11);
                                 return;
                             } else {
-                                jVar12.N(e11);
+                                kVar12.N(e11);
                                 return;
                             }
                         }
                     }
                 }
-                this.f57870b.f57925j.b("stale capture session ignored: deviceId=" + cameraCaptureSession.getDevice().getId());
+                this.f57867b.f57930j.b("stale capture session ignored: deviceId=" + cameraCaptureSession.getDevice().getId());
                 cameraCaptureSession.close();
                 return;
         }

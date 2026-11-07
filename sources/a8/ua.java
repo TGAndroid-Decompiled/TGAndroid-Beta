@@ -17,7 +17,7 @@ import org.telegram.ui.Components.hc;
 import org.telegram.ui.Components.xn;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.gx0;
-public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 {
+public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.x0 {
     public final int f678a;
     public long f679b;
     public Object f680c;
@@ -341,7 +341,7 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
 
     @Override
     public void r(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo) {
-        ((wi.x) this.f680c).q(true, byteBuffer, bufferInfo, -this.f679b);
+        ((wi.y) this.f680c).q(true, byteBuffer, bufferInfo, -this.f679b);
     }
 
     @Override
@@ -393,7 +393,7 @@ public final class ua implements OnFailureListener, f3.p, f3.q, o2.i, xn, wi.w0 
 
     @Override
     public void w(MediaFormat mediaFormat) {
-        ((wi.x) this.f680c).n(mediaFormat, true);
+        ((wi.y) this.f680c).n(mediaFormat, true);
     }
 
     @Override

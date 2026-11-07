@@ -277,7 +277,7 @@ public final class ol extends org.telegram.ui.Components.rt0 {
         anVar.l1.setBackgroundTranslation(0);
         org.telegram.ui.Components.t40 t40Var = anVar.f43911p3;
         if (t40Var != null) {
-            t40Var.f(0.0f);
+            t40Var.g(0.0f);
         }
         fi.p5 p5Var = anVar.M2;
         if (p5Var != null) {

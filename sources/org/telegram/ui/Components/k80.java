@@ -62,7 +62,7 @@ public final class k80 extends c8.b1 {
             textstrike.text = y(eVar);
             w(textstrike);
         } else if (eVar instanceof zc.d) {
-            w(n80.c(((zc.d) eVar).f59937g));
+            w(n80.c(((zc.d) eVar).f59943g));
         } else {
             v(eVar);
         }
@@ -86,7 +86,7 @@ public final class k80 extends c8.b1 {
             if (!this.f35229c.texts.isEmpty()) {
                 w(n80.n("\n"));
             }
-            w(n80.c(((zc.a) nVar).f59932g));
+            w(n80.c(((zc.a) nVar).f59938g));
             w(n80.n("\n"));
             return;
         }

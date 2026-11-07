@@ -10,7 +10,7 @@ public final class e extends y2.f {
     @Override
     public final void a() {
         try {
-            this.f58805r.open(this.f58800b);
+            this.f58811r.open(this.f58806b);
             int i7 = 0;
             int i10 = 0;
             while (i7 != -1 && !this.f54197w) {
@@ -18,7 +18,7 @@ public final class e extends y2.f {
                 if (bArr.length < i10 + 16384) {
                     this.f54196s = Arrays.copyOf(bArr, bArr.length + 16384);
                 }
-                i7 = this.f58805r.read(this.f54196s, i10, 16384);
+                i7 = this.f58811r.read(this.f54196s, i10, 16384);
                 if (i7 != -1) {
                     i10 += i7;
                 }
@@ -26,9 +26,9 @@ public final class e extends y2.f {
             if (!this.f54197w) {
                 this.f54198x = Arrays.copyOf(this.f54196s, i10);
             }
-            p0.a(this.f58805r);
+            p0.a(this.f58811r);
         } catch (Throwable th2) {
-            p0.a(this.f58805r);
+            p0.a(this.f58811r);
             throw th2;
         }
     }

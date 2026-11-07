@@ -42,8 +42,8 @@ public final class b5 extends View implements te.b {
         this.f27355y = new te.a(1, this, xqVar, 250L, false);
         this.f27345a = y4Var;
         this.f27346b = 1;
-        this.f27347c = (a5) xi.e.f58769k.a();
-        this.d = (z4) xi.e.f58770l.a();
+        this.f27347c = (a5) xi.e.f58775k.a();
+        this.d = (z4) xi.e.f58776l.a();
         this.f27352s = charSequence;
         this.f27348e = context.getDrawable(2131231242).mutate();
         cp cpVar = new cp(org.telegram.messenger.g0.L(18.0f), org.telegram.messenger.g0.L(2.0f), -1);

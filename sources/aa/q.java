@@ -493,7 +493,7 @@ public final class q {
             taskCompletionSource.trySetResult(Boolean.FALSE);
             return;
         }
-        x9.b bVar = x9.b.f58570a;
+        x9.b bVar = x9.b.f58576a;
         bVar.c("Crash reports are available to be sent.");
         x xVar = this.f835b;
         if (xVar.a()) {

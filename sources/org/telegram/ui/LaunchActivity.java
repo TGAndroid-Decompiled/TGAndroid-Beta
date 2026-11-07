@@ -3148,12 +3148,12 @@ public class LaunchActivity extends g5 implements org.telegram.ui.ActionBar.n4, 
         } else if (org.telegram.ui.Components.voip.e2.d() != null) {
             org.telegram.ui.Components.voip.e2.d().e();
         }
-        HashMap hashMap = xh.e.f58682n;
+        HashMap hashMap = xh.e.f58688n;
         if (hashMap != null) {
             for (xh.e eVar : hashMap.values()) {
-                xh.d dVar = eVar.f58687f;
+                xh.d dVar = eVar.f58693f;
                 if (dVar != null) {
-                    dVar.f58672b = true;
+                    dVar.f58678b = true;
                 }
             }
         }
@@ -3456,12 +3456,12 @@ public class LaunchActivity extends g5 implements org.telegram.ui.ActionBar.n4, 
             }
         }
         a0();
-        HashMap hashMap = xh.e.f58682n;
+        HashMap hashMap = xh.e.f58688n;
         if (hashMap != null) {
             for (xh.e eVar : hashMap.values()) {
-                xh.d dVar = eVar.f58687f;
+                xh.d dVar = eVar.f58693f;
                 if (dVar != null) {
-                    dVar.f58672b = false;
+                    dVar.f58678b = false;
                 }
             }
         }

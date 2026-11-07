@@ -155,7 +155,7 @@ public final class a40 extends org.telegram.messenger.q5 {
                             o40 o40Var = this.H;
                             o40Var.f36535j1 = 1 - o40Var.f36535j1;
                             if (this.H.A0) {
-                                this.H.p("GL surface flip applied: surface=" + this.H.f36535j1);
+                                this.H.q("GL surface flip applied: surface=" + this.H.f36535j1);
                             }
                             b();
                             o40 o40Var2 = this.H;
@@ -180,7 +180,7 @@ public final class a40 extends org.telegram.messenger.q5 {
                         if (obj3 instanceof CameraSession) {
                             i10 = ((CameraSession) obj3).getWorldAngle();
                         } else if (obj3 instanceof Camera2Session) {
-                            i10 = ((Camera2Session) obj3).getWorldAngle();
+                            i10 = ((Camera2Session) obj3).getRoundVideoRotationAngle();
                         } else {
                             i10 = 0;
                         }
@@ -230,7 +230,7 @@ public final class a40 extends org.telegram.messenger.q5 {
                 this.f31685n[0] = new SurfaceTexture(this.H.f36514a0[0]);
                 this.f31685n[0].setOnFrameAvailableListener(new qy(this, 1));
                 if (this.H.A0) {
-                    this.H.p("GL input recreated: surface=0");
+                    this.H.q("GL input recreated: surface=0");
                 }
                 org.telegram.messenger.g0.h3(new org.telegram.ui.q8(this.H, 0, this.f31685n[0], 11));
                 b();
@@ -395,7 +395,7 @@ public final class a40 extends org.telegram.messenger.q5 {
                     o40Var9.L0 = f22;
                 }
                 this.D = true;
-                this.H.v();
+                this.H.w();
             } else {
                 z12 = false;
             }
@@ -429,7 +429,7 @@ public final class a40 extends org.telegram.messenger.q5 {
             this.f31681b.eglSwapBuffers(this.f31682c, this.f31683e);
             if (z11 && this.H.A0) {
                 this.H.A0 = false;
-                this.H.p("first target frame presented: surface=" + this.H.f36535j1);
+                this.H.q("first target frame presented: surface=" + this.H.f36535j1);
             }
             if (z12) {
                 org.telegram.messenger.g0.h3(new Runnable(this) {
@@ -557,13 +557,13 @@ public final class a40 extends org.telegram.messenger.q5 {
                                 o40Var.I0 = g11;
                                 g11.put(fArr2).position(0);
                                 Matrix.setIdentityM(o40Var.F0, 0);
-                                int k10 = o40.k(o40Var, 35633, "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n   gl_Position = uMVPMatrix * aPosition;\n   vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n");
-                                int k11 = o40.k(o40Var, 35632, "#extension GL_OES_EGL_image_external : require\nprecision lowp float;\nvarying vec2 vTextureCoord;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n");
-                                if (k10 != 0 && k11 != 0) {
+                                int l10 = o40.l(o40Var, 35633, "uniform mat4 uMVPMatrix;\nuniform mat4 uSTMatrix;\nattribute vec4 aPosition;\nattribute vec4 aTextureCoord;\nvarying vec2 vTextureCoord;\nvoid main() {\n   gl_Position = uMVPMatrix * aPosition;\n   vTextureCoord = (uSTMatrix * aTextureCoord).xy;\n}\n");
+                                int l11 = o40.l(o40Var, 35632, "#extension GL_OES_EGL_image_external : require\nprecision lowp float;\nvarying vec2 vTextureCoord;\nuniform samplerExternalOES sTexture;\nvoid main() {\n   gl_FragColor = texture2D(sTexture, vTextureCoord);\n}\n");
+                                if (l10 != 0 && l11 != 0) {
                                     int glCreateProgram = GLES20.glCreateProgram();
                                     this.f31686r = glCreateProgram;
-                                    GLES20.glAttachShader(glCreateProgram, k10);
-                                    GLES20.glAttachShader(this.f31686r, k11);
+                                    GLES20.glAttachShader(glCreateProgram, l10);
+                                    GLES20.glAttachShader(this.f31686r, l11);
                                     GLES20.glLinkProgram(this.f31686r);
                                     int[] iArr3 = new int[1];
                                     GLES20.glGetProgramiv(this.f31686r, 35714, iArr3, 0);

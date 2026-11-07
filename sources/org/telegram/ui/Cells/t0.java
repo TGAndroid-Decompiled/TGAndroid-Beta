@@ -1928,8 +1928,8 @@ public class t0 extends z implements org.telegram.messenger.x5, ls, p4 {
             m7Var.f4334e.b();
             zh.j0 j0Var = m7Var.f4352y;
             j0Var.d.R();
-            org.telegram.ui.Components.r5.release((View) null, j0Var.f60300q);
-            j0Var.f60300q = null;
+            org.telegram.ui.Components.r5.release((View) null, j0Var.f60306q);
+            j0Var.f60306q = null;
         }
         this.E0.p();
         g01 g01Var = this.f30330n0;

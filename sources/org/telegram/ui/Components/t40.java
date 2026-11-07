@@ -11,10 +11,10 @@ public abstract class t40 extends FrameLayout {
     public r40 f38209c;
     public boolean d;
 
-    public static boolean d(int i7) {
+    public static boolean e(int i7) {
         xi.a aVar = xi.e.d;
         aVar.a();
-        if (aVar.f58754c) {
+        if (aVar.f58760c) {
             aVar.a();
             return aVar.d;
         } else if (!((org.telegram.messenger.h0) org.telegram.messenger.qp.s1(i7).f24935x7.f24437g0.f13889b).f22774c) {
@@ -30,11 +30,11 @@ public abstract class t40 extends FrameLayout {
 
     public abstract void c(boolean z9);
 
-    public abstract boolean e();
+    public abstract void d(boolean z9);
 
-    public abstract void f(float f10);
+    public abstract boolean f();
 
-    public abstract void g(int i7, int i10, int i11, long j3, long j10, boolean z9);
+    public abstract void g(float f10);
 
     public abstract View getButtonsLayout();
 
@@ -48,11 +48,13 @@ public abstract class t40 extends FrameLayout {
 
     public abstract TextureView getTextureView();
 
-    public abstract void h(dh.c cVar, org.telegram.ui.oi oiVar);
+    public abstract void h(int i7, int i10, int i11, long j3, long j10, boolean z9);
 
-    public abstract void i(boolean z9);
+    public abstract void i(dh.c cVar, org.telegram.ui.oi oiVar);
 
-    public abstract void j();
+    public abstract void j(boolean z9);
+
+    public abstract void k();
 
     public final void setAnimationCallback(p40 p40Var) {
         this.f38207a = p40Var;

@@ -1,22 +1,22 @@
 package x2;
 public final class c implements c1 {
-    public final c1 f58207a;
-    public boolean f58208b;
-    public final d f58209c;
+    public final c1 f58213a;
+    public boolean f58214b;
+    public final d f58215c;
 
     public c(d dVar, c1 c1Var) {
-        this.f58209c = dVar;
-        this.f58207a = c1Var;
+        this.f58215c = dVar;
+        this.f58213a = c1Var;
     }
 
     @Override
     public final void a() {
-        this.f58207a.a();
+        this.f58213a.a();
     }
 
     @Override
     public final boolean f() {
-        if (!this.f58209c.f() && this.f58207a.f()) {
+        if (!this.f58215c.f() && this.f58213a.f()) {
             return true;
         }
         return false;
@@ -24,29 +24,29 @@ public final class c implements c1 {
 
     @Override
     public final int l(long j3) {
-        if (this.f58209c.f()) {
+        if (this.f58215c.f()) {
             return -3;
         }
-        return this.f58207a.l(j3);
+        return this.f58213a.l(j3);
     }
 
     @Override
     public final int m(wf.b bVar, k2.h hVar, int i7) {
-        d dVar = this.f58209c;
+        d dVar = this.f58215c;
         if (dVar.f()) {
             return -3;
         }
-        if (this.f58208b) {
+        if (this.f58214b) {
             hVar.setFlags(4);
             return -4;
         }
         long p10 = dVar.p();
-        int m10 = this.f58207a.m(bVar, hVar, i7);
-        if (dVar.f58219e != -9223372036854775807L && m10 != -3) {
-            dVar.f58219e = -9223372036854775807L;
+        int m10 = this.f58213a.m(bVar, hVar, i7);
+        if (dVar.f58225e != -9223372036854775807L && m10 != -3) {
+            dVar.f58225e = -9223372036854775807L;
         }
         if (m10 == -5) {
-            long j3 = dVar.f58220f;
+            long j3 = dVar.f58226f;
             long j10 = dVar.h;
             e2.u uVar = (e2.u) bVar.f57563c;
             uVar.getClass();
@@ -70,7 +70,7 @@ public final class c implements c1 {
         if (j11 != Long.MIN_VALUE && ((m10 == -4 && hVar.f17173e >= j11) || (m10 == -3 && p10 == Long.MIN_VALUE && !hVar.d))) {
             hVar.clear();
             hVar.setFlags(4);
-            this.f58208b = true;
+            this.f58214b = true;
             return -4;
         }
         return m10;

@@ -154,14 +154,14 @@ public final class dk0 implements View.OnClickListener {
                     put.put("merchantInfo", new JSONObject().put("merchantName", hl0Var.f46432p0));
                     String jSONObject2 = put.toString();
                     ?? obj = new Object();
-                    obj.f59204r = true;
+                    obj.f59210r = true;
                     q6.m.h(jSONObject2, "paymentDataRequestJson cannot be null!");
-                    obj.f59205s = jSONObject2;
+                    obj.f59211s = jSONObject2;
                     b9.j0 j0Var = hl0Var.f46417e;
                     j0Var.getClass();
                     com.google.android.gms.common.api.internal.s b10 = com.google.android.gms.common.api.internal.t.b();
                     b10.f6682c = new org.telegram.ui.Components.uy((Object) obj, 29);
-                    b10.d = new n6.c[]{y8.p.f59217b};
+                    b10.d = new n6.c[]{y8.p.f59223b};
                     b10.f6681b = true;
                     b10.f6680a = 23707;
                     y8.a.a(j0Var.e(1, b10.a()), hl0Var.getParentActivity());

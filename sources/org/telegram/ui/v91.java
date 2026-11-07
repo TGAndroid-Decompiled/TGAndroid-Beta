@@ -1500,9 +1500,9 @@ public class v91 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
             this.U0.h(3, this.R0.b());
             this.U0.g(this.R0.b());
             yh.d dVar2 = this.R0;
-            dVar2.f59420m = new x81(this);
+            dVar2.f59426m = new x81(this);
             TLRPC.ChatFull chatFull = this.J;
-            dVar2.f59417j = chatFull;
+            dVar2.f59423j = chatFull;
             if (chatFull != null) {
                 dVar2.d(chatFull.requests_pending, chatFull.recent_requesters, false);
             }
@@ -1623,7 +1623,7 @@ public class v91 extends org.telegram.ui.ActionBar.f2 implements org.telegram.me
                 S0(false);
                 yh.d dVar = this.R0;
                 if (dVar != null) {
-                    dVar.f59417j = chatFull2;
+                    dVar.f59423j = chatFull2;
                     dVar.d(chatFull2.requests_pending, chatFull2.recent_requesters, true);
                 }
                 D0(((Boolean) objArr[3]).booleanValue());

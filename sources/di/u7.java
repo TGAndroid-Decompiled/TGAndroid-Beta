@@ -67,7 +67,7 @@ public final class u7 extends c5.a {
             o40 o40Var = t7Var.f9194s2;
             if (o40Var != null) {
                 org.telegram.messenger.g0.E2(o40Var);
-                t7Var.f9194s2.c(true);
+                t7Var.f9194s2.d(true);
                 t7Var.f9194s2 = null;
             }
             t7Var.setActive(false);

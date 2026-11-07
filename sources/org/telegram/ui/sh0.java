@@ -187,22 +187,22 @@ public final class sh0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
         getMediaDataController().f25854z0.g(false);
         this.f49766a.clear();
         this.f49767b.clear();
-        for (int i10 = 0; i10 < getMediaDataController().f25854z0.f59317e.size(); i10++) {
-            yf.b bVar = (yf.b) getMediaDataController().f25854z0.f59317e.get(i10);
+        for (int i10 = 0; i10 < getMediaDataController().f25854z0.f59323e.size(); i10++) {
+            yf.b bVar = (yf.b) getMediaDataController().f25854z0.f59323e.get(i10);
             ?? obj = new Object();
             int i11 = this.F;
             this.F = i11 + 1;
             obj.f49234c = i11;
             obj.f49232a = true;
-            obj.d = bVar.f59311c;
-            TLRPC.Document document3 = bVar.f59309a;
+            obj.d = bVar.f59317c;
+            TLRPC.Document document3 = bVar.f59315a;
             String str = document3.file_name_fixed;
             obj.f49236f = str;
             obj.f49235e = document3;
             obj.f49236f = g0(document3, str);
-            obj.f49237g = bVar.f59310b;
+            obj.f49237g = bVar.f59316b;
             qh0 qh0Var = this.M;
-            if (qh0Var != null && (document = qh0Var.f49235e) != null && (document2 = bVar.f59309a) != null && document.f26959id == document2.f26959id) {
+            if (qh0Var != null && (document = qh0Var.f49235e) != null && (document2 = bVar.f59315a) != null && document.f26959id == document2.f26959id) {
                 this.M = null;
                 this.G = obj;
             }
@@ -250,7 +250,7 @@ public final class sh0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
             }
             this.f49767b.add(obj4);
         }
-        if (getMediaDataController().f25854z0.f59318f && this.G == null) {
+        if (getMediaDataController().f25854z0.f59324f && this.G == null) {
             this.G = obj3;
             this.H = true;
         }
@@ -276,10 +276,10 @@ public final class sh0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
                 i11++;
             }
             arrayList.clear();
-            for (int i12 = 0; i12 < getMediaDataController().f25854z0.f59317e.size(); i12++) {
-                yf.b bVar = (yf.b) getMediaDataController().f25854z0.f59317e.get(i12);
+            for (int i12 = 0; i12 < getMediaDataController().f25854z0.f59323e.size(); i12++) {
+                yf.b bVar = (yf.b) getMediaDataController().f25854z0.f59323e.get(i12);
                 ?? obj = new Object();
-                qh0 qh0Var = (qh0) hashMap.get(Integer.valueOf(bVar.f59311c));
+                qh0 qh0Var = (qh0) hashMap.get(Integer.valueOf(bVar.f59317c));
                 if (qh0Var != null) {
                     if (qh0Var == this.G) {
                         this.G = obj;
@@ -291,19 +291,19 @@ public final class sh0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
                     obj.f49234c = i13;
                 }
                 obj.f49232a = true;
-                obj.d = bVar.f59311c;
-                TLRPC.Document document3 = bVar.f59309a;
+                obj.d = bVar.f59317c;
+                TLRPC.Document document3 = bVar.f59315a;
                 if (document3 != null) {
                     obj.f49236f = document3.file_name_fixed;
                 } else {
-                    obj.f49236f = new File(bVar.f59310b).getName();
+                    obj.f49236f = new File(bVar.f59316b).getName();
                 }
-                TLRPC.Document document4 = bVar.f59309a;
+                TLRPC.Document document4 = bVar.f59315a;
                 obj.f49235e = document4;
                 obj.f49236f = g0(document4, obj.f49236f);
-                obj.f49237g = bVar.f59310b;
+                obj.f49237g = bVar.f59316b;
                 qh0 qh0Var2 = this.M;
-                if (qh0Var2 != null && (document = qh0Var2.f49235e) != null && (document2 = bVar.f59309a) != null && document.f26959id == document2.f26959id) {
+                if (qh0Var2 != null && (document = qh0Var2.f49235e) != null && (document2 = bVar.f59315a) != null && document.f26959id == document2.f26959id) {
                     this.M = null;
                     this.G = obj;
                 }
@@ -311,7 +311,7 @@ public final class sh0 extends org.telegram.ui.ActionBar.f2 implements org.teleg
             }
             i0();
             this.f49769e.f();
-            if (getMediaDataController().f25854z0.f59318f && this.G == null) {
+            if (getMediaDataController().f25854z0.f59324f && this.G == null) {
                 ArrayList arrayList2 = this.f49767b;
                 if (arrayList2.size() > 0) {
                     this.M = null;

@@ -263,8 +263,8 @@ public final class z5 extends AnimatorListenerAdapter {
                 return;
             default:
                 n40 n40Var = (n40) this.f40876b;
-                if (animator == n40Var.W) {
-                    n40Var.c(true);
+                if (animator == n40Var.f36194a0) {
+                    n40Var.d(true);
                     n40Var.setVisibility(4);
                     return;
                 }

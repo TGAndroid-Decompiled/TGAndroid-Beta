@@ -38,7 +38,7 @@ public final class x0 {
         this.f18079k = xVar;
         this.f18080l = j1Var;
         x2.g0 g0Var = y0Var.f18087a;
-        this.f18072b = g0Var.f58234a;
+        this.f18072b = g0Var.f58240a;
         this.f18076g = y0Var;
         this.f18082n = x2.q1.d;
         this.f18083o = yVar;
@@ -48,7 +48,7 @@ public final class x0 {
         long j11 = y0Var.f18090e;
         boolean z9 = y0Var.f18092g;
         j1Var.getClass();
-        Object obj = g0Var.f58234a;
+        Object obj = g0Var.f58240a;
         int i7 = a.f17734g;
         Pair pair = (Pair) obj;
         Object obj2 = pair.first;
@@ -229,7 +229,7 @@ public final class x0 {
             boolean z9 = r02 instanceof x2.d;
             j1 j1Var = this.f18080l;
             if (z9) {
-                j1Var.f(((x2.d) r02).f58216a);
+                j1Var.f(((x2.d) r02).f58222a);
             } else {
                 j1Var.f(r02);
             }
@@ -291,7 +291,7 @@ public final class x0 {
         e2.m1[][] m1VarArr = new e2.m1[length];
         int[][][] iArr6 = new int[bVarArr.length + 1][];
         for (int i16 = 0; i16 < length; i16++) {
-            int i17 = q1Var2.f58353a;
+            int i17 = q1Var2.f58359a;
             m1VarArr[i16] = new e2.m1[i17];
             iArr6[i16] = new int[i17];
         }
@@ -301,7 +301,7 @@ public final class x0 {
             iArr7[i18] = bVarArr[i18].D();
         }
         int i19 = 0;
-        while (i19 < q1Var2.f58353a) {
+        while (i19 < q1Var2.f58359a) {
             e2.m1 a10 = q1Var2.a(i19);
             if (a10.f10375c == 5) {
                 i13 = i15;
@@ -392,7 +392,7 @@ public final class x0 {
             int i33 = 0;
             while (true) {
                 if (i33 < i32) {
-                    if (2 == iArr9[i33] && q1VarArr3[i33].f58353a > 0) {
+                    if (2 == iArr9[i33] && q1VarArr3[i33].f58359a > 0) {
                         z16 = true;
                         break;
                     }
@@ -520,7 +520,7 @@ public final class x0 {
                     x2.q1 q1Var5 = q1VarArr3[i37];
                     q1VarArr2 = q1VarArr3;
                     int i38 = 0;
-                    while (i38 < q1Var5.f58353a) {
+                    while (i38 < q1Var5.f58359a) {
                         e2.m1 a11 = q1Var5.a(i38);
                         arrayList.add(a11);
                         x2.q1 q1Var6 = q1Var5;
@@ -824,7 +824,7 @@ public final class x0 {
             }
             x2.q1 q1Var9 = q1VarArr5[i64];
             int i66 = 0;
-            while (i66 < q1Var9.f58353a) {
+            while (i66 < q1Var9.f58359a) {
                 e2.m1 a12 = q1Var9.a(i66);
                 int i67 = q1VarArr5[i64].a(i66).f10373a;
                 int[] iArr20 = new int[i67];
@@ -911,7 +911,7 @@ public final class x0 {
             i64++;
         }
         x2.q1 q1Var11 = wVar.f139f;
-        for (int i81 = 0; i81 < q1Var11.f58353a; i81++) {
+        for (int i81 = 0; i81 < q1Var11.f58359a; i81++) {
             e2.m1 a13 = q1Var11.a(i81);
             int[] iArr23 = new int[a13.f10373a];
             Arrays.fill(iArr23, 0);
@@ -952,7 +952,7 @@ public final class x0 {
                 j3 = Long.MIN_VALUE;
             }
             x2.d dVar = (x2.d) obj;
-            dVar.f58220f = 0L;
+            dVar.f58226f = 0L;
             dVar.h = j3;
         }
     }

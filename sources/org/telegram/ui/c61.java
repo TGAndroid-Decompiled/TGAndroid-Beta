@@ -101,11 +101,11 @@ public final class c61 extends LinearLayout {
             case 25:
                 zh.g1 g1Var = (zh.g1) this.f44705b;
                 RectF rectF = g1Var.h;
-                RectF rectF2 = g1Var.f60232f;
-                RectF rectF3 = g1Var.f60231e;
-                Paint paint = g1Var.f60233n;
+                RectF rectF2 = g1Var.f60238f;
+                RectF rectF3 = g1Var.f60237e;
+                Paint paint = g1Var.f60239n;
                 paint.setColor(org.telegram.ui.ActionBar.k6.r1(0.1f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f27831c6, false)));
-                float e10 = g1Var.f60230c.e(false, g1Var.f60229b);
+                float e10 = g1Var.f60236c.e(false, g1Var.f60235b);
                 double d = e10;
                 ArrayList arrayList = g1Var.d;
                 int j3 = Utilities.j((int) Math.floor(d), arrayList.size() - 1, 0);

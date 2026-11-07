@@ -135,7 +135,7 @@ public final class s4 extends y implements org.telegram.ui.ActionBar.a6, h9, k0 
             return null;
         }
         xh.e eVar = this.M;
-        if (eVar != null && eVar.f58689i) {
+        if (eVar != null && eVar.f58695i) {
             this.M = null;
         }
         if (this.M == null) {

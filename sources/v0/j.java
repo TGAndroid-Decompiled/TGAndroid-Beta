@@ -27,7 +27,7 @@ public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, d
 
     @Override
     public void accept(Object obj) {
-        ((z0) obj).f58442b.release();
+        ((z0) obj).f58448b.release();
     }
 
     @Override
@@ -58,7 +58,7 @@ public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, d
             case 21:
                 return ((f3.o) obj).a().getClass().getSimpleName();
             case 22:
-                return i0.q(h9.o.y(((e0) obj).o().f58354b, new j(24)));
+                return i0.q(h9.o.y(((e0) obj).o().f58360b, new j(24)));
             case 24:
                 return Integer.valueOf(((m1) obj).f10375c);
             case 27:
@@ -106,6 +106,7 @@ public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, d
 
     @Override
     public Object e(r7 r7Var) {
+        va.d lambda$getComponents$0;
         switch (this.f56877a) {
             case 5:
                 return (ScheduledExecutorService) ExecutorsRegistrar.f7877a.get();
@@ -117,7 +118,8 @@ public final class j implements v5.e, u9.d, ua.a, OnFailureListener, j2.g, r1, d
                 u9.m mVar = ExecutorsRegistrar.f7877a;
                 return v9.j.f57187a;
             default:
-                return FirebaseInstallationsRegistrar.a(r7Var);
+                lambda$getComponents$0 = FirebaseInstallationsRegistrar.lambda$getComponents$0(r7Var);
+                return lambda$getComponents$0;
         }
     }
 

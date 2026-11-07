@@ -27,8 +27,8 @@ public final class o3 extends na implements ls {
     public final ri.c X1;
     public l41 Y1;
     public i0.b Z1;
-    public boolean f60396a2;
-    public int f60397b2;
+    public boolean f60402a2;
+    public int f60403b2;
 
     public o3(org.telegram.ui.ActionBar.f2 r20, long r21, int r23, hi.d4 r24) {
         throw new UnsupportedOperationException("Method not decompiled: zh.o3.<init>(org.telegram.ui.ActionBar.f2, long, int, hi.d4):void");
@@ -104,11 +104,11 @@ public final class o3 extends na implements ls {
                 cVar2.a(k6.w0(k6.f27793a7, this.I0));
             }
             int w02 = k6.w0(k6.f27793a7, this.I0);
-            if (this.f60396a2 && w02 == this.f60397b2) {
+            if (this.f60402a2 && w02 == this.f60403b2) {
                 return;
             }
-            this.f60396a2 = true;
-            this.f60397b2 = w02;
+            this.f60402a2 = true;
+            this.f60403b2 = w02;
             v0(w02);
         } catch (Exception e10) {
             a8.g(e10, true);

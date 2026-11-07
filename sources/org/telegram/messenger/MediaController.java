@@ -1030,9 +1030,9 @@ public class MediaController implements AudioManager.OnAudioFocusChangeListener,
     public static native boolean joinOpusFiles(String str, String str2, String str3);
 
     public static boolean s0(int i7) {
-        xi.a aVar = xi.e.f58762b;
+        xi.a aVar = xi.e.f58768b;
         aVar.a();
-        if (aVar.f58754c) {
+        if (aVar.f58760c) {
             aVar.a();
             return aVar.d;
         } else if (!((h0) qp.s1(i7).f24935x7.f24435f0.f13889b).f22774c) {

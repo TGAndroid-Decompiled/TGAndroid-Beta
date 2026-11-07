@@ -274,7 +274,7 @@ public final class o0 extends v4.s0 {
                 return;
             default:
                 a2 a2Var = (a2) this.f1594c;
-                w3 w3Var = a2Var.f60109f;
+                w3 w3Var = a2Var.f60115f;
                 if (a2Var.isAttachedToWindow()) {
                     if (w3Var.canScrollVertically(1)) {
                         for (int i18 = 0; i18 < w3Var.getChildCount(); i18++) {
@@ -282,7 +282,7 @@ public final class o0 extends v4.s0 {
                             }
                         }
                     }
-                    a2Var.f60108e.a();
+                    a2Var.f60114e.a();
                 }
                 ((up0) this.f1593b).p();
                 return;

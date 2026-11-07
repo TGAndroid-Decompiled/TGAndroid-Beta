@@ -50,7 +50,7 @@ public final class c implements ua.b {
                     } catch (PackageManager.NameNotFoundException unused) {
                     }
                 }
-                obj.f59923a = z9;
+                obj.f59929a = z9;
                 return obj;
             case 1:
                 return new sa.h((Context) this.f20864b, (String) this.f20865c);

@@ -129,7 +129,7 @@ public final class c implements d {
         String str4 = gVar.f20874c.h;
         String str5 = bVar.d;
         xa.c cVar = this.f57197b;
-        xa.d dVar = cVar.f58582c;
+        xa.d dVar = cVar.f58588c;
         if (dVar.b()) {
             URL a10 = xa.c.a("projects/" + str4 + "/installations/" + str3 + "/authTokens:generate");
             for (int i7 = 0; i7 <= 1; i7++) {
@@ -198,7 +198,7 @@ public final class c implements d {
                         throw new IllegalStateException("Missing required properties: tokenExpirationTimestamp");
                     }
                 }
-                int c11 = p1.g.c(bVar2.f58578c);
+                int c11 = p1.g.c(bVar2.f58584c);
                 if (c11 != 0) {
                     if (c11 != 1) {
                         if (c11 == 2) {
@@ -214,8 +214,8 @@ public final class c implements d {
                     a12.f57530b = 5;
                     return a12.a();
                 }
-                String str6 = bVar2.f58576a;
-                long j3 = bVar2.f58577b;
+                String str6 = bVar2.f58582a;
+                long j3 = bVar2.f58583b;
                 j jVar = this.d;
                 jVar.getClass();
                 TimeUnit timeUnit = TimeUnit.MILLISECONDS;
@@ -334,7 +334,7 @@ public final class c implements d {
         gVar.a();
         String str7 = gVar.f20874c.f20885b;
         xa.c cVar2 = this.f57197b;
-        xa.d dVar = cVar2.f58582c;
+        xa.d dVar = cVar2.f58588c;
         if (dVar.b()) {
             URL a10 = xa.c.a("projects/" + str6 + "/installations");
             for (int i10 = 0; i10 <= 1; i10++) {
@@ -380,7 +380,7 @@ public final class c implements d {
                         throw new a0("Firebase servers have received too many requests from this client in a short period of time. Please try again later.");
                     }
                 }
-                int c11 = p1.g.c(e10.f58575e);
+                int c11 = p1.g.c(e10.f58581e);
                 if (c11 != 0) {
                     if (c11 == 1) {
                         wa.a a11 = bVar.a();
@@ -390,16 +390,16 @@ public final class c implements d {
                     }
                     throw new a0("Firebase Installations Service is unavailable. Please try again later.");
                 }
-                String str8 = e10.f58573b;
-                String str9 = e10.f58574c;
+                String str8 = e10.f58579b;
+                String str9 = e10.f58580c;
                 j jVar = this.d;
                 jVar.getClass();
                 TimeUnit timeUnit = TimeUnit.MILLISECONDS;
                 jVar.f57213a.getClass();
                 long seconds = timeUnit.toSeconds(System.currentTimeMillis());
                 xa.b bVar2 = e10.d;
-                String str10 = bVar2.f58576a;
-                long j3 = bVar2.f58577b;
+                String str10 = bVar2.f58582a;
+                long j3 = bVar2.f58583b;
                 wa.a a12 = bVar.a();
                 a12.f57529a = str8;
                 a12.f57530b = 4;

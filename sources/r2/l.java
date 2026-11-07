@@ -82,7 +82,7 @@ public final class l extends x2.a {
         wa b10 = b(g0Var);
         q2.j jVar = new q2.j(this.d.f53645c, 0, g0Var);
         d0 d0Var = this.f54247r;
-        m2.j jVar2 = this.f58174g;
+        m2.j jVar2 = this.f58180g;
         jVar2.getClass();
         return new k(this.h, this.f54244o, this.f54238i, d0Var, this.f54240k, jVar, this.f54241l, b10, mVar, this.f54239j, this.f54242m, this.f54243n, jVar2);
     }
@@ -117,7 +117,7 @@ public final class l extends x2.a {
         this.f54247r = d0Var;
         Looper myLooper = Looper.myLooper();
         myLooper.getClass();
-        m2.j jVar = this.f58174g;
+        m2.j jVar = this.f58180g;
         jVar.getClass();
         q2.m mVar = this.f54240k;
         mVar.E(myLooper, jVar);
@@ -157,9 +157,9 @@ public final class l extends x2.a {
                     pVar.l();
                     q2.g gVar = pVar.h;
                     if (gVar != null) {
-                        gVar.c(pVar.f58187e);
+                        gVar.c(pVar.f58193e);
                         pVar.h = null;
-                        pVar.f58189g = null;
+                        pVar.f58195g = null;
                     }
                 }
             }

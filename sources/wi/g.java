@@ -6,10 +6,10 @@ import android.hardware.camera2.CaptureResult;
 import android.hardware.camera2.TotalCaptureResult;
 import android.os.SystemClock;
 public final class g extends CameraCaptureSession.CaptureCallback {
-    public final j f57874a;
+    public final k f57871a;
 
-    public g(j jVar) {
-        this.f57874a = jVar;
+    public g(k kVar) {
+        this.f57871a = kVar;
     }
 
     @Override
@@ -20,89 +20,89 @@ public final class g extends CameraCaptureSession.CaptureCallback {
         boolean z10;
         boolean z11;
         int i10;
-        j jVar = this.f57874a;
-        n nVar = jVar.f57925j;
-        if (cameraCaptureSession == jVar.A) {
-            if (jVar.Q) {
+        k kVar = this.f57871a;
+        o oVar = kVar.f57930j;
+        if (cameraCaptureSession == kVar.A) {
+            if (kVar.Q) {
                 Object tag = captureRequest.getTag();
-                if ((tag instanceof Integer) && ((Integer) tag).intValue() == jVar.U) {
-                    jVar.R++;
+                if ((tag instanceof Integer) && ((Integer) tag).intValue() == kVar.U) {
+                    kVar.R++;
                     Integer num = (Integer) totalCaptureResult.get(CaptureResult.FLASH_MODE);
                     Integer num2 = (Integer) totalCaptureResult.get(CaptureResult.FLASH_STATE);
-                    if (!jVar.P ? num == null || num.intValue() == 0 : num != null && num.intValue() == 2) {
+                    if (!kVar.P ? num == null || num.intValue() == 0 : num != null && num.intValue() == 2) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (jVar.P && num2 != null && num2.intValue() != 3 && num2.intValue() != 4) {
+                    if (kVar.P && num2 != null && num2.intValue() != 3 && num2.intValue() != 4) {
                         z11 = false;
                     } else {
                         z11 = true;
                     }
                     if (z10 && z11) {
-                        nVar.b("torch result confirmed: enabled=" + jVar.P + ", resultMode=" + num + ", flashState=" + num2 + ", frames=" + jVar.R + ", retries=" + jVar.S);
-                        jVar.Q = false;
+                        oVar.b("torch result confirmed: enabled=" + kVar.P + ", resultMode=" + num + ", flashState=" + num2 + ", frames=" + kVar.R + ", retries=" + kVar.S);
+                        kVar.Q = false;
                     } else {
-                        int i11 = jVar.R;
-                        if (i11 == 3 && (i10 = jVar.S) == 0) {
-                            jVar.S = i10 + 1;
-                            jVar.R = 0;
-                            nVar.b("torch result not applied; rebuilding request: enabled=" + jVar.P + ", resultMode=" + num + ", flashState=" + num2);
-                            jVar.g();
+                        int i11 = kVar.R;
+                        if (i11 == 3 && (i10 = kVar.S) == 0) {
+                            kVar.S = i10 + 1;
+                            kVar.R = 0;
+                            oVar.b("torch result not applied; rebuilding request: enabled=" + kVar.P + ", resultMode=" + num + ", flashState=" + num2);
+                            kVar.f();
                         } else if (i11 >= 6) {
-                            nVar.b("torch result failed: enabled=" + jVar.P + ", resultMode=" + num + ", flashState=" + num2 + ", retries=" + jVar.S);
-                            jVar.Q = false;
+                            oVar.b("torch result failed: enabled=" + kVar.P + ", resultMode=" + num + ", flashState=" + num2 + ", retries=" + kVar.S);
+                            kVar.Q = false;
                         }
                     }
                 }
             }
             Long l10 = (Long) totalCaptureResult.get(CaptureResult.SENSOR_TIMESTAMP);
-            if (l10 != null && l10.longValue() > jVar.Z0) {
+            if (l10 != null && l10.longValue() > kVar.X0) {
                 long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
-                if (jVar.Y0 == 0) {
-                    jVar.Y0 = l10.longValue();
-                    jVar.f57902a1 = 1L;
+                if (kVar.W0 == 0) {
+                    kVar.W0 = l10.longValue();
+                    kVar.Y0 = 1L;
                 } else {
-                    long longValue = l10.longValue() - jVar.Z0;
-                    jVar.f57908c1++;
-                    jVar.f57910d1 += longValue;
+                    long longValue = l10.longValue() - kVar.X0;
+                    kVar.f57907a1++;
+                    kVar.f57910b1 += longValue;
                     double d = longValue;
-                    jVar.f57913e1 = (d * d) + jVar.f57913e1;
-                    long j3 = jVar.f57916f1;
+                    kVar.f57913c1 = (d * d) + kVar.f57913c1;
+                    long j3 = kVar.f57915d1;
                     if (j3 == 0 || longValue < j3) {
-                        jVar.f57916f1 = longValue;
+                        kVar.f57915d1 = longValue;
                     }
-                    jVar.f57919g1 = Math.max(jVar.f57919g1, longValue);
+                    kVar.f57918e1 = Math.max(kVar.f57918e1, longValue);
                     if (longValue > 50000000) {
-                        jVar.f57921h1++;
+                        kVar.f57921f1++;
                     }
                     if (longValue > 100000000) {
-                        jVar.f57924i1++;
+                        kVar.f57924g1++;
                     }
-                    jVar.f57902a1++;
+                    kVar.Y0++;
                 }
-                long j10 = jVar.f57905b1;
+                long j10 = kVar.Z0;
                 if (j10 != 0) {
                     long j11 = elapsedRealtimeNanos - j10;
-                    jVar.f57927j1++;
-                    jVar.f57930k1 += j11;
-                    jVar.l1 = Math.max(jVar.l1, j11);
+                    kVar.f57926h1++;
+                    kVar.f57929i1 += j11;
+                    kVar.f57932j1 = Math.max(kVar.f57932j1, j11);
                 }
-                jVar.f57905b1 = elapsedRealtimeNanos;
-                jVar.Z0 = l10.longValue();
-                long longValue2 = l10.longValue() - jVar.Y0;
+                kVar.Z0 = elapsedRealtimeNanos;
+                kVar.X0 = l10.longValue();
+                long longValue2 = l10.longValue() - kVar.W0;
                 if (longValue2 >= 3000000000L) {
-                    float f10 = (((float) (jVar.f57902a1 - 1)) * 1.0E9f) / ((float) longValue2);
-                    o0 o0Var = jVar.J;
-                    if (o0Var == null) {
+                    float f10 = (((float) (kVar.Y0 - 1)) * 1.0E9f) / ((float) longValue2);
+                    p0 p0Var = kVar.J;
+                    if (p0Var == null) {
                         i7 = 0;
                     } else {
-                        i7 = o0Var.f58027a;
+                        i7 = p0Var.f58031a;
                     }
                     StringBuilder sb2 = new StringBuilder("camera capture rate: measuredFps=");
                     sb2.append(f10);
                     sb2.append(", requestedFps=");
-                    sb2.append(jVar.h.f58027a);
+                    sb2.append(kVar.h.f58031a);
                     sb2.append(", activeFps=");
                     if (i7 == 0) {
                         valueOf = "unknown";
@@ -118,30 +118,30 @@ public final class g extends CameraCaptureSession.CaptureCallback {
                     }
                     sb2.append(z9);
                     sb2.append(", fpsRange=");
-                    sb2.append(jVar.K);
+                    sb2.append(kVar.K);
                     sb2.append(", sensorIntervalMs={avg=");
-                    sb2.append(j.j(jVar.f57910d1, jVar.f57908c1));
+                    sb2.append(k.i(kVar.f57910b1, kVar.f57907a1));
                     sb2.append(", min=");
-                    sb2.append(((float) jVar.f57916f1) / 1000000.0f);
+                    sb2.append(((float) kVar.f57915d1) / 1000000.0f);
                     sb2.append(", max=");
-                    sb2.append(((float) jVar.f57919g1) / 1000000.0f);
+                    sb2.append(((float) kVar.f57918e1) / 1000000.0f);
                     sb2.append(", jitter=");
-                    sb2.append(j.W(jVar.f57913e1, jVar.f57910d1, jVar.f57908c1));
+                    sb2.append(k.V(kVar.f57913c1, kVar.f57910b1, kVar.f57907a1));
                     sb2.append("}, sensorGaps={over50ms=");
-                    sb2.append(jVar.f57921h1);
+                    sb2.append(kVar.f57921f1);
                     sb2.append(", over100ms=");
-                    sb2.append(jVar.f57924i1);
+                    sb2.append(kVar.f57924g1);
                     sb2.append("}, callbackIntervalMs={avg=");
-                    sb2.append(j.j(jVar.f57930k1, jVar.f57927j1));
+                    sb2.append(k.i(kVar.f57929i1, kVar.f57926h1));
                     sb2.append(", max=");
-                    sb2.append(((float) jVar.l1) / 1000000.0f);
+                    sb2.append(((float) kVar.f57932j1) / 1000000.0f);
                     sb2.append("}");
-                    nVar.b(sb2.toString());
-                    jVar.O();
-                    jVar.Y0 = l10.longValue();
-                    jVar.Z0 = l10.longValue();
-                    jVar.f57902a1 = 1L;
-                    jVar.f57905b1 = elapsedRealtimeNanos;
+                    oVar.b(sb2.toString());
+                    kVar.O();
+                    kVar.W0 = l10.longValue();
+                    kVar.X0 = l10.longValue();
+                    kVar.Y0 = 1L;
+                    kVar.Z0 = elapsedRealtimeNanos;
                 }
             }
         }

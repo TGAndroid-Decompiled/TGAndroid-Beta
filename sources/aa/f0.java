@@ -233,7 +233,7 @@ public final class f0 {
         obj.f8508b = str;
         obj.f8507a = j3;
         obj.f8512g = (byte) (obj.f8512g | 1);
-        j2 b11 = x9.c.f58571a.b(context);
+        j2 b11 = x9.c.f58577a.b(context);
         int i10 = ((e1) b11).f8339c;
         if (i10 > 0) {
             if (i10 != 100) {
@@ -389,7 +389,7 @@ public final class f0 {
                         if (z9) {
                             ((AtomicInteger) cVar.f14438i.f53710b).getAndIncrement();
                             if (cVar.f14436f.size() < cVar.f14435e) {
-                                x9.b bVar3 = x9.b.f58570a;
+                                x9.b bVar3 = x9.b.f58576a;
                                 bVar3.b("Enqueueing report: " + bVar.f776b);
                                 bVar3.b("Queue size: " + cVar.f14436f.size());
                                 taskCompletionSource = taskCompletionSource2;

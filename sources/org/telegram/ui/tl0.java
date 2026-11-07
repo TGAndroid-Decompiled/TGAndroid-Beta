@@ -37,7 +37,7 @@ public final class tl0 implements org.telegram.messenger.c20 {
                     }
                 } else {
                     zh.d3 d3Var2 = bm0Var3.J;
-                    if (d3Var2 == null || d3Var2.f60173b != starGift.f27182id) {
+                    if (d3Var2 == null || d3Var2.f60179b != starGift.f27182id) {
                         i7 = ((org.telegram.ui.ActionBar.f2) hm0Var).currentAccount;
                         zh.d3 d3Var3 = new zh.d3(i7, bm0Var3.K.f27182id, new tl0(ul0Var, 2));
                         bm0Var3.J = d3Var3;

@@ -37,7 +37,7 @@ public final class za extends bi.b1 {
             case 3:
                 y7.b9 b9Var = (y7.b9) obj;
                 pb.g c13 = pb.g.c();
-                return new y7.e9(c13.b(), (pb.k) c13.a(pb.k.class), new y7.c9(pb.g.c().b(), b9Var), b9Var.f58892a);
+                return new y7.e9(c13.b(), (pb.k) c13.a(pb.k.class), new y7.c9(pb.g.c().b(), b9Var), b9Var.f58898a);
             default:
                 pb.g c14 = pb.g.c();
                 return new z7.ma(c14.b(), (pb.k) c14.a(pb.k.class), new z7.la(pb.g.c().b(), (z7.ja) obj));

@@ -453,7 +453,7 @@ public final class la implements View.OnClickListener {
                     up0Var.H = -1;
                 }
                 TL_stars.toggleChatStarGiftNotifications togglechatstargiftnotifications = new TL_stars.toggleChatStarGiftNotifications();
-                togglechatstargiftnotifications.peer = qp.s1(i14).j1(up0Var.f60213c);
+                togglechatstargiftnotifications.peer = qp.s1(i14).j1(up0Var.f60219c);
                 togglechatstargiftnotifications.enabled = z16;
                 ConnectionsManager.getInstance(i14).sendRequest(togglechatstargiftnotifications, new n41(10, up0Var, f2Var3));
                 return;

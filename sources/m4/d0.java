@@ -797,7 +797,7 @@ public final class d0 implements a0, Continuation, lm0, ws, l1, ej0, qj0, ri.a, 
         String str = m0.f14112a;
         q10.getClass();
         fVar.getClass();
-        fVar.obtainMessage(1, new q2.a(x2.u.f58380g.getAndIncrement(), true, SystemClock.elapsedRealtime(), q10)).sendToTarget();
+        fVar.obtainMessage(1, new q2.a(x2.u.f58386g.getAndIncrement(), true, SystemClock.elapsedRealtime(), q10)).sendToTarget();
     }
 
     public void w(gw gwVar, int i7) {

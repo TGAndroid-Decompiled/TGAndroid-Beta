@@ -81,12 +81,12 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
     @Override
     public void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j3, boolean z9) {
         zh.a2 a2Var = (zh.a2) this.f51079b;
-        up0 up0Var = a2Var.f60105a;
-        a2Var.f60108e.f4915l.remove((TL_stars.SavedStarGift) this.f51080c);
+        up0 up0Var = a2Var.f60111a;
+        a2Var.f60114e.f4915l.remove((TL_stars.SavedStarGift) this.f51080c);
         a2Var.f(true);
-        int i7 = a2Var.f60106b;
+        int i7 = a2Var.f60112b;
         if (j3 == p10.i(i7).e()) {
-            hc a02 = hc.a0(up0Var.f60211a);
+            hc a02 = hc.a0(up0Var.f60217a);
             TLRPC.Document document = tL_starGiftUnique.getDocument();
             String M0 = hd.M0(2131752887, null);
             StringBuilder sb2 = new StringBuilder();
@@ -96,7 +96,7 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
             O.f32522r = false;
             O.j();
         } else {
-            cc O2 = hc.a0(up0Var.f60211a).O(tL_starGiftUnique.getDocument(), hd.M0(2131752885, null), hd.a0(null, null, 2131752886, m5.s(i7, j3)));
+            cc O2 = hc.a0(up0Var.f60217a).O(tL_starGiftUnique.getDocument(), hd.M0(2131752885, null), hd.a0(null, null, 2131752886, m5.s(i7, j3)));
             O2.f32522r = false;
             O2.j();
         }
@@ -277,8 +277,8 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
         f3.o aVar;
         x2.q qVar = (x2.q) this.f51079b;
         e2.u uVar = (e2.u) this.f51080c;
-        if (qVar.f58346c.w(uVar)) {
-            aVar = new c4.h(qVar.f58346c.l(uVar), null);
+        if (qVar.f58352c.w(uVar)) {
+            aVar = new c4.h(qVar.f58352c.l(uVar), null);
         } else {
             aVar = new n3.a(uVar);
         }
@@ -458,7 +458,7 @@ public final class a0 implements org.telegram.ui.ActionBar.r1, p4.l0, h2.j, p4.a
                 int i12 = 0;
                 while (i12 < arrayList.size()) {
                     j10 = ((xr) arrayList.get(i12)).f26513a;
-                    fVar.f58631e.getSendMessagesHelper().r0(ez.b(str2, j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
+                    fVar.f58637e.getSendMessagesHelper().r0(ez.b(str2, j10, null, null, null, true, null, null, null, true, 0, 0, null, false));
                     i12++;
                     fVar = fVar;
                 }

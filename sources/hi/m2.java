@@ -168,12 +168,12 @@ public final class m2 extends AnimatorListenerAdapter {
                 return;
             case 10:
                 n40 n40Var = (n40) obj;
-                if (i13 == n40Var.f36216s0) {
+                if (i13 == n40Var.f36217t0) {
                     n40Var.f36222x.setRotationY(0.0f);
-                    n40Var.f36212q0 = true;
-                    n40Var.f36195b0 = null;
-                    a8.b("RoundVideo camera flip visual animation completed: elapsedMs=" + n40.l(n40Var));
-                    n40.m(n40Var);
+                    n40Var.f36214r0 = true;
+                    n40Var.f36196c0 = null;
+                    a8.b("RoundVideo camera flip visual animation completed: elapsedMs=" + n40.m(n40Var));
+                    n40.n(n40Var);
                     return;
                 }
                 return;

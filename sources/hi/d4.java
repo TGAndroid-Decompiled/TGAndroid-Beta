@@ -65,8 +65,8 @@ public final class d4 implements c20 {
                 zh.f2 f2Var2 = (zh.f2) this.f14620c;
                 int i10 = this.f14619b;
                 ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.ActionBar.f2 f2Var3 = f2Var2.f60211a;
-                t9 t9Var = f2Var2.f60214e;
+                org.telegram.ui.ActionBar.f2 f2Var3 = f2Var2.f60217a;
+                t9 t9Var = f2Var2.f60220e;
                 t9Var.a(i10, arrayList);
                 ((zh.a2) this.d).f(true);
                 f2Var2.f(true);

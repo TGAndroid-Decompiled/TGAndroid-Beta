@@ -245,7 +245,7 @@ public class d0 {
         try {
             re reVar = this.h.f53272j;
             e2.o oVar = this.f53123s.f53167s;
-            reVar.m();
+            reVar.n();
         } catch (RemoteException e10) {
             h2.a.d("MediaSessionImpl", "Exception in using media1 API", e10);
         }

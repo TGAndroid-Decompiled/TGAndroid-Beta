@@ -5,14 +5,14 @@ import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 import java.util.concurrent.locks.LockSupport;
 public abstract class s0 extends t0 implements g0 {
     public static final AtomicReferenceFieldUpdater h = AtomicReferenceFieldUpdater.newUpdater(s0.class, Object.class, "_queue$volatile");
-    public static final AtomicReferenceFieldUpdater f60011n = AtomicReferenceFieldUpdater.newUpdater(s0.class, Object.class, "_delayed$volatile");
-    public static final AtomicIntegerFieldUpdater f60012r = AtomicIntegerFieldUpdater.newUpdater(s0.class, "_isCompleted$volatile");
+    public static final AtomicReferenceFieldUpdater f60017n = AtomicReferenceFieldUpdater.newUpdater(s0.class, Object.class, "_delayed$volatile");
+    public static final AtomicIntegerFieldUpdater f60018r = AtomicIntegerFieldUpdater.newUpdater(s0.class, "_isCompleted$volatile");
     private volatile Object _delayed$volatile;
     private volatile int _isCompleted$volatile = 0;
     private volatile Object _queue$volatile;
 
     public l0 a(long j3, y1 y1Var, id.h hVar) {
-        return d0.f59961a.a(j3, y1Var, hVar);
+        return d0.f59967a.a(j3, y1Var, hVar);
     }
 
     @Override
@@ -43,7 +43,7 @@ public abstract class s0 extends t0 implements g0 {
         q0 q0Var;
         Runnable runnable;
         long j3;
-        com.google.android.gms.internal.clearcut.e eVar = b0.f59946c;
+        com.google.android.gms.internal.clearcut.e eVar = b0.f59952c;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = h;
         if (!k()) {
             n();
@@ -79,7 +79,7 @@ public abstract class s0 extends t0 implements g0 {
                 runnable.run();
                 return 0L;
             }
-            hd.d dVar = this.f60015e;
+            hd.d dVar = this.f60021e;
             if (dVar == null || dVar.isEmpty()) {
                 j3 = Long.MAX_VALUE;
             } else {
@@ -97,7 +97,7 @@ public abstract class s0 extends t0 implements g0 {
                         return Long.MAX_VALUE;
                     }
                 }
-                r0 r0Var = (r0) f60011n.get(this);
+                r0 r0Var = (r0) f60017n.get(this);
                 if (r0Var != null) {
                     synchronized (r0Var) {
                         q0[] q0VarArr = r0Var.f10798a;
@@ -106,7 +106,7 @@ public abstract class s0 extends t0 implements g0 {
                         }
                     }
                     if (q0Var != null) {
-                        long nanoTime = q0Var.f60008a - System.nanoTime();
+                        long nanoTime = q0Var.f60014a - System.nanoTime();
                         if (nanoTime >= 0) {
                             return nanoTime;
                         }
@@ -128,14 +128,14 @@ public abstract class s0 extends t0 implements g0 {
             }
             return;
         }
-        c0.f59957s.m(runnable);
+        c0.f59963s.m(runnable);
     }
 
     public final void n() {
         q0 q0Var;
         q0 q0Var2;
         boolean z9;
-        r0 r0Var = (r0) f60011n.get(this);
+        r0 r0Var = (r0) f60017n.get(this);
         if (r0Var == null || ee.u.f10797b.get(r0Var) == 0) {
             return;
         }
@@ -153,7 +153,7 @@ public abstract class s0 extends t0 implements g0 {
                     if (q0Var2 == null) {
                         continue;
                     } else {
-                        if (nanoTime - q0Var2.f60008a >= 0) {
+                        if (nanoTime - q0Var2.f60014a >= 0) {
                             z9 = o(q0Var2);
                         } else {
                             z9 = false;
@@ -181,15 +181,15 @@ public abstract class s0 extends t0 implements g0 {
     public final void q(long j3, q0 q0Var) {
         int c10;
         Thread h7;
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f60011n;
+        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f60017n;
         q0 q0Var2 = null;
-        if (f60012r.get(this) != 0) {
+        if (f60018r.get(this) != 0) {
             c10 = 1;
         } else {
             r0 r0Var = (r0) atomicReferenceFieldUpdater.get(this);
             if (r0Var == null) {
                 ?? obj = new Object();
-                obj.f60010c = j3;
+                obj.f60016c = j3;
                 while (!atomicReferenceFieldUpdater.compareAndSet(this, null, obj) && atomicReferenceFieldUpdater.get(this) == null) {
                 }
                 Object obj2 = atomicReferenceFieldUpdater.get(this);
@@ -225,9 +225,9 @@ public abstract class s0 extends t0 implements g0 {
     @Override
     public void shutdown() {
         q0 q0Var;
-        v1.f60023a.set(null);
-        f60012r.set(this, 1);
-        com.google.android.gms.internal.clearcut.e eVar = b0.f59946c;
+        v1.f60029a.set(null);
+        f60018r.set(this, 1);
+        com.google.android.gms.internal.clearcut.e eVar = b0.f59952c;
         AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = h;
         loop0: while (true) {
             Object obj = atomicReferenceFieldUpdater.get(this);
@@ -258,7 +258,7 @@ public abstract class s0 extends t0 implements g0 {
         } while (j() <= 0);
         long nanoTime = System.nanoTime();
         while (true) {
-            r0 r0Var = (r0) f60011n.get(this);
+            r0 r0Var = (r0) f60017n.get(this);
             if (r0Var != null) {
                 synchronized (r0Var) {
                     if (ee.u.f10797b.get(r0Var) > 0) {

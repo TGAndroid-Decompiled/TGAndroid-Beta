@@ -1,16 +1,16 @@
 package zh;
 public final class g implements te.b, bg.p {
-    public final m f60225a;
+    public final m f60231a;
 
     @Override
     public void Y(int i7, float f10, float f11, te.c cVar) {
-        this.f60225a.j1();
+        this.f60231a.j1();
     }
 
     @Override
     public void j(long j3) {
-        m mVar = this.f60225a;
-        mVar.k1(j3, mVar.f60355o2);
+        m mVar = this.f60231a;
+        mVar.k1(j3, mVar.f60361o2);
     }
 
     @Override

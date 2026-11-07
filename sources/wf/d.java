@@ -48,7 +48,7 @@ public final class d extends i {
     }
 
     public d() {
-        this.f59295c = new ua(11);
+        this.f59301c = new ua(11);
         this.h = new HashMap();
         this.f57572i = null;
         this.f57573j = false;
@@ -92,7 +92,7 @@ public final class d extends i {
         String str;
         int incrementAndGet = this.f57574k.incrementAndGet();
         StringBuilder n10 = jg.g.n(incrementAndGet, "Request ", " ");
-        switch (dVar.f59271g) {
+        switch (dVar.f59277g) {
             case 1:
                 str = "GET";
                 break;
@@ -147,13 +147,13 @@ public final class d extends i {
         }
         n10.append(str);
         n10.append(" ");
-        n10.append(dVar.f59270f);
+        n10.append(dVar.f59276f);
         n10.append(" ");
-        n10.append((String) dVar.f59272i.get("range"));
+        n10.append((String) dVar.f59278i.get("range"));
         Log.d("CAST_SERVER", n10.toString());
         try {
             g k10 = k(dVar);
-            gg ggVar = k10.f59287e;
+            gg ggVar = k10.f59293e;
             ggVar.put("Access-Control-Allow-Origin", "*");
             ggVar.put("Access-Control-Max-Age", "3628800");
             ggVar.put("Access-Control-Allow-Methods", "*");
@@ -162,7 +162,7 @@ public final class d extends i {
         } catch (Throwable unused) {
             Log.d("CAST_SERVER", "Error " + incrementAndGet);
             g c10 = i.c(f.INTERNAL_ERROR, "text/plain", "Error reading file");
-            gg ggVar2 = c10.f59287e;
+            gg ggVar2 = c10.f59293e;
             ggVar2.put("Access-Control-Allow-Origin", "*");
             ggVar2.put("Access-Control-Max-Age", "3628800");
             ggVar2.put("Access-Control-Allow-Methods", "*");
@@ -175,8 +175,8 @@ public final class d extends i {
         if (this.h.isEmpty()) {
             if (this.f57573j) {
                 try {
-                    i.d(this.f59293a);
-                    ua uaVar = this.f59295c;
+                    i.d(this.f59299a);
+                    ua uaVar = this.f59301c;
                     uaVar.getClass();
                     ArrayList arrayList = new ArrayList((List) uaVar.f680c);
                     int size = arrayList.size();
@@ -185,10 +185,10 @@ public final class d extends i {
                         Object obj = arrayList.get(i7);
                         i7++;
                         yc.a aVar = (yc.a) obj;
-                        i.d(aVar.f59256a);
-                        i.d(aVar.f59257b);
+                        i.d(aVar.f59262a);
+                        i.d(aVar.f59263b);
                     }
-                    Thread thread = this.f59294b;
+                    Thread thread = this.f59300b;
                     if (thread != null) {
                         thread.join();
                     }

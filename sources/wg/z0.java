@@ -181,7 +181,7 @@ public final class z0 implements View.OnClickListener {
                 final xg.f fVar = (xg.f) obj2;
                 final yg.a aVar = (yg.a) obj;
                 if (fVar.d) {
-                    if (!aVar.f59322a.Q) {
+                    if (!aVar.f59328a.Q) {
                         aVar.b(true);
                         String str = fVar.h;
                         c20 c20Var = new c20() {
@@ -198,7 +198,7 @@ public final class z0 implements View.OnClickListener {
                                     default:
                                         aVar.b(false);
                                         f fVar2 = fVar;
-                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58633n, fVar2.f58630c, new d(fVar2, 1));
+                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58639n, fVar2.f58636c, new d(fVar2, 1));
                                         return;
                                 }
                             }
@@ -217,7 +217,7 @@ public final class z0 implements View.OnClickListener {
                                     default:
                                         aVar.b(false);
                                         f fVar2 = fVar;
-                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58633n, fVar2.f58630c, new d(fVar2, 1));
+                                        wg.h.c((TLRPC.TL_error) obj4, fVar2.f58639n, fVar2.f58636c, new d(fVar2, 1));
                                         return;
                                 }
                             }
@@ -234,7 +234,7 @@ public final class z0 implements View.OnClickListener {
                 return;
             case 3:
                 TLRPC.Chat chat = (TLRPC.Chat) obj;
-                yg.f fVar2 = ((yg.g) obj2).f59356w;
+                yg.f fVar2 = ((yg.g) obj2).f59362w;
                 if (fVar2 != null) {
                     a0 a0Var = ((u) fVar2).f57720a;
                     a0Var.U1.remove(chat);
@@ -327,7 +327,7 @@ public final class z0 implements View.OnClickListener {
                 }
                 return;
             default:
-                v9 v9Var = ((n3) obj2).f60385c.Q1;
+                v9 v9Var = ((n3) obj2).f60391c.Q1;
                 v9Var.f4909e = !v9Var.f4909e;
                 ((gp0) obj).run();
                 v9Var.j(true);

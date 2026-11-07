@@ -38,10 +38,10 @@ public final class p implements Runnable {
                 return;
             case 3:
                 n40 n40Var = (n40) ((qt) this.f57700b).f37389b;
-                n40Var.f36211p0 = true;
-                a8.b("RoundVideo camera flip first frame: elapsedMs=" + n40.l(n40Var));
-                n40Var.v(true);
-                n40.m(n40Var);
+                n40Var.f36212q0 = true;
+                a8.b("RoundVideo camera flip first frame: elapsedMs=" + n40.m(n40Var));
+                n40Var.w(true);
+                n40.n(n40Var);
                 return;
             case 4:
                 yh.l lVar = (yh.l) this.f57700b;
@@ -70,7 +70,7 @@ public final class p implements Runnable {
                 return;
             case 10:
                 zh.e1 e1Var = (zh.e1) this.f57700b;
-                ud udVar = e1Var.f60201e;
+                ud udVar = e1Var.f60207e;
                 if (udVar != null) {
                     udVar.d();
                     e1Var.invalidateSelf();

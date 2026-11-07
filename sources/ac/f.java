@@ -90,7 +90,7 @@ public final class f extends pb.e {
                     a7.b bVar = new a7.b(this.d);
                     this.f1028e.getClass();
                     zb.d dVar = this.f1028e;
-                    this.f1032j = ((cg) aVar).X0(bVar, new hg(false, dVar.f59929a, dVar.f59930b, false, dVar.f59931c));
+                    this.f1032j = ((cg) aVar).X0(bVar, new hg(false, dVar.f59935a, dVar.f59936b, false, dVar.f59937c));
                 }
                 try {
                     bg bgVar = this.f1032j;
@@ -174,7 +174,7 @@ public final class f extends pb.e {
                         try {
                             gg X0 = bgVar.X0(bVar, yfVar);
                             ArrayList arrayList = new ArrayList();
-                            if (this.f1028e.f59930b) {
+                            if (this.f1028e.f59936b) {
                                 for (fg fgVar : X0.f5690a) {
                                     float[] fArr = fgVar.f5669a;
                                     if (fArr != null) {

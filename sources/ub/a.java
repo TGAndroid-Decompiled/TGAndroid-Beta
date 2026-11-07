@@ -64,9 +64,9 @@ public final class a {
         }
         long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
         k7 k7Var = k7.INPUT_IMAGE_CONSTRUCTION;
-        Task task2 = a10.f59797e;
+        Task task2 = a10.f59803e;
         long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a10.f59800i;
+        HashMap hashMap = a10.f59806i;
         if (hashMap.get(k7Var) == null) {
             task = task2;
             aVar = aVar2;
@@ -88,12 +88,12 @@ public final class a {
         obj.f19230g = Integer.valueOf(i7 & Integer.MAX_VALUE);
         f7 f7Var = new f7(obj);
         ?? obj2 = new Object();
-        obj2.f58908c = f7Var;
+        obj2.f58914c = f7Var;
         i0 i0Var = new i0((d6) obj2);
         if (task.isSuccessful()) {
             a11 = (String) task.getResult();
         } else {
-            a11 = j.f53798c.a(a10.f59799g);
+            a11 = j.f53798c.a(a10.f59805g);
         }
         pb.m.f53451a.execute(new h(a10, i0Var, a11));
         return aVar;

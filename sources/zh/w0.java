@@ -25,62 +25,62 @@ public final class w0 extends Drawable {
     public Bitmap B;
     public Paint C;
     public int D;
-    public final ViewGroup f60466a;
-    public final f6 f60467b;
-    public final Paint f60468c;
+    public final ViewGroup f60472a;
+    public final f6 f60473b;
+    public final Paint f60474c;
     public final Paint d;
-    public final RectF f60469e;
-    public final Path f60470f;
-    public final boolean f60471g;
+    public final RectF f60475e;
+    public final Path f60476f;
+    public final boolean f60477g;
     public TL_stars.starGiftAttributeBackdrop h;
-    public int f60472i;
-    public RadialGradient f60473j;
-    public final Matrix f60474k;
-    public final v0 f60475l;
-    public int[] f60476m;
-    public LinearGradient f60477n;
-    public final Matrix f60478o;
-    public boolean f60479p;
-    public final Paint f60480q;
-    public final w5 f60481r;
-    public float f60482s;
-    public boolean f60483t;
-    public int f60484u;
+    public int f60478i;
+    public RadialGradient f60479j;
+    public final Matrix f60480k;
+    public final v0 f60481l;
+    public int[] f60482m;
+    public LinearGradient f60483n;
+    public final Matrix f60484o;
+    public boolean f60485p;
+    public final Paint f60486q;
+    public final w5 f60487r;
+    public float f60488s;
+    public boolean f60489t;
+    public int f60490u;
     public boolean v;
-    public int f60485w;
-    public int f60486x;
-    public int f60487y;
-    public Integer f60488z;
+    public int f60491w;
+    public int f60492x;
+    public int f60493y;
+    public Integer f60494z;
 
     public w0(ViewGroup viewGroup, f6 f6Var, boolean z9) {
         Paint paint = new Paint(1);
-        this.f60468c = paint;
+        this.f60474c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        this.f60469e = new RectF();
-        this.f60470f = new Path();
-        this.f60474k = new Matrix();
+        this.f60475e = new RectF();
+        this.f60476f = new Path();
+        this.f60480k = new Matrix();
         new Path();
-        this.f60478o = new Matrix();
+        this.f60484o = new Matrix();
         Paint paint3 = new Paint(1);
-        this.f60480q = paint3;
-        this.f60481r = new w5(new wg.p(this, 8), 320L, xq.h);
-        this.f60482s = org.telegram.messenger.g0.L(11.0f);
+        this.f60486q = paint3;
+        this.f60487r = new w5(new wg.p(this, 8), 320L, xq.h);
+        this.f60488s = org.telegram.messenger.g0.L(11.0f);
         this.v = true;
-        this.f60485w = 0;
+        this.f60491w = 0;
         int i7 = k6.f27849d6;
-        this.f60487y = i7;
-        this.f60466a = viewGroup;
-        this.f60467b = f6Var;
+        this.f60493y = i7;
+        this.f60472a = viewGroup;
+        this.f60473b = f6Var;
         v0 v0Var = new v0(this, viewGroup, org.telegram.messenger.g0.L(28.0f));
-        this.f60475l = v0Var;
+        this.f60481l = v0Var;
         viewGroup.addOnAttachStateChangeListener(new m6(this, 13));
         if (viewGroup.isAttachedToWindow()) {
             v0Var.a();
         }
-        this.f60471g = z9;
+        this.f60477g = z9;
         int w02 = k6.w0(i7, f6Var);
-        this.f60486x = w02;
+        this.f60492x = w02;
         paint.setColor(w02);
         a(z9);
         Paint.Style style = Paint.Style.STROKE;
@@ -91,17 +91,17 @@ public final class w0 extends Drawable {
     public final void a(boolean z9) {
         int i7;
         if (z9) {
-            i7 = k6.w0(k6.f27792a6, this.f60467b);
+            i7 = k6.w0(k6.f27792a6, this.f60473b);
         } else {
             i7 = 0;
         }
-        if (this.f60483t == z9 && (!z9 || this.f60484u == i7)) {
+        if (this.f60489t == z9 && (!z9 || this.f60490u == i7)) {
             return;
         }
-        this.f60483t = z9;
-        Paint paint = this.f60468c;
+        this.f60489t = z9;
+        Paint paint = this.f60474c;
         if (z9) {
-            this.f60484u = i7;
+            this.f60490u = i7;
             paint.setShadowLayer(org.telegram.messenger.g0.L(1.66f), 0.0f, org.telegram.messenger.g0.L(0.33f), i7);
             return;
         }
@@ -113,7 +113,7 @@ public final class w0 extends Drawable {
     }
 
     public final void c() {
-        this.f60466a.invalidate();
+        this.f60472a.invalidate();
         if (getCallback() != null) {
             getCallback().invalidateDrawable(this);
         }
@@ -121,7 +121,7 @@ public final class w0 extends Drawable {
 
     public final void d(TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop) {
         if (this.h != stargiftattributebackdrop) {
-            this.f60473j = null;
+            this.f60479j = null;
         }
         this.h = stargiftattributebackdrop;
         c();
@@ -134,7 +134,7 @@ public final class w0 extends Drawable {
 
     public final void e(TL_stars.starGiftAttributePattern stargiftattributepattern) {
         this.A = 0L;
-        v0 v0Var = this.f60475l;
+        v0 v0Var = this.f60481l;
         if (stargiftattributepattern == null) {
             v0Var.g(null, false);
             return;
@@ -147,22 +147,22 @@ public final class w0 extends Drawable {
     }
 
     public final void f(boolean z9, boolean z10) {
-        if (this.f60479p == z9) {
+        if (this.f60485p == z9) {
             return;
         }
-        this.f60479p = z9;
+        this.f60485p = z9;
         if (!z10) {
-            this.f60481r.a(z9);
+            this.f60487r.a(z9);
         }
         c();
     }
 
     public final void g(int[] iArr) {
-        if (this.f60476m == iArr) {
+        if (this.f60482m == iArr) {
             return;
         }
-        this.f60476m = iArr;
-        this.f60477n = null;
+        this.f60482m = iArr;
+        this.f60483n = null;
         c();
     }
 

@@ -46,7 +46,7 @@ import java.util.WeakHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.zip.Adler32;
 import java.util.zip.InflaterInputStream;
-public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
+public class hy0 implements jy0, t0.h, q5.b, wi.x0, oa.a {
     public final int f46526a;
     public Object f46527b;
     public Object f46528c;
@@ -843,7 +843,7 @@ public class hy0 implements jy0, t0.h, q5.b, wi.w0, oa.a {
             case 27:
                 this.f46527b = new HashMap();
                 this.f46528c = new HashMap();
-                this.d = y7.i.f58949c;
+                this.d = y7.i.f58955c;
                 return;
             default:
                 this.f46527b = new Object();

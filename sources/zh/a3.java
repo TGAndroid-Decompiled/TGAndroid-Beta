@@ -18,7 +18,7 @@ import org.telegram.ui.Components.u31;
 import org.telegram.ui.Components.w31;
 import org.telegram.ui.Components.x31;
 public final class a3 extends w31 {
-    public static final int f60116b = 0;
+    public static final int f60122b = 0;
 
     static {
         w31.h(new w31());
@@ -33,18 +33,18 @@ public final class a3 extends w31 {
         boolean z10 = x31Var.f40153e;
         f6 f6Var = b3Var.O;
         ch0 ch0Var = b3Var.f28813c;
-        z2 z2Var = b3Var.f60123a0;
+        z2 z2Var = b3Var.f60129a0;
         if (z2Var == null || b3Var.W != stargiftattributepattern.document.f26959id) {
             b3Var.W = stargiftattributepattern.document.f26959id;
             if (z2Var != null) {
                 z2Var.n(ch0Var);
             }
             ?? i5Var = new i5(3, b3Var.V, stargiftattributepattern.document);
-            b3Var.f60123a0 = i5Var;
+            b3Var.f60129a0 = i5Var;
             r6.y(b3Var, i5Var, k6.E8, f6Var, PorterDuff.Mode.SRC_IN);
         }
         if (ch0Var.isAttachedToWindow()) {
-            b3Var.f60123a0.a(ch0Var);
+            b3Var.f60129a0.a(ch0Var);
         }
         SpannableStringBuilder spannableStringBuilder = stargiftattributepattern.name;
         if (!TextUtils.isEmpty(str)) {
@@ -58,7 +58,7 @@ public final class a3 extends w31 {
             spannableStringBuilder2.setSpan(new u31(org.telegram.messenger.g0.o()), length, spannableStringBuilder2.length(), 33);
             spannableStringBuilder = spannableStringBuilder2;
         }
-        b3Var.j(spannableStringBuilder, 0, b3Var.f60123a0);
+        b3Var.j(spannableStringBuilder, 0, b3Var.f60129a0);
         b3Var.setChecked(z10);
     }
 

@@ -578,7 +578,7 @@ public final class bm0 extends FrameLayout {
                 int i20 = this.f44441k0;
                 this.f44431c0 = i20;
                 zh.d3 d3Var = this.J;
-                if (d3Var.f60189t || !d3Var.f60190u) {
+                if (d3Var.f60195t || !d3Var.f60196u) {
                     this.f44432d0 = i20;
                     int i21 = 3 - (size2 % 3);
                     if (size2 <= 0) {

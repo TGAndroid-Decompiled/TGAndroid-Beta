@@ -32,11 +32,11 @@ public final class g0 extends ug.f1 {
             this.I2 = aVar;
             aVar.setOnClickListener(new ii.g(this, 27));
             yg.a aVar2 = this.I2;
-            aVar2.f59325e = true;
-            fi.d dVar = aVar2.f59322a;
+            aVar2.f59331e = true;
+            fi.d dVar = aVar2.f59328a;
             dVar.setEnabled(true);
             dVar.i(hd.M0(2131749674, null), false, true);
-            r6.i(k6.f27922h5, aVar2.f59323b, aVar2.f59324c);
+            r6.i(k6.f27922h5, aVar2.f59329b, aVar2.f59330c);
             this.f28616b.addView(this.I2, ha.d(-1, 68.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
         }
         N();

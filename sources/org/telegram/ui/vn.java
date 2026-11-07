@@ -481,18 +481,18 @@ public final class vn implements Runnable {
                 I.j();
                 return;
             default:
-                wi.t0 t0Var = (wi.t0) this.f50761c;
-                wi.x xVar = (wi.x) this.d;
+                wi.u0 u0Var = (wi.u0) this.f50761c;
+                wi.y yVar = (wi.y) this.d;
                 boolean z28 = this.f50760b;
-                wi.p0 p0Var = (wi.p0) this.f50762e;
-                long j10 = t0Var.f58112q;
+                wi.q0 q0Var = (wi.q0) this.f50762e;
+                long j10 = u0Var.f58118q;
                 long nanoTime = System.nanoTime();
                 try {
-                    xVar.g();
-                    h = xVar.h();
-                    r12 = t0Var.f58108m;
-                    r12.b("active output finalized: size=" + xVar.f58143a.length() + ", durationMs=" + h + ", elapsedMs=" + wi.t0.f(nanoTime));
-                    t0Var.g();
+                    yVar.g();
+                    h = yVar.h();
+                    r12 = u0Var.f58114m;
+                    r12.b("active output finalized: size=" + yVar.f58149a.length() + ", durationMs=" + h + ", elapsedMs=" + wi.u0.f(nanoTime));
+                    u0Var.g();
                     if (h > j10) {
                         z10 = true;
                     } else {
@@ -500,21 +500,21 @@ public final class vn implements Runnable {
                     }
                 } catch (Exception e11) {
                     e = e11;
-                    r12 = t0Var;
+                    r12 = u0Var;
                 }
                 try {
                     if (z28 && !z10) {
-                        File file2 = xVar.f58143a;
-                        ?? r02 = t0Var.f58106k;
-                        ?? g0Var = new wi.g0(t0Var, p0Var, file2, h, true);
-                        r02.execute(g0Var);
-                        t0Var = g0Var;
+                        File file2 = yVar.f58149a;
+                        ?? r02 = u0Var.f58112k;
+                        ?? h0Var = new wi.h0(u0Var, q0Var, file2, h, true);
+                        r02.execute(h0Var);
+                        u0Var = h0Var;
                     } else {
-                        File file3 = xVar.f58143a;
+                        File file3 = yVar.f58149a;
                         try {
-                            synchronized (xVar) {
+                            synchronized (yVar) {
                                 try {
-                                    i14 = xVar.f58159s;
+                                    i14 = yVar.f58165s;
                                 } finally {
                                     th = th;
                                     File file4 = file3;
@@ -538,9 +538,9 @@ public final class vn implements Runnable {
                             } else {
                                 i15 = 2;
                             }
-                            t0Var.t(file3, i14, 0L, min, z28, i15);
+                            u0Var.u(file3, i14, 0L, min, z28, i15);
                             c8.jd.c(file3);
-                            t0Var = t0Var;
+                            u0Var = u0Var;
                         } catch (Throwable th4) {
                             th = th4;
                         }
@@ -548,7 +548,7 @@ public final class vn implements Runnable {
                     return;
                 } catch (Exception e12) {
                     e = e12;
-                    r12.f58104i.post(new wi.e0(r12, e, 2));
+                    r12.f58110i.post(new wi.f0(r12, e, 2));
                     return;
                 }
         }

@@ -331,7 +331,7 @@ public abstract class d {
         } else if (this.f53765y == null) {
             attributionTag = this.f53764x;
         } else {
-            AttributionSource attributionSource = (AttributionSource) this.f53765y.f59476b;
+            AttributionSource attributionSource = (AttributionSource) this.f53765y.f59482b;
             if (attributionSource == null) {
                 attributionTag = this.f53764x;
             } else if (attributionSource.getAttributionTag() == null) {

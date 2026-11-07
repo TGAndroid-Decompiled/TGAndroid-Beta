@@ -297,7 +297,7 @@ public final class d implements ib.b, q5.b {
         String str;
         String replaceAll;
         this.f13615a = 0;
-        String str2 = ((e1) x9.c.f58571a.b(context)).f8337a;
+        String str2 = ((e1) x9.c.f58577a.b(context)).f8337a;
         this.f13616b = str2;
         File filesDir = context.getFilesDir();
         this.f13617c = filesDir;

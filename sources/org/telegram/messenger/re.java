@@ -78,7 +78,11 @@ public final class re implements mf, m9.t, p4.u {
         throw new IllegalArgumentException("event cannot be null or empty");
     }
 
-    public void k(long j3, float f10) {
+    public boolean k() {
+        return ((j20) this.f25280b).W;
+    }
+
+    public void l(long j3, float f10) {
         File file = (File) this.f25281c;
         j20 j20Var = (j20) this.f25280b;
         if (!j20Var.W) {
@@ -102,12 +106,12 @@ public final class re implements mf, m9.t, p4.u {
         }
     }
 
-    public void l() {
+    public void m() {
         ((org.telegram.ui.Components.f8) this.d).dismiss();
         this.f25279a = System.currentTimeMillis();
     }
 
-    public void m() {
+    public void n() {
         e2.e eVar;
         p4.m0 m0Var = (p4.m0) this.f25282e;
         p4.g1 g1Var = m0Var.h.f53124t;
@@ -121,45 +125,16 @@ public final class re implements mf, m9.t, p4.u {
         ((q4.l) qVar.f53710b).f53692a.setPlaybackToLocal(eVar.b());
     }
 
-    public void n(e2.l0 l0Var) {
+    public void o(e2.l0 l0Var) {
         p4.m0 m0Var = (p4.m0) this.f25282e;
         q4.q qVar = m0Var.f53276n;
-        u();
+        v();
         if (l0Var == null) {
             ((q4.l) qVar.f53710b).f53692a.setRatingType(0);
         } else {
             ((q4.l) qVar.f53710b).f53692a.setRatingType(p4.n.e(l0Var.d.f10433i));
         }
         m0Var.p0(m0Var.h.f53124t);
-    }
-
-    public void o(int i7, p4.g1 g1Var) {
-        e2.o0 o0Var;
-        int i10;
-        p4.m0 m0Var = (p4.m0) this.f25282e;
-        s(g1Var.T0());
-        if (g1Var.p0(18)) {
-            o0Var = g1Var.k0();
-        } else {
-            o0Var = e2.o0.L;
-        }
-        p(o0Var);
-        g1Var.U0();
-        u();
-        r(g1Var.D0());
-        q(g1Var.m());
-        g1Var.K();
-        m();
-        if (g1Var.p0(20)) {
-            i10 = 4;
-        } else {
-            i10 = 0;
-        }
-        if (m0Var.f53282t != i10) {
-            m0Var.f53282t = i10;
-            ((q4.l) m0Var.f53276n.f53710b).f53692a.setFlags(i10 | 3);
-        }
-        n(g1Var.S0());
     }
 
     @Override
@@ -174,7 +149,36 @@ public final class re implements mf, m9.t, p4.u {
         h2.m0.W(d0Var.f53119o, new p4.y(d0Var, 1));
     }
 
-    public void p(e2.o0 o0Var) {
+    public void p(int i7, p4.g1 g1Var) {
+        e2.o0 o0Var;
+        int i10;
+        p4.m0 m0Var = (p4.m0) this.f25282e;
+        t(g1Var.T0());
+        if (g1Var.p0(18)) {
+            o0Var = g1Var.k0();
+        } else {
+            o0Var = e2.o0.L;
+        }
+        q(o0Var);
+        g1Var.U0();
+        v();
+        s(g1Var.D0());
+        r(g1Var.m());
+        g1Var.K();
+        n();
+        if (g1Var.p0(20)) {
+            i10 = 4;
+        } else {
+            i10 = 0;
+        }
+        if (m0Var.f53282t != i10) {
+            m0Var.f53282t = i10;
+            ((q4.l) m0Var.f53276n.f53710b).f53692a.setFlags(i10 | 3);
+        }
+        o(g1Var.S0());
+    }
+
+    public void q(e2.o0 o0Var) {
         p4.m0 m0Var = (p4.m0) this.f25282e;
         q4.q qVar = m0Var.f53276n;
         if (!TextUtils.equals(((q4.f) ((q4.u) qVar.f53711c).f53718a).f53675a.getQueueTitle(), o0Var.f10427a)) {
@@ -182,7 +186,7 @@ public final class re implements mf, m9.t, p4.u {
         }
     }
 
-    public void q(int i7) {
+    public void r(int i7) {
         q4.q qVar = ((p4.m0) this.f25282e).f53276n;
         int i10 = p4.n.f53293a;
         int i11 = 0;
@@ -213,7 +217,7 @@ public final class re implements mf, m9.t, p4.u {
         }
     }
 
-    public void r(boolean z9) {
+    public void s(boolean z9) {
         q4.q qVar = ((p4.m0) this.f25282e).f53276n;
         int i7 = p4.n.f53293a;
         q4.l lVar = (q4.l) qVar.f53710b;
@@ -232,12 +236,12 @@ public final class re implements mf, m9.t, p4.u {
         }
     }
 
-    public void s(e2.l1 l1Var) {
-        v(l1Var);
-        u();
+    public void t(e2.l1 l1Var) {
+        w(l1Var);
+        v();
     }
 
-    public void t(int i7) {
+    public void u(int i7) {
         org.telegram.ui.ActionBar.z0 z0Var = (org.telegram.ui.ActionBar.z0) this.f25281c;
         if (System.currentTimeMillis() - this.f25279a < 200) {
             g0.h3(new org.telegram.ui.Components.r2(this, i7, 1));
@@ -248,7 +252,7 @@ public final class re implements mf, m9.t, p4.u {
         }
     }
 
-    public void u() {
+    public void v() {
         String str;
         Uri uri;
         long j3;
@@ -311,7 +315,7 @@ public final class re implements mf, m9.t, p4.u {
         p4.m0.f0(m0Var.f53276n, p4.n.b(o0Var, str2, uri2, j3, bitmap));
     }
 
-    public void v(e2.l1 l1Var) {
+    public void w(e2.l1 l1Var) {
         p4.m0 m0Var = (p4.m0) this.f25282e;
         p4.d0 d0Var = m0Var.h;
         p4.g1 g1Var = d0Var.f53124t;

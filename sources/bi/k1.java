@@ -303,7 +303,7 @@ public final class k1 implements Runnable {
                     o40Var.f36530h0 = j3;
                     o40Var.f36528g0 = System.currentTimeMillis();
                     o40Var.f36532i0 = true;
-                    o40Var.v();
+                    o40Var.w();
                     o40Var.invalidate();
                     qs.f(o40Var.f36522e).k(155, Integer.valueOf(o40Var.U), Boolean.FALSE);
                     return;

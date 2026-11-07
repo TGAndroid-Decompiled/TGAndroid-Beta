@@ -1,12 +1,27 @@
 package wi;
-public final class l0 {
-    public final m0 f57984a;
-    public final int f57985b;
-    public final float f57986c;
 
-    public l0(m0 m0Var, m0 m0Var2, int i7, float f10) {
-        this.f57984a = m0Var;
-        this.f57985b = i7;
-        this.f57986c = f10;
+import android.content.Context;
+import android.view.TextureView;
+import java.io.File;
+import org.telegram.ui.Components.ax;
+import org.telegram.ui.Components.k40;
+import org.telegram.ui.Components.qt;
+public final class l0 {
+    public final Context f57976a;
+    public final TextureView f57977b;
+    public File f57978c;
+    public n0 d;
+    public s0 f57979e;
+    public o0 f57980f;
+    public p0 f57981g;
+    public int h;
+    public boolean f57982i = true;
+    public qt f57983j;
+    public r0 f57984k;
+    public ax f57985l;
+
+    public l0(Context context, k40 k40Var) {
+        this.f57976a = context;
+        this.f57977b = k40Var;
     }
 }

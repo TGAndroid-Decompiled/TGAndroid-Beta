@@ -16,16 +16,16 @@ public final class h40 implements ValueAnimator.AnimatorUpdateListener {
             case 0:
                 n40 n40Var = this.f34171b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue() * n40Var.getMeasuredHeight() * 0.5f;
-                n40Var.f36221w0 = floatValue;
-                n40Var.f36215s.setTranslationY(floatValue + n40Var.f36219v0);
+                n40Var.f36223x0 = floatValue;
+                n40Var.f36215s.setTranslationY(floatValue + n40Var.f36221w0);
                 return;
             default:
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 n40 n40Var2 = this.f34171b;
-                n40Var2.f36225y0 = floatValue2;
-                wi.t0 t0Var = n40Var2.O;
-                if (t0Var != null) {
-                    t0Var.x(floatValue2);
+                n40Var2.f36226z0 = floatValue2;
+                wi.u0 u0Var = n40Var2.O;
+                if (u0Var != null) {
+                    u0Var.y(floatValue2);
                     return;
                 }
                 return;

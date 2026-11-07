@@ -24,20 +24,21 @@ public final class h2 implements Runnable {
     @Override
     public final void run() {
         CharSequence text;
-        int i7 = this.f42555a;
-        int i10 = this.f42556b;
+        int i7;
+        int i10 = this.f42555a;
+        int i11 = this.f42556b;
         Object obj = this.f42557c;
-        switch (i7) {
+        switch (i10) {
             case 0:
-                qs.f(i10).n((g2) obj, 251);
+                qs.f(i11).n((g2) obj, 251);
                 return;
             case 1:
                 z5 z5Var = (z5) obj;
-                org.telegram.messenger.g0.h3(new d10(z5Var, i10, z5.h(z5Var.R, i10), 16));
+                org.telegram.messenger.g0.h3(new d10(z5Var, i11, z5.h(z5Var.R, i11), 16));
                 return;
             case 2:
                 w6 w6Var = (w6) obj;
-                if (w6Var.f43303r && !w6Var.f43307y && i10 == w6Var.f43300k0) {
+                if (w6Var.f43303r && !w6Var.f43307y && i11 == w6Var.f43300k0) {
                     w6Var.postDelayed(w6Var.f43301l0, 500L);
                     return;
                 }
@@ -49,9 +50,9 @@ public final class h2 implements Runnable {
                     ClipboardManager clipboardManager = (ClipboardManager) f8Var.getParentActivity().getSystemService("clipboard");
                     if (clipboardManager != null && clipboardManager.getPrimaryClip() != null && clipboardManager.getPrimaryClip().getItemCount() != 0 && (text = clipboardManager.getPrimaryClip().getItemAt(0).getText()) != null) {
                         String[] split = text.toString().trim().toLowerCase().split("\\s+");
-                        for (int i11 = 0; i10 < arrayList.size() && i11 < split.length; i11++) {
-                            ((oa) arrayList.get(i10)).setText(split[i11]);
-                            i10++;
+                        for (int i12 = 0; i11 < arrayList.size() && i12 < split.length; i12++) {
+                            ((oa) arrayList.get(i11)).setText(split[i12]);
+                            i11++;
                         }
                         f8Var.d0();
                         return;
@@ -62,7 +63,7 @@ public final class h2 implements Runnable {
                 }
             case 4:
                 x9 x9Var = (x9) obj;
-                if (!x9Var.f43343r && i10 == x9Var.J) {
+                if (!x9Var.f43343r && i11 == x9Var.J) {
                     x9Var.L = false;
                     x9Var.f36227a.f37160f3.O(true);
                     return;
@@ -70,17 +71,17 @@ public final class h2 implements Runnable {
                 return;
             case 5:
                 try {
-                    ((org.telegram.utils.twidget.h0) obj).f(i10);
+                    ((org.telegram.utils.twidget.h0) obj).f(i11);
                     return;
                 } catch (Exception unused2) {
                     return;
                 }
             case 6:
-                ((bx) obj).w0(i10, 0, null);
+                ((bx) obj).w0(i11, 0, null);
                 return;
             case 7:
                 tg.j jVar = (tg.j) obj;
-                jVar.L = i10;
+                jVar.L = i11;
                 jVar.K = true;
                 try {
                     jVar.performHapticFeedback(3, 2);
@@ -105,10 +106,10 @@ public final class h2 implements Runnable {
                 up0 up0Var = (up0) obj;
                 sg.j1 j1Var = up0Var.f55600t1;
                 up0Var.s0(j1Var, null);
-                sg.l0.e(i10).j(j1Var.f55018c);
+                sg.l0.e(i11).j(j1Var.f55018c);
                 return;
             case 9:
-                qs.f(i10).k(215, Boolean.FALSE);
+                qs.f(i11).k(215, Boolean.FALSE);
                 ((tg.c2) obj).h();
                 return;
             case 10:
@@ -116,18 +117,18 @@ public final class h2 implements Runnable {
                 org.telegram.ui.ActionBar.u1 u1Var = u1VarArr[0];
                 if (u1Var != null) {
                     try {
-                        u1Var.setOnCancelListener(new h60(i10, 1));
+                        u1Var.setOnCancelListener(new h60(i11, 1));
                         u1VarArr[0].show();
                     } catch (Exception unused4) {
                         return;
                     }
                 }
                 return;
-            default:
+            case 11:
                 w70 w70Var = ((wg.p0) obj).f57704e;
                 try {
-                    if (w70Var.getLayout().getLineForOffset(i10) == 0) {
-                        w70Var.getEditableText().insert(i10, "\n");
+                    if (w70Var.getLayout().getLineForOffset(i11) == 0) {
+                        w70Var.getEditableText().insert(i11, "\n");
                         return;
                     }
                     return;
@@ -135,6 +136,14 @@ public final class h2 implements Runnable {
                     org.telegram.messenger.a8.g(e10, true);
                     return;
                 }
+            default:
+                wi.e0 e0Var = ((wi.u) obj).N;
+                if (e0Var != null && e0Var.f57859s != (i7 = ((i11 % 360) + 360) % 360)) {
+                    e0Var.f57859s = i7;
+                    e0Var.v();
+                    return;
+                }
+                return;
         }
     }
 

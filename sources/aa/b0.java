@@ -53,7 +53,7 @@ public final class b0 {
         if (cVar != null && (cVar.f785b != null || !this.f782e.a())) {
             return this.f783f;
         }
-        x9.b bVar = x9.b.f58570a;
+        x9.b bVar = x9.b.f58576a;
         bVar.c("Determining Crashlytics installation ID...");
         SharedPreferences sharedPreferences = this.f780b.getSharedPreferences("com.google.firebase.crashlytics", 0);
         String string = sharedPreferences.getString("firebase.installation.id", null);

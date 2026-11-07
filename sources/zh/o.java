@@ -1,21 +1,21 @@
 package zh;
 public final class o implements Runnable {
-    public final int f60386a;
-    public final v f60387b;
+    public final int f60392a;
+    public final v f60393b;
 
     public o(v vVar, int i7) {
-        this.f60386a = i7;
-        this.f60387b = vVar;
+        this.f60392a = i7;
+        this.f60393b = vVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f60386a) {
+        switch (this.f60392a) {
             case 0:
-                this.f60387b.onBackPressed();
+                this.f60393b.onBackPressed();
                 return;
             default:
-                this.f60387b.f1();
+                this.f60393b.f1();
                 return;
         }
     }

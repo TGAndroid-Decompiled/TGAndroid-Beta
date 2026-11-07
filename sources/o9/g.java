@@ -224,7 +224,7 @@ public final class g {
         a();
         za.a aVar = (za.a) this.f20877g.get();
         synchronized (aVar) {
-            z9 = aVar.f59923a;
+            z9 = aVar.f59929a;
         }
         return z9;
     }

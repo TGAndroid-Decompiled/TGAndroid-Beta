@@ -53,7 +53,7 @@ public final class i2 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 4:
                 n40 n40Var = (n40) this.f27563c;
-                if (this.f27562b == n40Var.f36216s0) {
+                if (this.f27562b == n40Var.f36217t0) {
                     float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                     if (floatValue3 >= 0.5f) {
                         floatValue3 -= 1.0f;
@@ -74,9 +74,9 @@ public final class i2 implements ValueAnimator.AnimatorUpdateListener {
                 xh.f fVar = (xh.f) this.f27563c;
                 fVar.getClass();
                 float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                fVar.f58705n = floatValue4;
+                fVar.f58711n = floatValue4;
                 fVar.setAlpha((int) ((1.0f - floatValue4) * this.f27562b));
-                fVar.f58707p = true;
+                fVar.f58713p = true;
                 fVar.invalidateSelf();
                 return;
         }

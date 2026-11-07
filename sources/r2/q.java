@@ -361,15 +361,15 @@ public final class q implements b3.j, b3.m, e1, f3.q, a1 {
         x2.u uVar;
         y2.f fVar = (y2.f) lVar;
         if (i7 == 0) {
-            long j11 = fVar.f58799a;
-            uVar = new x2.u(fVar.f58800b, j3);
+            long j11 = fVar.f58805a;
+            uVar = new x2.u(fVar.f58806b, j3);
         } else {
-            long j12 = fVar.f58799a;
-            j2.m mVar = fVar.f58800b;
-            c0 c0Var = fVar.f58805r;
+            long j12 = fVar.f58805a;
+            j2.m mVar = fVar.f58806b;
+            c0 c0Var = fVar.f58811r;
             uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
         }
-        this.f54283w.t(uVar, fVar.f58801c, this.f54263b, fVar.d, fVar.f58802e, fVar.f58803f, fVar.h, fVar.f58804n, i7);
+        this.f54283w.t(uVar, fVar.f58807c, this.f54263b, fVar.d, fVar.f58808e, fVar.f58809f, fVar.h, fVar.f58810n, i7);
     }
 
     @Override
@@ -415,7 +415,7 @@ public final class q implements b3.j, b3.m, e1, f3.q, a1 {
                 z9 = true;
             }
             r52 = new p(this.f54268e, this.h, this.f54278n, this.J);
-            r52.f58201t = this.f54271f0;
+            r52.f58207t = this.f54271f0;
             if (z9) {
                 r52.K = this.f54279n0;
                 r52.B = true;
@@ -428,7 +428,7 @@ public final class q implements b3.j, b3.m, e1, f3.q, a1 {
             if (this.f54280o0 != null) {
                 r52.E = jVar.f54224w;
             }
-            r52.f58188f = this;
+            r52.f58194f = this;
             int i13 = length + 1;
             int[] copyOf = Arrays.copyOf(this.M, i13);
             this.M = copyOf;
@@ -482,9 +482,9 @@ public final class q implements b3.j, b3.m, e1, f3.q, a1 {
             pVar.G(true);
             q2.g gVar = pVar.h;
             if (gVar != null) {
-                gVar.c(pVar.f58187e);
+                gVar.c(pVar.f58193e);
                 pVar.h = null;
-                pVar.f58189g = null;
+                pVar.f58195g = null;
             }
         }
     }
@@ -497,7 +497,7 @@ public final class q implements b3.j, b3.m, e1, f3.q, a1 {
         if (this.f54275j0) {
             return Long.MIN_VALUE;
         }
-        return w().f58804n;
+        return w().f58810n;
     }
 
     @Override
@@ -547,18 +547,18 @@ public final class q implements b3.j, b3.m, e1, f3.q, a1 {
             i iVar = this.d;
             iVar.f54214m = bArr;
             uy uyVar = iVar.f54211j;
-            Uri uri = eVar.f58800b.f16446a;
+            Uri uri = eVar.f58806b.f16446a;
             byte[] bArr2 = eVar.f54198x;
             bArr2.getClass();
             uri.getClass();
             byte[] bArr3 = (byte[]) ((d) uyVar.f38750b).put(uri, bArr2);
         }
-        long j11 = fVar.f58799a;
-        j2.m mVar = fVar.f58800b;
-        c0 c0Var = fVar.f58805r;
+        long j11 = fVar.f58805a;
+        j2.m mVar = fVar.f58806b;
+        c0 c0Var = fVar.f58811r;
         x2.u uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
         this.f54281r.getClass();
-        this.f54283w.p(uVar, fVar.f58801c, this.f54263b, fVar.d, fVar.f58802e, fVar.f58803f, fVar.h, fVar.f58804n);
+        this.f54283w.p(uVar, fVar.f58807c, this.f54263b, fVar.d, fVar.f58808e, fVar.f58809f, fVar.h, fVar.f58810n);
         if (!this.T) {
             u0 u0Var = new u0();
             u0Var.f18055a = this.f54271f0;
@@ -587,7 +587,7 @@ public final class q implements b3.j, b3.m, e1, f3.q, a1 {
             }
         }
         if (w10 != null) {
-            j3 = Math.max(j3, w10.f58804n);
+            j3 = Math.max(j3, w10.f58810n);
         }
         if (this.S) {
             for (p pVar : this.L) {
@@ -601,12 +601,12 @@ public final class q implements b3.j, b3.m, e1, f3.q, a1 {
     public final void q0(b3.l lVar, long j3, long j10, boolean z9) {
         y2.f fVar = (y2.f) lVar;
         this.K = null;
-        long j11 = fVar.f58799a;
-        j2.m mVar = fVar.f58800b;
-        c0 c0Var = fVar.f58805r;
+        long j11 = fVar.f58805a;
+        j2.m mVar = fVar.f58806b;
+        c0 c0Var = fVar.f58811r;
         x2.u uVar = new x2.u(mVar, c0Var.f16414c, c0Var.d, j3, j10, c0Var.f16413b);
         this.f54281r.getClass();
-        this.f54283w.o(uVar, fVar.f58801c, this.f54263b, fVar.d, fVar.f58802e, fVar.f58803f, fVar.h, fVar.f58804n);
+        this.f54283w.o(uVar, fVar.f58807c, this.f54263b, fVar.d, fVar.f58808e, fVar.f58809f, fVar.h, fVar.f58810n);
         if (!z9) {
             if (y() || this.U == 0) {
                 C();
@@ -710,7 +710,7 @@ public final class q implements b3.j, b3.m, e1, f3.q, a1 {
         if (i7 == -1) {
             return;
         }
-        long j3 = w().f58804n;
+        long j3 = w().f58810n;
         j jVar = (j) arrayList.get(i7);
         m0.X(i7, arrayList.size(), arrayList);
         for (int i10 = 0; i10 < this.L.length; i10++) {
@@ -749,7 +749,7 @@ public final class q implements b3.j, b3.m, e1, f3.q, a1 {
             }
             q1 q1Var = this.Y;
             if (q1Var != null) {
-                int i11 = q1Var.f58353a;
+                int i11 = q1Var.f58359a;
                 int[] iArr = new int[i11];
                 this.f54262a0 = iArr;
                 Arrays.fill(iArr, -1);

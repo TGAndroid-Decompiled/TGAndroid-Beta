@@ -48,8 +48,8 @@ import wg.a0;
 import wg.f1;
 import wg.t0;
 import wg.v;
-import wi.m0;
-import wi.t;
+import wi.n0;
+import wi.u;
 public final class p implements Runnable {
     public final int f56036a;
     public final Object f56037b;
@@ -373,29 +373,34 @@ public final class p implements Runnable {
                 iVar2.invalidate();
                 return;
             case 28:
-                ((wi.j) this.f56037b).a0((m0) this.f56038c);
+                ((wi.k) this.f56037b).Z((n0) this.f56038c);
                 return;
             default:
-                wi.j jVar = (wi.j) this.f56037b;
+                wi.k kVar = (wi.k) this.f56037b;
                 HandlerThread handlerThread = (HandlerThread) this.f56038c;
-                jVar.k();
-                wi.m mVar = jVar.f57961x;
-                if (mVar != null) {
-                    long p10 = mVar.p();
-                    t tVar = jVar.f57959w;
-                    if (tVar != null && p10 != Long.MAX_VALUE) {
-                        tVar.f58080q = Math.max(0L, p10) * 1000;
-                        Handler handler = tVar.f58088u;
+                kVar.j();
+                wi.n nVar = kVar.f57965x;
+                if (nVar != null) {
+                    long p10 = nVar.p();
+                    u uVar = kVar.f57963w;
+                    if (uVar != null && p10 != Long.MAX_VALUE) {
+                        uVar.f58084q = Math.max(0L, p10) * 1000;
+                        Handler handler = uVar.f58092u;
                         if (handler != null) {
-                            handler.removeCallbacks(tVar.f58094x0);
+                            handler.removeCallbacks(uVar.f58100y0);
                         }
                     }
                 }
-                jVar.p();
-                wi.m mVar2 = jVar.f57961x;
-                if (mVar2 != null) {
-                    mVar2.u();
-                    jVar.f57961x = null;
+                kVar.o();
+                wi.n nVar2 = kVar.f57965x;
+                if (nVar2 != null) {
+                    nVar2.u();
+                    kVar.f57965x = null;
+                }
+                if (kVar.f57966x0 > 0) {
+                    kVar.f57930j.b("release waits for camera open results: pending=" + kVar.f57966x0);
+                    kVar.f57968y0 = handlerThread;
+                    return;
                 }
                 handlerThread.quitSafely();
                 return;

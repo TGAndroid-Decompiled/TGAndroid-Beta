@@ -49,14 +49,14 @@ public final class t1 extends w31 {
             textView.setText(stargiftattributemodel.name);
             u1.a(u1Var, stargiftattributemodel.document, 80, x31Var.G, true);
             l9Var.setColorFilter(null);
-            w0Var.f60487y = org.telegram.ui.ActionBar.k6.Ci;
+            w0Var.f60493y = org.telegram.ui.ActionBar.k6.Ci;
             str = k7.G1(stargiftattributemodel.rarity, numArr);
         } else if (i7 == 1) {
             TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop = r1Var.f4604a;
             TL_stars.starGiftAttributePattern stargiftattributepattern = r1Var.f4605b;
             w0Var.d(stargiftattributebackdrop);
             w0Var.e(stargiftattributepattern);
-            w0Var.f60487y = org.telegram.ui.ActionBar.k6.f27849d6;
+            w0Var.f60493y = org.telegram.ui.ActionBar.k6.f27849d6;
             textView.setText(stargiftattributebackdrop.name);
             u1.a(u1Var, stargiftattributepattern.document, 48, x31Var.G, false);
             l9Var.setColorFilter(new PorterDuffColorFilter(i0.a.o(stargiftattributebackdrop.pattern_color, 64), PorterDuff.Mode.SRC_IN));
@@ -66,7 +66,7 @@ public final class t1 extends w31 {
             TL_stars.starGiftAttributePattern stargiftattributepattern2 = r1Var.f4605b;
             w0Var.d(stargiftattributebackdrop2);
             w0Var.e(stargiftattributepattern2);
-            w0Var.f60487y = org.telegram.ui.ActionBar.k6.f27849d6;
+            w0Var.f60493y = org.telegram.ui.ActionBar.k6.f27849d6;
             textView.setText(stargiftattributepattern2.name);
             u1.a(u1Var, stargiftattributepattern2.document, 64, x31Var.G, false);
             l9Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));

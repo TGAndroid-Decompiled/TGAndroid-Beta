@@ -206,14 +206,14 @@ public final class h extends x2.a {
 
     @Override
     public final e0 c(x2.g0 g0Var, h6.m mVar, long j3) {
-        int intValue = ((Integer) g0Var.f58234a).intValue() - this.N;
+        int intValue = ((Integer) g0Var.f58240a).intValue() - this.N;
         wa b10 = b(g0Var);
         q2.j jVar = new q2.j(this.d.f53645c, 0, g0Var);
         int i7 = this.N + intValue;
         p2.c cVar = this.G;
         d0 d0Var = this.B;
         long j10 = this.K;
-        m2.j jVar2 = this.f58174g;
+        m2.j jVar2 = this.f58180g;
         jVar2.getClass();
         b bVar = new b(i7, cVar, this.f20742n, intValue, this.f20738j, d0Var, this.f20740l, jVar, this.f20741m, b10, j10, this.f20752y, mVar, this.f20739k, this.f20751x, jVar2);
         this.f20749u.put(i7, bVar);
@@ -234,7 +234,7 @@ public final class h extends x2.a {
     public final void m(d0 d0Var) {
         this.B = d0Var;
         Looper myLooper = Looper.myLooper();
-        m2.j jVar = this.f58174g;
+        m2.j jVar = this.f58180g;
         jVar.getClass();
         q2.m mVar = this.f20740l;
         mVar.E(myLooper, jVar);

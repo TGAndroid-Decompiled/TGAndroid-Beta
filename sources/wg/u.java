@@ -29,13 +29,13 @@ public final class u implements t4, ut0, yg.f, yg.k {
         String G;
         a0 a0Var = this.f57720a;
         int i11 = a0Var.Z1;
-        int i12 = yg.d.f59351w;
+        int i12 = yg.d.f59357w;
         if (i11 == 2) {
             a0Var.f57589f2 = i7;
         } else {
             a0Var.f57590g2 = i7;
         }
-        a0Var.f57592i2.f59322a.c(a0Var.f1(), true);
+        a0Var.f57592i2.f59328a.c(a0Var.f1(), true);
         if (a0Var.Z1 == 3) {
             a0Var.k1(true, true);
         } else {
@@ -43,10 +43,10 @@ public final class u implements t4, ut0, yg.f, yg.k {
         }
         xg.c cVar = a0Var.Y1;
         int f12 = a0Var.f1();
-        for (int i13 = 0; i13 < cVar.f58619f.getChildCount(); i13++) {
-            View childAt = cVar.f58619f.getChildAt(i13);
+        for (int i13 = 0; i13 < cVar.f58625f.getChildCount(); i13++) {
+            View childAt = cVar.f58625f.getChildAt(i13);
             if (childAt instanceof yg.x) {
-                j6 j6Var = ((yg.x) childAt).f59404r;
+                j6 j6Var = ((yg.x) childAt).f59410r;
                 if (f12 <= 0) {
                     G = "";
                 } else {
@@ -58,8 +58,8 @@ public final class u implements t4, ut0, yg.f, yg.k {
             if (childAt instanceof yg.g) {
                 yg.g gVar = (yg.g) childAt;
                 int F = cVar.F(gVar.getChat());
-                boolean V = t3.V(gVar.f59357x);
-                if (gVar.f59358y) {
+                boolean V = t3.V(gVar.f59363x);
+                if (gVar.f59364y) {
                     if (F >= 1) {
                         if (V) {
                             str2 = "Subscribers";
@@ -87,7 +87,7 @@ public final class u implements t4, ut0, yg.f, yg.k {
             }
         }
         cVar.g(8);
-        cVar.k(cVar.f58618e.size() - 12, 12);
+        cVar.k(cVar.f58624e.size() - 12, 12);
     }
 
     @Override

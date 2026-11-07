@@ -12802,7 +12802,7 @@ public class an extends org.telegram.ui.ActionBar.f2 implements org.telegram.mes
         arrayList.add(new org.telegram.ui.ActionBar.t6((View) null, 0, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, i20));
         yh.d dVar = this.ya;
         if (dVar != null) {
-            arrayList.add(new org.telegram.ui.ActionBar.t6(dVar.f59415g, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, i17));
+            arrayList.add(new org.telegram.ui.ActionBar.t6(dVar.f59421g, 4, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, i17));
             arrayList.add(new org.telegram.ui.ActionBar.t6(dVar.h, 8, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.Re));
         }
         int size = arrayList.size();
@@ -15077,6 +15077,10 @@ public class an extends org.telegram.ui.ActionBar.f2 implements org.telegram.mes
         di.u2 u2Var = this.X1;
         if (u2Var != null) {
             u2Var.K();
+        }
+        org.telegram.ui.Components.t40 t40Var = this.f43911p3;
+        if (t40Var != null) {
+            t40Var.c(true);
         }
         ks p10 = ks.p();
         if (p10.f47281l == this.D9) {

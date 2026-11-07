@@ -970,7 +970,7 @@ public final class e implements m, hi0, jy0 {
         this.f56837a = 14;
         this.f56838b = q1Var;
         this.f56839c = zArr;
-        int i7 = q1Var.f58353a;
+        int i7 = q1Var.f58359a;
         this.d = new boolean[i7];
         this.f56840e = new boolean[i7];
     }

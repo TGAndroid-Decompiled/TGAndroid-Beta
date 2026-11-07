@@ -33,6 +33,7 @@ public class MediaCodecVideoConvertor {
     private mf callback;
     private long endPresentationTime;
     private MediaExtractor extractor;
+    private boolean legacyCodecSetup;
     private Muxer muxer;
     private String outputMimeType;
 
@@ -223,7 +224,7 @@ public class MediaCodecVideoConvertor {
                                                 if (j11 > j3) {
                                                     j3 = j11;
                                                 }
-                                                ((re) MediaCodecVideoConvertor.this.callback).k(writeSampleData, (((float) j3) / 1000.0f) / this.durationS);
+                                                ((re) MediaCodecVideoConvertor.this.callback).l(writeSampleData, (((float) j3) / 1000.0f) / this.durationS);
                                             }
                                         }
                                     }
@@ -305,7 +306,7 @@ public class MediaCodecVideoConvertor {
         }
     }
 
-    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r116, boolean r117, int r118) {
+    private boolean convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor.ConvertVideoParams r114, boolean r115, int r116) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.video.MediaCodecVideoConvertor.convertVideoInternal(org.telegram.messenger.video.MediaCodecVideoConvertor$ConvertVideoParams, boolean, int):boolean");
     }
 

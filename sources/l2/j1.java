@@ -38,7 +38,7 @@ public final class j1 {
                 ArrayList arrayList2 = this.f17900b;
                 if (i10 > 0) {
                     i1 i1Var2 = (i1) arrayList2.get(i10 - 1);
-                    i1Var.d = i1Var2.f17890a.f58179o.f58360e.o() + i1Var2.d;
+                    i1Var.d = i1Var2.f17890a.f58185o.f58366e.o() + i1Var2.d;
                     i1Var.f17893e = false;
                     i1Var.f17892c.clear();
                 } else {
@@ -46,7 +46,7 @@ public final class j1 {
                     i1Var.f17893e = false;
                     i1Var.f17892c.clear();
                 }
-                int o4 = i1Var.f17890a.f58179o.f58360e.o();
+                int o4 = i1Var.f17890a.f58185o.f58366e.o();
                 for (int i11 = i10; i11 < arrayList2.size(); i11++) {
                     ((i1) arrayList2.get(i11)).d += o4;
                 }
@@ -77,7 +77,7 @@ public final class j1 {
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
             i1 i1Var = (i1) arrayList.get(i10);
             i1Var.d = i7;
-            i7 += i1Var.f17890a.f58179o.f58360e.o();
+            i7 += i1Var.f17890a.f58185o.f58366e.o();
         }
         return new p1(arrayList, this.f17906j);
     }
@@ -128,11 +128,11 @@ public final class j1 {
         }
         Handler handler = new Handler(myLooper, null);
         b0Var.getClass();
-        wa waVar = b0Var.f58171c;
+        wa waVar = b0Var.f58177c;
         waVar.getClass();
         ?? obj = new Object();
-        obj.f58270a = handler;
-        obj.f58271b = g1Var;
+        obj.f58276a = handler;
+        obj.f58277b = g1Var;
         ((CopyOnWriteArrayList) waVar.d).add(obj);
         Looper myLooper2 = Looper.myLooper();
         if (myLooper2 == null) {
@@ -154,7 +154,7 @@ public final class j1 {
         i1 i1Var = (i1) identityHashMap.remove(e0Var);
         i1Var.getClass();
         i1Var.f17890a.o(e0Var);
-        i1Var.f17892c.remove(((x2.y) e0Var).f58422a);
+        i1Var.f17892c.remove(((x2.y) e0Var).f58428a);
         if (!identityHashMap.isEmpty()) {
             c();
         }
@@ -166,7 +166,7 @@ public final class j1 {
             ArrayList arrayList = this.f17900b;
             i1 i1Var = (i1) arrayList.remove(i11);
             this.d.remove(i1Var.f17891b);
-            int i12 = -i1Var.f17890a.f58179o.f58360e.o();
+            int i12 = -i1Var.f17890a.f58185o.f58366e.o();
             for (int i13 = i11; i13 < arrayList.size(); i13++) {
                 ((i1) arrayList.get(i13)).d += i12;
             }

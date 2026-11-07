@@ -45,7 +45,7 @@ public final class a {
         this.f54881c = 0;
         this.f54883f = new HashSet();
         this.f54884g = true;
-        this.f54885i = x6.a.f58538a;
+        this.f54885i = x6.a.f58544a;
         this.f54887k = new HashMap();
         this.f54888l = new AtomicInteger(0);
         m.f("wake:com.google.firebase.iid.WakeLockHolder", "WakeLock: wakeLockName must not be empty");
@@ -66,7 +66,7 @@ public final class a {
         if (powerManager != null) {
             this.f54880b = powerManager.newWakeLock(1, "wake:com.google.firebase.iid.WakeLockHolder");
             if (f.b(context)) {
-                int i7 = e.f58546a;
+                int i7 = e.f58552a;
                 packageName = (packageName == null || packageName.trim().isEmpty()) ? context.getPackageName() : packageName;
                 if (context.getPackageManager() != null && packageName != null) {
                     try {

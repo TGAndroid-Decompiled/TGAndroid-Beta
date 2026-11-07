@@ -395,14 +395,14 @@ public final class m3 implements r0.m, GlGenericDrawer.TextureCallback, org.tele
                 hi.d4 d4Var = (hi.d4) obj2;
                 zb.b bVar2 = (zb.b) obj;
                 ArrayList arrayList = new ArrayList();
-                for (int i10 = 0; i10 < bVar2.f59928a.size(); i10++) {
-                    zb.a aVar = (zb.a) bVar2.f59928a.get(i10);
+                for (int i10 = 0; i10 < bVar2.f59934a.size(); i10++) {
+                    zb.a aVar = (zb.a) bVar2.f59934a.get(i10);
                     ?? obj3 = new Object();
-                    obj3.f55487a = aVar.f59924a;
+                    obj3.f55487a = aVar.f59930a;
                     obj3.f55488b = aVar.d;
-                    obj3.f55489c = aVar.f59927e;
-                    obj3.d = aVar.f59925b;
-                    obj3.f55490e = aVar.f59926c;
+                    obj3.f55489c = aVar.f59933e;
+                    obj3.d = aVar.f59931b;
+                    obj3.f55490e = aVar.f59932c;
                     arrayList.add(obj3);
                 }
                 d4Var.a(arrayList);

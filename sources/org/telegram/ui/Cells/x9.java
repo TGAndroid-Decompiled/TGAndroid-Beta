@@ -97,8 +97,8 @@ public final class x9 extends GestureDetector.SimpleOnGestureListener {
                 return true;
             case 2:
                 yh.k kVar = (yh.k) view;
-                if (!kVar.f59432e.f59435c.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (kVar.f59432e.f59437f.getLeft() >= motionEvent.getX() || motionEvent.getX() >= kVar.f59432e.f59437f.getRight() || kVar.f59432e.f59437f.getTop() >= motionEvent.getY() || motionEvent.getY() >= kVar.f59432e.f59437f.getBottom())) {
-                    kVar.f59432e.e(false);
+                if (!kVar.f59438e.f59441c.getBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY()) && (kVar.f59438e.f59443f.getLeft() >= motionEvent.getX() || motionEvent.getX() >= kVar.f59438e.f59443f.getRight() || kVar.f59438e.f59443f.getTop() >= motionEvent.getY() || motionEvent.getY() >= kVar.f59438e.f59443f.getBottom())) {
+                    kVar.f59438e.e(false);
                 }
                 return super.onSingleTapUp(motionEvent);
             default:

@@ -514,7 +514,7 @@ public final class l extends u2.r {
             this.P1 = -9223372036854775807L;
             return;
         }
-        int b10 = l1Var.b(g0Var.f58234a);
+        int b10 = l1Var.b(g0Var.f58240a);
         if (b10 == -1) {
             this.P1 = -9223372036854775807L;
         } else {

@@ -14,6 +14,7 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.util.Range;
 import android.view.Surface;
+import android.view.WindowManager;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -455,6 +456,30 @@ public class Camera2Session {
 
     public int getPreviewWidth() {
         return this.previewSize.getWidth();
+    }
+
+    public int getRoundVideoRotationAngle() {
+        try {
+            Context context = t0.f25563b;
+            if (context != null) {
+                int rotation = ((WindowManager) context.getSystemService("window")).getDefaultDisplay().getRotation();
+                if (rotation != 1) {
+                    if (rotation != 2) {
+                        if (rotation == 3) {
+                            return 270;
+                        }
+                    } else {
+                        return 180;
+                    }
+                } else {
+                    return 90;
+                }
+            }
+            return 0;
+        } catch (Exception e10) {
+            a8.g(e10, true);
+            return 0;
+        }
     }
 
     public int getWorldAngle() {

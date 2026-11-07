@@ -6,14 +6,14 @@ import ug.k0;
 import ui.e;
 import y7.i6;
 public final class a {
-    public static final Hashtable f60038b;
-    public static final Object[] f60039c;
+    public static final Hashtable f60044b;
+    public static final Object[] f60045c;
     public static Class d;
-    public final ClassLoader f60040a;
+    public final ClassLoader f60046a;
 
     static {
         Hashtable hashtable = new Hashtable();
-        f60038b = hashtable;
+        f60044b = hashtable;
         hashtable.put("void", Void.TYPE);
         hashtable.put("boolean", Boolean.TYPE);
         hashtable.put("byte", Byte.TYPE);
@@ -23,18 +23,18 @@ public final class a {
         hashtable.put("long", Long.TYPE);
         hashtable.put("float", Float.TYPE);
         hashtable.put("double", Double.TYPE);
-        f60039c = new Object[0];
+        f60045c = new Object[0];
     }
 
     public a(Class cls, String str) {
-        this.f60040a = cls.getClassLoader();
+        this.f60046a = cls.getClassLoader();
     }
 
     public static Class a(ClassLoader classLoader, String str) {
         if (str.equals("*")) {
             return null;
         }
-        Class cls = (Class) f60038b.get(str);
+        Class cls = (Class) f60044b.get(str);
         if (cls != null) {
             return cls;
         }
@@ -58,7 +58,7 @@ public final class a {
     }
 
     public static e b(i6 i6Var, Object obj, Object obj2) {
-        return new e(i6Var, obj, obj2, f60039c, 15);
+        return new e(i6Var, obj, obj2, f60045c, 15);
     }
 
     public static e c(i6 i6Var, Object obj, Object obj2, Object obj3) {
@@ -67,7 +67,7 @@ public final class a {
 
     public final k0 d(String str, String str2, String str3, String str4, String str5) {
         int parseInt = Integer.parseInt("1", 16);
-        ClassLoader classLoader = this.f60040a;
+        ClassLoader classLoader = this.f60046a;
         Class a10 = a(classLoader, str2);
         StringTokenizer stringTokenizer = new StringTokenizer(str3, ":");
         int countTokens = stringTokenizer.countTokens();
@@ -99,7 +99,7 @@ public final class a {
 
     public final i6 e(k0 k0Var) {
         i6 i6Var = new i6(3);
-        i6Var.f58956b = k0Var;
+        i6Var.f58962b = k0Var;
         return i6Var;
     }
 }

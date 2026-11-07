@@ -25,7 +25,7 @@ public final class n3 implements View.OnLayoutChangeListener {
                 textView2.setPivotX(textView2.getMeasuredWidth() * 0.7f);
                 return;
             default:
-                ((wi.j) this.f12476b).d0();
+                ((wi.k) this.f12476b).b0();
                 return;
         }
     }

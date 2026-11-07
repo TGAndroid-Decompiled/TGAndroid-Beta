@@ -21,25 +21,25 @@ import org.telegram.ui.Components.j6;
 import org.telegram.ui.Components.w5;
 import org.telegram.ui.Components.xq;
 public final class w extends FrameLayout {
-    public final RadioButton f59395a;
-    public final Drawable f59396b;
-    public final Drawable f59397c;
+    public final RadioButton f59401a;
+    public final Drawable f59402b;
+    public final Drawable f59403c;
     public final j6 d;
-    public final j6 f59398e;
-    public final TextView f59399f;
+    public final j6 f59404e;
+    public final TextView f59405f;
     public final SpannableString h;
-    public final SpannableString f59400n;
-    public TL_stars.TL_starsGiveawayOption f59401r;
-    public int f59402s;
-    public final w5 f59403w;
+    public final SpannableString f59406n;
+    public TL_stars.TL_starsGiveawayOption f59407r;
+    public int f59408s;
+    public final w5 f59409w;
 
     public w(Context context, f6 f6Var) {
         super(context);
-        this.f59403w = new w5(this, 0L, 500L, xq.h);
+        this.f59409w = new w5(this, 0L, 500L, xq.h);
         Drawable h = jg.g.h(context, 2131232753);
-        this.f59396b = h;
+        this.f59402b = h;
         r6.y(this, h, k6.f27922h5, f6Var, PorterDuff.Mode.SRC_IN);
-        this.f59397c = jg.g.h(context, 2131232752);
+        this.f59403c = jg.g.h(context, 2131232752);
         setWillNotDraw(false);
         j6 j6Var = new j6(context, false, false, false);
         this.d = j6Var;
@@ -51,35 +51,35 @@ public final class w extends FrameLayout {
         this.h = spannableString;
         spannableString.setSpan(new b80(g0.L(90.0f), j6Var), 0, 1, 33);
         j6 j6Var2 = new j6(context, false, true, true);
-        this.f59398e = j6Var2;
+        this.f59404e = j6Var2;
         int i7 = k6.f28259z6;
         r6.Z(j6Var2, i7, f6Var);
         j6Var2.setTextSize(g0.L(13.0f));
         addView(j6Var2, ha.d(-1, 14.0f, 51, 64.0f, 31.0f, 80.0f, 0.0f));
         SpannableString spannableString2 = new SpannableString("x");
-        this.f59400n = spannableString2;
+        this.f59406n = spannableString2;
         spannableString2.setSpan(new b80(g0.L(70.0f), j6Var2), 0, 1, 33);
         TextView textView = new TextView(context);
-        this.f59399f = textView;
+        this.f59405f = textView;
         r6.V(textView, i7, f6Var);
         textView.setTextSize(1, 16.0f);
         textView.setGravity(5);
         addView(textView, ha.d(-2, -2.0f, 21, 0.0f, 0.0f, 19.0f, 0.0f));
         RadioButton radioButton = new RadioButton(context);
-        this.f59395a = radioButton;
+        this.f59401a = radioButton;
         radioButton.setSize(g0.L(20.0f));
         r6.P(radioButton, k6.f27959j7, k6.E5, f6Var);
         addView(radioButton, ha.d(20, 20.0f, 19, 22.0f, 0.0f, 0.0f, 0.0f));
     }
 
     public TL_stars.TL_starsGiveawayOption getOption() {
-        return this.f59401r;
+        return this.f59407r;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float e10 = this.f59403w.e(false, this.f59402s);
+        float e10 = this.f59409w.e(false, this.f59408s);
         float L = g0.L(24.0f);
         float L2 = g0.L(24.0f);
         float L3 = g0.L(2.5f);
@@ -92,12 +92,12 @@ public final class w extends FrameLayout {
             int i11 = (int) L5;
             int i12 = (int) (f10 + L);
             int i13 = (int) (L5 + L2);
-            Drawable drawable = this.f59396b;
+            Drawable drawable = this.f59402b;
             drawable.setBounds(i10, i11, i12, i13);
             int i14 = (int) (i7 * 255.0f);
             drawable.setAlpha(i14);
             drawable.draw(canvas);
-            Drawable drawable2 = this.f59397c;
+            Drawable drawable2 = this.f59403c;
             drawable2.setBounds(i10, i11, i12, i13);
             drawable2.setAlpha(i14);
             drawable2.draw(canvas);

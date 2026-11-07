@@ -132,7 +132,7 @@ public final class qt extends org.telegram.ui.Components.n41 {
         arrayList.add(org.telegram.ui.Components.x31.e(10, org.telegram.messenger.hd.M0(2131751645, null)));
         arrayList.add(org.telegram.ui.Components.x31.e(37, "Make Memory Dump"));
         org.telegram.ui.Components.x31 i7 = org.telegram.ui.Components.x31.i(42, "Experimental settings");
-        xi.a aVar = xi.e.f58761a;
+        xi.a aVar = xi.e.f58767a;
         aVar.a();
         i7.L(aVar.d);
         arrayList.add(i7);
@@ -654,19 +654,19 @@ public final class qt extends org.telegram.ui.Components.n41 {
                 z9 = true;
                 break;
             case 42:
-                xi.a aVar = xi.e.f58761a;
+                xi.a aVar = xi.e.f58767a;
                 synchronized (aVar) {
-                    if (!aVar.f58753b) {
-                        SharedPreferences sharedPreferences = xi.d.f58760a;
-                        aVar.f58754c = sharedPreferences.contains("experimental_settings_allowed");
+                    if (!aVar.f58759b) {
+                        SharedPreferences sharedPreferences = xi.d.f58766a;
+                        aVar.f58760c = sharedPreferences.contains("experimental_settings_allowed");
                         aVar.d = sharedPreferences.getBoolean("experimental_settings_allowed", true);
-                        aVar.f58753b = true;
+                        aVar.f58759b = true;
                     }
                     boolean z11 = !aVar.d;
                     aVar.d = z11;
-                    aVar.f58754c = true;
-                    aVar.f58753b = true;
-                    xi.d.f58760a.edit().putBoolean("experimental_settings_allowed", z11).apply();
+                    aVar.f58760c = true;
+                    aVar.f58759b = true;
+                    xi.d.f58766a.edit().putBoolean("experimental_settings_allowed", z11).apply();
                 }
                 z9 = true;
                 break;

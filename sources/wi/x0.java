@@ -1,0 +1,10 @@
+package wi;
+
+import android.media.MediaCodec;
+import android.media.MediaFormat;
+import java.nio.ByteBuffer;
+public interface x0 {
+    void r(ByteBuffer byteBuffer, MediaCodec.BufferInfo bufferInfo);
+
+    void w(MediaFormat mediaFormat);
+}

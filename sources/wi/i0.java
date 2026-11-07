@@ -1,101 +1,46 @@
 package wi;
 
-import android.os.SystemClock;
-import c8.jd;
-import java.io.File;
-import java.io.IOException;
-import org.telegram.ui.Components.r31;
-import org.telegram.ui.vn;
+import org.telegram.ui.Components.hy0;
 public final class i0 implements Runnable {
-    public final int f57898a;
-    public final t0 f57899b;
+    public final int f57895a;
+    public final u0 f57896b;
+    public final q0 f57897c;
 
-    public i0(t0 t0Var, int i7) {
-        this.f57898a = i7;
-        this.f57899b = t0Var;
+    public i0(u0 u0Var, q0 q0Var, int i7, int i10) {
+        this.f57895a = i10;
+        this.f57896b = u0Var;
+        this.f57897c = q0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f57898a) {
+        switch (this.f57895a) {
             case 0:
-                t0 t0Var = this.f57899b;
-                if (t0Var.Z == 3) {
-                    t0Var.q();
-                    return;
-                }
+                u0 u0Var = this.f57896b;
+                q0 q0Var = this.f57897c;
+                ((hy0) u0Var.f58107e).c(q0Var.f58034a);
                 return;
             case 1:
-                t0 t0Var2 = this.f57899b;
-                x xVar = t0Var2.T;
-                File file = t0Var2.U;
-                if (xVar != null) {
-                    try {
-                        synchronized (xVar) {
-                            xVar.f58162w = true;
-                            try {
-                                xVar.g();
-                            } finally {
-                                xVar.f58162w = false;
-                            }
-                        }
-                    } catch (IOException unused) {
-                    }
-                    jd.c(xVar.f58143a);
-                }
-                if (file != null) {
-                    jd.c(file);
-                    return;
-                }
-                return;
-            case 2:
-                t0 t0Var3 = this.f57899b;
-                int i7 = t0Var3.Z;
-                if (i7 == 2 || i7 == 6) {
-                    t0Var3.I = SystemClock.elapsedRealtime();
-                    n nVar = t0Var3.f58108m;
-                    nVar.b("recording started: retainedDurationMs=" + t0Var3.H);
-                    t0Var3.w(3);
-                    long j3 = t0Var3.f58112q - t0Var3.H;
-                    if (j3 > 0 && !t0Var3.D) {
-                        t0Var3.f58104i.postDelayed(t0Var3.W, j3);
-                        return;
-                    }
-                    t0Var3.D = false;
-                    t0Var3.q();
-                    return;
+                u0 u0Var2 = this.f57896b;
+                q0 q0Var2 = this.f57897c;
+                r0 r0Var = u0Var2.f58107e;
+                long j3 = q0Var2.f58034a;
+                hy0 hy0Var = (hy0) r0Var;
+                synchronized (hy0Var) {
+                    hy0Var.c(j3);
                 }
                 return;
             default:
-                t0 t0Var4 = this.f57899b;
-                t0Var4.E = false;
-                n nVar2 = t0Var4.f58108m;
-                nVar2.b("recording segment stopped: state=" + rf.b.t(t0Var4.Z) + ", retainedDurationMs=" + t0Var4.H);
-                if (t0Var4.C) {
-                    t0Var4.C = false;
-                    t0Var4.i();
-                    return;
-                } else if (t0Var4.A) {
-                    t0Var4.A = false;
-                    boolean z9 = t0Var4.B;
-                    t0Var4.f58105j.execute(new vn(t0Var4, t0Var4.T, z9, t0Var4.S, 18));
-                    return;
-                } else if (t0Var4.Z == 4) {
-                    try {
-                        File d = t0Var4.d("round_video_preview_");
-                        t0Var4.U = d;
-                        t0Var4.M = System.nanoTime();
-                        n nVar3 = t0Var4.f58108m;
-                        nVar3.b("preview snapshot started: file=" + d.getName());
-                        t0Var4.f58105j.execute(new r31(t0Var4, t0Var4.T, d, 25));
-                        return;
-                    } catch (IOException e10) {
-                        t0Var4.h(e10);
-                        return;
-                    }
-                } else {
-                    return;
-                }
+                u0 u0Var3 = this.f57896b;
+                q0 q0Var3 = this.f57897c;
+                ((hy0) u0Var3.f58107e).c(q0Var3.f58034a);
+                return;
         }
+    }
+
+    public i0(u0 u0Var, q0 q0Var, Exception exc) {
+        this.f57895a = 1;
+        this.f57896b = u0Var;
+        this.f57897c = q0Var;
     }
 }

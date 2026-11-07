@@ -123,12 +123,12 @@ public final class q1 implements Runnable {
         this.f12645e = passwordinputsettings;
     }
 
-    public q1(wi.t0 t0Var, boolean z9, wi.x xVar, wi.p0 p0Var, File file) {
+    public q1(wi.u0 u0Var, boolean z9, wi.y yVar, wi.q0 q0Var, File file) {
         this.f12642a = 16;
-        this.f12644c = t0Var;
+        this.f12644c = u0Var;
         this.f12643b = z9;
-        this.d = xVar;
-        this.f12645e = p0Var;
+        this.d = yVar;
+        this.f12645e = q0Var;
         this.f12646f = file;
     }
 }
